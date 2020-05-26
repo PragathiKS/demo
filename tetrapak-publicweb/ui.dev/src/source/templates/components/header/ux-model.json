@@ -18,10 +18,88 @@
       "linkText": "Insights",
       "linkPath": "/content/tetrapak/public-web/global/en/insights",
       "navigationConfigurationModel": {
-        "sectionHomePageTitle": "Insight overview",
+        "sectionHomePageTitle": "Insight overview ",
         "sectionHomePagePath": "insight page",
         "sectionRaws": "6",
         "sectionMenu": [
+          {
+            "linkText": "Insight Processing",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false,
+            "subSectionMenu": {
+              "pseudoCategoriesSection": [
+                {
+                  "title": "Ice Creams",
+                  "subSectionCount":12,
+                  "subSections": [
+                    {
+                      "linkText": "Dairy",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "external": false
+                    }
+
+                  ]
+                },
+                {
+                  "title": "Chocolates",
+                  "subSectionCount":12,
+                  "subSections": [
+                    {
+                      "linkText": "Sub Chocolates1",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "external": false
+                    },
+                    {
+                      "linkText": "Sub Chocolates2",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                      "external": true
+                    },
+                    {
+                      "linkText": "Dairy",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "external": false
+                    },
+                    {
+                      "linkText": "Beverages",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                      "external": true
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "linkText": "Insight Processing",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false,
+            "subSectionMenu": {
+              "pseudoCategoriesSection": [
+                {
+                  "title": "Ice Creams",
+                  "subSectionCount":12,
+                  "subSections": [
+                    {
+                      "linkText": "Dairy",
+                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "external": false
+                    }
+
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "linkText": "Insight equipment",
+            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "external": false
+          },
+          {
+            "linkText": "Insight external",
+            "linkPath": "https://www.google.com",
+            "external": true
+          },
           {
             "linkText": "Insight Processing",
             "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
@@ -41,299 +119,11 @@
                       "linkText": "Beverages Beverages Beverages",
                       "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
                       "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    }
-
-                  ]
-                },
-                {
-                  "title": "Chocolates",
-                  "subSectionCount":12,
-                  "subSections": [
-                    {
-                      "linkText": "Sub Chocolates1",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Sub Chocolates2",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Sub Chocolates2",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                      "external": false
-                    },
-                    {
-                      "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                      "external": false
                     }
                   ]
                 }
               ]
             }
-          },
-          {
-            "linkText": "Insight equipment",
-            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
-            "external": false
-          },
-          {
-            "linkText": "Insight external",
-            "linkPath": "https://www.google.com",
-            "external": true
-          }
-        ]
-      }
-    },
-    {
-      "linkText": "About Tetra pak",
-      "linkPath": "/content/tetrapak/public-web/global/en/insights",
-      "navigationConfigurationModel": {
-        "sectionHomePageTitle": "About Tetra pak overview",
-        "sectionHomePagePath": "About Page",
-        "sectionRaws": "6",
-        "sectionMenu": [
-          {
-            "linkText": "About Tetra pak Processing",
-            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
-            "external": false,
-            "subSectionCount": 24,
-            "subSectionMenu": {
-              "subSections": [
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Dairy",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                },
-                {
-                  "linkText": "Beverages",
-                  "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
-                  "external": false
-                }
-              ]
-            }
-          },
-          {
-            "linkText": "About Tetra pak equipment",
-            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
-            "external": false
-          },
-          {
-            "linkText": "About Tetra pak external",
-            "linkPath": "https://www.google.com",
-            "external": true
           }
         ]
       }
