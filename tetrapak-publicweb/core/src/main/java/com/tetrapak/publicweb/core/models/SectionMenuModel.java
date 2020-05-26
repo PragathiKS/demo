@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
@@ -161,15 +160,12 @@ public class SectionMenuModel {
      */
     private ExternalTemplateBean checkExternalTemplate(final Page page) {
         final ExternalTemplateBean externalTemplate = new ExternalTemplateBean();
-        final ValueMap properties = getProperties(page);
+        final ValueMap properties = page.getProperties();
         if (properties.containsKey(PWConstants.CQ_TEMPLATE)) {
-            final String template = properties.get(PWConstants.CQ_TEMPLATE).toString();
+            final String template = properties.get(PWConstants.CQ_TEMPLATE, StringUtils.EMPTY);
             if (PWConstants.EXTERNAL_REDIRECT_TEMPLATE.equalsIgnoreCase(template)) {
                 externalTemplate.setExternal(true);
-                externalTemplate.setExternalUrl(StringUtils.EMPTY);
-                if (properties.containsKey(PWConstants.CQ_REDIRECT_TARGET)) {
-                    externalTemplate.setExternalUrl(properties.get(PWConstants.CQ_REDIRECT_TARGET).toString());
-                }
+                externalTemplate.setExternalUrl(properties.get(PWConstants.CQ_REDIRECT_TARGET, StringUtils.EMPTY));
             }
         }
         return externalTemplate;
@@ -232,7 +228,7 @@ public class SectionMenuModel {
      * @return the pseudo category
      */
     private String getPseudoCategory(final Page nextPage) {
-        final ValueMap properties = getProperties(nextPage);
+        final ValueMap properties = nextPage.getProperties();
         return properties.get("pseudoCategory", StringUtils.EMPTY);
     }
 
@@ -328,10 +324,8 @@ public class SectionMenuModel {
      * @param page the new section home page title
      */
     public void setSectionHomePageTitle(final Page page) {
-        final ValueMap properties = getProperties(page);
-        if (properties.containsKey(JcrConstants.JCR_TITLE)) {
-            sectionHomePageTitle = properties.get(JcrConstants.JCR_TITLE).toString();
-        }
+        final ValueMap properties = page.getProperties();
+        sectionHomePageTitle = properties.get("sectionHomePageTitle", StringUtils.EMPTY);
     }
 
     /**
@@ -359,18 +353,6 @@ public class SectionMenuModel {
      */
     public String getSectionHomePagePath() {
         return sectionHomePagePath;
-    }
-
-    /**
-     * Gets the properties.
-     *
-     * @param page the page
-     * @return the properties
-     */
-    private ValueMap getProperties(final Page page) {
-        final Resource resource = page.getContentResource();
-        final ValueMap properties = resource.getValueMap();
-        return properties;
     }
 
     /**
