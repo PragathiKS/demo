@@ -65,9 +65,6 @@ public class SectionMenuModel {
     /** The page title map. */
     private final Map<String, String> pageTitleMap = new HashMap<>();
 
-    /** The Constant EN_PAGE. */
-    private static final String EN_PAGE = "/content/tetrapak/public-web/lang-masters/en";
-
     /**
      * The init method.
      */
@@ -297,10 +294,11 @@ public class SectionMenuModel {
      */
     private void setPageHierarchy(final Page page) {
         final String path = page.getPath();
-        if (path.contains(EN_PAGE)) {
-            final String activeHierarchy = StringUtils.substringAfter(path, EN_PAGE + PWConstants.SLASH);
+        final String languagePagePath = LinkUtils.getRootPath(request.getPathInfo());
+        if (path.contains(languagePagePath)) {
+            final String activeHierarchy = StringUtils.substringAfter(path, languagePagePath + PWConstants.SLASH);
             final String[] activeHierarchyArray = activeHierarchy.split(PWConstants.SLASH);
-            StringBuilder pagePath = new StringBuilder(EN_PAGE);
+            StringBuilder pagePath = new StringBuilder(languagePagePath);
             for (int i = 0; i < activeHierarchyArray.length; i++) {
                 pagePath = pagePath.append(PWConstants.SLASH + activeHierarchyArray[i]);
                 final Page nextPage = pageManager.getPage(pagePath.toString());
