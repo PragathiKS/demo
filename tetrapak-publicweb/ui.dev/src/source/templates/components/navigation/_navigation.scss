@@ -8,7 +8,7 @@
         position: absolute;
         width: 100%;
         left: 0;
-        z-index: 2;
+        z-index: $zindex-nav;
         background: $color-white;
         box-shadow: 0 4px 16px -10px $shadow;
         a {
@@ -18,7 +18,7 @@
         }
         &.sticky {
             display: block;
-            z-index: 1;
+            z-index: $z-index-section-menu;
             position: fixed;
             top: 80px;
             & > .pw-navigation__container {
@@ -43,6 +43,7 @@
                 position: absolute;
                 z-index: 1;
                 & > a {
+                    @include padding-left(0);
                     color: $color-tundora;
                     &:hover {
                         color: $color-jordy-blue;
