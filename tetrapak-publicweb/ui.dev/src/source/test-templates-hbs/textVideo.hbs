@@ -1,20 +1,19 @@
-<div id="#" title="title"
-       class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--${data.pwPadding}"
+<div id="#" title="title" 
+       class="pw-text-video pw-text-video--row pw-theme--greyscale pw-padding--regular pw-margin--regular"
        data-locator="text-video" data-module="TextVideo">
     <div class="row">
-      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4': ''}">
-        <p class="pw-text-video__subTitle d-none d-lg-block">${data.subTitle}</p>
+      <div class="col-md-12 display-row-reversed">
+        <p class="pw-text-video__subTitle d-none d-lg-block">subtitle</p>
         <div class="pw-text-video__title d-none d-lg-block">
-          <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
-               data-sly-call="${title.heading_h4_template @ headingText=data.title, variant='regular'}"/>
+    
         </div>
-        <p class="pw-text-video__description d-none d-lg-block">${data.description}</p>
-        <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
-                <a data-sly-test="${data.linkTexti18n}"
-                href="${data.linkURL}"
-                class="tpatom-link tpatom-link--${data.pwButtonTheme == 'button' ? 'primary':'trasparent'} js-textVideo-analytics"
-                title="${data.linkTexti18n}"
-                target="${data.targetBlank}"
+        <p class="pw-text-video__description d-none d-lg-block">description</p>
+        <div class="pw-text-video__link d-none d-lg-block">
+                <a 
+                href="/textvideo"
+                class="tpatom-link tpatom-link--trasparent js-textVideo-analytics"
+                title="titledata"
+                target="sadsa"
                 data-link-type="internal"
                 data-link-section="Text and Video CTA Click"
                 data-link-name="test"
@@ -22,41 +21,29 @@
                 data-button-link-type="button"
                 data-download-type="download"
                 >
-                <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
-                <i class="icon ${data.pwButtonTheme == 'button' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
+                <span class="tpatom-link__text sly-text">testing</span>
+                <i class="icon icon-Circle_Arrow_Right"></i>
              </a>
               </div>
       </div>
-      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
-        <sly data-sly-test="${data.videoSource == 'damVideo'}">
+      <div class="col-md-12 display-row-reversed">
           <div class="pw-text-video__video">
-            <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=data.thumbnailPath}"></sly>
-            <video controls poster="${dynamicImageModel.desktopUrl}">
-              <source src="${data.damVideoPath}" type="video/mp4">
-            </video>
-          </div>
-        </sly>
-        <sly data-sly-test="${data.videoSource == 'youtube'}">
-          <div class="pw-text-video__video">
-            <iframe src="${data.youtubeEmbedURL}" frameborder="0"
+            <iframe src="/youtube" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
           </div>
-        </sly>
-        <p class="pw-text-video__subTitle d-md-block d-lg-none">${data.subTitle}</p>
+        <p class="pw-text-video__subTitle d-md-block d-lg-none">Title</p>
         <div class="pw-text-video__title d-md-block d-lg-none">
-          <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
-               data-sly-call="${title.heading_h4_template @ headingText=data.title, variant='regular'}"/>
         </div>
-        <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n}</p>
-        <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
-          <a data-sly-test="${data.linkTexti18n}"
-                href="${data.linkURL}"
-                class="tpatom-link tpatom-link--${data.pwButtonTheme == 'button' ? 'primary':'trasparent'}"
-                title="${data.linkTexti18n}"
-                target="${data.targetBlank}">
-                <span class="tpatom-link__text sly-text">${data.linkTexti18n}</span>
-                <i class="icon ${data.pwButtonTheme == 'button' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i>
+        <p class="pw-text-video__description d-md-block d-lg-none">description</p>
+        <div class="pw-text-video__link d-md-block d-lg-none">
+          <a
+                href="/textVIdeo"
+                class="tpatom-link primary"
+                title="this is title"
+                target="asdasd">
+                <span class="tpatom-link__text sly-text">text</span>
+                <i class="icon icon-Circle_Arrow_Right"></i>
              </a>
         </div>
       </div>

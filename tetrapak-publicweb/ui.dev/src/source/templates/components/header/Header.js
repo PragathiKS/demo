@@ -41,6 +41,9 @@ class Header {
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
     // $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
+    this.root.find('.js-header__selected-lang-pw').on('click', () => {
+      this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
+    });
   }
 
   handleMouseOver = () => {
