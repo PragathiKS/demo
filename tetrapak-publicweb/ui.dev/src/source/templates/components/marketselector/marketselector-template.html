@@ -10,13 +10,14 @@
                   <sly data-sly-list.marketList=${data.markets}>
                     <sly data-sly-test.languageSize="${marketList.languages.size}"/>
                       <sly data-sly-list.marketLanguage="${marketList.languages}">
-                        <sly data-sly-test = "${marketLanguage.langaugeIndex==1 || marketLanguage.langaugeIndex==data.col2Start || marketLanguage.langaugeIndex==data.col3Start || marketLanguage.langaugeIndex==data.col4Start}">
+                        <sly data-sly-test = "${marketLanguage.languageIndex==1 || marketLanguage.languageIndex==data.col2Start || marketLanguage.languageIndex==data.col3Start || marketLanguage.languageIndex==data.col4Start}">
                             <ul class="pw-lang-selector__lang-container col-md-3">
                         </sly>
-                      <li class='pw-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}" aria-label="${marketLanguage.langaugeName}" auto_locator="countryTiles">
+                      <sly data-sly-test="${languageSize >= 2}" data-sly-test.concatenatedLanguage="${'{0}{1}{2}' @ format=['(', marketLanguage.languageName, ')']}"/>
+                      <li class='pw-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}" aria-label="${marketLanguage.languageName}" auto_locator="countryTiles">
                         <a data-sly-test="${marketLanguage.linkPath!='#' || marketLanguage.linkPath!=''}" href="${marketLanguage.linkPath}" target="_self" auto_locator="countryName">
-                        ${marketList.marketName} (${marketLanguage.langaugeName})<i data-sly-test="${data.globalMarketPath==marketLanguage.linkPath}" class="icon-Globe"></i></a></li>
-                      <sly data-sly-test = "${marketLanguage.langaugeIndex==data.col1End || marketLanguage.langaugeIndex==data.col2End || marketLanguage.langaugeIndex==data.col3End || marketLanguage.langaugeIndex==data.col4End}">
+                        ${marketList.marketName} ${languageSize >=2 ? concatenatedLanguage : ''}<i data-sly-test="${data.globalMarketPath==marketLanguage.linkPath}" class="icon-Globe"></i></a></li>
+                      <sly data-sly-test = "${marketLanguage.languageIndex==data.col1End || marketLanguage.languageIndex==data.col2End || marketLanguage.languageIndex==data.col3End || marketLanguage.languageIndex==data.col4End}">
                     </ul>
                     </sly>
                     </sly>
