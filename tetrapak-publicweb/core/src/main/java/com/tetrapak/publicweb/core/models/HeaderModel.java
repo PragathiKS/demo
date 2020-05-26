@@ -23,6 +23,7 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
  * The Class HeaderModel.
@@ -295,5 +296,30 @@ public class HeaderModel {
      */
     public MarketSelectorModel getMarketList() {
         return request.adaptTo(MarketSelectorModel.class);
+    }
+    
+    /**
+     * @return current language
+     */
+    public String getCurrentLanguage() {
+        final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
+        final Resource languageResource = request.getResourceResolver().getResource(languagePath);
+        if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))) {
+            return PageUtil.getCurrentPage(languageResource).getTitle();
+        }
+        return StringUtils.EMPTY;
+    }
+    
+    /**
+     * @return current market
+     */
+    public String getCurrentMarket() {
+        final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
+        final Resource languageResource = request.getResourceResolver().getResource(languagePath);
+        if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))
+                && Objects.nonNull(PageUtil.getCurrentPage(languageResource).getParent())) {
+            return PageUtil.getCurrentPage(languageResource).getParent().getTitle();
+        }
+        return StringUtils.EMPTY;
     }
 }
