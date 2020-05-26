@@ -38,7 +38,7 @@
 
         & > ul {
             & > li {
-                @include margin-left($margin-xxxl);
+                @include margin-left(80px);
                 &:first-child {
                     @include margin-left(0);
                 }
@@ -67,7 +67,7 @@
         .category-child-ul {
             display: flex;
             & > ul {
-                @include margin-left($margin-xxxl);
+                @include margin-left(80px);
                 &:first-child {
                     @include margin-left(0);
                 }
