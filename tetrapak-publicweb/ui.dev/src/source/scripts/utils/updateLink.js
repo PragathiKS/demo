@@ -19,7 +19,7 @@ const componentList = [
 
 
 const isExternal = function (url) {
-  if (url && url.includes('http://') ||  url && url.includes('https://')) {
+  if (url && (url.includes('http://') || url.includes('https://'))) {
     if (url.includes(myDomain)) {
       return false;
     } else {
