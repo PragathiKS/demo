@@ -395,7 +395,8 @@ pipeline {
 	
 	def sonarreport() {
                 echo "Publishing Sonar report"
-                sh 'mkdir -p reports'
-                sh ' echo "<html> <br /> <p style="font-size:30px"> <a href="https://sonarcloud.io/organizations/tetrapak-smartsales/projects" target="_top">Sonarcloud Report</a> <br /> </p> </html>" > reports/sonarreport.html'
+                sh 'sudo mkdir -p reports'
+                sh 'chmod -R 777 reports'
+                sh 'echo "<html> <br /> <p style="font-size:30px"> <a href="https://sonarcloud.io/organizations/tetrapak-smartsales/projects" target="_top">Sonarcloud Report</a> <br /> </p> </html>" > reports/sonarreport.html'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'sonarreport.html', reportName: 'SonarCloud Report', reportTitles: ''])
     }
