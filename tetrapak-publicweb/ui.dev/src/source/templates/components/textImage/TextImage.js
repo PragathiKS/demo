@@ -1,27 +1,22 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { isExternal } from '../../../scripts/utils/updateLink';
-import { initializeDAMPlayer, ytPromise, initializeYoutubePlayer } from '../../../scripts/utils/videoAnalytics';
-class TextVideo {
+
+
+class TextImage {
   constructor({ el }) {
     this.root = $(el);
   }
-
   cache = {};
-
   initCache() {
-    this.cache.$textVideoButton = this.root.find('.js-textVideo-analytics');
-    ytPromise.then(() => { initializeYoutubePlayer(); });
-    initializeDAMPlayer();
+    this.cache.$textImageLink = this.root.find('.js-textImage-analytics');
   }
-
   bindEvents() {
-    const { $textVideoButton } = this.cache;
-    $textVideoButton.on('click', this.trackAnalytics);
+    this.cache.$textImageLink.on('click', this.trackAnalytics);
   }
 
   addLinkAttr() {
-    $('.js-textVideo-analytics').each(function () {
+    $('.js-textImage-analytics').each(function () {
       const thisHref = $(this).attr('href');
       if (thisHref) {
         if (isExternal(thisHref)) {
@@ -39,7 +34,8 @@ class TextVideo {
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
-    const $this = $target.closest('.js-textVideo-analytics');
+    const $this = $target.closest('.js-textImage-analytics');
+
     let linkParentTitle = '';
     let trackingObj = {};
     const dwnType = 'ungated';
@@ -47,17 +43,17 @@ class TextVideo {
     const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
-    const videoTitle = $this.data('video-title');
     const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
+    const imageTitle = $this.data('image-title');
 
     if (buttonLinkType === 'secondary' && downloadtype === 'download') {
-      linkParentTitle = `CTA_Download_pdf_${videoTitle}`;
+      linkParentTitle = `CTA_Download_pdf_${imageTitle}`;
     }
 
     if (buttonLinkType === 'link' && downloadtype === 'download') {
-      linkParentTitle = `Text hyperlink_Download_pdf_${videoTitle}`;
+      linkParentTitle = `Text Hyperlink_Download_pdf_${imageTitle}`;
     }
 
     if (downloadtype === 'download') {
@@ -87,4 +83,4 @@ class TextVideo {
   }
 }
 
-export default TextVideo;
+export default TextImage;
