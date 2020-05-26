@@ -4,6 +4,7 @@ import TextImage from './TextImage';
 
 describe('TextImage', function () {
   before(function () {
+    this.enableTimeouts(false);
     $(document.body).empty().html('<a class="TextImage js-textImage-analytics">Image Text Button</a>');
     this.TextImage = new TextImage({
       el: document.body

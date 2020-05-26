@@ -1,10 +1,11 @@
-import TabsList from './TabsList';
 import $ from 'jquery';
+import TabsList from './TabsList';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { pauseVideosByReference} from '../../../scripts/utils/videoAnalytics';
 import tabslistTemplate from '../../../test-templates-hbs/tabslist.hbs';
 describe('TabsList', function () {
   before(function () {
+    this.enableTimeouts(false);
     $(document.body).empty().html(tabslistTemplate());
     this.tabslist = new TabsList({ el: document.body });
     this.initSpy = sinon.spy(this.tabslist, 'init');
