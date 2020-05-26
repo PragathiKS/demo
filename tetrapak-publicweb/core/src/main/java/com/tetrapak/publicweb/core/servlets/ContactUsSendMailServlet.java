@@ -30,7 +30,7 @@ import com.tetrapak.publicweb.core.services.CountryDetailService;
         service = Servlet.class,
         property = { Constants.SERVICE_DESCRIPTION + "=Contact Us form Submit Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-                "sling.servlet.selectors=" + "data", "sling.servlet.extensions=" + "json",
+                "sling.servlet.selectors=" + "sendmail", "sling.servlet.extensions=" + "json",
                 "sling.servlet.resourceTypes=" + "publicweb/components/content/contactus" })
 public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
 
