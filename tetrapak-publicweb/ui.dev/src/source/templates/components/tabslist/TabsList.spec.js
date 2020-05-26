@@ -46,9 +46,4 @@ describe('TabsList', function () {
     $('.js-tablist__event').trigger('click');
     expect(this.tabslist.showTabDetail.called).to.be.true;
   });
-  
-
-  it('should set digitalData after track analytics call', function() {
-    expect(window.digitalData.linkClick.linkType).to.equal('external');
-  });
 });
