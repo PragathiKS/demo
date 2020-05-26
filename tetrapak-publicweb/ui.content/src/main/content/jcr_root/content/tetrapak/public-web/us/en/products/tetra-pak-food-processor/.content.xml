@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:30:00.792Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:07.288Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:tags="[]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tetra Pak food processor"
+        jcr:uuid="a4b00ee0-2afb-4e30-86e0-67afbe74c0cc"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        ctaTexti18nKey="Explore Tetra Pak Food Processor"
+        productImageAltI18n="Explore Tetra Pak Food Processor"
+        productImagePath="/content/dam/publicweb/products/food_processor-lineview.png"
+        title="Tetra Pak food processor"
+        vanityDescription="Multi functional processing equipment for prepared food"/>
+</jcr:root>

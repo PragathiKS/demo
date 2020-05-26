@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:31:58.149Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:07:58.274Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:50.993Z"
+        cq:tags="[tetrapak:automation]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-4"
+        jcr:description="Tetra Pak has today unveiled the food and beverage (F&amp;B) industry’s first full-scale virtual marketplace, created using Mirakl SaaS Marketplace solutions"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="QA Component Mix 4"
+        jcr:uuid="3b5ce3dc-2c9f-4c34-89ba-35e609695d21"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Cooking"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/Cooking.png"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <breadcrumb
+                    jcr:created="{Date}2020-04-15T18:51:38.347Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-15T18:51:38.347Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <anchor_500512243
+                    jcr:created="{Date}2020-04-16T05:34:54.613Z"
+                    jcr:createdBy="sapient-jyothi"
+                    jcr:lastModified="{Date}2020-04-16T05:34:54.613Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/anchor"/>
+                <banner
+                    jcr:created="{Date}2020-04-14T08:58:45.458Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-16T07:21:20.056Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    anchorId="text&amp;image"
+                    anchorTitle="Building a safety culture"
+                    bannerType="textImage"
+                    fileReference="/content/dam/tetrapak/publicweb/images/climbing-the-mountain.jpg"
+                    linkLabel="Read more about our safety culture "
+                    linkPath="/content/tetrapak/public-web/lang-masters/it/quality-assurance"
+                    linkTarget="_blank"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-lighter"
+                    subtitle="Safe, healthy workplaces"
+                    text="The nature of our operational work and equipment our people work with brings with it safety risks, including machinery safety, working at height, forklift trucks, cutting and welding, driving, heavy lifting and manual."
+                    title="Building a safety culture"/>
+                <banner_290399609
+                    jcr:created="{Date}2020-04-14T09:00:52.755Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-16T07:21:10.892Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    alt="Alt text for image"
+                    anchorId="anchoridtop"
+                    anchorTitle="Health and wellbeing"
+                    bannerType="hero"
+                    fileReference="/content/dam/tetrapak/publicweb/images/RealImage.png"
+                    linkLabel="Read more about health and wellbeing"
+                    linkPath="http://tetrapak.com/sustainability/health-and-safety/health-and-wellbeing"
+                    linkTarget="_blank"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subtitle="Safe, healthy workplaces"
+                    text="We have a holistic and centralised approach to health and wellbeing at Tetra Pak. We use central governance and run a rolling programme of initiatives to drive progress."
+                    title="Health and wellbeing"/>
+                <teaser_258880373
+                    jcr:created="{Date}2020-04-23T06:39:23.808Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-04-23T06:39:23.808Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"/>
+                <iframe
+                    jcr:created="{Date}2020-04-14T10:54:38.334Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-19T07:52:22.154Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/iframe"
+                    anchorTitle="Homogenizing Calculation"
+                    iframe="https://homogenizing-calculation.azurewebsites.net/highshearmixer/"/>
+                <teaser
+                    jcr:created="{Date}2020-04-15T03:40:27.427Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-16T10:40:06.336Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    anchorId="teaser"
+                    anchorTitle="Lorem ipsum dolor sit amet"
+                    contentType="semi-automatic"
+                    heading="Lorem ipsum dolor sit amet"
+                    pwTheme="grayscale-white">
+                    <semiAutomaticList jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/it/quality-assurance/qa-component-mix-1"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/it/quality-assurance/qa-component-mix-2"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/it/quality-assurance/qa-component-mix-3"/>
+                        <item3
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/it/quality-assurance/qa-component-mix-4"/>
+                        <item4
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/it/quality-assurance/qa-component-mix-5"/>
+                    </semiAutomaticList>
+                </teaser>
+                <video
+                    jcr:created="{Date}2020-04-16T04:24:45.552Z"
+                    jcr:createdBy="sapient-jyothi"
+                    jcr:lastModified="{Date}2020-04-16T10:40:16.345Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/video"
+                    anchorId="teaser"
+                    anchorTitle="Video link here"
+                    damVideoPath="/content/dam/tetrapak/publicweb/demo-assets/SampleVideo_1280x720_5mb.mp4"
+                    pwTheme="grayscale-white"
+                    thumbnailPath="/content/dam/tetrapak/publicweb/images/Teaser1.png"
+                    videoSource="damVideo"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>
