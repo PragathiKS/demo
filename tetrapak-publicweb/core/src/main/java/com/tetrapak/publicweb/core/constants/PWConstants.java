@@ -17,6 +17,12 @@ public final class PWConstants {
     /** The Constant COUNTRY_LEVEL. */
     public static final int COUNTRY_PAGE_LEVEL = 3;
 
+    /** The Constant OTHERS_SECTION_MENU_PAGE_LEVEL. */
+    public static final int OTHERS_SECTION_MENU_PAGE_LEVEL = 5;
+
+    /** The Constant SOLUTIONS_SECTION_MENU_PAGE_LEVEL. */
+    public static final int SOLUTIONS_SECTION_MENU_PAGE_LEVEL = 6;
+
     /** The Constant SLASH. */
     public static final String SLASH = "/";
 

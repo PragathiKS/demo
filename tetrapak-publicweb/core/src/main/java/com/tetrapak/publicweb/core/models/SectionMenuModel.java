@@ -117,9 +117,9 @@ public class SectionMenuModel {
     private Page fetchAbsoluteParent(final String solutionPagePath) {
         Page page;
         if (currentPage.getPath().contains(solutionPagePath)) {
-            page = currentPage.getAbsoluteParent(6);
+            page = currentPage.getAbsoluteParent(PWConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL);
         } else {
-            page = currentPage.getAbsoluteParent(5);
+            page = currentPage.getAbsoluteParent(PWConstants.OTHERS_SECTION_MENU_PAGE_LEVEL);
         }
         return page;
     }
