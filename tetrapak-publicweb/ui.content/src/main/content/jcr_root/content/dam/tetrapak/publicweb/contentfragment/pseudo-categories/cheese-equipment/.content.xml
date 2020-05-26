@@ -3,28 +3,28 @@
     jcr:isCheckedOut="{Boolean}true"
     jcr:mixinTypes="[mix:referenceable,mix:versionable]"
     jcr:primaryType="dam:Asset"
-    jcr:uuid="0cc9f681-a601-4c3f-86f3-ede687ec82a9">
+    jcr:uuid="ed92368e-570d-4d33-a260-de7b96a94808">
     <jcr:content
-        cq:name="ice-cream-equipment"
-        cq:parentPath="/content/dam/tetrapak/publicweb/pseudo-categories/content-fragments"
-        dam:relativePath="tetrapak/publicweb/contentfragment/pseudo-categories/ice-cream-equipment"
+        cq:name="cheese-equipment"
+        cq:parentPath="/content/dam/tetrapak/publicweb/contentfragment/pseudo-categories"
+        dam:relativePath="tetrapak/publicweb/contentfragment/pseudo-categories/cheese-equipment"
         jcr:description=""
-        jcr:lastModified="{Date}2020-05-21T12:17:50.119+05:30"
+        jcr:lastModified="{Date}2020-05-26T16:01:43.877+05:30"
         jcr:lastModifiedBy="admin"
         jcr:primaryType="dam:AssetContent"
-        jcr:title="Ice Cream Equipment"
+        jcr:title="Cheese Equipment"
         contentFragment="{Boolean}true"
-        lastFragmentSave="{Date}2020-05-21T12:17:50.119+05:30">
+        lastFragmentSave="{Date}2020-05-26T16:01:43.877+05:30">
         <data
             cq:model="/conf/publicweb/settings/dam/cfm/models/pseudo-catogories"
             jcr:primaryType="nt:unstructured">
             <master
                 jcr:mixinTypes="[cq:Taggable]"
                 jcr:primaryType="nt:unstructured"
-                pseudoCateoryKey="ICE CREAM EQUIPMENT"
-                pseudoCateoryKey_x0040_LastModified="{Date}2020-05-21T12:17:50.083+05:30"
-                pseudoCateoryValue="ICE CREAM EQUIPMENT"
-                pseudoCateoryValue_x0040_LastModified="{Date}2020-05-21T12:17:50.084+05:30"/>
+                pseudoCateoryKey="CHEESE EQUIPMENT"
+                pseudoCateoryKey_x0040_LastModified="{Date}2020-05-26T16:01:43.843+05:30"
+                pseudoCateoryValue="CHEESE EQUIPMENT"
+                pseudoCateoryValue_x0040_LastModified="{Date}2020-05-26T16:01:43.844+05:30"/>
         </data>
         <metadata
             jcr:mixinTypes="[cq:Taggable]"
