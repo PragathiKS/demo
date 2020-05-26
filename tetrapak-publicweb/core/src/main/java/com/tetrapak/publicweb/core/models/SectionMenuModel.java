@@ -281,8 +281,16 @@ public class SectionMenuModel {
     private SubSectionBean populateSubSection(final Page page) {
         final SubSectionBean subSectionBean = new SubSectionBean();
         subSectionBean.setLinkText(page.getTitle());
-        subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath()));
-        subSectionBean.setExternal(false);
+
+        final ExternalTemplateBean externalTemplate = checkExternalTemplate(page);
+        if (externalTemplate.isExternal()) {
+            subSectionBean.setExternal(true);
+            subSectionBean.setLinkPath(externalTemplate.getExternalUrl());
+        } else {
+            subSectionBean.setExternal(false);
+            subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath()));
+        }
+
         return subSectionBean;
     }
 
