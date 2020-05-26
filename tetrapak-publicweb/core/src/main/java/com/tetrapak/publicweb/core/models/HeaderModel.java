@@ -306,4 +306,11 @@ public class HeaderModel {
     private String getSolutionPageWithoutExtension() {
         return StringUtils.substringBefore(solutionPage, ".");
     }
+
+    /**
+     * @return markets list
+     */
+    public MarketSelectorModel getMarketList() {
+        return request.adaptTo(MarketSelectorModel.class);
+    }
 }

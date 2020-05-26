@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:28:37.946Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:06.666Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="test superscript tag"
+        jcr:uuid="a5841a4a-170f-4142-9a33-ded11db5f861"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:38:06.621Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:38:06.624Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <banner
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.634Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-30T09:31:53.022Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.630Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    bannerType="textImage"
+                    fileReference="/content/dam/tetrapak/publicweb/text-and-image/sustainable-cartons.png"
+                    linkLabel="Title &lt;sup>te&lt;/sup>"
+                    linkTarget="_self"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subtitle="Title &lt;sup>te&lt;/sup>"
+                    text="Title &lt;sup>te&lt;/sup>"
+                    title="Title &lt;sup>te&lt;/sup>"/>
+                <textimage
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.641Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-30T09:34:04.528Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.637Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textImage"
+                    description="Teest&lt;sup>tee&lt;/sup>&#xd;&#xa;Test &amp;copy;test"
+                    linkText="Test &amp;copy;"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subTitle="Test &lt;sup>&amp;copy;&lt;/sup>"
+                    targetBlank="_self"
+                    title="Teest&lt;sup>tee&lt;/sup>"/>
+                <textvideo
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.650Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-30T09:35:43.167Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.645Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textVideo"
+                    description="Test &lt;sup>&amp;copy;&lt;/sup>"
+                    linkTexti18n="Test &lt;sup>&amp;copy;&lt;/sup>"
+                    linkURL="236723722"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subTitle="Test &lt;sup>&amp;copy;&lt;/sup>"
+                    targetBlank="_self"
+                    thumbnailPath="/content/dam/tetrapak/publicweb"
+                    title="Test &lt;sup>&amp;copy;&lt;/sup>"
+                    videoSource="youtube"
+                    youtubeVideoID="v=MTsR1t1Z-Bc"/>
+                <teaser
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.654Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-30T09:39:06.224Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.651Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="manual"
+                    heading="test"
+                    pwTheme="grayscale-white">
+                    <manualList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.655Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.660Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Test&lt;sup>&amp;copy&lt;/sup."
+                            linkTarget="_self"
+                            linkText="Test&lt;sup>&amp;copy&lt;/sup."
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Test&lt;sup>&amp;copy&lt;/sup."/>
+                    </manualList>
+                </teaser>
+                <tabslist
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.666Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-30T09:40:32.543Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.662Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    contentType="manual"
+                    heading="Test&lt;sup>&amp;copy&lt;/sup."
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMoreTarget="_self"
+                    readMoreText="Test&lt;sup>&amp;copy&lt;/sup."/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

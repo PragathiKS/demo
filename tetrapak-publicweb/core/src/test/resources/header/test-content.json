@@ -36,7 +36,8 @@
 					"contactLinkTarget": "_blank",
 					"logoLink": "/content/tetrapak/public-web/global/en",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
-					"solutionPage": "/content/tetrapak/publicweb/language-masters/en/solutions"
+					"solutionPage": "/content/tetrapak/public-web/language-masters/en/solutions",
+                                        "marketTitle": "Choose Your Market"
 				},
 				"megamenuconfig": {
 					"jcr:primaryType": "nt:unstructured",

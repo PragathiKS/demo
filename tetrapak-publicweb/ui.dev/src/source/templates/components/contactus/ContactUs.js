@@ -12,7 +12,7 @@ class ContactUs {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
-    this.cache.contactusapi = this.root.find('.js-contactus-api');
+    this.cache.contactusapi = this.root.find('form.pw-form-contactUs');
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
     this.cache.$submitBtn = $('button[type="submit"]', this.root);
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');

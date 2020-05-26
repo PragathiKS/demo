@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:19:43.850Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:42:23.012Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:42.637Z"
+        cq:tags="[tetrapak:funnel-stages/interest]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-8"
+        jcr:description="When standardizing dairy products, the cream and milk are first separated on a dairy line. The two elements are then mixed together again. However, not all of the original fat content is added back; only the exact level required for milk to be classified as skimmed, semi skimmed or whole (or the required amount of fat for different cream products).&#xd;&#xa;&#xd;&#xa;The same process is used to get the exact fat content required when using milk as an ingredient in yoghurt, cheese etc. Standardization can also refer to the ‘re-adding’ of protein content - in precise quantities as required – when making different products."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Standard​ization equipment for dairy products"
+        jcr:uuid="fd95eaf5-da45-4149-a81f-7eac8b4c6d82"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Sudan"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/girl-in-sudan-drinking-milk.jpg"
+        linkPath="http://tetrapak.com/processing/standardization/tetra-pak-standardization-unit"
+        linkTarget="_blank"
+        linkText="Tetra Pak® Standardization unit"
+        pwButtonTheme="secondary"
+        pwLinkTheme="hyperlink"/>
+</jcr:root>

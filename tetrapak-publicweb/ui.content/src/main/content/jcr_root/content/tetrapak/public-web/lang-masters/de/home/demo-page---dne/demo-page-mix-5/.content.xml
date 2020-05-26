@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:32:20.378Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:08:29.169Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:28.602Z"
+        cq:tags="[tetrapak:food]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/home/demo-page---dne/demo-page-mix-5"
+        jcr:description="Our CIP equipment is designed to control the key cleaning parameters with very high accuracy."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Cleaning in place equipment for food safety and accuracy"
+        jcr:uuid="e694aee8-d013-42b7-84b6-d0723930ba4f"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="China"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/chinese-children-drinking-milk.jpg"
+        linkPath="http://tetrapak.com/processing/cleaning-in-place"
+        linkTarget="_self"
+        linkText="Link Text - Same Window"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <banner
+                    jcr:created="{Date}2020-04-15T15:44:05.190Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-15T15:53:03.664Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    alt="TetraPak"
+                    anchorId="anchorid"
+                    anchorTitle="Text &amp; Image Banner"
+                    bannerType="textImage"
+                    fileReference="/content/dam/tetrapak/publicweb/images/RealImage.png"
+                    linkLabel="Sign up to learn about Industry 4.0"
+                    linkPath="/content/tetrapak/public-web/lang-masters/de/home"
+                    linkTarget="_blank"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row-reversed"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-lighter"
+                    subtitle="Subtitle: Text &amp; Image Banner"
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliter enim nosmet ipsos nosse non possumus. Nos paucis ad haec additis finem faciamus aliquando; Hoc est non modo cor non habere, sed ne palatum quidem. Philosoph"
+                    title="Title"/>
+                <tabslist
+                    jcr:created="{Date}2020-04-15T16:49:51.362Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-12T05:14:21.230Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    anchorId="anchorid"
+                    anchorTitle="Automatic: Tab List"
+                    contentType="manual"
+                    heading="Heading: Solution we all need"
+                    logicalOperator="and"
+                    maxTabs="2"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMorePath="/content/dam/tetrapak/publicweb/pdf-files/tp_magazine_no_100.pdf"
+                    readMoreTarget="_blank"
+                    readMoreText="Read more text"
+                    tags="[tetrapak:food]">
+                    <tabsManual jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            description="U-shaped, telescopic or straight straws? The Tetra Pak® Straw Applicator 30 can apply a vast range of straws to just about all of our portion packages and thanks to the technology used glue consumption is kept to a minimum."
+                            linkText="Click Here"
+                            linkURL="/content/tetrapak/public-web/lang-masters/de/about-tetra-pak"
+                            pwLinkTheme="hyperlink"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Straw applicators for fast and accurate position of straws on carton packages"
+                            videoSource="damVideo"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/publicweb/demo-assets/SampleVideo_1280x720_5mb.mp4"
+                            description="Together with our customers we make food safe and available, everywhere. Since the start in 1951 we have taken pride in providing the best possible processing and packaging solutions for food."
+                            pwLinkTheme="hyperlink"
+                            tabType="videoText"
+                            targetBlank="_self"
+                            title="About Tetra Pak"
+                            videoSource="damVideo"/>
+                    </tabsManual>
+                </tabslist>
+                <teaser_copy
+                    jcr:created="{Date}2020-04-16T18:12:23.880Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-22T08:00:15.828Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    anchorId="anchorid2"
+                    anchorTitle="Teaser Organism: Manual"
+                    contentType="manual"
+                    heading="Processing"
+                    pwTheme="grayscale-white">
+                    <manualList jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            alt="Sauce"
+                            description="We supply a wide range of leading-brand components that are ideally suited to processing applications within the food industry, such as the dairy, beverage, prepared food, cheese and ice cream categories."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/Image 16x9 (2).png"
+                            linkPath="/content/tetrapak/public-web/lang-masters/de/home"
+                            linkTarget="_self"
+                            linkText="Link Text - Same Window"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Selected Plant Components​ for the food industry"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            alt="Noodles"
+                            description="When drying dairy products, hot air is pumped (temperatures ranging from 160° – 205° depending on the product) into a drying chamber along with the concentrated product."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/Image 16x9 (1).png"
+                            linkPath="http://tetrapak.com/processing/spray-drying"
+                            linkTarget="_blank"
+                            linkText="Link Text - New Window"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="hyperlink"
+                            title="Spray dryers for dairy products​"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            alt="Quality"
+                            description="When standardizing dairy products, the cream and milk are first separated on a dairy line. The two elements are then mixed together again. However, not all of the original fat content is added back; only the exact level required for milk to be classified as skimmed, semi-skimmed or whole (or the required amount of fat for different cream products)."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/food-quality-customer.jpg"
+                            linkPath="/content/dam/tetrapak/publicweb/pdf-files/tp_magazine_no_100.pdf"
+                            linkTarget="_self"
+                            linkText="Download PDF"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="download"
+                            title="Standard​ization equipment for dairy products"/>
+                    </manualList>
+                </teaser_copy>
+                <teaser_copy_1256993214
+                    jcr:created="{Date}2020-04-16T18:12:23.880Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-07T15:39:57.091Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    anchorId="anchorid2"
+                    anchorTitle="Teaser Organism: Manual"
+                    contentType="manual"
+                    heading="Processing"
+                    logicalOperator="and"
+                    pwTheme="grayscale-white">
+                    <manualList jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            alt="Sauce"
+                            description="We supply a wide range of leading-brand components that are ideally suited to processing applications within the food industry, such as the dairy, beverage, prepared food, cheese and ice cream categories."
+                            linkPath="/content/tetrapak/public-web/lang-masters/de/home"
+                            linkTarget="_self"
+                            linkText="Link Text - Same Window"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Selected Plant Components​ for the food industry"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            alt="Noodles"
+                            description="When drying dairy products, hot air is pumped (temperatures ranging from 160° – 205° depending on the product) into a drying chamber along with the concentrated product."
+                            linkPath="http://tetrapak.com/processing/spray-drying"
+                            linkTarget="_blank"
+                            linkText="Link Text - New Window"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="hyperlink"
+                            title="Spray dryers for dairy products​"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            alt="Quality"
+                            description="When standardizing dairy products, the cream and milk are first separated on a dairy line. The two elements are then mixed together again. However, not all of the original fat content is added back; only the exact level required for milk to be classified as skimmed, semi-skimmed or whole (or the required amount of fat for different cream products)."
+                            linkPath="/content/dam/tetrapak/publicweb/pdf-files/tp_magazine_no_100.pdf"
+                            linkTarget="_self"
+                            linkText="Download PDF"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="download"
+                            title="Standard​ization equipment for dairy products"/>
+                    </manualList>
+                </teaser_copy_1256993214>
+                <teaser_copy_332239230
+                    jcr:created="{Date}2020-04-15T17:02:11.241Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-05T15:33:08.677Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    anchorId="anchorid5"
+                    anchorTitle="Teaser Organism: Semi-automatic "
+                    contentType="semi-automatic"
+                    heading="Photo Gallery"
+                    logicalOperator="and"
+                    pwTheme="grayscale-lighter">
+                    <semiAutomaticList jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/de/home/demo-page---dne/demo-page-mix-3"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/de/home/demo-page---dne/demo-page-mix-4"/>
+                        <item2
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/de/home/demo-page---dne/demo-page-mix-5"/>
+                        <item3
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/de/home/demo-page---dne/demo-page-mix-6"/>
+                        <item4
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/de/home/demo-page---dne/demo-page-mix-2"/>
+                    </semiAutomaticList>
+                </teaser_copy_332239230>
+                <teaser_copy_442962644
+                    jcr:created="{Date}2020-04-16T15:25:48.397Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-07T15:40:48.636Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    anchorId="anchorid5"
+                    anchorTitle="Teaser Organism"
+                    contentType="automatic"
+                    heading="​​​​Straw applicators for fast and accurate position of straws on carton packages."
+                    logicalOperator="and"
+                    maxTeasers="2"
+                    pwTheme="grayscale-white"
+                    tags="[tetrapak:packaging/straws,tetrapak:food]">
+                    <manualList jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            description="Description to see less characters"
+                            linkTarget="_self"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Test less text"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            description="Description to see less characters"
+                            linkTarget="_self"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Title 2"/>
+                    </manualList>
+                </teaser_copy_442962644>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:27:29.335Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:37:55.485Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:tags="[tetrapak:food]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:description="For tea, the extraction system is semi-continuous. The tea extract is cooled and clarified (where required) before being blended, heat-treated and packaged in downstream processing equipment."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Extraction equipment​ for tea and soy"
+        jcr:uuid="6c385f50-00aa-4cd3-921c-600408a38d0f"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Milk Packet"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/children-school-milk-tba.jpg"
+        linkPath="/content/dam/tetrapak/publicweb/pdf-files/tp_magazine_no_100.pdf"
+        linkTarget="_self"
+        linkText="Download PDF"
+        pwButtonTheme="secondary"
+        pwLinkTheme="download"/>
+</jcr:root>

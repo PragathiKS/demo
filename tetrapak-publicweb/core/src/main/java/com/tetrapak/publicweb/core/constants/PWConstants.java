@@ -16,6 +16,15 @@ public final class PWConstants {
 
     /** The Constant COUNTRY_LEVEL. */
     public static final int COUNTRY_PAGE_LEVEL = 3;
+    
+    /** The Constant MARKET_ROOT_PAGE_LEVEL. */
+    public static final int MARKET_ROOT_PAGE_LEVEL = 2;
+    
+    /** The Constant HOME_PAGE_REL_PATH. */
+    public static final String HOME_PAGE_REL_PATH = "home";
+    
+    /** The Constant LANG_MASTERS. */
+    public static final String LANG_MASTERS= "lang-masters";
 
     /** The Constant OTHERS_SECTION_MENU_PAGE_LEVEL. */
     public static final int OTHERS_SECTION_MENU_PAGE_LEVEL = 5;
@@ -34,6 +43,9 @@ public final class PWConstants {
 
     /** The Constant CONTENT_ROOT_PATH. */
     public static final String CONTENT_ROOT_PATH = "/content/tetrapak/public-web";
+    
+    /** The Constant GLOBLA_LANG_PATH. */
+    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/public-web/gb";
 
     /** The Constant PXP. */
     public static final String PXP = "pxp";

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:allowedTemplates="/conf/publicweb/settings/wcm/templates/public-web-package-type-page"
+        cq:lastModified="{Date}2020-05-22T09:32:41.365Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:18:18.721Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/packaging/packages"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Packages "
+        jcr:uuid="e8d1daae-a8cc-40ef-86b4-9ec1f3aa5f85"
+        sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+        </root>
+    </jcr:content>
+    <tetra-brik/>
+    <tetra-brik-aseptic/>
+    <tetra-classic-aseptic/>
+    <tetra-fino-aseptic/>
+    <tetra-gemina-aseptic/>
+    <tetra-recart/>
+    <tetra--rex/>
+    <tetra-wedge-aseptic/>
+    <tetra-prisma-aseptic/>
+    <tetra-top/>
+    <tetra-stelo-aseptic/>
+</jcr:root>

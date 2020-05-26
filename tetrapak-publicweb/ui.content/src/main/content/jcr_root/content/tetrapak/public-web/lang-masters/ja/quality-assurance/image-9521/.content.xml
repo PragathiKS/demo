@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:31:43.184Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:07:30.423Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:59.271Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/image-9521"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Image-9521"
+        jcr:uuid="85208ab1-dbf9-48b4-8ed3-ae4fed39ebaa"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <image
+                    jcr:created="{Date}2020-04-14T08:36:50.259Z"
+                    jcr:createdBy="sapient-jyoti"
+                    jcr:lastModified="{Date}2020-04-21T05:55:42.293Z"
+                    jcr:lastModifiedBy="sapient-jyoti"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/image"
+                    alt="alt text"
+                    fileReference="/content/dam/tetrapak/publicweb/demo-assets/Shopping.png"
+                    linkURL="/content/tetrapak/public-web/lang-masters/ja/home"
+                    pwPadding="regular"/>
+                <image_copy
+                    jcr:created="{Date}2020-04-14T08:36:50.259Z"
+                    jcr:createdBy="sapient-jyoti"
+                    jcr:lastModified="{Date}2020-04-21T06:10:36.306Z"
+                    jcr:lastModifiedBy="sapient-jyoti"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/image"
+                    alt="alt text"
+                    fileReference="/content/dam/tetrapak/publicweb/demo-assets/Shopping.png"
+                    pwPadding="regular"/>
+                <breadcrumb
+                    jcr:created="{Date}2020-04-21T06:14:55.333Z"
+                    jcr:createdBy="sapient-jyoti"
+                    jcr:lastModified="{Date}2020-04-21T06:14:55.333Z"
+                    jcr:lastModifiedBy="sapient-jyoti"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <image_1533596461
+                    jcr:created="{Date}2020-05-13T12:38:52.720Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-13T12:38:52.720Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/image"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>
