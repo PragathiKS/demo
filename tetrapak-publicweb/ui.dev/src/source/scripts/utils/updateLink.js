@@ -12,7 +12,8 @@ const componentList = [
   '.pw-text-image',
   '.pw-text-video',
   '.pw-banner',
-  '.tp-pw-richText'
+  '.tp-pw-richText',
+  '.pw-navigation'
 ];
 
 
@@ -32,10 +33,10 @@ export const isExternal = function (url) {
 export const isDownloable = function (url) {
   const fileList = ['.pdf', '.xls', '.xlsx', '.doc', '.docx', '.ppt', '.pttx', '.jpeg', '.png', '.jpg', '.svg'];
   let flag = false;
-  const endPart = url.split('/').pop();
+  const endPart = url && url.split('/').pop();
 
   for (let i = 0; i < fileList.length; i++) {
-    if (endPart.includes(fileList[i])) {
+    if (endPart && endPart.includes(fileList[i])) {
       flag = true;
     }
   }
@@ -48,14 +49,22 @@ export default () => {
       const thisHref = $(this).attr('href');
       if (thisHref) {
         const iconEl = $(this).find('i.icon')[0];
+        // external link flag
+        const iconExternal = $(this).find('i.icon.is-external')[0];
         $(iconEl).removeClass('icon-Circle_Arrow_Right_pw');
         if (isDownloable(thisHref)) {
           $(iconEl).addClass('icon-Download');
           $(this).attr('target', '_self');
           $(this).attr('data-link-section', 'Related links and downloads_Hyperlink_Download');
-        } else if (isExternal(thisHref)) {
+        } else if (isExternal(thisHref) || iconExternal) {
           $(iconEl).addClass('icon-Union');
           $(this).attr('target', '_blank');
+        } else if($(iconEl).hasClass('with-arrow')){
+          $(iconEl).addClass('icon-Chevron_Down');
+          $(this).attr('target','_self');
+        } else if($(iconEl).hasClass('without-arrow')){
+          $(iconEl).addClass('');
+          $(this).attr('target','_self');
         } else {
           if ($(this).hasClass('tpatom-link--primary')) {
             $(iconEl).addClass('icon-Arrow_Right_pw');

@@ -26,6 +26,12 @@ public final class PWConstants {
     /** The Constant LANG_MASTERS. */
     public static final String LANG_MASTERS= "lang-masters";
 
+    /** The Constant OTHERS_SECTION_MENU_PAGE_LEVEL. */
+    public static final int OTHERS_SECTION_MENU_PAGE_LEVEL = 5;
+
+    /** The Constant SOLUTIONS_SECTION_MENU_PAGE_LEVEL. */
+    public static final int SOLUTIONS_SECTION_MENU_PAGE_LEVEL = 6;
+
     /** The Constant SLASH. */
     public static final String SLASH = "/";
 
@@ -55,6 +61,9 @@ public final class PWConstants {
 
     /** The Constant CQ_TEMPLATE. */
     public static final String CQ_TEMPLATE = "cq:template";
+
+    /** The Constant CQ_REDIRECT_TARGET. */
+    public static final String CQ_REDIRECT_TARGET = "cq:redirectTarget";
 
     /** The Constant PRODUCT_ID. */
     public static final String PRODUCT_ID = "productId";
@@ -133,6 +142,9 @@ public final class PWConstants {
 
     /** The package type template. */
     public static final String PACKAGE_TYPE_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-package-type-page";
+
+    /** The Constant EXTERNAL_REDIRECT_TEMPLATE. */
+    public static final String EXTERNAL_REDIRECT_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page";
 
     /** The full feed. */
     public static final String FULL_FEED = "full";

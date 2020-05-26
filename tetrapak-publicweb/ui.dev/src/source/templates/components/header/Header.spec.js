@@ -6,6 +6,7 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Header', function () {
   before(function () {
+    window.onbeforeunload = () => 'reload!';
     $(document.body).empty().html(headerTemplate());
     this.header = new Header({ el: document.body });
     this.initSpy = sinon.spy(this.header, 'init');
@@ -15,6 +16,8 @@ describe('Header', function () {
     this.handleMouseOutSpy = sinon.spy(this.header, 'handleMouseOut');
     this.handleMenuClickSpy = sinon.spy(this.header, 'handleMenuClick');
     this.trackAnalyticsSpy = sinon.spy(this.header, 'trackAnalytics');
+    this.handleHeaderItemMouseOverSpy = sinon.spy(this.header, 'handleHeaderItemMouseOver');
+    this.handleHeaderItemMouseOutSpy = sinon.spy(this.header, 'handleHeaderItemMouseOut');
     this.replaceStub = sinon.stub(loc, 'replace');
     this.replaceStub.returns(true);
     window.digitalData = {};
@@ -35,6 +38,8 @@ describe('Header', function () {
 
     this.trackAnalyticsSpy.restore();
     this.replaceStub.restore();
+    this.handleHeaderItemMouseOverSpy.restore();
+    this.handleHeaderItemMouseOutSpy.restore();
   });
   it('should initialize', function () {
     expect(this.header.init.called).to.be.true;
@@ -74,6 +79,15 @@ describe('Header', function () {
   it('should call handleMenuClick on click', function () {
     $('.js-click-menu-link').trigger('click');
     expect(this.header.handleMenuClick.called).to.be.true;
+  });
+  it('should call handleHeaderItemMouseOver on mouseover', function () {
+    $('.js-main-menu-link-hover').trigger('mouseover');
+    expect(this.header.handleHeaderItemMouseOver.called).to.be.true;
+  });
+
+  it('should call handleHeaderItemMouseOut on mouseout', function () {
+    $('.js-main-menu-link-hover').trigger('mouseout');
+    expect(this.header.handleHeaderItemMouseOut.called).to.be.true;
   });
 
 });

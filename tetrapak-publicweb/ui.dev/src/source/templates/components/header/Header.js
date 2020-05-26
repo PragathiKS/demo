@@ -24,9 +24,8 @@ class Header {
     this.cache.$menuCloseSol = this.root.find('.js-close-menu-solution');
     this.cache.$bottomTeaserH = this.root.find('.js-bottom-teaser-list');
     this.cache.$headerItem = this.root.find('.js-tp-pw-header-item');
+    this.cache.$headerItemLink = this.root.find('.js-main-menu-link-hover');
     this.cache.$overlay = $('.js-pw-overlay');
-    this.cache.$body = $('body');
-
   }
 
   bindEvents() {
@@ -36,30 +35,42 @@ class Header {
     $(window).on('resize', this.hideMobileMenuOnResize);
     this.cache.$hoverMenuLink.on('mouseover', this.handleMouseOver);
     this.cache.$hoverMenuLink.on('mouseout', this.handleMouseOut);
+    this.cache.$headerItemLink.on('mouseover', this.handleHeaderItemMouseOver);
+    this.cache.$headerItemLink.on('mouseout', this.handleHeaderItemMouseOut);
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
-    
+    // $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
     this.root.find('.js-header__selected-lang-pw').on('click', () => {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
     });
-
   }
 
   handleMouseOver = () => {
-    const { $megaMenuDesktop, $parentNavElement, $overlay, $body } = this.cache;
-    $parentNavElement.addClass('pw-position-static');
+    const { $megaMenuDesktop, $overlay } = this.cache;
     $megaMenuDesktop.addClass('d-block').attr('aria-hidden','false').attr('aria-expanded','true');
-    $body.addClass('pw-position-relative');
     $overlay.removeClass('d-none');
     dynMedia.processImages();
   }
 
+  handleHeaderItemMouseOver = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-main-menu-link-hover');
+    if($this.children('.active').length > 0){
+      return false;
+    }
+    $this.children('.pw-navigation').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true');
+  }
+
+  handleHeaderItemMouseOut = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-main-menu-link-hover');
+    $this.children('.pw-navigation').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
+  }
+
   handleMouseOut = () => {
-    const { $megaMenuDesktop,$parentNavElement, $overlay,$body } = this.cache;
+    const { $megaMenuDesktop, $overlay } = this.cache;
     $megaMenuDesktop.removeClass('d-block').attr('aria-hidden', 'true').attr('aria-expanded','false');
-    $parentNavElement.removeClass('pw-position-static');
-    $body.removeClass('pw-position-relative');
     $overlay.addClass('d-none');
   }
 
@@ -105,6 +116,13 @@ class Header {
       $('body').css('overflow','auto');
     }
   }
+
+  // handleMainNavClick =(e) => {
+  //   e.preventDefault();
+  //   const $target = $(e.target);
+  //   const $this = $target.closest('.js-tp-pw-header-item');
+  //   window.open($this.attr('href'), '_self');
+  // }
 
   trackNavigationAnalytics = (e) => {
     const $target = $(e.target);
