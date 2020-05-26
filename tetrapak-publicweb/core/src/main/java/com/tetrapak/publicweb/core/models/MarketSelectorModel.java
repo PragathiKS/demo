@@ -198,6 +198,16 @@ public class MarketSelectorModel {
         }
         return marketTitle;
     }
+    
+    /**
+     * @return current language
+     */
+    public String getCurrentLanguage() {
+        if (Objects.nonNull(PageUtil.getCurrentPage(request.getResource()))) {
+            return PageUtil.getCurrentPage(request.getResource()).getTitle();
+        }
+        return StringUtils.EMPTY;
+    }
 
     /**
      * Gets the col 1 end.
