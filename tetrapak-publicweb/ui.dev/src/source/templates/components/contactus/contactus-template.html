@@ -2,10 +2,9 @@
     <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-locator="ContactUs">
         <div class="pw-contactus-form pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular"
             id="pw-contactUs" data-module="ContactUs" auto_locator="contactUsParentContainerStep1">
-           <div class="hidden-element js-contactus-api" data-contactus-api-servlet="${data.servletPath}"></div>
+            <div class="hidden-element js-contactus-api" data-contactus-api-servlet="${data.servletPath}"></div>
             <div class="tab-content">
-                <form class="pw-form" accept-charset="UTF-8" action="/bin/tetrapak/pw-contactfooter" autocomplete="off"
-                    method="GET">
+                <form class="pw-form" accept-charset="UTF-8" autocomplete="off">
                     <div class="tab-pane active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel"
                         id="cf-step-1">
                         <div class="row no-gutters">
@@ -19,7 +18,7 @@
                                     </div>
                                 </div>
                                 <div class="row no-gutters">
-                                    <div class="col-lg-4 pw-image-container" auto_locator="contactUsImageStep1">
+                                    <div class="col-lg-6 pw-image-container" auto_locator="contactUsImageStep1">
                                         <sly data-sly-test="${!wcmmode.edit}">
                                             <sly data-sly-test="${data.image}"
                                                 data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -30,7 +29,7 @@
                                                 class="image img-responsive" />
                                         </sly>
                                     </div>
-                                    <div class="col-lg-8" auto_locator="contactUsLeftContainerTextAreaStep1">
+                                    <div class="col-lg-6" auto_locator="contactUsLeftContainerTextAreaStep1">
                                         ${data.descriptionText @ context="html"}
                                     </div>
                                 </div>
@@ -234,8 +233,7 @@
                                                 <textarea auto_locator="messageBoxStep3" class="form-control"
                                                     id="messageText" rows="5" name="message" required></textarea>
                                                 <div class="errorMsg">${'pleasefillinfield' @i18n}</div>
-                                                <input type="text" name="contactUsHoneyPot" id="pardot_extra_field"
-                                                    class="honeyPotField d-none" tabindex="-1" />
+                                                <input type="text" id="pardot_extra_field" class="d-none" tabindex="-1" />
                                             </div>
                                             <div class="privacy-policy" auto_locator="contactUsPolicyTextStep3">
                                                 ${data.privacyPolicy @ context="html"}
