@@ -9,9 +9,7 @@ describe('TextVideo', function () {
     this.textVideo = new TextVideo({ el: document.body });
     this.initSpy = sinon.spy(this.textVideo, 'init');
     this.trackAnalyticsSpy = sinon.spy(this.textVideo, 'trackAnalytics');
-    window.digitalData = {
-      linkClick: {}
-    };
+    window.digitalData = {};
     window._satellite = {
       track() { /* Dummy method */ }
     };
