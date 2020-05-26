@@ -1,11 +1,11 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -18,12 +18,12 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.LinkBean;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.PageUtil;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
 
 /**
  * The Class HeaderModel.
@@ -121,7 +121,7 @@ public class HeaderModel {
      * @param rootPath
      *            the new mega menu links list
      */
-    public void setMegaMenuLinksList(String rootPath) {
+    public void setMegaMenuLinksList(final String rootPath) {
         final Resource rootResource = request.getResourceResolver().getResource(rootPath);
         if (Objects.nonNull(rootResource)) {
             final ResourceResolver resourceResolver = rootResource.getResourceResolver();
@@ -141,7 +141,7 @@ public class HeaderModel {
      * @param page
      *            the new link bean
      */
-    private void setLinkBean(Page page) {
+    private void setLinkBean(final Page page) {
         if (Objects.nonNull(page)) {
             final Iterator<Page> childPages = page.listChildren();
             while (childPages.hasNext()) {
@@ -151,12 +151,19 @@ public class HeaderModel {
                     String title = getTitle(childPage);
                     linkBean.setLinkText(title);
                     linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
+                    if (!childPage.getPath().equalsIgnoreCase(getSolutionPageWithoutExtension())) {
+                        final SectionMenuModel sectionMenuModel = new SectionMenuModel();
+                        sectionMenuModel.setSectionHomePageTitle(childPage);
+                        sectionMenuModel.setSectionHomePagePath(childPage);
+                        sectionMenuModel.populateSectionMenu(childPage, getSolutionPageWithoutExtension());
+                        linkBean.setNavigationConfigurationModel(sectionMenuModel);
+                    }
                     megaMenuLinksList.add(linkBean);
                 }
             }
         }
     }
-    
+
     /**
      * @param childPage
      * @return title
@@ -283,12 +290,21 @@ public class HeaderModel {
      * @param headerConfigurationResource the new solution page title
      */
     private void setSolutionPageTitle() {
-        final String solutionPageJcrContentPath = StringUtils.substringBefore(solutionPage, ".") + "/jcr:content";
+        final String solutionPageJcrContentPath = getSolutionPageWithoutExtension() + PWConstants.SLASH + JcrConstants.JCR_CONTENT;
         final Resource solutionPageResource = request.getResourceResolver().getResource(solutionPageJcrContentPath);
         if (Objects.nonNull(solutionPageResource)) {
             final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
             solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
         }
+    }
+
+    /**
+     * Gets the solution page without extension.
+     *
+     * @return the solution page without extension
+     */
+    private String getSolutionPageWithoutExtension() {
+        return StringUtils.substringBefore(solutionPage, ".");
     }
 
     /**
@@ -298,28 +314,28 @@ public class HeaderModel {
         return request.adaptTo(MarketSelectorModel.class);
     }
     
-    /**
-     * @return current language
-     */
-    public String getCurrentLanguage() {
-        final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
-        final Resource languageResource = request.getResourceResolver().getResource(languagePath);
-        if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))) {
-            return PageUtil.getCurrentPage(languageResource).getTitle();
-        }
-        return StringUtils.EMPTY;
-    }
-    
-    /**
-     * @return current market
-     */
-    public String getCurrentMarket() {
-        final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
-        final Resource languageResource = request.getResourceResolver().getResource(languagePath);
-        if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))
-                && Objects.nonNull(PageUtil.getCurrentPage(languageResource).getParent())) {
-            return PageUtil.getCurrentPage(languageResource).getParent().getTitle();
-        }
-        return StringUtils.EMPTY;
-    }
+    **
+    * @return current language
+    */
+   public String getCurrentLanguage() {
+       final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
+       final Resource languageResource = request.getResourceResolver().getResource(languagePath);
+       if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))) {
+           return PageUtil.getCurrentPage(languageResource).getTitle();
+       }
+       return StringUtils.EMPTY;
+   }
+   
+   /**
+    * @return current market
+    */
+   public String getCurrentMarket() {
+       final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
+       final Resource languageResource = request.getResourceResolver().getResource(languagePath);
+       if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))
+               && Objects.nonNull(PageUtil.getCurrentPage(languageResource).getParent())) {
+           return PageUtil.getCurrentPage(languageResource).getParent().getTitle();
+       }
+       return StringUtils.EMPTY;
+   }
 }
