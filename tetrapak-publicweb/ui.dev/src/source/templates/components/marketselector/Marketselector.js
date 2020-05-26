@@ -1,10 +1,5 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { storageUtil, isAuthorMode } from '../../../scripts/common/common';
-import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { LANGUAGE_PREFERENCE_SERVLET_URL } from '../../../scripts/utils/constants';
-import { logger } from '../../../scripts/utils/logger';
-import { $body } from '../../../scripts/utils/commonSelectors';
 
 class Marketselector {
   constructor({ el }) {
@@ -13,75 +8,33 @@ class Marketselector {
   cache = {};
   initCache() {
     this.cache.$modal = this.root.parent().find('.js-lang-modal');
-    try {
-      this.cache.selectedLanguage = this.root.find('#selectedLanguage').val();
-    } catch (e) {
-      this.cache.selectedLanguage = null;
-      logger.error(e);
-    }
   }
   bindEvents() {
-    const $this = this;
-    const { $modal } = $this.cache;
-    this.root.on('click', '.js-close-btn', function () {
-      $this.root.modal('hide');
-      $this.closeModalHandler();
-    })
+    this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('click', function () {
         if ($(this).hasClass('js-lang-modal')) {
-          $this.closeModalHandler();
+          this.hidePopUp;
         }
       })
-      .on('click', '.js-lang-selector__btn', function () {
-        $this.setCustomerLanguage($(this).data('langcode'));
-      })
-      .on('showlanuagepreferencepopup1', function () {
-        $modal.modal();
-      });
+      .on('showlanuagepreferencepopup-pw', this.showPopup);
   }
 
-  closeModalHandler() {
-    const langCookie = storageUtil.getCookie('lang-code');
-    if (!langCookie) {
-      storageUtil.setCookie('lang-code', 'en');
-    }
+  showPopup = () => {
+    const $this = this;
+    const { $modal } = $this.cache;
+    $modal.modal();
   }
 
-  setCustomerLanguage(langCode) {
-    ajaxWrapper.getXhrObj({
-      url: LANGUAGE_PREFERENCE_SERVLET_URL,
-      data: {
-        'lang-code': langCode
-      }
-    }).always(() => {
-      storageUtil.setCookie('lang-code', langCode);
-      this.reloadPage();
-    });
-  }
-
-  reloadPage() {
-    window.location.reload();
-  }
-
-  showPopup(isInit) {
-    const { $modal, selectedLanguage } = this.cache;
-    const langCookie = storageUtil.getCookie('lang-code');
-    if (selectedLanguage && langCookie !== selectedLanguage) {
-      storageUtil.setCookie('lang-code', selectedLanguage);
-    }
-    if (!this.cache.selectedLanguage && !langCookie && !isAuthorMode()) {
-      if (isInit) {
-        $body.addClass('tp-no-backdrop');
-      }
-      $modal.modal();
-    }
+  hidePopUp = () => {
+    const $this = this;
+    $this.root.modal('hide');
   }
 
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.showPopup(true);
+    // this.showPopup(true);
   }
 }
 

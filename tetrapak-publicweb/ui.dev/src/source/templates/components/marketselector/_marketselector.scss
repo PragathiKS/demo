@@ -11,6 +11,7 @@
         &__heading {
             @include font-size($font-l);
             @include line-height(32px, $font-l);
+            font-weight: 300;
             word-wrap: break-word;
             @media #{$mobile} {
                 @include padding-top($padding-l);
@@ -39,7 +40,9 @@
         @include padding-right(0);
         display: flex;
         flex-wrap: wrap;
-        
+        i {
+            @include margin-left($margin-sm);
+        }
 
         @media #{$desktop} {
             @include padding-left(24px);
@@ -54,14 +57,6 @@
         }
     }
 
-    // &__selected-lang {
-    //     @include margin-bottom(12px);
-
-    //     &-label {
-    //         @include padding($padding-xs);
-    //     }
-    // }
-
     &__btn {
         @include padding-bottom($padding-md);
         color: $color-congress-blue;
@@ -70,14 +65,6 @@
             @include padding-bottom($padding-l);
         }
 
-        // @media #{$tablet} {
-        //     @include padding($padding-xs $padding-md $padding-xs 0);
-        //     // width: 25%;
-
-        //     &:nth-child(4n+4) {
-        //         padding-right: 0;
-        //     }
-        // }
     }
 
     .icon-Close {
