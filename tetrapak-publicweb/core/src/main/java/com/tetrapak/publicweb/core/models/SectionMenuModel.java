@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -62,6 +63,9 @@ public class SectionMenuModel {
     /** The section menu. */
     private final List<SectionMenuBean> sectionMenu = new ArrayList<>();
 
+    /** The page title map. */
+    private final Map<String, String> pageTitleMap = new HashMap<>();
+
     /** The Constant EN_PAGE. */
     private static final String EN_PAGE = "/content/tetrapak/public-web/lang-masters/en";
 
@@ -79,6 +83,8 @@ public class SectionMenuModel {
         setSectionHomePageTitle(page);
         // Set section menu home page url
         setSectionHomePagePath(page);
+        // Set page hierarchy
+        setPageHierarchy(currentPage);
         // Populate section menu
         populateSectionMenu(page, solutionPagePath);
     }
@@ -285,23 +291,28 @@ public class SectionMenuModel {
      *
      * @return the page hierarchy
      */
-    public String getPageHierarchy() {
-        final StringBuilder builder = new StringBuilder();
-        final String path = currentPage.getPath();
+    private void setPageHierarchy(final Page page) {
+        final String path = page.getPath();
         if (path.contains(EN_PAGE)) {
             final String activeHierarchy = StringUtils.substringAfter(path, EN_PAGE + PWConstants.SLASH);
             final String[] activeHierarchyArray = activeHierarchy.split(PWConstants.SLASH);
+            StringBuilder pagePath = new StringBuilder(EN_PAGE);
             for (int i = 0; i < activeHierarchyArray.length; i++) {
-                builder.append("l" + (i + 1) + "=");
-                builder.append(activeHierarchyArray[i]);
-                if (i < activeHierarchyArray.length - 1) {
-                    builder.append("&");
-                }
+                pagePath = pagePath.append(PWConstants.SLASH + activeHierarchyArray[i]);
+                final Page nextPage = pageManager.getPage(pagePath.toString());
+                pageTitleMap.put("l" + (i + 1), nextPage.getTitle());
             }
         }
-        return builder.toString();
     }
 
+    /**
+     * Gets the page hierarchy.
+     *
+     * @return the page hierarchy
+     */
+    public Map<String, String> getPageHierarchy() {
+        return pageTitleMap;
+    }
 
     /**
      * Sets the section home page title.
