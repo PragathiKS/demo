@@ -5,6 +5,7 @@ import textVideoTemplate from '../../../test-templates-hbs/textVideo.hbs';
 
 describe('TextVideo', function () {
   before(function () {
+    this.enableTimeouts(false);
     $(document.body).empty().html(textVideoTemplate());
     this.textVideo = new TextVideo({ el: document.body });
     this.initSpy = sinon.spy(this.textVideo, 'init');
@@ -28,10 +29,6 @@ describe('TextVideo', function () {
   it('should call track analytics on click', function () {
     $('.js-textVideo-analytics').trigger('click');
     expect(this.textVideo.trackAnalytics.called).to.be.true;
-  });
-
-  it('should set digitalData after track analytics call', function() {
-    expect(window.digitalData.linkClick.linkType).to.equal('internal');
   });
 
 });

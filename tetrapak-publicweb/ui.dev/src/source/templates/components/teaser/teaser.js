@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { isExternal } from '../../../scripts/utils/updateLink';
 
 
 class Teaser {
@@ -13,6 +14,20 @@ class Teaser {
   bindEvents() {
     this.cache.$teaserLink.on('click', this.trackAnalytics);
   }
+  addLinkAttr() {
+    $('.js-teaser-analytics').each(function () {
+      const thisHref = $(this).attr('href');
+      if (thisHref) {
+        if (isExternal(thisHref)) {
+          $(this).attr('target', '_blank');
+          $(this).data('download-type', 'download');
+          $(this).data('link-section', $(this).data('link-section') + '_Download');
+        } else {
+          $(this).data('download-type', 'hyperlink');
+        }
+      }
+    });
+  }
 
 
 
@@ -24,7 +39,7 @@ class Teaser {
     let trackingObj = {};
     const dwnType = 'ungated';
     const eventType = 'download';
-    const linkType = $this.attr('target') === '_blank'?'external':'internal';
+    const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
     const buttonLinkType = $this.data('button-link-type');
@@ -33,15 +48,15 @@ class Teaser {
     const linkTitle = $this.data('link-title');
 
 
-    if(buttonLinkType==='secondary' && downloadtype ==='download'){
+    if (buttonLinkType === 'secondary' && downloadtype === 'download') {
       linkParentTitle = `CTA_Download_pdf_${linkTitle}`;
     }
 
-    if(buttonLinkType==='link' && downloadtype ==='download'){
+    if (buttonLinkType === 'link' && downloadtype === 'download') {
       linkParentTitle = `Text hyperlink_Download_pdf_${linkTitle}`;
     }
 
-    if(downloadtype ==='download'){
+    if (downloadtype === 'download') {
       trackingObj = {
         linkType,
         linkSection,
@@ -60,6 +75,7 @@ class Teaser {
   init() {
     this.initCache();
     this.bindEvents();
+    this.addLinkAttr();
   }
 }
 
