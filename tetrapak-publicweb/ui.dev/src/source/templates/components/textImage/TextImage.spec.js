@@ -16,16 +16,20 @@ describe('TextImage', function () {
     };
     this.TextImage.init();
   });
+ 
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.analyticsSpy.restore();
   });
+ 
   it('should initialize', function () {
     expect(this.initSpy.called).to.be.true;
   });
+  
   it('should track analytics on click of "TextImage" button', function () {
     $('.js-textImage-analytics').trigger('click');
     expect(this.analyticsSpy.called).to.be.true;
   });
+
 })

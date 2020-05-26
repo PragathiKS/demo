@@ -1,47 +1,66 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-
-
-class TextImage {
+import { isExternal } from '../../../scripts/utils/updateLink';
+import { initializeDAMPlayer, ytPromise, initializeYoutubePlayer } from '../../../scripts/utils/videoAnalytics';
+class TextVideo {
   constructor({ el }) {
     this.root = $(el);
   }
+
   cache = {};
+
   initCache() {
-    this.cache.$textImageLink = this.root.find('.js-textImage-analytics');
-  }
-  bindEvents() {
-    this.cache.$textImageLink.on('click', this.trackAnalytics);
+    this.cache.$textVideoButton = this.root.find('.js-textVideo-analytics');
+    ytPromise.then(() => { initializeYoutubePlayer(); });
+    initializeDAMPlayer();
   }
 
+  bindEvents() {
+    const { $textVideoButton } = this.cache;
+    $textVideoButton.on('click', this.trackAnalytics);
+  }
+
+  addLinkAttr() {
+    $('.js-textVideo-analytics').each(function () {
+      const thisHref = $(this).attr('href');
+      if (thisHref) {
+        if (isExternal(thisHref)) {
+          $(this).attr('target', '_blank');
+          $(this).data('download-type', 'download');
+          $(this).data('link-section', $(this).data('link-section') + '_Download');
+        } else {
+          $(this).data('download-type', 'hyperlink');
+        }
+      }
+    });
+  }
 
 
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
-    const $this = $target.closest('.js-textImage-analytics');
-    
+    const $this = $target.closest('.js-textVideo-analytics');
     let linkParentTitle = '';
     let trackingObj = {};
     const dwnType = 'ungated';
     const eventType = 'download';
-    const linkType = $this.attr('target') === '_blank'?'external':'internal';
+    const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
+    const videoTitle = $this.data('video-title');
     const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
-    const imageTitle = $this.data('image-title');
 
-    if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA_Download_pdf_${imageTitle}`;
+    if (buttonLinkType === 'secondary' && downloadtype === 'download') {
+      linkParentTitle = `CTA_Download_pdf_${videoTitle}`;
     }
 
-    if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text Hyperlink_Download_pdf_${imageTitle}`;
+    if (buttonLinkType === 'link' && downloadtype === 'download') {
+      linkParentTitle = `Text hyperlink_Download_pdf_${videoTitle}`;
     }
-   
-    if(downloadtype ==='download'){
+
+    if (downloadtype === 'download') {
       trackingObj = {
         linkType,
         linkSection,
@@ -54,7 +73,7 @@ class TextImage {
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
     }
 
-    if(downloadtype!=='download' && $this.attr('target')==='_blank'){
+    if (downloadtype !== 'download' && $this.attr('target') === '_blank') {
       window._satellite.track('linkClick');
     }
 
@@ -64,7 +83,8 @@ class TextImage {
   init() {
     this.initCache();
     this.bindEvents();
+    this.addLinkAttr();
   }
 }
 
-export default TextImage;
+export default TextVideo;

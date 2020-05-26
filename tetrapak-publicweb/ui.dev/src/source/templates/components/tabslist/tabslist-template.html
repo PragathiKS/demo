@@ -74,12 +74,12 @@
                           <a data-sly-test="${tab.linkURL}"  
                           href="${tab.linkURL ? tab.linkURL : '#'}"
                           class="img-link js-tablist__event-detail-description-link"
-                          data-custom="${customData @ context='text'}" target="${tab.targetBlank}"
-                          data-link-section="${tabContentType}${buttonLinkType}${buttonDownloadCheck}"
-                          data-link-name="${tab.linkText}" data-download-type="${tab.pwLinkTheme}"
+                          data-custom="${customData @ context='text'}"
+                          data-link-section="${tabContentType}${buttonLinkType}"
+                          data-link-name="${tab.linkText}"
                           data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
                           data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
-                          data-tab-title="${tab.title}" rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
+                          data-tab-title="${tab.title}">
                       <sly data-sly-test="${!wcmmode.edit}">
                         <sly
                           data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -121,12 +121,12 @@
                       data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}" />
                     <a data-sly-test="${tab.linkText}" href="${tab.linkURL}"
                       class="tpatom-link tpatom-link--${variant || 'primary'} pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
-                      data-custom="${customData @ context='text'}" title="${btnTooltip}" target="${tab.targetBlank}"
-                      data-link-section="${tabContentType}${buttonLinkType}${buttonDownloadCheck}"
-                      data-link-name="${tab.linkText}" data-download-type="${tab.pwLinkTheme}"
+                      data-custom="${customData @ context='text'}" title="${btnTooltip}"
+                      data-link-section="${tabContentType}${buttonLinkType}"
+                      data-link-name="${tab.linkText}"
                       data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
                       data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
-                      data-tab-title="${tab.title}" rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
+                      data-tab-title="${tab.title}">
                       <span class="tpatom-link__text sly-text">${tab.linkText @ context='html'}<i class="icon${variant != 'transparent' ? ' icon-Arrow_Right_pw' : ' icon-Circle_Arrow_Right_pw'}"></i></span>
                     </a>
                     <!-- </sly> -->
@@ -137,13 +137,12 @@
             <sly data-sly-test="${tabList.last && data.readMorePath && data.readMorePath!='#'}">
               <div
                 class="pw-tablist__event ${data.pwDisplay == 'display-row' ? 'pw-tablist__event-readmore-icright' : 'pw-tablist__event-readmore-icleft'}">
-                <sly data-sly-test.buttonDownloadReadMore="${data.pwLinkTheme == 'download' ? '_Download' : ''}" />
                 <a href="${data.readMorePath}"
                   class="tpatom-link tpatom-link--transparent pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
-                  target="${data.readMoreTarget}" data-link-section="Tab Click_Text Hyperlink${buttonDownloadReadMore}"
-                  data-link-name="${data.readMoreText}" data-download-type="${data.pwLinkTheme}"
+                  data-link-section="Tab Click_Text Hyperlink"
+                  data-link-name="${data.readMoreText}"
                   data-button-link-type="link" data-asset-name="${data.assetName}" data-tab-title="${data.heading}"
-                  data-tab-type="" rel="${data.readMoreTarget ? 'noopener noreferrer' : ''}">
+                  data-tab-type="">
                   <span class="tpatom-link__text sly-text">${data.readMoreText @ context='html'}<i class="icon icon-Circle_Arrow_Right_pw"></i></span>
                 </a>
               </div>

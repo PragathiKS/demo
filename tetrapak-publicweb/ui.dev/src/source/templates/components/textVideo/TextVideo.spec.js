@@ -9,7 +9,9 @@ describe('TextVideo', function () {
     this.textVideo = new TextVideo({ el: document.body });
     this.initSpy = sinon.spy(this.textVideo, 'init');
     this.trackAnalyticsSpy = sinon.spy(this.textVideo, 'trackAnalytics');
-    window.digitalData = {};
+    window.digitalData = {
+      linkClick: {}
+    };
     window._satellite = {
       track() { /* Dummy method */ }
     };
@@ -28,10 +30,6 @@ describe('TextVideo', function () {
   it('should call track analytics on click', function () {
     $('.js-textVideo-analytics').trigger('click');
     expect(this.textVideo.trackAnalytics.called).to.be.true;
-  });
-
-  it('should set digitalData after track analytics call', function() {
-    expect(window.digitalData.linkClick.linkType).to.equal('internal');
   });
 
 });
