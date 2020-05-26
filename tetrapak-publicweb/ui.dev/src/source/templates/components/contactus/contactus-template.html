@@ -2,9 +2,9 @@
     <div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-locator="ContactUs">
         <div class="pw-contactus-form pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular"
             id="pw-contactUs" data-module="ContactUs" auto_locator="contactUsParentContainerStep1">
-            <div class="hidden-element js-contactus-api" data-contactus-api-servlet="${data.servletPath}"></div>
             <div class="tab-content">
-                <form class="pw-form" accept-charset="UTF-8" autocomplete="off">
+                <form class="pw-form pw-form-contactUs" accept-charset="UTF-8"
+                    data-contactus-api-servlet="${data.servletPath}" autocomplete="off">
                     <div class="tab-pane active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel"
                         id="cf-step-1">
                         <div class="row no-gutters">
@@ -38,8 +38,11 @@
                                 <div class="tab-content tab-content-steps">
                                     <div class="row">
                                         <div class="col-sm-12" auto_locator="contactUsRightContainerHeadingTextStep1">
-                                            <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                            <sly data-sly-test="${data.purposeOfContactText}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.purposeOfContactText, variant='small'}" />
+                                            <sly data-sly-test="${!data.purposeOfContactText}"
+                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                                data-sly-call="${heading.heading_h4_template @ headingText='Purpose of contact1', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12 formfield"
                                             auto_locator="contactUsRightContainerOptionListContainerStep1">
@@ -99,7 +102,7 @@
                                         </div>
                                     </div>
                                     <div class="row summary">
-                                        <div class="col-lg-6">${data.purposeOfContactText}</div>
+                                        <div class="col-lg-6">${data.purposeOfContactText ? data.purposeOfContactText : 'Purpose of contact'  @ i18n}</div>
                                         <div class="col-lg-6 purposeOfContactTitle"></div>
                                     </div>
                                 </div>
@@ -111,6 +114,9 @@
                                             <sly data-sly-test="${data.contactInfoText}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.contactInfoText, variant='small'}" />
+                                            <sly data-sly-test="${!data.contactInfoText}"
+                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                                data-sly-call="${heading.heading_h4_template @ headingText='Contact information', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12 formfield">
                                             <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
@@ -197,7 +203,7 @@
                                         </div>
                                     </div>
                                     <div class="row summary">
-                                        <div class="col-lg-6">${data.purposeOfContactText}</div>
+                                        <div class="col-lg-6">${data.purposeOfContactText ? data.purposeOfContactText : 'Purpose of contact'  @ i18n}</div>
                                         <div class="col-lg-6 purposeOfContactTitle"></div>
                                     </div>
                                     <div class="row summary">
@@ -226,6 +232,9 @@
                                             <sly data-sly-test="${data.howCanWeHelpText}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.howCanWeHelpText, variant='small'}" />
+                                            <sly data-sly-test="${!data.howCanWeHelpText}"
+                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                                data-sly-call="${heading.heading_h4_template @ headingText='How can I help you?', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="formfield">
@@ -233,7 +242,8 @@
                                                 <textarea auto_locator="messageBoxStep3" class="form-control"
                                                     id="messageText" rows="5" name="message" required></textarea>
                                                 <div class="errorMsg">${'pleasefillinfield' @i18n}</div>
-                                                <input type="text" id="pardot_extra_field" class="d-none" tabindex="-1" />
+                                                <input type="text" name="pardot_extra_field" id="pardot_extra_field"
+                                                    class="d-none" tabindex="-1" />
                                             </div>
                                             <div class="privacy-policy" auto_locator="contactUsPolicyTextStep3">
                                                 ${data.privacyPolicy @ context="html"}
@@ -269,7 +279,8 @@
                                         data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.thankyouImage, altText=data.thankyouImageAltText}" />
                                 </sly>
                                 <sly data-sly-test="${wcmmode.edit}">
-                                    <img data-sly-test="${data.thankyouImage}" auto_locator="contactUsThankYouPageImage" alt="${data.thankyouImageAltText}" src="${data.thankyouImageAltText}"
+                                    <img data-sly-test="${data.thankyouImage}" auto_locator="contactUsThankYouPageImage"
+                                        alt="${data.thankyouImageAltText}" src="${data.thankyouImageAltText}"
                                         class="image img-responsive" />
                                 </sly>
                                 <div auto_locator="contactUsThankYouPageMessage">
