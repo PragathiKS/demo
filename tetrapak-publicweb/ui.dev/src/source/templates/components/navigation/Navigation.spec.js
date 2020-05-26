@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 
 describe('Navigation', function() {
   before(function() {
+    this.enableTimeouts(false);
     $(document.body)
       .empty()
       .html(
