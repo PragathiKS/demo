@@ -314,7 +314,7 @@ public class HeaderModel {
         return request.adaptTo(MarketSelectorModel.class);
     }
     
-    **
+  /**
     * @return current language
     */
    public String getCurrentLanguage() {
