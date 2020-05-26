@@ -15,15 +15,28 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/coral/foundation/tabs">
                 <items jcr:primaryType="nt:unstructured">
-                    <pseudo
+                    <pwBaseConfig
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Public Web Pseudo Categories"
+                        jcr:title="Public Web Base Configuration"
                         sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                         <items jcr:primaryType="nt:unstructured">
                             <column
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <sectionmenu
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Section Menu"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <title
+                                                cq:showOnCreate="{Boolean}true"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Section menu title"
+                                                name="./sectionHomePageTitle"/>
+                                        </items>
+                                    </sectionmenu>
                                     <categories
                                         jcr:primaryType="nt:unstructured"
                                         jcr:title="Pseudo Categories"
@@ -32,7 +45,7 @@
                                             <pseudocategories
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                fieldLabel="Pseudo Categories"
+                                                fieldLabel="Select pseudo category"
                                                 name="./pseudoCategory">
                                                 <datasource
                                                     jcr:primaryType="nt:unstructured"
@@ -43,7 +56,7 @@
                                 </items>
                             </column>
                         </items>
-                    </pseudo>
+                    </pwBaseConfig>
                 </items>
             </tabs>
         </items>
