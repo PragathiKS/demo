@@ -1,4 +1,4 @@
-<sly data-sly-template.sectionMenu_template="${@ data, selectedL2,selectedL3, linkText,linkURL, anchorClass, iconClass, parentLink}">
+<sly data-sly-template.sectionMenu_template="${@ data, selectedL2,selectedL3,selectedL4, linkText,linkURL, anchorClass, iconClass, parentLink}">
   <div data-module="SectionMenu">
     <div class="section-menu-navigation-Link js-section-menu-navigation-Link pw-position-relative">
       <a auto-locator="SectionMenuLinksFontStyle-SectionMenuLinksPadding" data-link-name='${linkText}' target="${data.external ? '_blank' : '_self'}" href="${linkURL}" class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : ''} section-menu-item-link js-section-menu-item-link" title="${linkText}">
@@ -16,7 +16,7 @@
       <sly data-sly-test.subSection="${data.subSectionMenu}">
         <sly
           data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
-          data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, subSectionCount=subSection.subSectionCount, selectedL3=selectedL3}">
+          data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, subSectionCount=subSection.subSectionCount, selectedL3=selectedL3,selectedL4=selectedL4}">
         </sly>
       </sly>
     </div>

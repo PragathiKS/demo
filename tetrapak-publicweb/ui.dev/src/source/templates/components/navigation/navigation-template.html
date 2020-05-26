@@ -1,5 +1,5 @@
 <sly data-sly-template.navigation_template="${@data, navigationTypeSticky, flag}">
-  <div auto-locator="SectionMenuContainer" data-selected-header="${data.pageHierarchy && data.pageHierarchy.l1}"
+  <div auto-locator="SectionMenuContainer" data-selected-header="${data.pageHierarchy && data.pageHierarchy['l1']}"
     class="${ navigationTypeSticky ? 'd-lg-block sticky' :''} js-pw-navigation pw-navigation" aria-hidden="true" aria-expanded="false"
     data-module="Navigation">
     <hr class="hr-display" />
@@ -11,7 +11,7 @@
             data-sly-list.linkSection=${data.sectionMenu}>
             <li auto-locator="SectionMenuLinksMargin">
               <sly data-sly-use.sectionItem="/apps/publicweb/components/content/sectionMenu/sectionMenu-template.html"
-                data-sly-call="${sectionItem.sectionMenu_template @ data=linkSection, selectedL2=data.pageHierarchy && data.pageHierarchy.l2,selectedL3=data.pageHierarchy && data.pageHierarchy.l3, linkUrl=linkSection.linkPath, parentLink='Solution', linkText=linkSection.linkText}">
+                data-sly-call="${sectionItem.sectionMenu_template @ data=linkSection, selectedL2=data.pageHierarchy['l2'],selectedL3=data.pageHierarchy['l3'],selectedL4=data.pageHierarchy['l4'], linkUrl=linkSection.linkPath, parentLink='Solution', linkText=linkSection.linkText}">
               </sly>
             </li>
           </ul>
