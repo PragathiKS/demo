@@ -276,7 +276,7 @@ public class ContactUsModel {
      * @return the servlet path
      */
     public String getServletPath() {
-        return resource.getPath() + ".data.json";
+        return resource.getPath() + ".sendmail.json";
     }
 
 }
