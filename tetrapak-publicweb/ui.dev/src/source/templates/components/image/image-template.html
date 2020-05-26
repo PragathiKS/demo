@@ -1,8 +1,6 @@
 <sly data-sly-template.image_template="${@data, flag}">
   <div id="${data.anchorId}" title="${data.anchorTitle}" class="tp-pw-image tp-pw-image__${data.pwPadding}" data-module="Image">
-  <div class="row no-gutters">
-  <div class="col-lg-12 col-sm-12 pw-padding--${data.pwPadding} pw-margin--regular pw-theme--grayscale-white">
-  <div class="row no-gutters">
+  <div class="pw-padding--${data.pwPadding} pw-margin--regular pw-theme--grayscale-white">
   <div class="col-lg-8 col-sm-12 tp-pw-image__center-align">
     <sly data-sly-test = "${data.linkURL && data.linkURL!='#'}">
       <a class="js-tp-pw-image" href="${data.linkURL}" data-link-section="Stand alone_Image click" data-link-name="Image text banner not present">  
@@ -28,8 +26,6 @@
           </sly>
     </sly>
     </div>
-  </div>
  </div>
  </div>
-</div>
 </sly>

@@ -57,14 +57,17 @@ public class ContactUsModel {
 
     /** The purpose of contact text. */
     @ValueMapValue
+    @Default(values = "Purpose of contact")
     private String purposeOfContactText;
 
     /** The contact info text. */
     @ValueMapValue
+    @Default(values = "Contact information")
     private String contactInfoText;
 
     /** The how can we help text. */
     @ValueMapValue
+    @Default(values = "How can I help you?")
     private String howCanWeHelpText;
 
     /** The summary text. */
@@ -265,6 +268,15 @@ public class ContactUsModel {
      */
     private void setCountryOptions() {
         this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
+    }
+
+    /**
+     * Gets the servlet path.
+     *
+     * @return the servlet path
+     */
+    public String getServletPath() {
+        return resource.getPath() + ".data.json";
     }
 
 }
