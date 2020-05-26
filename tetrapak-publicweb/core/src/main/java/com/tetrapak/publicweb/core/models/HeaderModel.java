@@ -153,6 +153,8 @@ public class HeaderModel {
                     linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
                     if (!childPage.getPath().equalsIgnoreCase(getSolutionPageWithoutExtension())) {
                         final SectionMenuModel sectionMenuModel = new SectionMenuModel();
+                        sectionMenuModel.setSectionHomePageTitle(childPage);
+                        sectionMenuModel.setSectionHomePagePath(childPage);
                         sectionMenuModel.populateSectionMenu(childPage, getSolutionPageWithoutExtension());
                         linkBean.setNavigationConfigurationModel(sectionMenuModel);
                     }

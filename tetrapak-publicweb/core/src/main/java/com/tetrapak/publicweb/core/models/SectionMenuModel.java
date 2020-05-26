@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
@@ -52,6 +53,12 @@ public class SectionMenuModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    /** The section home page title. */
+    private String sectionHomePageTitle;
+
+    /** The section home page path. */
+    private String sectionHomePagePath;
+
     /** The section menu. */
     private final List<SectionMenuBean> sectionMenu = new ArrayList<>();
 
@@ -68,6 +75,10 @@ public class SectionMenuModel {
         final String solutionPagePath = StringUtils.substringBefore(fetchSolutionPagePath(), ".html");
         // Fetch absolute parent page
         final Page page = fetchAbsoluteParent(solutionPagePath);
+        // Set section menu home page title
+        setSectionHomePageTitle(page);
+        // Set section menu home page url
+        setSectionHomePagePath(page);
         // Populate section menu
         populateSectionMenu(page, solutionPagePath);
     }
@@ -144,8 +155,7 @@ public class SectionMenuModel {
      */
     private ExternalTemplateBean checkExternalTemplate(final Page page) {
         final ExternalTemplateBean externalTemplate = new ExternalTemplateBean();
-        final Resource pageContentResource = page.getContentResource();
-        final ValueMap properties = pageContentResource.getValueMap();
+        final ValueMap properties = getProperties(page);
         if (properties.containsKey(PWConstants.CQ_TEMPLATE)) {
             final String template = properties.get(PWConstants.CQ_TEMPLATE).toString();
             if (PWConstants.EXTERNAL_REDIRECT_TEMPLATE.equalsIgnoreCase(template)) {
@@ -216,8 +226,7 @@ public class SectionMenuModel {
      * @return the pseudo category
      */
     private String getPseudoCategory(final Page nextPage) {
-        final Resource resource = nextPage.getContentResource();
-        final ValueMap properties = resource.getValueMap();
+        final ValueMap properties = getProperties(nextPage);
         return properties.get("pseudoCategory", StringUtils.EMPTY);
     }
 
@@ -291,6 +300,58 @@ public class SectionMenuModel {
             }
         }
         return builder.toString();
+    }
+
+
+    /**
+     * Sets the section home page title.
+     *
+     * @param page the new section home page title
+     */
+    public void setSectionHomePageTitle(final Page page) {
+        final ValueMap properties = getProperties(page);
+        if (properties.containsKey(JcrConstants.JCR_TITLE)) {
+            sectionHomePageTitle = properties.get(JcrConstants.JCR_TITLE).toString();
+        }
+    }
+
+    /**
+     * Gets the section home page title.
+     *
+     * @return the section home page title
+     */
+    public String getSectionHomePageTitle() {
+        return sectionHomePageTitle;
+    }
+
+    /**
+     * Sets the section home page path.
+     *
+     * @param page the new section home page path
+     */
+    public void setSectionHomePagePath(final Page page) {
+        sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath());
+    }
+
+    /**
+     * Gets the section home page path.
+     *
+     * @return the section home page path
+     */
+    public String getSectionHomePagePath() {
+        return sectionHomePagePath;
+    }
+
+    /**
+     * Gets the properties.
+     *
+     * @param page the page
+     * @return the properties
+     */
+    private ValueMap getProperties(final Page page) {
+        final Resource resource = page.getContentResource();
+        final ValueMap properties = resource.getValueMap();
+        return properties;
     }
 
     /**
