@@ -2,7 +2,6 @@ import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { isExternal } from '../../../scripts/utils/updateLink';
 
-
 class TextImage {
   constructor({ el }) {
     this.root = $(el);
