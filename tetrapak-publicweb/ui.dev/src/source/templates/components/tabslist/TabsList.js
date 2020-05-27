@@ -80,15 +80,15 @@ class TabsList {
 
     if (buttonLinkType === 'link' && downloadtype === 'download') {
       linkParentTitle = `Text hyperlink_Download_pdf_${tabTitle}`;
+      eventType = 'download';
     }
 
     if (buttonLinkType === 'secondary' && downloadtype !== 'download') {
       linkParentTitle = `CTA_${tabTitle}`;
     }
 
-    if (buttonLinkType === 'link' && downloadtype != 'download') {
+    if (buttonLinkType === 'link' && downloadtype !== 'download') {
       linkParentTitle = `Text hyperlink_${tabTitle}`;
-      eventType = 'download';
     }
 
     if (downloadtype === 'download') {
