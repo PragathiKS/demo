@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { isExternal } from '../../../scripts/utils/updateLink';
 import { initializeDAMPlayer,ytPromise,initializeYoutubePlayer } from '../../../scripts/utils/videoAnalytics';
 class TextVideo {
   constructor({ el }) {
@@ -20,6 +21,22 @@ class TextVideo {
   }
 
 
+  addLinkAttr() {
+    $('.js-textImage-analytics').each(function () {
+      const thisHref = $(this).attr('href');
+      if (thisHref) {
+        if (isExternal(thisHref)) {
+          $(this).attr('target', '_blank');
+          $(this).data('download-type', 'download');
+          $(this).data('link-section', $(this).data('link-section') + '_Download');
+        } else {
+          $(this).data('download-type', 'hyperlink');
+        }
+      }
+    });
+  }
+
+
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
@@ -35,6 +52,7 @@ class TextVideo {
     const buttonLinkType = $this.data('button-link-type');
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
+
 
     if(buttonLinkType==='secondary' && downloadtype ==='download'){
       linkParentTitle = `CTA_Download_pdf_${videoTitle}`;
@@ -67,6 +85,7 @@ class TextVideo {
   init() {
     this.initCache();
     this.bindEvents();
+    this.addLinkAttr();
   }
 }
 

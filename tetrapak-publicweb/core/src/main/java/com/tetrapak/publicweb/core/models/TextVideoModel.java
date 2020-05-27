@@ -92,10 +92,6 @@ public class TextVideoModel {
     @ValueMapValue
     private String pwButtonTheme;
 
-    /** The pw link theme. */
-    @ValueMapValue
-    private String pwLinkTheme;
-
     /** The pw padding. */
     @ValueMapValue
     private String pwPadding;
@@ -272,15 +268,6 @@ public class TextVideoModel {
      */
     public String getPwButtonTheme() {
         return pwButtonTheme;
-    }
-
-    /**
-     * Gets the pw link theme.
-     *
-     * @return the pw link theme
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
     }
 
     /**

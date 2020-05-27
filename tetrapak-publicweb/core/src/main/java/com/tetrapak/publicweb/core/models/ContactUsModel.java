@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -28,7 +27,6 @@ public class ContactUsModel extends FormModel {
 
     /** The how can we help text. */
     @ValueMapValue
-    @Default(values = "How can I help you?")
     private String howCanWeHelpText;
 
     /** The country options. */
@@ -78,7 +76,7 @@ public class ContactUsModel extends FormModel {
      * @return the servlet path
      */
     public String getServletPath() {
-        return resource.getPath() + ".data.json";
+        return resource.getPath() + ".sendmail.json";
     }
 
 }

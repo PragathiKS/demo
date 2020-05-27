@@ -38,11 +38,8 @@
                                 <div class="tab-content tab-content-steps">
                                     <div class="row">
                                         <div class="col-sm-12" auto_locator="contactUsRightContainerHeadingTextStep1">
-                                            <sly data-sly-test="${data.purposeOfContactText}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                            <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.purposeOfContactText, variant='small'}" />
-                                            <sly data-sly-test="${!data.purposeOfContactText}"
-                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='Purpose of contact1', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12 formfield"
                                             auto_locator="contactUsRightContainerOptionListContainerStep1">
@@ -102,7 +99,7 @@
                                         </div>
                                     </div>
                                     <div class="row summary">
-                                        <div class="col-lg-6">${data.purposeOfContactText ? data.purposeOfContactText : 'Purpose of contact'  @ i18n}</div>
+                                        <div class="col-lg-6">${data.purposeOfContactText}</div>
                                         <div class="col-lg-6 purposeOfContactTitle"></div>
                                     </div>
                                 </div>
@@ -114,9 +111,6 @@
                                             <sly data-sly-test="${data.contactInfoText}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.contactInfoText, variant='small'}" />
-                                            <sly data-sly-test="${!data.contactInfoText}"
-                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='Contact information', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12 formfield">
                                             <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
@@ -203,7 +197,7 @@
                                         </div>
                                     </div>
                                     <div class="row summary">
-                                        <div class="col-lg-6">${data.purposeOfContactText ? data.purposeOfContactText : 'Purpose of contact'  @ i18n}</div>
+                                        <div class="col-lg-6">${data.purposeOfContactText}</div>
                                         <div class="col-lg-6 purposeOfContactTitle"></div>
                                     </div>
                                     <div class="row summary">
@@ -232,9 +226,6 @@
                                             <sly data-sly-test="${data.howCanWeHelpText}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.howCanWeHelpText, variant='small'}" />
-                                            <sly data-sly-test="${!data.howCanWeHelpText}"
-                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='How can I help you?', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="formfield">
@@ -257,7 +248,7 @@
                                             </sly>
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-lg-3">
-                                            <p>${'step' @ i18} 3 ${'of' @ i18} 3</p>
+                                            <p>${'step' @ i18n} 3 ${'of' @ i18n} 3</p>
                                         </div>
                                     </div>
                                     <div class="row no-gutters button-group">

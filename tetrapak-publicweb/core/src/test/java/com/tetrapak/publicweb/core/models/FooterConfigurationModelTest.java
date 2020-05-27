@@ -57,7 +57,6 @@ public class FooterConfigurationModelTest {
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("/content/tetrapak/public-web/lang-masters.html", model.getLogoLink());
-        assertEquals("_blank", model.getLogoLinkTarget());
         assertEquals("Logo ", model.getLogoAlt());
         assertEquals("Go To Top", model.getGoToTopLabel());
         assertEquals("Link text 2", model.getFooterLinks().get(1).getLinkLabel());

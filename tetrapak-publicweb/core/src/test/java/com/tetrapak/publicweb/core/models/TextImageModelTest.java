@@ -34,8 +34,10 @@ public class TextImageModelTest {
     /**
      * Sets the up.
      *
-     * @param context the new up
-     * @throws Exception the exception
+     * @param context
+     *            the new up
+     * @throws Exception
+     *             the exception
      */
     @Before
     public void setUp() throws Exception {
@@ -50,18 +52,19 @@ public class TextImageModelTest {
     /**
      * Test model, resource and all getters of the ImageTextButton model.
      *
-     * @throws Exception the exception
+     * @throws Exception
+     *             the exception
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         final String[] methods = new String[] { "getAnchorId", "getAnchorTitle", "getSubTitle", "getTitle",
-                "getDescription", "getImagePath", "getImageAltText", "getLinkText", "getLinkURL", "getTargetBlank",
-                "getPwTheme", "getPwButtonTheme", "getPwLinkTheme", "getPwDisplay" };
+                "getDescription", "getImagePath", "getImageAltText", "getLinkText", "getLinkURL", "getPwTheme",
+                "getPwButtonTheme", "getPwDisplay" };
         Util.testLoadAndGetters(methods, model, resource);
     }
-    
+
     @Test
     public void testNotEmptyAssetName() {
         assertEquals("Petrol.pdf", model.getAssetName());
-    } 
+    }
 }
