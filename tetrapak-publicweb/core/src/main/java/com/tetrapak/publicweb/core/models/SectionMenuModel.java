@@ -10,6 +10,7 @@ import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -190,7 +191,12 @@ public class SectionMenuModel {
 
         final SubSectionMenuBean subSectionMenuBean = new SubSectionMenuBean();
         if (page.getPath().contains(path)) {
-            subSectionMenuBean.setPseudoCategoriesSection(populatePseudoSection(pseudoCategoryMap));
+            if (MapUtils.isNotEmpty(pseudoCategoryMap)) {
+                subSectionMenuBean.setPseudoCategoriesSection(populatePseudoSection(pseudoCategoryMap));
+            } else {
+                subSectionMenuBean.setSubSections(subSections);
+                subSectionMenuBean.setSubSectionCount(subSections.size());
+            }
         } else {
             subSectionMenuBean.setSubSections(subSections);
             subSectionMenuBean.setSubSectionCount(subSections.size());
