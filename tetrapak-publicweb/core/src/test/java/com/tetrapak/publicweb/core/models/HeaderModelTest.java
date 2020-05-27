@@ -39,10 +39,10 @@ public class HeaderModelTest {
 
     /** The resource. */
     private Resource resource;
-
+    
     /** The language bean. */
     LanguageBean languageBean = new LanguageBean();
-
+    
     /** The market bean. */
     MarketBean marketBean = new MarketBean();
 
@@ -71,7 +71,7 @@ public class HeaderModelTest {
         request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
-
+        
         marketBean.setMarketName("Australia");
         languageBean.setLanguageName("English");
     }
@@ -95,8 +95,7 @@ public class HeaderModelTest {
                 model.getMegaMenuLinksList().get(0).getLinkPath());
         assertEquals("Header", "check", model.getMegaMenuLinksList().get(0).getLinkText());
         assertNotNull("Header", model.getMegaMenuConfigurationModel());
-        assertEquals("Header", "/content/tetrapak/public-web/language-masters/en/solutions.html",
-                model.getSolutionPage());
+        assertEquals("Header", "/content/tetrapak/public-web/language-masters/en/solutions.html", model.getSolutionPage());
         assertEquals("Header", "Solutions", model.getSolutionPageTitle());
         assertEquals("Header", true, model.getMarketList().getMarkets().get(2).equals(marketBean));
         assertEquals("Header", "Australia", model.getMarketList().getMarkets().get(2).getMarketName());
@@ -106,12 +105,14 @@ public class HeaderModelTest {
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLinkPath());
         assertEquals("Header", true,
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).equals(languageBean));
-        assertEquals("Header", 3, model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLanguageIndex());
+        assertEquals("Header", 3,
+                model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLanguageIndex());
         assertEquals("Header", "Choose Your Market", model.getMarketList().getMarketTitle());
         assertEquals("Header", "/content/tetrapak/public-web/gb/en/home.html",
                 model.getMarketList().getGlobalMarketPath());
         assertEquals("Header", "", model.getCurrentMarket());
         assertEquals("Header", "English", model.getCurrentLanguage());
+        assertEquals("Header", false, model.getDisplayCurrentLanguage());
         assertEquals("Header", 14, model.getMarketList().getCol1End());
         assertEquals("Header", 15, model.getMarketList().getCol2Start());
         assertEquals("Header", 28, model.getMarketList().getCol2End());
