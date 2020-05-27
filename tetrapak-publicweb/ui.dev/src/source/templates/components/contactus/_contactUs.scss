@@ -122,7 +122,9 @@
     }
 
     .summary {
-        @include margin-bottom($margin-md);
+        &:not(:last-child) {
+            @include margin-bottom($margin-md);
+        }
         div + div {
             font-weight: 900;
             @media #{$desktop} {
