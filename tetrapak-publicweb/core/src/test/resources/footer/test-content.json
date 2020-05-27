@@ -27,14 +27,14 @@
 					"loginLink": "http://www.google.com",
 					"jcr:lastModifiedBy": "admin",
 					"jcr:created": "Tue Mar 24 2020 12:35:55 GMT+0530",
-					"contactLink": "/content/tetrapak/public-web/global/en",
+					"contactLink": "/content/tetrapak/publicweb/global/en",
 					"contactText": "Contact Us Label",
 					"logoLinkTarget": "_blank",
 					"logoAlt": "Logo ",
 					"jcr:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
 					"sling:resourceType": "publicweb/components/structure/footerconfiguration",
 					"contactLinkTarget": "_blank",
-					"logoLink": "/content/tetrapak/public-web/global/en"
+					"logoLink": "/content/tetrapak/publicweb/global/en"
 				},
 				"footerconfiguration": {
 					"jcr:primaryType": "nt:unstructured",
@@ -46,7 +46,7 @@
 					"logoAlt": "Logo ",
 					"jcr:lastModified": "Fri Mar 27 2020 18:55:38 GMT+0530",
 					"sling:resourceType": "publicweb/components/structure/footerconfiguration",
-					"logoLink": "/content/tetrapak/public-web/lang-masters",
+					"logoLink": "/content/tetrapak/publicweb/lang-masters",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
 					"footerLinks":{
 					"jcr:primaryType": "nt:unstructured",
@@ -59,7 +59,7 @@
 					"item1": {
 						"jcr:primaryType": "nt:unstructured",
 						"linkLabel": "Link text 2",
-						"linkPath": "/content/tetrapak/public-web",
+						"linkPath": "/content/tetrapak/publicweb",
 						"linktarget": "_self"
 						}
 					},

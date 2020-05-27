@@ -31,7 +31,7 @@
 				"vanityDescription": "Description",
 				"practiceTitle": "Practice Line Title",
 				"contentType": "manual",
-				"practicePath": "/content/tetrapak/public-web/global/en/solutions",
+				"practicePath": "/content/tetrapak/publicweb/global/en/solutions",
 				"practiceImageAltI18n": "Alt Text",
 				"ctaTexti18nKey": "Link Text",
 				"linkTarget": "_blank"

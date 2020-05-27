@@ -48,7 +48,7 @@ public class PXPFillingMachinesModelTest {
     private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-masters/en";
 
     /** The Constant TEST_CONTENT_ROOT_TWO. */
-    private static final String TEST_CONTENT_ROOT_TWO = "/content/tetrapak/public-web/lang-masters/en/test-equip-19647";
+    private static final String TEST_CONTENT_ROOT_TWO = "/content/tetrapak/publicweb/lang-masters/en/test-equip-19647";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/pxpfillingmachines";
@@ -108,7 +108,7 @@ public class PXPFillingMachinesModelTest {
         context.addModelsForClasses(modelClass);
 
         final List<String> pathList = new ArrayList<>();
-        pathList.add("/content/tetrapak/public-web/lang-masters/en/test-equip-19647");
+        pathList.add("/content/tetrapak/publicweb/lang-masters/en/test-equip-19647");
         MockHelper.loadQuery(context, pathList);
 
         resource = context.currentResource(RESOURCE_PATH);
@@ -135,7 +135,7 @@ public class PXPFillingMachinesModelTest {
      */
     @Test
     public void testTeaserList() throws Exception {
-        assertEquals("/content/tetrapak/public-web/lang-masters/en/test-equip-19647.html",
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/test-equip-19647.html",
                 pxpFillingMachinesModel.getTeaserList().get(0).getLinkPath());
         assertEquals("The filling machine for water", pxpFillingMachinesModel.getTeaserList().get(0).getDescription());
         assertEquals("/content/dam/tetrapak/publicweb/pxp/fillingmachines/equipment19647/image/tt3_xh_ic_benefits.png",

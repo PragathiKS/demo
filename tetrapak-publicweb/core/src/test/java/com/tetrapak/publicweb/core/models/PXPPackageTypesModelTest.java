@@ -44,9 +44,9 @@ public class PXPPackageTypesModelTest {
     /** The Constant RESOURCE_CONTENT_TWO. */
     private static final String RESOURCE_CONTENT_PACKAGE_TYPES = "/pxppackagetypes/test-content-two.json";
 
-    private static final String TEST_CONTENT_FILLING_MACHINE = "/content/tetrapak/public-web/lang-masters/en";
+    private static final String TEST_CONTENT_FILLING_MACHINE = "/content/tetrapak/publicweb/lang-masters/en";
 
-    private static final String TEST_CONTENT_PACKAGE_TYPE_ROOT = "/content/tetrapak/public-web/lang-masters/en/packagetypes";
+    private static final String TEST_CONTENT_PACKAGE_TYPE_ROOT = "/content/tetrapak/publicweb/lang-masters/en/packagetypes";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE_PATH = TEST_CONTENT_FILLING_MACHINE + "/jcr:content/pxppackagetypes";
@@ -106,10 +106,10 @@ public class PXPPackageTypesModelTest {
         context.addModelsForClasses(modelClass);
 
         final List<String> idList = new ArrayList<>();
-        idList.add("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-brik");
-        idList.add("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-fino");
-        idList.add("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-brik-aseptic");
-        idList.add("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-classic");
+        idList.add("/content/tetrapak/publicweb/lang-masters/en/packagetypes/tetra-brik");
+        idList.add("/content/tetrapak/publicweb/lang-masters/en/packagetypes/tetra-fino");
+        idList.add("/content/tetrapak/publicweb/lang-masters/en/packagetypes/tetra-brik-aseptic");
+        idList.add("/content/tetrapak/publicweb/lang-masters/en/packagetypes/tetra-classic");
         MockHelper.loadQuery(context, idList);
 
         resource = context.currentResource(RESOURCE_PATH);
@@ -136,7 +136,7 @@ public class PXPPackageTypesModelTest {
      */
     @Test
     public void testTeaserList() throws Exception {
-        assertEquals("/content/tetrapak/public-web/lang-masters/en/packagetypes/tetra-brik.html",
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/packagetypes/tetra-brik.html",
                 pxpPackageTypesModel.getTeaserList().get(0).getLinkPath());
         assertEquals("500 ml, 1000 ml", pxpPackageTypesModel.getTeaserList().get(0).getDescription());
         assertEquals(

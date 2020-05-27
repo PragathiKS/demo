@@ -33,7 +33,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/en/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/en/error",
 "cq:lastModifiedBy": "sapient-sandip"
 }
 }

@@ -19,7 +19,7 @@ public class ImageModelTest {
      */
     private static final String RESOURCE_CONTENT = "/image/test-content.json";
 
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/public-web/lang-masters/en/sustainability";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-masters/en/sustainability";
 
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/image";
 
@@ -58,7 +58,7 @@ public class ImageModelTest {
     public void testLoadAndGetters() throws Exception {
         assertEquals("/content/dam/tetrapak/publicweb/TetraPakLogo.png", model.getFileReference());
         assertEquals("alt", model.getAlt());
-        assertEquals("/content/tetrapak/public-web/lang-masters/en/home.html", model.getLinkURL());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/home.html", model.getLinkURL());
         assertEquals("regular", model.getPwPadding());
         assertEquals("imageid", model.getAnchorId());
         assertEquals("image", model.getAnchorTitle());

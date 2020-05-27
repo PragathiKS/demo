@@ -108,11 +108,11 @@
 "jcr:primaryType": "nt:unstructured",
 "item0": {
 "jcr:primaryType": "nt:unstructured",
-"pageURL": "/content/tetrapak/public-web/lang-masters/en/solutions"
+"pageURL": "/content/tetrapak/publicweb/lang-masters/en/solutions"
 },
 "item1": {
 "jcr:primaryType": "nt:unstructured",
-"pageURL": "/content/tetrapak/public-web/lang-masters/en/home"
+"pageURL": "/content/tetrapak/publicweb/lang-masters/en/home"
 }
 }
 }
