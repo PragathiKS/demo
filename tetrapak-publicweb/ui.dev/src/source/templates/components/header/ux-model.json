@@ -9,6 +9,9 @@
   "contactLink": "/content/tetrapak/publicweb/language-masters/en",
   "contactLinkTarget": "_blank",
   "solutionPage": "/content/tetrapak/public-web/global/en/solutions",
+  "displayCurrentLanguage": true,
+  "currentMarket": "Canada",
+  "currentLanguage": "English",
   "megaMenuLinksList": [
     {
       "linkText": "Solutions",
