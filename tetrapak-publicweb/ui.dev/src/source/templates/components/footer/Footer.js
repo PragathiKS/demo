@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { $global } from '../../../scripts/utils/commonSelectors';
 import { isExternal } from '../../../scripts/utils/updateLink';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Footer {
   constructor({ el }) {
@@ -23,10 +24,26 @@ class Footer {
     const $this = $target.closest('.tp-pw-footer-data-analytics');
     const targetLink = $this.attr('target');
     const url = $this.attr('href');
+    const linkText = $this.text().trim();
+    const linkName = linkText ? linkText : $this.data('link-name');
+    const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
 
-    if(targetLink === '_blank'){
-      window._satellite.track('linkClick');
+    const trackingObj = {
+      linkType,
+      linkName,
+      linkSection: linkText ? 'Footer Navigation' : 'Footer - Social Share link',
+      linkParentTitle: ''
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: linkText ? 'Footer' : 'Footer - Social Share'
+    };
+    if($this.hasClass('tp-pw-footer-data-logo')) {
+      trackingObj['linkSection'] = 'Brand logo';
+      trackingObj['linkName'] = 'TetraPak';
+      eventObj['event'] = 'Footer';
     }
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 
     if(url && targetLink){
       window.open(url, targetLink);

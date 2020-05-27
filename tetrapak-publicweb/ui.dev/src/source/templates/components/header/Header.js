@@ -15,6 +15,7 @@ class Header {
     this.cache.$mobileMenu = this.root.find('.js-tp-pw-mobile-navigation');
     this.cache.$hamburgerToggle = this.root.find('.js-tp-pw-header__hamburger');
     this.cache.$headerLogoPlaceholder = this.root.find('.js-tp-pw-header-logo-digital-data');
+    this.cache.$headerLogoTracker = this.root.find('.tp-pw-header__logo-placeholder');
     this.cache.$hoverMenuLink = this.root.find('.js-hover-menu-link');
     this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
     this.cache.$headerMobile = this.root.find('.tp-pw-header__container');
@@ -29,7 +30,7 @@ class Header {
   }
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem} = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
@@ -40,10 +41,27 @@ class Header {
     this.cache.$clickMenuLink.on('click', this.handleMenuClick);
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
+    $headerLogoTracker.on('click', this.trackBrandLogo);
     // $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
-    this.root.find('.js-header__selected-lang-pw').on('click', () => {
+    this.root.find('.js-header__selected-lang-pw').on('click', (e) => {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
+      this.trackLanguageSelector(e);
     });
+  }
+
+  trackLanguageSelector = e => {
+    const $target = $(e.target).closest('.js-header__selected-lang-pw');
+    const trackingObj = {
+      linkType: 'internal',
+      linkSection: 'Header-language selector',
+      linkParentTitle: '',
+      linkName: $target.data('language')
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Header'
+    };
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
   }
 
   handleMouseOver = () => {
@@ -125,18 +143,43 @@ class Header {
   //   window.open($this.attr('href'), '_self');
   // }
 
+  trackBrandLogo = (e) => {
+    const $target = $(e.target);
+    const linkType = $target.closest('.js-tp-pw-header-logo-digital-data').attr('target') === '_blank'? 'external' :'internal';
+    const trackingObj = {
+      linkType,
+      linkSection: 'Brand logo',
+      linkParentTitle: '',
+      linkName: 'TetraPak'
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Header'
+    };
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+  }
+
   trackNavigationAnalytics = (e) => {
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-item');
-    const navigationLinkName = $this.data('link-name');
+    const navigationLinkName = $this.text().trim();
+    const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
 
     const trackingObj = {
-      navigationLinkName
+      navigationLinkName,
+      navigationSection: 'Header Navigation'
+    };
+
+    const linkClickTrackingobj = {
+      linkType,
+      linkSection: 'Header Navigation',
+      linkParentTitle:'',
+      linkName: navigationLinkName
     };
 
     const eventObj = {
-      eventType: 'navigation click',
-      event: 'Navigation'
+      eventType: 'linkClick',
+      event: 'Header'
     };
     trackAnalytics(
       trackingObj,
@@ -144,7 +187,8 @@ class Header {
       'navigationClick',
       undefined,
       false,
-      eventObj
+      eventObj,
+      linkClickTrackingobj
     );
   }
 

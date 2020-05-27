@@ -9,7 +9,7 @@
                         id="cf-step-1">
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator" auto_locator="contactUsLeftContainerStep1">
-                                <div class="row">
+                                <div class="row no-gutters">
                                     <div class="col-sm-12 main-heading"
                                         auto_locator="contactUsLeftContainerHeadingTextStep1">
                                         <sly data-sly-test="${data.heading}"
@@ -82,7 +82,7 @@
                         id="cf-step-2">
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator">
-                                <div class="row">
+                                <div class="row no-gutters">
                                     <div class="col-sm-12 main-heading"
                                         auto_locator="contactUsLeftContainerHeadingStep2">
                                         <sly data-sly-test="${data.heading}"
@@ -91,14 +91,14 @@
                                     </div>
                                 </div>
                                 <div auto_locator="contactUsLeftContainerSummaryAreaStep2">
-                                    <div class="row">
+                                    <div class="row no-gutters">
                                         <div class="col-sm-12">
                                             <sly data-sly-test="${data.summaryText}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.summaryText, variant='small'}" />
                                         </div>
                                     </div>
-                                    <div class="row summary">
+                                    <div class="row no-gutters summary">
                                         <div class="col-lg-6">${data.purposeOfContactText}</div>
                                         <div class="col-lg-6 purposeOfContactTitle"></div>
                                     </div>
@@ -106,8 +106,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="tab-content tab-content-steps">
-                                    <div class="row">
-                                        <div class="col-sm-12" auto_locator="contactUsRightContainerHeadingTextStep2">
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-12 right-heading" auto_locator="contactUsRightContainerHeadingTextStep2">
                                             <sly data-sly-test="${data.contactInfoText}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.contactInfoText, variant='small'}" />
@@ -181,7 +181,7 @@
                     <div class="tab-pane" data-stepNumber="3" data-stepName="submitForm" role="tabpanel" id="cf-step-3">
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator">
-                                <div class="row">
+                                <div class="row no-gutters">
                                     <div class="col-sm-12 main-heading"
                                         auto_locator="contactUsLeftContainerHeadingTextStep3">
                                         <sly data-sly-test="${data.heading}"
@@ -190,29 +190,29 @@
                                     </div>
                                 </div>
                                 <div auto_locator="contactUsLeftContainerSummaryAreaStep2">
-                                    <div class="row">
+                                    <div class="row no-gutters">
                                         <div data-sly-test="${data.summaryText}" class="col-sm-12">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.summaryText, variant='small'}" />
                                         </div>
                                     </div>
-                                    <div class="row summary">
+                                    <div class="row no-gutters summary">
                                         <div class="col-lg-6">${data.purposeOfContactText}</div>
                                         <div class="col-lg-6 purposeOfContactTitle"></div>
                                     </div>
-                                    <div class="row summary">
+                                    <div class="row no-gutters summary">
                                         <div class="col-lg-6">${'firstName' @ i18n}</div>
                                         <div class="col-lg-6 firstName"></div>
                                     </div>
-                                    <div class="row summary">
+                                    <div class="row no-gutters summary">
                                         <div class="col-lg-6">${'lastName' @ i18n}</div>
                                         <div class="col-lg-6 lastName"></div>
                                     </div>
-                                    <div class="row summary">
+                                    <div class="row no-gutters summary">
                                         <div class="col-lg-6">${'email' @ i18n}</div>
                                         <div class="col-lg-6 email"></div>
                                     </div>
-                                    <div class="row summary">
+                                    <div class="row no-gutters summary">
                                         <div class="col-lg-6">${'country' @ i18n}</div>
                                         <div class="col-lg-6 countryTitle"></div>
                                     </div>
@@ -222,7 +222,7 @@
                                 <div class="tab-content tab-content-steps">
                                     <div class="serviceError">${'serviceerrormsg' @i18n}</div>
                                     <div class="row">
-                                        <div class="col-sm-12" auto_locator="contactUsRightContainerHeadingTextStep3">
+                                        <div class="col-sm-12 right-heading" auto_locator="contactUsRightContainerHeadingTextStep3">
                                             <sly data-sly-test="${data.howCanWeHelpText}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=data.howCanWeHelpText, variant='small'}" />
