@@ -116,6 +116,10 @@
             @include margin-left($margin-md);
             color: $color-congress-blue;
             font-weight: bold;
+            .login-link {
+                @include line-height($font-normal, $font-xs);
+                font-size: $font-xs;
+            }
 
             span {
                 display: none;

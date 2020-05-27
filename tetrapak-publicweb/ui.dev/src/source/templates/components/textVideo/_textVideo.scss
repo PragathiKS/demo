@@ -66,7 +66,7 @@
     }
 
     &__description {
-        @include margin-bottom($padding-l);
+        @include margin-bottom($margin-zero);
         @include font-size($font-baseline);
         @include line-height(24px, $font-baseline);
 

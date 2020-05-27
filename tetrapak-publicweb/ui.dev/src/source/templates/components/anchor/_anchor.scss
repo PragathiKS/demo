@@ -49,6 +49,11 @@
             &:last-child {
                 border-right: 0;
             }
+            &:hover {
+                a {
+                    color: $color-jordy-blue;
+                }
+            }
         }
     }
 }
