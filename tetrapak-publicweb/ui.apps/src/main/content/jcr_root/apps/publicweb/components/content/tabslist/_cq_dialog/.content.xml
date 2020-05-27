@@ -201,14 +201,6 @@
                                                                     fieldLabel="Link path"
                                                                     name="./linkURL"
                                                                     rootPath="/content"/>
-                                                                <targetBlank
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                                    fieldDescription="Select to open link in new window if external URL or Document"
-                                                                    name="./targetBlank"
-                                                                    text="Open in new window"
-                                                                    uncheckedValue="_self"
-                                                                    value="_blank"/>
                                                             </items>
                                                         </column>
                                                     </items>
@@ -320,14 +312,6 @@
                                 fieldLabel="Read more path"
                                 name="./readMorePath"
                                 rootPath="/content"/>
-                            <targetBlank
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Select to open link in new window if external URL or Document"
-                                name="./readMoreTarget"
-                                text="Open in new window"
-                                uncheckedValue="_self"
-                                value="_blank"/>
                         </items>
                     </column>
                 </items>

@@ -85,7 +85,6 @@ public class HeaderModelTest {
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("Header", "/content/tetrapak/public-web/global/en.html", model.getLogoLink());
-        assertEquals("Header", "_blank", model.getLogoLinkTarget());
         assertEquals("Header", "Logo ", model.getLogoAlt());
         assertEquals("Header", "http://www.google.com", model.getLoginLink());
         assertEquals("Header", "Login Label", model.getLoginLabel());
