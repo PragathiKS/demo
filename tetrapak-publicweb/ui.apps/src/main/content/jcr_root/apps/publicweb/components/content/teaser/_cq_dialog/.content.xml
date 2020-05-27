@@ -195,10 +195,6 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/include"
                                                             path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
-                                                        <pwLinkThemes
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                            path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwLinkThemes"/>
                                                     </items>
                                                 </column>
                                             </items>

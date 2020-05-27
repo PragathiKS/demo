@@ -50,10 +50,6 @@ public class TabsListModel {
     @ValueMapValue
     private String readMorePath;
 
-    /** The read More Target. */
-    @ValueMapValue
-    private String readMoreTarget;
-
     /** The tags. */
     @ValueMapValue
     private String[] tags;
@@ -82,10 +78,6 @@ public class TabsListModel {
     /** The anchor title. */
     @ValueMapValue
     private String anchorTitle;
-    
-    /** The pwLinkTheme */
-    @ValueMapValue
-    private String pwLinkTheme;
 
     /** The tab List Manual. */
     @Inject
@@ -170,8 +162,6 @@ public class TabsListModel {
 	    tabBean.setAlt(aggregator.getAltText());
 	    tabBean.setLinkText(aggregator.getLinkText());
 	    tabBean.setLinkURL(aggregator.getLinkPath());
-	    tabBean.setTargetBlank(aggregator.getLinkTarget());
-	    tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
 	    tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
 	    tabBean.setTabType(TAB_LAYOUT_IMAGE);
 	    tabs.add(tabBean);
@@ -207,13 +197,6 @@ public class TabsListModel {
     }
 
     /**
-     * @return the readMoreTarget
-     */
-    public String getReadMoreTarget() {
-	return readMoreTarget;
-    }
-
-    /**
      * @return the pwTheme
      */
     public String getPwTheme() {
@@ -246,13 +229,6 @@ public class TabsListModel {
      */
     public String getAnchorTitle() {
 	return anchorTitle;
-    }
-
-    /**
-     * @return pwLinkTheme
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
     }
 
     /**
