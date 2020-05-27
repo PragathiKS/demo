@@ -167,7 +167,7 @@ public class HeaderModel {
      */
     private String getTitle(Page childPage) {
         String title = childPage.getNavigationTitle();
-        if (StringUtils.isBlank(title)) {
+        if(StringUtils.isBlank(title)) {
             title = childPage.getTitle();
         }
         return title;
@@ -275,12 +275,10 @@ public class HeaderModel {
     /**
      * Sets the solution page title.
      *
-     * @param headerConfigurationResource
-     *            the new solution page title
+     * @param headerConfigurationResource the new solution page title
      */
     private void setSolutionPageTitle() {
-        final String solutionPageJcrContentPath = getSolutionPageWithoutExtension() + PWConstants.SLASH
-                + JcrConstants.JCR_CONTENT;
+        final String solutionPageJcrContentPath = getSolutionPageWithoutExtension() + PWConstants.SLASH + JcrConstants.JCR_CONTENT;
         final Resource solutionPageResource = request.getResourceResolver().getResource(solutionPageJcrContentPath);
         if (Objects.nonNull(solutionPageResource)) {
             final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
@@ -303,29 +301,29 @@ public class HeaderModel {
     public MarketSelectorModel getMarketList() {
         return request.adaptTo(MarketSelectorModel.class);
     }
-
-    /**
-     * @return current language
-     */
-    public String getCurrentLanguage() {
-        final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
-        final Resource languageResource = request.getResourceResolver().getResource(languagePath);
-        if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))) {
-            return PageUtil.getCurrentPage(languageResource).getTitle();
-        }
-        return StringUtils.EMPTY;
-    }
-
-    /**
-     * @return current market
-     */
-    public String getCurrentMarket() {
-        final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
-        final Resource languageResource = request.getResourceResolver().getResource(languagePath);
-        if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))
-                && Objects.nonNull(PageUtil.getCurrentPage(languageResource).getParent())) {
-            return PageUtil.getCurrentPage(languageResource).getParent().getTitle();
-        }
-        return StringUtils.EMPTY;
-    }
+    
+  /**
+    * @return current language
+    */
+   public String getCurrentLanguage() {
+       final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
+       final Resource languageResource = request.getResourceResolver().getResource(languagePath);
+       if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))) {
+           return PageUtil.getCurrentPage(languageResource).getTitle();
+       }
+       return StringUtils.EMPTY;
+   }
+   
+   /**
+    * @return current market
+    */
+   public String getCurrentMarket() {
+       final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
+       final Resource languageResource = request.getResourceResolver().getResource(languagePath);
+       if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))
+               && Objects.nonNull(PageUtil.getCurrentPage(languageResource).getParent())) {
+           return PageUtil.getCurrentPage(languageResource).getParent().getTitle();
+       }
+       return StringUtils.EMPTY;
+   }
 }
