@@ -71,6 +71,7 @@ class TabsList {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
     const tabTitle = $this.data('tab-title');
+    const componentName = $this.data('component-name');
 
     if (buttonLinkType === 'secondary' && downloadtype === 'download') {
       linkParentTitle = `CTA_Download_pdf_${tabTitle}`;
@@ -79,6 +80,14 @@ class TabsList {
 
     if (buttonLinkType === 'link' && downloadtype === 'download') {
       linkParentTitle = `Text hyperlink_Download_pdf_${tabTitle}`;
+    }
+
+    if (buttonLinkType === 'secondary' && downloadtype !== 'download') {
+      linkParentTitle = `CTA_${tabTitle}`;
+    }
+
+    if (buttonLinkType === 'link' && downloadtype != 'download') {
+      linkParentTitle = `Text hyperlink_${tabTitle}`;
       eventType = 'download';
     }
 
@@ -95,8 +104,18 @@ class TabsList {
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
     }
 
-    if (downloadtype !== 'download' && $this.attr('target') === '_blank') {
-      window._satellite.track('linkClick');
+    if (downloadtype !== 'download') {
+      trackingObj = {
+        linkType,
+        linkSection,
+        linkParentTitle,
+        linkName
+      };
+      const eventObj = {
+        eventType: 'linkClick',
+        event: componentName
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     }
 
     window.open($this.attr('href'), $this.attr('target'));
@@ -109,7 +128,7 @@ class TabsList {
         if (isExternal(thisHref)) {
           $(this).attr('target', '_blank');
           $(this).data('download-type', 'download');
-          $(this).data('download-type', 'download');
+          //$(this).data('download-type', 'download');
           $(this).data('link-section', $(this).data('link-section') + '_Download');
           $(this).attr('rel', 'noopener noreferrer');
         } else {

@@ -13,6 +13,10 @@
           id="accordion_${resource.name}">
           <sly data-sly-list.tab="${data.tabs}">
             <sly data-sly-test="${tab.title}">
+              <sly
+                      data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}" />
+                    <sly
+                      data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}" />
               <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}" />
               <button type="button"
                 class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}"
@@ -78,6 +82,7 @@
                           data-link-section="${tabContentType}${buttonLinkType}"
                           data-link-name="${tab.linkText}"
                           data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
+                          data-component-name="Text & Image"
                           data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
                           data-tab-title="${tab.title}">
                       <sly data-sly-test="${!wcmmode.edit}">
@@ -112,10 +117,7 @@
                     <div class="pw-tablist__event-detail-description">${tab.description @ context='html'}</div>
                   </sly>
                   <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
-                    <sly
-                      data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}" />
-                    <sly
-                      data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}" />
+                    
                     <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}" />
                     <sly
                       data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}" />
@@ -124,6 +126,7 @@
                       data-custom="${customData @ context='text'}" title="${btnTooltip}"
                       data-link-section="${tabContentType}${buttonLinkType}"
                       data-link-name="${tab.linkText}"
+                      data-component-name="Text & Video"
                       data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
                       data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
                       data-tab-title="${tab.title}">
@@ -140,6 +143,7 @@
                 <a href="${data.readMorePath}"
                   class="tpatom-link tpatom-link--transparent pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
                   data-link-section="Tab Click_Text Hyperlink"
+                  data-component-name="Tab Click"
                   data-link-name="${data.readMoreText}"
                   data-button-link-type="link" data-asset-name="${data.assetName}" data-tab-title="${data.heading}"
                   data-tab-type="">
