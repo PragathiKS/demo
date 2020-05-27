@@ -113,6 +113,7 @@ public class HeaderModelTest {
                 model.getMarketList().getGlobalMarketPath());
         assertEquals("Header", "", model.getCurrentMarket());
         assertEquals("Header", "English", model.getCurrentLanguage());
+        assertEquals("Header", false, model.getDisplayCurrentLanguage());
         assertEquals("Header", 14, model.getMarketList().getCol1End());
         assertEquals("Header", 15, model.getMarketList().getCol2Start());
         assertEquals("Header", 28, model.getMarketList().getCol2End());
