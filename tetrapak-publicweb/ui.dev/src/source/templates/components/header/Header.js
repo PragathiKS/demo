@@ -51,7 +51,6 @@ class Header {
 
   trackLanguageSelector = e => {
     const $target = $(e.target).closest('.js-header__selected-lang-pw');
-    console.log('target languae>>', $target); //eslint-disable-line
     const trackingObj = {
       linkType: 'internal',
       linkSection: 'Header-language selector',
