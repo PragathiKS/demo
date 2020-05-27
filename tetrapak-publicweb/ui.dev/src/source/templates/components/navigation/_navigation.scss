@@ -1,0 +1,70 @@
+.pw-navigation {
+    .hr-display {
+        display: none;
+    }
+    @media #{$desktop} {
+        display: none;
+        // display: block;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        z-index: $zindex-nav;
+        background: $color-white;
+        box-shadow: 0 4px 16px -10px $shadow;
+        a {
+            @include padding(0 $padding-sm);
+            color: $color-congress-blue;
+            font-weight: normal;
+        }
+        &.sticky {
+            display: block;
+            z-index: $z-index-section-menu;
+            position: fixed;
+            top: 80px;
+            & > .pw-navigation__container {
+                @include padding-top(18px);
+            }
+            & > .hr-display {
+                display: none;
+            }
+        }
+        &.show {
+            display: block;
+        }
+        hr {
+            @include margin-top(26px);
+            @include margin-bottom(18px);
+        }
+        &__container {
+            @include padding-bottom(18px);
+
+            .section-link-home {
+                @include padding(0 15px);
+                position: absolute;
+                z-index: 1;
+                & > a {
+                    @include padding-left(0);
+                    color: $color-tundora;
+                    &:hover {
+                        color: $color-jordy-blue;
+                        font-weight: 900;
+                    }
+                }
+            }
+            .list-section-menu-links {
+                & > li {
+                    &:first-child {
+                        @include margin-left(0);
+                    }
+                    &:last-child {
+                        @include margin-right(0);
+                    }
+                    @include margin(0 12px);
+                }
+            }
+        }
+        .hr-display {
+            display: block;
+        }
+    }
+}

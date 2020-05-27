@@ -1,0 +1,10 @@
+<sly
+    data-sly-template.inputfield_template="${@ inputType, inputClass, id, placeholder, label, error, required, autoLocatorInput, autoLocatorLabel}">
+    <sly data-sly-test.placeholderVal="${placeholder ? placeholder : ''}"></sly>
+    <div data-sly-test="${inputType}" class="form-group">
+        <label for="${id}" auto_locator="${autoLocatorLabel}">${label @ i18n}</label>
+        <input type="${inputType}" class="form-control ${inputClass}" id="${id}" name="${id}"
+            placeholder="${placeholderVal @i18n}" required="${required}" auto_locator="${autoLocatorInput}">
+        <div data-sly-test="${error}" class="errorMsg">${error @ i18n}</div>
+    </div>
+</sly>

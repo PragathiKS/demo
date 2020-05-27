@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:30:23.140Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:05:05.552Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:22:40.461Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-base-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/teaser-demo"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="teaser demo"
+        jcr:uuid="7024be03-4953-45de-8c11-b461b0f6c809"
+        sling:resourceType="publicweb/components/structure/pages/page"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <teaser
+                    jcr:created="{Date}2020-02-17T11:33:38.641Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-03-23T11:44:19.059Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="manual"
+                    maxTeasers="4"
+                    pwButtonTheme="link"
+                    tags="[tetra-pak:public-web/product/type/product-a]">
+                    <manualList jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            altText="random"
+                            description="Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam beatissimum? Qua tu etiam inprudens utebare non numquam."
+                            imagePath="/content/dam/tetrapak/publicweb/ContentImage5.png"
+                            linkPath="/content/tetrapak/public-web/lang-masters/zh/about-us"
+                            linkText="Link Text"
+                            title="Title"/>
+                        <item1
+                            jcr:primaryType="nt:unstructured"
+                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam beatissimum? Qua tu etiam inprudens utebare non numquam."
+                            imagePath="/content/dam/tetrapak/publicweb/ContentImage6.png"
+                            title="Title 1"/>
+                    </manualList>
+                </teaser>
+                <richtext
+                    jcr:created="{Date}2020-02-19T10:35:02.249Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-02-19T10:52:53.036Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    text="&lt;table cellpadding=&quot;5&quot; cellspacing=&quot;5&quot; border=&quot;2&quot; width=&quot;400&quot; height=&quot;300&quot;>&#xd;&#xa;&lt;caption>The caption of the table&lt;/caption>&#xd;&#xa;&lt;tbody>&lt;tr>&lt;th scope=&quot;col&quot;>Name&lt;/th>&#xd;&#xa;&lt;th scope=&quot;col&quot;>Country&lt;/th>&#xd;&#xa;&lt;th scope=&quot;col&quot;>State&lt;/th>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Rohan&lt;/td>&#xd;&#xa;&lt;td>India&lt;/td>&#xd;&#xa;&lt;td>Haryana&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Rajul&lt;/td>&#xd;&#xa;&lt;td>Pakistan&lt;/td>&#xd;&#xa;&lt;td>XX&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Sheetal&lt;/td>&#xd;&#xa;&lt;td>Germany&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Gyan&lt;/td>&#xd;&#xa;&lt;td>Spain&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Govind&lt;/td>&#xd;&#xa;&lt;td>Switzerland&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Hari&lt;/td>&#xd;&#xa;&lt;td>India&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Harish&lt;/td>&#xd;&#xa;&lt;td>USA&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;/tbody>&lt;/table>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <richtext_1
+                    jcr:created="{Date}2020-02-11T15:00:18.391Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-02-20T12:50:15.073Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    text="&lt;h1>&lt;p>&lt;a href=&quot;https://www.skyscanner.net/news/10-worlds-cheapest-countries-go-holiday&quot; style=&quot;font-weight: lighter; background-color: rgb(229,229,229);&quot;>2017's Cheapest Destinations&lt;/a>&lt;/p>&#xa;&lt;/h1>&#xa;&lt;table>&#xa;&lt;tbody>&lt;tr>&lt;th>&lt;p>&amp;nbsp;&lt;/p>&#xa;&lt;/th>&#xa;&lt;th>&lt;p>&amp;nbsp;&lt;/p>&#xa;&lt;/th>&#xa;&lt;th>&lt;p>&amp;nbsp;&lt;/p>&#xa;Destination&lt;/th>&#xa;&lt;th>&lt;p>&amp;nbsp;&lt;/p>&#xa;Deal Breaker&lt;/th>&#xa;&lt;th>&lt;p>&amp;nbsp;&lt;/p>&#xa;Average Flight Price*&lt;/th>&#xa;&lt;/tr>&lt;/tbody>&lt;tbody>&lt;tr>&lt;td>1&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Cambodia&lt;/a>&lt;/td>&#xa;&lt;td>Beds from £2.50&lt;/td>&#xa;&lt;td>&lt;a>£589.38&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>2&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Vietnam&lt;/a>&lt;/td>&#xa;&lt;td>Pints from 50p&lt;/td>&#xa;&lt;td>&lt;a>£531.60&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>3&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>India&lt;/a>&lt;/td>&#xa;&lt;td>Get by on £15 a day&lt;/td>&#xa;&lt;td>&lt;a>£491.03&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>4&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Hungary&lt;/a>&lt;/td>&#xa;&lt;td>Sit-down dinner for £5&lt;/td>&#xa;&lt;td>&lt;a>£134.10&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>5&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Bulgaria&lt;/a>&lt;/td>&#xa;&lt;td>Get by on £35 a day&lt;/td>&#xa;&lt;td>&lt;a>£158.31&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>6&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Sri Lanka&lt;/a>&lt;/td>&#xa;&lt;td>Get by on £30 a day&lt;/td>&#xa;&lt;td>&lt;a>£503.80&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>7&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Argentina&lt;/a>&lt;/td>&#xa;&lt;td>Get by on £40 a day&lt;/td>&#xa;&lt;td>&lt;a>£756.52&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>8&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Greece&lt;/a>&lt;/td>&#xa;&lt;td>Pints from £1.50&lt;/td>&#xa;&lt;td>&lt;a>£202.09&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>9&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Dominican Republic&lt;/a>&lt;/td>&#xa;&lt;td>Local bus trips for 80p&lt;/td>&#xa;&lt;td>&lt;a>£601.09&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;tr>&lt;td>10&lt;/td>&#xa;&lt;td>&amp;nbsp;&lt;/td>&#xa;&lt;td>&lt;a>Ireland&lt;/a>&lt;/td>&#xa;&lt;td>Pints from £2.30&lt;/td>&#xa;&lt;td>&lt;a>£84.23&lt;/a>&lt;/td>&#xa;&lt;/tr>&lt;/tbody>&lt;/table>&#xa;"
+                    textIsRich="true"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

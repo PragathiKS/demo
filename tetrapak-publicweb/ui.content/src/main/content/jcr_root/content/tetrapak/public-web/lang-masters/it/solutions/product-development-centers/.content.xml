@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:31:53.936Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:07:50.781Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:49.474Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/product-development-centers"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Product Development Centers"
+        jcr:uuid="2a27bfcf-d929-4344-8866-764cc55cdc28"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink"/>
+</jcr:root>

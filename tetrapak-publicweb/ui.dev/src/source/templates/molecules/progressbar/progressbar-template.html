@@ -1,0 +1,18 @@
+<!--/* Summary. Forms Steps progress bar
+    *  @param {Number} activeStep Integer which tells the active step in bar
+    *  @param {Object} totalStep  Accepts an array of integers
+    *  @param {String} parentClass Tells the class for parent container
+    *  eg: activeStep=1, totalStep=[1,2,3]
+    *  will form a progress bar with 3 steps and with 1st as active
+    */-->
+<sly data-sly-template.progressbar_template="${@ activeStep, totalStep, parentClass}">
+    <ul class="pw-progressbar_wrapper ${parentClass}" data-sly-list.step="${totalStep}">
+        <sly data-sly-test.activeClass="${activeStep == step ? 'active' : ''}" />
+        <sly data-sly-test.doneClass="${activeStep > step ? 'done' : ''}" />
+        <li class="step1 step-box ${activeClass} ${doneClass}">
+            <div class="steps">
+                <span class="circle"><span>${step}</span></span>
+            </div>
+        </li>
+    </ul>
+</sly>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:21:37.474Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T13:00:57.556Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:38.619Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/processing/main-technology-areas/sugar-dissolving"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Sugar dissolving "
+        jcr:uuid="f2206a06-cd14-4734-98cd-e2b3a07ec983"
+        sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T13:00:57.553Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T13:00:57.555Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+        </root>
+    </jcr:content>
+    <continuous-sugar-dissolver/>
+</jcr:root>

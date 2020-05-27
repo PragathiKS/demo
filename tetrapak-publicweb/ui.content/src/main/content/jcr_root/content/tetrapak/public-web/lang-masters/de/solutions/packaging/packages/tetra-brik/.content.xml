@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:32:26.401Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:31.054Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-package-type-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/packaging/packages/tetra-brik"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tetra Brik"
+        jcr:uuid="5fd9bfe6-b233-4186-880c-1284e21b9f21"
+        sling:resourceType="publicweb/components/structure/pages/pxpproductpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        productId="packagetype1650"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <anchor
+                    jcr:created="{Date}2020-05-12T14:54:04.119Z"
+                    jcr:createdBy="sapient-jyoti"
+                    jcr:lastModified="{Date}2020-05-12T14:54:04.119Z"
+                    jcr:lastModifiedBy="sapient-jyoti"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/anchor"/>
+                <breadcrumb
+                    jcr:created="{Date}2020-05-04T13:44:24.038+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-04T13:44:24.038+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <pxpfillingmachines
+                    jcr:created="{Date}2020-05-04T13:45:52.991+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-13T07:06:38.037Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpfillingmachines"
+                    anchorId="Filling Machine"
+                    anchorTitle="Filling Machine"
+                    heading="Filling machine"
+                    linkText="Read more"
+                    pwTheme="grayscale-lighter"/>
+                <pxpshapesandvolumes
+                    jcr:created="{Date}2020-05-04T13:44:02.176+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-20T08:47:25.375Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpshapesandvolumes"
+                    anchorId="Shapes &amp; Volumes"
+                    anchorTitle="Shapes &amp; Volumes"
+                    heading="Shapes &amp; Volumes"
+                    pwTheme="grayscale-lighter"/>
+                <pxpopenings
+                    jcr:created="{Date}2020-05-04T13:45:49.058+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-20T08:47:17.611Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpopenings"
+                    pwTheme="grayscale-lighter"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

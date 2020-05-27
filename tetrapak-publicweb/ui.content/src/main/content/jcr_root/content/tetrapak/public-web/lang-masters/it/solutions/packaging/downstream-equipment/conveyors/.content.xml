@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:31:51.855Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:07:46.461Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:48.617Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/packaging/downstream-equipment/conveyors"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Conveyors"
+        jcr:uuid="22627a46-7c62-45bf-a6c2-b1724ed0b5a5"
+        sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+        </root>
+    </jcr:content>
+</jcr:root>

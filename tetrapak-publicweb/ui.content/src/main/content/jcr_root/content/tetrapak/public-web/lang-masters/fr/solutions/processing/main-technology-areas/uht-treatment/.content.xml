@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:32:38.441Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:18:17.622Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/processing/main-technology-areas/uht-treatment"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="UHT  treatment"
+        jcr:uuid="9bc3a765-b831-43b4-8620-0a8d83a25256"
+        sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+        </root>
+    </jcr:content>
+    <tetra-pak-indirect-uht-unit-de/>
+    <tetra-pak-indirect-uht-unit-dc/>
+    <processing_equipment13282/>
+    <tetra-pak-indirect-uht-unit-pff-with-tubular-heat-exchanger/>
+    <tetra-pak-indirect-uht-unit-pff-with-scraped-surface-heat-exchanger/>
+    <tetra-pak-indirect-uht-unit-pff-with-coiled-heat-exchanger/>
+</jcr:root>

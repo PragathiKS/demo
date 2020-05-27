@@ -51,6 +51,10 @@ public class HeaderConfigurationModel {
     /** The solution page. */
     @ValueMapValue
     private String solutionPage;
+    
+    /** The market title. */
+    @ValueMapValue
+    private String marketTitle;
 
     /**
      * Gets the logo image path.
@@ -123,4 +127,15 @@ public class HeaderConfigurationModel {
     public String getSolutionPage() {
         return LinkUtils.sanitizeLink(solutionPage);
     }
+
+    /**
+     * Gets the market title.
+     *
+     * @return the market title
+     */
+    public String getMarketTitle() {
+        return marketTitle;
+    }
+    
+    
 }

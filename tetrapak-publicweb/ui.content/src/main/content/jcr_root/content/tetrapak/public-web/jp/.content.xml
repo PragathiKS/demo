@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:19:44.657Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Japan"
+        jcr:uuid="3f39fd5b-1ed1-4db5-9c8b-2a993595cd6c"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink"/>
+    <jp/>
+</jcr:root>

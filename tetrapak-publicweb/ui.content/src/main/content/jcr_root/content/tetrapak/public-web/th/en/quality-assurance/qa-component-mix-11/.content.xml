@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:28:51.295Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:05.665Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:tags="[tetrapak:funnel-stages/interest]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:description="Tetra Pak’s cutting-edge processing and packaging equipment keeps food from being spilled or spoilt in the early stages of production and our packaging solutions prolong the life of food and help prevent it from perishing – this is where we believe our greatest impacts are in reducing food losses.&#xd;&#xa;&#xd;&#xa;The UN Food and Agriculture Organization estimates that around a third of food produced is lost or wasted. Additionally, food losses and waste account for around 8 percent of man-made greenhouse gas emissions, the same as road transport. Reducing food loss and waste is one of the founding principles of our business."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Food loss and waste"
+        jcr:uuid="979ccb28-70ae-41c7-b449-0f42ba559e62"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Spoiled Banana"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/spoiled-fruits-food-waste.jpg"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink"/>
+</jcr:root>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:27:56.649Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:05.650Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:tags="[tetrapak:funnel-stages/interest]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:description="Today’s consumer expects food to be consistent in taste, colour, texture and nutritional value. Our packages are designed to protect and preserve food to meet these expectations."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="World’s first ambient drinking yoghurt with large fruit pieces"
+        jcr:uuid="19072ee8-286a-4353-8d9b-3388e5003cae"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Strawberry"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/Strawberry.png"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink"/>
+</jcr:root>

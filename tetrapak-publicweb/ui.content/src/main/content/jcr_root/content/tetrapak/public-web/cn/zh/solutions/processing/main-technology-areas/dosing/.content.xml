@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:20:28.437Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:45:45.044Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:22:37.473Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/processing/main-technology-areas/dosing"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Dosing"
+        jcr:uuid="110f1f24-a9f1-43dd-8f86-e65c6b3f2ab4"
+        sling:resourceType="publicweb/components/structure/pages/sectionmenupage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:45:45.041Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:45:45.043Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+        </root>
+    </jcr:content>
+    <tetra-aldose/>
+    <tetra-flexdos/>
+</jcr:root>

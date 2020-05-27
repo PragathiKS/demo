@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:32:20.634Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:08:29.169Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:28.686Z"
+        cq:tags="[tetrapak:food]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/home/demo-page---dne/demo-page-mix-10"
+        jcr:description="Homogenization is used to achieve a variety of different results: to prevent a cream line and sedimentation in milk products; to improve the viscosity, taste and texture of cream or juice-based drinks."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Homogenization equipment with lower energy consumption and consistent​ high quality"
+        jcr:uuid="452b42a7-e30e-4c9d-a0c3-8f5c7d206b8a"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/tetra-recart-carton-package.jpg"
+        linkPath="/content/tetrapak/public-web/lang-masters/de/home"
+        linkTarget="_self"
+        linkText="Link Text"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink"/>
+</jcr:root>

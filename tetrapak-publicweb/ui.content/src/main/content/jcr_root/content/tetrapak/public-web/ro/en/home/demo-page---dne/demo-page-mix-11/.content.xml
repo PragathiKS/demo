@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:27:29.447Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:37:55.537Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:tags="[tetrapak:food]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:description="Membrane filtration is the natural way to optimize the value of dairy and plant-based products and to reuse water."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Membrane filtration solutions for dairy and plant-based products​"
+        jcr:uuid="8155fd68-56fb-45b9-a008-1bdc747be4fe"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/testing-food.jpg"
+        linkPath="/content/tetrapak/public-web/ca/en/home"
+        linkTarget="_self"
+        linkText="Link Text - Same Window"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink"/>
+</jcr:root>

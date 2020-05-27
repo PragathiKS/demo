@@ -50,7 +50,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
         @AttributeDefinition(
                 name = "Countries Content Fragment Root Path",
                 description = "countries Content Fragment Root Path")
-        String getCountriesContentFragmentRootPath() default "/content/dam/tetrapak/findMyOffice/contentFragments/countries";
+        String getCountriesContentFragmentRootPath() default "/content/dam/tetrapak/publicweb/contentfragment/countries";
 
         /**
          * Gets the offices content fragment root path.
@@ -60,7 +60,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
         @AttributeDefinition(
                 name = "Offices Content Fragment Root Path",
                 description = "Offices Content Fragment Root Path")
-        String getOfficesContentFragmentRootPath() default "/content/dam/tetrapak/findMyOffice/contentFragments/offices";
+        String getOfficesContentFragmentRootPath() default "/content/dam/tetrapak/publicweb/contentfragment/offices";
 
         /**
          * Gets the google API key.

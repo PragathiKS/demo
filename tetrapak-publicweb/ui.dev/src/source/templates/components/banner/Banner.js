@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import { isExternal } from '../../../scripts/utils/updateLink';
+import { isDesktopMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Banner {
@@ -8,9 +10,23 @@ class Banner {
   cache = {};
   initCache() {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
+    this.cache.$existingBanner=this.root.find('.pw-banner__content.banner-parent');
+    this.cache.$siblingBanner=this.root.find('.pw-banner__content.banner-sibling');
   }
   bindEvents() {
     const { $itbLink } = this.cache;
+    if (
+      isDesktopMode() ) {
+      const { $existingBanner } = this.cache;
+      const { $siblingBanner }= this.cache;
+
+      $(window).on('load resize',function(){
+        const bannerHeight = $existingBanner.outerHeight();
+        const bannerWidth = $existingBanner.outerWidth();
+        $siblingBanner.css('width',bannerWidth);
+        $siblingBanner.css('height',bannerHeight);
+      });
+    }
     $itbLink.on('click', this.trackAnalytics);
   }
   trackAnalytics = (e) => {
@@ -57,10 +73,28 @@ class Banner {
     window.open($this.attr('href'), $this.attr('target'));
   }
 
+  addLinkAttr() {
+    this.root.find('a').each(function () {
+      const thisHref = $(this).attr('href');
+      if (thisHref) {
+        if (isExternal(thisHref)) {
+          $(this).attr('target', '_blank');
+          $(this).data('download-type', 'download');
+          $(this).data('link-section', $(this).data('link-section') + '_Download');
+          $(this).attr('rel', 'noopener noreferrer');
+          $(this).data('link-type','external');
+        } else {
+          $(this).data('link-type','internal');
+        }
+      }
+    });
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.addLinkAttr();
   }
 }
 
