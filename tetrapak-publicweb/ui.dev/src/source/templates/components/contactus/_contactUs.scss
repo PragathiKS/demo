@@ -8,13 +8,18 @@
     }
     .privacy-policy {
         @include margin-top($margin-l);
+        &:hover {
+            a {
+                color: $color-jordy-blue;
+            }
+        }
     }
     // Dropdown styling
     .country-field {
         .pw-form__dropdown__menu {
             .active {
-                background-color: transparent;
                 border: 0;
+                background-color: transparent;
                 &:hover {
                     background-color: $color-wild-sand;
                 }

@@ -61,6 +61,11 @@
         @include padding-bottom($padding-md);
         color: $color-congress-blue;
         width: 100%;
+        &:hover {
+            a {
+                color: $color-jordy-blue;
+            }
+        }
         &:last-child {
             @include padding-bottom($padding-l);
         }

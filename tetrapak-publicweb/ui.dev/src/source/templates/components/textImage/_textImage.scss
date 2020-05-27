@@ -22,6 +22,7 @@
         .rightPad {
             @include padding-left($padding-md);
             @include padding-right($padding-md);
+            @include margin-top($margin-l);
             @media #{$desktop} {
                 @include padding-right($padding-md);
                 @include padding-left($padding-l);
@@ -62,8 +63,10 @@
     }
 
     &__subTitle {
-        @include margin-top($margin-l);
+        @include font-size($font-sm);
+        @include margin-top($margin-zero);
         @include margin-bottom($margin-sm);
+        @inlcude line-height($font-normal, $font-sm);
         color: $color-boulder;
         text-transform: $uppercase;
         @media #{$desktop} {
@@ -73,7 +76,7 @@
         }
         span.tpatom-subheading {
             @include font-size($font-sm);
-            line-height: $font-normal;
+            @inlcude line-height($font-normal, $font-sm);
         }
     }
 
