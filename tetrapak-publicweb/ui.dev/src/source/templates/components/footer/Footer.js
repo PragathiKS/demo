@@ -49,7 +49,8 @@ class Footer {
       window.open(url, targetLink);
     }
   }
-  goToTop() {
+  goToTop(e) {
+    e.preventDefault();
     $global.animate({ scrollTop: 0 }, 700);
     return false;
   }

@@ -25,7 +25,7 @@ describe('Breadcrumb', function () {
   it('should initialize', function () {
     expect(this.breadcrumb.init.called).to.be.true;
   });
-  
+
   it('should call track analytics on click', function () {
     $('.js-tp_pw-breadcrumb__link').trigger('click');
     expect(this.breadcrumb.trackAnalytics.called).to.be.true;
