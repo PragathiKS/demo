@@ -174,13 +174,6 @@
                                                             fieldLabel="Link URL"
                                                             name="./linkPath"
                                                             rootPath="/content"/>
-                                                        <linktarget
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                            name="./linkTarget"
-                                                            text="New Window"
-                                                            uncheckedValue="_self"
-                                                            value="_blank"/>
                                                         <pwButtonThemes
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/include"

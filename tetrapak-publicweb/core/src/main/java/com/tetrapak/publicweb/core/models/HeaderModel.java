@@ -43,9 +43,6 @@ public class HeaderModel {
     /** The logo link. */
     private String logoLink;
 
-    /** The logo link target. */
-    private String logoLinkTarget;
-
     /** The logo alt. */
     private String logoAlt;
 
@@ -88,7 +85,6 @@ public class HeaderModel {
             if (Objects.nonNull(configurationModel)) {
                 logoImagePath = configurationModel.getLogoImagePath();
                 logoLink = configurationModel.getLogoLink();
-                logoLinkTarget = configurationModel.getLogoLinkTarget();
                 logoAlt = configurationModel.getLogoAlt();
                 contactUsLink = configurationModel.getContactLink();
                 contactUsAltText = configurationModel.getContactText();
@@ -184,15 +180,6 @@ public class HeaderModel {
      */
     public String getLogoLink() {
         return logoLink;
-    }
-
-    /**
-     * Gets the logo link target.
-     *
-     * @return the logo link target
-     */
-    public String getLogoLinkTarget() {
-        return logoLinkTarget;
     }
 
     /**
