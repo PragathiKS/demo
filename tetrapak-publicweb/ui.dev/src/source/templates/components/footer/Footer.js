@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { $global } from '../../../scripts/utils/commonSelectors';
+import { isExternal } from '../../../scripts/utils/updateLink';
 
 class Footer {
   constructor({ el }) {
@@ -35,8 +36,26 @@ class Footer {
     $global.animate({ scrollTop: 0 }, 700);
     return false;
   }
+  addLinkAttr() {
+    $('.tp-pw-footer-data-analytics').each(function () {
+      const thisHref = $(this).attr('href');
+      if (thisHref) {
+        if (isExternal(thisHref)) {
+          $(this).attr('target', '_blank');
+          $(this).data('download-type', 'download');
+          $(this).data('link-section', $(this).data('link-section') + '_Download');
+          $(this).attr('rel', 'noopener noreferrer');
+          $(this).data('link-type','external');
+        } else {
+          $(this).data('link-type','internal');
+        }
+      }
+    });
+  }
+
   init() {
     this.bindEvents();
+    this.addLinkAttr();
   }
 }
 

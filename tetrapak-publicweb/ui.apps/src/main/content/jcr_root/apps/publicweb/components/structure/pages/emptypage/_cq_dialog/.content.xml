@@ -15,10 +15,9 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/coral/foundation/tabs">
                 <items jcr:primaryType="nt:unstructured">
-                    <pwBaseConfig
+                    <aggregator
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/include"
-                        path="publicweb/components/structure/pages/page/cq:dialog/content/items/tabs/items/pwBaseConfig"/>
+                        sling:hideResource="{Boolean}true"/>
                 </items>
             </tabs>
         </items>

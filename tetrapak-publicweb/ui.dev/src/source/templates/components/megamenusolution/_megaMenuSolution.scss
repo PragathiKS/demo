@@ -15,7 +15,7 @@
         left: unset;
         width: unset;
         height: unset;
-        z-index: 11;
+        z-index: $zindex-nav;
     }
 
     &.is-open {
@@ -102,6 +102,11 @@
                 @include margin(auto);
                 background-color: none;
             }
+            &::before {
+                font-size: 16px;
+                line-height: 16px;
+                transform: rotate(180deg);
+            }
         }
 
         @media #{$desktop} {
@@ -123,31 +128,31 @@
         }
     }
     h2 {
-        @include font-size($font-m-sm);
-        @include line-height($font-l, $font-m-sm);
+        @include line-height($font-l, $font-baseline);
         display: flex;
+        font-family: $font-bold;
+        font-size: $font-baseline;
         font-weight: 500;
         justify-content: space-between;
         text-align: center;
         @media #{$desktop} {
             @include line-height($font-l, $font-baseline);
             display: block;
-            font-family: $font-bold;
+            font-family: $font-black;
+            font-size: $font-baseline;
             justify-content: center;
         }
     }
     h3 {
-        @include font-size($font-m-sm);
-        @include line-height($font-l, $font-m-sm);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
         @include margin(0);
         color: $color-congress-blue;
         font-family: $font-bold;
-        font-weight: 900;
         @media #{$desktop} {
-            @include font-size($font-md);
             @include margin($margin-l 0);
             color: $color-tundora;
-            font-family: $font-light;
+            font-family: $font-bold;
             font-weight: 500;
             line-height: 24px;
         }
@@ -231,12 +236,21 @@
                 @include margin-bottom($margin-xl);
                 justify-content: center;
             }
+            i.icon-Arrow_Right_pw {
+                &::before {
+                    font-size: 16px;
+                    line-height: 16px;
+                }
+            }
         }
         h2 {
             @include margin(0);
             @include padding($padding-md 0);
             display: inline-block;
             color: $color-congress-blue;
+            font-family: $font-bold;
+            font-size: $font-baseline;
+            font-weight: 500;
             // border-bottom: 1px solid $color-mercury;
             text-align: left;
             @media #{$desktop} {
@@ -302,6 +316,9 @@
                 @include padding(18px $margin-md);
                 @include margin(-16px);
                 background-color: $color-wild-sand;
+                &::before {
+                    transform: rotate(-180deg);
+                }
             }
 
             &.active {

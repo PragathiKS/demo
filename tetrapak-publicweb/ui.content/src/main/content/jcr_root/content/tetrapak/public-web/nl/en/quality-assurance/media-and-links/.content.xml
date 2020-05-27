@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:26:46.594Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:06.448Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Media and Links"
+        jcr:uuid="216ec291-5880-4fbb-86e2-406e37052386"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:38:06.243Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:38:06.250Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <anchor
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.257Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-29T07:28:19.512Z"
+                    jcr:createdBy="sapient-bimmi"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.255Z"
+                    jcr:lastModifiedBy="sapient-bimmi"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/anchor"/>
+                <banner
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.266Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-29T03:31:13.502Z"
+                    jcr:createdBy="sapient-jyothi"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.261Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    anchorId="banner"
+                    anchorTitle="This is Banner Anchor"
+                    bannerType="textImage"
+                    fileReference="/content/dam/tetrapak/publicweb/demo-assets/cow-blue-background.png"
+                    linkLabel="LinkLabel"
+                    linkPath="/content/tetrapak/public-web/ca/en/quality-assurance/qa-component-mix-1"
+                    linkTarget="_self"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-lighter"
+                    text="No description"
+                    title="Banner"/>
+                <medialink
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.273Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-29T03:35:09.868Z"
+                    jcr:createdBy="sapient-jyothi"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.269Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/mediaLink"
+                    anchorId="internal links"
+                    anchorTitle="This is Internal Links"
+                    columnOneTitle="Read more on our website"
+                    columnThreeTitle="What others say about us"
+                    columnTwoTitle="Downloads"
+                    heading="Link &amp; Downloads"
+                    pwTheme="grayscale-white">
+                    <columnOneList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.275Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.279Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Read more"
+                            linkUrl="https://www.google.com/"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.282Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Sustainable"
+                            linkUrl="/content/tetrapak/public-web/ca/en/home"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.284Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak Artistry"
+                            linkUrl="/content/dam/tetrapak/publicweb/logo_tetra_pak.png"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.286Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Differentiate and stand out on the shelf with different abilities to be think upon and the abc"/>
+                    </columnOneList>
+                    <columnTwoList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.287Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.290Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Differentiate and stand out on the shelf with different abilities"
+                            linkUrl="/content/dam/tetrapak/publicweb/Illustration2.png"/>
+                    </columnTwoList>
+                    <columnThreeList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.291Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.294Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Great review for Tetra Pak"
+                            linkUrl="/content/tetrapak/public-web/ca/en/about-tetra-pak"/>
+                    </columnThreeList>
+                </medialink>
+                <medialink_137960487
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.301Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-29T06:45:32.052Z"
+                    jcr:createdBy="sapient-jyothi"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.296Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/mediaLink"
+                    anchorId="Media"
+                    anchorTitle="Anchor Title Media and link"
+                    columnOneTitle="Read more on our website"
+                    columnThreeTitle="Downloads"
+                    heading="Link &amp; Downloads"
+                    pwTheme="grayscale-white">
+                    <columnOneList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.303Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.307Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Xlsx"
+                            linkUrl="/content/dam/tetrapak/publicweb/test-doc/test.xlsx"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.310Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak Artistry "
+                            linkUrl="/content/tetrapak/public-web/ca/en/home"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.313Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Differentiate and stand out on the shelf"
+                            linkUrl="/content/tetrapak/public-web/ca/en/home"/>
+                    </columnOneList>
+                    <columnTwoList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.314Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.318Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak Brik &amp; Tetra Brik Aseptic Smartness Packages"
+                            linkUrl="/content/dam/tetrapak/publicweb/logo_tetra_pak.svg"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.320Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Top design tips to design future"
+                            linkUrl="/content/dam/tetrapak/publicweb/asset.jpg"/>
+                    </columnTwoList>
+                </medialink_137960487>
+                <medialink_874409813
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.327Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-29T07:01:29.152Z"
+                    jcr:createdBy="sapient-jyothi"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.322Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/mediaLink"
+                    anchorId="Downloads"
+                    anchorTitle="This is Downloads"
+                    columnOneTitle="Read more on our website"
+                    columnThreeTitle="TetraPak Youtube"
+                    columnTwoTitle="Downloads"
+                    heading="Links &amp; Downloads"
+                    pwTheme="grayscale-white">
+                    <columnOneList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.330Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.335Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Differentiate and stand out on the shelf with different abilities to be think upon and the abc"
+                            linkUrl="/content/tetrapak/public-web/ca/en/Testpage"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.337Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Sustainable packages"
+                            linkUrl="https://abc.com"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.340Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak artistry"
+                            linkUrl="https://www.tetrapak.com/"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.342Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Top design tips to share your future"
+                            linkUrl="https://stackoverflow.com/"/>
+                        <item4
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.345Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Downloadable file"
+                            linkUrl="/content/dam/tetrapak/publicweb/pdf-files/tp_magazine_no_100.pdf"/>
+                        <item5
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.347Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Great review for Tetra Pak Brik Aseptic carton packages"
+                            linkUrl="/content/dam/tetrapak/publicweb/articles/Children.png"/>
+                    </columnOneList>
+                    <columnTwoList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.349Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.352Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak Brik &amp; Tetra Brik Aseptic Smartness Packages"
+                            linkUrl="https://tetrapak.com"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.354Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Top design tips to design future"
+                            linkUrl="/content/dam/tetrapak/publicweb/asset.jpg"/>
+                    </columnTwoList>
+                    <columnThreeList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.355Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.359Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra pak in youtube"
+                            linkUrl="https://www.youtube.com/user/tetrapak"/>
+                    </columnThreeList>
+                </medialink_874409813>
+                <medialink_1178123780
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.364Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-30T13:33:20.782Z"
+                    jcr:createdBy="sapient-jyothi"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.361Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/mediaLink"
+                    anchorId="External Links"
+                    anchorTitle="This is External Links"
+                    heading="Single Heading Media and Link component with multiple lines to check the wrapping functionality in mobile view"
+                    pwTheme="grayscale-white">
+                    <columnOneList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.366Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.369Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Differentiate and stand out on the shelf with different abilities to be think upon and the abc"
+                            linkUrl="http://google.com"/>
+                    </columnOneList>
+                    <columnTwoList
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.370Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.374Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="column 2 heading"
+                            linkUrl="sadasda"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.375Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Top design tips to design future"/>
+                    </columnTwoList>
+                </medialink_1178123780>
+                <teaser
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.382Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-30T19:01:52.409Z"
+                    jcr:createdBy="sapient-jyothi"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.379Z"
+                    jcr:lastModifiedBy="sapient-jyothi"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    anchorId="teaser"
+                    anchorTitle="This is Teaser Organism"
+                    contentType="automatic"
+                    heading="Teaser Organism"
+                    logicalOperator="and"
+                    maxTeasers="3"
+                    pwTheme="grayscale-white"
+                    tags="[tetrapak:food]"/>
+                <tabslist_copy
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.391Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-15T16:49:51.362Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.386Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    anchorId="anchorid6"
+                    anchorTitle="Tab List Organism: Semi-automatic"
+                    contentType="semi-automatic"
+                    heading="​​​​​High-performance powder handling solutions"
+                    logicalOperator="and"
+                    maxTabs="5"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row-reversed"
+                    pwLinkTheme="download"
+                    pwTheme="grayscale-lighter"
+                    readMorePath="/content/dam/tetrapak/publicweb/pdf-files/tp_magazine_no_100.pdf"
+                    readMoreTarget="_self"
+                    readMoreText="Read more text"
+                    tags="[tetrapak:food]">
+                    <tabsSemi
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.394Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.398Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/home/demo-page---dne/demo-page-mix-7"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.400Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/home/demo-page---dne/demo-page-mix-8"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.402Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/home/demo-page---dne/demo-page-mix-9"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.404Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/home/demo-page---dne/demo-page-mix-10"/>
+                        <item4
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.406Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/home/demo-page---dne/demo-page-mix-11"/>
+                    </tabsSemi>
+                </tabslist_copy>
+                <tabslist_copy_671482238
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.414Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-16T18:20:21.982Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.409Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    anchorId="anchorid3"
+                    anchorTitle="Tab List Organism: Manual"
+                    contentType="manual"
+                    heading="Processing: Manual Tab List"
+                    logicalOperator="and"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row-reversed"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMorePath="/content/tetrapak/public-web/ca/en/home"
+                    readMoreTarget="_self"
+                    readMoreText="Read More">
+                    <tabsManual
+                        cq:lastRolledout="{Date}2020-05-20T12:38:06.416Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.423Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Sugar is a core ingredient in many of the world's favourite food and drinks. It can be added and dissolved manually in batches, or automatically in a continuous sugar-dissolving system. Sugar is a core ingredient in many of the world's favourite food and drinks. It can be added and dissolved manually in batches, or automatically in a continuous sugar-dissolving system."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/Image 16x9 (2).png"
+                            linkText="Click Here - Same Window"
+                            linkURL="/content/tetrapak/public-web/ca/en/home"
+                            pwLinkTheme="hyperlink"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Sugar dissolving"
+                            videoSource="damVideo"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.429Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/publicweb/demo-assets/SampleVideo_1280x720_5mb.mp4"
+                            description="We have pioneered the development of a sugar treatment technology called ion exchange. When used in combination with traditional refinement processes, ion exchange makes it possible to process sugar with an ICUMSA level previously not considered 'refinable’."
+                            linkText="Link Text - Window"
+                            linkURL="http://tetrapak.com/processing/sugar-treatment"
+                            pwLinkTheme="hyperlink"
+                            subTitle="Rising global demand for sugar"
+                            tabType="videoText"
+                            targetBlank="_blank"
+                            thumbnailAltText="Poster Image"
+                            thumbnailPath="/content/dam/tetrapak/publicweb/demo-assets/My Tetra Pak launch video thumbnail.jpg"
+                            title="Sugar treatment"
+                            videoSource="damVideo"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.434Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Automation is about controlling your equipment, lines and all of your operations. The greater your control, the more value you can squeeze out of your production. We bring you over 40 years of experience in providing automation and information solutions tailored to the needs of the food industry – your needs – and have embedded that intelligence in our equipment and production solutions. This ensures you total control of plant operations, and the benefits that brings: enhanced and guaranteed performance, consistent product quality, uncompromising food safety and reduced environmental impact.​​"
+                            pwLinkTheme="hyperlink"
+                            subTitle="control your equipment, lines and operations"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Automation &amp; Information Solutions"
+                            videoSource="damVideo"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:38:06.439Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="UHT treatment requires both a sterilizer and an aseptic unit (for packaging the product). It is used for low acids (above pH 4.6) products such as UHT milk, UHT flavoured milk, UHT creams, soya milk and other dairy alternatives. The same process is also used to sterilize prepared food, such as soups, sauces, desserts, tomato and fruit preparations, and baby food."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/children-school-milk-tba.jpg"
+                            linkText="Download PDF"
+                            linkURL="/content/dam/tetrapak/publicweb/pdf-files/tp_magazine_no_100.pdf"
+                            pwLinkTheme="download"
+                            tabType="videoText"
+                            targetBlank="_self"
+                            title="UHT treatment for food and dairy products​"
+                            videoSource="youtube"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                    </tabsManual>
+                </tabslist_copy_671482238>
+                <tabslist_copy_1149895060
+                    cq:lastRolledout="{Date}2020-05-20T12:38:06.448Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-16T10:37:44.527Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T12:38:06.444Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    anchorId="tablist"
+                    anchorTitle="Tab List"
+                    contentType="automatic"
+                    heading="Heading: Automatic Tab List"
+                    maxTabs="4"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMorePath="/content/tetrapak/public-web/ca/en/home"
+                    readMoreTarget="_self"
+                    readMoreText="Read More"
+                    tags="[tetrapak:food]"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

@@ -1,0 +1,12 @@
+<sly data-sly-template.navigationLink_template="${@ subSectionsItem,selectedL3,selectedL4}">
+  <a auto-locator="L4LinksFontStyle-L4LinksPadding" data-link-name="${subSectionsItem.linkText}" class="${(selectedL3 == subSectionsItem.linkText || selectedL4 == subSectionsItem.linkText) ? 'active':''} sub-menu-navigation-link-item js-sub-menu-navigation-link-item"
+    href="${subSectionsItem.linkPath}" target="${subSectionsItem.external ? '_blank' : '_self'}">
+    ${subSectionsItem.linkText}
+    <sly data-sly-test="${subSectionsItem.external}">
+      <i class="icon is-external icon--link ${iconClass}"></i>
+    </sly>
+    <sly data-sly-test="${!subSectionsItem.external}">
+      <i class="icon without-arrow icon--link ${iconClass}"></i>
+    </sly>
+  </a>
+</sly>

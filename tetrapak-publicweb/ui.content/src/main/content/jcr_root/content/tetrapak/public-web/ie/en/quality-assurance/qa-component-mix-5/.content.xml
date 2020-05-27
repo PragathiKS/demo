@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:26:18.721Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:05.336Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:tags="[tetrapak:funnel-stages]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:description="Tetra Pak® Services helps you improve your performance, optimize costs and ensure food safety throughout the lifecycle of your operations."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="FOOD. PEOPLE. FUTURES."
+        jcr:uuid="87929961-a369-4b20-b822-6632167ae718"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkPath="http://tetrapak.com/"
+        linkTarget="_blank"
+        linkText="Agg Link External"
+        pwButtonTheme="secondary"
+        pwLinkTheme="hyperlink">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:38:05.274Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:38:05.277Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <tabslist
+                    cq:lastRolledout="{Date}2020-05-20T12:38:05.287Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-15T07:55:58.033Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T12:38:05.283Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    anchorId="anchortab"
+                    anchorTitle="Automatic: Lorem ipsum dolor sit amet"
+                    contentType="automatic"
+                    heading="Automatic: Lorem ipsum dolor sit amet"
+                    maxTabs="9"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row-reversed"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMorePath="/content/tetrapak/public-web/ca/en/about-tetra-pak"
+                    readMoreTarget="_self"
+                    readMoreText="Read More"
+                    tags="[tetrapak:funnel-stages/interest]"/>
+                <tabslist_1966693346
+                    cq:lastRolledout="{Date}2020-05-20T12:38:05.294Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-15T09:26:17.669Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T12:38:05.290Z"
+                    jcr:lastModifiedBy="sapient-sandip"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    contentType="manual"
+                    heading="Manual: Heading"
+                    pwButtonTheme="secondary"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMoreTarget="_self">
+                    <tabsManual
+                        cq:lastRolledout="{Date}2020-05-20T12:38:05.296Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:05.304Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Food Testing"
+                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tria genera bonorum; Si longus, levis.&#xd;&#xa;&#xd;&#xa;Equidem etiam Epicurum, in physicis quidem, Democriteum puto. Itaque his sapiens semper vacabit. Utram tandem linguam nescio? Duo Reges: constructio interrete. Efficiens dici potest.&#xd;&#xa;&#xd;&#xa;Quae cum magnifice primo dici viderentur, considerata minus probabantur. Itaque his sapiens semper vacabit. Erat enim Polemonis. Illi enim inter se dissentiunt. Tuo vero id quidem, inquam, arbitratu. Quae in controversiam veniunt, de iis, si placet, disseramus. Bonum incolumis acies: misera caecitas. Quae cum essent dicta, discessimus."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/testing-food.jpg"
+                            pwLinkTheme="hyperlink"
+                            subTitle="Stuprata per vim Lucretia a regis filio testata"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Istam voluptatem, inquit, Epicurus ignorat? Quis, quaeso, illum negat et bonum virum et comem et humanum fuisse?"
+                            videoSource="damVideo"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:05.309Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Shelf"
+                            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et nemo nimium beatus est; Sit enim idem caecus, debilis. Sed quid sentiat, non videtis. Negat esse eam, inquit, propter se expetendam.&#xd;&#xa;&#xd;&#xa;Ea possunt paria non esse. Duo Reges: constructio interrete. Ad eos igitur converte te, quaeso. Sed ille, ut dixi, vitiose. Sed fortuna fortis; Videamus animi partes, quarum est conspectus illustrior;"
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/beverage-cartons-shelf.jpg"
+                            pwLinkTheme="hyperlink"
+                            subTitle="Subtitle"
+                            tabType="imageText"
+                            targetBlank="_self"
+                            title="Title"
+                            videoSource="damVideo"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:05.316Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            damVideoPath="/content/dam/tetrapak/publicweb/demo-assets/Transform_your_business_sustainably.mp4"
+                            description="Quos quidem tibi studiose et diligenter tractandos magnopere censeo. Duo Reges: constructio interrete. At certe gravius. Quae fere omnia appellantur uno ingenii nomine, easque virtutes qui habent, ingeniosi vocantur. Non autem hoc: igitur ne illud quidem. Beatum, inquit."
+                            linkText="Click here"
+                            linkURL="/content/tetrapak/public-web/ca/en/about-tetra-pak"
+                            pwLinkTheme="hyperlink"
+                            subTitle="Lorem ipsum dolor sit amet"
+                            tabType="videoText"
+                            targetBlank="_self"
+                            thumbnailAltText="Strawberry"
+                            thumbnailPath="/content/dam/tetrapak/publicweb/demo-assets/Strawberry.png"
+                            title="Title: Lorem ipsum dolor sit amet"
+                            videoSource="damVideo"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:38:05.321Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Quos quidem tibi studiose et diligenter tractandos magnopere censeo. Duo Reges: constructio interrete. At certe gravius. Quae fere omnia appellantur uno ingenii nomine, easque virtutes qui habent, ingeniosi vocantur. Non autem hoc: igitur ne illud quidem. Beatum, inquit."
+                            pwLinkTheme="hyperlink"
+                            subTitle="Lorem ipsum dolor sit amet"
+                            tabType="videoText"
+                            targetBlank="_self"
+                            title="Title: Lorem ipsum dolor sit amet"
+                            videoSource="youtube"
+                            youtubeVideoID="fR-esiS1Pn0"/>
+                    </tabsManual>
+                </tabslist_1966693346>
+                <tabslist_181615774
+                    cq:lastRolledout="{Date}2020-05-20T12:38:05.327Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-16T11:24:08.389Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T12:38:05.323Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    contentType="semi-automatic"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMoreTarget="_self">
+                    <tabsSemi
+                        cq:lastRolledout="{Date}2020-05-20T12:38:05.329Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:38:05.332Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/quality-assurance/siteimprove-9267"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:38:05.334Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/ca/en/quality-assurance/qa-component-mix-5.html"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:38:05.336Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="https://loripsum.net/"/>
+                    </tabsSemi>
+                </tabslist_181615774>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

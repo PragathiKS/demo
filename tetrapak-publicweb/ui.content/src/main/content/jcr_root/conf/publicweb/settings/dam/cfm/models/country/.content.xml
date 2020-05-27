@@ -51,6 +51,69 @@
                             showEmptyInReadOnly="true"
                             step="any"
                             valueType="double"/>
+						<_x0031_589960455381
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                            emptyText="Email addresses for sustainability contact"
+                            fieldDescription="These email addresses are used to send emails for Contact us queries"
+                            fieldLabel="Sustainability contact email ids"
+                            listOrder="21"
+                            maxlength="255"
+                            metaType="text-single"
+                            name="sustainabilityemails"
+                            renderReadOnly="false"
+                            showEmptyInReadOnly="true"
+                            valueType="string[]">
+                            <field
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                emptyText="Email addresses for sustainability contact"
+                                maxlength="255"
+                                name="sustainabilityemails"
+                                renderReadOnly="false"/>
+                        </_x0031_589960455381>
+                        <_x0031_589961008649
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                            emptyText="Email addresses for career contact"
+                            fieldDescription="These email addresses are used to send emails for Contact us queries"
+                            fieldLabel="Career contact email ids"
+                            listOrder="22"
+                            maxlength="255"
+                            metaType="text-single"
+                            name="careeremails"
+                            renderReadOnly="false"
+                            showEmptyInReadOnly="true"
+                            valueType="string[]">
+                            <field
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                emptyText="Email addresses for career contact"
+                                maxlength="255"
+                                name="careeremails"
+                                renderReadOnly="false"/>
+                        </_x0031_589961008649>
+                        <_x0031_589961081302
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                            emptyText="Email addresses for all other contact"
+                            fieldDescription="These email addresses are used to send emails for Contact us queries"
+                            fieldLabel="Other contact email ids"
+                            listOrder="23"
+                            maxlength="255"
+                            metaType="text-single"
+                            name="otheremails"
+                            renderReadOnly="false"
+                            showEmptyInReadOnly="true"
+                            valueType="string[]">
+                            <field
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                emptyText="Email addresses for all other contact"
+                                maxlength="255"
+                                name="otheremails"
+                                renderReadOnly="false"/>
+                        </_x0031_589961081302>
                     </items>
                 </content>
             </cq:dialog>
