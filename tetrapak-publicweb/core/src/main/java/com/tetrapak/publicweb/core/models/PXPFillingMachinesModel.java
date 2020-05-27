@@ -48,6 +48,9 @@ public class PXPFillingMachinesModel {
     @Default(values = "grayscale-white")
     private String pwTheme;
 
+    @ValueMapValue
+    private String pwImgBackground;
+
     /** The anchor id. */
     @ValueMapValue
     private String anchorId;
@@ -133,6 +136,15 @@ public class PXPFillingMachinesModel {
      */
     public String getPwTheme() {
         return pwTheme;
+    }
+
+    /**
+     * Gets the card style.
+     *
+     * @return the card style
+     */
+    public String getPwImgBackground() {
+        return pwImgBackground;
     }
 
     /**

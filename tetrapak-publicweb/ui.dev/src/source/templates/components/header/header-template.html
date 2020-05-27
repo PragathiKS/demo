@@ -2,78 +2,108 @@
   <header class="tp-pw-header js-tp-pw-header ${wcmmode.edit ? 'wcmmode-edit': ''}" data-module="Header">
     <nav class="tp-pw-header__container">
       <div class="header-items d-flex align-items-center tp-container no-gutters">
-        <button class="tp-pw-header__hamburger-close col-sm-3 js-tp-pw-header__hamburger"><i id="toggle-button" class="icon-Burger_pw"></i></button>
-        <div class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex justify-content-lg-start justify-content-sm-center">
-          <sly data-sly-test = "${!wcmmode.edit}">
-          <a class="js-tp-pw-header-logo-digital-data" data-sly-test="${data.logoLink}" href="${data.logoLink}" target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}"
-          data-link-section="Header Navigation" data-link-name="Tetra Pak"
-          >
-         <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.logoImagePath, altText=data.logoAlt, className='tp-pw-logo'}" />
-       </a>
-      </sly>
-      <sly data-sly-test = "${wcmmode.edit}">
-        <a class="js-tp-pw-header-logo-digital-data" data-sly-test="${data.logoLink}" href="${data.logoLink}" target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}"
-           data-link-section="Header Navigation" data-link-name="Tetra Pak"
-          >
-         <img src="${data.logoImagePath}" alt="${data.logoAlt}" />
-       </a>
-      </sly>
+        <button class="tp-pw-header__hamburger-close col-sm-3 js-tp-pw-header__hamburger"><i id="toggle-button"
+            class="icon-Burger_pw"></i></button>
+        <div
+          class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex justify-content-lg-start justify-content-sm-center">
+          <sly data-sly-test="${!wcmmode.edit}">
+            <a class="js-tp-pw-header-logo-digital-data" data-sly-test="${data.logoLink}" href="${data.logoLink}"
+              target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}">
+              <sly
+                data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.logoImagePath, altText=data.logoAlt, className='tp-pw-logo'}" />
+            </a>
+          </sly>
+          <sly data-sly-test="${wcmmode.edit}">
+            <a class="js-tp-pw-header-logo-digital-data" data-sly-test="${data.logoLink}" href="${data.logoLink}"
+              target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}">
+              <img src="${data.logoImagePath}" alt="${data.logoAlt}" />
+            </a>
+          </sly>
         </div>
         <div class="tp-pw-header__main-navigation col-6">
           <ul class="d-flex justify-content-center" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
-            <li class="${megaMenuItem.linkPath == data.solutionPage ? 'js-hover-menu-link' : 'js-main-menu-link-hover'} hover-menu-link">
-              <a class="js-tp-pw-header-logo-digital-data js-tp-pw-header-item js-tp-pw-header-item-desktop" data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" target="_self" href="${megaMenuItem.linkPath}" ctype="header" ctypeone="header nav link" ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
-              <sly data-sly-test="${megaMenuItem.linkPath == data.solutionPage}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, mainHeader=megaMenuItem.linkText}" />
-              <sly data-sly-test="${megaMenuItem.linkPath != data.solutionPage}" data-sly-use.navigation="/apps/publicweb/components/content/navigation/navigation-template.html" data-sly-call="${navigation.navigation_template  @ data=megaMenuItem.navigationConfigurationModel}" />
+            <li
+              class="${megaMenuItem.linkPath == data.solutionPage ? 'js-hover-menu-link' : 'js-main-menu-link-hover'} hover-menu-link">
+              <a class="js-tp-pw-header-logo-digital-data js-tp-pw-header-item js-tp-pw-header-item-desktop"
+                data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" target="_self"
+                href="${megaMenuItem.linkPath}" ctype="header" ctypeone="header nav link"
+                ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
+              <sly data-sly-test="${megaMenuItem.linkPath == data.solutionPage}"
+                data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html"
+                data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, mainHeader=megaMenuItem.linkText}" />
+              <sly data-sly-test="${megaMenuItem.linkPath != data.solutionPage}"
+                data-sly-use.navigation="/apps/publicweb/components/content/navigation/navigation-template.html"
+                data-sly-call="${navigation.navigation_template  @ data=megaMenuItem.navigationConfigurationModel}" />
             </li>
           </ul>
         </div>
         <div class="col-sm-3 col-lg-3 d-flex justify-content-end pw-header-icons">
           <div class="tp-pw-header__secondary-navigation js-tp-pw-header__secondary-navigation">
-            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data js-tp-pw-header__search-box-toggle" data-link-section="Header Navigation" data-link-name="Internal Search icon" href="#">
-                <i class="icon-Search_pw"></i></a>
-            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-name="contact us envelope" target="_self" title="${data.contactUsAltText}" href="${data.contactUsLink}"><i class="icon-Envelope_pw"></i></a>
-            <a class="tp-pw-header__secondary-navigation__link js-header__selected-lang-pw" data-link-section="Header Navigation" data-link-name="market locator" href="#"><i auto_locator="countrySelectorIcon" class="icon-Globe"></i></a>
-              <span class="tp-pw-header__secondary-navigation"><i class="icon-ver-line"></i></span>
-            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data" data-link-section="Header Navigation" data-link-name="login_My tetrapak" target="_blank" href="${data.loginLink}"><i class="icon-Avatar"></i><span>${data.loginLabel}</span></a>
+            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data js-tp-pw-header__search-box-toggle"
+              data-link-section="Header Navigation" data-link-name="Internal Search icon" href="#">
+              <i class="icon-Search_pw"></i></a>
+            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data"
+              data-link-section="Header Navigation" data-link-name="contact us envelope" target="_self"
+              title="${data.contactUsAltText}" href="${data.contactUsLink}"><i class="icon-Envelope_pw"></i></a>
+            <a class="tp-pw-header__secondary-navigation__link js-header__selected-lang-pw" data-language="${data.currentLanguage}"
+              data-link-section="Header Navigation" data-link-name="market locator" href="#"><i
+                auto_locator="countrySelectorIcon" class="icon-Globe"></i></a>
+            <span class="tp-pw-header__secondary-navigation"><i class="icon-ver-line"></i></span>
+            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data"
+              data-link-section="Header Navigation" data-link-name="login_My tetrapak" target="_blank"
+              href="${data.loginLink}"><i class="icon-Avatar"></i><span>${data.loginLabel}</span></a>
           </div>
         </div>
       </div>
     </nav>
 
-     <!-- Collapsible content -->
-  <div class="tp-pw-mobile-navigation js-tp-pw-mobile-navigation">
+    <!-- Collapsible content -->
+    <div class="tp-pw-mobile-navigation js-tp-pw-mobile-navigation">
 
-    <!-- Links -->
-    <ul class="tp-pw-mobile-navigation__primary" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
-      <li class="">
-        <a data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" class="d-flex justify-content-between js-tp-pw-header-item js-tp-pw-header-logo-digital-data nav-link ${megaMenuItem.linkText == 'Solutions' ? 'js-click-menu-link' : ''}" href="${megaMenuItem.linkPath}">
-          <span>
-            ${megaMenuItem.linkText}
-          </span>
-          <sly data-sly-test = "${megaMenuItem.linkText == 'Solutions'}">
-            <i class="icon-Arrow_Right_pw"></i>
-          </sly>
-        </a>
-        <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}" data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html" data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, isMobile=true, mainHeader=megaMenuItem.linkText }" />
+      <!-- Links -->
+      <ul class="tp-pw-mobile-navigation__primary" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
+        <li class="">
+          <a data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}"
+            class="d-flex justify-content-between js-tp-pw-header-item js-tp-pw-header-logo-digital-data nav-link ${megaMenuItem.linkText == 'Solutions' ? 'js-click-menu-link' : ''}"
+            href="${megaMenuItem.linkPath}">
+            <span>
+              ${megaMenuItem.linkText}
+            </span>
+            <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}">
+              <i class="icon-Arrow_Right_pw"></i>
+            </sly>
+          </a>
+          <sly data-sly-test="${megaMenuItem.linkText == 'Solutions'}"
+            data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html"
+            data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, isMobile=true, mainHeader=megaMenuItem.linkText }" />
 
-      </li>
-    </ul>
-    <ul class="tp-pw-mobile-navigation__secondary">
-      <li class="tp-pw-mobile-navigation__secondary__link">
-        <a class="nav-link js-tp-pw-header-logo-digital-data" target="_self" title="${data.contactUsAltText}" href="${data.contactUsLink}" data-link-section="Header Navigation" data-link-name="contact us envelope"><i class="icon-Envelope_pw"></i><span>${data.contactText}</span></a>
-      </li>
-      <li class="tp-pw-mobile-navigation__secondary__link">
-        <a class="d-flex justify-content-between nav-link js-header__selected-lang-pw" href="#" data-link-section="Header Navigation" data-link-name="market locator"><span><i auto_locator="countrySelectorIconMobile" class="icon-Globe"></i>${data.currentLanguage} (${data.currentMarket})</span></a>
-      </li>
-      <li class="tp-pw-mobile-navigation__secondary__link">
-        <a class="nav-link login-link js-tp-pw-header-logo-digital-data" target="_blank" href="${data.loginLink}" data-link-section="Header Navigation" data-link-name="login_My tetrapak"><i class="icon-Avatar"></i><span>${data.loginLabel}</span></a>
-      </li>
-    </ul>
-    <!-- Links -->
+        </li>
+      </ul>
+      <ul class="tp-pw-mobile-navigation__secondary">
+        <li class="tp-pw-mobile-navigation__secondary__link">
+          <a class="nav-link js-tp-pw-header-logo-digital-data" target="_self" title="${data.contactUsAltText}"
+            href="${data.contactUsLink}" data-link-section="Header Navigation" data-link-name="contact us envelope"><i
+              class="icon-Envelope_pw"></i><span>${data.contactText}</span></a>
+        </li>
+        <li class="tp-pw-mobile-navigation__secondary__link">
+          <sly data-sly-test="${data.displayCurrentLanguage}"
+            data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}" />
+          <a class="d-flex justify-content-between nav-link js-header__selected-lang-pw" href="#"
+            data-link-section="Header Navigation" data-link-name="market locator" data-language="${data.currentLanguage}"><span><i
+                auto_locator="countrySelectorIconMobile" class="icon-Globe"></i>${data.currentMarket}
+              ${data.displayCurrentLanguage ? concatenatLanguage : ''}</span></a>
+        </li>
+        <li class="tp-pw-mobile-navigation__secondary__link">
+          <a class="nav-link js-tp-pw-header-logo-digital-data" target="_blank" href="${data.loginLink}"
+            data-link-section="Header Navigation" data-link-name="login_My tetrapak"><i
+              class="icon-Avatar"></i><span class="login-link">${data.loginLabel}</span></a>
+        </li>
+      </ul>
+      <!-- Links -->
 
-  </div>
-  <sly data-sly-use.marketselector="/apps/publicweb/components/content/marketselector/marketselector-template.html"
-         data-sly-call="${marketselector.marketselector_template @ data=data.marketList}" />
+    </div>
+    <sly data-sly-use.marketselector="/apps/publicweb/components/content/marketselector/marketselector-template.html"
+      data-sly-call="${marketselector.marketselector_template @ data=data.marketList}" />
   </header><!-- end c-header -->
 </sly>
