@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import com.adobe.granite.ui.components.ds.DataSource;
 import com.adobe.granite.ui.components.ds.SimpleDataSource;
 import com.adobe.granite.ui.components.ds.ValueMapResource;
+import com.tetrapak.publicweb.core.beans.PseudoCategoryCFBean;
 import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -19,6 +20,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,8 +50,13 @@ public class DataSourceModel {
      */
     @PostConstruct
     protected void init() {
-        final Map<String, String> pseudoCategories = pseudoCategoryService.fetchPseudoCategories(resourceResolver);
-        final DataSource dataSource = new SimpleDataSource(getResourceList(pseudoCategories).iterator());
+        final List<PseudoCategoryCFBean> pseudoCategories = pseudoCategoryService.fetchPseudoCategories(resourceResolver);
+        final Map<String, String> pseudoCategoriesMap = new LinkedHashMap<>();
+        pseudoCategoriesMap.put("Select", "");
+        for (final PseudoCategoryCFBean cfBean : pseudoCategories) {
+            pseudoCategoriesMap.put(cfBean.getPseudoCategoryKey(), cfBean.getPseudoCategoryValue());
+        }
+        final DataSource dataSource = new SimpleDataSource(getResourceList(pseudoCategoriesMap).iterator());
         request.setAttribute(DataSource.class.getName(), dataSource);
     }
 
