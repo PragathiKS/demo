@@ -12,7 +12,6 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
-import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -212,17 +211,34 @@ public class SectionMenuModel {
 
         final SubSectionMenuBean subSectionMenuBean = new SubSectionMenuBean();
         if (page.getPath().contains(path)) {
-            if (MapUtils.isNotEmpty(pseudoCategoryMap)) {
-                subSectionMenuBean.setPseudoCategoriesSection(populatePseudoSection(pseudoCategoryMap));
-            } else {
+            final List<PseudoCategoriesSectionBean> pseudoSection = populatePseudoSection(pseudoCategoryMap);
+            if (isPseudoSectionEmpty(pseudoSection)) {
                 subSectionMenuBean.setSubSections(subSections);
                 subSectionMenuBean.setSubSectionCount(subSections.size());
+            } else {
+                subSectionMenuBean.setPseudoCategoriesSection(populatePseudoSection(pseudoCategoryMap));
             }
         } else {
             subSectionMenuBean.setSubSections(subSections);
             subSectionMenuBean.setSubSectionCount(subSections.size());
         }
         return subSectionMenuBean;
+    }
+
+    /**
+     * Checks if is pseudo section empty.
+     *
+     * @param pseudoSection the pseudo section
+     * @return true, if is pseudo section empty
+     */
+    private boolean isPseudoSectionEmpty(final List<PseudoCategoriesSectionBean> pseudoSection) {
+        boolean isEmpty = false;
+        for (final PseudoCategoriesSectionBean bean : pseudoSection) {
+            if (bean.getSubSectionCount() == 0) {
+                isEmpty = true;
+            }
+        }
+        return isEmpty;
     }
 
     /**

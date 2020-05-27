@@ -20,6 +20,6 @@ describe('Navigation', function() {
     this.initSpy.restore();
   });
   it('should initialize', function() {
-    expect(this.initSpy.called).to.be.true;
+    expect(this.navigation.init.called).to.be.true;
   });
 });

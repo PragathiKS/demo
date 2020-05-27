@@ -1,10 +1,30 @@
 .pw-contactus-form {
+    border-radius: $border-radius;
     .form-group {
         @include margin-bottom($margin-md);
+        &.field-error {
+            @include margin-bottom(0);
+        }
     }
-    .privacy-policy,
-    .button-group {
+    .privacy-policy {
         @include margin-top($margin-l);
+        &:hover {
+            a {
+                color: $color-jordy-blue;
+            }
+        }
+    }
+    // Dropdown styling
+    .country-field {
+        .pw-form__dropdown__menu {
+            .active {
+                border: 0;
+                background-color: transparent;
+                &:hover {
+                    background-color: $color-wild-sand;
+                }
+            }
+        }
     }
     .text-capital {
         text-transform: capitalize;
@@ -42,10 +62,17 @@
             display: block;
         }
     }
+    // Right heading styling
     h4 {
         font-family: $font-bold;
         &.tpatom-heading--small {
             @include margin-bottom($margin-md);
+            font-size: $font-md;
+        }
+    }
+    .right-heading h4 {
+        &.tpatom-heading--small {
+            @include margin-bottom($margin-l);
         }
     }
     .separator {
@@ -54,6 +81,13 @@
         border-bottom: 1px solid $color-mercury;
         .pw-image-container {
             @include margin-bottom($padding-l);
+        }
+        .descriptionCont {
+            a {
+                &:hover {
+                    color: $color-jordy-blue;
+                }
+            }
         }
         @media #{$desktop} {
             @include margin-bottom(0);
@@ -91,10 +125,17 @@
         @include margin-bottom($margin-md);
         div + div {
             font-weight: 900;
+            @media #{$desktop} {
+                @include padding-left($margin-xxxl);
+            }
         }
     }
 
     .button-group {
+        @include margin-top($margin-md);
+        > * {
+            @include margin-top($margin-sm);
+        }
         .tpatom-btn--primary {
             &:hover {
                 color: $color-white;

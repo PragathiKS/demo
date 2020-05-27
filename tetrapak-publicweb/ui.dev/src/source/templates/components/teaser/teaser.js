@@ -68,7 +68,7 @@ class Teaser {
       };
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
     }
-
+    
     window.open($this.attr('href'), $this.attr('target'));
   }
 

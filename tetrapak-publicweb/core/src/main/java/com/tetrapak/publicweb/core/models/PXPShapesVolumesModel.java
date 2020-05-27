@@ -48,26 +48,29 @@ public class PXPShapesVolumesModel {
     @Default(values = "grayscale-white")
     private String pwTheme;
 
+    @ValueMapValue
+    private String pwImgBackground;
+
     /** The teaser list. */
-    private List<ManualModel> teaserList = new ArrayList<>();
+    private final List<ManualModel> teaserList = new ArrayList<>();
 
     /**
      * Inits the.
      */
     @PostConstruct
     protected void init() {
-        ProductModel product = resource.adaptTo(ProductModel.class);
+        final ProductModel product = resource.adaptTo(ProductModel.class);
         setShapesList(product.getShapes());
     }
 
     /**
      * Sets the teaser list from Shapes.
-     * 
+     *
      * @param list
      */
-    private void setShapesList(List<Shape> list) {
-        for (Shape shape : list) {
-            ManualModel teaser = new ManualModel();
+    private void setShapesList(final List<Shape> list) {
+        for (final Shape shape : list) {
+            final ManualModel teaser = new ManualModel();
             teaser.setTitle(shape.getName());
             if(null != shape.getVolumes()) {
                 teaser.setDescription(getDescription(shape.getVolumes()));
@@ -81,11 +84,11 @@ public class PXPShapesVolumesModel {
 
     /**
      * Concatenate volumes value to generate comma separated description
-     * 
+     *
      * @param volumes
      * @return
      */
-    private String getDescription(List<String> volumes) {
+    private String getDescription(final List<String> volumes) {
         return String.join(", ",volumes);
     }
 
@@ -125,6 +128,15 @@ public class PXPShapesVolumesModel {
      */
     public String getPwTheme() {
         return pwTheme;
+    }
+
+    /**
+     * Gets the card style.
+     *
+     * @return the card style
+     */
+    public String getPwImgBackground() {
+        return pwImgBackground;
     }
 
     /**
