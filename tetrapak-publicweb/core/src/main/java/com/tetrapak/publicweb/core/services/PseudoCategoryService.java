@@ -1,12 +1,14 @@
 package com.tetrapak.publicweb.core.services;
 
+import com.tetrapak.publicweb.core.beans.PseudoCategoryCFBean;
+
 import org.apache.sling.api.resource.ResourceResolver;
 
-import java.util.Map;
+import java.util.List;
 
 public interface PseudoCategoryService {
 
-    Map<String, String> fetchPseudoCategories(final ResourceResolver resourceResolver);
+    List<PseudoCategoryCFBean> fetchPseudoCategories(final ResourceResolver resourceResolver);
 
     String getPseudoCategoriesCFRootPath();
 }
