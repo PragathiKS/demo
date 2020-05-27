@@ -344,6 +344,7 @@ public class HeaderModel {
             Iterator<Page> childPages = marketPage.listChildren();
             int languagesCount = 0;
             while (childPages.hasNext()) {
+                childPages.next();
                 languagesCount++;
                 if (languagesCount >= MORE_THAN_ONE_LANGAUGES) {
                     isDisplayCurrentLanguage = true;
