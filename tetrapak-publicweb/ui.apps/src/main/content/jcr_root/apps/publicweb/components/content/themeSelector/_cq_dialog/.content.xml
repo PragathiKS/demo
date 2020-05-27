@@ -80,11 +80,11 @@
                                         value=""/>
                                     <white
                                         jcr:primaryType="nt:unstructured"
-                                        text="Grayscale - White"
+                                        text="White"
                                         value="bg-white"/>
                                     <gray
                                         jcr:primaryType="nt:unstructured"
-                                        text="Grayscale - Lighter"
+                                        text="Gray"
                                         value="bg-gray"/>
                                 </items>
                             </pwImageBackground>
