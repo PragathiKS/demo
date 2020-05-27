@@ -22,34 +22,27 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 /**
  *
  */
-public class ContactUsModelTest {
+public class BusinessInquiryModelTest {
 
     /** The context. */
     @Rule
     public AemContext context = new AemContext();
 
     /** The Constant TEST_RESOURCE_CONTENT. */
-    private static final String TEST_RESOURCE_CONTENT = "/contactus/test-content.json";
-    private static final String TEST_RESOURCE_CFM = "/contactus/test-countries-content.json";
-
-    /**
-     * The Constant FILLING_MACHINE_CONTENT_ROOT.
-     *
-     */
-    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master/en/contactus";
-    private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/cfm/countries";
+    private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
+    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master/en";
     /** The model class. */
-    Class<ContactUsModel> modelClass = ContactUsModel.class;
+    Class<BusinessInquiryFormModel> modelClass = BusinessInquiryFormModel.class;
 
     /** The model. */
-    private ContactUsModel model;
+    private BusinessInquiryFormModel model;
 
     private CountryDetailService countryDetailService;
 
     /**
      * The Constant PXP_FEATURES.
      */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/jcr:content/contactus";
+    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/jcr:content/businessinquiryform";
 
     /** The resource. */
     private Resource resource;
@@ -64,7 +57,6 @@ public class ContactUsModelTest {
     public void setUp() throws Exception {
         countryDetailService = new CountryDetailServiceImpl();
         context.load().json(TEST_RESOURCE_CONTENT, CONTACT_US_CONTENT_ROOT);
-        context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
 
         context.addModelsForClasses(modelClass);
         context.registerService(CountryDetailService.class, countryDetailService);
@@ -87,7 +79,7 @@ public class ContactUsModelTest {
     @Test
     public void testDailogValues() throws Exception {
         assertEquals("ContactUs", "Contact info", model.getContactInfoText());
-        assertEquals("ContactUs", "Contact us", model.getHeading());
+        assertEquals("ContactUs", "Business Enquiry", model.getHeading());
         assertEquals("ContactUs", "title", model.getAnchorTitle());
         assertEquals("ContactUs", "test01", model.getAnchorId());
         assertEquals("ContactUs", "Thank you for your request", model.getThankyouHeading());
@@ -99,20 +91,15 @@ public class ContactUsModelTest {
                 model.getPrivacyPolicy());
         assertEquals("ContactUs", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getImage());
         assertEquals("ContactUs", "Contact us", model.getAlt());
-        assertEquals("ContactUs", "Please select the countryyou wish to contact.", model.getDescriptionText());
+        assertEquals("ContactUs", "Description", model.getDescriptionText());
         assertEquals("ContactUs", "Purpose of contact", model.getPurposeOfContactText());
-        assertEquals("ContactUs", "How can we help you?", model.getHowCanWeHelpText());
+        assertEquals("ContactUs", "Company Information", model.getCompanyInfoText());
         assertEquals("ContactUs", "Summary", model.getSummaryText());
         assertEquals("ContactUs", "grayscale-white", model.getPwTheme());
-        assertEquals("ContactUs", "/content/tetrapak/publicweb/lang-master/en/contactus/jcr:content/contactus.sendmail.json", model.getServletPath());
-    }
+        assertEquals("ContactUs", "API Url", model.getApiUrl());
+        assertEquals("ContactUs", "Business Area", model.getBusinessAreaText());
+        assertEquals("ContactUs", "Marketing Consent", model.getMarketingConsent());
+       }
 
-    @Test
-    public void testCountries() throws Exception {
-
-        assertEquals("ContactUs", 2, model.getCountryOptions().size());
-        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
-
-    }
 
 }
