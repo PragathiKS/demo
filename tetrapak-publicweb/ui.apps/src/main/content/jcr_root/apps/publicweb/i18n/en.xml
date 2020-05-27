@@ -92,6 +92,26 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="emailPlaceholder"
         sling:message="example@example.com"/>
+   <phonenumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="phonenumber"
+        sling:message="Phone number (optional)"/>
+   <phoneplaceholder
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="phoneplaceholder"
+        sling:message="Country code and Number"/>
+   <company
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="company"
+        sling:message="Company"/>
+    <position
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="position"
+        sling:message="Position"/>
    <sustainability
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
@@ -107,6 +127,41 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="other"
         sling:message="Other"/>
+   <requestaquote
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="requestAQuote"
+        sling:message="Request a quote"/>
+   <requestforproductinfo
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="requestforproductinfo"
+        sling:message="Request for product information"/>
+   <contactme
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="contactme"
+        sling:message="Contact me"/>
+   <processing
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="processing"
+        sling:message="Processing"/>
+   <packaging
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="packaging"
+        sling:message="Packaging"/>
+   <services
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="services"
+        sling:message="Services"/>        
+   <endtoendsolution
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="endtoendsolution"
+        sling:message="End-to-End solutions"/>        
    <pleaseselectanoption
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
