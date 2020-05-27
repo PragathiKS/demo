@@ -162,7 +162,6 @@ public class TabsListModelTest {
 	assertEquals("Some Heading", model.getHeading());
 	assertEquals("Read for here", model.getReadMoreText());
 	assertEquals("/content/community/badging.html", model.getReadMorePath());
-	assertEquals("_blank", model.getReadMoreTarget());
 	assertEquals("grayscale-white", model.getPwTheme());
 	assertEquals("display-row", model.getPwDisplay());
 	assertEquals("anchorId", model.getAnchorId());

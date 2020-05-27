@@ -50,10 +50,6 @@ public class TabsListModel {
     @ValueMapValue
     private String readMorePath;
 
-    /** The read More Target. */
-    @ValueMapValue
-    private String readMoreTarget;
-
     /** The tags. */
     @ValueMapValue
     private String[] tags;
@@ -198,13 +194,6 @@ public class TabsListModel {
      */
     public String getReadMorePath() {
 	return LinkUtils.sanitizeLink(readMorePath);
-    }
-
-    /**
-     * @return the readMoreTarget
-     */
-    public String getReadMoreTarget() {
-	return readMoreTarget;
     }
 
     /**
