@@ -10,21 +10,21 @@ class Banner {
   cache = {};
   initCache() {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
-    this.cache.$existingBanner=this.root.find('.pw-banner__content.banner-parent');
-    this.cache.$siblingBanner=this.root.find('.pw-banner__content.banner-sibling');
+    this.cache.$existingBanner = this.root.find('.pw-banner__content.banner-parent');
+    this.cache.$siblingBanner = this.root.find('.pw-banner__content.banner-sibling');
   }
   bindEvents() {
     const { $itbLink } = this.cache;
     if (
-      isDesktopMode() ) {
+      isDesktopMode()) {
       const { $existingBanner } = this.cache;
-      const { $siblingBanner }= this.cache;
+      const { $siblingBanner } = this.cache;
 
-      $(window).on('load resize',function(){
+      $(window).on('load resize', function () {
         const bannerHeight = $existingBanner.outerHeight();
         const bannerWidth = $existingBanner.outerWidth();
-        $siblingBanner.css('width',bannerWidth);
-        $siblingBanner.css('height',bannerHeight);
+        $siblingBanner.css('width', bannerWidth);
+        $siblingBanner.css('height', bannerHeight);
       });
     }
     $itbLink.on('click', this.trackAnalytics);
@@ -37,7 +37,7 @@ class Banner {
     let trackingObj = {};
     const dwnType = 'ungated';
     const eventType = 'download';
-    const linkType = $this.attr('target') === '_blank'?'external':'internal';
+    const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
     const bannerTitle = $this.data('link-banner-title');
@@ -45,15 +45,15 @@ class Banner {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
 
-    if(buttonLinkType==='secondary' && downloadtype ==='download'){
+    if (buttonLinkType === 'secondary' && downloadtype === 'download') {
       linkParentTitle = `CTA_Download_pdf_${bannerTitle}`;
     }
 
-    if(buttonLinkType==='link' && downloadtype ==='download'){
+    if (buttonLinkType === 'link' && downloadtype === 'download') {
       linkParentTitle = `Text hyperlink_Download_pdf_${bannerTitle}`;
     }
 
-    if(downloadtype ==='download'){
+    if (downloadtype === 'download') {
       trackingObj = {
         linkType,
         linkSection,
@@ -66,7 +66,7 @@ class Banner {
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
     }
 
-    if(downloadtype!=='download' && $this.attr('target')==='_blank'){
+    if (downloadtype !== 'download' && $this.attr('target') === '_blank') {
       window._satellite.track('linkClick');
     }
 
@@ -82,19 +82,33 @@ class Banner {
           $(this).data('download-type', 'download');
           $(this).data('link-section', $(this).data('link-section') + '_Download');
           $(this).attr('rel', 'noopener noreferrer');
-          $(this).data('link-type','external');
+          $(this).data('link-type', 'external');
         } else {
-          $(this).data('link-type','internal');
+          $(this).data('link-type', 'internal');
         }
       }
     });
   }
+  addBannerLink() {
+    const $bEl = $('.pw-banner');
+    const $anchor = $('.pw-banner').data('href');
+    if ($anchor) {
+      $bEl.click((e) => {
+        if($(e.target).closest('.pw-banner__contentwrapper').length) {
+          return true;
+        }
+        window.location.href = $anchor;
+      });
+    }
+  }
+
 
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
     this.addLinkAttr();
+    this.addBannerLink();
   }
 }
 

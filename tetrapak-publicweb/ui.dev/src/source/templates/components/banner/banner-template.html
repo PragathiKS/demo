@@ -1,68 +1,61 @@
 <sly data-sly-template.banner_template="${@data, flag}">
   <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner">
-      <div class="pw-banner pw-theme--${data.pwTheme}">
-          <sly data-sly-test = "${!wcmmode.edit}">
-
-            <div class="pw-banner__image-wrapper">
-              <a data-sly-test="${data.linkPath}" href="${data.linkPath}" class="img-link js-banner-analytics"
-              data-asset-name="${data.assetName}" data-link-section="Hero Image_${dataLinkSectionCTAText}"  data-button-link-type="${data.pwButtonTheme}"  data-link-type="internal" data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}">
-                <sly data-sly-test="${data.bannerType == 'hero'}">
-                        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                                    data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive'}">
-                        </sly>
-                </sly>
-                <sly data-sly-test="${data.bannerType == 'textImage'}">
-                    <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                                    data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, className='img-responsive'}">
-                    </sly>
-
-                </sly>
-              </a>
-              <span  data-sly-test="${!data.linkPath}">
-                <sly data-sly-test="${data.bannerType == 'hero'}">
-                  <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                              data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive'}">
-                  </sly>
-                </sly>
-                <sly data-sly-test="${data.bannerType == 'textImage'}">
-                    <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                                    data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, className='img-responsive'}">
-                    </sly>
-
-                </sly>
-              </span>
-            </div>
-            </sly>
-              <sly data-sly-test = "${wcmmode.edit}">
-                  <div class="pw-banner__image-wrapper">
-                    <a data-sly-test="${data.linkPath}" href="${data.linkPath}" class="img-link js-banner-analytics"
-                    target="${data.linkTarget ? '_blank' : ''}" rel="${data.linkTarget ? 'noopener noreferrer' : ''}"
-                    data-asset-name="${data.assetName}" data-link-section="Hero Image_${dataLinkSectionCTAText}"  data-button-link-type="${data.pwButtonTheme}" data-download-type="${data.pwLinkTheme}" data-link-type="internal" data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}">
-                       <img src="${data.fileReference}"  alt="${data.alt}" class="cq-dd-image">
-                    </a>
-                    <img  data-sly-test="${!data.linkPath}" src="${data.fileReference}"  alt="${data.alt}" class="cq-dd-image">                    
-                  </div>
-              </sly>
+    <div class="pw-banner pw-theme--${data.pwTheme}" data-href="${data.linkPath}">
+      <sly data-sly-test="${!wcmmode.edit}">
+        <div class="pw-banner__image-wrapper">
           <sly data-sly-test="${data.bannerType == 'hero'}">
-          <div class="pw-banner__contentwrapper">
+            <sly
+              data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+              data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive'}">
+            </sly>
           </sly>
-            <div class="pw-banner__content banner-sibling ${data.pwDisplay}"></div>
-            <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}">
-                <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle">
-                  ${data.subtitle @ context='html'}
-                </div>
-                <div data-sly-test="${data.title}" class="pw-banner__content__title">
-                    <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
-    +               data-sly-call="${title.heading_h2_template @ headingText=data.title, variant='regular'}"/>
-                </div>
-                <p class="pw-banner__content__description">${data.text @ context='html'}</p>
-                <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}"/>
-                <a data-sly-test="${data.linkLabel}" href="${data.linkPath}" class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics" title="${btnTooltip}"
-                data-asset-name="${data.assetName}" data-link-section="Hero Image_${dataLinkSectionCTAText}"  data-link-type="internal" data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}">
-                <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
-              </a>
+          <sly data-sly-test="${data.bannerType == 'textImage'}">
+            <sly
+              data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+              data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, className='img-responsive'}">
+            </sly>
+
+          </sly>
         </div>
+      </sly>
+      <sly data-sly-test="${wcmmode.edit}">
+        <div class="pw-banner__image-wrapper">
+          <a data-sly-test="${data.linkPath}" href="${data.linkPath}" class="img-link js-banner-analytics"
+            target="${data.linkTarget ? '_blank' : ''}" rel="${data.linkTarget ? 'noopener noreferrer' : ''}"
+            data-asset-name="${data.assetName}" data-link-section="Hero Image_${dataLinkSectionCTAText}"
+            data-button-link-type="${data.pwButtonTheme}" data-download-type="${data.pwLinkTheme}"
+            data-link-type="internal" data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}">
+            <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
+          </a>
+          <img data-sly-test="${!data.linkPath}" src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
+        </div>
+      </sly>
+      <sly data-sly-test="${data.bannerType == 'hero'}">
+        <div class="pw-banner__contentwrapper">
+      </sly>
+      <div class="pw-banner__content banner-sibling ${data.pwDisplay}"></div>
+      <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}">
+        <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle">
+          ${data.subtitle @ context='html'}
+        </div>
+        <div data-sly-test="${data.title}" class="pw-banner__content__title">
+          <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
+            data-sly-call="${title.heading_h2_template @ headingText=data.title, variant='regular'}" />
+        </div>
+        <p class="pw-banner__content__description">${data.text @ context='html'}</p>
+        <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
+        <a data-sly-test="${data.linkLabel}" href="${data.linkPath}"
+          class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics"
+          title="${btnTooltip}" data-asset-name="${data.assetName}"
+          data-link-section="Hero Image_${dataLinkSectionCTAText}" data-link-type="internal"
+          data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}">
+          <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}<i
+              class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
+        </a>
       </div>
-   <sly data-sly-test="${data.bannerType == 'hero'}"> </div></sly>
     </div>
+    <sly data-sly-test="${data.bannerType == 'hero'}">
+  </div>
+</sly>
+</div>
 </sly>
