@@ -85,7 +85,6 @@ public class HeaderModelTest {
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("Header", "/content/tetrapak/public-web/global/en.html", model.getLogoLink());
-        assertEquals("Header", "_blank", model.getLogoLinkTarget());
         assertEquals("Header", "Logo ", model.getLogoAlt());
         assertEquals("Header", "http://www.google.com", model.getLoginLink());
         assertEquals("Header", "Login Label", model.getLoginLabel());
@@ -113,6 +112,7 @@ public class HeaderModelTest {
                 model.getMarketList().getGlobalMarketPath());
         assertEquals("Header", "", model.getCurrentMarket());
         assertEquals("Header", "English", model.getCurrentLanguage());
+        assertEquals("Header", false, model.getDisplayCurrentLanguage());
         assertEquals("Header", 14, model.getMarketList().getCol1End());
         assertEquals("Header", 15, model.getMarketList().getCol2Start());
         assertEquals("Header", 28, model.getMarketList().getCol2End());
