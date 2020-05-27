@@ -12,6 +12,7 @@ describe('Footer', function () {
     this.initSpy = sinon.spy(this.footer, 'init');
     this.trackAnalyticsSpy = sinon.spy(this.footer, 'trackAnalytics');
     this.goToTopSpy = sinon.spy(this.footer, 'goToTop');
+    this.openStub = sinon.stub(window, 'open');
     window.digitalData = {};
     window._satellite = {
       track() { /* Dummy method */ }
@@ -23,6 +24,7 @@ describe('Footer', function () {
     this.initSpy.restore();
     this.goToTopSpy.restore();
     this.trackAnalyticsSpy.restore();
+    this.openStub.restore();
   });
   it('should initialize', function () {
     expect(this.initSpy.called).to.be.true;

@@ -5,7 +5,9 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -24,6 +26,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 /**
  * The Class HeaderModel.
@@ -38,14 +41,15 @@ public class HeaderModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    /** The pseudo category service. */
+    @Inject
+    private PseudoCategoryService pseudoCategoryService;
+
     /** The logo image path. */
     private String logoImagePath;
 
     /** The logo link. */
     private String logoLink;
-
-    /** The logo link target. */
-    private String logoLinkTarget;
 
     /** The logo alt. */
     private String logoAlt;
@@ -73,6 +77,15 @@ public class HeaderModel {
 
     /** The solution page title. */
     private String solutionPageTitle;
+    
+    /** The market page. */
+    private Page marketPage;
+    
+    /** The language page. */
+    private Page languagePage;
+    
+    /** The MORE_THAN_ONE_LANGAUGES. */
+    private static final int MORE_THAN_ONE_LANGAUGES = 2;
 
     /**
      * Inits the.
@@ -81,6 +94,10 @@ public class HeaderModel {
     protected void init() {
         LOGGER.debug("inside init method");
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        languagePage = PageUtil.getCurrentPage(request.getResourceResolver().getResource(rootPath));
+        if(languagePage != null && languagePage.getParent() != null) {
+            marketPage = languagePage.getParent();
+        }
         final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
         final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(headerConfigurationResource)) {
@@ -89,7 +106,6 @@ public class HeaderModel {
             if (Objects.nonNull(configurationModel)) {
                 logoImagePath = configurationModel.getLogoImagePath();
                 logoLink = configurationModel.getLogoLink();
-                logoLinkTarget = configurationModel.getLogoLinkTarget();
                 logoAlt = configurationModel.getLogoAlt();
                 contactUsLink = configurationModel.getContactLink();
                 contactUsAltText = configurationModel.getContactText();
@@ -148,14 +164,15 @@ public class HeaderModel {
                 final Page childPage = childPages.next();
                 if (!childPage.isHideInNav()) {
                     final LinkBean linkBean = new LinkBean();
-                    String title = getTitle(childPage);
+                    final String title = getTitle(childPage);
                     linkBean.setLinkText(title);
                     linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
                     if (!childPage.getPath().equalsIgnoreCase(getSolutionPageWithoutExtension())) {
                         final SectionMenuModel sectionMenuModel = new SectionMenuModel();
                         sectionMenuModel.setSectionHomePageTitle(childPage);
                         sectionMenuModel.setSectionHomePagePath(childPage);
-                        sectionMenuModel.populateSectionMenu(childPage, getSolutionPageWithoutExtension());
+                        sectionMenuModel.populateSectionMenu(childPage, getSolutionPageWithoutExtension(),
+                                pseudoCategoryService, request.getResourceResolver());
                         linkBean.setNavigationConfigurationModel(sectionMenuModel);
                     }
                     megaMenuLinksList.add(linkBean);
@@ -168,7 +185,7 @@ public class HeaderModel {
      * @param childPage
      * @return title
      */
-    private String getTitle(Page childPage) {
+    private String getTitle(final Page childPage) {
         String title = childPage.getNavigationTitle();
         if(StringUtils.isBlank(title)) {
             title = childPage.getTitle();
@@ -192,15 +209,6 @@ public class HeaderModel {
      */
     public String getLogoLink() {
         return logoLink;
-    }
-
-    /**
-     * Gets the logo link target.
-     *
-     * @return the logo link target
-     */
-    public String getLogoLinkTarget() {
-        return logoLinkTarget;
     }
 
     /**
@@ -312,5 +320,46 @@ public class HeaderModel {
      */
     public MarketSelectorModel getMarketList() {
         return request.adaptTo(MarketSelectorModel.class);
+    }
+    
+  /**
+    * @return current language
+    */
+    public String getCurrentLanguage() {
+        if (null != languagePage) {
+            return languagePage.getTitle();
+        }
+        return StringUtils.EMPTY;
+    }
+   
+   /**
+    * @return current market
+    */
+    public String getCurrentMarket() {
+        if (null != marketPage) {
+            return marketPage.getTitle();
+        }
+        return StringUtils.EMPTY;
+    }
+    
+    /**
+     * @return DisplayCurrentLanguage
+     */
+    public Boolean getDisplayCurrentLanguage() {
+        Boolean isDisplayCurrentLanguage = false;
+        if (null != marketPage) {
+            Iterator<Page> childPages = marketPage.listChildren();
+            int languagesCount = 0;
+            while (childPages.hasNext()) {
+                childPages.next();
+                languagesCount++;
+                if (languagesCount >= MORE_THAN_ONE_LANGAUGES) {
+                    isDisplayCurrentLanguage = true;
+                    break;
+                }
+            }
+
+        }
+        return isDisplayCurrentLanguage;
     }
 }

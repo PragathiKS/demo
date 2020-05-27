@@ -2,8 +2,8 @@ import $ from 'jquery';
 import Navigation from './Navigation';
 
 describe('Navigation', function() {
-  this.enableTimeouts(false);
   before(function() {
+    this.enableTimeouts(false);
     $(document.body)
       .empty()
       .html(
@@ -20,6 +20,6 @@ describe('Navigation', function() {
     this.initSpy.restore();
   });
   it('should initialize', function() {
-    expect(this.initSpy.called).to.be.true;
+    expect(this.navigation.init.called).to.be.true;
   });
 });

@@ -55,25 +55,6 @@ public class ContactUsModel {
     @Default(values = "grayscale-white")
     private String pwTheme;
 
-    /** The purpose of contact text. */
-    @ValueMapValue
-    @Default(values = "Purpose of contact")
-    private String purposeOfContactText;
-
-    /** The contact info text. */
-    @ValueMapValue
-    @Default(values = "Contact information")
-    private String contactInfoText;
-
-    /** The how can we help text. */
-    @ValueMapValue
-    @Default(values = "How can I help you?")
-    private String howCanWeHelpText;
-
-    /** The summary text. */
-    @ValueMapValue
-    private String summaryText;
-
     /** The privacy policy. */
     @ValueMapValue
     private String privacyPolicy;
@@ -170,42 +151,6 @@ public class ContactUsModel {
      */
     public String getPwTheme() {
         return pwTheme;
-    }
-
-    /**
-     * Gets the purpose of contact text.
-     *
-     * @return the purpose of contact text
-     */
-    public String getPurposeOfContactText() {
-        return purposeOfContactText;
-    }
-
-    /**
-     * Gets the contact info text.
-     *
-     * @return the contact info text
-     */
-    public String getContactInfoText() {
-        return contactInfoText;
-    }
-
-    /**
-     * Gets the how can we help text.
-     *
-     * @return the how can we help text
-     */
-    public String getHowCanWeHelpText() {
-        return howCanWeHelpText;
-    }
-
-    /**
-     * Gets the summary text.
-     *
-     * @return the summary text
-     */
-    public String getSummaryText() {
-        return summaryText;
     }
 
     /**

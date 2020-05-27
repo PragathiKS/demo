@@ -14,10 +14,11 @@ class RichText {
   }
 
   trackAnalytics = e => {
+    e.preventDefault();
     const $this = $(e.target);
     const anchorText = $this.text();
     this.cache.$attributeDivId.attr('data-link-name', anchorText);
-    return true;
+    window.open($this.attr('href'), $this.attr('target'));
   };
 
   init() {

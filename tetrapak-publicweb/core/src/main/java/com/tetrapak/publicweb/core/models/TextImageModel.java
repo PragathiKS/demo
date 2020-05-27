@@ -50,10 +50,6 @@ public class TextImageModel {
     @ValueMapValue
     private String linkURL;
 
-    /** The target blank. */
-    @ValueMapValue
-    private String targetBlank;
-
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
@@ -61,10 +57,6 @@ public class TextImageModel {
     /** The pw button theme. */
     @ValueMapValue
     private String pwButtonTheme;
-
-    /** The pw link theme. */
-    @ValueMapValue
-    private String pwLinkTheme;
 
     /** The pw display. */
     @ValueMapValue
@@ -162,15 +154,6 @@ public class TextImageModel {
     }
 
     /**
-     * Gets the target blank.
-     *
-     * @return the target blank
-     */
-    public String getTargetBlank() {
-        return targetBlank;
-    }
-
-    /**
      * Gets the pw theme.
      *
      * @return the pw theme
@@ -186,15 +169,6 @@ public class TextImageModel {
      */
     public String getPwButtonTheme() {
         return pwButtonTheme;
-    }
-
-    /**
-     * Gets the pw link theme.
-     *
-     * @return the pw link theme
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
     }
 
     /**

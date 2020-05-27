@@ -1,6 +1,5 @@
-import TextVideo from './TextVideo';
 import $ from 'jquery';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import TextVideo from './TextVideo';
 import textVideoTemplate from '../../../test-templates-hbs/textVideo.hbs';
 
 describe('TextVideo', function () {
@@ -10,7 +9,7 @@ describe('TextVideo', function () {
     this.textVideo = new TextVideo({ el: document.body });
     this.initSpy = sinon.spy(this.textVideo, 'init');
     this.trackAnalyticsSpy = sinon.spy(this.textVideo, 'trackAnalytics');
-    window.digitalData = {};
+    this.openStub = sinon.stub(window, 'open');
     window._satellite = {
       track() { /* Dummy method */ }
     };
@@ -21,11 +20,12 @@ describe('TextVideo', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.trackAnalyticsSpy.restore();
+    this.openStub.restore();
   });
   it('should initialize', function () {
     expect(this.textVideo.init.called).to.be.true;
   });
-  
+
   it('should call track analytics on click', function () {
     $('.js-textVideo-analytics').trigger('click');
     expect(this.textVideo.trackAnalytics.called).to.be.true;

@@ -43,14 +43,6 @@ public class BannerModel {
     @ValueMapValue
     private String linkPath;
 
-    /** The link target. */
-    @ValueMapValue
-    private String linkTarget;
-
-    /** The pw link themes. */
-    @ValueMapValue
-    private String pwLinkTheme;
-
     /** The file reference. */
     @ValueMapValue
     private String fileReference;
@@ -143,23 +135,6 @@ public class BannerModel {
         return LinkUtils.sanitizeLink(linkPath);
     }
 
-    /**
-     * Gets the link target.
-     *
-     * @return the link target
-     */
-    public String getLinkTarget() {
-        return linkTarget;
-    }
-
-    /**
-     * Gets the pw link themes.
-     *
-     * @return the pw link themes
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
-    }
 
     /**
      * Gets the file reference.
