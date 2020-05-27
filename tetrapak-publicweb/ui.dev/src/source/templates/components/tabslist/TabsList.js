@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { isExternal } from '../../../scripts/utils/updateLink';
 import { pauseVideosByReference, initializeYoutubePlayer, removeYTReferences, ytPromise, initializeDAMPlayer } from '../../../scripts/utils/videoAnalytics';
 
 
@@ -63,7 +64,7 @@ class TabsList {
     let trackingObj = {};
     const dwnType = 'ungated';
     let eventType = 'content-load';
-    const linkType = $this.attr('target') === '_blank'?'external':'internal';
+    const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
     const buttonLinkType = $this.data('button-link-type');
@@ -71,17 +72,17 @@ class TabsList {
     const dwnDocName = $this.data('asset-name');
     const tabTitle = $this.data('tab-title');
 
-    if(buttonLinkType==='secondary' && downloadtype ==='download'){
+    if (buttonLinkType === 'secondary' && downloadtype === 'download') {
       linkParentTitle = `CTA_Download_pdf_${tabTitle}`;
       eventType = 'download';
     }
 
-    if(buttonLinkType==='link' && downloadtype ==='download'){
+    if (buttonLinkType === 'link' && downloadtype === 'download') {
       linkParentTitle = `Text hyperlink_Download_pdf_${tabTitle}`;
       eventType = 'download';
     }
 
-    if(downloadtype ==='download'){
+    if (downloadtype === 'download') {
       trackingObj = {
         linkType,
         linkSection,
@@ -94,17 +95,35 @@ class TabsList {
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
     }
 
-    if(downloadtype!=='download' && $this.attr('target')==='_blank'){
+    if (downloadtype !== 'download' && $this.attr('target') === '_blank') {
       window._satellite.track('linkClick');
     }
 
     window.open($this.attr('href'), $this.attr('target'));
   }
 
+  addLinkAttr() {
+    $('.js-tablist__event-detail-description-link').each(function () {
+      const thisHref = $(this).attr('href');
+      if (thisHref) {
+        if (isExternal(thisHref)) {
+          $(this).attr('target', '_blank');
+          $(this).data('download-type', 'download');
+          $(this).data('download-type', 'download');
+          $(this).data('link-section', $(this).data('link-section') + '_Download');
+          $(this).attr('rel', 'noopener noreferrer');
+        } else {
+          $(this).data('download-type', 'hyperlink');
+        }
+      }
+    });
+  }
+
   init() {
     this.initCache();
     this.bindEvents();
     this.renderFirstTab();
+    this.addLinkAttr();
   }
 }
 

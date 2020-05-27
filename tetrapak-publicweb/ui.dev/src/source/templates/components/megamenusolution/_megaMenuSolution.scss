@@ -15,7 +15,7 @@
         left: unset;
         width: unset;
         height: unset;
-        z-index: 11;
+        z-index: $zindex-nav;
     }
 
     &.is-open {

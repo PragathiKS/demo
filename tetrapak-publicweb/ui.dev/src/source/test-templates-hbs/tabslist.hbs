@@ -1,27 +1,27 @@
-<div id="${data.anchorId}" title="${data.anchorTitle}" class="pw-tablist collapse pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist" data-module="TabsList">
+<div id="123" title="title" class="pw-tablist collapse pw-padding--regular pw-margin--regular pw-theme--greyscale pw-tablist--row js-tablist" data-module="TabsList">
                               <button type="button" class="pw-tablist__event js-tablist__event">hello</button>
     
                               <a 
-                                 href="#"
-                                 class="tpatom-link tpatom-link--${variant || 'primary'} pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
-                                 data-custom="${customData @ context='text'}"
-                                 title="${btnTooltip}"
+                                 href="http://google.com"
+                                 class="tpatom-link tpatom-link--primary pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
+                                 data-custom="data"
+                                 title="title"
                                  target="_blank"
-                                 data-link-section="${tabContentType}${buttonLinkType}${buttonDownloadCheck}"
+                                 data-link-section="section"
                                  data-link-name="abc"
                                  data-download-type="download"
                                  data-button-link-type="secondary"
-                                 data-asset-name="${tab.assetName}"
-                                 data-video-name="${tab.videoName}"
+                                 data-asset-name="assetName"
+                                 data-video-name="videoName"
                                  data-tab-type = "textVideo"
-                                 rel="${tab.targetBlank ? 'noopener noreferrer' : ''}">
+                                 >
                                  <span class="tpatom-link__text sly-text">dasdsad</span>
-                                 <i class="icon${variant != 'transparent' ? ' icon-Chevron_Right' : ' icon-Circle_Arrow_Right'}"></i>
+                                 <i class="icon icon-Chevron_Right"></i>
                               </a>
                             <!-- </sly> -->
-                            <div data-sly-test="${tab.youtubeEmbedURL}" class="tpatom-youtube pw-tablist__media-wrapper">
-                                        <iframe title="${noval}"
-                                                class="tpatom-yt-player js-yt-player" src="${tab.youtubeEmbedURL}?enablejsapi=1" frameborder="0"
+                            <div class="tpatom-youtube pw-tablist__media-wrapper">
+                                        <iframe title="title"
+                                                class="tpatom-yt-player js-yt-player" src="https://www.youtube.com?enablejsapi=1" frameborder="0"
                                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                                 allowfullscreen></iframe>
                                       </div>    

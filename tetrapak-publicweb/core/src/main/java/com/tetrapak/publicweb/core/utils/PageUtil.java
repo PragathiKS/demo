@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
@@ -99,6 +100,6 @@ public final class PageUtil {
             langauge = PWConstants.ENGLISH_LANGUAGE_ISO_CODE;
         }
         return langauge;
-    }
+    }  
 
 }

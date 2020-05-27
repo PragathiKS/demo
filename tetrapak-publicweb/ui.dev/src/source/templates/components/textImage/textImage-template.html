@@ -10,9 +10,9 @@
           <div class="col-md-12 col-lg-6 leftPad">
             <a data-sly-test="${data.linkURL}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
               target="${data.targetBlank}"
-              data-link-section="Text & Image_${dataLinkSectionCTAText}${dataLinkSectionDownloadHyper}"
+              data-link-section="Text & Image_${dataLinkSectionCTAText}"
               data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
-              data-download-type="${data.pwLinkTheme}" data-asset-name="${data.assetName}"
+              data-asset-name="${data.assetName}"
               data-image-title="${data.title}">
               <sly data-sly-test="${!wcmmode.edit}">
                 <sly
@@ -51,9 +51,9 @@
               <a data-sly-test="${data.linkText}" href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
                 title="${data.linkText}" target="${data.targetBlank}"
-                data-link-section="Text & Image_${dataLinkSectionCTAText}${dataLinkSectionDownloadHyper}"
+                data-link-section="Text & Image_${dataLinkSectionCTAText}"
                 data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
-                data-download-type="${data.pwLinkTheme}" data-asset-name="${data.assetName}"
+                data-asset-name="${data.assetName}"
                 data-image-title="${data.title}">
                 <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}<i
                     class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>

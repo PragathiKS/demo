@@ -19,6 +19,7 @@ module.exports = function (config) {
       }
     },
     browserNoActivityTimeout: 60000,
+    browserDisconnectTolerance: 2,
     singleRun: true, //just run once by default
     port: 9876,
     colors: true,
@@ -50,10 +51,10 @@ module.exports = function (config) {
         emitWarning: (mode === 'development'), // set to `true` to not fail the test command when thresholds are not met
         // thresholds for all files
         global: {
-          statements: 80,
-          lines: 80,
-          branches: 50,
-          functions: 80
+          statements: 70,
+          lines: 70,
+          branches: 40,
+          functions: 70
         }
       }
     },
