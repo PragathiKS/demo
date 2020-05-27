@@ -15,6 +15,7 @@ describe('MegaMenuSolution', function () {
     this.handleCloseEventSpy = sinon.spy(this.megaMenu, 'handleCloseEvent');
     this.trackAnalyticsSpy = sinon.spy(this.megaMenu, 'trackAnalytics');
     this.mobileModeStub = sinon.stub(this.megaMenu, 'isMobileMode');
+    this.openStub = sinon.stub(window, 'open');
     this.mobileModeStub.returns(true);
 
     this.megaMenu.init();
@@ -25,6 +26,7 @@ describe('MegaMenuSolution', function () {
     this.handleOpenEventSpy.restore();
     this.trackAnalyticsSpy.restore();
     this.mobileModeStub.restore();
+    this.openStub.restore();
   });
   it('should initialize', function () {
     expect(this.initSpy.called).to.be.true;

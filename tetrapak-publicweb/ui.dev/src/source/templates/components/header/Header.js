@@ -74,7 +74,8 @@ class Header {
     $overlay.addClass('d-none');
   }
 
-  handleMenuClick = () => {
+  handleMenuClick = (e) => {
+    e.preventDefault();
     const { $megaMenuMobile } = this.cache;
     $megaMenuMobile.removeClass('is-close');
     $megaMenuMobile.addClass('is-open');

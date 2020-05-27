@@ -32,6 +32,7 @@ class MegaMenuSolution {
   };
 
   trackAnalytics = e => {
+    e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-navigation-Link');
     const navigationSection = $this.data('link-section');
@@ -70,6 +71,7 @@ class MegaMenuSolution {
       eventObj,
       linkClickObject
     );
+    window.open($this.attr('href'), '_self');
   };
 
   handleOpenEvent = e => {

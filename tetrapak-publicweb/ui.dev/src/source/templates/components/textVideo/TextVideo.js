@@ -78,7 +78,7 @@ class TextVideo {
     if(downloadtype!=='download' && $this.attr('target')==='_blank'){
       window._satellite.track('linkClick');
     }
-
+    
     window.open($this.attr('href'), $this.attr('target'));
   }
 

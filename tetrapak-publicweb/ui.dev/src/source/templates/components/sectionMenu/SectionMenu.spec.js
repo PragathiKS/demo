@@ -5,6 +5,7 @@ import SectionMenu from './SectionMenu';
 
 describe('SectionMenu', function() {
   before(function() {
+    this.enableTimeouts(false);
     $(document.body)
       .empty()
       .html(sectionMenuTemplate());
@@ -23,7 +24,7 @@ describe('SectionMenu', function() {
     this.handleSectionMenuItemMouseOutSpy.restore();
   });
   it('should initialize', function() {
-    expect(this.initSpy.called).to.be.true;
+    expect(this.sectionMenu.init.called).to.be.true;
   });
   it('should call handleSectionMenuItemMouseOver on mouseover', function () {
     $('.js-section-menu-navigation-Link').trigger('mouseover');

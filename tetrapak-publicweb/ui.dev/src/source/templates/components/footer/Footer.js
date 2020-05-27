@@ -23,7 +23,7 @@ class Footer {
     const $this = $target.closest('.tp-pw-footer-data-analytics');
     const targetLink = $this.attr('target');
     const url = $this.attr('href');
-    
+
     if(targetLink === '_blank'){
       window._satellite.track('linkClick');
     }
@@ -32,7 +32,8 @@ class Footer {
       window.open(url, targetLink);
     }
   }
-  goToTop() {
+  goToTop(e) {
+    e.preventDefault();
     $global.animate({ scrollTop: 0 }, 700);
     return false;
   }
