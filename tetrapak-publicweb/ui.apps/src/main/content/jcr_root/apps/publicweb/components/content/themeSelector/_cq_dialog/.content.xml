@@ -67,6 +67,27 @@
                                         value="download"/>
                                 </items>
                             </pwLinkThemes>
+                            <pwImageBackground
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Image background"
+                                name="./pwImgBackground">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Default"
+                                        value=""/>
+                                    <white
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Grayscale - White"
+                                        value="bg-white"/>
+                                    <gray
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Grayscale - Lighter"
+                                        value="bg-gray"/>
+                                </items>
+                            </pwImageBackground>
                             <padding
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/select"
