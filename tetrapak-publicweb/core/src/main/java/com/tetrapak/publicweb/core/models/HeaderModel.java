@@ -71,6 +71,15 @@ public class HeaderModel {
 
     /** The solution page title. */
     private String solutionPageTitle;
+    
+    /** The market page. */
+    private Page marketPage;
+    
+    /** The language page. */
+    private Page languagePage;
+    
+    /** The MORE_THAN_ONE_LANGAUGES. */
+    private static final int MORE_THAN_ONE_LANGAUGES = 2;
 
     /**
      * Inits the.
@@ -79,6 +88,10 @@ public class HeaderModel {
     protected void init() {
         LOGGER.debug("inside init method");
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        languagePage = PageUtil.getCurrentPage(request.getResourceResolver().getResource(rootPath));
+        if(languagePage != null && languagePage.getParent() != null) {
+            marketPage = languagePage.getParent();
+        }
         final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
         final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(headerConfigurationResource)) {
@@ -305,25 +318,40 @@ public class HeaderModel {
   /**
     * @return current language
     */
-   public String getCurrentLanguage() {
-       final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
-       final Resource languageResource = request.getResourceResolver().getResource(languagePath);
-       if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))) {
-           return PageUtil.getCurrentPage(languageResource).getTitle();
-       }
-       return StringUtils.EMPTY;
-   }
+    public String getCurrentLanguage() {
+        if (null != languagePage) {
+            return languagePage.getTitle();
+        }
+        return StringUtils.EMPTY;
+    }
    
    /**
     * @return current market
     */
-   public String getCurrentMarket() {
-       final String languagePath = LinkUtils.getRootPath(request.getPathInfo());
-       final Resource languageResource = request.getResourceResolver().getResource(languagePath);
-       if (null != languageResource && Objects.nonNull(PageUtil.getCurrentPage(languageResource))
-               && Objects.nonNull(PageUtil.getCurrentPage(languageResource).getParent())) {
-           return PageUtil.getCurrentPage(languageResource).getParent().getTitle();
-       }
-       return StringUtils.EMPTY;
-   }
+    public String getCurrentMarket() {
+        if (null != marketPage) {
+            return marketPage.getTitle();
+        }
+        return StringUtils.EMPTY;
+    }
+    
+    /**
+     * @return DisplayCurrentLanguage
+     */
+    public Boolean getDisplayCurrentLanguage() {
+        Boolean isDisplayCurrentLanguage = false;
+        if (null != marketPage) {
+            Iterator<Page> childPages = marketPage.listChildren();
+            int languagesCount = 0;
+            while (childPages.hasNext()) {
+                languagesCount++;
+                if (languagesCount >= MORE_THAN_ONE_LANGAUGES) {
+                    isDisplayCurrentLanguage = true;
+                    break;
+                }
+            }
+
+        }
+        return isDisplayCurrentLanguage;
+    }
 }
