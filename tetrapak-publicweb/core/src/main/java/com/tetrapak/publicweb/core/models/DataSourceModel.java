@@ -19,6 +19,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +50,10 @@ public class DataSourceModel {
     @PostConstruct
     protected void init() {
         final Map<String, String> pseudoCategories = pseudoCategoryService.fetchPseudoCategories(resourceResolver);
-        final DataSource dataSource = new SimpleDataSource(getResourceList(pseudoCategories).iterator());
+        final Map<String, String> pseudoCategoriesMap = new LinkedHashMap<>();
+        pseudoCategoriesMap.put("Select", "");
+        pseudoCategoriesMap.putAll(pseudoCategories);
+        final DataSource dataSource = new SimpleDataSource(getResourceList(pseudoCategoriesMap).iterator());
         request.setAttribute(DataSource.class.getName(), dataSource);
     }
 
