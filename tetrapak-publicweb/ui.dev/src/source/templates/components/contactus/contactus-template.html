@@ -10,7 +10,7 @@
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator" auto_locator="contactUsLeftContainerStep1">
                                 <div class="row no-gutters">
-                                    <div class="col-sm-12 main-heading"
+                                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
                                         auto_locator="contactUsLeftContainerHeadingTextStep1">
                                         <sly data-sly-test="${data.heading}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -18,7 +18,7 @@
                                     </div>
                                 </div>
                                 <div class="row no-gutters">
-                                    <div class="col-lg-6 pw-image-container" auto_locator="contactUsImageStep1">
+                                    <div class="col-lg-6 pw-image-container" data-sly-test="${data.image}" auto_locator="contactUsImageStep1">
                                         <sly data-sly-test="${!wcmmode.edit}">
                                             <sly data-sly-test="${data.image}"
                                                 data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -29,7 +29,7 @@
                                                 class="image img-responsive" />
                                         </sly>
                                     </div>
-                                    <div class="col-lg-6" auto_locator="contactUsLeftContainerTextAreaStep1">
+                                    <div class="descriptionCont ${data.image ? 'col-lg-6' : 'col-lg-12'}" auto_locator="contactUsLeftContainerTextAreaStep1">
                                         ${data.descriptionText @ context="html"}
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator">
                                 <div class="row no-gutters">
-                                    <div class="col-sm-12 main-heading"
+                                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
                                         auto_locator="contactUsLeftContainerHeadingStep2">
                                         <sly data-sly-test="${data.heading}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -182,7 +182,7 @@
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator">
                                 <div class="row no-gutters">
-                                    <div class="col-sm-12 main-heading"
+                                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
                                         auto_locator="contactUsLeftContainerHeadingTextStep3">
                                         <sly data-sly-test="${data.heading}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
