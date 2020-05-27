@@ -5,6 +5,7 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 /**
  * The Class HeaderModel.
@@ -38,6 +40,10 @@ public class HeaderModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+
+    /** The pseudo category service. */
+    @Inject
+    private PseudoCategoryService pseudoCategoryService;
 
     /** The logo image path. */
     private String logoImagePath;
@@ -158,14 +164,15 @@ public class HeaderModel {
                 final Page childPage = childPages.next();
                 if (!childPage.isHideInNav()) {
                     final LinkBean linkBean = new LinkBean();
-                    String title = getTitle(childPage);
+                    final String title = getTitle(childPage);
                     linkBean.setLinkText(title);
                     linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
                     if (!childPage.getPath().equalsIgnoreCase(getSolutionPageWithoutExtension())) {
                         final SectionMenuModel sectionMenuModel = new SectionMenuModel();
                         sectionMenuModel.setSectionHomePageTitle(childPage);
                         sectionMenuModel.setSectionHomePagePath(childPage);
-                        sectionMenuModel.populateSectionMenu(childPage, getSolutionPageWithoutExtension());
+                        sectionMenuModel.populateSectionMenu(childPage, getSolutionPageWithoutExtension(),
+                                pseudoCategoryService, request.getResourceResolver());
                         linkBean.setNavigationConfigurationModel(sectionMenuModel);
                     }
                     megaMenuLinksList.add(linkBean);
@@ -178,7 +185,7 @@ public class HeaderModel {
      * @param childPage
      * @return title
      */
-    private String getTitle(Page childPage) {
+    private String getTitle(final Page childPage) {
         String title = childPage.getNavigationTitle();
         if(StringUtils.isBlank(title)) {
             title = childPage.getTitle();
