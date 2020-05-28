@@ -58,6 +58,9 @@ public class PXPPackageTypesModel {
     @Default(values = "grayscale-white")
     private String pwTheme;
 
+    @ValueMapValue
+    private String pwImgBackground;
+
     /** The teaser list. */
     private final List<ManualModel> teaserList = new ArrayList<>();
 
@@ -144,6 +147,15 @@ public class PXPPackageTypesModel {
      */
     public String getPwTheme() {
         return pwTheme;
+    }
+
+    /**
+     * Gets the card style.
+     *
+     * @return the card style
+     */
+    public String getPwImgBackground() {
+        return pwImgBackground;
     }
 
     /**

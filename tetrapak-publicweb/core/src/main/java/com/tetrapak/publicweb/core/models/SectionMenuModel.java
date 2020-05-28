@@ -12,7 +12,7 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
-import org.apache.commons.collections.MapUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -212,17 +212,37 @@ public class SectionMenuModel {
 
         final SubSectionMenuBean subSectionMenuBean = new SubSectionMenuBean();
         if (page.getPath().contains(path)) {
-            if (MapUtils.isNotEmpty(pseudoCategoryMap)) {
-                subSectionMenuBean.setPseudoCategoriesSection(populatePseudoSection(pseudoCategoryMap));
-            } else {
+            if (isPseudoCategoryMapEmpty(pseudoCategoryMap)) {
                 subSectionMenuBean.setSubSections(subSections);
                 subSectionMenuBean.setSubSectionCount(subSections.size());
+            } else {
+                final List<PseudoCategoriesSectionBean> pseudoSection = populatePseudoSection(pseudoCategoryMap);
+                subSectionMenuBean.setPseudoCategoriesSection(pseudoSection);
             }
         } else {
             subSectionMenuBean.setSubSections(subSections);
             subSectionMenuBean.setSubSectionCount(subSections.size());
         }
         return subSectionMenuBean;
+    }
+
+    /**
+     * Checks if pseudo category map is empty.
+     *
+     * @param pseudoCategoryMap the pseudo category map
+     * @return true, if is pseudo category map empty
+     */
+    private boolean isPseudoCategoryMapEmpty(final Map<String, List<String>> pseudoCategoryMap) {
+        boolean isEmpty = false;
+        for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
+            if (entrySet.getValue().size() == 0) {
+                isEmpty = true;
+            } else {
+                isEmpty = false;
+                break;
+            }
+        }
+        return isEmpty;
     }
 
     /**
@@ -283,13 +303,15 @@ public class SectionMenuModel {
         final List<PseudoCategoriesSectionBean> pseudoSection = new ArrayList<>();
 
         for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
-            final PseudoCategoriesSectionBean pseudoCategoriesSectionBean = new PseudoCategoriesSectionBean();
-            pseudoCategoriesSectionBean.setTitle(entrySet.getKey());
+            if (CollectionUtils.isNotEmpty(entrySet.getValue())) {
+                final PseudoCategoriesSectionBean pseudoCategoriesSectionBean = new PseudoCategoriesSectionBean();
+                pseudoCategoriesSectionBean.setTitle(entrySet.getKey());
 
-            final List<SubSectionBean> subSectionList = getSubSectionList(entrySet.getValue());
-            pseudoCategoriesSectionBean.setSubSections(subSectionList);
-            pseudoCategoriesSectionBean.setSubSectionCount(subSectionList.size());
-            pseudoSection.add(pseudoCategoriesSectionBean);
+                final List<SubSectionBean> subSectionList = getSubSectionList(entrySet.getValue());
+                pseudoCategoriesSectionBean.setSubSections(subSectionList);
+                pseudoCategoriesSectionBean.setSubSectionCount(subSectionList.size());
+                pseudoSection.add(pseudoCategoriesSectionBean);
+            }
         }
         return pseudoSection;
     }

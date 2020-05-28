@@ -40,8 +40,8 @@
         cursor: pointer;
 
         &:hover {
-            @extend %btn-colors-hover;
-            background: none;
+            color: $color-jordy-blue;
+            background-color: transparent;
         }
         & > .icon {
             @include padding-left(6px);
@@ -165,14 +165,12 @@
 
     ul ul ul {
         li {
+            @include font-size(12px);
+            @include padding-bottom(8px);
             &::before {
                 content: '\2012';
                 font-weight: 500;
             }
-        }
-        li {
-            @include font-size(12px);
-            @include padding-bottom(8px);
         }
     }
 

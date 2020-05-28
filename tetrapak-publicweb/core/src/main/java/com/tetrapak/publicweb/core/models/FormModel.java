@@ -46,10 +46,6 @@ public class FormModel {
     @Default(values = "grayscale-white")
     private String pwTheme;
 
-    /** The summary text. */
-    @ValueMapValue
-    private String summaryText;
-
     /** The privacy policy. */
     @ValueMapValue
     private String privacyPolicy;
@@ -73,14 +69,6 @@ public class FormModel {
     /** The thankyou description text. */
     @ValueMapValue
     private String thankyouDescriptionText;
-
-    /** The purpose of contact text. */
-    @ValueMapValue
-    private String purposeOfContactText;
-
-    /** The contact info text. */
-    @ValueMapValue
-    private String contactInfoText;
 
     /** The api url. */
     @ValueMapValue
@@ -149,14 +137,6 @@ public class FormModel {
         return pwTheme;
     }
 
-    /**
-     * Gets the summary text.
-     *
-     * @return the summary text
-     */
-    public String getSummaryText() {
-        return summaryText;
-    }
 
     /**
      * Gets the privacy policy.
@@ -212,23 +192,6 @@ public class FormModel {
         return thankyouDescriptionText;
     }
 
-    /**
-     * Gets the purpose of contact text.
-     *
-     * @return the purpose of contact text
-     */
-    public String getPurposeOfContactText() {
-        return purposeOfContactText;
-    }
-
-    /**
-     * Gets the contact info text.
-     *
-     * @return the contact info text
-     */
-    public String getContactInfoText() {
-        return contactInfoText;
-    }
 
     /**
      * Gets the api url.

@@ -9,7 +9,6 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.beans.DropdownOption;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
@@ -24,10 +23,6 @@ public class ContactUsModel extends FormModel {
     /** The resource. */
     @Self
     private Resource resource;
-
-    /** The how can we help text. */
-    @ValueMapValue
-    private String howCanWeHelpText;
 
     /** The country options. */
     private List<DropdownOption> countryOptions;
@@ -53,14 +48,6 @@ public class ContactUsModel extends FormModel {
         return countryOptions;
     }
 
-    /**
-     * Gets the how can we help text.
-     *
-     * @return the how can we help text
-     */
-    public String getHowCanWeHelpText() {
-        return howCanWeHelpText;
-    }
 
     /**
      * Fetches country list from content fragments.

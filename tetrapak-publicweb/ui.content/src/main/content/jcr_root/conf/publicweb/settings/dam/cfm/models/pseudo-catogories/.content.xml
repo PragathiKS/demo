@@ -60,8 +60,9 @@
                             name="pseudoCateoryOrder"
                             renderReadOnly="false"
                             showEmptyInReadOnly="true"
-                            step="any"
-                            valueType="double"/>
+                            step="1"
+                            typeHint="long"
+                            valueType="long"/>
                     </items>
                 </content>
             </cq:dialog>

@@ -17,13 +17,14 @@
     }
     }
     &__zero {
-        @include padding(0);
+        @include padding($padding-zero $padding-md);
         max-width: 100%;
         margin: 0 auto;
         height: auto;
 
         @media #{$desktop} {
             @include max-width($body-max-width);
+            @include padding($padding-zero $padding-xxxl);
             margin: 0 auto;
     }
     }

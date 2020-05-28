@@ -12,6 +12,6 @@ describe('Error Page', function () {
     this.initSpy.restore();
   });
   it('should initialize', function () {
-    expect(this.initSpy.called).to.be.true;
+    expect(this.errorPage.init.called).to.be.true;
   });
 });

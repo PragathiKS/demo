@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
 class Image {
   constructor({ el }) {
     this.root = $(el);
@@ -17,6 +19,20 @@ class Image {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-image');
+    const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
+
+    const trackingObj = {
+      linkType,
+      linkName: 'not available',
+      linkSection: 'ImageClick',
+      linkParentTitle: ''
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'image'
+    };
+
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     window.open($this.attr('href'), '_self');
   }
 

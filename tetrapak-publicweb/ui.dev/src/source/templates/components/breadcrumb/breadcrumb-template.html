@@ -3,10 +3,10 @@
     <sly data-sly-test="${data.breadcrumbSubpages}">
         <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
             <div class="tp_pw-breadcrumb__wrapper">
-            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" data-link-section="BCMB_${currentPage.title}" data-link-name="${data.homeLabel}" href="${data.homePagePath}">${data.homeLabel}</a>
+            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.homePagePath}">${data.homeLabel}</a>
             <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
 <sly data-sly-test="${!subpagesList.last}">
-            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" data-link-section="BCMB_${currentPage.title}" data-link-name="${subpages}" href="${data.breadcrumbSubpages[subpages]}"><i class="icon-Arrow_Right_pw tp_icon"></i>${subpages}</a>
+            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.breadcrumbSubpages[subpages]}"><i class="icon-Arrow_Right_pw tp_icon"></i>${subpages}</a>
 </sly>
             <sly data-sly-test="${subpagesList.last}">
             <i class="icon-Arrow_Right_pw tp_icon"></i> <span>${subpages}</span>

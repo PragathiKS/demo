@@ -74,7 +74,6 @@
         span {
             @include margin($margin-md);
             @include line-height(24px, 14px);
-            color: $color-congress-blue;
             font-weight: 500;
         }
         i.icon {

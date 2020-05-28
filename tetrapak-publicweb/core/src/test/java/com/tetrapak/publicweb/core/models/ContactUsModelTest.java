@@ -86,7 +86,6 @@ public class ContactUsModelTest {
      */
     @Test
     public void testDailogValues() throws Exception {
-        assertEquals("ContactUs", "Contact info", model.getContactInfoText());
         assertEquals("ContactUs", "Contact us", model.getHeading());
         assertEquals("ContactUs", "title", model.getAnchorTitle());
         assertEquals("ContactUs", "test01", model.getAnchorId());
@@ -100,9 +99,6 @@ public class ContactUsModelTest {
         assertEquals("ContactUs", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getImage());
         assertEquals("ContactUs", "Contact us", model.getAlt());
         assertEquals("ContactUs", "Please select the countryyou wish to contact.", model.getDescriptionText());
-        assertEquals("ContactUs", "Purpose of contact", model.getPurposeOfContactText());
-        assertEquals("ContactUs", "How can we help you?", model.getHowCanWeHelpText());
-        assertEquals("ContactUs", "Summary", model.getSummaryText());
         assertEquals("ContactUs", "grayscale-white", model.getPwTheme());
         assertEquals("ContactUs", "/content/tetrapak/publicweb/lang-master/en/contactus/jcr:content/contactus.sendmail.json", model.getServletPath());
     }
