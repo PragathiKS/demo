@@ -71,7 +71,7 @@
                   </sly>
                   <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
                     <div class="x-img-responsive">
-                          <a data-sly-test="${tab.linkURL}"  
+                          <a data-sly-test="${tab.linkURL && tab.linkURL!='#'}"  
                           href="${tab.linkURL ? tab.linkURL : '#'}"
                           class="img-link js-tablist__event-detail-description-link"
                           data-custom="${customData @ context='text'}"
@@ -89,7 +89,7 @@
                         <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
                       </sly>
                       </a>
-                      <span data-sly-test="${!tab.linkURL}">
+                      <span data-sly-test="${!tab.linkURL || tab.linkURL=='#'}">
                       <sly data-sly-test="${!wcmmode.edit}">
                         <sly
                           data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"

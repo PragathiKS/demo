@@ -8,7 +8,7 @@
       <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay}">
         <div class="row">
           <div class="col-md-12 col-lg-6 leftPad">
-            <a data-sly-test="${data.linkURL}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
+            <a data-sly-test="${data.linkURL && data.linkURL!='#'}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
               target="${data.targetBlank}"
               data-link-section="Text & Image_${dataLinkSectionCTAText}"
               data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
@@ -23,7 +23,7 @@
                 <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
               </sly>
             </a>
-            <span data-sly-test="${!data.linkURL}">
+            <span data-sly-test="${!data.linkURL  || data.linkURL=='#'}">
               <sly data-sly-test="${!wcmmode.edit}">
                 <sly
                   data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
