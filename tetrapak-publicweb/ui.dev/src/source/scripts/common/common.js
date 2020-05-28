@@ -282,3 +282,13 @@ export const loc = {
     window.open(...args);
   }
 };
+
+export const getDocType = (url) => {
+  const fileList = ['pdf', 'xls', 'xlsx', 'doc', 'docx', 'ppt', 'pttx', 'jpeg', 'png', 'jpg', 'svg'];
+  const endPart = url && url.split('/').pop();
+  const docType = endPart.split('.').pop();
+
+  if(fileList.includes(docType)){
+    return docType;
+  }
+};

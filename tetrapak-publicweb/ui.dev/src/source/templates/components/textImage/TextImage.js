@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { isExternal } from '../../../scripts/utils/updateLink';
+import { isExternal, isDownloable } from '../../../scripts/utils/updateLink';
+import { getDocType } from '../../../scripts/common/common';
 
 class TextImage {
   constructor({ el }) {
@@ -20,74 +21,21 @@ class TextImage {
       if (thisHref) {
         if (isExternal(thisHref)) {
           $(this).attr('target', '_blank');
+        }
+        if (isDownloable(thisHref)) {
+          $(this).attr('target', '_blank');
           $(this).data('download-type', 'download');
-          $(this).data(
-            'link-section',
-            `${$(this).data('link-section')}_Download`
-          );
-        } else {
-          $(this).data('download-type', 'hyperlink');
         }
       }
     });
   }
 
-  trackAnalytics123 = e => {
-    e.preventDefault();
-    const $target = $(e.target);
-    const $this = $target.closest('.js-textImage-analytics');
-
-    let linkParentTitle = '';
-    let trackingObj = {};
-    const dwnType = 'ungated';
-    const eventType = 'download';
-    const linkType =
-      $this.attr('target') === '_blank' ? 'external' : 'internal';
-    const linkSection = $this.data('link-section');
-    const linkName = $this.data('link-name');
-    const buttonLinkType = $this.data('button-link-type');
-    const downloadtype = $this.data('download-type');
-    const dwnDocName = $this.data('asset-name');
-    const imageTitle = $this.data('image-title');
-
-    if (buttonLinkType === 'secondary' && downloadtype === 'download') {
-      linkParentTitle = `CTA_Download_pdf_${imageTitle}`;
-    }
-
-    if (buttonLinkType === 'link' && downloadtype === 'download') {
-      linkParentTitle = `Text Hyperlink_Download_pdf_${imageTitle}`;
-    }
-
-    if (downloadtype === 'download') {
-      trackingObj = {
-        linkType,
-        linkSection,
-        linkParentTitle,
-        linkName,
-        dwnDocName,
-        dwnType,
-        eventType
-      };
-      trackAnalytics(
-        trackingObj,
-        'linkClick',
-        'downloadClick',
-        undefined,
-        false
-      );
-    }
-
-    if (downloadtype !== 'download' && $this.attr('target') === '_blank') {
-      window._satellite.track('linkClick');
-    }
-
-    // window.open($this.attr('href'), $this.attr('target'));
-  };
   trackAnalytics = e => {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-textImage-analytics');
     const downloadtype = $this.data('download-type');
+    let trackingKey = 'linkClick';
     let linkParentTitle = `${$this.data('anchor-type')}_${$this.data(
       'image-title'
     )}`;
@@ -96,37 +44,42 @@ class TextImage {
     const linkType =
       $this.attr('target') === '_blank' ? 'external' : 'internal';
 
-    const event = {
-      eventType: 'linkClick',
-      event: 'Text & Image'
-    };
-
-    const trackingObj = {
-      linkType,
-      linkSection,
-      linkParentTitle,
-      linkName
-    };
+    const trackingObj = {};
+    let eventObject = null;
 
     if (downloadtype === 'download') {
       trackingObj['dwnDocName'] = $this.data('asset-name');
       linkSection = `${$this.data('anchor-type')}_Download`;
-      linkParentTitle = `${$this.data('anchor-type')}_Download_pdf_${$this.data(
-        'image-title'
-      )}`;
+      linkParentTitle = `${$this.data('anchor-type')}_Download_${getDocType(
+        $this.attr('href')
+      )}_${$this.data('image-title')}`;
       trackingObj['eventType'] = 'download';
+      trackingObj['dwnType'] = 'ungated';
+      trackingKey = 'downloadClick';
     }
+
+    if (downloadtype !== 'download') {
+      eventObject = {
+        eventType: 'linkClick',
+        event: 'Text & Image'
+      };
+    }
+
+    trackingObj['linkSection'] = linkSection;
+    trackingObj['linkName'] = linkName;
+    trackingObj['linkParentTitle'] = linkParentTitle;
+    trackingObj['linkType'] = linkType;
 
     trackAnalytics(
       trackingObj,
       'linkClick',
-      'downloadClick',
+      trackingKey,
       undefined,
       false,
-      event
+      eventObject
     );
 
-    // window.open($this.attr('href'), $this.attr('target'));
+    window.open($this.attr('href'), $this.attr('target'));
   };
 
   init() {
