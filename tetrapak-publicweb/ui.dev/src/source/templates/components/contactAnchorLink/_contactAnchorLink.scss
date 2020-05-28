@@ -6,7 +6,7 @@
     opacity: 1;
     pointer-events: visible;
     transition: opacity 0.3s ease;
-    .icon-Contact_Floater_pw::before {
+    .icon-FloaterEnvolope_pw::before {
         @include font-size($font-l);
     }
     &:hover {
