@@ -60,9 +60,13 @@ class ContactUs {
     }).done(
       (response) => {
         if (response.statusCode === '200') {
+          const offsetContact = $('#pw-contactUs').offset();
           $('.tab-pane', this.root).removeClass('active');
           $('#cf-step-final', this.root).addClass('active');
           $('.serviceError').removeClass('d-block');
+          $('html, body').animate({
+            scrollTop: offsetContact.top - 50
+          });
         } else {
           $('.serviceError').addClass('d-block');
         }
