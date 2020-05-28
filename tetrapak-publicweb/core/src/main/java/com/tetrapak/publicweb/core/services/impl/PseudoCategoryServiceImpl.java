@@ -92,7 +92,7 @@ public class PseudoCategoryServiceImpl implements PseudoCategoryService {
         cfBean.setPseudoCategoryKey(valueMap.get("pseudoCateoryKey", StringUtils.EMPTY));
         cfBean.setPseudoCategoryValue(valueMap.get("pseudoCateoryValue", StringUtils.EMPTY));
         if (valueMap.containsKey("pseudoCateoryOrder")) {
-            cfBean.setPseudoCategoryOrder(((Double) valueMap.get("pseudoCateoryOrder")).intValue());
+            cfBean.setPseudoCategoryOrder(((Long) valueMap.get("pseudoCateoryOrder")).intValue());
         }
         return cfBean;
     }
