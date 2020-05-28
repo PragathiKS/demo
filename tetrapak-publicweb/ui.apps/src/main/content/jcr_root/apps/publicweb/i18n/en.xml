@@ -145,7 +145,7 @@
    <summary
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="emailformaterror"
+        sling:key="summary"
         sling:message="Summary"/>
    <howcanihelp
         jcr:mixinTypes="[sling:Message]"

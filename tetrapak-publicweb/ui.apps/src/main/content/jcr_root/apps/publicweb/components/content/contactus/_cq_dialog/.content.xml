@@ -92,7 +92,6 @@
                              <privacypolicytext
                                  jcr:primaryType="nt:unstructured"
                                  sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                 fieldDescription="Suggested to use characters less than recommended Limit: 260 chars considering translations"
                                  fieldLabel="Privacy policy text"
                                  name="./privacyPolicy"
                                  useFixedInlineToolbar="{Boolean}true">
