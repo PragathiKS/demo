@@ -93,9 +93,9 @@
                                 <div auto_locator="contactUsLeftContainerSummaryAreaStep2">
                                     <div class="row no-gutters">
                                         <div class="col-sm-12">
-                                            <sly data-sly-test="${data.summaryText}"
+                                            <sly data-sly-test="${'summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText=data.summaryText, variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='summary', variant='small'}" />
                                         </div>
                                     </div>
                                     <div class="row no-gutters summary">
@@ -108,7 +108,7 @@
                                 <div class="tab-content tab-content-steps">
                                     <div class="row no-gutters">
                                         <div class="col-sm-12 right-heading" auto_locator="contactUsRightContainerHeadingTextStep2">
-                                            <sly data-sly-test="${data.contactInfoText}"
+                                            <sly
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='contactinformation', variant='small'}" />
                                         </div>
@@ -191,7 +191,7 @@
                                 </div>
                                 <div auto_locator="contactUsLeftContainerSummaryAreaStep2">
                                     <div class="row no-gutters">
-                                        <div data-sly-test="${data.summaryText}" class="col-sm-12">
+                                        <div data-sly-test="${'summary' @i18n}" class="col-sm-12">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='summary', variant='small'}" />
                                         </div>
@@ -223,7 +223,7 @@
                                     <div class="serviceError">${'serviceerrormsg' @i18n}</div>
                                     <div class="row">
                                         <div class="col-sm-12 right-heading" auto_locator="contactUsRightContainerHeadingTextStep3">
-                                            <sly data-sly-test="${data.howCanWeHelpText}"
+                                            <sly
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='howcanihelp', variant='small'}" />
                                         </div>
