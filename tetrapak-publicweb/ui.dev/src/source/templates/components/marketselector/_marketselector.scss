@@ -66,8 +66,10 @@
                 color: $color-jordy-blue;
             }
         }
-        &:last-child {
-            @include padding-bottom($padding-l);
+        @media #{$desktop} {
+            &:last-child {
+                @include padding-bottom($padding-l);
+        }
         }
 
     }
