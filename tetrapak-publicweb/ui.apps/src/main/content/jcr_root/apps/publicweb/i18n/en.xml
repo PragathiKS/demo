@@ -102,6 +102,11 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="phoneplaceholder"
         sling:message="Country code and Number"/>
+  <phoneerror
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="phoneerror"
+        sling:message="Please write numbers"/>
    <company
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
@@ -130,7 +135,7 @@
    <requestaquote
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="requestAQuote"
+        sling:key="requestaquote"
         sling:message="Request a quote"/>
    <requestforproductinfo
         jcr:mixinTypes="[sling:Message]"
