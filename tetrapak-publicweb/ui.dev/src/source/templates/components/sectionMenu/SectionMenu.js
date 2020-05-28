@@ -35,7 +35,7 @@ class SectionMenu {
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
     $this.children('.js-sub-menu-navigation-Link').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true');
-    $sectionMenuItemAnchor.children('.with-arrow').addClass('icon-Chevron_Up').removeClass('icon-Chevron_Down');
+    $sectionMenuItemAnchor.children('.with-arrow').addClass('icon-up');
 
     /* check modal view port position */
     const modalPoints =$this.children('.js-sub-menu-navigation-Link')[0] && $this.children('.js-sub-menu-navigation-Link')[0].getBoundingClientRect();
@@ -51,7 +51,7 @@ class SectionMenu {
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
     $this.children('.js-sub-menu-navigation-Link').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
-    $sectionMenuItemAnchor.children('.with-arrow').addClass('icon-Chevron_Down').removeClass('icon-Chevron_Up');
+    $sectionMenuItemAnchor.children('.with-arrow').removeClass('icon-up');
   }
 
   init() {
