@@ -91,7 +91,7 @@ class Banner {
   addBannerLink() {
     const $bEl = $('.pw-banner');
     $bEl.each(function () {
-      const $anchor = $(this).data('href');
+      const $anchor = $bEl.data('href');
       if ($anchor && $anchor !== '#') {
         $(this).find('.pw-banner__image-wrapper').css('cursor', 'pointer');
       }
@@ -99,8 +99,8 @@ class Banner {
 
 
     $bEl.click((e) => {
-      const $anchor = $(this).data('href');
-      if ($anchor && $anchor !== '#') {
+      const $anchor = $bEl.data('href');
+      if (!($anchor && $anchor !== '#')) {
         return false;
       }
       if ($(e.target).closest('.pw-banner__contentwrapper').length) {
