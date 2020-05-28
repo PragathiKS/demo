@@ -15,13 +15,16 @@ class TextImage {
   }
 
   addLinkAttr() {
-    $('.js-textImage-analytics').each(function () {
+    $('.js-textImage-analytics').each(function() {
       const thisHref = $(this).attr('href');
       if (thisHref) {
         if (isExternal(thisHref)) {
           $(this).attr('target', '_blank');
           $(this).data('download-type', 'download');
-          $(this).data('link-section', $(this).data('link-section') + '_Download');
+          $(this).data(
+            'link-section',
+            `${$(this).data('link-section')}_Download`
+          );
         } else {
           $(this).data('download-type', 'hyperlink');
         }
@@ -29,8 +32,7 @@ class TextImage {
     });
   }
 
-
-  trackAnalytics = (e) => {
+  trackAnalytics123 = e => {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-textImage-analytics');
@@ -39,7 +41,8 @@ class TextImage {
     let trackingObj = {};
     const dwnType = 'ungated';
     const eventType = 'download';
-    const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
+    const linkType =
+      $this.attr('target') === '_blank' ? 'external' : 'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
     const buttonLinkType = $this.data('button-link-type');
@@ -65,15 +68,66 @@ class TextImage {
         dwnType,
         eventType
       };
-      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
+      trackAnalytics(
+        trackingObj,
+        'linkClick',
+        'downloadClick',
+        undefined,
+        false
+      );
     }
 
     if (downloadtype !== 'download' && $this.attr('target') === '_blank') {
       window._satellite.track('linkClick');
     }
 
-    window.open($this.attr('href'), $this.attr('target'));
-  }
+    // window.open($this.attr('href'), $this.attr('target'));
+  };
+  trackAnalytics = e => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-textImage-analytics');
+    const downloadtype = $this.data('download-type');
+    let linkParentTitle = `${$this.data('anchor-type')}_${$this.data(
+      'image-title'
+    )}`;
+    let linkSection = $this.data('link-section');
+    const linkName = $this.data('link-name');
+    const linkType =
+      $this.attr('target') === '_blank' ? 'external' : 'internal';
+
+    const event = {
+      eventType: 'linkClick',
+      event: 'Text & Image'
+    };
+
+    const trackingObj = {
+      linkType,
+      linkSection,
+      linkParentTitle,
+      linkName
+    };
+
+    if (downloadtype === 'download') {
+      trackingObj['dwnDocName'] = $this.data('asset-name');
+      linkSection = `${$this.data('anchor-type')}_Download`;
+      linkParentTitle = `${$this.data('anchor-type')}_Download_pdf_${$this.data(
+        'image-title'
+      )}`;
+      trackingObj['eventType'] = 'download';
+    }
+
+    trackAnalytics(
+      trackingObj,
+      'linkClick',
+      'downloadClick',
+      undefined,
+      false,
+      event
+    );
+
+    // window.open($this.attr('href'), $this.attr('target'));
+  };
 
   init() {
     this.initCache();
