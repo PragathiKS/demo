@@ -20,14 +20,7 @@
       </sly>
       <sly data-sly-test="${wcmmode.edit}">
         <div class="pw-banner__image-wrapper">
-          <a data-sly-test="${data.linkPath}" href="${data.linkPath}" class="img-link js-banner-analytics"
-            target="${data.linkTarget ? '_blank' : ''}" rel="${data.linkTarget ? 'noopener noreferrer' : ''}"
-            data-asset-name="${data.assetName}" data-link-section="Hero Image_${dataLinkSectionCTAText}"
-            data-button-link-type="${data.pwButtonTheme}" data-download-type="${data.pwLinkTheme}"
-            data-link-type="internal" data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}">
-            <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
-          </a>
-          <img data-sly-test="${!data.linkPath}" src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
+          <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
         </div>
       </sly>
       <sly data-sly-test="${data.bannerType == 'hero'}">

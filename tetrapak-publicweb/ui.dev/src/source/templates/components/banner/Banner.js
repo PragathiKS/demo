@@ -2,7 +2,6 @@ import $ from 'jquery';
 import { isExternal } from '../../../scripts/utils/updateLink';
 import { isDesktopMode } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-
 class Banner {
   constructor({ el }) {
     this.root = $(el);
@@ -92,12 +91,16 @@ class Banner {
   addBannerLink() {
     const $bEl = $('.pw-banner');
     const $anchor = $('.pw-banner').data('href');
-    if ($anchor) {
+    if ($anchor && $anchor!=='#') {
       $bEl.click((e) => {
         if($(e.target).closest('.pw-banner__contentwrapper').length) {
           return true;
         }
-        window.location.href = $anchor;
+        if(isExternal($anchor)){
+          window.open($anchor,'_blank');
+        } else {
+          window.location.href = $anchor;
+        }
       });
     }
   }
