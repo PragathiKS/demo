@@ -1,15 +1,13 @@
 .pw-contactAnchorLink {
+    @include padding(18px 20px);
     color: $color-white;
     background-color: $color-congress-blue;
-    font-size: 14px;
-    padding: 8px 12px;
     border-radius: 100%;
     opacity: 1;
     pointer-events: visible;
     transition: opacity 0.3s ease;
-    .icon-Contact_Floater_pw::before {
-        font-size: 16px;
-        line-height: 16px;
+    .icon-FloaterEnvolope_pw::before {
+        @include font-size($font-l);
     }
     &:hover {
         color: $color-mercury;
