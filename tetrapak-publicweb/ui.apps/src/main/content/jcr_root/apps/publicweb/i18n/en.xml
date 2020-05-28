@@ -192,11 +192,26 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="purposeofcontact"
         sling:message="Purpose of contact"/>
+  <businessarea
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="businessarea"
+        sling:message="Business area of interest"/>
    <contactinformation
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="contactinformation"
-        sling:message="Contact information"/>         
+        sling:message="Contact information"/> 
+  <companyinformation
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="companyinformation"
+        sling:message="Company information"/>
+   <companyinformation
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="companyinformation"
+        sling:message="Company information"/>    
    <summary
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
