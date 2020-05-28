@@ -90,19 +90,28 @@ class Banner {
   }
   addBannerLink() {
     const $bEl = $('.pw-banner');
-    const $anchor = $('.pw-banner').data('href');
-    if ($anchor && $anchor!=='#') {
-      $bEl.click((e) => {
-        if($(e.target).closest('.pw-banner__contentwrapper').length) {
-          return true;
-        }
-        if(isExternal($anchor)){
-          window.open($anchor,'_blank');
-        } else {
-          window.location.href = $anchor;
-        }
-      });
-    }
+    $bEl.each(function () {
+      const $anchor = $(this).data('href');
+      if ($anchor && $anchor !== '#') {
+        $(this).find('.pw-banner__image-wrapper').css('cursor', 'pointer');
+      }
+    });
+
+
+    $bEl.click((e) => {
+      const $anchor = $(this).data('href');
+      if ($anchor && $anchor !== '#') {
+        return false;
+      }
+      if ($(e.target).closest('.pw-banner__contentwrapper').length) {
+        return true;
+      }
+      if (isExternal($anchor)) {
+        window.open($anchor, '_blank');
+      } else {
+        window.location.href = $anchor;
+      }
+    });
   }
 
 
