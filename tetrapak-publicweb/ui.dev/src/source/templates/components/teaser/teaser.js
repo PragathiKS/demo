@@ -56,6 +56,14 @@ class Teaser {
       linkParentTitle = `Text hyperlink_Download_pdf_${linkTitle}`;
     }
 
+    if (buttonLinkType === 'secondary' && downloadtype !== 'download') {
+      linkParentTitle = `CTA_${linkTitle}`;
+    }
+
+    if (buttonLinkType === 'link' && downloadtype !== 'download') {
+      linkParentTitle = `Text hyperlink_${linkTitle}`;
+    }
+
     if (downloadtype === 'download') {
       trackingObj = {
         linkType,
@@ -67,6 +75,20 @@ class Teaser {
         eventType
       };
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
+    }
+
+    if (downloadtype !== 'download') {
+      trackingObj = {
+        linkType,
+        linkSection,
+        linkParentTitle,
+        linkName
+      };
+      const eventObj = {
+        eventType: 'linkClick',
+        event: 'Teaser'
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     }
 
     window.open($this.attr('href'), $this.attr('target'));

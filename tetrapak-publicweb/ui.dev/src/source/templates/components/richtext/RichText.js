@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { isExternal } from '../../../scripts/utils/updateLink';
 class RichText {
   constructor({ el }) {
     this.root = $(el);
@@ -15,8 +17,22 @@ class RichText {
 
   trackAnalytics = e => {
     const $this = $(e.target);
-    const anchorText = $this.text();
-    this.cache.$attributeDivId.attr('data-link-name', anchorText);
+    const linkName = $this.text();
+    const thisHref = $this.attr('href');
+    const linkType =  isExternal(thisHref) ? 'external':'internal'; 
+
+    const trackingObj = {
+      linkType,
+      linkSection:'RTE_Text Hyperlink',
+      linkParentTitle:'Text Hyperlink_RTE',
+      linkName
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'RTE'
+    };
+    
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     return true;
   };
 
