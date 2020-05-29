@@ -1,0 +1,207 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "headerconfiguration": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "loginLabel": "Login Label",
+          "loginLink": "http://www.google.com",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:created": "Tue Mar 24 2020 12:35:55 GMT+0530",
+          "contactLink": "/content/tetrapak/public-web/global/en",
+          "contactText": "Contact Us Label",
+          "logoLinkTarget": "_blank",
+          "logoAlt": "Logo ",
+          "jcr:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
+          "sling:resourceType": "publicweb/components/structure/headerconfiguration",
+          "contactLinkTarget": "_blank",
+          "logoLink": "/content/tetrapak/public-web/global/en",
+          "logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
+          "solutionPage": "/content/tetrapak/public-web/lang-masters/en/solutions"
+        }
+      }
+    }
+  },
+  "solutions": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:content": {
+      "jcr:primaryType": "cq:PageContent",
+      "jcr:createdBy": "admin",
+      "jcr:title": "Solutions"
+    },
+    "processing": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:createdBy": "admin",
+        "jcr:title": "Processing",
+        "cq:lastReplicationAction": "Activate",
+        "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+        "cq:lastReplicatedBy": "roomahaj",
+        "jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+        "cq:lastReplicated": "Wed Dec 04 2019 14:34:58 GMT+0000",
+        "cq:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+        "cq:lastModifiedBy": "admin",
+        "sectionHomePageTitle": "Processing overview"
+      },
+      "applications": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "jcr:createdBy": "admin",
+          "jcr:title": "Applications",
+          "cq:lastReplicationAction": "Activate",
+          "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+          "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+          "cq:lastModifiedBy": "admin"
+        },
+        "diary": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "Diary ",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+            "cq:lastReplicatedBy": "admin",
+            "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+            "cq:lastModifiedBy": "admin"
+          }
+        },
+        "beverages": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:createdBy": "admin",
+            "jcr:title": "Beverages",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+            "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+            "cq:lastModifiedBy": "admin"
+          }
+        }
+      },
+      "main-technology-areas": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "jcr:createdBy": "admin",
+          "jcr:title": "Main technology areas",
+          "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+          "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+          "cq:lastModifiedBy": "admin"
+        },
+        "blending": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+            "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+            "cq:lastModifiedBy": "admin",
+            "jcr:title": "Blending",
+            "pseudoCategory": "TECHNOLOGY AREAS"
+          }
+        },
+        "buffering": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+            "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+            "cq:lastModifiedBy": "admin",
+            "jcr:title": "Buffering",
+            "pseudoCategory": "TECHNOLOGY AREAS"
+          }
+        },
+        "block-forming": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+            "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+            "cq:lastModifiedBy": "admin",
+            "jcr:title": "Block forming",
+            "pseudoCategory": "CHEESE EQUIPMENT"
+          }
+        },
+        "curd-making": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+            "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+            "cq:lastModifiedBy": "admin",
+            "jcr:title": "Curd making",
+            "pseudoCategory": "CHEESE EQUIPMENT"
+          }
+        },
+        "mix-preparation": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+            "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+            "cq:lastModifiedBy": "admin",
+            "jcr:title": "Mix preparation",
+            "pseudoCategory": "ICE CREAM EQUIPMENT"
+          }
+        },
+        "extrusion": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
+            "sling:resourceType": "publicweb/components/structure/pages/emptypage",
+            "cq:lastModifiedBy": "admin",
+            "jcr:title": "Extrusion",
+            "pseudoCategory": "ICE CREAM EQUIPMENT",
+            "cq:redirectTarget": "https://www.google.com"
+          }
+        }
+      },
+      "external": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri May 15 2020 10:59:44 GMT+0530",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
+            "sling:resourceType": "publicweb/components/structure/pages/emptypage",
+            "cq:lastModifiedBy": "admin",
+            "jcr:title": "External page",
+            "cq:redirectTarget": "https://www.google.com"
+          }
+        }
+    }
+  }
+}

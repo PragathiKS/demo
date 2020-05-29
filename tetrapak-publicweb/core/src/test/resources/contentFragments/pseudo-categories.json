@@ -1,0 +1,189 @@
+{
+  "jcr:primaryType": "sling:Folder",
+  "jcr:createdBy": "admin",
+  "jcr:lastModifiedBy": "admin",
+  "jcr:created": "Wed May 20 2020 17:09:09 GMT+0530",
+  "jcr:lastModified": "Wed May 20 2020 17:09:23 GMT+0530",
+  "technology-areas": {
+    "jcr:primaryType": "dam:Asset",
+    "jcr:mixinTypes": [
+      "mix:referenceable",
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:versionHistory": "afe360da-1471-4a69-b080-f33a4851c115",
+    "jcr:predecessors": [
+      "f09602b6-8c3b-40f2-982c-100820298082"
+    ],
+    "jcr:created": "Wed May 20 2020 17:24:30 GMT+0530",
+    "jcr:baseVersion": "f09602b6-8c3b-40f2-982c-100820298082",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "f7df0892-fdd2-40ba-b8d9-8a2c24a64036",
+    "jcr:content": {
+      "jcr:primaryType": "dam:AssetContent",
+      "jcr:title": "Technology Areas",
+      "jcr:lastModifiedBy": "admin",
+      "jcr:description": "",
+      "contentFragment": true,
+      "cq:name": "technology-areas",
+      "jcr:lastModified": "Wed May 27 2020 20:42:47 GMT+0530",
+      "lastFragmentSave": "Wed May 27 2020 20:42:47 GMT+0530",
+      "cq:parentPath": "/content/dam/tetrapak/publicweb/contentfragment/pseudo-categories",
+      "dam:relativePath": "tetrapak/publicweb/contentfragment/pseudo-categories/technology-areas",
+      "renditions": {
+        "jcr:primaryType": "nt:folder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 22 2020 17:47:03 GMT+0530"
+      },
+      "related": {
+        "jcr:primaryType": "nt:unstructured"
+      },
+      "metadata": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "cq:Taggable"
+        ]
+      },
+      "data": {
+        "jcr:primaryType": "nt:unstructured",
+        "cq:model": "/conf/publicweb/settings/dam/cfm/models/pseudo-catogories",
+        "master": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "cq:Taggable"
+          ],
+          "pseudoCateoryKey": "TECHNOLOGY AREAS",
+          "pseudoCateoryValue@LastModified": "Wed May 27 2020 20:42:47 GMT+0530",
+          "pseudoCategoryOrder@LastModified": "Wed May 27 2020 13:47:43 GMT+0530",
+          "pseudoCateoryOrder": 1,
+          "pseudoCateoryValue": "TECHNOLOGY AREAS",
+          "pseudoCateoryKey@LastModified": "Wed May 27 2020 20:42:47 GMT+0530",
+          "pseudoCateoryOrder@LastModified": "Wed May 27 2020 20:42:47 GMT+0530"
+        }
+      }
+    }
+  },
+  "cheese-equipment": {
+    "jcr:primaryType": "dam:Asset",
+    "jcr:mixinTypes": [
+      "mix:referenceable",
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:versionHistory": "2ff85180-70ac-4b29-9b0f-ac462843d76d",
+    "jcr:predecessors": [
+      "5f785b47-08cf-4b3f-be9c-83cf4cfd94dd"
+    ],
+    "jcr:created": "Wed May 20 2020 17:25:08 GMT+0530",
+    "jcr:baseVersion": "5f785b47-08cf-4b3f-be9c-83cf4cfd94dd",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "ed92368e-570d-4d33-a260-de7b96a94808",
+    "jcr:content": {
+      "jcr:primaryType": "dam:AssetContent",
+      "jcr:title": "Cheese Equipment",
+      "jcr:lastModifiedBy": "admin",
+      "jcr:description": "",
+      "contentFragment": true,
+      "cq:name": "cheese-equipment",
+      "jcr:lastModified": "Wed May 27 2020 20:43:15 GMT+0530",
+      "lastFragmentSave": "Wed May 27 2020 20:43:15 GMT+0530",
+      "cq:parentPath": "/content/dam/tetrapak/publicweb/contentfragment/pseudo-categories",
+      "dam:relativePath": "tetrapak/publicweb/contentfragment/pseudo-categories/cheese-equipment",
+      "renditions": {
+        "jcr:primaryType": "nt:folder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 22 2020 17:47:03 GMT+0530"
+      },
+      "related": {
+        "jcr:primaryType": "nt:unstructured"
+      },
+      "metadata": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "cq:Taggable"
+        ]
+      },
+      "data": {
+        "jcr:primaryType": "nt:unstructured",
+        "cq:model": "/conf/publicweb/settings/dam/cfm/models/pseudo-catogories",
+        "master": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "cq:Taggable"
+          ],
+          "pseudoCateoryKey": "CHEESE EQUIPMENT",
+          "pseudoCateoryValue@LastModified": "Wed May 27 2020 20:43:15 GMT+0530",
+          "pseudoCategoryOrder@LastModified": "Wed May 27 2020 13:47:54 GMT+0530",
+          "pseudoCateoryOrder": 2,
+          "pseudoCateoryValue": "CHEESE EQUIPMENT",
+          "pseudoCateoryKey@LastModified": "Wed May 27 2020 20:43:15 GMT+0530",
+          "pseudoCateoryOrder@LastModified": "Wed May 27 2020 20:43:15 GMT+0530"
+        }
+      }
+    }
+  },
+  "ice-cream-equipment": {
+    "jcr:primaryType": "dam:Asset",
+    "jcr:mixinTypes": [
+      "mix:referenceable",
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:versionHistory": "12006efd-4cd4-49ef-adb7-5a0436adeb8a",
+    "jcr:predecessors": [
+      "69fd351a-edf1-401e-95d0-3c2ebaa108e8"
+    ],
+    "jcr:created": "Wed May 20 2020 17:26:18 GMT+0530",
+    "jcr:baseVersion": "69fd351a-edf1-401e-95d0-3c2ebaa108e8",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "33cdaa14-0f0d-4f3f-9f84-8daffb7aea64",
+    "jcr:content": {
+      "jcr:primaryType": "dam:AssetContent",
+      "jcr:title": "Ice Cream Equipment",
+      "jcr:lastModifiedBy": "admin",
+      "jcr:description": "",
+      "contentFragment": true,
+      "cq:name": "ice-cream-equipment",
+      "jcr:lastModified": "Wed May 27 2020 20:43:07 GMT+0530",
+      "lastFragmentSave": "Wed May 27 2020 20:43:07 GMT+0530",
+      "cq:parentPath": "/content/dam/tetrapak/publicweb/contentfragment/pseudo-categories",
+      "dam:relativePath": "tetrapak/publicweb/contentfragment/pseudo-categories/ice-cream-equipment",
+      "renditions": {
+        "jcr:primaryType": "nt:folder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 22 2020 17:47:03 GMT+0530"
+      },
+      "related": {
+        "jcr:primaryType": "nt:unstructured"
+      },
+      "metadata": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "cq:Taggable"
+        ]
+      },
+      "data": {
+        "jcr:primaryType": "nt:unstructured",
+        "cq:model": "/conf/publicweb/settings/dam/cfm/models/pseudo-catogories",
+        "master": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "cq:Taggable"
+          ],
+          "pseudoCateoryKey": "ICE CREAM EQUIPMENT",
+          "pseudoCateoryValue@LastModified": "Wed May 27 2020 20:43:07 GMT+0530",
+          "pseudoCategoryOrder@LastModified": "Wed May 27 2020 13:48:08 GMT+0530",
+          "pseudoCateoryOrder": 3,
+          "pseudoCateoryValue": "ICE CREAM EQUIPMENT",
+          "pseudoCateoryKey@LastModified": "Wed May 27 2020 20:43:07 GMT+0530",
+          "pseudoCateoryOrder@LastModified": "Wed May 27 2020 20:43:07 GMT+0530"
+        }
+      }
+    }
+  },
+  "jcr:content": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:title": "pseudo-categories",
+    "cq:conf": "/conf/publicweb"
+  }
+}
