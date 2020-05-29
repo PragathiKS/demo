@@ -84,10 +84,25 @@ class MegaMenuSolution {
   isMobileMode() {
     return isMobileMode(...arguments);
   }
+
+  iEFix() {
+    var ua = window.navigator.userAgent;
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) { // detect ie 11
+      $('.pw-megamenu').css('height', 'auto');
+      $('.pw-megamenu .pw-megamenu__top ul').css('margin', '0 auto').css('width', '80%');
+      $('.pw-megamenu__top .col').css('max-width', 'none');
+      $('.pw-megamenu__bottom ul').css('margin', '0 auto').css('width', '80%');
+      $('.pw-megamenu__bottom ul .col').css('max-width', 'none');
+      $('.pw-megamenu__bottom .bottom-teaser-list').css({'display':'block','width':'80%','margin':'0 auto'})
+    }
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.iEFix();
   }
 }
 
