@@ -1,6 +1,5 @@
 import $ from 'jquery';
-import { isExternal, isDownloable } from '../../../scripts/utils/updateLink';
-import { getLinkClickAnalytics } from '../../../scripts/common/common';
+import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
 
 class TextImage {
   constructor({ el }) {
@@ -14,21 +13,6 @@ class TextImage {
     this.cache.$textImageLink.on('click', this.trackAnalytics);
   }
 
-  addLinkAttr() {
-    $('.js-textImage-analytics').each(function() {
-      const thisHref = $(this).attr('href');
-      if (thisHref) {
-        if (isExternal(thisHref)) {
-          $(this).attr('target', '_blank');
-        }
-        if (isDownloable(thisHref)) {
-          $(this).attr('target', '_blank');
-          $(this).data('download-type', 'download');
-        }
-      }
-    });
-  }
-
   trackAnalytics = e => {
     e.preventDefault();
     getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics');
@@ -37,7 +21,7 @@ class TextImage {
   init() {
     this.initCache();
     this.bindEvents();
-    this.addLinkAttr();
+    addLinkAttr('.js-textImage-analytics');
   }
 }
 
