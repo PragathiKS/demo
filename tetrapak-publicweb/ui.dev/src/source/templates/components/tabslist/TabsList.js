@@ -67,7 +67,7 @@ class TabsList {
       linkType:'internal',
       linkSection:$this.data('link-section'),
       linkParentTitle:$this.data('parent-title'),
-      linkName: $this.data('link-name'),
+      linkName: $this.data('link-name')
     };
 
     const eventObj = {
