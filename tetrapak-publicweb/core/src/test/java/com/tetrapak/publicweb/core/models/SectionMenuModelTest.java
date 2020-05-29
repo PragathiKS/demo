@@ -33,6 +33,8 @@ public class SectionMenuModelTest {
     /** The current page. */
     @Mock
     private Page currentPage;
+
+    /** The page. */
     @Mock
     private Page page;
 
@@ -88,17 +90,26 @@ public class SectionMenuModelTest {
         model = request.adaptTo(modelClass);
     }
 
+    /**
+     * Test section home page title.
+     */
     @Test
     public void testSectionHomePageTitle() {
         assertEquals("Processing overview", model.getSectionHomePageTitle());
     }
 
+    /**
+     * Test section home page path.
+     */
     @Test
     public void testSectionHomePagePath() {
         assertEquals("/content/tetrapak/public-web/lang-masters/en/solutions/processing.html",
                 model.getSectionHomePagePath());
     }
 
+    /**
+     * Test page hierarchy.
+     */
     @Test
     public void testPageHierarchy() {
         final Map<String, String> hierarchyMap = model.getPageHierarchy();
@@ -106,6 +117,9 @@ public class SectionMenuModelTest {
         assertEquals("Processing", hierarchyMap.get("l2"));
     }
 
+    /**
+     * Test section menu.
+     */
     @Test
     public void testSectionMenu() {
         final List<SectionMenuBean> sectionMenu = model.getSectionMenu();
