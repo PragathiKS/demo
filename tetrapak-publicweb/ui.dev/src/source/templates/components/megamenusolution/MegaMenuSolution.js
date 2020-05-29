@@ -94,7 +94,7 @@ class MegaMenuSolution {
       $('.pw-megamenu__top .col').css('max-width', 'none');
       $('.pw-megamenu__bottom ul').css('margin', '0 auto').css('width', '80%');
       $('.pw-megamenu__bottom ul .col').css('max-width', 'none');
-      $('.pw-megamenu__bottom .bottom-teaser-list').css({'display':'block','width':'80%','margin':'0 auto'})
+      $('.pw-megamenu__bottom .bottom-teaser-list').css({'display':'block','width':'80%','margin':'0 auto'});
     }
   }
 
