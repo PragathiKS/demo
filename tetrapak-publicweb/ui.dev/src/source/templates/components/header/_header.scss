@@ -87,7 +87,7 @@
             &.hover-menu-link {
                 & > a {
                     @include padding(0 $padding-sm);
-                    @include line-height($font-l, $font-m-baseline);
+                    @include line-height($font-l, $font-baseline);
                     height: 24px;
                     font-weight: normal;
                 }
