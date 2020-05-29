@@ -26,13 +26,13 @@ public class HeaderModelTest {
     private static final String MARKETS_CONTENT = "/header/markets-content.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/public-web/language-masters/en";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/language-masters/en";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
 
     /** The Constant MARKETS_CONTENT_ROOT. */
-    private static final String MARKETS_CONTENT_ROOT = "/content/tetrapak/public-web";
+    private static final String MARKETS_CONTENT_ROOT = "/content/tetrapak/publicweb";
 
     /** The model. */
     private HeaderModel model;
@@ -84,31 +84,31 @@ public class HeaderModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Header", "/content/tetrapak/public-web/global/en.html", model.getLogoLink());
+        assertEquals("Header", "/content/tetrapak/publicweb/global/en.html", model.getLogoLink());
         assertEquals("Header", "Logo ", model.getLogoAlt());
         assertEquals("Header", "http://www.google.com", model.getLoginLink());
         assertEquals("Header", "Login Label", model.getLoginLabel());
-        assertEquals("Header", "/content/tetrapak/public-web/global/en.html", model.getContactUsLink());
+        assertEquals("Header", "/content/tetrapak/publicweb/global/en.html", model.getContactUsLink());
         assertEquals("Header", "Contact Us Label", model.getContactUsAltText());
         assertEquals("Header", "/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
-        assertEquals("Header", "/content/tetrapak/public-web/language-masters/en/check.html",
+        assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/check.html",
                 model.getMegaMenuLinksList().get(0).getLinkPath());
         assertEquals("Header", "check", model.getMegaMenuLinksList().get(0).getLinkText());
         assertNotNull("Header", model.getMegaMenuConfigurationModel());
-        assertEquals("Header", "/content/tetrapak/public-web/language-masters/en/solutions.html", model.getSolutionPage());
+        assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/solutions.html", model.getSolutionPage());
         assertEquals("Header", "Solutions", model.getSolutionPageTitle());
         assertEquals("Header", true, model.getMarketList().getMarkets().get(2).equals(marketBean));
         assertEquals("Header", "Australia", model.getMarketList().getMarkets().get(2).getMarketName());
         assertEquals("Header", "English",
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLanguageName());
-        assertEquals("Header", "/content/tetrapak/public-web/au/en/home.html",
+        assertEquals("Header", "/content/tetrapak/publicweb/au/en/home.html",
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLinkPath());
         assertEquals("Header", true,
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).equals(languageBean));
         assertEquals("Header", 3,
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLanguageIndex());
         assertEquals("Header", "Choose Your Market", model.getMarketList().getMarketTitle());
-        assertEquals("Header", "/content/tetrapak/public-web/gb/en/home.html",
+        assertEquals("Header", "/content/tetrapak/publicweb/gb/en/home.html",
                 model.getMarketList().getGlobalMarketPath());
         assertEquals("Header", "", model.getCurrentMarket());
         assertEquals("Header", "English", model.getCurrentLanguage());

@@ -67,7 +67,7 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                                     fieldLabel="Section path"
                                                     name="./path"
-                                                    rootPath="/content/tetrapak/public-web"/>
+                                                    rootPath="/content/tetrapak/publicweb"/>
                                             </items>
                                         </column>
                                     </items>
@@ -113,7 +113,7 @@
                                                     fieldDescription="Link to destination path"
                                                     fieldLabel="Link path"
                                                     name="./linkUrl"
-                                                    rootPath="/content/tetrapak/public-web"/>
+                                                    rootPath="/content/tetrapak/publicweb"/>
                                             </items>
                                         </column>
                                     </items>
@@ -177,7 +177,7 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                                     fieldLabel="Section path"
                                                     name="./path"
-                                                    rootPath="/content/tetrapak/public-web"/>
+                                                    rootPath="/content/tetrapak/publicweb"/>
                                             </items>
                                         </column>
                                     </items>

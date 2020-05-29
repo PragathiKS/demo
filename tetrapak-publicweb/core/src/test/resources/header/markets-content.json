@@ -31,7 +31,7 @@
 ],
 "sling:resourceType": "publicweb/components/structure/pages/landingpage",
 "cq:allowedTemplates": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"errorPages": "/content/tetrapak/public-web/error",
+"errorPages": "/content/tetrapak/publicweb/error",
 "cq:lastModifiedBy": "sapient-sandip",
 "header": {
 "jcr:primaryType": "nt:unstructured",
@@ -41,7 +41,7 @@
 "sling:resourceType": "publicweb/components/structure/header",
 "logo": {
 "jcr:primaryType": "nt:unstructured",
-"imageLink": "/content/tetrapak/public-web/lang-masters/en",
+"imageLink": "/content/tetrapak/publicweb/lang-masters/en",
 "imagePath": "/content/dam/publicweb/logo_tetra_pak.png",
 "sling:resourceType": "publicweb/components/content/logo"
 },
@@ -84,7 +84,7 @@
 "footer": {
 "jcr:primaryType": "nt:unstructured",
 "jcr:lastModifiedBy": "admin",
-"imageLink": "/content/tetrapak/public-web/lang-masters/es",
+"imageLink": "/content/tetrapak/publicweb/lang-masters/es",
 "imagePath": "/content/dam/publicweb/logo_tetra_pak_white.svg",
 "imageAltI18n": "Tetra Pak",
 "footerNavigationLinks": [
@@ -150,7 +150,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/en/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/en/error",
 "cq:lastModifiedBy": "sapient-rohit"
 },
 "home": {
@@ -225,7 +225,7 @@
 "jcr:created": "Wed May 20 2020 12:22:36 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:04:35 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:22:36 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "83928d5a-cc91-4c2e-b714-d7c2784ecf5e",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -236,7 +236,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/zh/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/zh/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -311,7 +311,7 @@
 "jcr:created": "Wed May 20 2020 12:22:28 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:04:50 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:22:28 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "d03039c5-510d-485b-a0d9-0d6f16dc9f7d",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -322,7 +322,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/tr/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/tr/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -397,7 +397,7 @@
 "jcr:created": "Wed May 20 2020 12:22:19 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:05:05 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:22:19 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "2971994b-e6f9-41b7-8a31-9258efd1c677",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -408,7 +408,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/sv_se/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/sv_se/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -483,7 +483,7 @@
 "jcr:created": "Wed May 20 2020 12:22:11 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:05:20 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:22:11 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "fec27cd7-e957-406f-9f91-cc5c9c166d18",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -494,7 +494,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/ru/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/ru/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -569,7 +569,7 @@
 "jcr:created": "Wed May 20 2020 12:22:02 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:05:34 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:22:02 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "1cadbc89-c841-43b8-914a-32ce36a01ba8",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -580,7 +580,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/pt/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/pt/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -655,7 +655,7 @@
 "jcr:created": "Wed May 20 2020 12:21:54 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:05:50 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:21:54 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "d59e92cb-15ba-4dde-afe0-34128e0361a6",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -666,7 +666,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/ja/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/ja/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -741,7 +741,7 @@
 "jcr:created": "Wed May 20 2020 12:21:45 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:06:06 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:21:45 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "676aa0b9-0510-484d-a374-f1a4ddbd2d96",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -752,7 +752,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/it/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/it/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -827,7 +827,7 @@
 "jcr:created": "Wed May 20 2020 12:21:37 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:06:20 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:21:37 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "b66a8cf0-0c4d-4c5f-a013-6476ffd1621c",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -838,7 +838,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/es/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/es/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -913,7 +913,7 @@
 "jcr:created": "Wed May 20 2020 12:21:28 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:08:44 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:21:28 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "2255bb8d-e72d-47ab-8184-7cb91f990eec",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -924,7 +924,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/de/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/de/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -999,7 +999,7 @@
 "jcr:created": "Wed May 20 2020 12:18:16 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:09:03 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:18:16 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "d4dafadf-61b6-42ab-9540-7b73e0aa4e9a",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -1010,7 +1010,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/lang-masters/fr/error",
+"errorPages": "/content/tetrapak/publicweb/lang-masters/fr/error",
 "cq:lastModifiedBy": "sapient-user"
 },
 "home": {
@@ -1130,7 +1130,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/gb/en/error",
+"errorPages": "/content/tetrapak/publicweb/gb/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -1242,7 +1242,7 @@
 "jcr:created": "Wed May 20 2020 12:38:40 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:10:39 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:38:40 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "9e2eb9b9-b1ba-4c47-a20d-42aa1f4f9bbf",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -1253,7 +1253,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/fr/error",
+"errorPages": "/content/tetrapak/publicweb/ca/fr/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -1340,7 +1340,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -1452,7 +1452,7 @@
 "jcr:created": "Wed May 20 2020 12:39:40 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:11:12 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:39:40 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "8ada3ba2-3151-4945-ae3c-1b08fdb11b5a",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -1463,7 +1463,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/de/de/error",
+"errorPages": "/content/tetrapak/publicweb/de/de/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -1575,7 +1575,7 @@
 "jcr:created": "Wed May 20 2020 12:40:22 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:11:39 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:40:22 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "2c8ed0a8-c3c8-404b-9de7-1db364d78401",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -1586,7 +1586,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/it/it/error",
+"errorPages": "/content/tetrapak/publicweb/it/it/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -1698,7 +1698,7 @@
 "jcr:created": "Wed May 20 2020 12:41:20 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:12:17 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:41:20 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "cd4d9bb8-0565-497b-9d37-3102ba4f00c5",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -1709,7 +1709,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/se/se/error",
+"errorPages": "/content/tetrapak/publicweb/se/se/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -1821,7 +1821,7 @@
 "jcr:created": "Wed May 20 2020 12:42:11 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:12:51 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:42:11 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "edc471e3-4a45-414e-8fea-a67f77594b90",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -1832,7 +1832,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/es/es/error",
+"errorPages": "/content/tetrapak/publicweb/es/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -1944,7 +1944,7 @@
 "jcr:created": "Wed May 20 2020 12:42:59 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:13:34 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:42:59 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "0844db6d-b467-4691-bc99-2164203036be",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -1955,7 +1955,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/jp/jp/error",
+"errorPages": "/content/tetrapak/publicweb/jp/jp/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -2067,7 +2067,7 @@
 "jcr:created": "Wed May 20 2020 12:43:57 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:14:29 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:43:58 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "2c01ea45-e0fb-4b77-a375-b4c7325f8a41",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -2078,7 +2078,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/pt/pt/error",
+"errorPages": "/content/tetrapak/publicweb/pt/pt/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -2190,7 +2190,7 @@
 "jcr:created": "Wed May 20 2020 12:44:50 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 08:21:03 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:44:50 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "a271c074-c829-42de-84ac-75e6e3bd61e3",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -2201,7 +2201,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/tr/tr/error",
+"errorPages": "/content/tetrapak/publicweb/tr/tr/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -2313,7 +2313,7 @@
 "jcr:created": "Wed May 20 2020 12:45:42 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 12:29:05 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:45:42 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "27877286-c3b5-443e-9e5f-39bd48224426",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -2324,7 +2324,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/cn/zh/error",
+"errorPages": "/content/tetrapak/publicweb/cn/zh/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -2436,7 +2436,7 @@
 "jcr:created": "Wed May 20 2020 12:46:45 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 12:38:09 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:46:45 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "023465db-f565-48ed-ba67-939625da9da8",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -2447,7 +2447,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/be/fr/error",
+"errorPages": "/content/tetrapak/publicweb/be/fr/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -2559,7 +2559,7 @@
 "jcr:created": "Wed May 20 2020 12:56:37 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:01:12 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:56:37 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "79727c76-5a58-477f-af05-593fc2e29220",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -2570,7 +2570,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ch/fr/error",
+"errorPages": "/content/tetrapak/publicweb/ch/fr/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -2682,7 +2682,7 @@
 "jcr:created": "Wed May 20 2020 12:57:48 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:05:56 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:57:48 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "5345d386-ad69-4357-b0b7-3c7346d0ebfb",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -2693,7 +2693,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/br/pt/error",
+"errorPages": "/content/tetrapak/publicweb/br/pt/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -2805,7 +2805,7 @@
 "jcr:created": "Wed May 20 2020 12:59:27 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:06:31 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 12:59:27 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "16fad838-56f1-4dd1-9332-43f026ae0081",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -2816,7 +2816,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ar/es/error",
+"errorPages": "/content/tetrapak/publicweb/ar/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -2928,7 +2928,7 @@
 "jcr:created": "Wed May 20 2020 13:00:53 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:07:04 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:00:53 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "581123d7-bea3-49ba-9c24-dd53f1f3f107",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -2939,7 +2939,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/mx/es/error",
+"errorPages": "/content/tetrapak/publicweb/mx/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -3051,7 +3051,7 @@
 "jcr:created": "Wed May 20 2020 13:01:36 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:11:41 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:01:36 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "31aecbc5-a8f2-4474-b5b2-b8047f9928d0",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -3062,7 +3062,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/cl/es/error",
+"errorPages": "/content/tetrapak/publicweb/cl/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -3174,7 +3174,7 @@
 "jcr:created": "Wed May 20 2020 13:02:25 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:14:26 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:02:25 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "19f26197-820d-49aa-9bf0-9df5786e95b9",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -3185,7 +3185,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/bo/es/error",
+"errorPages": "/content/tetrapak/publicweb/bo/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -3297,7 +3297,7 @@
 "jcr:created": "Wed May 20 2020 13:03:07 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:14:58 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:03:07 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "356a7c53-94f8-4569-baa3-e9fc5d9fbff8",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -3308,7 +3308,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/co/es/error",
+"errorPages": "/content/tetrapak/publicweb/co/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -3420,7 +3420,7 @@
 "jcr:created": "Wed May 20 2020 13:03:45 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:16:08 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:03:45 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "726cfdc5-c236-422e-a0ce-008621e308a9",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -3431,7 +3431,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ec/es/error",
+"errorPages": "/content/tetrapak/publicweb/ec/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -3543,7 +3543,7 @@
 "jcr:created": "Wed May 20 2020 13:05:39 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:16:44 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:05:40 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "279317ef-5321-42ec-b9fe-244517b7aed1",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -3554,7 +3554,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/mta/fr/error",
+"errorPages": "/content/tetrapak/publicweb/mta/fr/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -3666,7 +3666,7 @@
 "jcr:created": "Wed May 20 2020 13:08:40 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:19:29 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:08:40 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "549825f6-09c5-46f1-b5e5-fe360c6fafd2",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -3677,7 +3677,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/cac/es/error",
+"errorPages": "/content/tetrapak/publicweb/cac/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -3789,7 +3789,7 @@
 "jcr:created": "Wed May 20 2020 13:11:02 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:32:53 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:11:02 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "7de486f5-717f-4489-a22b-9784c46b7d42",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -3800,7 +3800,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/py/es/error",
+"errorPages": "/content/tetrapak/publicweb/py/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -3912,7 +3912,7 @@
 "jcr:created": "Wed May 20 2020 13:11:45 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 13:33:39 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:11:45 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "355e7337-4c73-413c-8202-febc47355e46",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -3923,7 +3923,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/vn/es/error",
+"errorPages": "/content/tetrapak/publicweb/vn/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -4035,7 +4035,7 @@
 "jcr:created": "Wed May 20 2020 13:12:43 GMT+0000",
 "cq:lastReplicated": "Thu May 21 2020 14:28:42 GMT+0000",
 "cq:lastModified": "Wed May 20 2020 13:12:43 GMT+0000",
-"cq:translationSourcePath": "/content/tetrapak/public-web/lang-masters/en",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en",
 "jcr:baseVersion": "5d3b81ef-8d33-46d7-a935-779df81ae65c",
 "jcr:isCheckedOut": true,
 "cq:conf": "",
@@ -4046,7 +4046,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/pe/es/error",
+"errorPages": "/content/tetrapak/publicweb/pe/es/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -4166,7 +4166,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -4286,7 +4286,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -4406,7 +4406,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -4526,7 +4526,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -4646,7 +4646,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -4761,7 +4761,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -4881,7 +4881,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5001,7 +5001,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5121,7 +5121,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5241,7 +5241,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5361,7 +5361,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5481,7 +5481,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5601,7 +5601,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5705,7 +5705,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5825,7 +5825,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -5945,7 +5945,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -6065,7 +6065,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -6185,7 +6185,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -6305,7 +6305,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -6425,7 +6425,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -6545,7 +6545,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -6660,7 +6660,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -6780,7 +6780,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -6900,7 +6900,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -7020,7 +7020,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -7140,7 +7140,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -7260,7 +7260,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -7380,7 +7380,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },
@@ -7505,7 +7505,7 @@
 "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
 "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
 ],
-"errorPages": "/content/tetrapak/public-web/ca/en/error",
+"errorPages": "/content/tetrapak/publicweb/ca/en/error",
 "cq:lastRolledoutBy": "sapient-user",
 "cq:lastModifiedBy": "sapient-user"
 },

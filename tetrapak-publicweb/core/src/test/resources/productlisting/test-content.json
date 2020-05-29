@@ -19,7 +19,7 @@
 			"tabLinks": "{\"tabLinkTextI18n\":\"Tab label\",\"categoryTag\":\"/content/cq:tags/we-retail/activity\"}",
 			"jcr:created": "Wed Feb 26 2020 13:18:59 GMT+0530",
 			"pwTheme": "grayscale-white",
-			"productRootPath": "/content/tetrapak/public-web/global/en/products",
+			"productRootPath": "/content/tetrapak/publicweb/global/en/products",
 			"firstTabLinkTextI18n": "Default tab label",
 			"jcr:lastModified": "Wed Feb 26 2020 13:19:52 GMT+0530",
 			"sling:resourceType": "publicweb/components/content/productListing",

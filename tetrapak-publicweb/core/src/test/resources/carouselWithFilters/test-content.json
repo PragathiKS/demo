@@ -20,7 +20,7 @@
 			"pwButtonTheme": "secondary",
 			"jcr:created": "Thu Feb 27 2020 10:47:39 GMT+0530",
 			"pwTheme": "grayscale-white",
-			"rootPath": "/content/tetrapak/public-web/global/en/products",
+			"rootPath": "/content/tetrapak/publicweb/global/en/products",
 			"jcr:lastModified": "Thu Feb 27 2020 10:48:35 GMT+0530",
 			"errorMessage": "Error Message",
 			"sling:resourceType": "publicweb/components/content/carouselWithFilters",

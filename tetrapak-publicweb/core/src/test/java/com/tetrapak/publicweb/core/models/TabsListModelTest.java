@@ -218,7 +218,7 @@ public class TabsListModelTest {
 		aggregatorList.get(0).getImagePath());
 	assertEquals("alt", aggregatorList.get(0).getAltText());
 	assertEquals("link text1", aggregatorList.get(0).getLinkText());
-	assertEquals("/content/tetrapak/public-web/lang-masters/en/home", aggregatorList.get(0).getLinkPath());
+	assertEquals("/content/tetrapak/publicweb/lang-masters/en/home", aggregatorList.get(0).getLinkPath());
 	assertEquals("link", aggregatorList.get(0).getPwButtonTheme());
     }
     
@@ -238,7 +238,7 @@ public class TabsListModelTest {
 		model.getTabs().get(0).getFileReference());
 	assertEquals("alt", model.getTabs().get(0).getAlt());
 	assertEquals("link text1", model.getTabs().get(0).getLinkText());
-	assertEquals("/content/tetrapak/public-web/lang-masters/en/home.html", model.getTabs().get(0).getLinkURL());
+	assertEquals("/content/tetrapak/publicweb/lang-masters/en/home.html", model.getTabs().get(0).getLinkURL());
 	assertEquals("link", model.getTabs().get(1).getPwButtonTheme());
     }
 }
