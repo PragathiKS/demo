@@ -27,16 +27,16 @@
 					"loginLink": "http://www.google.com",
 					"jcr:lastModifiedBy": "admin",
 					"jcr:created": "Tue Mar 24 2020 12:35:55 GMT+0530",
-					"contactLink": "/content/tetrapak/public-web/global/en",
+					"contactLink": "/content/tetrapak/publicweb/global/en",
 					"contactText": "Contact Us Label",
 					"logoLinkTarget": "_blank",
 					"logoAlt": "Logo ",
 					"jcr:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
 					"sling:resourceType": "publicweb/components/structure/headerconfiguration",
 					"contactLinkTarget": "_blank",
-					"logoLink": "/content/tetrapak/public-web/global/en",
+					"logoLink": "/content/tetrapak/publicweb/global/en",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
-					"solutionPage": "/content/tetrapak/public-web/global/en/solutions"
+					"solutionPage": "/content/tetrapak/publicweb/global/en/solutions"
 				}
 			}
 		}

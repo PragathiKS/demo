@@ -2,49 +2,49 @@
   {
     "title": "1Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "2Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "3Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "4Search Test Page 2",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-2"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-2"
   },
   {
     "title": "5Search Test Page 1",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-1"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-1"
   },
   {
     "title": "6TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -52,38 +52,38 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "7Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "8Search Test Page 2",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-2"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-2"
   },
   {
     "title": "9Search Test Page 1",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-1"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-1"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -91,38 +91,38 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "Search Test Page 2",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-2"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-2"
   },
   {
     "title": "Search Test Page 1",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-1"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-1"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -130,22 +130,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -153,22 +153,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -176,22 +176,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -199,22 +199,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -222,22 +222,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -245,22 +245,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -268,22 +268,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -291,22 +291,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -314,22 +314,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -337,38 +337,38 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "Search Test Page 2",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-2"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-2"
   },
   {
     "title": "Search Test Page 1",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-1"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-1"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -376,22 +376,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -399,22 +399,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -422,22 +422,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -445,22 +445,22 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -468,38 +468,38 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   },
   {
     "title": "Test",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/test"
+    "path": "/content/tetrapak/publicweb/global/en/test"
   },
   {
     "title": "Search Test Page 2",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-2"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-2"
   },
   {
     "title": "Search Test Page 1",
     "breadcrumbMap": {
-      "English": "/content/tetrapak/public-web/global/en",
-      "Global": "/content/tetrapak/public-web/global"
+      "English": "/content/tetrapak/publicweb/global/en",
+      "Global": "/content/tetrapak/publicweb/global"
     },
-    "path": "/content/tetrapak/public-web/global/en/search-test-page-1"
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-1"
   },
   {
     "title": "TanikaQA",
     "description": "This is the vanity description for article page",
     "breadcrumbMap": {
-      "Innovation": "/content/tetrapak/public-web/global/en/innovations",
-      "English": "/content/tetrapak/public-web/global/en"
+      "Innovation": "/content/tetrapak/publicweb/global/en/innovations",
+      "English": "/content/tetrapak/publicweb/global/en"
     },
     "tagsMap": {
       "Dairy": "tetrapak:application/dairy",
@@ -507,6 +507,6 @@
       "Prepared Food": "tetrapak:application/prepared-food",
       "Ice Cream": "tetrapak:application/ice-cream"
     },
-    "path": "/content/tetrapak/public-web/global/en/innovations/tanikaqa"
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
   }
 ]

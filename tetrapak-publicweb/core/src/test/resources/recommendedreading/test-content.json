@@ -17,7 +17,7 @@
 			"jcr:lastModifiedBy": "admin",
 			"textI18n": "Link Text",
 			"jcr:created": "Wed Feb 26 2020 10:54:26 GMT+0530",
-			"link": "/content/tetrapak/public-web/global/en/about-us",
+			"link": "/content/tetrapak/publicweb/global/en/about-us",
 			"jcr:lastModified": "Wed Feb 26 2020 10:54:57 GMT+0530",
 			"sling:resourceType": "publicweb/components/content/recommendedReading"
 			}

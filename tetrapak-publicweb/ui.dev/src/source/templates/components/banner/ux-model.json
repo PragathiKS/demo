@@ -14,7 +14,7 @@
     "contrastLayer": "gradient-to-right",
     "targetBlank": true,
     "linkLabel": "Link Label",
-    "linkPath": "/content/tetrapak/public-web/global/en.html",
+    "linkPath": "/content/tetrapak/publicweb/global/en.html",
     "linkTarget": "_blank",
     "isHeaderBanner": true,
     "pwButtonTheme": "secondary",

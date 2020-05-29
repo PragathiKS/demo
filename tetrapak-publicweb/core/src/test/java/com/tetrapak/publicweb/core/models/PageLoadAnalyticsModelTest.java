@@ -25,7 +25,7 @@ public class PageLoadAnalyticsModelTest {
     /**
      * The Constant TEST_CONTENT_ROOT.
      */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/public-web/lang-masters/en/solutions/turn-ingredients-into-products/product1";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-masters/en/solutions/turn-ingredients-into-products/product1";
 
     /**
      * The Constant RESOURCE.

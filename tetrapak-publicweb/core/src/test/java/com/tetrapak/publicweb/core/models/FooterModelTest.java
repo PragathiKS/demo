@@ -64,11 +64,11 @@ public class FooterModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("/content/tetrapak/public-web/lang-masters.html", model.getLogoLink());
+        assertEquals("/content/tetrapak/publicweb/lang-masters.html", model.getLogoLink());
         assertEquals("Logo ", model.getLogoAlt());
         assertEquals("Go To Top", model.getGoToTopLabel());
         assertEquals("Link text 2", model.getFooterLinks().get(1).getLinkLabel());
-        assertEquals("/content/tetrapak/public-web.html", model.getFooterLinks().get(1).getLinkPath());
+        assertEquals("/content/tetrapak/publicweb.html", model.getFooterLinks().get(1).getLinkPath());
         assertEquals("Linkedin", model.getSocialLinks().get(0).getSocialMedia());
         assertEquals("http://www.google.com", model.getSocialLinks().get(0).getSocialMediaLink());
     }

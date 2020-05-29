@@ -74,7 +74,7 @@ public class MegaMenuConfigurationSolutionModelTest {
         assertEquals("/content/dam/tetrapak/processing.jpg",
                 model.getEndToEndSolutionSection().get(0).getFileReference());
         assertEquals("Processing", model.getEndToEndSolutionSection().get(0).getAlt());
-        assertEquals("/content/tetrapak/public-web/lang-masters/en.html",
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en.html",
                 model.getEndToEndSolutionSection().get(0).getPath());
         assertEquals("Processing", model.getEndToEndSolutionSection().get(0).getTitle());
     }
@@ -85,7 +85,7 @@ public class MegaMenuConfigurationSolutionModelTest {
     @Test
     public void testLinkSection() {
         assertEquals("Aseptic solutions", model.getLinkSection().get(0).getLinkText());
-        assertEquals("/content/tetrapak/public-web/language-masters/en/aseptic.html",
+        assertEquals("/content/tetrapak/publicweb/language-masters/en/aseptic.html",
                 model.getLinkSection().get(0).getLinkUrl());
     }
 
@@ -96,7 +96,7 @@ public class MegaMenuConfigurationSolutionModelTest {
     public void testFoodCategorySection() {
         assertEquals("/content/dam/tetrapak/cheese.jpg", model.getFoodCategorySection().get(0).getFileReference());
         assertEquals("Cheese", model.getFoodCategorySection().get(0).getAlt());
-        assertEquals("/content/tetrapak/public-web/lang-masters/en/food-categories/cheese.html",
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/food-categories/cheese.html",
                 model.getFoodCategorySection().get(0).getPath());
         assertEquals("Cheese", model.getFoodCategorySection().get(0).getTitle());
     }
