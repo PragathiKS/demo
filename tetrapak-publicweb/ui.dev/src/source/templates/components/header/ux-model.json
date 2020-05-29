@@ -8,18 +8,18 @@
   "contactText": "Contact",
   "contactLink": "/content/tetrapak/publicweb/language-masters/en",
   "contactLinkTarget": "_blank",
-  "solutionPage": "/content/tetrapak/public-web/global/en/solutions",
+  "solutionPage": "/content/tetrapak/publicweb/global/en/solutions",
   "displayCurrentLanguage": true,
   "currentMarket": "Canada",
   "currentLanguage": "English",
   "megaMenuLinksList": [
     {
       "linkText": "Solutions",
-      "linkPath": "/content/tetrapak/public-web/global/en/solutions"
+      "linkPath": "/content/tetrapak/publicweb/global/en/solutions"
     },
     {
       "linkText": "Insights",
-      "linkPath": "/content/tetrapak/public-web/global/en/insights",
+      "linkPath": "/content/tetrapak/publicweb/global/en/insights",
       "navigationConfigurationModel": {
         "sectionHomePageTitle": "Insight overview ",
         "sectionHomePagePath": "insight page",
@@ -27,7 +27,7 @@
         "sectionMenu": [
           {
             "linkText": "Insight Processing",
-            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications.html",
             "external": false,
             "subSectionMenu": {
               "pseudoCategoriesSection": [
@@ -37,7 +37,7 @@
                   "subSections": [
                     {
                       "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary.html",
                       "external": false
                     }
                   ]
@@ -48,22 +48,22 @@
                   "subSections": [
                     {
                       "linkText": "Sub Chocolates1",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary.html",
                       "external": false
                     },
                     {
                       "linkText": "Sub Chocolates2",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                      "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/beverages.html",
                       "external": true
                     },
                     {
                       "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary.html",
                       "external": false
                     },
                     {
                       "linkText": "Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                      "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/beverages.html",
                       "external": true
                     }
                   ]
@@ -73,7 +73,7 @@
           },
           {
             "linkText": "Insight Processing",
-            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications.html",
             "external": false,
             "subSectionMenu": {
               "pseudoCategoriesSection": [
@@ -83,7 +83,7 @@
                   "subSections": [
                     {
                       "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary.html",
                       "external": false
                     }
                   ]
@@ -93,7 +93,7 @@
           },
           {
             "linkText": "Insight equipment",
-            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications.html",
             "external": false
           },
           {
@@ -103,7 +103,7 @@
           },
           {
             "linkText": "Insight Processing",
-            "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications.html",
+            "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications.html",
             "external": false,
             "subSectionMenu": {
               "pseudoCategoriesSection": [
@@ -113,12 +113,12 @@
                   "subSections": [
                     {
                       "linkText": "Dairy",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/diary.html",
+                      "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary.html",
                       "external": false
                     },
                     {
                       "linkText": "Beverages Beverages Beverages",
-                      "linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions/processing/applications/beverages.html",
+                      "linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/beverages.html",
                       "external": false
                     }
                   ]
@@ -265,7 +265,7 @@
     "col3End": 33,
     "col4Start": 34,
     "col4End": 42,
-    "globalMarketPath": "/content/tetrapak/public-web/gb/en/home.html",
+    "globalMarketPath": "/content/tetrapak/publicweb/gb/en/home.html",
     "markets": [
       {
         "marketName": "TetraPak Global",
@@ -273,7 +273,7 @@
           {
             "languageIndex": 1,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/gb/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/gb/en/home.html"
           }
         ]
       },
@@ -283,7 +283,7 @@
           {
             "languageIndex": 2,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/mta/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/mta/en/home.html"
           }
         ]
       },
@@ -293,12 +293,12 @@
           {
             "languageIndex": 3,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 4,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -308,12 +308,12 @@
           {
             "languageIndex": 5,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 6,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -323,12 +323,12 @@
           {
             "languageIndex": 7,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 8,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -338,12 +338,12 @@
           {
             "languageIndex": 9,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 10,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -353,12 +353,12 @@
           {
             "languageIndex": 11,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 12,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -368,12 +368,12 @@
           {
             "languageIndex": 13,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 14,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -383,12 +383,12 @@
           {
             "languageIndex": 15,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 16,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -398,12 +398,12 @@
           {
             "languageIndex": 17,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 18,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -413,12 +413,12 @@
           {
             "languageIndex": 19,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 20,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -428,12 +428,12 @@
           {
             "languageIndex": 21,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 22,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -443,12 +443,12 @@
           {
             "languageIndex": 23,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 24,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -458,12 +458,12 @@
           {
             "languageIndex": 25,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 26,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -473,12 +473,12 @@
           {
             "languageIndex": 27,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 28,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -488,12 +488,12 @@
           {
             "languageIndex": 29,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 30,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -503,12 +503,12 @@
           {
             "languageIndex": 31,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 32,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -518,12 +518,12 @@
           {
             "languageIndex": 33,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 34,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -533,12 +533,12 @@
           {
             "languageIndex": 35,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 36,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -548,12 +548,12 @@
           {
             "languageIndex": 37,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 38,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -563,12 +563,12 @@
           {
             "languageIndex": 39,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 40,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       },
@@ -578,12 +578,12 @@
           {
             "languageIndex": 41,
             "languageName": "English",
-            "linkPath": "/content/tetrapak/public-web/ca/en/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
           },
           {
             "languageIndex": 42,
             "languageName": "French",
-            "linkPath": "/content/tetrapak/public-web/ca/fr/home.html"
+            "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
           }
         ]
       }

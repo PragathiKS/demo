@@ -60,10 +60,7 @@ export default () => {
           $(iconEl).addClass('icon-Union');
           $(this).attr('target', '_blank');
         } else if($(iconEl).hasClass('with-arrow')){
-          $(iconEl).addClass('icon-Chevron_Down');
-          $(this).attr('target','_self');
-        } else if($(iconEl).hasClass('without-arrow')){
-          $(iconEl).addClass('');
+          $(iconEl).addClass('icon-Arrow_Right_pw');
           $(this).attr('target','_self');
         } else {
           if ($(this).hasClass('tpatom-link--primary')) {

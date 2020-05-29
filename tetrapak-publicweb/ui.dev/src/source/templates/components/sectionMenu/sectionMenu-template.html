@@ -4,13 +4,10 @@
       <a auto-locator="SectionMenuLinksFontStyle-SectionMenuLinksPadding" data-link-name='${linkText}' target="${data.external ? '_blank' : '_self'}" href="${linkURL}" class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : ''} section-menu-item-link js-section-menu-item-link" title="${linkText}">
         ${linkText}
         <sly data-sly-test="${data.external}">
-          <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon is-external icon--link ${iconClass}"></i>
+          <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon is-external ${iconClass}"></i>
         </sly>
         <sly data-sly-test="${(data.subSectionMenu.subSections || data.subSectionMenu.pseudoCategoriesSection) && !data.external}">
-          <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon with-arrow icon--link ${iconClass}"></i>
-        </sly>
-        <sly data-sly-test="${(!data.subSectionMenu.subSections || !data.subSectionMenu.pseudoCategoriesSection) && !data.external}">
-          <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon without-arrow icon--link ${iconClass}"></i>
+          <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon with-arrow ${iconClass}"></i>
         </sly>
       </a>
       <sly data-sly-test.subSection="${data.subSectionMenu}">

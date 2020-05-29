@@ -30,15 +30,10 @@
             this.superClass.initialize.call(this, config);
             this.$rteDialog = this.$container.find("[data-rte-dialog=link]");
 
-            var $target = this.$rteDialog.find("coral-select"),
-                $targetOption = $target.find("coral-select-item[value='']"),
-                $parentOption = $target.find("coral-select-item[value='_parent']"),
-                $topOption = $target.find("coral-select-item[value='_top']");
+            var $target = this.$rteDialog.find("coral-select");
 
             //removing frame options from link dropdown
-            $target[0].items.remove($targetOption[0]);
-            $target[0].items.remove($parentOption[0]);
-            $target[0].items.remove($topOption[0]);
+            $target[0].items.remove($target[0]);
         }
     });
 

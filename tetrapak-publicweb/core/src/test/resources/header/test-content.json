@@ -27,16 +27,16 @@
 					"loginLink": "http://www.google.com",
 					"jcr:lastModifiedBy": "admin",
 					"jcr:created": "Tue Mar 24 2020 12:35:55 GMT+0530",
-					"contactLink": "/content/tetrapak/public-web/global/en",
+					"contactLink": "/content/tetrapak/publicweb/global/en",
 					"contactText": "Contact Us Label",
 					"logoLinkTarget": "_blank",
 					"logoAlt": "Logo ",
 					"jcr:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
 					"sling:resourceType": "publicweb/components/structure/headerconfiguration",
 					"contactLinkTarget": "_blank",
-					"logoLink": "/content/tetrapak/public-web/global/en",
+					"logoLink": "/content/tetrapak/publicweb/global/en",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
-					"solutionPage": "/content/tetrapak/public-web/language-masters/en/solutions",
+					"solutionPage": "/content/tetrapak/publicweb/language-masters/en/solutions",
                                         "marketTitle": "Choose Your Market"
 				},
 				"megamenuconfig": {
@@ -44,10 +44,10 @@
 					"jcr:createdBy": "admin",
 					"jcr:lastModifiedBy": "admin",
 					"bottomSectionSubtitle": "Food categories",
-					"bottomSectionUrl": "/content/tetrapak/public-web/language-masters/en/food",
+					"bottomSectionUrl": "/content/tetrapak/publicweb/language-masters/en/food",
 					"jcr:created": "Thu Apr 23 2020 19:16:30 GMT+0530",
 					"topSectionSubtitle": "Tetra pak end to end solution",
-					"topSectionUrl": "/content/tetrapak/public-web/language-masters/en/solutions",
+					"topSectionUrl": "/content/tetrapak/publicweb/language-masters/en/solutions",
 					"hideFoodCategories": "true",
 					"jcr:lastModified": "Sat Apr 25 2020 00:07:56 GMT+0530",
 					"sling:resourceType": "publicweb/components/structure/megamenuconfig",
@@ -58,7 +58,7 @@
 							"description": "Lorem ipsum",
 							"fileReference": "/content/dam/tetrapak/processing.jpg",
 							"alt": "Processing",
-							"path": "/content/tetrapak/public-web/lang-masters/en",
+							"path": "/content/tetrapak/publicweb/lang-masters/en",
 							"title": "Processing"
 						}
 					},
@@ -66,7 +66,7 @@
 						"jcr:primaryType": "nt:unstructured",
 						"item0": {
 							"jcr:primaryType": "nt:unstructured",
-							"linkUrl": "/content/tetrapak/public-web/language-masters/en/aseptic",
+							"linkUrl": "/content/tetrapak/publicweb/language-masters/en/aseptic",
 							"linkText": "Aseptic solutions"
 						}
 					},
@@ -76,7 +76,7 @@
 							"jcr:primaryType": "nt:unstructured",
 							"fileReference": "/content/dam/tetrapak/cheese.jpg",
 							"alt": "Cheese",
-							"path": "/content/tetrapak/public-web/lang-masters/en/food-categories/cheese",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/food-categories/cheese",
 							"title": "Cheese"
 						}
 					}

@@ -30,7 +30,7 @@
 		"articleImageAltI18n":"Article Image Alt I18n",
 		"linkText": [
 			"Link Text",
-			"/content/tetrapak/public-web/global/en/test"
+			"/content/tetrapak/publicweb/global/en/test"
 		],
 		"cq:tags": [
 			"we-retail:activity"

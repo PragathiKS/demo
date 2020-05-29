@@ -48,7 +48,7 @@
 							"alt": "Alt",
 							"title": "Title",
 							"linkTarget": "_blank",
-							"linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions",
 							"linkText": "Link Text"
 						},
 						"item1": {
@@ -60,7 +60,7 @@
 							"alt": "Alt",
 							"title": "Title",
 							"linkTarget": "_blank",
-							"linkPath": "/content/tetrapak/public-web/lang-masters/en/solutions",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions",
 							"linkText": "Link Text"
 						}
 					},
@@ -68,11 +68,11 @@
 						"jcr:primaryType": "nt:unstructured",
 						"item0": {
 							"jcr:primaryType": "nt:unstructured",
-							"pageURL": "/content/tetrapak/public-web/lang-masters/en/solutions"
+							"pageURL": "/content/tetrapak/publicweb/lang-masters/en/solutions"
 						},
 						"item1": {
 							"jcr:primaryType": "nt:unstructured",
-							"pageURL": "/content/tetrapak/public-web/lang-masters/en/home"
+							"pageURL": "/content/tetrapak/publicweb/lang-masters/en/home"
 						}
 					}
 				}

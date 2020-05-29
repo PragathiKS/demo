@@ -9,7 +9,8 @@
         <div class="row">
           <div class="col-md-12 col-lg-6 leftPad">
             <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
-            <a data-sly-test="${data.linkURL}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
+            <a data-sly-test="${data.linkURL && data.linkURL!='#'}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
+
               target="${data.targetBlank}"
               data-link-section="Text & Image_imageClick"
               data-link-name="${data.title}" data-button-link-type="${data.pwButtonTheme}"
@@ -26,7 +27,7 @@
                 <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
               </sly>
             </a>
-            <span data-sly-test="${!data.linkURL}">
+            <span data-sly-test="${!data.linkURL  || data.linkURL=='#'}">
               <sly data-sly-test="${!wcmmode.edit}">
                 <sly
                   data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
