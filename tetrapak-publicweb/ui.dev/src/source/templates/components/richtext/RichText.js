@@ -16,6 +16,7 @@ class RichText {
   }
 
   trackAnalytics = e => {
+    e.preventDefault();
     const $this = $(e.target);
     const linkName = $this.text();
     const thisHref = $this.attr('href');
@@ -33,7 +34,8 @@ class RichText {
     };
     
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    return true;
+    window.open($this.attr('href'), $this.attr('target'));
+ 
   };
 
   init() {

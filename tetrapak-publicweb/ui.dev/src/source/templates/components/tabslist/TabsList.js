@@ -25,11 +25,12 @@ class TabsList {
     this.cache.selectedTabIndex = 0;
     this.cache.componentId = this.root.find('#tabComponentId').val();
     this.cache.activeTheme = this.root.find('#activeTheme').val();
+    this.cache.tabButton = this.root.find('.js-pw-tablist__event');
     this.cache.heading = $.trim(this.root.find('.js-tablist__heading').text());
   }
   bindEvents() {
     const $this = this;
-    const { activeTheme } = this.cache;
+    const { activeTheme, tabButton } = this.cache;
     this.root
       .on('click', '.js-tablist__event', function () {
         const self = $(this);
@@ -41,6 +42,8 @@ class TabsList {
       })
       .on('click', '.js-tablist__event-detail-description-link', this.trackAnalytics)
       .on('hidden.bs.collapse', '.collapse', this.pauseVideoIfExists);
+
+    tabButton.on('click', this.trackAnalyticsTabs);
   }
   showTabDetail = (el) => {
     const $tabSection = this.root.find('.js-tablist__events-sidesection');
@@ -56,12 +59,31 @@ class TabsList {
     pauseVideosByReference($(this).find('.is-playing'));
   }
   renderFirstTab = () => _renderFirstTab.call(this);
+
+  trackAnalyticsTabs = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-pw-tablist__event');
+    const trackingObj = {
+      linkType:'internal',
+      linkSection:$this.data('link-section'),
+      linkParentTitle:$this.data('parent-title'),
+      linkName: $this.data('link-name'),
+    };
+
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Tab Click_list'
+    };
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    return true;
+  }
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tablist__event-detail-description-link');
     let linkParentTitle = '';
     let trackingObj = {};
+    let eventObj = {};
     const dwnType = 'ungated';
     let eventType = 'content-load';
     const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
@@ -72,14 +94,18 @@ class TabsList {
     const dwnDocName = $this.data('asset-name');
     const tabTitle = $this.data('tab-title');
     const componentName = $this.data('component-name');
+    let extension = '';
+    if(downloadtype === 'download'){
+      extension = $this.attr('href').split('.').pop();
+    }
 
     if (buttonLinkType === 'secondary' && downloadtype === 'download') {
-      linkParentTitle = `CTA_Download_pdf_${tabTitle}`;
+      linkParentTitle = `CTA_Download_${extension}_${tabTitle}`;
       eventType = 'download';
     }
 
     if (buttonLinkType === 'link' && downloadtype === 'download') {
-      linkParentTitle = `Text hyperlink_Download_pdf_${tabTitle}`;
+      linkParentTitle = `Text hyperlink_Download_${extension}_${tabTitle}`;
       eventType = 'download';
     }
 
@@ -101,7 +127,12 @@ class TabsList {
         dwnType,
         eventType
       };
-      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
+
+      eventObj = {
+        eventType: 'downloadClick',
+        event: componentName
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false, eventObj);
     }
 
     if (downloadtype !== 'download') {
@@ -111,7 +142,8 @@ class TabsList {
         linkParentTitle,
         linkName
       };
-      const eventObj = {
+
+      eventObj = {
         eventType: 'linkClick',
         event: componentName
       };

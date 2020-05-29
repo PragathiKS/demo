@@ -47,14 +47,6 @@
                                 fieldLabel="Link path"
 								rootPath="/content"
                                 name="./linkURL"/>
-                            <targetBlank
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Select to open link in new window if external URL or Document"
-                                name="./targetBlank"
-                                text="Open in new window"
-                                uncheckedValue="_self"
-                                value="_blank"/>
                             <videoSource
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
@@ -92,10 +84,6 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
                                 path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
-                            <pwLinkThemes
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwLinkThemes"/>
                             <pwDisplay
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"

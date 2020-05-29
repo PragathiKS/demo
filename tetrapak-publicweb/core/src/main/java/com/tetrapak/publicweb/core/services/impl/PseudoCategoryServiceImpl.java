@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.services.impl;
 
 import com.day.cq.commons.jcr.JcrConstants;
+import com.tetrapak.publicweb.core.beans.PseudoCategoryCFBean;
 import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 
 import org.apache.commons.lang3.StringUtils;
@@ -16,9 +17,9 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -61,9 +62,9 @@ public class PseudoCategoryServiceImpl implements PseudoCategoryService {
     }
 
     @Override
-    public Map<String, String> fetchPseudoCategories(final ResourceResolver resourceResolver) {
+    public List<PseudoCategoryCFBean> fetchPseudoCategories(final ResourceResolver resourceResolver) {
         LOGGER.debug("Inside fetchPseudoCategories method");
-        final Map<String, String> pseudoCategoryMap = new HashMap<>();
+        final List<PseudoCategoryCFBean> cfBeanList = new ArrayList<>();
         final Resource pseudoCategoryResource = resourceResolver.getResource(getPseudoCategoriesCFRootPath());
         if (Objects.nonNull(pseudoCategoryResource)) {
             final Iterator<Resource> resourceIterator = pseudoCategoryResource.listChildren();
@@ -73,12 +74,27 @@ public class PseudoCategoryServiceImpl implements PseudoCategoryService {
                     final String dataPath = childResource.getPath() + "/jcr:content/data/master";
                     final Resource dataResource = resourceResolver.getResource(dataPath);
                     final ValueMap valueMap = dataResource.getValueMap();
-                    pseudoCategoryMap.put(valueMap.get("pseudoCateoryKey", StringUtils.EMPTY),
-                            valueMap.get("pseudoCateoryValue", StringUtils.EMPTY));
+                    cfBeanList.add(populateCFBean(valueMap));
                 }
             }
         }
-        return pseudoCategoryMap;
+        return cfBeanList;
+    }
+
+    /**
+     * Populate CF bean.
+     *
+     * @param valueMap the value map
+     * @return the pseudo category CF bean
+     */
+    private PseudoCategoryCFBean populateCFBean(final ValueMap valueMap) {
+        final PseudoCategoryCFBean cfBean = new PseudoCategoryCFBean();
+        cfBean.setPseudoCategoryKey(valueMap.get("pseudoCateoryKey", StringUtils.EMPTY));
+        cfBean.setPseudoCategoryValue(valueMap.get("pseudoCateoryValue", StringUtils.EMPTY));
+        if (valueMap.containsKey("pseudoCateoryOrder")) {
+            cfBean.setPseudoCategoryOrder(((Long) valueMap.get("pseudoCateoryOrder")).intValue());
+        }
+        return cfBean;
     }
 
     /**

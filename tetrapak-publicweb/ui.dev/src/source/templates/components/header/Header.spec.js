@@ -19,6 +19,7 @@ describe('Header', function () {
     this.handleHeaderItemMouseOverSpy = sinon.spy(this.header, 'handleHeaderItemMouseOver');
     this.handleHeaderItemMouseOutSpy = sinon.spy(this.header, 'handleHeaderItemMouseOut');
     this.replaceStub = sinon.stub(loc, 'replace');
+    this.openStub = sinon.stub(window, 'open');
     this.replaceStub.returns(true);
     window.digitalData = {};
     window._satellite = {
@@ -40,6 +41,7 @@ describe('Header', function () {
     this.replaceStub.restore();
     this.handleHeaderItemMouseOverSpy.restore();
     this.handleHeaderItemMouseOutSpy.restore();
+    this.openStub.restore();
   });
   it('should initialize', function () {
     expect(this.header.init.called).to.be.true;

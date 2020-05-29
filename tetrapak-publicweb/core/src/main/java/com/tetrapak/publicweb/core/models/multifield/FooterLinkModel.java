@@ -21,10 +21,6 @@ public class FooterLinkModel {
     @ValueMapValue
     private String linkPath;
 
-    /** The link target. */
-    @ValueMapValue
-    private String linkTarget;
-
     /**
      * Gets the link label.
      *
@@ -41,15 +37,6 @@ public class FooterLinkModel {
      */
     public String getLinkPath() {
         return LinkUtils.sanitizeLink(linkPath);
-    }
-
-    /**
-     * Gets the link target.
-     *
-     * @return the link target
-     */
-    public String getLinkTarget() {
-        return linkTarget;
     }
 
 }

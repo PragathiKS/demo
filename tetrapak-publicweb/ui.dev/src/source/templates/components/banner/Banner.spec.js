@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
 import Banner from './Banner';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 
 describe('Banner', function () {
@@ -13,6 +13,7 @@ describe('Banner', function () {
     });
     this.initSpy = sinon.spy(this.banner, 'init');
     this.analyticsSpy = sinon.spy(this.banner, 'trackAnalytics');
+    this.openStub = sinon.stub(window, 'open');
     window.digitalData = {};
     window._satellite = {
       track() { /* Dummy method */ }
@@ -23,6 +24,7 @@ describe('Banner', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.analyticsSpy.restore();
+    this.openStub.restore();
   });
   it('should initialize', function () {
     expect(this.initSpy.called).to.be.true;

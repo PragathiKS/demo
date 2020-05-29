@@ -37,14 +37,6 @@
                                 fieldLabel="Logo Image Alt Text"
                                 name="./logoAlt"
                                 required="true"/>
-                            <logolinktarget
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Open link in a new window ?"
-                                name="./logoLinkTarget"
-                                text="New Window"
-                                uncheckedValue="_self"
-                                value="_blank"/>
                             <footerLinks
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
@@ -76,14 +68,6 @@
                                                     name="./linkPath"
                                                     required="true"
                                                     rootPath="/content/tetrapak/public-web"/>
-                                                <linktarget
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                    fieldDescription="Open link in a new window ?"
-                                                    name="./linkTarget"
-                                                    text="New Window"
-                                                    uncheckedValue="_self"
-                                                    value="_blank"/>
                                             </items>
                                         </column>
                                     </items>

@@ -28,10 +28,6 @@ public class HeaderConfigurationModel {
     @Inject
     private String logoLink;
 
-    /** The logo link target. */
-    @Inject
-    private String logoLinkTarget;
-
     /** The logo alt. */
     @Inject
     private String logoAlt;
@@ -76,15 +72,6 @@ public class HeaderConfigurationModel {
      */
     public String getLogoLink() {
         return LinkUtils.sanitizeLink(logoLink);
-    }
-
-    /**
-     * Gets the logo link target.
-     *
-     * @return the logo link target
-     */
-    public String getLogoLinkTarget() {
-        return logoLinkTarget;
     }
 
     /**

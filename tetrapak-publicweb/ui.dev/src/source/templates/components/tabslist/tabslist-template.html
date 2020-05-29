@@ -19,10 +19,10 @@
                       data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}" />
               <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}" />
               <button type="button"
-                class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}"
+                class="pw-tablist__event js-pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}"
                 data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}"
                 data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}"
-                data-link-name="${tab.title}" data-link-section="Tab Click_list_${data.heading}">
+                data-link-name="${tab.title}" data-link-section="Tab Click_list_CTA" data-parent-title="CTA_${data.heading}">
                 <sly data-sly-test="${data.pwDisplay == 'display-row'}">
                   <div>
                     <p class="pw-tablist__event-title-icright semi-bold">${tab.title @ context='html'}</p>
@@ -75,7 +75,7 @@
                   </sly>
                   <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
                     <div class="x-img-responsive">
-                          <a data-sly-test="${tab.linkURL}"  
+                          <a data-sly-test="${tab.linkURL && tab.linkURL!='#'}"  
                           href="${tab.linkURL ? tab.linkURL : '#'}"
                           class="img-link js-tablist__event-detail-description-link"
                           data-custom="${customData @ context='text'}"
@@ -94,7 +94,7 @@
                         <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
                       </sly>
                       </a>
-                      <span data-sly-test="${!tab.linkURL}">
+                      <span data-sly-test="${!tab.linkURL || tab.linkURL=='#'}">
                       <sly data-sly-test="${!wcmmode.edit}">
                         <sly
                           data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"

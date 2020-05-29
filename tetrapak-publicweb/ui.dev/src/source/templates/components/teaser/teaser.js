@@ -21,7 +21,9 @@ class Teaser {
         if (isExternal(thisHref)) {
           $(this).attr('target', '_blank');
           $(this).data('download-type', 'download');
-          $(this).data('link-section', $(this).data('link-section') + '_Download');
+          if(!$(this).data('link-section').includes('_Download')){
+            $(this).data('link-section', $(this).data('link-section') + '_Download');
+          }
         } else {
           $(this).data('download-type', 'hyperlink');
         }
@@ -37,6 +39,7 @@ class Teaser {
     const $this = $target.closest('.js-teaser-analytics');
     let linkParentTitle = '';
     let trackingObj = {};
+    let eventObj = {};
     const dwnType = 'ungated';
     const eventType = 'download';
     const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
@@ -46,14 +49,18 @@ class Teaser {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
     const linkTitle = $this.data('link-title');
+    let extension = '';
+    if(downloadtype === 'download'){
+      extension = $this.attr('href').split('.').pop();
+    }
 
 
     if (buttonLinkType === 'secondary' && downloadtype === 'download') {
-      linkParentTitle = `CTA_Download_pdf_${linkTitle}`;
+      linkParentTitle = `CTA_Download_${extension}_${linkTitle}`;
     }
 
     if (buttonLinkType === 'link' && downloadtype === 'download') {
-      linkParentTitle = `Text hyperlink_Download_pdf_${linkTitle}`;
+      linkParentTitle = `Text hyperlink_Download_${extension}_${linkTitle}`;
     }
 
     if (buttonLinkType === 'secondary' && downloadtype !== 'download') {
@@ -74,7 +81,12 @@ class Teaser {
         dwnType,
         eventType
       };
-      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
+
+      eventObj = {
+        eventType: 'downloadClick',
+        event: 'Teaser'
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false, eventObj);
     }
 
     if (downloadtype !== 'download') {
@@ -84,7 +96,8 @@ class Teaser {
         linkParentTitle,
         linkName
       };
-      const eventObj = {
+      
+      eventObj = {
         eventType: 'linkClick',
         event: 'Teaser'
       };

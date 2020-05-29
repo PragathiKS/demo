@@ -10,11 +10,13 @@
         @include margin-bottom($margin-md);
         font-size: 14px;
         font-family: $font-bold;
+        z-index: 3;
     }
     .form-check-radio {
         border: 1px solid $color-tundora;
         height: 20px;
         width: 20px;
+        z-index: 2;
 
         &::before {
             height: 8px;

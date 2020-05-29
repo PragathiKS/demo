@@ -154,9 +154,12 @@
             color: $color-congress-blue;
             position: absolute;
             top: 0;
-            bottom: 0;
+            bottom: $spacing-big;
             margin: auto;
             transition: transform $anim-speed-quick $anim-ease;
+            @media #{$desktop} {
+                bottom: 0;
+            }
 
             &::before {
                 vertical-align: top;
@@ -179,12 +182,13 @@
             color: $color-congress-blue;
             position: absolute;
             top: 0;
-            bottom: 0;
+            bottom: 24px;
             margin: auto;
             transition: transform $anim-speed-quick $anim-ease;
 
             @media #{$desktop} {
                 right: 0;
+                bottom: 0;
             }
             @media #{$mobile} {
                 transform: rotate(90deg);
@@ -298,6 +302,14 @@
     }
 
     &__event-title-icleft {
+        &.semi-bold {
+            font-family: $font-black;
+            font-weight: 900;
+            @media #{$desktop} {
+                font-family: $font-bold;
+                font-weight: normal;
+            }
+        }
         @include margin-left(0);
         @media #{$desktop} {
             @include margin-left($margin-xl);

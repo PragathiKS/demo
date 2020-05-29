@@ -92,7 +92,6 @@ public class TextVideoModelTest {
         assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailAltText());
         assertEquals("secondary", model.getPwButtonTheme());
         assertEquals("grayscale-white", model.getPwTheme());
-        assertEquals("download", model.getPwLinkTheme());
         assertEquals("regular", model.getPwPadding());
         assertEquals("display-row", model.getPwDisplay());
         

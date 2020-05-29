@@ -61,8 +61,15 @@
         @include padding-bottom($padding-md);
         color: $color-congress-blue;
         width: 100%;
-        &:last-child {
-            @include padding-bottom($padding-l);
+        &:hover {
+            a {
+                color: $color-jordy-blue;
+            }
+        }
+        @media #{$desktop} {
+            &:last-child {
+                @include padding-bottom($padding-l);
+        }
         }
 
     }

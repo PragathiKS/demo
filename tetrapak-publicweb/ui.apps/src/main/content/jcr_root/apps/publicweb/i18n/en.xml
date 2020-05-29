@@ -112,16 +112,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pleaseselectanoption"
         sling:message="Please select an option"/>
-   <step
-        jcr:mixinTypes="[sling:Message]"
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="step"
-        sling:message="Step"/>
-   <of
-        jcr:mixinTypes="[sling:Message]"
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="of"
-        sling:message="of"/>
    <pleasefillinfield
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
@@ -137,4 +127,29 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="serviceerrormsg"
         sling:message="Something went wrong. Please try again."/>          
+   <stepxofy
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="step {0} of {1}"
+        sling:message="Step {0} of {1}"/>
+   <purposeofcontact
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="purposeofcontact"
+        sling:message="Purpose of contact"/>
+   <contactinformation
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="contactinformation"
+        sling:message="Contact information"/>         
+   <summary
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="summary"
+        sling:message="Summary"/>
+   <howcanihelp
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="howcanihelp"
+        sling:message="How can I help you?"/>
 </jcr:root>
