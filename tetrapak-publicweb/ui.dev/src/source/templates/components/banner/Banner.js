@@ -93,7 +93,7 @@ class Banner {
     $bEl.each(function () {
       const $anchor = $bEl.data('href');
       if ($anchor && $anchor !== '#') {
-        $(this).find('.pw-banner__image-wrapper').css('cursor', 'pointer');
+        $bEl.css('cursor', 'pointer');
       }
     });
 
@@ -103,7 +103,7 @@ class Banner {
       if (!($anchor && $anchor !== '#')) {
         return false;
       }
-      if ($(e.target).closest('.pw-banner__contentwrapper').length) {
+      if ($(e.target).closest('.pw-banner__content').length) {
         return true;
       }
       if (isExternal($anchor)) {
