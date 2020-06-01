@@ -1,7 +1,6 @@
 <sly data-sly-test="${wcmmode.edit}">
     <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
 </sly>
-
-<sly data-sly-use.model="com.tetrapak.publicweb.core.models.FormModel"
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.BusinessInquiryModel"
      data-sly-use.lib="businessinquiryform-template.html"
      data-sly-call="${lib.businessinquiryform_template @ data=model, componentName='businessinquiryform'}" />

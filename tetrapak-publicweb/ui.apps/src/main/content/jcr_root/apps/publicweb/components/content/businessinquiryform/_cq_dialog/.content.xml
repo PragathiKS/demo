@@ -96,25 +96,24 @@
                                 name="./privacyPolicy"
                                 useFixedInlineToolbar="{Boolean}true">
                                 <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
                                     <links
                                         jcr:primaryType="nt:unstructured"
                                         features="modifylink,unlink"/>
-                                    <paraformat
+                                    <justify
                                         jcr:primaryType="nt:unstructured"
-                                        features="*"/>
+                                        features="-"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-"/>
                                 </rtePlugins>
                                 <uiSettings jcr:primaryType="nt:unstructured">
                                     <cui jcr:primaryType="nt:unstructured">
                                         <dialogFullScreen
                                             jcr:primaryType="nt:unstructured"
-                                            toolbar="[links#modifylink,links#unlink,#paraformat]">
-                                            <popovers jcr:primaryType="nt:unstructured">
-                                                <paraformat
-                                                    jcr:primaryType="nt:unstructured"
-                                                    items="paraformat:getFormats:paraformat-pulldown"
-                                                    ref="paraformat"/>
-                                            </popovers>
-                                        </dialogFullScreen>
+                                            toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
                                     </cui>
                                 </uiSettings>
                             </privacypolicytext>
@@ -125,25 +124,24 @@
                                 name="./marketingConsent"
                                 useFixedInlineToolbar="{Boolean}true">
                                 <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
                                     <links
                                         jcr:primaryType="nt:unstructured"
                                         features="modifylink,unlink"/>
-                                    <paraformat
+                                    <justify
                                         jcr:primaryType="nt:unstructured"
-                                        features="*"/>
+                                        features="-"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-"/>
                                 </rtePlugins>
                                 <uiSettings jcr:primaryType="nt:unstructured">
                                     <cui jcr:primaryType="nt:unstructured">
                                         <dialogFullScreen
                                             jcr:primaryType="nt:unstructured"
-                                            toolbar="[links#modifylink,links#unlink,#paraformat]">
-                                            <popovers jcr:primaryType="nt:unstructured">
-                                                <paraformat
-                                                    jcr:primaryType="nt:unstructured"
-                                                    items="paraformat:getFormats:paraformat-pulldown"
-                                                    ref="paraformat"/>
-                                            </popovers>
-                                        </dialogFullScreen>
+                                            toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
                                     </cui>
                                 </uiSettings>
                             </marketingconsent>
@@ -151,24 +149,6 @@
                     </column>
                 </items>
             </form>
-            <apidetails
-                jcr:primaryType="nt:unstructured"
-                jcr:title="API details"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <apiurl
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="API Url"
-                                name="./apiUrl"/>
-                        </items>
-                    </column>
-                </items>
-            </apidetails>
             <thankyou
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Thank you"
@@ -215,25 +195,24 @@
                                 name="./thankyouDescriptionText"
                                 useFixedInlineToolbar="{Boolean}true">
                                 <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
                                     <links
                                         jcr:primaryType="nt:unstructured"
                                         features="modifylink,unlink"/>
-                                    <paraformat
+                                    <justify
                                         jcr:primaryType="nt:unstructured"
-                                        features="*"/>
+                                        features="-"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-"/>
                                 </rtePlugins>
                                 <uiSettings jcr:primaryType="nt:unstructured">
                                     <cui jcr:primaryType="nt:unstructured">
                                         <dialogFullScreen
                                             jcr:primaryType="nt:unstructured"
-                                            toolbar="[links#modifylink,links#unlink,#paraformat]">
-                                            <popovers jcr:primaryType="nt:unstructured">
-                                                <paraformat
-                                                    jcr:primaryType="nt:unstructured"
-                                                    items="paraformat:getFormats:paraformat-pulldown"
-                                                    ref="paraformat"/>
-                                            </popovers>
-                                        </dialogFullScreen>
+                                            toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
                                     </cui>
                                 </uiSettings>
                             </summarytext>
