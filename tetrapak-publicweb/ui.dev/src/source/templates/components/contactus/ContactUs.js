@@ -4,6 +4,7 @@ import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
+import { validateFieldsForTags } from '../../../scripts/common/common';
 
 class ContactUs {
   constructor({ el }) {
@@ -103,11 +104,12 @@ class ContactUs {
       const input = tab.find('input');
       const textarea = tab.find('textarea');
       if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
-        $('input, textarea', tab).each(function () {
+        $('.validateForTags', tab).each(function () {
           const fieldName = $(this).attr('name');
-          $('div.' + fieldName).text($(this).val());
+          const newSafeValues = validateFieldsForTags($(this).val());
+          $('div.' + fieldName).text(newSafeValues);
           if (fieldName in self.cache.requestPayload) {
-            requestPayload[fieldName] = $(this).val();
+            requestPayload[fieldName] = newSafeValues;
           }
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val())) {
             isvalid = false;
@@ -133,7 +135,7 @@ class ContactUs {
       e.stopPropagation();
       let isvalid = true;
       const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
-      requestPayload['message'] = $('[name="message"]').val();
+      requestPayload['message'] = validateFieldsForTags($('[name="message"]').val());
       $('input, textarea').each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
