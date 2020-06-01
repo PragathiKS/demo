@@ -13,12 +13,16 @@
           id="accordion_${resource.name}">
           <sly data-sly-list.tab="${data.tabs}">
             <sly data-sly-test="${tab.title}">
+              <sly
+                      data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}" />
+                    <sly
+                      data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}" />
               <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}" />
               <button type="button"
-                class="pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}"
+                class="pw-tablist__event js-pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}"
                 data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}"
                 data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}"
-                data-link-name="${tab.title}" data-link-section="Tab Click_list_${data.heading}">
+                data-link-name="${tab.title}" data-link-section="Tab Click_list_CTA" data-parent-title="CTA_${data.heading}">
                 <sly data-sly-test="${data.pwDisplay == 'display-row'}">
                   <div>
                     <p class="pw-tablist__event-title-icright semi-bold">${tab.title @ context='html'}</p>
@@ -71,13 +75,14 @@
                   </sly>
                   <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
                     <div class="x-img-responsive">
-                          <a data-sly-test="${tab.linkURL}"  
+                          <a data-sly-test="${tab.linkURL && tab.linkURL!='#'}"  
                           href="${tab.linkURL ? tab.linkURL : '#'}"
                           class="img-link js-tablist__event-detail-description-link"
                           data-custom="${customData @ context='text'}"
                           data-link-section="${tabContentType}${buttonLinkType}"
                           data-link-name="${tab.linkText}"
                           data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
+                          data-component-name="Text & Image"
                           data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
                           data-tab-title="${tab.title}">
                       <sly data-sly-test="${!wcmmode.edit}">
@@ -89,7 +94,7 @@
                         <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
                       </sly>
                       </a>
-                      <span data-sly-test="${!tab.linkURL}">
+                      <span data-sly-test="${!tab.linkURL || tab.linkURL=='#'}">
                       <sly data-sly-test="${!wcmmode.edit}">
                         <sly
                           data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -112,10 +117,7 @@
                     <div class="pw-tablist__event-detail-description">${tab.description @ context='html'}</div>
                   </sly>
                   <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
-                    <sly
-                      data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}" />
-                    <sly
-                      data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}" />
+                    
                     <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}" />
                     <sly
                       data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}" />
@@ -124,6 +126,7 @@
                       data-custom="${customData @ context='text'}" title="${btnTooltip}"
                       data-link-section="${tabContentType}${buttonLinkType}"
                       data-link-name="${tab.linkText}"
+                      data-component-name="Text & Video"
                       data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
                       data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
                       data-tab-title="${tab.title}">
@@ -140,6 +143,7 @@
                 <a href="${data.readMorePath}"
                   class="tpatom-link tpatom-link--transparent pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
                   data-link-section="Tab Click_Text Hyperlink"
+                  data-component-name="Tab Click"
                   data-link-name="${data.readMoreText}"
                   data-button-link-type="link" data-asset-name="${data.assetName}" data-tab-title="${data.heading}"
                   data-tab-type="">

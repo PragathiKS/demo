@@ -64,6 +64,6 @@ public class ContactUsEnvelopeModelTest {
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("Contact Us Label", model.getContactUsAltText());
-        assertEquals("/content/tetrapak/public-web/global/en.html", model.getContactUsLink());
+        assertEquals("/content/tetrapak/publicweb/global/en.html", model.getContactUsLink());
     }
 }

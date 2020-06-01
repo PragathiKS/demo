@@ -42,10 +42,10 @@ public final class PWConstants {
     public static final String PXP_ROOT_PATH = "/var/commerce/products/pxp";
 
     /** The Constant CONTENT_ROOT_PATH. */
-    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/public-web";
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/publicweb";
     
     /** The Constant GLOBLA_LANG_PATH. */
-    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/public-web/gb";
+    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/publicweb/gb";
 
     /** The Constant PXP. */
     public static final String PXP = "pxp";

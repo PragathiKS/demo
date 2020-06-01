@@ -30,7 +30,7 @@
 					"logoAlt": "Logo ",
 					"jcr:lastModified": "Fri Mar 27 2020 18:55:38 GMT+0530",
 					"sling:resourceType": "publicweb/components/structure/footerconfiguration",
-					"logoLink": "/content/tetrapak/public-web/lang-masters",
+					"logoLink": "/content/tetrapak/publicweb/lang-masters",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
 					"footerLinks":{
 					"jcr:primaryType": "nt:unstructured",
@@ -43,7 +43,7 @@
 					"item1": {
 						"jcr:primaryType": "nt:unstructured",
 						"linkLabel": "Link text 2",
-						"linkPath": "/content/tetrapak/public-web",
+						"linkPath": "/content/tetrapak/publicweb",
 						"linktarget": "_self"
 						}
 					},

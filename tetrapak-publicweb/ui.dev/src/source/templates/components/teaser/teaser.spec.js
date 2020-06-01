@@ -5,7 +5,7 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Teaser', function () {
   before(function () {
-    $(document.body).empty().html('<a class="teaser js-teaser-analytics">Teaser Button</a>');
+    $(document.body).empty().html('<a class="teaser js-teaser-analytics" href="https://loripsum.net/abc.pdf" data-link-section="Teaser_CTA_Download" data-download-type="download" data-asset-name="Asset">Teaser Button</a>');
     this.teaser = new Teaser({
       el: document.body
     });

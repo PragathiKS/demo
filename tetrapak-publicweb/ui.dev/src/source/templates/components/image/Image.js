@@ -1,5 +1,5 @@
 import $ from 'jquery';
-
+import { isExternal } from '../../../scripts/utils/updateLink';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Image {
@@ -19,7 +19,7 @@ class Image {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-image');
-    const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
+    const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
 
     const trackingObj = {
       linkType,
@@ -33,9 +33,13 @@ class Image {
     };
 
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    window.open($this.attr('href'), '_self');
-  }
 
+    if (isExternal($($this).attr('href'))) {
+      window.open($this.attr('href'), '_blank');
+    } else {
+      window.open($this.attr('href'), '_self');
+    }
+  }
 
   init() {
     this.initCache();

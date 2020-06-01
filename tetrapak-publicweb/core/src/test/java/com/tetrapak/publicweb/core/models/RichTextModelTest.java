@@ -13,7 +13,7 @@ public class RichTextModelTest {
 
     private static final String RESOURCE_CONTENT = "/richtext/test-content.json";
 
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/public-web/lang-masters/en/solutions";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-masters/en/solutions";
 
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/richtext_985436779";
 

@@ -18,6 +18,8 @@
             display: inline-block;
         }
         .pseudo-category-header {
+            @include line-height(20px, $font-sm);
+            font-size: $font-sm;
             text-transform: uppercase;
             color: $color-boulder;
         }
@@ -38,7 +40,7 @@
 
         & > ul {
             & > li {
-                @include margin-left(80px);
+                @include margin-left(56px);
                 &:first-child {
                     @include margin-left(0);
                 }
@@ -67,7 +69,7 @@
         .category-child-ul {
             display: flex;
             & > ul {
-                @include margin-left(80px);
+                @include margin-left(56px);
                 &:first-child {
                     @include margin-left(0);
                 }

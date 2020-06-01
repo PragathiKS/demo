@@ -83,7 +83,7 @@ public class DeltaFeedScheduledTaskTest {
 
     private DeltaFeedImportScheduledTask deltaFeedTask = new DeltaFeedImportScheduledTask();
     
-    private static final String PRODUCT_PAGE = "/content/tetrapak/public-web/lang-masters/en/solutions/processing/main-technology-areas/test-prod-1";
+    private static final String PRODUCT_PAGE = "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/main-technology-areas/test-prod-1";
 
     @Before
     public void setUp() throws Exception { 
