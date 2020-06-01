@@ -28,10 +28,10 @@ describe('ContactUs', function () {
     expect(this.contactUs.cache.countryList.length).to.equal(2);
   });
 
-  it('Should update request payload on step-1 next button click', function () {
+  it('Should not update request payload on step-1 next button click', function () {
     document.getElementById('purposeOfContact').value = 'Career';
     document.getElementById('step1btn').click();
-    expect(this.contactUs.cache.requestPayload['purposeOfContactTitle']).to.equal('Career');
+    expect(this.contactUs.cache.requestPayload['purposeOfContactTitle']).to.not.equal('Career');
   });
 
   it('Should update request payload on radio button change', function () {
