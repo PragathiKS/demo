@@ -57,12 +57,14 @@ public class ContactUsModel extends FormModel {
         this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
     }
 
+
     /**
-     * Gets the servlet path.
+     * Gets the api url.
      *
-     * @return the servlet path
+     * @return the api url
      */
-    public String getServletPath() {
+    @Override
+    public String getApiUrl() {
         return resource.getPath() + ".sendmail.json";
     }
 

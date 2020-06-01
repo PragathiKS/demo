@@ -100,7 +100,9 @@ public class ContactUsModelTest {
         assertEquals("ContactUs", "Contact us", model.getAlt());
         assertEquals("ContactUs", "Please select the countryyou wish to contact.", model.getDescriptionText());
         assertEquals("ContactUs", "grayscale-white", model.getPwTheme());
-        assertEquals("ContactUs", "/content/tetrapak/publicweb/lang-master/en/contactus/jcr:content/contactus.sendmail.json", model.getServletPath());
+        assertEquals("ContactUs",
+                "/content/tetrapak/publicweb/lang-master/en/contactus/jcr:content/contactus.sendmail.json",
+                model.getApiUrl());
     }
 
     @Test
