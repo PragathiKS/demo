@@ -86,7 +86,8 @@
       "tiff:ImageWidth": 160,
       "dam:sha1": "8d05874c94b196c0dbc6e0d4338ab013013ffb25",
       "dam:size": 3313,
-      "dam:scene7PublishPending": true
+      "dam:scene7PublishPending": true,
+      "dam:scene7Name": "p2"
     }
   }
 }
