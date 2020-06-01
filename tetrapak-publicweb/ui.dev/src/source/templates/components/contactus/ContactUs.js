@@ -86,6 +86,7 @@ class ContactUs {
     const value = e.target.value;
     const id = e.target.id;
     $('input[type=hidden][name="purposeOfContactTitle"]').val(value);
+    $('div.purposeOfContactTitle').text(value);
     requestPayload['purposeOfContact'] = id;
     requestPayload['purposeOfContactTitle'] = value;
   }
