@@ -1,11 +1,8 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -17,7 +14,11 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 /**
  * class for dynamic image model
@@ -183,19 +184,8 @@ public class DynamicImageModel {
     @PostConstruct
     protected void postConstruct() {
         String dynamicMediaUrl = getImageServiceURL();
-        final String rootPath = getRootPath();
-        String damPath;
-        String assetName;
         if (imagePath != null) {
-            String subString;
-            final int iend = imagePath.indexOf('.');
-            if (iend != -1) {
-                subString = imagePath.substring(0, iend);
-                damPath = StringUtils.substringBeforeLast(subString, PATH_SEPARATOR);
-                assetName = StringUtils.substringAfterLast(subString, PATH_SEPARATOR);
-                damPath = damPath.replace(damPath, rootPath);
-                finalPath = damPath + PATH_SEPARATOR + getScene7FileName(assetName);
-            }
+            finalPath = PWConstants.SLASH + GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
         }
 
         if (null != dynamicMediaUrl) {
@@ -209,22 +199,6 @@ public class DynamicImageModel {
             setMobileLandscapeUrl(createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl));
         }
         setDefaultImage();
-    }
-
-    /**
-     * Gets the scene 7 file name.
-     * @param assetName 
-     *
-     * @return the scene 7 file name
-     */
-    private String getScene7FileName(final String assetName) {
-        String fileName = assetName;
-        final Resource resource = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
-        if (Objects.nonNull(resource)) {
-            final ValueMap properties = resource.getValueMap();
-            fileName = properties.get("dam:scene7Name", assetName);
-        }
-        return fileName;
     }
 
     /**
@@ -503,10 +477,6 @@ public class DynamicImageModel {
 
     public String getVideoServiceUrl() {
         return dynamicMediaService.getVideoServiceUrl();
-    }
-
-    public String getRootPath() {
-        return dynamicMediaService.getRootPath();
     }
 
     public String getMobileLandscapeUrl() {
