@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
@@ -42,7 +43,7 @@ class Header {
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
     $headerLogoTracker.on('click', this.trackBrandLogo);
-    // $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
+    $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
     this.root.find('.js-header__selected-lang-pw').on('click', (e) => {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
       this.trackLanguageSelector(e);
@@ -136,12 +137,12 @@ class Header {
     }
   }
 
-  // handleMainNavClick =(e) => {
-  //   e.preventDefault();
-  //   const $target = $(e.target);
-  //   const $this = $target.closest('.js-tp-pw-header-item');
-  //   window.open($this.attr('href'), '_self');
-  // }
+  handleMainNavClick =(e) => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-tp-pw-header-item');
+    window.open($this.attr('href'), '_self');
+  }
 
   trackBrandLogo = (e) => {
     const $target = $(e.target);

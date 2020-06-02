@@ -1,3 +1,7 @@
+.collapse > .pw-sub-section-menu {
+    display: block;
+}
+
 .pw-sub-section-menu {
     @media #{$desktop} {
         @include padding-top(18px);

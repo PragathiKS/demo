@@ -14,6 +14,14 @@ class Navigation {
     if ($stickySectionMenu.length > 0) {
       $('.body-content').addClass('body-top-padding');
     }
+
+    /* the below function uses the bootstrap for the toggle the close and open icon */
+    $('.js-pw-navigation__container').on('shown.bs.collapse', function(){
+      $(this).parent().children('a').children('.without-arrow').removeClass('icon-Arrow_Right_pw').addClass('icon-Close');
+    }).on('hidden.bs.collapse', function(){
+      $(this).parent().children('a.collapsed').children('.without-arrow').removeClass('icon-Close').addClass('icon-Arrow_Right_pw');
+    });
+
     this.showSelectedHeader();
   }
   showSelectedHeader = () => {

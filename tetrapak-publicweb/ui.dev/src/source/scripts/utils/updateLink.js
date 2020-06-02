@@ -62,7 +62,10 @@ export default () => {
         } else if($(iconEl).hasClass('with-arrow')){
           $(iconEl).addClass('icon-Arrow_Right_pw');
           $(this).attr('target','_self');
-        } else {
+        } else if($(iconEl).hasClass('without-arrow')){
+          $(iconEl).addClass('');
+        }
+        else {
           if ($(this).hasClass('tpatom-link--primary')) {
             $(iconEl).addClass('icon-Arrow_Right_pw');
           } else {

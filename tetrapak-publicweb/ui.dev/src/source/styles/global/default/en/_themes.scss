@@ -106,10 +106,7 @@ h1,h2,h3,h4{
     position: static;
 }
 .sticky-section-menu {
-    display: none;
-    @media #{$desktop} {
-        display: block;
-    }
+    display: block;   // will be block display in every case
 }
 
 @media #{$desktop} {

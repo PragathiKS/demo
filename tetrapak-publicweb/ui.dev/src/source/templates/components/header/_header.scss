@@ -1,4 +1,8 @@
 .tp-pw-header {
+    height: 62px;
+    width: 100%;
+    top: 0;
+    background: $color-white;
     @media #{$desktop} {
         height: 80px;
         width: 100%;
@@ -7,8 +11,6 @@
             @include padding-bottom(0);
         }
     }
-
-    background: $color-white;
     .nav-link {
         padding: 16px;
     }
@@ -26,9 +28,15 @@
     &__container {
         @include padding(0 3px 0);
         border-bottom: 1px solid $color-mercury;
-        height: #{convert-to-rem(82px)};
-        position: relative;
-        z-index: $zindex-t;
+
+        position: fixed; //  mobile design
+        height: 62px;   // header mobile container height
+        background: $color-white;
+        width: 100%;
+        z-index: $zindex-header;
+        .header-items {
+            height: 62px;
+        }
 
         @media #{$desktop} {
             @include padding(23px 0);
@@ -230,11 +238,12 @@
 .tp-pw-mobile-navigation {
     @include font-size($font-baseline);
     @include line-height($font-l, $font-baseline);
+    @include margin-top(62px); // this is with reference to the header fixed height
     display: none;
     font-weight: 500;
     width: 100%;
     position: absolute;
-    z-index: $zindex-p;
+    z-index: $zindex-nav;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: $color-white;

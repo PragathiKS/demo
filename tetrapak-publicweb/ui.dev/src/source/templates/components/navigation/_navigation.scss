@@ -2,6 +2,28 @@
     .hr-display {
         display: none;
     }
+    &__container {
+        .list-section-menu-links {
+            display: block;
+        }
+    }
+    &.sticky {
+        display: block;
+        z-index: $z-index-section-menu;
+        position: fixed;
+        background: $color-white;
+        top: 62px; // this is section menu margin from header
+        width: 100%;
+        & > .pw-navigation__container {
+            @include padding(0); // this padding is using in section menu item
+        }
+        .collapse-button {
+            @include padding(16px);  // this padding is using around insights item button in mobile
+            display: flex;
+            justify-content: space-between;
+
+        }
+    }
     @media #{$desktop} {
         display: none;
         // display: block;
@@ -17,12 +39,12 @@
             font-weight: normal;
         }
         &.sticky {
-            display: block;
-            z-index: $z-index-section-menu;
-            position: fixed;
+            // display: block;
+            // z-index: $z-index-section-menu;   // coming from mobile navigation
+            // position: fixed;
             top: 80px;
             & > .pw-navigation__container {
-                @include padding-top(18px);
+                @include padding(18px $padding-xxxl);
             }
             & > .hr-display {
                 display: none;
@@ -52,6 +74,8 @@
                 }
             }
             .list-section-menu-links {
+                display: flex;
+                justify-content: center;
                 & > li {
                     &:first-child {
                         @include margin-left(0);
@@ -62,7 +86,7 @@
                     @include margin(0 12px);
                 }
             }
-
+            
         }
         .hr-display {
             display: block;
