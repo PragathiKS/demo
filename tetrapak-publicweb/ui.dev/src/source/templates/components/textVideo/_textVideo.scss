@@ -52,6 +52,12 @@
             @include margin-bottom($padding-md);
         }
     }
+    &__link {
+        @include margin-top($margin-l);
+        @media #{$desktop} {
+            @include margin-top($margin-zero);
+        }
+    }
 
     &__title {
         @include margin-bottom($padding-md);
