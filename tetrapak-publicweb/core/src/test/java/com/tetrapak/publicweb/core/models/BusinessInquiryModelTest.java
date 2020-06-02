@@ -3,15 +3,22 @@ package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.tetrapak.publicweb.core.services.PadrotService;
+import com.tetrapak.publicweb.core.services.impl.PadrotServiceImpl;
+
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 
-public class FormModelTest {
+public class BusinessInquiryModelTest {
 
     /** The context. */
     @Rule
@@ -21,13 +28,15 @@ public class FormModelTest {
     private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
     private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master/en";
     /** The model class. */
-    Class<FormModel> modelClass = FormModel.class;
+    Class<BusinessInquiryModel> modelClass = BusinessInquiryModel.class;
 
     /** The model. */
-    private FormModel model;
+    private BusinessInquiryModel model;
+
+    private PadrotService padrotService;
 
     /**
-     * The Constant
+     * The Constant PXP_FEATURES.
      */
     private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/jcr:content/businessinquiryform";
 
@@ -42,8 +51,17 @@ public class FormModelTest {
      */
     @Before
     public void setUp() throws Exception {
+        padrotService = new PadrotServiceImpl();
         context.load().json(TEST_RESOURCE_CONTENT, CONTACT_US_CONTENT_ROOT);
+
         context.addModelsForClasses(modelClass);
+        context.registerService(PadrotService.class, padrotService);
+        // context.registerInjectActivateService(countryDetailService);
+        final Map<String, Object> padrotConfig = new HashMap<>();
+        padrotConfig.put("padrotBusinessInquiryServiceUrl",
+                "http://padrotURL");
+        MockOsgi.activate(context.getService(PadrotService.class), context.bundleContext(), padrotConfig);
+
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
 
@@ -70,7 +88,7 @@ public class FormModelTest {
         assertEquals("Form", "Contact us", model.getAlt());
         assertEquals("Form", "Description", model.getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
-        assertEquals("Form", "API Url", model.getApiUrl());
+        assertEquals("Form", "http://padrotURL", model.getApiUrl());
         assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
        }
 
