@@ -8,6 +8,24 @@
         }
     }
     @media #{$mobile} {
+        & > .active.section-menu-item-link,
+        & > .section-menu-item-link {
+            i.with-arrow {
+                &::before {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+
+        & > .collapsed.section-menu-item-link,
+        & > .active.collapsed.section-menu-item-link {
+            i.with-arrow {
+                &::before {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+
         .section-menu-item-link {
             @include padding($padding-md);
             display: flex;

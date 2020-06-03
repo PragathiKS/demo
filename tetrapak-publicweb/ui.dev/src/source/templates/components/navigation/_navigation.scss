@@ -13,11 +13,12 @@
             @include padding(0); // this padding is using in section menu item
         }
         .collapse-button {
-            @include padding(16px);  // this padding is using around insights item button in mobile
-            border-bottom: 1px solid $color-mercury;
+            @include padding(
+                16px
+            ); // this padding is using around insights item button in mobile
             display: flex;
+            border-bottom: 1px solid $color-mercury;
             justify-content: space-between;
-
         }
     }
 
@@ -39,7 +40,6 @@
             }
         }
     }
-
 
     @media #{$desktop} {
         display: none;
@@ -103,7 +103,6 @@
                     @include margin(0 12px);
                 }
             }
-            
         }
         .hr-display {
             display: block;
