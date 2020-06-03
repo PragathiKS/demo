@@ -50,8 +50,10 @@
 
         li {
             @include margin(0);
+            @include line-height(20px, $font-sm);
             white-space: nowrap;
             background: $color-wild-sand;
+            font-size: $font-sm;
             &:first-child {
                 @include margin-left(0);
             }
