@@ -9,6 +9,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
@@ -21,6 +22,10 @@ import javax.annotation.PostConstruct;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class VideoModel {
+
+    /** The resource. */
+    @Self
+    private Resource resource;
 
     @OSGiService
     private SlingSettingsService slingSettingsService;
@@ -61,11 +66,11 @@ public class VideoModel {
             youtubeEmbedURL = "https://www.youtube.com/embed/"
                     + (youtubeVideoID.contains("?") ? (youtubeVideoID + "&" + PWConstants.ENABLE_JS_API)
                             : (youtubeVideoID + "?" + PWConstants.ENABLE_JS_API));
-            ;
         }
 
         if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath,
+                    dynamicMediaService);
         }
     }
 
