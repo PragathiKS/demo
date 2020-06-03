@@ -181,7 +181,7 @@
 
         .icon-ver-line {
             @include margin-left($margin-md);
-            border: 1px solid $color-mercury;
+            border-left: 1px solid $color-mercury;
         }
     }
 
