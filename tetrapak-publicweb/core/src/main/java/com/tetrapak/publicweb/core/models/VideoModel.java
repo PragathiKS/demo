@@ -66,7 +66,6 @@ public class VideoModel {
             youtubeEmbedURL = "https://www.youtube.com/embed/"
                     + (youtubeVideoID.contains("?") ? (youtubeVideoID + "&" + PWConstants.ENABLE_JS_API)
                             : (youtubeVideoID + "?" + PWConstants.ENABLE_JS_API));
-            ;
         }
 
         if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
