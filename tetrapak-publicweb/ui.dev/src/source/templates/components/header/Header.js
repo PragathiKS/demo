@@ -29,6 +29,8 @@ class Header {
     this.cache.$overlay = $('.js-pw-overlay');
   }
 
+  // 
+
   bindEvents() {
     const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
@@ -47,6 +49,11 @@ class Header {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
       this.trackLanguageSelector(e);
     });
+
+    this.root.find('.js-softconversion-pw').on('click', () => {
+      this.root.find('.js-soft-modal').trigger('showsoftconversion-pw');
+    });
+
   }
 
   trackLanguageSelector = e => {
