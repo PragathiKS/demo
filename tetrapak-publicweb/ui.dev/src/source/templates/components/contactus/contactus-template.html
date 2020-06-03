@@ -52,7 +52,7 @@
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
                                                 data-sly-call="${radioField.radiofieldinput_template @ id='other', label='other', name='purposeOfContactOptions', labelClass='mb-0'}">
                                             </sly>
-                                            <input type="hidden" name="purposeOfContactTitle" class="form-control"
+                                            <input type="hidden" name="purposeOfContactTitle" class="form-control validateForTags"
                                                 id="purposeOfContact" required>
                                             <div class="errorMsg purposeOfContactError">${'pleaseselectanoption' @i18n}
                                             </div>
@@ -151,7 +151,7 @@
                                                             ${country.value}
                                                         </a>
                                                     </div>
-                                                    <input type="hidden" name="countryTitle" class="form-control"
+                                                    <input type="hidden" name="countryTitle" class="form-control validateForTags"
                                                         id="country" required>
                                                 </div>
                                                 <div class="errorMsg">${'pleaseselectanoption' @i18n}</div>
