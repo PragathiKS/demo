@@ -12,19 +12,19 @@
             flex-direction: row;
         }
         .leftPad {
-            @include padding-left($padding-md);
-            @include padding-right($padding-md);
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
             @media #{$desktop} {
-                @include padding-left($padding-md);
+                @include padding-left($padding-zero);
                 @include padding-right($padding-l);
             }
         }
         .rightPad {
-            @include padding-left($padding-md);
-            @include padding-right($padding-md);
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
             @include margin-top($margin-l);
             @media #{$desktop} {
-                @include padding-right($padding-md);
+                @include padding-right($padding-zero);
                 @include padding-left($padding-l);
                 @include margin-top($margin-zero);
             }
@@ -36,18 +36,18 @@
             flex-direction: row-reverse;
         }
         .rightPad {
-            @include padding-left($padding-md);
-            @include padding-right($padding-md);
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
             @media #{$desktop} {
-                @include padding-left($padding-md);
+                @include padding-left($padding-zero);
                 @include padding-right($padding-l);
             }
         }
         .leftPad {
-            @include padding-left($padding-md);
-            @include padding-right($padding-md);
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
             @media #{$desktop} {
-                @include padding-right($padding-md);
+                @include padding-right($padding-zero);
                 @include padding-left($padding-l);
             }
         }
