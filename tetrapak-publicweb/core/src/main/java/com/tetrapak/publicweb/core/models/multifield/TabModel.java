@@ -181,7 +181,7 @@ public class TabModel {
     public String getDamVideoPath() {
         if (Objects.nonNull(slingSettingsService) && Objects.nonNull(dynamicMediaService)
                 && !slingSettingsService.getRunModes().contains(AUTHOR)) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath, dynamicMediaService);
         }
 
         return damVideoPath;

@@ -29,7 +29,6 @@ public class DynamicMediaServiceImplTest {
 	@Test
 	public void testUrlService() {
 		Assert.assertEquals("Image Service Url", "/tmp/resources/fonts/", dynamicMediaServiceImpl.getImageServiceUrl());
-		Assert.assertEquals("Root Path", "/tmp/resources/images/", dynamicMediaServiceImpl.getRootPath());
 		Assert.assertEquals("Dynamic Media Conf Map", "/tmp/resources/images/",
 				dynamicMediaServiceImpl.getDynamicMediaConfMap()[0]);
 	}

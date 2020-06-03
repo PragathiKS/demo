@@ -48,6 +48,9 @@ public class TabsListModelTest {
     /** The Constant RESOURCE_SOLUTIONS. */
     private static final String RESOURCE_SOLUTIONS = "/tablist/solutions.json";
 
+    /** The Constant DAM_VIDEO_DATA. */
+    private static final String DAM_VIDEO_DATA = "/product/test-content4.json";
+
     /** The Constant HOME_PAGE. */
     private static final String HOME_PAGE = "/content/tetrapak/publicweb/lang-masters/en/home";
     
@@ -62,6 +65,9 @@ public class TabsListModelTest {
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT+ "/jcr:content/root/responsivegrid/tabslist";
+
+    /** The Constant DAM_VIDEO_CONTENT_ROOT. */
+    private static final String DAM_VIDEO_CONTENT_ROOT = "/content/dam/tetrapak/publicweb/videos";
 
     /** The model. */
     private TabsListModel model;
@@ -140,7 +146,7 @@ public class TabsListModelTest {
 	context.load().json(RESOURCE_LANG, LANG_PAGE);
 	context.load().json(RESOURCE_HOME, HOME_PAGE);
 	context.load().json(RESOURCE_SOLUTIONS, SOLUTIONS_PAGE);
-	
+	context.load().json(DAM_VIDEO_DATA, DAM_VIDEO_CONTENT_ROOT);
 	context.addModelsForClasses(modelClass);
 	
 	MockitoAnnotations.initMocks(this);

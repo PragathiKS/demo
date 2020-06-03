@@ -26,6 +26,7 @@
             @media #{$desktop} {
                 @include padding-right($padding-md);
                 @include padding-left($padding-l);
+                @include margin-top($margin-zero);
             }
         }
     }

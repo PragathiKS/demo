@@ -32,12 +32,4 @@ public @interface DynamicMediaServiceConfig {
     @AttributeDefinition(name = "Dynamic Media Service Configuration Map",
             description = "Dynamic Media Service Configuration Map", type = AttributeType.STRING)
     String[] dynamicMediaConfMap();
-    
-    /**
-     * Dynamic Media Service Root Path
-     * @return Dynamic Media Service Root Path
-     */
-    @AttributeDefinition(name = "Dynamic Media Service Root Path",
-            description = "Dynamic Media Service Root Path", type = AttributeType.STRING)
-    String rootPath();
 }
