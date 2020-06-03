@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -8,9 +9,12 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.annotation.PostConstruct;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 
+/**
+ * The Class TextImageModel.
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextImageModel {
 
@@ -61,6 +65,14 @@ public class TextImageModel {
     /** The pw display. */
     @ValueMapValue
     private String pwDisplay;
+
+    /** The pw display. */
+    @ValueMapValue
+    private String enableSoftcoversion;
+
+    /** The pw display. */
+    @Inject
+    private SoftConversionModel softConversionData;
 
     /**
      * The init method.
@@ -179,7 +191,7 @@ public class TextImageModel {
     public String getPwDisplay() {
         return pwDisplay;
     }
-    
+
     /**
      * Gets the asset name.
      *
@@ -188,4 +200,23 @@ public class TextImageModel {
     public String getAssetName() {
         return LinkUtils.getAssetName(linkURL);
     }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
+    }
+
+    /**
+     * Gets the soft conversion data.
+     *
+     * @return the soft conversion data
+     */
+    public SoftConversionModel getSoftConversionData() {
+        return softConversionData;
+    }
+
 }
