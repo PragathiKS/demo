@@ -7,6 +7,12 @@
             font-weight: 900;
         }
     }
+    @media #{$mobile} {
+        .section-menu-item-link {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
     @media #{$desktop} {
         .section-menu-item-link ~ .display-lg {
             display: block;

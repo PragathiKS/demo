@@ -1,4 +1,4 @@
-<sly data-sly-template.navigation_template="${@data, navigationTypeSticky, flag}">
+<sly data-sly-template.navigation_template="${@data, navigationTypeSticky, flag,sectionId}">
   <div auto-locator="SectionMenuContainer" data-selected-header="${data.pageHierarchy && data.pageHierarchy['l1']}"
     class="${ navigationTypeSticky ? 'd-lg-block sticky' :''} js-pw-navigation pw-navigation" aria-hidden="true"
     aria-expanded="false" data-module="Navigation">
@@ -12,13 +12,13 @@
       class='tp-container js-pw-navigation__container pw-navigation__container d-lg-block collapse'>
       <div class='row'>
         <div auto-locator="L2OverViewLinkPadding" class="section-link-home"><a auto-locator="L2OverViewLinkFontStyle"
-            target="_self" href="${data.sectionHomePagePath}">${data.sectionHomePageTitle}</a></div>
+            target="_self" href="${data.sectionHomePagePath}">${data.sectionHomePageTitle || "Insights Overview"}</a></div>
         <div class='col-lg-12'>
-          <ul class="list-section-menu-links accordion" id="sectionMenuCollapseWrapper"
+          <ul class="list-section-menu-links" id="sectionMenuCollapseWrapper_${sectionId}"
             data-sly-list.linkSection=${data.sectionMenu}>
-            <li auto-locator="SectionMenuLinksMargin">
+            <li class='pw-mobile-navigation-section-list' auto-locator="SectionMenuLinksMargin">
               <sly data-sly-use.sectionItem="/apps/publicweb/components/content/sectionMenu/sectionMenu-template.html"
-                data-sly-call="${sectionItem.sectionMenu_template @ data=linkSection, selectedL2=data.pageHierarchy['l2'],selectedL3=data.pageHierarchy['l3'],selectedL4=data.pageHierarchy['l4'], linkUrl=linkSection.linkPath, parentLink='Solution', linkText=linkSection.linkText,linkSectionListIndex=linkSectionList.index}">
+                data-sly-call="${sectionItem.sectionMenu_template @ data=linkSection, selectedL2=data.pageHierarchy['l2'],selectedL3=data.pageHierarchy['l3'],selectedL4=data.pageHierarchy['l4'], linkUrl=linkSection.linkPath, parentLink='Solution', linkText=linkSection.linkText,linkSectionListIndex=linkSectionList.index,sectionId=sectionId}">
               </sly>
             </li>
           </ul>

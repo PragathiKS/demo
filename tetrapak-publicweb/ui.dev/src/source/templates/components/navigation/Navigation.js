@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'bootstrap';
 
 class Navigation {
   constructor({ el }) {

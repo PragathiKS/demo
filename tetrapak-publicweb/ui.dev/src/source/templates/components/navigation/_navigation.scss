@@ -2,11 +2,6 @@
     .hr-display {
         display: none;
     }
-    &__container {
-        .list-section-menu-links {
-            display: block;
-        }
-    }
     &.sticky {
         display: block;
         z-index: $z-index-section-menu;
@@ -19,11 +14,32 @@
         }
         .collapse-button {
             @include padding(16px);  // this padding is using around insights item button in mobile
+            border-bottom: 1px solid $color-mercury;
             display: flex;
             justify-content: space-between;
 
         }
     }
+
+    @media #{$mobile} {
+        &__container {
+            .list-section-menu-links {
+                display: block;
+            }
+            .section-link-home {
+                @include padding($padding-md 15px);
+                @include padding-left(31px);
+                width: 100%;
+                border-bottom: 1px solid $color-mercury;
+            }
+            .pw-mobile-navigation-section-list {
+                @include padding($padding-md);
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+    }
+
+
     @media #{$desktop} {
         display: none;
         // display: block;
@@ -86,7 +102,7 @@
                     @include margin(0 12px);
                 }
             }
-            
+
         }
         .hr-display {
             display: block;
