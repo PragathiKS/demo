@@ -107,7 +107,7 @@ class ContactUs {
       if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
         $('.validateForTags', tab).each(function () {
           const fieldName = $(this).attr('name');
-          const newSafeValues = validateFieldsForTags($(this).val());
+          const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
           $('div.' + fieldName).text(newSafeValues);
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
