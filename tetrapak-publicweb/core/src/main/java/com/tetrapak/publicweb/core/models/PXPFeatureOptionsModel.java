@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
@@ -18,7 +22,12 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 /**
  * The Class PXPFeatureOptionsModel.
  */
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PXPFeatureOptionsModel {
+
+    /** The resource. */
+    @Self
+    private Resource resource;
 
     /** The pw theme. */
     @ValueMapValue
@@ -92,7 +101,8 @@ public class PXPFeatureOptionsModel {
      */
     private String setDynamicMediaVideoPath(String damVideoPath) {
         if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath,
+                    dynamicMediaService);
         }
         return damVideoPath;
     }
