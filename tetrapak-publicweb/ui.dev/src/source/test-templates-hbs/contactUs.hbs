@@ -45,15 +45,15 @@
                             <div class="row">
                                 <div class="col-sm-12 formfield">
                                     <label for="firstName">firstName</label>
-                                    <input type="text" id="firstName" name="firstName" required="true">
+                                    <input type="text" id="firstName" name="firstName" class="validateForTags" required="true">
                                 </div>
                                 <div class="col-sm-12 formfield">
                                     <label for="lastName">firstName</label>
-                                    <input type="text" id="lastName" name="lastName" required="true">
+                                    <input type="text" id="lastName" name="lastName" class="validateForTags" required="true">
                                 </div>
                                 <div class="col-sm-12 formfield">
                                     <label for="email">email</label>
-                                    <input type="text" id="email" name="email" required="true"
+                                    <input type="text" id="email" name="email" class="validateForTags" required="true"
                                         placeholder='emailPlaceholder'>
                                     <div class="errorMsg">email error</div>
                                 </div>
@@ -103,7 +103,7 @@
                                 <div class="col-sm-12">
                                     <div class="formfield">
                                         <label for="messageText">message</label>
-                                        <textarea class="form-control" id="messageText" rows="5" name="message"
+                                        <textarea class="form-control validateForTags" id="messageText" rows="5" name="message"
                                             required="true"></textarea>
                                         <div class="errorMsg">Please fill in this field</div>
                                         <input type="text" name="pardot_extra_field" id="pardot_extra_field" class="d-none" tabindex="-1" />
