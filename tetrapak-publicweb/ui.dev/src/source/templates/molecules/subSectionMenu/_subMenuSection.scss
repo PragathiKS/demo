@@ -3,6 +3,29 @@
 }
 
 .pw-sub-section-menu {
+    @media #{$mobile} {
+        .category-child-ul {
+            display: flex;
+            flex-direction: column;
+            & > ul > li {
+                border-top: 1px solid $color-mercury;
+                @include padding($padding-md);
+                @include padding-left(40px);
+            }
+        }
+        .pseudo-category-header {
+            @include padding($padding-md);
+            @include padding-left(40px);
+            border-top: 1px solid $color-mercury;
+        }
+        hr {
+            display: none;
+        }
+        & > ul,
+        .sub-section-category {
+            background: $color-wild-sand;
+        }
+    }
     @media #{$desktop} {
         @include padding-top(18px);
         display: none;
@@ -48,7 +71,6 @@
                 &:first-child {
                     @include margin-left(0);
                 }
-
             }
         }
 

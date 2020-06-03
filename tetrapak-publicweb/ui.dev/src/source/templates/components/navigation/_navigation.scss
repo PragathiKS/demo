@@ -23,6 +23,8 @@
 
     @media #{$mobile} {
         &__container {
+            height: calc(100vh - 119px);
+            overflow-y: auto;
             .list-section-menu-links {
                 display: block;
             }
@@ -33,7 +35,6 @@
                 border-bottom: 1px solid $color-mercury;
             }
             .pw-mobile-navigation-section-list {
-                @include padding($padding-md);
                 border-bottom: 1px solid $color-mercury;
             }
         }
@@ -102,7 +103,7 @@
                     @include margin(0 12px);
                 }
             }
-
+            
         }
         .hr-display {
             display: block;

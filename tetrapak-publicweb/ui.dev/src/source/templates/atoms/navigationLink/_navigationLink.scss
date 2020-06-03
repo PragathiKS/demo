@@ -1,16 +1,24 @@
 .sub-menu-navigation-link-item {
-    &:hover {
-        color: $color-jordy-blue;
-    }
     &.active {
         font-weight: 900;
     }
     i.icon {
         @include margin-left($margin-xs);
-        vertical-align: top;
         &::before {
             font-size: $font-sm;
             line-height: $font-sm;
+        }
+    }
+    @media #{$mobile} {
+        display: flex;
+        justify-content: space-between;
+    }
+    @media #{$desktop} {
+        &:hover {
+            color: $color-jordy-blue;
+        }
+        i.icon {
+            vertical-align: top;
         }
     }
 }

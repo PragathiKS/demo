@@ -9,6 +9,7 @@
     }
     @media #{$mobile} {
         .section-menu-item-link {
+            @include padding($padding-md);
             display: flex;
             justify-content: space-between;
         }
