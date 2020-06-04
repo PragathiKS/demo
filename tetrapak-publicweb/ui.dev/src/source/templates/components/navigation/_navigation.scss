@@ -10,7 +10,7 @@
         top: $header-height-mobile * 1px; // this is section menu margin from header
         width: 100%;
         & > .pw-navigation__container {
-            @include padding(0); // this padding is using in section menu item
+            @include padding(0);
         }
         .collapse-button {
             @include padding($padding-md);
@@ -26,6 +26,7 @@
         &__container {
             height: calc(100vh - #{$sticky-view-height * 1px});
             overflow-y: auto;
+            background: $color-white;
             .list-section-menu-links {
                 display: block;
             }
@@ -43,7 +44,6 @@
 
     @media #{$desktop} {
         display: none;
-        // display: block;
         position: absolute;
         width: 100%;
         left: 0;
@@ -56,9 +56,6 @@
             font-weight: normal;
         }
         &.sticky {
-            // display: block;
-            // z-index: $z-index-section-menu;   // coming from mobile navigation
-            // position: fixed;
             top: 80px;
             & > .pw-navigation__container {
                 @include padding(18px $padding-xxxl);
