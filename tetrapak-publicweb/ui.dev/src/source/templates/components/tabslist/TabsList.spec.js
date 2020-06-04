@@ -12,7 +12,6 @@ describe('TabsList', function() {
       .html(tabslistTemplate());
     this.tabslist = new TabsList({ el: document.body });
     this.initSpy = sinon.spy(this.tabslist, 'init');
-    this.renderFirstTabSpy = sinon.spy(this.tabslist, 'renderFirstTab');
     this.showTabDetailSpy = sinon.spy(this.tabslist, 'showTabDetail');
     this.openStub = sinon.stub(window, 'open');
     this.pauseVideoIfExistsSpy = sinon.spy(this.tabslist, 'pauseVideoIfExists');
@@ -42,5 +41,10 @@ describe('TabsList', function() {
   it('should call track analytics on click', function () {
     $('.js-tablist__event-detail-description-link').trigger('click');
     expect(this.tabslist.trackAnalytics.called).to.be.true;
+  });
+
+  it('should call showTabDetail on tab click', function () {
+    $('.js-tablist__event').trigger('click');
+    expect(this.tabslist.showTabDetail.called).to.be.true;
   });
 });

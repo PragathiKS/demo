@@ -25,11 +25,11 @@
                                     <grayscaleWhite
                                             jcr:primaryType="nt:unstructured"
                                             selected="true"
-                                            text="Grayscale - White"
+                                            text="White"
                                             value="grayscale-white"/>
                                     <grayscaleLighter
                                             jcr:primaryType="nt:unstructured"
-                                            text="Grayscale - Lighter"
+                                            text="Grey"
                                             value="grayscale-lighter"/>
                                 </items>
                             </pwThemes>

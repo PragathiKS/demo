@@ -74,16 +74,13 @@ public class DynamicImageModelTest {
 	    
 	    @Test
 	    public void testGetStartedMessage() {        
-	        String rootPath = dynamicImageModel.getRootPath();
 	        String imageServiceUrl = dynamicImageModel.getImageServiceURL();
 	        String videoServiceUrl = dynamicImageModel.getVideoServiceUrl();
 	        String dynamicImage = dynamicImageModel.getAltText();
 	        String finalPath = dynamicImageModel.getFinalPath();
 	        Assert.assertEquals("alt text","Image1 alt", dynamicImage);
-	        assertNotNull("root path is not null",rootPath);
 	        assertNotNull("image service URL is not null",imageServiceUrl);
 	        Assert.assertEquals("final path","/tetrapak/p2", finalPath);
-	        Assert.assertEquals("root path",rootPath, "/tetrapak");
 	        Assert.assertEquals("image service URL",imageServiceUrl, "https://s7g10.scene7.com/is/image");
 	        Assert.assertEquals("image service URL",videoServiceUrl, "https://s7g10.scene7.com/is/content");
 	        String[] dynamicMediaConfMap = dynamicImageModel.getDynamicMediaConfiguration();

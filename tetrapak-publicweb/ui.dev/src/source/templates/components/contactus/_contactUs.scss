@@ -54,6 +54,9 @@
             .pw-form__dropdown__toggle {
                 border-color: $color-alert;
             }
+            .errorMsg {
+                display: block;
+            }
         }
     }
     .tab-pane {
