@@ -1,25 +1,26 @@
 package com.tetrapak.publicweb.core.servlets;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
-import com.day.cq.tagging.Tag;
-import com.day.cq.tagging.TagManager;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.google.gson.Gson;
-import com.tetrapak.publicweb.core.beans.SearchResultBean;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.framework.Constants;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
@@ -28,51 +29,36 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import javax.servlet.Servlet;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.google.gson.Gson;
+import com.tetrapak.publicweb.core.beans.SearchResultBean;
+import com.tetrapak.publicweb.core.models.SearchConfigModel;
+import com.tetrapak.publicweb.core.models.SearchResultsModel;
+import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
 
-/**
- * This is the servlet that is triggered when a search is performed on the page
- * and return the results to the front-end.
- *
- * @author abhbhatn
- */
-@Component(service = Servlet.class, property = {
-        Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Search service",
-        "sling.servlet.methods=" + HttpConstants.METHOD_GET, "sling.servlet.paths=" + "/bin/tetrapak/pw-search"})
-@Designate(ocd = SiteSearchServlet.Config.class)
+@Component(
+        service = Servlet.class,
+        property = { Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Search service",
+                "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/searchresults" })
 public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
-    @ObjectClassDefinition(name = "Tetra Pak - Public Web Search Servlet", description = "Tetra Pak - Public Web Search servlet")
-    public static @interface Config {
+    private static final String _1_GROUP = "1_group.";
 
-        @AttributeDefinition(name = "Search Root Path Variable Name",
-                description = "Name of variable being sent by Front end to the servlet, that tells about the search root path.")
-        String search_rootpath() default "searchRootPath";
-
-        @AttributeDefinition(name = "Full Text Search Term Variable Name",
-                description = "Name of variable being sent by Front end to the servlet, that tells about the full text search term.")
-        String fulltext_searchterm() default "fulltextSearchTerm";
-
-    }
-
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5220677543550980049L;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SiteSearchServlet.class);
 
     @Reference
     private ResourceResolverFactory resolverFactory;
+
+    private SearchResultsModel searchResultsModel;
 
     @Reference
     private QueryBuilder queryBuilder;
@@ -80,32 +66,28 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private Session session;
     private ResourceResolver resourceResolver;
 
-    private String SEARCH_ROOT_PATH;
-    private String FULLTEXT_SEARCH_TERM;
-
-    private static final String TEMPLATE_BASE_PATH = "/conf/publicweb/settings/wcm/templates/";
-
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.info("Executing doGet method.");
         try {
-
+            searchResultsModel = request.adaptTo(SearchResultsModel.class);
             // get resource resolver, session and queryBuilder objects.
             resourceResolver = request.getResourceResolver();
             session = resourceResolver.adaptTo(Session.class);
             queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
 
             // get search arguments
-            String searchRootPath = request.getParameter(SEARCH_ROOT_PATH);
-            String fulltextSearchTerm = URLDecoder.decode(request.getParameter(FULLTEXT_SEARCH_TERM), "UTF-8")
-                    .replace("%20", " ");
+            String[] contentType = request.getParameterValues("contentType");
+            String[] themes = request.getParameterValues("themes");
+            String fulltextSearchTerm = URLDecoder.decode(request.getParameter("searchTerm"), "UTF-8").replace("%20",
+                    " ");
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
 
             Gson gson = new Gson();
             String responseJSON = "not-set";
 
             // search for resources
-            List<SearchResultBean> resources = getSearchResultItems(fulltextSearchTerm, searchRootPath);
+            List<SearchResultBean> resources = getSearchResultItems(fulltextSearchTerm, contentType, themes);
             if (resources != null) {
                 responseJSON = gson.toJson(resources);
                 LOGGER.info("Here is the JSON object : {}", responseJSON);
@@ -132,53 +114,79 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      * Method to create a query and execute to get the results.
      *
      * @param fulltextSearchTerm
+     * @param themes
      * @param searchRootPath
      * @return List<SearchResultBean>
      */
-    public List<SearchResultBean> getSearchResultItems(String fulltextSearchTerm, String searchRootPath) {
+    public List<SearchResultBean> getSearchResultItems(String fulltextSearchTerm, String[] contentType,
+            String[] themes) {
         LOGGER.info("Executing getSearchResultItems method.");
-        Map<String, String> map = new HashMap<>();
-
-        map.put("path", searchRootPath);
-        map.put("type", "cq:Page");
-
-        // Predicate for full text search if keyword is entered.
-        if (!fulltextSearchTerm.isEmpty()) {
-            map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
-        }
-
-        //Excluding Error page template.
-        map.put("1_property", "@jcr:content/cq:template");
-        map.put("1_property.value", "/conf/publicweb/settings/wcm/templates/public-web-error-page");
-        map.put("1_property.operation", "unequals");
-
-        //Excluding pages which have Hide in Search selected.
-        map.put("2_property", "@jcr:content/hideInSearch");
-        map.put("2_property.value", "false");
-        map.put("2_property.operation", "exists");
-
-        map.put("p.limit", "-1");
-
-        LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
-
-        Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
-        SearchResult result = query.getResult();
-
-        // paging metadata
-        LOGGER.info("Total number of results : {}", result.getTotalMatches());
         List<SearchResultBean> resources = new LinkedList<>();
-        if (result.getHits().isEmpty()) {
-            return resources;
-        }
+        for (String type : contentType) {
+            Map<String, String> map = new HashMap<>();
+            List<SearchPathModel> structure = searchResultsModel.getStructureMap().get(type);
+            int index = 1;
+            for (SearchPathModel path : structure) {
 
-        // add all the items to the result list
-        for (Hit hit : query.getResult().getHits()) {
-            try {
-                LOGGER.debug("Hit : {}", hit.getPath());
-                resources.add(setSearchResultItemData(hit));
-            } catch (RepositoryException e) {
-                LOGGER.error("[performSearch] There was an issue getting the resource", e);
+                String pathKey = _1_GROUP + index + "_path";
+                map.put(pathKey, path.getPath());
+                index++;
             }
+            map.put("type", "cq:Page");
+            map.put("orderby", "@jcr:score");
+
+            // Predicate for full text search if keyword is entered.
+            if (!fulltextSearchTerm.isEmpty()) {
+                map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
+            }
+            if (themes != null && themes.length > 0) {
+                map.put("1_group.p.or", "true");
+                for (int i = 0; i < themes.length; i++) {
+                    map.put(_1_GROUP + (i + 1) + "_group.property", "jcr:content/cq:tags");
+                    map.put(_1_GROUP + (i + 1) + "_group.property.value", themes[i]);
+                }
+            }
+            List<SearchPathModel> template = searchResultsModel.getTemplateMap().get(type);
+            if (template != null && template.isEmpty()) {
+                map.put("1_group.p.or", "true");
+                for (int i = 0; i < template.size(); i++) {
+                    map.put(_1_GROUP + (i + 1) + "_group.property", "jcr:content/cq:template");
+                    map.put(_1_GROUP + (i + 1) + "_group.property.value", template.get(i).getPath());
+                }
+            }
+            // Excluding Error page template.
+            map.put("1_property", "@jcr:content/cq:template");
+            map.put("1_property.value", "/conf/publicweb/settings/wcm/templates/public-web-landing-page");
+
+            // Excluding pages which have Hide in Search selected.
+            map.put("2_property", "@jcr:content/hideInSearch");
+            map.put("2_property.value", "false");
+            map.put("2_property.operation", "exists");
+
+            map.put("p.limit", "-1");
+
+            LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
+
+            Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+            SearchResult result = query.getResult();
+
+            // paging metadata
+            LOGGER.info("Total number of results : {}", result.getTotalMatches());
+            List<SearchResultBean> resource = new LinkedList<>();
+            if (result.getHits().isEmpty()) {
+                return resource;
+            }
+
+            // add all the items to the result list
+            for (Hit hit : query.getResult().getHits()) {
+                try {
+                    LOGGER.debug("Hit : {}", hit.getPath());
+                    resources.add(setSearchResultItemData(hit));
+                } catch (RepositoryException e) {
+                    LOGGER.error("[performSearch] There was an issue getting the resource", e);
+                }
+            }
+            resources.addAll(resource);
         }
 
         return resources;
@@ -193,63 +201,18 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      */
     private SearchResultBean setSearchResultItemData(Hit hit) throws RepositoryException {
         PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
-        TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
 
         SearchResultBean searchResultItem = new SearchResultBean();
-        LinkedHashMap<String, String> tagsMap = new LinkedHashMap<>();
-        LinkedHashMap<String, String> breadcrumbMap = new LinkedHashMap<>();
 
         searchResultItem.setPath(hit.getPath());
         searchResultItem.setTitle(hit.getTitle());
 
         if (pageManager != null) {
             Page page = pageManager.getPage(hit.getPath());
-            ValueMap properties = page.getContentResource().getValueMap();
-            Page breadcrumbParent1 = page.getParent(1);
-            Page breadcrumbParent2 = page.getParent(2);
-            breadcrumbMap.put(breadcrumbParent1.getTitle(), breadcrumbParent1.getPath());
-            breadcrumbMap.put(breadcrumbParent2.getTitle(), breadcrumbParent2.getPath());
-            searchResultItem.setBreadcrumbMap(breadcrumbMap);
-
-            if (properties.containsKey("cq:tags") && tagManager != null) {
-                String[] tags = properties.get("cq:tags", String[].class);
-                for (String tagVal : tags) {
-                    LOGGER.info("Tag ID : {}", tagVal);
-                    Tag tag = tagManager.resolve(tagVal);
-                    tagsMap.put(tag.getTitle(), tagVal);
-                }
-                searchResultItem.setTagsMap(tagsMap);
-            }
-
-            if (properties.containsKey("jcr:description")) {
-                String description = properties.get("jcr:description", String.class);
-                LOGGER.info("Decription : {}", description);
-                searchResultItem.setDescription(description);
-            }
-
-            String template = properties.get("cq:template", String.class);
-            LOGGER.info("Template : {}", template);
-            String productType = template.replace(TEMPLATE_BASE_PATH, "");
-            searchResultItem.setProductType(productType);
+            searchResultItem.setDescription(page.getDescription());
 
         }
 
         return searchResultItem;
-    }
-
-    @Activate
-    protected void activate(final Config config) {
-        if (String.valueOf(config.search_rootpath()) != null) {
-            this.SEARCH_ROOT_PATH = String.valueOf(config.search_rootpath());
-        } else {
-            this.SEARCH_ROOT_PATH = null;
-        }
-        LOGGER.info("configure: SEARCH_ROOT_PATH='{}'", this.SEARCH_ROOT_PATH);
-        if (String.valueOf(config.fulltext_searchterm()) != null) {
-            this.FULLTEXT_SEARCH_TERM = String.valueOf(config.fulltext_searchterm());
-        } else {
-            this.FULLTEXT_SEARCH_TERM = null;
-        }
-        LOGGER.info("configure: FULLTEXT_SEARCH_TERM='{}'", this.FULLTEXT_SEARCH_TERM);
     }
 }

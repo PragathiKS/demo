@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Search Configuration"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+            <contenttype
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Template Mapping"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <productlabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Product Label"
+                                name="./productLabel"/>
+                            <producttemplatelist
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="Product Templates">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./productTemplateList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldDescription="Product category template paths"
+                                                    fieldLabel="Template Path"
+                                                    name="./path"
+                                                    rootPath="/conf/publicweb/settings/wcm/templates"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </producttemplatelist>
+                            <newslabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="News Label"
+                                name="./newsLabel"/>
+                            <newstemplatelist
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="News Templates">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./newsTemplateList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldDescription="News category template paths"
+                                                    fieldLabel="Template Path"
+                                                    name="./path"
+                                                    rootPath="/content/tetrapak/publicweb"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </newstemplatelist>
+                            <eventslabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Events Label"
+                                name="./eventsLabel"/>
+                            <eventstemplatelist
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="Events Templates">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./eventsTemplateList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldDescription="Event category template paths"
+                                                    fieldLabel="Template Path"
+                                                    name="./path"
+                                                    rootPath="/content/tetrapak/publicweb"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </eventstemplatelist>
+                            <caseLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Case Label"
+                                name="./caseLabel"/>
+                            <casetemplatelist
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="Case Templates">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./caseTemplateList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldDescription="Case article category template paths"
+                                                    fieldLabel="Template Path"
+                                                    name="./path"
+                                                    rootPath="/content/tetrapak/publicweb"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </casetemplatelist>
+                        </items>
+                    </column>
+                </items>
+            </contenttype>
+            <thememapping
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Theme Mapping"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <themelist
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="Theme List">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./themeList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <eventslabel
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Theme Label"
+                                                    name="./themeLabel"/>
+                                                <tag
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                    fieldDescription="Product category template paths"
+                                                    fieldLabel="Tag"
+                                                    name="./tag"
+                                                    rootPath="/content/cq:tags"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </themelist>
+                        </items>
+                    </column>
+                </items>
+            </thememapping>
+            <structuremapping
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Structure Mapping"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <productstructureList
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="Product Structure Paths">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./productStructureList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldLabel="Structure Path"
+                                                    name="./path"
+                                                    rootPath="/content/tetrapak/publicweb"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </productstructureList>
+                            <newsstructureList
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="News Structure Paths">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./newsStructureList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldLabel="Structure Path"
+                                                    name="./path"
+                                                    rootPath="/content/tetrapak/publicweb"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </newsstructureList>
+                            <eventsstructureList
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="Events Structure Paths">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./eventsStructureList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldLabel="Structure Path"
+                                                    name="./path"
+                                                    rootPath="/content/tetrapak/publicweb"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </eventsstructureList>
+                            <casestructureList
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldLabel="Case Structure Paths">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./caseStructureList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldLabel="Structure Path"
+                                                    name="./path"
+                                                    rootPath="/content/tetrapak/publicweb"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </casestructureList>
+                        </items>
+                    </column>
+                </items>
+            </structuremapping>
+        </items>
+    </content>
+</jcr:root>

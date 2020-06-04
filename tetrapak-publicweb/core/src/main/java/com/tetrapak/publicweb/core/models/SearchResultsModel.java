@@ -1,164 +1,97 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.tagging.Tag;
-import com.day.cq.tagging.TagManager;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.SearchResultBean;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.commons.json.JSONException;
-import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
+import com.tetrapak.publicweb.core.models.multifield.ThemeModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+/**
+ * The Class SearchResultsModel.
+ */
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SearchResultsModel {
+
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultsModel.class);
+
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
 
     @Self
     private Resource resource;
 
-    @Inject
-    private String searchBoxPlaceholder;
+    /** The template map. */
+    private Map<String, List<SearchPathModel>> templateMap = new LinkedHashMap<>();
 
-    @Inject
-    private String resultsText;
+    /** The template map. */
+    private Map<String, List<SearchPathModel>> structureMap = new LinkedHashMap<>();
+    /** The theme list. */
+    private List<ThemeModel> themeList;
 
-    @Inject
-    private String noFilterMatches;
-
-    @Inject
-    private String noResultsText;
-
-    @Inject
-    private String firstTabLinkText;
-
-    @Inject
-    private String resultsPerPage;
-
-    @Inject
-    private String[] tabs;
-
-    @Inject
-    private String filterTitle;
-
-    @Inject
-    private String[] filterTagPaths;
-
-    private String templateBasePath = "/conf/publicweb/settings/wcm/templates/";
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultsModel.class);
-    private LinkedHashMap<String, String> tagsMap = new LinkedHashMap<>();
-
+    /**
+     * Inits the.
+     */
     @PostConstruct
     protected void init() {
-        LOGGER.info("Executing init method.");
-        ResourceResolver resourceResolver = resource.getResourceResolver();
-        PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
-        TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-
-        if (pageManager != null && tagManager != null) {
-            Page currentPage = pageManager.getContainingPage(resource);
-            Locale locale = currentPage.getLanguage(true);
-            if (filterTagPaths != null) {
-                for (String tagPath : filterTagPaths) {
-                    LOGGER.info("Tag path : {}", tagPath);
-                    Tag tag = tagManager.resolve(tagPath);
-                    tagsMap.put(tag.getTitle(locale), tagPath);
-                }
+        LOGGER.debug("inside init method");
+        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        final String path = rootPath + "/jcr:content/root/responsivegrid/searchconfig";
+        final Resource searchConfigResource = request.getResourceResolver().getResource(path);
+        if (Objects.nonNull(searchConfigResource)) {
+            final SearchConfigModel configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);
+            if (Objects.nonNull(configurationModel)) {
+                templateMap = configurationModel.getTemplateMap();
+                structureMap = configurationModel.getStructureMap();
+                themeList = configurationModel.getThemeList();
             }
         }
-
     }
 
     /**
-     * Method to get the tab details from the multifield property saved in CRX for
-     * each of the tab.
+     * Gets the template map.
      *
-     * @param tabs String[]
-     * @return List<SearchResultBean>
+     * @return the template map
      */
-    public List<SearchResultBean> getTabDetails(String[] tabs) {
-        List<SearchResultBean> tabList = new ArrayList<>();
-        JSONObject jObj;
-        try {
-            if (tabs == null) {
-                LOGGER.error("Tabs value is NULL");
-            } else {
-                addSearchResultBeans(tabs, tabList);
-            }
-        } catch (JSONException e) {
-            LOGGER.error("Exception while Multi-field data {}", e.getMessage(), e);
-        }
-        return tabList;
+    public Map<String, List<SearchPathModel>> getTemplateMap() {
+        return templateMap;
     }
 
-    private void addSearchResultBeans(String[] tabs, List<SearchResultBean> tabList) throws JSONException {
-        JSONObject jObj;
-        for (int i = 0; i < tabs.length; i++) {
-            SearchResultBean bean = new SearchResultBean();
-            jObj = new JSONObject(tabs[i]);
-
-            if (jObj.has("tabTitle")) {
-                bean.setTitle(jObj.getString("tabTitle"));
-            }
-
-            if (jObj.has("pageType")) {
-                String pageType = jObj.getString("pageType");
-                LOGGER.info("Page Template Path : {}", pageType);
-                pageType = pageType.replace(templateBasePath, "");
-                bean.setProductType(pageType);
-
-            }
-            tabList.add(bean);
-        }
+    public Map<String, List<SearchPathModel>> getStructureMap() {
+        return structureMap;
     }
 
-    public String getSearchBoxPlaceholder() {
-        return searchBoxPlaceholder;
+    /**
+     * Gets the theme list.
+     *
+     * @return the theme list
+     */
+    public List<ThemeModel> getThemeList() {
+        return themeList;
     }
 
-    public String getResultsText() {
-        return resultsText;
-    }
-
-    public String getNoResultsText() {
-        return noResultsText;
-    }
-
-    public String getNoFilterMatches() {
-        return noFilterMatches;
-    }
-
-    public String getResultsPerPage() {
-        return resultsPerPage;
-    }
-
-    public String getFirstTabLinkText() {
-        return firstTabLinkText;
-    }
-
-    public List<SearchResultBean> getTabs() {
-        return getTabDetails(tabs);
-    }
-
-    public String getFilterTitle() {
-        return filterTitle;
-    }
-
-    public Map<String, String> getTagsMap() {
-        return tagsMap;
+    /**
+     * Gets the servlet path.
+     *
+     * @return the servlet path
+     */
+    public String getServletPath() {
+        return request.getResource().getPath();
     }
 
 }
