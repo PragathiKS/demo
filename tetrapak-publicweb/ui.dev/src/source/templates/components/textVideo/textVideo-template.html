@@ -5,8 +5,8 @@
        class="pw-container"
        data-locator="text-video" data-module="TextVideo">
     <div class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular">
-    <div class="row">
-      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4': ''}">
+    <div class="row no-gutters">
+      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4 left-pad': ''}">
         <sly data-sly-test="${data.subTitle}"><p class="pw-text-video__subTitle d-none d-lg-block">${data.subTitle @ context='html'}</p></sly>
         <div class="pw-text-video__title d-none d-lg-block">
           <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
@@ -29,7 +29,7 @@
              </a>
               </div>
       </div>
-      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
+      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8 right-pad': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
           <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.videoName}"
             data-video-type="${data.videoSource}" data-video-name="${data.videoName}">

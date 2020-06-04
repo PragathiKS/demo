@@ -11,11 +11,11 @@ import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -32,7 +32,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -62,6 +61,9 @@ public class SectionMenuModel {
     @Inject
     private PseudoCategoryService pseudoCategoryService;
 
+    /** The solution page title. */
+    private String solutionPageTitle;
+
     /** The section home page title. */
     private String sectionHomePageTitle;
 
@@ -81,7 +83,11 @@ public class SectionMenuModel {
     protected void init() {
         LOGGER.debug("inside init method");
         // Populate Solutions page path
-        final String solutionPagePath = StringUtils.substringBefore(fetchSolutionPagePath(), ".html");
+        final String solutionPage = NavigationUtil.fetchSolutionPagePath(request);
+        // Substring path before extension
+        final String solutionPagePath = NavigationUtil.getSolutionPageWithoutExtension(solutionPage);
+        // Set solution page title
+        this.solutionPageTitle = NavigationUtil.getSolutionPageTitle(request, solutionPage);
         // Fetch absolute parent page
         final Page page = fetchAbsoluteParent(solutionPagePath);
         // Set section menu home page title
@@ -92,26 +98,6 @@ public class SectionMenuModel {
         setPageHierarchy(currentPage);
         // Populate section menu
         populateSectionMenu(page, solutionPagePath, pseudoCategoryService, request.getResourceResolver());
-    }
-
-    /**
-     * Fetch solution page path.
-     *
-     * @return the string
-     */
-    private String fetchSolutionPagePath() {
-        String solutionPagePath = StringUtils.EMPTY;
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
-        final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
-        if (Objects.nonNull(headerConfigurationResource)) {
-            final HeaderConfigurationModel configurationModel = headerConfigurationResource
-                    .adaptTo(HeaderConfigurationModel.class);
-            if (Objects.nonNull(configurationModel)) {
-                solutionPagePath = configurationModel.getSolutionPage();
-            }
-        }
-        return solutionPagePath;
     }
 
     /**
@@ -235,7 +221,7 @@ public class SectionMenuModel {
     private boolean isPseudoCategoryMapEmpty(final Map<String, List<String>> pseudoCategoryMap) {
         boolean isEmpty = false;
         for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
-            if (entrySet.getValue().size() == 0) {
+            if (entrySet.getValue().isEmpty()) {
                 isEmpty = true;
             } else {
                 isEmpty = false;
@@ -425,6 +411,15 @@ public class SectionMenuModel {
      * @return the section menu list
      */
     public List<SectionMenuBean> getSectionMenu() {
-        return sectionMenu;
+        return new ArrayList<>(sectionMenu);
+    }
+
+    /**
+     * Gets the solution page title.
+     *
+     * @return the solution page title
+     */
+    public String getSolutionPageTitle() {
+        return solutionPageTitle;
     }
 }

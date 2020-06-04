@@ -1,19 +1,17 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
-import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
@@ -77,13 +75,13 @@ public class HeaderModel {
 
     /** The solution page title. */
     private String solutionPageTitle;
-    
+
     /** The market page. */
     private Page marketPage;
-    
+
     /** The language page. */
     private Page languagePage;
-    
+
     /** The MORE_THAN_ONE_LANGAUGES. */
     private static final int MORE_THAN_ONE_LANGAUGES = 2;
 
@@ -161,23 +159,34 @@ public class HeaderModel {
         if (Objects.nonNull(page)) {
             final Iterator<Page> childPages = page.listChildren();
             while (childPages.hasNext()) {
-                final Page childPage = childPages.next();
-                if (!childPage.isHideInNav()) {
-                    final LinkBean linkBean = new LinkBean();
-                    final String title = getTitle(childPage);
-                    linkBean.setLinkText(title);
-                    linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
-                    if (!childPage.getPath().equalsIgnoreCase(getSolutionPageWithoutExtension())) {
-                        final SectionMenuModel sectionMenuModel = new SectionMenuModel();
-                        sectionMenuModel.setSectionHomePageTitle(childPage);
-                        sectionMenuModel.setSectionHomePagePath(childPage);
-                        sectionMenuModel.populateSectionMenu(childPage, getSolutionPageWithoutExtension(),
-                                pseudoCategoryService, request.getResourceResolver());
-                        linkBean.setNavigationConfigurationModel(sectionMenuModel);
-                    }
-                    megaMenuLinksList.add(linkBean);
-                }
+                populateMegaMenuLinksList(childPages);
             }
+        }
+    }
+
+    /**
+     * Populate mega menu links list.
+     *
+     * @param childPages the child pages
+     */
+    private void populateMegaMenuLinksList(final Iterator<Page> childPages) {
+        final Page childPage = childPages.next();
+        if (!childPage.isHideInNav()) {
+            final LinkBean linkBean = new LinkBean();
+            final String title = getTitle(childPage);
+            linkBean.setLinkText(title);
+            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
+            final String solutionPageWithoutExtension = NavigationUtil
+                    .getSolutionPageWithoutExtension(solutionPage);
+            if (!childPage.getPath().equalsIgnoreCase(solutionPageWithoutExtension)) {
+                final SectionMenuModel sectionMenuModel = new SectionMenuModel();
+                sectionMenuModel.setSectionHomePageTitle(childPage);
+                sectionMenuModel.setSectionHomePagePath(childPage);
+                sectionMenuModel.populateSectionMenu(childPage, solutionPageWithoutExtension,
+                        pseudoCategoryService, request.getResourceResolver());
+                linkBean.setNavigationConfigurationModel(sectionMenuModel);
+            }
+            megaMenuLinksList.add(linkBean);
         }
     }
 
@@ -298,21 +307,7 @@ public class HeaderModel {
      * @param headerConfigurationResource the new solution page title
      */
     private void setSolutionPageTitle() {
-        final String solutionPageJcrContentPath = getSolutionPageWithoutExtension() + PWConstants.SLASH + JcrConstants.JCR_CONTENT;
-        final Resource solutionPageResource = request.getResourceResolver().getResource(solutionPageJcrContentPath);
-        if (Objects.nonNull(solutionPageResource)) {
-            final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
-            solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
-        }
-    }
-
-    /**
-     * Gets the solution page without extension.
-     *
-     * @return the solution page without extension
-     */
-    private String getSolutionPageWithoutExtension() {
-        return StringUtils.substringBefore(solutionPage, ".");
+        this.solutionPageTitle = NavigationUtil.getSolutionPageTitle(request, solutionPage);
     }
 
     /**
@@ -321,34 +316,34 @@ public class HeaderModel {
     public MarketSelectorModel getMarketList() {
         return request.adaptTo(MarketSelectorModel.class);
     }
-    
-  /**
-    * @return current language
-    */
+
+    /**
+     * @return current language
+     */
     public String getCurrentLanguage() {
         if (null != languagePage) {
             return languagePage.getTitle();
         }
         return StringUtils.EMPTY;
     }
-   
-   /**
-    * @return current market
-    */
+
+    /**
+     * @return current market
+     */
     public String getCurrentMarket() {
         if (null != marketPage) {
             return marketPage.getTitle();
         }
         return StringUtils.EMPTY;
     }
-    
+
     /**
      * @return DisplayCurrentLanguage
      */
     public Boolean getDisplayCurrentLanguage() {
         Boolean isDisplayCurrentLanguage = false;
         if (null != marketPage) {
-            Iterator<Page> childPages = marketPage.listChildren();
+            final Iterator<Page> childPages = marketPage.listChildren();
             int languagesCount = 0;
             while (childPages.hasNext()) {
                 childPages.next();

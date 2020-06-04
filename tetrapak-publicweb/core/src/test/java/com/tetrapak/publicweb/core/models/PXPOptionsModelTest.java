@@ -26,6 +26,9 @@ public class PXPOptionsModelTest {
      */
     private static final String PRODUCTS_DATA = "/product/test-Products.json";
 
+    /** The Constant DAM_VIDEO_DATA. */
+    private static final String DAM_VIDEO_DATA = "/product/test-content4.json";
+
     /** The Constant EN_LANGUAGE_RESOURCE_CONTENT. */
     private static final String EN_LANGUAGE_RESOURCE_CONTENT = "/product/en.json";
 
@@ -41,6 +44,9 @@ public class PXPOptionsModelTest {
      * The Constant FILLING_MACHINE_CONTENT_ROOT.
      */
     private static final String FILLING_MACHINE_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master/en/filling-machine";
+
+    /** The Constant DAM_VIDEO_CONTENT_ROOT. */
+    private static final String DAM_VIDEO_CONTENT_ROOT = "/content/dam/tetrapak/publicweb/pxp/fillingmachines/equipment1272/video";
 
     /** The model class. */
     Class<PXPOptionsModel> modelClass = PXPOptionsModel.class;
@@ -86,6 +92,7 @@ public class PXPOptionsModelTest {
         context.load().json(PRODUCTS_DATA, PWConstants.PXP_ROOT_PATH);
         context.load().json(EN_LANGUAGE_RESOURCE_CONTENT, EN_LANGUAGE_CONTENT_ROOT);
         context.load().json(TEST_RESOURCE_CONTENT, FILLING_MACHINE_CONTENT_ROOT);
+        context.load().json(DAM_VIDEO_DATA, DAM_VIDEO_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
     }
 

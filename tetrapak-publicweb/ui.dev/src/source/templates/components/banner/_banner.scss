@@ -84,7 +84,7 @@
             @include margin(0);
             color: $color-tundora;
             background-color: transparent;
-            max-width: calc(50% - #{convert-to-rem(24px)});
+            max-width: calc(45% - #{convert-to-rem(24px)});
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
