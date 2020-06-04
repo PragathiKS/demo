@@ -232,4 +232,44 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pleaseselectanoption"
         sling:message="Please select an option"/>
+   <filters
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="filters"
+        sling:message="Filters"/>
+   <searchplaceholder
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="searchplaceholder"
+        sling:message="What are you looking for?"/>
+   <contenttype
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="contenttype"
+        sling:message="CONTENT TYPES"/>
+   <themes
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="themes"
+        sling:message="THEMES"/>
+   <ok
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="ok"
+        sling:message="OK"/>
+   <themes
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="themes"
+        sling:message="THEMES"/>
+   <searchresults
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="{0} search results"
+        sling:message="{0} search results"/>
+   <nosearchresults
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="nosearchresults"
+        sling:message="No search results"/>
 </jcr:root>
