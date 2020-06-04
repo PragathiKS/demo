@@ -1,22 +1,25 @@
 package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
-
 
 /**
  * The Class TextImageModel.
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextImageModel {
+
+    /** The resource. */
+    @Self
+    private Resource resource;
 
     /** The anchor id. */
     @ValueMapValue
@@ -69,10 +72,6 @@ public class TextImageModel {
     /** The pw display. */
     @ValueMapValue
     private String enableSoftcoversion;
-
-    /** The pw display. */
-    @Inject
-    private SoftConversionModel softConversionData;
 
     /**
      * The init method.
@@ -216,7 +215,7 @@ public class TextImageModel {
      * @return the soft conversion data
      */
     public SoftConversionModel getSoftConversionData() {
-        return softConversionData;
+        return resource.adaptTo(SoftConversionModel.class);
     }
 
 }
