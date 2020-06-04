@@ -154,7 +154,7 @@
             color: $color-congress-blue;
             position: absolute;
             top: 0;
-            bottom: $spacing-big;
+            bottom: 0;
             margin: auto;
             transition: transform $anim-speed-quick $anim-ease;
             @media #{$desktop} {
@@ -182,7 +182,7 @@
             color: $color-congress-blue;
             position: absolute;
             top: 0;
-            bottom: 24px;
+            bottom: 0;
             margin: auto;
             transition: transform $anim-speed-quick $anim-ease;
 
@@ -269,6 +269,13 @@
         &:not(.collapsed) {
             @media #{$mobile} {
                 color: $color-tundora;
+                font-family: $font-black;
+                font-weight: 900;
+            }
+            .semi-bold {
+                @media #{$mobile} {
+                    font-family: $font-black;
+                }
             }
 
             .icon-Arrow_Right_pw {
@@ -303,8 +310,6 @@
 
     &__event-title-icleft {
         &.semi-bold {
-            font-family: $font-black;
-            font-weight: 900;
             @media #{$desktop} {
                 font-family: $font-bold;
                 font-weight: normal;

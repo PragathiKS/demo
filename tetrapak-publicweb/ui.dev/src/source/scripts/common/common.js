@@ -358,3 +358,5 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass) => {
 
   window.open($this.attr('href'), $this.attr('target'));
 };
+
+export const validateFieldsForTags = (value='') => value.replace(/[`<>]/gi, '');

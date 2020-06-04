@@ -16,11 +16,6 @@ public class MockDynamicMediaServiceImpl implements DynamicMediaService {
 	}
 
 	@Override
-	public String getRootPath() {
-		return "/tetrapak";
-	}
-
-	@Override
 	public String getVideoServiceUrl() {
 	    return null;
 	}

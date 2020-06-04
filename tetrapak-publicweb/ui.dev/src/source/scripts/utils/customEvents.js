@@ -18,6 +18,12 @@ export default {
       // Check for open modals and hide them
       $('.modal.show').modal('hide');
     });
+
+    $('.validateForTags').on('keypress', function (e) {
+      if(e.keyCode === 60 || e.keyCode === 62) {
+        return false;
+      }
+    });
   }
 };
 /* eslint-enable new-cap */
