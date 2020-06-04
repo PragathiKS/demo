@@ -4,15 +4,20 @@
     aria-expanded="false" data-module="Navigation">
     <hr class="hr-display" />
     <a class="d-lg-none collapse-button collapsed" data-toggle="collapse" href="#sectionMenuCollapse" role="button"
-      aria-expanded="false" aria-controls="sectionMenuCollapse">${data.pageHierarchy['l1'] == "Solutions" ? data.pageHierarchy['l2'] :
+      aria-expanded="false" aria-controls="sectionMenuCollapse">${data.pageHierarchy['l1'] == data.solutionPageTitle ?
+      data.pageHierarchy['l2'] :
       data.pageHierarchy['l1']}
-      <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon without-arrow icon-Arrow_Right_pw ${iconClass}"></i>
+      <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding"
+        class="icon without-arrow icon-Arrow_Right_pw ${iconClass}"></i>
     </a>
     <div id="sectionMenuCollapse" auto-locator="SectionMenuPaddingMargin"
       class='tp-container js-pw-navigation__container pw-navigation__container d-lg-block collapse'>
       <div class='row'>
-        <div auto-locator="L2OverViewLinkPadding" class="section-link-home"><a auto-locator="L2OverViewLinkFontStyle"
-            target="_self" href="${data.sectionHomePagePath}">${data.sectionHomePageTitle || "Insights Overview"}</a></div>
+        <sly data-sly-test="${data.sectionHomePageTitle}">
+          <div auto-locator="L2OverViewLinkPadding" class="section-link-home"><a auto-locator="L2OverViewLinkFontStyle"
+              target="_self" href="${data.sectionHomePagePath}">${data.sectionHomePageTitle}</a>
+          </div>
+        </sly>
         <div class='col-lg-12'>
           <ul class="list-section-menu-links" id="sectionMenuCollapseWrapper_${sectionId}"
             data-sly-list.linkSection=${data.sectionMenu}>

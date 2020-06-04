@@ -44,11 +44,15 @@
                 @include padding-left(31px);
                 width: 100%;
                 border-bottom: 1px solid $color-mercury;
-                &,
-                &:hover {
+
+                & > a {
                     color: $color-congress-blue;
+                    &:hover {
+                        color: $color-congress-blue;
+                    }
                 }
             }
+
             .pw-mobile-navigation-section-list {
                 border-bottom: 1px solid $color-mercury;
             }
