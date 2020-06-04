@@ -10,6 +10,7 @@ class Softconversion {
     this.cache.$modal = this.root.parent().find('.js-soft-modal');
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
     this.cache.$radio = this.root.find('input[type=radio][name="typeOfVisitorOptions"]');
+    this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSoft"]').val();
     // this.cache.$submitBtn = $('button[type="submit"]', this.root);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
     this.cache.requestPayload = {
@@ -20,6 +21,7 @@ class Softconversion {
       'email': '',
       'company': '',
       'position': '',
+      'market-consent': '',
       'typeOfVisitorTitle': ''
     };
   }
@@ -49,7 +51,7 @@ class Softconversion {
     //       const offsetContact = $('#pw-contactUs').offset();
     $('.pw-softconversion__header__heading', this.root).html('');
     $('.tab-pane', this.root).removeClass('active');
-    $('#cf-step-final', this.root).addClass('active');
+    $(`#cf-step-final-${this.cache.$componentName}`, this.root).addClass('active');
     $('.serviceError').removeClass('d-block');
     // $('html, body').animate({
     //   scrollTop: offsetContact.top - 50
@@ -63,13 +65,13 @@ class Softconversion {
 
 
   bindEvents() {
-
     const {requestPayload, $radio, $nextbtn, $submitBtn } = this.cache;
     const self = this;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('click', function () {
         if ($(this).hasClass('js-soft-modal')) {
           this.hidePopUp;
+
         }
       })
       .on('showsoftconversion-pw', this.showPopup);
@@ -117,11 +119,18 @@ class Softconversion {
       
       $('input', tab).each(function () {
         const fieldName = $(this).attr('name');
+
+
         $('div.' + fieldName).text($(this).val());
         if (fieldName in self.cache.requestPayload) {
           requestPayload[fieldName] = $(this).val();
+
+       
         }
         if ($(this).prop('required') && $(this).val() === '') {
+          isvalid = false;
+          $(this).closest('.form-group, .formfield').addClass('field-error');
+        }else if(fieldName ==='market-consent' && !$(this).is(':checked')){
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
         }else {
@@ -143,6 +152,7 @@ class Softconversion {
   hidePopUp = () => {
     const $this = this;
     $this.root.modal('hide');
+    // location.reload();
   }
 
   init() {

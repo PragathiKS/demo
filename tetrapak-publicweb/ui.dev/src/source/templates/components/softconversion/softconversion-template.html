@@ -1,10 +1,21 @@
-<sly data-sly-template.softconversion_template="${@data, flag}">
-    <div class="modal tp-modal pw-softconversion js-soft-modal fade" id="lang-modal" data-module="Softconversion" tabindex="-1" role="dialog">
+<sly data-sly-template.softconversion_template="${@data, componentName, downloadPath}">
+	<sly data-sly-test.cfstep1="${'{0}{1}' @ format=['cf-step-1-', componentName, ')']}" />
+	<sly data-sly-test.cfstep1Target="${'{0}{1}' @ format=['#cf-step-1-', componentName, ')']}" />
+	<sly data-sly-test.cfstep2="${'{0}{1}' @ format=['cf-step-2-', componentName, ')']}" />
+	<sly data-sly-test.cfstep2Target="${'{0}{1}' @ format=['#cf-step-2-', componentName, ')']}" />
+	<sly data-sly-test.cfstep3="${'{0}{1}' @ format=['cf-step-3-', componentName, ')']}" />
+	<sly data-sly-test.cfstep3Target="${'{0}{1}' @ format=['#cf-step-3-', componentName, ')']}" />
+
+	<sly data-sly-test.cfstepfinal="${'{0}{1}' @ format=['cf-step-final-', componentName, ')']}" />
+	<sly data-sly-test.cfstepfinalTarget="${'{0}{1}' @ format=['#cf-step-final-', componentName, ')']}" />
+	
+    <div class="modal tp-modal pw-softconversion js-soft-modal ${componentName} fade" id="lang-modal" data-module="Softconversion" tabindex="-1" role="dialog">
+    	<input type="hidden" class="ComponentNameSoft" name="ComponentNameSoft" value="${componentName}">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
       <div class="modal-content tp-modal-content">
 
       	<div class="modal-header pw-softconversion__header" auto_locator="countrySelectorHeader">
-          <h4 role="heading" data-sly-test="${data.marketTitle}" class="pw-softconversion__header__heading">Download white paper
+          <h4 role="heading" class="pw-softconversion__header__heading">${data.heading}
           </h4>
           <button type="button" class="tp-close-btn icon-Close pw-softconversion__header__close js-close-btn"></button>
         </div>
@@ -18,13 +29,13 @@
                 <form class="pw-form pw-form-contactUs" accept-charset="UTF-8"
                     data-contactus-api-servlet="${data.servletPath}" autocomplete="off">
                     <div class="tab-pane active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel"
-                        id="cf-step-1">
+                        id="${cfstep1}">
                         <div class="row no-gutters">
                            
                             <div class="col-lg-7 separator" auto_locator="contactUsRightContainerStep1">
                                 <div class="tab-content tab-content-steps">
                                     <div class="row">
-                                    	<p class="col-sm-12 description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tinc idunt sit amet diam sit amet convallis. Mauris interdum lectus enim, quis cursus massa vulputate at. Mauris a bibendum metus, in lacinia orci.</p>
+                                    	<div class="col-sm-12 description">${data.descriptionText @ context="html"}</div>
                                         <!-- <div class="col-sm-12 radioHeading">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='purposeofcontact', variant='small'}" />
@@ -32,18 +43,21 @@
                                         <p class="col-sm-12 radioHeading">Type of visitor</p>
                                         <div class="col-sm-12 formfield"
                                             auto_locator="contactUsRightContainerOptionListContainerStep1">
+                                            <sly data-sly-test.concatecustomer="${'{0}{1}' @ format=['customer-', componentName, ')']}" />
+                                            <sly data-sly-test.concatetalent="${'{0}{1}' @ format=['talent-', componentName, ')']}" />
+                                            <sly data-sly-test.concatepressandmedia="${'{0}{1}' @ format=['pressandmedia-', componentName, ')']}" />
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='customer', label='Customer', name='typeOfVisitorOptions'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatecustomer, label='Customer', name='typeOfVisitorOptions'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='talent', label='Talent', name='typeOfVisitorOptions'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatetalent, label='Talent', name='typeOfVisitorOptions'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='pressandmedia', label='Press and media', name='typeOfVisitorOptions', labelClass='mb-0'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatepressandmedia, label='Press and media', name='typeOfVisitorOptions', labelClass='mb-0'}">
                                             </sly>
                                             <input type="hidden" name="typeOfVisitorTitle" class="form-control"
                                                 id="typeOfVisitor" required>
-                                            <div class="errorMsg purposeOfContactError">${'pleaseselectanoption' @i18n}
+                                            <div class="errorMsg purposeOfContactError">${'pleaseselecttypeofvisitor' @i18n}
                                             </div>
                                         </div>
                                     </div>
@@ -61,7 +75,7 @@
                                     </div>
                                     <div class="row no-gutters button-group">
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='next', btnTarget='#cf-step-2',icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsNextButtonStep1'}" />
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText='next', btnTarget=cfstep2Target,icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsNextButtonStep1'}" />
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +93,7 @@
                         </div>
                     </div>
                    <div class="tab-pane" data-stepNumber="2" data-stepName="contactInfo" role="tabpanel"
-                        id="cf-step-2">
+                        id="${cfstep2}">
                         <div class="row no-gutters">
                             
                             <div class="col-lg-7 separator">
@@ -124,9 +138,9 @@
                                     </div>
                                     <div class="row no-gutters button-group">
                                         <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${previousButton.tabbutton_template @ btnText='previous', btnTarget='#cf-step-1', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep2' }" />
+                                            data-sly-call="${previousButton.tabbutton_template @ btnText='previous', btnTarget=cfstep1Target, variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep2' }" />
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='next', btnTarget='#cf-step-3', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsNextButtonStep2' }" />
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText='next', btnTarget=cfstep3Target, icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsNextButtonStep2' }" />
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +170,7 @@
 
                         </div>
                     </div>
-                    <div class="tab-pane" data-stepNumber="3" data-stepName="submitForm" role="tabpanel" id="cf-step-3">
+                    <div class="tab-pane" data-stepNumber="3" data-stepName="submitForm" role="tabpanel" id="${cfstep3}">
                         <div class="row no-gutters">
                             
                             <div class="col-lg-7 separator">
@@ -180,14 +194,23 @@
                                             </sly>
                                         </div>
 
-                                        	<div class="marketing-consent" auto_locator="contactUsPolicyTextStep3">
-                                                <!-- ${data.privacyPolicy @ context="html"} -->
-                                               <p> Marketing User should be able to navigate through the forms using Previous & Next and edit the provided information. While navigating the stored information should be pre-populated.</p>
-                                            </div>
+                                        <div class="col-sm-12 formfield marketing-consent">
+											<div class="row form-group no-gutters">
+                                           <div class="col-sm-1">
+        									<label class="tpatom-checkbox__label clearfix">
+											<input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="market-consent" name="market-consent" required auto_locator="positionInput">
+                                            <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            </label>
+        								</div>
+                                        
+    									<div class="col-sm-11">${data.marketingConsent @ context="html"} </div>
+											<div class="errorMsg">pw.form.marketingerrormsg</div>
+										</div>
+    									</div>
 
                                             <div class="privacy-policy" auto_locator="contactUsPolicyTextStep3">
-                                                <!-- ${data.privacyPolicy @ context="html"} -->
-                                               <p> User should be able to navigate through the forms using Previous & Next and edit the provided information. While navigating the stored information should be pre-populated.</p>
+                                                ${data.privacyPolicy @ context="html"}
+                                               <!-- <p> User should be able to navigate through the forms using Previous & Next and edit the provided information. While navigating the stored information should be pre-populated.</p> -->
                                             </div>
                                         
                                     </div>
@@ -205,7 +228,7 @@
                                         <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
                                             data-sly-call="${previousButton.tabbutton_template @ btnText='previous', btnTarget='#cf-step-2', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep3'}" />
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='submit', btnType='submit', btnTarget='#cf-step-final', autoLocator='contactUsSubmitButtonStep3'}" />
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText='submit', btnType='submit', btnTarget=cfstepfinalTarget, autoLocator='contactUsSubmitButtonStep3'}" />
                                     </div>
                                 </div>
                             </div>
@@ -251,17 +274,16 @@
 
                         </div>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="cf-step-final">
+                    <div class="tab-pane" role="tabpanel" id="${cfstepfinal}">
                         <div class="row thankyou">
                             <div class="col text-center" auto_locator="contactUsThankYouMessage">
       
                                 <div auto_locator="contactUsThankYouPageMessage">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.heading_h2_template @ headingText='Your download is ready'}" />
+                                        data-sly-call="${heading.heading_h2_template @ headingText=data.downloadReadyHeading}" />
                                 </div>
                                 <div class="descriptionTextThankyou" auto_locator="contactUsThankYouPageDescription">
-                                    <!-- ${data.thankyouDescriptionText @ context='html'} -->
-                                    download description download description
+                                    ${data.downloadReadyDescriptionText @ context='html'}
                                 </div>
                                 <div class="button-group">
                                     <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"

@@ -48,6 +48,11 @@
             @include margin-bottom($margin-l);
         }
 
+        .tpatom-checkbox__icon {
+            border: 1px solid $color-tundora;
+            color: $color-congress-blue;
+        }
+
         .radioHeading {
             @include margin-bottom($margin-md);
             @include font-size($font-baseline);
@@ -66,6 +71,10 @@
             .errorMsg {
                 display: block;
             }
+
+            .tpatom-checkbox__icon {
+                border-color: $color-alert;
+            }
         }
 
         .privacy-policy {
@@ -74,6 +83,13 @@
                 a {
                     color: $color-jordy-blue;
                 }
+            }
+        }
+
+        .marketing-consent {
+            .form-group {
+                @include margin-top($margin-l);
+                @include margin-bottom(0);
             }
         }
         // Dropdown styling

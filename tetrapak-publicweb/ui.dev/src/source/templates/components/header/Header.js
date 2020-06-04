@@ -50,10 +50,7 @@ class Header {
       this.trackLanguageSelector(e);
     });
 
-    this.root.find('.js-softconversion-pw').on('click', () => {
-      this.root.find('.js-soft-modal').trigger('showsoftconversion-pw');
-    });
-
+  
   }
 
   trackLanguageSelector = e => {
