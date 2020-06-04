@@ -7,24 +7,24 @@
         z-index: $z-index-section-menu;
         position: fixed;
         background: $color-white;
-        top: 62px; // this is section menu margin from header
+        top: $header-height-mobile * 1px; // this is section menu margin from header
         width: 100%;
         & > .pw-navigation__container {
             @include padding(0); // this padding is using in section menu item
         }
         .collapse-button {
-            @include padding(
-                16px
-            ); // this padding is using around insights item button in mobile
+            @include padding($padding-md);
             display: flex;
             border-bottom: 1px solid $color-mercury;
             justify-content: space-between;
+            align-items: center;
+            height: $section-menu-height-mobile * 1px;
         }
     }
 
     @media #{$mobile} {
         &__container {
-            height: calc(100vh - 119px);
+            height: calc(100vh - #{$sticky-view-height * 1px});
             overflow-y: auto;
             .list-section-menu-links {
                 display: block;

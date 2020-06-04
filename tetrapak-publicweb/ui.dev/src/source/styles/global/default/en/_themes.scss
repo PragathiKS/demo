@@ -109,10 +109,18 @@ h1,h2,h3,h4{
     display: block;   // will be block display in every case
 }
 
+@media #{$mobile} {
+    .body-content {
+        @include padding-top($header-height-mobile * 1px); // with reference to Sticky Mobile Header navigation
+        &.body-top-padding {
+            @include padding-top($sticky-view-height * 1px); // with reference to Sticky Mobile Header + section menu
+        }
+    }
+}
 @media #{$desktop} {
     .body-content {
         &.body-top-padding {
-            @include padding-top(62px);
+            @include padding-top(62px); // with reference to desktop section menu height
         }
     }
 }
