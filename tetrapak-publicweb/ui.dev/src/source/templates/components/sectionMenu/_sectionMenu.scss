@@ -30,6 +30,14 @@
             @include padding($padding-md);
             display: flex;
             justify-content: space-between;
+
+            &:not(.collapsed) {
+                font-weight: 900;
+            }
+            &,
+            &:hover {
+                color: $color-congress-blue;
+            }
         }
     }
     @media #{$desktop} {

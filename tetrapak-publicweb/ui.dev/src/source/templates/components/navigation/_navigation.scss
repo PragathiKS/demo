@@ -19,6 +19,15 @@
             justify-content: space-between;
             align-items: center;
             height: $section-menu-height-mobile * 1px;
+            i.icon-Arrow_Right_pw {
+                &::before {
+                    transform: rotate(90deg);
+                }
+            }
+            &,
+            &:hover {
+                color: $color-congress-blue;
+            }
         }
     }
 
@@ -35,6 +44,10 @@
                 @include padding-left(31px);
                 width: 100%;
                 border-bottom: 1px solid $color-mercury;
+                &,
+                &:hover {
+                    color: $color-congress-blue;
+                }
             }
             .pw-mobile-navigation-section-list {
                 border-bottom: 1px solid $color-mercury;

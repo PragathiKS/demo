@@ -12,6 +12,10 @@
     @media #{$mobile} {
         display: flex;
         justify-content: space-between;
+        &,
+        &:hover {
+            color: $color-tundora;
+        }
     }
     @media #{$desktop} {
         &:hover {

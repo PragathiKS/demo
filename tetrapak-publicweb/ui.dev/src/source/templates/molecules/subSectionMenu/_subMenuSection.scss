@@ -3,6 +3,12 @@
 }
 
 .pw-sub-section-menu {
+
+    .pseudo-category-header {
+        text-transform: uppercase;
+        color: $color-boulder;
+    }
+
     @media #{$mobile} {
         .category-child-ul {
             display: flex;
@@ -47,8 +53,6 @@
         .pseudo-category-header {
             @include line-height(20px, $font-sm);
             font-size: $font-sm;
-            text-transform: uppercase;
-            color: $color-boulder;
         }
 
         & > ul,
