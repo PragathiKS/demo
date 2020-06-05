@@ -6,8 +6,11 @@
 	<sly data-sly-test.cfstep3="${'{0}{1}' @ format=['cf-step-3-', componentName, ')']}" />
 	<sly data-sly-test.cfstep3Target="${'{0}{1}' @ format=['#cf-step-3-', componentName, ')']}" />
 
-	<sly data-sly-test.cfstepfinal="${'{0}{1}' @ format=['cf-step-final-', componentName, ')']}" />
-	<sly data-sly-test.cfstepfinalTarget="${'{0}{1}' @ format=['#cf-step-final-', componentName, ')']}" />
+	<sly data-sly-test.cfstepdownloadReady="${'{0}{1}' @ format=['cf-step-downloadReady-', componentName, ')']}" />
+	<sly data-sly-test.cfstepdownloadReadyTarget="${'{0}{1}' @ format=['#cf-step-downloadReady-', componentName, ')']}" />
+
+	<sly data-sly-test.cfstepthankyou="${'{0}{1}' @ format=['cf-step-thankyou-', componentName, ')']}" />
+	<sly data-sly-test.cfstepthankyouTarget="${'{0}{1}' @ format=['#cf-step-thankyou-', componentName, ')']}" />
 	
     <div class="modal tp-modal pw-softconversion js-soft-modal ${componentName} fade" id="lang-modal" data-module="Softconversion" tabindex="-1" role="dialog">
     	<input type="hidden" class="ComponentNameSoft" name="ComponentNameSoft" value="${componentName}">
@@ -183,12 +186,12 @@
                                                 data-sly-call="${heading.heading_h4_template @ headingText='howcanihelp', variant='small'}" />
                                         </div> -->
                                         
-                                        <div class="col-sm-12 formfield">
+                                        <div class="col-sm-12 formfield company-${componentName}">
                                             <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
                                                 data-sly-call="${inputField.inputfield_template @ inputType='text', id='company', label='company', error='pw.form.companyerrormsg', required=true, autoLocatorInput='companyInput', autoLocatorLabel='companyHelpText'}">
                                             </sly>
                                         </div>
-                                        <div class="col-sm-12 formfield">
+                                        <div class="col-sm-12 formfield company-${componentName}">
                                             <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
                                                 data-sly-call="${inputField.inputfield_template @ inputType='text', id='position', label='position', error='pw.form.positionerrormsg', required=true, autoLocatorInput='positionInput', autoLocatorLabel='positionHelpText'}">
                                             </sly>
@@ -226,9 +229,9 @@
                                     </div>
                                     <div class="row no-gutters button-group">
                                         <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${previousButton.tabbutton_template @ btnText='previous', btnTarget='#cf-step-2', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep3'}" />
+                                            data-sly-call="${previousButton.tabbutton_template @ btnText='previous', btnTarget=cfstep2Target, variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep3'}" />
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='submit', btnType='submit', btnTarget=cfstepfinalTarget, autoLocator='contactUsSubmitButtonStep3'}" />
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText='submit', btnType='submit', btnTarget=cfstepdownloadReadyTarget, autoLocator='contactUsSubmitButtonStep3'}" />
                                     </div>
                                 </div>
                             </div>
@@ -274,7 +277,7 @@
 
                         </div>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="${cfstepfinal}">
+                    <div class="tab-pane" role="tabpanel" id="${cfstepdownloadReady}">
                         <div class="row thankyou">
                             <div class="col text-center" auto_locator="contactUsThankYouMessage">
       
@@ -287,11 +290,31 @@
                                 </div>
                                 <div class="button-group">
                                     <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                        data-sly-call="${nextButton.tabbutton_template @ btnText='Download', customClasses='newRequestBtn', icon_classes='icon-Download'}" />
+                                        data-sly-call="${nextButton.tabbutton_template @ btnText='Download', customClasses='thankyouTarget',btnTarget=cfstepthankyouTarget,  icon_classes='icon-Download'}" />
                                 </div>
                             </div>
                         </div>
                     </div> 
+
+                    <div class="tab-pane" role="tabpanel" id="${cfstepthankyou}">
+                        <div class="row thankyou">
+                            <div class="col text-center" auto_locator="contactUsThankYouMessage">
+      
+                                <div auto_locator="contactUsThankYouPageMessage">
+                                    <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                        data-sly-call="${heading.heading_h2_template @ headingText=data.thankyouHeading}" />
+                                </div>
+                                <div class="descriptionTextThankyou" auto_locator="contactUsThankYouPageDescription">
+                                    ${data.thankyouDescriptionText @ context='html'}
+                                </div>
+                                <div class="button-group">
+                                    <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                                        data-sly-call="${nextButton.tabbutton_template @ btnText='More whitepaper', customClasses='newRequestBtn'}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
                 </form>
             </div>
         </div>

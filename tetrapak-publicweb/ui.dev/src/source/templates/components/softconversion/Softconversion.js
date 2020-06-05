@@ -9,8 +9,11 @@ class Softconversion {
   initCache() {
     this.cache.$modal = this.root.parent().find('.js-soft-modal');
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
+    this.cache.$downloadbtn = this.root.find('.thankyouTarget[type=button]');
     this.cache.$radio = this.root.find('input[type=radio][name="typeOfVisitorOptions"]');
     this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSoft"]').val();
+    this.cache.$company = this.root.find(`.company-${this.cache.$componentName}`);
+    this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
     // this.cache.$submitBtn = $('button[type="submit"]', this.root);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
     this.cache.requestPayload = {
@@ -39,6 +42,12 @@ class Softconversion {
     requestPayload['typeOfVisitorTitle'] = value;
   }
 
+  downloadHandler = () => {
+    $('.tab-pane', this.root).removeClass('active');
+    $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).addClass('active');
+    // $('.serviceError').removeClass('d-block');
+  }
+
   submitForm = () => {
     // const servletPath = this.cache.contactusapi.data('contactus-api-servlet');
     // ajaxWrapper.getXhrObj({
@@ -51,7 +60,7 @@ class Softconversion {
     //       const offsetContact = $('#pw-contactUs').offset();
     $('.pw-softconversion__header__heading', this.root).html('');
     $('.tab-pane', this.root).removeClass('active');
-    $(`#cf-step-final-${this.cache.$componentName}`, this.root).addClass('active');
+    $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
     $('.serviceError').removeClass('d-block');
     // $('html, body').animate({
     //   scrollTop: offsetContact.top - 50
@@ -65,7 +74,7 @@ class Softconversion {
 
 
   bindEvents() {
-    const {requestPayload, $radio, $nextbtn, $submitBtn } = this.cache;
+    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $company, $position, $downloadbtn } = this.cache;
     const self = this;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('click', function () {
@@ -78,14 +87,29 @@ class Softconversion {
 
     $radio.on('change', this.onRadioChangeHandler);
 
+    $downloadbtn.on('click', this.downloadHandler);
+
     $nextbtn.click(function (e) {
       let isvalid = true;
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
-      const textarea = tab.find('textarea');
-      if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
-        $('input, textarea', tab).each(function () {
+      // const textarea = tab.find('textarea');
+
+      // hide fields if type of visitor is not customer
+      if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitorTitle']!=='Customer'){
+        $company.hide();
+        $position.hide();
+      }
+
+      if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitorTitle']==='Customer'){
+        $company.show();
+        $position.show();
+      }
+
+
+      if (!$(this).hasClass('previousbtn') && (input.length > 0 )) {
+        $('input', tab).each(function () {
           const fieldName = $(this).attr('name');
           $('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
@@ -127,7 +151,7 @@ class Softconversion {
 
        
         }
-        if ($(this).prop('required') && $(this).val() === '') {
+        if ($(this).prop('required') && $(this).val() === '' && requestPayload['typeOfVisitorTitle']==='Customer') {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
         }else if(fieldName ==='market-consent' && !$(this).is(':checked')){
