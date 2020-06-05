@@ -14,7 +14,7 @@ describe('TabsList', function() {
     this.initSpy = sinon.spy(this.tabslist, 'init');
     this.showTabDetailSpy = sinon.spy(this.tabslist, 'showTabDetail');
     this.openStub = sinon.stub(window, 'open');
-    this.pauseVideoIfExistsSpy = sinon.spy(this.tabslist, 'pauseVideoIfExists');
+  
 
     this.trackAnalyticsSpy = sinon.spy(this.tabslist, 'trackAnalytics');
     window._satellite = {
@@ -23,7 +23,7 @@ describe('TabsList', function() {
       }
     };
     this.tabslist.init();
-    this.tabslist.pauseVideoIfExists();
+
   });
 
   after(function() {
@@ -32,7 +32,7 @@ describe('TabsList', function() {
     this.trackAnalyticsSpy.restore();
     this.showTabDetailSpy.restore();
     this.openStub.restore();
-    this.pauseVideoIfExistsSpy.restore();
+
   });
 
   it('should initialize', function() {
