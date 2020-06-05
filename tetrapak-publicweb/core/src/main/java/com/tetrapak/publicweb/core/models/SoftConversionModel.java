@@ -6,6 +6,8 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.tetrapak.publicweb.core.utils.PageUtil;
+
 /**
  * The Class SoftConversionModel.
  *
@@ -32,10 +34,6 @@ public class SoftConversionModel extends FormModel {
     /** The download ready description text. */
     @ValueMapValue
     private String downloadReadyDescriptionText;
-
-    /** The download link. */
-    @ValueMapValue
-    private String downloadLink;
 
     /** The more link action. */
     @ValueMapValue
@@ -88,15 +86,6 @@ public class SoftConversionModel extends FormModel {
     }
 
     /**
-     * Gets the download link.
-     *
-     * @return the download link
-     */
-    public String getDownloadLink() {
-        return downloadLink;
-    }
-
-    /**
      * Gets the more link action.
      *
      * @return the more link action
@@ -130,6 +119,24 @@ public class SoftConversionModel extends FormModel {
      */
     public String getNoButtonLabel() {
         return noButtonLabel;
+    }
+
+    /**
+     * Gets the site language.
+     *
+     * @return the site language
+     */
+    public String getSiteLanguage() {
+        return PageUtil.getLanguageCodeFromResource(resource);
+    }
+
+    /**
+     * Gets the site country.
+     *
+     * @return the site country
+     */
+    public String getSiteCountry() {
+        return PageUtil.getCountryCodeFromResource(resource);
     }
 
 }
