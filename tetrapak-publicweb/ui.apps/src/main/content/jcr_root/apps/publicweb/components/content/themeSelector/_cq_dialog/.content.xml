@@ -84,7 +84,7 @@
                                         value="bg-white"/>
                                     <gray
                                         jcr:primaryType="nt:unstructured"
-                                        text="Gray"
+                                        text="Grey"
                                         value="bg-gray"/>
                                 </items>
                             </pwImageBackground>
