@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import TextImage from './TextImage';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
+
 
 describe('TextImage', function () {
   before(function () {
