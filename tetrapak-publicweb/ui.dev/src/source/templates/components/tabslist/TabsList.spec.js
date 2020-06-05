@@ -2,7 +2,6 @@ import $ from 'jquery';
 import TabsList from './TabsList';
 import tabslistTemplate from '../../../test-templates-hbs/tabslist.hbs';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { pauseVideosByReference } from '../../../scripts/utils/videoAnalytics';
 
 describe('TabsList', function() {
   before(function() {
