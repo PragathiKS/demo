@@ -1,8 +1,8 @@
 <sly data-sly-template.findMyOffice_template="${@data, flag}">
   <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice">
     <div class="hidden-element js-google-api js-i18-value" data-google-api-key="${data.googleApiKey}"
-      data-google-api-servlet="${data.servletPath}">${"goToLocalSite" @i18n}</div>
-    <div class="hidden-element js-hidden-element">${"viewLargerMap" @i18n}</div>
+      data-google-api-servlet="${data.servletPath}">${"pw.findMyOffice.goToLocalSite" @i18n}</div>
+    <div class="hidden-element js-hidden-element">${"pw.findMyOffice.viewLargerMap" @i18n}</div>
     <div class="pw-container pw-find-my-office pw-theme--${data.pwTheme}">
       <div data-link-section='Find my office' data-link-name=''
         class='pw-find-my-office__wrapper js-pw-find-my-office__wrapper'>
@@ -11,12 +11,12 @@
           <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
             data-sly-call="${title.heading_h2_template @ headingText=data.heading, variant='regular'}" />
           <div class="pw-find-my-office__form-group__field country-field"><label
-              class="pw-find-my-office__form-group__label" for="country">${"country" @i18n}</label>
+              class="pw-find-my-office__form-group__label" for="country">${"pw.from.label.country" @i18n}</label>
             <div class="pw-form__dropdown dropdown text-left">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__country js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                 type="button" title='' aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><span
-                  class="js-pw-form__dropdown__country-text">${"selectCountry" @i18n}</span>
+                  class="js-pw-form__dropdown__country-text">${"pw.from.label.selectCountry" @i18n}</span>
                 <i class="icon icon-Arrow_Right_pw"></i></button>
               <ul role="menu" class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__country-select">
               </ul>
@@ -25,12 +25,12 @@
           <div
             class="pw-find-my-office__form-group__field pw-find-my-office__form-group__city-field js-pw-find-my-office__form-group__city-field">
             <label class="pw-find-my-office__form-group__label js-pw-find-my-office__form-group__label"
-              for="country">${"office" @i18n}</label>
+              for="country">${"pw.from.label.office" @i18n}</label>
             <div class="pw-form__dropdown dropdown text-left">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__city js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                 type="button" title='' aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><span
-                  class="js-pw-form__dropdown__city-text">${"selectOffice" @i18n}</span>
+                  class="js-pw-form__dropdown__city-text">${"pw.from.label.selectOffice" @i18n}</span>
                 <i class="icon icon-Arrow_Right_pw"></i></button>
               <ul role="menu" class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__city-select">
               </ul>
