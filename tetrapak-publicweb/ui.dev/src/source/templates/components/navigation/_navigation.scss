@@ -15,10 +15,17 @@
         .collapse-button {
             @include padding($padding-md);
             display: flex;
+            font-weight: 900;
             border-bottom: 1px solid $color-mercury;
             justify-content: space-between;
             align-items: center;
             height: $section-menu-height-mobile * 1px;
+            i.icon {
+                &::before {
+                    font-size: $font-sm;
+                    line-height: $font-sm;
+                }
+            }
             i.icon-Arrow_Right_pw {
                 &::before {
                     transform: rotate(90deg);
