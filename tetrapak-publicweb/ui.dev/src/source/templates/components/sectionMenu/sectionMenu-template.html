@@ -2,7 +2,7 @@
   <div data-module="SectionMenu">
     <div class="section-menu-navigation-Link js-section-menu-navigation-Link pw-position-relative">
       <a auto-locator="SectionMenuLinksFontStyle-SectionMenuLinksPadding" data-link-name='${linkText}' target="${data.external ? '_blank' : '_self'}" href="${linkURL}" class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : ''} section-menu-item-link js-section-menu-item-link" title="${linkText}">
-        ${linkText}
+        <span title="">${linkText}</span>
         <sly data-sly-test="${data.external}">
           <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon is-external ${iconClass}"></i>
         </sly>

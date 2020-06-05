@@ -92,12 +92,14 @@
                 & > a {
                     @include padding(0 $padding-sm);
                     @include line-height($font-l, $font-baseline);
-                    height: 24px;
+                    height: 28px;
                     font-weight: normal;
                 }
-                &:hover > a,
-                .active {
-                    border-bottom: 3px solid;
+                &:hover > a {
+                    color: $color-jordy-blue;
+                }
+                & >a.active {
+                    border-bottom: 2px solid;
                 }
             }
         }
