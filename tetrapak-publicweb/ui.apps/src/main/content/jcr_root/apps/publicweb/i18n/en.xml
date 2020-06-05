@@ -243,4 +243,44 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingtype"
         sling:message="Type:"/>
+    <pw.form.errormsg.company
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.errormsg.company"
+        sling:message="Enter your company name"/>
+    <pw.form.errormsg.officetextfield
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.errormsg.officetextfield"
+        sling:message="Enter your office name"/>
+    <pw.form.button.softconversion.moredownload
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.button.softconversion.moredownload"
+        sling:message="More white papers"/>
+    <pw.form.button.download
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.button.download"
+        sling:message="Download"/>
+    <pw.from.heading.typeofvisitor
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.from.heading.typeofvisitor"
+        sling:message="Type of Visitor"/>
+    <pw.form.softconversion.customer
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.softconversion.customer"
+        sling:message="Customer"/>
+    <pw.form.softconversion.talent
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.softconversion.talent"
+        sling:message="Talent"/>
+    <pw.form.softconversion.pressandmedia
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.softconversion.pressandmedia"
+        sling:message="Press and media"/>
 </jcr:root>

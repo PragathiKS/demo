@@ -54,7 +54,7 @@
                                             </sly>
                                             <input type="hidden" name="purposeOfContactTitle" class="form-control validateForTags"
                                                 id="purposeOfContact" required>
-                                            <div class="errorMsg purposeOfContactError">${'pleaseselectanoption' @i18n}
+                                            <div class="errorMsg purposeOfContactError">${'pw.form.errormsg.purposeofcontact' @i18n}
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
                                             <p>
-                                                ${'step {0} of {1}'  @i18n, format=['1','3']}
+                                                ${'pw.form.step {0} of {1}'  @i18n, format=['1','3']}
                                             </p>
                                         </div>
                                     </div>
@@ -93,13 +93,13 @@
                                 <div auto_locator="contactUsLeftContainerSummaryAreaStep2">
                                     <div class="row no-gutters">
                                         <div class="col-sm-12">
-                                            <sly data-sly-test="${'summary' @i18n}"
+                                            <sly data-sly-test="${'pw.from.heading.summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='summary', variant='small'}" />
                                         </div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'purposeofcontact' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.from.heading.purposeofcontact' @i18n}</div>
                                         <div class="col-lg-6 purposeOfContactTitle"></div>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                                         <div class="col-sm-12 col-lg-6">
                                             <div class="formfield country-field">
                                                 <label for="country"
-                                                    auto_locator="contactUsCountrySelectorHelpText">${'country' @
+                                                    auto_locator="contactUsCountrySelectorHelpText">${'pw.from.label.country' @
                                                     i18n}</label>
                                                 <div class="pw-form__dropdown dropdown text-left">
                                                     <button
@@ -138,7 +138,7 @@
                                                         type="button" data-toggle="dropdown" aria-haspopup="true"
                                                         auto_locator="countrySelectDropdown" aria-expanded="false">
                                                         <span
-                                                            class="js-pw-form__dropdown__country-text">${'selectCountry'
+                                                            class="js-pw-form__dropdown__country-text">${'pw.from.label.selectCountry'
                                                             @ i18n}</span>
                                                         <i class="icon icon-Arrow_Right_pw"></i></button>
                                                     </button>
@@ -154,7 +154,7 @@
                                                     <input type="hidden" name="countryTitle" class="form-control validateForTags"
                                                         id="country" required>
                                                 </div>
-                                                <div class="errorMsg">${'pleaseselectanoption' @i18n}</div>
+                                                <div class="errorMsg">${'pw.form.errormsg.purposeofcontact' @i18n}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -165,7 +165,7 @@
                                             </sly>
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                                            <p>  ${'step {0} of {1}'  @i18n, format=['2','3']}</p>
+                                            <p>  ${'pw.form.step {0} of {1}'  @i18n, format=['2','3']}</p>
                                         </div>
                                     </div>
                                     <div class="row no-gutters button-group">
@@ -191,36 +191,36 @@
                                 </div>
                                 <div auto_locator="contactUsLeftContainerSummaryAreaStep2">
                                     <div class="row no-gutters">
-                                        <div data-sly-test="${'summary' @i18n}" class="col-sm-12">
+                                        <div data-sly-test="${'pw.from.heading.summary' @i18n}" class="col-sm-12">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='summary', variant='small'}" />
                                         </div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'purposeofcontact' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.from.heading.purposeofcontact' @i18n}</div>
                                         <div class="col-lg-6 purposeOfContactTitle"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'firstName' @ i18n}</div>
+                                        <div class="col-lg-6">${'pw.from.label.firstName' @ i18n}</div>
                                         <div class="col-lg-6 firstName"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'lastName' @ i18n}</div>
+                                        <div class="col-lg-6">${'pw.from.label.lastName' @ i18n}</div>
                                         <div class="col-lg-6 lastName"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'email' @ i18n}</div>
+                                        <div class="col-lg-6">${'pw.from.label.email' @ i18n}</div>
                                         <div class="col-lg-6 email"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'country' @ i18n}</div>
+                                        <div class="col-lg-6">${'pw.from.label.country' @ i18n}</div>
                                         <div class="col-lg-6 countryTitle"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="tab-content tab-content-steps">
-                                    <div class="serviceError">${'serviceerrormsg' @i18n}</div>
+                                    <div class="serviceError">${'pw.form.errormsg.serviceerror' @i18n}</div>
                                     <div class="row">
                                         <div class="col-sm-12 right-heading" auto_locator="contactUsRightContainerHeadingTextStep3">
                                             <sly
@@ -229,7 +229,7 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="formfield">
-                                                <label for="messageText">${'message' @i18n}</label>
+                                                <label for="messageText">${'pw.from.label.message' @i18n}</label>
                                                 <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
                                                     id="messageText" rows="5" name="message" required></textarea>
                                                 <div class="errorMsg">${'pw.form.messageboxerrormsg' @i18n}</div>
@@ -248,7 +248,7 @@
                                             </sly>
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-lg-3">
-                                            <p>  ${'step {0} of {1}'  @i18n, format=['3','3']}</p>
+                                            <p>  ${'pw.form.step {0} of {1}'  @i18n, format=['3','3']}</p>
                                         </div>
                                     </div>
                                     <div class="row no-gutters button-group">
