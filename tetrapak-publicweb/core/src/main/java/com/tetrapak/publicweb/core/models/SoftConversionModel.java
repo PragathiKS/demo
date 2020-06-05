@@ -39,7 +39,17 @@ public class SoftConversionModel extends FormModel {
 
     /** The more link action. */
     @ValueMapValue
-    private String moreLinkAction;
+    private String moreButtonAction;
+
+    /** The more link label. */
+    @ValueMapValue
+    private String moreButtonLabel;
+
+    @ValueMapValue
+    private String yesButtonLabel;
+
+    @ValueMapValue
+    private String noButtonLabel;
 
     /**
      * Gets the welcome back heading.
@@ -91,8 +101,35 @@ public class SoftConversionModel extends FormModel {
      *
      * @return the more link action
      */
-    public String getMoreLinkAction() {
-        return moreLinkAction;
+    public String getMoreButtonAction() {
+        return moreButtonAction;
+    }
+
+    /**
+     * Gets the more button label.
+     *
+     * @return the more button label
+     */
+    public String getMoreButtonLabel() {
+        return moreButtonLabel;
+    }
+
+    /**
+     * Gets the yes button label.
+     *
+     * @return the yes button label
+     */
+    public String getYesButtonLabel() {
+        return yesButtonLabel;
+    }
+
+    /**
+     * Gets the no button label.
+     *
+     * @return the no button label
+     */
+    public String getNoButtonLabel() {
+        return noButtonLabel;
     }
 
 }
