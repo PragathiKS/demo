@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +58,9 @@ public class SearchConfigModel {
     @ValueMapValue
     private String caseLabel;
 
+    @ValueMapValue
+    private String mediaLabel;
+
     private Map<String, List<SearchPathModel>> templateMap = new LinkedHashMap<>();
 
     private Map<String, List<SearchPathModel>> structureMap = new LinkedHashMap<>();
@@ -68,10 +71,12 @@ public class SearchConfigModel {
         templateMap.put(newsLabel, newsTemplateList);
         templateMap.put(eventsLabel, eventsTemplateList);
         templateMap.put(caseLabel, caseTemplateList);
+        templateMap.put(mediaLabel, new ArrayList<>());
         structureMap.put(productLabel, productStructureList);
         structureMap.put(newsLabel, newsStructureList);
         structureMap.put(eventsLabel, eventsStructureList);
         structureMap.put(caseLabel, caseStructureList);
+
     }
 
     public List<SearchPathModel> getProductTemplateList() {

@@ -257,11 +257,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="ok"
         sling:message="OK"/>
-   <themes
-        jcr:mixinTypes="[sling:Message]"
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="themes"
-        sling:message="THEMES"/>
    <searchresults
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
