@@ -46,16 +46,5 @@ public class DynamicMediaServiceImpl implements DynamicMediaService {
     @Override
     public String[] getDynamicMediaConfMap() {
         return config.dynamicMediaConfMap();
-
     }
-
-    /**
-     * @return the root Path
-     */
-    @Override
-    public String getRootPath() {
-        return config.rootPath();
-    }
-
-
 }
