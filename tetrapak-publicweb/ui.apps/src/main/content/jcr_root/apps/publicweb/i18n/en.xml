@@ -3,150 +3,150 @@
     jcr:language="en"
     jcr:mixinTypes="[mix:language]"
     jcr:primaryType="nt:folder">
-    <pw.from.contactus.sustainability
+    <pw.form.contactus.sustainability
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.contactus.sustainability"
+        sling:key="pw.form.contactus.sustainability"
         sling:message="Sustainability"/>
-    <pw.from.contactus.career
+    <pw.form.contactus.career
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.contactus.career"
+        sling:key="pw.form.contactus.career"
         sling:message="Career"/>
-    <pw.from.contactus.other
+    <pw.form.contactus.other
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.contactus.other"
+        sling:key="pw.form.contactus.other"
         sling:message="Other"/>
-    <pw.from.businessenq.requestaquote
+    <pw.form.businessenq.requestaquote
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.businessenq.requestaquote"
+        sling:key="pw.form.businessenq.requestaquote"
         sling:message="Request a quote"/>
-    <pw.from.businessenq.requestforproductinfo
+    <pw.form.businessenq.requestforproductinfo
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.businessenq.requestforproductinfo"
+        sling:key="pw.form.businessenq.requestforproductinfo"
         sling:message="Request for product information"/>
-    <pw.from.businessenq.contactme
+    <pw.form.businessenq.contactme
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.businessenq.contactme"
+        sling:key="pw.form.businessenq.contactme"
         sling:message="Contact me"/>
-    <pw.from.businessenq.processing
+    <pw.form.businessenq.processing
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.businessenq.processing"
+        sling:key="pw.form.businessenq.processing"
         sling:message="Processing"/>
-    <pw.from.businessenq.packaging
+    <pw.form.businessenq.packaging
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.businessenq.packaging"
+        sling:key="pw.form.businessenq.packaging"
         sling:message="Packaging"/>
-    <pw.from.businessenq.services
+    <pw.form.businessenq.services
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.businessenq.services"
+        sling:key="pw.form.businessenq.services"
         sling:message="Services"/>
-    <pw.from.businessenq.endtoendsolution
+    <pw.form.businessenq.endtoendsolution
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.businessenq.endtoendsolution"
+        sling:key="pw.form.businessenq.endtoendsolution"
         sling:message="End-to-End solutions"/>
-    <pw.from.heading.contactinformation
+    <pw.form.heading.contactinformation
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.heading.contactinformation"
+        sling:key="pw.form.heading.contactinformation"
         sling:message="Contact information"/>
-    <pw.from.heading.companyinformation
+    <pw.form.heading.companyinformation
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.heading.companyinformation"
+        sling:key="pw.form.heading.companyinformation"
         sling:message="Company information"/>
-    <pw.from.heading.howcanihelp
+    <pw.form.heading.howcanihelp
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.heading.howcanihelp"
+        sling:key="pw.form.heading.howcanihelp"
         sling:message="How can I help you?"/>
-    <pw.from.heading.purposeofcontact
+    <pw.form.heading.purposeofcontact
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.heading.purposeofcontact"
+        sling:key="pw.form.heading.purposeofcontact"
         sling:message="Purpose of contact"/>
-    <pw.from.heading.businessarea
+    <pw.form.heading.businessarea
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.heading.businessarea"
+        sling:key="pw.form.heading.businessarea"
         sling:message="Business area of interest"/>
-    <pw.from.heading.summary
+    <pw.form.heading.summary
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.heading.summary"
+        sling:key="pw.form.heading.summary"
         sling:message="Summary"/>
-    <pw.from.label.firstName
+    <pw.form.label.firstName
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.firstName"
+        sling:key="pw.form.label.firstName"
         sling:message="First name"/>
-    <pw.from.label.lastName
+    <pw.form.label.lastName
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.lastName"
+        sling:key="pw.form.label.lastName"
         sling:message="Last name"/>
-    <pw.from.label.email
+    <pw.form.label.email
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.email"
+        sling:key="pw.form.label.email"
         sling:message="E-mail"/>
-    <pw.from.label.emailPlaceholder
+    <pw.form.label.emailPlaceholder
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.emailPlaceholder"
+        sling:key="pw.form.label.emailPlaceholder"
         sling:message="example@example.com"/>
-    <pw.from.label.country
+    <pw.form.label.country
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.country"
+        sling:key="pw.form.label.country"
         sling:message="Country"/>
-    <pw.from.label.selectCountry
+    <pw.form.label.selectCountry
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.selectCountry"
+        sling:key="pw.form.label.selectCountry"
         sling:message="Select Country"/>
-    <pw.from.label.message
+    <pw.form.label.message
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.message"
+        sling:key="pw.form.label.message"
         sling:message="Message"/>
-    <pw.from.label.office
+    <pw.form.label.office
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.office"
+        sling:key="pw.form.label.office"
         sling:message="Office"/>
-    <pw.from.label.selectOffice
+    <pw.form.label.selectOffice
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.selectOffice"
+        sling:key="pw.form.label.selectOffice"
         sling:message="Select Office"/>
-    <pw.from.label.phonenumber
+    <pw.form.label.phonenumber
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.phonenumber"
+        sling:key="pw.form.label.phonenumber"
         sling:message="Phone number"/>
-    <pw.from.label.phoneplaceholder
+    <pw.form.label.phoneplaceholder
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.phoneplaceholder"
+        sling:key="pw.form.label.phoneplaceholder"
         sling:message="Country code and Number"/>
-    <pw.from.label.company
+    <pw.form.label.company
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.company"
+        sling:key="pw.form.label.company"
         sling:message="Company"/>
-    <pw.from.label.position
+    <pw.form.label.position
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.label.position"
+        sling:key="pw.form.label.position"
         sling:message="Position"/>
     <pw.form.errormsg.invalidemail
         jcr:mixinTypes="[sling:Message]"
@@ -192,6 +192,11 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.messagebox"
+        sling:message="Fill in your query/message"/>
+    <pw.form.errormsg.marketingconsent
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.errormsg.marketingconsent"
         sling:message="Fill in your query/message"/>
     <pw.form.step
         jcr:mixinTypes="[sling:Message]"
@@ -248,25 +253,20 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.company"
         sling:message="Enter your company name"/>
-    <pw.form.errormsg.officetextfield
+    <pw.form.errormsg.position
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.officetextfield"
-        sling:message="Enter your office name"/>
-    <pw.form.button.softconversion.moredownload
-        jcr:mixinTypes="[sling:Message]"
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.button.softconversion.moredownload"
-        sling:message="More white papers"/>
+        sling:message="Enter your position"/>
     <pw.form.button.download
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.download"
         sling:message="Download"/>
-    <pw.from.heading.typeofvisitor
+    <pw.form.heading.typeofvisitor
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.from.heading.typeofvisitor"
+        sling:key="pw.form.heading.typeofvisitor"
         sling:message="Type of Visitor"/>
     <pw.form.softconversion.customer
         jcr:mixinTypes="[sling:Message]"
