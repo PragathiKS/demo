@@ -109,7 +109,7 @@ class Header {
 
   hideMobileMenuOnResize = () => {
     this.cache.$mobileMenu.fadeOut(10);
-    this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
+    this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close_pw');
     this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
     this.toggleFlag = false;
   }
@@ -118,12 +118,12 @@ class Header {
     if(!this.toggleFlag){
       this.cache.$mobileMenu.fadeIn(300);
       this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Burger_pw');
-      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Close');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Close_pw');
       this.toggleFlag = true;
       $('body').css('overflow','hidden');
     }else {
       this.cache.$mobileMenu.fadeOut(300);
-      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close_pw');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
       this.toggleFlag = false;
 
