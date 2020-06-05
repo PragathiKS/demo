@@ -24,11 +24,11 @@ class Navigation {
       $(this).parent().children('a.collapsed').children('.without-arrow').removeClass('icon-Close_pw').addClass('icon-Arrow_Right_pw');
     });
 
-    $sectionMenuToggle.on('click', this.openMobileSectionMenu);
+    $sectionMenuToggle.on('click', this.sectionMenuToggleClick);
     this.showSelectedHeader();
   }
 
-  openMobileSectionMenu = (e) => {
+  sectionMenuToggleClick = (e) => {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.collapse-button');

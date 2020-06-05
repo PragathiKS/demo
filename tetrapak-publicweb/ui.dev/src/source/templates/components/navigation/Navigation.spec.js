@@ -12,22 +12,22 @@ describe('Navigation', function() {
       el: document.body
     });
     this.initSpy = sinon.spy(this.navigation, 'init');
-    this.openMobileSectionMenuSpy = sinon.spy(
+    this.sectionMenuToggleClickSpy = sinon.spy(
       this.navigation,
-      'openMobileSectionMenu'
+      'sectionMenuToggleClick'
     );
     this.navigation.init();
   });
   after(function() {
     $(document.body).empty();
     this.initSpy.restore();
-    this.openMobileSectionMenuSpy.restore();
+    this.sectionMenuToggleClickSpy.restore();
   });
   it('should initialize', function() {
     expect(this.navigation.init.called).to.be.true;
   });
-  it('should call openMobileSectionMenu on click', function() {
+  it('should call sectionMenuToggleClick on click', function() {
     $('.collapse-button').trigger('click');
-    expect(this.navigation.openMobileSectionMenu.called).to.be.true;
+    expect(this.navigation.sectionMenuToggleClick.called).to.be.true;
   });
 });
