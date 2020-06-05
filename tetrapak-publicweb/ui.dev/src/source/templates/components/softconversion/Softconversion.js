@@ -9,7 +9,7 @@ class Softconversion {
   initCache() {
     this.cache.$modal = this.root.parent().find('.js-soft-modal');
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
-    this.cache.$downloadbtn = this.root.find('.thankyouTarget[type=button]');
+    this.cache.$downloadbtn = this.root.find('.thankyouTarget');
     this.cache.$radio = this.root.find('input[type=radio][name="typeOfVisitorOptions"]');
     this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSoft"]').val();
     this.cache.$company = this.root.find(`.company-${this.cache.$componentName}`);
@@ -42,9 +42,18 @@ class Softconversion {
     requestPayload['typeOfVisitorTitle'] = value;
   }
 
-  downloadHandler = () => {
+  downloadHandler = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.thankyouTarget');
+    const downloadLink = $this.data('downloadlink');
+    /* eslint-disable no-console */
+    console.log(downloadLink);
+
+
     $('.tab-pane', this.root).removeClass('active');
     $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).addClass('active');
+
+    window.open(downloadLink, '_blank');
     // $('.serviceError').removeClass('d-block');
   }
 
