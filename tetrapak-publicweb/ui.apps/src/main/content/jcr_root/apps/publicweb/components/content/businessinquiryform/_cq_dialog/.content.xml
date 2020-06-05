@@ -19,13 +19,13 @@
                             <heading
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Suggested to use characters less than recommended Limit: 40 chars considering translations"
+                                fieldDescription="Suggested to use characters less than recommended Limit: 37 chars considering translations"
                                 fieldLabel="Heading"
                                 name="./heading"/>
                             <summarytext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                fieldDescription="Suggested to use characters less than recommended Limit: 220 chars considering translations"
+                                fieldDescription="Suggested to use characters less than recommended Limit: 260 chars considering translations"
                                 fieldLabel="Body Text"
                                 name="./descriptionText"
                                 useFixedInlineToolbar="{Boolean}true">
@@ -163,6 +163,34 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Heading"
                                 name="./thankyouHeading"/>
+                            <summarytext
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                fieldLabel="Body Text"
+                                name="./thankyouDescriptionText"
+                                useFixedInlineToolbar="{Boolean}true">
+                                <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <links
+                                        jcr:primaryType="nt:unstructured"
+                                        features="modifylink,unlink"/>
+                                    <justify
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-"/>
+                                </rtePlugins>
+                                <uiSettings jcr:primaryType="nt:unstructured">
+                                    <cui jcr:primaryType="nt:unstructured">
+                                        <dialogFullScreen
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
+                                    </cui>
+                                </uiSettings>
+                            </summarytext>
                             <file
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
@@ -188,34 +216,6 @@
                                 fieldDescription="Textual alternative of the meaning or function of the image, for visually impaired readers."
                                 fieldLabel="Alternative Text"
                                 name="./thankyouImageAltText"/>
-                            <summarytext
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                fieldLabel="Description"
-                                name="./thankyouDescriptionText"
-                                useFixedInlineToolbar="{Boolean}true">
-                                <rtePlugins jcr:primaryType="nt:unstructured">
-                                    <format
-                                        jcr:primaryType="nt:unstructured"
-                                        features="*"/>
-                                    <links
-                                        jcr:primaryType="nt:unstructured"
-                                        features="modifylink,unlink"/>
-                                    <justify
-                                        jcr:primaryType="nt:unstructured"
-                                        features="-"/>
-                                    <lists
-                                        jcr:primaryType="nt:unstructured"
-                                        features="-"/>
-                                </rtePlugins>
-                                <uiSettings jcr:primaryType="nt:unstructured">
-                                    <cui jcr:primaryType="nt:unstructured">
-                                        <dialogFullScreen
-                                            jcr:primaryType="nt:unstructured"
-                                            toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
-                                    </cui>
-                                </uiSettings>
-                            </summarytext>
                         </items>
                     </column>
                 </items>
