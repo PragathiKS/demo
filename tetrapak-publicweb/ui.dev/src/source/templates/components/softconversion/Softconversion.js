@@ -37,7 +37,8 @@ class Softconversion {
     const { requestPayload } = this.cache;
     const value = e.target.value;
     const id = e.target.id;
-    $('input[type=hidden][name="typeOfVisitorTitle"]').val(value);
+    const radioName = `typeOfVisitorTitle-${this.cache.$componentName}`;
+    $(`input[type=hidden][name=${radioName}]`).val(value);
     requestPayload['typeOfVisitor'] = id;
     requestPayload['typeOfVisitorTitle'] = value;
   }
@@ -50,7 +51,7 @@ class Softconversion {
     console.log(downloadLink);
 
 
-    $('.tab-pane', this.root).removeClass('active');
+    $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).addClass('active');
 
     window.open(downloadLink, '_blank');
@@ -68,7 +69,7 @@ class Softconversion {
     //     if (response.statusCode === '200') {
     //       const offsetContact = $('#pw-contactUs').offset();
     $('.pw-softconversion__header__heading', this.root).html('');
-    $('.tab-pane', this.root).removeClass('active');
+    $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
     $('.serviceError').removeClass('d-block');
     // $('html, body').animate({
@@ -137,7 +138,7 @@ class Softconversion {
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
         if (target) {
-          $('.tab-pane').removeClass('active');
+          $(`.tab-pane.tab-${$componentName}`).removeClass('active');
           $(target).addClass('active');
         }
       }

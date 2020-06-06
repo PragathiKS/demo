@@ -64,8 +64,12 @@
             display: none;
         }
         .icon-Burger_pw::before {
-            font-size: $font-normal;
-            line-height: $font-normal;
+            font-size: 20px;
+            line-height: 20px;
+            @media #{$desktop} {
+                font-size: $font-normal;
+                line-height: $font-normal;
+            }
         }
     }
 
@@ -129,6 +133,13 @@
                     display: inline;
                 }
             }
+            .mytp-text {
+                @media #{$desktop} {
+                    @include line-height($font-normal, $font-xs);
+                    font-size: $font-xs;
+                    font-weight: 500;
+                }
+            }
 
             &:first-child {
                 margin-left: 0;
@@ -138,6 +149,13 @@
                 display: none;
                 @media #{$desktop} {
                     display: inline;
+                }
+            }
+        }
+        .mytp-wrapper {
+            &:hover {
+                @media #{$desktop} {
+                    color: $color-jordy-blue;
                 }
             }
         }
@@ -151,9 +169,19 @@
                 }
             }
         }
+        i.icon-Search_pw {
+            font-size: 20px;
+            line-height: 20px;
+            @media #{$desktop} {
+                @include font-size($font-normal);
+                line-height: 16px;
+            }
+
+        }
+
         .icon-ver-line {
             @include margin-left($margin-md);
-            border: 1px solid $color-mercury;
+            border-left: 1px solid $color-mercury;
         }
     }
 

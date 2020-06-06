@@ -1,7 +1,8 @@
-<sly data-sly-template.link_template="${@ linkText,linkURL, anchorClass, iconClass, parentLink, downloadLink}">
-  <a data-link-section='Related links' data-link-name='${parentLink}:${linkText}' data-downloadlink="${downloadLink}" href="${linkURL}"
+<sly data-sly-template.link_template="${@ linkText,linkURL, anchorClass, iconClass, parentLink}">
+  <a data-link-section='Related links' data-link-name='${parentLink}:${linkText}' href="${linkURL}"
     class="${anchorClass} js-navigation-Link" title="${linkText}">
-    ${linkText @i18n}
-    <i data-sly-test="${iconClass}" class="icon icon--link ${iconClass}"></i>
+   
+     <span class="tpatom-link__text sly-text"> ${linkText}s<i
+              class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
   </a>
 </sly>

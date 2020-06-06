@@ -149,7 +149,10 @@ class Header {
 
   trackBrandLogo = (e) => {
     const $target = $(e.target);
-    const linkType = $target.closest('.js-tp-pw-header-logo-digital-data').attr('target') === '_blank'? 'external' :'internal';
+    const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
+    const url = $this.attr('href');    
+    const targetLink = $this.attr('target');
+    const linkType = targetLink === '_blank'? 'external' :'internal';
     const trackingObj = {
       linkType,
       linkSection: 'Brand logo',
@@ -161,6 +164,10 @@ class Header {
       event: 'Header'
     };
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    
+    if(url && targetLink){
+      window.open(url, targetLink);
+    }
   }
 
   trackNavigationAnalytics = (e) => {
