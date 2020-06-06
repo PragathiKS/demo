@@ -7,6 +7,7 @@ class Softconversion {
   }
   cache = {};
   initCache() {
+
     this.cache.$modal = this.root.parent().find('.js-soft-modal');
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
     this.cache.$downloadbtn = this.root.find('.thankyouTarget');
@@ -14,7 +15,7 @@ class Softconversion {
     this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSoft"]').val();
     this.cache.$company = this.root.find(`.company-${this.cache.$componentName}`);
     this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
-    // this.cache.$submitBtn = $('button[type="submit"]', this.root);
+    this.cache.softconversionapi = this.root.find(`form.pw-form-softconversion-${this.cache.$componentName}`);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -59,7 +60,9 @@ class Softconversion {
   }
 
   submitForm = () => {
-    // const servletPath = this.cache.contactusapi.data('contactus-api-servlet');
+    const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
+    const siteLanguage = this.root.find(`#site_language_${this.cache.$componentName}`).val();
+    const siteCountry = this.root.find(`#site_country_${this.cache.$componentName}`).val();
     // ajaxWrapper.getXhrObj({
     //   url: servletPath,
     //   method: ajaxMethods.POST,
@@ -125,7 +128,7 @@ class Softconversion {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = $(this).val();
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val())) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === `email-${$componentName}`) && !self.validEmail($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -149,7 +152,7 @@ class Softconversion {
       e.stopPropagation();
       let isvalid = true;
       const tab = $(this).closest('.tab-content-steps');
-      const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
+      const honeyPotFieldValue = $(`#pardot_extra_field_${$componentName}`, self.root).val();
       
       $('input', tab).each(function () {
         const fieldName = $(this).attr('name');

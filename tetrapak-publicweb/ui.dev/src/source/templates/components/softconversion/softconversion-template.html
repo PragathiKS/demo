@@ -31,8 +31,8 @@
         <div class="pw-softconversion__form"
             id="pw-contactUs" auto_locator="contactUsParentContainerStep1">
             <div class="tab-content">
-                <form class="pw-form pw-form-contactUs" accept-charset="UTF-8"
-                    data-contactus-api-servlet="${data.servletPath}" autocomplete="off">
+                <form class="pw-form pw-form-softconversion-${componentName}" accept-charset="UTF-8"
+                    data-softconversion-api-url="${data.apiUrl}" autocomplete="off">
                     <div class="tab-pane tab-${componentName} active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel"
                         id="${cfstep1}">
                         <div class="row no-gutters">
@@ -213,6 +213,12 @@
 											<div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
 										</div>
     									</div>
+                                         <input type="text" name="pardot_extra_field_${componentName}" id="pardot_extra_field_${componentName}"
+                                                    class="d-none" tabindex="-1" />
+                                         <input type="hidden" name="site_language_${componentName}" id="site_language_${componentName}" value="${data.siteLanguage}"
+                                                    class="d-none" tabindex="-1" />
+                                         <input type="hidden" name="site_country_${componentName}" id="site_country_${componentName}" value="${data.siteCountry}"
+                                                    class="d-none" tabindex="-1" />
 
                                             <div class="privacy-policy" auto_locator="contactUsPolicyTextStep3">
                                                 ${data.privacyPolicy @ context="html"}
