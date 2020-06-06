@@ -17,17 +17,38 @@ class Softconversion {
     this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
     this.cache.softconversionapi = this.root.find(`form.pw-form-softconversion-${this.cache.$componentName}`);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
-    this.cache.requestPayload = {
-      'domainURL': window.location.host,
-      'typeOfVisitor': '',
-      'firstName': '',
-      'lastName': '',
-      'email': '',
-      'company': '',
-      'position': '',
-      'market-consent': '',
-      'typeOfVisitorTitle': ''
-    };
+    // const firstNamekey = `firstName-${this.cache.$componentName}`;
+    // const lastNamekey = `lastName-${this.cache.$componentName}`;
+    // const emailkey = `email-${this.cache.$componentName}`;
+    // const companykey = `company-${this.cache.$componentName}`;
+    // const positionkey = `position-${this.cache.$componentName}`;
+    // const siteLanguagekey = `site_language_${this.cache.$componentName}`;
+    // const siteCountrykey = `site_country_${this.cache.$componentName}`;
+    this.cache.requestPayload = {};
+    this.cache.requestPayload['typeOfVisitor']=''; 
+    this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`company-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`position-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`site_language_${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`site_country_${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`]='';
+    this.cache.requestPayload['market-consent']='';
+    this.cache.requestPayload['typeOfVisitorTitle']='';
+
+    // = {
+    //   'typeOfVisitor': '',
+    //   firstNamekey: '',
+    //   lastNamekey: '',
+    //   emailkey: '',
+    //   companykey: '',
+    //   positionkey: '',
+    //   siteLanguagekey:'',
+    //   siteCountrykey:'',
+    //   'market-consent': '',
+    //   'typeOfVisitorTitle': ''
+    // };
   }
 
   validEmail(email) {
@@ -60,9 +81,26 @@ class Softconversion {
   }
 
   submitForm = () => {
-    const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
-    const siteLanguage = this.root.find(`#site_language_${this.cache.$componentName}`).val();
-    const siteCountry = this.root.find(`#site_country_${this.cache.$componentName}`).val();
+    //const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
+    //const siteLanguage = this.root.find(`#site_language_${this.cache.$componentName}`).val();
+    //const siteCountry = this.root.find(`#site_country_${this.cache.$componentName}`).val();
+    const apiPayload =  {};
+
+    // eslint-disable-next-line no-console
+    console.log(this.cache.requestPayload);
+    apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
+    apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
+    apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
+    apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
+    apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
+    apiPayload.position = this.cache.requestPayload[`position-${this.cache.$componentName}`];
+    apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
+    apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
+    apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
+    apiPayload.marketingConsent = true;
+
+    // eslint-disable-next-line no-console
+    console.log('api payload:',apiPayload);
     // ajaxWrapper.getXhrObj({
     //   url: servletPath,
     //   method: ajaxMethods.POST,
@@ -158,7 +196,7 @@ class Softconversion {
         const fieldName = $(this).attr('name');
 
 
-        $('div.' + fieldName).text($(this).val());
+        // $('div.' + fieldName).text($(this).val());
         if (fieldName in self.cache.requestPayload) {
           requestPayload[fieldName] = $(this).val();
 
