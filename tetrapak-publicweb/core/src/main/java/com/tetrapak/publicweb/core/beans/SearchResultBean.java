@@ -2,6 +2,8 @@ package com.tetrapak.publicweb.core.beans;
 
 public class SearchResultBean {
 
+    private String type;
+
     private String title;
 
     private String description;
@@ -40,6 +42,14 @@ public class SearchResultBean {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

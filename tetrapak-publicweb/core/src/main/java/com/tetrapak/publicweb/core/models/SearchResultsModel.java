@@ -4,8 +4,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -13,9 +15,12 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.models.multifield.ContentTypeModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
 import com.tetrapak.publicweb.core.models.multifield.ThemeModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -32,6 +37,9 @@ public class SearchResultsModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+    
+    @Inject
+    private Page currentPage;
 
     @Self
     private Resource resource;
@@ -43,6 +51,11 @@ public class SearchResultsModel {
     private Map<String, List<SearchPathModel>> structureMap = new LinkedHashMap<>();
     /** The theme list. */
     private List<ThemeModel> themeList;
+    private List<ContentTypeModel> contentTypeList;
+    private String mediaLabel;
+    private String gatedPath;
+
+    private Map<String, String> themeMap = new LinkedHashMap<>();
 
     /**
      * Inits the.
@@ -56,9 +69,15 @@ public class SearchResultsModel {
         if (Objects.nonNull(searchConfigResource)) {
             final SearchConfigModel configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);
             if (Objects.nonNull(configurationModel)) {
-                templateMap = configurationModel.getTemplateMap();
-                structureMap = configurationModel.getStructureMap();
+                mediaLabel = configurationModel.getMediaLabel();
+                gatedPath = configurationModel.getGatedPath();
+                contentTypeList = configurationModel.getContentTypeList();
+                for (ContentTypeModel contentTypeModel : contentTypeList) {
+                    templateMap.put(contentTypeModel.getLabel(), contentTypeModel.getTemplateList());
+                    structureMap.put(contentTypeModel.getLabel(), contentTypeModel.getStructureList());
+                }
                 themeList = configurationModel.getThemeList();
+                themeMap = themeList.stream().collect(Collectors.toMap(ThemeModel::getThemeLabel, ThemeModel::getTag));
             }
         }
     }
@@ -92,6 +111,26 @@ public class SearchResultsModel {
      */
     public String getServletPath() {
         return request.getResource().getPath();
+    }
+
+    public List<ContentTypeModel> getContentTypeList() {
+        return contentTypeList;
+    }
+
+    public Map<String, String> getThemeMap() {
+        return themeMap;
+    }
+
+    public Page getCurrentPage() {
+        return currentPage;
+    }
+    
+    public String getMediaLabel() {
+        return mediaLabel;
+    }
+
+    public String getGatedPath() {
+        return gatedPath;
     }
 
 }
