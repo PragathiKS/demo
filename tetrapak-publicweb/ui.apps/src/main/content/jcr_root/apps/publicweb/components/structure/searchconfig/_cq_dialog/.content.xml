@@ -9,7 +9,7 @@
         <items jcr:primaryType="nt:unstructured">
             <contenttype
                 jcr:primaryType="nt:unstructured"
-                jcr:title="Content Type Mapping"
+                jcr:title="Content Type"
                 sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                 <items jcr:primaryType="nt:unstructured">
                     <column
@@ -20,7 +20,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                 composite="{Boolean}true"
-                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldDescription="Click 'Add field' to add content type mapping"
                                 fieldLabel="Content Type Mapping">
                                 <field
                                     jcr:primaryType="nt:unstructured"
@@ -41,7 +41,7 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                                     composite="{Boolean}true"
-                                                    fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                                    fieldDescription="Click 'Add field' to add template paths"
                                                     fieldLabel="Template paths">
                                                     <field
                                                         jcr:primaryType="nt:unstructured"
@@ -69,7 +69,7 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                                     composite="{Boolean}true"
-                                                    fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                                    fieldDescription="Click 'Add field' to add structure paths"
                                                     fieldLabel="Structure paths">
                                                     <field
                                                         jcr:primaryType="nt:unstructured"
@@ -114,7 +114,7 @@
             </contenttype>
             <thememapping
                 jcr:primaryType="nt:unstructured"
-                jcr:title="Theme Mapping"
+                jcr:title="Themes"
                 sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                 <items jcr:primaryType="nt:unstructured">
                     <column
@@ -125,7 +125,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                 composite="{Boolean}true"
-                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+                                fieldDescription="Click 'Add field' to add a theme label and tag associated"
                                 fieldLabel="Theme List">
                                 <field
                                     jcr:primaryType="nt:unstructured"
@@ -137,7 +137,7 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                             <items jcr:primaryType="nt:unstructured">
-                                                <eventslabel
+                                                <themelabel
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="Theme Label"
@@ -145,7 +145,6 @@
                                                 <tag
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/coral/common/form/tagfield"
-                                                    fieldDescription="Product category template paths"
                                                     fieldLabel="Tag"
                                                     name="./tag"
                                                     rootPath="/content/cq:tags"/>
