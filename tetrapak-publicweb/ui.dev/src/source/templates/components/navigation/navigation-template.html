@@ -3,7 +3,7 @@
     class="${ navigationTypeSticky ? 'd-lg-block sticky' :''} js-pw-navigation pw-navigation" aria-hidden="true"
     aria-expanded="false" data-module="Navigation">
     <hr class="hr-display" />
-    <a class="d-lg-none collapse-button collapsed" data-toggle="collapse" href="#sectionMenuCollapse" role="button"
+    <a auto-locator="m_StickySectionMenuLink-m_StickySectionMenuPadding" class="d-lg-none collapse-button collapsed" data-toggle="collapse" href="#sectionMenuCollapse" role="button"
       aria-expanded="false" aria-controls="sectionMenuCollapse">${data.pageHierarchy['l1'] == data.solutionPageTitle ?
       data.pageHierarchy['l2'] :
       data.pageHierarchy['l1']}
@@ -17,7 +17,7 @@
           <div auto-locator="L2OverViewLinkPadding" class="section-link-home"><a auto-locator="L2OverViewLinkFontStyle"
               target="_self" href="${data.sectionHomePagePath}">${data.sectionHomePageTitle}</a>
           </div>
-        </sly>  
+        </sly>
         <div class='col-lg-12'>
           <ul class="list-section-menu-links" id="sectionMenuCollapseWrapper_${sectionId}"
             data-sly-list.linkSection=${data.sectionMenu}>

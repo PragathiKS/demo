@@ -13,7 +13,7 @@
         .category-child-ul {
             display: flex;
             flex-direction: column;
-            & > ul > li {
+            & > ul > li > a {
                 border-top: 1px solid $color-mercury;
                 @include padding($padding-md);
                 @include padding-left(40px);

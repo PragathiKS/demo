@@ -16,6 +16,12 @@ class SectionMenu {
     $sectionMenuItem.on('mouseout', this.handleSectionMenuItemMouseOut);
     $('.js-section-menu-item-link').on('click', this.handleSectionMenuClick);
     // $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
+
+    $('.js-section-menu-item-link:not(:has(.icon:not(.is-external)))').each(function() {
+      $(this).on('click', function (e) {
+        e.stopPropagation();
+      });
+    });
   }
 
   handleSectionMenuClick =(e) => {
