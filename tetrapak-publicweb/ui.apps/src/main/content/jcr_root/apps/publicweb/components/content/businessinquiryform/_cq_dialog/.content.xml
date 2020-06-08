@@ -21,6 +21,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="Suggested to use characters less than recommended Limit: 37 chars considering translations"
                                 fieldLabel="Heading"
+                                value="Business enquiry"
                                 name="./heading"/>
                             <summarytext
                                 jcr:primaryType="nt:unstructured"
