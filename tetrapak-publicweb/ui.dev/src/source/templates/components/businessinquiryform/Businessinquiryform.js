@@ -10,7 +10,7 @@ class Businessinquiryform {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
-    this.cache.businessformapi = this.root.find('form.pw-form-businessform');
+    this.cache.businessformapi = this.root.find('form.pw-form-businessEnquiry');
     this.cache.$nextbtn = this.root.find('.pw-businessEnquiry-form .tpatom-btn[type=button]');
     this.cache.$radioListFirst = this.root.find('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]');
     this.cache.$radioListSecond = this.root.find('input[type=radio][name="purposeOfContactOptionsInInterestArea"]');
@@ -64,7 +64,7 @@ class Businessinquiryform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: { 'inputJson': dataObj }
+      data: dataObj 
     }).done(
       (response) => {
         if (response.statusCode === '200') {
