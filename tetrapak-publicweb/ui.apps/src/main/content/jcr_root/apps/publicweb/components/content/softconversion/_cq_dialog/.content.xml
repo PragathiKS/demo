@@ -227,14 +227,14 @@
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldDescription="Suggested to use characters less than recommended Limit: 40 chars considering translations"
-                                        fieldLabel="More button label"
+                                        fieldLabel="Yes button label"
                                         value="Yes, this is me"
                                         name="./yesButtonLabel"/>
                                     <nobuttonlabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldDescription="Suggested to use characters less than recommended Limit: 40 chars considering translations"
-                                        fieldLabel="More button label"
+                                        fieldLabel="No button label"
                                         value="No, this is not me"
                                         name="./noButtonLabel"/>
                                 </items>
