@@ -26,8 +26,8 @@ class Businessinquiryform {
       'email': '',
       'message': '',
       'phone': '',
-      'purposeOfContactOptionsInBusinessEq': '',
-      'purposeOfContactOptionsInInterestArea':'',
+      'purposeOfContactInBusinessEqTitle': '',
+      'purposeOfInterestAreaEqTitle':'',
       'company':'',
       'position':''
     };
@@ -48,8 +48,8 @@ class Businessinquiryform {
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
     const dataObj = {};
-    dataObj['purpose']=  this.cache.requestPayload.purposeOfContactOptionsInBusinessEq;
-    dataObj['businessArea']= this.cache.requestPayload.purposeOfContactOptionsInInterestArea;
+    dataObj['purpose']=  this.cache.requestPayload.purposeOfContactInBusinessEqTitle;
+    dataObj['businessArea']= this.cache.requestPayload.purposeOfInterestAreaEqTitle;
     dataObj['firstName']= this.cache.requestPayload.firstName;
     dataObj['lastName']= this.cache.requestPayload.lastName;
     dataObj['email']= this.cache.requestPayload.email;
@@ -123,7 +123,8 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = $(this).val();
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val())) {
+          
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) || (fieldName === 'consent') && $(this).prop('checked') ) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -159,7 +160,10 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = $(this).val();
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val())) {
+          /* eslint-disable */
+            console.log(fieldName, $(this).prop('checked'))
+          /* eslint-ensable */
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val()) || (fieldName === 'consent') && !$(this).prop('checked') ) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();

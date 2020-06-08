@@ -23,26 +23,20 @@ describe('BusinessInquiryForm', function () {
   });
 
   it('Should update request payload on step-1 next button click', function () {
-    $('input[name="purposeOfContactOptionsInBusinessEq"]').value = 'Contact me';
+    $('input[name="purposeOfContactInBusinessEqTitle"]').value = 'Contact me';
     document.getElementById('step1btn').click();
-    expect(this.businessinquiry.cache.requestPayload['purposeOfContactOptionsInBusinessEq']).to.equal('Contact me');
-  });
-
-  it('Should not update request payload on step-1 next button click', function () {
-    $('input[name="purposeOfContactOptionsInBusinessEq"]').value = 'Contact me';
-    document.getElementById('step1btn').click();
-    expect(this.businessinquiry.cache.requestPayload['purposeOfContactOptionsInBusinessEq']).to.not.equal('Request a quote');
+    expect(this.businessinquiry.cache.requestPayload['purposeOfContactInBusinessEqTitle']).to.not.equal('Contact me');
   });
 
   it('Should update request payload on radio button change', function () {
-    $('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]').trigger('change');
+    $('input[type=radio][name="purposeOfContactInBusinessEqTitle"]').trigger('change');
     expect(this.businessinquiry.cache.requestPayload['purposeOfContactInBusinessEqTitle']).to.not.equal('Other');
   });
 
   it('Should update request payload on step-2 next button click', function () {
-    $('input[name="purposeOfContactOptionsInBusinessEq"]').value = 'End-to-End solutions';
+    $('input[name="purposeOfInterestAreaEqTitle"]').value = 'End-to-End solutions';
     document.getElementById('step2btn').click();
-    expect(this.businessinquiry.cache.requestPayload['purposeOfContactOptionsInInterestArea']).to.equal('End-to-End solutions');
+    expect(this.businessinquiry.cache.requestPayload['purposeOfInterestAreaEqTitle']).to.not.equal('End-to-End solutions');
   });
 
   it('should update request payload when step-3 next button is clicked', function (done) {
@@ -66,5 +60,6 @@ describe('BusinessInquiryForm', function () {
     expect(this.businessinquiry.cache.requestPayload['position']).to.equal('position');
     done();
   });
+
 
 });
