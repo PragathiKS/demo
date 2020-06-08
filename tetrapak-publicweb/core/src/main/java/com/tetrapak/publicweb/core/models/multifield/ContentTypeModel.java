@@ -18,6 +18,9 @@ public class ContentTypeModel {
     /** The template path. */
     @ValueMapValue
     private String label;
+    
+    @ValueMapValue
+    private String key;
 
     @Inject
     private List<SearchPathModel> templateList;
@@ -47,5 +50,13 @@ public class ContentTypeModel {
 
     public void setStructureList(List<SearchPathModel> structureList) {
         this.structureList = structureList;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
     }
 }

@@ -36,7 +36,7 @@ public class SearchResultsModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-    
+
     @Inject
     private Page currentPage;
 
@@ -51,8 +51,7 @@ public class SearchResultsModel {
     /** The theme list. */
     private List<ThemeModel> themeList;
     private List<ContentTypeModel> contentTypeList;
-    private String mediaLabel;
-    private String gatedPath;
+    private List<SearchPathModel> gatedContentList;
 
     private Map<String, String> themeMap = new LinkedHashMap<>();
 
@@ -68,12 +67,11 @@ public class SearchResultsModel {
         if (Objects.nonNull(searchConfigResource)) {
             final SearchConfigModel configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);
             if (Objects.nonNull(configurationModel)) {
-                mediaLabel = configurationModel.getMediaLabel();
-                gatedPath = configurationModel.getGatedPath();
+                gatedContentList = configurationModel.getGatedContentList();
                 contentTypeList = configurationModel.getContentTypeList();
                 for (ContentTypeModel contentTypeModel : contentTypeList) {
-                    templateMap.put(contentTypeModel.getLabel(), contentTypeModel.getTemplateList());
-                    structureMap.put(contentTypeModel.getLabel(), contentTypeModel.getStructureList());
+                    templateMap.put(contentTypeModel.getKey(), contentTypeModel.getTemplateList());
+                    structureMap.put(contentTypeModel.getKey(), contentTypeModel.getStructureList());
                 }
                 themeList = configurationModel.getThemeList();
                 themeMap = themeList.stream().collect(Collectors.toMap(ThemeModel::getThemeLabel, ThemeModel::getTag));
@@ -116,20 +114,16 @@ public class SearchResultsModel {
         return contentTypeList;
     }
 
+    public List<SearchPathModel> getGatedContentList() {
+        return gatedContentList;
+    }
+
     public Map<String, String> getThemeMap() {
         return themeMap;
     }
 
     public Page getCurrentPage() {
         return currentPage;
-    }
-    
-    public String getMediaLabel() {
-        return mediaLabel;
-    }
-
-    public String getGatedPath() {
-        return gatedPath;
     }
 
 }
