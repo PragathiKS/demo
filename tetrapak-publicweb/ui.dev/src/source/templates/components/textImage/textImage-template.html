@@ -9,7 +9,7 @@
         <div class="row no-gutters">
           <div class="col-md-12 col-lg-6 leftPad">
             <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
-            <a data-sly-test="${data.linkURL && data.linkURL!='#'}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
+            <a data-sly-test="${data.linkURL && data.linkURL!='#' && !data.enableSoftcoversion}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
 
               target="${data.targetBlank}"
               data-link-section="Text & Image_imageClick"
@@ -27,7 +27,7 @@
                 <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
               </sly>
             </a>
-            <span data-sly-test="${!data.linkURL  || data.linkURL=='#'}">
+            <span data-sly-test="${!data.linkURL  || data.linkURL=='#' || data.enableSoftcoversion}">
               <sly data-sly-test="${!wcmmode.edit}">
                 <sly
                   data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -52,7 +52,7 @@
             <div class="pw-text-image__link" data-sly-test="${data.linkURL}">
               <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
               <sly data-sly-test.dataLinkSectionDownloadHyper="${data.pwLinkTheme == 'download' ? '_Download' : ''}" />
-              <a data-sly-test="${data.linkText}" href="${data.linkURL}"
+              <a data-sly-test="${data.linkText && !data.enableSoftcoversion}" href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
                 title="${data.linkText}" target="${data.targetBlank}"
                 data-link-section="Text & Image_${dataLinkSectionCTAText}"
@@ -65,7 +65,11 @@
                     class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
               </a>
               <input type="hidden" id="componentName" name="componentName" value="${resource.name}">
-              <a data-sly-test="${data.enableSoftcoversion}" class="tp-pw-header__secondary-navigation__link js-softconversion-pw"> <i class="icon-Globe"></i></a>
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw" title="${'pw.form.button.download' @ i18n}">
+                                            <span class="tpatom-link__text sly-text"> ${data.linkText @ context='html'}
+                                                <i class="icon icon--link icon-Download"></i>
+                                                    </span>
+                                            </button> 
             </div>
           </div>
         </div>
