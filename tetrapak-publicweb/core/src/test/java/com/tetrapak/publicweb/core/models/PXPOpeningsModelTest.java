@@ -73,9 +73,9 @@ public class PXPOpeningsModelTest {
 
         // Constructing i18n key value map
         final Map<String, String> keyValueMap = new HashMap<>();
-        keyValueMap.put("openingtype", "Type");
-        keyValueMap.put("openingprinciple", "Principle");
-        keyValueMap.put("openingbenefits", "Benefits");
+        keyValueMap.put(PWConstants.PXP_OPENINGS_TYPE, "Type");
+        keyValueMap.put(PWConstants.PXP_OPENINGS_PRINCIPLE, "Principle");
+        keyValueMap.put(PWConstants.PXP_OPENINGS_BENEFITS, "Benefits");
 
         context.registerService(ResourceBundleProvider.class,
                 MockHelper.mockResourceBundleProvider(request, keyValueMap));
