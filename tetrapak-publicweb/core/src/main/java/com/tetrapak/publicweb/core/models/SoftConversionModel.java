@@ -1,11 +1,15 @@
 package com.tetrapak.publicweb.core.models;
 
+import javax.annotation.PostConstruct;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
@@ -48,6 +52,16 @@ public class SoftConversionModel extends FormModel {
 
     @ValueMapValue
     private String noButtonLabel;
+
+    /**
+     * The init method.
+     */
+    @PostConstruct
+    protected void init() {
+        if (StringUtils.isNotEmpty(moreButtonAction)) {
+            moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction);
+        }
+    }
 
     /**
      * Gets the welcome back heading.
