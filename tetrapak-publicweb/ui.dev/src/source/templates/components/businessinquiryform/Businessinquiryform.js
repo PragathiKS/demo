@@ -45,17 +45,34 @@ class Businessinquiryform {
   }
 
   submitForm = () => {
-    const servletPath = this.cache.businessformapi.data('contactus-api-servlet');
+    const servletPath = this.cache.businessformapi.data('bef-api-servlet');
+    const countryCode = this.cache.businessformapi.data('bef-countryCode');
+    const langCode = this.cache.businessformapi.data('bef-langCode');
+    const dataObj = {}
+    dataObj['purpose']=  this.cache.requestPayload.purposeOfContactOptionsInBusinessEq
+    dataObj['businessArea']= this.cache.requestPayload.purposeOfContactOptionsInInterestArea
+    dataObj['firstName']= this.cache.requestPayload.firstName
+    dataObj['lastName']= this.cache.requestPayload.lastName
+    dataObj['email']= this.cache.requestPayload.email
+    dataObj['phoneNumber']= this.cache.requestPayload.phone
+    dataObj['company']= this.cache.requestPayload.comapny
+    dataObj['position']= this.cache.requestPayload.position
+    dataObj['language']= langCode
+    dataObj['site']= countryCode
+    dataObj['policyConsent']= true
+    dataObj['pardot_extra_field']= this.cache.requestPayload.pardot_extra_field
+    console.log(dataObj)
+
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: { 'inputJson': JSON.stringify(this.cache.requestPayload) }
+      data: { 'inputJson': JSON.stringify(dataObj) }
     }).done(
       (response) => {
         if (response.statusCode === '200') {
           const offsetContact = $('#pw-contactUs').offset();
-          $('.tab-pane', this.root).removeClass('active');
-          $('#cf-step-final', this.root).addClass('active');
+          $('.bef-tab-pane', this.root).removeClass('active');
+          $('#bef-step-final', this.root).addClass('active');
           $('.serviceError').removeClass('d-block');
           $('html, body').animate({
             scrollTop: offsetContact.top - 50
@@ -123,7 +140,7 @@ class Businessinquiryform {
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
         if (target) {
-          $('.tab-pane').removeClass('active');
+          $('.bef-tab-pane').removeClass('active');
           $(target).addClass('active');
         }
       }
@@ -134,7 +151,7 @@ class Businessinquiryform {
       e.stopPropagation();
       let isvalid = true;
       const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
-      requestPayload['message'] = $('[name="message"]').val();
+
       $('input, textarea').each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
@@ -143,7 +160,7 @@ class Businessinquiryform {
       });
       if (isvalid && !honeyPotFieldValue) {
         self.submitForm();
-      }
+      } 
     });
     
   }
