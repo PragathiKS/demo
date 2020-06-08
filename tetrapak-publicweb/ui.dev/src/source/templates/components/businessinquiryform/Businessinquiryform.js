@@ -3,7 +3,6 @@ import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 
-/* eslint-disable */
 class Businessinquiryform {
   constructor({ el }) {
     this.root = $(el);
@@ -46,27 +45,26 @@ class Businessinquiryform {
 
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('bef-api-servlet');
-    const countryCode = this.cache.businessformapi.data('bef-countryCode');
-    const langCode = this.cache.businessformapi.data('bef-langCode');
-    const dataObj = {}
-    dataObj['purpose']=  this.cache.requestPayload.purposeOfContactOptionsInBusinessEq
-    dataObj['businessArea']= this.cache.requestPayload.purposeOfContactOptionsInInterestArea
-    dataObj['firstName']= this.cache.requestPayload.firstName
-    dataObj['lastName']= this.cache.requestPayload.lastName
-    dataObj['email']= this.cache.requestPayload.email
-    dataObj['phoneNumber']= this.cache.requestPayload.phone
-    dataObj['company']= this.cache.requestPayload.comapny
-    dataObj['position']= this.cache.requestPayload.position
-    dataObj['language']= langCode
-    dataObj['site']= countryCode
-    dataObj['policyConsent']= true
-    dataObj['pardot_extra_field']= this.cache.requestPayload.pardot_extra_field
-    console.log(dataObj)
+    const countryCode = this.cache.businessformapi.data('bef-countrycode');
+    const langCode = this.cache.businessformapi.data('bef-langcode');
+    const dataObj = {};
+    dataObj['purpose']=  this.cache.requestPayload.purposeOfContactOptionsInBusinessEq;
+    dataObj['businessArea']= this.cache.requestPayload.purposeOfContactOptionsInInterestArea;
+    dataObj['firstName']= this.cache.requestPayload.firstName;
+    dataObj['lastName']= this.cache.requestPayload.lastName;
+    dataObj['email']= this.cache.requestPayload.email;
+    dataObj['phoneNumber']= this.cache.requestPayload.phone;
+    dataObj['company']= this.cache.requestPayload.company;
+    dataObj['position']= this.cache.requestPayload.position;
+    dataObj['language']= langCode;
+    dataObj['site']= countryCode;
+    dataObj['policyConsent']= true;
+    dataObj['pardot_extra_field']= this.cache.requestPayload.pardot_extra_field;
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: { 'inputJson': JSON.stringify(dataObj) }
+      data: { 'inputJson': dataObj }
     }).done(
       (response) => {
         if (response.statusCode === '200') {
@@ -106,7 +104,7 @@ class Businessinquiryform {
 
   bindEvents() {
     /* Bind jQuery events here */
-    const { requestPayload, $radioListFirst , $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn, $dropItem } = this.cache;
+    const { requestPayload, $radioListFirst , $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn } = this.cache;
     const self = this;
     $radioListFirst.on('change', this.onRadioChangeHandlerFirst);
     $radioListSecond.on('change', this.onRadioChangeHandlerSecond);
@@ -121,12 +119,10 @@ class Businessinquiryform {
       if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
         $('input, textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
-          console.log({fieldName})
           $('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = $(this).val();
           }
-          console.log(fieldName,$(this).val())
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val())) {
             isvalid = false;
             e.preventDefault();
@@ -151,7 +147,37 @@ class Businessinquiryform {
       e.stopPropagation();
       let isvalid = true;
       const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
+      const target = $(this).data('target');
+      const tab = $(this).closest('.tab-content-steps');
+      const input = tab.find('input');
+      const textarea = tab.find('textarea');
+      if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
+        $('input, textarea', tab).each(function () {
+          const fieldName = $(this).attr('name');
+          
+          $('div.' + fieldName).text($(this).val());
+          if (fieldName in self.cache.requestPayload) {
+            requestPayload[fieldName] = $(this).val();
+          }
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val())) {
+            isvalid = false;
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).closest('.form-group, .formfield').addClass('field-error');
+          } else {
+            $(this).closest('.form-group, .formfield').removeClass('field-error');
+          }
+        });
+      }
+      if (isvalid) {
+        tab.find('.form-group, .formfield').removeClass('field-error');
+        if (target) {
+          $('.bef-tab-pane').removeClass('active');
+          $(target).addClass('active');
+        }
+      }
 
+      
       $('input, textarea').each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
@@ -168,9 +194,7 @@ class Businessinquiryform {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.getCountryList();
   }
 }
-/* eslint-ensable */
 
 export default Businessinquiryform;

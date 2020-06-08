@@ -41,8 +41,8 @@
                                     <div class="row">
                                         <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='purposeofcontact', variant='small'}" />
-                                        </div>
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.purposeofcontact', variant='small'}" />
+                                        </div>.
                                         <div class="col-sm-12 formfield"
                                             auto_locator="businessEnquiryListContainerStep1">
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
@@ -52,12 +52,11 @@
                                                 data-sly-call="${radioField.radiofieldinput_template @ id='requestAProductInfo',  required=true, label='pw.form.businessenq.requestforproductinfo', name='purposeOfContactOptionsInBusinessEq'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='ContactMe', required=true, label='Contact me', name='pw.form.businessenq.contactme', labelClass='mb-0'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='ContactMe', required=true, label='pw.form.businessenq.contactme', name='purposeOfContactOptionsInBusinessEq', labelClass='mb-0'}">
                                             </sly>
                                             <input type="hidden" name="purposeOfContactInBusinessEqTitle"
                                                 class="form-control" id="purposeOfContactInBusinessEqTitle" required>
-                                            <div class="errorMsg purposeOfBusinessContactError">${pw.form.errormsg.purposeofcontact
-                                                @i18n}
+                                            <div class="errorMsg purposeOfBusinessContactError">${'pw.form.errormsg.purposeofcontact' @i18n }
                                             </div>
                                         </div>
                                     </div>
@@ -98,13 +97,13 @@
                                 <div auto_locator="businessEnquiryLeftContainerSummaryAreaStep2">
                                     <div class="row no-gutters">
                                         <div class="col-sm-12">
-                                            <sly data-sly-test="${pw.form.heading.summary @i18n}"
+                                            <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
                                         </div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'purposeofcontact' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.heading.purposeofcontact' @i18n}</div>
                                         <div class="col-lg-6 purposeOfContactInBusinessEqTitle"></div>
                                     </div>
                                 </div>
@@ -115,7 +114,7 @@
                                     <div class="row">
                                         <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep2">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.purposeofcontact', variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.errormsg.businessareofinterest', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12 formfield"
                                             auto_locator="businessEnquiryListContainerStep2">
@@ -134,7 +133,7 @@
                                             <input type="hidden" name="purposeOfInterestAreaEqTitle"
                                                 class="form-control" id="purposeOfInterestAreaEqTitle" required>
                                             <div class="errorMsg purposeOfBusinessIntersetError">
-                                                ${pw.form.errormsg.businessareofinterest @i18n}
+                                                ${'pw.form.errormsg.businessareofinterest' @i18n}
                                             </div>
                                         </div>
                                     </div>
@@ -160,12 +159,12 @@
                     </div>
                     <!--step 2 end-->
                     <!--step 3 start-->
-                    <div class="bef-tab-pane" data-stepNumber="3" data-stepName="${pw.form.heading.businessarea}" role="tabpanel"
+                    <div class="bef-tab-pane" data-stepNumber="3"  role="tabpanel"
                         id="bef-step-3">
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator">
                                 <div class="row no-gutters">
-                                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
+                                    <div class="col-sm-12 main-heading"
                                         auto_locator="businessFormLeftContainerHeadingStep3">
                                         <sly data-sly-test="${data.heading}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -175,17 +174,17 @@
                                 <div auto_locator="businessFormLeftContainerSummaryAreaStep3">
                                     <div class="row no-gutters">
                                         <div class="col-sm-12">
-                                            <sly data-sly-test="${pw.form.heading.summary @i18n}"
+                                            <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=pw.form.heading.summary, variant='small'}" />
                                         </div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'purposeofcontact' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.heading.purposeofcontact' @i18n}</div>
                                         <div class="col-lg-6 purposeOfContactInBusinessEqTitle"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'businesAreaOfInterest' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.heading.businessarea' @i18n}</div>
                                         <div class="col-lg-6 purposeOfInterestAreaEqTitle"></div>
                                     </div>
                                 </div>
@@ -195,7 +194,7 @@
                                     <div class="row">
                                         <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep3">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='purposeofcontact', variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.contactinformation', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12 formfield"
                                             auto_locator="businessEnquiryListContainerStep3">
@@ -258,33 +257,33 @@
                                 <div auto_locator="businessFormLeftContainerSummaryAreaStep4">
                                     <div class="row no-gutters">
                                         <div class="col-sm-12">
-                                            <sly data-sly-test="${pw.form.heading.summary @i18n}"
+                                            <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText=pw.form.heading.summary, variant='small'}" />
                                         </div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'purposeofcontact' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.heading.purposeofcontact' @i18n}</div>
                                         <div class="col-lg-6 purposeOfContactInBusinessEqTitle"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'businesAreaOfInterest' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.heading.businessarea' @i18n}</div>
                                         <div class="col-lg-6 purposeOfInterestAreaEqTitle"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'firstName' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.label.firstName' @i18n}</div>
                                         <div class="col-lg-6 firstName"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'lastName' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.label.lastName' @i18n}</div>
                                         <div class="col-lg-6 lastName"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'email' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.label.email' @i18n}</div>
                                         <div class="col-lg-6 email"></div>
                                     </div>
                                     <div class="row no-gutters summary">
-                                        <div class="col-lg-6">${'phone' @i18n}</div>
+                                        <div class="col-lg-6">${'pw.form.label.phonenumber' @i18n}</div>
                                         <div class="col-lg-6 phone"></div>
                                     </div>
                                 </div>
@@ -294,7 +293,7 @@
                                     <div class="row">
                                         <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep4">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='purposeofcontact', variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.companyinformation', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12 formfield"
                                             auto_locator="businessEnquiryListContainerStep4">
@@ -309,12 +308,14 @@
                                                 </sly>
                                             </div>
                                             <div class="col-sm-12 formfield">
-                                                <input id="consetcheckbox" required type="checkbox" name="consent">
-                                                <label for="consetcheckbox">${data.marketingconsent}</label>
-                                                <div class="errorMsg">${pw.form.errormsg.marketingconsent @i18n}</div>
+                                                <div class="form-group">
+                                                    <input id="consetcheckbox" required type="checkbox" name="consent">
+                                                    <label for="consetcheckbox">${data.marketingConsent @ context='html'}</label>
+                                                    <div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
+                                                </div>
                                             </div>
                                             <div class="col-sm-12 formfield">
-                                                <p>${data.privacyPolicy}</p>
+                                                <p>${data.privacyPolicy  @ context='html'}</p>
                                             </div>
                                         </div>
                                     </div>
