@@ -23,9 +23,10 @@ describe('BusinessInquiryForm', function () {
   });
 
   it('Should update request payload on step-1 next button click', function () {
-    $('input[name="purposeOfContactInBusinessEqTitle"]').value = 'Contact me';
+    $('input[name="purposeOfContactOptionsInBusinessEq"]').click({target : { value : 'Contact me' , id : 'demo'}});  
+    $('input[name="purposeOfContactInBusinessEqTitle"]').val('Contact me');
     document.getElementById('step1btn').click();
-    expect(this.businessinquiry.cache.requestPayload['purposeOfContactInBusinessEqTitle']).to.not.equal('Contact me');
+    expect(this.businessinquiry.cache.requestPayload['purposeOfContactInBusinessEqTitle']).to.equal('Contact me');
   });
 
   it('Should update request payload on radio button change', function () {
@@ -34,9 +35,11 @@ describe('BusinessInquiryForm', function () {
   });
 
   it('Should update request payload on step-2 next button click', function () {
-    $('input[name="purposeOfInterestAreaEqTitle"]').value = 'End-to-End solutions';
+    $('input[name="purposeOfContactOptionsInInterestArea"]').click({ target : { value : 'End-to-End solutions' , id : 'demo'}});  
+    $('input[name="purposeOfInterestAreaEqTitle"]').val('End-to-End solutions');
     document.getElementById('step2btn').click();
-    expect(this.businessinquiry.cache.requestPayload['purposeOfInterestAreaEqTitle']).to.not.equal('End-to-End solutions');
+    console.log(this.businessinquiry.cache.requestPayload['purposeOfInterestAreaEqTitle'], )
+    expect(this.businessinquiry.cache.requestPayload['purposeOfInterestAreaEqTitle']).to.equal('End-to-End solutions');
   });
 
   it('should update request payload when step-3 next button is clicked', function (done) {
@@ -58,6 +61,37 @@ describe('BusinessInquiryForm', function () {
     document.getElementById('step4btn').click();
     expect(this.businessinquiry.cache.requestPayload['company']).to.equal('company');
     expect(this.businessinquiry.cache.requestPayload['position']).to.equal('position');
+    done();
+  });
+
+  it('should submit Form when required fields are not empty', function (done) {
+    $('input[name="purposeOfContactInBusinessEqTitle"]').val("Contact me");
+    $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
+    document.getElementById('firstName').value = 'first';
+    document.getElementById('lastName').value = 'last';
+    document.getElementById('email').value = 'email';
+    document.getElementById('phone').value = 'mockmessage';
+    document.getElementById('company').value = 'company';
+    document.getElementById('position').value = 'position';
+    document.getElementById('consentcheckbox').checked = true;
+    this.businessinquiry.cache.$submitBtn.click();
+    expect(this.businessinquiry.submitForm.called).to.be.true;
+    done();
+  });
+
+  it('should not submit Form when honeypot field is filled', function (done) {
+    $('input[name="purposeOfContactInBusinessEqTitle"]').val("Contact me");
+    $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
+    document.getElementById('firstName').value = 'first';
+    document.getElementById('lastName').value = 'last';
+    document.getElementById('email').value = 'email';
+    document.getElementById('phone').value = 'mockmessage';
+    document.getElementById('company').value = 'company';
+    document.getElementById('position').value = 'position';
+    document.getElementById('consentcheckbox').checked = true;
+    document.getElementById('pardot_extra_field').value = 'honeypot';
+    this.businessinquiry.cache.$submitBtn.click();
+    expect(this.businessinquiry.submitForm.called).to.be.false;
     done();
   });
 

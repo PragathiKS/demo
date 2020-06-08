@@ -1,8 +1,10 @@
 .pw-businessEnquiry-form {
     border-radius: $border-radius;
-    i.tpatom-button__icon:before {
-        font-size: 12px;
-        line-height: 12px;
+    i.tpatom-button__icon {
+        &::before {
+            font-size: 12px;
+            line-height: 12px;
+        }
     }
     .form-group {
         @include margin-bottom($margin-md);
