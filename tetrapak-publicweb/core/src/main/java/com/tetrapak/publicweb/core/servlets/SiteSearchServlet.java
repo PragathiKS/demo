@@ -38,6 +38,7 @@ import com.google.gson.Gson;
 import com.tetrapak.publicweb.core.beans.SearchResultBean;
 import com.tetrapak.publicweb.core.models.SearchResultsModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 @Component(
@@ -250,7 +251,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
         SearchResultBean searchResultItem = new SearchResultBean();
         searchResultItem.setType(type);
-        searchResultItem.setPath(hit.getPath());
+        searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
         searchResultItem.setTitle(hit.getTitle());
         searchResultItem.setDescription(hit.getProperties().get("jcr:description", StringUtils.EMPTY));
 
