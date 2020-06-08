@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import {ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
+// import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { REG_EMAIL } from '../../../scripts/utils/constants';
 
 class Softconversion {
   constructor({ el }) {
@@ -82,7 +82,7 @@ class Softconversion {
   }
 
   submitForm = () => {
-    const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
+    // const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
     //const siteLanguage = this.root.find(`#site_language_${this.cache.$componentName}`).val();
     //const siteCountry = this.root.find(`#site_country_${this.cache.$componentName}`).val();
     const apiPayload =  {};
@@ -102,31 +102,31 @@ class Softconversion {
 
     // eslint-disable-next-line no-console
     console.log('api payload:',apiPayload);
-    ajaxWrapper.getXhrObj({
-      url: servletPath,
-      method: ajaxMethods.POST,
-      headers: {
-        'Access-Control-Allow-Origin':'*'
-      },
-      data: apiPayload
-    }).done(
-      (response) => {
-        if (response.statusCode === '200') {
-        // eslint-disable-next-line no-console
-          console.log('response status code:',response.statusCode);
-          // const offsetContact = $('#pw-contactUs').offset();
-          $('.pw-softconversion__header__heading', this.root).html('');
-          $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
-          $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
-          $('.serviceError').removeClass('d-block');
-        // $('html, body').animate({
-        //   scrollTop: offsetContact.top - 50
-        // });
-        } else {
-          $('.serviceError').addClass('d-block');
-        }
-      }
-    );
+    // ajaxWrapper.getXhrObj({
+    //   url: servletPath,
+    //   method: ajaxMethods.POST,
+    //   headers: {
+    //     'Access-Control-Allow-Origin':'*'
+    //   },
+    //   data: apiPayload
+    // }).done(
+    //   (response) => {
+    //     if (response.statusCode === '200') {
+    //     // eslint-disable-next-line no-console
+    //       console.log('response status code:',response.statusCode);
+    // const offsetContact = $('#pw-contactUs').offset();
+    $('.pw-softconversion__header__heading', this.root).html('');
+    $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
+    $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
+    //$('.serviceError').removeClass('d-block');
+    // $('html, body').animate({
+    //   scrollTop: offsetContact.top - 50
+    // });
+    //     } else {
+    //       $('.serviceError').addClass('d-block');
+    //     }
+    //   }
+    // );
   }
 
 

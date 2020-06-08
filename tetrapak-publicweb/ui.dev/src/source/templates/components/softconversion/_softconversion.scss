@@ -3,7 +3,7 @@
     font-family: $font-light;
 
     &__header {
-        @include padding($padding-xxl $padding-xl $padding-l $padding-xl);
+        @include padding($padding-xxl $padding-xl 0 $padding-xl);
         border: 0;
         @media #{$desktop} {
             @include padding($padding-xxxl $padding-xxxl $padding-md);
@@ -25,10 +25,20 @@
     }
 
     &__body {
-        @include padding(0 $padding-xl 0 $padding-xl);
+        @include padding(0 $padding-xl $padding-xl $padding-xl);
 
         @media #{$desktop} {
             @include padding(0 $padding-xxxl $padding-xxxl $padding-xxxl);
+        }
+
+        @media #{$mobile} {
+            .col-sm-1 {
+                max-width: 8.33333%;
+            }
+
+            .col-sm-11 {
+                max-width: 91.66667%;
+            }
         }
     }
 
@@ -189,9 +199,7 @@
             }
         }
         .thankyou {
-            img {
-                @include margin-bottom($margin-l);
-            }
+            @include margin(0 auto $margin-xxxl auto);
             h2,
             .descriptionTextThankyou {
                 @include margin-bottom($margin-md);
@@ -203,10 +211,8 @@
             //    @include margin-bottom($margin-md);
             // }
             div + div {
+                @include margin-bottom($margin-l);
                 font-weight: 900;
-                @media #{$desktop} {
-                    @include margin-bottom($margin-l);
-                }
             }
         }
 
@@ -251,5 +257,7 @@
             }
         }
     }
+
+
 
     }
