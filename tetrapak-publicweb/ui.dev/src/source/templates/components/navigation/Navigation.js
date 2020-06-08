@@ -18,10 +18,22 @@ class Navigation {
     }
 
     /* the below function uses the bootstrap for the toggle the close and open icon */
-    $('.js-pw-navigation__container').on('shown.bs.collapse', function(){
-      $(this).parent().children('a').children('.without-arrow').removeClass('icon-Arrow_Right_pw').addClass('icon-Close_pw');
-    }).on('hidden.bs.collapse', function(){
-      $(this).parent().children('a.collapsed').children('.without-arrow').removeClass('icon-Close_pw').addClass('icon-Arrow_Right_pw');
+    $('.js-pw-navigation__container').on('show.bs.collapse', function(event){
+      if(event.target === event.currentTarget){
+        $(this).parent().children('a').children('.without-arrow').removeClass('icon-Arrow_Right_pw').addClass('icon-Close_pw');
+        $(this).find('.js-section-menu-navigation-Link').each(function(){
+          $(this).children('.collapse.show:not(.active-accordion)').removeClass('show');
+          $(this).children('.section-menu-item-link:not(.active)').addClass('collapsed').attr('aria-expanded','false');
+
+          /* show the active L2 */
+          $(this).children('.section-menu-item-link.active').removeClass('collapsed').attr('aria-expanded','true');
+          $(this).children('.collapse.active-accordion').addClass('show');
+        });
+      }
+    }).on('hidden.bs.collapse', function(event){
+      if(event.target === event.currentTarget){
+        $(this).parent().children('a.collapse-button').children('.without-arrow').removeClass('icon-Close_pw').addClass('icon-Arrow_Right_pw');
+      }
     });
 
     $sectionMenuToggle.on('click', this.sectionMenuToggleClick);
