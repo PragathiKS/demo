@@ -197,7 +197,7 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.marketingconsent"
-        sling:message="Fill in your query/message"/>
+        sling:message="Please select marketing consent"/>
     <pw.form.step
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
@@ -256,7 +256,7 @@
     <pw.form.errormsg.position
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.errormsg.officetextfield"
+        sling:key="pw.form.errormsg.position"
         sling:message="Enter your position"/>
     <pw.form.button.download
         jcr:mixinTypes="[sling:Message]"
