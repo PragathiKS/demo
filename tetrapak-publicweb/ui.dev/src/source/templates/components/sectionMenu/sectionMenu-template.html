@@ -7,7 +7,7 @@
         class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : 'collapsed'} section-menu-item-link js-section-menu-item-link"
         title="${linkText}" data-toggle="collapse" href="#subSectionMenuCollapse_${linkSectionListIndex}" role="button"
         aria-expanded="${(selectedL2 == linkText || selectedL3 == linkText) ? 'true' : 'false'}">
-        ${linkText}
+        <span title="">${linkText}</span>
         <sly data-sly-test="${data.external}">
           <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding"
             class="icon is-external ${iconClass}"></i>
