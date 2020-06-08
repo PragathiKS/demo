@@ -177,7 +177,6 @@ class Businessinquiryform {
         }
       }
 
-      
       $('input, textarea').each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
