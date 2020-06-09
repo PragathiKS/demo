@@ -164,14 +164,11 @@
         "source/templates/components/navigation/",
         "source/templates/components/sectionMenu/",
         "source/templates/components/contactus/",
-        "source/templates/components/businessenquiryform/",
+        "source/templates/components/businessinquiryform/",
         "source/templates/components/marketselector/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
-      ],
-      "businessinquiryform": [
-        "source/templates/components/businessinquiryform/"
       ]
     },
     "handlebars": {

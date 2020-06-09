@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-
+import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';   
 class Businessinquiryform {
   constructor({ el }) {
     this.root = $(el);
@@ -44,10 +43,12 @@ class Businessinquiryform {
   }
 
   submitForm = () => {
+
     const servletPath = this.cache.businessformapi.data('bef-api-servlet');
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
     const dataObj = {};
+    
     dataObj['purpose']=  this.cache.requestPayload.purposeOfContactInBusinessEqTitle;
     dataObj['businessArea']= this.cache.requestPayload.purposeOfInterestAreaEqTitle;
     dataObj['firstName']= this.cache.requestPayload.firstName;
@@ -60,7 +61,6 @@ class Businessinquiryform {
     dataObj['site']= countryCode;
     dataObj['policyConsent']= true;
     dataObj['pardot_extra_field']= this.cache.requestPayload.pardot_extra_field;
-
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
@@ -199,5 +199,5 @@ class Businessinquiryform {
     this.bindEvents();
   }
 }
-
+  
 export default Businessinquiryform;
