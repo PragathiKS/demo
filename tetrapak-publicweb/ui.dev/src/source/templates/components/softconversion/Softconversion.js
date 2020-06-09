@@ -18,13 +18,7 @@ class Softconversion {
     this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
     this.cache.softconversionapi = this.root.find(`form.pw-form-softconversion-${this.cache.$componentName}`);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
-    // const firstNamekey = `firstName-${this.cache.$componentName}`;
-    // const lastNamekey = `lastName-${this.cache.$componentName}`;
-    // const emailkey = `email-${this.cache.$componentName}`;
-    // const companykey = `company-${this.cache.$componentName}`;
-    // const positionkey = `position-${this.cache.$componentName}`;
-    // const siteLanguagekey = `site_language_${this.cache.$componentName}`;
-    // const siteCountrykey = `site_country_${this.cache.$componentName}`;
+   
     this.cache.requestPayload = {};
     this.cache.requestPayload['typeOfVisitor']=''; 
     this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
@@ -38,18 +32,6 @@ class Softconversion {
     this.cache.requestPayload['market-consent']='';
     this.cache.requestPayload['typeOfVisitorTitle']='';
 
-    // = {
-    //   'typeOfVisitor': '',
-    //   firstNamekey: '',
-    //   lastNamekey: '',
-    //   emailkey: '',
-    //   companykey: '',
-    //   positionkey: '',
-    //   siteLanguagekey:'',
-    //   siteCountrykey:'',
-    //   'market-consent': '',
-    //   'typeOfVisitorTitle': ''
-    // };
   }
 
   validEmail(email) {
@@ -82,7 +64,9 @@ class Softconversion {
   }
 
   submitForm = () => {
-    // const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
+    //const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
+    const pardotUrl = this.cache.softconversionapi.data('softconversion-padrot-url');
+    
     //const siteLanguage = this.root.find(`#site_language_${this.cache.$componentName}`).val();
     //const siteCountry = this.root.find(`#site_country_${this.cache.$componentName}`).val();
     const apiPayload =  {};
@@ -98,6 +82,7 @@ class Softconversion {
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
+    apiPayload.padrotUrl = pardotUrl;
     apiPayload.marketingConsent = true;
 
     // eslint-disable-next-line no-console

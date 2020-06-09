@@ -200,6 +200,9 @@
         }
         .thankyou {
             @include margin(0 auto $margin-xxxl auto);
+            @media #{$desktop} {
+                        @include margin(0$margin-sm auto $margin-xxxl auto);
+                    }
             h2,
             .descriptionTextThankyou {
                 @include margin-bottom($margin-md);
