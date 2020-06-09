@@ -54,6 +54,7 @@
     }
 
     &__contentwrapper {
+        cursor: context-menu;
         @media #{$desktop-xl} {
             position: absolute;
             max-width: 1440px;

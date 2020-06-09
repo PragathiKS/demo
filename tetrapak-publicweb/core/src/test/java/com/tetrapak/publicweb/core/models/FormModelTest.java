@@ -19,7 +19,7 @@ public class FormModelTest {
 
     /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
-    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master/en";
+    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master";
     /** The model class. */
     Class<FormModel> modelClass = FormModel.class;
 
@@ -29,7 +29,7 @@ public class FormModelTest {
     /**
      * The Constant
      */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/jcr:content/businessinquiryform";
+    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/businessinquiryform";
 
     /** The resource. */
     private Resource resource;
