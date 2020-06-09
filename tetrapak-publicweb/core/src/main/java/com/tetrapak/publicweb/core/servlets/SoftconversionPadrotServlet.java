@@ -37,7 +37,7 @@ public class SoftconversionPadrotServlet extends SlingAllMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(SoftconversionPadrotServlet.class);
 
     @Reference
-    private PadrotService padrotService;
+    private transient PadrotService padrotService;
 
     /**
      * Do get.

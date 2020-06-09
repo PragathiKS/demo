@@ -39,7 +39,7 @@
 				"thankyouImageAltText": "Thank you",
 				"privacyPolicy": "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
 				"thankyouImage": "/content/dam/tetrapak/publicweb/contactus.PNG",
-				"apiUrl": "http://padrotURL",
+				"padrotUrl": "http://padrotURL",
 				 "welcomeBackHeading":"welcome back",
 				 "welcomeBackDescriptionText":"Welcome back to our portal",
 				 "downloadReadyHeading":"Download Ready",
