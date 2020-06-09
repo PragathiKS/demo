@@ -169,9 +169,6 @@
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
-      ],
-      "businessinquiryform": [
-        "source/templates/components/businessinquiryform/"
       ]
     },
     "handlebars": {
