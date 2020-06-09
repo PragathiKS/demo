@@ -138,7 +138,7 @@
                                                         type="button" data-toggle="dropdown" aria-haspopup="true"
                                                         auto_locator="countrySelectDropdown" aria-expanded="false">
                                                         <span
-                                                            class="js-pw-form__dropdown__country-text">${'pw.form.label.selectCountry'
+                                                            class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
                                                             @ i18n}</span>
                                                         <i class="icon icon-Arrow_Right_pw"></i></button>
                                                     </button>
@@ -154,7 +154,7 @@
                                                     <input type="hidden" name="countryTitle" class="form-control validateForTags"
                                                         id="country" required>
                                                 </div>
-                                                <div class="errorMsg">${'pw.form.errormsg.purposeofcontact' @i18n}</div>
+                                                <div class="errorMsg">${'pw.form.errormsg.country' @i18n}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +232,7 @@
                                                 <label for="messageText">${'pw.form.label.message' @i18n}</label>
                                                 <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
                                                     id="messageText" rows="5" name="message" required></textarea>
-                                                <div class="errorMsg">${'pw.form.messageboxerrormsg' @i18n}</div>
+                                                <div class="errorMsg">${'pw.form.errormsg.messagebox' @i18n}</div>
                                                 <input type="text" name="pardot_extra_field" id="pardot_extra_field"
                                                     class="d-none" tabindex="-1" />
                                             </div>
