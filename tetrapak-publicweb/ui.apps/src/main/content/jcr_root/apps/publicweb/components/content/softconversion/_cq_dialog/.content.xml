@@ -21,6 +21,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                 fieldDescription="Select to enable softconversion"
                                 name="./enableSoftcoversion"
+                                value="true"
                                 text="Enable soft conversion"/>
                         </items>
                     </column>
@@ -44,8 +45,8 @@
                             <apiurl
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Provide padrot API URL"
-                                fieldLabel="Padrot API URL"
+                                fieldDescription="Provide pardot form handler URL"
+                                fieldLabel="Pardot form handler URL"
                                 name="./padrotUrl"/>
                             <summarytext
                                 jcr:primaryType="nt:unstructured"
