@@ -89,7 +89,7 @@ describe('BusinessInquiryForm', function () {
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
     document.getElementById('consentcheckbox').checked = true;
-    document.getElementById('pardot_extra_field').value = 'honeypot';
+    document.getElementById('pardot_extra_field_bef').value = 'honeypot';
     this.businessinquiry.cache.$submitBtn.click();
     expect(this.businessinquiry.submitForm.called).to.be.false;
     done();

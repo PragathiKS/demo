@@ -30,6 +30,8 @@ class Header {
     this.cache.$overlay = $('.js-pw-overlay');
   }
 
+  // 
+
   bindEvents() {
     const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
@@ -48,6 +50,8 @@ class Header {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
       this.trackLanguageSelector(e);
     });
+
+  
   }
 
   trackLanguageSelector = e => {

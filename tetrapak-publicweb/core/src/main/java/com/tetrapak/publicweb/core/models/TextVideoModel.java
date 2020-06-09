@@ -1,9 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -14,7 +11,10 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
-import javax.annotation.PostConstruct;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class TextVideoModel.
@@ -104,6 +104,11 @@ public class TextVideoModel {
     /** The pw display. */
     @ValueMapValue
     private String pwDisplay;
+
+
+    /** The enable softcoversion. */
+    @ValueMapValue
+    private String enableSoftcoversion;
 
     /** The Constant YOUTUBE_URL_PREFIX. */
     private static final String YOUTUBE_URL_PREFIX = "https://www.youtube.com/embed/";
@@ -311,4 +316,23 @@ public class TextVideoModel {
     public String getVideoName() {
         return LinkUtils.getAssetName(damVideoPath);
     }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
+    }
+
+    /**
+     * Gets the soft conversion data.
+     *
+     * @return the soft conversion data
+     */
+    public SoftConversionModel getSoftConversionData() {
+        return resource.adaptTo(SoftConversionModel.class);
+    }
+
 }

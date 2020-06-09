@@ -158,8 +158,9 @@
         "source/templates/components/navigation/",
         "source/templates/components/sectionMenu/",
         "source/templates/components/contactus/",
-        "source/templates/components/businessinquiryform/",
-        "source/templates/components/marketselector/"
+        "source/templates/components/marketselector/",
+        "source/templates/components/softconversion/",
+        "source/templates/components/businessinquiryform/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
