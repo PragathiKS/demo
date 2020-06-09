@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
                                             <p>
-                                                ${'step {0} of {1}' @i18n, format=['1','4']}
+                                                ${'pw.form.step {0} of {1}' @i18n, format=['1','4']}
                                             </p>
                                         </div>
                                     </div>
@@ -143,7 +143,7 @@
                                             </sly>
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                                            <p> ${'step {0} of {1}' @i18n, format=['2','3']}</p>
+                                            <p> ${'pw.form.step {0} of {1}' @i18n, format=['2','4']}</p>
                                         </div>
                                     </div>
                                     <div class="row no-gutters button-group">
@@ -225,7 +225,7 @@
                                             </sly>
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                                            <p> ${'step {0} of {1}' @i18n, format=['3','4']}</p>
+                                            <p> ${'pw.form.step {0} of {1}' @i18n, format=['3','4']}</p>
                                         </div>
                                     </div>
                                     <div class="row no-gutters button-group">
@@ -324,14 +324,14 @@
                                             </sly>
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                                            <p> ${'step {0} of {1}' @i18n, format=['4','4']}</p>
+                                            <p> ${'pw.form.step {0} of {1}' @i18n, format=['4','4']}</p>
                                         </div>
                                     </div>
                                     <div class="row no-gutters button-group">
                                         <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
                                             data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-3', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep4' }" />
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.submit', btnType='submit', btnTarget='#bfe-step-final', autoLocator='contactUsSubmitButtonStep3'}" />
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.submit', btnType='submit', btnTarget='#bef-step-final', autoLocator='businessFormSubmitButtonStep4'}" />
                                     </div>
                                 </div>
                             </div>
@@ -339,9 +339,9 @@
                     </div>
                     <!---step 4 end-->
                     <!--step 5 start-->
-                    <div class="bef-tab-pane" role="tabpanel" id="bfe-step-final" auto_locator="businessEnquiryListContainerStepFinal">
+                    <div class="bef-tab-pane" role="tabpanel" id="bef-step-final" auto_locator="businessEnquiryListContainerStepFinal">
                         <div class="row thankyou">
-                            <input type="text" name="pardot_extra_field" id="pardot_extra_field" class="d-none" tabindex="-1" />
+                            <input type="text" name="pardot_extra_field" id="pardot_extra_field_bef" class="d-none" tabindex="-1" />
                             <div class="col text-center" auto_locator="contactUsThankYouMessage">
                                 <sly data-sly-test="${!wcmmode.edit}">
                                     <sly data-sly-test="${data.thankyouImage}"

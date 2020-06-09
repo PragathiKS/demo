@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';   
+import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
+   
 class Businessinquiryform {
   constructor({ el }) {
     this.root = $(el);
@@ -14,7 +15,7 @@ class Businessinquiryform {
     this.cache.$radioListFirst = this.root.find('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]');
     this.cache.$radioListSecond = this.root.find('input[type=radio][name="purposeOfContactOptionsInInterestArea"]');
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
-    this.cache.$submitBtn = $('button[type="submit"]', this.root);
+    this.cache.$submitBtn = $('form.pw-form-businessEnquiry button[type="submit"]', this.root);
 
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -147,7 +148,7 @@ class Businessinquiryform {
       e.preventDefault();
       e.stopPropagation();
       let isvalid = true;
-      const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
+      const honeyPotFieldValue = $('#pardot_extra_field_bef', self.root).val();
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
@@ -160,9 +161,6 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = $(this).val();
           }
-          /* eslint-disable */
-            console.log(fieldName, $(this).prop('checked'))
-          /* eslint-ensable */
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val()) || (fieldName === 'consent') && !$(this).prop('checked') ) {
             isvalid = false;
             e.preventDefault();
@@ -180,13 +178,6 @@ class Businessinquiryform {
           $(target).addClass('active');
         }
       }
-
-      $('input, textarea').each(function () {
-        if ($(this).prop('required') && $(this).val() === '') {
-          isvalid = false;
-          $(this).closest('.form-group, .formfield').addClass('field-error');
-        }
-      });
       if (isvalid && !honeyPotFieldValue) {
         self.submitForm();
       } 

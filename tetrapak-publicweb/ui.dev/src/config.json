@@ -132,12 +132,6 @@
         "name": "default.en",
         "enforce": true,
         "chunks": "all"
-      },
-      "businessinquiryform": {
-        "testMultiple": true,
-        "name": "businessinquiryform",
-        "enforce": true,
-        "chunks": "all"
       }
     },
     "componentGroups": {
