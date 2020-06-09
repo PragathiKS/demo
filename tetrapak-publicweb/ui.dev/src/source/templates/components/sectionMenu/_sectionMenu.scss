@@ -1,27 +1,73 @@
 .section-menu-navigation-Link {
+    .section-menu-item-link ~ .display-lg {
+        display: none;
+    }
     .section-menu-item-link {
-        &:hover {
-            color: $color-jordy-blue;
-        }
         &.active {
             font-weight: 900;
         }
-        i.icon {
-            @include margin-left($margin-xs);
-            vertical-align: top;
-            &::before {
-                font-size: $font-sm;
-                line-height: $font-sm;
+    }
+    @media #{$mobile} {
+        & > .active.section-menu-item-link,
+        & > .section-menu-item-link {
+            i.with-arrow {
+                &::before {
+                    transform: rotate(-90deg);
+                }
             }
         }
-        i.with-arrow {
-            &::before {
-                transform: rotate(90deg);
+
+        & > .collapsed.section-menu-item-link,
+        & > .active.collapsed.section-menu-item-link {
+            i.with-arrow {
+                &::before {
+                    transform: rotate(90deg);
+                }
             }
         }
-        i.with-arrow.icon-up {
-            &::before {
-                transform: rotate(-90deg);
+
+        .section-menu-item-link {
+            @include padding($padding-md);
+            display: flex;
+            justify-content: space-between;
+            &,
+            &:hover {
+                color: $color-congress-blue;
+            }
+            i.icon {
+                @include margin-left($margin-xs);
+                &::before {
+                    font-size: $font-normal;
+                    line-height: $font-normal;
+                }
+            }
+        }
+    }
+    @media #{$desktop} {
+        .section-menu-item-link ~ .display-lg {
+            display: block;
+        }
+        .section-menu-item-link {
+            &:hover {
+                color: $color-jordy-blue;
+            }
+            i.icon {
+                @include margin-left($margin-xs);
+                vertical-align: top;
+                &::before {
+                    font-size: $font-sm;
+                    line-height: $font-sm;
+                }
+            }
+            i.with-arrow {
+                &::before {
+                    transform: rotate(90deg);
+                }
+            }
+            i.with-arrow.icon-up {
+                &::before {
+                    transform: rotate(-90deg);
+                }
             }
         }
     }

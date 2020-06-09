@@ -108,10 +108,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
         sling:message="Country"/>
-    <pw.form.label.selectCountry
+    <pw.form.label.countryPlaceholder
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.selectCountry"
+        sling:key="pw.form.label.countryPlaceholder"
         sling:message="Select Country"/>
     <pw.form.label.message
         jcr:mixinTypes="[sling:Message]"
@@ -123,10 +123,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.office"
         sling:message="Office"/>
-    <pw.form.label.selectOffice
+    <pw.form.label.officePlaceholder
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.selectOffice"
+        sling:key="pw.form.label.officePlaceholder"
         sling:message="Select Office"/>
     <pw.form.label.phonenumber
         jcr:mixinTypes="[sling:Message]"
@@ -198,6 +198,11 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.marketingconsent"
         sling:message="Please select marketing consent"/>
+    <pw.form.errormsg.country
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.errormsg.country"
+        sling:message="Please select country"/>
     <pw.form.step
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
