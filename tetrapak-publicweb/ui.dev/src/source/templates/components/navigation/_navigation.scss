@@ -10,7 +10,7 @@
         top: $header-height-mobile * 1px; // this is section menu margin from header
         width: 100%;
         & > .pw-navigation__container {
-            @include padding(0);
+            @include padding($padding-zero);
         }
         .collapse-button {
             @include padding($padding-md);
@@ -75,7 +75,7 @@
         background: $color-white;
         box-shadow: 0 4px 16px -10px $shadow;
         a {
-            @include padding(0 $padding-sm);
+            @include padding($padding-zero $padding-sm);
             color: $color-congress-blue;
             font-weight: normal;
         }
@@ -99,11 +99,11 @@
             @include padding-bottom(18px);
 
             .section-link-home {
-                @include padding(0 15px);
+                @include padding($padding-zero 15px);
                 position: absolute;
                 z-index: 1;
                 & > a {
-                    @include padding-left(0);
+                    @include padding-left($padding-zero);
                     color: $color-tundora;
                     &:hover {
                         color: $color-jordy-blue;
@@ -116,12 +116,12 @@
                 justify-content: center;
                 & > li {
                     &:first-child {
-                        @include margin-left(0);
+                        @include margin-left($margin-zero);
                     }
                     &:last-child {
-                        @include margin-right(0);
+                        @include margin-right($margin-zero);
                     }
-                    @include margin(0 12px);
+                    @include margin($margin-zero 12px);
                 }
             }
         }
