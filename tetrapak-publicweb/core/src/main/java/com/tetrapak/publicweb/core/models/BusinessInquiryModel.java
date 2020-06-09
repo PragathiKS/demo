@@ -32,7 +32,7 @@ public class BusinessInquiryModel extends FormModel {
      */
     @Override
     public String getApiUrl() {
-        return padrotService.getBusinesInquiryServiceURL();
+        return resource.getPath() + ".padrotbusinessenquiry.json";
     }
 
     /**

@@ -88,7 +88,9 @@ public class BusinessInquiryModelTest {
         assertEquals("Form", "Contact us", model.getAlt());
         assertEquals("Form", "Description", model.getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
-        assertEquals("Form", "http://padrotURL", model.getApiUrl());
+        assertEquals("Form",
+                "/content/tetrapak/publicweb/gb/en/jcr:content/businessinquiryform.padrotbusinessenquiry.json",
+                model.getApiUrl());
         assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
        }
 
