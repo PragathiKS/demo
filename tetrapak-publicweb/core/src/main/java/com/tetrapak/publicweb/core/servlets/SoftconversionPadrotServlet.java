@@ -25,8 +25,7 @@ import com.tetrapak.publicweb.core.services.PadrotService;
         property = { Constants.SERVICE_DESCRIPTION + "=Softconversion form Submit Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_POST,
                 "sling.servlet.selectors=" + "padrotsoftconversion", "sling.servlet.extensions=" + "json",
-                "sling.servlet.resourceTypes="
-                        + "[\"publicweb/components/content/textImage\",\"publicweb/components/content/textVideo\",\"publicweb/components/content/banner\"]" })
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/textImage" })
 public class SoftconversionPadrotServlet extends SlingAllMethodsServlet {
 
     /**

@@ -53,6 +53,9 @@ public class SoftConversionModel extends FormModel {
     @ValueMapValue
     private String noButtonLabel;
 
+    @ValueMapValue
+    private String padrotUrl;
+
     /**
      * The init method.
      */
@@ -136,6 +139,16 @@ public class SoftConversionModel extends FormModel {
     }
 
     /**
+     * Gets the api url.
+     *
+     * @return the api url
+     */
+    @Override
+    public String getApiUrl() {
+        return resource.getPath() + ".padrotsoftconversion.json";
+    }
+
+    /**
      * Gets the site language.
      *
      * @return the site language
@@ -153,4 +166,7 @@ public class SoftConversionModel extends FormModel {
         return PageUtil.getCountryCodeFromResource(resource);
     }
 
+    public String getPadrotUrl() {
+        return padrotUrl;
+    }
 }
