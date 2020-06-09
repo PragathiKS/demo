@@ -37,8 +37,8 @@
             }
 
             .col-sm-11 {
-                max-width: 91.66667%;
                 @include padding-left($padding-sm);
+                max-width: 91.66667%;
             }
         }
     }
@@ -109,7 +109,6 @@
                 @include margin-bottom(0);
             }
         }
-       
         .text-capital {
             text-transform: capitalize;
         }
