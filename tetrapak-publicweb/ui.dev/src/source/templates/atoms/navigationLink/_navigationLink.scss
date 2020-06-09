@@ -2,13 +2,6 @@
     &.active {
         font-weight: 900;
     }
-    i.icon {
-        @include margin-left($margin-xs);
-        &::before {
-            font-size: $font-sm;
-            line-height: $font-sm;
-        }
-    }
     @media #{$mobile} {
         display: flex;
         justify-content: space-between;
@@ -16,13 +9,25 @@
         &:hover {
             color: $color-tundora;
         }
+        i.icon {
+            @include margin-left($margin-xs);
+            &::before {
+                font-size: $font-normal;
+                line-height: $font-normal;
+            }
+        }
     }
     @media #{$desktop} {
         &:hover {
             color: $color-jordy-blue;
         }
         i.icon {
+            @include margin-left($margin-xs);
             vertical-align: top;
+            &::before {
+                font-size: $font-sm;
+                line-height: $font-sm;
+            }
         }
     }
 }

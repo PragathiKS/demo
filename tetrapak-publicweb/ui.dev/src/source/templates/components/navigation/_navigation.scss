@@ -22,11 +22,11 @@
             height: $section-menu-height-mobile * 1px;
             i.icon {
                 &::before {
-                    font-size: $font-sm;
-                    line-height: $font-sm;
+                    font-size: $font-normal;
+                    line-height: $font-normal;
                 }
             }
-            i.icon-Arrow_Right_pw {
+            i.icon-Navigation_Right_pw {
                 &::before {
                     transform: rotate(90deg);
                 }

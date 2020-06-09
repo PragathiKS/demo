@@ -6,13 +6,6 @@
         &.active {
             font-weight: 900;
         }
-        i.icon {
-            @include margin-left($margin-xs);
-            &::before {
-                font-size: $font-sm;
-                line-height: $font-sm;
-            }
-        }
     }
     @media #{$mobile} {
         & > .active.section-menu-item-link,
@@ -41,6 +34,13 @@
             &:hover {
                 color: $color-congress-blue;
             }
+            i.icon {
+                @include margin-left($margin-xs);
+                &::before {
+                    font-size: $font-normal;
+                    line-height: $font-normal;
+                }
+            }
         }
     }
     @media #{$desktop} {
@@ -52,7 +52,12 @@
                 color: $color-jordy-blue;
             }
             i.icon {
+                @include margin-left($margin-xs);
                 vertical-align: top;
+                &::before {
+                    font-size: $font-sm;
+                    line-height: $font-sm;
+                }
             }
             i.with-arrow {
                 &::before {

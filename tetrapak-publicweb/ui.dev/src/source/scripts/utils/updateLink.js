@@ -60,7 +60,7 @@ export default () => {
           $(iconEl).addClass('icon-Union');
           $(this).attr('target', '_blank');
         } else if($(iconEl).hasClass('with-arrow')){
-          $(iconEl).addClass('icon-Arrow_Right_pw');
+          $(iconEl).addClass('icon-Navigation_Right_pw');
           $(this).attr('target','_self');
         } else if($(iconEl).hasClass('without-arrow')){
           $(iconEl).addClass('');
