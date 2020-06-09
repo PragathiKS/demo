@@ -1,4 +1,13 @@
 .tp-pw-header {
+    background: $color-white;
+    @media #{$mobile} {
+        top: 0;
+        position: fixed;
+        height: $header-height-mobile * 1px; // header height converted to px
+        z-index: $zindex-header;
+        width: 100%;
+    }
+
     @media #{$desktop} {
         height: 80px;
         width: 100%;
@@ -7,8 +16,6 @@
             @include padding-bottom(0);
         }
     }
-
-    background: $color-white;
     .nav-link {
         padding: 16px;
     }
@@ -17,26 +24,26 @@
             display: none;
         }
     }
-    // .tp-pw-mobile-navigation {
-    //     .pw-megamenu {
-    //         display: none;
-    //     }
-    // }
+
     $self: &;
     &__container {
         @include padding(0 3px 0);
         border-bottom: 1px solid $color-mercury;
-        height: #{convert-to-rem(82px)};
-        position: relative;
-        z-index: $zindex-t;
+        background: $color-white;
+        z-index: $zindex-header;
+        width: 100%;
+
+        @media #{$mobile} {
+            height: $header-height-mobile * 1px; // header height converted to px
+            .header-items {
+                height: $header-height-mobile * 1px; // header height converted to px
+            }
+        }
 
         @media #{$desktop} {
             @include padding(23px 0);
             height: 80px;
             position: fixed;
-            background: $color-white;
-            width: 100%;
-            z-index: $zindex-header;
             .header-items {
                 height: 34px;
             }
@@ -264,7 +271,7 @@
     font-weight: 500;
     width: 100%;
     position: absolute;
-    z-index: $zindex-p;
+    z-index: $zindex-nav;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: $color-white;
