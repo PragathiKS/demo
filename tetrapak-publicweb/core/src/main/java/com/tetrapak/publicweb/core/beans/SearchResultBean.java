@@ -12,6 +12,10 @@ public class SearchResultBean {
 
     private String path;
 
+    private String size;
+    
+    private String date;
+
     public String getTitle() {
         return title;
     }
@@ -50,6 +54,22 @@ public class SearchResultBean {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
 }
