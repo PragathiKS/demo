@@ -44,7 +44,7 @@
 				 "welcomeBackDescriptionText":"Welcome back to our portal",
 				 "downloadReadyHeading":"Download Ready",
 				 "downloadReadyDescriptionText":"your download is ready",
-				 "moreButtonAction":"/content/search.html?type=whitepapers",
+				 "moreButtonAction":"/content/search",
 				 "moreButtonLabel":"More whitepapers",
 				 "yesButtonLabel":"Yes, I am",
 				 "noButtonLabel":"No, I am not"
