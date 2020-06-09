@@ -1,0 +1,128 @@
+.pw-businessEnquiry-form {
+    border-radius: $border-radius;
+    i.tpatom-button__icon {
+        &::before {
+            font-size: 12px;
+            line-height: 12px;
+        }
+    }
+    .form-group {
+        @include margin-bottom($margin-md);
+        &.field-error {
+            @include margin-bottom(0);
+        }
+    }
+    .errorMsg {
+        display: none;
+        color: $color-alert;
+        font-size: 12px;
+        &.purposeOfBusinessContactError {
+            @include margin-top($margin-sm);
+        }
+        &.purposeOfBusinessIntersetError {
+            @include margin-top($margin-sm);
+        }
+    }
+
+    .formfield,
+    .form-group {
+        label {
+            @include margin-bottom(0);
+        }
+        &.field-error {
+            .errorMsg {
+                display: block;
+            }    
+        }
+    }
+    .bef-tab-pane {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+    h4 {
+        font-family: $font-bold;
+        &.tpatom-heading--small {
+            @include margin-bottom($margin-md);
+            font-size: $font-md;
+        }
+    }
+    .separator {
+        @include padding-bottom($padding-l);
+        @include margin-bottom($margin-l);
+        border-bottom: 1px solid $color-mercury;
+        .pw-image-container {
+            @include margin-bottom($padding-l);
+        }
+        .descriptioBusinessEnquiry {
+            a {
+                &:hover {
+                    color: $color-jordy-blue;
+                }
+            }
+        }
+        @media #{$desktop} {
+            @include margin-bottom(0);
+            @include padding-bottom(0);
+            border-bottom: 0;
+            border-right: 1px solid $color-mercury;
+            padding-right: $margin-xxxl;
+            & + div {
+                @include padding-left($padding-xxxl);
+            }
+            .pw-image-container {
+                @include margin-bottom(0);
+                @include padding-right($padding-l);
+            }
+            h4 {
+                @include margin-bottom($margin-l);
+            }
+        }
+    }
+    .main-heading {
+        @include margin-bottom($margin-md);
+        overflow-wrap: break-word;
+    }
+    .button-group {
+        @include margin-top($margin-md);
+        > * {
+            @include margin-top($margin-sm);
+        }
+        .tpatom-btn--primary {
+            &:hover {
+                color: $color-white;
+            }
+        }
+        .previousbtn {
+            @include margin-right($margin-md);
+            border: 1px solid $color-congress-blue;
+            color: $color-congress-blue;
+            background-color: $color-white;
+            i {
+                @include padding-left(5px);
+                transform: rotate(180deg);
+                float: left;
+            }
+            &:hover {
+                border: 1px solid $color-jordy-blue;
+                color: $color-jordy-blue;
+            }
+        }
+    }
+
+    .pw-progress {
+        .pw-progressbar__steps {
+            @include padding-left($padding-md);
+            p {
+                @include margin-top($margin-l);
+                color: $color-congress-blue;
+                font-size: 12px;
+                @media #{$desktop} {
+                    @include margin-top($margin-xxxl);
+                }
+            }
+        }
+    }
+
+}
