@@ -57,7 +57,6 @@ class Softconversion {
     $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).addClass('active');
 
     window.open(downloadLink, '_blank');
-    // $('.serviceError').removeClass('d-block');
   }
 
   submitForm = () => {
@@ -66,8 +65,6 @@ class Softconversion {
     
     const apiPayload =  {};
 
-    // eslint-disable-next-line no-console
-    console.log(this.cache.requestPayload);
     apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
     apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
     apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
@@ -116,7 +113,6 @@ class Softconversion {
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
-      // const textarea = tab.find('textarea');
 
       // hide fields if type of visitor is not customer
       if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitorTitle']!=='Customer'){
@@ -166,8 +162,6 @@ class Softconversion {
       $('input', tab).each(function () {
         const fieldName = $(this).attr('name');
 
-
-        // $('div.' + fieldName).text($(this).val());
         if (fieldName in self.cache.requestPayload) {
           requestPayload[fieldName] = $(this).val();
 
@@ -198,7 +192,6 @@ class Softconversion {
   hidePopUp = () => {
     const $this = this;
     $this.root.modal('hide');
-    // location.reload();
   }
 
   init() {

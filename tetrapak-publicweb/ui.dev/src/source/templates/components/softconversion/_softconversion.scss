@@ -12,7 +12,6 @@
         &__heading {
             @include font-size($font-l);
             @include line-height(32px, $font-l);
-            font-weight: 300;
             word-wrap: break-word;
             @media #{$mobile} {
                 @include padding-top($padding-l);
@@ -39,6 +38,7 @@
 
             .col-sm-11 {
                 max-width: 91.66667%;
+                @include padding-left($padding-sm);
             }
         }
     }
@@ -109,18 +109,7 @@
                 @include margin-bottom(0);
             }
         }
-        // Dropdown styling
-        .country-field {
-            .pw-form__dropdown__menu {
-                .active {
-                    border: 0;
-                    background-color: transparent;
-                    &:hover {
-                        background-color: $color-wild-sand;
-                    }
-                }
-            }
-        }
+       
         .text-capital {
             text-transform: capitalize;
         }
@@ -218,7 +207,6 @@
                 @include margin-bottom($margin-md);
                 @include font-size($font-l);
                 @include line-height($font-xl, $font-l);
-                font-weight: 300;
 
                 @media #{$desktop} {
                     @include font-size($font-xl);
