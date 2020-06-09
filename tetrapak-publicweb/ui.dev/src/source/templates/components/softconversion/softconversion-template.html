@@ -44,7 +44,7 @@
                                     <div class="row">
                                     	<div class="col-sm-12 description" auto_locator="descriptionFontStep1">${data.descriptionText @ context="html"}</div>
                                         <p class="col-sm-12 radioHeading" auto_locator="visitorTypeFontStep1">${'pw.form.heading.typeofvisitor' @ i18n}</p>
-                                        <div class="col-sm-12 formfield"
+                                        <div class="col-sm-12 formfield radioWrap"
                                             auto_locator="softconversionOptionListContainerStep1">
                                             <sly data-sly-test.concatecustomer="${'{0}{1}' @ format=['customer-', componentName, ')']}" />
                                             <sly data-sly-test.concatetalent="${'{0}{1}' @ format=['talent-', componentName, ')']}" />
@@ -149,14 +149,6 @@
                                 </div>
                             </div>
                             <div class="col-lg-5" auto_locator="softConversionRightContainerSummaryAreaStep2">
-                                <!-- <div class="row no-gutters">
-                                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
-                                        auto_locator="contactUsLeftContainerHeadingStep2">
-                                        <sly data-sly-test="${data.heading}"
-                                            data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                            data-sly-call="${heading.heading_h2_template @ headingText=data.heading}" />
-                                    </div>
-                                </div> -->
                                
                                     <div class="row no-gutters">
                                         <div class="col-sm-12 main-heading" auto_locator="softConversionRightContainerHeadingTextStep2">
@@ -244,14 +236,7 @@
                             </div>
 
                             <div class="col-lg-5">
-                                <!-- <div class="row no-gutters">
-                                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
-                                        auto_locator="contactUsLeftContainerHeadingTextStep3">
-                                        <sly data-sly-test="${data.heading}"
-                                            data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                            data-sly-call="${heading.heading_h2_template @ headingText=data.heading}" />
-                                    </div>
-                                </div> -->
+                        
                                 <div auto_locator="softConversionContainerSummaryAreaStep3">
                                     <div class="row no-gutters">
                                         <div class="col-sm-12 main-heading" auto_locator="softConversionRightContainerHeadingTextStep3">
