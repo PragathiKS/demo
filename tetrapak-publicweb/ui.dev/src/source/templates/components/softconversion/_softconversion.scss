@@ -1,6 +1,7 @@
 .pw-softconversion {
     color: $color-tundora;
     font-family: $font-light;
+    font-weight: 500;
 
     &__header {
         @include padding($padding-xxl $padding-xl 0 $padding-xl);
@@ -56,6 +57,7 @@
         border-radius: $border-radius;
         .description {
             @include margin-bottom($margin-l);
+            font-weight: 500;
         }
 
         .tpatom-checkbox__icon {
@@ -68,6 +70,11 @@
             @include font-size($font-baseline);
             @include line-height($padding-l, $font-baseline);
             font-family: $font-black;
+            font-weight: 900;
+        }
+
+        .radioWrap {
+            font-weight: 500;
         }
 
         .form-group {
@@ -161,6 +168,10 @@
         .right-heading h4 {
             &.tpatom-heading--small {
                 @include margin-bottom($margin-l);
+                @include font-size($font-baseline);
+                @include line-height($padding-l, $font-baseline);
+                font-family: $font-black;
+                font-weight: 900;
             }
         }
         .separator {
@@ -203,7 +214,18 @@
             @media #{$desktop} {
                 @include margin(0$margin-sm auto $margin-xxxl auto);
             }
-            h2,
+            h2 {
+                @include margin-bottom($margin-md);
+                @include font-size($font-l);
+                @include line-height($font-xl, $font-l);
+                font-weight: 300;
+
+                @media #{$desktop} {
+                    @include font-size($font-xl);
+                    @include line-height($padding-xxl, $font-xl);
+                }
+            }
+
             .descriptionTextThankyou {
                 @include margin-bottom($margin-md);
             }
