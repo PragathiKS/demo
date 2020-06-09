@@ -201,6 +201,7 @@
                     font-weight: 500;
                     line-height: 20px;
                 }
+
                 @media #{$desktop} {
                     @include margin-bottom($margin-l);
                     @include margin-left(0);
@@ -208,6 +209,14 @@
                     @include font-size($font-sm);
                     @include margin-right(0);
                     border-bottom: 0;
+                }
+            }
+            span {
+                @media #{$desktop} {
+                    display: inline-block;
+                    position: relative;
+                    padding-right: 10px;
+                    width: 220px;
                 }
             }
         }
@@ -278,6 +287,7 @@
                 color: $color-congress-blue;
                 @media #{$desktop} {
                     color: $color-tundora;
+                    padding: $padding-zero;
                 }
                 &:hover {
                     color: $color-jordy-blue;
@@ -378,4 +388,10 @@
 .pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw {
     margin-left: $margin-sm;
     vertical-align: middle;
+    @media #{$desktop} {
+        display: inline-block;
+        position: relative;
+        margin-right: -10px;
+        top: -8px;
+    }
 }
