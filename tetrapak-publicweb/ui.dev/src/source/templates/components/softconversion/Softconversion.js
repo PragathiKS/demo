@@ -52,9 +52,6 @@ class Softconversion {
     const $target = $(e.target);
     const $this = $target.closest('.thankyouTarget');
     const downloadLink = $this.data('downloadlink');
-    /* eslint-disable no-console */
-    console.log(downloadLink);
-
 
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).addClass('active');
@@ -83,8 +80,6 @@ class Softconversion {
     apiPayload.padrotUrl = pardotUrl;
     apiPayload.marketingConsent = true;
 
-    // eslint-disable-next-line no-console
-    console.log('api payload:',apiPayload);
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
