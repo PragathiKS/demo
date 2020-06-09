@@ -76,7 +76,7 @@ public class SoftConversionModelTest {
         assertEquals("Form", "Welcome back to our portal", model.getWelcomeBackDescriptionText());
         assertEquals("Form", "Download Ready", model.getDownloadReadyHeading());
         assertEquals("Form", "your download is ready", model.getDownloadReadyDescriptionText());
-        assertEquals("Form", "/content/search.html?type=whitepapers", model.getMoreButtonAction());
+        assertEquals("Form", "/content/search.html", model.getMoreButtonAction());
         assertEquals("Form", "More whitepapers", model.getMoreButtonLabel());
         assertEquals("Form", "Yes, I am", model.getYesButtonLabel());
         assertEquals("Form", "No, I am not", model.getNoButtonLabel());

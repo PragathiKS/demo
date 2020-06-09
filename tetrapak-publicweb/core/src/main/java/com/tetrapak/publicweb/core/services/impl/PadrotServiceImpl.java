@@ -68,7 +68,9 @@ public class PadrotServiceImpl implements PadrotService {
         final ArrayList<NameValuePair> postParameters = new ArrayList<>();
 
         for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
-            postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
+            if (!"padrotUrl".equalsIgnoreCase(entry.getKey())) {
+                postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
+            }
         }
 
         final HttpClient httpClient = HttpClientBuilder.create().build();
@@ -81,6 +83,14 @@ public class PadrotServiceImpl implements PadrotService {
         } catch (final IOException e) {
             LOGGER.error("Error while submitting padrot post request", e);
         }
+    }
+
+    @Override
+    public void submitPadrotPostRespose(final Map<String, String[]> parameterMap) {
+
+        final String url = parameterMap.get("padrotUrl")[0];
+        submitPadrotPostRespose(parameterMap, url);
+
     }
 
 }
