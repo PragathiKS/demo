@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 separator" auto_locator="businessEnquiryRightContainerStep1">
+                            <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep1">
                                 <div class="tab-content tab-content-steps">
                                     <div class="row">
                                         <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
@@ -172,10 +172,11 @@
                                 </div>
                                 <div auto_locator="businessFormLeftContainerSummaryAreaStep3">
                                     <div class="row no-gutters">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-12"> 
                                             <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText=pw.form.heading.summary, variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
+
                                         </div>
                                     </div>
                                     <div class="row no-gutters summary">
@@ -257,7 +258,7 @@
                                         <div class="col-sm-12">
                                             <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText=pw.form.heading.summary, variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
                                         </div>
                                     </div>
                                     <div class="row no-gutters summary">
@@ -280,7 +281,7 @@
                                         <div class="col-lg-6">${'pw.form.label.email' @i18n}</div>
                                         <div class="col-lg-6 email"></div>
                                     </div>
-                                    <div class="row no-gutters summary">
+                                    <div class="row no-gutters summary" id="phoneSummery">
                                         <div class="col-lg-6">${'pw.form.label.phonenumber' @i18n}</div>
                                         <div class="col-lg-6 phone"></div>
                                     </div>

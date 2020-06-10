@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-   
+
 class Businessinquiryform {
   constructor({ el }) {
     this.root = $(el);
@@ -49,7 +49,6 @@ class Businessinquiryform {
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
     const dataObj = {};
-    
     dataObj['purpose']=  this.cache.requestPayload.purposeOfContactInBusinessEqTitle;
     dataObj['businessArea']= this.cache.requestPayload.purposeOfInterestAreaEqTitle;
     dataObj['firstName']= this.cache.requestPayload.firstName;
@@ -65,7 +64,7 @@ class Businessinquiryform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: dataObj 
+      data: dataObj
     }).done(
       (response) => {
         if (response.statusCode === '200') {
@@ -171,6 +170,10 @@ class Businessinquiryform {
           }
         });
       }
+      if(!self.cache.requestPayload['phone']) {
+        $('#phoneSummery').hide();
+      }
+
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
         if (target) {

@@ -1,5 +1,5 @@
-import Businessinquiryform from './Businessinquiryform';
 import $ from 'jquery';
+import Businessinquiryform from './Businessinquiryform';
 import businessinquiryTemplate from '../../../test-templates-hbs/businessinquiryform.hbs';
 
 describe('BusinessInquiryForm', function () {
@@ -55,14 +55,6 @@ describe('BusinessInquiryForm', function () {
     done();
   });
 
-  it('should update request payload when step-4 next button is clicked', function (done) {
-    document.getElementById('company').value = 'company';
-    document.getElementById('position').value = 'position';
-    document.getElementById('step4btn').click();
-    expect(this.businessinquiry.cache.requestPayload['company']).to.equal('company');
-    expect(this.businessinquiry.cache.requestPayload['position']).to.equal('position');
-    done();
-  });
 
   it('should submit Form when required fields are not empty', function (done) {
     $('input[name="purposeOfContactInBusinessEqTitle"]').val("Contact me");
@@ -92,6 +84,16 @@ describe('BusinessInquiryForm', function () {
     document.getElementById('pardot_extra_field_bef').value = 'honeypot';
     this.businessinquiry.cache.$submitBtn.click();
     expect(this.businessinquiry.submitForm.called).to.be.false;
+    done();
+  });
+
+  it('should update request payload when step-4 next button is clicked', function (done) {
+    document.getElementById('company').value = 'company';
+    document.getElementById('position').value = 'position';
+    document.getElementById('consentcheckbox').checked = true;
+    $(document.getElementById('step4btn')).click();
+    expect(this.businessinquiry.cache.requestPayload['company']).to.equal('company');
+    expect(this.businessinquiry.cache.requestPayload['position']).to.equal('position');
     done();
   });
 
