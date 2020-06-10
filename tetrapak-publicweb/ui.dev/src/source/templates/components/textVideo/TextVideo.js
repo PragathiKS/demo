@@ -12,11 +12,16 @@ class TextVideo {
     this.cache.$textVideoButton = this.root.find('.js-textVideo-analytics');
     ytPromise.then(() => { initializeYoutubePlayer(); });
     initializeDAMPlayer();
+    this.cache.componentName = this.root.find('#componentName-textvideo').val();
   }
 
   bindEvents() {
     const { $textVideoButton } = this.cache;
     $textVideoButton.on('click', this.trackAnalytics);
+
+    this.root.find('.js-softconversion-pw-textvideo').on('click', () => {
+      $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
+    });
   }
 
 
