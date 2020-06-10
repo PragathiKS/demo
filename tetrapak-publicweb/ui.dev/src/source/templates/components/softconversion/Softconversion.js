@@ -115,12 +115,12 @@ class Softconversion {
       const input = tab.find('input');
 
       // hide fields if type of visitor is not customer
-      if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitorTitle']!=='Customer'){
+      if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitor']!==`customer-${$componentName}`){
         $company.hide();
         $position.hide();
       }
 
-      if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitorTitle']==='Customer'){
+      if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitor']===`customer-${$componentName}`){
         $company.show();
         $position.show();
       }
