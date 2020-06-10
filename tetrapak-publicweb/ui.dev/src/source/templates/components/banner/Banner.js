@@ -11,6 +11,7 @@ class Banner {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
     this.cache.$existingBanner = this.root.find('.pw-banner__content.banner-parent');
     this.cache.$siblingBanner = this.root.find('.pw-banner__content.banner-sibling');
+    this.cache.componentName = this.root.find('#componentName-banner').val();
   }
 
   bindEvents() {
@@ -28,6 +29,11 @@ class Banner {
       });
     }
     $itbLink.on('click', this.trackAnalytics);
+
+    this.root.find('.js-softconversion-pw-banner').on('click', () => {
+      $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
+    });
+
   }
 
   trackAnalytics = (e) => {
@@ -40,7 +46,7 @@ class Banner {
     $bEl.each(function () {
       const $anchor = $bEl.data('href');
       if ($anchor && $anchor !== '#') {
-        $(this).find('.pw-banner__image-wrapper').css('cursor', 'pointer');
+        $bEl.css('cursor', 'pointer');
       }
     });
 
@@ -50,7 +56,7 @@ class Banner {
       if (!($anchor && $anchor !== '#')) {
         return false;
       }
-      if ($(e.target).closest('.pw-banner__contentwrapper').length) {
+      if ($(e.target).closest('.pw-banner__content').length) {
         return true;
       }
       if (isExternal($anchor)) {

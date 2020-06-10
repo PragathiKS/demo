@@ -4,6 +4,7 @@
   <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}"
        class="pw-container"
        data-locator="text-video" data-module="TextVideo">
+       <input type="hidden" id="componentName-textvideo" name="componentName" value="${resource.name}">
     <div class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular">
     <div class="row no-gutters">
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4 left-pad': ''}">
@@ -14,7 +15,7 @@
         </div>
         <p class="pw-text-video__description d-none d-lg-block">${data.description @ context='html'}</p>
         <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
-                <a data-sly-test="${data.linkTexti18n}"
+                <a data-sly-test="${data.linkTexti18n && !data.enableSoftcoversion}"
                 href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textVideo-analytics"
                 title="${data.linkTexti18n}"
@@ -27,6 +28,12 @@
                 >
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n @ context='html'}</span><i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i>
              </a>
+
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo" title="${'pw.form.button.download' @ i18n}">
+                                            <span class="tpatom-link__text sly-text"> ${data.linkTexti18n @ context='html'}
+                                                <i class="icon icon--link icon-Download"></i>
+                                                    </span>
+                                            </button>
               </div>
       </div>
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8 right-pad': ''}">
@@ -61,7 +68,7 @@
         </div>
         <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n,context='html'}</p>
         <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
-          <a data-sly-test="${data.linkTexti18n}"
+          <a data-sly-test="${data.linkTexti18n && !data.enableSoftcoversion}"
                 href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textVideo-analytics"
                 title="${data.linkTexti18n}"
@@ -74,10 +81,19 @@
                 >
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n @ context='html'}<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
              </a>
+
+             
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo" title="${'pw.form.button.download' @ i18n}">
+                                            <span class="tpatom-link__text sly-text"> ${data.linkTexti18n @ context='html'}
+                                                <i class="icon icon--link icon-Download"></i>
+                                                    </span>
+                                            </button> 
         </div>
       </div>
     </div>
   </div>
+  <sly data-sly-test="${data.enableSoftcoversion}" data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
+      data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkURL}" />
   </div>
   <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
 </sly>
