@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
+import { validateFieldsForTags } from '../../../scripts/common/common';
 
 class Softconversion {
   constructor({ el }) {
@@ -129,9 +130,14 @@ class Softconversion {
       if (!$(this).hasClass('previousbtn') && (input.length > 0 )) {
         $('input', tab).each(function () {
           const fieldName = $(this).attr('name');
-          $('div.' + fieldName).text($(this).val());
+
+          const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
+          $('div.' + fieldName).text(newSafeValues);
+          //$('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
-            requestPayload[fieldName] = $(this).val();
+            //requestPayload[fieldName] = $(this).val();
+            requestPayload[fieldName] = newSafeValues;
+            
           }
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === `email-${$componentName}`) && !self.validEmail($(this).val())) {
             isvalid = false;
@@ -162,8 +168,10 @@ class Softconversion {
       $('input', tab).each(function () {
         const fieldName = $(this).attr('name');
 
+        const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
+
         if (fieldName in self.cache.requestPayload) {
-          requestPayload[fieldName] = $(this).val();
+          requestPayload[fieldName] = newSafeValues;
 
        
         }
