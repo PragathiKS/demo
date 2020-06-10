@@ -132,7 +132,7 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phonenumber"
-        sling:message="Phone number"/>
+        sling:message="Phone number (optional)"/>
     <pw.form.label.phoneplaceholder
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
