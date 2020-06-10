@@ -158,7 +158,8 @@
         "source/templates/components/navigation/",
         "source/templates/components/sectionMenu/",
         "source/templates/components/contactus/",
-        "source/templates/components/marketselector/"
+        "source/templates/components/marketselector/",
+        "source/templates/components/searchresult/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"

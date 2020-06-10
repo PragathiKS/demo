@@ -1,0 +1,12 @@
+{{#if this}}
+<div class="pw-search-results__filter-container__filter-chips">
+  {{#each this}}
+  <span class="filter-tag" data-filter="{{this}}">
+    <span class="filter-tag__name">{{this}}</span>
+    <span class="js-filter-remove">
+      <i class="icon-Close_pw"></i>
+    </span>
+  </span>
+  {{/each}}
+</div>
+{{/if}}
