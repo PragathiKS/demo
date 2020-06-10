@@ -75,8 +75,9 @@ public class BannerModel {
     @ValueMapValue
     private String imageCrop;
 
-    /** The asset name. */
-    private String assetName;
+    /** The enable softcoversion. */
+    @ValueMapValue
+    private String enableSoftcoversion;
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
@@ -214,11 +215,29 @@ public class BannerModel {
      * @return the asset name
      */
     public String getAssetName() {
-        assetName = StringUtils.EMPTY;
+        String assetName = StringUtils.EMPTY;
         if (StringUtils.isNoneEmpty(linkPath)) {
             assetName = StringUtils.substringAfterLast(linkPath, FORWARD_SLASH);
         }
         return assetName;
+    }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
+    }
+
+    /**
+     * Gets the soft conversion data.
+     *
+     * @return the soft conversion data
+     */
+    public SoftConversionModel getSoftConversionData() {
+        return resource.adaptTo(SoftConversionModel.class);
     }
 
 }

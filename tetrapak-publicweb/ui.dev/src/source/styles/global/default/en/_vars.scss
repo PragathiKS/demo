@@ -110,3 +110,15 @@ $uppercase : uppercase ;
 
 // box - shadow
 $shadow: rgba(0, 0, 0, 0.1);
+
+// mobile sticky header hight
+$header-height-mobile: 62;
+
+// mobile sticky section hight
+$section-menu-height-mobile: 56;
+
+// sticky-view-height
+$sticky-view-height: $header-height-mobile + $section-menu-height-mobile
+
+
+

@@ -11,5 +11,7 @@ public interface PadrotService {
 
     void submitPadrotPostRespose(Map<String, String[]> parameters, String url);
 
+    void submitPadrotPostRespose(Map<String, String[]> parameterMap);
+
 }
 

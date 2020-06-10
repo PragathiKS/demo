@@ -11,6 +11,7 @@ class Banner {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
     this.cache.$existingBanner = this.root.find('.pw-banner__content.banner-parent');
     this.cache.$siblingBanner = this.root.find('.pw-banner__content.banner-sibling');
+    this.cache.componentName = this.root.find('#componentName-banner').val();
   }
 
   bindEvents() {
@@ -28,6 +29,11 @@ class Banner {
       });
     }
     $itbLink.on('click', this.trackAnalytics);
+
+    this.root.find('.js-softconversion-pw-banner').on('click', () => {
+      $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
+    });
+
   }
 
   trackAnalytics = (e) => {

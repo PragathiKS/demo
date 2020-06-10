@@ -2,9 +2,72 @@
     .hr-display {
         display: none;
     }
+    &.sticky {
+        display: block;
+        z-index: $z-index-section-menu;
+        position: fixed;
+        background: $color-white;
+        top: $header-height-mobile * 1px; // this is section menu margin from header
+        width: 100%;
+        & > .pw-navigation__container {
+            @include padding($padding-zero);
+        }
+        .collapse-button {
+            @include padding($padding-md);
+            display: flex;
+            font-weight: 900;
+            border-bottom: 1px solid $color-mercury;
+            justify-content: space-between;
+            align-items: center;
+            height: $section-menu-height-mobile * 1px;
+            i.icon {
+                &::before {
+                    font-size: $font-normal;
+                    line-height: $font-normal;
+                }
+            }
+            i.icon-Navigation_Right_pw {
+                &::before {
+                    transform: rotate(90deg);
+                }
+            }
+            &,
+            &:hover {
+                color: $color-congress-blue;
+            }
+        }
+    }
+
+    @media #{$mobile} {
+        &__container {
+            height: calc(100vh - #{$sticky-view-height * 1px});
+            overflow-y: auto;
+            background: $color-white;
+            .list-section-menu-links {
+                display: block;
+            }
+            .section-link-home {
+                @include padding($padding-md 15px);
+                @include padding-left(31px);
+                width: 100%;
+                border-bottom: 1px solid $color-mercury;
+
+                & > a {
+                    color: $color-congress-blue;
+                    &:hover {
+                        color: $color-congress-blue;
+                    }
+                }
+            }
+
+            .pw-mobile-navigation-section-list {
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+    }
+
     @media #{$desktop} {
         display: none;
-        // display: block;
         position: absolute;
         width: 100%;
         left: 0;
@@ -12,17 +75,14 @@
         background: $color-white;
         box-shadow: 0 4px 16px -10px $shadow;
         a {
-            @include padding(0 $padding-sm);
+            @include padding($padding-zero $padding-sm);
             color: $color-congress-blue;
             font-weight: normal;
         }
         &.sticky {
-            display: block;
-            z-index: $z-index-section-menu;
-            position: fixed;
             top: 80px;
             & > .pw-navigation__container {
-                @include padding-top(18px);
+                @include padding(18px $padding-xxxl);
             }
             & > .hr-display {
                 display: none;
@@ -39,11 +99,11 @@
             @include padding-bottom(18px);
 
             .section-link-home {
-                @include padding(0 15px);
+                @include padding($padding-zero 15px);
                 position: absolute;
                 z-index: 1;
                 & > a {
-                    @include padding-left(0);
+                    @include padding-left($padding-zero);
                     color: $color-tundora;
                     &:hover {
                         color: $color-jordy-blue;
@@ -52,17 +112,18 @@
                 }
             }
             .list-section-menu-links {
+                display: flex;
+                justify-content: center;
                 & > li {
                     &:first-child {
-                        @include margin-left(0);
+                        @include margin-left($margin-zero);
                     }
                     &:last-child {
-                        @include margin-right(0);
+                        @include margin-right($margin-zero);
                     }
-                    @include margin(0 12px);
+                    @include margin($margin-zero 12px);
                 }
             }
-
         }
         .hr-display {
             display: block;

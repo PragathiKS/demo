@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import 'bootstrap';
+import { isMobile } from '../../../scripts/common/common';
 class SectionMenu {
   constructor({ el }) {
     this.root = $(el);
@@ -12,16 +14,26 @@ class SectionMenu {
     const { $sectionMenuItem } = this.cache;
     $sectionMenuItem.on('mouseover', this.handleSectionMenuItemMouseOver);
     $sectionMenuItem.on('mouseout', this.handleSectionMenuItemMouseOut);
-    // $('.js-section-menu-item-link').on('click', this.handleSectionMenuClick);
+    $('.js-section-menu-item-link').on('click', this.handleSectionMenuClick);
     // $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
+
+    $('.js-section-menu-item-link:not(:has(.icon:not(.is-external)))').each(function() {
+      $(this).on('click', function (e) {
+        e.stopPropagation();
+      });
+    });
   }
 
-  // handleSectionMenuClick =(e) => {
-  //   e.preventDefault();
-  //   const $target = $(e.target);
-  //   const $this = $target.closest('.js-section-menu-item-link');
-  //   window.open($this.attr('href'), $this.attr('target'));
-  // }
+  handleSectionMenuClick =(e) => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-section-menu-item-link');
+    const iconEl = $this.find('i.icon:not(.is-external)');
+    if(isMobile() && iconEl.length > 0) {
+      return;
+    }
+    window.open($this.data('url-link'), $this.attr('target'));
+  }
 
   // handleSubSectionMenuClick =(e) => {
   //   e.preventDefault();
@@ -34,7 +46,7 @@ class SectionMenu {
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
-    $this.children('.js-sub-menu-navigation-Link').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true');
+    $this.find('.js-sub-menu-navigation-Link').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true'); // value changed because of one extra div added
     $sectionMenuItemAnchor.children('.with-arrow').addClass('icon-up');
 
     /* check modal view port position */
@@ -50,7 +62,7 @@ class SectionMenu {
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
-    $this.children('.js-sub-menu-navigation-Link').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
+    $this.find('.js-sub-menu-navigation-Link').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
     $sectionMenuItemAnchor.children('.with-arrow').removeClass('icon-up');
   }
 

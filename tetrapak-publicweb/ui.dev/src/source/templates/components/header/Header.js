@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
@@ -29,6 +30,8 @@ class Header {
     this.cache.$overlay = $('.js-pw-overlay');
   }
 
+  // 
+
   bindEvents() {
     const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
@@ -42,11 +45,13 @@ class Header {
     this.cache.$menuCloseSol.on('click', this.handleCloseSolEvent);
     $headerItem.on('click', this.trackNavigationAnalytics);
     $headerLogoTracker.on('click', this.trackBrandLogo);
-    // $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
+    $('.js-tp-pw-header-item:not(.js-click-menu-link)').on('click', this.handleMainNavClick);
     this.root.find('.js-header__selected-lang-pw').on('click', (e) => {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
       this.trackLanguageSelector(e);
     });
+
+  
   }
 
   trackLanguageSelector = e => {
@@ -136,17 +141,17 @@ class Header {
     }
   }
 
-  // handleMainNavClick =(e) => {
-  //   e.preventDefault();
-  //   const $target = $(e.target);
-  //   const $this = $target.closest('.js-tp-pw-header-item');
-  //   window.open($this.attr('href'), '_self');
-  // }
+  handleMainNavClick =(e) => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-tp-pw-header-item');
+    window.open($this.attr('href'), '_self');
+  }
 
   trackBrandLogo = (e) => {
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
-    const url = $this.attr('href');    
+    const url = $this.attr('href');
     const targetLink = $this.attr('target');
     const linkType = targetLink === '_blank'? 'external' :'internal';
     const trackingObj = {
@@ -160,7 +165,7 @@ class Header {
       event: 'Header'
     };
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    
+
     if(url && targetLink){
       window.open(url, targetLink);
     }
