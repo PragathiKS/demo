@@ -3,7 +3,7 @@ import $ from 'jquery';
 import businessinquiryTemplate from '../../../test-templates-hbs/businessinquiryform.hbs';
 
 describe('BusinessInquiryForm', function () {
-  beforeEach(function () {
+  before(function () {
     $(document.body).empty().html(businessinquiryTemplate());
     this.businessinquiry = new Businessinquiryform({
       el: document.body
@@ -12,7 +12,7 @@ describe('BusinessInquiryForm', function () {
     this.submitFormSpy = sinon.spy(this.businessinquiry, 'submitForm');
     this.businessinquiry.init();
   });
-  afterEach(function () {
+  after(function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.submitFormSpy.restore();
@@ -58,6 +58,7 @@ describe('BusinessInquiryForm', function () {
   it('should update request payload when step-4 next button is clicked', function (done) {
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
+    document.getElementById('consentcheckbox').checked = true;
     document.getElementById('step4btn').click();
     expect(this.businessinquiry.cache.requestPayload['company']).to.equal('company');
     expect(this.businessinquiry.cache.requestPayload['position']).to.equal('position');
