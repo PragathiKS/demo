@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -196,6 +197,48 @@ public class SearchResultsModel {
             themeMap = getThemeList().stream().collect(Collectors.toMap(ThemeModel::getThemeLabel, ThemeModel::getTag));
         }
         return themeMap;
+    }
+    
+    /**
+     * Gets the template map.
+     *
+     * @return the template map
+     */
+    public Map<String, String> getTemplateMap(){
+        Map<String, String> templateMap = new HashMap<>();
+        if(getNewsTemplateList() != null && !getNewsTemplateList().isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for(SearchPathModel pathObject:getNewsTemplateList()) {
+                sb.append(pathObject.getPath());
+                sb.append(",");
+            }
+            templateMap.put("news", sb.toString().substring(0,sb.length()-1));
+        }
+        if(getEventTemplateList() != null && !getEventTemplateList().isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for(SearchPathModel pathObject:getEventTemplateList()) {
+                sb.append(pathObject.getPath());
+                sb.append(",");
+            }
+            templateMap.put("events", sb.toString().substring(0,sb.length()-1));
+        }
+        if(getCaseTemplateList() != null && !getCaseTemplateList().isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for(SearchPathModel pathObject:getCaseTemplateList()) {
+                sb.append(pathObject.getPath());
+                sb.append(",");
+            }
+            templateMap.put("cases", sb.toString().substring(0,sb.length()-1));
+        }
+        if(getProductTemplateList() != null && !getProductTemplateList().isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for(SearchPathModel pathObject:getProductTemplateList()) {
+                sb.append(pathObject.getPath());
+                sb.append(",");
+            }
+            templateMap.put("products", sb.toString().substring(0,sb.length()-1));
+        }
+        return templateMap;
     }
 
     /**
