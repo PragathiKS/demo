@@ -2,25 +2,30 @@
 {{#each this}}
 <div class="pw-search-results__results-list__item">
   {{#if this.thumbnail}}
-  <div class="pw-media-container">
-    <img class="pw-product-card-grid__item__image" src="{{this.thumbnail}}" alt="{{this.title}}">
+  <div>
+    <div class="pw-media-container">
+      <img class="pw-product-card-grid__item__image" src="{{this.thumbnail}}" alt="{{this.title}}">
+      <span class="d-block d-lg-none pw-media-container__size">{{this.size}} <i class="icon-Util"></i></span>
+    </div>
     {{#if this.size}}
-    <span class="d-block d-lg-none pw-media-container__size">{{this.size}} <i class="icon-Util"></i></span>
+      <p class="d-block d-lg-none pw-search-results__results-list__item__size">{{this.size}} <a href="{{this.path}}"
+        target="_self"><i class="icon-Union"></i></a></p>
     {{/if}}
   </div>
   {{/if}}
   <div>
     <span class="tpatom-subheading tpatom-heading--small">
-      {{this.type}} {{#if this.date}}, {{this.date}} {{/if}}
+      {{this.type}}{{#if this.date}}, {{this.date}} {{/if}}
     </span>
     <a href="{{this.path}}" target="_blank" class="pw-search-results__results-list__item__title-link">
       <h3 class="tpatom-heading tpatom-heading--small-flat">{{this.title}}</h3>
-      {{#if this.size}}
-      <span class="d-none d-lg-block">{{this.size}} <i class="icon-Util"></i></span>
-      {{/if}}
     </a>
+    {{#if this.size}}
+    <p class="d-none d-lg-block pw-search-results__results-list__item__size">{{this.size}} <a href="{{this.path}}"
+        target="_self"><i class="icon-Union"></i></a></p>
+    {{/if}}
     {{#if this.description}}
-    <p class="pw-search-results__results-list__item__description">{{this.description}}</p>
+    <p class="pw-search-results__results-list__item__description"><span>{{this.description}}</span></p>
     {{/if}}
   </div>
 </div>
@@ -28,5 +33,4 @@
 {{/unless}}
 {{#if this.noFiltersMatches}}
 {{this.noFiltersMatches}}
-
 {{/if}}
