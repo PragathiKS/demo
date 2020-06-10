@@ -175,6 +175,9 @@ public final class PWConstants {
     public static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/publicweb/contactusemail.html";
 
     public static final String SEND_EMAIL_JOB_TOPIC = "com/tetrapak/publicweb/sendemail";
+    
+    /** The Constant SPACE. */
+    public static final String SPACE = " ";
 
     /**
      * Instantiates a new PW constants.

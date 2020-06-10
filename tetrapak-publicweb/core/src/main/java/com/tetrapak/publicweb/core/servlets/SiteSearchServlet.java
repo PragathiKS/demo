@@ -30,6 +30,7 @@ import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -39,7 +40,6 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
@@ -48,6 +48,7 @@ import com.day.cq.search.result.SearchResult;
 import com.google.gson.Gson;
 import com.tetrapak.publicweb.core.beans.SearchBean;
 import com.tetrapak.publicweb.core.beans.SearchResultBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.SearchResultsModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -76,23 +77,30 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private static final String GROUP_2 = "2_group.";
 
     private static final String GROUP_3 = "3_group.";
+    
+    private static final String GROUP_TYPE = "_group.type";
+    
+    private static final String GROUP_PATH = "_group.path";
 
     private static final long serialVersionUID = 5220677543550980049L;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SiteSearchServlet.class);
 
     @Reference
-    private ResourceResolverFactory resolverFactory;
+    private transient ResourceResolverFactory resolverFactory;
 
-    private SearchResultsModel searchResultsModel;
+    private transient SearchResultsModel searchResultsModel;
 
     @Reference
-    private QueryBuilder queryBuilder;
+    private transient QueryBuilder queryBuilder;
 
-    private Session session;
-    private ResourceResolver resourceResolver;
+    @Reference
+    private transient XSSAPI xssAPI;
 
-    private SearchBean searchBean;
+    private transient Session session;
+
+    private transient SearchBean searchBean;
+
     private int noOfResultsPerHit;
 
     @Override
@@ -100,33 +108,37 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         LOGGER.info("Executing doGet method.");
         try {
             searchResultsModel = request.adaptTo(SearchResultsModel.class);
+
             // get resource resolver, session and queryBuilder objects.
-            resourceResolver = request.getResourceResolver();
+            ResourceResolver resourceResolver = request.getResourceResolver();
             session = resourceResolver.adaptTo(Session.class);
             queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
             searchBean = new SearchBean();
+
             // get search arguments
-            final String contentTypeParam = request.getParameter("contentType");
+            final String contentTypeParam = xssAPI.getValidJSON(request.getParameter("contentType"), StringUtils.EMPTY);
             String[] contentType = null;
             if (StringUtils.isNoneBlank(contentTypeParam)) {
                 contentType = contentTypeParam.split(",");
             }
-            final String themesParam = request.getParameter("theme");
+            final String themesParam = xssAPI.getValidJSON(request.getParameter("theme"), StringUtils.EMPTY);
             String[] themes = null;
             if (StringUtils.isNoneBlank(themesParam)) {
                 themes = themesParam.split(",");
             }
-            final int pageParam = Integer.valueOf(request.getParameter("page"));
-            String fulltextSearchTerm = URLDecoder.decode(request.getParameter("searchTerm"), "UTF-8").replace("%20",
-                    " ");
+            final int pageParam = xssAPI.getValidInteger(request.getParameter("page"), 1);
+            String fulltextSearchTerm = URLDecoder
+                    .decode(xssAPI.getValidJSON(request.getParameter("searchTerm"), StringUtils.EMPTY), "UTF-8")
+                    .replace("%20", PWConstants.SPACE);
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
+
             // search for resources
             Map<String, String> map = new HashMap<>();
             map.put("1_group.p.or", "true");
             if (ArrayUtils.isNotEmpty(contentType)) {
                 int index = 1;
                 for (String type : contentType) {
-                    if (type.equals("media")) {
+                    if (type.equalsIgnoreCase("media")) {
                         index = getMediaResults(map, index);
 
                     } else {
@@ -134,8 +146,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                     }
                 }
             } else {
-                map.put("1" + GROUP + 1 + "_group.type", "cq:Page");
-                String pathKey = "1" + GROUP + 1 + "_group.path";
+                map.put("1" + GROUP + 1 + GROUP_TYPE, "cq:Page");
+                String pathKey = "1" + GROUP + 1 + GROUP_PATH;
                 map.put(pathKey, PageUtil.getLanguagePage(searchResultsModel.getCurrentPage()).getPath());
                 getMediaResults(map, 2);
             }
@@ -165,12 +177,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     }
 
     private int getMediaResults(Map<String, String> map, int index) {
-
         List<SearchPathModel> structure = searchResultsModel.getStructureMap().get("media");
         if (!CollectionUtils.isEmpty(structure)) {
             for (SearchPathModel path : structure) {
-                map.put("1" + GROUP + index + "_group.type", "dam:Asset");
-                String pathKey = "1" + GROUP + index + "_group.path";
+                map.put("1" + GROUP + index + GROUP_TYPE, "dam:Asset");
+                String pathKey = "1" + GROUP + index + GROUP_PATH;
                 map.put(pathKey, path.getPath());
                 index++;
             }
@@ -194,8 +205,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
         if (!CollectionUtils.isEmpty(structure)) {
             for (SearchPathModel path : structure) {
-                map.put("1" + GROUP + index + "_group.type", "cq:Page");
-                String pathKey = "1" + GROUP + index + "_group.path";
+                map.put("1" + GROUP + index + GROUP_TYPE, "cq:Page");
+                String pathKey = "1" + GROUP + index + GROUP_PATH;
                 map.put(pathKey, path.getPath());
                 index++;
             }
@@ -206,7 +217,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private void setSearchBean(Map<String, String> map) {
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
         SearchResult result = query.getResult();
-        long noOfResults = result.getTotalMatches(); 
+        long noOfResults = result.getTotalMatches();
         // paging metadata
         LOGGER.info("Total number of results : {}", noOfResults);
 
@@ -239,7 +250,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         map.put(GROUP_3 + "property.value", "false");
         map.put(GROUP_3 + "property.operation", "exists");
         map.put("p.limit", String.valueOf(noOfResultsPerHit));
-        String offset = String.valueOf(0);
+        map.put("p.offset", String.valueOf(pageParam));
     }
 
     private void setThemesMap(String[] themes, Map<String, String> map) {
