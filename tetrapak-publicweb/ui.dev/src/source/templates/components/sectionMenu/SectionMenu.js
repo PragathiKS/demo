@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { isMobile } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 class SectionMenu {
   constructor({ el }) {
     this.root = $(el);
@@ -15,7 +16,7 @@ class SectionMenu {
     $sectionMenuItem.on('mouseover', this.handleSectionMenuItemMouseOver);
     $sectionMenuItem.on('mouseout', this.handleSectionMenuItemMouseOut);
     $('.js-section-menu-item-link').on('click', this.handleSectionMenuClick);
-    // $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
+    $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
 
     $('.js-section-menu-item-link:not(:has(.icon:not(.is-external)))').each(function() {
       $(this).on('click', function (e) {
@@ -32,15 +33,56 @@ class SectionMenu {
     if(isMobile() && iconEl.length > 0) {
       return;
     }
+    this.getSectionMenuAnalyticsValue(e);
     window.open($this.data('url-link'), $this.attr('target'));
   }
 
-  // handleSubSectionMenuClick =(e) => {
-  //   e.preventDefault();
-  //   const $target = $(e.target);
-  //   const $this = $target.closest('.js-sub-menu-navigation-link-item');
-  //   window.open($this.attr('href'), $this.attr('target'));
-  // }
+  handleSubSectionMenuClick =(e) => {
+    e.preventDefault();
+    const $target = $(e.target);
+    const $this = $target.closest('.js-sub-menu-navigation-link-item');
+    const parentLink = $this.closest('.js-section-menu-navigation-Link');
+    this.getSubSectionAnalyticsValue(e,parentLink);
+    window.open($this.attr('href'), $this.attr('target'));
+  }
+
+
+  getSectionMenuAnalyticsValue = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-section-menu-item-link');
+    const navigationLinkName = $this.data('link-name');
+    const navigationSection = $this.data('link-section');
+    this.trackAnalytics({
+      navigationLinkName,
+      navigationSection
+    });
+  }
+
+  getSubSectionAnalyticsValue = (e,parentLink) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-sub-menu-navigation-link-item');
+    const navigationLinkName = `${parentLink.find('a.js-section-menu-item-link').data('link-name')}:${$this.data('link-text')}`;
+    const navigationSection = $this.data('link-section');
+    this.trackAnalytics({
+      navigationLinkName,
+      navigationSection
+    });
+  }
+
+  trackAnalytics = (trackingObj) => {
+    const eventObj = {
+      eventType: 'navigation click',
+      event: 'Navigation'
+    };
+    trackAnalytics(
+      trackingObj,
+      'navigation',
+      'navigationClick',
+      undefined,
+      false,
+      eventObj
+    );
+  }
 
   handleSectionMenuItemMouseOver = (e) => {
     const $target = $(e.target);
