@@ -15,6 +15,10 @@ public class SearchResultBean {
     private String size;
     
     private String date;
+    
+    private String assetType;
+    
+    private String assetExtension;
 
     public String getTitle() {
         return title;
@@ -71,5 +75,23 @@ public class SearchResultBean {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getAssetType() {
+        return assetType;
+    }
+
+    public void setAssetType(String assetType) {
+        this.assetType = assetType;
+    }
+
+    public String getAssetExtension() {
+        return assetExtension;
+    }
+
+    public void setAssetExtension(String assetExtension) {
+        this.assetExtension = assetExtension;
+    }
+    
+    
 
 }

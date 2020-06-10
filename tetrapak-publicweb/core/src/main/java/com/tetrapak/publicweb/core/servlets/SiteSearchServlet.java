@@ -3,9 +3,11 @@ package com.tetrapak.publicweb.core.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -19,6 +21,7 @@ import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -54,6 +57,10 @@ import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SiteSearchServlet.
+ */
 @Component(
         service = Servlet.class,
         property = { Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Search service",
@@ -61,48 +68,80 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                 "sling.servlet.resourceTypes=" + "publicweb/components/content/searchresults" })
 @Designate(ocd = SiteSearchServlet.Config.class)
 public class SiteSearchServlet extends SlingSafeMethodsServlet {
+    
+    /**
+     * The Interface Config.
+     */
     @ObjectClassDefinition(
             name = "Tetra Pak - Public Web Search Servlet",
             description = "Tetra Pak - Public Web Search servlet")
     public static @interface Config {
 
+        /**
+         * No of results per hit.
+         *
+         * @return the int
+         */
         @AttributeDefinition(
                 name = "Search Root Path Variable Name",
                 description = "Name of variable being sent by Front end to the servlet, that tells about the search root path.")
         int noOfResultsPerHit() default 10;
     }
 
+    /** The Constant GROUP. */
     private static final String GROUP = "_group.";
 
+    /** The Constant GROUP_2. */
     private static final String GROUP_2 = "2_group.";
 
+    /** The Constant GROUP_3. */
     private static final String GROUP_3 = "3_group.";
-    
+
+    /** The Constant GROUP_TYPE. */
     private static final String GROUP_TYPE = "_group.type";
-    
+
+    /** The Constant GROUP_PATH. */
     private static final String GROUP_PATH = "_group.path";
 
+    /** The Constant GROUP_PROPERTY. */
+    private static final String GROUP_PROPERTY = "_group.1_property";
+
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 5220677543550980049L;
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(SiteSearchServlet.class);
 
+    /** The resolver factory. */
     @Reference
     private transient ResourceResolverFactory resolverFactory;
 
+    /** The search results model. */
     private transient SearchResultsModel searchResultsModel;
 
+    /** The query builder. */
     @Reference
     private transient QueryBuilder queryBuilder;
 
+    /** The xss API. */
     @Reference
     private transient XSSAPI xssAPI;
 
+    /** The session. */
     private transient Session session;
 
+    /** The search bean. */
     private transient SearchBean searchBean;
 
+    /** The no of results per hit. */
     private int noOfResultsPerHit;
 
+    /**
+     * Do get.
+     *
+     * @param request the request
+     * @param response the response
+     */
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.info("Executing doGet method.");
@@ -140,7 +179,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 for (String type : contentType) {
                     if (type.equalsIgnoreCase("media")) {
                         index = getMediaResults(map, index);
-
                     } else {
                         index = setContentTypeValToMap(type, map, index);
                     }
@@ -176,8 +214,15 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
     }
 
+    /**
+     * Gets the media results.
+     *
+     * @param map the map
+     * @param index the index
+     * @return the media results
+     */
     private int getMediaResults(Map<String, String> map, int index) {
-        List<SearchPathModel> structure = searchResultsModel.getStructureMap().get("media");
+        List<SearchPathModel> structure = searchResultsModel.getMediaStructureList();
         if (!CollectionUtils.isEmpty(structure)) {
             for (SearchPathModel path : structure) {
                 map.put("1" + GROUP + index + GROUP_TYPE, "dam:Asset");
@@ -193,27 +238,94 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Method to create a query and execute to get the results.
      *
-     * @param fulltextSearchTerm
-     * @param map
-     * @param index2
-     * @param searchRootPath
+     * @param type the type
+     * @param map the map
+     * @param index the index
      * @return List<SearchResultBean>
      */
     public int setContentTypeValToMap(String type, Map<String, String> map, int index) {
         LOGGER.info("Executing setContentTypeValToMap method.");
-        List<SearchPathModel> structure = searchResultsModel.getStructureMap().get(type);
+        List<SearchPathModel> structure = getStructureList(type.toLowerCase());
+        List<SearchPathModel> templates = getTemplateList(type.toLowerCase());
 
         if (!CollectionUtils.isEmpty(structure)) {
             for (SearchPathModel path : structure) {
                 map.put("1" + GROUP + index + GROUP_TYPE, "cq:Page");
                 String pathKey = "1" + GROUP + index + GROUP_PATH;
+                String templatekey = "1" + GROUP + index + GROUP_PROPERTY;
                 map.put(pathKey, path.getPath());
+                if (!CollectionUtils.isEmpty(templates)) {
+                    map.put(templatekey, "cq:template");
+                    int templateIndex = 1;
+                    for (SearchPathModel template : templates) {
+                        map.put(templatekey + "." + templateIndex + "_value", template.getPath());
+                    }
+                }
                 index++;
             }
         }
         return index;
     }
+    
+    /**
+     * Gets the structure list.
+     *
+     * @param type the type
+     * @return the structure list
+     */
+    private List<SearchPathModel> getStructureList(String type){
+        List<SearchPathModel> structureList = new ArrayList<>();
+        switch (type) {
+            case "news":
+                structureList = searchResultsModel.getNewsStructureList();
+                break;
+            case "events":
+                structureList = searchResultsModel.getEventStructureList();
+                break;
+            case "products":
+                structureList = searchResultsModel.getProductStructureList();
+                break;
+            case "cases":
+                structureList = searchResultsModel.getCaseStructureList();
+                break;
+            default:
+                LOGGER.debug("Not a valid content type");
+        }
+       return structureList;
+    }
+    
+    /**
+     * Gets the template list.
+     *
+     * @param type the type
+     * @return the template list
+     */
+    private List<SearchPathModel> getTemplateList(String type){
+        List<SearchPathModel> templateList = new ArrayList<>();
+        switch (type) {
+            case "news":
+                templateList = searchResultsModel.getNewsTemplateList();
+                break;
+            case "events":
+                templateList = searchResultsModel.getEventTemplateList();
+                break;
+            case "products":
+                templateList = searchResultsModel.getProductTemplateList();
+                break;
+            case "cases":
+                templateList = searchResultsModel.getCaseTemplateList();
+                break;
+            default:
+                LOGGER.debug("No template available");
+        }
+       return templateList;
+    }
 
+    /**
+     * Sets the search bean.
+     *
+     * @param map the map
+     */
     private void setSearchBean(Map<String, String> map) {
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
         SearchResult result = query.getResult();
@@ -238,6 +350,13 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         searchBean.setSearchResults(resource);
     }
 
+    /**
+     * Sets the common map.
+     *
+     * @param fulltextSearchTerm the fulltext search term
+     * @param map the map
+     * @param pageParam the page param
+     */
     private void setCommonMap(String fulltextSearchTerm, Map<String, String> map, int pageParam) {
         if (StringUtils.isNotBlank(fulltextSearchTerm)) {
             map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
@@ -250,9 +369,15 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         map.put(GROUP_3 + "property.value", "false");
         map.put(GROUP_3 + "property.operation", "exists");
         map.put("p.limit", String.valueOf(noOfResultsPerHit));
-        map.put("p.offset", String.valueOf(pageParam));
+        map.put("p.offset", String.valueOf((pageParam - 1) * noOfResultsPerHit + 1));
     }
 
+    /**
+     * Sets the themes map.
+     *
+     * @param themes the themes
+     * @param map the map
+     */
     private void setThemesMap(String[] themes, Map<String, String> map) {
         if (themes != null && themes.length > 0) {
             map.put("2_group.p.or", "true");
@@ -275,10 +400,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Method to set search result item with all data.
      *
-     * @param hit
-     * @param type
-     * @return
-     * @throws RepositoryException
+     * @param hit the hit
+     * @return the search result bean
+     * @throws RepositoryException the repository exception
      */
     private SearchResultBean setSearchResultItemData(Hit hit) throws RepositoryException {
 
@@ -295,7 +419,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 searchResultItem.setType("MEDIA");
                 ValueMap assetMetadataProperties = ResourceUtil.getValueMap(metadataResource);
                 searchResultItem.setDescription(assetMetadataProperties.get("dc:description", StringUtils.EMPTY));
-                searchResultItem.setSize(assetMetadataProperties.get("dam:size", StringUtils.EMPTY));
+                searchResultItem.setSize(FileUtils.byteCountToDisplaySize(BigInteger
+                        .valueOf(Integer.valueOf(assetMetadataProperties.get("dam:size", StringUtils.EMPTY)))));
+                searchResultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf('.') + 1));
+                searchResultItem.setAssetType(getMediaType(assetMetadataProperties));
+
             } else {
                 searchResultItem.setDescription(hit.getProperties().get("jcr:description", StringUtils.EMPTY));
                 if (Objects.nonNull(hit.getProperties().get("cq:lastReplicated"))) {
@@ -307,11 +435,42 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         return searchResultItem;
     }
 
+    /**
+     * Gets the media type.
+     *
+     * @param assetMetadataProperties the asset metadata properties
+     * @return the media type
+     */
+    private String getMediaType(ValueMap assetMetadataProperties) {
+        if (assetMetadataProperties.containsKey("dc:format")) {
+            String dcFormat = assetMetadataProperties.get("dc:format", StringUtils.EMPTY);
+            if (dcFormat.contains("image")) {
+                return "image";
+            } else if (dcFormat.contains("video")) {
+                return "video";
+            } else {
+                return "document";
+            }
+        }
+        return StringUtils.EMPTY;
+    }
+
+    /**
+     * Format date.
+     *
+     * @param date the date
+     * @return the string
+     */
     public String formatDate(Date date) {
         final DateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         return formatter.format(date);
     }
 
+    /**
+     * Activate.
+     *
+     * @param config the config
+     */
     @Activate
     protected void activate(final Config config) {
         this.noOfResultsPerHit = config.noOfResultsPerHit();

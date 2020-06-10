@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -17,9 +15,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.day.cq.wcm.api.Page;
-import com.tetrapak.publicweb.core.models.multifield.ContentTypeModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
 import com.tetrapak.publicweb.core.models.multifield.ThemeModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -37,23 +33,19 @@ public class SearchResultsModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    /** The current page. */
     @Inject
     private Page currentPage;
 
+    /** The resource. */
     @Self
     private Resource resource;
 
-    /** The template map. */
-    private Map<String, List<SearchPathModel>> templateMap = new LinkedHashMap<>();
-
-    /** The template map. */
-    private Map<String, List<SearchPathModel>> structureMap = new LinkedHashMap<>();
-    /** The theme list. */
-    private List<ThemeModel> themeList;
-    private List<ContentTypeModel> contentTypeList;
-    private List<SearchPathModel> gatedContentList;
-
+    /** The theme map. */
     private Map<String, String> themeMap = new LinkedHashMap<>();
+    
+    /** The configuration model. */
+    private SearchConfigModel configurationModel = new SearchConfigModel();
 
     /**
      * Inits the.
@@ -65,31 +57,8 @@ public class SearchResultsModel {
         final String path = rootPath + "/jcr:content/root/responsivegrid/searchconfig";
         final Resource searchConfigResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(searchConfigResource)) {
-            final SearchConfigModel configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);
-            if (Objects.nonNull(configurationModel)) {
-                gatedContentList = configurationModel.getGatedContentList();
-                contentTypeList = configurationModel.getContentTypeList();
-                for (ContentTypeModel contentTypeModel : contentTypeList) {
-                    templateMap.put(contentTypeModel.getKey(), contentTypeModel.getTemplateList());
-                    structureMap.put(contentTypeModel.getKey(), contentTypeModel.getStructureList());
-                }
-                themeList = configurationModel.getThemeList();
-                themeMap = themeList.stream().collect(Collectors.toMap(ThemeModel::getThemeLabel, ThemeModel::getTag));
-            }
+            configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);             
         }
-    }
-
-    /**
-     * Gets the template map.
-     *
-     * @return the template map
-     */
-    public Map<String, List<SearchPathModel>> getTemplateMap() {
-        return templateMap;
-    }
-
-    public Map<String, List<SearchPathModel>> getStructureMap() {
-        return structureMap;
     }
 
     /**
@@ -98,9 +67,116 @@ public class SearchResultsModel {
      * @return the theme list
      */
     public List<ThemeModel> getThemeList() {
-        return themeList;
+        return configurationModel.getThemeList();
     }
 
+    /**
+     * Gets the product template list.
+     *
+     * @return the product template list
+     */
+    public List<SearchPathModel> getProductTemplateList() {
+        return configurationModel.getProductTemplateList();
+    }
+
+
+
+    /**
+     * Gets the product structure list.
+     *
+     * @return the product structure list
+     */
+    public List<SearchPathModel> getProductStructureList() {
+        return configurationModel.getProductStructureList();
+    }
+
+
+
+    /**
+     * Gets the news template list.
+     *
+     * @return the news template list
+     */
+    public List<SearchPathModel> getNewsTemplateList() {
+        return configurationModel.getNewsTemplateList();
+    }
+
+
+
+    /**
+     * Gets the news structure list.
+     *
+     * @return the news structure list
+     */
+    public List<SearchPathModel> getNewsStructureList() {
+        return configurationModel.getNewsStructureList();
+    }
+
+
+
+    /**
+     * Gets the event template list.
+     *
+     * @return the event template list
+     */
+    public List<SearchPathModel> getEventTemplateList() {
+        return configurationModel.getEventTemplateList();
+    }
+
+
+
+    /**
+     * Gets the event structure list.
+     *
+     * @return the event structure list
+     */
+    public List<SearchPathModel> getEventStructureList() {
+        return configurationModel.getEventStructureList();
+    }
+
+
+
+    /**
+     * Gets the case template list.
+     *
+     * @return the case template list
+     */
+    public List<SearchPathModel> getCaseTemplateList() {
+        return configurationModel.getCaseTemplateList();
+    }
+
+
+
+    /**
+     * Gets the case structure list.
+     *
+     * @return the case structure list
+     */
+    public List<SearchPathModel> getCaseStructureList() {
+        return configurationModel.getCaseStructureList();
+    }
+
+
+
+    /**
+     * Gets the media structure list.
+     *
+     * @return the media structure list
+     */
+    public List<SearchPathModel> getMediaStructureList() {
+        return configurationModel.getMediaStructureList();
+    }
+
+
+    /**
+     * Gets the gated content list.
+     *
+     * @return the gated content list
+     */
+    public List<SearchPathModel> getGatedContentList() {
+        return configurationModel.getGatedContentList();
+    }
+    
     /**
      * Gets the servlet path.
      *
@@ -110,18 +186,23 @@ public class SearchResultsModel {
         return request.getResource().getPath();
     }
 
-    public List<ContentTypeModel> getContentTypeList() {
-        return contentTypeList;
-    }
-
-    public List<SearchPathModel> getGatedContentList() {
-        return gatedContentList;
-    }
-
+    /**
+     * Gets the theme map.
+     *
+     * @return the theme map
+     */
     public Map<String, String> getThemeMap() {
+        if(Objects.nonNull(configurationModel) && getThemeList() != null && !getThemeList().isEmpty()) {
+            themeMap = getThemeList().stream().collect(Collectors.toMap(ThemeModel::getThemeLabel, ThemeModel::getTag));
+        }
         return themeMap;
     }
 
+    /**
+     * Gets the current page.
+     *
+     * @return the current page
+     */
     public Page getCurrentPage() {
         return currentPage;
     }
