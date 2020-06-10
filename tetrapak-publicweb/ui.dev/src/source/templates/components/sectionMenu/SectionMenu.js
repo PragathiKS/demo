@@ -55,7 +55,7 @@ class SectionMenu {
     this.trackAnalytics({
       navigationLinkName,
       navigationSection
-    });
+    },$this);
   }
 
   getSubSectionAnalyticsValue = (e,parentLink) => {
@@ -66,21 +66,37 @@ class SectionMenu {
     this.trackAnalytics({
       navigationLinkName,
       navigationSection
-    });
+    },$this);
   }
 
-  trackAnalytics = (trackingObj) => {
+  trackAnalytics = (trackingObj,$this) => {
     const eventObj = {
       eventType: 'navigation click',
       event: 'Navigation'
     };
+
+    let linkClickObject = null;
+    const linkName = $this.data('link-title');
+
+    const linkType = $this.find('i.is-external').length
+      ? 'external'
+      : 'internal';
+
+    linkClickObject = {
+      linkType,
+      linkSection: 'Hyperlink Click',
+      linkParentTitle: '',
+      linkName
+    };
+
     trackAnalytics(
       trackingObj,
       'navigation',
       'navigationClick',
       undefined,
       false,
-      eventObj
+      eventObj,
+      linkClickObject
     );
   }
 

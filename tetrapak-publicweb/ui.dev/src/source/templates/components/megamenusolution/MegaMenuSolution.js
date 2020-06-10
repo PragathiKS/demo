@@ -37,6 +37,7 @@ class MegaMenuSolution {
     const $this = $target.closest('.js-navigation-Link');
     const navigationSection = $this.data('link-section');
     const navigationLinkName = $this.data('link-name');
+    const linkName = $this.data('link-title');
 
     let linkClickObject = null;
 
@@ -45,18 +46,14 @@ class MegaMenuSolution {
       navigationSection
     };
 
-    if ($this.find('i.icon').length) {
-      const linkType = $this.find('i.icon').hasClass('icon-Union')
-        ? 'external'
-        : 'internal';
+    const linkType = ($this.find('i.icon') && $this.find('i.icon').hasClass('icon-Union')) ? 'external' : 'internal';
 
-      linkClickObject = {
-        linkType,
-        linkSection: '',
-        linkParentTitle: '',
-        linkName: ''
-      };
-    }
+    linkClickObject = {
+      linkType,
+      linkSection: 'hyperlink click',
+      linkParentTitle: '',
+      linkName
+    };
 
     const eventObj = {
       eventType: 'navigation click',

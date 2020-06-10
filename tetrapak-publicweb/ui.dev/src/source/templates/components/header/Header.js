@@ -30,7 +30,7 @@ class Header {
     this.cache.$overlay = $('.js-pw-overlay');
   }
 
-  // 
+  //
 
   bindEvents() {
     const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker} = this.cache;
@@ -51,7 +51,7 @@ class Header {
       this.trackLanguageSelector(e);
     });
 
-  
+
   }
 
   trackLanguageSelector = e => {
@@ -184,7 +184,7 @@ class Header {
 
     const linkClickTrackingobj = {
       linkType,
-      linkSection: 'Header Navigation',
+      linkSection: 'Hyperlink Click',
       linkParentTitle:'',
       linkName: navigationLinkName
     };
