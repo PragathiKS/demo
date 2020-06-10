@@ -1,7 +1,14 @@
 .tp-pagination {
     @include margin-top($margin-md);
-    @include margin-left(-4px);
-    @include margin-right(-4px);
+    display: flex;
+
+    &.center-align {
+        justify-content: center;
+    }
+
+    &.right-align {
+        justify-content: flex-end;
+    }
 
     @media #{$desktop} {
         @include margin-top($margin-l);
@@ -9,5 +16,9 @@
 
     &__ellipsis {
         @include padding(3px 3px 0);
+    }
+
+    &__previous {
+        transform: rotate(180deg);
     }
 }

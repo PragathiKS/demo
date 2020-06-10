@@ -1,0 +1,246 @@
+.pw-search-results {
+    @include margin-bottom($margin-l);
+
+    @media #{$tablet-large} {
+        @include margin-bottom($margin-xxxl);
+    }
+    .margin-auto {
+        margin: auto;
+    }
+    .tp-pagination {
+        @include margin-top($margin-l);
+        @media #{$desktop} {
+            @include margin-top($margin-xxxl);
+        }
+        &__btn,
+        &__text {
+            @include margin-left($margin-sm);
+        }
+        &__previous + button {
+            @include margin-left($margin-l);
+        }
+        &__btn.active {
+            border: 1px solid $color-congress-blue;
+        }
+        &__next {
+            @include margin-left($margin-l);
+        }
+        &__previous,
+        &__next {
+            @include padding(0);
+        }
+    }
+    .tpatom-subheading {
+        @include margin-bottom($margin-sm);
+        display: block;
+        color: $color-boulder;
+        text-transform: uppercase;
+        font-family: $font-bold;
+    }
+
+    &__search-bar {
+        @include margin-bottom($margin-l);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-xxxl);
+        }
+    }
+    &__filter-container {
+        @include margin-bottom($margin-l);
+        @media #{$desktop} {
+            @include margin-bottom($margin-xxxl);
+        }
+        &__heading {
+            @include padding-bottom($margin-md);
+            color: $color-congress-blue;
+            border-bottom: 1px solid $color-mercury;
+            font-family: $font-light;
+            @media #{$desktop} {
+                @include padding-bottom($margin-l);
+            }
+            label {
+                @include margin-bottom(0);
+                cursor: pointer;
+            }
+
+            i {
+                font-size: 16px;
+            }
+        }
+        &__count {
+            @include padding-bottom($padding-l);
+            border-bottom: 1px solid $color-mercury;
+            @media #{$desktop} {
+                @include padding-bottom($padding-xxxl);
+            }
+            h1 {
+                @include padding-top($padding-l);
+                font-size: 24px;
+                @media #{$desktop} {
+                    @include padding-top($padding-xxxl);
+                    font-size: 42px;
+                }
+            }
+        }
+        &__filter-chips {
+            @include padding-top($padding-l);
+            display: flex;
+            flex-direction: row;
+            .filter-tag {
+                @include padding(8px 16px);
+                border: 2px solid $color-jordy-blue;
+                background: $color-white;
+                box-sizing: border-box;
+                border-radius: 100px;
+                &:not(:last-child) {
+                    @include margin-right(8px);
+                }
+                i {
+                    @include margin-left(7px);
+                    font-size: 8px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    &__main-container {
+        @include border-radius($border-radius);
+        display: block;
+        background-color: $color-white;
+    }
+
+    &__title,
+    &__filters,
+    &__tabs {
+        @include margin-bottom($margin-l);
+        @media #{$tablet-large} {
+            @include margin-bottom(38px);
+        }
+    }
+
+    &__tabs {
+        display: flex;
+    }
+
+    &__button-group {
+        @include margin-top($margin-l);
+    }
+
+    &__filters {
+        @include border-radius($border-radius);
+        display: none;
+        background-color: $color-wild-sand;
+        width: 100%;
+        .tpatom-subheading {
+            @media #{$desktop} {
+                @include padding-bottom($margin-md);
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+
+        &__content-type {
+            @include margin-bottom(16px);
+            @media #{$desktop} {
+                @include margin-bottom(0);
+                @include padding-right($padding-xxxl);
+            }
+        }
+
+        // .tpatom-checkbox {
+        //     @media #{$desktop} {
+        //         max-width: 160px;
+        //     }
+        // }
+    }
+
+    &__results {
+        flex: 1;
+        width: 100%;
+    }
+
+    &__results-list {
+        @media #{$tablet-large} {
+            @include padding-right(75px);
+        }
+
+        &__item {
+            @include padding-bottom($padding-l);
+            display: flex;
+            flex-direction: column-reverse;
+            @media #{$desktop} {
+                @include padding-bottom($padding-xxxl);
+                flex-direction: row;
+            }
+            .pw-media-container {
+                text-align: center;
+                @media #{$desktop} {
+                    @include margin-right(16px);
+                    width: 145px;
+                }
+                &__size {
+                    color: $color-congress-blue;
+                    text-align: left;
+                }
+            }
+
+            &:first-child {
+                @include padding-top($padding-zero);
+            }
+
+            &:last-child {
+                border-bottom: 1px solid $color-mercury;
+            }
+
+            &__description {
+                @include padding-top($padding-sm);
+            }
+
+            &__breadcrumb {
+                @include padding-bottom(10px);
+                display: block;
+            }
+
+            &__title-link {
+                color: $color-congress-blue;
+                span {
+                    @include padding-top($padding-sm);
+                }
+                span i {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .tpatom-checkbox {
+        &__icon {
+            background-color: $color-white;
+        }
+    }
+}
+
+.block-with-text {
+    overflow: hidden;
+    position: relative;
+    max-height: 54px;
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &::before {
+        content: '';
+        float: left;
+        width: 5px;
+        height: 54px;
+    }
+    &::after {
+        content: '\02026';
+        float: right;
+        position: relative;
+        top: -25px;
+        width: 3em;
+        margin-left: -3em;
+        padding-right: 5px;
+        text-align: right;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), $color-white 50%, $color-white);
+    }
+}

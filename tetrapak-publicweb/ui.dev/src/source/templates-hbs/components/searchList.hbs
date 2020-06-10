@@ -1,19 +1,32 @@
 {{#unless this.noFiltersMatches}}
-  {{#each this}}
-    <div class="pw-search-results__results-list__item">
-    <span class="pw-search-results__results-list__item__breadcrumb">
-      {{#each this.breadcrumbMap}}
-        {{#unless @last}} {{@key}} > {{/unless}}{{#if @last}} {{@key}} {{/if}}
-      {{/each}}
+{{#each this}}
+<div class="pw-search-results__results-list__item">
+  {{#if this.thumbnail}}
+  <div class="pw-media-container">
+    <img class="pw-product-card-grid__item__image" src="{{this.thumbnail}}" alt="{{this.title}}">
+    {{#if this.size}}
+    <span class="d-block d-lg-none pw-media-container__size">{{this.size}} <i class="icon-Util"></i></span>
+    {{/if}}
+  </div>
+  {{/if}}
+  <div>
+    <span class="tpatom-subheading tpatom-heading--small">
+      {{this.type}} {{#if this.date}}, {{this.date}} {{/if}}
     </span>
-      <a href="{{this.path}}" class="pw-search-results__results-list__item__title-link">
-        <h4 class="tpatom-heading tpatom-heading--small-flat">{{this.title}}</h4>
-      </a>
-      {{#if this.description}} <p class="pw-search-results__results-list__item__description">{{this.description}}</p> {{/if}}
-    </div>
-  {{/each}}
+    <a href="{{this.path}}" target="_blank" class="pw-search-results__results-list__item__title-link">
+      <h3 class="tpatom-heading tpatom-heading--small-flat">{{this.title}}</h3>
+      {{#if this.size}}
+      <span class="d-none d-lg-block">{{this.size}} <i class="icon-Util"></i></span>
+      {{/if}}
+    </a>
+    {{#if this.description}}
+    <p class="pw-search-results__results-list__item__description">{{this.description}}</p>
+    {{/if}}
+  </div>
+</div>
+{{/each}}
 {{/unless}}
 {{#if this.noFiltersMatches}}
-  {{this.noFiltersMatches}}
+{{this.noFiltersMatches}}
 
 {{/if}}

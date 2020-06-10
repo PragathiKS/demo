@@ -1,0 +1,19 @@
+<sly data-sly-template.searchbar_template="${@ id, inputType, placeholder, inputClass}">
+    <div class="pw-search-bar">
+        <div class="pw-search-bar__input">
+            <sly data-sly-use.searchInput="/apps/publicweb/components/atoms/input/input-template.html"
+                data-sly-call="${searchInput.input_template @ id=id, inputType=inputType, placeholder=placeholder, inputClass=inputClass}" />
+        </div>
+        <div class="pw-search-bar__icons">
+            <div class="pw-search-bar__icons__close">
+                <span class="js-search-close close-icon-cont">
+                    <i class="icon-Close_pw"></i>
+                </span>
+                <span class="horizontal-bar"></span>
+            </div>
+            <div class="pw-search-bar__icons__search">
+                <i class="icon-Search_pw"></i>
+            </div>
+        </div>
+    </div>
+</sly>
