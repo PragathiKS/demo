@@ -428,7 +428,12 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private SearchResultBean setSearchResultItemData(Hit hit) throws RepositoryException {
 
         SearchResultBean searchResultItem = new SearchResultBean();
-        searchResultItem.setType(getProductContentType(hit.getProperties().get("cq:template").toString()));
+        if(hit.getProperties().containsKey("cq:template")) {
+           searchResultItem.setType(getProductContentType(hit.getProperties().get("cq:template").toString()));
+        }
+        else {
+            searchResultItem.setType("pw.searchResults.media");
+        }
         searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
         searchResultItem.setTitle(hit.getTitle());
         Resource resource = hit.getResource();
@@ -437,7 +442,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             // Add Metadata properties
             Resource metadataResource = resource.getChild("jcr:content/metadata");
             if (Objects.nonNull(metadataResource)) {
-                searchResultItem.setType("pw.searchResults.media");
+                searchResultItem.setType("pw.searchResults.contentPage");
                 ValueMap assetMetadataProperties = ResourceUtil.getValueMap(metadataResource);
                 searchResultItem.setDescription(assetMetadataProperties.get("dc:description", StringUtils.EMPTY));
                 searchResultItem.setSize(FileUtils.byteCountToDisplaySize(BigInteger
