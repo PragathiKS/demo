@@ -133,9 +133,7 @@ class Softconversion {
 
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
           $('div.' + fieldName).text(newSafeValues);
-          //$('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
-            //requestPayload[fieldName] = $(this).val();
             requestPayload[fieldName] = newSafeValues;
             
           }
