@@ -386,6 +386,7 @@
     color: $color-jordy-blue;
 }
 .pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw {
+    display: none;
     margin-left: $margin-sm;
     vertical-align: middle;
     @media #{$desktop} {
