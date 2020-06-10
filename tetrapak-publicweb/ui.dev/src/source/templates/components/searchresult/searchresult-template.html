@@ -15,7 +15,8 @@
                                 <label>Filters</label>
                             </span>
                         </div>
-                        <div class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular d-none">
+                        <div
+                            class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular d-none">
                             <div class="row no-gutters">
                                 <div class="col-lg-6">
                                     <div class="pw-search-results__filters__content-type">
@@ -62,20 +63,25 @@
                                     data-sly-call="${nextButton.tabbutton_template @ btnText='ok', btnType='button', customClasses='js-apply-filter'}" />
                             </div>
                         </div>
-                        <div class="pw-search-results__filter-container__count">
+                        <div class="pw-search-results__filter-container__count js-filter-title">
                             <div class="js-filter-container-chips d-none">
                                 <!-- Loading filter tags/chips here -->
                             </div>
                             <div data-sly-test="${data.resultsText}" class="js-pw-search-results__title"
                                 data-results-title="${data.resultsText @ i18n}"
-                                data-no-results-text="${'nosearchresults' @ i18n}">
+                                data-no-results-text="${'nosearchresults' @ i18n}"
+                                data-empty-field="${'Please try again to enter a search text in the above field' @ i18n}">
                             </div>
                         </div>
                     </div>
                     <div class="pw-search-results__main-container">
+                        <div class="pw-search-results__spinner text-center d-none">
+                            <sly data-sly-use.spinner="/apps/publicweb/components/atoms/spinner/spinner-template.html"
+                                data-sly-call="${spinner.spinner_template}" />
+                        </div>
                         <div class="pw-search-results__results">
                             <div class="pw-search-results__results-list js-pw-search-results__results-list"></div>
-                            <div class="tp-pagination js-pagination d-none center-align" aria-live="polite"></div>
+                            <div class="js-pagination d-none" aria-live="polite"></div>
                         </div>
                     </div>
                 </div>

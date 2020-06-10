@@ -8,9 +8,14 @@ class TextImage {
   cache = {};
   initCache() {
     this.cache.$textImageLink = this.root.find('.js-textImage-analytics');
+    this.cache.componentName = this.root.find('#componentName').val();
   }
   bindEvents() {
     this.cache.$textImageLink.on('click', this.trackAnalytics);
+
+    this.root.find('.js-softconversion-pw').on('click', () => {
+      $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
+    });
   }
 
   trackAnalytics = e => {

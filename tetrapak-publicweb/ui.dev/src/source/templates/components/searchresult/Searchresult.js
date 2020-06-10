@@ -23,6 +23,7 @@ class SearchResults {
     this.cache.$searchInput1 = $('.js-pw-search-results-filter-check-1', this.root);
     this.cache.servletPath = this.root.data('servlet');
     this.cache.$filterRemoveBtn = this.root.find('.js-filter-remove');
+    this.cache.$spinner = this.root.find('.pw-search-results__spinner');
     this.cache.results = [];
     this.cache.queryParams = '';
     this.cache.resultsPerPage = 10;
@@ -30,6 +31,7 @@ class SearchResults {
     this.cache.$searchResultsTitle = $('.js-pw-search-results__title', this.root);
     this.cache.resultsTitle = this.cache.$searchResultsTitle.data('resultsTitle');
     this.cache.noResultsText = this.cache.$searchResultsTitle.data('noResultsText');
+    this.cache.emptyFieldText = this.cache.$searchResultsTitle.data('emptyField');
 
     this.cache.$pagiantion = $('.js-pagination', this.root);
     this.cache.searchTerm = '';
@@ -71,17 +73,19 @@ class SearchResults {
       const searchVal = $input.val().trim();
       (searchVal !== '') ? $('.pw-search-bar__icons__close').addClass('d-flex') : $('.pw-search-bar__icons__close').removeClass('d-flex');
       if (e.keyCode === 13) {
-        $this.pushIntoUrl();
         if (searchVal === '') {
           filterObj.filterTags['searchTerm'].pop();
           if ((filterObj.filterTags.contentType.length === 0) && (filterObj.filterTags.theme.length === 0)) {
-            this.renderTitle('', this.cache.noResultsText, '');
+            this.renderTitle('', this.cache.emptyFieldText, '', true);
             this.cache.$resultsList.empty();
           } else {
+            filterObj.filterTags.searchTerm[0] = searchVal;
+            $this.pushIntoUrl();
             this.search();
           }
         } else {
           filterObj.filterTags['searchTerm'][0] = searchVal;
+          $this.pushIntoUrl();
           this.search();
         }
       }
@@ -114,22 +118,8 @@ class SearchResults {
     this.applyFilters(false);
   }
 
-  filterData = (filters) => {
-    this.cache.filteredData = filters.tabValue === 'all' ? this.cache.results : this.cache.results.filter(obj => obj.productType === filters.tabValue);
-    if (filters.checks.length > 0) {
-      this.cache.filteredData = this.cache.filteredData.filter((obj) => {
-        if (obj.tagsMap) {
-          const match = filters.checks.every(elem => Object.values(obj.tagsMap).indexOf(elem) > -1);
-          if (match) {
-            return obj;
-          }
-        }
-      });
-    }
-    return this.cache.filteredData;
-  };
-
   search = () => {
+    this.cache.$spinner.removeClass('d-none');
     const { searchTerm } = deparam(window.location.search);
     let queryParams = this.cache.queryParams;
     queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
@@ -142,6 +132,7 @@ class SearchResults {
       contentType: 'application/json'
     }).done((data) => {
       console.log('data>>>', data); //eslint-disable-line
+      this.cache.$spinner.addClass('d-none');
       if (data.totalResults > 0) {
         this.cache.results = data.searchResults;
         this.cache.totalPages = data.totalPages;
@@ -160,17 +151,23 @@ class SearchResults {
         this.cache.$pagiantion.addClass('d-none');
       }
     }).fail(() => {
+      this.cache.$spinner.addClass('d-none');
       this.renderTitle(null, this.cache.noResultsText, null);
       this.cache.$resultsList.empty();
     });
   };
 
-  renderTitle = (resultsCount, searchTitle, searchTerm) => {
-    console.log('render title>>>>>', resultsCount, searchTitle, searchTerm); //eslint-disable-line
+  renderTitle = (resultsCount, searchTitle, searchTerm, emptySearch = false) => {
+    if(resultsCount) {
+      $('.js-filter-title', this.root).removeClass('no-border');
+    } else {
+      $('.js-filter-title', this.root).addClass('no-border');
+    }
     const data = {
       resultsCount: resultsCount || '',
       searchTitle: searchTitle || 'No results were found',
-      searchTerm: searchTerm || ''
+      searchTerm: searchTerm || '',
+      emptySearch
     };
     render.fn({
       template: 'searchResultsTitle',
@@ -182,25 +179,10 @@ class SearchResults {
   renderResults = (data) => {
     const noResultsText = this.cache.noResultsText;
     if (data.length > 0) {
-      // this.renderTitle(data.length, this.cache.resultsTitle, searchTerm[0]);
       render.fn({
         template: 'searchList',
         data: data,
         target: this.cache.$resultsList
-        // beforeRender(data) {
-        //   if (data.length > resultsPerPage) {
-        //     const totalPages = Math.ceil((+data.length) / resultsPerPage);
-        //     this.data = data.slice(((currentPage - 1) * resultsPerPage), ((currentPage - 1) * resultsPerPage + resultsPerPage));
-        //     console.log('this data render result>>>', this.data); //eslint-disable-line
-        //     pagination.trigger('searchresults.paginate', [{
-        //       currentPage,
-        //       totalPages
-        //     }]);
-        //   } else {
-        //     this.data = data.slice(0, resultsPerPage);
-        //     pagination.addClass('d-none');
-        //   }
-        // }
       });
     } else {
       this.renderTitle('', noResultsText, '');
@@ -235,7 +217,6 @@ class SearchResults {
   extractQueryParams = () => {
     const params = deparam(window.location.search);
     this.cache.$searchInput.val(params['searchTerm']);
-    console.log('extract query>>>>', params); //eslint-disable-line
     this.cache.queryParams = window.location.search;
     Object.keys(params).map(key => {
       if (Array.isArray(params[key])) {
@@ -243,7 +224,7 @@ class SearchResults {
       } else if ((typeof params[key] === 'string') && params[key].indexOf(',') > -1) {
         this.cache.filterObj.filterTags[key] = params[key].split(',');
       } else {
-        this.cache.filterObj.filterTags[key].push(params[key]);
+        this.cache.filterObj.filterTags[key][0] = params[key];
       }
     });
     this.renderFilterTags(true);
@@ -251,7 +232,6 @@ class SearchResults {
 
   pushIntoUrl = () => {
     let url = this.convertToUrl(this.cache.filterObj.filterTags);
-    console.log('before url>>>>>', url); //eslint-disable-line
     const lastIndex = url.length - 1;
     if (url.charAt(lastIndex) === '&' && url.charAt(0) === '&') {
       url = url.slice(1, -1);

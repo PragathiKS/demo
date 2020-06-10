@@ -74,11 +74,16 @@
 
     }
 
-    .icon-Close {
+    .icon-Close_pw {
         &::before {
-            @include font-size($font-normal);
-            @include width($font-normal);
-            @include height($font-normal);
+            @include font-size(20px);
+            @include width(20px);
+            @include height(20px);
+            @media #{$desktop} {
+                @include font-size($font-normal);
+                @include width($font-normal);
+                @include height($font-normal);
+            }
         }
     }
 

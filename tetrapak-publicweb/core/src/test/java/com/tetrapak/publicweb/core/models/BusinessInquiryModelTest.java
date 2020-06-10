@@ -26,7 +26,7 @@ public class BusinessInquiryModelTest {
 
     /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
-    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master/en";
+    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
     /** The model class. */
     Class<BusinessInquiryModel> modelClass = BusinessInquiryModel.class;
 
@@ -38,7 +38,7 @@ public class BusinessInquiryModelTest {
     /**
      * The Constant PXP_FEATURES.
      */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/jcr:content/businessinquiryform";
+    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/businessinquiryform";
 
     /** The resource. */
     private Resource resource;
@@ -88,9 +88,21 @@ public class BusinessInquiryModelTest {
         assertEquals("Form", "Contact us", model.getAlt());
         assertEquals("Form", "Description", model.getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
-        assertEquals("Form", "http://padrotURL", model.getApiUrl());
+        assertEquals("Form",
+                "/content/tetrapak/publicweb/gb/en/jcr:content/businessinquiryform.padrotbusinessenquiry.json",
+                model.getApiUrl());
         assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
        }
 
+    @Test
+    public void testFetchLanguage() {
+        assertEquals("en", model.getSiteLanguage());
+    }
+
+    @Test
+    public void testFetchCountry() {
+        assertEquals("gb", model.getSiteCountry());
+
+    }
 
 }

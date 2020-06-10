@@ -1,3 +1,4 @@
+<div class="tp-pagination center-align">
 <div class="tp-pagination__container clearfix">
     {{> atoms/buttons/button/button
         modifier="pagination"
@@ -15,11 +16,7 @@
                     data-page-number=currentPageNumber
                     text=currentPageNumber}}
     <span class="float-left tp-pagination__text">of</span>
-    {{> atoms/buttons/button/button
-                    modifier="pagination"
-                    className="tp-pagination__btn float-left"
-                    data-page-number=total
-                    text=total}}
+    <span class="float-left tp-pagination__text">{{total}}</span>
     {{> atoms/buttons/button/button
         modifier="pagination"
         className="tp-pagination__next float-left"
@@ -29,4 +26,5 @@
         iconClass="icon-Arrow_Right_pw"
         hideText=true
         text="cuhu.pagination.next"}}
+</div>
 </div>

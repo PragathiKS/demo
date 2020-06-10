@@ -16,13 +16,13 @@ public final class PWConstants {
 
     /** The Constant COUNTRY_LEVEL. */
     public static final int COUNTRY_PAGE_LEVEL = 3;
-    
+
     /** The Constant MARKET_ROOT_PAGE_LEVEL. */
     public static final int MARKET_ROOT_PAGE_LEVEL = 2;
-    
+
     /** The Constant HOME_PAGE_REL_PATH. */
     public static final String HOME_PAGE_REL_PATH = "home";
-    
+
     /** The Constant LANG_MASTERS. */
     public static final String LANG_MASTERS= "lang-masters";
 
@@ -43,7 +43,7 @@ public final class PWConstants {
 
     /** The Constant CONTENT_ROOT_PATH. */
     public static final String CONTENT_ROOT_PATH = "/content/tetrapak/publicweb";
-    
+
     /** The Constant GLOBLA_LANG_PATH. */
     public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/publicweb/gb";
 
@@ -159,13 +159,13 @@ public final class PWConstants {
     public static final String REPLICATION_PXP = "replicationpxp";
 
     /** The Constant PXP_OPENINGS_TYPE. */
-    public static final String PXP_OPENINGS_TYPE = "openingtype";
+    public static final String PXP_OPENINGS_TYPE = "pw.pxp.openingtype";
 
     /** The Constant PXP_OPENINGS_PRINCIPLE. */
-    public static final String PXP_OPENINGS_PRINCIPLE = "openingprinciple";
+    public static final String PXP_OPENINGS_PRINCIPLE = "pw.pxp.openingprinciple";
 
     /** The Constant PXP_OPENINGS_BENEFITS. */
-    public static final String PXP_OPENINGS_BENEFITS = "openingbenefits";
+    public static final String PXP_OPENINGS_BENEFITS = "pw.pxp.openingbenefits";
 
     /** The TARGET SAME TAB. */
     public static final String SELF_TARGET = "_self";

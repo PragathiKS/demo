@@ -67,6 +67,10 @@
                                 fieldLabel="Link path"
                                 name="./linkURL"
                                 rootPath="/content"/>
+                            <enablesoftcoversion
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="/apps/publicweb/components/content/softconversion/cq:dialog/content/items/softconversion/items/column/items/enablesoftcoversion"/>
                         </items>
                     </column>
                 </items>
@@ -100,6 +104,10 @@
                     </column>
                 </items>
             </design>
+            <form
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/include"
+                path="/apps/publicweb/components/content/softconversion/cq:dialog/content/items/form"/>
         </items>
     </content>
 </jcr:root>

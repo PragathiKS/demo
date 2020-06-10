@@ -6,20 +6,10 @@
             class="icon-Burger_pw"></i></button>
         <div
           class="tp-pw-header__logo-placeholder col-sm-6 col-lg-3 d-flex justify-content-lg-start justify-content-sm-center">
-          <sly data-sly-test="${!wcmmode.edit}">
-            <a class="js-tp-pw-header-logo-digital-data" data-sly-test="${data.logoLink}" href="${data.logoLink}"
-              target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}">
-              <sly
-                data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.logoImagePath, altText=data.logoAlt, className='tp-pw-logo'}" />
-            </a>
-          </sly>
-          <sly data-sly-test="${wcmmode.edit}">
             <a class="js-tp-pw-header-logo-digital-data" data-sly-test="${data.logoLink}" href="${data.logoLink}"
               target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}">
               <img src="${data.logoImagePath}" alt="${data.logoAlt}" />
             </a>
-          </sly>
         </div>
         <div class="tp-pw-header__main-navigation col-6">
           <ul class="d-flex justify-content-center" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
@@ -34,7 +24,7 @@
                 data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, mainHeader=megaMenuItem.linkText}" />
               <sly data-sly-test="${megaMenuItem.linkPath != data.solutionPage}"
                 data-sly-use.navigation="/apps/publicweb/components/content/navigation/navigation-template.html"
-                data-sly-call="${navigation.navigation_template  @ data=megaMenuItem.navigationConfigurationModel}" />
+                data-sly-call="${navigation.navigation_template  @ data=megaMenuItem.navigationConfigurationModel,sectionId=megaMenuItemList.index}" />
             </li>
           </ul>
         </div>
