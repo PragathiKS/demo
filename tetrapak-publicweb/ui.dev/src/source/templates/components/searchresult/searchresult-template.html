@@ -9,13 +9,13 @@
                             data-sly-call="${searchBar.searchbar_template @ id='searchField', inputType='text', placeholder='searchplaceholder', inputClass='js-pw-search-input tpatom-input-box__input'}">
                     </div>
                     <div class="pw-search-results__filter-container">
-                        <div class="pw-search-results__filter-container__heading">
+                        <div class="pw-search-results__filter-container__heading d-none">
                             <span class="js-search-filter-toggle">
                                 <i class="FilterSettings_pw"></i>
                                 <label>Filters</label>
                             </span>
                         </div>
-                        <div class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular">
+                        <div class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular d-none">
                             <div class="row no-gutters">
                                 <div class="col-lg-6">
                                     <div class="pw-search-results__filters__content-type">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="pw-search-results__filter-container__count">
-                            <div class="js-filter-container-chips">
+                            <div class="js-filter-container-chips d-none">
                                 <!-- Loading filter tags/chips here -->
                             </div>
                             <div data-sly-test="${data.resultsText}" class="js-pw-search-results__title"

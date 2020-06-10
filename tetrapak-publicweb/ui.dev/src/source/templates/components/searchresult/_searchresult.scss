@@ -159,10 +159,6 @@
     }
 
     &__results-list {
-        @media #{$tablet-large} {
-            @include padding-right(75px);
-        }
-
         &__item {
             @include padding-bottom($padding-l);
             display: flex;
@@ -193,6 +189,28 @@
 
             &__description {
                 @include padding-top($padding-sm);
+                overflow: hidden;
+                position: relative;
+                max-height: 54px;
+                text-align: justify;
+                margin-right: -1em;
+                padding-right: 1em;
+                &::before {
+                    content: '';
+                    float: left;
+                    width: 5px;
+                }
+                &::after {
+                    content: '\02026';
+                    float: right;
+                    position: relative;
+                    bottom: 49px;
+                    width: 3em;
+                    margin-left: -3em;
+                    padding-right: 5px;
+                    text-align: right;
+                    background: linear-gradient(to right, rgba(255, 255, 255, 0), $color-white 50%, $color-white);
+                }
             }
 
             &__breadcrumb {
