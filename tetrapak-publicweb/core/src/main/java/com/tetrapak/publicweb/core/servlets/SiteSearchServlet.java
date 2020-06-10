@@ -116,19 +116,19 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             searchBean = new SearchBean();
 
             // get search arguments
-            final String contentTypeParam = xssAPI.getValidJSON(request.getParameter("contentType"), StringUtils.EMPTY);
+            final String contentTypeParam = xssAPI.getValidHref(request.getParameter("contentType"));
             String[] contentType = null;
             if (StringUtils.isNoneBlank(contentTypeParam)) {
                 contentType = contentTypeParam.split(",");
             }
-            final String themesParam = xssAPI.getValidJSON(request.getParameter("theme"), StringUtils.EMPTY);
+            final String themesParam = xssAPI.getValidHref(request.getParameter("theme"));
             String[] themes = null;
             if (StringUtils.isNoneBlank(themesParam)) {
                 themes = themesParam.split(",");
             }
             final int pageParam = xssAPI.getValidInteger(request.getParameter("page"), 1);
             String fulltextSearchTerm = URLDecoder
-                    .decode(xssAPI.getValidJSON(request.getParameter("searchTerm"), StringUtils.EMPTY), "UTF-8")
+                    .decode(xssAPI.getValidHref(request.getParameter("searchTerm")), "UTF-8")
                     .replace("%20", PWConstants.SPACE);
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
 
