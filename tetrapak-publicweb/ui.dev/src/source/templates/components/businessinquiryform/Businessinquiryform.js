@@ -170,7 +170,7 @@ class Businessinquiryform {
           }
         });
       }
-      if(!this.cache.requestPayload['phone']) {
+      if(!self.cache.requestPayload['phone']) {
         $('#phoneSummery').hide();
       }
 
