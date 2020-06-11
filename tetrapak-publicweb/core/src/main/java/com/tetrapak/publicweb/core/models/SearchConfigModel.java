@@ -7,8 +7,9 @@ import javax.inject.Inject;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import com.tetrapak.publicweb.core.models.multifield.SearchListModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
-import com.tetrapak.publicweb.core.models.multifield.ThemeModel;
 
 /**
  * The Class SearchConfigModel.
@@ -54,18 +55,38 @@ public class SearchConfigModel {
 
     /** The theme list. */
     @Inject
-    private List<ThemeModel> themeList;
+    private List<SearchListModel> themeList;
 
     /** The gated content list. */
     @Inject
     private List<SearchPathModel> gatedContentList;
+    
+    /** The event label. */
+    @ValueMapValue
+    private String eventLabel;
+    
+    /** The case label. */
+    @ValueMapValue
+    private String caseLabel;
+    
+    /** The news label. */
+    @ValueMapValue
+    private String newsLabel;
+    
+    /** The product label. */
+    @ValueMapValue
+    private String productLabel;
+    
+    /** The media label. */
+    @ValueMapValue
+    private String mediaLabel;
 
     /**
      * Gets the theme list.
      *
      * @return the theme list
      */
-    public List<ThemeModel> getThemeList() {
+    public List<SearchListModel> getThemeList() {
         return themeList;
     }
 
@@ -176,5 +197,50 @@ public class SearchConfigModel {
     public List<SearchPathModel> getGatedContentList() {
         return gatedContentList;
     }
+
+    /**
+     * Gets the event label.
+     *
+     * @return the event label
+     */
+    public String getEventLabel() {
+        return eventLabel;
+    }
+
+    /**
+     * Gets the case label.
+     *
+     * @return the case label
+     */
+    public String getCaseLabel() {
+        return caseLabel;
+    }
+
+    /**
+     * Gets the news label.
+     *
+     * @return the news label
+     */
+    public String getNewsLabel() {
+        return newsLabel;
+    }
+
+    /**
+     * Gets the product label.
+     *
+     * @return the product label
+     */
+    public String getProductLabel() {
+        return productLabel;
+    }
+
+    /**
+     * Gets the media label.
+     *
+     * @return the media label
+     */
+    public String getMediaLabel() {
+        return mediaLabel;
+    }   
 
 }

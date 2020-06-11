@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models.multifield;
 
+import javax.inject.Named;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -8,15 +10,26 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 /**
  * The Class ThemeModel.
  */
+/**
+ * @author sankumar28
+ *
+ */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class ThemeModel {
+public class SearchListModel {
 
     /** The theme label. */
     @ValueMapValue
-    private String themeLabel;
+    @Named(value = "themeLabel")
+    private String label;
 
     /** The tag. */
     @ValueMapValue
+    @Named(value = "themeKey")
+    private String key;
+    
+    /** The tag. */
+    @ValueMapValue
+    @Named(value = "tag")
     private String tag;
 
     /**
@@ -24,18 +37,35 @@ public class ThemeModel {
      *
      * @return the theme label
      */
-    public String getThemeLabel() {
-        return themeLabel;
+    public String getLabel() {
+        return label;
     }
 
     /**
      * Sets the theme label.
      *
-     * @param themeLabel
-     *            the new theme label
+     * @param label the new label
      */
-    public void setThemeLabel(String themeLabel) {
-        this.themeLabel = themeLabel;
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * Gets the tag.
+     *
+     * @return the tag
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * Sets the tag.
+     *
+     * @param key the new key
+     */
+    public void setKey(String key) {
+        this.key = key;
     }
 
     /**
@@ -50,11 +80,12 @@ public class ThemeModel {
     /**
      * Sets the tag.
      *
-     * @param tag
-     *            the new tag
+     * @param tag the new tag
      */
     public void setTag(String tag) {
         this.tag = tag;
     }
+    
+    
 
 }

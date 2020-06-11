@@ -17,8 +17,8 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.models.multifield.SearchListModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
-import com.tetrapak.publicweb.core.models.multifield.ThemeModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
@@ -67,7 +67,7 @@ public class SearchResultsModel {
      *
      * @return the theme list
      */
-    public List<ThemeModel> getThemeList() {
+    public List<SearchListModel> getThemeList() {
         return configurationModel.getThemeList();
     }
 
@@ -194,7 +194,7 @@ public class SearchResultsModel {
      */
     public Map<String, String> getThemeMap() {
         if(Objects.nonNull(configurationModel) && getThemeList() != null && !getThemeList().isEmpty()) {
-            themeMap = getThemeList().stream().collect(Collectors.toMap(ThemeModel::getThemeLabel, ThemeModel::getTag));
+            themeMap = getThemeList().stream().collect(Collectors.toMap(SearchListModel::getKey, SearchListModel::getTag));
         }
         return themeMap;
     }

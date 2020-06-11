@@ -357,6 +357,11 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="Theme Label"
                                                     name="./themeLabel"/>
+												<themeKey
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Theme Key"
+                                                    name="./themeKey"/>
                                                 <tag
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/coral/common/form/tagfield"
