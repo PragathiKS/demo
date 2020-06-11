@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import { makeLoad, changeStepNext, loadThankYou } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 
@@ -27,9 +28,9 @@ class Businessinquiryform {
       'message': '',
       'phone': '',
       'purposeOfContactInBusinessEqTitle': '',
-      'purposeOfInterestAreaEqTitle':'',
-      'company':'',
-      'position':''
+      'purposeOfInterestAreaEqTitle': '',
+      'company': '',
+      'position': ''
     };
   }
 
@@ -44,23 +45,26 @@ class Businessinquiryform {
   }
 
   submitForm = () => {
-
+    const self = this;
     const servletPath = this.cache.businessformapi.data('bef-api-servlet');
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
     const dataObj = {};
-    dataObj['purpose']=  this.cache.requestPayload.purposeOfContactInBusinessEqTitle;
-    dataObj['businessArea']= this.cache.requestPayload.purposeOfInterestAreaEqTitle;
-    dataObj['firstName']= this.cache.requestPayload.firstName;
-    dataObj['lastName']= this.cache.requestPayload.lastName;
-    dataObj['email']= this.cache.requestPayload.email;
-    dataObj['phoneNumber']= this.cache.requestPayload.phone;
-    dataObj['company']= this.cache.requestPayload.company;
-    dataObj['position']= this.cache.requestPayload.position;
-    dataObj['language']= langCode;
-    dataObj['site']= countryCode;
-    dataObj['policyConsent']= true;
-    dataObj['pardot_extra_field']= this.cache.requestPayload.pardot_extra_field;
+    dataObj['purpose'] = this.cache.requestPayload.purposeOfContactInBusinessEqTitle;
+    dataObj['businessArea'] = this.cache.requestPayload.purposeOfInterestAreaEqTitle;
+    dataObj['firstName'] = this.cache.requestPayload.firstName;
+    dataObj['lastName'] = this.cache.requestPayload.lastName;
+    dataObj['email'] = this.cache.requestPayload.email;
+    dataObj['phoneNumber'] = this.cache.requestPayload.phone;
+    dataObj['company'] = this.cache.requestPayload.company;
+    dataObj['position'] = this.cache.requestPayload.position;
+    dataObj['language'] = langCode;
+    dataObj['site'] = countryCode;
+    dataObj['policyConsent'] = true;
+    dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
+    changeStepNext('Step 4', 'Company information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+    window.scrollTo(0,$('.pw-businessEnquiry-form').offset().top);
+
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
@@ -68,12 +72,12 @@ class Businessinquiryform {
     }).done(
       (response) => {
         if (response.statusCode === '200') {
-          const offsetContact = $('#pw-contactUs').offset();
           $('.bef-tab-pane', this.root).removeClass('active');
           $('#bef-step-final', this.root).addClass('active');
+          loadThankYou('ThankYou', 'request a quote', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
           $('.serviceError').removeClass('d-block');
           $('html, body').animate({
-            scrollTop: offsetContact.top - 50
+            scrollTop:  $('#befUs').offset().top - 150
           });
         } else {
           $('.serviceError').addClass('d-block');
@@ -104,7 +108,7 @@ class Businessinquiryform {
 
   bindEvents() {
     /* Bind jQuery events here */
-    const { requestPayload, $radioListFirst , $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn } = this.cache;
+    const { requestPayload, $radioListFirst, $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn } = this.cache;
     const self = this;
     $radioListFirst.on('change', this.onRadioChangeHandlerFirst);
     $radioListSecond.on('change', this.onRadioChangeHandlerSecond);
@@ -123,8 +127,8 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = $(this).val();
           }
-          
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) || (fieldName === 'consent') && $(this).prop('checked') ) {
+
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) || (fieldName === 'consent') && $(this).prop('checked')) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -136,9 +140,27 @@ class Businessinquiryform {
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
+        if (!self.cache.requestPayload['phone']) {
+          $('#phoneSummery').hide();
+        }
+
         if (target) {
           $('.bef-tab-pane').removeClass('active');
           $(target).addClass('active');
+
+          switch (target) {
+          case '#bef-step-2':
+            changeStepNext('Step 1', 'Purpose of contact', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+            break;
+          case '#bef-step-3':
+            changeStepNext('Step 2', 'Business area of interest', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+            break;
+          case '#bef-step-4':
+            changeStepNext('Step 3', 'Contact information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+            break;
+          default:
+            break;
+          }
         }
       }
     });
@@ -155,12 +177,12 @@ class Businessinquiryform {
       if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
         $('input, textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
-          
+
           $('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = $(this).val();
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val()) || (fieldName === 'consent') && !$(this).prop('checked') ) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val()) || (fieldName === 'consent') && !$(this).prop('checked')) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -170,10 +192,6 @@ class Businessinquiryform {
           }
         });
       }
-      if(!self.cache.requestPayload['phone']) {
-        $('#phoneSummery').hide();
-      }
-
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
         if (target) {
@@ -183,15 +201,16 @@ class Businessinquiryform {
       }
       if (isvalid && !honeyPotFieldValue) {
         self.submitForm();
-      } 
+      }
     });
-    
+
   }
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    makeLoad();
   }
 }
-  
+
 export default Businessinquiryform;
