@@ -18,9 +18,3 @@
 
 @import './pages/error';
 @import './pages/articleTemplate';
-:export {
-    headerHeightWeb: $header-height-web;
-    headerHeightMobile: $header-height-mobile;
-    stickyViewHeightWeb: $sticky-view-height-web;
-    stickyViewHeightMobile: $sticky-view-height;
-  }
