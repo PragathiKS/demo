@@ -343,7 +343,7 @@
                         <div class="row thankyou">
                             <input type="text" name="pardot_extra_field" id="pardot_extra_field_bef" class="d-none" tabindex="-1" />
                             <div class="col text-center" auto_locator="contactUsThankYouMessage">
-                                <div class="bef-thankyou-img">
+                                <div data-sly-test="${data.thankyouImage}" class="bef-thankyou-img">
                                     <sly data-sly-test="${!wcmmode.edit}">
                                         <sly data-sly-test="${data.thankyouImage}"
                                             data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -351,7 +351,7 @@
                                     </sly>
                                     <sly data-sly-test="${wcmmode.edit}">
                                         <img data-sly-test="${data.thankyouImage}" auto_locator="contactUsThankYouPageImage"
-                                            alt="${data.thankyouImageAltText}" src="${data.thankyouImageAltText}"
+                                            alt="${data.thankyouImageAltText}" src="${data.thankyouImage}"
                                             class="image img-responsive" />
                                     </sly>
                                 </div>
