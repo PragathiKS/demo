@@ -1,7 +1,4 @@
 {
-    "resultsText": "results found for",
-    "pwTheme": "grayscale-white",
-    "filterTitle": "Search Filters",
     "contentTypeList": [
         {
             "label": "Product",
@@ -43,18 +40,5 @@
             "tag": "tetra-pak:public-web/product/category/services"
         }
     ],
-    "firstTabLinkText": "All",
-    "tabs": [
-        {
-            "title": "Products",
-            "productType": "productpage"
-        },
-        {
-            "title": "Pages",
-            "productType": "landingpage"
-        }
-    ],
-    "noFilterMatches": "No search results",
-    "noResultsText": "No search results",
     "servletPath": "/content/tetrapak/publicweb/lang-masters/en/home/_jcr_content/root/responsivegrid/searchresults"
 }

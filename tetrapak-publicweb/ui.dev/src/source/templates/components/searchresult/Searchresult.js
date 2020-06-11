@@ -4,6 +4,7 @@ import deparam from 'deparam.js';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import { getI18n } from '../../../scripts/common/common';
 
 class SearchResults {
 
@@ -114,12 +115,12 @@ class SearchResults {
     if (index !== -1) {
       this.cache.filterObj.filterTags[category].splice(index, 1);
     }
-    console.log('filter>>>', filter, this.cache.filterObj.filterTags); //eslint-disable-line
     this.applyFilters(false);
   }
 
   search = () => {
     this.cache.$spinner.removeClass('d-none');
+    this.cache.$filterChecks.attr('disabled', true);
     const { searchTerm } = deparam(window.location.search);
     let queryParams = this.cache.queryParams;
     queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
@@ -131,12 +132,12 @@ class SearchResults {
       dataType: 'json',
       contentType: 'application/json'
     }).done((data) => {
-      console.log('data>>>', data); //eslint-disable-line
       this.cache.$spinner.addClass('d-none');
+      this.cache.$filterChecks.removeAttr('disabled');
       if (data.totalResults > 0) {
         this.cache.results = data.searchResults;
         this.cache.totalPages = data.totalPages;
-        this.renderTitle(this.cache.results.length, this.cache.resultsTitle, searchTerm);
+        this.renderTitle(data.totalResults, this.cache.resultsTitle, searchTerm);
         this.renderResults(data.searchResults);
         if (data.totalPages > 1) {
           this.renderPagination();
@@ -144,8 +145,8 @@ class SearchResults {
         } else {
           this.cache.$pagiantion.addClass('d-none');
         }
-        this.cache.$filterChecks.removeAttr('disabled');
       } else {
+        this.cache.$filterChecks.removeAttr('disabled');
         this.renderTitle(null, this.cache.noResultsText, null);
         this.cache.$resultsList.empty();
         this.cache.$pagiantion.addClass('d-none');
@@ -179,9 +180,14 @@ class SearchResults {
   renderResults = (data) => {
     const noResultsText = this.cache.noResultsText;
     if (data.length > 0) {
+      const modifiedData = data.map(res => {
+        res['typeI18n'] = getI18n(res['type']);
+        res['assetTypeI18n'] = getI18n(res['assetType']);
+        return res;
+      });
       render.fn({
         template: 'searchList',
-        data: data,
+        data: modifiedData,
         target: this.cache.$resultsList
       });
     } else {
@@ -240,7 +246,6 @@ class SearchResults {
     } else if (url.charAt(0) === '&') {
       url = url.slice(1, lastIndex + 1);
     }
-    console.log('url>>>>>', url, this.cache.filterObj); //eslint-disable-line
     this.cache.queryParams = url;
     window.history.pushState(null, null, (`?${url}`));
   }
@@ -263,13 +268,18 @@ class SearchResults {
     const pageNumber = $this.data('pageNumber');
     this.cache.filterObj.filterTags.page[0] = pageNumber;
     this.pushIntoUrl();
+    $('html, body').animate({
+      scrollTop: 0
+    }, 500);
     this.search();
   }
 
   renderPagination = () => {
     const currentPage = this.cache.filterObj.filterTags.page[0];
     const totalPages = this.cache.totalPages;
+    const paginationText = this.cache.$pagiantion.data('paginationText');
     const paginationData = {
+      paginationText,
       currentPageNumber: currentPage,
       total: totalPages,
       prevDisabled: currentPage <= 1 ? true : false,

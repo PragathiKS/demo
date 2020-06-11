@@ -75,6 +75,7 @@
         &__count {
             @include padding-bottom($padding-l);
             border-bottom: 1px solid $color-mercury;
+            word-break: break-all;
             @media #{$desktop} {
                 @include padding-bottom($padding-xxxl);
             }
