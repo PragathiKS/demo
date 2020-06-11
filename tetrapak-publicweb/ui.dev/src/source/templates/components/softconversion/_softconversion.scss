@@ -29,7 +29,7 @@
         @media #{$desktop} {
             @include padding(0 $padding-xxxl $padding-xxxl $padding-xxxl);
             .marketingConsentText {
-                @include margin-left(-$margin-sm);
+                @include margin-left(-6px);
             }
         }
 
