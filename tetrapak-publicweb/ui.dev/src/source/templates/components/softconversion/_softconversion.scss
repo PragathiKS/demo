@@ -28,6 +28,9 @@
 
         @media #{$desktop} {
             @include padding(0 $padding-xxxl $padding-xxxl $padding-xxxl);
+            .marketingConsentText {
+                @include margin-left(-$margin-sm);
+            }
         }
 
         @media #{$mobile} {
