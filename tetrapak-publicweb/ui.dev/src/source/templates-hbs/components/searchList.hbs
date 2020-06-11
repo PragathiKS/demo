@@ -13,13 +13,13 @@
   {{/if}}
   <div>
     <span class="tpatom-subheading tpatom-heading--small">
-      {{this.type}}{{#if this.date}}, {{this.date}} {{/if}}
+      {{this.typeI18n}}{{#if this.date}}, {{this.date}} {{/if}}
     </span>
-    <a href="{{this.path}}" target="_blank" class="pw-search-results__results-list__item__title-link">
+    <a href="{{this.path}}" target="{{#if this.size}}_blank{{else}}_self{{/if}}" class="pw-search-results__results-list__item__title-link">
       <h3 class="tpatom-heading tpatom-heading--small-flat">{{this.title}}</h3>
     </a>
     {{#if this.size}}
-      <p class="d-none d-lg-block pw-search-results__results-list__item__size">{{this.assetExtension}} {{this.assetType}} {{this.size}} 
+      <p class="d-none d-lg-block pw-search-results__results-list__item__size">{{this.assetExtension}} {{this.assetTypeI18n}} {{this.size}} 
         {{#if_eq this.assetType 'video'}}{{else}}<a href="{{this.path}}" target="_self"><i class="icon-Union"></i></a>{{/if_eq}}</p>
     {{else}}
       {{#if this.description}}
