@@ -5,9 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -16,6 +17,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.models.multifield.SearchListModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
@@ -200,6 +202,50 @@ public class SearchResultsModel {
         }
         return themeMap;
     }
+    
+   /* Gets the event label.
+    *
+    * @return the event label
+    */
+   public String getEventLabel() {
+       return configurationModel.getEventLabel();
+   }
+
+   /**
+    * Gets the case label.
+    *
+    * @return the case label
+    */
+   public String getCaseLabel() {
+       return configurationModel.getCaseLabel();
+   }
+
+   /**
+    * Gets the news label.
+    *
+    * @return the news label
+    */
+   public String getNewsLabel() {
+       return configurationModel.getNewsLabel();
+   }
+
+   /**
+    * Gets the product label.
+    *
+    * @return the product label
+    */
+   public String getProductLabel() {
+       return configurationModel.getProductLabel();
+   }
+
+   /**
+    * Gets the media label.
+    *
+    * @return the media label
+    */
+   public String getMediaLabel() {
+       return configurationModel.getMediaLabel();
+   }   
     
     /**
      * Gets the template map.

@@ -293,34 +293,64 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="filters"
         sling:message="Filters"/>
-   <searchplaceholder
+   <pw.searchResults.searchplaceholder
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="searchplaceholder"
+        sling:key="pw.searchResults.searchplaceholder"
         sling:message="What are you looking for?"/>
-   <contenttype
+   <pw.searchResults.contenttype
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="contenttype"
+        sling:key="pw.searchResults.contenttype"
         sling:message="CONTENT TYPES"/>
-   <themes
+   <pw.searchResults.themes
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="themes"
+        sling:key="pw.searchResults.themes"
         sling:message="THEMES"/>
-   <ok
+   <pw.searchResults.ok
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="ok"
+        sling:key="pw.searchResults.ok"
         sling:message="OK"/>
-   <searchresults
+   <pw.searchResults.searchresults
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="{0} search results"
+        sling:key="pw.searchResults.searchresults"
         sling:message="{0} search results"/>
-   <nosearchresults
+   <pw.searchResults.nosearchresults
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="sling:MessageEntry"
-        sling:key="nosearchresults"
+        sling:key="pw.searchResults.nosearchresults"
         sling:message="No search results"/>
+   <pw.searchResults.video
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.video"
+        sling:message="video"/>
+   <pw.searchResults.image
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.image"
+        sling:message="image"/>
+   <pw.searchResults.document
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.document"
+        sling:message="document"/>
+   <pw.searchResults.kb
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.kb"
+        sling:message="KB"/>
+   <pw.searchResults.mb
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.mb"
+        sling:message="MB"/>
+   <pw.searchResults.of
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.of"
+        sling:message="of"/>			
 </jcr:root>
