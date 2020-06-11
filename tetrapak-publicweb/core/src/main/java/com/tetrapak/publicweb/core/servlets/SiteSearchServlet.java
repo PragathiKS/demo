@@ -89,7 +89,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         @AttributeDefinition(
                 name = "Default Max Result Suggestion",
                 description = "Default Max Result Suggestion.")
-        int defaultMaxResultSuggestion() default 5000;
+        int defaultMaxResultSuggestion() default 3000;
     }
 
     /** The Constant serialVersionUID. */
