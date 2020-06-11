@@ -159,9 +159,18 @@
         top: 4px;
         height: 20px;
         width: 20px;
+        margin-right: 6px;
     }
 
     .consentlabel p {
         display: inline;
+    }
+
+    .bef-thankyou-img {
+        @include margin-right($margin-l);
+    }
+
+    .descriptionTextThankyou {
+        @include margin-right($margin-md);
     }
 }
