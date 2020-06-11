@@ -167,10 +167,10 @@
     }
 
     .bef-thankyou-img {
-        @include margin-right($margin-l);
+        @include margin-bottom($margin-l);
     }
 
     .descriptionTextThankyou {
-        @include margin-right($margin-md);
+        @include margin-top($margin-md);
     }
 }
