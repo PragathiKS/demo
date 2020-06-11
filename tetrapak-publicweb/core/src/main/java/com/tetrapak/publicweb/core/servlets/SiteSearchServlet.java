@@ -80,7 +80,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 name = "Search Root Path Variable Name",
                 description = "Name of variable being sent by Front end to the servlet, that tells about the search root path.")
         int noOfResultsPerHit() default 10;
-        
+
         /**
          * No of results per hit.
          *
@@ -167,18 +167,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             map.put("1_group.p.or", "true");
             if (!(ArrayUtils.isEmpty(contentType) && ArrayUtils.isEmpty(themes)
                     && StringUtils.isBlank(fulltextSearchTerm))) {
-                if (ArrayUtils.isNotEmpty(contentType) && Boolean.TRUE.equals(isValidContentType(contentType))) {
-                    for (String type : contentType) {
-                        if (type.equalsIgnoreCase("media")) {
-                            index = SearchMapHelper.setMediaMap(map, index, searchResultsModel);
-                        } else {
-                            index = SearchMapHelper.setPageseMap(type, map, index, searchResultsModel);
-                        }
-                    }
-                } else {
-                    SearchMapHelper.setAllPagesMap(map, searchResultsModel);
-                    index = SearchMapHelper.setMediaMap(map, 2, searchResultsModel);
-                }
+                index = setContentMap(map, searchResultsModel, contentType, index);
                 SearchMapHelper.setCommonMap(fulltextSearchTerm, map, pageParam, noOfResultsPerHit, guessTotal);
                 SearchMapHelper.setThemesMap(themes, map, searchResultsModel);
                 SearchMapHelper.filterGatedContent(map, index, searchResultsModel);
@@ -207,6 +196,32 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     }
 
     /**
+     * Sets the content map.
+     *
+     * @param map the map
+     * @param searchResultsModel the search results model
+     * @param contentType the content type
+     * @param index the index
+     * @return the int
+     */
+    private int setContentMap(Map<String, String> map, SearchResultsModel searchResultsModel, String[] contentType,
+            int index) {
+        if (ArrayUtils.isNotEmpty(contentType) && Boolean.TRUE.equals(isValidContentType(contentType))) {
+            for (String type : contentType) {
+                if (type.equalsIgnoreCase("media")) {
+                    index = SearchMapHelper.setMediaMap(map, index, searchResultsModel);
+                } else {
+                    index = SearchMapHelper.setPageseMap(type, map, index, searchResultsModel);
+                }
+            }
+        } else {
+            SearchMapHelper.setAllPagesMap(map, searchResultsModel);
+            index = SearchMapHelper.setMediaMap(map, 2, searchResultsModel);
+        }
+        return index;
+    }
+
+    /**
      * Checks if is valid content type.
      *
      * @param contentTypes
@@ -230,8 +245,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Sets the search bean.
      *
-     * @param map
-     *            the map
+     * @param map            the map
+     * @param searchResultsModel the search results model
      */
     private void setSearchBean(Map<String, String> map, SearchResultsModel searchResultsModel) {
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
@@ -261,11 +276,10 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Method to set search result item with all data.
      *
-     * @param hit
-     *            the hit
+     * @param hit            the hit
+     * @param searchResultsModel the search results model
      * @return the search result bean
-     * @throws RepositoryException
-     *             the repository exception
+     * @throws RepositoryException             the repository exception
      */
     private SearchResultBean setSearchResultItemData(Hit hit, SearchResultsModel searchResultsModel)
             throws RepositoryException {
@@ -331,8 +345,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Gets the product content type.
      *
-     * @param template
-     *            the template
+     * @param template            the template
+     * @param searchResultsModel the search results model
      * @return the product content type
      */
     private String getProductContentType(String template, SearchResultsModel searchResultsModel) {

@@ -34,9 +34,11 @@ public class SearchFilterModel {
     /** The resource. */
     @Self
     private Resource resource;
-    
+
+    /** The content type list. */
     List<SearchListModel> contentTypeList = new ArrayList<>();
-    
+
+    /** The theme list. */
     List<SearchListModel> themeList = new ArrayList<>();
 
     /**
@@ -49,48 +51,47 @@ public class SearchFilterModel {
         final String path = rootPath + "/jcr:content/root/responsivegrid/searchconfig";
         final Resource searchConfigResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(searchConfigResource)) {
-            SearchConfigModel configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);     
-            if (Objects.nonNull(configurationModel)){
+            SearchConfigModel configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);
+            if (Objects.nonNull(configurationModel)) {
                 themeList = configurationModel.getThemeList();
-                SearchListModel contentType;
-                if(StringUtils.isNoneBlank(configurationModel.getEventLabel())) {
-                    contentType = new SearchListModel();
-                    contentType.setKey(PWConstants.EVENTS);
-                    contentType.setLabel(configurationModel.getEventLabel());
-                    contentTypeList.add(contentType);
-                }
-                if(StringUtils.isNoneBlank(configurationModel.getNewsLabel())) {
-                    contentType = new SearchListModel();
-                    contentType.setKey(PWConstants.NEWS);
-                    contentType.setLabel(configurationModel.getNewsLabel());
-                    contentTypeList.add(contentType);
-                }
-                if(StringUtils.isNoneBlank(configurationModel.getProductLabel())) {
-                    contentType = new SearchListModel();
-                    contentType.setKey(PWConstants.PRODUCTS);
-                    contentType.setLabel(configurationModel.getProductLabel());
-                    contentTypeList.add(contentType);
-                }
-                if(StringUtils.isNoneBlank(configurationModel.getCaseLabel())) {
-                    contentType = new SearchListModel();
-                    contentType.setKey(PWConstants.CASES);
-                    contentType.setLabel(configurationModel.getCaseLabel());
-                    contentTypeList.add(contentType);
-                }
-                if(StringUtils.isNoneBlank(configurationModel.getMediaLabel())) {
-                    contentType = new SearchListModel();
-                    contentType.setKey(PWConstants.MEDIA);
-                    contentType.setLabel(configurationModel.getMediaLabel());
-                    contentTypeList.add(contentType);
-                }
-             }
+                setContentType(configurationModel.getEventLabel(), PWConstants.EVENTS);
+                setContentType(configurationModel.getNewsLabel(), PWConstants.NEWS);
+                setContentType(configurationModel.getProductLabel(), PWConstants.PRODUCTS);
+                setContentType(configurationModel.getCaseLabel(), PWConstants.CASES);
+                setContentType(configurationModel.getMediaLabel(), PWConstants.MEDIA);
+            }
         }
     }
 
+    /**
+     * Sets the content type.
+     *
+     * @param label the label
+     * @param key the key
+     */
+    private void setContentType(String label, String key) {
+        if (StringUtils.isNoneBlank(label)) {
+            SearchListModel contentType = new SearchListModel();
+            contentType.setKey(key);
+            contentType.setLabel(label);
+            contentTypeList.add(contentType);
+        }
+    }
+
+    /**
+     * Gets the content type list.
+     *
+     * @return the content type list
+     */
     public List<SearchListModel> getContentTypeList() {
         return contentTypeList;
     }
 
+    /**
+     * Gets the theme list.
+     *
+     * @return the theme list
+     */
     public List<SearchListModel> getThemeList() {
         return themeList;
     }

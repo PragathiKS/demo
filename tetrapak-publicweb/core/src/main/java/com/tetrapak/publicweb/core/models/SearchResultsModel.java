@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.SearchListModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -46,7 +47,10 @@ public class SearchResultsModel {
 
     /** The theme map. */
     private Map<String, String> themeMap = new LinkedHashMap<>();
-    
+
+    /** The template map. */
+    Map<String, String> templateMap = new HashMap<>();
+
     /** The configuration model. */
     private SearchConfigModel configurationModel = new SearchConfigModel();
 
@@ -60,7 +64,7 @@ public class SearchResultsModel {
         final String path = rootPath + "/jcr:content/root/responsivegrid/searchconfig";
         final Resource searchConfigResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(searchConfigResource)) {
-            configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);             
+            configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);
         }
     }
 
@@ -82,8 +86,6 @@ public class SearchResultsModel {
         return configurationModel.getProductTemplateList();
     }
 
-
-
     /**
      * Gets the product structure list.
      *
@@ -92,8 +94,6 @@ public class SearchResultsModel {
     public List<SearchPathModel> getProductStructureList() {
         return configurationModel.getProductStructureList();
     }
-
-
 
     /**
      * Gets the news template list.
@@ -104,8 +104,6 @@ public class SearchResultsModel {
         return configurationModel.getNewsTemplateList();
     }
 
-
-
     /**
      * Gets the news structure list.
      *
@@ -114,8 +112,6 @@ public class SearchResultsModel {
     public List<SearchPathModel> getNewsStructureList() {
         return configurationModel.getNewsStructureList();
     }
-
-
 
     /**
      * Gets the event template list.
@@ -126,8 +122,6 @@ public class SearchResultsModel {
         return configurationModel.getEventTemplateList();
     }
 
-
-
     /**
      * Gets the event structure list.
      *
@@ -136,8 +130,6 @@ public class SearchResultsModel {
     public List<SearchPathModel> getEventStructureList() {
         return configurationModel.getEventStructureList();
     }
-
-
 
     /**
      * Gets the case template list.
@@ -148,8 +140,6 @@ public class SearchResultsModel {
         return configurationModel.getCaseTemplateList();
     }
 
-
-
     /**
      * Gets the case structure list.
      *
@@ -158,8 +148,6 @@ public class SearchResultsModel {
     public List<SearchPathModel> getCaseStructureList() {
         return configurationModel.getCaseStructureList();
     }
-
-
 
     /**
      * Gets the media structure list.
@@ -170,7 +158,6 @@ public class SearchResultsModel {
         return configurationModel.getMediaStructureList();
     }
 
-
     /**
      * Gets the gated content list.
      *
@@ -179,7 +166,7 @@ public class SearchResultsModel {
     public List<SearchPathModel> getGatedContentList() {
         return configurationModel.getGatedContentList();
     }
-    
+
     /**
      * Gets the servlet path.
      *
@@ -195,98 +182,92 @@ public class SearchResultsModel {
      * @return the theme map
      */
     public Map<String, String> getThemeMap() {
-        if(Objects.nonNull(configurationModel) && getThemeList() != null && !getThemeList().isEmpty()) {
-          for(SearchListModel theme:getThemeList()) {
-              themeMap.put(theme.getKey(), theme.getTag());
-          }
+        if (Objects.nonNull(configurationModel) && getThemeList() != null && !getThemeList().isEmpty()) {
+            for (SearchListModel theme : getThemeList()) {
+                themeMap.put(theme.getKey(), theme.getTag());
+            }
         }
         return themeMap;
     }
-    
-   /* Gets the event label.
-    *
-    * @return the event label
-    */
-   public String getEventLabel() {
-       return configurationModel.getEventLabel();
-   }
 
-   /**
-    * Gets the case label.
-    *
-    * @return the case label
-    */
-   public String getCaseLabel() {
-       return configurationModel.getCaseLabel();
-   }
+    /**
+     * Gets the event label.
+     *
+     * @return the event label
+     */
+    /*
+     * Gets the event label.
+     *
+     * @return the event label
+     */
+    public String getEventLabel() {
+        return configurationModel.getEventLabel();
+    }
 
-   /**
-    * Gets the news label.
-    *
-    * @return the news label
-    */
-   public String getNewsLabel() {
-       return configurationModel.getNewsLabel();
-   }
+    /**
+     * Gets the case label.
+     *
+     * @return the case label
+     */
+    public String getCaseLabel() {
+        return configurationModel.getCaseLabel();
+    }
 
-   /**
-    * Gets the product label.
-    *
-    * @return the product label
-    */
-   public String getProductLabel() {
-       return configurationModel.getProductLabel();
-   }
+    /**
+     * Gets the news label.
+     *
+     * @return the news label
+     */
+    public String getNewsLabel() {
+        return configurationModel.getNewsLabel();
+    }
 
-   /**
-    * Gets the media label.
-    *
-    * @return the media label
-    */
-   public String getMediaLabel() {
-       return configurationModel.getMediaLabel();
-   }   
-    
+    /**
+     * Gets the product label.
+     *
+     * @return the product label
+     */
+    public String getProductLabel() {
+        return configurationModel.getProductLabel();
+    }
+
+    /**
+     * Gets the media label.
+     *
+     * @return the media label
+     */
+    public String getMediaLabel() {
+        return configurationModel.getMediaLabel();
+    }
+
     /**
      * Gets the template map.
      *
      * @return the template map
      */
-    public Map<String, String> getTemplateMap(){
-        Map<String, String> templateMap = new HashMap<>();
-        if(getNewsTemplateList() != null && !getNewsTemplateList().isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for(SearchPathModel pathObject:getNewsTemplateList()) {
-                sb.append(pathObject.getPath());
-                sb.append(",");
-            }
-            templateMap.put("news", sb.toString().substring(0,sb.length()-1));
-        }
-        if(getEventTemplateList() != null && !getEventTemplateList().isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for(SearchPathModel pathObject:getEventTemplateList()) {
-                sb.append(pathObject.getPath());
-                sb.append(",");
-            }
-            templateMap.put("events", sb.toString().substring(0,sb.length()-1));
-        }
-        if(getCaseTemplateList() != null && !getCaseTemplateList().isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for(SearchPathModel pathObject:getCaseTemplateList()) {
-                sb.append(pathObject.getPath());
-                sb.append(",");
-            }
-            templateMap.put("cases", sb.toString().substring(0,sb.length()-1));
-        }
-        if(getProductTemplateList() != null && !getProductTemplateList().isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for(SearchPathModel pathObject:getProductTemplateList()) {
-                sb.append(pathObject.getPath());
-                sb.append(",");
-            }
-            templateMap.put("products", sb.toString().substring(0,sb.length()-1));
-        }
+    public Map<String, String> getTemplateMap() {
+        setTemplateMap(getNewsTemplateList(), PWConstants.NEWS);
+        setTemplateMap(getEventTemplateList(), PWConstants.EVENTS);
+        setTemplateMap(getCaseTemplateList(), PWConstants.CASES);
+        setTemplateMap(getProductTemplateList(), PWConstants.PRODUCTS);
         return templateMap;
+    }
+
+    /**
+     * Sets the template map.
+     *
+     * @param list the list
+     * @param key the key
+     */
+    private void setTemplateMap(List<SearchPathModel> list, String key) {
+        if (list != null && !list.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (SearchPathModel pathObject : list) {
+                sb.append(pathObject.getPath());
+                sb.append(",");
+            }
+            templateMap.put(key, sb.toString().substring(0, sb.length() - 1));
+        }
     }
 
     /**
