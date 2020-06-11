@@ -47,3 +47,6 @@
 
 /0033 { /type "allow" /method "GET" /url "*/en.sitemap.xml" }
 /0034 { /type "allow" /method "POST" /url "/*/root/responsivegrid/contactus.sendmail.json" }
+
+/0035 { /type "allow" /method "POST" /url "/*/root/responsivegrid/businessinquiryform.padrotbusinessenquiry.json" }
+/0036 { /type "allow" /method "POST" /url "/*/root/responsivegrid/*.padrotsoftconversion.json" }
