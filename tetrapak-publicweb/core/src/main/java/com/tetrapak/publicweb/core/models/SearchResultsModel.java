@@ -194,7 +194,9 @@ public class SearchResultsModel {
      */
     public Map<String, String> getThemeMap() {
         if(Objects.nonNull(configurationModel) && getThemeList() != null && !getThemeList().isEmpty()) {
-            themeMap = getThemeList().stream().collect(Collectors.toMap(SearchListModel::getKey, SearchListModel::getTag));
+          for(SearchListModel theme:getThemeList()) {
+              themeMap.put(theme.getKey(), theme.getTag());
+          }
         }
         return themeMap;
     }
