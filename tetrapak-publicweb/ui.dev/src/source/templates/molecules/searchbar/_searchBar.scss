@@ -12,7 +12,7 @@
         height: 65%;
     }
     &__input {
-        @include padding-right($padding-l);
+        @include padding-right($padding-md);
         display: flex;
         flex: 1;
         flex-wrap: wrap;
