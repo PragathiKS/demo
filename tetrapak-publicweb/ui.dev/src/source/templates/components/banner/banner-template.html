@@ -24,7 +24,7 @@
         </div>
       </sly>
       <sly data-sly-test="${data.bannerType == 'hero'}">
-        <div class="pw-banner__contentwrapper">
+        <section class="pw-banner__contentwrapper">
       </sly>
       <div class="pw-banner__content banner-sibling ${data.pwDisplay}"></div>
       <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}">
@@ -60,7 +60,7 @@
       data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkPath}" />
   </div>
     <sly data-sly-test="${data.bannerType == 'hero'}">
-    
+    </section>
 </sly>
 </div>
 </sly>
