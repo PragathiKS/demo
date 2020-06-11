@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
          * @return dam root path
          */
         @AttributeDefinition(name = "DAM root Path")
-        String damRootPath() default "/content/dam/tetrapak/publicweb/pxp";
+        String damRootPath() default "/content/dam/tetrapak/products/pxp";
 
         /**
          * PXP Video Types
