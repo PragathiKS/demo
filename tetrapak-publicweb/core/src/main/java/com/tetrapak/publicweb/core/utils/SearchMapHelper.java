@@ -8,6 +8,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.SearchResultsModel;
 import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
 
@@ -116,7 +118,8 @@ public final class SearchMapHelper {
             map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
         }
         map.put("p.guessTotal", String.valueOf(guessTotal));
-        map.put("orderby", "@jcr:score");
+        map.put("orderby", "@jcr:content/jcr:lastModified");
+        map.put("orderby.sort", "desc");
 
         // Excluding pages which have Hide in Search selected.
         map.put(GROUP_3 + "property", "@jcr:content/hideInSearch");
@@ -176,9 +179,9 @@ public final class SearchMapHelper {
         List<SearchPathModel> gatedContentList = searchResultsModel.getGatedContentList();
         if (!CollectionUtils.isEmpty(gatedContentList)) {
             for (SearchPathModel path : gatedContentList) {
-                map.put(index + GROUP + ".path", path.getPath());
-                map.put(index + GROUP + ".path.self", "true");
-                map.put(index + GROUP + ".p.not", "true");
+                map.put(index + GROUP + "path", path.getPath());
+                map.put(index + GROUP + "path.self", "true");
+                map.put(index + GROUP + "p.not", "true");
                 index++;
             }
         }
@@ -195,16 +198,16 @@ public final class SearchMapHelper {
     private static List<SearchPathModel> getStructureList(String type, SearchResultsModel searchResultsModel) {
         List<SearchPathModel> structureList = new ArrayList<>();
         switch (type) {
-            case "news":
+            case PWConstants.NEWS:
                 structureList = searchResultsModel.getNewsStructureList();
                 break;
-            case "events":
+            case PWConstants.EVENTS:
                 structureList = searchResultsModel.getEventStructureList();
                 break;
-            case "products":
+            case PWConstants.PRODUCTS:
                 structureList = searchResultsModel.getProductStructureList();
                 break;
-            case "cases":
+            case PWConstants.CASES:
                 structureList = searchResultsModel.getCaseStructureList();
                 break;
             default:
@@ -223,16 +226,16 @@ public final class SearchMapHelper {
     private static List<SearchPathModel> getTemplateList(String type, SearchResultsModel searchResultsModel) {
         List<SearchPathModel> templateList = new ArrayList<>();
         switch (type) {
-            case "news":
+            case PWConstants.NEWS:
                 templateList = searchResultsModel.getNewsTemplateList();
                 break;
-            case "events":
+            case PWConstants.EVENTS:
                 templateList = searchResultsModel.getEventTemplateList();
                 break;
-            case "products":
+            case PWConstants.PRODUCTS:
                 templateList = searchResultsModel.getProductTemplateList();
                 break;
-            case "cases":
+            case PWConstants.CASES:
                 templateList = searchResultsModel.getCaseTemplateList();
                 break;
             default:
