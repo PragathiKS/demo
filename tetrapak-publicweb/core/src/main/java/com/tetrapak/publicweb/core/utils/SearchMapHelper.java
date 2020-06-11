@@ -28,7 +28,7 @@ public final class SearchMapHelper {
     private static final String GROUP_2 = "2_group.";
 
     /** The Constant GROUP_3. */
-    private static final String GROUP_3 = "3_group.";
+    private static final String GROUP_101 = "101_group.";
 
     /** The Constant GROUP_TYPE. */
     private static final String GROUP_TYPE = "_group.type";
@@ -122,9 +122,9 @@ public final class SearchMapHelper {
         map.put("orderby.sort", "desc");
 
         // Excluding pages which have Hide in Search selected.
-        map.put(GROUP_3 + "property", "@jcr:content/hideInSearch");
-        map.put(GROUP_3 + "property.value", "false");
-        map.put(GROUP_3 + "property.operation", "exists");
+        map.put(GROUP_101 + "property", "@jcr:content/hideInSearch");
+        map.put(GROUP_101 + "property.value", "false");
+        map.put(GROUP_101 + "property.operation", "exists");
         map.put("p.limit", String.valueOf(noOfResultsPerHit));
         map.put("p.offset", String.valueOf((pageParam - 1) * noOfResultsPerHit + 1));
     }
