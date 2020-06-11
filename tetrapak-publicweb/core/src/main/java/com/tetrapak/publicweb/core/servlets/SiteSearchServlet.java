@@ -3,25 +3,19 @@ package com.tetrapak.publicweb.core.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -53,9 +47,8 @@ import com.tetrapak.publicweb.core.beans.SearchBean;
 import com.tetrapak.publicweb.core.beans.SearchResultBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.SearchResultsModel;
-import com.tetrapak.publicweb.core.models.multifield.SearchPathModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.PageUtil;
+import com.tetrapak.publicweb.core.utils.SearchMapHelper;
 
 /**
  * The Class SiteSearchServlet.
@@ -85,25 +78,17 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 name = "Search Root Path Variable Name",
                 description = "Name of variable being sent by Front end to the servlet, that tells about the search root path.")
         int noOfResultsPerHit() default 10;
+        
+        /**
+         * No of results per hit.
+         *
+         * @return the int
+         */
+        @AttributeDefinition(
+                name = "Default Max Result Suggestion",
+                description = "Default Max Result Suggestion.")
+        int defaultMaxResultSuggestion() default 5000;
     }
-
-    /** The Constant GROUP. */
-    private static final String GROUP = "_group.";
-
-    /** The Constant GROUP_2. */
-    private static final String GROUP_2 = "2_group.";
-
-    /** The Constant GROUP_3. */
-    private static final String GROUP_3 = "3_group.";
-
-    /** The Constant GROUP_TYPE. */
-    private static final String GROUP_TYPE = "_group.type";
-
-    /** The Constant GROUP_PATH. */
-    private static final String GROUP_PATH = "_group.path";
-
-    /** The Constant GROUP_PROPERTY. */
-    private static final String GROUP_PROPERTY = "_group.1_property";
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 5220677543550980049L;
@@ -131,12 +116,15 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
     /** The search bean. */
     private transient SearchBean searchBean;
-    
-    /** The template map */
-    private Map<String,String> templatesMap;
+
+    /**  The template map. */
+    private Map<String, String> templatesMap;
 
     /** The no of results per hit. */
     private int noOfResultsPerHit;
+    
+    /** The no of total max guess */
+    private int guessTotal;
 
     /**
      * Do get.
@@ -177,26 +165,28 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
 
             // search for resources
+            int index = 1;
             Map<String, String> map = new HashMap<>();
             map.put("1_group.p.or", "true");
-            if (ArrayUtils.isNotEmpty(contentType)) {
-                int index = 1;
-                for (String type : contentType) {
-                    if (type.equalsIgnoreCase("media")) {
-                        index = setMediaMap(map, index);
-                    } else {
-                        index = setPageseMap(type, map, index);
+            if (!(ArrayUtils.isEmpty(contentType) && ArrayUtils.isEmpty(themes)
+                    && StringUtils.isBlank(fulltextSearchTerm))) {
+                if (ArrayUtils.isNotEmpty(contentType)) {
+                    for (String type : contentType) {
+                        if (type.equalsIgnoreCase("media")) {
+                            index = SearchMapHelper.setMediaMap(map, index,searchResultsModel);
+                        } else {
+                            index = SearchMapHelper.setPageseMap(type, map, index, searchResultsModel);
+                        }
                     }
+                } else {
+                    SearchMapHelper.setAllPagesMap(map,searchResultsModel);
+                    index = SearchMapHelper.setMediaMap(map, 2, searchResultsModel);
                 }
-            } else {
-                map.put("1" + GROUP + 1 + GROUP_TYPE, "cq:Page");
-                String pathKey = "1" + GROUP + 1 + GROUP_PATH;
-                map.put(pathKey, PageUtil.getLanguagePage(searchResultsModel.getCurrentPage()).getPath());
-                setMediaMap(map, 2);
+                SearchMapHelper.setCommonMap(fulltextSearchTerm, map, pageParam, noOfResultsPerHit, guessTotal);
+                SearchMapHelper.setThemesMap(themes, map, searchResultsModel);
+                SearchMapHelper.filterGatedContent(map, index, searchResultsModel);
+                setSearchBean(map);
             }
-            setThemesMap(themes, map);
-            setCommonMap(fulltextSearchTerm, map, pageParam);
-            setSearchBean(map);
             Gson gson = new Gson();
             String responseJSON;
             responseJSON = gson.toJson(searchBean);
@@ -220,121 +210,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     }
 
     /**
-     * Gets the media results.
-     *
-     * @param map
-     *            the map
-     * @param index
-     *            the index
-     * @return the media results
-     */
-    private int setMediaMap(Map<String, String> map, int index) {
-        List<SearchPathModel> structure = searchResultsModel.getMediaStructureList();
-        if (!CollectionUtils.isEmpty(structure)) {
-            for (SearchPathModel path : structure) {
-                map.put("1" + GROUP + index + GROUP_TYPE, "dam:Asset");
-                String pathKey = "1" + GROUP + index + GROUP_PATH;
-                map.put(pathKey, path.getPath());
-                index++;
-            }
-        }
-        return index;
-
-    }
-
-    /**
-     * Method to create a query and execute to get the results.
-     *
-     * @param type
-     *            the type
-     * @param map
-     *            the map
-     * @param index
-     *            the index
-     * @return List<SearchResultBean>
-     */
-    public int setPageseMap(String type, Map<String, String> map, int index) {
-        LOGGER.info("Executing setContentTypeValToMap method.");
-        List<SearchPathModel> structure = getStructureList(type.toLowerCase());
-        List<SearchPathModel> templates = getTemplateList(type.toLowerCase());
-
-        if (!CollectionUtils.isEmpty(structure)) {
-            for (SearchPathModel path : structure) {
-                map.put("1" + GROUP + index + GROUP_TYPE, "cq:Page");
-                String pathKey = "1" + GROUP + index + GROUP_PATH;
-                String templatekey = "1" + GROUP + index + GROUP_PROPERTY;
-                map.put(pathKey, path.getPath());
-                if (!CollectionUtils.isEmpty(templates)) {
-                    map.put(templatekey, "@jcr:content/cq:template");
-                    int templateIndex = 1;
-                    for (SearchPathModel template : templates) {
-                        map.put(templatekey + "." + templateIndex + "_value", template.getPath());
-                        templateIndex++;
-                    }
-                }
-                index++;
-            }
-        }
-        return index;
-    }
-
-    /**
-     * Gets the structure list.
-     *
-     * @param type
-     *            the type
-     * @return the structure list
-     */
-    private List<SearchPathModel> getStructureList(String type) {
-        List<SearchPathModel> structureList = new ArrayList<>();
-        switch (type) {
-            case "news":
-                structureList = searchResultsModel.getNewsStructureList();
-                break;
-            case "events":
-                structureList = searchResultsModel.getEventStructureList();
-                break;
-            case "products":
-                structureList = searchResultsModel.getProductStructureList();
-                break;
-            case "cases":
-                structureList = searchResultsModel.getCaseStructureList();
-                break;
-            default:
-                LOGGER.debug("Not a valid content type");
-        }
-        return structureList;
-    }
-
-    /**
-     * Gets the template list.
-     *
-     * @param type
-     *            the type
-     * @return the template list
-     */
-    private List<SearchPathModel> getTemplateList(String type) {
-        List<SearchPathModel> templateList = new ArrayList<>();
-        switch (type) {
-            case "news":
-                templateList = searchResultsModel.getNewsTemplateList();
-                break;
-            case "events":
-                templateList = searchResultsModel.getEventTemplateList();
-                break;
-            case "products":
-                templateList = searchResultsModel.getProductTemplateList();
-                break;
-            case "cases":
-                templateList = searchResultsModel.getCaseTemplateList();
-                break;
-            default:
-                LOGGER.debug("No template available");
-        }
-        return templateList;
-    }
-
-    /**
      * Sets the search bean.
      *
      * @param map
@@ -344,6 +219,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
         SearchResult result = query.getResult();
         long noOfResults = result.getTotalMatches();
+
         // paging metadata
         LOGGER.info("Total number of results : {}", noOfResults);
 
@@ -365,58 +241,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     }
 
     /**
-     * Sets the common map.
-     *
-     * @param fulltextSearchTerm
-     *            the fulltext search term
-     * @param map
-     *            the map
-     * @param pageParam
-     *            the page param
-     */
-    private void setCommonMap(String fulltextSearchTerm, Map<String, String> map, int pageParam) {
-        if (StringUtils.isNotBlank(fulltextSearchTerm)) {
-            map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
-        }
-        map.put("p.guessTotal", "true");
-        map.put("orderby", "@jcr:score");
-
-        // Excluding pages which have Hide in Search selected.
-        map.put(GROUP_3 + "property", "@jcr:content/hideInSearch");
-        map.put(GROUP_3 + "property.value", "false");
-        map.put(GROUP_3 + "property.operation", "exists");
-        map.put("p.limit", String.valueOf(noOfResultsPerHit));
-        map.put("p.offset", String.valueOf((pageParam - 1) * noOfResultsPerHit + 1));
-    }
-
-    /**
-     * Sets the themes map.
-     *
-     * @param themes
-     *            the themes
-     * @param map
-     *            the map
-     */
-    private void setThemesMap(String[] themes, Map<String, String> map) {
-        if (themes != null && themes.length > 0) {
-            map.put("2_group.p.or", "true");
-            int index = 1;
-            for (int i = 0; i < themes.length; i++) {
-                String tag = searchResultsModel.getThemeMap().get(themes[i]);
-                map.put(GROUP_2 + (i + 1) + "_group.property", "jcr:content/cq:tags");
-                map.put(GROUP_2 + (i + 1) + "_group.property.value", tag);
-                index++;
-            }
-            for (int i = 0; i < themes.length; i++) {
-                String tag = searchResultsModel.getThemeMap().get(themes[i]);
-                map.put(GROUP_2 + (index) + "_group.property", "jcr:content/metadata/cq:tags");
-                map.put(GROUP_2 + (index) + "_group.property.value", tag);
-                index++;
-            }
-        }
-    }
-
-    /**
      * Method to set search result item with all data.
      *
      * @param hit
@@ -428,10 +252,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private SearchResultBean setSearchResultItemData(Hit hit) throws RepositoryException {
 
         SearchResultBean searchResultItem = new SearchResultBean();
-        if(hit.getProperties().containsKey("cq:template")) {
-           searchResultItem.setType(getProductContentType(hit.getProperties().get("cq:template").toString()));
-        }
-        else {
+        if (hit.getProperties().containsKey("cq:template")) {
+            searchResultItem.setType(getProductContentType(hit.getProperties().get("cq:template").toString()));
+        } else {
             searchResultItem.setType("pw.searchResults.media");
         }
         searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
@@ -445,8 +268,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 searchResultItem.setType("pw.searchResults.contentPage");
                 ValueMap assetMetadataProperties = ResourceUtil.getValueMap(metadataResource);
                 searchResultItem.setDescription(assetMetadataProperties.get("dc:description", StringUtils.EMPTY));
-                searchResultItem.setSize(FileUtils.byteCountToDisplaySize(BigInteger
-                        .valueOf(Integer.valueOf(assetMetadataProperties.get("dam:size", StringUtils.EMPTY)))));
+                searchResultItem = setMediaSize(searchResultItem,assetMetadataProperties);
                 searchResultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf('.') + 1));
                 searchResultItem.setAssetType(getMediaType(assetMetadataProperties));
 
@@ -460,11 +282,39 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
         return searchResultItem;
     }
+    
+    /**
+     * Sets the media size.
+     *
+     * @param searchResultItem the search result item
+     * @param assetMetadataProperties the asset metadata properties
+     * @return the search result bean
+     */
+    private SearchResultBean setMediaSize(SearchResultBean searchResultItem, ValueMap assetMetadataProperties) {
+        int size = Integer.parseInt(assetMetadataProperties.get("dam:size", StringUtils.EMPTY));
+        if (size < 1024) {
+            searchResultItem.setSize(String.valueOf(size));
+            searchResultItem.setSizeType("pw.searchResults.bype");
+            return searchResultItem;
+        }
+        int convertedSize = size / 1024;
+        if (convertedSize > 1024) {
+            convertedSize = convertedSize / 1024;
+            searchResultItem.setSize(String.valueOf(convertedSize));
+            searchResultItem.setSizeType("pw.searchResults.mbype");
+        } else {
+            searchResultItem.setSize(String.valueOf(convertedSize));
+            searchResultItem.setSizeType("pw.searchResults.kbype");
+        }
+
+        return searchResultItem;
+    }
 
     /**
      * Gets the product content type.
      *
-     * @param template the template
+     * @param template
+     *            the template
      * @return the product content type
      */
     private String getProductContentType(String template) {
@@ -530,6 +380,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     @Activate
     protected void activate(final Config config) {
         this.noOfResultsPerHit = config.noOfResultsPerHit();
+        this.guessTotal = config.defaultMaxResultSuggestion();
 
     }
 }
