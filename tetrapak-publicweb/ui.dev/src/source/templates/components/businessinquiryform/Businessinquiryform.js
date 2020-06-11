@@ -72,13 +72,12 @@ class Businessinquiryform {
     }).done(
       (response) => {
         if (response.statusCode === '200') {
-          const offsetContact = $('#pw-contactUs').offset();
           $('.bef-tab-pane', this.root).removeClass('active');
           $('#bef-step-final', this.root).addClass('active');
           loadThankYou('ThankYou', 'request a quote', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
           $('.serviceError').removeClass('d-block');
           $('html, body').animate({
-            scrollTop: offsetContact.top - 50
+            scrollTop:  $('#befUs').offset().top - 150
           });
         } else {
           $('.serviceError').addClass('d-block');
