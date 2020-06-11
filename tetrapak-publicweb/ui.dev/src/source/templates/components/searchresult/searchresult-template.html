@@ -6,13 +6,13 @@
                 <div class="col-lg-9 margin-auto">
                     <div class="pw-search-results__search-bar">
                         <sly data-sly-use.searchBar="/apps/publicweb/components/molecules/searchbar/searchbar-template.html"
-                            data-sly-call="${searchBar.searchbar_template @ id='searchField', inputType='text', placeholder='searchplaceholder', inputClass='js-pw-search-input tpatom-input-box__input'}">
+                            data-sly-call="${searchBar.searchbar_template @ id='searchField', inputType='text', placeholder='pw.searchResults.searchplaceholder', inputClass='js-pw-search-input tpatom-input-box__input'}">
                     </div>
                     <div class="pw-search-results__filter-container">
                         <div class="pw-search-results__filter-container__heading d-none">
                             <span class="js-search-filter-toggle">
                                 <i class="FilterSettings_pw"></i>
-                                <label>Filters</label>
+                                <label>${'pw.searchResults.filters' @i18n}</label>
                             </span>
                         </div>
                         <div
@@ -22,7 +22,7 @@
                                     <div class="pw-search-results__filters__content-type">
                                         <sly data-sly-test="${data.contentTypeList}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                            data-sly-call="${heading.subheading_template @ headingText='contenttype', variant='small'}" />
+                                            data-sly-call="${heading.subheading_template @ headingText='pw.searchResults.contenttype', variant='small'}" />
                                         <div data-sly-test="${data.contentTypeList}" class="filter__list row no-gutters"
                                             data-sly-list.contentType="${data.contentTypeList}">
                                             <div class="tpatom-checkbox col-lg-6">
@@ -41,7 +41,7 @@
                                 <div class="col-lg-6">
                                     <sly data-sly-test="${data.themeList}"
                                         data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.subheading_template @ headingText='themes', variant='small'}" />
+                                        data-sly-call="${heading.subheading_template @ headingText='pw.searchResults.themes', variant='small'}" />
                                     <div data-sly-test="${data.themeList}" class="filter__list row no-gutters"
                                         data-sly-list.themeList="${data.themeList}">
                                         <div class="tpatom-checkbox col-lg-6">
@@ -60,17 +60,17 @@
                             </div>
                             <div class="pw-search-results__button-group">
                                 <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                    data-sly-call="${nextButton.tabbutton_template @ btnText='ok', btnType='button', customClasses='js-apply-filter'}" />
+                                    data-sly-call="${nextButton.tabbutton_template @ btnText='pw.searchResults.ok', btnType='button', customClasses='js-apply-filter'}" />
                             </div>
                         </div>
                         <div class="pw-search-results__filter-container__count js-filter-title">
                             <div class="js-filter-container-chips d-none">
                                 <!-- Loading filter tags/chips here -->
                             </div>
-                            <div data-sly-test="${data.resultsText}" class="js-pw-search-results__title"
-                                data-results-title="${data.resultsText @ i18n}"
-                                data-no-results-text="${'nosearchresults' @ i18n}"
-                                data-empty-field="${'Please try again to enter a search text in the above field' @ i18n}">
+                            <div class="js-pw-search-results__title" 
+                                data-results-title="${'pw.searchResults.searchresults' @ i18n}"
+                                data-no-results-text="${'pw.searchResults.nosearchresults' @ i18n}"
+                                data-empty-field="${'pw.searchResults.emptySearchText' @ i18n}">
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="pw-search-results__results">
                             <div class="pw-search-results__results-list js-pw-search-results__results-list"></div>
-                            <div class="js-pagination d-none" aria-live="polite"></div>
+                            <div class="js-pagination d-none" aria-live="polite" data-pagination-text="${'pw.searchResults.of' @ i18n}"></div>
                         </div>
                     </div>
                 </div>
