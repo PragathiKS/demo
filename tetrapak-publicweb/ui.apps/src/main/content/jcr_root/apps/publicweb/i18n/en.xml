@@ -283,4 +283,8 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.video"
         sling:message="video"/>
+	<pw.searchResults.contentPage
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.contentPage"
+        sling:message="Content Page"/>
 </jcr:root>
