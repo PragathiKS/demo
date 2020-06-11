@@ -126,7 +126,19 @@
         }
     }
     .summary {
-        margin-bottom: 16px;
+        margin-bottom: 0;
+        @media #{$desktop} {
+            margin-bottom: 16px;
+        }
+        .purposeOfContactInBusinessEqTitle,
+        .purposeOfInterestAreaEqTitle ,
+        .firstName ,
+        .lastName ,
+        .email ,
+        .phone {
+            font-weight: 900;
+        }
+
     }
 
     ul.pw-progressbar_wrapper .step-box {
@@ -139,5 +151,17 @@
         &:last-child {
             flex: 0;
         }
+    }
+
+    .consentCheckbox {
+        display: inline;
+        position: relative;
+        top: 4px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .consentlabel {
+        display: inline;
     }
 }

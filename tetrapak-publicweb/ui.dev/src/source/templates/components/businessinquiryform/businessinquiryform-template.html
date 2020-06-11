@@ -308,8 +308,7 @@
                                             </div>
                                             <div class="col-sm-12 formfield">
                                                 <div class="form-group formfield">
-                                                    <input id="consentcheckbox" required type="checkbox" name="consent">
-                                                    <label for="consentcheckbox">${data.marketingConsent @ context='html'}</label>
+                                                    <label class="consentlabel" for="consentcheckbox"><input id="consentcheckbox" class="consentCheckbox" required type="checkbox" name="consent"> ${data.marketingConsent @ context='html'}</label>
                                                     <div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
                                                 </div>
                                             </div>
