@@ -118,7 +118,15 @@ $header-height-mobile: 62;
 $section-menu-height-mobile: 56;
 
 // sticky-view-height
-$sticky-view-height: $header-height-mobile + $section-menu-height-mobile
+$sticky-view-height: $header-height-mobile + $section-menu-height-mobile;
 
+// desktop header hight
+$header-height-web: 80;
+
+// desktop sticky section menu hight
+$section-menu-height-web: 62;
+
+// sticky-view-height-web
+$sticky-view-height-web: $header-height-web + $section-menu-height-web;
 
 

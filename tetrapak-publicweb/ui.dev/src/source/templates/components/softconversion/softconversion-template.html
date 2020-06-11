@@ -24,7 +24,7 @@
       	<div class="modal-header pw-softconversion__header" auto_locator="softConversionSectionHeader">
           <h4 role="heading" class="pw-softconversion__header__heading" auto_locator="headingFontStep1">${data.heading}
           </h4>
-          <button type="button" class="tp-close-btn icon-Close pw-softconversion__header__close js-close-btn"></button>
+          <button type="button" class="tp-close-btn icon-Close_pw pw-softconversion__header__close js-close-btn"></button>
         </div>
         
         <div class="modal-body pw-softconversion__body row no-gutters" auto_locator="softConversionSectionBody">
@@ -194,7 +194,7 @@
                                             </label>
         								</div>
                                         
-    									<div class="col-sm-11">${data.marketingConsent @ context="html"} </div>
+    									<div class="col-sm-11 marketingConsentText">${data.marketingConsent @ context="html"} </div>
 											<div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
 										</div>
     									</div>

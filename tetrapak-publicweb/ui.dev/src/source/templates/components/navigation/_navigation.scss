@@ -47,13 +47,14 @@
                 display: block;
             }
             .section-link-home {
-                @include padding($padding-md 15px);
-                @include padding-left(31px);
+                @include padding($padding-zero 15px);
                 width: 100%;
                 border-bottom: 1px solid $color-mercury;
 
                 & > a {
+                    @include padding($padding-md);
                     color: $color-congress-blue;
+                    width: 100%;
                     &:hover {
                         color: $color-congress-blue;
                     }

@@ -6,18 +6,18 @@
 ##        : *.html        -> all .html files
 ## Default allow all items to cache
 /0006 {
-	/glob "*"
-	/type "allow"
+        /glob "*"
+        /type "allow"
 }
 ## Don't cache csrf login tokens
 /0007 {
-	/glob "/libs/granite/csrf/token.json"
-	/type "deny"
+        /glob "/libs/granite/csrf/token.json"
+        /type "deny"
 }
 
 ## Cache /content/tetrapak/customerhub
 /0008 {
-        /glob "/content/tetrapak/public-web[./]*"
+        /glob "/content/tetrapak/publicweb[./]*"
         /type "allow"
       }
 
@@ -27,7 +27,7 @@
         /type "allow"
       }
 
-## Don't cache SDI resources	  
+## Don't cache SDI resources
 /0010 {
     /glob "*.nocache.html*"
     /type "deny"
