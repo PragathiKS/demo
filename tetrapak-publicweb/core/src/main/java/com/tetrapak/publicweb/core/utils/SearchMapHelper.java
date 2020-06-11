@@ -25,7 +25,7 @@ public final class SearchMapHelper {
     private static final String GROUP = "_group.";
 
     /** The Constant GROUP_2. */
-    private static final String GROUP_2 = "2_group.";
+    private static final String GROUP_102 = "2_group.";
 
     /** The Constant GROUP_3. */
     private static final String GROUP_101 = "101_group.";
@@ -142,14 +142,18 @@ public final class SearchMapHelper {
             int index = 1;
             for (int i = 0; i < themes.length; i++) {
                 String tag = searchResultsModel.getThemeMap().get(themes[i]);
-                map.put(GROUP_2 + (i + 1) + "_group.property", "jcr:content/cq:tags");
-                map.put(GROUP_2 + (i + 1) + "_group.property.value", tag);
-                index++;
+                if (StringUtils.isNotBlank(tag)) {
+                    map.put(GROUP_102 + (i + 1) + "_group.property", "jcr:content/cq:tags");
+                    map.put(GROUP_102 + (i + 1) + "_group.property.value", tag);
+                    index++;
+                }
             }
             for (int i = 0; i < themes.length; i++) {
                 String tag = searchResultsModel.getThemeMap().get(themes[i]);
-                map.put(GROUP_2 + (index) + "_group.property", "jcr:content/metadata/cq:tags");
-                map.put(GROUP_2 + (index) + "_group.property.value", tag);
+                if (StringUtils.isNotBlank(tag)) {
+                    map.put(GROUP_102 + (index) + "_group.property", "jcr:content/metadata/cq:tags");
+                    map.put(GROUP_102 + (index) + "_group.property.value", tag);
+                }
                 index++;
             }
         }
