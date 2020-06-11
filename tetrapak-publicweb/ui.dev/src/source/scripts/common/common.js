@@ -1,6 +1,5 @@
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
-import sassVariables from '../../styles/global/default/en/base.scss';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
 import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
@@ -81,22 +80,9 @@ export const isCallable = (param) => (typeof param === 'function');
  */
 export const scrollToElement = (callback, selector = document.body, duration = 500) => {
   let executed = false;
-  let stickyViewHeight = 0;
-
-  if(isMobile()){
-    stickyViewHeight = sassVariables.headerHeightMobile;
-    if($('.sticky-section-menu').length > 0){
-      stickyViewHeight = sassVariables.stickyViewHeightMobile;
-    }
-  }else {
-    stickyViewHeight = sassVariables.headerHeightWeb;
-    if($('.sticky-section-menu').length > 0){
-      stickyViewHeight = sassVariables.stickyViewHeightWeb;
-    }
-  }
   $global.animate(
     {
-      scrollTop: $(selector).offset().top - parseInt(stickyViewHeight,10)
+      scrollTop: $(selector).offset().top
     },
     {
       duration,
