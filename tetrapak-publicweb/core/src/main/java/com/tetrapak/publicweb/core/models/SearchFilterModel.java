@@ -52,28 +52,33 @@ public class SearchFilterModel {
             SearchConfigModel configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);     
             if (Objects.nonNull(configurationModel)){
                 themeList = configurationModel.getThemeList();
-                SearchListModel contentType = new SearchListModel();
+                SearchListModel contentType;
                 if(StringUtils.isNoneBlank(configurationModel.getEventLabel())) {
+                    contentType = new SearchListModel();
                     contentType.setKey(PWConstants.EVENTS);
                     contentType.setLabel(configurationModel.getEventLabel());
                     contentTypeList.add(contentType);
                 }
                 if(StringUtils.isNoneBlank(configurationModel.getNewsLabel())) {
+                    contentType = new SearchListModel();
                     contentType.setKey(PWConstants.NEWS);
                     contentType.setLabel(configurationModel.getNewsLabel());
                     contentTypeList.add(contentType);
                 }
                 if(StringUtils.isNoneBlank(configurationModel.getProductLabel())) {
+                    contentType = new SearchListModel();
                     contentType.setKey(PWConstants.PRODUCTS);
                     contentType.setLabel(configurationModel.getProductLabel());
                     contentTypeList.add(contentType);
                 }
                 if(StringUtils.isNoneBlank(configurationModel.getCaseLabel())) {
+                    contentType = new SearchListModel();
                     contentType.setKey(PWConstants.CASES);
                     contentType.setLabel(configurationModel.getCaseLabel());
                     contentTypeList.add(contentType);
                 }
                 if(StringUtils.isNoneBlank(configurationModel.getMediaLabel())) {
+                    contentType = new SearchListModel();
                     contentType.setKey(PWConstants.MEDIA);
                     contentType.setLabel(configurationModel.getMediaLabel());
                     contentTypeList.add(contentType);
