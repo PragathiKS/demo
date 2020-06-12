@@ -373,11 +373,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             convertedSize = convertedSize / 1024;
             searchResultItem
                     .setSize(String.valueOf(BigDecimal.valueOf(convertedSize).setScale(1, RoundingMode.HALF_UP)));
-            searchResultItem.setSizeType("pw.searchResults.mbype");
+            searchResultItem.setSizeType("pw.searchResults.mbyte");
         } else {
             searchResultItem
                     .setSize(String.valueOf(BigDecimal.valueOf(convertedSize).setScale(1, RoundingMode.HALF_UP)));
-            searchResultItem.setSizeType("pw.searchResults.kbype");
+            searchResultItem.setSizeType("pw.searchResults.kbyte");
         }
         return searchResultItem;
     }

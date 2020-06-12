@@ -249,11 +249,11 @@
         sling:message="image"/>
     <pw.searchResults.kb
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.searchResults.kb"
+        sling:key="pw.searchResults.kbyte"
         sling:message="KB"/>
     <pw.searchResults.mb
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.searchResults.mb"
+        sling:key="pw.searchResults.mbyte"
         sling:message="MB"/>
     <pw.searchResults.nosearchresults
         jcr:primaryType="sling:MessageEntry"
@@ -274,7 +274,7 @@
     <pw.searchResults.searchresultsText
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.searchresultsText"
-        sling:message="\{0} search results"/>
+        sling:message="search results"/>
     <pw.searchResults.themes
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.themes"
@@ -287,4 +287,8 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.contentPage"
         sling:message="Content Page"/>
+	<pw.searchResults.emptySearchText
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.emptySearchText"
+        sling:message="Please try again to enter a search text in the above field"/>        
 </jcr:root>

@@ -1,130 +1,83 @@
-/*
- * package com.tetrapak.publicweb.core.servlets;
- * 
- * import static org.junit.Assert.assertNotNull; import static org.mockito.Mockito.when;
- * 
- * import java.io.IOException; import java.io.PrintWriter; import java.io.StringWriter; import java.util.HashMap; import
- * java.util.Map;
- * 
- * import javax.jcr.Session;
- * 
- * import org.apache.sling.api.SlingHttpServletRequest; import org.apache.sling.api.SlingHttpServletResponse; import
- * org.apache.sling.api.resource.Resource; import org.apache.sling.api.resource.ResourceResolver; import
- * org.apache.sling.api.resource.ResourceResolverFactory; import
- * org.apache.sling.testing.mock.sling.ResourceResolverType; import org.junit.Before; import org.junit.Rule; import
- * org.junit.Test; import org.mockito.InjectMocks; import org.mockito.Mock; import org.mockito.Mockito; import
- * org.mockito.MockitoAnnotations;
- * 
- * import com.day.cq.commons.jcr.JcrConstants; import com.day.cq.search.PredicateGroup; import com.day.cq.search.Query;
- * import com.day.cq.search.QueryBuilder; import com.day.cq.search.result.SearchResult; import
- * com.day.cq.tagging.InvalidTagFormatException;
- * 
- * import io.wcm.testing.mock.aem.junit.AemContext;
- * 
- *//**
-    * The Class SiteSearchServletTest.
-    */
-/*
- * public class SiteSearchServletTest {
- * 
- *//** The context. */
-/*
- * @Rule public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
- * 
- *//** The request. */
-/*
- * @Mock SlingHttpServletRequest request;
- * 
- *//** The response. */
-/*
- * @Mock SlingHttpServletResponse response;
- * 
- *//** The resolver. */
-/*
- * @Mock ResourceResolver resolver;
- * 
- *//** The session. */
-/*
- * @Mock Session session;
- * 
- *//** The query builder. */
-/*
- * @Mock private QueryBuilder queryBuilder;
- * 
- *//** The result. */
-/*
- * @Mock SearchResult result;
- * 
- *//** The query. */
-/*
- * @Mock private Query query;
- * 
- *//** The resource. */
-/*
- * @Mock Resource resource;
- * 
- *//** The config. */
-/*
- * @Mock SiteSearchServlet.Config config;
- * 
- *//**
-    * Setup.
-    */
-/*
- * @Before public void setup() { MockitoAnnotations.initMocks(this);
- * 
- * when(String.valueOf(config.search_rootpath())).thenReturn(SEARCH_ROOT_PATH);
- * when(String.valueOf(config.fulltext_searchterm())).thenReturn(FULLTEXT_SEARCH_TERM); }
- * 
- *//** The resolver factory. */
-/*
- * @Mock private ResourceResolverFactory resolverFactory;
- * 
- *//** The resource resolver. */
-/*
- * @Mock private ResourceResolver resourceResolver;
- * 
- *//** The site search servlet. */
-/*
- * @InjectMocks private SiteSearchServlet siteSearchServlet;
- * 
- *//** The search root path. */
-/*
- * private String SEARCH_ROOT_PATH;
- * 
- *//** The map. */
-/*
- * Map<String, String> map = new HashMap<>();
- * 
- *//** The fulltext search term. */
-/*
- * private String FULLTEXT_SEARCH_TERM;
- * 
- *//**
-    * Test do get tag manager N ull.
-    *
-    * @throws InvalidTagFormatException
-    *             the invalid tag format exception
-    * @throws IOException
-    *             Signals that an I/O exception has occurred.
-    *//*
-       * @Test public void testDoGetTagManagerNUll() throws IOException {
-       * when(request.getResourceResolver()).thenReturn(resourceResolver);
-       * when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-       * when(resourceResolver.adaptTo(QueryBuilder.class)).thenReturn(queryBuilder);
-       * 
-       * when(request.getParameter(FULLTEXT_SEARCH_TERM)).thenReturn("search%20term");
-       * when(request.getParameter(SEARCH_ROOT_PATH)).thenReturn("/content"); Map<String, String> map = new HashMap<>();
-       * map.put("group.p.or", "true"); map.put("group.1_property", JcrConstants.JCR_TITLE);
-       * map.put("group.1_property.value", "true"); map.put("group.1_property.operation", "exists");
-       * map.put("group.2_property", "title"); map.put("group.2_property.value", "true");
-       * map.put("group.2_property.operation", "exists");
-       * when(queryBuilder.createQuery(Mockito.any(PredicateGroup.class),
-       * Mockito.any(Session.class))).thenReturn(query); when(query.getResult()).thenReturn(result); StringWriter
-       * stringWriter = new StringWriter(); PrintWriter writer = new PrintWriter(stringWriter);
-       * when(response.getWriter()).thenReturn(writer); siteSearchServlet.doGet(request, (SlingHttpServletResponse)
-       * response); siteSearchServlet.activate(config); response = (SlingHttpServletResponse) response; assertNotNull(
-       * response.getStatus()); }
-       * 
-       * }
-       */
+package com.tetrapak.publicweb.core.servlets;
+
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.testing.mock.osgi.MockOsgi;
+import org.apache.sling.xss.XSSAPI;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
+import com.google.common.base.Function;
+import com.tetrapak.publicweb.core.mock.MockHelper;
+import com.tetrapak.publicweb.core.mock.MockXSSAPI;
+
+import io.wcm.testing.mock.aem.junit.AemContext;
+
+public class SiteSearchServletTest {
+
+    @Rule
+    public AemContext context = new AemContext();
+
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/public-web/lang-masters/en";
+
+    /** The Constant CURRENT_RESOURCE. */
+    private static final String CURRENT_RESOURCE = "/content/tetrapak/public-web/lang-masters/en/search/jcr:content/root/responsivegrid/searchresults";
+
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String DAM_CONTENT_ROOT = "/content/dam/publicweb";
+
+    @Mock
+    XSSAPI xssAPI;
+
+    @Before
+    public void setUp() throws Exception {
+
+        context.load().json("/searchresult/en.json", TEST_CONTENT_ROOT);
+        context.load().json("/searchresult/dam.json", DAM_CONTENT_ROOT);
+        context.currentResource(CURRENT_RESOURCE);
+        context.request().setPathInfo(CURRENT_RESOURCE);
+
+        MockitoAnnotations.initMocks(this);
+        when(xssAPI.getValidHref(context.request().getParameter("contentType")))
+                .thenReturn("news,media,events,products");
+        XSSAPI xssAPI = new MockXSSAPI(context.request().getParameter("contentType"));
+        context.registerService(XSSAPI.class, xssAPI);
+        
+        Map<String, Object> config = new HashMap<>();
+        config.put("noOfResultsPerHit", "10");
+        config.put("defaultMaxResultSuggestion", "3000");
+        context.registerService(SiteSearchServlet.class, new SiteSearchServlet());
+        context.getService(SiteSearchServlet.class);
+        MockOsgi.activate(context.getService(SiteSearchServlet.class), context.bundleContext(), config);
+
+    }
+
+    @Test
+    public void testSearch() throws IOException {
+
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("page", "1");
+        parameterMap.put("contentType", "news,media,events,products");
+
+        final List<String> pathList = new ArrayList<>();
+        pathList.add("/content/tetrapak/publicweb/lang-masters/en/home");
+
+        MockHelper.loadQuery(context, pathList);
+
+        context.request().setParameterMap(parameterMap);
+        SiteSearchServlet servlet = MockHelper.getServlet(context, SiteSearchServlet.class);
+        servlet.doGet(context.request(), context.response());
+    }
+}
