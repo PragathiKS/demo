@@ -146,9 +146,13 @@ class Businessinquiryform {
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
-        if (!self.cache.requestPayload['phone']) {
+        if (!(self.cache.requestPayload['phone']).length > 0) {
           $('#phoneSummery').hide();
         }
+        else {
+          $('#phoneSummery').show();  
+        }
+
         if (target) {
           $('.bef-tab-pane').removeClass('active');
           $(target).addClass('active');

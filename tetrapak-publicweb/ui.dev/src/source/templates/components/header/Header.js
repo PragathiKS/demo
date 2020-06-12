@@ -30,7 +30,7 @@ class Header {
     this.cache.$overlay = $('.js-pw-overlay');
   }
 
-  // 
+  //
 
   bindEvents() {
     const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker} = this.cache;
@@ -51,7 +51,7 @@ class Header {
       this.trackLanguageSelector(e);
     });
 
-  
+
   }
 
   trackLanguageSelector = () => {
@@ -151,8 +151,17 @@ class Header {
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     const url = $this.attr('href');
-    const targetLink = $this.attr('target');
-    const linkType = targetLink === '_blank'? 'external' :'internal';
+    const myDomain = 'tetrapak.com';
+    
+    if (url && (url.includes('http://') || url.includes('https://'))) {
+      if (url.includes(myDomain)) {
+        $this.attr('target','_blank');
+      }
+    }
+    else {
+      $this.attr('target','_self');
+    }
+    const linkType = $this.attr('target');
     const trackingObj = {
       linkType,
       linkSection: 'Brand logo',
@@ -165,8 +174,8 @@ class Header {
     };
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 
-    if(url && targetLink){
-      window.open(url, targetLink);
+    if(url && linkType){
+      window.open(url, linkType);
     }
   }
 
@@ -183,13 +192,13 @@ class Header {
 
     const linkClickTrackingobj = {
       linkType,
-      linkSection: 'Header Navigation',
+      linkSection: 'Hyperlink Click',
       linkParentTitle:'',
       linkName: navigationLinkName
     };
 
     const eventObj = {
-      eventType: 'linkClick',
+      eventType: 'navigation click',
       event: 'Header'
     };
     trackAnalytics(

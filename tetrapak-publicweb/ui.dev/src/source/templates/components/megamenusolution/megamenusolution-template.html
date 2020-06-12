@@ -18,7 +18,7 @@
         <ul class="row" data-sly-list.endToEndSolutionSection=${data.endToEndSolutionSection}>
           <li class="col">
             <a class="js-navigation-Link" data-link-section='Tetra Pak end to end solutions'
-              data-link-name='${mainHeader}:${endToEndSolutionSection.title}' href="${endToEndSolutionSection.path}">
+              data-link-title="${endToEndSolutionSection.title}" data-link-name='${mainHeader}:${endToEndSolutionSection.title}' href="${endToEndSolutionSection.path}">
               <sly data-sly-test="${!wcmmode.edit}">
                 <sly
                   data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -63,7 +63,7 @@
             </li>
             <li class="col">
               <a class="js-navigation-Link" data-link-section='Food categories'
-                data-link-name='${mainHeader}:${foodCategorySection.title}' href="${foodCategorySection.path}">
+              data-link-title="${foodCategorySection.title}" data-link-name='${mainHeader}:${foodCategorySection.title}' href="${foodCategorySection.path}">
                 <sly data-sly-test="${!wcmmode.edit}">
                   <sly
                     data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
