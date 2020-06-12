@@ -62,27 +62,30 @@ describe('Searchresults', function () {
     done();
   });
 
-  it('Should toggle container on label click', function () {
+  it('Should toggle container on label click', function (done) {
     document.getElementsByClassName('js-search-filter-toggle')[0].click();
     expect(this.searchresults.toggleFilterContainer.called).to.be.true;
+    done();
   });
 
-  it('Should not call when search value is empty', function () {
+  it('Should not call when search value is empty', function (done) {
     $('.js-pw-search-input').val("mixing");
     $('.js-pw-search-input').trigger(event);
     expect(this.searchresults.pushIntoUrl.called).to.be.true;
     expect(this.searchresults.search.called).to.be.true;
     expect(this.searchresults.cache.filterObj.filterTags['searchTerm'][0]).to.equal('mixing');
+    done();
   });
 
-  it('Should not update url when input is empty and pressed enter', function () {
+  it('Should not update url when input is empty and pressed enter', function (done) {
     $('.js-pw-search-input').val("");
     $('.js-pw-search-input').trigger(event);
     expect(this.searchresults.cache.filterObj.filterTags['searchTerm'].length).to.equal(0);
     expect(this.searchresults.renderTitle.called).to.be.true;
+    done();
   });
 
-  it('Should update url when input is empty but filter is selected and pressed enter', function () {
+  it('Should update url when input is empty but filter is selected and pressed enter', function (done) {
     $('.js-pw-search-input').val("");
     $('.js-pw-search-input').trigger(event);
     this.searchresults.cache.filterObj.filterTags['contentType'][0] = 'news';
@@ -90,21 +93,25 @@ describe('Searchresults', function () {
     expect(this.searchresults.pushIntoUrl.called).to.be.true;
     expect(this.searchresults.search.called).to.be.true;
     expect(this.searchresults.renderTitle.called).to.be.true;
+    done();
   });
 
-  it('Should send request when ok is clicked', function () {
+  it('Should send request when ok is clicked', function (done) {
     this.searchresults.cache.filterObj.filterTags['contentType'][0] = 'news';
     $('.js-apply-filter').trigger('click');
     expect(this.searchresults.applyFilters.called).to.be.true;
+    done();
   });
 
-  it('Should Update object when filter is changed', function () {
+  it('Should Update object when filter is changed', function (done) {
     $('.js-pw-search-results-filter-check').trigger('change');
     expect(this.searchresults.cache.filterObj.checks.length).to.equal(1);
+    done();
   });
 
-  it('Should work with paginations', function () {
+  it('Should work with paginations', function (done) {
     $('.js-page-number').trigger('click');
     expect(this.searchresults.pushIntoUrl.called).to.be.true;
+    done();
   });
 });
