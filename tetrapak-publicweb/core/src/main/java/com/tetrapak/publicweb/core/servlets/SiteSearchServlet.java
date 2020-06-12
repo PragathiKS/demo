@@ -29,6 +29,7 @@ import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.settings.SlingSettingsService;
 import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
@@ -49,6 +50,8 @@ import com.tetrapak.publicweb.core.beans.SearchBean;
 import com.tetrapak.publicweb.core.beans.SearchResultBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.SearchResultsModel;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.SearchMapHelper;
 
@@ -104,6 +107,14 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     @Reference
     private transient QueryBuilder queryBuilder;
 
+    /** The sling Settings Service. */
+    @Reference
+    private transient SlingSettingsService slingSettingsService;
+
+    /** The dynamic Media Service. */
+    @Reference
+    private transient DynamicMediaService dynamicMediaService;
+
     /** The xss API. */
     @Reference
     private transient XSSAPI xssAPI;
@@ -123,6 +134,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /** The no of total max guess. */
     private int guessTotal;
 
+    /** The resource resolver. */
+    private transient ResourceResolver resourceResolver;
+
     /**
      * Do get.
      *
@@ -139,7 +153,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             templatesMap = searchResultsModel.getTemplateMap();
 
             // get resource resolver, session and queryBuilder objects.
-            ResourceResolver resourceResolver = request.getResourceResolver();
+            resourceResolver = request.getResourceResolver();
             session = resourceResolver.adaptTo(Session.class);
             queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
             searchBean = new SearchBean();
@@ -198,10 +212,14 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Sets the content map.
      *
-     * @param map the map
-     * @param searchResultsModel the search results model
-     * @param contentType the content type
-     * @param index the index
+     * @param map
+     *            the map
+     * @param searchResultsModel
+     *            the search results model
+     * @param contentType
+     *            the content type
+     * @param index
+     *            the index
      * @return the int
      */
     private int setContentMap(Map<String, String> map, SearchResultsModel searchResultsModel, String[] contentType,
@@ -245,8 +263,10 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Sets the search bean.
      *
-     * @param map            the map
-     * @param searchResultsModel the search results model
+     * @param map
+     *            the map
+     * @param searchResultsModel
+     *            the search results model
      */
     private void setSearchBean(Map<String, String> map, SearchResultsModel searchResultsModel) {
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
@@ -276,22 +296,18 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Method to set search result item with all data.
      *
-     * @param hit            the hit
-     * @param searchResultsModel the search results model
+     * @param hit
+     *            the hit
+     * @param searchResultsModel
+     *            the search results model
      * @return the search result bean
-     * @throws RepositoryException             the repository exception
+     * @throws RepositoryException
+     *             the repository exception
      */
     private SearchResultBean setSearchResultItemData(Hit hit, SearchResultsModel searchResultsModel)
             throws RepositoryException {
 
         SearchResultBean searchResultItem = new SearchResultBean();
-        if (hit.getProperties().containsKey(PWConstants.CQ_TEMPLATE)) {
-            searchResultItem.setType(getProductContentType(hit.getProperties().get(PWConstants.CQ_TEMPLATE).toString(),
-                    searchResultsModel));
-        } else {
-            searchResultItem.setType(searchResultsModel.getMediaLabel());
-        }
-        searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
         searchResultItem.setTitle(hit.getTitle());
         Resource resource = hit.getResource();
 
@@ -301,20 +317,44 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             if (Objects.nonNull(metadataResource)) {
                 searchResultItem.setType(searchResultsModel.getMediaLabel());
                 ValueMap assetMetadataProperties = ResourceUtil.getValueMap(metadataResource);
+                String mediaType = getMediaType(assetMetadataProperties);
+                setMediaPath(searchResultItem, hit.getPath(), mediaType);
                 searchResultItem.setDescription(assetMetadataProperties.get("dc:description", StringUtils.EMPTY));
                 setMediaSize(searchResultItem, assetMetadataProperties);
                 searchResultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf('.') + 1));
                 searchResultItem.setAssetType(getMediaType(assetMetadataProperties));
-
             } else {
+                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
                 searchResultItem.setDescription(hit.getProperties().get("jcr:description", StringUtils.EMPTY));
-                if (Objects.nonNull(hit.getProperties().get("cq:lastModified"))) {
-                    searchResultItem.setDate(formatDate(hit.getProperties().get("cq:lastModified", Date.class)));
-                }
+                setContentFields(searchResultItem, hit, searchResultsModel);
             }
         }
-
         return searchResultItem;
+
+    }
+
+    /**
+     * Sets the media path.
+     *
+     * @param searchResultItem
+     *            the search result item
+     * @param path
+     *            the path
+     * @param mediaType
+     *            the media type
+     */
+    private void setMediaPath(SearchResultBean searchResultItem, String path, String mediaType) {
+        if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
+            if (PWConstants.VIDEO.equalsIgnoreCase(mediaType)) {
+                searchResultItem.setPath(GlobalUtil.getVideoUrlFromScene7(resourceResolver, path, dynamicMediaService));
+            } else if (PWConstants.IMAGE.equalsIgnoreCase(mediaType)) {
+                searchResultItem.setPath(GlobalUtil.getImageUrlFromScene7(resourceResolver, path, dynamicMediaService));
+            } else {
+                searchResultItem.setPath(LinkUtils.sanitizeLink(path));
+            }
+        } else {
+            searchResultItem.setPath(LinkUtils.sanitizeLink(path));
+        }
     }
 
     /**
@@ -345,29 +385,82 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Gets the product content type.
      *
-     * @param template            the template
-     * @param searchResultsModel the search results model
+     * @param searchResultItem the search result item
+     * @param hit the hit
+     * @param searchResultsModel            the search results model
      * @return the product content type
+     * @throws RepositoryException the repository exception
      */
-    private String getProductContentType(String template, SearchResultsModel searchResultsModel) {
-        String contentType = "pw.searchResults.contentPage";
-        if (templatesMap != null && templatesMap.containsKey(PWConstants.NEWS)
-                && templatesMap.get(PWConstants.NEWS).indexOf(template) >= 0) {
-            contentType = searchResultsModel.getNewsLabel();
+    private void setContentFields(SearchResultBean searchResultItem, Hit hit, SearchResultsModel searchResultsModel)
+            throws RepositoryException {
+
+        String contentType = getContentTypeFromTemplate(hit);
+        if (StringUtils.isBlank(contentType)) {
+            searchResultItem.setType("pw.searchResults.contentPage");
+        } else {
+            setContentTypeAndDate(searchResultItem, hit, contentType, searchResultsModel);
         }
-        if (templatesMap != null && templatesMap.containsKey(PWConstants.EVENTS)
-                && templatesMap.get(PWConstants.EVENTS).indexOf(template) >= 0) {
-            contentType = searchResultsModel.getEventLabel();
+
+    }
+
+    /**
+     * Sets the content type and date.
+     *
+     * @param searchResultItem the search result item
+     * @param hit the hit
+     * @param contentType the content type
+     * @param searchResultsModel the search results model
+     * @throws RepositoryException the repository exception
+     */
+    private void setContentTypeAndDate(SearchResultBean searchResultItem, Hit hit, String contentType,
+            SearchResultsModel searchResultsModel) throws RepositoryException {
+        if (PWConstants.PRODUCTS.equalsIgnoreCase(contentType)) {
+            searchResultItem.setType(searchResultsModel.getProductLabel());
+        } else {
+            if (Objects.nonNull(hit.getProperties().get("cq:lastModified"))) {
+                searchResultItem.setDate(formatDate(hit.getProperties().get("cq:lastModified", Date.class)));
+            }
+            if (PWConstants.EVENTS.equalsIgnoreCase(contentType)) {
+                searchResultItem.setType(searchResultsModel.getEventLabel());
+            }
+            if (PWConstants.NEWS.equalsIgnoreCase(contentType)) {
+                searchResultItem.setType(searchResultsModel.getNewsLabel());
+            }
+            if (PWConstants.CASES.equalsIgnoreCase(contentType)) {
+                searchResultItem.setType(searchResultsModel.getCaseLabel());
+            }
         }
-        if (templatesMap != null && templatesMap.containsKey(PWConstants.PRODUCTS)
-                && templatesMap.get(PWConstants.PRODUCTS).indexOf(template) >= 0) {
-            contentType = searchResultsModel.getProductLabel();
+
+    }
+
+    /**
+     * Gets the content type from template.
+     *
+     * @param hit the hit
+     * @return the content type from template
+     * @throws RepositoryException the repository exception
+     */
+    private String getContentTypeFromTemplate(Hit hit) throws RepositoryException {
+        if (hit.getProperties().containsKey(PWConstants.CQ_TEMPLATE)) {
+            String template = hit.getProperties().get(PWConstants.CQ_TEMPLATE).toString();
+            if (templatesMap != null && templatesMap.containsKey(PWConstants.NEWS)
+                    && templatesMap.get(PWConstants.NEWS).indexOf(template) >= 0) {
+                return PWConstants.NEWS;
+            }
+            if (templatesMap != null && templatesMap.containsKey(PWConstants.EVENTS)
+                    && templatesMap.get(PWConstants.EVENTS).indexOf(template) >= 0) {
+                return PWConstants.EVENTS;
+            }
+            if (templatesMap != null && templatesMap.containsKey(PWConstants.PRODUCTS)
+                    && templatesMap.get(PWConstants.PRODUCTS).indexOf(template) >= 0) {
+                return PWConstants.PRODUCTS;
+            }
+            if (templatesMap != null && templatesMap.containsKey(PWConstants.CASES)
+                    && templatesMap.get(PWConstants.CASES).indexOf(template) >= 0) {
+                return PWConstants.CASES;
+            }
         }
-        if (templatesMap != null && templatesMap.containsKey(PWConstants.CASES)
-                && templatesMap.get(PWConstants.CASES).indexOf(template) >= 0) {
-            contentType = searchResultsModel.getCaseLabel();
-        }
-        return contentType;
+        return StringUtils.EMPTY;
     }
 
     /**
