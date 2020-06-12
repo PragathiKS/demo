@@ -21,11 +21,14 @@ class RichText {
     const linkName = $this.text();
     const thisHref = $this.attr('href');
     const linkType =  isExternal(thisHref) ? 'external':'internal'; 
+    const firstH1 = this.cache.$attributeDivId.find('h1:first').text();
+    const firstH2 = this.cache.$attributeDivId.find('h2:first').text();
+    const parentTitleText = firstH1 || firstH2 || 'RTE';
 
     const trackingObj = {
       linkType,
       linkSection:'RTE_Text Hyperlink',
-      linkParentTitle:'Text Hyperlink_RTE',
+      linkParentTitle:`Text Hyperlink_${parentTitleText}`,
       linkName
     };
     const eventObj = {

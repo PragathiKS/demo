@@ -72,7 +72,7 @@ class TabsList {
 
     const eventObj = {
       eventType: 'linkClick',
-      event: 'Tab Click_list'
+      event: 'tablist'
     };
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     return true;
