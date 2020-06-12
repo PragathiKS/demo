@@ -159,12 +159,11 @@
     }
 
     .consentCheckbox {
-        display: inline;
         position: relative;
         top: 4px;
         height: 20px;
-        width: 20px;
         margin-right: 6px;
+        width: 20px;
     }
 
     .consentlabel p {
@@ -177,5 +176,9 @@
 
     .descriptionTextThankyou {
         @include margin-top($margin-md);
+    }
+
+    .checboxField {
+        display: flex;
     }
 }
