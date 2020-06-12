@@ -47,6 +47,8 @@ class Banner {
       const $anchor = $bEl.data('href');
       if ($anchor && $anchor !== '#') {
         $bEl.css('cursor', 'pointer');
+        $bEl.find('.pw-banner__image-wrapper').css('cursor', 'pointer');
+        $bEl.find('.pw-banner__contentwrapper').css('cursor', 'pointer');
       }
     });
 

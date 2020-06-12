@@ -34,6 +34,13 @@ class Businessinquiryform {
     };
   }
 
+  validateField(val) {
+    if(String(val).indexOf('>') >-1 || String(val).indexOf('<') > -1 ) {
+      return true;
+    }
+    return false;
+  }
+
   validEmail(email) {
     return REG_EMAIL.test(email);
   }
@@ -127,8 +134,7 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = $(this).val();
           }
-
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) || (fieldName === 'consent') && $(this).prop('checked')) {
+          if (($(this).prop('required') && $(this).val() === '') || self.validateField(requestPayload[fieldName])  || (fieldName === 'email') && !self.validEmail($(this).val()) || (fieldName === 'consent') && $(this).prop('checked')) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -143,7 +149,6 @@ class Businessinquiryform {
         if (!self.cache.requestPayload['phone']) {
           $('#phoneSummery').hide();
         }
-
         if (target) {
           $('.bef-tab-pane').removeClass('active');
           $(target).addClass('active');
