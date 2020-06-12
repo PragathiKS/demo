@@ -107,6 +107,11 @@
             @include line-height(24px, 14px);
             @include margin-bottom($padding-l);
         }
+        a {
+            &:hover{
+                color: $color-jordy-blue;
+            }
+        }
     }
 
     &__link {
