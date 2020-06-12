@@ -134,6 +134,11 @@
                 @include padding-left($margin-xxxl);
             }
         }
+        .col-lg-5 {
+            @media #{$desktop} {
+                padding-right: $padding-xxxl;
+            }
+        }
     }
 
     .button-group {

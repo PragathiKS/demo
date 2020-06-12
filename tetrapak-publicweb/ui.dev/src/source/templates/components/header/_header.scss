@@ -14,6 +14,11 @@
         top: 0;
         .pw-header-icons {
             @include padding-bottom(0);
+            a {
+                &:hover {
+                    color: $color-jordy-blue;
+                }
+            }
         }
     }
     .nav-link {
