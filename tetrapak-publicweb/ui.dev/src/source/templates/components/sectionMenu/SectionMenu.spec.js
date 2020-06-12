@@ -17,6 +17,7 @@ describe('SectionMenu', function() {
     this.handleSectionMenuItemMouseOverSpy = sinon.spy(this.sectionMenu, 'handleSectionMenuItemMouseOver');
     this.handleSectionMenuItemMouseOutSpy = sinon.spy(this.sectionMenu, 'handleSectionMenuItemMouseOut');
     this.handleSectionMenuClickSpy = sinon.spy(this.sectionMenu, 'handleSectionMenuClick');
+    this.handleSubSectionMenuClickSpy = sinon.spy(this.sectionMenu, 'handleSubSectionMenuClick');
     this.sectionMenu.init();
   });
   after(function() {
@@ -26,6 +27,7 @@ describe('SectionMenu', function() {
     this.handleSectionMenuItemMouseOutSpy.restore();
     this.handleSectionMenuClickSpy.restore();
     this.openStub.restore();
+    this.handleSubSectionMenuClickSpy.restore();
   });
   it('should initialize', function() {
     expect(this.sectionMenu.init.called).to.be.true;
@@ -42,5 +44,9 @@ describe('SectionMenu', function() {
   it('should call handleSectionMenuClick on click', function () {
     $('.js-section-menu-item-link').trigger('click');
     expect(this.sectionMenu.handleSectionMenuClick.called).to.be.true;
+  });
+  it('should call handleSubSectionMenuClick on click', function () {
+    $('.js-sub-menu-navigation-link-item').trigger('click');
+    expect(this.sectionMenu.handleSubSectionMenuClick.called).to.be.true;
   });
 });
