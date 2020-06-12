@@ -82,32 +82,6 @@ class Banner {
 
     $bEl.on('click', this.trackBannerImageClick);
 
-    // $bEl.click((e) => {
-    //   const $anchor = $bEl.data('href');
-    //   if (!($anchor && $anchor !== '#')) {
-    //     return false;
-    //   }
-    //   if ($(e.target).closest('.pw-banner__content').length) {
-    //     return true;
-    //   }
-
-    //   if (isDownloable($anchor)) {
-    //     $bEl.data('download-type', 'download');
-    //   }
-
-    //   if (isExternal($anchor)) {
-    //     $bEl.attr('target', '_blank');
-    //   }
-
-    //   getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);  
-
-
-    //   if (isExternal($anchor)) {
-    //     window.open($anchor, '_blank');
-    //   } else {
-    //     window.location.href = $anchor;
-    //   }
-    // });
   }
 
 
