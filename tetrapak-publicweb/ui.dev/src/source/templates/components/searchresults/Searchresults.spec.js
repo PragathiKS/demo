@@ -33,7 +33,7 @@ describe('Searchresults', function () {
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse({"totalPages":2, "totalResults": 15 ,"searchResults":resultList}));
 
-    this.searchresult.init();
+    this.searchresults.init();
   });
 
   after(function () {
@@ -48,7 +48,6 @@ describe('Searchresults', function () {
     this.pushIntoUrlSpy.restore();
     this.extractQueryParamsSpy.restore();
     this.toggleFilterContainerSpy.restore();
-
     this.renderSpy.restore();
     this.ajaxStub.restore();
   });
@@ -99,8 +98,13 @@ describe('Searchresults', function () {
     expect(this.searchresults.applyFilters.called).to.be.true;
   });
 
-  it('Should send request when ok is clicked', function () {
+  it('Should Update object when filter is changed', function () {
     $('.js-pw-search-results-filter-check').trigger('change');
     expect(this.searchresults.cache.filterObj.checks.length).to.equal(1);
+  });
+
+  it('Should work with paginations', function () {
+    $('.js-page-number').trigger('click');
+    expect(this.searchresults.pushIntoUrl.called).to.be.true;
   });
 });
