@@ -45,6 +45,6 @@
 
 /0032 { /type "allow" /method "GET" /url "/*/root/responsivegrid/findmyoffice.json" }
 
-/0033 { /type "allow" /method "GET" /url "*/*sitemap.xml" }
-/0034 { /type "allow" /method "POST" /url "/*/root/responsivegrid/contactus.sendmail.json" }
+/0033 { /type "allow" /method "GET" /url "*/en.sitemap.xml" }
+/0034 { /type "allow" /method "POST" /url "/*/root/responsivegrid/contactus.data.json" }
 

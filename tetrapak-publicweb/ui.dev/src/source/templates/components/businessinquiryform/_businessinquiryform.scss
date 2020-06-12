@@ -28,6 +28,7 @@
     .form-group {
         label {
             @include margin-bottom(0);
+            padding-top: 2px;
         }
         &.field-error {
             .errorMsg {
@@ -124,5 +125,52 @@
             }
         }
     }
+    .summary {
+        margin-bottom: 0;
+        @media #{$desktop} {
+            margin-bottom: 16px;
+        }
+        .purposeOfContactInBusinessEqTitle,
+        .purposeOfInterestAreaEqTitle ,
+        .firstName ,
+        .lastName ,
+        .email ,
+        .phone {
+            font-weight: 900;
+        }
 
+    }
+
+    ul.pw-progressbar_wrapper .step-box {
+        &::before {
+            flex: 0;
+        }
+        &::after {
+            flex: 1;
+        }
+        &:last-child {
+            flex: 0;
+        }
+    }
+
+    .consentCheckbox {
+        display: inline;
+        position: relative;
+        top: 4px;
+        height: 20px;
+        width: 20px;
+        margin-right: 6px;
+    }
+
+    .consentlabel p {
+        display: inline;
+    }
+
+    .bef-thankyou-img {
+        @include margin-bottom($margin-l);
+    }
+
+    .descriptionTextThankyou {
+        @include margin-top($margin-md);
+    }
 }

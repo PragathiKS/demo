@@ -54,17 +54,16 @@ class Header {
 
   }
 
-  trackLanguageSelector = e => {
-    const $target = $(e.target).closest('.js-header__selected-lang-pw');
+  trackLanguageSelector = () => {
     const trackingObj = {
       linkType: 'internal',
-      linkSection: 'Header-language selector',
+      linkSection: 'Hyperlink click',
       linkParentTitle: '',
-      linkName: $target.data('language')
+      linkName: 'Market Selector'
     };
     const eventObj = {
       eventType: 'linkClick',
-      event: 'Header'
+      event: 'Market Selector'
     };
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
   }

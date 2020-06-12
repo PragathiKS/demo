@@ -163,11 +163,13 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Heading"
+                                fieldDescription="Suggested to use characters less than recommended Limit: 37 chars considering translations"                                
                                 name="./thankyouHeading"/>
                             <summarytext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                 fieldLabel="Body Text"
+                                fieldDescription="Suggested to use characters less than recommended Limit: 260 chars considering translations"
                                 name="./thankyouDescriptionText"
                                 useFixedInlineToolbar="{Boolean}true">
                                 <rtePlugins jcr:primaryType="nt:unstructured">
