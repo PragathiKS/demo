@@ -76,7 +76,6 @@ class Searchresults {
             this.renderTitle('', this.cache.emptyFieldText, '', true);
             this.cache.$resultsList.empty();
           } else {
-            filterObj.filterTags.searchTerm[0] = searchVal;
             $this.pushIntoUrl();
             this.search();
           }
@@ -178,7 +177,8 @@ class Searchresults {
     if (data.length > 0) {
       const modifiedData = data.map(res => {
         res['typeI18n'] = getI18n(res['type']);
-        res['assetTypeI18n'] = getI18n(res['assetType']);
+        res['assetTypeI18n'] = res['assetType'] === 'video' ? getI18n('pw.searchResults.video') : res['assetType'] === 'image' ? getI18n('pw.searchResults.image') : getI18n('pw.searchResults.document');
+        res['sizeTypeI18n'] = getI18n(res['sizeType']);
         return res;
       });
       render.fn({
@@ -282,11 +282,13 @@ class Searchresults {
       nextPage: currentPage + 1,
       nextDisabled: currentPage >= totalPages ? true : false
     };
-    render.fn({
-      template: 'searchPagination',
-      data: paginationData,
-      target: this.cache.$pagiantion
-    });
+    if(currentPage <= totalPages) {
+      render.fn({
+        template: 'searchPagination',
+        data: paginationData,
+        target: this.cache.$pagiantion
+      });
+    }
   }
 }
 
