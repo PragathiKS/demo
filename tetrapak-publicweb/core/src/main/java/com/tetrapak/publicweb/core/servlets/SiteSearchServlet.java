@@ -179,7 +179,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             int index = 1;
             Map<String, String> map = new HashMap<>();
             map.put("1_group.p.or", "true");
-            if (!(ArrayUtils.isEmpty(contentType) && ArrayUtils.isEmpty(themes)
+            if (!((ArrayUtils.isEmpty(contentType) || Boolean.FALSE.equals(isValidContentType(contentType))) && ArrayUtils.isEmpty(themes)
                     && StringUtils.isBlank(fulltextSearchTerm))) {
                 index = setContentMap(map, searchResultsModel, contentType, index);
                 SearchMapHelper.setCommonMap(fulltextSearchTerm, map, pageParam, noOfResultsPerHit, guessTotal);
@@ -275,6 +275,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
         // paging metadata
         LOGGER.info("Total number of results : {}", noOfResults);
+        
+        //1 Extra Result Count is Coming
+        if(noOfResults > 1) {
+            noOfResults = noOfResults - 1;
+        }
 
         searchBean.setTotalResults(noOfResults);
         int numberofPages = (int) Math.ceil((double) noOfResults / noOfResultsPerHit);
