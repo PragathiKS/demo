@@ -190,7 +190,7 @@ class Header {
     };
 
     const eventObj = {
-      eventType: 'linkClick',
+      eventType: 'navigation click',
       event: 'Header'
     };
     trackAnalytics(
