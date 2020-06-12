@@ -310,7 +310,7 @@ export const addLinkAttr = (linkClass) => {
   });
 };
 
-export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass) => {
+export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redirect=true) => {
   const $target = $(e.target);
   const $this = $target.closest(linkClass);
   const downloadtype = $this.data('download-type');
@@ -356,7 +356,9 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass) => {
     eventObject
   );
 
-  window.open($this.attr('href'), $this.attr('target'));
+  if(redirect){
+    window.open($this.attr('href'), $this.attr('target'));
+  }
 };
 
 export const validateFieldsForTags = (value='') => value.replace(/[`<>]/gi, '');
