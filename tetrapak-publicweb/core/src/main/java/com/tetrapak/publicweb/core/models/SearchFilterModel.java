@@ -53,10 +53,10 @@ public class SearchFilterModel {
         if (Objects.nonNull(searchConfigResource)) {
             SearchConfigModel configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);
             if (Objects.nonNull(configurationModel)) {
-                themeList = configurationModel.getThemeList();
-                setContentType(configurationModel.getEventLabel(), PWConstants.EVENTS);
-                setContentType(configurationModel.getNewsLabel(), PWConstants.NEWS);
+                themeList = configurationModel.getThemeList();              
                 setContentType(configurationModel.getProductLabel(), PWConstants.PRODUCTS);
+                setContentType(configurationModel.getNewsLabel(), PWConstants.NEWS);
+                setContentType(configurationModel.getEventLabel(), PWConstants.EVENTS);
                 setContentType(configurationModel.getCaseLabel(), PWConstants.CASES);
                 setContentType(configurationModel.getMediaLabel(), PWConstants.MEDIA);
             }
