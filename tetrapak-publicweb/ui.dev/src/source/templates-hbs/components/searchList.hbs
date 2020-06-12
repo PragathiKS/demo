@@ -4,11 +4,14 @@
   {{#if this.size}}
   <div>
     <div class="pw-media-container">
-      <img class="pw-product-card-grid__item__image" src="{{this.path}}" alt="{{this.title}}">
-      <span class="d-block d-lg-none pw-media-container__size">{{this.size}} <i class="icon-Util"></i></span>
+      {{#if_eq this.assetType 'image'}}
+        <img class="pw-product-card-grid__item__image" src="{{this.path}}" alt="{{this.title}}">
+      {{else}}
+        <i class="{{#if_eq this.assetType 'video'}}icon-Play{{else}}icon-PDF{{/if_eq}}"></i>
+      {{/if_eq}}
     </div>
-    <p class="d-block d-lg-none pw-search-results__results-list__item__size">{{this.size}} <a href="{{this.path}}"
-        target="_self"><i class="icon-Union"></i></a></p>
+    <p class="d-block d-lg-none pw-search-results__results-list__item__size"><span class="capitalizeText">{{this.assetExtension}}</span> {{this.assetTypeI18n}} {{this.size}} {{this.sizeTypeI18n}} 
+    {{#if_eq this.assetType 'video'}}{{else}}<a href="{{this.path}}" target="_self"><i class="icon-Download"></i></a>{{/if_eq}}
   </div>
   {{/if}}
   <div>
@@ -19,8 +22,8 @@
       <h3 class="tpatom-heading tpatom-heading--small-flat">{{this.title}}</h3>
     </a>
     {{#if this.size}}
-      <p class="d-none d-lg-block pw-search-results__results-list__item__size">{{this.assetExtension}} {{this.assetTypeI18n}} {{this.size}} 
-        {{#if_eq this.assetType 'video'}}{{else}}<a href="{{this.path}}" target="_self"><i class="icon-Union"></i></a>{{/if_eq}}</p>
+      <p class="d-none d-lg-block pw-search-results__results-list__item__size"><span class="capitalizeText">{{this.assetExtension}}</span> {{this.assetTypeI18n}} {{this.size}} {{this.sizeTypeI18n}} 
+        {{#if_eq this.assetType 'video'}}{{else}}<a href="{{this.path}}" target="_self"><i class="icon-Download"></i></a>{{/if_eq}}</p>
     {{else}}
       {{#if this.description}}
         <p class="pw-search-results__results-list__item__description"><span>{{this.description}}</span></p>
