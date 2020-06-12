@@ -80,9 +80,15 @@ export const isCallable = (param) => (typeof param === 'function');
  */
 export const scrollToElement = (callback, selector = document.body, duration = 500) => {
   let executed = false;
+  let stickyViewHeight = $('.js-tp-pw-header').outerHeight();
+
+  if($('.sticky-section-menu').length > 0){
+    stickyViewHeight = stickyViewHeight + $('.sticky-section-menu .js-pw-navigation').outerHeight();
+  }
+
   $global.animate(
     {
-      scrollTop: $(selector).offset().top
+      scrollTop: $(selector).offset().top - parseInt(stickyViewHeight,10)
     },
     {
       duration,
