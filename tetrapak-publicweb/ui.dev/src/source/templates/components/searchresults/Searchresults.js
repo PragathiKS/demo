@@ -15,6 +15,7 @@ class Searchresults {
 
   initCache() {
     this.cache.$clearBtn = this.root.find('.js-search-close');
+    this.cache.$searchBtn = this.root.find('.js-search-results');
     this.cache.$filterBoxToggleAction = this.root.find('.js-search-filter-toggle');
     this.cache.$searchBoxToggle = $('.js-tp-pw-header__search-box-toggle');
     this.cache.$applyFilterBtn = this.root.find('.js-apply-filter');
@@ -39,8 +40,7 @@ class Searchresults {
   }
 
   bindEvents() {
-    const { $clearBtn, $searchInput, $filterBoxToggleAction, $applyFilterBtn, filterObj, $pagiantion } = this.cache;
-    const $this = this;
+    const { $clearBtn, $searchInput, $filterBoxToggleAction, $searchBtn, $applyFilterBtn, $pagiantion } = this.cache;
     $applyFilterBtn.on('click', this.applyFilters);
     $filterBoxToggleAction.on('click', this.toggleFilterContainer);
     // $('.js-filter-container-chips').on('click', $filterRemoveBtn, this.removeFilter);
@@ -65,25 +65,14 @@ class Searchresults {
       $(this).closest('.pw-search-bar__icons__close').removeClass('d-flex');
     });
 
+    $searchBtn.on('click', this.searchBtnHandler);
+
     $searchInput.keyup((e) => {
       const $input = $(e.target);
       const searchVal = $input.val().trim();
       (searchVal !== '') ? $('.pw-search-bar__icons__close').addClass('d-flex') : $('.pw-search-bar__icons__close').removeClass('d-flex');
       if (e.keyCode === 13) {
-        if (searchVal === '') {
-          filterObj.filterTags['searchTerm'].pop();
-          if ((filterObj.filterTags.contentType.length === 0) && (filterObj.filterTags.theme.length === 0)) {
-            this.renderTitle('', this.cache.emptyFieldText, '', true);
-            this.cache.$resultsList.empty();
-          } else {
-            $this.pushIntoUrl();
-            this.search();
-          }
-        } else {
-          filterObj.filterTags['searchTerm'][0] = searchVal;
-          $this.pushIntoUrl();
-          this.search();
-        }
+        this.searchBtnHandler();
       }
     });
   }
@@ -98,7 +87,28 @@ class Searchresults {
 
   windowPopStateHandler = () => {
     this.cache.queryParams = window.location.search;
+    const { searchTerm } = deparam(window.location.search);
+    this.cache.$searchInput.val(searchTerm);
     this.search();
+  }
+
+  searchBtnHandler = () => {
+    const { filterObj } = this.cache;
+    const searchVal = this.cache.$searchInput.val().trim();
+    if (searchVal === '') {
+      filterObj.filterTags['searchTerm'].pop();
+      if ((filterObj.filterTags.contentType.length === 0) && (filterObj.filterTags.theme.length === 0)) {
+        this.renderTitle('', this.cache.emptyFieldText, '', true);
+        this.cache.$resultsList.empty();
+      } else {
+        this.pushIntoUrl();
+        this.search();
+      }
+    } else {
+      filterObj.filterTags['searchTerm'][0] = searchVal;
+      this.pushIntoUrl();
+      this.search();
+    }
   }
 
   // removeFilter = e => {
