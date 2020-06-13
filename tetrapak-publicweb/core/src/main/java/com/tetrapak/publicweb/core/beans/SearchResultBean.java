@@ -36,30 +36,12 @@ public class SearchResultBean {
     private String assetExtension;
 
     /**
-     * Gets the title.
-     *
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
      * Sets the title.
      *
      * @param title the new title
      */
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    /**
-     * Gets the description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
     }
 
     /**
@@ -72,30 +54,12 @@ public class SearchResultBean {
     }
 
     /**
-     * Gets the product type.
-     *
-     * @return the product type
-     */
-    public String getProductType() {
-        return productType;
-    }
-
-    /**
      * Sets the product type.
      *
      * @param productType the new product type
      */
     public void setProductType(String productType) {
         this.productType = productType;
-    }
-
-    /**
-     * Gets the path.
-     *
-     * @return the path
-     */
-    public String getPath() {
-        return path;
     }
 
     /**
@@ -108,30 +72,12 @@ public class SearchResultBean {
     }
 
     /**
-     * Gets the type.
-     *
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
      * Sets the type.
      *
      * @param type the new type
      */
     public void setType(String type) {
         this.type = type;
-    }
-
-    /**
-     * Gets the size.
-     *
-     * @return the size
-     */
-    public String getSize() {
-        return size;
     }
 
     /**
@@ -144,30 +90,12 @@ public class SearchResultBean {
     }
 
     /**
-     * Gets the date.
-     *
-     * @return the date
-     */
-    public String getDate() {
-        return date;
-    }
-
-    /**
      * Sets the date.
      *
      * @param date the new date
      */
     public void setDate(String date) {
         this.date = date;
-    }
-
-    /**
-     * Gets the asset type.
-     *
-     * @return the asset type
-     */
-    public String getAssetType() {
-        return assetType;
     }
 
     /**
@@ -180,30 +108,12 @@ public class SearchResultBean {
     }
 
     /**
-     * Gets the asset extension.
-     *
-     * @return the asset extension
-     */
-    public String getAssetExtension() {
-        return assetExtension;
-    }
-
-    /**
      * Sets the asset extension.
      *
      * @param assetExtension the new asset extension
      */
     public void setAssetExtension(String assetExtension) {
         this.assetExtension = assetExtension;
-    }
-
-    /**
-     * Gets the size type.
-     *
-     * @return the size type
-     */
-    public String getSizeType() {
-        return sizeType;
     }
 
     /**
