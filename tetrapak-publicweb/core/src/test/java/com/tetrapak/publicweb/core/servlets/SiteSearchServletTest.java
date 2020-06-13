@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import static org.junit.Assert.assertEquals;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.apache.sling.xss.XSSAPI;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
 import com.day.cq.search.QueryBuilder;
 import com.google.common.base.Function;
 import com.tetrapak.publicweb.core.mock.MockHelper;
@@ -48,7 +47,12 @@ public class SiteSearchServletTest {
     
     /** The Constant CURRENT_RESOURCE. */
     private static final String CURRENT_RESOURCE = SEARCH_PAGE + "/jcr:content/root/responsivegrid/searchresults";
+    
+    /** The Constant CURRENT_RESOURCE1. */
+    private static final String CURRENT_RESOURCE1 = SEARCH_PAGE + "/jcr:content/root/responsivegrid/searchfilter";
 
+    private static final String SEARCH_RESULT = "{\"totalResults\":0,\"totalPages\":0,\"searchResults\":[{\"type\":\"Products\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/solutions/packaging/filling-machines/tetra-pak-a1-for-tfa/jcr:content.html\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/news-room/jcr:content.html\",\"date\":\"11 Jun 2020\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/events/plma-2020/jcr:content.html\",\"date\":\"07 May 2020\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/insights/food-categories/cheese/jcr:content.html\",\"date\":\"29 Apr 2020\"},{\"type\":\"Media\",\"description\":\"\",\"path\":\"https://s7g10.scene7.com/is/image/tetrapak/Teaser\",\"size\":\"951.0\",\"sizeType\":\"pw.searchResults.kbyte\",\"assetType\":\"image\",\"assetExtension\":\"png\"}]}\r\n"
+            + "";
     /** The Constant TEST_CONTENT_ROOT. */
     private static final String DAM_CONTENT_ROOT = "/content/dam/publicweb";
     
@@ -62,7 +66,7 @@ public class SiteSearchServletTest {
     
     SiteSearchServlet siteSerarchServlet = new SiteSearchServlet();
     
-    SearchFilterModel filters = new SearchFilterModel();
+    SearchFilterModel filters;
 
     @Before
     public void setUp() throws Exception {
@@ -74,8 +78,7 @@ public class SiteSearchServletTest {
         context.load().json("/searchresult/test-Content3.json", TEST_CONTENT3);
         context.load().json("/searchresult/test-Content4.json", TEST_CONTENT4);
         context.load().json("/searchresult/search-page.json", SEARCH_PAGE);
-        context.currentResource(CURRENT_RESOURCE);
-        context.request().setPathInfo(CURRENT_RESOURCE);
+        
         
         final List<String> pathList = new ArrayList<>();
         pathList.add(TEST_CONTENT1+"/jcr:content");
@@ -111,6 +114,10 @@ public class SiteSearchServletTest {
 
     @Test
     public void testContentTypesSearch() throws IOException {
+        
+        context.currentResource(CURRENT_RESOURCE);
+        context.request().setPathInfo(CURRENT_RESOURCE);
+        
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("page", "1");
         parameterMap.put("contentType", CONTENT_TYPES);
@@ -121,10 +128,14 @@ public class SiteSearchServletTest {
         context.request().setParameterMap(parameterMap);
         siteSerarchServlet = MockHelper.getServlet(context, SiteSearchServlet.class);
         siteSerarchServlet.doGet(context.request(), context.response());
+        assertEquals("Search",SEARCH_RESULT,context.response().getOutputAsString());
     }
     
     @Test
-    public void testThemeSearch() throws IOException {
+    public void testThemeSearch() throws IOException {        
+        context.currentResource(CURRENT_RESOURCE);
+        context.request().setPathInfo(CURRENT_RESOURCE);
+        
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("page", "1");
         parameterMap.put("theme", THEME);
@@ -135,5 +146,16 @@ public class SiteSearchServletTest {
         context.request().setParameterMap(parameterMap);
         siteSerarchServlet = MockHelper.getServlet(context, SiteSearchServlet.class);
         siteSerarchServlet.doGet(context.request(), context.response());
+        assertEquals("Search",SEARCH_RESULT,context.response().getOutputAsString());
+    }
+    
+    @Test
+    public void testSearchFilters() throws IOException {
+        context.currentResource(CURRENT_RESOURCE1);
+        context.request().setPathInfo(CURRENT_RESOURCE1);
+        filters = context.request().adaptTo(SearchFilterModel.class);
+        assertEquals("Search","Products",filters.getContentTypeList().get(0).getLabel());
+        assertEquals("Search","products",filters.getContentTypeList().get(0).getKey());
+        assertEquals("Search","we-retail:activity",filters.getThemeList().get(0).getTag());
     }
 }

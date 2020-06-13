@@ -39,6 +39,14 @@
 "jcr:created": "Fri Apr 05 2019 07:39:35 GMT+0000",
 "jcr:lastModified": "Fri Apr 05 2019 07:39:35 GMT+0000",
 "sling:resourceType": "publicweb/components/content/searchresults"
+},
+"searchfilter": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "sapient-user",
+"jcr:lastModifiedBy": "sapient-user",
+"jcr:created": "Fri Apr 05 2019 07:39:35 GMT+0000",
+"jcr:lastModified": "Fri Apr 05 2019 07:39:35 GMT+0000",
+"sling:resourceType": "publicweb/components/content/searchfilter"
 }
 }
 }

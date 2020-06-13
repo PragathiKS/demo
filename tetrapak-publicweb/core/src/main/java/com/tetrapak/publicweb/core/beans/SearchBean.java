@@ -17,6 +17,15 @@ public class SearchBean {
     private List<SearchResultBean> searchResults;
 
     /**
+     * Gets the total results.
+     *
+     * @return the total results
+     */
+    public long getTotalResults() {
+        return totalResults;
+    }
+
+    /**
      * Sets the total results.
      *
      * @param totalResults
@@ -27,6 +36,15 @@ public class SearchBean {
     }
 
     /**
+     * Gets the total pages.
+     *
+     * @return the total pages
+     */
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    /**
      * Sets the total pages.
      *
      * @param totalPages
@@ -34,6 +52,15 @@ public class SearchBean {
      */
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
+    }
+
+    /**
+     * Gets the search results.
+     *
+     * @return the search results
+     */
+    public List<SearchResultBean> getSearchResults() {
+        return searchResults;
     }
 
     /**
