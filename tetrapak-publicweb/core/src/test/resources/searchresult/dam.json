@@ -292,6 +292,65 @@
 }
 }
 },
+"2020-06-05_Sprint-7_Capacity_View_v0.2.xlsx": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:43:52 GMT+0530",
+"jcr:uuid": "8ce3dabb-0ebd-4d56-b8e4-8349094d2793",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:lastModifiedBy": "admin",
+"dam:assetState": "processed",
+"jcr:lastModified": "Fri Jun 12 2020 14:43:55 GMT+0530",
+"dam:relativePath": "publicweb/qa/2020-06-05_Sprint-7_Capacity_View_v0.2.xlsx",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:43:52 GMT+0530",
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:43:52 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dc:creator": [
+"Roshan Banga"
+],
+"dam:TitlesOfParts": "Sprint View 7 (Jira) (2)",
+"dam:created": "Fri Jun 05 2020 06:25:33 GMT+0000",
+"dam:vector": "Sprint View 7 (Jira) (2)",
+"dam:i4": 1,
+"dam:Application": "Microsoft Excel",
+"dam:extracted": "Fri Jun 12 2020 14:43:52 GMT+0530",
+"dc:format": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+"dam:HeadingPairs": "Worksheets1",
+"dam:ScaleCrop": "false",
+"dam:modified": "Fri Jun 05 2020 10:51:01 GMT+0000",
+"dam:SharedDoc": "false",
+"dam:DocSecurity": 0,
+"dam:lastModifiedBy": "Sandip Kumar",
+"dam:HyperlinksChanged": "false",
+"dam:lpstr": "Sprint View 7 (Jira) (2)",
+"dam:LinksUpToDate": "false",
+"dam:sha1": "0ada5c3b33632445bed2160ddabc150f224222e5",
+"dam:size": 15738,
+"dc:creator_xmpArrayType": "rdf:Bag",
+"dam:AppVersion": "16.0300",
+"dam:variant": 1
+}
+}
+},
 "Teaser2_mobile.png": {
 "jcr:primaryType": "dam:Asset",
 "jcr:mixinTypes": [
@@ -380,6 +439,54 @@
 "dam:size": 986419,
 "dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
 "dam:scene7LastModified": 1556282065292
+}
+}
+},
+"file_example_MP4_640_3MG.mp4": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:40:52 GMT+0530",
+"jcr:uuid": "c21bcf11-7bbb-4e2b-8e09-5501aaee9436",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:lastModifiedBy": "admin",
+"dam:assetState": "processed",
+"jcr:lastModified": "Fri Jun 12 2020 14:41:04 GMT+0530",
+"dam:relativePath": "publicweb/qa/file_example_MP4_640_3MG.mp4",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:40:52 GMT+0530",
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:40:52 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:extracted": "Fri Jun 12 2020 14:40:58 GMT+0530",
+"dc:format": "video/mp4",
+"tiff:Orientation": 1,
+"xmp:ModifyDate": "Fri Aug 07 2015 09:13:05 GMT+0000",
+"xmp:CreateDate": "Fri Aug 07 2015 09:13:05 GMT+0000",
+"dam:sha1": "1385f0808b7ef1600b6c39244917ef1df2ce6652",
+"dam:size": 3114374,
+"xmpDM:duration": {
+"jcr:primaryType": "nt:unstructured",
+"xmpDM:scale": "1/600",
+"xmpDM:value": 18316,
+"xmpNodeType": "xmpStruct"
+}
 }
 }
 },

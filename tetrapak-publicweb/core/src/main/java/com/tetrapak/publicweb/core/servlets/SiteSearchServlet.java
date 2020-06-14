@@ -128,6 +128,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /** The template map. */
     private Map<String, String> templatesMap;
 
+    /** The theme map. */
+    private Map<String, String> themeMap;
+
     /** The no of results per hit. */
     private int noOfResultsPerHit;
 
@@ -151,6 +154,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         try {
             SearchResultsModel searchResultsModel = request.adaptTo(SearchResultsModel.class);
             templatesMap = searchResultsModel.getTemplateMap();
+            themeMap = searchResultsModel.getThemeMap();
 
             // get resource resolver, session and queryBuilder objects.
             resourceResolver = request.getResourceResolver();
@@ -179,11 +183,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             int index = 1;
             Map<String, String> map = new HashMap<>();
             map.put("1_group.p.or", "true");
-            if (!((ArrayUtils.isEmpty(contentType) || Boolean.FALSE.equals(isValidContentType(contentType))) && ArrayUtils.isEmpty(themes)
-                    && StringUtils.isBlank(fulltextSearchTerm))) {
+
+            if (isValidRequest(contentType, themes, fulltextSearchTerm)) {
                 index = setContentMap(map, searchResultsModel, contentType, index);
                 SearchMapHelper.setCommonMap(fulltextSearchTerm, map, pageParam, noOfResultsPerHit, guessTotal);
-                SearchMapHelper.setThemesMap(themes, map, searchResultsModel);
+                SearchMapHelper.setThemesMap(themes, map, themeMap);
                 SearchMapHelper.filterGatedContent(map, index, searchResultsModel);
                 setSearchBean(map, searchResultsModel);
             }
@@ -207,6 +211,32 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             LOGGER.error("Error while writing the response object.", e);
         }
 
+    }
+
+    /**
+     * Checks if is valid request.
+     *
+     * @param contentTypes
+     *            the content types
+     * @param themes
+     *            the themes
+     * @param searchTerm
+     *            the search term
+     * @return true, if is valid request
+     */
+    private boolean isValidRequest(String[] contentTypes, String[] themes, String searchTerm) {
+        boolean isValidRequest = true;
+        if (StringUtils.isBlank(searchTerm) && ArrayUtils.isEmpty(contentTypes) && ArrayUtils.isEmpty(themes)) {
+            isValidRequest = false;
+        }
+        if (ArrayUtils.isNotEmpty(contentTypes) && Boolean.FALSE.equals(isValidContentType(contentTypes))) {
+            isValidRequest = false;
+        }
+        if (ArrayUtils.isNotEmpty(themes) && Boolean.FALSE.equals(isValidThemeType(contentTypes))) {
+            isValidRequest = false;
+        }
+
+        return isValidRequest;
     }
 
     /**
@@ -261,6 +291,23 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     }
 
     /**
+     * Checks if is valid theme type.
+     *
+     * @param themes
+     *            the themes
+     * @return the boolean
+     */
+    private Boolean isValidThemeType(String[] themes) {
+        Boolean isValidThemeType = false;
+        for (String theme : themes) {
+            if (themeMap != null && themeMap.containsKey(theme)) {
+                isValidThemeType = true;
+            }
+        }
+        return isValidThemeType;
+    }
+
+    /**
      * Sets the search bean.
      *
      * @param map
@@ -275,9 +322,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
         // paging metadata
         LOGGER.info("Total number of results : {}", noOfResults);
-        
-        //1 Extra Result Count is Coming
-        if(noOfResults > 1) {
+
+        // 1 Extra Result Count is Coming
+        if (noOfResults > 1) {
             noOfResults = noOfResults - 1;
         }
 
@@ -390,11 +437,15 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Gets the product content type.
      *
-     * @param searchResultItem the search result item
-     * @param hit the hit
-     * @param searchResultsModel            the search results model
+     * @param searchResultItem
+     *            the search result item
+     * @param hit
+     *            the hit
+     * @param searchResultsModel
+     *            the search results model
      * @return the product content type
-     * @throws RepositoryException the repository exception
+     * @throws RepositoryException
+     *             the repository exception
      */
     private void setContentFields(SearchResultBean searchResultItem, Hit hit, SearchResultsModel searchResultsModel)
             throws RepositoryException {
@@ -411,11 +462,16 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Sets the content type and date.
      *
-     * @param searchResultItem the search result item
-     * @param hit the hit
-     * @param contentType the content type
-     * @param searchResultsModel the search results model
-     * @throws RepositoryException the repository exception
+     * @param searchResultItem
+     *            the search result item
+     * @param hit
+     *            the hit
+     * @param contentType
+     *            the content type
+     * @param searchResultsModel
+     *            the search results model
+     * @throws RepositoryException
+     *             the repository exception
      */
     private void setContentTypeAndDate(SearchResultBean searchResultItem, Hit hit, String contentType,
             SearchResultsModel searchResultsModel) throws RepositoryException {
@@ -441,9 +497,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Gets the content type from template.
      *
-     * @param hit the hit
+     * @param hit
+     *            the hit
      * @return the content type from template
-     * @throws RepositoryException the repository exception
+     * @throws RepositoryException
+     *             the repository exception
      */
     private String getContentTypeFromTemplate(Hit hit) throws RepositoryException {
         if (hit.getProperties().containsKey(PWConstants.CQ_TEMPLATE)) {

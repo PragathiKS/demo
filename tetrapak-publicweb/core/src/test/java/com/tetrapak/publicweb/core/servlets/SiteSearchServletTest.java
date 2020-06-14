@@ -51,14 +51,14 @@ public class SiteSearchServletTest {
     /** The Constant CURRENT_RESOURCE1. */
     private static final String CURRENT_RESOURCE1 = SEARCH_PAGE + "/jcr:content/root/responsivegrid/searchfilter";
 
-    private static final String SEARCH_RESULT = "{\"totalResults\":0,\"totalPages\":0,\"searchResults\":[{\"type\":\"Products\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/solutions/packaging/filling-machines/tetra-pak-a1-for-tfa/jcr:content.html\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/news-room/jcr:content.html\",\"date\":\"11 Jun 2020\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/events/plma-2020/jcr:content.html\",\"date\":\"07 May 2020\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/insights/food-categories/cheese/jcr:content.html\",\"date\":\"29 Apr 2020\"},{\"type\":\"Media\",\"description\":\"\",\"path\":\"https://s7g10.scene7.com/is/image/tetrapak/Teaser\",\"size\":\"951.0\",\"sizeType\":\"pw.searchResults.kbyte\",\"assetType\":\"image\",\"assetExtension\":\"png\"}]}\r\n"
-            + "";
-    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String SEARCH_RESULT = "{\"totalResults\":0,\"totalPages\":0,\"searchResults\":[{\"type\":\"Products\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/solutions/packaging/filling-machines/tetra-pak-a1-for-tfa/jcr:content.html\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/news-room/jcr:content.html\",\"date\":\"11 Jun 2020\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/events/plma-2020/jcr:content.html\",\"date\":\"07 May 2020\"},{\"type\":\"News\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/insights/food-categories/cheese/jcr:content.html\",\"date\":\"29 Apr 2020\"},{\"type\":\"Media\",\"description\":\"\",\"path\":\"https://s7g10.scene7.com/is/image/tetrapak/Teaser\",\"size\":\"951.0\",\"sizeType\":\"pw.searchResults.kbyte\",\"assetType\":\"image\",\"assetExtension\":\"png\"},{\"type\":\"Media\",\"description\":\"\",\"path\":\"https://s7g10.scene7.com/is/content/\",\"size\":\"3.0\",\"sizeType\":\"pw.searchResults.mbyte\",\"assetType\":\"video\",\"assetExtension\":\"mp4\"}]}\r\n" + 
+            "";
+            /** The Constant TEST_CONTENT_ROOT. */
     private static final String DAM_CONTENT_ROOT = "/content/dam/publicweb";
     
     private static final String CONTENT_TYPES = "news,media,events,products,cases";
     
-    private static final String THEME = "act";
+    private static final String THEME = "news";
 
     
     /** The dynamic media service. */
@@ -86,6 +86,7 @@ public class SiteSearchServletTest {
         pathList.add(TEST_CONTENT3+"/jcr:content");
         pathList.add(TEST_CONTENT4+"/jcr:content");
         pathList.add("/content/dam/publicweb/qa/Teaser.png");
+        pathList.add("/content/dam/publicweb/qa/file_example_MP4_640_3MG.mp4");
       
         MockHelper.loadQuery(context, pathList);       
         context.registerAdapter(ResourceResolver.class, QueryBuilder.class,
@@ -96,6 +97,8 @@ public class SiteSearchServletTest {
                         return context.getService(QueryBuilder.class);
                     }
                 });
+        
+        context.runMode("publish");
         
         dynamicMediaService = new DynamicMediaServiceImpl();
         final Map<String, Object> configuraionServiceConfig = new HashMap<String, Object>();
@@ -156,6 +159,6 @@ public class SiteSearchServletTest {
         filters = context.request().adaptTo(SearchFilterModel.class);
         assertEquals("Search","Products",filters.getContentTypeList().get(0).getLabel());
         assertEquals("Search","products",filters.getContentTypeList().get(0).getKey());
-        assertEquals("Search","we-retail:activity",filters.getThemeList().get(0).getTag());
+        assertEquals("Search","news",filters.getThemeList().get(0).getTag());
     }
 }

@@ -379,9 +379,9 @@
 "jcr:primaryType": "nt:unstructured",
 "item0": {
 "jcr:primaryType": "nt:unstructured",
-"tag": "we-retail:activity",
+"tag": "news",
 "themeLabel": "Acitivty",
-"themeKey": "act"
+"themeKey": "news"
 },
 "item1": {
 "jcr:primaryType": "nt:unstructured",

@@ -136,12 +136,12 @@ public final class SearchMapHelper {
      * @param map            the map
      * @param searchResultsModel the search results model
      */
-    public static void setThemesMap(String[] themes, Map<String, String> map, SearchResultsModel searchResultsModel) {
+    public static void setThemesMap(String[] themes, Map<String, String> map, Map<String, String> themeMap) {
         if (themes != null && themes.length > 0) {
             map.put("2_group.p.or", "true");
             int index = 1;
             for (int i = 0; i < themes.length; i++) {
-                String tag = searchResultsModel.getThemeMap().get(themes[i]);
+                String tag = themeMap.get(themes[i]);
                 if (StringUtils.isNotBlank(tag)) {
                     map.put(GROUP_102 + (i + 1) + "_group.property", "jcr:content/cq:tags");
                     map.put(GROUP_102 + (i + 1) + "_group.property.value", tag);
@@ -149,7 +149,7 @@ public final class SearchMapHelper {
                 }
             }
             for (int i = 0; i < themes.length; i++) {
-                String tag = searchResultsModel.getThemeMap().get(themes[i]);
+                String tag = themeMap.get(themes[i]);
                 if (StringUtils.isNotBlank(tag)) {
                     map.put(GROUP_102 + (index) + "_group.property", "jcr:content/metadata/cq:tags");
                     map.put(GROUP_102 + (index) + "_group.property.value", tag);

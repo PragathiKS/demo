@@ -1,3 +1,64 @@
 <sly data-sly-test="${wcmmode.edit}">
-<p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+    <p data-emptytext="configure ${component.title}"
+       class="cq-placeholder"></p>
+	   <sly data-sly-use.searchConfig="com.tetrapak.publicweb.core.models.SearchConfigModel">
+	    Product Label: ${searchConfig.productLabel}</br>
+        Product Templates : </br>
+	    <sly data-sly-list.productTemplateList = "${searchConfig.productTemplateList}">
+	      ${productTemplateList.path} </br>
+	    </sly> 
+        Product Root Pages : </br>
+	    <sly data-sly-list.productStructureList = "${searchConfig.productStructureList}">
+	      ${productStructureList.path} </br>
+	    </sly> 
+        </br>
+        News Label: ${searchConfig.newsLabel}</br>
+        News Templates : </br>
+	    <sly data-sly-list.newsTemplateList = "${searchConfig.newsTemplateList}">
+	      ${newsTemplateList.path} </br>
+	    </sly> 
+        News Root Pages : </br>
+	    <sly data-sly-list.newsStructureList = "${searchConfig.newsStructureList}">
+	      ${newsStructureList.path} </br>
+	    </sly> 
+        </br>
+        Events Label: ${searchConfig.eventLabel}</br>
+        Events Templates : </br>
+	    <sly data-sly-list.eventTemplateList = "${searchConfig.eventTemplateList}">
+	      ${eventTemplateList.path} </br>
+	    </sly> 
+        Event Root Pages : </br>
+	    <sly data-sly-list.eventStructureList = "${searchConfig.eventStructureList}">
+	      ${eventStructureList.path} </br>
+	    </sly> 
+        </br>
+        Cases Label: ${searchConfig.casesLabel}</br>
+        Cases Templates : </br>
+	    <sly data-sly-list.caseTemplateList = "${searchConfig.caseTemplateList}">
+	      ${caseTemplateList.path} </br>
+	    </sly> 
+        Cases Root Pages : </br>
+	    <sly data-sly-list.caseStructureList = "${searchConfig.caseStructureList}">
+	      ${caseStructureList.path} </br>
+	    </sly> 
+        </br>
+        Media Label: ${searchConfig.mediaLabel}</br>
+        Media Root Pages : </br>
+	    <sly data-sly-list.mediaStructureList = "${searchConfig.mediaStructureList}">
+	      ${mediaStructureList.path} </br>
+	    </sly> 
+        </br>
+        Gated Pages or Assets: </br>
+	    <sly data-sly-list.gatedContentList = "${searchConfig.gatedContentList}">
+	      ${gatedContentList.path} </br>
+	    </sly> 
+        </br>
+        Themes: </br>
+	    <sly data-sly-list.themeList = "${searchConfig.themeList}">
+	      Label: ${themeList.label} </br>
+          Key: ${themeList.key} </br>
+          Tag: ${themeList.tag} </br></br>
+	    </sly> 
+        </br>
+	   </sly>
 </sly>
