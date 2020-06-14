@@ -232,7 +232,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         if (ArrayUtils.isNotEmpty(contentTypes) && Boolean.FALSE.equals(isValidContentType(contentTypes))) {
             isValidRequest = false;
         }
-        if (ArrayUtils.isNotEmpty(themes) && Boolean.FALSE.equals(isValidThemeType(contentTypes))) {
+        if (ArrayUtils.isNotEmpty(themes) && Boolean.FALSE.equals(isValidThemeType(themes))) {
             isValidRequest = false;
         }
 
