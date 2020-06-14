@@ -25,7 +25,7 @@ public final class SearchMapHelper {
     private static final String GROUP = "_group.";
 
     /** The Constant GROUP_2. */
-    private static final String GROUP_102 = "2_group.";
+    private static final String GROUP_102 = "102_group.";
 
     /** The Constant GROUP_3. */
     private static final String GROUP_101 = "101_group.";

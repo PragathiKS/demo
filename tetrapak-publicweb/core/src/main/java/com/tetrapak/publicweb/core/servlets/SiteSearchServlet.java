@@ -53,6 +53,7 @@ import com.tetrapak.publicweb.core.models.SearchResultsModel;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 import com.tetrapak.publicweb.core.utils.SearchMapHelper;
 
 /**
@@ -359,8 +360,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private SearchResultBean setSearchResultItemData(Hit hit, SearchResultsModel searchResultsModel)
             throws RepositoryException {
 
-        SearchResultBean searchResultItem = new SearchResultBean();
-        searchResultItem.setTitle(hit.getTitle());
+        SearchResultBean searchResultItem = new SearchResultBean();       
         Resource resource = hit.getResource();
 
         if (null != resource) {
@@ -371,11 +371,16 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 ValueMap assetMetadataProperties = ResourceUtil.getValueMap(metadataResource);
                 String mediaType = getMediaType(assetMetadataProperties);
                 setMediaPath(searchResultItem, hit.getPath(), mediaType);
-                searchResultItem.setDescription(assetMetadataProperties.get("dc:description", StringUtils.EMPTY));
+                String mediaTitle = assetMetadataProperties.get("dc:title", StringUtils.EMPTY);
+                if(StringUtils.isBlank(mediaTitle)) {
+                    mediaTitle = hit.getTitle(); 
+                }
+                searchResultItem.setTitle(mediaTitle);
                 setMediaSize(searchResultItem, assetMetadataProperties);
                 searchResultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf('.') + 1));
                 searchResultItem.setAssetType(getMediaType(assetMetadataProperties));
             } else {
+                searchResultItem.setTitle(PageUtil.getCurrentPage(hit.getResource()).getTitle());
                 searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
                 searchResultItem.setDescription(hit.getProperties().get("jcr:description", StringUtils.EMPTY));
                 setContentFields(searchResultItem, hit, searchResultsModel);
