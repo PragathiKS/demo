@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import deparam from 'deparam.js';
+import { saveAs } from 'file-saver';
 
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -46,7 +47,15 @@ class Searchresults {
     // $('.js-filter-container-chips').on('click', $filterRemoveBtn, this.removeFilter);
     $(window).on('popstate', this.windowPopStateHandler);
     $pagiantion.on('click', '.js-page-number', this.renderPaginationResult);
-
+    
+    $('.pw-search-results__results').on('click', '.js-asset-download', function(e) {
+      e.preventDefault();
+      const $target = $(this).closest('.js-asset-download');
+      const assetUrl = $target.attr('href');
+      const extension = $target.data('assetExtension');
+      saveAs(assetUrl, `download.${extension}`);
+    });
+    
     this.cache.$filterChecks.change((e) => {
       const $this = $(e.target);
       const category = $this.data('category');
