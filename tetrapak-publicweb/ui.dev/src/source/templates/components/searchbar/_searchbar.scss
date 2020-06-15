@@ -1,15 +1,60 @@
 .pw-search-bar {
+    display: none;
+    background: $color-white;
+    z-index: $z-index-search-bar;
+    &.show {
+        display: flex;
+    }
+
+    @media #{$mobile} {
+        height: calc(100vh - #{$header-height-mobile * 1px});
+        .tp-container {
+            @include padding($padding-l $padding-md);
+        }
+        &__container {
+            flex: 1;
+            flex-direction: column;
+            .row {
+                justify-content: center;
+                width: 100%;
+            }
+            .input-box {
+                @include border-radius($border-radius);
+                @include padding($padding-md);
+                border: 1px solid $color-boulder;
+                display: flex;
+                justify-content: space-between;
+                input {
+                    border: 0;
+                    color: $color-boulder;
+                    flex: 1;
+                    &::placeholder {
+                        color: $color-boulder;
+                    }
+                }
+                .icon-wrapper {
+                    display: flex;
+                }
+                .search-icon {
+                    cursor: pointer;
+                }
+                .search-bar-close {
+                    @include margin-right($margin-md);
+                    display: none;
+                }
+                .vl {
+                    @include margin($margin-zero $margin-md);
+                    border-left: 1px solid $color-mercury;
+                }
+            }
+        }
+    }
+
     @media #{$desktop} {
-        display: none;
         position: fixed;
         height: 60px;
         top: 80px;
         width: 100%;
-        background: $color-white;
-        z-index: $z-index-search-bar;
-        &.show {
-            display: flex;
-        }
         &__container {
             flex: 1;
             .row {

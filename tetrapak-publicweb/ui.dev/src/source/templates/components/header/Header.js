@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
+import { isMobile } from '../../../scripts/common/common';
 
 class Header {
   constructor({ el }) {
@@ -71,7 +72,21 @@ class Header {
   }
 
   searchIconClick = () => {
-    $('.js-pw-search-bar').addClass('show');
+    if(isMobile()){
+      if(this.cache.$searchIcon.children('i').hasClass('icon-Search_pw')){
+        this.cache.$searchIcon.children('i').removeClass('icon-Search_pw');
+        this.cache.$searchIcon.children('i').addClass('icon-Close_pw');
+        $('.js-pw-search-bar').addClass('show');
+        $('body').css('overflow','hidden');
+      } else {
+        this.cache.$searchIcon.children('i').removeClass('icon-Close_pw');
+        this.cache.$searchIcon.children('i').addClass('icon-Search_pw');
+        $('.js-pw-search-bar').removeClass('show');
+        $('body').css('overflow','auto');
+      }
+    } else {
+      $('.js-pw-search-bar').addClass('show');
+    }
     $('.search-bar-input').focus();
 
   }
