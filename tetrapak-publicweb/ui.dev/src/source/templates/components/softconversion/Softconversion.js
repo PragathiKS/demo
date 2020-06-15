@@ -90,7 +90,7 @@ class Softconversion {
     $('.pw-softconversion__header__heading', this.root).html('');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
-    isMobileMode() &&  $('.pw-softconversion__body').css('align-items', 'center');
+    isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
   }
 
 
