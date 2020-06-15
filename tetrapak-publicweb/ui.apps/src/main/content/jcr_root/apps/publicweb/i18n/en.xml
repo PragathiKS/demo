@@ -288,4 +288,9 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.pressandmedia"
         sling:message="Press and media"/>
+    <pw.search.searchbarplaceholder
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.search.searchbarplaceholder"
+        sling:message="What are you looking for?"/>
 </jcr:root>
