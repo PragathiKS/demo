@@ -160,7 +160,8 @@
         "source/templates/components/contactus/",
         "source/templates/components/marketselector/",
         "source/templates/components/softconversion/",
-        "source/templates/components/businessinquiryform/"
+        "source/templates/components/businessinquiryform/",
+        "source/templates/components/searchbar/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
