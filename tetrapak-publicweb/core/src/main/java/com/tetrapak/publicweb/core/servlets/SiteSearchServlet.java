@@ -424,7 +424,12 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      * @return the search result bean
      */
     private SearchResultBean setMediaSize(SearchResultBean searchResultItem, ValueMap assetMetadataProperties) {
-        double size = Integer.parseInt(assetMetadataProperties.get("dam:size", StringUtils.EMPTY));
+        double size = 0;
+        try {
+            size = Integer.parseInt(assetMetadataProperties.get("dam:size", StringUtils.EMPTY));
+        } catch (NumberFormatException e) {
+            LOGGER.error("Invalid Asset Size", e.getMessage(), e);
+        }
         double convertedSize = size / 1024;
         if (convertedSize > 1024) {
             convertedSize = convertedSize / 1024;
