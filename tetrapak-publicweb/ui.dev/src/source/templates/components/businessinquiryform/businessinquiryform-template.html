@@ -308,13 +308,15 @@
                                                 </sly>
                                             </div>
                                             <div class="formfield">
-                                                <div class="form-group checboxField formfield">
-                                                    <input id="consentcheckbox" class="consentCheckbox" required type="checkbox" name="consent">
-                                                    <label class="consentlabel" for="consentcheckbox"> ${data.marketingConsent @ context='html'}</label>
+                                                <div class="form-group formfield">
+                                                    <div class="checboxField">
+                                                        <input id="consentcheckbox" class="consentCheckbox" required type="checkbox" name="consent">
+                                                        <label class="consentlabel" for="consentcheckbox"> ${data.marketingConsent @ context='html'}</label>
+                                                    </div>
                                                     <div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 formfield">
+                                            <div class="formfield">
                                                 <p>${data.privacyPolicy  @ context='html'}</p>
                                             </div>
                                         </div>
