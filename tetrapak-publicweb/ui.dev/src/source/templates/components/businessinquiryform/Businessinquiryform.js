@@ -223,7 +223,7 @@ class Businessinquiryform {
       }
     }
     this.cache.$inputText.on('keydown',restrict);
-    this.cache.inputEmail.on('keydown',restrict);
+    this.cache.$inputEmail.on('keydown',restrict);
 
     $submitBtn.click(function (e) {
       e.preventDefault();
