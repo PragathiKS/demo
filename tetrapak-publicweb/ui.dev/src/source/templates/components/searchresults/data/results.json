@@ -1,0 +1,57 @@
+[
+  {
+    "type": "Media",
+    "title": "Lorem Ipsum Dolor",
+    "path": "/content/tetrapak/publicweb/global/en/test",
+    "size": "2.3 MB",
+    "assetType": "image",
+    "assetExtension": "jpeg"
+  },
+  {
+    "title": "2Test",
+    "type": "Product",
+    "path": "/content/tetrapak/publicweb/global/en/test",
+    "description": "This is the vanity description for article page"
+  },
+  {
+    "title": "3Test",
+    "type": "News",
+    "date": "21 APRIL 2019",
+    "description":"This is the vanity description for article page",
+    "path": "/content/tetrapak/publicweb/global/en/test"
+  },
+  {
+    "title": "4Search Test Page 2",
+    "type": "Event",
+    "date": "21 APRIL 2019",
+    "description":"This is the vanity description for article page",
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-2"
+  },
+  {
+    "title": "5Search Test Page 1",
+    "type": "Product",
+    "description":"This is the vanity description for article page",
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-1"
+  },
+  {
+    "title": "6TanikaQA",
+    "type": "Event",
+    "date":"21 APRIL 2019",
+    "description": "This is the vanity description for article page",
+    "path": "/content/tetrapak/publicweb/global/en/innovations/tanikaqa"
+  },
+  {
+    "title": "7Test",
+    "type": "News",
+    "date":"21 APRIL 2019",
+    "path": "/content/tetrapak/publicweb/global/en/test"
+  },
+  {
+    "title": "8Search Test Page 2",
+    "type": "Media",
+    "size":"2.3 MB",
+    "assetExtension":"png",
+    "assetType":"image",
+    "path": "/content/tetrapak/publicweb/global/en/search-test-page-2"
+  }
+]
