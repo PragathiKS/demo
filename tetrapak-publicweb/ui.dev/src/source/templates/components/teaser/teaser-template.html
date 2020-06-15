@@ -15,10 +15,11 @@
             href="${child.linkPath}"
             class="js-teaser-analytics"
             title="${child.linkText}"
-            data-link-section="Teaser${buttonLinkType}"
+            data-link-section="Teaser_imageClick"
             data-link-name="${child.linkText}"
             data-link-title="${child.title || data.heading}"
             data-asset-name="${child.assetName}"
+            data-download-type=""
             data-button-link-type="${child.pwButtonTheme}"
           >
 
@@ -51,6 +52,7 @@
                 data-link-name="${child.linkText}"
                 data-link-title="${child.title || data.heading}"
                 data-asset-name="${child.assetName}"
+                data-download-type=""
                 data-button-link-type="${child.pwButtonTheme}"
                 >
                 <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}<i class="icon ${child.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>

@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { isDesktopMode,getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
-import { isExternal } from '../../../scripts/utils/updateLink';
+import { isExternal, isDownloable  } from '../../../scripts/utils/updateLink';
 
 class Banner {
   constructor({ el }) {
@@ -41,6 +41,35 @@ class Banner {
     getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.js-banner-analytics');
   }
 
+  trackBannerImageClick = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.pw-banner');
+    const $anchor = $this.data('href');
+    if (!($anchor && $anchor !== '#')) {
+      return false;
+    }
+    if ($(e.target).closest('.pw-banner__content').length) {
+      return true;
+    }
+
+    if (isDownloable($anchor)) {
+      $this.data('download-type', 'download');
+    }
+
+    if (isExternal($anchor)) {
+      $this.attr('target', '_blank');
+    }
+
+    getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);  
+
+
+    if (isExternal($anchor)) {
+      window.open($anchor, '_blank');
+    } else {
+      window.location.href = $anchor;
+    }
+  }
+
   addBannerLink() {
     const $bEl = $('.pw-banner');
     $bEl.each(function () {
@@ -53,20 +82,8 @@ class Banner {
     });
 
 
-    $bEl.click((e) => {
-      const $anchor = $bEl.data('href');
-      if (!($anchor && $anchor !== '#')) {
-        return false;
-      }
-      if ($(e.target).closest('.pw-banner__content').length) {
-        return true;
-      }
-      if (isExternal($anchor)) {
-        window.open($anchor, '_blank');
-      } else {
-        window.location.href = $anchor;
-      }
-    });
+    $bEl.on('click', this.trackBannerImageClick);
+
   }
 
 

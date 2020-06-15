@@ -1,18 +1,19 @@
 import $ from 'jquery';
 import Banner from './Banner';
+import bannerTemplate from '../../../test-templates-hbs/banner.hbs';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 
 describe('Banner', function () {
   before(function () {
-    $(document.body).empty().html(`
-      <a class="js-banner-analytics">Analytics</a>
-    `);
+    $(document.body).empty().html(bannerTemplate());
     this.banner = new Banner({
       el: document.body
     });
     this.initSpy = sinon.spy(this.banner, 'init');
     this.analyticsSpy = sinon.spy(this.banner, 'trackAnalytics');
+    this.trackBannerImageClickSpy = sinon.spy(this.banner, 'trackBannerImageClick');
+    
     this.openStub = sinon.stub(window, 'open');
     window.digitalData = {};
     window._satellite = {
@@ -24,6 +25,7 @@ describe('Banner', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.analyticsSpy.restore();
+    this.trackBannerImageClickSpy.restore();
     this.openStub.restore();
   });
   it('should initialize', function () {
@@ -33,4 +35,10 @@ describe('Banner', function () {
     $('.js-banner-analytics').trigger('click');
     expect(this.analyticsSpy.called).to.be.true;
   });
+
+  it('should enable click on image', function () {
+    $('.pw-banner').trigger('click');
+    expect(this.trackBannerImageClickSpy.called).to.be.true;
+  });
+
 });
