@@ -18,6 +18,7 @@ class Businessinquiryform {
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
     this.cache.$submitBtn = $('form.pw-form-businessEnquiry button[type="submit"]', this.root);
     this.cache.$inputText = $('form.pw-form-businessEnquiry  input[type="text"]', this.root);
+    this.cache.$inputEmail = $('form.pw-form-businessEnquiry  input[type="email"]', this.root);
 
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -213,14 +214,17 @@ class Businessinquiryform {
       }
     });
 
-    this.cache.$inputText.on('keydown', function search(e) {
+    function restrict(e) {
       if (e.keyCode === 188 || e.keyCode === 190) {
         e.returnValue = false;//for IE
         if (e.preventDefault) {
           e.preventDefault(); //other
         }
       }
-    });
+    }
+    this.cache.$inputText.on('keydown',restrict);
+    this.cache.inputEmail.on('keydown',restrict);
+
     $submitBtn.click(function (e) {
       e.preventDefault();
       e.stopPropagation();
