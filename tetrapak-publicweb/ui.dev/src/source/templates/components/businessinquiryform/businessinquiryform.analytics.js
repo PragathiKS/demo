@@ -29,10 +29,12 @@ export const changeStepNext = function (formStep, formType, areaofInterest, data
     event: 'Hard Conversion Form'
   };
   Object.keys(dataObj).forEach(i => {
-    formObj.formField.push({
-      formFieldName: i,
-      formFieldValue: dataObj[i]
-    });
+    if(dataObj[i]) {
+      formObj.formField.push({
+        formFieldName: i,
+        formFieldValue: dataObj[i]
+      });  
+    }
   });
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
@@ -51,10 +53,12 @@ export const changeStepPrev = function (formStep, formType, areaofInterest, data
     event: 'Hard Conversion Form'
   };
   Object.keys(dataObj).forEach(i => {
-    formObj.formField.push({
-      formFieldName: i,
-      formFieldValue: dataObj[i]
-    });
+    if(dataObj[i]) {
+      formObj.formField.push({
+        formFieldName: i,
+        formFieldValue: dataObj[i]
+      });  
+    }
   });
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
@@ -74,16 +78,20 @@ export const changeStepError = function (formStep, formType, areaofInterest, dat
     event: 'Hard Conversion Form'
   };
   Object.keys(dataObj).forEach(i => {
-    formObj.formField.push({
-      formFieldName: i,
-      formFieldValue: dataObj[i]
-    });
+    if(dataObj[i]) {
+      formObj.formField.push({
+        formFieldName: i,
+        formFieldValue: dataObj[i]
+      });  
+    }
   });
   Object.keys(errorObj).forEach(i => {
-    formObj.formField.push({
-      formFieldName: i,
-      formFieldValue: dataObj[i]
-    });
+    if(errorObj[i]) {
+      formObj.formError.push({
+        formFieldName: i,
+        formFieldValue: dataObj[i]
+      });
+    }
   });
 
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
@@ -104,10 +112,12 @@ export const loadThankYou = function (areaofInterest, dataObj) {
     event: 'Hard Conversion Form'
   };
   Object.keys(dataObj).forEach(i => {
-    formObj.formField.push({
-      formFieldName: i,
-      formFieldValue: dataObj[i]
-    });
+    if(dataObj[i]) {
+      formObj.formField.push({
+        formFieldName: i,
+        formFieldValue: dataObj[i]
+      });  
+    }
   });
   trackAnalytics(formObj, 'form', 'formcomplete', undefined, false, eventObj);
 };
