@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
-import { validateFieldsForTags } from '../../../scripts/common/common';
+import { validateFieldsForTags, isMobileMode } from '../../../scripts/common/common';
 
 class Softconversion {
   constructor({ el }) {
@@ -90,6 +90,7 @@ class Softconversion {
     $('.pw-softconversion__header__heading', this.root).html('');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
+    isMobileMode() &&  $('.pw-softconversion__body').css('align-items', 'center');
   }
 
 
