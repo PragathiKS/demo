@@ -3,6 +3,7 @@ import 'bootstrap';
 import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
+import { validateFieldsForTags } from '../../../scripts/common/common';
 
 class Businessinquiryform {
   constructor({ el }) {
@@ -151,8 +152,9 @@ class Businessinquiryform {
         $('input, textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
           $('div.' + fieldName).text($(this).val());
+          const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
           if (fieldName in self.cache.requestPayload) {
-            requestPayload[fieldName] = $(this).val();
+            requestPayload[fieldName] = newSafeValues;
           }
           if (($(this).prop('required') && $(this).val() === '') || self.validateField(requestPayload[fieldName]) || (fieldName === 'email') && !self.validEmail($(this).val()) || (fieldName === 'consent') && $(this).prop('checked')) {
             isvalid = false;
@@ -214,17 +216,6 @@ class Businessinquiryform {
       }
     });
 
-    function restrict(e) {
-      if (e.keyCode === 188 || e.keyCode === 190) {
-        e.returnValue = false;//for IE
-        if (e.preventDefault) {
-          e.preventDefault(); //other
-        }
-      }
-    }
-    this.cache.$inputText.on('keydown',restrict);
-    this.cache.$inputEmail.on('keydown',restrict);
-
     $submitBtn.click(function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -237,10 +228,11 @@ class Businessinquiryform {
       if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
         $('input, textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
-
+          const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
+      
           $('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
-            requestPayload[fieldName] = $(this).val();
+            requestPayload[fieldName] = newSafeValues;
           }
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val()) || (fieldName === 'consent') && !$(this).prop('checked')) {
             isvalid = false;
