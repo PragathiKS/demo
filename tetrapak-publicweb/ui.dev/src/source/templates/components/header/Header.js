@@ -28,12 +28,13 @@ class Header {
     this.cache.$headerItem = this.root.find('.js-tp-pw-header-item');
     this.cache.$headerItemLink = this.root.find('.js-main-menu-link-hover');
     this.cache.$overlay = $('.js-pw-overlay');
+    this.cache.$searchIcon = this.root.find('.js-tp-pw-header__search-box-toggle');
   }
 
   //
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker} = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker,$searchIcon} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
@@ -50,7 +51,28 @@ class Header {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
       this.trackLanguageSelector(e);
     });
+    $searchIcon.on('click', this.searchIconClick);
 
+    $(document).mouseup((e) =>
+    {
+      var container = $('.js-pw-search-bar');
+
+      // if the target of the click isn't the container nor a descendant of the container
+      if (!container.is(e.target) && container.has(e.target).length === 0)
+      {
+        this.hideSearchbar();
+      }
+    });
+
+  }
+
+  hideSearchbar = () => {
+    $('.js-pw-search-bar').removeClass('show');
+  }
+
+  searchIconClick = () => {
+    $('.js-pw-search-bar').addClass('show');
+    $('.search-bar-input').focus();
 
   }
 
@@ -152,7 +174,7 @@ class Header {
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     const url = $this.attr('href');
     const myDomain = 'tetrapak.com';
-    
+
     if (url && (url.includes('http://') || url.includes('https://'))) {
       if (url.includes(myDomain)) {
         $this.attr('target','_blank');

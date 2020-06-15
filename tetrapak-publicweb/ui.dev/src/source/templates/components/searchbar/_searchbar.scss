@@ -1,0 +1,45 @@
+.pw-search-bar {
+    @media #{$desktop} {
+        display: none;
+        position: fixed;
+        height: 60px;
+        top: 80px;
+        width: 100%;
+        background: $color-white;
+        z-index: $z-index-search-bar;
+        &.show {
+            display: flex;
+        }
+        &__container {
+            flex: 1;
+            .row {
+                @include padding($padding-md $padding-zero);
+                justify-content: center;
+                width: 100%;
+            }
+            .input-box {
+                display: flex;
+                justify-content: space-between;
+                input {
+                    border: 0;
+                    color: $color-boulder;
+                    flex: 1;
+                    &::placeholder {
+                        color: $color-boulder;
+                    }
+                }
+                .icon-wrapper {
+                    @include margin-left($margin-l);
+                    display: flex;
+                }
+                .search-icon {
+                    cursor: pointer;
+                }
+                .vl {
+                    @include margin($margin-zero $margin-l);
+                    border-left: 1px solid $color-mercury;
+                }
+            }
+        }
+    }
+}
