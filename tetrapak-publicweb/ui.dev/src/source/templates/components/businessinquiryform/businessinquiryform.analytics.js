@@ -71,10 +71,10 @@ export const changeStepError = function (formStep, formType, areaofInterest, dat
     formType: formType,
     areaofInterest: areaofInterest,
     formField: [],
-    formError:[]
+    formError:errorObj
   };
   const eventObj = {
-    eventType: formStep + ' previous',
+    eventType: 'formerror',
     event: 'Hard Conversion Form'
   };
   Object.keys(dataObj).forEach(i => {
@@ -85,15 +85,6 @@ export const changeStepError = function (formStep, formType, areaofInterest, dat
       });  
     }
   });
-  Object.keys(errorObj).forEach(i => {
-    if(errorObj[i]) {
-      formObj.formError.push({
-        formFieldName: i,
-        formFieldValue: dataObj[i]
-      });
-    }
-  });
-
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 

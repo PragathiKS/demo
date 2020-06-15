@@ -160,6 +160,12 @@ class Businessinquiryform {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
+            const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text();
+            const fieldName = $(this).attr('name');    
+            errObj.push({
+              formErrorMessage: errmsg,
+              formErrorField: fieldName
+            });
             $(this).closest('.form-group, .formfield').addClass('field-error');
           } else {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
@@ -194,12 +200,6 @@ class Businessinquiryform {
           }
         }
       } else {
-        const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text();
-        const fieldName = $(this).attr('name');
-        errObj.push({
-          formErrorMessage: errmsg,
-          formErrorField: fieldName
-        });
         switch (target) {
         case '#bef-step-2':
           changeStepError('Step 1', 'Purpose of contact', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload, errObj);
