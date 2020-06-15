@@ -29,6 +29,7 @@ aemStart:
   description: "run default task which build the whole application"
   tasks:
     - 'shell:lintingDev'
+    - 'shell:karmaTests'
     - 'shell:webpackDev'
     - 'shell:clientlibify'
     - 'copy:jsonData'
@@ -40,6 +41,7 @@ default:
   description: "run default task which build the whole application"
   tasks:
     - 'shell:lintingDev'
+    - 'shell:karmaTestsProd'
     - 'shell:webpackDev'
     - 'shell:clientlibify'
     - 'aemcomponentcopy:uxlibProd'

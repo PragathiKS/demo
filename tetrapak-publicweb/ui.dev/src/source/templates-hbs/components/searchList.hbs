@@ -7,7 +7,11 @@
       {{#if_eq this.assetType 'image'}}
         <img class="pw-product-card-grid__item__image" src="{{this.path}}" alt="{{this.title}}">
       {{else}}
-        <i class="{{#if_eq this.assetType 'video'}}icon-Play{{else}}icon-PDF{{/if_eq}}"></i>
+        {{#if this.assetThumbnail}}
+            <img class="pw-product-card-grid__item__image" src="{{this.assetThumbnail}}" alt="{{this.title}}">
+          {{else}}
+            <i class="{{#if_eq this.assetType 'video'}}icon-Play{{else}}icon-PDF{{/if_eq}}"></i>
+        {{/if}}
       {{/if_eq}}
     </div>
     <p class="d-block d-lg-none pw-search-results__results-list__item__size"><span class="capitalizeText">{{this.assetExtension}}</span> {{this.assetTypeI18n}} {{this.size}} {{this.sizeTypeI18n}} 
