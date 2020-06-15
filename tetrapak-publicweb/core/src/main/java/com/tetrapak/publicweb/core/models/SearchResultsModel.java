@@ -275,6 +275,24 @@ public class SearchResultsModel {
     }
 
     /**
+     * Gets the video thumbnail.
+     *
+     * @return the video thumbnail
+     */
+    public String getVideoThumbnail() {
+        return configurationModel.getVideoThumbnail();
+    }
+
+    /**
+     * Gets the document thumbnail.
+     *
+     * @return the document thumbnail
+     */
+    public String getDocumentThumbnail() {
+        return configurationModel.getDocumentThumbnail();
+    }
+
+    /**
      * Gets the template map.
      *
      * @return the template map

@@ -112,6 +112,9 @@ public final class PWConstants {
 
     /** The Constant VIDEO. */
     public static final String VIDEO = "video";
+    
+    /** The Constant DOCUMENT. */
+    public static final String DOCUMENT = "document";
 
     /** The Constant VOLUMES. */
     public static final String VOLUMES = "volumes";
