@@ -35,7 +35,7 @@ class SectionMenu {
     }
     setTimeout(() => {
       this.getSectionMenuAnalyticsValue(e);
-    }, 1000);
+    }, 3000);
     window.open($this.data('url-link'), $this.attr('target'));
   }
 
