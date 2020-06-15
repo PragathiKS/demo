@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -53,6 +55,9 @@ public class SearchResultsModel {
 
     /** The configuration model. */
     private SearchConfigModel configurationModel = new SearchConfigModel();
+    
+    /** The content type list. */
+    List<SearchListModel> contentTypeList = new ArrayList<>();
 
     /**
      * Inits the.
@@ -65,7 +70,36 @@ public class SearchResultsModel {
         final Resource searchConfigResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(searchConfigResource)) {
             configurationModel = searchConfigResource.adaptTo(SearchConfigModel.class);
+            setContentType(configurationModel.getProductLabel(), PWConstants.PRODUCTS);
+            setContentType(configurationModel.getNewsLabel(), PWConstants.NEWS);
+            setContentType(configurationModel.getEventLabel(), PWConstants.EVENTS);
+            setContentType(configurationModel.getCaseLabel(), PWConstants.CASES);
+            setContentType(configurationModel.getMediaLabel(), PWConstants.MEDIA);
         }
+    }
+    
+    /**
+     * Sets the content type.
+     *
+     * @param label the label
+     * @param key the key
+     */
+    private void setContentType(String label, String key) {
+        if (StringUtils.isNoneBlank(label)) {
+            SearchListModel contentType = new SearchListModel();
+            contentType.setKey(key);
+            contentType.setLabel(label);
+            contentTypeList.add(contentType);
+        }
+    }
+
+    /**
+     * Gets the content type list.
+     *
+     * @return the content type list
+     */
+    public List<SearchListModel> getContentTypeList() {
+        return contentTypeList;
     }
 
     /**

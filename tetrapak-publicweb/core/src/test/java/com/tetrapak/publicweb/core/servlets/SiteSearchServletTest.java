@@ -16,7 +16,7 @@ import com.day.cq.search.QueryBuilder;
 import com.google.common.base.Function;
 import com.tetrapak.publicweb.core.mock.MockHelper;
 import com.tetrapak.publicweb.core.mock.MockXSSAPI;
-import com.tetrapak.publicweb.core.models.SearchFilterModel;
+import com.tetrapak.publicweb.core.models.SearchResultsModel;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.impl.DynamicMediaServiceImpl;
 
@@ -66,7 +66,6 @@ public class SiteSearchServletTest {
     
     SiteSearchServlet siteSerarchServlet = new SiteSearchServlet();
     
-    SearchFilterModel filters;
 
     @Before
     public void setUp() throws Exception {
@@ -154,11 +153,11 @@ public class SiteSearchServletTest {
     
     @Test
     public void testSearchFilters() throws IOException {
-        context.currentResource(CURRENT_RESOURCE1);
-        context.request().setPathInfo(CURRENT_RESOURCE1);
-        filters = context.request().adaptTo(SearchFilterModel.class);
-        assertEquals("Search","Products",filters.getContentTypeList().get(0).getLabel());
-        assertEquals("Search","products",filters.getContentTypeList().get(0).getKey());
-        assertEquals("Search","news",filters.getThemeList().get(0).getTag());
+        context.currentResource(CURRENT_RESOURCE);
+        context.request().setPathInfo(CURRENT_RESOURCE);
+        SearchResultsModel model = context.request().adaptTo(SearchResultsModel.class);
+        assertEquals("Search","Products",model.getContentTypeList().get(0).getLabel());
+        assertEquals("Search","products",model.getContentTypeList().get(0).getKey());
+        assertEquals("Search","news",model.getThemeList().get(0).getTag());
     }
 }
