@@ -13,20 +13,20 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.tetrapak.publicweb.core.mock.MockHelper;
-import com.tetrapak.publicweb.core.services.PadrotService;
-import com.tetrapak.publicweb.core.services.impl.PadrotServiceImpl;
+import com.tetrapak.publicweb.core.services.PardotService;
+import com.tetrapak.publicweb.core.services.impl.PardotServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
-public class BusinessEnquiryPadrotServletTest {
+public class SoftconversionPardotServletTest {
 
     /** The context. */
     @Rule
     public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
-    private BusinessEnquiryPadrotServlet businessEnquiryPadrotServlet = new BusinessEnquiryPadrotServlet();
+    private SoftconversionPardotServlet softconversionPardotServlet = new SoftconversionPardotServlet();
 
-    private PadrotService padrotService;
+    private PardotService pardotService;
 
 
     /**
@@ -37,17 +37,18 @@ public class BusinessEnquiryPadrotServletTest {
     @Before
     public void setup() throws IOException {
 
-        padrotService = new PadrotServiceImpl();
-        final Map<String, Object> padrotConfig = new HashMap<>();
-        padrotConfig.put("padrotBusinessInquiryServiceUrl", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
-        context.registerService(PadrotService.class, padrotService);
-        MockOsgi.activate(context.getService(PadrotService.class), context.bundleContext(), padrotConfig);
+        pardotService = new PardotServiceImpl();
+        final Map<String, Object> pardotConfig = new HashMap<>();
+        pardotConfig.put("pardotBusinessInquiryServiceUrl", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
+        context.registerService(PardotService.class, pardotService);
+        MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
-        businessEnquiryPadrotServlet = MockHelper.getServlet(context, BusinessEnquiryPadrotServlet.class);
+        softconversionPardotServlet = MockHelper.getServlet(context, SoftconversionPardotServlet.class);
 
         final Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("firstName", "firstName");
         parameterMap.put("lastName", "lastName");
+        parameterMap.put("pardotUrl", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
 
         context.request().setParameterMap(parameterMap);
 
@@ -63,7 +64,7 @@ public class BusinessEnquiryPadrotServletTest {
      */
     @Test
     public void doPost() throws IOException {
-        businessEnquiryPadrotServlet.doPost(context.request(), context.response());
+        softconversionPardotServlet.doPost(context.request(), context.response());
         assertEquals("Success", context.response().getOutputAsString());
     }
 }

@@ -14,7 +14,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
  *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class BusinessInquiryModel extends FormModel {
+public class SubscriptionFormModel extends FormModel {
 
     /** The resource. */
     @Self
@@ -32,7 +32,7 @@ public class BusinessInquiryModel extends FormModel {
      */
     @Override
     public String getApiUrl() {
-        return resource.getPath() + ".pardotbusinessenquiry.json";
+        return resource.getPath() + ".pardotsubscription.json";
     }
 
     /**
