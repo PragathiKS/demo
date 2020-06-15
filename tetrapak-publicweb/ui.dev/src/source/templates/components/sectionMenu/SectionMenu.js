@@ -33,7 +33,9 @@ class SectionMenu {
     if(isMobile() && iconEl.length > 0) {
       return;
     }
-    this.getSectionMenuAnalyticsValue(e);
+    setTimeout(() => {
+      this.getSectionMenuAnalyticsValue(e);
+    }, 1000);
     window.open($this.data('url-link'), $this.attr('target'));
   }
 
