@@ -134,13 +134,16 @@ class Businessinquiryform {
       const errObj = [];
       if ($(this).hasClass('previousbtn')) {
         switch (target) {
-        case '#bef-step-3':
+        case '#bef-step-1':
+          changeStepPrev('Step 1', 'Purpose of Contact', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+          break;
+        case '#bef-step-2':
           changeStepPrev('Step 2', 'Business area of interest', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
           break;
-        case '#bef-step-4':
+        case '#bef-step-3':
           changeStepPrev('Step 3', 'Contact information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
           break;
-        case '#bef-step-final':
+        case '#bef-step-4':
           changeStepPrev('Step 4', 'Company information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
           break;
         default:
