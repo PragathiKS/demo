@@ -291,4 +291,9 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.emptySearchText"
         sling:message="Please try again to enter a search text in the above field"/>        
+    <pw.search.searchbarplaceholder
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.search.searchbarplaceholder"
+        sling:message="What are you looking for?"/>
 </jcr:root>
