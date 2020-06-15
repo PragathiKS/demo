@@ -51,7 +51,7 @@ class Businessinquiryform {
   newRequestHanlder = e => {
     e.preventDefault();
     e.stopPropagation();
-    loadThankYou(self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+    loadThankYou(this.cache.requestPayload['purposeOfInterestAreaEqTitle'], this.cache.requestPayload);
     location.reload();
   }
 
