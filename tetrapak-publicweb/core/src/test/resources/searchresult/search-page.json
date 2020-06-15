@@ -1,0 +1,54 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 16:19:58 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "Search",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "113f2d34-3800-43d6-8c46-6cc38c1aa39e",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+"cq:lastReplicatedBy": "sapient-bimmi",
+"jcr:predecessors": [
+"33c80211-c389-4cd4-ae7c-55cc9ff6e41f"
+],
+"jcr:created": "Wed Jun 10 2020 16:19:58 GMT+0530",
+"cq:lastReplicated": "Wed May 13 2020 10:23:05 GMT+0000",
+"cq:lastModified": "Tue Mar 31 2020 06:57:44 GMT+0000",
+"jcr:baseVersion": "33c80211-c389-4cd4-ae7c-55cc9ff6e41f",
+"jcr:isCheckedOut": true,
+"hideInNav": "true",
+"jcr:uuid": "eac38cc0-7523-42e4-aefd-021d3ecc15ba",
+"linkType": "button",
+"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+"cq:lastModifiedBy": "sapient-jyoti",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"responsivegrid": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"searchresults": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "sapient-user",
+"jcr:lastModifiedBy": "sapient-user",
+"jcr:created": "Fri Apr 05 2019 07:39:35 GMT+0000",
+"jcr:lastModified": "Fri Apr 05 2019 07:39:35 GMT+0000",
+"sling:resourceType": "publicweb/components/content/searchresults"
+},
+"searchfilter": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "sapient-user",
+"jcr:lastModifiedBy": "sapient-user",
+"jcr:created": "Fri Apr 05 2019 07:39:35 GMT+0000",
+"jcr:lastModified": "Fri Apr 05 2019 07:39:35 GMT+0000",
+"sling:resourceType": "publicweb/components/content/searchfilter"
+}
+}
+}
+}
+}

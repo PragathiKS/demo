@@ -1,0 +1,41 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:49:49 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"hideContactFooterForm@Delete": "true",
+"jcr:createdBy": "admin",
+"jcr:title": "cheese",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "93985eff-8a20-448c-a812-befa23a95390",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+"cq:lastReplicatedBy": "sapient-bimmi",
+"pwLinkTheme": "hyperlink",
+"jcr:predecessors": [
+"93ab5801-ff28-4a79-835c-be1793732642"
+],
+"pwButtonTheme": "link",
+"jcr:created": "Wed Jun 10 2020 23:49:49 GMT+0530",
+"cq:lastReplicated": "Wed May 13 2020 10:23:03 GMT+0000",
+"cq:lastModified": "Wed Apr 29 2020 08:58:00 GMT+0000",
+"jcr:baseVersion": "93ab5801-ff28-4a79-835c-be1793732642",
+"jcr:isCheckedOut": true,
+"hideInSearch@Delete": "true",
+"linkTarget": "_self",
+"jcr:uuid": "34c16437-55ca-488d-90b7-5fe6bd1915b0",
+"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+"cq:lastModifiedBy": "admin",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"responsivegrid": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid"
+}
+}
+}
+}
