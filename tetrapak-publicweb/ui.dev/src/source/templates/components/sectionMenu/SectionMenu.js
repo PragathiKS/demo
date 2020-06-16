@@ -15,8 +15,8 @@ class SectionMenu {
     const { $sectionMenuItem } = this.cache;
     $sectionMenuItem.on('mouseover', this.handleSectionMenuItemMouseOver);
     $sectionMenuItem.on('mouseout', this.handleSectionMenuItemMouseOut);
-    $('.js-section-menu-item-link').on('click', this.handleSectionMenuClick);
-    $('.js-sub-menu-navigation-link-item').on('click', this.handleSubSectionMenuClick);
+    $('.js-section-menu-item-link').off().on('click', this.handleSectionMenuClick);
+    $('.js-sub-menu-navigation-link-item').off().on('click', this.handleSubSectionMenuClick);
 
     $('.js-section-menu-item-link:not(:has(.icon:not(.is-external)))').each(function() {
       $(this).on('click', function (e) {
@@ -33,9 +33,7 @@ class SectionMenu {
     if(isMobile() && iconEl.length > 0) {
       return;
     }
-    setTimeout(() => {
-      this.getSectionMenuAnalyticsValue(e);
-    }, 3000);
+    this.getSectionMenuAnalyticsValue(e);
     window.open($this.data('url-link'), $this.attr('target'));
   }
 
