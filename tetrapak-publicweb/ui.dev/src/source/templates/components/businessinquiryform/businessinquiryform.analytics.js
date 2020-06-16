@@ -1,10 +1,10 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const makeLoad = function () {
+export const makeLoad = function (label, formName) {
   const formObj = {
-    formName: 'Business Enquiry',
+    formName: formName,
     formStep: 'Step 1',
-    formType: '',
+    formType: label,
     areaofInterest: '',
     formField: []
   };
@@ -12,20 +12,20 @@ export const makeLoad = function () {
     eventType: 'formstart',
     event: 'Hard Conversion Form'
   };
-  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
+  trackAnalytics(formObj, 'formclick', 'formload', undefined, false, eventObj);
 };
 
 
-export const changeStepNext = function (formStep, formType, areaofInterest, dataObj) {
+export const changeStepNext = function (formName, formStep, formType, areaofInterest, dataObj) {
   const formObj = {
-    formName: 'Business Enquiry',
+    formName: formName,
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
     formField: []
   };
   const eventObj = {
-    eventType: formStep + ' complete',
+    eventType: `${formStep} Next`,
     event: 'Hard Conversion Form'
   };
   Object.keys(dataObj).forEach(i => {
@@ -36,20 +36,20 @@ export const changeStepNext = function (formStep, formType, areaofInterest, data
       });  
     }
   });
-  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
+  trackAnalytics(formObj, 'formclick', 'formclick', undefined, false, eventObj);
 };
 
 
-export const changeStepPrev = function (formStep, formType, areaofInterest, dataObj) {
+export const changeStepPrev = function (formName, formStep, formType, areaofInterest, dataObj) {
   const formObj = {
-    formName: 'Business Enquiry',
+    formName: formName,
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
     formField: []
   };
   const eventObj = {
-    eventType: formStep + ' previous',
+    eventType: `${formStep} previous`,
     event: 'Hard Conversion Form'
   };
   Object.keys(dataObj).forEach(i => {
@@ -60,13 +60,13 @@ export const changeStepPrev = function (formStep, formType, areaofInterest, data
       });  
     }
   });
-  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
+  trackAnalytics(formObj, 'formclick', 'formclick', undefined, false, eventObj);
 };
 
 
-export const changeStepError = function (formStep, formType, areaofInterest, dataObj, errorObj={}) {
+export const changeStepError = function (formName, formStep, formType, areaofInterest, dataObj, errorObj={}) {
   const formObj = {
-    formName: 'Business Enquiry',
+    formName: formName,
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
@@ -85,16 +85,16 @@ export const changeStepError = function (formStep, formType, areaofInterest, dat
       });  
     }
   });
-  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
+  trackAnalytics(formObj, 'formclick', 'formclick', undefined, false, eventObj);
 };
 
 
 
-export const loadThankYou = function (areaofInterest, dataObj) {
+export const loadThankYou = function (formName, areaofInterest, dataObj) {
   const formObj = {
-    formName: 'Business Enquiry',
-    formStep: 'Step 4',
-    formType: 'Contact information',
+    formName: formName,
+    formStep: 'Thankyou',
+    formType: 'Thank You',
     areaofInterest: areaofInterest,
     formField: []
   };
@@ -110,13 +110,14 @@ export const loadThankYou = function (areaofInterest, dataObj) {
       });  
     }
   });
-  trackAnalytics(formObj, 'form', 'formcomplete', undefined, false, eventObj);
+  trackAnalytics(formObj, 'formclick', 'formload', undefined, false, eventObj);
 };
 
 
 
 
-export const NewPage = function () {
+export const newPage = function () {
+
   const linkClickObj = {
     linkType: 'internal',
     linkSection: 'Hard Conversion Form_button click',
