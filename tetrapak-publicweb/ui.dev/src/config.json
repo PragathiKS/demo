@@ -161,11 +161,7 @@
         "source/templates/components/marketselector/",
         "source/templates/components/softconversion/",
         "source/templates/components/businessinquiryform/",
-<<<<<<< HEAD
-        "source/templates/components/subscriptionform/"
-=======
         "source/templates/components/searchresults/"
->>>>>>> 99ef484c6fa16bd7796c0ca10fe757acf6e3eb00
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
