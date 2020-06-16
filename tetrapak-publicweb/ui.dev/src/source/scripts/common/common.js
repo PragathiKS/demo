@@ -379,3 +379,15 @@ export const updateQueryStringParameter = (uri, key, value) => {
     return `${uri + separator + key  }=${  value}`;
   }
 };
+
+export const checkActiveOverlay = (activeOverlays) => {
+  let isActiveOverlay = false;
+  activeOverlays.forEach((overlayClass) => {
+    if($(overlayClass).hasClass('show') || $(overlayClass).css('display') !== 'none'){
+      isActiveOverlay = true;
+    }
+  });
+  if(!isActiveOverlay) {
+    $('body').css('overflow','auto');
+  }
+};

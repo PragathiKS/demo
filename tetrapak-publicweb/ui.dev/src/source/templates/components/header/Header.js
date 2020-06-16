@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
-import { isMobile } from '../../../scripts/common/common';
+import { isMobile,checkActiveOverlay } from '../../../scripts/common/common';
 
 class Header {
   constructor({ el }) {
@@ -54,17 +54,18 @@ class Header {
     });
     $searchIcon.on('click', this.searchIconClick);
 
-    $(document).mouseup((e) =>
-    {
-      var container = $('.js-pw-search-bar');
-
-      // if the target of the click isn't the container nor a descendant of the container
-      if (!container.is(e.target) && container.has(e.target).length === 0)
+    if(!isMobile()){
+      $(document).mouseup((e) =>
       {
-        this.hideSearchbar();
-      }
-    });
+        var container = $('.js-pw-search-bar');
 
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0)
+        {
+          this.hideSearchbar();
+        }
+      });
+    }
   }
 
   hideSearchbar = () => {
@@ -72,7 +73,13 @@ class Header {
   }
 
   searchIconClick = () => {
+    $('.js-search-bar-input').val('');
     if(isMobile()){
+      // to hide navigation if opened
+      $('.js-tp-pw-mobile-navigation').css('display','none');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close_pw');
+
       if(this.cache.$searchIcon.children('i').hasClass('icon-Search_pw')){
         this.cache.$searchIcon.children('i').removeClass('icon-Search_pw');
         this.cache.$searchIcon.children('i').addClass('icon-Close_pw');
@@ -82,7 +89,8 @@ class Header {
         this.cache.$searchIcon.children('i').removeClass('icon-Close_pw');
         this.cache.$searchIcon.children('i').addClass('icon-Search_pw');
         $('.js-pw-search-bar').removeClass('show');
-        $('body').css('overflow','auto');
+        const activeOverlay = ['.js-tp-pw-mobile-navigation','.js-pw-navigation__container'];
+        checkActiveOverlay(activeOverlay);
       }
     } else {
       $('.js-pw-search-bar').addClass('show');
@@ -160,6 +168,10 @@ class Header {
       this.cache.$mobileMenu.fadeIn(300);
       this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Burger_pw');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Close_pw');
+
+      // to reset the search icon
+      this.cache.$searchIcon.children('i').addClass('icon-Search_pw');
+      this.cache.$searchIcon.children('i').removeClass('icon-Close_pw');
       this.toggleFlag = true;
       $('body').css('overflow','hidden');
     }else {
@@ -168,12 +180,23 @@ class Header {
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
       this.toggleFlag = false;
 
+      // check if searchbar is active
+      if($('.js-pw-search-bar').hasClass('show')){
+        // to reset the search icon
+        this.cache.$searchIcon.children('i').removeClass('icon-Search_pw');
+        this.cache.$searchIcon.children('i').addClass('icon-Close_pw');
+      }
+
+
       //hide other navigation on close
       const { $megaMenuMobile, $bottomTeaserH } = this.cache;
       $bottomTeaserH.removeClass('active').addClass('hide');
       $megaMenuMobile.removeClass('is-open');
       $megaMenuMobile.addClass('is-close');
-      $('body').css('overflow','auto');
+
+      // check if other overlay is active
+      const activeOverlay = ['.js-pw-search-bar','.js-pw-navigation__container'];
+      checkActiveOverlay(activeOverlay);
     }
   }
 
