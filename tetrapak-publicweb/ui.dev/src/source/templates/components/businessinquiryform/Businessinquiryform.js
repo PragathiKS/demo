@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError } from './businessinquiryform.analytics.js';
+import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError, newPage } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import { validateFieldsForTags } from '../../../scripts/common/common';
@@ -51,7 +51,7 @@ class Businessinquiryform {
   newRequestHanlder = e => {
     e.preventDefault();
     e.stopPropagation();
-    loadThankYou(self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+    newPage();
     location.reload();
   }
 
@@ -73,7 +73,7 @@ class Businessinquiryform {
     dataObj['site'] = countryCode;
     dataObj['policyConsent'] = true;
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
-    changeStepNext('Step 4', 'Company information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+    loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent' : 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
 
     ajaxWrapper.getXhrObj({
@@ -85,7 +85,6 @@ class Businessinquiryform {
         if (response.statusCode === '200') {
           $('.bef-tab-pane', this.root).removeClass('active');
           $('#bef-step-final', this.root).addClass('active');
-          loadThankYou('ThankYou', 'request a quote', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
           $('.serviceError').removeClass('d-block');
           $('html, body').animate({
             scrollTop: $('#befUs').offset().top - 150
@@ -134,14 +133,14 @@ class Businessinquiryform {
       const errObj = [];
       if ($(this).hasClass('previousbtn')) {
         switch (target) {
+        case '#bef-step-1':
+          changeStepPrev(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step1head]: self.cache.requestPayload['purposeOfContactInBusinessEqTitle'] });
+          break;
+        case '#bef-step-2':
+          changeStepPrev(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step2head]: self.cache.requestPayload['purposeOfInterestAreaEqTitle'] });
+          break;
         case '#bef-step-3':
-          changeStepPrev('Step 2', 'Business area of interest', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
-          break;
-        case '#bef-step-4':
-          changeStepPrev('Step 3', 'Contact information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
-          break;
-        case '#bef-step-final':
-          changeStepPrev('Step 4', 'Company information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
+          changeStepPrev(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj });
           break;
         default:
           break;
@@ -160,6 +159,39 @@ class Businessinquiryform {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
+            const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
+            const fieldName = $(this).attr('name');
+            let erLbl = '';
+            switch(fieldName) {
+            case 'purposeOfContactInBusinessEqTitle':
+              erLbl = self.step1head;
+              break;
+            case 'purposeOfInterestAreaEqTitle':
+              erLbl = self.step2head;
+              break;
+            case 'firstName':
+              erLbl = $('#bef-step-3 label')[0].textContent;
+              break;
+            case 'lastName':
+              erLbl = $('#bef-step-3 label')[1].textContent;
+              break;
+            case 'email':
+              erLbl = $('#bef-step-3 label')[2].textContent;
+              break;
+            case 'company':
+              erLbl = $('#bef-step-4 label')[0].textContent;
+              break;
+            case 'position':
+              erLbl = $('#bef-step-4 label')[1].textContent;
+              break;                                            
+            default:
+              erLbl = fieldName;
+              break;                                            
+            }
+            errObj.push({
+              formErrorMessage: errmsg,
+              formErrorField: erLbl
+            });
             $(this).closest('.form-group, .formfield').addClass('field-error');
           } else {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
@@ -178,37 +210,35 @@ class Businessinquiryform {
         if (target) {
           $('.bef-tab-pane').removeClass('active');
           $(target).addClass('active');
-
-          switch (target) {
-          case '#bef-step-2':
-            changeStepNext('Step 1', 'Purpose of contact', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
-            break;
-          case '#bef-step-3':
-            changeStepNext('Step 2', 'Business area of interest', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
-            break;
-          case '#bef-step-4':
-            changeStepNext('Step 3', 'Contact information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload);
-            break;
-          default:
-            break;
+          if (!$(this).hasClass('previousbtn')) {
+            switch (target) {
+            case '#bef-step-2':
+              changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step1head]: self.cache.requestPayload['purposeOfContactInBusinessEqTitle'] });
+              break;
+            case '#bef-step-3':
+              changeStepNext(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step2head]: self.cache.requestPayload['purposeOfInterestAreaEqTitle'] });
+              break;
+            case '#bef-step-4':
+              changeStepNext(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj });
+              break;
+            default:
+              break;
+            }
           }
         }
       } else {
-        const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text();
-        const fieldName = $(this).attr('name');
-        errObj.push({
-          formErrorMessage: errmsg,
-          formErrorField: fieldName
-        });
         switch (target) {
         case '#bef-step-2':
-          changeStepError('Step 1', 'Purpose of contact', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload, errObj);
+          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {  }, errObj);
           break;
         case '#bef-step-3':
-          changeStepError('Step 2', 'Business area of interest', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload, errObj);
+          changeStepError(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step1head]: self.cache.requestPayload['purposeOfContactInBusinessEqTitle'] }, errObj);
           break;
         case '#bef-step-4':
-          changeStepError('Step 3', 'Contact information', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.cache.requestPayload, errObj);
+          changeStepError(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step2head]: self.cache.requestPayload['purposeOfInterestAreaEqTitle'] }, errObj);
+          break;
+        case '#bef-step-final':
+          changeStepError(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj }, errObj);
           break;
         default:
           break;
@@ -229,7 +259,7 @@ class Businessinquiryform {
         $('input, textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
-      
+
           $('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
@@ -261,7 +291,18 @@ class Businessinquiryform {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    makeLoad();
+    this.purposeLabel = $('.purposeOfBusinessContactError').text().trim();
+    this.interestLabel = $('.purposeOfBusinessIntersetError').text().trim();
+    this.step1head = $('#bef-step-1').find('h4').text().trim();
+    this.step2head = $('#bef-step-2 .tab-content-steps').find('h4').text();
+    this.step3head = $('#bef-step-3 .tab-content-steps').find('h4').text();
+    this.step4head = $('#bef-step-4 .tab-content-steps').find('h4').text();
+    this.mainHead = $('.pw-businessEnquiry-form .main-heading').find('h2')[0].textContent;
+    this.restObj = {};
+    this.restObj2 = {};
+    $('#bef-step-3 label').each((i, v) => this.restObj[$(v).text()] = 'NA');
+    $('#bef-step-4 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
+    makeLoad(this.step1head, this.mainHead);
   }
 }
 
