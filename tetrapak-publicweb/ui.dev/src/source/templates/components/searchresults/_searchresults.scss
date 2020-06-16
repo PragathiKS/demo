@@ -63,7 +63,9 @@
             @include padding-bottom($margin-md);
             color: $color-congress-blue;
             border-bottom: 1px solid $color-mercury;
-            font-family: $font-light;
+            &.light {
+                font-family: $font-light;
+            }
             @media #{$desktop} {
                 @include padding-bottom($margin-l);
             }
@@ -84,6 +86,7 @@
                 @include padding-bottom($padding-xxxl);
             }
             &.no-border {
+                @include padding-bottom(0);
                 border-bottom: 0;
             }
             h1 {
@@ -143,7 +146,7 @@
     }
 
     &__button-group {
-        @include margin-top($margin-l);
+        @include margin-top($margin-sm);
     }
 
     &__filters {
@@ -152,8 +155,9 @@
         background-color: $color-wild-sand;
         width: 100%;
         .tpatom-subheading {
+            @include margin-bottom($margin-md);
             @media #{$desktop} {
-                @include padding-bottom($margin-md);
+                @include padding-bottom($padding-md);
                 border-bottom: 1px solid $color-mercury;
             }
         }
@@ -162,15 +166,24 @@
             @include margin-bottom(16px);
             @media #{$desktop} {
                 @include margin-bottom(0);
-                @include padding-right($padding-xxxl);
+                @include padding-right($padding-l);
             }
         }
 
-        // .tpatom-checkbox {
-        //     @media #{$desktop} {
-        //         max-width: 160px;
-        //     }
-        // }
+        &__theme {
+            @media #{$desktop} {
+                @include padding-left($padding-l);
+            }
+        }
+
+        .tpatom-checkbox {
+            &__label {
+                @include margin-bottom($margin-md);
+            }
+            // @media #{$desktop} {
+            //     max-width: 160px;
+            // }
+        }
     }
 
     &__results {
