@@ -33,11 +33,10 @@ public class SubscriptionFormModelTest {
     /** The model. */
     private SubscriptionFormModel model;
 
+    /** The pardot service. */
     private PardotService pardotService;
 
-    /**
-     * The Constant PXP_FEATURES.
-     */
+    /** The Constant RESOURCE. */
     private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/subscriptionform";
 
     /** The resource. */
@@ -90,11 +89,19 @@ public class SubscriptionFormModelTest {
         assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
        }
 
+
+    /**
+     * Test fetch language.
+     */
     @Test
     public void testFetchLanguage() {
         assertEquals("en", model.getSiteLanguage());
     }
 
+
+    /**
+     * Test fetch country.
+     */
     @Test
     public void testFetchCountry() {
         assertEquals("gb", model.getSiteCountry());
