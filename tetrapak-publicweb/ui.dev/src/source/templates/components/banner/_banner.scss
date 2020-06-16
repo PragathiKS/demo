@@ -99,7 +99,7 @@
             text-transform: $uppercase;
             line-height: $font-normal;
             @media #{$desktop} {
-                @include margin-bottom($margin-md);
+                @include margin-bottom($margin-sm);
                 display: block;
                 text-transform: $uppercase;
             }
@@ -121,14 +121,18 @@
             }
         }
         &__description {
-            @include margin-bottom($margin-l);
             @include font-size(16px);
             @include line-height(28px, 16px);
+            font-family: $font-light;
             @media #{$desktop} {
                 @include font-size(14px);
                 @include line-height(24px, 14px);
                 max-height: convert-to-rem(120px);
             }
+        }
+        .tpatom-link {
+            @include margin-top($margin-md);
+            font-family: $font-light;
         }
 
     }
