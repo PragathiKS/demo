@@ -80,6 +80,7 @@ class Header {
       $('.js-tp-pw-mobile-navigation').css('display','none');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close_pw');
+      this.toggleFlag = false;
 
       if(this.cache.$searchIcon.children('i').hasClass('icon-Search_pw')){
         this.cache.$searchIcon.children('i').removeClass('icon-Search_pw');
