@@ -1,0 +1,3792 @@
+{
+"jcr:primaryType": "sling:OrderedFolder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:23 GMT+0530",
+"qa": {
+"jcr:primaryType": "sling:Folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:23 GMT+0530",
+"services380.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:23 GMT+0530",
+"jcr:uuid": "55867066-7683-4358-8657-2f2718b8321a",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:01 GMT+0530",
+"dam:relativePath": "publicweb/qa/services380.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "1.25",
+"dam:Physicalwidthininches": "3.9583332538604736",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 120,
+"xmp:CreatorTool": "Adobe Photoshop CS5.1 Macintosh",
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:00 GMT+0530",
+"dc:format": "image/jpeg",
+"dc:description": "Services",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|366235291",
+"xmpMM:DocumentID": "xmp.did:E531977A3D5011E7B4AFF6AAD9AF1365",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/services380",
+"dam:scene7Name": "services380",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed Apr 24 2019 20:02:05 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"xmpMM:InstanceID": "xmp.iid:E53197793D5011E7B4AFF6AAD9AF1365",
+"tiff:ImageWidth": 380,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "904d0705da9530b38e848e69e6af6bb658a04f90",
+"dam:size": 48966,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dc:title": "Services",
+"dam:scene7LastModified": 1556136112835,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "xmp.iid:DB96AE4DDA6B11E6B895E76E76B9C03D",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "xmp.did:DB96AE4EDA6B11E6B895E76E76B9C03D"
+}
+}
+}
+},
+"prepared_foods.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"jcr:uuid": "c02aaa7d-b39f-45da-83e9-3edf2869899a",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-tanika",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 08 2019 10:48:06 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:13 GMT+0530",
+"dam:relativePath": "publicweb/qa/prepared_foods.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "3.6458332538604736",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 350,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:10 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|369129132",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Comments": "CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 85\n\n",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/prepared_foods",
+"dam:scene7Name": "prepared_foods",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 08 2019 10:37:49 GMT+0000",
+"dam:Numberoftextualcomments": 1,
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "42720a3b8a284181c4ebdd0ffb777e209dae8cf6",
+"dam:size": 43655,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1557311862297
+}
+}
+},
+"cosmetics.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"jcr:uuid": "44760c47-f118-42e3-9535-f0da29650e85",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-tanika",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Wed May 08 2019 12:34:28 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:02 GMT+0530",
+"dam:relativePath": "publicweb/qa/cosmetics.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "8.513333320617676",
+"dam:Physicalwidthininches": "12.770000457763672",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 2554,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:39 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|369133018",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": 300,
+"dam:Physicalheightindpi": 300,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/cosmetics",
+"dam:scene7Name": "cosmetics",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 08 2019 11:09:15 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 3831,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "518c4c6f66133b2a63fe26f70c77b91edadedf4f",
+"dam:size": 934096,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1557313752680
+}
+}
+},
+"2020-06-05_Sprint-7_Capacity_View_v0.2.xlsx": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:43:52 GMT+0530",
+"jcr:uuid": "8ce3dabb-0ebd-4d56-b8e4-8349094d2793",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:lastModifiedBy": "admin",
+"dam:assetState": "processed",
+"jcr:lastModified": "Fri Jun 12 2020 14:43:55 GMT+0530",
+"dam:relativePath": "publicweb/qa/2020-06-05_Sprint-7_Capacity_View_v0.2.xlsx",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:43:52 GMT+0530",
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:43:52 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dc:creator": [
+"Roshan Banga"
+],
+"dam:TitlesOfParts": "Sprint View 7 (Jira) (2)",
+"dam:created": "Fri Jun 05 2020 06:25:33 GMT+0000",
+"dam:vector": "Sprint View 7 (Jira) (2)",
+"dam:i4": 1,
+"dam:Application": "Microsoft Excel",
+"dam:extracted": "Fri Jun 12 2020 14:43:52 GMT+0530",
+"dc:format": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+"dam:HeadingPairs": "Worksheets1",
+"dam:ScaleCrop": "false",
+"dam:modified": "Fri Jun 05 2020 10:51:01 GMT+0000",
+"dam:SharedDoc": "false",
+"dam:DocSecurity": 0,
+"dam:lastModifiedBy": "Sandip Kumar",
+"dam:HyperlinksChanged": "false",
+"dam:lpstr": "Sprint View 7 (Jira) (2)",
+"dam:LinksUpToDate": "false",
+"dam:sha1": "0ada5c3b33632445bed2160ddabc150f224222e5",
+"dam:size": 15738,
+"dc:creator_xmpArrayType": "rdf:Bag",
+"dam:AppVersion": "16.0300",
+"dam:variant": 1
+}
+}
+},
+"Teaser2_mobile.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"jcr:uuid": "ac4cbc6f-3bfe-43d3-89da-b8b7c98b5628",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:45:59 GMT+0530",
+"dam:relativePath": "publicweb/qa/Teaser2_mobile.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 864,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:57 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366631549",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/Teaser2_mobile",
+"dam:scene7Name": "Teaser2_mobile",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri Apr 26 2019 12:34:31 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 864,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "da8743a82b3e170c37a15a0722012eef6eda9e26",
+"dam:size": 986419,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556282065292
+}
+}
+},
+"file_example_MP4_640_3MG.mp4": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:40:52 GMT+0530",
+"jcr:uuid": "c21bcf11-7bbb-4e2b-8e09-5501aaee9436",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:lastModifiedBy": "admin",
+"dam:assetState": "processed",
+"jcr:lastModified": "Fri Jun 12 2020 14:41:04 GMT+0530",
+"dam:relativePath": "publicweb/qa/file_example_MP4_640_3MG.mp4",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:40:52 GMT+0530",
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Jun 12 2020 14:40:52 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:extracted": "Fri Jun 12 2020 14:40:58 GMT+0530",
+"dc:format": "video/mp4",
+"tiff:Orientation": 1,
+"xmp:ModifyDate": "Fri Aug 07 2015 09:13:05 GMT+0000",
+"xmp:CreateDate": "Fri Aug 07 2015 09:13:05 GMT+0000",
+"dam:sha1": "1385f0808b7ef1600b6c39244917ef1df2ce6652",
+"dam:size": 3114374,
+"xmpDM:duration": {
+"jcr:primaryType": "nt:unstructured",
+"xmpDM:scale": "1/600",
+"xmpDM:value": 18316,
+"xmpNodeType": "xmpStruct"
+}
+}
+}
+},
+"ContentImage Copy 2.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"jcr:uuid": "0923bcb2-f35e-49b6-81b2-28daa725e462",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:12 GMT+0530",
+"dam:relativePath": "publicweb/qa/ContentImage Copy 2.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 390,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:03 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367703041",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/ContentImage Copy 2",
+"dam:scene7Name": "ContentImage Copy 2",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 13:46:14 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 390,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "cd4140681a43c030b88172ba057c10bc497a6245",
+"dam:size": 180843,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556718372034
+}
+}
+},
+"Teaser1_mobile.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"jcr:uuid": "580f976b-eb65-4153-a3d7-fa504df20646",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:09 GMT+0530",
+"dam:relativePath": "publicweb/qa/Teaser1_mobile.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 500,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:06 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366634253",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/Teaser1_mobile",
+"dam:scene7Name": "Teaser1_mobile",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri Apr 26 2019 12:34:20 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 1320,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "209da90ed912923bfb5137a0eb29fc8e098e1a88",
+"dam:size": 879821,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556282053734
+}
+}
+},
+"toa-heftiba-205003.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"jcr:uuid": "45cabf12-5caa-457d-8a8b-4ac6d246cb30",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:12 GMT+0530",
+"dam:relativePath": "publicweb/qa/toa-heftiba-205003.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:24 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 550,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:11 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367703025",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/toa-heftiba-205003",
+"dam:scene7Name": "toa-heftiba-205003",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 13:45:46 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 1466,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "3f3f3df12fa1f1998cb856c60681c5e69c66f447",
+"dam:size": 277088,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556718340024
+}
+}
+},
+"ice-cream-stick-nuts.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "c3a863e4-a372-4c4a-80e2-0913ab24dfd6",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-tanika",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Fri May 17 2019 00:59:42 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:03 GMT+0530",
+"dam:relativePath": "publicweb/qa/ice-cream-stick-nuts.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dc:creator": [
+"Elisabeth Christensson"
+],
+"dam:Physicalheightininches": "4.375",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 420,
+"xmp:CreatorTool": "Adobe Photoshop CS5 Macintosh",
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:48 GMT+0530",
+"dc:format": "image/jpeg",
+"dc:description": "Ice cream stick with chocolate and nuts",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|369653404",
+"dc:rights": "Tetra Pak/Shutterstock",
+"dc:subject": "Ice cream, stick, chocolate, nuts",
+"xmpMM:DocumentID": "xmp.did:F9C3482F921911E79596C4FFF882F598",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/ice-cream-stick-nuts",
+"dam:scene7Name": "ice-cream-stick-nuts",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"ns1_1_:LastKeywordXMP": [
+"Ice cream, stick, chocolate, nuts"
+],
+"dam:scene7UploadTimeStamp": "Fri May 10 2019 14:40:30 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"ns1_1_:LastKeywordXMP_xmpArrayType": "rdf:Bag",
+"xmpMM:InstanceID": "xmp.iid:F9C3482E921911E79596C4FFF882F598",
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "4648c23750ff59d4d6877293369d6187356f5169",
+"dam:size": 21986,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dc:creator_xmpArrayType": "rdf:Seq",
+"dc:title": "Ice cream stick with chocolate and nuts",
+"dam:scene7LastModified": 1557499216048,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "F19E9E1B39B83469AAC6B5EF82111151",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "F19E9E1B39B83469AAC6B5EF82111151"
+}
+}
+}
+},
+"ContentImage.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "b959fdd5-b26e-4b73-9cfe-7c9a9544db13",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:12 GMT+0530",
+"dam:relativePath": "publicweb/qa/ContentImage.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 390,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:11 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367703049",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/ContentImage",
+"dam:scene7Name": "ContentImage",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 13:46:23 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 390,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "77ea0746ca7ed7f09842afb6074f42b2ea858c60",
+"dam:size": 221894,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556718379240
+}
+}
+},
+"Teaser.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "84178816-3072-42ae-9521-7137ed52fa74",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "admin",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Thu Jun 11 2020 14:37:53 GMT+0530",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:45:54 GMT+0530",
+"dam:relativePath": "publicweb/qa/Teaser.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 500,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:53 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367703030",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/Teaser",
+"dam:scene7Name": "Teaser",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 13:45:55 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 1320,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "37fe6b6056ac4dd1c90b36d08ce2be7320082729",
+"dam:size": 973854,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556718351142
+}
+}
+},
+"ContentImage3_mobile.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "ea443d92-655d-4608-a8f2-2ea35f59abb4",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:09 GMT+0530",
+"dam:relativePath": "publicweb/qa/ContentImage3_mobile.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 784,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:06 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366649466",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/ContentImage3_mobile",
+"dam:scene7Name": "ContentImage3_mobile",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri Apr 26 2019 13:05:28 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 784,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "ccebc1edebdf5eb9a8b4d51d6dd7f83abb8c050e",
+"dam:size": 952332,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556283923365
+}
+}
+},
+"ContentImage1_mobile.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "105c4239-afa9-4f2d-ab84-d34747c5add8",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:45:52 GMT+0530",
+"dam:relativePath": "publicweb/qa/ContentImage1_mobile.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 784,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:39 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366634204",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/ContentImage1_mobile",
+"dam:scene7Name": "ContentImage1_mobile",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri Apr 26 2019 12:34:10 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 784,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "eec3fa277ee4b353c4473684517f67f020cf5731",
+"dam:size": 1019807,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556282044282
+}
+}
+},
+"tetra-vertenso-carbonated-soft-drink-line.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "3bf14b5c-61b3-4d3e-b905-af16d13f2eb2",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:11 GMT+0530",
+"dam:relativePath": "publicweb/qa/tetra-vertenso-carbonated-soft-drink-line.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "3.3333332538604736",
+"dam:Physicalwidthininches": "15.833333015441895",
+"photoshop:DateCreated": "Wed Dec 03 2014 17:17:00 GMT+0000",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 240,
+"tiff:YResolution": "720000/10000",
+"exif:ColorSpace": 1,
+"xmp:CreatorTool": "Adobe Photoshop CC (Windows)",
+"dam:scene7CompanyID": "c|23288",
+"ns1_1_:LastKeywordIPTC": [
+"Tetra, Vertenso, Carbonated, soft, drink, line, processing, applications"
+],
+"dam:extracted": "Wed Jun 10 2020 23:45:56 GMT+0530",
+"dam:TimeCreated": "171700+0000",
+"dc:format": "image/jpeg",
+"ns1_1_:LastKeywordIPTC_xmpArrayType": "rdf:Bag",
+"dc:description": "Tetra Vertenso Carbonated soft drink line",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|366237476",
+"dc:subject": "Tetra, Vertenso, Carbonated, soft, drink, line, processing, applications",
+"xmpMM:DocumentID": "xmp.did:50428810-d4d4-5942-a0c0-5193e8d932de",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dc:date_xmpArrayType": "rdf:Bag",
+"dam:MIMEtype": "image/jpeg",
+"tiff:Orientation": 1,
+"photoshop:DocumentAncestors": [
+"adobe:docid:photoshop:1adf0fe3-843a-11e4-90cf-bef603df876c",
+"adobe:docid:photoshop:28180044-6338-11e4-92ac-f052efc517a9",
+"adobe:docid:photoshop:4eedccb3-6031-11e4-b2e2-b6470cc4425c",
+"adobe:docid:photoshop:61473ff1-be7d-11e4-9d0a-93af0885b97a",
+"adobe:docid:photoshop:abffffb8-be7d-11e4-9d0a-93af0885b97a",
+"adobe:docid:photoshop:fa6ee615-6031-11e4-b2e2-b6470cc4425c",
+"xmp.did:16BEA94F8276E21194C5AD787EB30CA4",
+"xmp.did:BDC68DC69EDCE211809EB36BE92A77BF"
+],
+"dam:Physicalwidthindpi": 72,
+"dam:Physicalheightindpi": 72,
+"dam:scene7FileStatus": "PublishComplete",
+"tiff:ResolutionUnit": 2,
+"xmpMM:OriginalDocumentID": "xmp.did:50428810-d4d4-5942-a0c0-5193e8d932de",
+"photoshop:ICCProfile": "sRGB IEC61966-2.1",
+"dam:scene7File": "tetrapak/tetra-vertenso-carbonated-soft-drink-line",
+"dam:scene7Name": "tetra-vertenso-carbonated-soft-drink-line",
+"dam:scene7Type": "Image",
+"photoshop:ColorMode": 3,
+"dam:Numberofimages": 1,
+"tiff:XResolution": "720000/10000",
+"ns1_1_:LastKeywordXMP": [
+"Tetra, Vertenso, Carbonated, soft, drink, line, processing, applications"
+],
+"exif:PixelYDimension": 240,
+"xmp:MetadataDate": "Fri Mar 06 2015 19:04:59 GMT+0100",
+"exif:PixelXDimension": 1140,
+"dam:scene7UploadTimeStamp": "Wed Apr 24 2019 20:03:17 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"ns1_1_:LastKeywordXMP_xmpArrayType": "rdf:Bag",
+"xmpMM:InstanceID": "xmp.iid:ca984bb8-99a0-3841-ae40-856d04bae5e6",
+"xmp:ModifyDate": "Fri Mar 06 2015 19:04:59 GMT+0100",
+"xmp:CreateDate": "Wed Dec 03 2014 17:17:00 GMT+0530",
+"tiff:ImageWidth": 1140,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dc:date": [
+20141203
+],
+"exif:DateTimeOriginal": "Wed Dec 03 2014 17:17:00 GMT+0530",
+"dam:sha1": "e21300410c1812b322ef5290c4dde0e96efc9f6a",
+"dam:size": 160125,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"photoshop:DocumentAncestors_xmpArrayType": "rdf:Bag",
+"dc:title": "Tetra Vertenso Carbonated soft drink line",
+"dam:scene7LastModified": 1556136195290,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "xmp.iid:12a0eeb0-b27a-4a43-8929-d29517acffa9",
+"stRef:originalDocumentID": "xmp.did:50428810-d4d4-5942-a0c0-5193e8d932de",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "xmp.did:50428810-d4d4-5942-a0c0-5193e8d932de"
+},
+"xmpMM:History": {
+"jcr:primaryType": "nt:unstructured",
+"xmpNodeType": "xmpArray",
+"xmpArraySize": 6,
+"xmpArrayType": "rdf:Seq"
+}
+}
+}
+},
+"connecting-food-industry.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "0800d613-db6b-4d50-bc55-f799f94ca024",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:05 GMT+0530",
+"dam:relativePath": "publicweb/qa/connecting-food-industry.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "yes",
+"tiff:ImageLength": 420,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:04 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|366235705",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/connecting-food-industry",
+"dam:scene7Name": "connecting-food-industry",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed Apr 24 2019 20:33:30 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 1140,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "ba3b46c9dc412aef71dda318ad98b3c79f97ecd2",
+"dam:size": 124588,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556138004276
+}
+}
+},
+"tetra_alcip_modul_a_lineview_02.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "526c5b54-88fd-4408-bf6b-b2be71035364",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:04 GMT+0530",
+"dam:relativePath": "publicweb/qa/tetra_alcip_modul_a_lineview_02.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 300,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:03 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 8,
+"dam:scene7ID": "a|366235304",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Comments": "date:create: 2019-01-17T09:51:57+00:00\ndate:modify: 2019-01-17T09:51:57+00:00\n",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/tetra_alcip_modul_a_lineview_02",
+"dam:scene7Name": "tetra_alcip_modul_a_lineview_02",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed Apr 24 2019 20:02:56 GMT+0000",
+"dam:Numberoftextualcomments": 2,
+"tiff:ImageWidth": 317,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "0b29634fa77d20a3afbe50234adaa8f9bf0c6031",
+"dam:size": 30198,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556136161745
+}
+}
+},
+"tetra_pak_high_shear_mixer_b400-4000_vva_lineview.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:25 GMT+0530",
+"jcr:uuid": "07ab7a81-0eda-439a-85bd-f53820c90c55",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:11 GMT+0530",
+"dam:relativePath": "publicweb/qa/tetra_pak_high_shear_mixer_b400-4000_vva_lineview.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "4.305017471313477",
+"dam:Physicalwidthininches": "4.846616268157959",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 310,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:11 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366235308",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Comments": "date:create: 2019-01-17T09:52:52+00:00\ndate:modify: 2019-01-17T09:52:52+00:00\n",
+"dam:Physicalwidthindpi": 72,
+"dam:Physicalheightindpi": 72,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/tetra_pak_high_shear_mixer_b400-4000_vva_lineview",
+"dam:scene7Name": "tetra_pak_high_shear_mixer_b400-4000_vva_lineview",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed Apr 24 2019 20:03:13 GMT+0000",
+"dam:Numberoftextualcomments": 2,
+"tiff:ImageWidth": 349,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "3988133aacae4edc6f0a296ab6704f06c8884fcf",
+"dam:size": 135671,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556136186157
+}
+}
+},
+"jcr:content": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"jcr:title": "QA",
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"folderThumbnail": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:23 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "nt:unstructured",
+"dam:folderThumbnailPaths": [
+"/content/dam/publicweb/qa/services380.jpg",
+"/content/dam/publicweb/qa/tetra-vertenso-carbonated-soft-drink-line.jpg",
+"/content/dam/publicweb/qa/connecting-food-industry.jpg"
+],
+"height": 240,
+"jcr:mimeType": "application/octet-stream",
+"bgcolor": -1,
+"width": 280,
+"jcr:lastModified": "Wed Jun 10 2020 23:46:05 GMT+0530",
+":jcr:data": 52715
+}
+}
+},
+"soup.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"jcr:uuid": "a0645547-280c-464f-b269-c8e8f7ffd9a8",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:11 GMT+0530",
+"dam:relativePath": "publicweb/qa/soup.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "3.6458332538604736",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 350,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:59 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|368394271",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Comments": "CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 85\n\n",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishIncomplete",
+"dam:scene7File": "tetrapak/soup",
+"dam:scene7Name": "soup",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri May 03 2019 18:57:40 GMT+0000",
+"dam:Numberoftextualcomments": 1,
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "4725d5daa45db0fdfac855f112c97ecce1b19964",
+"dam:size": 40194,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556909857458
+}
+}
+},
+"tetra_alblend_carboblender_lineview.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"jcr:uuid": "d27b4205-7fd0-495a-88df-560ecfc19a1b",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:09 GMT+0530",
+"dam:relativePath": "publicweb/qa/tetra_alblend_carboblender_lineview.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "1.516669750213623",
+"dam:Physicalwidthininches": "2.033337354660034",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 455,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:03 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366237459",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Comments": "date:create: 2019-01-17T09:53:31+00:00\ndate:modify: 2019-01-17T09:53:31+00:00\n",
+"dam:Physicalwidthindpi": 300,
+"dam:Physicalheightindpi": 300,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/tetra_alblend_carboblender_lineview",
+"dam:scene7Name": "tetra_alblend_carboblender_lineview",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed Apr 24 2019 20:02:22 GMT+0000",
+"dam:Numberoftextualcomments": 2,
+"tiff:ImageWidth": 610,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "7696779f881620d04dc43e7e4f7e4bdb2310d2ea",
+"dam:size": 289610,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556136128783
+}
+}
+},
+"drink.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"jcr:uuid": "be8b1185-f944-4ee7-8d53-cc682268e64e",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-tanika",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 08 2019 10:47:25 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:45:52 GMT+0530",
+"dam:relativePath": "publicweb/qa/drink.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "3.6458332538604736",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 350,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:51 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|368394269",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Comments": "CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 85\n\n",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/drink",
+"dam:scene7Name": "drink",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri May 03 2019 18:57:27 GMT+0000",
+"dam:Numberoftextualcomments": 1,
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "8c21307afd7f42926ddd4b9985e60d359127bd46",
+"dam:size": 24989,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556909844629
+}
+}
+},
+"dessertsPie.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"jcr:uuid": "0054ff88-9b12-4f76-93fe-117a777e0b61",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:45:53 GMT+0530",
+"dam:relativePath": "publicweb/qa/dessertsPie.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "4.375",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 420,
+"xmp:CreatorTool": "Adobe Photoshop CS4 Macintosh",
+"dam:scene7CompanyID": "c|23288",
+"ns1_1_:LastKeywordIPTC": [
+"Desserts, Shutterstock"
+],
+"dam:extracted": "Wed Jun 10 2020 23:45:53 GMT+0530",
+"dc:format": "image/jpeg",
+"ns1_1_:LastKeywordIPTC_xmpArrayType": "rdf:Bag",
+"dc:description": "Desserts ",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|367725445",
+"dc:rights": "Tetra pak/Shutterstock",
+"dc:subject": "Desserts, Shutterstock",
+"xmpMM:DocumentID": "xmp.did:4522E89AA6F511E4AFF1C44E70C15358",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"xmpRights:Marked": false,
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"xmpMM:OriginalDocumentID": "xmp.did:9FEFF220AB25681195FEE9EA9DB813DD",
+"dam:scene7File": "tetrapak/dessertsPie",
+"dam:scene7Name": "dessertsPie",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"ns1_1_:LastKeywordXMP": [
+"Desserts, Shutterstock"
+],
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 14:51:15 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"ns1_1_:LastKeywordXMP_xmpArrayType": "rdf:Bag",
+"xmpMM:InstanceID": "xmp.iid:4522E899A6F511E4AFF1C44E70C15358",
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "8e402f8b9a7d2442b3330cbf7fcb8fe5ed5d4f7f",
+"dam:size": 77181,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dc:title": "Desserts ",
+"dam:scene7LastModified": 1556722259543,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "uuid:e2c380d4-7dda-11df-a22c-dbd9293f9215",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "adobe:docid:photoshop:e2c380d3-7dda-11df-a22c-dbd9293f9215"
+}
+}
+}
+},
+"ContentImage Copy 3.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"jcr:uuid": "59101532-fbfe-485a-9b7f-26f59e9f93a7",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:13 GMT+0530",
+"dam:relativePath": "publicweb/qa/ContentImage Copy 3.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 390,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:12 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367701555",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/ContentImage Copy 3",
+"dam:scene7Name": "ContentImage Copy 3",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 13:46:10 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 390,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "8755194aa714c74c4962746a7d17e1f796980ee9",
+"dam:size": 283532,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556718367650
+}
+}
+},
+"coconut_water_banner.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"jcr:uuid": "5e877faf-1efb-4162-90d7-03560aeb539a",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:11 GMT+0530",
+"dam:relativePath": "publicweb/qa/coconut_water_banner.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "4.375",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 420,
+"xmp:CreatorTool": "Adobe Photoshop CC Windows",
+"dam:scene7CompanyID": "c|23288",
+"ns1_1_:LastKeywordIPTC": [
+"Coconut water, drinks, beverage, processing, application"
+],
+"dam:extracted": "Wed Jun 10 2020 23:45:49 GMT+0530",
+"dc:format": "image/jpeg",
+"ns1_1_:LastKeywordIPTC_xmpArrayType": "rdf:Bag",
+"dc:description": "Coconut water",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|367163645",
+"dc:rights": "Tetra Pak/Shutterstock",
+"dc:subject": "Coconut water, drinks, beverage, processing, application",
+"xmpMM:DocumentID": "xmp.did:7E563146A60411E48055A2A2094B05F5",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/coconut_water_banner",
+"dam:scene7Name": "coconut_water_banner",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"ns1_1_:LastKeywordXMP": [
+"Coconut water, drinks, beverage, processing, application"
+],
+"dam:scene7UploadTimeStamp": "Tue Apr 30 2019 10:43:01 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"ns1_1_:LastKeywordXMP_xmpArrayType": "rdf:Bag",
+"xmpMM:InstanceID": "xmp.iid:7E563145A60411E48055A2A2094B05F5",
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "b7408676c61e775887b62602f2b8fe753306823a",
+"dam:size": 69468,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dc:title": "Coconut water",
+"dam:scene7LastModified": 1556620978901,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "0A0CC31EBBC37FC5D14E526F61D2B1D7",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "0A0CC31EBBC37FC5D14E526F61D2B1D7"
+}
+}
+}
+},
+"condiments_sauces.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"jcr:uuid": "fdbaf8d9-fb05-481a-93c3-07c7ea01af8e",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:45:58 GMT+0530",
+"dam:relativePath": "publicweb/qa/condiments_sauces.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:26 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "3.6458332538604736",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 350,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:48 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|368394629",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Comments": "CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 85\n\n",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishIncomplete",
+"dam:scene7File": "tetrapak/condiments_sauces",
+"dam:scene7Name": "condiments_sauces",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri May 03 2019 19:29:01 GMT+0000",
+"dam:Numberoftextualcomments": 1,
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "f9fdd686a415782fdc9678e2f20bc8d008ed7f76",
+"dam:size": 53279,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556911737317
+}
+}
+},
+"coconut_water_halfsize.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "f267f28d-7452-4d51-8e44-2eb01286ae01",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:11 GMT+0530",
+"dam:relativePath": "publicweb/qa/coconut_water_halfsize.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "2.1872265338897705",
+"dam:Physicalwidthininches": "2.968379020690918",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 210,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:09 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367711648",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Comments": "Description: Coconut water\nCopyright: Tetra Pak/Shutterstock\n",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/coconut_water_halfsize",
+"dam:scene7Name": "coconut_water_halfsize",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 14:06:52 GMT+0000",
+"dam:Numberoftextualcomments": 2,
+"tiff:ImageWidth": 285,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "660e900ad6aaf9310b630a5150fa59e8ff8bcff4",
+"dam:size": 83093,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556719596442
+}
+}
+},
+"ContentImage2_mobile.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "7b5b1282-9ff7-4ba6-a7b2-84ec7334dc22",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:55 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:01 GMT+0530",
+"dam:relativePath": "publicweb/qa/ContentImage2_mobile.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 784,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:58 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366631470",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/ContentImage2_mobile",
+"dam:scene7Name": "ContentImage2_mobile",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri Apr 26 2019 12:33:59 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 784,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "4f03243be2144fcf1330c1460413b65545312f85",
+"dam:size": 1252649,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556282034977
+}
+}
+},
+"ContentImage (1).png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "16dc5684-49cb-4269-a9c1-37e9b4d1ab4a",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:56 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:13 GMT+0530",
+"dam:relativePath": "publicweb/qa/ContentImage (1).png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 390,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:12 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367703035",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/ContentImage (1)",
+"dam:scene7Name": "ContentImage (1)",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 13:46:05 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 390,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "77ea0746ca7ed7f09842afb6074f42b2ea858c60",
+"dam:size": 221894,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556718359897
+}
+}
+},
+"Indirect UHT unit OFF with coiled heat exchanger.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "64a12bb7-0829-48ed-9035-3a2c74b68c81",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-martin",
+"jcr:lastModifiedBy": "threeshare-martin",
+"cq:lastReplicated": "Wed May 08 2019 16:18:07 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:03 GMT+0530",
+"dam:relativePath": "publicweb/qa/Indirect UHT unit OFF with coiled heat exchanger.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 196,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:58 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|369171783",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/Indirect UHT unit OFF with coiled heat exchanger",
+"dam:scene7Name": "Indirect UHT unit OFF with coiled heat exchanger",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 08 2019 16:16:52 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 257,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "fc16788b73f992c0cc669fa8166a4fd1a71488c1",
+"dam:size": 9618,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1557332207528
+}
+}
+},
+"ice-cream-types.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "0f7f56ed-a260-49eb-95f7-808e62d041ca",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-tanika",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Mon May 13 2019 14:05:07 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:03 GMT+0530",
+"dam:relativePath": "publicweb/qa/ice-cream-types.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "2.5",
+"dam:Physicalwidthininches": "4.4375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 240,
+"xmp:CreatorTool": "Adobe Photoshop CC 2015 (Windows)",
+"dam:scene7CompanyID": "c|23288",
+"ns1_1_:LastKeywordIPTC": [
+"ice cream, sticks, cones, bars, extrusion"
+],
+"dam:extracted": "Wed Jun 10 2020 23:45:51 GMT+0530",
+"dc:format": "image/jpeg",
+"ns1_1_:LastKeywordIPTC_xmpArrayType": "rdf:Bag",
+"dc:description": "A selection of different types of ice cream",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|369634666",
+"dc:rights": "Tetra Pak",
+"dc:subject": "ice cream, sticks, cones, bars, extrusion",
+"xmpMM:DocumentID": "xmp.did:528C09F0921411E79596C4FFF882F598",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"xmpMM:OriginalDocumentID": "xmp.did:89d51610-41a3-8747-9289-4f5863a571ed",
+"dam:scene7File": "tetrapak/ice-cream-types",
+"dam:scene7Name": "ice-cream-types",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"ns1_1_:LastKeywordXMP": [
+"ice cream, sticks, cones, bars, extrusion"
+],
+"dam:scene7UploadTimeStamp": "Fri May 10 2019 13:53:36 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"ns1_1_:LastKeywordXMP_xmpArrayType": "rdf:Bag",
+"xmpMM:InstanceID": "xmp.iid:528C09EF921411E79596C4FFF882F598",
+"tiff:ImageWidth": 426,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "2bb59e41bb1505bd613fefb37a9b653a6a88a213",
+"dam:size": 20626,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dc:title": "A selection of different types of ice cream",
+"dam:scene7LastModified": 1557496386226,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "xmp.iid:5681351b-0257-ca46-82a4-bf66263ae1b9",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "adobe:docid:photoshop:e9e13614-915f-11e7-8d8f-a795226a92c6"
+}
+}
+}
+},
+"Error.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "5f071739-d8cf-4f0b-b573-74c413f7e34a",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:56 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:06 GMT+0530",
+"dam:relativePath": "publicweb/qa/Error.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 745,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:04 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366631613",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/Error",
+"dam:scene7Name": "Error",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri Apr 26 2019 12:34:40 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 1365,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "7287b0f0f6525466f72b98e99ea25f9a7b190d21",
+"dam:size": 229735,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556282075318
+}
+}
+},
+"services-circle.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "ca4acf4c-b2e9-43d2-9dfe-7f3dfe9780fe",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:45:59 GMT+0530",
+"dam:relativePath": "publicweb/qa/services-circle.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "6.81944465637207",
+"dam:Physicalwidthininches": "10.23611068725586",
+"photoshop:DateCreated": "Mon Mar 13 2017 17:25:00 GMT+0000",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "yes",
+"tiff:ImageLength": 491,
+"tiff:YResolution": "720000/10000",
+"exif:ColorSpace": 1,
+"xmp:CreatorTool": "Adobe Photoshop Elements 13.0 (Windows)",
+"dam:scene7CompanyID": "c|23288",
+"ns1_1_:LastKeywordIPTC": [
+"services, offer, circle"
+],
+"dam:extracted": "Wed Jun 10 2020 23:45:54 GMT+0530",
+"dam:TimeCreated": "172500+0000",
+"dc:format": "image/jpeg",
+"ns1_1_:LastKeywordIPTC_xmpArrayType": "rdf:Bag",
+"dc:description": "services offer circle",
+"dam:Bitsperpixel": 24,
+"exif:ExifVersion": "0221",
+"dam:scene7ID": "a|368394270",
+"dc:rights": "Tetra Pak",
+"dc:subject": "services, offer, circle",
+"xmpMM:DocumentID": "xmp.did:DD380E15080911E7B786A66B579D0D34",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dc:date_xmpArrayType": "rdf:Bag",
+"dam:MIMEtype": "image/jpeg",
+"tiff:Orientation": 1,
+"photoshop:DocumentAncestors": [
+"xmp.did:DD380E15080911E7B786A66B579D0D34"
+],
+"dam:Physicalwidthindpi": 72,
+"dam:Physicalheightindpi": 72,
+"dam:scene7FileStatus": "PublishIncomplete",
+"tiff:ResolutionUnit": 2,
+"xmpMM:OriginalDocumentID": "xmp.did:DD380E15080911E7B786A66B579D0D34",
+"photoshop:ICCProfile": "sRGB IEC61966-2.1",
+"dam:scene7File": "tetrapak/services-circle",
+"dam:scene7Name": "services-circle",
+"dam:scene7Type": "Image",
+"photoshop:ColorMode": 3,
+"dam:Numberofimages": 1,
+"tiff:XResolution": "720000/10000",
+"ns1_1_:LastKeywordXMP": [
+"services, offer, circle"
+],
+"exif:PixelYDimension": 491,
+"xmp:MetadataDate": "Mon Mar 13 2017 17:33:10 GMT+0100",
+"exif:PixelXDimension": 737,
+"dam:scene7UploadTimeStamp": "Fri May 03 2019 18:57:32 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:BitsPerSample_xmpArrayType": "rdf:Seq",
+"ns1_1_:LastKeywordXMP_xmpArrayType": "rdf:Bag",
+"xmpMM:InstanceID": "xmp.iid:2ef5a372-8816-5146-9d8c-414daeee9f3b",
+"xmp:ModifyDate": "Mon Mar 13 2017 17:33:10 GMT+0100",
+"tiff:BitsPerSample": [
+8,
+8,
+8
+],
+"xmp:CreateDate": "Mon Mar 13 2017 17:25:00 GMT+0530",
+"tiff:ImageWidth": 737,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dc:date": [
+20170313
+],
+"exif:DateTimeOriginal": "Mon Mar 13 2017 17:25:00 GMT+0530",
+"photoshop:LegacyIPTCDigest": "CB590DD28908EB0C5C447BC117BAFB28",
+"dam:sha1": "db1edd5ae8d678523cd5888a2a9c42fee0a5e0f4",
+"dam:size": 62232,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"photoshop:DocumentAncestors_xmpArrayType": "rdf:Bag",
+"tiff:SamplesPerPixel": 3,
+"dc:title": "services offer circle",
+"tiff:PhotometricInterpretation": 2,
+"dam:scene7LastModified": 1556909850574,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "xmp.iid:DD380E12080911E7B786A66B579D0D34",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "xmp.did:DD380E13080911E7B786A66B579D0D34"
+},
+"xmpMM:History": {
+"jcr:primaryType": "nt:unstructured",
+"xmpNodeType": "xmpArray",
+"xmpArraySize": 2,
+"xmpArrayType": "rdf:Seq"
+}
+}
+}
+},
+"tetra_albrix_lineview.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "b99b9332-8c20-412f-8876-efe4909312ad",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:56 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:09 GMT+0530",
+"dam:relativePath": "publicweb/qa/tetra_albrix_lineview.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "0.9833353161811829",
+"dam:Physicalwidthininches": "1.6433366537094116",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 295,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:45:55 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|366237466",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Comments": "date:create: 2019-01-17T09:53:26+00:00\ndate:modify: 2019-01-17T09:53:26+00:00\n",
+"dam:Physicalwidthindpi": 300,
+"dam:Physicalheightindpi": 300,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/tetra_albrix_lineview",
+"dam:scene7Name": "tetra_albrix_lineview",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed Apr 24 2019 20:02:39 GMT+0000",
+"dam:Numberoftextualcomments": 2,
+"tiff:ImageWidth": 493,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "088a4137e6db67c6f1c8fba78b659afc977cb4c8",
+"dam:size": 223171,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556136146843
+}
+}
+},
+"tip_hommus.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "ff69b92a-155f-4daf-86c1-11c5aa1d0dc2",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Wed May 01 2019 15:15:56 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:04 GMT+0530",
+"dam:relativePath": "publicweb/qa/tip_hommus.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 511,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:01 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367710846",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/tip_hommus",
+"dam:scene7Name": "tip_hommus",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 14:01:31 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 517,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "ddf7876807f2fcf7935ee46fe3a5f15f4fdd1181",
+"dam:size": 552329,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556719288995
+}
+}
+},
+"baby_food.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "8d71c65c-2eca-47a4-80c3-89e6ff181b39",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"status": "Error[Upload failed]",
+"cq:lastReplicated": "Wed May 01 2019 15:15:56 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:04 GMT+0530",
+"dam:relativePath": "publicweb/qa/baby_food.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "4.375",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 420,
+"xmp:CreatorTool": "Adobe Photoshop CS4 Macintosh",
+"dam:scene7CompanyID": "c|23288",
+"ns1_1_:LastKeywordIPTC": [
+"Bbay food, Shutterstock"
+],
+"dam:extracted": "Wed Jun 10 2020 23:45:54 GMT+0530",
+"dc:format": "image/jpeg",
+"ns1_1_:LastKeywordIPTC_xmpArrayType": "rdf:Bag",
+"dc:description": "Baby food",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|367716220",
+"dc:rights": "Tetra Pak/Shutterstock",
+"dc:subject": "Bbay food, Shutterstock",
+"xmpMM:DocumentID": "xmp.did:DC55716CA6F411E4BABDF923985D3553",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"xmpRights:Marked": false,
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"xmpMM:OriginalDocumentID": "xmp.did:1F2A9E099025681195FEE9EA9DB813DD",
+"dam:scene7File": "tetrapak/baby_food",
+"dam:scene7Name": "baby_food",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"ns1_1_:LastKeywordXMP": [
+"Bbay food, Shutterstock"
+],
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 14:22:20 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"ns1_1_:LastKeywordXMP_xmpArrayType": "rdf:Bag",
+"xmpMM:InstanceID": "xmp.iid:DC55716BA6F411E4BABDF923985D3553",
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "35c2c67a3b210beddbed0a29f96c03a0f0cb80d5",
+"dam:size": 124922,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dc:title": "Baby food",
+"dam:scene7LastModified": 1556720536340,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "uuid:0e3f4171-7dd2-11df-a22c-dbd9293f9215",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "adobe:docid:photoshop:0e3f4170-7dd2-11df-a22c-dbd9293f9215"
+}
+}
+}
+},
+"whey_formula_570x350.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"jcr:uuid": "f11fb915-7b06-4635-892f-29961aed8b41",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-tanika",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 08 2019 12:35:34 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:02 GMT+0530",
+"dam:relativePath": "publicweb/qa/whey_formula_570x350.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:29 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "3.6458332538604736",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 350,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:02 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|368394272",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Comments": "CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 85\n\n",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/whey_formula_570x350",
+"dam:scene7Name": "whey_formula_570x350",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Fri May 03 2019 18:57:49 GMT+0000",
+"dam:Numberoftextualcomments": 1,
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "83533e05756999e4af290d8e4bb8453755916ab2",
+"dam:size": 23037,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556909864637
+}
+}
+},
+"Video.png": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530",
+"jcr:uuid": "a7419f68-1c3b-41ec-bf5b-992e0c5c84fd",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:56 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:03 GMT+0530",
+"dam:relativePath": "publicweb/qa/Video.png",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530",
+"cq5dam.web.1280.1280.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "PNG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 400,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:02 GMT+0530",
+"dc:format": "image/png",
+"dam:Bitsperpixel": 32,
+"dam:scene7ID": "a|367701558",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/png",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/Video-1",
+"dam:scene7Name": "Video-1",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 13:46:32 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 800,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "117a1a1fece46a933bfd1568b635b011192bc503",
+"dam:size": 346168,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1556718388602
+}
+}
+},
+"carbonated_soft_drinks.jpg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530",
+"jcr:uuid": "c5ba4672-b0fe-49ed-b98a-372957f00526",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "threeshare-ravi",
+"jcr:lastModifiedBy": "threeshare-tanika",
+"cq:lastReplicated": "Wed May 01 2019 15:15:56 GMT+0000",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:45:53 GMT+0530",
+"dam:relativePath": "publicweb/qa/carbonated_soft_drinks.jpg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "4.375",
+"dam:Physicalwidthininches": "5.9375",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 420,
+"xmp:CreatorTool": "Adobe Photoshop CC Windows",
+"dam:scene7CompanyID": "c|23288",
+"ns1_1_:LastKeywordIPTC": [
+"Carbonated soft drinks, Shutterstock"
+],
+"dam:extracted": "Wed Jun 10 2020 23:45:49 GMT+0530",
+"dc:format": "image/jpeg",
+"ns1_1_:LastKeywordIPTC_xmpArrayType": "rdf:Bag",
+"dc:description": "Carbonated soft drinks",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|367710801",
+"dc:rights": "Tetra Pak/Shutterstock",
+"dc:subject": "Carbonated soft drinks, Shutterstock",
+"xmpMM:DocumentID": "xmp.did:33AE61FFA6E511E49895BC7FE1534C77",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": 96,
+"dam:Physicalheightindpi": 96,
+"dam:scene7FileStatus": "PublishComplete",
+"dam:scene7File": "tetrapak/carbonated_soft_drinks",
+"dam:scene7Name": "carbonated_soft_drinks",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"ns1_1_:LastKeywordXMP": [
+"Carbonated soft drinks, Shutterstock"
+],
+"dam:scene7UploadTimeStamp": "Wed May 01 2019 14:01:26 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"ns1_1_:LastKeywordXMP_xmpArrayType": "rdf:Bag",
+"xmpMM:InstanceID": "xmp.iid:33AE61FEA6E511E49895BC7FE1534C77",
+"tiff:ImageWidth": 570,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "896e22c1aa443261b8f1b5e9cf863e571c07f12f",
+"dam:size": 86204,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dc:title": "Carbonated soft drinks",
+"dam:scene7LastModified": 1556719280040,
+"xmpMM:DerivedFrom": {
+"jcr:primaryType": "nt:unstructured",
+"stRef:instanceID": "FB166ADD23982A136EE1CDE96EAE55C8",
+"xmpNodeType": "xmpStruct",
+"stRef:documentID": "FB166ADD23982A136EE1CDE96EAE55C8"
+}
+}
+}
+},
+"Indirect UHT unit OFF with coiled heat exchanger.jpeg": {
+"jcr:primaryType": "dam:Asset",
+"jcr:mixinTypes": [
+"mix:referenceable"
+],
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530",
+"jcr:uuid": "21b71ae9-4de5-4993-b768-f06db1a34526",
+"jcr:content": {
+"jcr:primaryType": "dam:AssetContent",
+"jcr:lastModifiedBy": "threeshare-martin",
+"status": "Error[Upload failed]",
+"dam:imageServerAsset": true,
+"dam:s7damType": "Image",
+"dam:assetState": "processed",
+"jcr:lastModified": "Wed Jun 10 2020 23:46:12 GMT+0530",
+"dam:relativePath": "publicweb/qa/Indirect UHT unit OFF with coiled heat exchanger.jpeg",
+"renditions": {
+"jcr:primaryType": "nt:folder",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530",
+"cq5dam.thumbnail.48.48.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.thumbnail.140.100.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.web.1280.1280.jpeg": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"original": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+},
+"cq5dam.thumbnail.319.319.png": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:45:30 GMT+0530"
+}
+},
+"related": {
+"jcr:primaryType": "nt:unstructured"
+},
+"metadata": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:Taggable"
+],
+"dam:Physicalheightininches": "-1.0",
+"dam:Physicalwidthininches": "-1.0",
+"dam:Fileformat": "JPEG",
+"dam:Progressive": "no",
+"tiff:ImageLength": 196,
+"dam:scene7CompanyID": "c|23288",
+"dam:extracted": "Wed Jun 10 2020 23:46:00 GMT+0530",
+"dc:format": "image/jpeg",
+"dam:Bitsperpixel": 24,
+"dam:scene7ID": "a|369173073",
+"dam:scene7CloudConfigPath": "/conf/customerhub/settings/cloudconfigs/dmscene7",
+"dam:MIMEtype": "image/jpeg",
+"dam:Physicalwidthindpi": -1,
+"dam:Physicalheightindpi": -1,
+"dam:scene7FileStatus": "PublishIncomplete",
+"dam:scene7File": "tetrapak/Indirect UHT unit OFF with coiled heat exchanger-1",
+"dam:scene7Name": "Indirect UHT unit OFF with coiled heat exchanger-1",
+"dam:scene7Type": "Image",
+"dam:Numberofimages": 1,
+"dam:scene7UploadTimeStamp": "Wed May 08 2019 16:47:07 GMT+0000",
+"dam:Numberoftextualcomments": 0,
+"tiff:ImageWidth": 257,
+"dam:scene7Domain": "http://s7g10.scene7.com/",
+"dam:scene7Folder": "tetrapak/publicweb/qa/",
+"dam:sha1": "fc16788b73f992c0cc669fa8166a4fd1a71488c1",
+"dam:size": 9618,
+"dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+"dam:scene7LastModified": 1557334024126
+}
+}
+}
+},
+"jcr:content": {
+"jcr:primaryType": "nt:unstructured",
+"folderThumbnail": {
+"jcr:primaryType": "nt:file",
+"jcr:createdBy": "dam-writer-service",
+"jcr:created": "Wed Jun 10 2020 23:45:58 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "nt:unstructured",
+"dam:folderThumbnailPaths": [
+"/content/dam/publicweb/qa/tetra-vertenso-carbonated-soft-drink-line.jpg",
+"/content/dam/publicweb/qa/services380.jpg",
+"/content/dam/publicweb/qa/connecting-food-industry.jpg"
+],
+"height": 240,
+"bgcolor": -1,
+"width": 280,
+"jcr:lastModified": "Thu Jun 11 2020 14:37:24 GMT+0530",
+":jcr:data": 53150
+}
+}
+}
+}
