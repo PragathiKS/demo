@@ -14,6 +14,13 @@ class Searchbar {
     const { $searchbarClose, $searchIcon } = this.cache;
     $searchbarClose.on('click', this.searchbarCloseClick);
     $searchIcon.on('click', this.searchIconClick);
+
+    // bind enter search
+    $('.js-search-bar-input').keypress((e) => {
+      if(e.which === 13){//Enter key pressed
+        this.searchIconClick(e);//Trigger search button click event
+      }
+    });
   }
 
   searchbarCloseClick = () => {
@@ -24,7 +31,9 @@ class Searchbar {
     e.preventDefault();
     const inp = $('.js-search-bar-input');
     if (inp.val().length > 0) {
-      const updatedUrl = updateQueryStringParameter('/content/publicweb-ux/searchresults.html','searchTerm',inp.val());
+      const url = '/content/publicweb-ux/searchresults.html';
+      let updatedUrl = updateQueryStringParameter(url,'searchTerm',inp.val());
+      updatedUrl = updateQueryStringParameter(updatedUrl,'page',1);
       window.open(updatedUrl,'_self');
     }
   };

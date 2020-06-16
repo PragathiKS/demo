@@ -20,7 +20,7 @@
             }
             .input-box {
                 @include border-radius($border-radius);
-                @include padding($padding-md);
+                @include padding(10px $padding-md);
                 border: 1px solid $color-boulder;
                 display: flex;
                 justify-content: space-between;

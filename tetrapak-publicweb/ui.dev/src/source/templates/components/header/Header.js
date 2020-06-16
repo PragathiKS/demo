@@ -54,6 +54,7 @@ class Header {
     });
     $searchIcon.on('click', this.searchIconClick);
 
+    // bind event to close search if clicked outside the searchbar
     if(!isMobile()){
       $(document).mouseup((e) =>
       {
