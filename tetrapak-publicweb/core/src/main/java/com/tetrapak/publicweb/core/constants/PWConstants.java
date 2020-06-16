@@ -175,6 +175,24 @@ public final class PWConstants {
     public static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/publicweb/contactusemail.html";
 
     public static final String SEND_EMAIL_JOB_TOPIC = "com/tetrapak/publicweb/sendemail";
+    
+    /** The Constant SPACE. */
+    public static final String SPACE = " ";
+    
+    /** The Constant NEWS. */
+    public static final String NEWS = "news";
+    
+    /** The Constant EVENTS. */
+    public static final String EVENTS = "events";
+    
+    /** The Constant CASES. */
+    public static final String CASES = "cases";
+    
+    /** The Constant MEDIA. */
+    public static final String MEDIA = "media";
+    
+    /** The Constant PRODUCTS. */
+    public static final String PRODUCTS = "products";
 
     /**
      * Instantiates a new PW constants.

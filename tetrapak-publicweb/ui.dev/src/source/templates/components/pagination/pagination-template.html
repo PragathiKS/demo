@@ -1,6 +1,6 @@
-<sly data-sly-template.pagination_template="${@ customEvent, maxVisible, flag}">
+<sly data-sly-template.pagination_template="${@ customEvent, maxVisible, align ,flag}">
   <div
-    class="tp-pagination js-pagination d-none"
+    class="tp-pagination js-pagination d-none ${align}-align"
     data-custom-event="${customEvent}"
     data-max-visible="${maxVisible}"
     data-module="Pagination"

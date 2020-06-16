@@ -82,6 +82,24 @@ public final class GlobalUtil {
         }
         return path;
     }
+    
+    /**
+     * get scene 7 image url
+     *
+     * @param damImagePath
+     *            image path
+     * @param dynamicMediaService
+     *            dynamic media service
+     * @return image path from scene 7
+     */    
+    public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
+            final DynamicMediaService dynamicMediaService) {
+        String path = damImagePath;
+        if(StringUtils.isNotBlank(damImagePath)) {
+            path = dynamicMediaService.getImageServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damImagePath);
+        }
+        return path;
+    }
 
     /**
      * Gets the scene 7 file name.

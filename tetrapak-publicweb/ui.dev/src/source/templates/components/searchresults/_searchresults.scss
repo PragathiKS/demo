@@ -1,0 +1,288 @@
+.pw-search-results {
+    @include margin-bottom($margin-l);
+
+    .capitalizeText {
+        text-transform: capitalize;
+    }
+
+    @media #{$desktop} {
+        @include margin-bottom($margin-xxxl);
+    }
+    .margin-auto {
+        margin: auto;
+    }
+    .tp-pagination {
+        @include padding-top($padding-l);
+        @include margin(0);
+        border-top: 1px solid $color-mercury;
+        @media #{$desktop} {
+            @include padding-top($padding-xxxl);
+        }
+        &__btn,
+        &__text {
+            @include margin-left($margin-sm);
+        }
+        &__previous + button {
+            @include margin-left($margin-l);
+        }
+        &__btn.active {
+            border: 1px solid $color-congress-blue;
+            &:hover {
+                color: $color-white;
+            }
+        }
+        &__next {
+            @include margin-left($margin-l);
+        }
+        &__previous,
+        &__next {
+            @include padding(0);
+        }
+    }
+    .tpatom-subheading {
+        @include margin-bottom($margin-sm);
+        display: block;
+        color: $color-boulder;
+        text-transform: uppercase;
+        font-family: $font-bold;
+    }
+
+    &__search-bar {
+        @include margin-bottom($margin-l);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-xxxl);
+        }
+    }
+    &__filter-container {
+        @include margin-bottom($margin-l);
+        @media #{$desktop} {
+            @include margin-bottom($margin-xxxl);
+        }
+        &__heading {
+            @include padding-bottom($margin-md);
+            color: $color-congress-blue;
+            border-bottom: 1px solid $color-mercury;
+            font-family: $font-light;
+            @media #{$desktop} {
+                @include padding-bottom($margin-l);
+            }
+            label {
+                @include margin-bottom(0);
+                cursor: pointer;
+            }
+
+            i {
+                font-size: 16px;
+            }
+        }
+        &__count {
+            @include padding-bottom($padding-l);
+            border-bottom: 1px solid $color-mercury;
+            word-break: break-all;
+            @media #{$desktop} {
+                @include padding-bottom($padding-xxxl);
+            }
+            &.no-border {
+                border-bottom: 0;
+            }
+            h1 {
+                font-size: 24px;
+                @media #{$desktop} {
+                    @include padding-top($padding-xxxl);
+                    font-size: 42px;
+                }
+            }
+            h1,
+            h3 {
+                @include padding-top($padding-l);
+                @media #{$desktop} {
+                    @include padding-top($padding-xxxl);
+                }
+            }
+        }
+        &__filter-chips {
+            @include padding-top($padding-l);
+            display: flex;
+            flex-direction: row;
+            .filter-tag {
+                @include padding(8px 16px);
+                border: 2px solid $color-jordy-blue;
+                background: $color-white;
+                box-sizing: border-box;
+                border-radius: 100px;
+                &:not(:last-child) {
+                    @include margin-right(8px);
+                }
+                i {
+                    @include margin-left(7px);
+                    font-size: 8px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    &__main-container {
+        @include border-radius($border-radius);
+        display: block;
+        background-color: $color-white;
+    }
+    &__spinner {
+        position: relative;
+        @media #{$desktop} {
+            top: -32px;
+        }
+    }
+
+    &__title,
+    &__filters {
+        @include margin-bottom($margin-l);
+        @media #{$desktop} {
+            @include margin-bottom(38px);
+        }
+    }
+
+    &__button-group {
+        @include margin-top($margin-l);
+    }
+
+    &__filters {
+        @include border-radius($border-radius);
+        display: none;
+        background-color: $color-wild-sand;
+        width: 100%;
+        .tpatom-subheading {
+            @media #{$desktop} {
+                @include padding-bottom($margin-md);
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+
+        &__content-type {
+            @include margin-bottom(16px);
+            @media #{$desktop} {
+                @include margin-bottom(0);
+                @include padding-right($padding-xxxl);
+            }
+        }
+
+        // .tpatom-checkbox {
+        //     @media #{$desktop} {
+        //         max-width: 160px;
+        //     }
+        // }
+    }
+
+    &__results {
+        flex: 1;
+        width: 100%;
+    }
+
+    &__results-list {
+        &__item {
+            @include padding-bottom($padding-l);
+            display: flex;
+            flex-direction: column-reverse;
+            @media #{$desktop} {
+                @include padding-bottom($padding-xxxl);
+                flex-direction: row;
+            }
+            .pw-media-container {
+                @include margin($margin-sm 0 0 0);
+                text-align: center;
+                background: $color-wild-sand;
+                width: 100%;
+                height: 150px;
+                position: relative;
+                word-break: break-all;
+                white-space: nowrap;
+                overflow: hidden;
+                &__image-helper {
+                    display: inline-block;
+                    height: 100%;
+                    vertical-align: middle;
+                }
+                @media #{$desktop} {
+                    @include margin(0 $margin-md 0 0);
+                    width: 150px;
+                    height: 84px;
+                }
+                i {
+                    color: $color-congress-blue;
+                    font-size: 34px;
+                    margin: 0;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    @media #{$desktop} {
+                        font-size: 30px;
+                    }
+                }
+                img {
+                    display: inline-block;
+                    max-height: 100%;
+                    max-width: 100%;
+                    vertical-align: middle;
+                }
+            }
+            &__size {
+                color: $color-congress-blue;
+                text-align: left;
+            }
+
+            &:first-child {
+                @include padding-top($padding-zero);
+            }
+
+            &__description {
+                @include padding-top($padding-sm);
+                overflow: hidden;
+                position: relative;
+                max-height: 54px;
+                text-align: justify;
+                > * {
+                    &:first-child {
+                        float: right;
+                        width: 100%;
+                    }
+                }
+                &::before {
+                    content: '';
+                    float: left;
+                    width: 5px;
+                }
+                &::after {
+                    content: '\02026';
+                    position: absolute;
+                    top: 27px;
+                    right: 0;
+                    width: 2em;
+                    text-align: right;
+                    font-size: 18px;
+                    background: linear-gradient(to right, rgba(255, 255, 255, 0), $color-white 50%, $color-white);
+                }
+            }
+
+            &__breadcrumb {
+                @include padding-bottom(10px);
+                display: block;
+            }
+            &__size {
+                @include padding-top($padding-sm);
+                i {
+                    font-size: 12px;
+                }
+            }
+            &__title-link {
+                color: $color-congress-blue;
+            }
+        }
+    }
+
+    .tpatom-checkbox {
+        &__icon {
+            background-color: $color-white;
+        }
+    }
+}
