@@ -24,7 +24,7 @@ class Searchbar {
   }
 
   searchbarCloseClick = () => {
-    $('.js-pw-search-bar').removeClass('show');
+    $('.js-pw-header-search-bar').removeClass('show');
   };
 
   searchIconClick = e => {

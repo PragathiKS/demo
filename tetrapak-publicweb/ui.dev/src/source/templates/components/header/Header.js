@@ -58,7 +58,7 @@ class Header {
     if(!isMobile()){
       $(document).mouseup((e) =>
       {
-        var container = $('.js-pw-search-bar');
+        var container = $('.js-pw-header-search-bar');
 
         // if the target of the click isn't the container nor a descendant of the container
         if (!container.is(e.target) && container.has(e.target).length === 0)
@@ -70,7 +70,7 @@ class Header {
   }
 
   hideSearchbar = () => {
-    $('.js-pw-search-bar').removeClass('show');
+    $('.js-pw-header-search-bar').removeClass('show');
   }
 
   searchIconClick = () => {
@@ -85,17 +85,17 @@ class Header {
       if(this.cache.$searchIcon.children('i').hasClass('icon-Search_pw')){
         this.cache.$searchIcon.children('i').removeClass('icon-Search_pw');
         this.cache.$searchIcon.children('i').addClass('icon-Close_pw');
-        $('.js-pw-search-bar').addClass('show');
+        $('.js-pw-header-search-bar').addClass('show');
         $('body').css('overflow','hidden');
       } else {
         this.cache.$searchIcon.children('i').removeClass('icon-Close_pw');
         this.cache.$searchIcon.children('i').addClass('icon-Search_pw');
-        $('.js-pw-search-bar').removeClass('show');
+        $('.js-pw-header-search-bar').removeClass('show');
         const activeOverlay = ['.js-tp-pw-mobile-navigation','.js-pw-navigation__container'];
         checkActiveOverlay(activeOverlay);
       }
     } else {
-      $('.js-pw-search-bar').addClass('show');
+      $('.js-pw-header-search-bar').addClass('show');
     }
     $('.search-bar-input').focus();
 
@@ -183,7 +183,7 @@ class Header {
       this.toggleFlag = false;
 
       // check if searchbar is active
-      if($('.js-pw-search-bar').hasClass('show')){
+      if($('.js-pw-header-search-bar').hasClass('show')){
         // to reset the search icon
         this.cache.$searchIcon.children('i').removeClass('icon-Search_pw');
         this.cache.$searchIcon.children('i').addClass('icon-Close_pw');
@@ -197,7 +197,7 @@ class Header {
       $megaMenuMobile.addClass('is-close');
 
       // check if other overlay is active
-      const activeOverlay = ['.js-pw-search-bar','.js-pw-navigation__container'];
+      const activeOverlay = ['.js-pw-header-search-bar','.js-pw-navigation__container'];
       checkActiveOverlay(activeOverlay);
     }
   }
