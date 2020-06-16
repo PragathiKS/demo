@@ -237,6 +237,7 @@
                     max-height: 100%;
                     max-width: 100%;
                     vertical-align: middle;
+                    border-radius: 0;
                 }
             }
             &__size {
@@ -254,16 +255,14 @@
                 position: relative;
                 max-height: 54px;
                 text-align: justify;
-                > * {
-                    &:first-child {
-                        float: right;
+                > span {
+                    &::after {
+                        content: '\0000a0';
+                        position: absolute;
                         width: 100%;
+                        z-index: 1;
+                        background: $color-white;
                     }
-                }
-                &::before {
-                    content: '';
-                    float: left;
-                    width: 5px;
                 }
                 &::after {
                     content: '\02026';
@@ -273,7 +272,7 @@
                     width: 2em;
                     text-align: right;
                     font-size: 18px;
-                    background: linear-gradient(to right, rgba(255, 255, 255, 0), $color-white 50%, $color-white);
+                    background: $color-white;
                 }
             }
 

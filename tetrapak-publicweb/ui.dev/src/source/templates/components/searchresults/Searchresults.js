@@ -165,7 +165,9 @@ class Searchresults {
     }).fail(() => {
       this.cache.$spinner.addClass('d-none');
       this.renderTitle(null, this.cache.noResultsText, null);
+      this.cache.$filterChecks.removeAttr('disabled');
       this.cache.$resultsList.empty();
+      this.cache.$pagination.addClass('d-none');
     });
   };
 
