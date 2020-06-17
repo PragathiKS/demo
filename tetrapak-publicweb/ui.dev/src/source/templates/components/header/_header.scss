@@ -305,6 +305,13 @@
                 }
                 i {
                     @include font-size($font-normal);
+                    &::before {
+                        @media #{$tablet} {
+                            font-size: 20px;
+                            line-height: 20px;
+                            vertical-align: middle;
+                        }
+                    }
                 }
             }
         }

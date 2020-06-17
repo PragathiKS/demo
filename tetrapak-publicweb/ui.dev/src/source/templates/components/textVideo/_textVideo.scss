@@ -67,20 +67,16 @@
     }
 
     &__subTitle {
-        @include margin-bottom($padding-sm);
+        @include margin-bottom($margin-sm);
         @include font-size($font-sm);
         @include line-height(16px, $font-sm);
         color: $color-boulder;
         text-transform: uppercase;
-
-        @media #{$desktop} {
-            @include margin-bottom($padding-md);
-        }
     }
     &__link {
-        @include margin-top($margin-l);
+        @include margin-top($margin-md);
         @media #{$desktop} {
-            @include margin-top($margin-zero);
+            @include margin-top($margin-md);
         }
     }
 
@@ -102,13 +98,13 @@
         @include line-height(24px, $font-baseline);
 
         @media #{$desktop} {
-            @include margin-bottom($padding-l);
+            @include margin-bottom($margin-zero);
         }
     }
 
     &__video {
         @include border-radius($border-radius);
-        @include margin-bottom($padding-l);
+        @include margin-bottom($margin-md);
         height: 0;
         overflow: hidden;
         padding-bottom: 56.25%;
