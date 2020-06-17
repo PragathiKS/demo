@@ -118,8 +118,10 @@ public final class SearchMapHelper {
             map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
         }
         map.put("p.guessTotal", String.valueOf(guessTotal));
-        map.put("orderby", "@jcr:content/cq:lastModified");
-        map.put("orderby.sort", "desc");
+        map.put("104_orderby", "@jcr:content/articleDate");
+        map.put("105_orderby", "@jcr:content/cq:lastModified");
+        map.put("104_orderby.sort", "desc");
+        map.put("105_orderby.sort", "desc");
 
         // Excluding pages which have Hide in Search selected.
         map.put(GROUP_101 + "property", "@jcr:content/hideInSearch");
