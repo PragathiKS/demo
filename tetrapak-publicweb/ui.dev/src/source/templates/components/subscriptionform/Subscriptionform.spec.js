@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Subscriptionform from './subscriptionform';
+import Subscriptionform from './Subscriptionform';
 import subscriptionTemplate from '../../../test-templates-hbs/subscriptionform.hbs';
 
 describe('Subscriptionform', function () {
