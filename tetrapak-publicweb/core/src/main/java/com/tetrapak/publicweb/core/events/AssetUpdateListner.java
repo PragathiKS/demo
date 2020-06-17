@@ -37,7 +37,6 @@ public class AssetUpdateListner implements ResourceChangeListener {
     @Reference
     private ResourceResolverFactory resolverFactory;
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onChange(List<ResourceChange> changes) {
         LOGGER.info("Coping jcr last modified to cq last modified for search");
@@ -46,8 +45,7 @@ public class AssetUpdateListner implements ResourceChangeListener {
             resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
             if (Objects.nonNull(resolver)) {
                 for (ResourceChange change : changes) {
-                    if (change.getChangedPropertyNames().contains(PWConstants.JCR_LAST_MODIFIED)
-                            || change.getAddedPropertyNames().contains(PWConstants.JCR_LAST_MODIFIED)) {
+                    if (change.getPath().endsWith("jcr:content")) {
                         LOGGER.info("Asset Path :: {}", change.getPath());
                         Resource assetJcrResource = resolver.getResource(change.getPath());
                         if (Objects.nonNull(assetJcrResource)
