@@ -23,7 +23,10 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
         immediate = true,
         configurationPolicy = ConfigurationPolicy.REQUIRE,
         service = ResourceChangeListener.class,
-        property = { ResourceChangeListener.PATHS + "=" + "glob:/content/dam/tetrapak/publicweb/**/jcr:content",
+        property = { 
+                ResourceChangeListener.PATHS + "=" + "glob:/content/dam/tetrapak/publicweb/**/jcr:content",
+                ResourceChangeListener.PATHS + "=" + "glob:/content/dam/tetrapak/products/**/jcr:content",
+                ResourceChangeListener.PATHS + "=" + "glob:/content/dam/tetrapak/media-box/**/jcr:content",
                 ResourceChangeListener.CHANGES + "=" + "ADDED", ResourceChangeListener.CHANGES + "=" + "CHANGED",
                 ResourceChangeListener.PROPERTY_NAMES_HINT + "=jcr:lastModified"
 
