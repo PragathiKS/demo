@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import deparam from 'deparam.js';
+import { saveAs } from 'file-saver';
 
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -46,7 +47,15 @@ class Searchresults {
     // $('.js-filter-container-chips').on('click', $filterRemoveBtn, this.removeFilter);
     $(window).on('popstate', this.windowPopStateHandler);
     $pagiantion.on('click', '.js-page-number', this.renderPaginationResult);
-
+    
+    $('.pw-search-results__results').on('click', '.js-asset-download', function(e) {
+      e.preventDefault();
+      const $target = $(this).closest('.js-asset-download');
+      const assetUrl = $target.attr('href');
+      const extension = $target.data('assetExtension');
+      saveAs(assetUrl, `download.${extension}`);
+    });
+    
     this.cache.$filterChecks.change((e) => {
       const $this = $(e.target);
       const category = $this.data('category');
@@ -100,12 +109,15 @@ class Searchresults {
       if ((filterObj.filterTags.contentType.length === 0) && (filterObj.filterTags.theme.length === 0)) {
         this.renderTitle('', this.cache.emptyFieldText, '', true);
         this.cache.$resultsList.empty();
+        this.cache.$pagiantion.addClass('d-none');
       } else {
+        filterObj.filterTags['page'][0] = 1;
         this.pushIntoUrl();
         this.search();
       }
     } else {
       filterObj.filterTags['searchTerm'][0] = searchVal;
+      filterObj.filterTags['page'][0] = 1;
       this.pushIntoUrl();
       this.search();
     }
@@ -159,7 +171,9 @@ class Searchresults {
     }).fail(() => {
       this.cache.$spinner.addClass('d-none');
       this.renderTitle(null, this.cache.noResultsText, null);
+      this.cache.$filterChecks.removeAttr('disabled');
       this.cache.$resultsList.empty();
+      this.cache.$pagination.addClass('d-none');
     });
   };
 

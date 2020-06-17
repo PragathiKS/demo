@@ -296,4 +296,9 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.search.searchbarplaceholder"
         sling:message="What are you looking for?"/>
+    <pw.form.button.subscribe
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.button.subscribe"
+        sling:message="Subscribe"/>
 </jcr:root>

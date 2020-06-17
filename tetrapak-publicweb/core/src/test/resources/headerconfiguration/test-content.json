@@ -36,7 +36,8 @@
 					"contactLinkTarget": "_blank",
 					"logoLink": "/content/tetrapak/publicweb/global/en",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
-					"solutionPage": "/content/tetrapak/publicweb/global/en/solutions"
+					"solutionPage": "/content/tetrapak/publicweb/global/en/solutions",
+					"searchPage": "/content/tetrapak/publicweb/lang-masters/en/search"
 				}
 			}
 		}
