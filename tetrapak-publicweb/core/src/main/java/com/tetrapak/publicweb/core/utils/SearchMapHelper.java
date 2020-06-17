@@ -118,15 +118,17 @@ public final class SearchMapHelper {
             map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
         }
         map.put("p.guessTotal", String.valueOf(guessTotal));
-        map.put("orderby", "@jcr:content/cq:lastModified");
-        map.put("orderby.sort", "desc");
+        map.put("104_orderby", "@jcr:content/articleDate");
+        map.put("105_orderby", "@jcr:content/cq:lastModified");
+        map.put("104_orderby.sort", "desc");
+        map.put("105_orderby.sort", "desc");
 
         // Excluding pages which have Hide in Search selected.
         map.put(GROUP_101 + "property", "@jcr:content/hideInSearch");
         map.put(GROUP_101 + "property.value", "false");
         map.put(GROUP_101 + "property.operation", "exists");
         map.put("p.limit", String.valueOf(noOfResultsPerHit));
-        map.put("p.offset", String.valueOf((pageParam - 1) * noOfResultsPerHit + 1));
+        map.put("p.offset", String.valueOf((pageParam - 1) * noOfResultsPerHit));
     }
 
     /**
@@ -138,7 +140,7 @@ public final class SearchMapHelper {
      */
     public static void setThemesMap(String[] themes, Map<String, String> map, Map<String, String> themeMap) {
         if (themes != null && themes.length > 0) {
-            map.put("2_group.p.or", "true");
+            map.put("102_group.p.or", "true");
             int index = 1;
             for (int i = 0; i < themes.length; i++) {
                 String tag = themeMap.get(themes[i]);

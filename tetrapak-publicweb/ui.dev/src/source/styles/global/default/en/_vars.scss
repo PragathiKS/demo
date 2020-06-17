@@ -30,7 +30,8 @@ $zindex-hide: -1;
 //z-index header to be greater than others except modal
 $zindex-header: 100;
 $zindex-nav: $zindex-header+1;
-$z-index-section-menu: 99;
+$z-index-section-menu: 90;
+$z-index-search-bar: 99;
 $zindex-top: 9999;
 // Patternlab variables
 $spacing-big: 24px;
