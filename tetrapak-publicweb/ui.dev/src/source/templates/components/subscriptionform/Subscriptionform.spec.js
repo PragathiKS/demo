@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Subscriptionform from './subscriptionform';
 import subscriptionTemplate from '../../../test-templates-hbs/subscriptionform.hbs';
 
-describe('subscriptionForm', function () {
+describe('Subscriptionform', function () {
   beforeEach(function () {
     $(document.body).empty().html(subscriptionTemplate());
     this.subscription = new Subscriptionform({
