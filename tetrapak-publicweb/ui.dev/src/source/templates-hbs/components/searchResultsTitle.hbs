@@ -1,5 +1,5 @@
 {{#if this.emptySearch}}
 <h3 class="no-result-heading">{{this.searchTitle}}</h3>
 {{else}}
-<h1 class="no-result-heading">{{#if this.resultsCount}}<span>{{this.resultsCount}}</span> {{/if}}{{this.searchTitle}}{{#if this.searchTerm}} <span>"{{this.searchTerm}}"{{/if}}</span></h1>
+<h1 class="no-result-heading" auto_locator="searchListingHeading">{{#if this.resultsCount}}<span>{{this.resultsCount}}</span> {{/if}}{{this.searchTitle}}{{#if this.searchTerm}} <span>"{{this.searchTerm}}"{{/if}}</span></h1>
 {{/if}}
