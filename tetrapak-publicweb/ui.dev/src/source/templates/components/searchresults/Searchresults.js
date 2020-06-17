@@ -109,6 +109,7 @@ class Searchresults {
       if ((filterObj.filterTags.contentType.length === 0) && (filterObj.filterTags.theme.length === 0)) {
         this.renderTitle('', this.cache.emptyFieldText, '', true);
         this.cache.$resultsList.empty();
+        this.cache.$pagiantion.addClass('d-none');
       } else {
         filterObj.filterTags['page'][0] = 1;
         this.pushIntoUrl();
