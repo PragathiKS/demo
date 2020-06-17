@@ -12,7 +12,7 @@ export const makeLoad = function (label, formName) {
     eventType: 'formstart',
     event: 'Hard Conversion Form'
   };
-  trackAnalytics(formObj, 'formclick', 'formload', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 
@@ -36,11 +36,11 @@ export const changeStepNext = function (formName, formStep, formType, areaofInte
       });  
     }
   });
-  trackAnalytics(formObj, 'formclick', 'formclick', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
 
-export const changeStepPrev = function (formName, formStep, formType, areaofInterest, dataObj) {
+export const changeStepPrev = function (formName, formStep, formType, areaofInterest) {
   const formObj = {
     formName: formName,
     formStep: formStep,
@@ -52,15 +52,7 @@ export const changeStepPrev = function (formName, formStep, formType, areaofInte
     eventType: `${formStep} previous`,
     event: 'Hard Conversion Form'
   };
-  Object.keys(dataObj).forEach(i => {
-    if(dataObj[i]) {
-      formObj.formField.push({
-        formFieldName: i,
-        formFieldValue: dataObj[i]
-      });  
-    }
-  });
-  trackAnalytics(formObj, 'formclick', 'formclick', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
 
@@ -85,7 +77,7 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
       });  
     }
   });
-  trackAnalytics(formObj, 'formclick', 'formclick', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
 
@@ -110,7 +102,7 @@ export const loadThankYou = function (formName, areaofInterest, dataObj) {
       });  
     }
   });
-  trackAnalytics(formObj, 'formclick', 'formload', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 
@@ -128,5 +120,5 @@ export const newPage = function () {
     eventType: 'linkClick',
     event: 'Hard Conversion Form'
   };
-  trackAnalytics(linkClickObj, 'linkclick', 'linkclick', undefined, false, eventObj);
+  trackAnalytics(linkClickObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 };

@@ -110,11 +110,13 @@ class Searchresults {
         this.cache.$resultsList.empty();
         this.cache.$pagination.addClass('d-none');
       } else {
+        searchParams['page'] = 1;
         this.pushIntoUrl();
         this.search();
       }
     } else {
       searchParams['searchTerm'] = searchVal;
+      searchParams['page'] = 1;
       this.pushIntoUrl();
       this.search();
     }
