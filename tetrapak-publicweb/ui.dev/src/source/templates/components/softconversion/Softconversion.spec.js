@@ -8,7 +8,11 @@ describe('Softconversion', function () {
     this.softconversion = new Softconversion({el: document.body});
     this.initSpy = sinon.spy(this.softconversion, 'init');
     this.submitFormSpy = sinon.spy(this.softconversion, 'submitForm');
-    this.hidePopUpSpy = sinon.spy(this.softconversion, 'hidePopUp');  
+    this.hidePopUpSpy = sinon.spy(this.softconversion, 'hidePopUp');
+    this.downloadHandlerSpy = sinon.spy(this.softconversion, 'downloadHandler');
+    this.notMeBtnHandlerSpy = sinon.spy(this.softconversion, 'notMeBtnHandler');
+    this.yesMeBtnHandlerSpy = sinon.spy(this.softconversion, 'yesMeBtnHandler');
+
     this.softconversion.root.modal = ()=>{};
     this.softconversion.init();
   });
@@ -18,6 +22,9 @@ describe('Softconversion', function () {
     this.initSpy.restore();
     this.submitFormSpy.restore();
     this.hidePopUpSpy.restore();
+    this.downloadHandlerSpy.restore();
+    this.notMeBtnHandlerSpy.restore();
+    this.yesMeBtnHandlerSpy.restore();
   });
 
   it('should initialize', function () {
@@ -25,7 +32,7 @@ describe('Softconversion', function () {
   });
 
   it('should not submit Form when required fields are empty', function (done) {
-    $('#firstName-textimage').val('mockname');
+    $('#firstName-textimage').val('');
     this.softconversion.cache.$submitBtn.click();
     expect(this.softconversion.submitForm.called).to.be.false;
     done();
@@ -65,6 +72,24 @@ describe('Softconversion', function () {
   it('should close modal on close icon click', function (done) {
     $('.js-close-btn').click();
     expect(this.softconversion.hidePopUp.called).to.be.true;
+    done();
+  });
+
+  it('should download on download button click', function (done) {
+    $('.thankyouTarget').click();
+    expect(this.softconversion.downloadHandler.called).to.be.true;
+    done();
+  });
+
+  it('should start from beginging when not me button click', function (done) {
+    $('.notmebtn-textimage[type=button]').click();
+    expect(this.softconversion.notMeBtnHandler.called).to.be.true;
+    done();
+  });
+
+  it('should show download flow yes me button click', function (done) {
+    $('.yesmebtn-textimage[type=button]').click();
+    expect(this.softconversion.yesMeBtnHandler.called).to.be.true;
     done();
   });
 

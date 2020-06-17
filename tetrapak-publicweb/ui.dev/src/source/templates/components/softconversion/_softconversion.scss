@@ -262,6 +262,25 @@
                     color: $color-jordy-blue;
                 }
             }
+
+            .notmebtn {
+                border: 1px solid $color-congress-blue;
+                color: $color-congress-blue;
+                background-color: $color-white;
+                i {
+                    @include padding-left(5px);
+                    transform: rotate(180deg);
+                    float: left;
+                }
+                &:hover {
+                    border: 1px solid $color-jordy-blue;
+                    color: $color-jordy-blue;
+                }
+
+                @media #{$desktop} {
+                    @include margin-right($margin-md);
+                }
+            }
         }
 
         .pw-progress {
