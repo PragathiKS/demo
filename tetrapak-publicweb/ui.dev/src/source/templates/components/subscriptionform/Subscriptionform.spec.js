@@ -4,7 +4,7 @@ import subscriptionTemplate from '../../../test-templates-hbs/subscriptionform.h
 
 describe('SubscriptionForm', function () {
   beforeEach(function () {
-    $(document.body).empty().html(subscriptionTemplate);
+    $(document.body).empty().html(subscriptionTemplate());
     this.subscription = new Subscriptionform({
       el: document.body
     });
