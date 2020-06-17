@@ -6,6 +6,7 @@
         <div class="tab-content">
           <form class="pw-form pw-form-subscriptionForm" accept-charset="UTF-8" data-sf-api-servlet="${data.apiUrl}"
             data-sf-countryCode="${data.siteCountry}" data-sf-langCode="${data.siteLanguage}" autocomplete="off">
+            <input type="text" name="pardot_extra_field" id="pardot_extra_field_sf" class="d-none" tabindex="-1" />
             <!--step start-->
             <div class="sf-tab-pane active" role="tabpanel" id="sf-step-1">
               <div class="row no-gutters">
@@ -40,7 +41,7 @@
                   <div class="tab-content tab-content-steps">
                     <div class="row">
                       <div class="col-sm-12 formfield" auto_locator="subscriptionFormListContainerStep1">
-                        <div class="formfield">
+                        <div class="formfield emailDiv">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
                             data-sly-call="${inputField.inputfield_template @ inputType='email', id='email', label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags'}">
@@ -51,7 +52,7 @@
                             <div class="checboxField">
                               <input id="consentcheckbox" class="consentCheckbox" required type="checkbox"
                                 name="consent">
-                              <label class="consentlabel" for="consentcheckbox"> ${data.marketingconsent @
+                              <label class="consentlabel" for="consentcheckbox"> ${data.marketingConsent @
                                 context='html'}</label>
                             </div>
                             <div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>

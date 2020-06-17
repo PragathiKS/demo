@@ -4,6 +4,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import { validateFieldsForTags } from '../../../scripts/common/common';
 
+/* eslint-disable */
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -98,6 +99,7 @@ class Subscriptionform {
         }
       }
       if (isvalid && !honeyPotFieldValue) {
+        console.log('============================================')
         self.submitForm();
       }
     });
@@ -110,5 +112,6 @@ class Subscriptionform {
     this.bindEvents();
   }
 }
+/* eslint-enable */
 
 export default Subscriptionform;

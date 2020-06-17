@@ -5,6 +5,11 @@
             @include margin-bottom(0);
         }
     }
+
+    .emailDiv {
+        @include margin-bottom($margin-l);
+    }
+
     .errorMsg {
         display: none;
         color: $color-alert;
@@ -76,18 +81,15 @@
         height: 20px;
         margin-right: 6px;
         width: 20px;
+        min-width: 20px;
     }
 
     .consentlabel p {
         display: inline;
     }
 
-    .sf-thankyou-img {
-        @include margin-bottom($margin-l);
-    }
-
     .descriptionTextThankyou {
-        @include margin-top($margin-md);
+        @include margin-top($margin-l);
     }
 
     .checboxField {
@@ -95,7 +97,7 @@
     }
 
     .subscribeButton {
-        margin-top: $margin-xxxl;
+        margin-top: $margin-l;
     }
   }
   
