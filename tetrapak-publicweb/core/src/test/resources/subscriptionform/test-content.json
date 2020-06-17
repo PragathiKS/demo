@@ -20,7 +20,7 @@
 			"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
 			"sling:resourceType": "publicweb/components/structure/pages/landingpage",
 			"cq:lastModifiedBy": "admin",
-			"textimage": {
+			"subscriptionform": {
 				"jcr:primaryType": "nt:unstructured",
 				"jcr:createdBy": "admin",
 				"jcr:created": "Wed Feb 26 2020 12:14:10 GMT+0530",
@@ -29,26 +29,13 @@
 				"anchorId": "test01",
 				"anchorTitle": "title",
 				"thankyouDescriptionText": "We will get back to you as soon as possible",
+				"summaryText": "Summary",
 				"pwTheme": "grayscale-white",
-				"alt": "Contact us",
-				"image": "/content/dam/tetrapak/publicweb/contactus.PNG",
 				"heading": "Business Enquiry",
 				"marketingConsent":"Marketing Consent",
 				"thankyouHeading": "Thank you for your request",
 				"descriptionText": "Description",
-				"thankyouImageAltText": "Thank you",
-				"privacyPolicy": "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
-				"thankyouImage": "/content/dam/tetrapak/publicweb/contactus.PNG",
-				"pardotUrl": "http://pardotURL",
-				 "welcomeBackHeading":"welcome back",
-				 "welcomeBackDescriptionText":"Welcome back to our portal",
-				 "downloadReadyHeading":"Download Ready",
-				 "downloadReadyDescriptionText":"your download is ready",
-				 "moreButtonAction":"/content/search",
-				 "moreButtonLabel":"More whitepapers",
-				 "yesButtonLabel":"Yes, I am",
-				 "noButtonLabel":"No, I am not"
-
+				"privacyPolicy": "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy."
 			}
 		}
 	}

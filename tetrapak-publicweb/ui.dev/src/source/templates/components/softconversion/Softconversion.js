@@ -62,7 +62,7 @@ class Softconversion {
 
   submitForm = () => {
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
-    const pardotUrl = this.cache.softconversionapi.data('softconversion-padrot-url');
+    const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
     
     const apiPayload =  {};
 
@@ -75,7 +75,7 @@ class Softconversion {
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
-    apiPayload.padrotUrl = pardotUrl;
+    apiPayload.pardotUrl = pardotUrl;
     apiPayload.marketingConsent = true;
 
     ajaxWrapper.getXhrObj({
