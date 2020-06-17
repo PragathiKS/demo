@@ -27,7 +27,6 @@ class Searchresults {
     this.cache.$spinner = this.root.find('.pw-search-results__spinner');
     this.cache.results = [];
     this.cache.queryParams = '';
-    this.cache.resultsPerPage = 10;
     this.cache.$resultsList = $('.js-pw-search-results__results-list', this.root);
     this.cache.$searchResultsTitle = $('.js-pw-search-results__title', this.root);
     this.cache.resultsTitle = this.cache.$searchResultsTitle.data('resultsTitle');
@@ -35,7 +34,6 @@ class Searchresults {
     this.cache.emptyFieldText = this.cache.$searchResultsTitle.data('emptyField');
 
     this.cache.$pagination = $('.js-pagination', this.root);
-    this.cache.searchTerm = '';
     this.cache.searchParams = { 'searchTerm': '', 'contentType': {}, 'theme': {}, 'page': 1 };
     this.cache.totalPages = 0;
   }
@@ -277,6 +275,7 @@ class Searchresults {
   }
 
   applyFilters = (toggle = true) => {
+    this.cache.searchParams['page'] = 1;
     this.pushIntoUrl();
     this.search();
     this.renderFilterTags();
