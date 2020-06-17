@@ -123,7 +123,7 @@ class Softconversion {
       }
     );
     //drop cookies of email id 
-    storageUtil.setCookie('visitor-mail', apiPayload.email);
+    storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
 
     $(`.heading_${this.cache.$componentName}`, this.root).text('');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
