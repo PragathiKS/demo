@@ -110,11 +110,13 @@ class Searchresults {
         this.renderTitle('', this.cache.emptyFieldText, '', true);
         this.cache.$resultsList.empty();
       } else {
+        filterObj.filterTags['page'][0] = 1;
         this.pushIntoUrl();
         this.search();
       }
     } else {
       filterObj.filterTags['searchTerm'][0] = searchVal;
+      filterObj.filterTags['page'][0] = 1;
       this.pushIntoUrl();
       this.search();
     }
