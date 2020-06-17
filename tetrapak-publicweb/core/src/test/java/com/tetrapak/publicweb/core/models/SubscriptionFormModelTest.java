@@ -18,27 +18,26 @@ import com.tetrapak.publicweb.core.services.impl.PardotServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 
-public class BusinessInquiryModelTest {
+public class SubscriptionFormModelTest {
 
     /** The context. */
     @Rule
     public AemContext context = new AemContext();
 
     /** The Constant TEST_RESOURCE_CONTENT. */
-    private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
+    private static final String TEST_RESOURCE_CONTENT = "/subscriptionform/test-content.json";
     private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
     /** The model class. */
-    Class<BusinessInquiryModel> modelClass = BusinessInquiryModel.class;
+    Class<SubscriptionFormModel> modelClass = SubscriptionFormModel.class;
 
     /** The model. */
-    private BusinessInquiryModel model;
+    private SubscriptionFormModel model;
 
+    /** The pardot service. */
     private PardotService pardotService;
 
-    /**
-     * The Constant PXP_FEATURES.
-     */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/businessinquiryform";
+    /** The Constant RESOURCE. */
+    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/subscriptionform";
 
     /** The resource. */
     private Resource resource;
@@ -58,7 +57,7 @@ public class BusinessInquiryModelTest {
         context.registerService(PardotService.class, pardotService);
         // context.registerInjectActivateService(countryDetailService);
         final Map<String, Object> pardotConfig = new HashMap<>();
-        pardotConfig.put("pardotBusinessInquiryServiceUrl",
+        pardotConfig.put("pardotsubscriptionServiceUrl",
                 "http://pardotURL");
         MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
@@ -78,27 +77,31 @@ public class BusinessInquiryModelTest {
         assertEquals("Form", "title", model.getAnchorTitle());
         assertEquals("Form", "test01", model.getAnchorId());
         assertEquals("Form", "Thank you for your request", model.getThankyouHeading());
-        assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getThankyouImage());
-        assertEquals("Form", "Thank you", model.getThankyouImageAltText());
         assertEquals("Form", "We will get back to you as soon as possible", model.getThankyouDescriptionText());
         assertEquals("Form",
                 "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
                 model.getPrivacyPolicy());
-        assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getImage());
-        assertEquals("Form", "Contact us", model.getAlt());
         assertEquals("Form", "Description", model.getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
         assertEquals("Form",
-                "/content/tetrapak/publicweb/gb/en/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
+                "/content/tetrapak/publicweb/gb/en/jcr:content/subscriptionform.pardotsubscription.json",
                 model.getApiUrl());
         assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
        }
 
+
+    /**
+     * Test fetch language.
+     */
     @Test
     public void testFetchLanguage() {
         assertEquals("en", model.getSiteLanguage());
     }
 
+
+    /**
+     * Test fetch country.
+     */
     @Test
     public void testFetchCountry() {
         assertEquals("gb", model.getSiteCountry());

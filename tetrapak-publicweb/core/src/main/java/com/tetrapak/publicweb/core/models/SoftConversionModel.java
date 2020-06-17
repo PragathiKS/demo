@@ -54,7 +54,7 @@ public class SoftConversionModel extends FormModel {
     private String noButtonLabel;
 
     @ValueMapValue
-    private String padrotUrl;
+    private String pardotUrl;
 
     /**
      * The init method.
@@ -145,7 +145,7 @@ public class SoftConversionModel extends FormModel {
      */
     @Override
     public String getApiUrl() {
-        return resource.getPath() + ".padrotsoftconversion.json";
+        return resource.getPath() + ".pardotsoftconversion.json";
     }
 
     /**
@@ -166,7 +166,7 @@ public class SoftConversionModel extends FormModel {
         return PageUtil.getCountryCodeFromResource(resource);
     }
 
-    public String getPadrotUrl() {
-        return padrotUrl;
+    public String getPardotUrl() {
+        return pardotUrl;
     }
 }
