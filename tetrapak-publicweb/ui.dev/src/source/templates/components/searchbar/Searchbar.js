@@ -31,7 +31,9 @@ class Searchbar {
     e.preventDefault();
     const inp = $('.js-search-bar-input');
     if (inp.val().length > 0) {
-      const url = '/content/publicweb-ux/searchresults.html';
+      const $target = $('.search-icon');
+      const $this = $target.closest('a');
+      const url = $this.data('search-url');
       let updatedUrl = updateQueryStringParameter(url,'searchTerm',inp.val());
       updatedUrl = updateQueryStringParameter(updatedUrl,'page',1);
       window.open(updatedUrl,'_self');
