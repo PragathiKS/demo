@@ -112,6 +112,9 @@ public final class PWConstants {
 
     /** The Constant VIDEO. */
     public static final String VIDEO = "video";
+    
+    /** The Constant DOCUMENT. */
+    public static final String DOCUMENT = "document";
 
     /** The Constant VOLUMES. */
     public static final String VOLUMES = "volumes";
@@ -193,6 +196,12 @@ public final class PWConstants {
     
     /** The Constant PRODUCTS. */
     public static final String PRODUCTS = "products";
+    
+    /** The Constant JCR_LAST_MODIFIED. */
+    public static final String JCR_LAST_MODIFIED = "jcr:lastModified";
+    
+    /** The Constant CQ_LAST_MODIFIED. */
+    public static final String CQ_LAST_MODIFIED = "cq:lastModified";
 
     /**
      * Instantiates a new PW constants.
