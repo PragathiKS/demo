@@ -38,7 +38,6 @@ class Subscriptionform {
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
    
-    window.scrollTo(0, $('.pw-subscriptionForm-form').offset().top);
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
