@@ -104,6 +104,7 @@
                 & > a {
                     @include padding(0 $padding-sm);
                     @include line-height($font-l, $font-baseline);
+                    font-family: $font-light;
                     height: 28px;
                     font-weight: normal;
                 }
