@@ -96,6 +96,7 @@ public class HeaderModelTest {
         assertEquals("Header", "check", model.getMegaMenuLinksList().get(0).getLinkText());
         assertNotNull("Header", model.getMegaMenuConfigurationModel());
         assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/solutions.html", model.getSolutionPage());
+        assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/search.html", model.getSearchPage());
         assertEquals("Header", "Solutions", model.getSolutionPageTitle());
         assertEquals("Header", true, model.getMarketList().getMarkets().get(2).equals(marketBean));
         assertEquals("Header", "Australia", model.getMarketList().getMarkets().get(2).getMarketName());
