@@ -67,6 +67,9 @@ public class HeaderModel {
     /** The solution page. */
     private String solutionPage;
 
+    /** The search page. */
+    private String searchPage;
+
     /** The mega menu links list. */
     private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
@@ -110,6 +113,7 @@ public class HeaderModel {
                 loginLabel = configurationModel.getLoginLabel();
                 loginLink = configurationModel.getLoginLink();
                 solutionPage = configurationModel.getSolutionPage();
+                searchPage = configurationModel.getSearchPage();
             }
             setMegaMenuLinksList(rootPath);
             setSolutionPageTitle();
@@ -356,5 +360,14 @@ public class HeaderModel {
 
         }
         return isDisplayCurrentLanguage;
+    }
+
+    /**
+     * Gets the search page.
+     *
+     * @return the search page
+     */
+    public String getSearchPage() {
+        return searchPage;
     }
 }
