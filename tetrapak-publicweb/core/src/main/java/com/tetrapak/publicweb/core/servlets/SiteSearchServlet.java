@@ -373,7 +373,13 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 searchResultItem.setTitle(mediaTitle);
                 setMediaSize(searchResultItem, assetMetadataProperties);
                 searchResultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf('.') + 1));
-                searchResultItem.setAssetType(getMediaType(assetMetadataProperties));
+                searchResultItem.setAssetType(mediaType);
+                if(PWConstants.VIDEO.equalsIgnoreCase(mediaType)) {
+                    searchResultItem.setAssetThumbnail(searchResultsModel.getVideoThumbnail());
+                }
+                if(PWConstants.DOCUMENT.equalsIgnoreCase(mediaType)) {
+                    searchResultItem.setAssetThumbnail(searchResultsModel.getDocumentThumbnail());
+                }
             } else {
                 searchResultItem.setTitle(PageUtil.getCurrentPage(hit.getResource()).getTitle());
                 searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
