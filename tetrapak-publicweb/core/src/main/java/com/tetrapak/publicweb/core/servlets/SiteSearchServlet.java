@@ -324,11 +324,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         // paging metadata
         LOGGER.info("Total number of results : {}", noOfResults);
 
-        // 1 Extra Result Count is Coming
-        if (noOfResults > 1) {
-            noOfResults = noOfResults - 1;
-        }
-
         searchBean.setTotalResults(noOfResults);
         int numberofPages = (int) Math.ceil((double) noOfResults / noOfResultsPerHit);
         searchBean.setTotalPages(numberofPages);
