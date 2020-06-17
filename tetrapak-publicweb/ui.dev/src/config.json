@@ -161,6 +161,7 @@
         "source/templates/components/marketselector/",
         "source/templates/components/softconversion/",
         "source/templates/components/businessinquiryform/",
+        "source/templates/components/subscriptionform/",
         "source/templates/components/searchresults/"
       ],
       "anlyticscode": [
