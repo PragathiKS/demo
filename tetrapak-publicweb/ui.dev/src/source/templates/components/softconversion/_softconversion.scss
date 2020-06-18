@@ -211,7 +211,8 @@
             @media #{$desktop} {
                 @include margin($margin-sm auto $margin-xxxl auto);
             }
-            h2 {
+            h2,
+            h3 {
                 @include margin-bottom($margin-md);
                 @include font-size($font-l);
                 @include line-height($font-xl, $font-l);
@@ -260,6 +261,25 @@
                 &:hover {
                     border: 1px solid $color-jordy-blue;
                     color: $color-jordy-blue;
+                }
+            }
+
+            .notmebtn {
+                border: 1px solid $color-congress-blue;
+                color: $color-congress-blue;
+                background-color: $color-white;
+                i {
+                    @include padding-left(5px);
+                    transform: rotate(180deg);
+                    float: left;
+                }
+                &:hover {
+                    border: 1px solid $color-jordy-blue;
+                    color: $color-jordy-blue;
+                }
+
+                @media #{$desktop} {
+                    @include margin-right($margin-md);
                 }
             }
         }

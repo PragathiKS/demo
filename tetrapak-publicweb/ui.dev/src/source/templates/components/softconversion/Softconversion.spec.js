@@ -8,7 +8,12 @@ describe('Softconversion', function () {
     this.softconversion = new Softconversion({el: document.body});
     this.initSpy = sinon.spy(this.softconversion, 'init');
     this.submitFormSpy = sinon.spy(this.softconversion, 'submitForm');
-    this.hidePopUpSpy = sinon.spy(this.softconversion, 'hidePopUp');  
+    this.hidePopUpSpy = sinon.spy(this.softconversion, 'hidePopUp');
+    this.downloadHandlerSpy = sinon.spy(this.softconversion, 'downloadHandler');
+    this.notMeBtnHandlerSpy = sinon.spy(this.softconversion, 'notMeBtnHandler');
+    this.yesMeBtnHandlerSpy = sinon.spy(this.softconversion, 'yesMeBtnHandler');
+    this.onRadioChangeHandlerSpy = sinon.spy(this.softconversion, 'onRadioChangeHandler');
+
     this.softconversion.root.modal = ()=>{};
     this.softconversion.init();
   });
@@ -18,6 +23,10 @@ describe('Softconversion', function () {
     this.initSpy.restore();
     this.submitFormSpy.restore();
     this.hidePopUpSpy.restore();
+    this.downloadHandlerSpy.restore();
+    this.notMeBtnHandlerSpy.restore();
+    this.yesMeBtnHandlerSpy.restore();
+    this.onRadioChangeHandlerSpy.restore();
   });
 
   it('should initialize', function () {
@@ -26,6 +35,7 @@ describe('Softconversion', function () {
 
   it('should not submit Form when required fields are empty', function (done) {
     $('#firstName-textimage').val('mockname');
+    this.softconversion.cache.requestPayload.typeOfVisitor = 'customer-textimage';
     this.softconversion.cache.$submitBtn.click();
     expect(this.softconversion.submitForm.called).to.be.false;
     done();
@@ -38,7 +48,6 @@ describe('Softconversion', function () {
     document.getElementById('company-textimage').value = 'mockmessage';
     document.getElementById('position-textimage').value = 'mockmessage';
     document.getElementById('typeOfVisitor').value = 'Customer';
-    document.getElementById('market-consent').checked = true;
     
     this.softconversion.cache.$submitBtn.click();
     expect(this.softconversion.submitForm.called).to.be.true;
@@ -67,6 +76,31 @@ describe('Softconversion', function () {
     expect(this.softconversion.hidePopUp.called).to.be.true;
     done();
   });
+
+  it('should download on download button click', function (done) {
+    $('.thankyouTarget').click();
+    expect(this.softconversion.downloadHandler.called).to.be.true;
+    done();
+  });
+
+  it('should start from beginging when not me button click', function (done) {
+    $('.notmebtn-textimage[type=button]').click();
+    expect(this.softconversion.notMeBtnHandler.called).to.be.true;
+    done();
+  });
+
+  it('should show download flow yes me button click', function (done) {
+    $('.yesmebtn-textimage[type=button]').click();
+    expect(this.softconversion.yesMeBtnHandler.called).to.be.true;
+    done();
+  });
+
+  it('should call RadioHandler on change of radio button', function (done) {
+    $('input[type=radio][name="typeOfVisitorOptions"]').change();
+    expect(this.softconversion.onRadioChangeHandler.called).to.be.true;
+    done();
+  });
+
 
 
 });
