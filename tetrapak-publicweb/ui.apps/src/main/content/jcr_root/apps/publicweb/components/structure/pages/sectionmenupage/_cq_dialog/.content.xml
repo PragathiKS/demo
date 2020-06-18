@@ -35,6 +35,13 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Section menu title"
                                                 name="./sectionHomePageTitle"/>
+                                            <disableclickinnavigation
+                                                cq:showOnCreate="{Boolean}true"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./disableClickInNavigation"
+                                                text="Disable click in navigation?"
+                                                value="true"/>
                                         </items>
                                     </sectionmenu>
                                     <categories
