@@ -75,13 +75,13 @@ class Softconversion {
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
 
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
-    const pardotUrl = this.cache.softconversionapi.data('softconversion-padrot-url');
+    const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
     const apiPayload =  {};
     apiPayload.email = storageUtil.getCookie('visitor-mail');
     apiPayload.language = this.root.find(`#site_language_${this.cache.$componentName}`).val();
     apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
     apiPayload.pardot_extra_field = '';
-    apiPayload.padrotUrl = pardotUrl;
+    apiPayload.pardotUrl = pardotUrl;
     apiPayload.marketingConsent = true;
 
     ajaxWrapper.getXhrObj({
