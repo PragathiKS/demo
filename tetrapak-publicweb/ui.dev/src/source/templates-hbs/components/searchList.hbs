@@ -10,7 +10,9 @@
         {{#if this.assetThumbnail}}
             <img class="pw-product-card-grid__item__image" src="{{this.assetThumbnail}}" alt="{{this.title}}">
           {{else}}
-            <i class="{{#if_eq this.assetType 'video'}}icon-Play{{else}}icon-PDF{{/if_eq}}"></i>
+            <div class="{{#if_eq this.assetType 'video'}}icon-video-container{{else}}icon-pdf-container{{/if_eq}}">
+              <i class="{{#if_eq this.assetType 'video'}}icon-Play{{else}}icon-PDF{{/if_eq}}"></i>
+            </div>
         {{/if}}
       {{/if_eq}}
       <div class="pw-media-container__image-helper"></div>

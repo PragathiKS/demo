@@ -45,7 +45,7 @@
                                                         <path
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                            fieldDescription="News category template paths"
+                                                            fieldDescription="Products category template paths"
                                                             fieldLabel="Template Path"
                                                             name="./path"
                                                             rootPath="/conf/publicweb/settings/wcm/templates"/>
@@ -179,7 +179,7 @@
                                                         <path
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                            fieldDescription="News category template paths"
+                                                            fieldDescription="Events category template paths"
                                                             fieldLabel="Template Path"
                                                             name="./path"
                                                             rootPath="/conf/publicweb/settings/wcm/templates"/>
@@ -246,7 +246,7 @@
                                                         <path
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                            fieldDescription="News category template paths"
+                                                            fieldDescription="Cases category template paths"
                                                             fieldLabel="Template Path"
                                                             name="./path"
                                                             rootPath="/conf/publicweb/settings/wcm/templates"/>
@@ -357,7 +357,7 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="Theme Label"
                                                     name="./themeLabel"/>
-												<themeKey
+                                                <themeKey
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="Theme Key"
@@ -417,6 +417,31 @@
                     </column>
                 </items>
             </gatedcontent>
+            <assetthumbnail
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Asset Thumbnail"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <video
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Video Thumbnail Path "
+                                name="./videoThumbnail"
+                                rootPath="/content/dam"/>
+                            <document
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Document Thumbnail Path "
+                                name="./documentThumbnail"
+                                rootPath="/content/dam"/>
+                        </items>
+                    </column>
+                </items>
+            </assetthumbnail>
         </items>
     </content>
 </jcr:root>

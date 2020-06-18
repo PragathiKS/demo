@@ -207,6 +207,30 @@
                     width: 150px;
                     height: 84px;
                 }
+                .icon-video-container {
+                    height: 70px;
+                    width: 70px;
+                    background: $color-white;
+                    border-radius: 100%;
+                    margin: 0;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    i {
+                        left: 56%;
+                        top: 51%;
+                        font-size: 32px;
+                    }
+                }
+                .icon-pdf-container {
+                    background: $color-white;
+                    border-radius: 4px;
+                    position: relative;
+                    margin: auto;
+                    height: 100%;
+                    width: 60px;
+                }
                 i {
                     color: $color-congress-blue;
                     font-size: 34px;
@@ -215,9 +239,6 @@
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    @media #{$desktop} {
-                        font-size: 30px;
-                    }
                 }
                 img {
                     display: inline-block;

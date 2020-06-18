@@ -71,6 +71,12 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Market Selector Title"
                                 name="./marketTitle"/>
+                            <searchpage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Search page path"
+                                name="./searchPage"
+                                rootPath="/content/tetrapak/publicweb"/>
                         </items>
                     </column>
                 </items>

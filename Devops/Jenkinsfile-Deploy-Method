@@ -209,16 +209,16 @@ pipeline {
                 
                 echo "Uninstalling Old Commons Package on author for Commons"
                 sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
-                sleep 20
+                sleep 30
                 echo "Deleting Old Commons Package on author"
                 sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
-                sleep 20
+                sleep 30
                 echo "Uploading New Commons Package on author"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                sleep 20
+                sleep 30
                 echo "Installing New Commons Package on author"
                 sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
-                sleep 20
+                sleep 30
 
     }
 
@@ -226,15 +226,15 @@ pipeline {
                 
                 echo "Uninstalling Old Commons Package on publish for Commons"
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
-                sleep 20
+                sleep 30
                 echo "Deleting Old Commons Package on publish"
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
-                sleep 20
+                sleep 30
                 echo "Uploading New Commons Package on publish"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                sleep 20
+                sleep 30
                 echo "Installing New Commons Package on publish"
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
-                sleep 20
+                sleep 30
 
     }

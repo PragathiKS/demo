@@ -19,37 +19,37 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tetrapak.publicweb.core.services.PadrotService;
-import com.tetrapak.publicweb.core.services.config.PadrotServiceConfig;
+import com.tetrapak.publicweb.core.services.PardotService;
+import com.tetrapak.publicweb.core.services.config.PardotServiceConfig;
 
 /**
- * Impl class for PadrotService
+ * Impl class for PardotService
  *
  */
-@Component(immediate = true, service = PadrotService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
-@Designate(ocd = PadrotServiceConfig.class)
-public class PadrotServiceImpl implements PadrotService {
+@Component(immediate = true, service = PardotService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Designate(ocd = PardotServiceConfig.class)
+public class PardotServiceImpl implements PardotService {
 
     /** The config. */
-    private PadrotServiceConfig config;
+    private PardotServiceConfig config;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PadrotServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PardotServiceImpl.class);
 
     /**
      * activate method
      *
      * @param config
-     *            Padrot Service configuration
+     *            Pardot Service configuration
      */
     @Activate
-    public void activate(final PadrotServiceConfig config) {
+    public void activate(final PardotServiceConfig config) {
 
         this.config = config;
     }
 
     @Override
     public String getBusinesInquiryServiceURL() {
-        return config.padrotBusinessInquiryServiceUrl();
+        return config.pardotBusinessInquiryServiceUrl();
     }
 
     /**
@@ -59,7 +59,7 @@ public class PadrotServiceImpl implements PadrotService {
      * @return api gee post response
      */
     @Override
-    public void submitPadrotPostRespose(final Map<String, String[]> parameters, final String url) {
+    public void submitPardotPostRespose(final Map<String, String[]> parameters, final String url) {
 
         LOGGER.info("Inside service response");
         final HttpPost postRequest = new HttpPost(url);
@@ -68,7 +68,7 @@ public class PadrotServiceImpl implements PadrotService {
         final ArrayList<NameValuePair> postParameters = new ArrayList<>();
 
         for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
-            if (!"padrotUrl".equalsIgnoreCase(entry.getKey())) {
+            if (!"pardotUrl".equalsIgnoreCase(entry.getKey())) {
                 postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
             }
         }
@@ -81,16 +81,21 @@ public class PadrotServiceImpl implements PadrotService {
             statusCode = httpResponse.getStatusLine().getStatusCode();
             LOGGER.info("status code {}", statusCode);
         } catch (final IOException e) {
-            LOGGER.error("Error while submitting padrot post request", e);
+            LOGGER.error("Error while submitting pardot post request", e);
         }
     }
 
     @Override
-    public void submitPadrotPostRespose(final Map<String, String[]> parameterMap) {
+    public void submitPardotPostRespose(final Map<String, String[]> parameterMap) {
 
-        final String url = parameterMap.get("padrotUrl")[0];
-        submitPadrotPostRespose(parameterMap, url);
+        final String url = parameterMap.get("pardotUrl")[0];
+        submitPardotPostRespose(parameterMap, url);
 
+    }
+
+    @Override
+    public String getSubscriptionFormPardotURL() {
+        return config.pardotSubscriptionFormURL();
     }
 
 }
