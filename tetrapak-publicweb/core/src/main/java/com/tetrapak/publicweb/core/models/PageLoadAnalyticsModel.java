@@ -18,7 +18,6 @@ import com.day.cq.wcm.api.PageManager;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 @Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -202,9 +201,7 @@ public class PageLoadAnalyticsModel {
         if (!StringUtils.isEmpty(productName)) {
             final JsonObject productInfo = new JsonObject();
             productInfo.addProperty("productName", productName);
-            final JsonArray products = new JsonArray();
-            products.add(productInfo);
-            jsonObject.add("products", products);
+            jsonObject.add("productInfo", productInfo);
         }
 
         jsonObject.add("pageinfo", pageInfo);
