@@ -12,6 +12,7 @@ describe('Softconversion', function () {
     this.downloadHandlerSpy = sinon.spy(this.softconversion, 'downloadHandler');
     this.notMeBtnHandlerSpy = sinon.spy(this.softconversion, 'notMeBtnHandler');
     this.yesMeBtnHandlerSpy = sinon.spy(this.softconversion, 'yesMeBtnHandler');
+    this.onRadioChangeHandlerSpy = sinon.spy(this.softconversion, 'onRadioChangeHandler');
 
     this.softconversion.root.modal = ()=>{};
     this.softconversion.init();
@@ -25,6 +26,7 @@ describe('Softconversion', function () {
     this.downloadHandlerSpy.restore();
     this.notMeBtnHandlerSpy.restore();
     this.yesMeBtnHandlerSpy.restore();
+    this.onRadioChangeHandlerSpy.restore();
   });
 
   it('should initialize', function () {
@@ -32,7 +34,8 @@ describe('Softconversion', function () {
   });
 
   it('should not submit Form when required fields are empty', function (done) {
-    $('#firstName-textimage').val('');
+    $('#firstName-textimage').val('mockname');
+    this.softconversion.cache.requestPayload.typeOfVisitor = 'customer-textimage';
     this.softconversion.cache.$submitBtn.click();
     expect(this.softconversion.submitForm.called).to.be.false;
     done();
@@ -45,7 +48,6 @@ describe('Softconversion', function () {
     document.getElementById('company-textimage').value = 'mockmessage';
     document.getElementById('position-textimage').value = 'mockmessage';
     document.getElementById('typeOfVisitor').value = 'Customer';
-    document.getElementById('market-consent').checked = true;
     
     this.softconversion.cache.$submitBtn.click();
     expect(this.softconversion.submitForm.called).to.be.true;
@@ -92,6 +94,13 @@ describe('Softconversion', function () {
     expect(this.softconversion.yesMeBtnHandler.called).to.be.true;
     done();
   });
+
+  it('should call RadioHandler on change of radio button', function (done) {
+    $('input[type=radio][name="typeOfVisitorOptions"]').change();
+    expect(this.softconversion.onRadioChangeHandler.called).to.be.true;
+    done();
+  });
+
 
 
 });

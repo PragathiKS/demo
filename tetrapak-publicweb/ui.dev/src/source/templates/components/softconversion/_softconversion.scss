@@ -211,7 +211,8 @@
             @media #{$desktop} {
                 @include margin($margin-sm auto $margin-xxxl auto);
             }
-            h2 {
+            h2,
+            h3 {
                 @include margin-bottom($margin-md);
                 @include font-size($font-l);
                 @include line-height($font-xl, $font-l);

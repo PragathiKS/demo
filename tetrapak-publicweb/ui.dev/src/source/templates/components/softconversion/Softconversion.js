@@ -111,7 +111,7 @@ class Softconversion {
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     apiPayload.padrotUrl = pardotUrl;
-    apiPayload.marketingConsent = true;
+    apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked'); 
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
@@ -202,8 +202,6 @@ class Softconversion {
       e.stopPropagation();
       let isvalid = true;
       const tab = $(this).closest('.tab-content-steps');
-      const honeyPotFieldValue = $(`#pardot_extra_field_${$componentName}`, self.root).val();
-      
       $('input', tab).each(function () {
         const fieldName = $(this).attr('name');
 
@@ -214,17 +212,14 @@ class Softconversion {
 
        
         }
-        if ($(this).prop('required') && $(this).val() === '' && requestPayload['typeOfVisitorTitle']==='Customer') {
-          isvalid = false;
-          $(this).closest('.form-group, .formfield').addClass('field-error');
-        }else if(fieldName ==='market-consent' && !$(this).is(':checked')){
+        if ($(this).prop('required') && $(this).val() === '' && requestPayload['typeOfVisitor']===`customer-${$componentName}`) {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
         }else {
           $(this).closest('.form-group, .formfield').removeClass('field-error');
         }
       });
-      if (isvalid && !honeyPotFieldValue) {
+      if (isvalid) {
         self.submitForm();
       }
     });

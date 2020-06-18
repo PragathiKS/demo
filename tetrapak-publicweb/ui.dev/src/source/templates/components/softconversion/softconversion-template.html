@@ -25,8 +25,8 @@
       <div class="modal-content tp-modal-content">
 
       	<div class="modal-header pw-softconversion__header" auto_locator="softConversionSectionHeader">
-          <h4 role="heading" class="pw-softconversion__header__heading heading_${componentName}" auto_locator="headingFontStep1">${data.heading}
-          </h4>
+          <h2 role="heading" class="pw-softconversion__header__heading heading_${componentName}" auto_locator="headingFontStep1">${data.heading}
+          </h2>
           <input type="hidden" name="heading_${componentName}" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
           <button type="button" class="tp-close-btn icon-Close_pw pw-softconversion__header__close js-close-btn"></button>
         </div>
@@ -193,7 +193,7 @@
 											<div class="row form-group no-gutters">
                                            <div class="col-sm-1">
         									<label class="tpatom-checkbox__label clearfix">
-											<input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="market-consent" name="market-consent" required auto_locator="positionInput">
+											<input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="market-consent-${componentName}" name="market-consent" auto_locator="positionInput">
                                             <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                                             </label>
         								</div>
@@ -274,7 +274,7 @@
       
                                 <div auto_locator="readyForDownloadHeading">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.heading_h2_template @ headingText=data.downloadReadyHeading}" />
+                                        data-sly-call="${heading.heading_h3_template @ headingText=data.downloadReadyHeading}" />
                                 </div>
                                 <div class="descriptionTextThankyou" auto_locator="readyForDownloadDescription">
                                     ${data.downloadReadyDescriptionText @ context='html'}
@@ -296,7 +296,7 @@
       
                                 <div auto_locator="thankyouHeading">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.heading_h2_template @ headingText=data.thankyouHeading}" />
+                                        data-sly-call="${heading.heading_h3_template @ headingText=data.thankyouHeading}" />
                                 </div>
                                 <div class="descriptionTextThankyou" auto_locator="thankyouDescription">
                                     ${data.thankyouDescriptionText @ context='html'}
