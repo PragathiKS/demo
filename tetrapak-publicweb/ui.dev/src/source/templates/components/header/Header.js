@@ -161,7 +161,7 @@ class Header {
     else {
       $this.attr('target','_self');
     }
-    const linkType = $this.attr('target');
+    const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
     const trackingObj = {
       linkType,
       linkSection: 'Brand logo',
