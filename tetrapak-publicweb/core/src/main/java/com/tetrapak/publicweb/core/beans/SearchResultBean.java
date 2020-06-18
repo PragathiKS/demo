@@ -34,6 +34,9 @@ public class SearchResultBean {
     
     /** The asset extension. */
     private String assetExtension;
+    
+    /** The asset thumbnail. */
+    private String assetThumbnail;
 
     /**
      * Gets the title.
@@ -213,6 +216,24 @@ public class SearchResultBean {
      */
     public void setSizeType(String sizeType) {
         this.sizeType = sizeType;
+    }
+    
+    /**
+     * Gets the asset thumbnail.
+     *
+     * @return the asset thumbnail
+     */
+    public String getAssetThumbnail() {
+        return assetThumbnail;
+    }
+
+    /**
+     * Sets the asset thumbnail.
+     *
+     * @param assetThumbnail the new asset thumbnail
+     */
+    public void setAssetThumbnail(String assetThumbnail) {
+        this.assetThumbnail = assetThumbnail;
     }
     
 

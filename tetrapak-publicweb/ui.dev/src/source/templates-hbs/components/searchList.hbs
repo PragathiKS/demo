@@ -1,16 +1,18 @@
 {{#unless this.noFiltersMatches}}
 {{#each this}}
-<div class="pw-search-results__results-list__item">
+<div class="pw-search-results__results-list__item" auto_locator="searchItemPadding">
   {{#if this.size}}
   <div>
-    <div class="pw-media-container">
+    <div class="pw-media-container" auto_locator="thumbnailPadding">
       {{#if_eq this.assetType 'image'}}
         <img class="pw-product-card-grid__item__image" src="{{this.path}}" alt="{{this.title}}">
       {{else}}
         {{#if this.assetThumbnail}}
             <img class="pw-product-card-grid__item__image" src="{{this.assetThumbnail}}" alt="{{this.title}}">
           {{else}}
-            <i class="{{#if_eq this.assetType 'video'}}icon-Play{{else}}icon-PDF{{/if_eq}}"></i>
+            <div class="{{#if_eq this.assetType 'video'}}icon-video-container{{else}}icon-pdf-container{{/if_eq}}">
+              <i class="{{#if_eq this.assetType 'video'}}icon-Play{{else}}icon-PDF{{/if_eq}}"></i>
+            </div>
         {{/if}}
       {{/if_eq}}
       <div class="pw-media-container__image-helper"></div>
@@ -20,18 +22,18 @@
   </div>
   {{/if}}
   <div>
-    <span class="tpatom-subheading tpatom-heading--small">
+    <span class="tpatom-subheading tpatom-heading--small" auto_locator="contentTypePadding">
       {{this.typeI18n}}{{#if this.date}}, {{this.date}} {{/if}}
     </span>
     <a href="{{this.path}}" target="{{#if this.size}}_blank{{else}}_self{{/if}}" class="pw-search-results__results-list__item__title-link">
-      <h3 class="tpatom-heading tpatom-heading--small-flat">{{this.title}}</h3>
+      <h3 class="tpatom-heading tpatom-heading--small-flat" auto_locator="searchItemTitle">{{this.title}}</h3>
     </a>
     {{#if this.size}}
       <p class="d-none d-lg-block pw-search-results__results-list__item__size"><span class="capitalizeText">{{this.assetExtension}}</span> {{this.assetTypeI18n}} {{this.size}} {{this.sizeTypeI18n}} 
         {{#if_eq this.assetType 'video'}}{{else}}<a href="{{this.path}}" target="_self" class="js-asset-download" data-asset-extension="{{this.assetExtension}}"><i class="icon-Download"></i></a>{{/if_eq}}</p>
     {{else}}
       {{#if this.description}}
-        <p class="pw-search-results__results-list__item__description"><span>{{this.description}}</span></p>
+        <p class="pw-search-results__results-list__item__description" auto_locator="contentTitlePadding"><span auto_locator="searchItemDescription">{{this.description}}</span></p>
       {{/if}}
     {{/if}}
   </div>

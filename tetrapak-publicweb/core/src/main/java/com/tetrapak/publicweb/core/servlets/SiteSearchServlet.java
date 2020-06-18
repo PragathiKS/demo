@@ -324,11 +324,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         // paging metadata
         LOGGER.info("Total number of results : {}", noOfResults);
 
-        // 1 Extra Result Count is Coming
-        if (noOfResults > 1) {
-            noOfResults = noOfResults - 1;
-        }
-
         searchBean.setTotalResults(noOfResults);
         int numberofPages = (int) Math.ceil((double) noOfResults / noOfResultsPerHit);
         searchBean.setTotalPages(numberofPages);
@@ -360,7 +355,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     private SearchResultBean setSearchResultItemData(Hit hit, SearchResultsModel searchResultsModel)
             throws RepositoryException {
 
-        SearchResultBean searchResultItem = new SearchResultBean();       
+        SearchResultBean searchResultItem = new SearchResultBean();
         Resource resource = hit.getResource();
 
         if (null != resource) {
@@ -372,13 +367,19 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 String mediaType = getMediaType(assetMetadataProperties);
                 setMediaPath(searchResultItem, hit.getPath(), mediaType);
                 String mediaTitle = assetMetadataProperties.get("dc:title", StringUtils.EMPTY);
-                if(StringUtils.isBlank(mediaTitle)) {
-                    mediaTitle = hit.getTitle(); 
+                if (StringUtils.isBlank(mediaTitle)) {
+                    mediaTitle = hit.getTitle();
                 }
                 searchResultItem.setTitle(mediaTitle);
                 setMediaSize(searchResultItem, assetMetadataProperties);
                 searchResultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf('.') + 1));
-                searchResultItem.setAssetType(getMediaType(assetMetadataProperties));
+                searchResultItem.setAssetType(mediaType);
+                if(PWConstants.VIDEO.equalsIgnoreCase(mediaType)) {
+                    searchResultItem.setAssetThumbnail(searchResultsModel.getVideoThumbnail());
+                }
+                if(PWConstants.DOCUMENT.equalsIgnoreCase(mediaType)) {
+                    searchResultItem.setAssetThumbnail(searchResultsModel.getDocumentThumbnail());
+                }
             } else {
                 searchResultItem.setTitle(PageUtil.getCurrentPage(hit.getResource()).getTitle());
                 searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
@@ -488,7 +489,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         if (PWConstants.PRODUCTS.equalsIgnoreCase(contentType)) {
             searchResultItem.setType(searchResultsModel.getProductLabel());
         } else {
-            if (Objects.nonNull(hit.getProperties().get("cq:lastModified"))) {
+            if (Objects.nonNull(hit.getProperties().get("articleDate"))) {
+                searchResultItem.setDate(formatDate(hit.getProperties().get("articleDate", Date.class)));
+            } else if (Objects.nonNull(hit.getProperties().get("cq:lastModified"))) {
                 searchResultItem.setDate(formatDate(hit.getProperties().get("cq:lastModified", Date.class)));
             }
             if (PWConstants.EVENTS.equalsIgnoreCase(contentType)) {

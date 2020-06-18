@@ -1,0 +1,103 @@
+.pw-subscriptionForm-form {
+    .form-group {
+        @include margin-bottom($margin-md);
+        &.field-error {
+            @include margin-bottom(0);
+        }
+    }
+
+    .emailDiv {
+        @include margin-bottom($margin-l);
+    }
+
+    .errorMsg {
+        display: none;
+        color: $color-alert;
+        font-size: 12px;
+        &.purposeOfBusinessContactError {
+            @include margin-top($margin-sm);
+        }
+        &.purposeOfBusinessIntersetError {
+            @include margin-top($margin-sm);
+        }
+    }
+
+    .formfield,
+    .form-group {
+        label {
+            @include margin-bottom(0);
+            padding-top: 2px;
+        }
+        &.field-error {
+            .errorMsg {
+                display: block;
+            }
+        }
+    }
+    .sf-tab-pane {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+
+    .separator {
+        @include padding-bottom($padding-l);
+        @include margin-bottom($margin-l);
+        border-bottom: 1px solid $color-mercury;
+        @media #{$desktop} {
+            @include margin-bottom(0);
+            @include padding-bottom(0);
+            border-bottom: 0;
+            border-right: 1px solid $color-mercury;
+            padding-right: $margin-xxxl;
+            & + div {
+                @include padding-left($padding-xxxl);
+            }
+            h4 {
+                @include margin-bottom($margin-l);
+            }
+        }
+    }
+    .main-heading {
+        @include margin-bottom($margin-md);
+        overflow-wrap: break-word;
+    }
+    ul.pw-progressbar_wrapper .step-box {
+        &::before {
+            flex: 0;
+        }
+        &::after {
+            flex: 1;
+        }
+        &:last-child {
+            flex: 0;
+        }
+    }
+
+    .consentCheckbox {
+        position: relative;
+        top: 4px;
+        height: 20px;
+        margin-right: 6px;
+        width: 20px;
+        min-width: 20px;
+    }
+
+    .consentlabel p {
+        display: inline;
+    }
+
+    .descriptionTextThankyou {
+        @include margin-top($margin-l);
+    }
+
+    .checboxField {
+        display: flex;
+    }
+
+    .subscribeButton {
+        margin-top: $margin-l;
+    }
+  }
+  

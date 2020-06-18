@@ -18,6 +18,8 @@ describe('Header', function () {
     this.trackAnalyticsSpy = sinon.spy(this.header, 'trackAnalytics');
     this.handleHeaderItemMouseOverSpy = sinon.spy(this.header, 'handleHeaderItemMouseOver');
     this.handleHeaderItemMouseOutSpy = sinon.spy(this.header, 'handleHeaderItemMouseOut');
+    this.searchIconClickSpy = sinon.spy(this.header, 'searchIconClick');
+    this.handleCloseSolEventSpy = sinon.spy(this.header, 'handleCloseSolEvent');
     this.replaceStub = sinon.stub(loc, 'replace');
     this.openStub = sinon.stub(window, 'open');
     this.replaceStub.returns(true);
@@ -42,6 +44,8 @@ describe('Header', function () {
     this.handleHeaderItemMouseOverSpy.restore();
     this.handleHeaderItemMouseOutSpy.restore();
     this.openStub.restore();
+    this.searchIconClickSpy.restore();
+    this.handleCloseSolEventSpy.restore();
   });
   it('should initialize', function () {
     expect(this.header.init.called).to.be.true;
@@ -90,6 +94,14 @@ describe('Header', function () {
   it('should call handleHeaderItemMouseOut on mouseout', function () {
     $('.js-main-menu-link-hover').trigger('mouseout');
     expect(this.header.handleHeaderItemMouseOut.called).to.be.true;
+  });
+  it('should call searchIconClick on click', function () {
+    $('.js-tp-pw-header__search-box-toggle').trigger('click');
+    expect(this.header.searchIconClick.called).to.be.true;
+  });
+  it('should call handleCloseSolEvent on click', function () {
+    $('.js-close-menu-solution').trigger('click');
+    expect(this.header.handleCloseSolEvent.called).to.be.true;
   });
 
 });

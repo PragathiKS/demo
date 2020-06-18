@@ -109,12 +109,15 @@ class Searchresults {
       if ((filterObj.filterTags.contentType.length === 0) && (filterObj.filterTags.theme.length === 0)) {
         this.renderTitle('', this.cache.emptyFieldText, '', true);
         this.cache.$resultsList.empty();
+        this.cache.$pagiantion.addClass('d-none');
       } else {
+        filterObj.filterTags['page'][0] = 1;
         this.pushIntoUrl();
         this.search();
       }
     } else {
       filterObj.filterTags['searchTerm'][0] = searchVal;
+      filterObj.filterTags['page'][0] = 1;
       this.pushIntoUrl();
       this.search();
     }
@@ -168,7 +171,9 @@ class Searchresults {
     }).fail(() => {
       this.cache.$spinner.addClass('d-none');
       this.renderTitle(null, this.cache.noResultsText, null);
+      this.cache.$filterChecks.removeAttr('disabled');
       this.cache.$resultsList.empty();
+      this.cache.$pagination.addClass('d-none');
     });
   };
 

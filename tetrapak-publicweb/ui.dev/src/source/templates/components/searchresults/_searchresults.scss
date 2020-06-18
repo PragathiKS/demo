@@ -207,6 +207,30 @@
                     width: 150px;
                     height: 84px;
                 }
+                .icon-video-container {
+                    height: 70px;
+                    width: 70px;
+                    background: $color-white;
+                    border-radius: 100%;
+                    margin: 0;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    i {
+                        left: 56%;
+                        top: 51%;
+                        font-size: 32px;
+                    }
+                }
+                .icon-pdf-container {
+                    background: $color-white;
+                    border-radius: 4px;
+                    position: relative;
+                    margin: auto;
+                    height: 100%;
+                    width: 60px;
+                }
                 i {
                     color: $color-congress-blue;
                     font-size: 34px;
@@ -215,15 +239,13 @@
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    @media #{$desktop} {
-                        font-size: 30px;
-                    }
                 }
                 img {
                     display: inline-block;
                     max-height: 100%;
                     max-width: 100%;
                     vertical-align: middle;
+                    border-radius: 0;
                 }
             }
             &__size {
@@ -241,16 +263,14 @@
                 position: relative;
                 max-height: 54px;
                 text-align: justify;
-                > * {
-                    &:first-child {
-                        float: right;
+                > span {
+                    &::after {
+                        content: '\0000a0';
+                        position: absolute;
                         width: 100%;
+                        z-index: 1;
+                        background: $color-white;
                     }
-                }
-                &::before {
-                    content: '';
-                    float: left;
-                    width: 5px;
                 }
                 &::after {
                     content: '\02026';
@@ -260,7 +280,7 @@
                     width: 2em;
                     text-align: right;
                     font-size: 18px;
-                    background: linear-gradient(to right, rgba(255, 255, 255, 0), $color-white 50%, $color-white);
+                    background: $color-white;
                 }
             }
 
