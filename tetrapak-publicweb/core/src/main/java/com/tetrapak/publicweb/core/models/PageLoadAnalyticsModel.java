@@ -1,11 +1,10 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+import java.util.Set;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -14,11 +13,12 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
 
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 @Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
@@ -44,21 +44,22 @@ public class PageLoadAnalyticsModel {
     private boolean production;
     private boolean staging;
     private boolean development;
-    private StringBuilder siteSection0 = new StringBuilder(StringUtils.EMPTY);
+    private String productName;
+    private final StringBuilder siteSection0 = new StringBuilder(StringUtils.EMPTY);
     private StringBuilder siteSection1 = new StringBuilder(StringUtils.EMPTY);
-    private StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
-    private StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
-    private StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
+    private final StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
+    private final StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
+    private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
     private static final int COUNTRY_LEVEL = 4;
     private static final int LANGUAGE_LEVEL = 5;
 
     @PostConstruct
     public void initModel() {
-        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         if (null != pageManager) {
             currentPage = pageManager.getContainingPage(resource);
             if (null != currentPage) {
-                String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
+                final String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
                 pageType = StringUtils.substringAfterLast(templatePath, "/");
             }
         }
@@ -67,19 +68,28 @@ public class PageLoadAnalyticsModel {
         updateRunMode();
         updateSiteSections();
         updatePageName();
+        updateProductName();
 
         digitalData = buildDigitalDataJson();
     }
 
+    /**
+     * Update product name.
+     */
+    private void updateProductName() {
+        final ProductModel product = resource.adaptTo(ProductModel.class);
+        productName = product.getName();
+    }
+
     private void updateLanguageAndCountry() {
-        Page countryPage = currentPage.getAbsoluteParent(COUNTRY_LEVEL - 1);
+        final Page countryPage = currentPage.getAbsoluteParent(COUNTRY_LEVEL - 1);
         if (countryPage != null) {
             siteCountry = countryPage.getName();
             if ("lang-masters".equalsIgnoreCase(siteCountry)) {
                 siteCountry = StringUtils.EMPTY;
             }
         }
-        Page languagePage = currentPage.getAbsoluteParent(LANGUAGE_LEVEL - 1);
+        final Page languagePage = currentPage.getAbsoluteParent(LANGUAGE_LEVEL - 1);
         if (languagePage != null) {
             siteLanguage = languagePage.getName();
         }
@@ -87,7 +97,7 @@ public class PageLoadAnalyticsModel {
 
     private void updateSiteSections() {
         int siteSectionIndex = LANGUAGE_LEVEL;
-        int currentPageIndex = currentPage.getDepth();
+        final int currentPageIndex = currentPage.getDepth();
         if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection0)) {
             channel = siteSection0.toString();
             siteSectionIndex++;
@@ -101,7 +111,7 @@ public class PageLoadAnalyticsModel {
         }
     }
 
-    private void updateSection4(int siteSectionIndex, int currentPageIndex) {
+    private void updateSection4(int siteSectionIndex, final int currentPageIndex) {
         if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection3)) {
             siteSectionIndex++;
             updateSectionName(siteSectionIndex, currentPageIndex, siteSection4);
@@ -134,9 +144,9 @@ public class PageLoadAnalyticsModel {
         }
     }
 
-    private boolean updateSectionName(int siteSectionIndex, int currentPageIndex, StringBuilder siteSection) {
+    private boolean updateSectionName(final int siteSectionIndex, final int currentPageIndex, final StringBuilder siteSection) {
         if (siteSectionIndex < currentPageIndex) {
-            Page siteSectionPage = currentPage.getAbsoluteParent(siteSectionIndex);
+            final Page siteSectionPage = currentPage.getAbsoluteParent(siteSectionIndex);
             if (siteSectionPage != null) {
                 siteSection.append(siteSectionPage.getName());
                 return true;
@@ -147,7 +157,7 @@ public class PageLoadAnalyticsModel {
 
     private void updateRunMode() {
         if (slingSettingsService != null) {
-            Set<String> runModes = slingSettingsService.getRunModes();
+            final Set<String> runModes = slingSettingsService.getRunModes();
             if (runModes.contains("prod")) {
                 production = true;
             } else if (runModes.contains("stage")) {
@@ -160,9 +170,9 @@ public class PageLoadAnalyticsModel {
 
     private String buildDigitalDataJson() {
 
-        JsonObject jsonObject = new JsonObject();
+        final JsonObject jsonObject = new JsonObject();
 
-        JsonObject pageInfo = new JsonObject();
+        final JsonObject pageInfo = new JsonObject();
         pageInfo.addProperty("channel", channel);
         pageInfo.addProperty("pageType", pageType);
         pageInfo.addProperty("pageName", pageName);
@@ -178,21 +188,27 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
 
-        JsonObject userInfo = new JsonObject();
+        final JsonObject userInfo = new JsonObject();
         userInfo.addProperty("userId", StringUtils.EMPTY);
         userInfo.addProperty("loginStatus", StringUtils.EMPTY);
         userInfo.addProperty("userLanguage", StringUtils.EMPTY);
         userInfo.addProperty("userRole", StringUtils.EMPTY);
 
-        JsonObject errorInfo = new JsonObject();
+        final JsonObject errorInfo = new JsonObject();
         errorInfo.addProperty("errorcode", getErrorCode());
         errorInfo.addProperty("errortype", getErrorMessage());
+
+        if (!StringUtils.isEmpty(productName)) {
+            final JsonObject productInfo = new JsonObject();
+            productInfo.addProperty("productName", productName);
+            jsonObject.add("productInfo", productInfo);
+        }
 
         jsonObject.add("pageinfo", pageInfo);
         jsonObject.add("userinfo", userInfo);
         jsonObject.add("error", errorInfo);
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls()
+        final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         return gson.toJson(jsonObject);
     }

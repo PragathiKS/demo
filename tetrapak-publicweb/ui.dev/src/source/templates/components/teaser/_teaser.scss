@@ -11,6 +11,7 @@
         @include padding-bottom($padding-md);
         @media #{$desktop} {
             @include padding-left($padding-l);
+            @include padding-bottom($padding-l);
         }
         h2.tp-atom-heading {
             @include font-size($font-l);
@@ -86,17 +87,17 @@
             }
         }
         .noTopPad {
-            @include padding-top($padding-zero);
+            @include margin-top($margin-zero);
         }
         .tilte {
-            @include padding-top($margin-l);
-            @include padding-bottom($margin-md);
+            @include margin-top($margin-md);
+            @include margin-bottom($margin-md);
             @include font-size($font-md);
             line-height: 24px;
         }
         .link {
-            @include padding-top($padding-l);
-            @include padding-bottom($padding-l);
+            @include margin-top($margin-md);
+            @include margin-bottom($margin-zero);
         }
     }
 }

@@ -16,14 +16,18 @@
     <sly data-sly-test.companyid="${'{0}{1}' @ format=['company-', componentName, ')']}" />
     <sly data-sly-test.positionid="${'{0}{1}' @ format=['position-', componentName, ')']}" />
 
+    <sly data-sly-test.notmebtn="${'{0}{1}' @ format=['notmebtn notmebtn-', componentName, ')']}" />
+    <sly data-sly-test.yesmebtn="${'{0}{1}' @ format=['yesmebtn-', componentName, ')']}" />
+
     <div class="modal tp-modal pw-softconversion js-soft-modal ${componentName} fade" id="lang-modal" data-module="Softconversion" tabindex="-1" role="dialog">
     	<input type="hidden" class="ComponentNameSoft" name="ComponentNameSoft" value="${componentName}">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
       <div class="modal-content tp-modal-content">
 
       	<div class="modal-header pw-softconversion__header" auto_locator="softConversionSectionHeader">
-          <h4 role="heading" class="pw-softconversion__header__heading" auto_locator="headingFontStep1">${data.heading}
-          </h4>
+          <h2 role="heading" class="pw-softconversion__header__heading heading_${componentName}" auto_locator="headingFontStep1">${data.heading}
+          </h2>
+          <input type="hidden" name="heading_${componentName}" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
           <button type="button" class="tp-close-btn icon-Close_pw pw-softconversion__header__close js-close-btn"></button>
         </div>
         
@@ -34,7 +38,7 @@
             id="pw-contactUs" auto_locator="contactUsParentContainerStep1">
             <div class="tab-content">
                 <form class="pw-form pw-form-softconversion-${componentName}" accept-charset="UTF-8"
-                    data-softconversion-api-url="${data.apiUrl}" data-softconversion-padrot-url="${data.padrotUrl}" autocomplete="off">
+                    data-softconversion-api-url="${data.apiUrl}" data-softconversion-pardot-url="${data.pardotUrl}" autocomplete="off">
                     <div class="tab-pane tab-${componentName} active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel"
                         id="${cfstep1}">
                         <div class="row no-gutters">
@@ -189,7 +193,7 @@
 											<div class="row form-group no-gutters">
                                            <div class="col-sm-1">
         									<label class="tpatom-checkbox__label clearfix">
-											<input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="market-consent" name="market-consent" required auto_locator="positionInput">
+											<input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="market-consent-${componentName}" name="market-consent" auto_locator="positionInput">
                                             <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                                             </label>
         								</div>
@@ -270,7 +274,7 @@
       
                                 <div auto_locator="readyForDownloadHeading">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.heading_h2_template @ headingText=data.downloadReadyHeading}" />
+                                        data-sly-call="${heading.heading_h3_template @ headingText=data.downloadReadyHeading}" />
                                 </div>
                                 <div class="descriptionTextThankyou" auto_locator="readyForDownloadDescription">
                                     ${data.downloadReadyDescriptionText @ context='html'}
@@ -292,7 +296,7 @@
       
                                 <div auto_locator="thankyouHeading">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.heading_h2_template @ headingText=data.thankyouHeading}" />
+                                        data-sly-call="${heading.heading_h3_template @ headingText=data.thankyouHeading}" />
                                 </div>
                                 <div class="descriptionTextThankyou" auto_locator="thankyouDescription">
                                     ${data.thankyouDescriptionText @ context='html'}
@@ -302,6 +306,28 @@
                                             <span class="tpatom-link__text sly-text"> ${data.moreButtonLabel}
                                                     </span>
                                             </a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane tab-${componentName}" role="tabpanel" id="cf-step-welcomeback-${componentName}">
+                        <div class="row thankyou">
+                            <div class="col text-center" auto_locator="welcomeBackPage">
+      
+                                <div auto_locator="welcomeBackHeading">
+                                    <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                        data-sly-call="${heading.heading_h2_template @ headingText=data.welcomeBackHeading}" />
+                                </div>
+                                <div class="descriptionTextThankyou" auto_locator="welcomeBackDescription">
+                                    ${data.welcomeBackDescriptionText @ context='html'}
+                                    <p id="visitor-email-${componentName}"></p>
+                                </div>
+                                <div class="button-group">
+                                        <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                                            data-sly-call="${previousButton.tabbutton_template @ btnText=data.noButtonLabel, variant='secondary', customClasses=notmebtn, autoLocator='softConversionNotMeButton'}" />
+                                        <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText=data.yesButtonLabel,customClasses=yesmebtn, autoLocator='softConversionYesMeButton'}" />
                                 </div>
                             </div>
                         </div>

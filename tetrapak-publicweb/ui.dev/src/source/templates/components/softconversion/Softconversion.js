@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
-import { validateFieldsForTags, isMobileMode } from '../../../scripts/common/common';
+import { validateFieldsForTags, isMobileMode, storageUtil } from '../../../scripts/common/common';
 
 class Softconversion {
   constructor({ el }) {
@@ -17,6 +17,9 @@ class Softconversion {
     this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSoft"]').val();
     this.cache.$company = this.root.find(`.company-${this.cache.$componentName}`);
     this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
+    this.cache.$notmebtn = this.root.find(`.notmebtn-${this.cache.$componentName}[type=button]`);
+    this.cache.$yesmebtn = this.root.find(`.yesmebtn-${this.cache.$componentName}[type=button]`);
+    
     this.cache.softconversionapi = this.root.find(`form.pw-form-softconversion-${this.cache.$componentName}`);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
    
@@ -60,9 +63,41 @@ class Softconversion {
     window.open(downloadLink, '_blank');
   }
 
+  notMeBtnHandler = () => {
+    isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'normal');
+    $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
+    $(`.heading_${this.cache.$componentName}`, this.root).text($(`#heading_${this.cache.$componentName}`).val());
+    $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
+  }
+
+  yesMeBtnHandler = () => {
+    $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
+    $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
+
+    const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
+    const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
+    const apiPayload =  {};
+    apiPayload.email = storageUtil.getCookie('visitor-mail');
+    apiPayload.language = this.root.find(`#site_language_${this.cache.$componentName}`).val();
+    apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
+    apiPayload.pardot_extra_field = '';
+    apiPayload.pardotUrl = pardotUrl;
+    apiPayload.marketingConsent = true;
+
+    ajaxWrapper.getXhrObj({
+      url: servletPath,
+      method: ajaxMethods.POST,
+      data: apiPayload
+    }).done(
+      () => {
+        $('.serviceError').removeClass('d-block');
+      }
+    );
+  }
+
   submitForm = () => {
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
-    const pardotUrl = this.cache.softconversionapi.data('softconversion-padrot-url');
+    const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
     
     const apiPayload =  {};
 
@@ -75,8 +110,8 @@ class Softconversion {
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
-    apiPayload.padrotUrl = pardotUrl;
-    apiPayload.marketingConsent = true;
+    apiPayload.pardotUrl = pardotUrl;
+    apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked'); 
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
@@ -87,7 +122,10 @@ class Softconversion {
         $('.serviceError').removeClass('d-block');
       }
     );
-    $('.pw-softconversion__header__heading', this.root).html('');
+    //drop cookies of email id 
+    storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
+
+    $(`.heading_${this.cache.$componentName}`, this.root).text('');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
     isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
@@ -95,7 +133,7 @@ class Softconversion {
 
 
   bindEvents() {
-    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $company, $position, $downloadbtn } = this.cache;
+    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $company, $position, $downloadbtn, $notmebtn, $yesmebtn } = this.cache;
     const self = this;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('click', function () {
@@ -109,6 +147,8 @@ class Softconversion {
     $radio.on('change', this.onRadioChangeHandler);
 
     $downloadbtn.on('click', this.downloadHandler);
+    $notmebtn.on('click', this.notMeBtnHandler);
+    $yesmebtn.on('click', this.yesMeBtnHandler);
 
     $nextbtn.click(function (e) {
       let isvalid = true;
@@ -162,8 +202,6 @@ class Softconversion {
       e.stopPropagation();
       let isvalid = true;
       const tab = $(this).closest('.tab-content-steps');
-      const honeyPotFieldValue = $(`#pardot_extra_field_${$componentName}`, self.root).val();
-      
       $('input', tab).each(function () {
         const fieldName = $(this).attr('name');
 
@@ -174,17 +212,14 @@ class Softconversion {
 
        
         }
-        if ($(this).prop('required') && $(this).val() === '' && requestPayload['typeOfVisitorTitle']==='Customer') {
-          isvalid = false;
-          $(this).closest('.form-group, .formfield').addClass('field-error');
-        }else if(fieldName ==='market-consent' && !$(this).is(':checked')){
+        if ($(this).prop('required') && $(this).val() === '' && requestPayload['typeOfVisitor']===`customer-${$componentName}`) {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
         }else {
           $(this).closest('.form-group, .formfield').removeClass('field-error');
         }
       });
-      if (isvalid && !honeyPotFieldValue) {
+      if (isvalid) {
         self.submitForm();
       }
     });
@@ -192,6 +227,16 @@ class Softconversion {
 
   showPopup = () => {
     const $this = this;
+    // check for the cookie present of not
+    const visitorMail = storageUtil.getCookie('visitor-mail');
+    if(visitorMail) {
+      $(`#visitor-email-${this.cache.$componentName}`).text(visitorMail).css('font-weight', 900);
+      $(`.heading_${this.cache.$componentName}`, this.root).text('');
+      $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
+      $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).addClass('active');
+      isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
+    }
+
     const { $modal } = $this.cache;
     $modal.modal();
   }
