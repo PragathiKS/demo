@@ -28,6 +28,11 @@
             margin: 0 auto;
     }
     }
+    .pw-padding {
+        &__zero {
+            @include padding($padding-zero $padding-xxxl);
+        }
+    }
 }
 // .regular {
 //     @include padding(16px 16px 24px 16px);

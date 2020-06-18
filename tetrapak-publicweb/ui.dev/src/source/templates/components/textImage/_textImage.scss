@@ -14,7 +14,7 @@
         .leftPad {
             @include padding-left($padding-zero);
             @include padding-right($padding-zero);
-            @include margin-top($margin-md);
+            @include margin-top($margin-zero);
             @media #{$desktop} {
                 @include padding-left($padding-zero);
                 @include padding-right($padding-l);

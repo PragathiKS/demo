@@ -15,20 +15,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.tetrapak.publicweb.core.services.PadrotService;
+import com.tetrapak.publicweb.core.services.PardotService;
 
 /**
  * The Class Business Inquiry Form Submit Request Servlet.
  */
 @Component(
         service = Servlet.class,
-        property = { Constants.SERVICE_DESCRIPTION + "=Softconversion form Submit Servlet",
+        property = { Constants.SERVICE_DESCRIPTION + "=Business Enquiry form Submit Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-                "sling.servlet.selectors=" + "padrotsoftconversion", "sling.servlet.extensions=" + "json",
-                "sling.servlet.resourceTypes=" + "publicweb/components/content/textImage",
-                "sling.servlet.resourceTypes=" + "publicweb/components/content/textVideo",
-                "sling.servlet.resourceTypes=" + "publicweb/components/content/banner" })
-public class SoftconversionPadrotServlet extends SlingAllMethodsServlet {
+                "sling.servlet.selectors=" + "pardotbusinessenquiry", "sling.servlet.extensions=" + "json",
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/businessinquiryform" })
+public class BusinessEnquiryPardotServlet extends SlingAllMethodsServlet {
 
     /**
      *
@@ -36,10 +34,10 @@ public class SoftconversionPadrotServlet extends SlingAllMethodsServlet {
     private static final long serialVersionUID = -4582610735374949058L;
 
     /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(SoftconversionPadrotServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BusinessEnquiryPardotServlet.class);
 
     @Reference
-    private transient PadrotService padrotService;
+    private PardotService pardotService;
 
     /**
      * Do get.
@@ -52,7 +50,8 @@ public class SoftconversionPadrotServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         try {
-            padrotService.submitPadrotPostRespose(request.getParameterMap());
+            pardotService.submitPardotPostRespose(request.getParameterMap(),
+                    pardotService.getBusinesInquiryServiceURL());
             // send response
             sendResponse(resp);
 
@@ -61,6 +60,7 @@ public class SoftconversionPadrotServlet extends SlingAllMethodsServlet {
         }
     }
 
+
     /**
      * Sends HTTPServlet response
      *
@@ -68,10 +68,12 @@ public class SoftconversionPadrotServlet extends SlingAllMethodsServlet {
      * @throws IOException
      * @throws JsonProcessingException
      */
-    private void sendResponse(final SlingHttpServletResponse resp) throws IOException {
+    private void sendResponse(final SlingHttpServletResponse resp)
+            throws IOException {
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write("Success");
     }
+
 
 }

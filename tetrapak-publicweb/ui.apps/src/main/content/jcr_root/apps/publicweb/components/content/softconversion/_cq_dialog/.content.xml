@@ -47,7 +47,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="Provide pardot form handler URL"
                                 fieldLabel="Pardot form handler URL"
-                                name="./padrotUrl"/>
+                                name="./pardotUrl"/>
                             <summarytext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
