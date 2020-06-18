@@ -75,14 +75,14 @@
                   </sly>
                   <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
                     <div class="x-img-responsive">
-                          <a data-sly-test="${tab.linkURL && tab.linkURL!='#'}"  
+                          <a data-sly-test="${tab.linkURL && tab.linkURL!='#'}"
                           href="${tab.linkURL ? tab.linkURL : '#'}"
                           class="img-link js-tablist__event-detail-description-link"
                           data-custom="${customData @ context='text'}"
                           data-link-section="${tabContentType}_imageClick"
                           data-link-name="${tab.linkText}"
                           data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
-                          data-component-name="Text & Image"
+                          data-component-name="${tabContentType}"
                           data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
                           data-tab-title="${tab.title}">
                       <sly data-sly-test="${!wcmmode.edit}">
@@ -117,7 +117,7 @@
                     <div class="pw-tablist__event-detail-description">${tab.description @ context='html'}</div>
                   </sly>
                   <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
-                    
+
                     <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}" />
                     <sly
                       data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}" />
@@ -126,7 +126,7 @@
                       data-custom="${customData @ context='text'}" title="${btnTooltip}"
                       data-link-section="${tabContentType}${buttonLinkType}"
                       data-link-name="${tab.linkText}"
-                      data-component-name="Text & Video"
+                      data-component-name="${tabContentType}"
                       data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
                       data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
                       data-tab-title="${tab.title}">
