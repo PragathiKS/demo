@@ -5,6 +5,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { validateFieldsForTags } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class ContactUs {
   constructor({ el }) {
@@ -101,6 +102,7 @@ class ContactUs {
     $nextbtn.click(function (e) {
       let isvalid = true;
       const target = $(this).data('target');
+      const currentTarget = $(this).data('current-target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
       const textarea = tab.find('textarea');
@@ -121,12 +123,18 @@ class ContactUs {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
           }
         });
+      } else {
+        self.onPreviousClickAnalytics(currentTarget,tab);
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
         if (target) {
           $('.tab-pane').removeClass('active');
           $(target).addClass('active');
+          if(!$(this).hasClass('previousbtn')){
+            self.onNextClickAnalytics(currentTarget,tab);
+          }
+
         }
       }
     });
@@ -145,6 +153,7 @@ class ContactUs {
       });
       if (isvalid && !honeyPotFieldValue) {
         self.submitForm();
+        self.onSubmitClickAnalytics();
       }
     });
 
@@ -160,7 +169,104 @@ class ContactUs {
       $dropItem.removeClass('active');
       $(this).addClass('active');
     });
+
+    this.onLoadTrackAnalytics();
   }
+
+  onNextClickAnalytics = (currentTarget,tab) => {
+    const { requestPayload } = this.cache;
+    const formType = tab.find('.form-field-heading').data('step-heading');
+    const formField = [];
+    let event = {
+      eventType : 'step 1 next'
+    };
+    if(currentTarget === 'cf-step-1'){
+      formField.push({formFieldName:tab.find('.form-field-heading').data('step-heading'), formFieldValue:requestPayload['purposeOfContact']});
+    } else if(currentTarget === 'cf-step-2'){
+      formField.push(
+        {formFieldName:tab.find('.first-name').data('first-name-label'), formFieldValue:'NA'},
+        {formFieldName:tab.find('.last-name').data('last-name-label'), formFieldValue:'NA'},
+        {formFieldName:tab.find('.email').data('email-name-label'), formFieldValue:'NA'},
+        {formFieldName:tab.find('.country').data('country-name-label'), formFieldValue:requestPayload['country']},
+      );
+      event = {
+        eventType : 'step 2 next'
+      };
+    }
+    const form  = {
+      formType,
+      formField,
+      formStep : tab.find('.button').data('form-step')
+    };
+
+    this.trackAnalytics(form,event);
+  };
+
+  onPreviousClickAnalytics = (currentTarget,tab) => {
+    const formType = tab.find('.form-field-heading').data('step-heading');
+    const formField = [];
+    let event = {
+      eventType : 'step 2 previous'
+    };
+    if(currentTarget === 'cf-step-3'){
+      event = {
+        eventType : 'step 3 previous'
+      };
+    }
+    const form  = {
+      formType,
+      formField,
+      formStep : tab.find('.button').data('form-step')
+    };
+
+    this.trackAnalytics(form,event);
+  }
+
+  onLoadTrackAnalytics = () => {
+    const form = {
+      formType:$('.js-form-field-heading-step1').data('step1-heading'),
+      formStep:'step 1',
+      formField: []
+    };
+    const event = {
+      eventType : 'formStart'
+    };
+    this.trackAnalytics(form,event);
+  };
+
+  onSubmitClickAnalytics = () => {
+    const form = {
+      formType:'ThankYou',
+      formStep:'step 3',
+      formField: []
+    };
+    const event = {
+      eventType : 'formComplete'
+    };
+    this.trackAnalytics(form,event);
+  }
+
+  trackAnalytics = (formTrackingObj,eventObj) => {
+
+    formTrackingObj = {
+      formName:$('.js-step1-main-heading').data('form-name'),
+      ...formTrackingObj
+    };
+
+    eventObj = {
+      ...eventObj,
+      event:'Contact Us'
+    };
+    trackAnalytics(
+      formTrackingObj,
+      'form',
+      'formClick',
+      undefined,
+      false,
+      eventObj,
+    );
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
