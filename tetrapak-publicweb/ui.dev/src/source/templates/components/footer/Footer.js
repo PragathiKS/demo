@@ -26,6 +26,15 @@ class Footer {
     const url = $this.attr('href');
     const linkText = $this.text().trim();
     const linkName = linkText ? linkText : $this.data('link-name');
+    const myDomain = 'tetrapak.com';
+    if (url && (url.includes('http://') || url.includes('https://'))) {
+      if (url.includes(myDomain)) {
+        $this.attr('target','_blank');
+      }
+    }
+    else {
+      $this.attr('target','_self');
+    }
     const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
 
     const trackingObj = {
