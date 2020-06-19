@@ -75,7 +75,7 @@ public class HeaderConfigurationModel {
      * @return the logo link
      */
     public String getLogoLink() {
-        return LinkUtils.sanitizeLink(logoLink);
+        return LinkUtils.sanitizeLink(logoLink, resource.getResourceResolver());
     }
 
     /**
@@ -93,7 +93,7 @@ public class HeaderConfigurationModel {
      * @return the login link
      */
     public String getLoginLink() {
-        return LinkUtils.sanitizeLink(loginLink);
+        return LinkUtils.sanitizeLink(loginLink, resource.getResourceResolver());
     }
 
     /**
@@ -111,7 +111,7 @@ public class HeaderConfigurationModel {
      * @return the contact link
      */
     public String getContactLink() {
-        return LinkUtils.sanitizeLink(contactLink);
+        return LinkUtils.sanitizeLink(contactLink, resource.getResourceResolver());
     }
 
     /**
@@ -129,7 +129,7 @@ public class HeaderConfigurationModel {
      * @return the solution page
      */
     public String getSolutionPage() {
-        return LinkUtils.sanitizeLink(solutionPage);
+        return LinkUtils.sanitizeLink(solutionPage, resource.getResourceResolver());
     }
 
     /**
@@ -147,6 +147,6 @@ public class HeaderConfigurationModel {
      * @return the search page
      */
     public String getSearchPage() {
-        return LinkUtils.sanitizeLink(searchPage);
+        return LinkUtils.sanitizeLink(searchPage, resource.getResourceResolver());
     }
 }

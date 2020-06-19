@@ -382,7 +382,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 }
             } else {
                 searchResultItem.setTitle(PageUtil.getCurrentPage(hit.getResource()).getTitle());
-                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
+                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), resourceResolver));
                 searchResultItem.setDescription(hit.getProperties().get("jcr:description", StringUtils.EMPTY));
                 setContentFields(searchResultItem, hit, searchResultsModel);
             }
@@ -408,10 +408,10 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             } else if (PWConstants.IMAGE.equalsIgnoreCase(mediaType)) {
                 searchResultItem.setPath(GlobalUtil.getImageUrlFromScene7(resourceResolver, path, dynamicMediaService));
             } else {
-                searchResultItem.setPath(LinkUtils.sanitizeLink(path));
+                searchResultItem.setPath(LinkUtils.sanitizeLink(path, resourceResolver));
             }
         } else {
-            searchResultItem.setPath(LinkUtils.sanitizeLink(path));
+            searchResultItem.setPath(LinkUtils.sanitizeLink(path, resourceResolver));
         }
     }
 

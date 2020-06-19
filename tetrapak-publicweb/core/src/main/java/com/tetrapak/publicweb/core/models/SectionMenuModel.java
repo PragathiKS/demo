@@ -93,7 +93,7 @@ public class SectionMenuModel {
         // Set section menu home page title
         setSectionHomePageTitle(page);
         // Set section menu home page url
-        setSectionHomePagePath(page);
+        setSectionHomePagePath(page, request.getResourceResolver());
         // Set page hierarchy
         setPageHierarchy(currentPage);
         // Populate section menu
@@ -141,7 +141,7 @@ public class SectionMenuModel {
                     sectionMenuBean.setLinkPath(externalTemplate.getExternalUrl());
                 } else {
                     sectionMenuBean.setExternal(false);
-                    sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath()));
+                    sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), resourceResolver));
                 }
                 sectionMenuBean.setSubSectionMenu(
                         populateSubSectionMenu(nextPage, path, pseudoCategoryService, resourceResolver));
@@ -192,7 +192,7 @@ public class SectionMenuModel {
             final Page nextPage = pages.next();
             if (!nextPage.isHideInNav()) {
                 populatePseudoCategoryMap(pseudoCategoryMap, nextPage);
-                subSections.add(populateSubSection(nextPage));
+                subSections.add(populateSubSection(nextPage, resourceResolver));
             }
         }
 
@@ -202,7 +202,8 @@ public class SectionMenuModel {
                 subSectionMenuBean.setSubSections(subSections);
                 subSectionMenuBean.setSubSectionCount(subSections.size());
             } else {
-                final List<PseudoCategoriesSectionBean> pseudoSection = populatePseudoSection(pseudoCategoryMap);
+                final List<PseudoCategoriesSectionBean> pseudoSection = populatePseudoSection(pseudoCategoryMap,
+                        resourceResolver);
                 subSectionMenuBean.setPseudoCategoriesSection(pseudoSection);
             }
         } else {
@@ -282,10 +283,13 @@ public class SectionMenuModel {
     /**
      * Populate pseudo section.
      *
-     * @param pseudoCategoryMap the pseudo category map
+     * @param pseudoCategoryMap
+     *            the pseudo category map
+     * @param resourceResolver
      * @return the list
      */
-    private List<PseudoCategoriesSectionBean> populatePseudoSection(final Map<String, List<String>> pseudoCategoryMap) {
+    private List<PseudoCategoriesSectionBean> populatePseudoSection(final Map<String, List<String>> pseudoCategoryMap,
+            final ResourceResolver resourceResolver) {
         final List<PseudoCategoriesSectionBean> pseudoSection = new ArrayList<>();
 
         for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
@@ -293,7 +297,7 @@ public class SectionMenuModel {
                 final PseudoCategoriesSectionBean pseudoCategoriesSectionBean = new PseudoCategoriesSectionBean();
                 pseudoCategoriesSectionBean.setTitle(entrySet.getKey());
 
-                final List<SubSectionBean> subSectionList = getSubSectionList(entrySet.getValue());
+                final List<SubSectionBean> subSectionList = getSubSectionList(entrySet.getValue(), resourceResolver);
                 pseudoCategoriesSectionBean.setSubSections(subSectionList);
                 pseudoCategoriesSectionBean.setSubSectionCount(subSectionList.size());
                 pseudoSection.add(pseudoCategoriesSectionBean);
@@ -305,14 +309,17 @@ public class SectionMenuModel {
     /**
      * Gets the sub section bean.
      *
-     * @param pathList the path list
+     * @param pathList
+     *            the path list
+     * @param resourceResolver
      * @return the sub section bean
      */
-    private List<SubSectionBean> getSubSectionList(final List<String> pathList) {
+    private List<SubSectionBean> getSubSectionList(final List<String> pathList,
+            final ResourceResolver resourceResolver) {
         final List<SubSectionBean> subSections = new ArrayList<>();
         for (final String path : pathList) {
             final Page page = pageManager.getPage(path);
-            subSections.add(populateSubSection(page));
+            subSections.add(populateSubSection(page, resourceResolver));
         }
         return subSections;
     }
@@ -323,7 +330,7 @@ public class SectionMenuModel {
      * @param page the page
      * @return the sub section bean
      */
-    private SubSectionBean populateSubSection(final Page page) {
+    private SubSectionBean populateSubSection(final Page page, final ResourceResolver resourceResolver) {
         final SubSectionBean subSectionBean = new SubSectionBean();
         subSectionBean.setLinkText(page.getTitle());
 
@@ -333,7 +340,7 @@ public class SectionMenuModel {
             subSectionBean.setLinkPath(externalTemplate.getExternalUrl());
         } else {
             subSectionBean.setExternal(false);
-            subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath()));
+            subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath(), resourceResolver));
         }
 
         return subSectionBean;
@@ -390,10 +397,12 @@ public class SectionMenuModel {
     /**
      * Sets the section home page path.
      *
-     * @param page the new section home page path
+     * @param page
+     *            the new section home page path
+     * @param resourceResolver
      */
-    public void setSectionHomePagePath(final Page page) {
-        sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath());
+    public void setSectionHomePagePath(final Page page, final ResourceResolver resourceResolver) {
+        sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath(), resourceResolver);
     }
 
     /**
