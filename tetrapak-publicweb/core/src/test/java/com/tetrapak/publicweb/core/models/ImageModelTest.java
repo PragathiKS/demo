@@ -62,5 +62,6 @@ public class ImageModelTest {
         assertEquals("regular", model.getPwPadding());
         assertEquals("imageid", model.getAnchorId());
         assertEquals("image", model.getAnchorTitle());
+        assertEquals("grayscale-lighter", model.getPwTheme());
     }
 }

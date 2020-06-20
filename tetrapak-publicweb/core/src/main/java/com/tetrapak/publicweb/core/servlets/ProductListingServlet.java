@@ -186,7 +186,7 @@ public class ProductListingServlet extends SlingSafeMethodsServlet {
                         properties.get("productImageAltI18n", String.class) : "");
                 productItem.setLinkText(properties.get("ctaTexti18nKey", String.class) != null ?
                         properties.get("ctaTexti18nKey", String.class) : "");
-                productItem.setLinkPath(LinkUtils.sanitizeLink(hit.getPath()));
+                productItem.setLinkPath(LinkUtils.sanitizeLink(hit.getPath(), resourceResolver));
             }
 
         } catch (RepositoryException e) {

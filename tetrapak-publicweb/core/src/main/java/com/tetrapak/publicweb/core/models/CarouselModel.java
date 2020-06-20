@@ -108,7 +108,7 @@ public class CarouselModel {
 
         if (valueMap.containsKey(PRACTICE_PATH)) {
             String path = valueMap.get(PRACTICE_PATH, String.class);
-            bean.setPracticePath(LinkUtils.sanitizeLink(path));
+            bean.setPracticePath(LinkUtils.sanitizeLink(path, resource.getResourceResolver()));
         }
     }
 
@@ -128,7 +128,7 @@ public class CarouselModel {
                 bean.setCtaTexti18nKey(practiceLinePageModel.getCtaTexti18nKey());
                 bean.setPracticeImagePath(practiceLinePageModel.getPracticeImagePath());
                 bean.setPracticeImageAltI18n(practiceLinePageModel.getPracticeImageAltI18n());
-                bean.setPracticePath(LinkUtils.sanitizeLink(practicePath));
+                bean.setPracticePath(LinkUtils.sanitizeLink(practicePath, resource.getResourceResolver()));
             }
         }
     }

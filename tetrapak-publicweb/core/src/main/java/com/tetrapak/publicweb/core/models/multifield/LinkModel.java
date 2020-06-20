@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -13,6 +14,10 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LinkModel {
+
+    /** The resource. */
+    @Self
+    private Resource resource;
 
     /** The link label. */
     @ValueMapValue
@@ -53,7 +58,7 @@ public class LinkModel {
      * @return the link url
      */
     public String getLinkUrl() {
-        return LinkUtils.sanitizeLink(linkUrl);
+        return LinkUtils.sanitizeLink(linkUrl, resource.getResourceResolver());
     }
 
     /**
