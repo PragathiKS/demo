@@ -65,7 +65,7 @@ public class FooterConfigurationModel {
      * @return the logo link
      */
     public String getLogoLink() {
-        return LinkUtils.sanitizeLink(logoLink);
+        return LinkUtils.sanitizeLink(logoLink, resource.getResourceResolver());
     }
 
     /**

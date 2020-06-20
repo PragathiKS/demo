@@ -66,6 +66,9 @@ public class TabsListModelTest {
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT+ "/jcr:content/root/responsivegrid/tabslist";
 
+    /** The Constant RESOURCE_TWO. */
+    private static final String RESOURCE_TWO = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/tabslist_1";
+
     /** The Constant DAM_VIDEO_CONTENT_ROOT. */
     private static final String DAM_VIDEO_CONTENT_ROOT = "/content/dam/tetrapak/publicweb/videos";
 
@@ -191,10 +194,21 @@ public class TabsListModelTest {
 	assertEquals("https://www.youtube.com/embed/UEfCxCLtOwk?enablejsapi=1", model.getTabs().get(3).getYoutubeEmbedURL());
 
 	assertEquals("file_example_MOV_1280_1_4MB", model.getTabs().get(2).getVideoName());
-	assertEquals("badging", model.getTabs().get(3).getAssetName());
-
     }
-    
+
+    /**
+     * Test asset name.
+     *
+     * @throws Exception the exception
+     */
+    @Test
+    public void testAssetName() throws Exception {
+        context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);
+        resource = context.currentResource(RESOURCE_TWO);
+        model = resource.adaptTo(modelClass);
+        assertEquals("abc.mp4", model.getTabs().get(0).getAssetName());
+    }
+
     /**
      * Test model, resource and all getters of the TabsListModel model.
      *
