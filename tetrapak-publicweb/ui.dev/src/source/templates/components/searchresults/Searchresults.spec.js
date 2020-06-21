@@ -28,7 +28,6 @@ describe('Searchresults', function () {
     this.pushIntoUrlSpy = sinon.spy(this.searchresults, 'pushIntoUrl');
     this.applyFiltersSpy = sinon.spy(this.searchresults, 'applyFilters');
     this.renderFilterTagsSpy = sinon.spy(this.searchresults, 'renderFilterTags');
-    this.renderPaginationSpy = sinon.spy(this.searchresults, 'renderPagination');
     this.windowPopStateHandlerSpy = sinon.spy(this.searchresults, 'windowPopStateHandler');
     this.renderResultsSpy = sinon.spy(this.searchresults, 'renderResults');
     this.removeFilterSpy =  sinon.spy(this.searchresults, 'removeFilter');
@@ -51,7 +50,6 @@ describe('Searchresults', function () {
     this.renderResultsSpy.restore();
     this.renderFilterTagsSpy.restore();
     this.removeFilterSpy.restore();
-    this.renderPaginationSpy.restore();
     this.pushIntoUrlSpy.restore();
     this.extractQueryParamsSpy.restore();
     this.toggleFilterContainerSpy.restore();
@@ -64,7 +62,6 @@ describe('Searchresults', function () {
     expect(this.searchresults.init.called).to.be.true;
     expect(this.searchresults.extractQueryParams.called).to.be.true;
     expect(this.searchresults.search.called).to.be.true;
-    expect(this.searchresults.renderPagination.called).to.be.true;
     expect(this.searchresults.renderFilterTags.called).to.be.true;
     expect(render.fn.called).to.be.true;
     done();

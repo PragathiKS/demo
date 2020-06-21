@@ -32,6 +32,7 @@ class Searchresults {
     this.cache.resultsTitle = this.cache.$searchResultsTitle.data('resultsTitle');
     this.cache.noResultsText = this.cache.$searchResultsTitle.data('noResultsText');
     this.cache.emptyFieldText = this.cache.$searchResultsTitle.data('emptyField');
+    this.cache.resultSearchTermText = this.cache.$searchResultsTitle.data('resultSearchTerm');
 
     this.cache.$pagination = $('.js-pagination', this.root);
     this.cache.searchParams = { 'searchTerm': '', 'contentType': {}, 'theme': {}, 'page': 1 };
@@ -92,9 +93,9 @@ class Searchresults {
   }
 
   windowPopStateHandler = () => {
-    this.cache.queryParams = window.location.search;
-    const { searchTerm } = deparam(window.location.search);
-    this.cache.$searchInput.val(searchTerm);
+    this.cache.searchParams = {'searchTerm': '', 'contentType': {}, 'theme': {}, 'page': 1 };
+    this.cache.$filterChecks.prop('checked', false);
+    this.extractQueryParams();
     this.search();
   }
 
@@ -131,44 +132,53 @@ class Searchresults {
 
   search = () => {
     this.cache.$spinner.removeClass('d-none');
-    this.cache.$filterChecks.attr('disabled', true);
-    const { searchTerm } = deparam(window.location.search);
-    let queryParams = this.cache.queryParams;
-    queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
-    ajaxWrapper.getXhrObj({
-      url: this.cache.servletPath,
-      method: ajaxMethods.GET,
-      cache: true,
-      data: queryParams,
-      dataType: 'json',
-      contentType: 'application/json'
-    }).done((data) => {
+    const { searchTerm, contentType, theme } = this.cache.searchParams;
+    if (searchTerm === '' && $.isEmptyObject(contentType) && $.isEmptyObject(theme)) {
+      this.renderTitle('', this.cache.emptyFieldText, '', true);
+      this.cache.$resultsList.empty();
       this.cache.$spinner.addClass('d-none');
-      this.cache.$filterChecks.removeAttr('disabled');
-      if (data.totalResults > 0) {
-        this.cache.results = data.searchResults;
-        this.cache.totalPages = data.totalPages;
-        this.renderTitle(data.totalResults, this.cache.resultsTitle, searchTerm);
-        this.renderResults(data.searchResults);
-        if (data.totalPages > 1) {
-          this.renderPagination();
-          this.cache.$pagination.removeClass('d-none');
+      this.cache.$pagination.addClass('d-none');
+    } else {
+      const { searchTerm } = deparam(window.location.search);
+      this.cache.$filterChecks.attr('disabled', true);
+      let queryParams = this.cache.queryParams;
+      queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
+      ajaxWrapper.getXhrObj({
+        url: this.cache.servletPath,
+        method: ajaxMethods.GET,
+        cache: true,
+        data: queryParams,
+        dataType: 'json',
+        contentType: 'application/json'
+      }).done((data) => {
+        this.cache.$spinner.addClass('d-none');
+        this.cache.$filterChecks.removeAttr('disabled');
+        if (data.totalResults > 0) {
+          this.cache.results = data.searchResults;
+          this.cache.totalPages = data.totalPages;
+          const title = searchTerm ? this.cache.resultSearchTermText : this.cache.resultsTitle;
+          this.renderTitle(data.totalResults, title, searchTerm);
+          this.renderResults(data.searchResults);
+          if (data.totalPages > 1) {
+            this.renderPagination();
+            this.cache.$pagination.removeClass('d-none');
+          } else {
+            this.cache.$pagination.addClass('d-none');
+          }
         } else {
+          this.cache.$filterChecks.removeAttr('disabled');
+          this.renderTitle(null, this.cache.noResultsText, null);
+          this.cache.$resultsList.empty();
           this.cache.$pagination.addClass('d-none');
         }
-      } else {
-        this.cache.$filterChecks.removeAttr('disabled');
+      }).fail(() => {
+        this.cache.$spinner.addClass('d-none');
         this.renderTitle(null, this.cache.noResultsText, null);
+        this.cache.$filterChecks.removeAttr('disabled');
         this.cache.$resultsList.empty();
         this.cache.$pagination.addClass('d-none');
-      }
-    }).fail(() => {
-      this.cache.$spinner.addClass('d-none');
-      this.renderTitle(null, this.cache.noResultsText, null);
-      this.cache.$filterChecks.removeAttr('disabled');
-      this.cache.$resultsList.empty();
-      this.cache.$pagination.addClass('d-none');
-    });
+      });
+    }
   };
 
   renderTitle = (resultsCount, searchTitle, searchTerm, emptySearch = false) => {
@@ -211,7 +221,7 @@ class Searchresults {
 
   renderFilterTags = () => {
     const { contentType, theme } = this.cache.searchParams;
-    let joinedFilterTags = {...contentType, ...theme};
+    let joinedFilterTags = { ...contentType, ...theme };
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
     render.fn({
       template: 'searchFilters',
@@ -283,8 +293,14 @@ class Searchresults {
   };
 
   toggleFilterContainer = () => {
-    $('.pw-search-results__filter-container__heading', this.root).toggleClass('light');
-    $('.js-pw-search-results__filters', this.root).toggle(500);
+    const $filterHeading = $('.pw-search-results__filter-container__heading', this.root);
+    $filterHeading.hasClass('light') && $filterHeading.removeClass('light');
+
+    $('.js-pw-search-results__filters', this.root).toggle(500, () => {
+      if (!$filterHeading.hasClass('light') && !$('.js-pw-search-results__filters').is(':visible')) {
+        $filterHeading.addClass('light');
+      }
+    });
     $('.js-pw-search-results__filters + div', this.root).toggle(500);
   };
 

@@ -15,7 +15,7 @@
                                 <label>${'filters' @i18n}</label>
                             </span>
                         </div>
-                        <div class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular">
+                        <div class="pw-search-results__filters js-pw-search-results__filters">
                             <div class="row no-gutters">
                                 <div class="col-lg-6">
                                     <div class="pw-search-results__filters__content-type">
@@ -68,6 +68,7 @@
                                 <!-- Loading filter tags/chips here -->
                             </div>
                             <div class="js-pw-search-results__title"
+                                data-result-search-term="${'pw.searchResults.searchresultsTextFor' @ i18n}"
                                 data-results-title="${'pw.searchResults.searchresultsText' @ i18n}"
                                 data-no-results-text="${'pw.searchResults.nosearchresults' @ i18n}"
                                 data-empty-field="${'pw.searchResults.emptySearchText' @ i18n}">

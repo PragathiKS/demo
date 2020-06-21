@@ -61,9 +61,11 @@
         }
         &__heading {
             @include padding-bottom($margin-md);
+            @include margin-bottom(0);
             color: $color-congress-blue;
             border-bottom: 1px solid $color-mercury;
             &.light {
+                @include margin-bottom(8px);
                 font-family: $font-light;
             }
             @media #{$desktop} {
@@ -92,24 +94,28 @@
             h1 {
                 font-size: 24px;
                 @media #{$desktop} {
-                    @include padding-top($padding-xxxl);
                     font-size: 42px;
                 }
             }
             h1,
             h3 {
-                @include padding-top($padding-l);
+                @include padding-top($padding-md);
                 @media #{$desktop} {
-                    @include padding-top($padding-xxxl);
+                    @include padding-top($padding-xxl);
                 }
             }
         }
         &__filter-chips {
-            @include padding-top($padding-l);
+            @include padding-top($padding-sm);
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
+            @media #{$desktop} {
+                @include padding-top($padding-md);
+            }
             .filter-tag {
-                @include padding(8px 16px);
+                @include padding($padding-sm $padding-md);
+                @include margin-bottom($margin-sm);
                 border: 2px solid $color-jordy-blue;
                 background: $color-white;
                 box-sizing: border-box;
@@ -150,10 +156,14 @@
     }
 
     &__filters {
+        @include padding($padding-md);
         @include border-radius($border-radius);
         display: none;
         background-color: $color-wild-sand;
         width: 100%;
+        @media #{$desktop} {
+            @include padding($padding-xxxl);
+        }
         .tpatom-subheading {
             @include margin-bottom($margin-md);
             @media #{$desktop} {
@@ -163,7 +173,7 @@
         }
 
         &__content-type {
-            @include margin-bottom(16px);
+            @include margin-bottom($margin-sm);
             @media #{$desktop} {
                 @include margin-bottom(0);
                 @include padding-right($padding-l);
@@ -180,9 +190,14 @@
             &__label {
                 @include margin-bottom($margin-md);
             }
-            // @media #{$desktop} {
-            //     max-width: 160px;
-            // }
+            @media #{$desktop} {
+                &:nth-child(odd) {
+                    @include padding-right(12px);
+                }
+                &:nth-child(even) {
+                    @include padding-left(12px);
+                }
+            }
         }
     }
 
@@ -207,9 +222,13 @@
                 width: 100%;
                 height: 150px;
                 position: relative;
-                word-break: break-all;
-                white-space: nowrap;
-                overflow: hidden;
+                & > a {
+                    word-break: break-all;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+                }
                 &__image-helper {
                     display: inline-block;
                     height: 100%;
