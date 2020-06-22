@@ -123,11 +123,13 @@ class Searchresults {
 
   removeFilter = e => {
     const $target = $(e.target);
-    const filter = $target.closest('.filter-tag').data('filter');
-    const category = $(`#${filter}`).data('category');
-    $(`#${filter}`).prop('checked', false);
-    delete this.cache.searchParams[category][filter];
-    this.applyFilters(false);
+    if($target.hasClass('js-filter-remove')) {
+      const filter = $target.closest('.filter-tag').data('filter');
+      const category = $(`#${filter}`).data('category');
+      $(`#${filter}`).prop('checked', false);
+      delete this.cache.searchParams[category][filter];
+      this.applyFilters(false);
+    }
   }
 
   search = () => {
