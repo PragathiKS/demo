@@ -1,0 +1,19 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+    <sly data-sly-use.bussinessinqform="com.tetrapak.publicweb.core.models.BusinessInquiryModel">
+        <b>Business Inquiry form Left Section</b><br/>
+        Heading : ${bussinessinqform.heading}<br/>
+        DAM image path : ${bussinessinqform.image}<br/>
+		Image alt text : ${bussinessinqform.alt} <br/>
+        Body text : ${bussinessinqform.descriptionText @context='html'}
+
+
+        <b>Thank you section</b><br/>
+  	
+      	Thank you heading : ${bussinessinqform.thankyouHeading}<br/>
+		DAM image path : ${bussinessinqform.thankyouImage}<br/>
+		Image alt text : ${bussinessinqform.thankyouImageAltText}<br/>
+        Thank you body text : ${bussinessinqform.thankyouDescriptionText  @context='html'}<br/>
+
+    </sly>
+</sly>
