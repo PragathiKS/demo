@@ -42,10 +42,10 @@ public class BreadcrumbModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
     /** The breadcrumb subpages. */
-    private Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
+    private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
 
     /** The home label. */
-    private String homeLabel = "Home";
+    private final String homeLabel = "Home";
 
     /**
      * Inits the.
@@ -68,8 +68,14 @@ public class BreadcrumbModel {
         breadcrumbPages.put(title, currentPage.getPath());
         for (int i = 0; i <= length; i++) {
             if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav()) {
-                breadcrumbPages.put(parent.getTitle(),
-                        LinkUtils.sanitizeLink(parent.getPath(), request.getResourceResolver()));
+
+                if (parent.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
+                    breadcrumbPages.put(parent.getTitle(), null);
+                } else {
+                    breadcrumbPages.put(parent.getTitle(),
+                            LinkUtils.sanitizeLink(parent.getPath(), request.getResourceResolver()));
+                }
+
                 parent = parent.getParent();
             }
         }

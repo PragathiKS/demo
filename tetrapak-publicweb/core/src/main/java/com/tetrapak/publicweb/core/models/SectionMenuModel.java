@@ -1,17 +1,15 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
-import com.tetrapak.publicweb.core.beans.PseudoCategoriesSectionBean;
-import com.tetrapak.publicweb.core.beans.PseudoCategoryCFBean;
-import com.tetrapak.publicweb.core.beans.SectionMenuBean;
-import com.tetrapak.publicweb.core.beans.SubSectionBean;
-import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.NavigationUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,16 +23,18 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
+import com.tetrapak.publicweb.core.beans.PseudoCategoriesSectionBean;
+import com.tetrapak.publicweb.core.beans.PseudoCategoryCFBean;
+import com.tetrapak.publicweb.core.beans.SectionMenuBean;
+import com.tetrapak.publicweb.core.beans.SubSectionBean;
+import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.PseudoCategoryService;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
 
 /**
  * The Class SectionMenuModel.
@@ -139,7 +139,7 @@ public class SectionMenuModel {
                 if (externalTemplate.isExternal()) {
                     sectionMenuBean.setExternal(true);
                     sectionMenuBean.setLinkPath(externalTemplate.getExternalUrl());
-                } else {
+                } else if (!nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
                     sectionMenuBean.setExternal(false);
                     sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), resourceResolver));
                 }
