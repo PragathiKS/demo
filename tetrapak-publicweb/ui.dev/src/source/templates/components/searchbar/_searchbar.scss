@@ -34,6 +34,12 @@
                 }
                 .icon-wrapper {
                     display: flex;
+                    i.icon {
+                        &::before {
+                            font-size: $font-m-md;
+                            line-height: $font-m-md;
+                        }
+                    }
                 }
                 .search-icon {
                     cursor: pointer;
@@ -76,6 +82,12 @@
                 .icon-wrapper {
                     @include margin-left($margin-l);
                     display: flex;
+                    i.icon {
+                        &::before {
+                            font-size: $font-normal;
+                            line-height: $font-normal;
+                        }
+                    }
                 }
                 .search-icon {
                     cursor: pointer;
