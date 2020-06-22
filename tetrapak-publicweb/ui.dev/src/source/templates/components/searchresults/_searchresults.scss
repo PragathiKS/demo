@@ -65,7 +65,7 @@
             color: $color-congress-blue;
             border-bottom: 1px solid $color-mercury;
             &.light {
-                @include margin-bottom(8px);
+                @include margin-bottom($margin-sm);
                 font-family: $font-light;
             }
             @media #{$desktop} {
@@ -187,8 +187,17 @@
         }
 
         .tpatom-checkbox {
+            &__icon {
+                color: $color-congress-blue;
+                background-color: $color-white;
+            }
             &__label {
                 @include margin-bottom($margin-md);
+            }
+            &__input {
+                &:checked + .icon {
+                    border: 1px solid $color-congress-blue;
+                }
             }
             &__text {
                 display: flex;
@@ -333,12 +342,6 @@
             &__title-link {
                 color: $color-congress-blue;
             }
-        }
-    }
-
-    .tpatom-checkbox {
-        &__icon {
-            background-color: $color-white;
         }
     }
 }
