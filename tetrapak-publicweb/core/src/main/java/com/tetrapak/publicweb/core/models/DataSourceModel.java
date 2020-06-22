@@ -1,10 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.adobe.granite.ui.components.ds.DataSource;
-import com.adobe.granite.ui.components.ds.SimpleDataSource;
-import com.adobe.granite.ui.components.ds.ValueMapResource;
-import com.tetrapak.publicweb.core.beans.PseudoCategoryCFBean;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -17,15 +20,10 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import com.adobe.granite.ui.components.ds.DataSource;
+import com.adobe.granite.ui.components.ds.SimpleDataSource;
+import com.adobe.granite.ui.components.ds.ValueMapResource;
+import com.tetrapak.publicweb.core.beans.PseudoCategoryBean;
 
 /**
  * The Class DataSourceModel.
@@ -41,19 +39,17 @@ public class DataSourceModel {
     @SlingObject
     private ResourceResolver resourceResolver;
 
-    /** The pseudo category service. */
-    @Inject
-    private PseudoCategoryService pseudoCategoryService;
-
     /**
      * The init method.
      */
     @PostConstruct
     protected void init() {
-        final List<PseudoCategoryCFBean> pseudoCategories = pseudoCategoryService.fetchPseudoCategories(resourceResolver);
+        final List<PseudoCategoryBean> pseudoCategories = new ArrayList<>();
+        // To Do - Set Pseudo
+        
         final Map<String, String> pseudoCategoriesMap = new LinkedHashMap<>();
         pseudoCategoriesMap.put("Select", "");
-        for (final PseudoCategoryCFBean cfBean : pseudoCategories) {
+        for (final PseudoCategoryBean cfBean : pseudoCategories) {
             pseudoCategoriesMap.put(cfBean.getPseudoCategoryKey(), cfBean.getPseudoCategoryValue());
         }
         final DataSource dataSource = new SimpleDataSource(getResourceList(pseudoCategoriesMap).iterator());

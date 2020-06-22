@@ -1,12 +1,11 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.LinkBean;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.NavigationUtil;
-import com.tetrapak.publicweb.core.utils.PageUtil;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -18,13 +17,12 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
  * The Class HeaderModel.
@@ -38,10 +36,6 @@ public class HeaderModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-
-    /** The pseudo category service. */
-    @Inject
-    private PseudoCategoryService pseudoCategoryService;
 
     /** The logo image path. */
     private String logoImagePath;
@@ -74,7 +68,7 @@ public class HeaderModel {
     private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
     /** The mega menu configuration model. */
-    private MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
+    private MegaMenuConfigurationModel megaMenuConfigurationModel;
 
     /** The solution page title. */
     private String solutionPageTitle;
@@ -101,6 +95,7 @@ public class HeaderModel {
         }
         final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
         final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
+        megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request);
         if (Objects.nonNull(headerConfigurationResource)) {
             final HeaderConfigurationModel configurationModel = headerConfigurationResource
                     .adaptTo(HeaderConfigurationModel.class);
@@ -118,19 +113,7 @@ public class HeaderModel {
             setMegaMenuLinksList(rootPath);
             setSolutionPageTitle();
         }
-        populateMegaMenuConfigurationModel();
-    }
-
-    /**
-     * Populate mega menu configuration model.
-     */
-    private void populateMegaMenuConfigurationModel() {
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";
-        final Resource megaMenuConfigResource = request.getResourceResolver().getResource(pagePath);
-        if (Objects.nonNull(megaMenuConfigResource)) {
-            megaMenuConfigurationModel = megaMenuConfigResource.adaptTo(MegaMenuConfigurationModel.class);
-        }
+        
     }
 
     /**
@@ -186,8 +169,8 @@ public class HeaderModel {
                 final SectionMenuModel sectionMenuModel = new SectionMenuModel();
                 sectionMenuModel.setSectionHomePageTitle(childPage);
                 sectionMenuModel.setSectionHomePagePath(childPage, request.getResourceResolver());
-                sectionMenuModel.populateSectionMenu(childPage, solutionPageWithoutExtension,
-                        pseudoCategoryService, request.getResourceResolver());
+                sectionMenuModel.populateSectionMenu(childPage,
+                        solutionPageWithoutExtension, request.getResourceResolver());
                 linkBean.setNavigationConfigurationModel(sectionMenuModel);
             }
             megaMenuLinksList.add(linkBean);
