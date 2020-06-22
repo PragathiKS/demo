@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -13,6 +14,10 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ManualModel {
+
+    /** The resource. */
+    @Self
+    private Resource resource;
 
     /** The title. */
     @ValueMapValue
@@ -111,7 +116,7 @@ public class ManualModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath);
+        return linkPath;
     }
 
     /**

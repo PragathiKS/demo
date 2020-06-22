@@ -67,6 +67,9 @@ public class TeaserModelTest {
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/teaser";
 
+    /** The Constant RESOURCE_TWO. */
+    private static final String RESOURCE_TWO = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/teaser_1";
+
     /** The model. */
     private TeaserModel model;
 
@@ -155,8 +158,19 @@ public class TeaserModelTest {
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/solutions.html",
                 model.getTeaserList().get(1).getLinkPath());
         assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
-        assertEquals("solutions", model.getTeaserList().get(1).getAssetName());
+    }
 
+    /**
+     * Test asset name.
+     *
+     * @throws Exception the exception
+     */
+    @Test
+    public void testAssetName() throws Exception {
+        context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);
+        resource = context.currentResource(RESOURCE_TWO);
+        model = resource.adaptTo(modelClass);
+        assertEquals("abc.pdf", model.getTeaserList().get(0).getAssetName());
     }
 
     /**

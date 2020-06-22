@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.annotation.PostConstruct;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -9,7 +9,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
 
 /**
  * The Class TextImageModel.
@@ -79,7 +79,7 @@ public class TextImageModel {
     @PostConstruct
     protected void init() {
         if (StringUtils.isNotEmpty(linkURL)) {
-            linkURL = LinkUtils.sanitizeLink(linkURL);
+            linkURL = LinkUtils.sanitizeLink(linkURL, resource.getResourceResolver());
         }
     }
 
