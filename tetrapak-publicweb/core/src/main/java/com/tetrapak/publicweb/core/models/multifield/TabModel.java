@@ -146,7 +146,7 @@ public class TabModel {
      * @return link URL
      */
     public String getLinkURL() {
-        return LinkUtils.sanitizeLink(linkURL);
+        return linkURL;
     }
 
     /**

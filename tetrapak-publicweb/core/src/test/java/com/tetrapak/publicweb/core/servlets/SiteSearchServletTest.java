@@ -17,8 +17,6 @@ import com.google.common.base.Function;
 import com.tetrapak.publicweb.core.mock.MockHelper;
 import com.tetrapak.publicweb.core.mock.MockXSSAPI;
 import com.tetrapak.publicweb.core.models.SearchResultsModel;
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
-import com.tetrapak.publicweb.core.services.impl.DynamicMediaServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -48,7 +46,7 @@ public class SiteSearchServletTest {
     /** The Constant CURRENT_RESOURCE. */
     private static final String CURRENT_RESOURCE = SEARCH_PAGE + "/jcr:content/root/responsivegrid/searchresults";
     
-    private static final String SEARCH_RESULT = "{\"totalResults\":0,\"totalPages\":0,\"searchResults\":[{\"type\":\"Products\",\"title\":\"Tetra Pak A1 for TFA\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/solutions/packaging/filling-machines/tetra-pak-a1-for-tfa/jcr:content.html\"},{\"type\":\"News\",\"title\":\"News room\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/news-room/jcr:content.html\",\"date\":\"11 Jun 2020\"},{\"type\":\"News\",\"title\":\"Plma 2020\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/events/plma-2020/jcr:content.html\",\"date\":\"07 May 2020\"},{\"type\":\"News\",\"title\":\"cheese\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/insights/food-categories/cheese/jcr:content.html\",\"date\":\"29 Apr 2020\"},{\"type\":\"Media\",\"path\":\"https://s7g10.scene7.com/is/image/tetrapak/Teaser\",\"size\":\"951.0\",\"sizeType\":\"pw.searchResults.kbyte\",\"assetType\":\"image\",\"assetExtension\":\"png\"},{\"type\":\"Media\",\"path\":\"https://s7g10.scene7.com/is/content/\",\"size\":\"3.0\",\"sizeType\":\"pw.searchResults.mbyte\",\"assetType\":\"video\",\"assetExtension\":\"mp4\"";
+    private static final String SEARCH_RESULT = "{\"totalResults\":0,\"totalPages\":0,\"searchResults\":[{\"type\":\"Products\",\"title\":\"Tetra Pak A1 for TFA\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/solutions/packaging/filling-machines/tetra-pak-a1-for-tfa/_jcr_content.html\"},{\"type\":\"News\",\"title\":\"News room\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/news-room/_jcr_content.html\",\"date\":\"11 Jun 2020\"},{\"type\":\"News\",\"title\":\"Plma 2020\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/about-tetra-pak/news---events/events/plma-2020/_jcr_content.html\",\"date\":\"07 May 2020\"},{\"type\":\"News\",\"title\":\"cheese\",\"description\":\"\",\"path\":\"/content/tetrapak/public-web/lang-masters/en/insights/food-categories/cheese/_jcr_content.html\",\"date\":\"29 Apr 2020\"},{\"type\":\"Media\",\"path\":\"/content/dam/publicweb/qa/Teaser.png\",\"size\":\"951.0\",\"sizeType\":\"pw.searchResults.kbyte\",\"assetType\":\"image\",\"assetExtension\":\"png\"},{\"type\":\"Media\",\"path\":\"/content/dam/publicweb/qa/file_example_MP4_640_3MG.mp4\",\"size\":\"3.0\",\"sizeType\":\"pw.searchResults.mbyte\",\"assetType\":\"video\",\"assetExtension\":\"mp4\"";
             /** The Constant TEST_CONTENT_ROOT. */
     private static final String DAM_CONTENT_ROOT = "/content/dam/publicweb";
     
@@ -56,9 +54,6 @@ public class SiteSearchServletTest {
     
     private static final String THEME = "news";
 
-    
-    /** The dynamic media service. */
-    private DynamicMediaService dynamicMediaService;
     
     SiteSearchServlet siteSerarchServlet = new SiteSearchServlet();
     
@@ -92,14 +87,6 @@ public class SiteSearchServletTest {
                         return context.getService(QueryBuilder.class);
                     }
                 });
-        
-        context.runMode("publish");
-        
-        dynamicMediaService = new DynamicMediaServiceImpl();
-        final Map<String, Object> configuraionServiceConfig = new HashMap<String, Object>();
-        configuraionServiceConfig.put("imageServiceUrl", "https://s7g10.scene7.com/is/image");
-        configuraionServiceConfig.put("videoServiceUrl", "https://s7g10.scene7.com/is/content");
-        context.registerInjectActivateService(dynamicMediaService, configuraionServiceConfig);
         
         Map<String, Object> config = new HashMap<>();
         config.put("noOfResultsPerHit", "10");

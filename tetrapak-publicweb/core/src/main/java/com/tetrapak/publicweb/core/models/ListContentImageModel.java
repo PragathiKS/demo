@@ -6,6 +6,7 @@ import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +18,9 @@ import java.util.List;
 public class ListContentImageModel {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ListContentImageModel.class);
+
+    @Self
+    private Resource resource;
 
     @Inject
     private String titleI18n;
@@ -70,7 +74,7 @@ public class ListContentImageModel {
     }
 
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath);
+        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
     }
 
     public Boolean getTargetBlank() {

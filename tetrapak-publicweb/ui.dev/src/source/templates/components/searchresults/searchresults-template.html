@@ -9,14 +9,13 @@
                             data-sly-call="${searchBar.searchbar_template @ id='searchField', inputType='text', placeholder='pw.searchResults.searchplaceholder', inputClass='js-pw-search-input tpatom-input-box__input'}">
                     </div>
                     <div class="pw-search-results__filter-container">
-                        <div class="pw-search-results__filter-container__heading d-none">
+                        <div class="pw-search-results__filter-container__heading light">
                             <span class="js-search-filter-toggle">
-                                <i class="FilterSettings_pw"></i>
-                                <label>${'pw.searchResults.filters' @i18n}</label>
+                                <i class="icon-FilterSettings_pw"></i>
+                                <label>${'filters' @i18n}</label>
                             </span>
                         </div>
-                        <div
-                            class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular d-none">
+                        <div class="pw-search-results__filters js-pw-search-results__filters">
                             <div class="row no-gutters">
                                 <div class="col-lg-6">
                                     <div class="pw-search-results__filters__content-type">
@@ -29,8 +28,8 @@
                                                 <label class="tpatom-checkbox__label clearfix" for="${contentType.key}">
                                                     <input type="checkbox" data-category="contentType"
                                                         class="js-pw-search-results-filter-check tpatom-checkbox__input float-left"
-                                                        id="${contentType.key}" value="${contentType.value}" />
-                                                    <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                                        id="${contentType.key}" value="${contentType.label}" />
+                                                    <i class="tpatom-checkbox__icon icon icon-Tick_pw float-left"></i>
                                                     <span
                                                         class="tpatom-checkbox__text js-checkbox__text">${contentType.label}</span>
                                                 </label>
@@ -39,21 +38,22 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <sly data-sly-test="${data.themeList}"
-                                        data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.subheading_template @ headingText='pw.searchResults.themes', variant='small'}" />
-                                    <div data-sly-test="${data.themeList}" class="filter__list row no-gutters"
-                                        data-sly-list.themeList="${data.themeList}">
-                                        <div class="tpatom-checkbox col-lg-6">
-                                            <label class="tpatom-checkbox__label clearfix"
-                                                for="${themeList.themeLabel}">
-                                                <input type="checkbox" data-category="theme"
-                                                    class="js-pw-search-results-filter-check tpatom-checkbox__input float-left"
-                                                    id="${themeList.themeLabel}" value="${themeList.themeLabel}" />
-                                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-                                                <span
-                                                    class="tpatom-checkbox__text js-checkbox__text">${themeList.themeLabel}</span>
-                                            </label>
+                                    <div class="pw-search-results__filters__theme">
+                                        <sly data-sly-test="${data.themeList}"
+                                            data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                            data-sly-call="${heading.subheading_template @ headingText='pw.searchResults.themes', variant='small'}" />
+                                        <div data-sly-test="${data.themeList}" class="filter__list row no-gutters"
+                                            data-sly-list.themeList="${data.themeList}">
+                                            <div class="tpatom-checkbox col-lg-6">
+                                                <label class="tpatom-checkbox__label clearfix" for="${themeList.key}">
+                                                    <input type="checkbox" data-category="theme"
+                                                        class="js-pw-search-results-filter-check tpatom-checkbox__input float-left"
+                                                        id="${themeList.key}" value="${themeList.label}" />
+                                                    <i class="tpatom-checkbox__icon icon icon-Tick_pw float-left"></i>
+                                                    <span
+                                                        class="tpatom-checkbox__text js-checkbox__text">${themeList.label}</span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -68,6 +68,7 @@
                                 <!-- Loading filter tags/chips here -->
                             </div>
                             <div class="js-pw-search-results__title"
+                                data-result-search-term="${'pw.searchResults.searchresultsTextFor' @ i18n}"
                                 data-results-title="${'pw.searchResults.searchresultsText' @ i18n}"
                                 data-no-results-text="${'pw.searchResults.nosearchresults' @ i18n}"
                                 data-empty-field="${'pw.searchResults.emptySearchText' @ i18n}">

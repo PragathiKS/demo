@@ -161,7 +161,7 @@ public class TabsListModel {
 	    tabBean.setFileReference(aggregator.getImagePath());
 	    tabBean.setAlt(aggregator.getAltText());
 	    tabBean.setLinkText(aggregator.getLinkText());
-	    tabBean.setLinkURL(aggregator.getLinkPath());
+	    tabBean.setLinkURL(LinkUtils.sanitizeLink(aggregator.getLinkPath(), resource.getResourceResolver()));
 	    tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
 	    tabBean.setTabType(TAB_LAYOUT_IMAGE);
 	    tabs.add(tabBean);
@@ -172,7 +172,9 @@ public class TabsListModel {
      * set list from manual authoring
      */
     private void generateListManually() {
-	tabs.addAll(tabListManual);
+        tabListManual.stream().forEach(model -> model
+                .setLinkURL(LinkUtils.sanitizeLink(model.getLinkURL(), resource.getResourceResolver())));
+        tabs.addAll(tabListManual);
     }
 
     /**
@@ -193,7 +195,7 @@ public class TabsListModel {
      * @return the readMorePath
      */
     public String getReadMorePath() {
-	return LinkUtils.sanitizeLink(readMorePath);
+	return LinkUtils.sanitizeLink(readMorePath, resource.getResourceResolver());
     }
 
     /**
