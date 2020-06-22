@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
 
 /**
  * The Class BreadcrumbModel.
@@ -61,19 +62,18 @@ public class BreadcrumbModel {
         final String[] pages = path.split("/");
         final int length = pages.length - 1;
         Page parent = currentPage.getParent();
-        String title = currentPage.getNavigationTitle();
-        if(StringUtils.isBlank(title)) {
-            title = currentPage.getTitle();
-        }
+        final String title = NavigationUtil.getNavigationTitle(currentPage);
+
         breadcrumbPages.put(title, currentPage.getPath());
         for (int i = 0; i <= length; i++) {
             if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav()) {
 
                 if (parent.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
-                    breadcrumbPages.put(parent.getTitle(), null);
+                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent), null);
                 } else {
-                    breadcrumbPages.put(parent.getTitle(),
-                            LinkUtils.sanitizeLink(parent.getPath(), request.getResourceResolver()));
+                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent),
+                            LinkUtils.sanitizeLink(parent.getPath(),
+                                    request.getResourceResolver()));
                 }
 
                 parent = parent.getParent();

@@ -133,7 +133,7 @@ public class SectionMenuModel {
             final Page nextPage = pages.next();
             if (!nextPage.isHideInNav()) {
                 final SectionMenuBean sectionMenuBean = new SectionMenuBean();
-                sectionMenuBean.setLinkText(nextPage.getTitle());
+                sectionMenuBean.setLinkText(NavigationUtil.getNavigationTitle(nextPage));
                 // Set external page url
                 final ExternalTemplateBean externalTemplate = checkExternalTemplate(nextPage);
                 if (externalTemplate.isExternal()) {
@@ -332,7 +332,7 @@ public class SectionMenuModel {
      */
     private SubSectionBean populateSubSection(final Page page, final ResourceResolver resourceResolver) {
         final SubSectionBean subSectionBean = new SubSectionBean();
-        subSectionBean.setLinkText(page.getTitle());
+        subSectionBean.setLinkText(NavigationUtil.getNavigationTitle(page));
 
         final ExternalTemplateBean externalTemplate = checkExternalTemplate(page);
         if (externalTemplate.isExternal()) {
