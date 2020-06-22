@@ -20,24 +20,24 @@
     ],
     "themeList": [
         {
-            "themeLabel": "Processing",
-            "tag": "tetrapak:application/processing"
+            "label": "Processing",
+            "key": "processing"
         },
         {
-            "themeLabel": "End-to-end solutions",
-            "tag": "tetrapak:application/end-to-end-solutions"
+            "label": "End-to-end solutions",
+            "key": "end-to-end-solutions"
         },
         {
-            "themeLabel": "Packaging",
-            "tag": "tetrapak:application/packaging"
+            "label": "Packaging",
+            "key": "packaging"
         },
         {
-            "themeLabel": "Sustainability",
-            "tag": "tetra-pak:public-web/product/category/sustainability"
+            "label": "Sustainability",
+            "key": "sustainability"
         },
         {
-            "themeLabel": "Services",
-            "tag": "tetra-pak:public-web/product/category/services"
+            "label": "Services",
+            "key": "services"
         }
     ],
     "servletPath": "/content/tetrapak/publicweb/lang-masters/en/home/_jcr_content/root/responsivegrid/searchresults"
