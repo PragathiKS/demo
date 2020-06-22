@@ -119,6 +119,7 @@ class ContactUs {
             e.preventDefault();
             e.stopPropagation();
             $(this).closest('.form-group, .formfield').addClass('field-error');
+            self.onErrorAnalytics(currentTarget,tab);
           } else {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
           }
@@ -143,17 +144,20 @@ class ContactUs {
       e.preventDefault();
       e.stopPropagation();
       let isvalid = true;
+      const tab = $(this).closest('.tab-content-steps');
       const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
       requestPayload['message'] = validateFieldsForTags($('[name="message"]').val());
       $('input, textarea').each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
+          self.onErrorAnalytics('cf-step-3',tab);
         }
       });
       if (isvalid && !honeyPotFieldValue) {
-        self.submitForm();
         self.onSubmitClickAnalytics();
+        self.submitForm();
+
       }
     });
 
@@ -171,6 +175,44 @@ class ContactUs {
     });
 
     this.onLoadTrackAnalytics();
+  }
+
+  onErrorAnalytics = (currentTarget,tab) => {
+    const formType = tab.find('.form-field-heading').data('step-heading');
+    const formError = [];
+    const formField = [];
+    const event = {
+      eventType : 'formError'
+    };
+    if(currentTarget === 'cf-step-1'){
+      formError.push({formErrorField:tab.find('.form-field-heading').data('step-heading'), formErrorMessage:tab.find('.formfield .errorMsg').data('purposeofcontact-errmsg')});
+    } else if(currentTarget === 'cf-step-2'){
+      if(tab.find('.first-name .field-error').length > 0){
+        formError.push({formErrorField:tab.find('.first-name').data('first-name-label'), formErrorMessage:tab.find('.first-name .errorMsg').data('error-msg')});
+      }
+      if(tab.find('.last-name .field-error').length > 0){
+        formError.push({formErrorField:tab.find('.last-name').data('last-name-label'), formErrorMessage:tab.find('.last-name .errorMsg').data('error-msg')});
+      }
+      if(tab.find('.email .field-error').length > 0){
+        formError.push({formErrorField:tab.find('.email').data('email-name-label'), formErrorMessage:tab.find('.email .errorMsg').data('error-msg')});
+      }
+      if(tab.find('.country.field-error').length > 0){
+        formError.push({formErrorField:tab.find('.country').data('country-name-label'), formErrorMessage:tab.find('.country .errorMsg').data('country-error-msg')});
+      }
+    } else if(currentTarget === 'cf-step-3'){
+      if(tab.find('.formfield.field-error').length > 0){
+        formError.push({formErrorField:tab.find('.formfield .text-area-label').data('text-area-label'), formErrorMessage:tab.find('.formfield .errorMsg').data('error-msg')});
+      }
+    }
+
+    const form  = {
+      formType,
+      formField,
+      formError,
+      formStep : tab.find('.button').data('form-step')
+    };
+
+    this.trackAnalytics(form,event);
   }
 
   onNextClickAnalytics = (currentTarget,tab) => {

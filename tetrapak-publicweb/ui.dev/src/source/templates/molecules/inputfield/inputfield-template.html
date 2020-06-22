@@ -5,6 +5,6 @@
         <label for="${id}" auto_locator="${autoLocatorLabel}">${label @ i18n}</label>
         <input type="${inputType}" class="form-control ${inputClass}" id="${id}" name="${id}"
             placeholder="${placeholderVal @i18n}" required="${required}" auto_locator="${autoLocatorInput}">
-        <div data-sly-test="${error}" class="errorMsg">${error @ i18n}</div>
+        <div data-sly-test="${error}" data-error-msg="${error @ i18n}" class="errorMsg">${error @ i18n}</div>
     </div>
 </sly>

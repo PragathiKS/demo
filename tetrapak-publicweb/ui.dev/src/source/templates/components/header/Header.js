@@ -284,13 +284,13 @@ class Header {
     const linkName = $this.data('link-name');
     if(linkName==='contact us envelope') {
       const trackingObj = {
-        linkSection: 'Find my office',
+        linkSection: 'Hyperlink click',
         linkParentTitle: '',
         linkName: 'Contact Us'
       };
       const eventObj = {
         eventType: 'linkClick',
-        event: 'findmyoffice'
+        event: 'Header'
       };
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     }
