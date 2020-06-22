@@ -20,6 +20,7 @@ class MediaLink {
     const $this = $target.closest('.js-medialink-analytics');
     let linkParentTitle = '';
     let trackingObj = {};
+    let eventObj = {};
     const linkType = $this.find('i.icon').hasClass('icon-Union') ? 'external':'internal';
     const linkName = $this.data('link-name');
     const dwnDocName = $this.data('asset-name');
@@ -29,8 +30,9 @@ class MediaLink {
     const sectionTitle = $this.data('section-name');
     let linkSection = $this.data('link-section');
     if(downloadtype ==='download') {
-      linkParentTitle = `Text Hyperlink_Download_pdf_${sectionTitle}`;
-      linkSection = 'Related links and downloads_Hyperlink_Download';
+      const extension = $this.attr('href').split('.').pop();
+      linkParentTitle = `Text Hyperlink_Download_${extension}_${sectionTitle}`;
+      linkSection = 'Related links and downloads_Text Hyperlink_Download';
       trackingObj = {
         linkType,
         linkSection,
@@ -40,8 +42,31 @@ class MediaLink {
         dwnType,
         eventType
       };
-      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
+
+      eventObj = {
+        eventType: 'downloadClick',
+        event: 'Related links and downloads'
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false, eventObj);
     }
+
+    if (downloadtype !== 'download') {
+      linkParentTitle = `Text Hyperlink_${sectionTitle}`;
+      trackingObj = {
+        linkType,
+        linkSection,
+        linkParentTitle,
+        linkName
+      };
+      
+      eventObj = {
+        eventType: 'linkClick',
+        event: 'Related links and downloads'
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    }
+
+
     window.open($this.attr('href'), $this.attr('target'));
   }
 
