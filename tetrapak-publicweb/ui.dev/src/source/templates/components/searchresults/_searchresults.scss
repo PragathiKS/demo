@@ -190,6 +190,9 @@
             &__label {
                 @include margin-bottom($margin-md);
             }
+            &__text {
+                display: flex;
+            }
             @media #{$desktop} {
                 &:nth-child(odd) {
                     @include padding-right(12px);
@@ -211,6 +214,7 @@
             @include padding-bottom($padding-l);
             display: flex;
             flex-direction: column-reverse;
+            word-break: break-all;
             @media #{$desktop} {
                 @include padding-bottom($padding-xxxl);
                 flex-direction: row;
