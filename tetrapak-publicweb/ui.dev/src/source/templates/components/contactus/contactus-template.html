@@ -274,7 +274,7 @@
                                         alt="${data.thankyouImageAltText}" src="${data.thankyouImageAltText}"
                                         class="image img-responsive" />
                                 </sly>
-                                <div auto_locator="contactUsThankYouPageMessage">
+                                <div class="contact-us-thankyou-text" data-thankyou-text="${'data.thankyouHeading' @i18n}" auto_locator="contactUsThankYouPageMessage">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                         data-sly-call="${heading.heading_h2_template @ headingText=data.thankyouHeading}" />
                                 </div>

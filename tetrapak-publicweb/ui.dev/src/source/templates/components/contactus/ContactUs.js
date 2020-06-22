@@ -79,6 +79,7 @@ class ContactUs {
   newRequestHanlder = e => {
     e.preventDefault();
     e.stopPropagation();
+    self.newRequestButtonAnalytics(e);
     location.reload();
   }
 
@@ -213,6 +214,23 @@ class ContactUs {
     };
 
     this.trackAnalytics(form,event);
+  }
+
+  newRequestButtonAnalytics = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.js-pw-contactAnchorLink');
+    const linkName = $this.closest('.newRequestBtn').text();
+    const trackingObj = {
+      linkType: 'internal',
+      linkSection: 'button click',
+      linkParentTitle: $('.contact-us-thankyou-text').data('.thankyou-text'),
+      linkName
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Contact us'
+    };
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
   }
 
   onNextClickAnalytics = (currentTarget,tab) => {
