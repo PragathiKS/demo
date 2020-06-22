@@ -34,7 +34,9 @@ class SectionMenu {
       return;
     }
     this.getSectionMenuAnalyticsValue(e);
-    window.open($this.data('url-link'), $this.attr('target'));
+    if($this.data('url-link')) {
+      window.open($this.data('url-link'), $this.attr('target'));
+    }
   }
 
   handleSubSectionMenuClick =(e) => {
