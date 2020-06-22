@@ -11,7 +11,7 @@
         <sly data-sly-test.buttonLinkType="${child.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}"/>
         <div class="col-md-12 ${teaserSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${((teaserSize==2 && childList.index==1) || (teaserSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11  ) ? '' : 'rightbar' } ${child.linkText ? 'teaserMargin' : 'teaserMarginL'  } ">
           
-          <a data-sly-test="${child.linkPath && child.linkPath!='#'}"
+          <a data-sly-test="${child.linkPath && child.linkPath!='#' && child.fileReference}"
             href="${child.linkPath}"
             class="js-teaser-analytics"
             title="${child.linkText}"
