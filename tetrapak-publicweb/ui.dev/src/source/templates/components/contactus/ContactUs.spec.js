@@ -96,4 +96,8 @@ describe('ContactUs', function () {
     expect(this.contactUs.submitForm.called).to.be.false;
     done();
   });
+  it('should call previous button click', function (done) {
+    document.getElementById('step2btnPrevious').click();
+    done();
+  });
 });
