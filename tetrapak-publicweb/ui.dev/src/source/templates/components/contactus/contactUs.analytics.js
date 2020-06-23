@@ -67,7 +67,7 @@ export const newRequestButtonAnalytics = (e) => {
   const trackingObj = {
     linkType: 'internal',
     linkSection: 'button click',
-    linkParentTitle: $('.contact-us-thankyou-text').data('.thankyou-text'),
+    linkParentTitle: $('.contact-us-thankyou-text').data('thankyou-text'),
     linkName
   };
   const eventObj = {

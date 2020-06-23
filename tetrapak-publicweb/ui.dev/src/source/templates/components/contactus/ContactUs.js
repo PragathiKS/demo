@@ -125,7 +125,7 @@ class ContactUs {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
           }
         });
-      } else {
+      } else if($(this).hasClass('previousbtn')) {
         onPreviousClickAnalytics(currentTarget,tab);
       }
       if (isvalid) {
