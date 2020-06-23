@@ -16,6 +16,7 @@
         @include margin-bottom($margin-md);
         @media #{$desktop} {
             @include padding-top($padding-zero);
+            @include margin-bottom($margin-l);
         }
 
         h2 {

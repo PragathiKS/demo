@@ -82,6 +82,7 @@
         }
         .image {
             @include margin-top($margin-l);
+            @include margin-bottom($margin-md);
             @media #{$desktop} {
                 @include margin-top(0);
             }
@@ -90,14 +91,14 @@
             @include margin-top($margin-zero);
         }
         .tilte {
-            @include margin-top($margin-md);
+            @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
             @include font-size($font-md);
             line-height: 24px;
         }
         .link {
             @include margin-top($margin-md);
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-zero);
         }
     }
 }

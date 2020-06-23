@@ -14,10 +14,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -29,7 +31,6 @@ import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
-import org.apache.sling.settings.SlingSettingsService;
 import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
@@ -40,6 +41,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
@@ -50,8 +52,6 @@ import com.tetrapak.publicweb.core.beans.SearchBean;
 import com.tetrapak.publicweb.core.beans.SearchResultBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.SearchResultsModel;
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import com.tetrapak.publicweb.core.utils.SearchMapHelper;
@@ -107,14 +107,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /** The query builder. */
     @Reference
     private transient QueryBuilder queryBuilder;
-
-    /** The sling Settings Service. */
-    @Reference
-    private transient SlingSettingsService slingSettingsService;
-
-    /** The dynamic Media Service. */
-    @Reference
-    private transient DynamicMediaService dynamicMediaService;
 
     /** The xss API. */
     @Reference
@@ -365,7 +357,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 searchResultItem.setType(searchResultsModel.getMediaLabel());
                 ValueMap assetMetadataProperties = ResourceUtil.getValueMap(metadataResource);
                 String mediaType = getMediaType(assetMetadataProperties);
-                setMediaPath(searchResultItem, hit.getPath(), mediaType);
+                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), resourceResolver));
                 String mediaTitle = assetMetadataProperties.get("dc:title", StringUtils.EMPTY);
                 if (StringUtils.isBlank(mediaTitle)) {
                     mediaTitle = hit.getTitle();
@@ -382,37 +374,13 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 }
             } else {
                 searchResultItem.setTitle(PageUtil.getCurrentPage(hit.getResource()).getTitle());
-                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath()));
+                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), resourceResolver));
                 searchResultItem.setDescription(hit.getProperties().get("jcr:description", StringUtils.EMPTY));
                 setContentFields(searchResultItem, hit, searchResultsModel);
             }
         }
         return searchResultItem;
 
-    }
-
-    /**
-     * Sets the media path.
-     *
-     * @param searchResultItem
-     *            the search result item
-     * @param path
-     *            the path
-     * @param mediaType
-     *            the media type
-     */
-    private void setMediaPath(SearchResultBean searchResultItem, String path, String mediaType) {
-        if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
-            if (PWConstants.VIDEO.equalsIgnoreCase(mediaType)) {
-                searchResultItem.setPath(GlobalUtil.getVideoUrlFromScene7(resourceResolver, path, dynamicMediaService));
-            } else if (PWConstants.IMAGE.equalsIgnoreCase(mediaType)) {
-                searchResultItem.setPath(GlobalUtil.getImageUrlFromScene7(resourceResolver, path, dynamicMediaService));
-            } else {
-                searchResultItem.setPath(LinkUtils.sanitizeLink(path));
-            }
-        } else {
-            searchResultItem.setPath(LinkUtils.sanitizeLink(path));
-        }
     }
 
     /**

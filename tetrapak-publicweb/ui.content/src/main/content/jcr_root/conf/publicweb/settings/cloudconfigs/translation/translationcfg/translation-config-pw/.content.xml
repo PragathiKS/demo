@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:cloudservicename="translation"
+        cq:lastModified="{Date}2020-06-18T12:51:59.517Z"
+        cq:lastModifiedBy="sapient-user"
+        cq:template="/libs/cq/translation/templates/mt-servicepage"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="translation-config-pw"
+        sling:resourceType="cq/translation/components/mt-cloudconfig"
+        assets_contentFragmentAssets="donottranslate"
+        assets_defaultCategory="general"
+        assets_defaultPostEditProvider="Lionbridge"
+        assets_translateMetadata="true"
+        assets_translateTags="true"
+        assets_translationWorkflow="humanTranslation"
+        defaultCategory="general"
+        defaultTranslationProvider="microsoft"
+        sites_defaultCategory="general"
+        sites_defaultPostEditProvider="Lionbridge"
+        sites_translateEmbeddedAssets="donottranslate"
+        sites_translateTags="true"
+        sites_translationWorkflow="humanTranslation"
+        ugcPath="de_at"/>
+</jcr:root>

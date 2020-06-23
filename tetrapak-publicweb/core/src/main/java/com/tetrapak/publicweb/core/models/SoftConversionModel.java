@@ -62,7 +62,7 @@ public class SoftConversionModel extends FormModel {
     @PostConstruct
     protected void init() {
         if (StringUtils.isNotEmpty(moreButtonAction)) {
-            moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction);
+            moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction, resource.getResourceResolver());
         }
     }
 

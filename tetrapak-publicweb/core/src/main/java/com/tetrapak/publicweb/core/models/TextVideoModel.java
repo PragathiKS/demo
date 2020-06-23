@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.annotation.PostConstruct;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -11,10 +14,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
 
 /**
  * The Class TextVideoModel.
@@ -122,7 +122,7 @@ public class TextVideoModel {
     @PostConstruct
     protected void init() {
         if (StringUtils.isNotEmpty(linkURL)) {
-            linkURL = LinkUtils.sanitizeLink(linkURL);
+            linkURL = LinkUtils.sanitizeLink(linkURL, resource.getResourceResolver());
         }
 
         if (youtubeVideoID != null) {

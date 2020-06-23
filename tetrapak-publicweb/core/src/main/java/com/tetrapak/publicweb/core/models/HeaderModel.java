@@ -1,12 +1,12 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.LinkBean;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.NavigationUtil;
-import com.tetrapak.publicweb.core.utils.PageUtil;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -18,13 +18,13 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.services.PseudoCategoryService;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
  * The Class HeaderModel.
@@ -177,33 +177,21 @@ public class HeaderModel {
         final Page childPage = childPages.next();
         if (!childPage.isHideInNav()) {
             final LinkBean linkBean = new LinkBean();
-            final String title = getTitle(childPage);
+            final String title = NavigationUtil.getNavigationTitle(childPage);
             linkBean.setLinkText(title);
-            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
+            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath(), request.getResourceResolver()));
             final String solutionPageWithoutExtension = NavigationUtil
                     .getSolutionPageWithoutExtension(solutionPage);
             if (!childPage.getPath().equalsIgnoreCase(solutionPageWithoutExtension)) {
                 final SectionMenuModel sectionMenuModel = new SectionMenuModel();
                 sectionMenuModel.setSectionHomePageTitle(childPage);
-                sectionMenuModel.setSectionHomePagePath(childPage);
+                sectionMenuModel.setSectionHomePagePath(childPage, request.getResourceResolver());
                 sectionMenuModel.populateSectionMenu(childPage, solutionPageWithoutExtension,
                         pseudoCategoryService, request.getResourceResolver());
                 linkBean.setNavigationConfigurationModel(sectionMenuModel);
             }
             megaMenuLinksList.add(linkBean);
         }
-    }
-
-    /**
-     * @param childPage
-     * @return title
-     */
-    private String getTitle(final Page childPage) {
-        String title = childPage.getNavigationTitle();
-        if(StringUtils.isBlank(title)) {
-            title = childPage.getTitle();
-        }
-        return title;
     }
 
     /**
