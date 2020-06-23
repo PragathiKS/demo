@@ -30,11 +30,12 @@ class Subscriptionform {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
     const langCode = this.cache.businessformapi.data('sf-langcode');
+    const pardot_extra_field = $('#pardot_extra_field_sf').val();
     
     const dataObj = {};
     dataObj['policyConsent'] = true;
     dataObj['email'] = this.cache.requestPayload.email;
-    dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
+    dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
    
@@ -67,7 +68,6 @@ class Subscriptionform {
       e.preventDefault();
       e.stopPropagation();
       let isvalid = true;
-      const honeyPotFieldValue = $('#pardot_extra_field_sf', self.root).val();
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
@@ -96,7 +96,7 @@ class Subscriptionform {
           $(target).addClass('active');
         }
       }
-      if (isvalid && !honeyPotFieldValue) {
+      if (isvalid) {
         self.submitForm();
       }
     });
