@@ -29,30 +29,12 @@ public class PseudoCategoryModel {
     }
 
     /**
-     * Sets the pseudo category key.
-     *
-     * @param pseudoCategoryKey the new pseudo category key
-     */
-    public void setPseudoCategoryKey(String pseudoCategoryKey) {
-        this.pseudoCategoryKey = pseudoCategoryKey;
-    }
-
-    /**
      * Gets the pseudo category value.
      *
      * @return the pseudo category value
      */
     public String getPseudoCategoryValue() {
         return pseudoCategoryValue;
-    }
-
-    /**
-     * Sets the pseudo category value.
-     *
-     * @param pseudoCategoryValue the new pseudo category value
-     */
-    public void setPseudoCategoryValue(String pseudoCategoryValue) {
-        this.pseudoCategoryValue = pseudoCategoryValue;
     }
 
     
