@@ -71,7 +71,7 @@ class Businessinquiryform {
     dataObj['position'] = this.cache.requestPayload.position;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    dataObj['marketingConsent'] = true;
+    dataObj['marketingConsent'] = this.root.find(`#consentcheckbox`).is(':checked');
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
@@ -251,7 +251,6 @@ class Businessinquiryform {
       e.stopPropagation();
       let isvalid = true;
       const errObj = [];
-      const honeyPotFieldValue = $('#pardot_extra_field_bef', self.root).val();
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
@@ -265,7 +264,7 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val()) || (fieldName === 'consent') && !$(this).prop('checked')) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -323,7 +322,7 @@ class Businessinquiryform {
           break;
         }
       }
-      if (isvalid && !honeyPotFieldValue) {
+      if (isvalid) {
         self.submitForm();
       }
     });
