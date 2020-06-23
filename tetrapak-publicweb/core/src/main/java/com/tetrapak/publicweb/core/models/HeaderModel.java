@@ -94,7 +94,7 @@ public class HeaderModel {
         }
         final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
         final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
-        megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request);
+        megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request, request.getPathInfo());
         if (Objects.nonNull(headerConfigurationResource)) {
             final HeaderConfigurationModel configurationModel = headerConfigurationResource
                     .adaptTo(HeaderConfigurationModel.class);

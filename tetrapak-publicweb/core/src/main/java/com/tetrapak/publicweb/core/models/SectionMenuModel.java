@@ -89,8 +89,8 @@ public class SectionMenuModel {
         // Set page hierarchy
         setPageHierarchy(currentPage);
         // Populate section menu
-        populateSectionMenu(NavigationUtil.getMegaMenuConfigurationModel(request), page, solutionPagePath,
-                request.getResourceResolver());
+        populateSectionMenu(NavigationUtil.getMegaMenuConfigurationModel(request, request.getPathInfo()), page,
+                solutionPagePath, request.getResourceResolver());
     }
 
     /**

@@ -97,9 +97,9 @@ public final class NavigationUtil {
      * @param request the request
      * @return the mega menu configuration model
      */
-    public static MegaMenuConfigurationModel getMegaMenuConfigurationModel(SlingHttpServletRequest request) {
+    public static MegaMenuConfigurationModel getMegaMenuConfigurationModel(SlingHttpServletRequest request,String path) {
         MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        final String rootPath = LinkUtils.getRootPath(path);
         final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";
         final Resource megaMenuConfigResource = request.getResourceResolver().getResource(pagePath);
         if (Objects.nonNull(megaMenuConfigResource)) {

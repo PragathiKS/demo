@@ -6,10 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-
 import javax.annotation.PostConstruct;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -26,7 +23,7 @@ import com.adobe.granite.ui.components.ds.DataSource;
 import com.adobe.granite.ui.components.ds.SimpleDataSource;
 import com.adobe.granite.ui.components.ds.ValueMapResource;
 import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
 
 /**
  * The Class DataSourceModel.
@@ -52,16 +49,10 @@ public class DataSourceModel {
         if (StringUtils.isBlank(path)) {
             path = request.getParameter("item");
         }
-        MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
-        final String rootPath = LinkUtils.getRootPath(path);
-        final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";
-        final Resource megaMenuConfigResource = request.getResourceResolver().getResource(pagePath);
-        if (Objects.nonNull(megaMenuConfigResource)) {
-            megaMenuConfigurationModel = megaMenuConfigResource.adaptTo(MegaMenuConfigurationModel.class);
-        }
-
+        MegaMenuConfigurationModel megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request,
+                path);
         final List<PseudoCategoryModel> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
-        
+
         final Map<String, String> pseudoCategoriesMap = new LinkedHashMap<>();
         pseudoCategoriesMap.put("Select", "");
         for (final PseudoCategoryModel pseudoCategory : pseudoCategories) {
