@@ -26,7 +26,7 @@ class ContactAnchorLink {
     };
     const eventObj = {
       eventType: 'linkClick',
-      event: 'Contact us envelop'
+      event: 'Contact us envelope'
     };
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
   }
