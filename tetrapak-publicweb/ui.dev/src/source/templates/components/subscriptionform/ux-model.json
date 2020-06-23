@@ -1,0 +1,14 @@
+{
+    "heading": "Contact us",
+    "descriptionText": "Loren ipsum",
+    "anchorId": "test",
+    "anchorTitle": "title",
+    "pwTheme": "grayscale-white",
+    "privacyPolicy": "<p>I accept <a href='#'>Tetra Pak’s privacy policy</a></p>",
+    "marketingConsent": "<p>Yes, I want to receive communication from Tetra Pak</p>",
+    "thankyouHeading": "thank you for your request",
+    "thankyouDescriptionText": "<p>We will get back to you as soon as possible</p>",
+    "apiUrl":"/content/tetrapak/public-web/lang-masters/en/home/jcr:content/root/responsivegrid/subscriptionform.padrotsubscription.json",
+    "siteCountry" : "gb",
+    "siteLanguage" : "en"
+  }

@@ -80,6 +80,14 @@ public class SearchConfigModel {
     /** The media label. */
     @ValueMapValue
     private String mediaLabel;
+    
+    /** The video thumbnail. */
+    @ValueMapValue
+    private String videoThumbnail;
+    
+    /** The document thumbnail. */
+    @ValueMapValue
+    private String documentThumbnail;
 
     /**
      * Gets the theme list.
@@ -241,6 +249,25 @@ public class SearchConfigModel {
      */
     public String getMediaLabel() {
         return mediaLabel;
-    }   
+    }
+
+    /**
+     * Gets the video thumbnail.
+     *
+     * @return the video thumbnail
+     */
+    public String getVideoThumbnail() {
+        return videoThumbnail;
+    }
+
+    /**
+     * Gets the document thumbnail.
+     *
+     * @return the document thumbnail
+     */
+    public String getDocumentThumbnail() {
+        return documentThumbnail;
+    }
+       
 
 }

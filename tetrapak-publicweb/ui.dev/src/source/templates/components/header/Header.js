@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
+import { isMobile,checkActiveOverlay } from '../../../scripts/common/common';
 
 class Header {
   constructor({ el }) {
@@ -28,12 +29,13 @@ class Header {
     this.cache.$headerItem = this.root.find('.js-tp-pw-header-item');
     this.cache.$headerItemLink = this.root.find('.js-main-menu-link-hover');
     this.cache.$overlay = $('.js-pw-overlay');
+    this.cache.$searchIcon = this.root.find('.js-tp-pw-header__search-box-toggle');
   }
 
   //
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker} = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker,$searchIcon} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
@@ -50,7 +52,52 @@ class Header {
       this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
       this.trackLanguageSelector(e);
     });
+    $searchIcon.on('click', this.searchIconClick);
 
+    // bind event to close search if clicked outside the searchbar
+    if(!isMobile()){
+      $(document).mouseup((e) =>
+      {
+        var container = $('.js-pw-header-search-bar');
+
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0)
+        {
+          this.hideSearchbar();
+        }
+      });
+    }
+  }
+
+  hideSearchbar = () => {
+    $('.js-pw-header-search-bar').removeClass('show');
+  }
+
+  searchIconClick = () => {
+    $('.js-search-bar-input').val('');
+    if(isMobile()){
+      // to hide navigation if opened
+      $('.js-tp-pw-mobile-navigation').css('display','none');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
+      this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close_pw');
+      this.toggleFlag = false;
+
+      if(this.cache.$searchIcon.children('i').hasClass('icon-Search_pw')){
+        this.cache.$searchIcon.children('i').removeClass('icon-Search_pw');
+        this.cache.$searchIcon.children('i').addClass('icon-Close_pw');
+        $('.js-pw-header-search-bar').addClass('show');
+        $('body').css('overflow','hidden');
+      } else {
+        this.cache.$searchIcon.children('i').removeClass('icon-Close_pw');
+        this.cache.$searchIcon.children('i').addClass('icon-Search_pw');
+        $('.js-pw-header-search-bar').removeClass('show');
+        const activeOverlay = ['.js-tp-pw-mobile-navigation','.js-pw-navigation__container'];
+        checkActiveOverlay(activeOverlay);
+      }
+    } else {
+      $('.js-pw-header-search-bar').addClass('show');
+    }
+    $('.search-bar-input').focus();
 
   }
 
@@ -123,6 +170,10 @@ class Header {
       this.cache.$mobileMenu.fadeIn(300);
       this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Burger_pw');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Close_pw');
+
+      // to reset the search icon
+      this.cache.$searchIcon.children('i').addClass('icon-Search_pw');
+      this.cache.$searchIcon.children('i').removeClass('icon-Close_pw');
       this.toggleFlag = true;
       $('body').css('overflow','hidden');
     }else {
@@ -131,12 +182,23 @@ class Header {
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
       this.toggleFlag = false;
 
+      // check if searchbar is active
+      if($('.js-pw-header-search-bar').hasClass('show')){
+        // to reset the search icon
+        this.cache.$searchIcon.children('i').removeClass('icon-Search_pw');
+        this.cache.$searchIcon.children('i').addClass('icon-Close_pw');
+      }
+
+
       //hide other navigation on close
       const { $megaMenuMobile, $bottomTeaserH } = this.cache;
       $bottomTeaserH.removeClass('active').addClass('hide');
       $megaMenuMobile.removeClass('is-open');
       $megaMenuMobile.addClass('is-close');
-      $('body').css('overflow','auto');
+
+      // check if other overlay is active
+      const activeOverlay = ['.js-pw-header-search-bar','.js-pw-navigation__container'];
+      checkActiveOverlay(activeOverlay);
     }
   }
 
@@ -152,7 +214,7 @@ class Header {
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     const url = $this.attr('href');
     const myDomain = 'tetrapak.com';
-    
+
     if (url && (url.includes('http://') || url.includes('https://'))) {
       if (url.includes(myDomain)) {
         $this.attr('target','_blank');
@@ -161,7 +223,7 @@ class Header {
     else {
       $this.attr('target','_self');
     }
-    const linkType = $this.attr('target');
+    const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
     const trackingObj = {
       linkType,
       linkSection: 'Brand logo',

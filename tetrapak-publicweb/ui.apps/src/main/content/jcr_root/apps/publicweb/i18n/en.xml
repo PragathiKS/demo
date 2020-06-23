@@ -301,4 +301,9 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.subscribe"
         sling:message="Subscribe"/>
+    <pw.searchResults.searchresultsTextFor
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.searchresultsTextFor"
+        sling:message="search results for"/>
 </jcr:root>

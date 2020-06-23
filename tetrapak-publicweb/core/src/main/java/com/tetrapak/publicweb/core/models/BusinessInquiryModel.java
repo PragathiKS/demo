@@ -6,7 +6,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.tetrapak.publicweb.core.services.PadrotService;
+import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
@@ -20,9 +20,9 @@ public class BusinessInquiryModel extends FormModel {
     @Self
     private Resource resource;
 
-    /** The padrot service. */
+    /** The pardot service. */
     @OSGiService
-    private PadrotService padrotService;
+    private PardotService pardotService;
 
 
     /**
@@ -32,7 +32,7 @@ public class BusinessInquiryModel extends FormModel {
      */
     @Override
     public String getApiUrl() {
-        return resource.getPath() + ".padrotbusinessenquiry.json";
+        return resource.getPath() + ".pardotbusinessenquiry.json";
     }
 
     /**

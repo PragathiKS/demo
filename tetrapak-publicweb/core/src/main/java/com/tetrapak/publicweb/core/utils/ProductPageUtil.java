@@ -1,11 +1,11 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -13,12 +13,12 @@ import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
-import com.tetrapak.publicweb.core.constants.PWConstants;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 
 /**
  * This is a util class to access product page process related utility methods
@@ -55,8 +55,7 @@ public final class ProductPageUtil {
                 final Resource pageResource = resourceResolver.getResource(hit.getPath() + "/jcr:content");
                 final ValueMap valueMap = pageResource.getValueMap();
                 if (valueMap.containsKey(PWConstants.PRODUCT_ID)) {
-                    final String pagePath = LinkUtils
-                            .sanitizeLink(hit.getPath());
+                    final String pagePath = LinkUtils.sanitizeLink(hit.getPath(), resourceResolver);
                     LOGGER.debug("Product id: {} and page path: {}", valueMap.get(PWConstants.PRODUCT_ID), pagePath);
                     productPageMap.put(valueMap.get(PWConstants.PRODUCT_ID).toString(), pagePath);
                 }

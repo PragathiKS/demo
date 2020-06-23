@@ -12,8 +12,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.tetrapak.publicweb.core.services.PadrotService;
-import com.tetrapak.publicweb.core.services.impl.PadrotServiceImpl;
+import com.tetrapak.publicweb.core.services.PardotService;
+import com.tetrapak.publicweb.core.services.impl.PardotServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -33,7 +33,7 @@ public class BusinessInquiryModelTest {
     /** The model. */
     private BusinessInquiryModel model;
 
-    private PadrotService padrotService;
+    private PardotService pardotService;
 
     /**
      * The Constant PXP_FEATURES.
@@ -51,16 +51,16 @@ public class BusinessInquiryModelTest {
      */
     @Before
     public void setUp() throws Exception {
-        padrotService = new PadrotServiceImpl();
+        pardotService = new PardotServiceImpl();
         context.load().json(TEST_RESOURCE_CONTENT, CONTACT_US_CONTENT_ROOT);
 
         context.addModelsForClasses(modelClass);
-        context.registerService(PadrotService.class, padrotService);
+        context.registerService(PardotService.class, pardotService);
         // context.registerInjectActivateService(countryDetailService);
-        final Map<String, Object> padrotConfig = new HashMap<>();
-        padrotConfig.put("padrotBusinessInquiryServiceUrl",
-                "http://padrotURL");
-        MockOsgi.activate(context.getService(PadrotService.class), context.bundleContext(), padrotConfig);
+        final Map<String, Object> pardotConfig = new HashMap<>();
+        pardotConfig.put("pardotBusinessInquiryServiceUrl",
+                "http://pardotURL");
+        MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
@@ -89,7 +89,7 @@ public class BusinessInquiryModelTest {
         assertEquals("Form", "Description", model.getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
         assertEquals("Form",
-                "/content/tetrapak/publicweb/gb/en/jcr:content/businessinquiryform.padrotbusinessenquiry.json",
+                "/content/tetrapak/publicweb/gb/en/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
                 model.getApiUrl());
         assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
        }

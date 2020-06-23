@@ -70,7 +70,7 @@ public class SoftConversionModelTest {
         assertEquals("Form", "Contact us", model.getAlt());
         assertEquals("Form", "Description", model.getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
-        assertEquals("Form", "/content/tetrapak/publicweb/gb/en/jcr:content/textimage.padrotsoftconversion.json",
+        assertEquals("Form", "/content/tetrapak/publicweb/gb/en/jcr:content/textimage.pardotsoftconversion.json",
                 model.getApiUrl());
         assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
         assertEquals("Form", "welcome back", model.getWelcomeBackHeading());
@@ -81,7 +81,7 @@ public class SoftConversionModelTest {
         assertEquals("Form", "More whitepapers", model.getMoreButtonLabel());
         assertEquals("Form", "Yes, I am", model.getYesButtonLabel());
         assertEquals("Form", "No, I am not", model.getNoButtonLabel());
-        assertEquals("form", "http://padrotURL", model.getPadrotUrl());
+        assertEquals("form", "http://pardotURL", model.getPardotUrl());
        }
 
 

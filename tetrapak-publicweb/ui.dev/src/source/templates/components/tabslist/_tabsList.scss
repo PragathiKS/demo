@@ -225,6 +225,10 @@
                 border-color: $color-white;
             }
 
+            @media #{$mobile} {
+                border-bottom: 0;
+            }
+
             div {
                 background: $color-wild-sand;
                 @media #{$desktop} {
@@ -238,6 +242,10 @@
 
             @media #{$desktop} {
                 border-color: $color-white;
+            }
+
+            @media #{$mobile} {
+                border-bottom: 0;
             }
 
             div {

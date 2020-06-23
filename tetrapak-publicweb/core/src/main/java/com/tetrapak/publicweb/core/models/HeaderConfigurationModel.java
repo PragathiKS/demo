@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.inject.Inject;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -8,7 +8,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.inject.Inject;
 
 /**
  * The Class HeaderConfigurationModel.
@@ -51,10 +51,14 @@ public class HeaderConfigurationModel {
     /** The solution page. */
     @ValueMapValue
     private String solutionPage;
-    
+
     /** The market title. */
     @ValueMapValue
     private String marketTitle;
+
+    /** The search page. */
+    @ValueMapValue
+    private String searchPage;
 
     /**
      * Gets the logo image path.
@@ -71,7 +75,7 @@ public class HeaderConfigurationModel {
      * @return the logo link
      */
     public String getLogoLink() {
-        return LinkUtils.sanitizeLink(logoLink);
+        return LinkUtils.sanitizeLink(logoLink, resource.getResourceResolver());
     }
 
     /**
@@ -89,7 +93,7 @@ public class HeaderConfigurationModel {
      * @return the login link
      */
     public String getLoginLink() {
-        return LinkUtils.sanitizeLink(loginLink);
+        return LinkUtils.sanitizeLink(loginLink, resource.getResourceResolver());
     }
 
     /**
@@ -107,7 +111,7 @@ public class HeaderConfigurationModel {
      * @return the contact link
      */
     public String getContactLink() {
-        return LinkUtils.sanitizeLink(contactLink);
+        return LinkUtils.sanitizeLink(contactLink, resource.getResourceResolver());
     }
 
     /**
@@ -125,7 +129,7 @@ public class HeaderConfigurationModel {
      * @return the solution page
      */
     public String getSolutionPage() {
-        return LinkUtils.sanitizeLink(solutionPage);
+        return LinkUtils.sanitizeLink(solutionPage, resource.getResourceResolver());
     }
 
     /**
@@ -136,6 +140,13 @@ public class HeaderConfigurationModel {
     public String getMarketTitle() {
         return marketTitle;
     }
-    
-    
+
+    /**
+     * Gets the search page.
+     *
+     * @return the search page
+     */
+    public String getSearchPage() {
+        return LinkUtils.sanitizeLink(searchPage, resource.getResourceResolver());
+    }
 }

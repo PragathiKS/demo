@@ -17,6 +17,9 @@ import javax.annotation.PostConstruct;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BasePageModel {
 
+    @Self
+    private Resource resource;
+
     protected PageContentModel pageContent;
 
     private ValueMap jcrMap;
@@ -99,7 +102,7 @@ public class BasePageModel {
 
 
     public String getImagePath() {
-        return LinkUtils.sanitizeLink(imagePath);
+        return imagePath;
     }
 
     public String getAltText() {
@@ -111,7 +114,7 @@ public class BasePageModel {
     }
 
     public String getLinkPath() {
-        return linkPath;
+        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
     }
 
     public String getLinkTarget() {

@@ -133,7 +133,7 @@ public class BannerModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath);
+        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
     }
 
 
