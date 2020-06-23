@@ -45,7 +45,7 @@
     }
 
     .separator {
-        @include padding-bottom($padding-l);
+        @include padding-bottom($padding-md);
         @include margin-bottom($margin-l);
         border-bottom: 1px solid $color-mercury;
         @media #{$desktop} {
@@ -63,8 +63,11 @@
         }
     }
     .main-heading {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
         overflow-wrap: break-word;
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
     }
     ul.pw-progressbar_wrapper .step-box {
         &::before {
