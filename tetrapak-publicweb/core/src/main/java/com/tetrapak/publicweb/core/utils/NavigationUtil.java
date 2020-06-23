@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.utils;
 
 import java.util.Objects;
+import com.tetrapak.publicweb.core.models.MegaMenuConfigurationModel;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -17,6 +18,9 @@ import com.tetrapak.publicweb.core.models.HeaderConfigurationModel;
  */
 public final class NavigationUtil {
 
+    /**
+     * Instantiates a new navigation util.
+     */
     private NavigationUtil() {
         // adding a private constructor to hide the public implicit one
     }
@@ -64,6 +68,7 @@ public final class NavigationUtil {
     /**
      * Gets the solution page without extension.
      *
+     * @param path the path
      * @return the solution page without extension
      */
     public static String getSolutionPageWithoutExtension(final String path) {
@@ -86,4 +91,20 @@ public final class NavigationUtil {
         return title;
     }
 
+    /**
+     * Gets the mega menu configuration model.
+     *
+     * @param request the request
+     * @return the mega menu configuration model
+     */
+    public static MegaMenuConfigurationModel getMegaMenuConfigurationModel(SlingHttpServletRequest request,String path) {
+        MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
+        final String rootPath = LinkUtils.getRootPath(path);
+        final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";
+        final Resource megaMenuConfigResource = request.getResourceResolver().getResource(pagePath);
+        if (Objects.nonNull(megaMenuConfigResource)) {
+            megaMenuConfigurationModel = megaMenuConfigResource.adaptTo(MegaMenuConfigurationModel.class);
+        }
+        return megaMenuConfigurationModel;
+    }
 }

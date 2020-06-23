@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -21,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.NavigationUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -38,10 +35,6 @@ public class HeaderModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-
-    /** The pseudo category service. */
-    @Inject
-    private PseudoCategoryService pseudoCategoryService;
 
     /** The logo image path. */
     private String logoImagePath;
@@ -74,7 +67,7 @@ public class HeaderModel {
     private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
     /** The mega menu configuration model. */
-    private MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
+    private MegaMenuConfigurationModel megaMenuConfigurationModel;
 
     /** The solution page title. */
     private String solutionPageTitle;
@@ -96,11 +89,12 @@ public class HeaderModel {
         LOGGER.debug("inside init method");
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
         languagePage = PageUtil.getCurrentPage(request.getResourceResolver().getResource(rootPath));
-        if(languagePage != null && languagePage.getParent() != null) {
+        if (languagePage != null && languagePage.getParent() != null) {
             marketPage = languagePage.getParent();
         }
         final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
         final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
+        megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request, request.getPathInfo());
         if (Objects.nonNull(headerConfigurationResource)) {
             final HeaderConfigurationModel configurationModel = headerConfigurationResource
                     .adaptTo(HeaderConfigurationModel.class);
@@ -118,19 +112,7 @@ public class HeaderModel {
             setMegaMenuLinksList(rootPath);
             setSolutionPageTitle();
         }
-        populateMegaMenuConfigurationModel();
-    }
 
-    /**
-     * Populate mega menu configuration model.
-     */
-    private void populateMegaMenuConfigurationModel() {
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";
-        final Resource megaMenuConfigResource = request.getResourceResolver().getResource(pagePath);
-        if (Objects.nonNull(megaMenuConfigResource)) {
-            megaMenuConfigurationModel = megaMenuConfigResource.adaptTo(MegaMenuConfigurationModel.class);
-        }
     }
 
     /**
@@ -171,7 +153,8 @@ public class HeaderModel {
     /**
      * Populate mega menu links list.
      *
-     * @param childPages the child pages
+     * @param childPages
+     *            the child pages
      */
     private void populateMegaMenuLinksList(final Iterator<Page> childPages) {
         final Page childPage = childPages.next();
@@ -180,14 +163,13 @@ public class HeaderModel {
             final String title = NavigationUtil.getNavigationTitle(childPage);
             linkBean.setLinkText(title);
             linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath(), request.getResourceResolver()));
-            final String solutionPageWithoutExtension = NavigationUtil
-                    .getSolutionPageWithoutExtension(solutionPage);
+            final String solutionPageWithoutExtension = NavigationUtil.getSolutionPageWithoutExtension(solutionPage);
             if (!childPage.getPath().equalsIgnoreCase(solutionPageWithoutExtension)) {
                 final SectionMenuModel sectionMenuModel = new SectionMenuModel();
                 sectionMenuModel.setSectionHomePageTitle(childPage);
                 sectionMenuModel.setSectionHomePagePath(childPage, request.getResourceResolver());
-                sectionMenuModel.populateSectionMenu(childPage, solutionPageWithoutExtension,
-                        pseudoCategoryService, request.getResourceResolver());
+                sectionMenuModel.populateSectionMenu(megaMenuConfigurationModel, childPage,
+                        solutionPageWithoutExtension, request.getResourceResolver());
                 linkBean.setNavigationConfigurationModel(sectionMenuModel);
             }
             megaMenuLinksList.add(linkBean);
@@ -296,7 +278,8 @@ public class HeaderModel {
     /**
      * Sets the solution page title.
      *
-     * @param headerConfigurationResource the new solution page title
+     * @param headerConfigurationResource
+     *            the new solution page title
      */
     private void setSolutionPageTitle() {
         this.solutionPageTitle = NavigationUtil.getSolutionPageTitle(request, solutionPage);

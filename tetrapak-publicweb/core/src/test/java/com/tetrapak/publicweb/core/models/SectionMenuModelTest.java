@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.beans.SectionMenuBean;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
-import com.tetrapak.publicweb.core.services.impl.PseudoCategoryServiceImpl;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -60,9 +58,6 @@ public class SectionMenuModelTest {
     /** The model. */
     private SectionMenuModel model;
 
-    /** The pseudo category service. */
-    private PseudoCategoryService pseudoCategoryService;
-
     /** The model class. */
     final Class<SectionMenuModel> modelClass = SectionMenuModel.class;
 
@@ -78,11 +73,9 @@ public class SectionMenuModelTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        pseudoCategoryService = new PseudoCategoryServiceImpl();
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.load().json(RESOURCE_CONTENT1, TEST_CONTENT_ROOT1);
         context.addModelsForClasses(modelClass);
-        context.registerInjectActivateService(pseudoCategoryService);
         final MockSlingHttpServletRequest request = context.request();
         resource = context.currentResource(RESOURCE_PATH);
         request.setPathInfo(
