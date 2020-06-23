@@ -274,8 +274,8 @@
 						"jcr:primaryType": "nt:unstructured",
 						"item0": {
 							"jcr:primaryType": "nt:unstructured",
-							"pseudoCategoryKey": "Technology Areas",
-							"pseudoCategoryValue": "Technology Areas"
+							"pseudoCategoryKey": "TECHNOLOGY AREAS",
+							"pseudoCategoryValue": "TECHNOLOGY AREAS"
 						},
 						"item1": {
 							"jcr:primaryType": "nt:unstructured",
@@ -284,8 +284,8 @@
 						},
 						"item2": {
 							"jcr:primaryType": "nt:unstructured",
-							"pseudoCategoryKey": "Ice Cream Equipment",
-							"pseudoCategoryValue": "Ice Cream Equipment"
+							"pseudoCategoryKey": "ICE CREAM EQUIPMENT",
+							"pseudoCategoryValue": "ICE CREAM EQUIPMENT"
 						},
 						"item3": {
 							"jcr:primaryType": "nt:unstructured",

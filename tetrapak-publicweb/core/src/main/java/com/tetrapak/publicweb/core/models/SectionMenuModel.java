@@ -24,11 +24,11 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
 import com.tetrapak.publicweb.core.beans.PseudoCategoriesSectionBean;
-import com.tetrapak.publicweb.core.beans.PseudoCategoryBean;
 import com.tetrapak.publicweb.core.beans.SectionMenuBean;
 import com.tetrapak.publicweb.core.beans.SubSectionBean;
 import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.NavigationUtil;
 
@@ -179,10 +179,10 @@ public class SectionMenuModel {
             final Page page, final String path, final ResourceResolver resourceResolver) {
         final Map<String, List<String>> pseudoCategoryMap = new LinkedHashMap<>();
         final List<SubSectionBean> subSections = new ArrayList<>();
-        final List<PseudoCategoryBean> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
+        final List<PseudoCategoryModel> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
 
         if (pseudoCategories != null && !pseudoCategories.isEmpty()) {
-            for (PseudoCategoryBean pseudoCategory : pseudoCategories) {
+            for (PseudoCategoryModel pseudoCategory : pseudoCategories) {
                 pseudoCategoryMap.put(pseudoCategory.getPseudoCategoryValue(), new ArrayList<String>());
             }
         }

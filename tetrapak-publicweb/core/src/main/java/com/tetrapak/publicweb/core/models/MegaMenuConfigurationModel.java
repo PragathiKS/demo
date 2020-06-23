@@ -11,8 +11,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
-import com.tetrapak.publicweb.core.beans.PseudoCategoryBean;
+import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
 
 /**
  * The Class MegaMenuSolutionModel.
@@ -46,7 +45,7 @@ public class MegaMenuConfigurationModel {
     
     /** The pseudo category bean. */
     @Inject
-    private List<PseudoCategoryBean> pseudoCategoryBean;
+    private List<PseudoCategoryModel> pseudoCategoryBean;
 
     /**
      * Gets the top section subtitle.
@@ -119,8 +118,8 @@ public class MegaMenuConfigurationModel {
      *
      * @return the  pseudo category list
      */
-    public List<PseudoCategoryBean> getPseudoCategoryList() {
-        final List<PseudoCategoryBean> pseudoCategoryList = new ArrayList<>();
+    public List<PseudoCategoryModel> getPseudoCategoryList() {
+        final List<PseudoCategoryModel> pseudoCategoryList = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(pseudoCategoryBean)) {
             pseudoCategoryList.addAll(pseudoCategoryBean);
         }
