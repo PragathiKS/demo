@@ -140,6 +140,9 @@ export function pauseVideosByReference(el) {
  * @param {object} e Event object
  */
 function _onStateChange(thisIns, e) {
+  // hide search bar on state change of youTube player
+  $('.js-pw-header-search-bar').removeClass('show');
+
   const totalTime = thisIns.ytPlayer.getDuration();
   const videoTime = thisIns.ytPlayer.getCurrentTime();
   const $this = $(this);
