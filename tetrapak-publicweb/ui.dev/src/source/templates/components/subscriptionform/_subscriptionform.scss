@@ -7,7 +7,7 @@
     }
 
     .emailDiv {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
     }
 
     .errorMsg {
@@ -24,6 +24,9 @@
 
     .formfield,
     .form-group {
+        .form-control {
+            line-height: 24px;
+        }
         label {
             @include margin-bottom(0);
             padding-top: 2px;
@@ -60,7 +63,7 @@
         }
     }
     .main-heading {
-        @include margin-bottom($margin-md);
+        @include margin-bottom($margin-l);
         overflow-wrap: break-word;
     }
     ul.pw-progressbar_wrapper .step-box {
@@ -79,7 +82,7 @@
         position: relative;
         top: 4px;
         height: 20px;
-        margin-right: 6px;
+        margin-right: 8px;
         width: 20px;
         min-width: 20px;
     }
