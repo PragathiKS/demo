@@ -1,8 +1,6 @@
 package com.tetrapak.publicweb.core.utils;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.models.HeaderConfigurationModel;
+import java.util.Objects;
 import com.tetrapak.publicweb.core.models.MegaMenuConfigurationModel;
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,7 +8,10 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 
-import java.util.Objects;
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.HeaderConfigurationModel;
 
 /**
  * The Class NavigationUtil.
@@ -73,8 +74,23 @@ public final class NavigationUtil {
     public static String getSolutionPageWithoutExtension(final String path) {
         return StringUtils.substringBefore(path, ".");
     }
-    
-  
+
+
+    /**
+     * Fetch navigation title of page, if not present sends page Title as fallback
+     *
+     * @param page
+     *            the page
+     * @return the navigation title
+     */
+    public static String getNavigationTitle(final Page page) {
+        String title = page.getNavigationTitle();
+        if (StringUtils.isEmpty(title)) {
+            title = page.getTitle();
+        }
+        return title;
+    }
+
     /**
      * Gets the mega menu configuration model.
      *
@@ -91,5 +107,4 @@ public final class NavigationUtil {
         }
         return megaMenuConfigurationModel;
     }
-
 }

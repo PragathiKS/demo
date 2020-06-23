@@ -2,6 +2,23 @@
   data-sly-template.sectionMenu_template="${@ data, selectedL2,selectedL3,selectedL4, linkText,linkURL, anchorClass, iconClass,linkSectionListIndex,sectionId,l1,mainHeader,navigationTypeSticky,leftTitle,solutionPageTitle}">
   <div data-module="SectionMenu">
     <div class="section-menu-navigation-Link js-section-menu-navigation-Link pw-position-relative">
+    <sly data-sly-test="${!linkURL}">
+      <a auto-locator="SectionMenuLinksFontStyle-SectionMenuLinksPadding" data-link-title="${linkText}" data-link-section='${leftTitle || "NA"}' data-link-name='${navigationTypeSticky == true ? l1 : mainHeader }${(navigationTypeSticky && l1 == solutionPageTitle) ? ":" : ""}${l1 == solutionPageTitle ? selectedL2 : ""}:${linkText}'
+        target="${data.external ? '_blank' : '_self'}" data-url-link="${linkURL}"
+        class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : 'collapsed'} section-menu-item-link js-section-menu-item-link no-url"
+        title="${linkText}" data-toggle="collapse" href="#subSectionMenuCollapse_${linkSectionListIndex}" role="button"
+        aria-expanded="${(selectedL2 == linkText || selectedL3 == linkText) ? 'true' : 'false'}">
+        <span title="">${linkText}</span>
+        <sly data-sly-test="${data.external}">
+          <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding"
+            class="icon is-external ${iconClass}"></i>
+        </sly>
+        <sly data-sly-test="${(data.subSectionMenu.subSections || data.subSectionMenu.pseudoCategoriesSection) && !data.external}">
+          <i title="" auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon with-arrow ${iconClass}"></i>
+        </sly>
+      </a>
+    </sly>
+     <sly data-sly-test="${linkURL}">
       <a auto-locator="SectionMenuLinksFontStyle-SectionMenuLinksPadding" data-link-title="${linkText}" data-link-section='${leftTitle || "NA"}' data-link-name='${navigationTypeSticky == true ? l1 : mainHeader }${(navigationTypeSticky && l1 == solutionPageTitle) ? ":" : ""}${l1 == solutionPageTitle ? selectedL2 : ""}:${linkText}'
         target="${data.external ? '_blank' : '_self'}" data-url-link="${linkURL}"
         class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : 'collapsed'} section-menu-item-link js-section-menu-item-link"
@@ -16,6 +33,7 @@
           <i title="" auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon with-arrow ${iconClass}"></i>
         </sly>
       </a>
+      </sly>
 
       <!--sub section menu for mobile-->
       <div class="collapse d-lg-none ${(selectedL2 == linkText || selectedL3 == linkText) ? 'active-accordion show' : ''}"

@@ -18,6 +18,12 @@ class Analyticsglobaltagspw {
       const oldPageName = window.digitalData.pageinfo.pageName;
       window.digitalData.pageinfo.pageName = `${oldPageName}:${document.location.pathname}`;
     }
+    if(window.digitalData.productInfo && window.digitalData.productInfo.productName) {
+      window.digitalData['event'] = {
+        event:'product explorer page',
+        eventType:'content-load'
+      };
+    }
 
     if(!storageUtil.get('gdprCookie')) {
       window.digitalData.cookie={
