@@ -26,6 +26,7 @@ describe('ContactUs', function () {
   it('should get country list and it should be equal to 2', function () {
     expect(this.contactUs.getCountryList.called).to.be.true;
     expect(this.contactUs.cache.countryList.length).to.equal(2);
+    $('.country-dropdown, .country-dropdown-select').keydown();
   });
 
   it('Should not update request payload on step-1 next button click', function () {
@@ -93,6 +94,10 @@ describe('ContactUs', function () {
     document.getElementById('pardot_extra_field').value = 'honeypot';
     this.contactUs.cache.$submitBtn.click();
     expect(this.contactUs.submitForm.called).to.be.false;
+    done();
+  });
+  it('should call previous button click', function (done) {
+    document.getElementById('step2btnPrevious').click();
     done();
   });
 });

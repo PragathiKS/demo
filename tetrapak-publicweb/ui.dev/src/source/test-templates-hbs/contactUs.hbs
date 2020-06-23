@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="row no-gutters button-group">
-                            <button data-target="#cf-step-2" type="button" class="tpatom-btn" id="step1btn">
+                            <button data-current-target="cf-step-1" data-target="#cf-step-2" type="button" class="tpatom-btn" id="step1btn">
                                 <span class="tp-next-btn__text">next</span>
                                 <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
                             </button>
@@ -43,22 +43,29 @@
                     <div class="col-lg-6">
                         <div class="tab-content tab-content-steps">
                             <div class="row">
-                                <div class="col-sm-12 formfield">
-                                    <label for="firstName">firstName</label>
-                                    <input type="text" id="firstName" name="firstName" class="validateForTags" required="true">
+                                <div class="col-sm-12 formfield first-name">
+                                    <div class="field-error">
+                                        <label for="firstName">firstName</label>
+                                        <input type="text" id="firstName" name="firstName" class="validateForTags" required="true">
+                                    </div>
+
                                 </div>
-                                <div class="col-sm-12 formfield">
-                                    <label for="lastName">firstName</label>
-                                    <input type="text" id="lastName" name="lastName" class="validateForTags" required="true">
+                                <div class="col-sm-12 formfield last-name">
+                                    <div class="field-error">
+                                        <label for="lastName">firstName</label>
+                                        <input type="text" id="lastName" name="lastName" class="validateForTags" required="true">
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 formfield">
-                                    <label for="email">email</label>
-                                    <input type="text" id="email" name="email" class="validateForTags" required="true"
-                                        placeholder='emailPlaceholder'>
-                                    <div class="errorMsg">email error</div>
+                                <div class="col-sm-12 formfield email">
+                                    <div class="field-error">
+                                        <label for="email">email</label>
+                                        <input type="text" id="email" name="email" class="validateForTags" required="true"
+                                            placeholder='emailPlaceholder'>
+                                        <div class="errorMsg">email error</div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-12 col-lg-6">
-                                    <div class="form-group country-field">
+                                    <div class="form-group country-field country field-error">
                                         <label for="country">country</label>
                                         <div class="pw-form__dropdown dropdown text-left">
                                             <button
@@ -84,7 +91,11 @@
                                 </div>
                             </div>
                             <div class="row no-gutters button-group">
-                                <button data-target="#cf-step-3" id="step2btn" type="button"
+                                <button data-current-target="cf-step-2" data-target="#cf-step-1" id="step2btnPrevious" type="button" class="tpatom-btn tpatom-btn--secondary previousbtn" auto_locator="contactUsPreviousButtonStep2">
+                                    <span class="tp-next-btn__text">Previous</span>
+                                    <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
+                                </button>
+                                <button data-current-target="cf-step-2" data-target="#cf-step-3" id="step2btn" type="button"
                                     class="tpatom-btn tpatom-btn--primary">
                                     <span class="tp-next-btn__text">next</span>
                                     <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
@@ -123,7 +134,7 @@
             <div class="tab-pane" role="tabpanel" id="cf-step-final">
                 <div class="row thankyou">
                     <div class="button-group">
-                        <button data-target="#cf-step-3" type="button"
+                        <button data-current-target="cf-step-3" data-target="#cf-step-3" type="button"
                             class="tpatom-btn tpatom-btn--primary newRequestBtn">
                             <span class="tp-next-btn__text">newrequest</span>
                             <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>

@@ -5,6 +5,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { validateFieldsForTags } from '../../../scripts/common/common';
+import { onErrorAnalytics, newRequestButtonAnalytics, onNextClickAnalytics, onPreviousClickAnalytics, onLoadTrackAnalytics, onSubmitClickAnalytics } from './contactUs.analytics';
 
 class ContactUs {
   constructor({ el }) {
@@ -78,6 +79,7 @@ class ContactUs {
   newRequestHanlder = e => {
     e.preventDefault();
     e.stopPropagation();
+    newRequestButtonAnalytics(e);
     location.reload();
   }
 
@@ -101,6 +103,7 @@ class ContactUs {
     $nextbtn.click(function (e) {
       let isvalid = true;
       const target = $(this).data('target');
+      const currentTarget = $(this).data('current-target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
       const textarea = tab.find('textarea');
@@ -117,16 +120,23 @@ class ContactUs {
             e.preventDefault();
             e.stopPropagation();
             $(this).closest('.form-group, .formfield').addClass('field-error');
+            onErrorAnalytics(currentTarget,tab);
           } else {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
           }
         });
+      } else if($(this).hasClass('previousbtn')) {
+        onPreviousClickAnalytics(currentTarget,tab);
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
         if (target) {
           $('.tab-pane').removeClass('active');
           $(target).addClass('active');
+          if(!$(this).hasClass('previousbtn')){
+            onNextClickAnalytics(currentTarget,tab,requestPayload);
+          }
+
         }
       }
     });
@@ -135,16 +145,20 @@ class ContactUs {
       e.preventDefault();
       e.stopPropagation();
       let isvalid = true;
+      const tab = $(this).closest('.tab-content-steps');
       const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
       requestPayload['message'] = validateFieldsForTags($('[name="message"]').val());
       $('input, textarea').each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
+          onErrorAnalytics('cf-step-3',tab);
         }
       });
       if (isvalid && !honeyPotFieldValue) {
+        onSubmitClickAnalytics();
         self.submitForm();
+
       }
     });
 
@@ -160,7 +174,10 @@ class ContactUs {
       $dropItem.removeClass('active');
       $(this).addClass('active');
     });
+
+    onLoadTrackAnalytics();
   }
+
   init() {
     /* Mandatory method */
     this.initCache();
