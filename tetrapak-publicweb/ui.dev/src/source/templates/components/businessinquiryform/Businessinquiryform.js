@@ -71,7 +71,7 @@ class Businessinquiryform {
     dataObj['position'] = this.cache.requestPayload.position;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    dataObj['policyConsent'] = true;
+    dataObj['marketingConsent'] = true;
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
