@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
@@ -17,11 +19,12 @@ import com.tetrapak.publicweb.core.services.CountryDetailService;
  * The Class ContactUsModel.
  *
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactUsModel extends FormModel {
 
     /** The resource. */
     @Self
+    @Via("resource")
     private Resource resource;
 
     /** The country options. */
@@ -57,13 +60,6 @@ public class ContactUsModel extends FormModel {
         this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
     }
 
-
-    /**
-     * Gets the api url.
-     *
-     * @return the api url
-     */
-    @Override
     public String getApiUrl() {
         return resource.getPath() + ".sendmail.json";
     }

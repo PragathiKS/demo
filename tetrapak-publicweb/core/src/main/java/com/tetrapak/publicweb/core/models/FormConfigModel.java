@@ -1,8 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -11,8 +9,8 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 /**
  * The Class FormModel.
  */
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class FormModel {
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+public class FormConfigModel {
 
     /** The resource. */
     @Self
@@ -33,19 +31,6 @@ public class FormModel {
     /** The description text. */
     @ValueMapValue
     private String descriptionText;
-
-    /** The anchor id. */
-    @ValueMapValue
-    private String anchorId;
-
-    /** The anchor title. */
-    @ValueMapValue
-    private String anchorTitle;
-
-    /** The pw theme. */
-    @ValueMapValue
-    @Default(values = "grayscale-white")
-    private String pwTheme;
 
     /** The privacy policy. */
     @ValueMapValue
@@ -106,34 +91,6 @@ public class FormModel {
     public String getDescriptionText() {
         return descriptionText;
     }
-
-    /**
-     * Gets the anchor id.
-     *
-     * @return the anchor id
-     */
-    public String getAnchorId() {
-        return anchorId;
-    }
-
-    /**
-     * Gets the anchor title.
-     *
-     * @return the anchor title
-     */
-    public String getAnchorTitle() {
-        return anchorTitle;
-    }
-
-    /**
-     * Gets the pw theme.
-     *
-     * @return the pw theme
-     */
-    public String getPwTheme() {
-        return pwTheme;
-    }
-
 
     /**
      * Gets the privacy policy.

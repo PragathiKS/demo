@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -82,7 +83,7 @@ public final class GlobalUtil {
         }
         return path;
     }
-    
+
     /**
      * get scene 7 image url
      *
@@ -91,7 +92,7 @@ public final class GlobalUtil {
      * @param dynamicMediaService
      *            dynamic media service
      * @return image path from scene 7
-     */    
+     */
     public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
             final DynamicMediaService dynamicMediaService) {
         String path = damImagePath;
@@ -214,6 +215,22 @@ public final class GlobalUtil {
             assetType = PWConstants.VIDEO;
         }
         return assetType;
+    }
+
+
+    /**
+     * Fetch config resource.
+     *
+     * @param request
+     *            the request
+     * @param configPath
+     *            the config path
+     * @return the resource
+     */
+    public static Resource fetchConfigResource(final SlingHttpServletRequest request, final String configPath) {
+        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        final String path = new StringBuffer(rootPath).append(configPath).toString();
+        return request.getResourceResolver().getResource(path);
     }
 
 }

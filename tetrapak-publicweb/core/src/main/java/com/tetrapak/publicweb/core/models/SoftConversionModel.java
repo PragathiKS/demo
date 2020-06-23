@@ -143,7 +143,6 @@ public class SoftConversionModel extends FormModel {
      *
      * @return the api url
      */
-    @Override
     public String getApiUrl() {
         return resource.getPath() + ".pardotsoftconversion.json";
     }

@@ -1,0 +1,18 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+    <sly data-sly-use.softconversionform="com.tetrapak.publicweb.core.models.FormConfigModel">
+        <b>Business Inquiry form Left Section</b><br/>
+        Heading : ${softconversionform.heading}<br/>
+        DAM image path : ${softconversionform.image}<br/>
+		Image alt text : ${softconversionform.alt} <br/>
+        Body text : ${softconversionform.descriptionText @context='html'}
+
+        <b>Thank you section</b><br/>
+  	
+      	Thank you heading : ${softconversionform.thankyouHeading}<br/>
+		DAM image path : ${softconversionform.thankyouImage}<br/>
+		Image alt text : ${softconversionform.thankyouImageAltText}<br/>
+        Thank you body text : ${softconversionform.thankyouDescriptionText  @context='html'}<br/>
+
+    </sly>
+</sly>

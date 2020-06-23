@@ -11,7 +11,7 @@ import org.junit.Test;
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 
-public class FormModelTest {
+public class FormConfigModelTest {
 
     /** The context. */
     @Rule
@@ -21,10 +21,10 @@ public class FormModelTest {
     private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
     private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master";
     /** The model class. */
-    Class<FormModel> modelClass = FormModel.class;
+    Class<FormConfigModel> modelClass = FormConfigModel.class;
 
     /** The model. */
-    private FormModel model;
+    private FormConfigModel model;
 
     /**
      * The Constant
@@ -57,8 +57,6 @@ public class FormModelTest {
     @Test
     public void testDailogValues() throws Exception {
         assertEquals("Form", "Business Enquiry", model.getHeading());
-        assertEquals("Form", "title", model.getAnchorTitle());
-        assertEquals("Form", "test01", model.getAnchorId());
         assertEquals("Form", "Thank you for your request", model.getThankyouHeading());
         assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getThankyouImage());
         assertEquals("Form", "Thank you", model.getThankyouImageAltText());
@@ -69,7 +67,6 @@ public class FormModelTest {
         assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getImage());
         assertEquals("Form", "Contact us", model.getAlt());
         assertEquals("Form", "Description", model.getDescriptionText());
-        assertEquals("Form", "grayscale-white", model.getPwTheme());
         assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
        }
 
