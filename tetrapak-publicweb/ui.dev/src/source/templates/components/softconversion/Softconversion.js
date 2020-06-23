@@ -2,6 +2,7 @@ import $ from 'jquery';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
 import { validateFieldsForTags, isMobileMode, storageUtil } from '../../../scripts/common/common';
+import { makeLoad, changeStepNext } from './softconversion.analytics.js';
 
 class Softconversion {
   constructor({ el }) {
@@ -193,6 +194,21 @@ class Softconversion {
         if (target) {
           $(`.tab-pane.tab-${$componentName}`).removeClass('active');
           $(target).addClass('active');
+          if (!$(this).hasClass('previousbtn')) {
+            switch (target) {
+            case `#cf-step-2-${$componentName}`:
+              changeStepNext(self.mainHeading, 'Step 1', self.step1heading, { [self.step1heading]: self.cache.requestPayload['typeOfVisitorTitle'] });
+              break;
+            case `#cf-step-3-${$componentName}`:
+              changeStepNext(self.mainHeading, 'Step 2', self.step2heading, { ...self.restObj });
+              break;
+            default:
+              break;
+            }
+          } 
+
+
+
         }
       }
     });
@@ -228,6 +244,10 @@ class Softconversion {
   showPopup = () => {
     const $this = this;
     // check for the cookie present of not
+    
+
+    makeLoad($this.step1heading, $this.mainHeading);
+
     const visitorMail = storageUtil.getCookie('visitor-mail');
     if(visitorMail) {
       $(`#visitor-email-${this.cache.$componentName}`).text(visitorMail).css('font-weight', 900);
@@ -250,6 +270,13 @@ class Softconversion {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.mainHeading = $(`.heading_${this.cache.$componentName}`).text().trim();
+    this.step1heading = $(`#cf-step-1-${this.cache.$componentName} .radioHeading`).text().trim();
+    this.step2heading = $(`#cf-step-2-${this.cache.$componentName} .tab-content-steps`).find('h4').text();
+    this.step3heading = $(`#cf-step-3-${this.cache.$componentName} .tab-content-steps`).find('h4').text();
+    this.restObj = {};
+    $(`#cf-step-2-${this.cache.$componentName} label`).each((i, v) => this.restObj[$(v).text()] = 'NA');
+    
   }
 }
 
