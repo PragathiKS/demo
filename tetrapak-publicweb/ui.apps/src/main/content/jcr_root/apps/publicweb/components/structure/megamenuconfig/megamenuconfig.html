@@ -26,9 +26,9 @@
             Path: ${food.path @context = "uri"}<br/><br/>
         </sly>
         <b>Pseduo category section</b><br/>
-         <sly data-sly-list.pseudoCategoryBean="${menu.pseudoCategoryBean}">
-            Key: ${pseudoCategoryBean.pseudoCategoryKey}<br/>
-            Value: ${pseudoCategoryBean.pseudoCategoryValue}<br/>
+         <sly data-sly-list.pseudoCategoryBean="${menu.pseudoCategoryList}">
+            Pseudo Category Key: ${pseudoCategoryBean.pseudoCategoryKey}<br/>
+            Pseudo Category Value: ${pseudoCategoryBean.pseudoCategoryValue}<br/>
         </sly>
     </sly>
 </sly>
