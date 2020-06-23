@@ -5,7 +5,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { validateFieldsForTags } from '../../../scripts/common/common';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { onErrorAnalytics, newRequestButtonAnalytics, onNextClickAnalytics, onPreviousClickAnalytics, onLoadTrackAnalytics, onSubmitClickAnalytics } from './contactUs.analytics';
 
 class ContactUs {
   constructor({ el }) {
@@ -79,7 +79,7 @@ class ContactUs {
   newRequestHanlder = e => {
     e.preventDefault();
     e.stopPropagation();
-    self.newRequestButtonAnalytics(e);
+    newRequestButtonAnalytics(e);
     location.reload();
   }
 
@@ -120,13 +120,13 @@ class ContactUs {
             e.preventDefault();
             e.stopPropagation();
             $(this).closest('.form-group, .formfield').addClass('field-error');
-            self.onErrorAnalytics(currentTarget,tab);
+            onErrorAnalytics(currentTarget,tab);
           } else {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
           }
         });
       } else {
-        self.onPreviousClickAnalytics(currentTarget,tab);
+        onPreviousClickAnalytics(currentTarget,tab);
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
@@ -134,7 +134,7 @@ class ContactUs {
           $('.tab-pane').removeClass('active');
           $(target).addClass('active');
           if(!$(this).hasClass('previousbtn')){
-            self.onNextClickAnalytics(currentTarget,tab);
+            onNextClickAnalytics(currentTarget,tab,requestPayload);
           }
 
         }
@@ -152,11 +152,11 @@ class ContactUs {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');
-          self.onErrorAnalytics('cf-step-3',tab);
+          onErrorAnalytics('cf-step-3',tab);
         }
       });
       if (isvalid && !honeyPotFieldValue) {
-        self.onSubmitClickAnalytics();
+        onSubmitClickAnalytics();
         self.submitForm();
 
       }
@@ -175,156 +175,7 @@ class ContactUs {
       $(this).addClass('active');
     });
 
-    this.onLoadTrackAnalytics();
-  }
-
-  onErrorAnalytics = (currentTarget,tab) => {
-    const formType = tab.find('.form-field-heading').data('step-heading');
-    const formError = [];
-    const formField = [];
-    const event = {
-      eventType : 'formError'
-    };
-    if(currentTarget === 'cf-step-1'){
-      formError.push({formErrorField:tab.find('.form-field-heading').data('step-heading'), formErrorMessage:tab.find('.formfield .errorMsg').data('purposeofcontact-errmsg')});
-    } else if(currentTarget === 'cf-step-2'){
-      if(tab.find('.first-name .field-error').length > 0){
-        formError.push({formErrorField:tab.find('.first-name').data('first-name-label'), formErrorMessage:tab.find('.first-name .errorMsg').data('error-msg')});
-      }
-      if(tab.find('.last-name .field-error').length > 0){
-        formError.push({formErrorField:tab.find('.last-name').data('last-name-label'), formErrorMessage:tab.find('.last-name .errorMsg').data('error-msg')});
-      }
-      if(tab.find('.email .field-error').length > 0){
-        formError.push({formErrorField:tab.find('.email').data('email-name-label'), formErrorMessage:tab.find('.email .errorMsg').data('error-msg')});
-      }
-      if(tab.find('.country.field-error').length > 0){
-        formError.push({formErrorField:tab.find('.country').data('country-name-label'), formErrorMessage:tab.find('.country .errorMsg').data('country-error-msg')});
-      }
-    } else if(currentTarget === 'cf-step-3'){
-      if(tab.find('.formfield.field-error').length > 0){
-        formError.push({formErrorField:tab.find('.formfield .text-area-label').data('text-area-label'), formErrorMessage:tab.find('.formfield .errorMsg').data('error-msg')});
-      }
-    }
-
-    const form  = {
-      formType,
-      formField,
-      formError,
-      formStep : tab.find('.button').data('form-step')
-    };
-
-    this.trackAnalytics(form,event);
-  }
-
-  newRequestButtonAnalytics = (e) => {
-    const $target = $(e.target);
-    const $this = $target.closest('.js-pw-contactAnchorLink');
-    const linkName = $this.closest('.newRequestBtn').text();
-    const trackingObj = {
-      linkType: 'internal',
-      linkSection: 'button click',
-      linkParentTitle: $('.contact-us-thankyou-text').data('.thankyou-text'),
-      linkName
-    };
-    const eventObj = {
-      eventType: 'linkClick',
-      event: 'Contact us'
-    };
-    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-  }
-
-  onNextClickAnalytics = (currentTarget,tab) => {
-    const { requestPayload } = this.cache;
-    const formType = tab.find('.form-field-heading').data('step-heading');
-    const formField = [];
-    let event = {
-      eventType : 'step 1 next'
-    };
-    if(currentTarget === 'cf-step-1'){
-      formField.push({formFieldName:tab.find('.form-field-heading').data('step-heading'), formFieldValue:requestPayload['purposeOfContact']});
-    } else if(currentTarget === 'cf-step-2'){
-      formField.push(
-        {formFieldName:tab.find('.first-name').data('first-name-label'), formFieldValue:'NA'},
-        {formFieldName:tab.find('.last-name').data('last-name-label'), formFieldValue:'NA'},
-        {formFieldName:tab.find('.email').data('email-name-label'), formFieldValue:'NA'},
-        {formFieldName:tab.find('.country').data('country-name-label'), formFieldValue:requestPayload['country']},
-      );
-      event = {
-        eventType : 'step 2 next'
-      };
-    }
-    const form  = {
-      formType,
-      formField,
-      formStep : tab.find('.button').data('form-step')
-    };
-
-    this.trackAnalytics(form,event);
-  };
-
-  onPreviousClickAnalytics = (currentTarget,tab) => {
-    const formType = tab.find('.form-field-heading').data('step-heading');
-    const formField = [];
-    let event = {
-      eventType : 'step 2 previous'
-    };
-    if(currentTarget === 'cf-step-3'){
-      event = {
-        eventType : 'step 3 previous'
-      };
-    }
-    const form  = {
-      formType,
-      formField,
-      formStep : tab.find('.button').data('form-step')
-    };
-
-    this.trackAnalytics(form,event);
-  }
-
-  onLoadTrackAnalytics = () => {
-    const form = {
-      formType:$('.js-form-field-heading-step1').data('step1-heading'),
-      formStep:'step 1',
-      formField: []
-    };
-    const event = {
-      eventType : 'formStart'
-    };
-    this.trackAnalytics(form,event);
-  };
-
-  onSubmitClickAnalytics = () => {
-    const form = {
-      formType:'ThankYou',
-      formStep:'step 3',
-      formField: []
-    };
-    const event = {
-      eventType : 'formComplete'
-    };
-    this.trackAnalytics(form,event);
-  }
-
-  trackAnalytics = (formTrackingObj,eventObj) => {
-
-    formTrackingObj = {
-      formName:$('.js-step1-main-heading').data('form-name'),
-      ...formTrackingObj
-    };
-
-    eventObj = {
-      ...eventObj,
-      event:'Contact Us'
-    };
-    trackAnalytics(
-      formTrackingObj,
-      'form',
-      'formClick',
-      undefined,
-      false,
-      eventObj,
-    );
+    onLoadTrackAnalytics();
   }
 
   init() {
