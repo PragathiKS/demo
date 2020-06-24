@@ -1,0 +1,136 @@
+{
+  "jcr:primaryType": "sling:OrderedFolder",
+  "jcr:createdBy": "tetrapak-system-user",
+  "jcr:created": "Mon Jun 01 2020 19:30:12 GMT+0000",
+  "Video.mp4": {
+      "jcr:primaryType": "dam:Asset",
+      "jcr:mixinTypes": [
+        "mix:referenceable"
+      ],
+      "jcr:createdBy": "tetrapak-system-user",
+      "jcr:created": "Mon Jun 01 2020 19:30:12 GMT+0000",
+      "jcr:uuid": "864595e7-4389-4099-a3ef-2cf8cbb4365d",
+      "jcr:content": {
+        "jcr:primaryType": "dam:AssetContent",
+        "jcr:mixinTypes": [
+          "cq:ReplicationStatus"
+        ],
+        "cq:lastReplicationAction": "Activate",
+        "cq:lastReplicatedBy": "workflow-process-service",
+        "jcr:lastModifiedBy": "workflow-process-service",
+        "status": "Finished",
+        "cq:lastReplicated": "Mon Jun 01 2020 19:33:23 GMT+0000",
+        "dam:imageServerAsset": true,
+        "dam:s7damType": "Asset",
+        "dam:assetState": "processed",
+        "jcr:lastModified": "Mon Jun 01 2020 19:33:23 GMT+0000",
+        "dam:relativePath": "tetrapak/publicweb/pxp/fillingmachines/equipment1272/video/a3flexautomaticmaterialsupply_mp4_1350217513.mp4",
+        "renditions": {
+          "jcr:primaryType": "nt:folder",
+          "jcr:createdBy": "tetrapak-system-user",
+          "jcr:created": "Mon Jun 01 2020 19:30:12 GMT+0000",
+          "cq5dam.thumbnail.48.48.png": {
+            "jcr:primaryType": "sling:OrderedFolder",
+            "jcr:createdBy": "workflow-process-service",
+            "jcr:created": "Mon Jun 01 2020 19:33:23 GMT+0000",
+            "sling:resourceType": "cq/dam/custom-rendition",
+            "jcr:content": {
+              "jcr:primaryType": "nt:unstructured",
+              "jcr:lastModifiedBy": "workflow-process-service",
+              "rendition.handler.id": "dynamic.media.rendition.handler",
+              "dam:query": "wid=48&hei=48&fmt=png&fit=constrain,true",
+              "jcr:lastModified": "Mon Jun 01 2020 19:33:23 GMT+0000"
+            }
+          },
+          "cq5dam.thumbnail.140.100.png": {
+            "jcr:primaryType": "sling:OrderedFolder",
+            "jcr:createdBy": "workflow-process-service",
+            "jcr:created": "Mon Jun 01 2020 19:33:23 GMT+0000",
+            "sling:resourceType": "cq/dam/custom-rendition",
+            "jcr:content": {
+              "jcr:primaryType": "nt:unstructured",
+              "jcr:lastModifiedBy": "workflow-process-service",
+              "rendition.handler.id": "dynamic.media.rendition.handler",
+              "dam:query": "wid=140&hei=100&fmt=png&fit=constrain,true",
+              "jcr:lastModified": "Mon Jun 01 2020 19:33:23 GMT+0000"
+            }
+          },
+          "cq5dam.web.1280.1280.jpeg": {
+            "jcr:primaryType": "sling:OrderedFolder",
+            "jcr:createdBy": "workflow-process-service",
+            "jcr:created": "Mon Jun 01 2020 19:33:23 GMT+0000",
+            "sling:resourceType": "cq/dam/custom-rendition",
+            "jcr:content": {
+              "jcr:primaryType": "nt:unstructured",
+              "jcr:lastModifiedBy": "workflow-process-service",
+              "rendition.handler.id": "dynamic.media.rendition.handler",
+              "dam:query": "wid=1280&hei=1280&fmt=jpeg&fit=constrain,true",
+              "jcr:lastModified": "Mon Jun 01 2020 19:33:23 GMT+0000"
+            }
+          },
+          "original": {
+            "jcr:primaryType": "nt:file",
+            "jcr:createdBy": "tetrapak-system-user",
+            "jcr:created": "Mon Jun 01 2020 19:30:12 GMT+0000",
+            "jcr:content": {
+              "jcr:primaryType": "oak:Resource",
+              "jcr:lastModifiedBy": "tetrapak-system-user",
+              "jcr:mimeType": "video/mp4",
+              "jcr:lastModified": "Mon Jun 01 2020 19:30:12 GMT+0000",
+              ":jcr:data": 782823
+            }
+          },
+          "cq5dam.thumbnail.319.319.png": {
+            "jcr:primaryType": "sling:OrderedFolder",
+            "jcr:createdBy": "workflow-process-service",
+            "jcr:created": "Mon Jun 01 2020 19:33:23 GMT+0000",
+            "sling:resourceType": "cq/dam/custom-rendition",
+            "jcr:content": {
+              "jcr:primaryType": "nt:unstructured",
+              "jcr:lastModifiedBy": "workflow-process-service",
+              "rendition.handler.id": "dynamic.media.rendition.handler",
+              "dam:query": "wid=319&hei=319&fmt=png&fit=constrain,true",
+              "jcr:lastModified": "Mon Jun 01 2020 19:33:23 GMT+0000"
+            }
+          }
+        },
+        "related": {
+          "jcr:primaryType": "nt:unstructured"
+        },
+        "metadata": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "cq:Taggable"
+          ],
+          "duration": "4.0",
+          "dam:scene7Width": 660,
+          "dam:scene7CompanyID": "c|26828",
+          "dam:extracted": "Mon Jun 01 2020 19:30:50 GMT+0000",
+          "dc:format": "video/mp4",
+          "dam:scene7ID": "a|454391488",
+          "dam:scene7CloudConfigPath": "/conf/global/settings/cloudconfigs/dmscene7",
+          "tiff:Orientation": 1,
+          "dam:scene7FileStatus": "PublishComplete",
+          "dam:scene7File": "tetrapak/Video",
+          "dam:scene7Name": "file_example_MOV_1280_1_4MB",
+          "dam:scene7Type": "Video",
+          "dam:scene7UploadTimeStamp": "Mon Jun 01 2020 19:33:22 GMT+0000",
+          "xmp:ModifyDate": "Sun Oct 14 2012 12:25:34 GMT+0000",
+          "xmp:CreateDate": "Sun Oct 14 2012 12:25:34 GMT+0000",
+          "dam:scene7Domain": "http://s7e5a.scene7.com/",
+          "dam:scene7Folder": "tetrapak/tetrapak/publicweb/video/",
+          "dam:scene7Height": 360,
+          "dam:sha1": "83734289dd7fb4c4e7093896dc47500e920d34af",
+          "dam:size": 782823,
+          "dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+          "dam:scene7LastModified": 1591039998746,
+          "xmpDM:duration": {
+            "jcr:primaryType": "nt:unstructured",
+            "xmpDM:scale": "1/600",
+            "xmpDM:value": 2400,
+            "xmpNodeType": "xmpStruct"
+          }
+        }
+      }
+    }
+}

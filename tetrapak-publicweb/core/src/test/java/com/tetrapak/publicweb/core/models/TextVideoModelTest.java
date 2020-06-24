@@ -2,14 +2,23 @@ package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
 
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.services.impl.DynamicMediaServiceImpl;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.wcm.testing.mock.aem.junit.AemContext;
 
+/**
+ * The Class TextVideoModelTest.
+ */
 public class TextVideoModelTest {
 
     @Rule
@@ -21,11 +30,17 @@ public class TextVideoModelTest {
     /** The Constant ANOTHER_RESOURCE_CONTENT. */
     private static final String ANOTHER_RESOURCE_CONTENT = "/textvideo/text-video-content.json";
 
+    /** The Constant DAM_VIDEO_DATA. */
+    private static final String DAM_VIDEO_DATA = "/textvideo/test-content1.json";
+
     /** The Constant TEST_CONTENT_ROOT. */
     private static final String TEST_CONTENT_ROOT = "/content/publicweb/en";
 
     /** The Constant ANOTHER_TEST_CONTENT_ROOT. */
     private static final String ANOTHER_TEST_CONTENT_ROOT = "/content/publicweb/en/home";
+
+    /** The Constant DAM_VIDEO_CONTENT_ROOT. */
+    private static final String DAM_VIDEO_CONTENT_ROOT = "/content/dam/publicweb";
 
     /** The Constant TEXTVIDEO_RESOURCE. */
     private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/textvideo";
@@ -42,6 +57,9 @@ public class TextVideoModelTest {
     /** The resource. */
     private Resource resource;
 
+    /** The dynamic media service. */
+    private DynamicMediaService dynamicMediaService;
+
     /**
      * Sets the up.
      *
@@ -54,15 +72,29 @@ public class TextVideoModelTest {
         loadContextTwo();
     }
 
+    /**
+     * Load context one.
+     */
     private void loadContextOne() {
+        // Dynamic Media Serivce
+        dynamicMediaService = new DynamicMediaServiceImpl();
+        final Map<String, Object> configuraionServiceConfig = new HashMap<String, Object>();
+        configuraionServiceConfig.put("imageServiceUrl", "https://s7g10.scene7.com/is/image");
+        configuraionServiceConfig.put("videoServiceUrl", "https://s7g10.scene7.com/is/content");
+        context.registerInjectActivateService(dynamicMediaService, configuraionServiceConfig);
+
         final Class<TextVideoModel> modelClass = TextVideoModel.class;
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
+        context.load().json(DAM_VIDEO_DATA, DAM_VIDEO_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
         resource = context.currentResource(RESOURCE_PATH);
         model = resource.adaptTo(modelClass);
     }
 
+    /**
+     * Load context two.
+     */
     private void loadContextTwo() {
         final Class<TextVideoModel> modelClass = TextVideoModel.class;
         // load the resources for each object
@@ -87,32 +119,42 @@ public class TextVideoModelTest {
         assertEquals("/content/dam/publicweb/Petrol.pdf", model.getLinkURL());
         assertEquals("youtube", model.getVideoSource());
         assertEquals("1X7zhVCIUtg", model.getYoutubeVideoID());
-        assertEquals("/content/dam/publicweb/Video.mp4", model.getDamVideoPath());
+        assertEquals("https://s7g10.scene7.com/is/content/tetrapak/Video", model.getDamVideoPath());
         assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailPath());
         assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailAltText());
         assertEquals("secondary", model.getPwButtonTheme());
         assertEquals("grayscale-white", model.getPwTheme());
-        assertEquals("download", model.getPwLinkTheme());
         assertEquals("regular", model.getPwPadding());
         assertEquals("display-row", model.getPwDisplay());
-        
     }
 
+    /**
+     * Test not empty asset name.
+     */
     @Test
     public void testNotEmptyAssetName() {
         assertEquals("Petrol.pdf", model.getAssetName());
     }
 
+    /**
+     * Test not empty video name.
+     */
     @Test
     public void testNotEmptyVideoName() {
-        assertEquals("Video.mp4", model.getVideoName());
+        assertEquals("Video", model.getVideoName());
     }
 
+    /**
+     * Test empty asset name.
+     */
     @Test
     public void testEmptyAssetName() {
         assertEquals(StringUtils.EMPTY, textVideoModel.getAssetName());
     }
 
+    /**
+     * Test empty video name.
+     */
     @Test
     public void testEmptyVideoName() {
         assertEquals(StringUtils.EMPTY, textVideoModel.getVideoName());

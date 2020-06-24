@@ -12,7 +12,7 @@
     }
 
     &__wrapper {
-        margin: 0 48px;
+        margin: 0;
         padding: 0 48px;
     }
 
@@ -21,6 +21,9 @@
         @include line-height($font-m-md, $font-sm);
         color: $color-tundora;
         font-weight: normal;
+        &:hover {
+            color: $color-jordy-blue;
+        }
     }
 
     .icon-Arrow_Right_pw.tp_icon {

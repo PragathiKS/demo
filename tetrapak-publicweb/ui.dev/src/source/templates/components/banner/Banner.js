@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { isDesktopMode } from '../../../scripts/common/common';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { isDesktopMode,getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
+import { isExternal, isDownloable  } from '../../../scripts/utils/updateLink';
 
 class Banner {
   constructor({ el }) {
@@ -9,67 +9,81 @@ class Banner {
   cache = {};
   initCache() {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
-    this.cache.$existingBanner=this.root.find('.pw-banner__content.banner-parent');
-    this.cache.$siblingBanner=this.root.find('.pw-banner__content.banner-sibling');
+    this.cache.$existingBanner = this.root.find('.pw-banner__content.banner-parent');
+    this.cache.$siblingBanner = this.root.find('.pw-banner__content.banner-sibling');
+    this.cache.componentName = this.root.find('#componentName-banner').val();
   }
+
   bindEvents() {
     const { $itbLink } = this.cache;
     if (
-      isDesktopMode() ) {
+      isDesktopMode()) {
       const { $existingBanner } = this.cache;
-      const { $siblingBanner }= this.cache;
+      const { $siblingBanner } = this.cache;
 
-      $(window).on('load resize',function(){
+      $(window).on('load resize', function () {
         const bannerHeight = $existingBanner.outerHeight();
         const bannerWidth = $existingBanner.outerWidth();
-        $siblingBanner.css('width',bannerWidth);
-        $siblingBanner.css('height',bannerHeight);
+        $siblingBanner.css('width', bannerWidth);
+        $siblingBanner.css('height', bannerHeight);
       });
     }
     $itbLink.on('click', this.trackAnalytics);
+
+    this.root.find('.js-softconversion-pw-banner').on('click', () => {
+      $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
+    });
+
   }
+
   trackAnalytics = (e) => {
     e.preventDefault();
+    getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.js-banner-analytics');
+  }
+
+  trackBannerImageClick = (e) => {
     const $target = $(e.target);
-    const $this = $target.closest('.js-banner-analytics');
-    let linkParentTitle = '';
-    let trackingObj = {};
-    const dwnType = 'ungated';
-    const eventType = 'download';
-    const linkType = $this.attr('target') === '_blank'?'external':'internal';
-    const linkSection = $this.data('link-section');
-    const linkName = $this.data('link-name');
-    const bannerTitle = $this.data('link-banner-title');
-    const buttonLinkType = $this.data('button-link-type');
-    const downloadtype = $this.data('download-type');
-    const dwnDocName = $this.data('asset-name');
-
-    if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA_Download_pdf_${bannerTitle}`;
+    const $this = $target.closest('.pw-banner');
+    const $anchor = $this.data('href');
+    if (!($anchor && $anchor !== '#')) {
+      return false;
+    }
+    if ($(e.target).closest('.pw-banner__content').length) {
+      return true;
     }
 
-    if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text hyperlink_Download_pdf_${bannerTitle}`;
+    if (isDownloable($anchor)) {
+      $this.data('download-type', 'download');
     }
 
-    if(downloadtype ==='download'){
-      trackingObj = {
-        linkType,
-        linkSection,
-        linkParentTitle,
-        linkName,
-        dwnDocName,
-        dwnType,
-        eventType
-      };
-      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
+    if (isExternal($anchor)) {
+      $this.attr('target', '_blank');
     }
 
-    if(downloadtype!=='download' && $this.attr('target')==='_blank'){
-      window._satellite.track('linkClick');
-    }
+    getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);  
 
-    window.open($this.attr('href'), $this.attr('target'));
+
+    if (isExternal($anchor)) {
+      window.open($anchor, '_blank');
+    } else {
+      window.location.href = $anchor;
+    }
+  }
+
+  addBannerLink() {
+    const $bEl = $('.pw-banner');
+    $bEl.each(function () {
+      const $anchor = $bEl.data('href');
+      if ($anchor && $anchor !== '#') {
+        $bEl.css('cursor', 'pointer');
+        $bEl.find('.pw-banner__image-wrapper').css('cursor', 'pointer');
+        $bEl.find('.pw-banner__contentwrapper').css('cursor', 'pointer');
+      }
+    });
+
+
+    $bEl.on('click', this.trackBannerImageClick);
+
   }
 
   seoChanges() {
@@ -87,6 +101,8 @@ class Banner {
     this.initCache();
     this.bindEvents();
     this.seoChanges();
+    addLinkAttr('.js-banner-analytics');
+    this.addBannerLink();
   }
 }
 

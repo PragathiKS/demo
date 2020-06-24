@@ -44,7 +44,7 @@
             @include margin-top($margin-md);
         }
         &__field {
-            @include margin-top($margin-l);
+            @include margin-top($margin-md);
             font-weight: 500;
             font-size: 14px;
             line-height: 24px;
@@ -74,12 +74,11 @@
 
     &__form-group__address {
         &__office-name,
-        &__office-phone-number,
         &__office-site {
             @include margin-top($margin-l);
         }
-
-        &__office-address {
+        &__office-address,
+        &__office-phone-number {
             @include margin-top($margin-md);
         }
         &__office-phone-number {
@@ -111,6 +110,9 @@
             top: $margin-xxxl;
             left: $margin-xxxl;
             z-index: $zindex-p;
+            .country-field {
+                @include margin-top($margin-l);
+            }
         }
         &__form-group__address {
             &__office-name {

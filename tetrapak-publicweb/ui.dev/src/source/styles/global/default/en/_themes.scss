@@ -11,6 +11,7 @@ body{
    -ms-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
    text-size-adjust: 100%;
+   position: relative;
 }
 a {
     @include line-height($font-l,$font-baseline);
@@ -18,8 +19,9 @@ a {
     font-weight: 500;
     font-size: $font-baseline;
 }
+
 img {
-  border-radius: 4px;  
+    border-radius: 4px;
 }
 h1,h2,h3,h4{
     font-family:$font-light;
@@ -102,4 +104,23 @@ h1,h2,h3,h4{
 }
 .pw-position-static {
     position: static;
+}
+.sticky-section-menu {
+    display: block;
+}
+
+@media #{$mobile} {
+    .body-content {
+        @include padding-top($header-height-mobile * 1px); // with reference to Sticky Mobile Header navigation
+        &.body-top-padding {
+            @include padding-top($sticky-view-height * 1px); // with reference to Sticky Mobile Header + section menu
+        }
+    }
+}
+@media #{$desktop} {
+    .body-content {
+        &.body-top-padding {
+            @include padding-top(62px); // with reference to desktop section menu height
+        }
+    }
 }

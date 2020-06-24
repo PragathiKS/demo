@@ -87,13 +87,13 @@ public class MockXSSAPI implements XSSAPI {
     @Override
     public String getValidHref(final String arg0) {
         // TODO Auto-generated method stub
-        return null;
+        return inputJson;
     }
 
     @Override
     public Integer getValidInteger(final String arg0, final int arg1) {
         // TODO Auto-generated method stub
-        return null;
+        return 1;
     }
 
     @Override

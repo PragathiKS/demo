@@ -1,0 +1,448 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Fri May 22 2020 12:51:52 GMT+0000",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": [
+			"mix:versionable"
+		],
+		"jcr:createdBy": "admin",
+		"socialMedia": [
+			"facebook",
+			"pinterest"
+		],
+		"jcr:title": "English",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "98753764-1c31-4cec-93ef-14110cbe43d1",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+		"cq:lastReplicatedBy": "admin",
+		"jcr:predecessors": [
+			"7f414a2c-27a4-4711-937c-c7ab5ddb3af4"
+		],
+		"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:36 GMT+0000",
+		"jcr:created": "Fri May 22 2020 12:51:52 GMT+0000",
+		"cq:lastReplicated": "Wed Jun 17 2020 13:11:19 GMT+0000",
+		"cq:lastModified": "Tue Jun 23 2020 08:51:43 GMT+0000",
+		"jcr:baseVersion": "7f414a2c-27a4-4711-937c-c7ab5ddb3af4",
+		"jcr:isCheckedOut": true,
+		"cq:conf": "",
+		"jcr:uuid": "682a4138-3b11-45af-84ca-2783ceaf07bc",
+		"sling:resourceType": "publicweb/components/structure/pages/languagepage",
+		"cq:allowedTemplates": [
+			"/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+			"/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+			"/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
+			"/conf/publicweb/settings/wcm/templates/case-article",
+			"/conf/publicweb/settings/wcm/templates/events",
+			"/conf/publicweb/settings/wcm/templates/news-article",
+			"/conf/publicweb/settings/wcm/templates/press-release"
+		],
+		"errorPages": "/content/tetrapak/publicweb/lang-masters/en/error",
+		"cq:lastModifiedBy": "sapient-user",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:mixinTypes": [
+					"cq:ReplicationStatus"
+				],
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"headerconfiguration": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:ReplicationStatus"
+					],
+					"jcr:createdBy": "admin",
+					"loginLabel": "My Tetra Pak",
+					"loginLink": "/content/tetrapak/customerhub/global/en/dashboard",
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Wed Mar 25 2020 13:22:51 GMT+0000",
+					"contactLink": "/content/tetrapak/publicweb/lang-masters/en/contact-us",
+					"contactText": "Contact Us",
+					"logoLinkTarget": "_self",
+					"logoImagePath": "/content/dam/tetrapak/publicweb/en/global/header/Blue_Red_logo.png",
+					"marketTitle": "Choose your Market",
+					"logoAlt": "TetraPak",
+					"jcr:lastModified": "Tue May 26 2020 14:13:54 GMT+0000",
+					"sling:resourceType": "publicweb/components/structure/headerconfiguration",
+					"solutionPage": "/content/tetrapak/publicweb/lang-masters/en/solutions",
+					"contactLinkTarget": "_self",
+					"logoLink": "/content/tetrapak/publicweb/lang-masters/en/home"
+				},
+				"footerconfiguration": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "sapient-suraksha",
+					"goToTopLabel": "Go to Top",
+					"jcr:created": "Tue Mar 31 2020 06:42:21 GMT+0000",
+					"logoLinkTarget": "_blank",
+					"logoImagePath": "/content/dam/tetrapak/publicweb/en/global/footer/logo_tetra_pak_white.png",
+					"logoAlt": "image",
+					"jcr:lastModified": "Tue May 05 2020 09:59:59 GMT+0000",
+					"sling:resourceType": "publicweb/components/structure/footerconfiguration",
+					"logoLink": "/content/tetrapak/publicweb/lang-masters/en/home",
+					"footerLinks": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkLabel": "Legal Information",
+							"linkTarget": "_self",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/about-us"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkLabel": "Contact Us",
+							"linkTarget": "_self",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkLabel": "Tetra Laval Group",
+							"linkTarget": "_self",
+							"linkPath": "https://www.tetralaval.com/"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkLabel": "沪ICP备17056308号-1",
+							"linkTarget": "_self",
+							"linkPath": "https://www.tetrapak.com/cn"
+						}
+					},
+					"socialLinks": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"socialMedia": "Facebook",
+							"socialMediaLink": "https://www.facebook.com/TetraPak"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"socialMedia": "Twitter",
+							"socialMediaLink": "https://twitter.com/tetrapak"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"socialMedia": "WeChat",
+							"socialMediaLink": "https://tetrapak-test64.adobecqms.net/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-7.html"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"socialMedia": "Weibo",
+							"socialMediaLink": "https://tetrapak-test64.adobecqms.net/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-7.html"
+						}
+					}
+				},
+				"cookieconfiguration": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "sapient-sandip",
+					"cookieConsentButtonText": "Ok, I understand!",
+					"jcr:lastModifiedBy": "sapient-suraksha",
+					"jcr:created": "Wed Apr 01 2020 05:32:18 GMT+0000",
+					"cookieConsentDisabled": "false",
+					"cookieConsentText": "<p>We are using cookies. By continuing to use our website without changing the settings, you're agreeing to our use of cookies. <a href=\"/content/tetrapak/publicweb/lang-masters/en/about-us.html\">Learn more about our cookie policy</a></p>\r\n",
+					"jcr:lastModified": "Mon Apr 06 2020 09:56:40 GMT+0000",
+					"sling:resourceType": "publicweb/components/structure/cookieconfiguration",
+					"textIsRich": "true"
+				},
+				"siteimproveconfig": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "sapient-jyoti",
+					"jcr:lastModifiedBy": "sapient-user",
+					"jcr:created": "Thu Apr 16 2020 05:57:07 GMT+0000",
+					"jcr:lastModified": "Fri May 01 2020 05:13:42 GMT+0000",
+					"sling:resourceType": "publicweb/components/structure/siteimproveconfig"
+				},
+				"megamenuconfig": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "sapient-jyoti",
+					"jcr:lastModifiedBy": "sapient-user",
+					"bottomSectionSubtitle": "Food Categories",
+					"jcr:created": "Tue Apr 28 2020 05:10:21 GMT+0000",
+					"topSectionSubtitle": "Tetra pak End to End Solutions",
+					"hideFoodCategories": "false",
+					"topSectionUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/automation-solutions",
+					"jcr:lastModified": "Tue Jun 23 2020 08:51:43 GMT+0000",
+					"sling:resourceType": "publicweb/components/structure/megamenuconfig",
+					"endToEndSolutionSection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "We enable brands in the cheese, dairy, prepared foods, ice cream and beverage businesses to find ways to move forward.",
+							"fileReference": "/content/dam/tetrapak/publicweb/text-and-image/yoghurt-blueberries 1 (2).png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing",
+							"title": "Processing"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "Everyone in the food industry wants to boost sales, trim costs or come up with a taste sensation that takes the world by storm.",
+							"fileReference": "/content/dam/tetrapak/publicweb/tp-end-to-end-section--solutions/employee_inspecting_packages 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging",
+							"title": "Packaging"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "The process of producing ice cream is highly complex. The producers need to control the structure of fat globules, ice.",
+							"fileReference": "/content/dam/tetrapak/publicweb/tp-end-to-end-section--solutions/three_packages_feat_craft_effect_on_desk 1.png",
+							"path": "/content/tetrapak/publicweb/ca/en/solutions",
+							"title": "Services"
+						}
+					},
+					"linkSection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions",
+							"linkText": "Solutions Overview"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/aseptic-solutions",
+							"linkText": "Aseptic Solutions"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/product-development-centers",
+							"linkText": "Product Development Centers"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/automation-solutions",
+							"linkText": "Automation Solutions"
+						}
+					},
+					"foodCategorySection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/cheese 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/cheese-whey",
+							"title": "Cheese"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/milk 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary-",
+							"title": "Dairy"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/fbf_food_landing_2 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/prepared-food-",
+							"title": "Food"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/ice-cream 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/ice-cream",
+							"title": "Ice Cream"
+						},
+						"item4": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/juice-drinks 1.png",
+							"title": "Juice & Drink"
+						},
+						"item5": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/fbf_pet_food 1.png",
+							"title": "Pet Food"
+						},
+						"item6": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/fbf_sot_new-1 1.png",
+							"title": "Plant based Drinks"
+						},
+						"item7": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/powder-spoon 1.png",
+							"title": "Whey Powder"
+						},
+						"item8": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/wine-based-drinks 1.png",
+							"title": "Wine and Spirits"
+						},
+						"item9": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/text-and-image/shutterstock_104710151_flying_fruits.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary-",
+							"title": "Demo Text"
+						}
+					},
+					"pseudoCategoryBean": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"pseudoCategoryKey": "TECHNOLOGY AREAS",
+							"pseudoCategoryValue": "TECHNOLOGY AREAS"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"pseudoCategoryKey": "CHEESE EQUIPMENT",
+							"pseudoCategoryValue": "CHEESE EQUIPMENT"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"pseudoCategoryKey": "ICE CREAM EQUIPMENT",
+							"pseudoCategoryValue": "ICE CREAM EQUIPMENT"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"pseudoCategoryKey": "Business Areas",
+							"pseudoCategoryValue": "Business Areas"
+						}
+					}
+				},
+				"searchconfig": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Mon Jun 15 2020 13:04:10 GMT+0000",
+					"newsLabel": "News",
+					"caseLabel": "Case",
+					"jcr:lastModified": "Wed Jun 17 2020 13:11:11 GMT+0000",
+					"eventLabel": "Event",
+					"productLabel": "Product",
+					"sling:resourceType": "publicweb/components/structure/searchconfig",
+					"documentThumbnail": "/content/dam/tetrapak/publicweb/articles/Children.png",
+					"videoThumbnail": "/content/dam/tetrapak/publicweb/articles/plma-banner2020.jpg",
+					"mediaLabel": "Media",
+					"productTemplateList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-package-type-page"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page"
+						}
+					},
+					"productStructureList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions"
+						}
+					},
+					"newsTemplateList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+						}
+					},
+					"newsStructureList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/the-company"
+						}
+					},
+					"eventTemplateList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+						}
+					},
+					"eventStructureList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/careers"
+						}
+					},
+					"caseTemplateList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+						}
+					},
+					"caseStructureList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/insights"
+						}
+					},
+					"mediaStructureList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/content/dam/tetrapak/publicweb"
+						}
+					},
+					"themeList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"tag": "tetrapak:packaging",
+							"themeLabel": "Processing",
+							"themeKey": "processing"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"tag": "tetrapak:packaging",
+							"themeLabel": "Packaging",
+							"themeKey": "packaging"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"tag": "tetrapak:services",
+							"themeLabel": "Services",
+							"themeKey": "services"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"tag": "tetrapak:end-to-end-solutions",
+							"themeLabel": "End to End solutions",
+							"themeKey": "solutions"
+						},
+						"item4": {
+							"jcr:primaryType": "nt:unstructured",
+							"tag": "tetrapak:sustainability",
+							"themeLabel": "Sustainability",
+							"themeKey": "sustainability"
+						},
+						"item5": {
+							"jcr:primaryType": "nt:unstructured",
+							"tag": "tetrapak:about-tetra-pak",
+							"themeLabel": "About TetraPak",
+							"themeKey": "about"
+						}
+					},
+					"gatedContentList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/content/dam/tetrapak/publicweb/articles"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"path": "/content/dam/tetrapak/publicweb/contentfragment"
+						}
+					}
+				}
+			}
+		}
+	}
+}

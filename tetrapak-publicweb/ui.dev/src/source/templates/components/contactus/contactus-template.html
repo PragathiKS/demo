@@ -4,13 +4,13 @@
             id="pw-contactUs" data-module="ContactUs" auto_locator="contactUsParentContainerStep1">
             <div class="tab-content">
                 <form class="pw-form pw-form-contactUs" accept-charset="UTF-8"
-                    data-contactus-api-servlet="${data.servletPath}" autocomplete="off">
+                    data-contactus-api-servlet="${data.apiUrl}" autocomplete="off">
                     <div class="tab-pane active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel"
                         id="cf-step-1">
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator" auto_locator="contactUsLeftContainerStep1">
-                                <div class="row">
-                                    <div class="col-sm-12 main-heading"
+                                <div class="row no-gutters">
+                                    <div class="col-sm-12 main-heading js-step1-main-heading" data-form-name="${data.heading}" data-sly-test="${data.heading}"
                                         auto_locator="contactUsLeftContainerHeadingTextStep1">
                                         <sly data-sly-test="${data.heading}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -18,7 +18,7 @@
                                     </div>
                                 </div>
                                 <div class="row no-gutters">
-                                    <div class="col-lg-6 pw-image-container" auto_locator="contactUsImageStep1">
+                                    <div class="col-lg-6 pw-image-container" data-sly-test="${data.image}" auto_locator="contactUsImageStep1">
                                         <sly data-sly-test="${!wcmmode.edit}">
                                             <sly data-sly-test="${data.image}"
                                                 data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -29,7 +29,7 @@
                                                 class="image img-responsive" />
                                         </sly>
                                     </div>
-                                    <div class="col-lg-6" auto_locator="contactUsLeftContainerTextAreaStep1">
+                                    <div class="descriptionCont ${data.image ? 'col-lg-6' : 'col-lg-12'}" auto_locator="contactUsLeftContainerTextAreaStep1">
                                         ${data.descriptionText @ context="html"}
                                     </div>
                                 </div>
@@ -37,27 +37,24 @@
                             <div class="col-lg-6" auto_locator="contactUsRightContainerStep1">
                                 <div class="tab-content tab-content-steps">
                                     <div class="row">
-                                        <div class="col-sm-12" auto_locator="contactUsRightContainerHeadingTextStep1">
-                                            <sly data-sly-test="${data.purposeOfContactText}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText=data.purposeOfContactText, variant='small'}" />
-                                            <sly data-sly-test="${!data.purposeOfContactText}"
-                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='Purpose of contact1', variant='small'}" />
+                                        <div class="col-sm-12 js-form-field-heading-step1 form-field-heading" data-step-heading="${'pw.form.heading.purposeofcontact' @i18n}" data-step1-heading="${'pw.form.errormsg.purposeofcontact' @i18n}" auto_locator="contactUsRightContainerHeadingTextStep1">
+                                            <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.purposeofcontact', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12 formfield"
                                             auto_locator="contactUsRightContainerOptionListContainerStep1">
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='sustainability', label='sustainability', name='purposeOfContactOptions'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='sustainability', label='pw.form.contactus.sustainability', name='purposeOfContactOptions'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='career', label='career', name='purposeOfContactOptions'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='career', label='pw.form.contactus.career', name='purposeOfContactOptions'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='other', label='other', name='purposeOfContactOptions', labelClass='mb-0'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='other', label='pw.form.contactus.other', name='purposeOfContactOptions', labelClass='mb-0'}">
                                             </sly>
-                                            <input type="hidden" name="purposeOfContactTitle" class="form-control"
+                                            <input type="hidden" name="purposeOfContactTitle" class="form-control validateForTags"
                                                 id="purposeOfContact" required>
-                                            <div class="errorMsg purposeOfContactError">${'pleaseselectanoption' @i18n}
+                                            <div data-purposeofcontact-errmsg="${'pw.form.errormsg.purposeofcontact' @i18n}" class="errorMsg purposeOfContactError">${'pw.form.errormsg.purposeofcontact' @i18n}
                                             </div>
                                         </div>
                                     </div>
@@ -69,13 +66,13 @@
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
                                             <p>
-                                                ${'step' @ i18n} 1 ${'of' @ i18n} 3
+                                                ${'pw.form.step {0} of {1}'  @i18n, format=['1','3']}
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="row no-gutters button-group">
+                                    <div data-form-step="Step 1" class="button row no-gutters button-group">
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='next', btnTarget='#cf-step-2',icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsNextButtonStep1'}" />
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#cf-step-2',icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsNextButtonStep1', currentTarget='cf-step-1' }" />
                                     </div>
                                 </div>
                             </div>
@@ -85,8 +82,8 @@
                         id="cf-step-2">
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator">
-                                <div class="row">
-                                    <div class="col-sm-12 main-heading"
+                                <div class="row no-gutters">
+                                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
                                         auto_locator="contactUsLeftContainerHeadingStep2">
                                         <sly data-sly-test="${data.heading}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -94,49 +91,46 @@
                                     </div>
                                 </div>
                                 <div auto_locator="contactUsLeftContainerSummaryAreaStep2">
-                                    <div class="row">
+                                    <div class="row no-gutters">
                                         <div class="col-sm-12">
-                                            <sly data-sly-test="${data.summaryText}"
+                                            <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText=data.summaryText, variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
                                         </div>
                                     </div>
-                                    <div class="row summary">
-                                        <div class="col-lg-6">${data.purposeOfContactText ? data.purposeOfContactText : 'Purpose of contact'  @ i18n}</div>
-                                        <div class="col-lg-6 purposeOfContactTitle"></div>
+                                    <div class="row no-gutters summary">
+                                        <div class="col-lg-5">${'pw.form.heading.purposeofcontact' @i18n}</div>
+                                        <div class="col-lg-7 purposeOfContactTitle"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="tab-content tab-content-steps">
-                                    <div class="row">
-                                        <div class="col-sm-12" auto_locator="contactUsRightContainerHeadingTextStep2">
-                                            <sly data-sly-test="${data.contactInfoText}"
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-12 right-heading form-field-heading" data-step-heading="${'pw.form.heading.contactinformation' @i18n}" auto_locator="contactUsRightContainerHeadingTextStep2">
+                                            <sly
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText=data.contactInfoText, variant='small'}" />
-                                            <sly data-sly-test="${!data.contactInfoText}"
-                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='Contact information', variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.contactinformation', variant='small'}" />
                                         </div>
-                                        <div class="col-sm-12 formfield">
+                                        <div class="col-sm-12 formfield first-name" data-first-name-label="${'pw.form.label.firstName' @i18n}">
                                             <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id='firstName', label='firstName', error='pleasefillinfield', required=true, autoLocatorInput='firstNameInput', autoLocatorLabel='firstNameHelpText'}">
+                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id='firstName', label='pw.form.label.firstName', error='pw.form.errormsg.firstname', required=true, autoLocatorInput='firstNameInput', autoLocatorLabel='firstNameHelpText', inputClass='validateForTags'}">
                                             </sly>
                                         </div>
-                                        <div class="col-sm-12 formfield">
+                                        <div class="col-sm-12 formfield last-name" data-last-name-label="${'pw.form.label.lastName' @i18n}">
                                             <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id='lastName', label='lastName', error='pleasefillinfield', required=true, autoLocatorInput='lastNameInput', autoLocatorLabel='lastNameHelpText'}">
+                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id='lastName', label='pw.form.label.lastName', error='pw.form.errormsg.lastname', required=true, autoLocatorInput='lastNameInput', autoLocatorLabel='lastNameHelpText', inputClass='validateForTags'}">
                                             </sly>
                                         </div>
-                                        <div class="col-sm-12 formfield">
+                                        <div class="col-sm-12 formfield email" data-email-name-label="${'pw.form.label.email' @i18n}">
                                             <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                                data-sly-call="${inputField.inputfield_template @ inputType='email', id='email', label='email' , placeholder='emailPlaceholder', required=true, error='emailformaterror', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText'}">
+                                                data-sly-call="${inputField.inputfield_template @ inputType='email', id='email', label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags'}">
                                             </sly>
                                         </div>
                                         <div class="col-sm-12 col-lg-6">
-                                            <div class="formfield country-field">
+                                            <div class="formfield country-field country" data-country-name-label="${'pw.form.label.country' @i18n}">
                                                 <label for="country"
-                                                    auto_locator="contactUsCountrySelectorHelpText">${'country' @
+                                                    auto_locator="contactUsCountrySelectorHelpText">${'pw.form.label.country' @
                                                     i18n}</label>
                                                 <div class="pw-form__dropdown dropdown text-left">
                                                     <button
@@ -144,7 +138,7 @@
                                                         type="button" data-toggle="dropdown" aria-haspopup="true"
                                                         auto_locator="countrySelectDropdown" aria-expanded="false">
                                                         <span
-                                                            class="js-pw-form__dropdown__country-text">${'selectCountry'
+                                                            class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
                                                             @ i18n}</span>
                                                         <i class="icon icon-Arrow_Right_pw"></i></button>
                                                     </button>
@@ -157,10 +151,10 @@
                                                             ${country.value}
                                                         </a>
                                                     </div>
-                                                    <input type="hidden" name="countryTitle" class="form-control"
+                                                    <input type="hidden" name="countryTitle" class="form-control validateForTags"
                                                         id="country" required>
                                                 </div>
-                                                <div class="errorMsg">${'pleaseselectanoption' @i18n}</div>
+                                                <div data-country-error-msg="${'pw.form.errormsg.country' @i18n}" class="errorMsg">${'pw.form.errormsg.country' @i18n}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -171,14 +165,14 @@
                                             </sly>
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                                            <p>${'step' @ i18n} 2 ${'of' @ i18n} 3</p>
+                                            <p>  ${'pw.form.step {0} of {1}'  @i18n, format=['2','3']}</p>
                                         </div>
                                     </div>
-                                    <div class="row no-gutters button-group">
+                                    <div data-form-step="Step 2" class="button row no-gutters button-group">
                                         <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${previousButton.tabbutton_template @ btnText='previous', btnTarget='#cf-step-1', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep2' }" />
+                                            data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#cf-step-1', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep2',currentTarget='cf-step-2' }" />
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='next', btnTarget='#cf-step-3', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsNextButtonStep2' }" />
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#cf-step-3', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsNextButtonStep2',currentTarget='cf-step-2' }" />
                                     </div>
                                 </div>
                             </div>
@@ -187,8 +181,8 @@
                     <div class="tab-pane" data-stepNumber="3" data-stepName="submitForm" role="tabpanel" id="cf-step-3">
                         <div class="row no-gutters">
                             <div class="col-lg-6 separator">
-                                <div class="row">
-                                    <div class="col-sm-12 main-heading"
+                                <div class="row no-gutters">
+                                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
                                         auto_locator="contactUsLeftContainerHeadingTextStep3">
                                         <sly data-sly-test="${data.heading}"
                                             data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -196,52 +190,49 @@
                                     </div>
                                 </div>
                                 <div auto_locator="contactUsLeftContainerSummaryAreaStep2">
-                                    <div class="row">
-                                        <div data-sly-test="${data.summaryText}" class="col-sm-12">
+                                    <div class="row no-gutters">
+                                        <div data-sly-test="${'pw.form.heading.summary' @i18n}" class="col-sm-12">
                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText=data.summaryText, variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
                                         </div>
                                     </div>
-                                    <div class="row summary">
-                                        <div class="col-lg-6">${data.purposeOfContactText ? data.purposeOfContactText : 'Purpose of contact'  @ i18n}</div>
-                                        <div class="col-lg-6 purposeOfContactTitle"></div>
+                                    <div class="row no-gutters summary">
+                                        <div class="col-lg-5">${'pw.form.heading.purposeofcontact' @i18n}</div>
+                                        <div class="col-lg-7 purposeOfContactTitle"></div>
                                     </div>
-                                    <div class="row summary">
-                                        <div class="col-lg-6">${'firstName' @ i18n}</div>
-                                        <div class="col-lg-6 firstName"></div>
+                                    <div class="row no-gutters summary">
+                                        <div class="col-lg-5">${'pw.form.label.firstName' @ i18n}</div>
+                                        <div class="col-lg-7 firstName"></div>
                                     </div>
-                                    <div class="row summary">
-                                        <div class="col-lg-6">${'lastName' @ i18n}</div>
-                                        <div class="col-lg-6 lastName"></div>
+                                    <div class="row no-gutters summary">
+                                        <div class="col-lg-5">${'pw.form.label.lastName' @ i18n}</div>
+                                        <div class="col-lg-7 lastName"></div>
                                     </div>
-                                    <div class="row summary">
-                                        <div class="col-lg-6">${'email' @ i18n}</div>
-                                        <div class="col-lg-6 email"></div>
+                                    <div class="row no-gutters summary">
+                                        <div class="col-lg-5">${'pw.form.label.email' @ i18n}</div>
+                                        <div class="col-lg-7 email"></div>
                                     </div>
-                                    <div class="row summary">
-                                        <div class="col-lg-6">${'country' @ i18n}</div>
-                                        <div class="col-lg-6 countryTitle"></div>
+                                    <div class="row no-gutters summary">
+                                        <div class="col-lg-5">${'pw.form.label.country' @ i18n}</div>
+                                        <div class="col-lg-7 countryTitle"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="tab-content tab-content-steps">
-                                    <div class="serviceError">${'serviceerrormsg' @i18n}</div>
+                                    <div class="serviceError">${'pw.form.errormsg.serviceerror' @i18n}</div>
                                     <div class="row">
-                                        <div class="col-sm-12" auto_locator="contactUsRightContainerHeadingTextStep3">
-                                            <sly data-sly-test="${data.howCanWeHelpText}"
+                                        <div class="col-sm-12 right-heading form-field-heading" data-step-heading="${'pw.form.heading.summary' @i18n}"   auto_locator="contactUsRightContainerHeadingTextStep3">
+                                            <sly
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText=data.howCanWeHelpText, variant='small'}" />
-                                            <sly data-sly-test="${!data.howCanWeHelpText}"
-                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='How can I help you?', variant='small'}" />
+                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.howcanihelp', variant='small'}" />
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="formfield">
-                                                <label for="messageText">${'message' @i18n}</label>
-                                                <textarea auto_locator="messageBoxStep3" class="form-control"
+                                                <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}" for="messageText">${'pw.form.label.message' @i18n}</label>
+                                                <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
                                                     id="messageText" rows="5" name="message" required></textarea>
-                                                <div class="errorMsg">${'pleasefillinfield' @i18n}</div>
+                                                <div data-error-msg="${'pw.form.errormsg.messagebox' @i18n}" class="errorMsg">${'pw.form.errormsg.messagebox' @i18n}</div>
                                                 <input type="text" name="pardot_extra_field" id="pardot_extra_field"
                                                     class="d-none" tabindex="-1" />
                                             </div>
@@ -257,14 +248,14 @@
                                             </sly>
                                         </div>
                                         <div class="pw-progressbar__steps d-none d-lg-block col-lg-3">
-                                            <p>${'step' @ i18n} 3 ${'of' @ i18n} 3</p>
+                                            <p>  ${'pw.form.step {0} of {1}'  @i18n, format=['3','3']}</p>
                                         </div>
                                     </div>
-                                    <div class="row no-gutters button-group">
+                                    <div data-form-step="Step 3" class="button row no-gutters button-group">
                                         <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${previousButton.tabbutton_template @ btnText='previous', btnTarget='#cf-step-2', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep3'}" />
+                                            data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#cf-step-2', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='contactUsPreviousButtonStep3',currentTarget='cf-step-3'}" />
                                         <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='submit', btnType='submit', btnTarget='#cf-step-final', autoLocator='contactUsSubmitButtonStep3'}" />
+                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.submit', btnType='submit', btnTarget='#cf-step-final', autoLocator='contactUsSubmitButtonStep3', currentTarget='cf-step-3'}" />
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +274,7 @@
                                         alt="${data.thankyouImageAltText}" src="${data.thankyouImageAltText}"
                                         class="image img-responsive" />
                                 </sly>
-                                <div auto_locator="contactUsThankYouPageMessage">
+                                <div class="contact-us-thankyou-text" data-thankyou-text="${data.thankyouHeading @i18n}" auto_locator="contactUsThankYouPageMessage">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                         data-sly-call="${heading.heading_h2_template @ headingText=data.thankyouHeading}" />
                                 </div>
@@ -292,7 +283,7 @@
                                 </div>
                                 <div class="button-group">
                                     <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                        data-sly-call="${nextButton.tabbutton_template @ btnText='newrequest', customClasses='newRequestBtn'}" />
+                                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.newrequest', customClasses='newRequestBtn'}" />
                                 </div>
                             </div>
                         </div>

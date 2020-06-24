@@ -32,10 +32,12 @@ class MegaMenuSolution {
   };
 
   trackAnalytics = e => {
+    e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-navigation-Link');
     const navigationSection = $this.data('link-section');
     const navigationLinkName = $this.data('link-name');
+    const linkName = $this.data('link-title');
 
     let linkClickObject = null;
 
@@ -44,18 +46,14 @@ class MegaMenuSolution {
       navigationSection
     };
 
-    if ($this.find('i.icon').length) {
-      const linkType = $this.find('i.icon').hasClass('icon-Union')
-        ? 'external'
-        : 'internal';
+    const linkType = ($this.find('i.icon') && $this.find('i.icon').hasClass('icon-Union')) ? 'external' : 'internal';
 
-      linkClickObject = {
-        linkType,
-        linkSection: '',
-        linkParentTitle: '',
-        linkName: ''
-      };
-    }
+    linkClickObject = {
+      linkType,
+      linkSection: 'hyperlink click',
+      linkParentTitle: '',
+      linkName
+    };
 
     const eventObj = {
       eventType: 'navigation click',
@@ -70,6 +68,7 @@ class MegaMenuSolution {
       eventObj,
       linkClickObject
     );
+    window.open($this.attr('href'), '_self');
   };
 
   handleOpenEvent = e => {
@@ -82,10 +81,25 @@ class MegaMenuSolution {
   isMobileMode() {
     return isMobileMode(...arguments);
   }
+
+  iEFix() {
+    var ua = window.navigator.userAgent;
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) { // detect ie 11
+      $('.pw-megamenu').css('height', 'auto');
+      $('.pw-megamenu .pw-megamenu__top ul').css('margin', '0 auto').css('width', '80%');
+      $('.pw-megamenu__top .col').css('max-width', 'none');
+      $('.pw-megamenu__bottom ul').css('margin', '0 auto').css('width', '80%');
+      $('.pw-megamenu__bottom ul .col').css('max-width', 'none');
+      $('.pw-megamenu__bottom .bottom-teaser-list').css({'display':'block','width':'80%','margin':'0 auto'});
+    }
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.iEFix();
   }
 }
 

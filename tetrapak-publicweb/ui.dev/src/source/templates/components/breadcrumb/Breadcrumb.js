@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
 class Breadcrumb {
   constructor({ el }) {
     this.root = $(el);
@@ -20,6 +22,20 @@ class Breadcrumb {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tp_pw-breadcrumb__link');
+    const linkName = $this.text().trim();
+
+    const trackingObj = {
+      linkName,
+      linkType : 'internal',
+      linkSection: 'breadcrumb link',
+      linkParentTitle: ''
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'breadcrumb'
+    };
+
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     window.open($this.attr('href'), '_self');
   }
 

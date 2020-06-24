@@ -43,14 +43,6 @@ public class BannerModel {
     @ValueMapValue
     private String linkPath;
 
-    /** The link target. */
-    @ValueMapValue
-    private String linkTarget;
-
-    /** The pw link themes. */
-    @ValueMapValue
-    private String pwLinkTheme;
-
     /** The file reference. */
     @ValueMapValue
     private String fileReference;
@@ -83,8 +75,9 @@ public class BannerModel {
     @ValueMapValue
     private String imageCrop;
 
-    /** The asset name. */
-    private String assetName;
+    /** The enable softcoversion. */
+    @ValueMapValue
+    private String enableSoftcoversion;
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
@@ -140,26 +133,9 @@ public class BannerModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath);
+        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
     }
 
-    /**
-     * Gets the link target.
-     *
-     * @return the link target
-     */
-    public String getLinkTarget() {
-        return linkTarget;
-    }
-
-    /**
-     * Gets the pw link themes.
-     *
-     * @return the pw link themes
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
-    }
 
     /**
      * Gets the file reference.
@@ -239,11 +215,29 @@ public class BannerModel {
      * @return the asset name
      */
     public String getAssetName() {
-        assetName = StringUtils.EMPTY;
+        String assetName = StringUtils.EMPTY;
         if (StringUtils.isNoneEmpty(linkPath)) {
             assetName = StringUtils.substringAfterLast(linkPath, FORWARD_SLASH);
         }
         return assetName;
+    }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
+    }
+
+    /**
+     * Gets the soft conversion data.
+     *
+     * @return the soft conversion data
+     */
+    public SoftConversionModel getSoftConversionData() {
+        return resource.adaptTo(SoftConversionModel.class);
     }
 
 }

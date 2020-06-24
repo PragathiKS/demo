@@ -1,5 +1,11 @@
 .tp-pw-image {
     max-width: 100%;
+    .pw-padding {
+        &--zero {
+            @include padding($padding-zero $padding-xxxl);
+            @include margin($margin-zero);
+        }
+    }
     &__center-align {
         margin: 0 auto;
         padding-left: 0;
@@ -17,13 +23,14 @@
     }
     }
     &__zero {
-        @include padding(0);
+        @include padding($padding-zero $padding-md);
         max-width: 100%;
         margin: 0 auto;
         height: auto;
 
         @media #{$desktop} {
             @include max-width($body-max-width);
+            @include padding($padding-zero $padding-xxxl);
             margin: 0 auto;
     }
     }

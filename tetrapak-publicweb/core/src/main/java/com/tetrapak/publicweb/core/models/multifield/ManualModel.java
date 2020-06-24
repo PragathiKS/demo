@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -13,6 +14,10 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ManualModel {
+
+    /** The resource. */
+    @Self
+    private Resource resource;
 
     /** The title. */
     @ValueMapValue
@@ -30,10 +35,6 @@ public class ManualModel {
     @ValueMapValue
     private String linkPath;
 
-    /** The link target. */
-    @ValueMapValue
-    private String linkTarget;
-
     /** The file reference. */
     @ValueMapValue
     private String fileReference;
@@ -41,10 +42,6 @@ public class ManualModel {
     /** The alt. */
     @ValueMapValue
     private String alt;
-
-    /** The pw theme. */
-    @ValueMapValue
-    private String pwLinkTheme;
 
     /** The pw button theme. */
     @ValueMapValue
@@ -119,7 +116,7 @@ public class ManualModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath);
+        return linkPath;
     }
 
     /**
@@ -130,25 +127,6 @@ public class ManualModel {
      */
     public void setLinkPath(String linkPath) {
         this.linkPath = linkPath;
-    }
-
-    /**
-     * Gets the link target.
-     *
-     * @return the link target
-     */
-    public String getLinkTarget() {
-        return linkTarget;
-    }
-
-    /**
-     * Sets the link target.
-     *
-     * @param linkTarget
-     *            the new link target
-     */
-    public void setLinkTarget(String linkTarget) {
-        this.linkTarget = linkTarget;
     }
 
     /**
@@ -187,24 +165,6 @@ public class ManualModel {
      */
     public void setAlt(String alt) {
         this.alt = alt;
-    }
-
-    /**
-     * Gets the pw theme.
-     *
-     * @return the pw theme
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
-    }
-
-    /**
-     * Sets the pw theme.
-     *
-     * @param pwLinkTheme the new pw link theme
-     */
-    public void setPwLinkTheme(String pwLinkTheme) {
-        this.pwLinkTheme = pwLinkTheme;
     }
 
     /**

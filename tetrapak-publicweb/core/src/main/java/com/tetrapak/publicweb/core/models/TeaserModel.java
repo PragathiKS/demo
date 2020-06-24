@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class TeaserModel.
@@ -121,6 +122,8 @@ public class TeaserModel {
      * @return the manual list
      */
     public void getManualList() {
+        manualList.stream().forEach(model -> model
+                .setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), resource.getResourceResolver())));
         teaserList.addAll(manualList);
     }
 
@@ -148,9 +151,7 @@ public class TeaserModel {
             teaser.setFileReference(aggregator.getImagePath());
             teaser.setAlt(aggregator.getAltText());
             teaser.setLinkText(aggregator.getLinkText());
-            teaser.setLinkPath(aggregator.getLinkPath());
-            teaser.setLinkTarget(aggregator.getLinkTarget());
-            teaser.setPwLinkTheme(aggregator.getPwLinkTheme());
+            teaser.setLinkPath(LinkUtils.sanitizeLink(aggregator.getLinkPath(), resource.getResourceResolver()));
             teaser.setPwButtonTheme(aggregator.getPwButtonTheme());
             teaserList.add(teaser);
         }

@@ -12,19 +12,23 @@
             flex-direction: row;
         }
         .leftPad {
-            @include padding-left($padding-md);
-            @include padding-right($padding-md);
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @include margin-top($margin-zero);
             @media #{$desktop} {
-                @include padding-left($padding-md);
+                @include padding-left($padding-zero);
                 @include padding-right($padding-l);
+                @include margin-top($margin-zero);
             }
         }
         .rightPad {
-            @include padding-left($padding-md);
-            @include padding-right($padding-md);
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @include margin-top($margin-md);
             @media #{$desktop} {
-                @include padding-right($padding-md);
+                @include padding-right($padding-zero);
                 @include padding-left($padding-l);
+                @include margin-top($margin-zero);
             }
         }
     }
@@ -34,18 +38,18 @@
             flex-direction: row-reverse;
         }
         .rightPad {
-            @include padding-left($padding-md);
-            @include padding-right($padding-md);
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
             @media #{$desktop} {
-                @include padding-left($padding-md);
+                @include padding-left($padding-zero);
                 @include padding-right($padding-l);
             }
         }
         .leftPad {
-            @include padding-left($padding-md);
-            @include padding-right($padding-md);
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
             @media #{$desktop} {
-                @include padding-right($padding-md);
+                @include padding-right($padding-zero);
                 @include padding-left($padding-l);
             }
         }
@@ -62,18 +66,22 @@
     }
 
     &__subTitle {
-        @include margin-top($margin-l);
+        @include font-size($font-sm);
+        @include margin-top($margin-zero);
         @include margin-bottom($margin-sm);
+        @inlcude line-height($font-normal, $font-sm);
         color: $color-boulder;
         text-transform: $uppercase;
         @media #{$desktop} {
             @include margin-top($margin-zero);
-            @include margin-bottom($margin-md);
+            @include margin-bottom($margin-sm);
             text-transform: $uppercase;
         }
         span.tpatom-subheading {
             @include font-size($font-sm);
-            line-height: $font-normal;
+            @inlcude line-height($font-normal, $font-sm);
+            font-family: $font-bold;
+            font-weight: 500;
         }
     }
 
@@ -84,7 +92,6 @@
     &__description {
         @include font-size(16px);
         @include line-height(28px, 16px);
-        @include margin-bottom($padding-l);
         ul {
             li {
                 display: flex;
@@ -99,12 +106,17 @@
         @media #{$desktop} {
             @include font-size(14px);
             @include line-height(24px, 14px);
-            @include margin-bottom($padding-l);
+        }
+        a {
+            &:hover {
+                color: $color-jordy-blue;
+            }
         }
     }
 
     &__link {
         @include margin-bottom(0);
+        @include margin-top($margin-md);
         @include padding($padding-zero);
         @include line-height(28px, 16px);
         background-color: none;

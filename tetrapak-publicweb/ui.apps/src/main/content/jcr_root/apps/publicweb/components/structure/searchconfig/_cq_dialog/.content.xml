@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Search Configuration"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+            <contentType
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Content Type"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <products
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Products"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <contenttypelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Product Type Label"
+                                        name="./productLabel"/>
+                                    <templatelist
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add template paths"
+                                        fieldLabel="Template paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./productTemplateList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldDescription="Products category template paths"
+                                                            fieldLabel="Template Path"
+                                                            name="./path"
+                                                            rootPath="/conf/publicweb/settings/wcm/templates"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </templatelist>
+                                    <structureList
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add structure paths"
+                                        fieldLabel="Structure paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./productStructureList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldLabel="Structure Path"
+                                                            name="./path"
+                                                            rootPath="/content"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </structureList>
+                                </items>
+                            </products>
+                            <news
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="News"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <contenttypelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="News Type Label"
+                                        name="./newsLabel"/>
+                                    <templatelist
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add template paths"
+                                        fieldLabel="Template paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./newsTemplateList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldDescription="News category template paths"
+                                                            fieldLabel="Template Path"
+                                                            name="./path"
+                                                            rootPath="/conf/publicweb/settings/wcm/templates"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </templatelist>
+                                    <structureList
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add structure paths"
+                                        fieldLabel="Structure paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./newsStructureList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldLabel="Structure Path"
+                                                            name="./path"
+                                                            rootPath="/content"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </structureList>
+                                </items>
+                            </news>
+                            <events
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Events"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <contenttypelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Product Type Label"
+                                        name="./eventLabel"/>
+                                    <templatelist
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add template paths"
+                                        fieldLabel="Template paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./eventTemplateList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldDescription="Events category template paths"
+                                                            fieldLabel="Template Path"
+                                                            name="./path"
+                                                            rootPath="/conf/publicweb/settings/wcm/templates"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </templatelist>
+                                    <structureList
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add structure paths"
+                                        fieldLabel="Structure paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./eventStructureList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldLabel="Structure Path"
+                                                            name="./path"
+                                                            rootPath="/content"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </structureList>
+                                </items>
+                            </events>
+                            <cases
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Cases"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <contenttypelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Cases Type Label"
+                                        name="./caseLabel"/>
+                                    <templatelist
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add template paths"
+                                        fieldLabel="Template paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./caseTemplateList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldDescription="Cases category template paths"
+                                                            fieldLabel="Template Path"
+                                                            name="./path"
+                                                            rootPath="/conf/publicweb/settings/wcm/templates"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </templatelist>
+                                    <structureList
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add structure paths"
+                                        fieldLabel="Structure paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./caseStructureList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldLabel="Structure Path"
+                                                            name="./path"
+                                                            rootPath="/content"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </structureList>
+                                </items>
+                            </cases>
+                            <media
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Media"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <contenttypelabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Media Type Label"
+                                        name="./mediaLabel"/>
+                                    <structureList
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add structure paths"
+                                        fieldLabel="Structure paths">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./mediaStructureList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                            fieldLabel="Structure Path"
+                                                            name="./path"
+                                                            rootPath="/content"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </structureList>
+                                </items>
+                            </media>
+                        </items>
+                    </column>
+                </items>
+            </contentType>
+            <thememapping
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Themes"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <themelist
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add a theme label and tag associated"
+                                fieldLabel="Theme List">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./themeList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <themelabel
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Theme Label"
+                                                    name="./themeLabel"/>
+                                                <themeKey
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Theme Key"
+                                                    name="./themeKey"/>
+                                                <tag
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                    fieldLabel="Tag"
+                                                    name="./tag"
+                                                    rootPath="/content/cq:tags"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </themelist>
+                        </items>
+                    </column>
+                </items>
+            </thememapping>
+            <gatedcontent
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Gated Content"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <gatedcontentlist
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldDescription="Click 'Add field' to add gated content paths"
+                                fieldLabel="Gated Contents">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    acs-commons-nested="NODE_STORE"
+                                    name="./gatedContentList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <path
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                    fieldLabel="Gated Content Path"
+                                                    name="./path"
+                                                    rootPath="/content"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </gatedcontentlist>
+                        </items>
+                    </column>
+                </items>
+            </gatedcontent>
+            <assetthumbnail
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Asset Thumbnail"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <video
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Video Thumbnail Path "
+                                name="./videoThumbnail"
+                                rootPath="/content/dam"/>
+                            <document
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Document Thumbnail Path "
+                                name="./documentThumbnail"
+                                rootPath="/content/dam"/>
+                        </items>
+                    </column>
+                </items>
+            </assetthumbnail>
+        </items>
+    </content>
+</jcr:root>

@@ -6,7 +6,6 @@
 @import '../../../../templates/components/textImage/textImage';
 @import '../../../../templates/components/listContentImage/listContentImage';
 @import '../../../../templates/components/carousel/carousel';
-@import '../../../../templates/components/searchResults/searchResults';
 @import '../../../../templates/components/productListing/productListing';
 @import '../../../../templates/components/contactAnchorLink/contactAnchorLink';
 @import '../../../../templates/components/carouselWithFilters/carouselWithFilters';
@@ -32,7 +31,16 @@
 @import '../../../../templates/components/mediaLink/mediaLink';
 @import '../../../../templates/components/contactus/contactUs';
 @import '../../../../templates/atoms/link/link';
+@import '../../../../templates/atoms/navigationLink/navigationLink';
+@import '../../../../templates/components/navigation/navigation';
+@import '../../../../templates/components/sectionMenu/sectionMenu';
+@import '../../../../templates/molecules/subSectionMenu/subMenuSection';
 @import '../../../../templates/molecules/radiofieldinput/radioFieldInput';
 @import '../../../../templates/molecules/inputfield/inputfield';
 @import '../../../../templates/molecules/progressbar/progressbar';
 @import '../../../../templates/components/marketselector/marketselector';
+@import '../../../../templates/components/softconversion/softconversion';
+@import '../../../../templates/components/businessinquiryform/businessinquiryform';
+@import '../../../../templates/components/searchbar/searchbar';
+@import '../../../../templates/components/searchresults/searchresults';
+@import '../../../../templates/components/subscriptionform/subscriptionform';

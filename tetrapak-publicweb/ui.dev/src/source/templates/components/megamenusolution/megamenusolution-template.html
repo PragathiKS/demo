@@ -18,7 +18,7 @@
         <ul class="row" data-sly-list.endToEndSolutionSection=${data.endToEndSolutionSection}>
           <li class="col">
             <a class="js-navigation-Link" data-link-section='Tetra Pak end to end solutions'
-              data-link-name='${mainHeader}:${endToEndSolutionSection.title}' href="${endToEndSolutionSection.path}">
+              data-link-title="${endToEndSolutionSection.title}" data-link-name='${mainHeader}:${endToEndSolutionSection.title}' href="${endToEndSolutionSection.path}">
               <sly data-sly-test="${!wcmmode.edit}">
                 <sly
                   data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
@@ -30,7 +30,7 @@
               </sly>
               <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
                 data-sly-call="${title.heading_h3_template @ headingText=endToEndSolutionSection.title, variant='regular'}" />
-              <p class="d-none d-lg-block">
+              <p class="d-none d-lg-block teaser-spacing">
                 ${endToEndSolutionSection.description}
               </p>
             </a>
@@ -63,7 +63,7 @@
             </li>
             <li class="col">
               <a class="js-navigation-Link" data-link-section='Food categories'
-                data-link-name='${mainHeader}:${foodCategorySection.title}' href="${foodCategorySection.path}">
+              data-link-title="${foodCategorySection.title}" data-link-name='${mainHeader}:${foodCategorySection.title}' href="${foodCategorySection.path}">
                 <sly data-sly-test="${!wcmmode.edit}">
                   <sly
                     data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"

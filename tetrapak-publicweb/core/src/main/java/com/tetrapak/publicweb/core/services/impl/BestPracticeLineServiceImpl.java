@@ -140,7 +140,7 @@ public class BestPracticeLineServiceImpl implements BestPracticeLineService {
                         properties.get("practiceImageAltI18n", String.class) : "");
                 practiceItem.setCtaTexti18nKey(properties.get("ctaTexti18nKey", String.class) != null ?
                         properties.get("ctaTexti18nKey", String.class) : "");
-                practiceItem.setPracticePath(LinkUtils.sanitizeLink(hit.getPath()));
+                practiceItem.setPracticePath(LinkUtils.sanitizeLink(hit.getPath(), resourceResolver));
             }
 
         } catch (RepositoryException e) {

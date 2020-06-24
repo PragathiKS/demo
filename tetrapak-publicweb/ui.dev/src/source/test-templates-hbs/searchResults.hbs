@@ -1,0 +1,86 @@
+<div class="pw-container">
+    <div class="pw-search-results js-pw-search-results pw-theme--grayscale-white pw-padding--regular pw-margin--regular"
+        data-locator="search-results" data-module="Searchresult">
+        <div class="row no-gutters">
+            <div class="col-lg-9 margin-auto">
+                <div class="pw-search-results__search-bar">
+                    <div class="pw-search-bar">
+                        <div class="pw-search-bar__input">
+                            <input type="text" class="form-control js-pw-search-input tpatom-input-box__input"
+                                id="searchField" name="searchField" placeholder="searchplaceholder" />
+                        </div>
+                        <div class="pw-search-bar__icons">
+                            <div class="pw-search-bar__icons__close">
+                                <span class="js-search-close close-icon-cont">
+                                    <i class="icon-Close_pw"></i>
+                                </span>
+                                <span class="horizontal-bar"></span>
+                            </div>
+                            <div class="pw-search-bar__icons__search">
+                                <i class="icon-Search_pw"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pw-search-results__filter-container">
+                    <div class="pw-search-results__filter-container__heading d-none">
+                        <span class="js-search-filter-toggle">
+                            <i class="FilterSettings_pw"></i>
+                            <label>Filters</label>
+                        </span>
+                    </div>
+                    <div class="pw-search-results__filters js-pw-search-results__filters pw-padding--regular d-none">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6">
+                                <div class="pw-search-results__filters__content-type">
+                                    <div class="filter__list row no-gutters" >
+                                        <div class="tpatom-checkbox col-lg-6">
+                                            <label class="tpatom-checkbox__label clearfix" for="news">
+                                                <input type="checkbox" data-category="contentType" id="news" value="News" checked="true"
+                                                    class="js-pw-search-results-filter-check tpatom-checkbox__input float-left" />
+                                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                                <span class="tpatom-checkbox__text js-checkbox__text">news</span>
+                                            </label>
+                                        </div>
+                                        <div class="tpatom-checkbox col-lg-6">
+                                            <label class="tpatom-checkbox__label clearfix" for="products">
+                                                <input type="checkbox" data-category="contentType" id="products" value="products"
+                                                    class="js-pw-search-results-filter-check tpatom-checkbox__input float-left" />
+                                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                                <span class="tpatom-checkbox__text js-checkbox__text">products</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pw-search-results__button-group">
+                            <button type="button" class="tpatom-btn tpatom-btn--primary js-apply-filter">
+                                <span class="tp-next-btn__text">ok</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="pw-search-results__filter-container__count js-filter-title">
+                        <div class="js-filter-container-chips d-none">
+                            <!-- Loading filter tags/chips here -->
+                        </div>
+                        <div class="js-pw-search-results__title" data-results-title="results found for"
+                            data-no-results-text="nosearchresults"
+                            data-empty-field="Please try again to enter a search text in the above field">
+                        </div>
+                    </div>
+                </div>
+                <div class="pw-search-results__main-container">
+                    <div class="pw-search-results__spinner text-center d-none">
+                        <div class="spinner-border custom-color" role="status"></div>
+                    </div>
+                    <div class="pw-search-results__results">
+                        <div class="pw-search-results__results-list js-pw-search-results__results-list"></div>
+                        <div class="js-pagination d-none" aria-live="polite" data-pagination-text="of">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

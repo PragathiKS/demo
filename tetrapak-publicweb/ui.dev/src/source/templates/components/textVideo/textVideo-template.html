@@ -1,13 +1,13 @@
 <sly data-sly-template.textVideo_template="${@ data, flag}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
   <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}"/>
-  <sly data-sly-test.dataLinkSectionDownloadHyper="${data.pwLinkTheme == 'download' ? '_Download' : ''}"/>
 
   <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}"
        class="pw-container"
        data-locator="text-video" data-module="TextVideo">
+       <input type="hidden" id="componentName-textvideo" name="componentName" value="${resource.name}">
     <div class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular">
-    <div class="row">
-      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4': ''}">
+    <div class="row no-gutters">
+      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4 left-pad': ''}">
         <sly data-sly-test="${data.subTitle}"><p class="pw-text-video__subTitle d-none d-lg-block">${data.subTitle @ context='html'}</p></sly>
         <div class="pw-text-video__title d-none d-lg-block">
           <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
@@ -15,23 +15,28 @@
         </div>
         <p class="pw-text-video__description d-none d-lg-block">${data.description @ context='html'}</p>
         <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
-                <a data-sly-test="${data.linkTexti18n}"
+                <a data-sly-test="${data.linkTexti18n && !data.enableSoftcoversion}"
                 href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textVideo-analytics"
                 title="${data.linkTexti18n}"
-                target="${data.targetBlank}"
-                data-link-section="Text & Video_${dataLinkSectionCTAText}${dataLinkSectionDownloadHyper}"
+                data-link-section="Text & Video_${dataLinkSectionCTAText}"
                 data-link-name="${data.linkTexti18n}"
                 data-video-title="${data.title}"
                 data-asset-name="${data.assetName}"
                 data-button-link-type="${data.pwButtonTheme}"
-                data-download-type="${data.pwLinkTheme}"
+                data-anchor-type="${dataLinkSectionCTAText}"
                 >
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n @ context='html'}</span><i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i>
              </a>
+
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo" title="${'pw.form.button.download' @ i18n}">
+                                            <span class="tpatom-link__text sly-text"> ${data.linkTexti18n @ context='html'}
+                                                <i class="icon icon--link icon-Download"></i>
+                                                    </span>
+                                            </button>
               </div>
       </div>
-      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8': ''}">
+      <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8 right-pad': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
           <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.videoName}"
             data-video-type="${data.videoSource}" data-video-name="${data.videoName}">
@@ -63,24 +68,32 @@
         </div>
         <p class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n,context='html'}</p>
         <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
-          <a data-sly-test="${data.linkTexti18n}"
+          <a data-sly-test="${data.linkTexti18n && !data.enableSoftcoversion}"
                 href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textVideo-analytics"
                 title="${data.linkTexti18n}"
-                target="${data.targetBlank}"
-                data-link-section="Text & Video_${dataLinkSectionCTAText}${dataLinkSectionDownloadHyper}"
+                data-link-section="Text & Video_${dataLinkSectionCTAText}"
                 data-link-name="${data.linkTexti18n}"
                 data-video-title="${data.title}"
                 data-asset-name="${data.assetName}"
                 data-button-link-type="${data.pwButtonTheme}"
-                data-download-type="${data.pwLinkTheme}"
+                data-anchor-type="${dataLinkSectionCTAText}"
                 >
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n @ context='html'}<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
              </a>
+
+             
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo" title="${'pw.form.button.download' @ i18n}">
+                                            <span class="tpatom-link__text sly-text"> ${data.linkTexti18n @ context='html'}
+                                                <i class="icon icon--link icon-Download"></i>
+                                                    </span>
+                                            </button> 
         </div>
       </div>
     </div>
   </div>
+  <sly data-sly-test="${data.enableSoftcoversion}" data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
+      data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkURL}" />
   </div>
   <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
 </sly>

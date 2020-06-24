@@ -1,0 +1,132 @@
+.pw-navigation {
+    .hr-display {
+        display: none;
+    }
+    &.sticky {
+        display: block;
+        z-index: $z-index-section-menu;
+        position: fixed;
+        background: $color-white;
+        top: $header-height-mobile * 1px; // this is section menu margin from header
+        width: 100%;
+        & > .pw-navigation__container {
+            @include padding($padding-zero);
+        }
+        .collapse-button {
+            @include padding($padding-md);
+            display: flex;
+            font-weight: 900;
+            border-bottom: 1px solid $color-mercury;
+            justify-content: space-between;
+            align-items: center;
+            height: $section-menu-height-mobile * 1px;
+            i.icon {
+                &::before {
+                    font-size: $font-normal;
+                    line-height: $font-normal;
+                }
+            }
+            i.icon-Navigation_Right_pw {
+                &::before {
+                    transform: rotate(90deg);
+                }
+            }
+            &,
+            &:hover {
+                color: $color-congress-blue;
+            }
+        }
+    }
+
+    @media #{$mobile} {
+        &__container {
+            height: calc(100vh - #{$sticky-view-height * 1px});
+            overflow-y: auto;
+            background: $color-white;
+            .list-section-menu-links {
+                display: block;
+            }
+            .section-link-home {
+                @include padding($padding-zero 15px);
+                width: 100%;
+                border-bottom: 1px solid $color-mercury;
+
+                & > a {
+                    @include padding($padding-md);
+                    color: $color-congress-blue;
+                    width: 100%;
+                    &:hover {
+                        color: $color-congress-blue;
+                    }
+                }
+            }
+
+            .pw-mobile-navigation-section-list {
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+    }
+
+    @media #{$desktop} {
+        display: none;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        background: $color-white;
+        box-shadow: 0 4px 16px -10px $shadow;
+        a {
+            @include padding($padding-zero $padding-sm);
+            color: $color-congress-blue;
+            font-weight: normal;
+        }
+        &.sticky {
+            top: 80px;
+            & > .pw-navigation__container {
+                @include padding(18px $padding-xxxl);
+            }
+            & > .hr-display {
+                display: none;
+            }
+        }
+        &.show {
+            display: block;
+        }
+        hr {
+            @include margin-top(26px);
+            @include margin-bottom(18px);
+        }
+        &__container {
+            @include padding-bottom(18px);
+
+            .section-link-home {
+                @include padding($padding-zero 15px);
+                position: absolute;
+                z-index: 1;
+                & > a {
+                    @include padding-left($padding-zero);
+                    color: $color-tundora;
+                    &:hover {
+                        color: $color-jordy-blue;
+                        font-weight: 900;
+                    }
+                }
+            }
+            .list-section-menu-links {
+                display: flex;
+                justify-content: center;
+                & > li {
+                    &:first-child {
+                        @include margin-left($margin-zero);
+                    }
+                    &:last-child {
+                        @include margin-right($margin-zero);
+                    }
+                    @include margin($margin-zero 12px);
+                }
+            }
+        }
+        .hr-display {
+            display: block;
+        }
+    }
+}

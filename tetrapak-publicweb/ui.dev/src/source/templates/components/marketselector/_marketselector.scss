@@ -61,25 +61,38 @@
         @include padding-bottom($padding-md);
         color: $color-congress-blue;
         width: 100%;
-        &:last-child {
-            @include padding-bottom($padding-l);
+        &:hover {
+            a {
+                color: $color-jordy-blue;
+            }
+        }
+        @media #{$desktop} {
+            &:last-child {
+                @include padding-bottom($padding-l);
+        }
         }
 
     }
 
-    .icon-Close {
+    .icon-Close_pw {
         &::before {
-            @include font-size($font-normal);
-            @include width($font-normal);
-            @include height($font-normal);
+            @include font-size(20px);
+            @include width(20px);
+            @include height(20px);
+            @media #{$desktop} {
+                @include font-size($font-normal);
+                @include width($font-normal);
+                @include height($font-normal);
+            }
         }
     }
 
     .modal-dialog {
-        @include margin(0 $margin-md);
+        @include margin(0);
         max-width: 100%;
 
         @media #{$desktop} {
+            @include margin(0 $margin-md);
             @include max-width(1143px);
             margin: auto;
         }

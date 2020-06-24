@@ -10,6 +10,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
@@ -20,6 +21,10 @@ import javax.annotation.PostConstruct;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextVideoModel {
+
+    /** The resource. */
+    @Self
+    private Resource resource;
 
     /** The sling settings service. */
     @OSGiService
@@ -92,10 +97,6 @@ public class TextVideoModel {
     @ValueMapValue
     private String pwButtonTheme;
 
-    /** The pw link theme. */
-    @ValueMapValue
-    private String pwLinkTheme;
-
     /** The pw padding. */
     @ValueMapValue
     private String pwPadding;
@@ -103,6 +104,11 @@ public class TextVideoModel {
     /** The pw display. */
     @ValueMapValue
     private String pwDisplay;
+
+
+    /** The enable softcoversion. */
+    @ValueMapValue
+    private String enableSoftcoversion;
 
     /** The Constant YOUTUBE_URL_PREFIX. */
     private static final String YOUTUBE_URL_PREFIX = "https://www.youtube.com/embed/";
@@ -116,7 +122,7 @@ public class TextVideoModel {
     @PostConstruct
     protected void init() {
         if (StringUtils.isNotEmpty(linkURL)) {
-            linkURL = LinkUtils.sanitizeLink(linkURL);
+            linkURL = LinkUtils.sanitizeLink(linkURL, resource.getResourceResolver());
         }
 
         if (youtubeVideoID != null) {
@@ -126,7 +132,8 @@ public class TextVideoModel {
         }
 
         if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath,
+                    dynamicMediaService);
         }
     }
 
@@ -275,15 +282,6 @@ public class TextVideoModel {
     }
 
     /**
-     * Gets the pw link theme.
-     *
-     * @return the pw link theme
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
-    }
-
-    /**
      * Gets the pw padding.
      *
      * @return the pw padding
@@ -318,4 +316,23 @@ public class TextVideoModel {
     public String getVideoName() {
         return LinkUtils.getAssetName(damVideoPath);
     }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
+    }
+
+    /**
+     * Gets the soft conversion data.
+     *
+     * @return the soft conversion data
+     */
+    public SoftConversionModel getSoftConversionData() {
+        return resource.adaptTo(SoftConversionModel.class);
+    }
+
 }

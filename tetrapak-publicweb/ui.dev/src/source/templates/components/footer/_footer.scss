@@ -12,6 +12,12 @@
         @media #{$desktop} {
             @include padding(80px $padding-xxxl);
         }
+        .tp-pw-footer-data-logo {
+            img {
+                width: 156px;
+                height: auto;
+            }
+        }
     }
 
     .col-lg-3 {
@@ -74,6 +80,9 @@
         @include margin-top(24px);
         @media #{$desktop} {
             text-align: center;
+        }
+        .icon-Circle_Arrow_Up {
+            margin-left: $margin-sm;
         }
     }
 

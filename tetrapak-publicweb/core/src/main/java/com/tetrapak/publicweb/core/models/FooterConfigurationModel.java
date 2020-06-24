@@ -34,10 +34,6 @@ public class FooterConfigurationModel {
     @ValueMapValue
     private String logoLink;
 
-    /** The logo link target. */
-    @ValueMapValue
-    private String logoLinkTarget;
-
     /** The logo alt. */
     @ValueMapValue
     private String logoAlt;
@@ -69,16 +65,7 @@ public class FooterConfigurationModel {
      * @return the logo link
      */
     public String getLogoLink() {
-        return LinkUtils.sanitizeLink(logoLink);
-    }
-
-    /**
-     * Gets the logo link target.
-     *
-     * @return the logo link target
-     */
-    public String getLogoLinkTarget() {
-        return logoLinkTarget;
+        return LinkUtils.sanitizeLink(logoLink, resource.getResourceResolver());
     }
 
     /**

@@ -1,0 +1,44 @@
+{
+    "contentTypeList": [
+        {
+            "label": "Product",
+            "key": "product"
+        },
+        {
+            "label": "News",
+            "key": "news"
+        },{
+            "label": "Event",
+            "key": "event"
+        },{
+            "label": "Cases",
+            "key": "cases"
+        },{
+            "label": "Media",
+            "key": "media"
+        }
+    ],
+    "themeList": [
+        {
+            "label": "Processing",
+            "key": "processing"
+        },
+        {
+            "label": "End-to-end solutions",
+            "key": "end-to-end-solutions"
+        },
+        {
+            "label": "Packaging",
+            "key": "packaging"
+        },
+        {
+            "label": "Sustainability",
+            "key": "sustainability"
+        },
+        {
+            "label": "Services",
+            "key": "services"
+        }
+    ],
+    "servletPath": "/content/tetrapak/publicweb/lang-masters/en/home/_jcr_content/root/responsivegrid/searchresults"
+}

@@ -55,14 +55,6 @@ public class TabModel {
     @ValueMapValue
     private String linkURL;
 
-    /** The pwLinkTheme. */
-    @ValueMapValue
-    private String pwLinkTheme;
-
-    /** The targetBlank. */
-    @ValueMapValue
-    private String targetBlank;
-
     /** The videoSource. */
     @ValueMapValue
     private String videoSource;
@@ -154,16 +146,7 @@ public class TabModel {
      * @return link URL
      */
     public String getLinkURL() {
-        return LinkUtils.sanitizeLink(linkURL);
-    }
-
-    /**
-     * Gets the target blank.
-     *
-     * @return target blank
-     */
-    public String getTargetBlank() {
-        return targetBlank;
+        return linkURL;
     }
 
     /**
@@ -198,7 +181,7 @@ public class TabModel {
     public String getDamVideoPath() {
         if (Objects.nonNull(slingSettingsService) && Objects.nonNull(dynamicMediaService)
                 && !slingSettingsService.getRunModes().contains(AUTHOR)) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath, dynamicMediaService);
         }
 
         return damVideoPath;
@@ -241,25 +224,6 @@ public class TabModel {
     }
 
     /**
-     * Gets the pw Link Theme.
-     *
-     * @return pw Link Theme
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
-    }
-
-    /**
-     * Sets the pw link theme.
-     *
-     * @param pwLinkTheme
-     *            the new pw link theme
-     */
-    public void setPwLinkTheme(String pwLinkTheme) {
-        this.pwLinkTheme = pwLinkTheme;
-    }
-
-    /**
      * Sets the title.
      *
      * @param title
@@ -297,16 +261,6 @@ public class TabModel {
      */
     public void setLinkURL(String linkURL) {
         this.linkURL = linkURL;
-    }
-
-    /**
-     * Sets the target blank.
-     *
-     * @param targetBlank
-     *            the new target blank
-     */
-    public void setTargetBlank(String targetBlank) {
-        this.targetBlank = targetBlank;
     }
 
     /**

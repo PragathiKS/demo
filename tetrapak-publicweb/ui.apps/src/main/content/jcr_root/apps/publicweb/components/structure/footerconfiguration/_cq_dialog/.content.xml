@@ -29,7 +29,7 @@
                                 fieldDescription="Where the logo should direct"
                                 fieldLabel="Logo Image link"
                                 name="./logoLink"
-                                rootPath="/content/tetrapak/public-web"/>
+                                rootPath="/content/tetrapak/publicweb"/>
                             <logoalt
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -37,14 +37,6 @@
                                 fieldLabel="Logo Image Alt Text"
                                 name="./logoAlt"
                                 required="true"/>
-                            <logolinktarget
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Open link in a new window ?"
-                                name="./logoLinkTarget"
-                                text="New Window"
-                                uncheckedValue="_self"
-                                value="_blank"/>
                             <footerLinks
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
@@ -75,15 +67,7 @@
                                                     fieldLabel="Link Path"
                                                     name="./linkPath"
                                                     required="true"
-                                                    rootPath="/content/tetrapak/public-web"/>
-                                                <linktarget
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                    fieldDescription="Open link in a new window ?"
-                                                    name="./linkTarget"
-                                                    text="New Window"
-                                                    uncheckedValue="_self"
-                                                    value="_blank"/>
+                                                    rootPath="/content/tetrapak/publicweb"/>
                                             </items>
                                         </column>
                                     </items>
@@ -113,7 +97,7 @@
                                 composite="{Boolean}true"
                                 fieldDescription="Click 'Add field' to add a new Social channel and link"
                                 fieldLabel="Social Links"
-                                validation="multifield-max-6">
+                                pw-max-items="6">
                                 <field
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/container"

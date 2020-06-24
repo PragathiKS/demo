@@ -103,7 +103,7 @@
                                         composite="{Boolean}true"
                                         fieldDescription="Add page paths to automatically populate values"
                                         fieldLabel="Select pages"
-                                        validation="multifield-max-12">
+                                        pw-max-items="12">
                                         <field
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -119,7 +119,7 @@
                                                             fieldLabel="Page URL"
                                                             name="./pageURL"
 															validation="pw.semiauto"
-                                                            rootPath="/content/tetrapak/public-web"/>
+                                                            rootPath="/content/tetrapak/publicweb"/>
                                                     </items>
                                                 </column>
                                             </items>
@@ -143,7 +143,7 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                         composite="{Boolean}true"
                                         fieldLabel="&#x9;&#xa;Configure Teaser"
-                                        validation="multifield-max-12">
+                                        pw-max-items="12">
                                         <field
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -174,13 +174,6 @@
                                                             fieldLabel="Link URL"
                                                             name="./linkPath"
                                                             rootPath="/content"/>
-                                                        <linktarget
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                            name="./linkTarget"
-                                                            text="New Window"
-                                                            uncheckedValue="_self"
-                                                            value="_blank"/>
                                                         <pwButtonThemes
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/include"
@@ -195,10 +188,6 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/include"
                                                             path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
-                                                        <pwLinkThemes
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                            path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwLinkThemes"/>
                                                     </items>
                                                 </column>
                                             </items>

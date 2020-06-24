@@ -35,13 +35,11 @@ ul.pw-progressbar_wrapper {
             color: $color-jordy-blue;
             text-decoration: none;
             text-align: center;
-            // padding: 1.5rem;
             .circle {
                 display: inline-block;
                 color: $color-white;
                 width: 8px;
                 height: 8px;
-                line-height: 1.7rem;
                 text-align: center;
                 background: $color-mercury;
                 border-radius: 50%;

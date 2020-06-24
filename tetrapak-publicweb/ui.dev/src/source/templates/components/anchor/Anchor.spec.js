@@ -1,7 +1,6 @@
 import Anchor from './Anchor';
 import $ from 'jquery';
 import anchorTemplate from '../../../test-templates-hbs/anchor.hbs';
-import { scrollToElement } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Anchor', function() {

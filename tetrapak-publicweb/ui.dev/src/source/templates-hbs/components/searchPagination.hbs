@@ -1,0 +1,30 @@
+<div class="tp-pagination center-align" auto_locator="paginationPadding">
+<div class="tp-pagination__container clearfix" auto_locator="searchPaginationText">
+    {{> atoms/buttons/button/button
+        modifier="pagination"
+        className="tp-pagination__previous float-left"
+        jsClass="js-page-number"
+        disabled=prevDisabled
+        data-page-number=prevPage
+        iconClass="icon-Arrow_Right_pw"
+        hideText=true
+        text="cuhu.pagination.prev"}}
+
+    {{> atoms/buttons/button/button
+                    modifier="pagination"
+                    className="tp-pagination__btn float-left active"
+                    data-page-number=currentPageNumber
+                    text=currentPageNumber}}
+    <span class="float-left tp-pagination__text">{{paginationText}}</span>
+    <span class="float-left tp-pagination__text">{{total}}</span>
+    {{> atoms/buttons/button/button
+        modifier="pagination"
+        className="tp-pagination__next float-left"
+        jsClass="js-page-number"
+        disabled=nextDisabled
+        data-page-number=nextPage
+        iconClass="icon-Arrow_Right_pw"
+        hideText=true
+        text="cuhu.pagination.next"}}
+</div>
+</div>

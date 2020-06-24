@@ -16,15 +16,21 @@ public final class PWConstants {
 
     /** The Constant COUNTRY_LEVEL. */
     public static final int COUNTRY_PAGE_LEVEL = 3;
-    
+
     /** The Constant MARKET_ROOT_PAGE_LEVEL. */
     public static final int MARKET_ROOT_PAGE_LEVEL = 2;
-    
+
     /** The Constant HOME_PAGE_REL_PATH. */
     public static final String HOME_PAGE_REL_PATH = "home";
-    
+
     /** The Constant LANG_MASTERS. */
     public static final String LANG_MASTERS= "lang-masters";
+
+    /** The Constant OTHERS_SECTION_MENU_PAGE_LEVEL. */
+    public static final int OTHERS_SECTION_MENU_PAGE_LEVEL = 5;
+
+    /** The Constant SOLUTIONS_SECTION_MENU_PAGE_LEVEL. */
+    public static final int SOLUTIONS_SECTION_MENU_PAGE_LEVEL = 6;
 
     /** The Constant SLASH. */
     public static final String SLASH = "/";
@@ -36,10 +42,10 @@ public final class PWConstants {
     public static final String PXP_ROOT_PATH = "/var/commerce/products/pxp";
 
     /** The Constant CONTENT_ROOT_PATH. */
-    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/public-web";
-    
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/publicweb";
+
     /** The Constant GLOBLA_LANG_PATH. */
-    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/public-web/gb";
+    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/publicweb/gb";
 
     /** The Constant PXP. */
     public static final String PXP = "pxp";
@@ -55,6 +61,9 @@ public final class PWConstants {
 
     /** The Constant CQ_TEMPLATE. */
     public static final String CQ_TEMPLATE = "cq:template";
+
+    /** The Constant CQ_REDIRECT_TARGET. */
+    public static final String CQ_REDIRECT_TARGET = "cq:redirectTarget";
 
     /** The Constant PRODUCT_ID. */
     public static final String PRODUCT_ID = "productId";
@@ -103,6 +112,9 @@ public final class PWConstants {
 
     /** The Constant VIDEO. */
     public static final String VIDEO = "video";
+    
+    /** The Constant DOCUMENT. */
+    public static final String DOCUMENT = "document";
 
     /** The Constant VOLUMES. */
     public static final String VOLUMES = "volumes";
@@ -134,6 +146,9 @@ public final class PWConstants {
     /** The package type template. */
     public static final String PACKAGE_TYPE_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-package-type-page";
 
+    /** The Constant EXTERNAL_REDIRECT_TEMPLATE. */
+    public static final String EXTERNAL_REDIRECT_TEMPLATE = "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page";
+
     /** The full feed. */
     public static final String FULL_FEED = "full";
 
@@ -147,13 +162,13 @@ public final class PWConstants {
     public static final String REPLICATION_PXP = "replicationpxp";
 
     /** The Constant PXP_OPENINGS_TYPE. */
-    public static final String PXP_OPENINGS_TYPE = "openingtype";
+    public static final String PXP_OPENINGS_TYPE = "pw.pxp.openingtype";
 
     /** The Constant PXP_OPENINGS_PRINCIPLE. */
-    public static final String PXP_OPENINGS_PRINCIPLE = "openingprinciple";
+    public static final String PXP_OPENINGS_PRINCIPLE = "pw.pxp.openingprinciple";
 
     /** The Constant PXP_OPENINGS_BENEFITS. */
-    public static final String PXP_OPENINGS_BENEFITS = "openingbenefits";
+    public static final String PXP_OPENINGS_BENEFITS = "pw.pxp.openingbenefits";
 
     /** The TARGET SAME TAB. */
     public static final String SELF_TARGET = "_self";
@@ -163,6 +178,30 @@ public final class PWConstants {
     public static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/publicweb/contactusemail.html";
 
     public static final String SEND_EMAIL_JOB_TOPIC = "com/tetrapak/publicweb/sendemail";
+    
+    /** The Constant SPACE. */
+    public static final String SPACE = " ";
+    
+    /** The Constant NEWS. */
+    public static final String NEWS = "news";
+    
+    /** The Constant EVENTS. */
+    public static final String EVENTS = "events";
+    
+    /** The Constant CASES. */
+    public static final String CASES = "cases";
+    
+    /** The Constant MEDIA. */
+    public static final String MEDIA = "media";
+    
+    /** The Constant PRODUCTS. */
+    public static final String PRODUCTS = "products";
+    
+    /** The Constant JCR_LAST_MODIFIED. */
+    public static final String JCR_LAST_MODIFIED = "jcr:lastModified";
+    
+    /** The Constant CQ_LAST_MODIFIED. */
+    public static final String CQ_LAST_MODIFIED = "cq:lastModified";
 
     /**
      * Instantiates a new PW constants.

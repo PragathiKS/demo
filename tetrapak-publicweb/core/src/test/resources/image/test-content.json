@@ -50,10 +50,11 @@
 					"anchorId": "imageid",
 					"jcr:created": "Wed Apr 01 2020 12:01:13 GMT+0530",
 					"alt": "alt",
-					"linkURL": "/content/tetrapak/public-web/lang-masters/en/home",
+					"linkURL": "/content/tetrapak/publicweb/lang-masters/en/home",
 					"jcr:lastModified": "Wed Apr 01 2020 12:07:34 GMT+0530",
 					"sling:resourceType": "publicweb/components/content/image",
-					"pwPadding": "regular"
+					"pwPadding": "regular",
+					"pwTheme":"grayscale-lighter"
 				}
 			}
 		}

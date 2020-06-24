@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.search.QueryBuilder;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.Shape;
-import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 
@@ -59,6 +58,9 @@ public class PXPPackageTypesModel {
     @Default(values = "grayscale-white")
     private String pwTheme;
 
+    @ValueMapValue
+    private String pwImgBackground;
+
     /** The teaser list. */
     private final List<ManualModel> teaserList = new ArrayList<>();
 
@@ -81,8 +83,8 @@ public class PXPPackageTypesModel {
      */
     private void setPackageTypeList(final List<Packagetype> list) {
 
-        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(getIdList(list),
-                resource, queryBuilder);
+        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(getIdList(list), resource,
+                queryBuilder);
         for (final Packagetype packageType : list) {
             for (final Shape shape : packageType.getShapes()) {
                 final ManualModel teaser = new ManualModel();
@@ -95,7 +97,6 @@ public class PXPPackageTypesModel {
                 teaser.setAlt(title);
                 teaser.setLinkText(linkText);
                 teaser.setLinkPath(productPageMap.get(packageType.getId()));
-                teaser.setLinkTarget(PWConstants.SELF_TARGET);
                 teaserList.add(teaser);
             }
         }
@@ -149,6 +150,15 @@ public class PXPPackageTypesModel {
     }
 
     /**
+     * Gets the card style.
+     *
+     * @return the card style
+     */
+    public String getPwImgBackground() {
+        return pwImgBackground;
+    }
+
+    /**
      * Gets the teaser list.
      *
      * @return the teaser list
@@ -159,6 +169,7 @@ public class PXPPackageTypesModel {
 
     /**
      * Gets the id list.
+     * 
      * @param packageTypeList
      *
      * @return the id list

@@ -56,14 +56,14 @@ public class HeaderConfigurationModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("/content/tetrapak/public-web/global/en.html", model.getLogoLink());
-        assertEquals("_blank", model.getLogoLinkTarget());
+        assertEquals("/content/tetrapak/publicweb/global/en.html", model.getLogoLink());
         assertEquals("Logo ", model.getLogoAlt());
         assertEquals("http://www.google.com", model.getLoginLink());
         assertEquals("Login Label", model.getLoginLabel());
-        assertEquals("/content/tetrapak/public-web/global/en.html", model.getContactLink());
+        assertEquals("/content/tetrapak/publicweb/global/en.html", model.getContactLink());
         assertEquals("Contact Us Label", model.getContactText());
-        assertEquals("/content/tetrapak/public-web/global/en/solutions.html", model.getSolutionPage());
+        assertEquals("/content/tetrapak/publicweb/global/en/solutions.html", model.getSolutionPage());
         assertEquals("/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/search.html", model.getSearchPage());
     }
 }

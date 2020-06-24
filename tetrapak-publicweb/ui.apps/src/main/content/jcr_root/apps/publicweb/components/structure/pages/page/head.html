@@ -2,8 +2,10 @@
           data-sly-use.headlibRenderer="headlibs.html"
           data-sly-use.headResources="head.resources.html">
 
-    <meta charset="UTF-8">
-    <title>${page.title}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        ${page.title}<sly data-sly-test="${inheritedPageProperties.titleSuffix}"> | ${inheritedPageProperties.titleSuffix}</sly>
+    </title>
     <script>
         var digitalData = ${digitalDataModel.digitalData @ context="unsafe"};
     </script>

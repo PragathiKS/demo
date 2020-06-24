@@ -94,17 +94,18 @@
     &__heading {
         @include font-size($font-l);
         @include line-height($padding-xl, $font-l);
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
         font-weight: 300;
         @media #{$desktop} {
             @include font-size($font-xl);
             @include line-height($padding-xxl, $font-xl);
-            @include margin-bottom($margin-md);
+            @include margin-bottom($margin-l);
         }
     }
 
     &__media-wrapper {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
+        width: 100%;
     }
 
     &__event {
@@ -157,6 +158,9 @@
             bottom: 0;
             margin: auto;
             transition: transform $anim-speed-quick $anim-ease;
+            @media #{$desktop} {
+                bottom: 0;
+            }
 
             &::before {
                 vertical-align: top;
@@ -185,6 +189,7 @@
 
             @media #{$desktop} {
                 right: 0;
+                bottom: 0;
             }
             @media #{$mobile} {
                 transform: rotate(90deg);
@@ -220,6 +225,10 @@
                 border-color: $color-white;
             }
 
+            @media #{$mobile} {
+                border-bottom: 0;
+            }
+
             div {
                 background: $color-wild-sand;
                 @media #{$desktop} {
@@ -233,6 +242,10 @@
 
             @media #{$desktop} {
                 border-color: $color-white;
+            }
+
+            @media #{$mobile} {
+                border-bottom: 0;
             }
 
             div {
@@ -265,6 +278,13 @@
         &:not(.collapsed) {
             @media #{$mobile} {
                 color: $color-tundora;
+                font-family: $font-black;
+                font-weight: 900;
+            }
+            .semi-bold {
+                @media #{$mobile} {
+                    font-family: $font-black;
+                }
             }
 
             .icon-Arrow_Right_pw {
@@ -279,7 +299,7 @@
 
     &__event-readmore-icleft {
         a {
-            @include padding($padding-l $padding-md);
+            @include padding($padding-md $padding-md $padding-zero $padding-l);
             margin: 0;
             @media #{$desktop} {
                 @include padding($padding-l $padding-xxxl);
@@ -289,7 +309,7 @@
 
     &__event-readmore-icright {
         a {
-            @include padding($padding-l $padding-md);
+            @include padding($padding-md $padding-md $padding-zero $padding-l);
             margin: 0;
             @media #{$desktop} {
                 @include padding($padding-l $margin-md);
@@ -298,6 +318,12 @@
     }
 
     &__event-title-icleft {
+        &.semi-bold {
+            @media #{$desktop} {
+                font-family: $font-bold;
+                font-weight: normal;
+            }
+        }
         @include margin-left(0);
         @media #{$desktop} {
             @include margin-left($margin-xl);
@@ -331,12 +357,12 @@
     &__event-detail-subtitle {
         @include font-size($font-sm);
         @include line-height($font-m-md, $font-sm);
-        @include margin-bottom($margin-md);
+        @include margin-bottom($margin-sm);
         color: $color-boulder;
         text-transform: uppercase;
 
         @media #{$desktop} {
-            @include margin-bottom($margin-md);
+            @include margin-bottom($margin-sm);
         }
     }
 
@@ -373,6 +399,7 @@
 
     video {
         width: 100%;
+        border-radius: 4px;
     }
 }
 

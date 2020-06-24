@@ -1,6 +1,7 @@
-import Marketselector from './Marketselector';
-import marketSelectorTemplate from '../../../test-templates-hbs/marketSelector.hbs';
 import $ from 'jquery';
+import Marketselector from './Marketselector';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+import marketSelectorTemplate from '../../../test-templates-hbs/marketSelector.hbs';
 
 describe('Marketselector', function () {
   before(function () {
@@ -9,33 +10,32 @@ describe('Marketselector', function () {
       el: document.body
     });
     this.initSpy = sinon.spy(this.marketselector, 'init');
-    this.showPopupSpy = sinon.spy(this.marketselector, 'showPopup');
     this.hidePopUpSpy = sinon.spy(this.marketselector, 'hidePopUp');
+    this.trackAnalyticsSpy = sinon.spy(this.marketselector, 'trackMarketSelectorAnalytics');
+    this.openStub = sinon.stub(window, 'open');
     this.marketselector.init();
     this.marketselector.showPopup();
+
   });
 
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
-    this.showPopupSpy.restore();
     this.hidePopUpSpy.restore();
+    this.trackAnalyticsSpy.restore();
+    this.openStub.restore();
   });
 
-  it('should initialize', function (done) {
+  it('should initialize', function () {
     expect(this.marketselector.init.called).to.be.true;
-    done();
+  });
+  it('should call track analytics on click', function () {
+    $('.js-lang-selector__btn > a').trigger('click');
+    expect(this.marketselector.trackMarketSelectorAnalytics.called).to.be.true;
   });
 
-  it('should open popup when globe button is clicked', function (done) {
-    // $('.js-header__selected-lang-pw').trigger('click');
-    expect(this.marketselector.showPopup.called).to.be.true;
-    done();
-  });
-
-  it('should close popup when close button is clicked', function (done) {
+  it('should close popup when close button is clicked', function () {
     $('.js-close-btn').trigger('click');
     expect(this.marketselector.hidePopUp.called).to.be.true;
-    done();
   });
 });

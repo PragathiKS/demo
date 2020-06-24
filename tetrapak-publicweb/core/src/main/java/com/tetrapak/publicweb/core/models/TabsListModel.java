@@ -50,10 +50,6 @@ public class TabsListModel {
     @ValueMapValue
     private String readMorePath;
 
-    /** The read More Target. */
-    @ValueMapValue
-    private String readMoreTarget;
-
     /** The tags. */
     @ValueMapValue
     private String[] tags;
@@ -82,10 +78,6 @@ public class TabsListModel {
     /** The anchor title. */
     @ValueMapValue
     private String anchorTitle;
-    
-    /** The pwLinkTheme */
-    @ValueMapValue
-    private String pwLinkTheme;
 
     /** The tab List Manual. */
     @Inject
@@ -169,9 +161,7 @@ public class TabsListModel {
 	    tabBean.setFileReference(aggregator.getImagePath());
 	    tabBean.setAlt(aggregator.getAltText());
 	    tabBean.setLinkText(aggregator.getLinkText());
-	    tabBean.setLinkURL(aggregator.getLinkPath());
-	    tabBean.setTargetBlank(aggregator.getLinkTarget());
-	    tabBean.setPwLinkTheme(aggregator.getPwLinkTheme());
+	    tabBean.setLinkURL(LinkUtils.sanitizeLink(aggregator.getLinkPath(), resource.getResourceResolver()));
 	    tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
 	    tabBean.setTabType(TAB_LAYOUT_IMAGE);
 	    tabs.add(tabBean);
@@ -182,7 +172,9 @@ public class TabsListModel {
      * set list from manual authoring
      */
     private void generateListManually() {
-	tabs.addAll(tabListManual);
+        tabListManual.stream().forEach(model -> model
+                .setLinkURL(LinkUtils.sanitizeLink(model.getLinkURL(), resource.getResourceResolver())));
+        tabs.addAll(tabListManual);
     }
 
     /**
@@ -203,14 +195,7 @@ public class TabsListModel {
      * @return the readMorePath
      */
     public String getReadMorePath() {
-	return LinkUtils.sanitizeLink(readMorePath);
-    }
-
-    /**
-     * @return the readMoreTarget
-     */
-    public String getReadMoreTarget() {
-	return readMoreTarget;
+	return LinkUtils.sanitizeLink(readMorePath, resource.getResourceResolver());
     }
 
     /**
@@ -246,13 +231,6 @@ public class TabsListModel {
      */
     public String getAnchorTitle() {
 	return anchorTitle;
-    }
-
-    /**
-     * @return pwLinkTheme
-     */
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
     }
 
     /**
