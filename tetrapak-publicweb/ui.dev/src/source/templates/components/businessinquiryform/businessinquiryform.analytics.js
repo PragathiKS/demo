@@ -108,13 +108,13 @@ export const loadThankYou = function (formName, areaofInterest, dataObj) {
 
 
 
-export const newPage = function (formName) {
+export const newPage = function (linkTitle, linkName) {
 
   const linkClickObj = {
     linkType: 'internal',
     linkSection: 'Hard Conversion Form_button click',
-    linkParentTitle: formName,
-    linkName: 'New Request'
+    linkParentTitle: linkTitle,
+    linkName: linkName
   };
   const eventObj = {
     eventType: 'linkClick',
