@@ -27,7 +27,147 @@
           "logoLink": "/content/tetrapak/public-web/global/en",
           "logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
           "solutionPage": "/content/tetrapak/public-web/lang-masters/en/solutions"
-        }
+        },
+        "megamenuconfig": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "sapient-jyoti",
+					"jcr:lastModifiedBy": "sapient-user",
+					"bottomSectionSubtitle": "Food Categories",
+					"jcr:created": "Tue Apr 28 2020 05:10:21 GMT+0000",
+					"topSectionSubtitle": "Tetra pak End to End Solutions",
+					"hideFoodCategories": "false",
+					"topSectionUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/automation-solutions",
+					"jcr:lastModified": "Tue Jun 23 2020 08:51:43 GMT+0000",
+					"sling:resourceType": "publicweb/components/structure/megamenuconfig",
+					"endToEndSolutionSection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "We enable brands in the cheese, dairy, prepared foods, ice cream and beverage businesses to find ways to move forward.",
+							"fileReference": "/content/dam/tetrapak/publicweb/text-and-image/yoghurt-blueberries 1 (2).png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing",
+							"title": "Processing"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "Everyone in the food industry wants to boost sales, trim costs or come up with a taste sensation that takes the world by storm.",
+							"fileReference": "/content/dam/tetrapak/publicweb/tp-end-to-end-section--solutions/employee_inspecting_packages 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging",
+							"title": "Packaging"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "The process of producing ice cream is highly complex. The producers need to control the structure of fat globules, ice.",
+							"fileReference": "/content/dam/tetrapak/publicweb/tp-end-to-end-section--solutions/three_packages_feat_craft_effect_on_desk 1.png",
+							"path": "/content/tetrapak/publicweb/ca/en/solutions",
+							"title": "Services"
+						}
+					},
+					"linkSection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions",
+							"linkText": "Solutions Overview"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/aseptic-solutions",
+							"linkText": "Aseptic Solutions"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/product-development-centers",
+							"linkText": "Product Development Centers"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/automation-solutions",
+							"linkText": "Automation Solutions"
+						}
+					},
+					"foodCategorySection": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/cheese 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/cheese-whey",
+							"title": "Cheese"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/milk 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary-",
+							"title": "Dairy"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/fbf_food_landing_2 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/prepared-food-",
+							"title": "Food"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/ice-cream 1.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/ice-cream",
+							"title": "Ice Cream"
+						},
+						"item4": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/juice-drinks 1.png",
+							"title": "Juice & Drink"
+						},
+						"item5": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/fbf_pet_food 1.png",
+							"title": "Pet Food"
+						},
+						"item6": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/fbf_sot_new-1 1.png",
+							"title": "Plant based Drinks"
+						},
+						"item7": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/powder-spoon 1.png",
+							"title": "Whey Powder"
+						},
+						"item8": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/food-category--solutions/wine-based-drinks 1.png",
+							"title": "Wine and Spirits"
+						},
+						"item9": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/publicweb/text-and-image/shutterstock_104710151_flying_fruits.png",
+							"path": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/applications/diary-",
+							"title": "Demo Text"
+						}
+					},
+					"pseudoCategoryBean": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"pseudoCategoryKey": "Technology Areas",
+							"pseudoCategoryValue": "Technology Areas"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"pseudoCategoryKey": "CHEESE EQUIPMENT",
+							"pseudoCategoryValue": "CHEESE EQUIPMENT"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"pseudoCategoryKey": "Ice Cream Equipment",
+							"pseudoCategoryValue": "Ice Cream Equipment"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"pseudoCategoryKey": "Business Areas",
+							"pseudoCategoryValue": "Business Areas"
+						}
+					}
+				}
       }
     }
   },

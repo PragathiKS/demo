@@ -1,0 +1,41 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Thu Jun 18 2020 06:06:05 GMT+0000",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "Home Page",
+"jcr:versionHistory": "986cb10e-2e9d-4a04-8af1-e70fdc625b36",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+"pwLinkTheme": "hyperlink",
+"jcr:predecessors": [
+"73618a4e-ea38-4579-917c-5505b4097b4a"
+],
+"disableEnvelope": "true",
+"pwButtonTheme": "link",
+"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:36 GMT+0000",
+"jcr:created": "Thu Jun 18 2020 06:06:05 GMT+0000",
+"cq:lastModified": "Mon Jun 22 2020 08:39:59 GMT+0000",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en/home",
+"jcr:baseVersion": "73618a4e-ea38-4579-917c-5505b4097b4a",
+"jcr:isCheckedOut": true,
+"hideInNav": "true",
+"linkTarget": "_self",
+"cq:tags": [
+"tetrapak:material-type/3d-models",
+"tetrapak:material-type/advertisments"
+],
+"jcr:uuid": "70a797f4-1e57-404c-b997-41ce249ea277",
+"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+"cq:lastModifiedBy": "sapient-akash"
+},
+"demo-page---dne": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Thu Jun 18 2020 06:06:05 GMT+0000"
+}
+}
