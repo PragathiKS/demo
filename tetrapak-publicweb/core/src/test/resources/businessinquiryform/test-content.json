@@ -66,6 +66,26 @@
 					"anchorTitle": "title",
 					"pwTheme": "grayscale-white",
 					"apiUrl":"API Url"
+				},
+				"form": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Wed Feb 26 2020 12:14:10 GMT+0530",
+					"jcr:lastModified": "Wed Feb 26 2020 12:15:50 GMT+0530",
+					"sling:resourceType": "publicweb/components/content/businessinquiryform",
+					"anchorId": "test01",
+					"anchorTitle": "title",
+					"pwTheme": "grayscale-white",
+					  "thankyouHeading": "Thank you for your request",
+			  		  "thankyouDescriptionText": "We will get back to you as soon as possible",
+					  "alt": "Contact us",
+					  "image": "/content/dam/tetrapak/publicweb/contactus.PNG",
+					  "heading": "Business Enquiry",
+					  "thankyouHeading": "Thank you for your request",
+					  "descriptionText": "Description",
+					  "thankyouImageAltText": "Thank you",
+					  "thankyouImage": "/content/dam/tetrapak/publicweb/contactus.PNG",
+					"apiUrl":"API Url"
 				}
 			}
 		}

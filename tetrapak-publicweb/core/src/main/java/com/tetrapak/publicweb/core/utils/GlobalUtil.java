@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -17,6 +16,8 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
@@ -227,10 +228,12 @@ public final class GlobalUtil {
      *            the config path
      * @return the resource
      */
-    public static Resource fetchConfigResource(final SlingHttpServletRequest request, final String configPath) {
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+    public static Resource fetchConfigResource(final Resource resource, final String configPath) {
+        final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        final Page page = pageManager.getContainingPage(resource);
+        final String rootPath = LinkUtils.getRootPath(page.getPath());
         final String path = new StringBuffer(rootPath).append(configPath).toString();
-        return request.getResourceResolver().getResource(path);
+        return resource.getResourceResolver().getResource(path);
     }
 
 }

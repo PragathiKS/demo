@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.sling.servlethelpers.MockSlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.junit.Before;
 import org.junit.Rule;
@@ -32,13 +32,15 @@ public class BusinessInquiryModelTest {
     /** The model class. */
     Class<BusinessInquiryModel> modelClass = BusinessInquiryModel.class;
 
-    /** The request. */
-    private final MockSlingHttpServletRequest request = context.request();
-
     /** The model. */
     private BusinessInquiryModel model;
 
     private PardotService pardotService;
+
+    /**
+     * The resource.
+     */
+    private Resource resource;
 
     /**
      * The Constant PXP_FEATURES.
@@ -64,9 +66,8 @@ public class BusinessInquiryModelTest {
                 "http://pardotURL");
         MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
-        request.setPathInfo(CONTACT_US_CONTENT_ROOT);
-        request.setResource(context.currentResource(RESOURCE));
-        model = request.adaptTo(modelClass);
+        resource = context.currentResource(RESOURCE);
+        model = resource.adaptTo(modelClass);
 
     }
 

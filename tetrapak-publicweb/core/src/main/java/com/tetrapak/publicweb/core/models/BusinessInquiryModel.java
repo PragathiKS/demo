@@ -4,11 +4,9 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
@@ -20,16 +18,11 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
  * The Class BusinessInquiryModel.
  *
  */
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BusinessInquiryModel extends FormModel {
-
-    /** The request. */
-    @Self
-    private SlingHttpServletRequest request;
 
     /** The resource. */
     @Self
-    @Via("resource")
     private Resource resource;
 
     /** The pardot service. */
@@ -38,7 +31,7 @@ public class BusinessInquiryModel extends FormModel {
 
     private FormConfigModel formConfig;
 
-    private FormConfigModel consentConfig;
+    private FormConsentConfigModel consentConfig;
 
     /**
      * The init method.
@@ -53,15 +46,15 @@ public class BusinessInquiryModel extends FormModel {
      */
     public void setFormConfig() {
 
-        final Resource formConfigResource = GlobalUtil.fetchConfigResource(request,
+        final Resource formConfigResource = GlobalUtil.fetchConfigResource(resource,
                 "/jcr:content/root/responsivegrid/businessinquiryformc");
         if (Objects.nonNull(formConfigResource))
             this.formConfig = formConfigResource.adaptTo(FormConfigModel.class);
 
-        final Resource consentConfigResource = GlobalUtil.fetchConfigResource(request,
+        final Resource consentConfigResource = GlobalUtil.fetchConfigResource(resource,
                 "/jcr:content/root/responsivegrid/formconsenttextsconf");
         if (Objects.nonNull(consentConfigResource))
-            this.consentConfig = consentConfigResource.adaptTo(FormConfigModel.class);
+            this.consentConfig = consentConfigResource.adaptTo(FormConsentConfigModel.class);
     }
 
     public String getApiUrl() {
@@ -86,11 +79,21 @@ public class BusinessInquiryModel extends FormModel {
         return PageUtil.getCountryCodeFromResource(resource);
     }
 
+    /**
+     * Gets the form config.
+     *
+     * @return the form config
+     */
     public FormConfigModel getFormConfig() {
         return formConfig;
     }
 
-    public FormConfigModel getConsentConfig() {
+    /**
+     * Gets the consent config.
+     *
+     * @return the consent config
+     */
+    public FormConsentConfigModel getConsentConfig() {
         return consentConfig;
     }
 
