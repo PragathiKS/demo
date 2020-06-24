@@ -51,7 +51,7 @@ class Businessinquiryform {
   newRequestHanlder = e => {
     e.preventDefault();
     e.stopPropagation();
-    newPage();
+    newPage(this.linkTitle, this.linkText);
     location.reload();
   }
 
@@ -341,6 +341,8 @@ class Businessinquiryform {
     this.mainHead = $('.pw-businessEnquiry-form .main-heading').find('h2')[0].textContent;
     this.restObj = {};
     this.restObj2 = {};
+    this.linkTitle = this.root.find('.thankyou').find('h2').text();
+    this.linkText = this.root.find('.newRequestBtn').text();
     $('#bef-step-3 label').each((i, v) => this.restObj[$(v).text()] = 'NA');
     $('#bef-step-4 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     makeLoad(this.step1head, this.mainHead);

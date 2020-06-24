@@ -75,7 +75,7 @@
     &__form-group__address {
         &__office-name,
         &__office-site {
-            @include margin-top($margin-l);
+            @include margin-top($margin-md);
         }
         &__office-address,
         &__office-phone-number {
@@ -121,6 +121,9 @@
                     line-height: 24px;
                     font-weight: 900;
                 }
+            }
+            &__office-site {
+                @include margin-top($margin-l);
             }
         }
         h2 {

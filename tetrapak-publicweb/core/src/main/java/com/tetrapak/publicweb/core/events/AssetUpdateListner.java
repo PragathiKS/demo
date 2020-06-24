@@ -51,9 +51,14 @@ public class AssetUpdateListner implements ResourceChangeListener {
                     if (change.getPath().endsWith("jcr:content")) {
                         LOGGER.info("Asset Path :: {}", change.getPath());
                         Resource assetJcrResource = resolver.getResource(change.getPath());
+                        LOGGER.info("Asset Res :: {}",assetJcrResource);
                         if (Objects.nonNull(assetJcrResource)
                                 && assetJcrResource.getValueMap().containsKey(PWConstants.JCR_LAST_MODIFIED)) {
                             ModifiableValueMap map = assetJcrResource.adaptTo(ModifiableValueMap.class);
+                            LOGGER.info("Asset map :: {}", map);
+                            LOGGER.info("Asset value map :: {}", assetJcrResource.getValueMap());
+                            LOGGER.info("Asset value map prop :: {}",
+                                    assetJcrResource.getValueMap().get(PWConstants.JCR_LAST_MODIFIED));
                             map.put(PWConstants.CQ_LAST_MODIFIED,
                                     assetJcrResource.getValueMap().get(PWConstants.JCR_LAST_MODIFIED));
                             resolver.commit();
