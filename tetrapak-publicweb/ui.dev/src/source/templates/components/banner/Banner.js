@@ -86,11 +86,21 @@ class Banner {
 
   }
 
+  seoChanges() {
+    const titleDiv = this.root.find('.pw-banner__content__title');
+    const h1tag = titleDiv.find('h1') ;
+    if( h1tag.length) {
+      $(h1tag).attr('class','tpatom-heading tpatom-heading--regular');
+      const h2Tag = titleDiv.find('h2')[0];
+      h2Tag.parentNode.removeChild(h2Tag);
+    }
+  }
 
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.seoChanges();
     addLinkAttr('.js-banner-analytics');
     this.addBannerLink();
   }
