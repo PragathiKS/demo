@@ -37,7 +37,8 @@ public class SubscriptionFormModelTest {
     private PardotService pardotService;
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/subscriptionform";
+    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT
+            + "/en/subscriptionform/jcr:content/subscriptionform";
 
     /** The resource. */
     private Resource resource;
@@ -73,20 +74,21 @@ public class SubscriptionFormModelTest {
      */
     @Test
     public void testDailogValues() throws Exception {
-        assertEquals("Form", "Business Enquiry", model.getHeading());
+        assertEquals("Form", "Business Enquiry", model.getFormConfig().getHeading());
         assertEquals("Form", "title", model.getAnchorTitle());
         assertEquals("Form", "test01", model.getAnchorId());
-        assertEquals("Form", "Thank you for your request", model.getThankyouHeading());
-        assertEquals("Form", "We will get back to you as soon as possible", model.getThankyouDescriptionText());
+        assertEquals("Form", "Thank you for your request", model.getFormConfig().getThankyouHeading());
+        assertEquals("Form", "We will get back to you as soon as possible",
+                model.getFormConfig().getThankyouDescriptionText());
         assertEquals("Form",
                 "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
-                model.getPrivacyPolicy());
-        assertEquals("Form", "Description", model.getDescriptionText());
+                model.getConsentConfig().getPrivacyPolicy());
+        assertEquals("Form", "Description", model.getFormConfig().getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
         assertEquals("Form",
-                "/content/tetrapak/publicweb/gb/en/jcr:content/subscriptionform.pardotsubscription.json",
+                "/content/tetrapak/publicweb/gb/en/subscriptionform/jcr:content/subscriptionform.pardotsubscription.json",
                 model.getApiUrl());
-        assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
+        assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
        }
 
 

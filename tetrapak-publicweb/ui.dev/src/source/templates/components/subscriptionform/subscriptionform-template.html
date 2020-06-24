@@ -12,28 +12,16 @@
               <div class="row no-gutters">
                 <div class="col-lg-6 separator" auto_locator="subscriptionFormLeftContainerStep1">
                   <div class="row no-gutters">
-                    <div class="col-sm-12 main-heading" data-sly-test="${data.heading}"
+                    <div class="col-sm-12 main-heading" data-sly-test="${data.formConfig.heading}"
                       auto_locator="subscriptionFormLeftContainerHeadingTextStep1">
                       <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                        data-sly-call="${heading.heading_h2_template @ headingText=data.heading}" />
+                        data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.heading}" />
                     </div>
                   </div>
                   <div class="row no-gutters">
-                    <div class="col-lg-6 pw-image-container" data-sly-test="${data.image}"
-                      auto_locator="subscriptionFormImageStep1">
-                      <sly data-sly-test="${!wcmmode.edit}">
-                        <sly data-sly-test="${data.image}"
-                          data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                          data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.image, altText=data.alt}" />
-                      </sly>
-                      <sly data-sly-test="${wcmmode.edit}">
-                        <img data-sly-test="${data.image}" alt="${data.alt}" src="${data.image}"
-                          class="image img-responsive" />
-                      </sly>
-                    </div>
-                    <div class="descriptionsubscriptionForm ${data.image ? 'col-lg-6' : 'col-lg-12'}"
+                    <div class="descriptionsubscriptionForm col-lg-12"
                       auto_locator="subscriptionFormLeftContainerTextAreaStep1">
-                      ${data.descriptionText @ context="html"}
+                      ${data.formConfig.descriptionText @ context="html"}
                     </div>
                   </div>
                 </div>
@@ -52,14 +40,14 @@
                             <div class="checboxField">
                               <input id="consentcheckbox" class="consentCheckbox" type="checkbox"
                                 name="consent">
-                              <label class="consentlabel" for="consentcheckbox"> ${data.marketingConsent @
+                              <label class="consentlabel" for="consentcheckbox"> ${data.consentConfig.marketingConsent @
                                 context='html'}</label>
                             </div>
                             <div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
                           </div>
                         </div>
                         <div class="formfield">
-                          <p>${data.privacyPolicy @ context='html'}</p>
+                          <p>${data.consentConfig.privacyPolicy @ context='html'}</p>
                         </div>
                       </div>
                     </div>
@@ -78,10 +66,10 @@
                 <div class="col text-center" auto_locator="sfUsThankYouMessage">
                   <div auto_locator="sfUsThankYouPageMessage">
                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                      data-sly-call="${heading.heading_h2_template @ headingText=data.thankyouHeading}" />
+                      data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.thankyouHeading}" />
                   </div>
                   <div class="descriptionTextThankyou" auto_locator="sfUsThankYouPageDescription">
-                    ${data.thankyouDescriptionText @ context='html'}
+                    ${data.formConfig.thankyouDescriptionText @ context='html'}
                   </div>
                 </div>
               </div>

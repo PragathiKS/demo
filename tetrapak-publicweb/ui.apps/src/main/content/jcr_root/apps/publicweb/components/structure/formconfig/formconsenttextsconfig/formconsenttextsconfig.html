@@ -1,0 +1,8 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+    <sly data-sly-use.form="com.tetrapak.publicweb.core.models.FormConsentConfigModel">
+        <b>Consent Texts</b><br/>
+        Privacy policy Text : ${form.privacyPolicy @context='html'}<br/>
+        Marketing consent text : ${form.marketingConsent @context='html'}<br/>
+    </sly>
+</sly>

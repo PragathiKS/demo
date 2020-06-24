@@ -16,6 +16,8 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.SiteImproveScriptService;
@@ -82,7 +84,7 @@ public final class GlobalUtil {
         }
         return path;
     }
-    
+
     /**
      * get scene 7 image url
      *
@@ -91,7 +93,7 @@ public final class GlobalUtil {
      * @param dynamicMediaService
      *            dynamic media service
      * @return image path from scene 7
-     */    
+     */
     public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
             final DynamicMediaService dynamicMediaService) {
         String path = damImagePath;
@@ -214,6 +216,24 @@ public final class GlobalUtil {
             assetType = PWConstants.VIDEO;
         }
         return assetType;
+    }
+
+
+    /**
+     * Fetch config resource.
+     *
+     * @param request
+     *            the request
+     * @param configPath
+     *            the config path
+     * @return the resource
+     */
+    public static Resource fetchConfigResource(final Resource resource, final String configPath) {
+        final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        final Page page = pageManager.getContainingPage(resource);
+        final String rootPath = LinkUtils.getRootPath(page.getPath());
+        final String path = new StringBuffer(rootPath).append(configPath).toString();
+        return resource.getResourceResolver().getResource(path);
     }
 
 }

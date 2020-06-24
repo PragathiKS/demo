@@ -1,0 +1,20 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+    <sly data-sly-use.softconversionform="com.tetrapak.publicweb.core.models.SoftConversionFormConfigModel">
+        <b>Softconversion left section</b><br/>
+        Heading : ${softconversionform.downloadReadyHeading}<br/>
+        Body text : ${softconversionform.downloadReadyDescriptionText @context='html'}
+        
+ 		<b>Welcome back section </b><br/>
+        Heading : ${softconversionform.welcomeBackHeading}<br/>
+        Body text : ${softconversionform.welcomeBackDescriptionText @context='html'} <br/>
+        Label for Yes button : ${softconversionform.yesButtonLabel} <br/>
+        Label for No button : ${softconversionform.noButtonLabel} <br/>		
+
+		<br/>
+        <b>Thank you section</b><br/>
+      	Thank you heading : ${softconversionform.thankyouHeading}<br/>
+        Thank you body text : ${softconversionform.thankyouDescriptionText  @context='html'}<br/>
+
+    </sly>
+</sly>
