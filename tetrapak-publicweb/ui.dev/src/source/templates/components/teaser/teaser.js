@@ -45,7 +45,7 @@ class Teaser {
     const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
     const linkSection = $this.data('link-section');
     const linkName = $this.data('link-name');
-    const buttonLinkType = $this.data('button-link-type');
+    const buttonLinkType = $this.data('button-link-type') || 'link';
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
     const linkTitle = $this.data('link-title');
