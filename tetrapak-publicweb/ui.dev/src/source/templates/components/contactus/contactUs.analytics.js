@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-const trackAnalyticsContactUs = (formTrackingObj,eventObj) => {
+const trackAnalyticsContactUs = (formTrackingObj,eventObj,formVal='formclick') => {
 
   formTrackingObj = {
     formName:$('.js-step1-main-heading').data('form-name'),
@@ -15,7 +15,7 @@ const trackAnalyticsContactUs = (formTrackingObj,eventObj) => {
   trackAnalytics(
     formTrackingObj,
     'form',
-    'formClick',
+    formVal,
     undefined,
     false,
     eventObj,
@@ -134,7 +134,7 @@ export const onLoadTrackAnalytics = () => {
   const event = {
     eventType : 'formStart'
   };
-  trackAnalyticsContactUs(form,event);
+  trackAnalyticsContactUs(form,event,'formload');
 };
 
 export const onSubmitClickAnalytics = () => {
@@ -146,7 +146,5 @@ export const onSubmitClickAnalytics = () => {
   const event = {
     eventType : 'formComplete'
   };
-  trackAnalyticsContactUs(form,event);
+  trackAnalyticsContactUs(form,event,'formload');
 };
-
-
