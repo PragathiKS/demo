@@ -1,11 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.adobe.granite.ui.components.ds.DataSource;
-import com.adobe.granite.ui.components.ds.SimpleDataSource;
-import com.adobe.granite.ui.components.ds.ValueMapResource;
-import com.tetrapak.publicweb.core.beans.PseudoCategoryCFBean;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.PostConstruct;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceMetadata;
@@ -17,15 +19,11 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import com.adobe.granite.ui.components.ds.DataSource;
+import com.adobe.granite.ui.components.ds.SimpleDataSource;
+import com.adobe.granite.ui.components.ds.ValueMapResource;
+import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
 
 /**
  * The Class DataSourceModel.
@@ -41,20 +39,24 @@ public class DataSourceModel {
     @SlingObject
     private ResourceResolver resourceResolver;
 
-    /** The pseudo category service. */
-    @Inject
-    private PseudoCategoryService pseudoCategoryService;
-
     /**
      * The init method.
      */
     @PostConstruct
     protected void init() {
-        final List<PseudoCategoryCFBean> pseudoCategories = pseudoCategoryService.fetchPseudoCategories(resourceResolver);
+
+        String path = request.getRequestPathInfo().getSuffix();
+        if (StringUtils.isBlank(path)) {
+            path = request.getParameter("item");
+        }
+        MegaMenuConfigurationModel megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request,
+                path);
+        final List<PseudoCategoryModel> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
+
         final Map<String, String> pseudoCategoriesMap = new LinkedHashMap<>();
         pseudoCategoriesMap.put("Select", "");
-        for (final PseudoCategoryCFBean cfBean : pseudoCategories) {
-            pseudoCategoriesMap.put(cfBean.getPseudoCategoryKey(), cfBean.getPseudoCategoryValue());
+        for (final PseudoCategoryModel pseudoCategory : pseudoCategories) {
+            pseudoCategoriesMap.put(pseudoCategory.getPseudoCategoryKey(), pseudoCategory.getPseudoCategoryValue());
         }
         final DataSource dataSource = new SimpleDataSource(getResourceList(pseudoCategoriesMap).iterator());
         request.setAttribute(DataSource.class.getName(), dataSource);
@@ -63,7 +65,8 @@ public class DataSourceModel {
     /**
      * Gets the resource list.
      *
-     * @param pseudoCategories the pseudo categories
+     * @param pseudoCategories
+     *            the pseudo categories
      * @return the resource list
      */
     private List<Resource> getResourceList(final Map<String, String> pseudoCategories) {
@@ -75,7 +78,8 @@ public class DataSourceModel {
             if (null != pseudoCategory) {
                 valueMap.put("value", pseudoCategories.get(pseudoCategory));
                 valueMap.put("text", pseudoCategory);
-                resourceList.add(new ValueMapResource(resourceResolver, new ResourceMetadata(), "nt:unstructured", valueMap));
+                resourceList.add(
+                        new ValueMapResource(resourceResolver, new ResourceMetadata(), "nt:unstructured", valueMap));
             }
         }
         return resourceList;

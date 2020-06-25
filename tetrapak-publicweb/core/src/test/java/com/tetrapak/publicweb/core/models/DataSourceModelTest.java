@@ -1,11 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
-
 import com.adobe.granite.ui.components.ds.DataSource;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
-import com.tetrapak.publicweb.core.services.impl.PseudoCategoryServiceImpl;
-
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -15,10 +11,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -35,17 +32,20 @@ public class DataSourceModelTest {
     @Mock
     private SlingHttpServletRequest mockRequest;
 
-    /** The Constant RESOURCE_CONTENT. */
-    private static final String RESOURCE_CONTENT = "/contentFragments/pseudo-categories.json";
+    /** The Constant RESOURCE_CONTENT_EN. */
+    private static final String RESOURCE_CONTENT_EN = "/datamodel/en.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/dam/tetrapak/publicweb/contentfragment/pseudo-categories";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-masters/en";
+    
+    /** The Constant RESOURCE_CONTENT_HOME. */
+    private static final String RESOURCE_CONTENT_HOME = "/datamodel/home.json";
+
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String TEST_CONTENT_HOME = "/content/tetrapak/publicweb/lang-masters/en/home";
 
     /** The model. */
     private DataSourceModel model;
-
-    /** The pseudo category service. */
-    private PseudoCategoryService pseudoCategoryService;
 
     /** The model class. */
     final Class<DataSourceModel> modelClass = DataSourceModel.class;
@@ -58,11 +58,14 @@ public class DataSourceModelTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        pseudoCategoryService = new PseudoCategoryServiceImpl();
-        context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
+        context.load().json(RESOURCE_CONTENT_EN, TEST_CONTENT_ROOT);
+        context.load().json(RESOURCE_CONTENT_HOME, TEST_CONTENT_HOME);
         context.addModelsForClasses(modelClass);
-        context.registerInjectActivateService(pseudoCategoryService);
         final MockSlingHttpServletRequest request = context.request();
+        
+        Map<String,Object> parameterMap = new HashMap<>();
+        parameterMap.put("item", "/content/tetrapak/publicweb/lang-masters/en/home");
+        request.setParameterMap(parameterMap);
         model = request.adaptTo(modelClass);
     }
 

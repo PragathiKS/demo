@@ -4,7 +4,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
@@ -12,10 +11,6 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FormModel {
-
-    /** The resource. */
-    @Self
-    private Resource resource;
 
     /** The heading. */
     @ValueMapValue
@@ -46,14 +41,6 @@ public class FormModel {
     @Default(values = "grayscale-white")
     private String pwTheme;
 
-    /** The privacy policy. */
-    @ValueMapValue
-    private String privacyPolicy;
-
-    /** The marketing consent. */
-    @ValueMapValue
-    private String marketingConsent;
-
     /** The thankyou heading. */
     @ValueMapValue
     private String thankyouHeading;
@@ -69,10 +56,6 @@ public class FormModel {
     /** The thankyou description text. */
     @ValueMapValue
     private String thankyouDescriptionText;
-
-    /** The api url. */
-    @ValueMapValue
-    private String apiUrl;
 
     /**
      * Gets the heading.
@@ -137,25 +120,6 @@ public class FormModel {
         return pwTheme;
     }
 
-
-    /**
-     * Gets the privacy policy.
-     *
-     * @return the privacy policy
-     */
-    public String getPrivacyPolicy() {
-        return privacyPolicy;
-    }
-
-    /**
-     * Gets the marketing consent.
-     *
-     * @return the marketing consent
-     */
-    public String getMarketingConsent() {
-        return marketingConsent;
-    }
-
     /**
      * Gets the thankyou heading.
      *
@@ -190,16 +154,6 @@ public class FormModel {
      */
     public String getThankyouDescriptionText() {
         return thankyouDescriptionText;
-    }
-
-
-    /**
-     * Gets the api url.
-     *
-     * @return the api url
-     */
-    public String getApiUrl() {
-        return apiUrl;
     }
 
 }

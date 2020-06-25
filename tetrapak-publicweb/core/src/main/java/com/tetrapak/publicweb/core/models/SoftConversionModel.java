@@ -1,14 +1,19 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.Objects;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.tetrapak.publicweb.core.services.PardotService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
@@ -23,21 +28,9 @@ public class SoftConversionModel extends FormModel {
     @Self
     private Resource resource;
 
-    /** The welcome back heading. */
-    @ValueMapValue
-    private String welcomeBackHeading;
-
-    /** The welcome back description text. */
-    @ValueMapValue
-    private String welcomeBackDescriptionText;
-
-    /** The download ready heading. */
-    @ValueMapValue
-    private String downloadReadyHeading;
-
-    /** The download ready description text. */
-    @ValueMapValue
-    private String downloadReadyDescriptionText;
+    /** The pardot service. */
+    @OSGiService
+    private PardotService pardotService;
 
     /** The more link action. */
     @ValueMapValue
@@ -47,14 +40,15 @@ public class SoftConversionModel extends FormModel {
     @ValueMapValue
     private String moreButtonLabel;
 
-    @ValueMapValue
-    private String yesButtonLabel;
-
-    @ValueMapValue
-    private String noButtonLabel;
 
     @ValueMapValue
     private String pardotUrl;
+
+    /** The form config. */
+    private SoftConversionFormConfigModel formConfig;
+
+    /** The consent config. */
+    private FormConsentConfigModel consentConfig;
 
     /**
      * The init method.
@@ -64,42 +58,24 @@ public class SoftConversionModel extends FormModel {
         if (StringUtils.isNotEmpty(moreButtonAction)) {
             moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction, resource.getResourceResolver());
         }
+        setFormConfig();
+
     }
 
     /**
-     * Gets the welcome back heading.
-     *
-     * @return the welcome back heading
+     * Sets the form configs.
      */
-    public String getWelcomeBackHeading() {
-        return welcomeBackHeading;
-    }
+    public void setFormConfig() {
 
-    /**
-     * Gets the welcome back description text.
-     *
-     * @return the welcome back description text
-     */
-    public String getWelcomeBackDescriptionText() {
-        return welcomeBackDescriptionText;
-    }
+        final Resource formConfigResource = GlobalUtil.fetchConfigResource(resource,
+                "/jcr:content/root/responsivegrid/softconversionformco");
+        if (Objects.nonNull(formConfigResource))
+            this.formConfig = formConfigResource.adaptTo(SoftConversionFormConfigModel.class);
 
-    /**
-     * Gets the download ready heading.
-     *
-     * @return the download ready heading
-     */
-    public String getDownloadReadyHeading() {
-        return downloadReadyHeading;
-    }
-
-    /**
-     * Gets the download ready description text.
-     *
-     * @return the download ready description text
-     */
-    public String getDownloadReadyDescriptionText() {
-        return downloadReadyDescriptionText;
+        final Resource consentConfigResource = GlobalUtil.fetchConfigResource(resource,
+                "/jcr:content/root/responsivegrid/formconsenttextsconf");
+        if (Objects.nonNull(consentConfigResource))
+            this.consentConfig = consentConfigResource.adaptTo(FormConsentConfigModel.class);
     }
 
     /**
@@ -121,29 +97,10 @@ public class SoftConversionModel extends FormModel {
     }
 
     /**
-     * Gets the yes button label.
-     *
-     * @return the yes button label
-     */
-    public String getYesButtonLabel() {
-        return yesButtonLabel;
-    }
-
-    /**
-     * Gets the no button label.
-     *
-     * @return the no button label
-     */
-    public String getNoButtonLabel() {
-        return noButtonLabel;
-    }
-
-    /**
      * Gets the api url.
      *
      * @return the api url
      */
-    @Override
     public String getApiUrl() {
         return resource.getPath() + ".pardotsoftconversion.json";
     }
@@ -169,4 +126,23 @@ public class SoftConversionModel extends FormModel {
     public String getPardotUrl() {
         return pardotUrl;
     }
+
+    /**
+     * Gets the form config.
+     *
+     * @return the form config
+     */
+    public SoftConversionFormConfigModel getFormConfig() {
+        return formConfig;
+    }
+
+    /**
+     * Gets the consent config.
+     *
+     * @return the consent config
+     */
+    public FormConsentConfigModel getConsentConfig() {
+        return consentConfig;
+    }
+
 }

@@ -33,7 +33,7 @@ class Subscriptionform {
     const pardot_extra_field = $('#pardot_extra_field_sf').val();
     
     const dataObj = {};
-    dataObj['policyConsent'] = true;
+    dataObj['marketingConsent'] = this.cache.requestPayload.consent;
     dataObj['email'] = this.cache.requestPayload.email;
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
@@ -50,9 +50,7 @@ class Subscriptionform {
           $('.sf-tab-pane', this.root).removeClass('active');
           $('#sf-step-final', this.root).addClass('active');
           $('.serviceError').removeClass('d-block');
-          $('html, body').animate({
-            scrollTop: $('#sfUs').offset().top - 150
-          });
+          $('#sf-step-final', this.root)[0].scrollIntoView({block:'center'});
         } else {
           $('.serviceError').addClass('d-block');
         }
@@ -79,7 +77,7 @@ class Subscriptionform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val()) || (fieldName === 'consent') && !$(this).prop('checked')) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
