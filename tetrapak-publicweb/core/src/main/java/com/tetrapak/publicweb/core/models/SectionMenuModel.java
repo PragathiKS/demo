@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Map.Entry;
 
 import javax.annotation.PostConstruct;
@@ -76,6 +77,9 @@ public class SectionMenuModel {
     /** The page title map. */
     private final Map<String, String> pageTitleMap = new HashMap<>();
 
+    /** The Constant MOBILE_OVERVIEW_LABEL. */
+    private static final String MOBILE_OVERVIEW_LABEL = "mobileOverviewLabel";
+
     /**
      * The init method.
      */
@@ -103,7 +107,8 @@ public class SectionMenuModel {
     /**
      * Fetch absolute parent.
      *
-     * @param solutionPagePath the solution page path
+     * @param solutionPagePath
+     *            the solution page path
      * @return the page
      */
     private Page fetchAbsoluteParent(final String solutionPagePath) {
@@ -124,7 +129,9 @@ public class SectionMenuModel {
      * @param path
      *            the path
      * @param pseudoCategoryService
+     *            the pseudo category service
      * @param resourceResolver
+     *            the resource resolver
      */
     public void populateSectionMenu(final Page page, final String path,
             final PseudoCategoryService pseudoCategoryService, final ResourceResolver resourceResolver) {
@@ -142,7 +149,13 @@ public class SectionMenuModel {
                 } else if (!nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
                     sectionMenuBean.setExternal(false);
                     sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), resourceResolver));
+                    ValueMap valueMap = nextPage.getProperties();
+                    if (Objects.nonNull(valueMap)
+                            && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
+                        sectionMenuBean.setMobileOverviewLabel(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY));
+                    }
                 }
+
                 sectionMenuBean.setSubSectionMenu(
                         populateSubSectionMenu(nextPage, path, pseudoCategoryService, resourceResolver));
                 sectionMenu.add(sectionMenuBean);
@@ -153,7 +166,8 @@ public class SectionMenuModel {
     /**
      * Check external template.
      *
-     * @param page the page
+     * @param page
+     *            the page
      * @return the external template
      */
     private ExternalTemplateBean checkExternalTemplate(final Page page) {
@@ -177,7 +191,9 @@ public class SectionMenuModel {
      * @param path
      *            the path
      * @param pseudoCategoryService
+     *            the pseudo category service
      * @param resourceResolver
+     *            the resource resolver
      * @return the sub section menu bean
      */
     private SubSectionMenuBean populateSubSectionMenu(final Page page, final String path,
@@ -216,7 +232,8 @@ public class SectionMenuModel {
     /**
      * Checks if pseudo category map is empty.
      *
-     * @param pseudoCategoryMap the pseudo category map
+     * @param pseudoCategoryMap
+     *            the pseudo category map
      * @return true, if is pseudo category map empty
      */
     private boolean isPseudoCategoryMapEmpty(final Map<String, List<String>> pseudoCategoryMap) {
@@ -235,13 +252,17 @@ public class SectionMenuModel {
     /**
      * Sort map.
      *
-     * @param pseudoCategoryMap the pseudo category map
-     * @param pseudoCategoryService the pseudo category service
-     * @param resourceResolver the resource resolver
+     * @param pseudoCategoryMap
+     *            the pseudo category map
+     * @param pseudoCategoryService
+     *            the pseudo category service
+     * @param resourceResolver
+     *            the resource resolver
      */
     private void sortMap(final Map<String, List<String>> pseudoCategoryMap,
             final PseudoCategoryService pseudoCategoryService, final ResourceResolver resourceResolver) {
-        final List<PseudoCategoryCFBean> pseudoCategories = pseudoCategoryService.fetchPseudoCategories(resourceResolver);
+        final List<PseudoCategoryCFBean> pseudoCategories = pseudoCategoryService
+                .fetchPseudoCategories(resourceResolver);
         pseudoCategories.sort((final PseudoCategoryCFBean cf1,
                 final PseudoCategoryCFBean cf2) -> cf1.getPseudoCategoryOrder() - cf2.getPseudoCategoryOrder());
         for (final PseudoCategoryCFBean bean : pseudoCategories) {
@@ -252,8 +273,10 @@ public class SectionMenuModel {
     /**
      * Populate pseudo category map.
      *
-     * @param pseudoCategoryMap the pseudo category map
-     * @param nextPage the next page
+     * @param pseudoCategoryMap
+     *            the pseudo category map
+     * @param nextPage
+     *            the next page
      */
     private void populatePseudoCategoryMap(final Map<String, List<String>> pseudoCategoryMap, final Page nextPage) {
         final String pseudoCategory = getPseudoCategory(nextPage);
@@ -272,7 +295,8 @@ public class SectionMenuModel {
     /**
      * Gets the pseudo category.
      *
-     * @param nextPage the next page
+     * @param nextPage
+     *            the next page
      * @return the pseudo category
      */
     private String getPseudoCategory(final Page nextPage) {
@@ -286,6 +310,7 @@ public class SectionMenuModel {
      * @param pseudoCategoryMap
      *            the pseudo category map
      * @param resourceResolver
+     *            the resource resolver
      * @return the list
      */
     private List<PseudoCategoriesSectionBean> populatePseudoSection(final Map<String, List<String>> pseudoCategoryMap,
@@ -312,6 +337,7 @@ public class SectionMenuModel {
      * @param pathList
      *            the path list
      * @param resourceResolver
+     *            the resource resolver
      * @return the sub section bean
      */
     private List<SubSectionBean> getSubSectionList(final List<String> pathList,
@@ -327,13 +353,21 @@ public class SectionMenuModel {
     /**
      * Populate sub section.
      *
-     * @param page the page
+     * @param page
+     *            the page
+     * @param resourceResolver
+     *            the resource resolver
      * @return the sub section bean
      */
     private SubSectionBean populateSubSection(final Page page, final ResourceResolver resourceResolver) {
         final SubSectionBean subSectionBean = new SubSectionBean();
         subSectionBean.setLinkText(NavigationUtil.getNavigationTitle(page));
 
+        ValueMap valueMap = page.getProperties();
+        if (Objects.nonNull(valueMap)
+                && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
+            subSectionBean.setMobileOverviewLabel(valueMap.get("MOBILE_OVERVIEW_LABEL", StringUtils.EMPTY));
+        }
         final ExternalTemplateBean externalTemplate = checkExternalTemplate(page);
         if (externalTemplate.isExternal()) {
             subSectionBean.setExternal(true);
@@ -349,6 +383,8 @@ public class SectionMenuModel {
     /**
      * Gets the page hierarchy.
      *
+     * @param page
+     *            the new page hierarchy
      * @return the page hierarchy
      */
     private void setPageHierarchy(final Page page) {
@@ -378,7 +414,8 @@ public class SectionMenuModel {
     /**
      * Sets the section home page title.
      *
-     * @param page the new section home page title
+     * @param page
+     *            the new section home page title
      */
     public void setSectionHomePageTitle(final Page page) {
         final ValueMap properties = page.getProperties();
@@ -400,6 +437,7 @@ public class SectionMenuModel {
      * @param page
      *            the new section home page path
      * @param resourceResolver
+     *            the resource resolver
      */
     public void setSectionHomePagePath(final Page page, final ResourceResolver resourceResolver) {
         sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath(), resourceResolver);
