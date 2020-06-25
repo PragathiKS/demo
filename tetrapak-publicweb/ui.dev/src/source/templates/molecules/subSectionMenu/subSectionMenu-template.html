@@ -1,4 +1,4 @@
-<sly data-sly-template.subSectionMenu_template="${@ data,subSectionCount,selectedL3,selectedL4}">
+<sly data-sly-template.subSectionMenu_template="${@ data, mobileOverviewLabel, linkPath, subSectionCount,selectedL3,selectedL4}">
   <div auto-locator="L3L4FlyoutContainer-L3L4FlyoutContainerPadding" class="pw-sub-section-menu js-sub-menu-navigation-Link" aria-hidden="true" aria-expanded="false">
     <sly data-sly-test="${data.subSections}">
       <div auto-locator="L3L4Flyout-L3L4FlyoutPadding" class='category-child-ul sub-section-category'>
@@ -42,6 +42,9 @@
 
     <sly data-sly-test="${data.pseudoCategoriesSection}">
       <ul auto-locator="L3L4Flyout-L3L4FlyoutPadding" data-sly-list.pseudoCategoriesSectionItem=${data.pseudoCategoriesSection}>
+        <li class="d-lg-none pseudo-category-header" data-sly-test="${pseudoCategoriesSectionItemList.index == 0}">
+          <a class="sub-menu-navigation-link-item js-sub-menu-navigation-link-item pseudo-category-link" href="${linkPath}">${mobileOverviewLabel}</a>
+        </li>
         <li class="pseudo-category">
           <div>
             <div auto-locator="L3LinksFontStyle" class='pseudo-category-header'>
