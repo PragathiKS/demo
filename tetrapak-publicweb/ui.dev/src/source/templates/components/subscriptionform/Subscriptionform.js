@@ -77,6 +77,9 @@ class Subscriptionform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
+          if($(this).attr('type') === 'checkbox'){
+            requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
+          }
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
             isvalid = false;
             e.preventDefault();
