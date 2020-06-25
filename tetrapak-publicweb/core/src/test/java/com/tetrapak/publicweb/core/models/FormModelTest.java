@@ -29,7 +29,7 @@ public class FormModelTest {
     /**
      * The Constant
      */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/businessinquiryform";
+    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/contact-us/jcr:content/form";
 
     /** The resource. */
     private Resource resource;
@@ -63,15 +63,10 @@ public class FormModelTest {
         assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getThankyouImage());
         assertEquals("Form", "Thank you", model.getThankyouImageAltText());
         assertEquals("Form", "We will get back to you as soon as possible", model.getThankyouDescriptionText());
-        assertEquals("Form",
-                "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
-                model.getPrivacyPolicy());
         assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getImage());
         assertEquals("Form", "Contact us", model.getAlt());
         assertEquals("Form", "Description", model.getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
-        assertEquals("Form", "API Url", model.getApiUrl());
-        assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
        }
 
 
