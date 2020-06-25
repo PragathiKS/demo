@@ -66,7 +66,7 @@ describe('ContactUs', function () {
   });
 
   it('should not submit Form when required fields are empty', function (done) {
-    document.getElementById('messageText').value = 'mockmessage';
+    document.getElementById('messageText').value = '';
     this.contactUs.cache.$submitBtn.click();
     expect(this.contactUs.submitForm.called).to.be.false;
     done();
