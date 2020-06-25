@@ -65,7 +65,13 @@
                     class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
               </a>
               <input type="hidden" id="componentName" name="componentName" value="${resource.name}">
-             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw" title="${'pw.form.button.download' @ i18n}">
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw" 
+                data-link-section="Text & Image_CTA"
+                data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
+                data-asset-name="${data.assetName}"
+                data-image-title="${data.title}"
+                data-anchor-type="CTA"
+             title="${'pw.form.button.download' @ i18n}">
                                             <span class="tpatom-link__text sly-text"> ${data.linkText @ context='html'}
                                                 <i class="icon icon--link icon-Download"></i>
                                                     </span>

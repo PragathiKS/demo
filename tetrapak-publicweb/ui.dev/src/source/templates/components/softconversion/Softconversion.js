@@ -75,7 +75,7 @@ class Softconversion {
       dwnSource:''
     };
 
-    downloadLinkTrack(downloadObj, 'downloadClick');
+    downloadLinkTrack(downloadObj, 'downloadClick', this.mainHeading, 'download');
 
     window.open(downloadLink, '_blank');
   }
@@ -105,7 +105,7 @@ class Softconversion {
     $(`.heading_${this.cache.$componentName}`, this.root).text($(`#heading_${this.cache.$componentName}`).val());
     $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
     // do the analytics call for not me
-    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { knownCustomer: 'Not Registered'});
+    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()});
   }
 
   yesMeBtnHandler = () => {
@@ -133,7 +133,7 @@ class Softconversion {
     );
 
     // do the analytics call for yes its me
-    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { knownCustomer: 'Registered'});
+    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()});
   }
 
   submitForm = () => {

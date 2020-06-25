@@ -81,12 +81,12 @@ export const changeStepError = function (formName, formStep, formType, dataObj, 
 export const loadDownloadReady = function (formName, dataObj) {
   const formObj = {
     formName: formName,
-    formStep: 'Step 4',
-    formType: 'Download Ready',
+    formStep: 'Step 3',
+    formType: 'Company information',
     formField: []
   };
   const eventObj = {
-    eventType: 'formcomplete',
+    eventType: 'Step 3 Next',
     event: 'Soft Conversion Form'
   };
   Object.keys(dataObj).forEach(i => {
@@ -97,15 +97,30 @@ export const loadDownloadReady = function (formName, dataObj) {
       });  
     }
   });
-  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const downloadLinkTrack = function (downObj, eventType) {
+export const downloadLinkTrack = function (downObj, eventType, formName='', caseCheck='') {
   const eventObj = {
     eventType: eventType,
     event: 'Soft Conversion Form'
   };
 
   trackAnalytics(downObj, 'linkClick', eventType, undefined, false, eventObj);
+
+  if(caseCheck === 'download'){
+    const formObj = {
+      formName: formName,
+      formStep: 'Step 4',
+      formType: 'Download Ready',
+      formField: []
+    };
+    const eventObjN = {
+      eventType: 'formcomplete',
+      event: 'Soft Conversion Form'
+    };
+    trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObjN);
+  }
+
 };
 
