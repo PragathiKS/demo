@@ -3,6 +3,10 @@
     <sly data-sly-test="${data.subSections}">
       <div auto-locator="L3L4Flyout-L3L4FlyoutPadding" class='category-child-ul sub-section-category'>
         <ul data-sly-list.subSectionsItem=${data.subSections}>
+          <li class="d-lg-none" data-sly-test="${subSectionsItemList.index == 0 && mobileOverviewLabel}">
+            <a class="sub-menu-navigation-link-item js-sub-menu-navigation-link-item"
+              href="${linkPath}">${mobileOverviewLabel}</a>
+          </li>
           <li data-sly-test="${subSectionsItemList.index <= 5}">
             <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/navigationLink/navigationLink-template.html"
               data-sly-call="${linkAtom.navigationLink_template @ subSectionsItem=subSectionsItem,selectedL3=selectedL3,selectedL4=selectedL4}">
