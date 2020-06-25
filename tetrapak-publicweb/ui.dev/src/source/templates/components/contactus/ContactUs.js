@@ -120,7 +120,6 @@ class ContactUs {
             e.preventDefault();
             e.stopPropagation();
             $(this).closest('.form-group, .formfield').addClass('field-error');
-            onErrorAnalytics(currentTarget,tab);
           } else {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
           }
@@ -138,6 +137,8 @@ class ContactUs {
           }
 
         }
+      } else {
+        onErrorAnalytics(currentTarget,tab);
       }
     });
 
