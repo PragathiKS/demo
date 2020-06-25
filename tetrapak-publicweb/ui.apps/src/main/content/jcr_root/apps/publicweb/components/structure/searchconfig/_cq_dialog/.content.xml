@@ -355,12 +355,14 @@
                                                 <themelabel
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldLabel="Theme Label"
+                                                    fieldLabel="Display Name"
+													fieldDescription="The display value for the theme for search filters. It will be translated."
                                                     name="./themeLabel"/>
                                                 <themeKey
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldLabel="Theme Key"
+                                                    fieldLabel="Key"
+													fieldDescription="The request parameter to be used in the search URL. It will not be translated."
                                                     name="./themeKey"/>
                                                 <tag
                                                     jcr:primaryType="nt:unstructured"
@@ -406,6 +408,7 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                                     fieldLabel="Gated Content Path"
+													fieldDescription="Configure the gated assets folder (per market) as well as any content navigation to be removed from search."
                                                     name="./path"
                                                     rootPath="/content"/>
                                             </items>
