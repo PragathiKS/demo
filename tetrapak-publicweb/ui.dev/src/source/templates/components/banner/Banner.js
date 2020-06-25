@@ -30,7 +30,8 @@ class Banner {
     }
     $itbLink.on('click', this.trackAnalytics);
 
-    this.root.find('.js-softconversion-pw-banner').on('click', () => {
+    this.root.find('.js-softconversion-pw-banner').on('click', (e) => {
+      getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.js-softconversion-pw-banner', false);
       $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
     });
 

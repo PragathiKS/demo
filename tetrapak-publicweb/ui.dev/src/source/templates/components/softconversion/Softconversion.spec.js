@@ -10,6 +10,7 @@ describe('Softconversion', function () {
     this.submitFormSpy = sinon.spy(this.softconversion, 'submitForm');
     this.hidePopUpSpy = sinon.spy(this.softconversion, 'hidePopUp');
     this.downloadHandlerSpy = sinon.spy(this.softconversion, 'downloadHandler');
+    this.moreBtnHandlerSpy = sinon.spy(this.softconversion, 'moreBtnHandler');
     this.notMeBtnHandlerSpy = sinon.spy(this.softconversion, 'notMeBtnHandler');
     this.yesMeBtnHandlerSpy = sinon.spy(this.softconversion, 'yesMeBtnHandler');
     this.onRadioChangeHandlerSpy = sinon.spy(this.softconversion, 'onRadioChangeHandler');
@@ -24,6 +25,7 @@ describe('Softconversion', function () {
     this.submitFormSpy.restore();
     this.hidePopUpSpy.restore();
     this.downloadHandlerSpy.restore();
+    this.moreBtnHandlerSpy.restore();
     this.notMeBtnHandlerSpy.restore();
     this.yesMeBtnHandlerSpy.restore();
     this.onRadioChangeHandlerSpy.restore();
@@ -80,6 +82,12 @@ describe('Softconversion', function () {
   it('should download on download button click', function (done) {
     $('.thankyouTarget').click();
     expect(this.softconversion.downloadHandler.called).to.be.true;
+    done();
+  });
+
+  it('should open more white paper on more whitepaper button click', function (done) {
+    $('.moreButton-textimage').click();
+    expect(this.softconversion.moreBtnHandler.called).to.be.true;
     done();
   });
 

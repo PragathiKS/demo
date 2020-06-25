@@ -13,7 +13,8 @@ class TextImage {
   bindEvents() {
     this.cache.$textImageLink.on('click', this.trackAnalytics);
 
-    this.root.find('.js-softconversion-pw').on('click', () => {
+    this.root.find('.js-softconversion-pw').on('click', (e) => {
+      getLinkClickAnalytics(e,'image-title','Text & Image','.js-softconversion-pw', false);
       $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
     });
   }
