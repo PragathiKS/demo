@@ -457,13 +457,8 @@ public class SectionMenuModel {
      */
     private boolean isPseudoCategoryMapEmpty(final Map<String, List<String>> pseudoCategoryMap) {
         boolean isEmpty = false;
-        for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
-            if (entrySet.getValue().isEmpty()) {
-                isEmpty = true;
-            } else {
-                isEmpty = false;
-                break;
-            }
+        if (pseudoCategoryMap.isEmpty()) {
+            isEmpty = true;
         }
         return isEmpty;
     }
