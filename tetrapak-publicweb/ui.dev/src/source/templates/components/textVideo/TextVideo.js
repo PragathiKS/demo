@@ -19,7 +19,8 @@ class TextVideo {
     const { $textVideoButton } = this.cache;
     $textVideoButton.on('click', this.trackAnalytics);
 
-    this.root.find('.js-softconversion-pw-textvideo').on('click', () => {
+    this.root.find('.js-softconversion-pw-textvideo').on('click', (e) => {
+      getLinkClickAnalytics(e,'video-title','Text & Video','.js-softconversion-pw-textvideo', false);
       $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
     });
   }

@@ -4,6 +4,7 @@ package com.tetrapak.publicweb.core.models;
 import static org.junit.Assert.assertEquals;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.servlethelpers.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,21 +18,26 @@ public class SoftConversionModelTest {
     @Rule
     public AemContext context = new AemContext();
 
+    /** The request. */
+    private final MockSlingHttpServletRequest request = context.request();
+
     /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/softconversion/test-content.json";
-    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
+    private static final String SOFTCONVERSION_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
+    // private static final String TEXT_IMAGE_CONTENT_ROOT = "/content/tetrapak/publicweb/gb/en/textimage";
+
     /** The model class. */
     Class<SoftConversionModel> modelClass = SoftConversionModel.class;
 
     /** The model. */
     private SoftConversionModel model;
 
-    /**
-     * The Constant PXP_FEATURES.
-     */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/textimage";
+    /** The Constant RESOURCE. */
+    private static final String RESOURCE = "/content/tetrapak/publicweb/gb/en/textimage/jcr:content/textimage";
 
-    /** The resource. */
+    /**
+     * The resource.
+     */
     private Resource resource;
 
     /**
@@ -42,7 +48,7 @@ public class SoftConversionModelTest {
      */
     @Before
     public void setUp() throws Exception {
-        context.load().json(TEST_RESOURCE_CONTENT, CONTACT_US_CONTENT_ROOT);
+        context.load().json(TEST_RESOURCE_CONTENT, SOFTCONVERSION_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
@@ -57,31 +63,27 @@ public class SoftConversionModelTest {
     @Test
     public void testDailogValues() throws Exception {
         assertEquals("Form", "Business Enquiry", model.getHeading());
-        assertEquals("Form", "title", model.getAnchorTitle());
-        assertEquals("Form", "test01", model.getAnchorId());
-        assertEquals("Form", "Thank you for your request", model.getThankyouHeading());
-        assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getThankyouImage());
-        assertEquals("Form", "Thank you", model.getThankyouImageAltText());
-        assertEquals("Form", "We will get back to you as soon as possible", model.getThankyouDescriptionText());
+        assertEquals("Form", "Thank you for your request", model.getFormConfig().getThankyouHeading());
+        assertEquals("Form", "We will get back to you as soon as possible",
+                model.getFormConfig().getThankyouDescriptionText());
         assertEquals("Form",
                 "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
-                model.getPrivacyPolicy());
-        assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getImage());
-        assertEquals("Form", "Contact us", model.getAlt());
+                model.getConsentConfig().getPrivacyPolicy());
         assertEquals("Form", "Description", model.getDescriptionText());
-        assertEquals("Form", "grayscale-white", model.getPwTheme());
-        assertEquals("Form", "/content/tetrapak/publicweb/gb/en/jcr:content/textimage.pardotsoftconversion.json",
+        assertEquals("Form",
+                "/content/tetrapak/publicweb/gb/en/textimage/jcr:content/textimage.pardotsoftconversion.json",
                 model.getApiUrl());
-        assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
-        assertEquals("Form", "welcome back", model.getWelcomeBackHeading());
-        assertEquals("Form", "Welcome back to our portal", model.getWelcomeBackDescriptionText());
-        assertEquals("Form", "Download Ready", model.getDownloadReadyHeading());
-        assertEquals("Form", "your download is ready", model.getDownloadReadyDescriptionText());
+        assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
+        assertEquals("Form", "welcome back", model.getFormConfig().getWelcomeBackHeading());
+        assertEquals("Form", "Welcome back to our portal", model.getFormConfig().getWelcomeBackDescriptionText());
+        assertEquals("Form", "Download Ready", model.getFormConfig().getDownloadReadyHeading());
+        assertEquals("Form", "your download is ready", model.getFormConfig().getDownloadReadyDescriptionText());
         assertEquals("Form", "/content/search.html", model.getMoreButtonAction());
         assertEquals("Form", "More whitepapers", model.getMoreButtonLabel());
-        assertEquals("Form", "Yes, I am", model.getYesButtonLabel());
-        assertEquals("Form", "No, I am not", model.getNoButtonLabel());
+        assertEquals("Form", "Yes, I am", model.getFormConfig().getYesButtonLabel());
+        assertEquals("Form", "No, I am not", model.getFormConfig().getNoButtonLabel());
         assertEquals("form", "http://pardotURL", model.getPardotUrl());
+
        }
 
 

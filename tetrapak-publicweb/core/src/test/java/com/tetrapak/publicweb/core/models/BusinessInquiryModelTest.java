@@ -26,7 +26,9 @@ public class BusinessInquiryModelTest {
 
     /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
-    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
+
+    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb/en/contact-us";
     /** The model class. */
     Class<BusinessInquiryModel> modelClass = BusinessInquiryModel.class;
 
@@ -36,12 +38,14 @@ public class BusinessInquiryModelTest {
     private PardotService pardotService;
 
     /**
+     * The resource.
+     */
+    private Resource resource;
+
+    /**
      * The Constant PXP_FEATURES.
      */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/businessinquiryform";
-
-    /** The resource. */
-    private Resource resource;
+    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/jcr:content/businessinquiryform";
 
     /**
      * Sets the up.
@@ -52,7 +56,7 @@ public class BusinessInquiryModelTest {
     @Before
     public void setUp() throws Exception {
         pardotService = new PardotServiceImpl();
-        context.load().json(TEST_RESOURCE_CONTENT, CONTACT_US_CONTENT_ROOT);
+        context.load().json(TEST_RESOURCE_CONTENT, TEST_CONTENT_ROOT);
 
         context.addModelsForClasses(modelClass);
         context.registerService(PardotService.class, pardotService);
@@ -74,24 +78,25 @@ public class BusinessInquiryModelTest {
      */
     @Test
     public void testDailogValues() throws Exception {
-        assertEquals("Form", "Business Enquiry", model.getHeading());
+        assertEquals("Form", "Business Enquiry", model.getFormConfig().getHeading());
         assertEquals("Form", "title", model.getAnchorTitle());
         assertEquals("Form", "test01", model.getAnchorId());
-        assertEquals("Form", "Thank you for your request", model.getThankyouHeading());
-        assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getThankyouImage());
-        assertEquals("Form", "Thank you", model.getThankyouImageAltText());
-        assertEquals("Form", "We will get back to you as soon as possible", model.getThankyouDescriptionText());
+        assertEquals("Form", "Thank you for your request", model.getFormConfig().getThankyouHeading());
+        assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getFormConfig().getThankyouImage());
+        assertEquals("Form", "Thank you", model.getFormConfig().getThankyouImageAltText());
+        assertEquals("Form", "We will get back to you as soon as possible",
+                model.getFormConfig().getThankyouDescriptionText());
         assertEquals("Form",
                 "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
-                model.getPrivacyPolicy());
-        assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getImage());
-        assertEquals("Form", "Contact us", model.getAlt());
-        assertEquals("Form", "Description", model.getDescriptionText());
+                model.getConsentConfig().getPrivacyPolicy());
+        assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getFormConfig().getImage());
+        assertEquals("Form", "Contact us", model.getFormConfig().getAlt());
+        assertEquals("Form", "Description", model.getFormConfig().getDescriptionText());
         assertEquals("Form", "grayscale-white", model.getPwTheme());
         assertEquals("Form",
-                "/content/tetrapak/publicweb/gb/en/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
+                "/content/tetrapak/publicweb/gb/en/contact-us/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
                 model.getApiUrl());
-        assertEquals("Form", "Marketing Consent", model.getMarketingConsent());
+        assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
        }
 
     @Test

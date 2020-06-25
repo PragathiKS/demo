@@ -36,7 +36,7 @@ public class ContactUsModelTest {
      * The Constant FILLING_MACHINE_CONTENT_ROOT.
      *
      */
-    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/lang-master/en/contactus";
+    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
     private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/cfm/countries";
     /** The model class. */
     Class<ContactUsModel> modelClass = ContactUsModel.class;
@@ -49,7 +49,7 @@ public class ContactUsModelTest {
     /**
      * The Constant PXP_FEATURES.
      */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/jcr:content/contactus";
+    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/contactus";
 
     /** The resource. */
     private Resource resource;
@@ -95,13 +95,13 @@ public class ContactUsModelTest {
         assertEquals("ContactUs", "We will get back to you as soon as possible", model.getThankyouDescriptionText());
         assertEquals("ContactUs",
                 "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
-                model.getPrivacyPolicy());
+                model.getConsentConfig().getPrivacyPolicy());
         assertEquals("ContactUs", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getImage());
         assertEquals("ContactUs", "Contact us", model.getAlt());
         assertEquals("ContactUs", "Please select the countryyou wish to contact.", model.getDescriptionText());
         assertEquals("ContactUs", "grayscale-white", model.getPwTheme());
         assertEquals("ContactUs",
-                "/content/tetrapak/publicweb/lang-master/en/contactus/jcr:content/contactus.sendmail.json",
+                "/content/tetrapak/publicweb/gb/en/jcr:content/contactus.sendmail.json",
                 model.getApiUrl());
     }
 
