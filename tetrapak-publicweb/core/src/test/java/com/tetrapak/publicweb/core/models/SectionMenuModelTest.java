@@ -28,6 +28,10 @@ public class SectionMenuModelTest {
     @Rule
     public AemContext context = new AemContext();
 
+    /** The context 2. */
+    @Rule
+    public AemContext context2 = new AemContext();
+
     /** The current page. */
     @Mock
     private Page currentPage;
@@ -43,11 +47,17 @@ public class SectionMenuModelTest {
     /** The Constant RESOURCE_CONTENT. */
     private static final String RESOURCE_CONTENT = "/sectionmenu/test-content.json";
 
+    /** The Constant RESOURCE_CONTENT. */
+    private static final String RESOURCE_CONTENT_TWO = "/sectionmenu/test-content2.json";
+
     /** The Constant TEST_CONTENT_ROOT. */
     private static final String TEST_CONTENT_ROOT = "/content/tetrapak/public-web/lang-masters/en";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/solutions/processing/jcr:content";
+
+    /** The Constant RESOURCE. */
+    private static final String RESOURCE_PATH_TWO = TEST_CONTENT_ROOT + "/insight/case-article/jcr:content";
 
     /** The Constant RESOURCE_CONTENT. */
     private static final String RESOURCE_CONTENT1 = "/contentFragments/pseudo-categories.json";
@@ -75,11 +85,12 @@ public class SectionMenuModelTest {
         MockitoAnnotations.initMocks(this);
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.load().json(RESOURCE_CONTENT1, TEST_CONTENT_ROOT1);
+        context2.load().json(RESOURCE_CONTENT_TWO, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
+        context2.addModelsForClasses(modelClass);
         final MockSlingHttpServletRequest request = context.request();
         resource = context.currentResource(RESOURCE_PATH);
-        request.setPathInfo(
-                "/content/tetrapak/public-web/lang-masters/en/solutons/processing");
+        request.setPathInfo("/content/tetrapak/public-web/lang-masters/en/solutons/processing");
         model = request.adaptTo(modelClass);
     }
 
@@ -124,5 +135,18 @@ public class SectionMenuModelTest {
                 sectionMenu.get(1).getLinkPath());
         assertEquals("External page", sectionMenu.get(2).getLinkText());
         assertEquals("https://www.google.com", sectionMenu.get(2).getLinkPath());
+    }
+
+    /**
+     * Test insight.
+     */
+    @Test
+    public void testInsight() {
+        final MockSlingHttpServletRequest request = context2.request();
+        resource = context2.currentResource(RESOURCE_PATH_TWO);
+        request.setPathInfo("/content/tetrapak/public-web/lang-masters/en/insight/case-article");
+        model = request.adaptTo(modelClass);
+        final List<SectionMenuBean> sectionMenu = model.getSectionMenu();
+        assertEquals("Case Article", sectionMenu.get(0).getLinkText());
     }
 }

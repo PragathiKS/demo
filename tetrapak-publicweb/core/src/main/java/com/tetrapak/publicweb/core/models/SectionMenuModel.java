@@ -31,7 +31,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
@@ -70,9 +69,6 @@ public class SectionMenuModel {
 
     /** The page title map. */
     private final Map<String, String> pageTitleMap = new HashMap<>();
-
-    /** The Constant MOBILE_OVERVIEW_LABEL. */
-    private static final String MOBILE_OVERVIEW_LABEL = "mobileOverviewLabel";
 
     /**
      * The init method.
