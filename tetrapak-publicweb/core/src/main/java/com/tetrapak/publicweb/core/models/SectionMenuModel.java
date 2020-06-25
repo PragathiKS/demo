@@ -144,11 +144,6 @@ public class SectionMenuModel {
                 } else if (!nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
                     sectionMenuBean.setExternal(false);
                     sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), resourceResolver));
-                    ValueMap valueMap = nextPage.getProperties();
-                    if (Objects.nonNull(valueMap)
-                            && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
-                        sectionMenuBean.setMobileOverviewLabel(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY));
-                    }
                 }
                 sectionMenuBean.setSubSectionMenu(
                         populateSubSectionMenu(megaMenuConfigurationModel, nextPage, path, resourceResolver));
@@ -566,11 +561,6 @@ public class SectionMenuModel {
         final SubSectionBean subSectionBean = new SubSectionBean();
         subSectionBean.setLinkText(NavigationUtil.getNavigationTitle(page));
 
-        ValueMap valueMap = page.getProperties();
-        if (Objects.nonNull(valueMap)
-                && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
-            subSectionBean.setMobileOverviewLabel(valueMap.get("MOBILE_OVERVIEW_LABEL", StringUtils.EMPTY));
-        }
         final ExternalTemplateBean externalTemplate = checkExternalTemplate(page);
         if (externalTemplate.isExternal()) {
             subSectionBean.setExternal(true);
