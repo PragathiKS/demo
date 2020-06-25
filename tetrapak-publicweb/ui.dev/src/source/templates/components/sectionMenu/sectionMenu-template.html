@@ -38,10 +38,11 @@
       <!--sub section menu for mobile-->
       <div class="collapse d-lg-none ${(selectedL2 == linkText || selectedL3 == linkText) ? 'active-accordion show' : ''}"
         id="subSectionMenuCollapse_${linkSectionListIndex}" data-parent="#sectionMenuCollapseWrapper_${sectionId}">
+        <sly data-sly-test.activeFlag="${(selectedL2 == linkText || selectedL3 == linkText) ? true : false}"/>
         <sly data-sly-test.subSection="${data.subSectionMenu}">
           <sly
             data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
-            data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, mobileOverviewLabel=data.mobileOverviewLabel, linkPath=data.linkPath,subSectionCount=subSection.subSectionCount, selectedL3=selectedL3,selectedL4=selectedL4}">
+            data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, parentLinkData=data,subSectionCount=subSection.subSectionCount, activeFlag=activeFlag,selectedL3=selectedL3,selectedL4=selectedL4}">
           </sly>
         </sly>
       </div>

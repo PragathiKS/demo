@@ -1,11 +1,11 @@
-<sly data-sly-template.subSectionMenu_template="${@ data, mobileOverviewLabel, linkPath, subSectionCount,selectedL3,selectedL4}">
+<sly data-sly-template.subSectionMenu_template="${@ data, parentLinkData, subSectionCount, activeFlag, selectedL3,selectedL4}">
   <div auto-locator="L3L4FlyoutContainer-L3L4FlyoutContainerPadding" class="pw-sub-section-menu js-sub-menu-navigation-Link" aria-hidden="true" aria-expanded="false">
     <sly data-sly-test="${data.subSections}">
       <div auto-locator="L3L4Flyout-L3L4FlyoutPadding" class='category-child-ul sub-section-category'>
         <ul data-sly-list.subSectionsItem=${data.subSections}>
-          <li class="d-lg-none" data-sly-test="${subSectionsItemList.index == 0 && mobileOverviewLabel}">
-            <a class="sub-menu-navigation-link-item js-sub-menu-navigation-link-item"
-              href="${linkPath}">${mobileOverviewLabel}</a>
+          <li class="d-lg-none" data-sly-test="${subSectionsItemList.index == 0 && parentLinkData.mobileOverviewLabel}">
+            <a class="sub-menu-navigation-link-item js-sub-menu-navigation-link-item ${activeFlag && !selectedL3 && !selectedL4? 'active' : ''}" target="${parentLinkData.external ? '_blank' : '_self'}"
+              href="${parentLinkData.linkPath}">${parentLinkData.mobileOverviewLabel}</a>
           </li>
           <li data-sly-test="${subSectionsItemList.index <= 5}">
             <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/navigationLink/navigationLink-template.html"
@@ -47,7 +47,8 @@
     <sly data-sly-test="${data.pseudoCategoriesSection}">
       <ul auto-locator="L3L4Flyout-L3L4FlyoutPadding" data-sly-list.pseudoCategoriesSectionItem=${data.pseudoCategoriesSection}>
         <li class="d-lg-none pseudo-category-header" data-sly-test="${pseudoCategoriesSectionItemList.index == 0}">
-          <a class="sub-menu-navigation-link-item js-sub-menu-navigation-link-item pseudo-category-link" href="${linkPath}">${mobileOverviewLabel}</a>
+          <a class="sub-menu-navigation-link-item js-sub-menu-navigation-link-item pseudo-category-link ${activeFlag && !selectedL4? 'active' : ''}"
+            target="${parentLinkData.external ? '_blank' : '_self'}" href="${parentLinkData.linkPath}">${parentLinkData.mobileOverviewLabel}</a>
         </li>
         <li class="pseudo-category">
           <div>
