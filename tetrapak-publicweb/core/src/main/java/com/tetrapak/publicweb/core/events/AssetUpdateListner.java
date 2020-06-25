@@ -59,6 +59,9 @@ public class AssetUpdateListner implements ResourceChangeListener {
                             LOGGER.info("Asset value map :: {}", assetJcrResource.getValueMap());
                             LOGGER.info("Asset value map prop :: {}",
                                     assetJcrResource.getValueMap().get(PWConstants.JCR_LAST_MODIFIED));
+                            if(map.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
+                                map.remove(PWConstants.CQ_LAST_MODIFIED);
+                            }
                             map.put(PWConstants.CQ_LAST_MODIFIED,
                                     assetJcrResource.getValueMap().get(PWConstants.JCR_LAST_MODIFIED));
                             resolver.commit();

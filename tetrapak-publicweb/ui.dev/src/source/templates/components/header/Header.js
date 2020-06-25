@@ -280,10 +280,22 @@ class Header {
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     const targetLink = $this.attr('target');
     const url = $this.attr('href');
-
+    const myDomain = 'tetrapak.com';
+    if (url && (url.includes('http://') || url.includes('https://'))) {
+      if (!url.includes(myDomain)) {
+        $this.attr('target','_blank');
+      } else {
+        $this.attr('target','_self');  
+      }
+    }
+    else {
+      $this.attr('target','_self');
+    }
+    const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
     const linkName = $this.data('link-name');
     if(linkName==='contact us envelope') {
       const trackingObj = {
+        linkType,
         linkSection: 'Hyperlink click',
         linkParentTitle: '',
         linkName: 'Contact Us'
