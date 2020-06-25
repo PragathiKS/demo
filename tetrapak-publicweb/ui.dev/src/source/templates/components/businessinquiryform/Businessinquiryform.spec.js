@@ -71,7 +71,7 @@ describe('BusinessInquiryForm', function () {
     done();
   });
 
-  it('should not submit Form when honeypot field is filled', function (done) {
+  it('should submit Form when honeypot field is filled', function (done) {
     $('input[name="purposeOfContactInBusinessEqTitle"]').val("Contact me");
     $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
     document.getElementById('firstName').value = 'first';
@@ -83,7 +83,7 @@ describe('BusinessInquiryForm', function () {
     document.getElementById('consentcheckbox').checked = true;
     document.getElementById('pardot_extra_field_bef').value = 'honeypot';
     this.businessinquiry.cache.$submitBtn.click();
-    expect(this.businessinquiry.submitForm.called).to.be.false;
+    expect(this.businessinquiry.submitForm.called).to.be.true;
     done();
   });
 

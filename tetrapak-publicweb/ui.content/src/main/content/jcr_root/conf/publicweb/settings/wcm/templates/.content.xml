@@ -10,4 +10,10 @@
     <public-web-filling-machine-page/>
 	<public-web-processing-equipment-page/>
 	<public-web-package-type-page/>
+	<case-article/>
+    <news-article/>
+    <press-release/>
+    <event/>
+    <awareness-campaign/>
+    <product-campaign/>
 </jcr:root>

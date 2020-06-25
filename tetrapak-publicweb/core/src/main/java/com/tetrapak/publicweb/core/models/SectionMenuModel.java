@@ -7,10 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -27,12 +24,11 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
 import com.tetrapak.publicweb.core.beans.PseudoCategoriesSectionBean;
-import com.tetrapak.publicweb.core.beans.PseudoCategoryCFBean;
 import com.tetrapak.publicweb.core.beans.SectionMenuBean;
 import com.tetrapak.publicweb.core.beans.SubSectionBean;
 import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.PseudoCategoryService;
+import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.NavigationUtil;
 
@@ -56,10 +52,6 @@ public class SectionMenuModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-
-    /** The pseudo category service. */
-    @Inject
-    private PseudoCategoryService pseudoCategoryService;
 
     /** The solution page title. */
     private String solutionPageTitle;
@@ -97,13 +89,15 @@ public class SectionMenuModel {
         // Set page hierarchy
         setPageHierarchy(currentPage);
         // Populate section menu
-        populateSectionMenu(page, solutionPagePath, pseudoCategoryService, request.getResourceResolver());
+        populateSectionMenu(NavigationUtil.getMegaMenuConfigurationModel(request, request.getPathInfo()), page,
+                solutionPagePath, request.getResourceResolver());
     }
 
     /**
      * Fetch absolute parent.
      *
-     * @param solutionPagePath the solution page path
+     * @param solutionPagePath
+     *            the solution page path
      * @return the page
      */
     private Page fetchAbsoluteParent(final String solutionPagePath) {
@@ -126,8 +120,8 @@ public class SectionMenuModel {
      * @param pseudoCategoryService
      * @param resourceResolver
      */
-    public void populateSectionMenu(final Page page, final String path,
-            final PseudoCategoryService pseudoCategoryService, final ResourceResolver resourceResolver) {
+    public void populateSectionMenu(final MegaMenuConfigurationModel megaMenuConfigurationModel, final Page page,
+            final String path, final ResourceResolver resourceResolver) {
         final Iterator<Page> pages = page.listChildren();
         while (pages.hasNext()) {
             final Page nextPage = pages.next();
@@ -144,7 +138,7 @@ public class SectionMenuModel {
                     sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), resourceResolver));
                 }
                 sectionMenuBean.setSubSectionMenu(
-                        populateSubSectionMenu(nextPage, path, pseudoCategoryService, resourceResolver));
+                        populateSubSectionMenu(megaMenuConfigurationModel, nextPage, path, resourceResolver));
                 sectionMenu.add(sectionMenuBean);
             }
         }
@@ -153,7 +147,8 @@ public class SectionMenuModel {
     /**
      * Check external template.
      *
-     * @param page the page
+     * @param page
+     *            the page
      * @return the external template
      */
     private ExternalTemplateBean checkExternalTemplate(final Page page) {
@@ -180,12 +175,17 @@ public class SectionMenuModel {
      * @param resourceResolver
      * @return the sub section menu bean
      */
-    private SubSectionMenuBean populateSubSectionMenu(final Page page, final String path,
-            final PseudoCategoryService pseudoCategoryService, final ResourceResolver resourceResolver) {
+    private SubSectionMenuBean populateSubSectionMenu(final MegaMenuConfigurationModel megaMenuConfigurationModel,
+            final Page page, final String path, final ResourceResolver resourceResolver) {
         final Map<String, List<String>> pseudoCategoryMap = new LinkedHashMap<>();
         final List<SubSectionBean> subSections = new ArrayList<>();
+        final List<PseudoCategoryModel> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
 
-        sortMap(pseudoCategoryMap, pseudoCategoryService, resourceResolver);
+        if (pseudoCategories != null && !pseudoCategories.isEmpty()) {
+            for (PseudoCategoryModel pseudoCategory : pseudoCategories) {
+                pseudoCategoryMap.put(pseudoCategory.getPseudoCategoryValue(), new ArrayList<String>());
+            }
+        }
 
         final Iterator<Page> pages = page.listChildren();
         while (pages.hasNext()) {
@@ -216,7 +216,8 @@ public class SectionMenuModel {
     /**
      * Checks if pseudo category map is empty.
      *
-     * @param pseudoCategoryMap the pseudo category map
+     * @param pseudoCategoryMap
+     *            the pseudo category map
      * @return true, if is pseudo category map empty
      */
     private boolean isPseudoCategoryMapEmpty(final Map<String, List<String>> pseudoCategoryMap) {
@@ -233,27 +234,12 @@ public class SectionMenuModel {
     }
 
     /**
-     * Sort map.
-     *
-     * @param pseudoCategoryMap the pseudo category map
-     * @param pseudoCategoryService the pseudo category service
-     * @param resourceResolver the resource resolver
-     */
-    private void sortMap(final Map<String, List<String>> pseudoCategoryMap,
-            final PseudoCategoryService pseudoCategoryService, final ResourceResolver resourceResolver) {
-        final List<PseudoCategoryCFBean> pseudoCategories = pseudoCategoryService.fetchPseudoCategories(resourceResolver);
-        pseudoCategories.sort((final PseudoCategoryCFBean cf1,
-                final PseudoCategoryCFBean cf2) -> cf1.getPseudoCategoryOrder() - cf2.getPseudoCategoryOrder());
-        for (final PseudoCategoryCFBean bean : pseudoCategories) {
-            pseudoCategoryMap.put(bean.getPseudoCategoryKey(), bean.getPageList());
-        }
-    }
-
-    /**
      * Populate pseudo category map.
      *
-     * @param pseudoCategoryMap the pseudo category map
-     * @param nextPage the next page
+     * @param pseudoCategoryMap
+     *            the pseudo category map
+     * @param nextPage
+     *            the next page
      */
     private void populatePseudoCategoryMap(final Map<String, List<String>> pseudoCategoryMap, final Page nextPage) {
         final String pseudoCategory = getPseudoCategory(nextPage);
@@ -272,7 +258,8 @@ public class SectionMenuModel {
     /**
      * Gets the pseudo category.
      *
-     * @param nextPage the next page
+     * @param nextPage
+     *            the next page
      * @return the pseudo category
      */
     private String getPseudoCategory(final Page nextPage) {
@@ -327,7 +314,8 @@ public class SectionMenuModel {
     /**
      * Populate sub section.
      *
-     * @param page the page
+     * @param page
+     *            the page
      * @return the sub section bean
      */
     private SubSectionBean populateSubSection(final Page page, final ResourceResolver resourceResolver) {
@@ -378,7 +366,8 @@ public class SectionMenuModel {
     /**
      * Sets the section home page title.
      *
-     * @param page the new section home page title
+     * @param page
+     *            the new section home page title
      */
     public void setSectionHomePageTitle(final Page page) {
         final ValueMap properties = page.getProperties();

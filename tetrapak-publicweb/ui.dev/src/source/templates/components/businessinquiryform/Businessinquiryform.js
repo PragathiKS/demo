@@ -51,7 +51,7 @@ class Businessinquiryform {
   newRequestHanlder = e => {
     e.preventDefault();
     e.stopPropagation();
-    newPage();
+    newPage(this.linkTitle, this.linkText);
     location.reload();
   }
 
@@ -71,7 +71,7 @@ class Businessinquiryform {
     dataObj['position'] = this.cache.requestPayload.position;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    dataObj['marketingConsent'] = true;
+    dataObj['marketingConsent'] = this.root.find(`#consentcheckbox`).is(':checked');
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
@@ -251,7 +251,6 @@ class Businessinquiryform {
       e.stopPropagation();
       let isvalid = true;
       const errObj = [];
-      const honeyPotFieldValue = $('#pardot_extra_field_bef', self.root).val();
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
@@ -265,7 +264,7 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val()) || (fieldName === 'consent') && !$(this).prop('checked')) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -323,7 +322,7 @@ class Businessinquiryform {
           break;
         }
       }
-      if (isvalid && !honeyPotFieldValue) {
+      if (isvalid) {
         self.submitForm();
       }
     });
@@ -339,9 +338,11 @@ class Businessinquiryform {
     this.step2head = $('#bef-step-2 .tab-content-steps').find('h4').text();
     this.step3head = $('#bef-step-3 .tab-content-steps').find('h4').text();
     this.step4head = $('#bef-step-4 .tab-content-steps').find('h4').text();
-    this.mainHead = $('.pw-businessEnquiry-form .main-heading').find('h2')[0].textContent;
+    this.mainHead = String($('.pw-businessEnquiry-form .main-heading').find('h2')[0].textContent).trim();
     this.restObj = {};
     this.restObj2 = {};
+    this.linkTitle = this.root.find('.thankyou').find('h2').text().trim();
+    this.linkText = this.root.find('.newRequestBtn').text();
     $('#bef-step-3 label').each((i, v) => this.restObj[$(v).text()] = 'NA');
     $('#bef-step-4 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     makeLoad(this.step1head, this.mainHead);

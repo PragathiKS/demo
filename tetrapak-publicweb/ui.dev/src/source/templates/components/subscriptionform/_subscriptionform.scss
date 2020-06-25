@@ -7,7 +7,7 @@
     }
 
     .emailDiv {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
     }
 
     .errorMsg {
@@ -24,6 +24,9 @@
 
     .formfield,
     .form-group {
+        .form-control {
+            line-height: 24px;
+        }
         label {
             @include margin-bottom(0);
             padding-top: 2px;
@@ -42,7 +45,7 @@
     }
 
     .separator {
-        @include padding-bottom($padding-l);
+        @include padding-bottom($padding-md);
         @include margin-bottom($margin-l);
         border-bottom: 1px solid $color-mercury;
         @media #{$desktop} {
@@ -62,6 +65,9 @@
     .main-heading {
         @include margin-bottom($margin-md);
         overflow-wrap: break-word;
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
     }
     ul.pw-progressbar_wrapper .step-box {
         &::before {
@@ -79,7 +85,7 @@
         position: relative;
         top: 4px;
         height: 20px;
-        margin-right: 6px;
+        margin-right: 8px;
         width: 20px;
         min-width: 20px;
     }
