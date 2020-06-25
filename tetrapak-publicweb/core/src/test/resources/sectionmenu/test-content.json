@@ -206,6 +206,7 @@
           "jcr:createdBy": "admin",
           "jcr:title": "Applications",
           "cq:lastReplicationAction": "Activate",
+          "mobileOverviewLabel":"Application",
           "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
           "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
           "cq:lastModifiedBy": "admin"
@@ -217,6 +218,7 @@
           "jcr:content": {
             "jcr:primaryType": "cq:PageContent",
             "jcr:title": "Diary ",
+            "mobileOverviewLabel":"Diary",
             "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
             "cq:lastReplicatedBy": "admin",
             "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
