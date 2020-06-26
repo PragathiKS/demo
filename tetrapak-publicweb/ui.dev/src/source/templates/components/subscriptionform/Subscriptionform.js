@@ -51,6 +51,9 @@ class Subscriptionform {
           $('#sf-step-final', this.root).addClass('active');
           $('.serviceError').removeClass('d-block');
           $('#sf-step-final', this.root)[0].scrollIntoView({block:'center'});
+          $('html, body').animate({
+            scrollTop: $('#sf-step-final').offset().top - 150
+          });
         } else {
           $('.serviceError').addClass('d-block');
         }
