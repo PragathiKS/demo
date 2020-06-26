@@ -1,4 +1,5 @@
-<sly data-sly-template.subSectionMenu_template="${@ data, parentLinkData, subSectionCount, activeFlag, selectedL3,selectedL4}">
+<sly data-sly-template.subSectionMenu_template="${@ data, parentLinkData, subSectionCount, activeFlag, selectedL3,selectedL4,col1,col2,col3,col4}">
+
   <div auto-locator="L3L4FlyoutContainer-L3L4FlyoutContainerPadding" class="pw-sub-section-menu js-sub-menu-navigation-Link" aria-hidden="true" aria-expanded="false">
     <sly data-sly-test="${data.subSections}">
       <div auto-locator="L3L4Flyout-L3L4FlyoutPadding" class='category-child-ul sub-section-category'>
@@ -7,33 +8,33 @@
             <a class="sub-menu-navigation-link-item js-sub-menu-navigation-link-item ${activeFlag && !selectedL3 && !selectedL4? 'active' : ''}" target="${parentLinkData.external ? '_blank' : '_self'}"
               href="${parentLinkData.linkPath}">${parentLinkData.mobileOverviewLabel}</a>
           </li>
-          <li data-sly-test="${subSectionsItemList.index < parentLinkData.subSectionMenu.col1}">
+          <li data-sly-test="${subSectionsItemList.index < col1}">
             <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/navigationLink/navigationLink-template.html"
               data-sly-call="${linkAtom.navigationLink_template @ subSectionsItem=subSectionsItem,selectedL3=selectedL3,selectedL4=selectedL4}">
             </sly>
           </li>
         </ul>
-        <sly data-sly-test="${parentLinkData.subSectionMenu.col2}">
+        <sly data-sly-test="${col2}">
           <ul data-sly-list.subSectionsItem=${data.subSections}>
-            <li data-sly-test="${subSectionsItemList.index >= parentLinkData.subSectionMenu.col1 && subSectionsItemList.index < parentLinkData.subSectionMenu.col2}">
+            <li data-sly-test="${subSectionsItemList.index >= col1 && subSectionsItemList.index < col2}">
               <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/navigationLink/navigationLink-template.html"
                 data-sly-call="${linkAtom.navigationLink_template @ subSectionsItem=subSectionsItem,selectedL3=selectedL3,selectedL4=selectedL4}">
               </sly>
             </li>
           </ul>
         </sly>
-        <sly data-sly-test="${parentLinkData.subSectionMenu.col3}">
+        <sly data-sly-test="${col3}">
           <ul data-sly-list.subSectionsItem=${data.subSections}>
-            <li data-sly-test="${subSectionsItemList.index >= parentLinkData.subSectionMenu.col2 && subSectionsItemList.index < parentLinkData.subSectionMenu.col3}">
+            <li data-sly-test="${subSectionsItemList.index >= col2 && subSectionsItemList.index < col3}">
               <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/navigationLink/navigationLink-template.html"
                 data-sly-call="${linkAtom.navigationLink_template @ subSectionsItem=subSectionsItem,selectedL3=selectedL3,selectedL4=selectedL4}">
               </sly>
             </li>
           </ul>
         </sly>
-        <sly data-sly-test="${parentLinkData.subSectionMenu.col4}">
+        <sly data-sly-test="${col4}">
           <ul data-sly-list.subSectionsItem=${data.subSections}>
-            <li data-sly-test="${subSectionsItemList.index >= parentLinkData.subSectionMenu.col3 && subSectionsItemList.index < parentLinkData.subSectionMenu.col4}">
+            <li data-sly-test="${subSectionsItemList.index >= col3 && subSectionsItemList.index < col4}">
               <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/navigationLink/navigationLink-template.html"
                 data-sly-call="${linkAtom.navigationLink_template @ subSectionsItem=subSectionsItem,selectedL3=selectedL3,selectedL4=selectedL4}">
               </sly>
