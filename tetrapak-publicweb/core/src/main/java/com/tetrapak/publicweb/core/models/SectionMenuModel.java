@@ -1,14 +1,17 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Map.Entry;
-import javax.annotation.PostConstruct;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
+import com.tetrapak.publicweb.core.beans.PseudoCategoriesSectionBean;
+import com.tetrapak.publicweb.core.beans.SectionMenuBean;
+import com.tetrapak.publicweb.core.beans.SubSectionBean;
+import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -21,17 +24,16 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
-import com.tetrapak.publicweb.core.beans.PseudoCategoriesSectionBean;
-import com.tetrapak.publicweb.core.beans.SectionMenuBean;
-import com.tetrapak.publicweb.core.beans.SubSectionBean;
-import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.NavigationUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
 
 /**
  * The Class SectionMenuModel.
@@ -106,7 +108,7 @@ public class SectionMenuModel {
      */
     private Page fetchAbsoluteParent(final String solutionPagePath) {
         Page page;
-        if (currentPage.getPath().contains(solutionPagePath)) {
+        if (LinkUtils.sanitizeLink(currentPage.getPath(), request.getResourceResolver()).contains(solutionPagePath)) {
             page = currentPage.getAbsoluteParent(PWConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL);
         } else {
             page = currentPage.getAbsoluteParent(PWConstants.OTHERS_SECTION_MENU_PAGE_LEVEL);
@@ -117,14 +119,12 @@ public class SectionMenuModel {
     /**
      * Populate section menu. This is called from HeaderModel as well, so public.
      *
-     * @param megaMenuConfigurationModel
-     *            the mega menu configuration model
      * @param page
      *            the page
      * @param path
      *            the path
+     * @param pseudoCategoryService
      * @param resourceResolver
-     *            the resource resolver
      */
     public void populateSectionMenu(final MegaMenuConfigurationModel megaMenuConfigurationModel, final Page page,
             final String path, final ResourceResolver resourceResolver) {
@@ -148,7 +148,6 @@ public class SectionMenuModel {
                         sectionMenuBean.setMobileOverviewLabel(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY));
                     }
                 }
-
                 sectionMenuBean.setSubSectionMenu(
                         populateSubSectionMenu(megaMenuConfigurationModel, nextPage, path, resourceResolver));
                 sectionMenu.add(sectionMenuBean);
@@ -179,14 +178,12 @@ public class SectionMenuModel {
     /**
      * Populate sub section menu.
      *
-     * @param megaMenuConfigurationModel
-     *            the mega menu configuration model
      * @param page
      *            the page
      * @param path
      *            the path
+     * @param pseudoCategoryService
      * @param resourceResolver
-     *            the resource resolver
      * @return the sub section menu bean
      */
     private SubSectionMenuBean populateSubSectionMenu(final MegaMenuConfigurationModel megaMenuConfigurationModel,
@@ -196,7 +193,7 @@ public class SectionMenuModel {
         final List<PseudoCategoryModel> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
 
         if (pseudoCategories != null && !pseudoCategories.isEmpty()) {
-            for (PseudoCategoryModel pseudoCategory : pseudoCategories) {
+            for (final PseudoCategoryModel pseudoCategory : pseudoCategories) {
                 pseudoCategoryMap.put(pseudoCategory.getPseudoCategoryValue(), new ArrayList<String>());
             }
         }
@@ -211,7 +208,7 @@ public class SectionMenuModel {
         }
 
         final SubSectionMenuBean subSectionMenuBean = new SubSectionMenuBean();
-        if (page.getPath().contains(path)) {
+        if (LinkUtils.sanitizeLink(page.getPath(), resourceResolver).contains(path)) {
             if (isPseudoCategoryMapEmpty(pseudoCategoryMap)) {
                 subSectionMenuBean.setSubSections(subSections);
                 subSectionMenuBean.setSubSectionCount(subSections.size());
@@ -236,13 +233,8 @@ public class SectionMenuModel {
      */
     private boolean isPseudoCategoryMapEmpty(final Map<String, List<String>> pseudoCategoryMap) {
         boolean isEmpty = false;
-        for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
-            if (entrySet.getValue().isEmpty()) {
-                isEmpty = true;
-            } else {
-                isEmpty = false;
-                break;
-            }
+        if (pseudoCategoryMap.isEmpty()) {
+            isEmpty = true;
         }
         return isEmpty;
     }
@@ -287,7 +279,6 @@ public class SectionMenuModel {
      * @param pseudoCategoryMap
      *            the pseudo category map
      * @param resourceResolver
-     *            the resource resolver
      * @return the list
      */
     private List<PseudoCategoriesSectionBean> populatePseudoSection(final Map<String, List<String>> pseudoCategoryMap,
@@ -314,7 +305,6 @@ public class SectionMenuModel {
      * @param pathList
      *            the path list
      * @param resourceResolver
-     *            the resource resolver
      * @return the sub section bean
      */
     private List<SubSectionBean> getSubSectionList(final List<String> pathList,
@@ -332,19 +322,12 @@ public class SectionMenuModel {
      *
      * @param page
      *            the page
-     * @param resourceResolver
-     *            the resource resolver
      * @return the sub section bean
      */
     private SubSectionBean populateSubSection(final Page page, final ResourceResolver resourceResolver) {
         final SubSectionBean subSectionBean = new SubSectionBean();
         subSectionBean.setLinkText(NavigationUtil.getNavigationTitle(page));
 
-        ValueMap valueMap = page.getProperties();
-        if (Objects.nonNull(valueMap)
-                && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
-            subSectionBean.setMobileOverviewLabel(valueMap.get("MOBILE_OVERVIEW_LABEL", StringUtils.EMPTY));
-        }
         final ExternalTemplateBean externalTemplate = checkExternalTemplate(page);
         if (externalTemplate.isExternal()) {
             subSectionBean.setExternal(true);
@@ -352,6 +335,11 @@ public class SectionMenuModel {
         } else {
             subSectionBean.setExternal(false);
             subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath(), resourceResolver));
+            ValueMap valueMap = page.getProperties();
+            if (Objects.nonNull(valueMap)
+                    && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
+                subSectionBean.setMobileOverviewLabel(valueMap.get("MOBILE_OVERVIEW_LABEL", StringUtils.EMPTY));
+            }
         }
 
         return subSectionBean;
@@ -360,8 +348,6 @@ public class SectionMenuModel {
     /**
      * Gets the page hierarchy.
      *
-     * @param page
-     *            the new page hierarchy
      * @return the page hierarchy
      */
     private void setPageHierarchy(final Page page) {
@@ -414,7 +400,6 @@ public class SectionMenuModel {
      * @param page
      *            the new section home page path
      * @param resourceResolver
-     *            the resource resolver
      */
     public void setSectionHomePagePath(final Page page, final ResourceResolver resourceResolver) {
         sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath(), resourceResolver);
