@@ -129,7 +129,7 @@ public class HeaderConfigurationModel {
      * @return the solution page
      */
     public String getSolutionPage() {
-        return LinkUtils.sanitizeLink(solutionPage, resource.getResourceResolver());
+        return solutionPage;
     }
 
     /**
