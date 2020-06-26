@@ -1,17 +1,18 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.Objects;
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.HeaderConfigurationModel;
 import com.tetrapak.publicweb.core.models.MegaMenuConfigurationModel;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.wcm.api.Page;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.models.HeaderConfigurationModel;
+import java.util.Objects;
 
 /**
  * The Class NavigationUtil.
@@ -55,9 +56,11 @@ public final class NavigationUtil {
      */
     public static String getSolutionPageTitle(final SlingHttpServletRequest request, final String solutionPage) {
         String solutionPageTitle = StringUtils.EMPTY;
-        final String solutionPageJcrContentPath = getSolutionPageWithoutExtension(solutionPage) + PWConstants.SLASH
+        final ResourceResolver resourceResolver = request.getResourceResolver();
+        final String solutionPagePath = resourceResolver.resolve(solutionPage).getPath();
+        final String solutionPageJcrContentPath = getSolutionPageWithoutExtension(solutionPagePath) + PWConstants.SLASH
                 + JcrConstants.JCR_CONTENT;
-        final Resource solutionPageResource = request.getResourceResolver().getResource(solutionPageJcrContentPath);
+        final Resource solutionPageResource = resourceResolver.getResource(solutionPageJcrContentPath);
         if (Objects.nonNull(solutionPageResource)) {
             final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
             solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
@@ -97,7 +100,7 @@ public final class NavigationUtil {
      * @param request the request
      * @return the mega menu configuration model
      */
-    public static MegaMenuConfigurationModel getMegaMenuConfigurationModel(SlingHttpServletRequest request,String path) {
+    public static MegaMenuConfigurationModel getMegaMenuConfigurationModel(final SlingHttpServletRequest request,final String path) {
         MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
         final String rootPath = LinkUtils.getRootPath(path);
         final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";

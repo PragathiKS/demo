@@ -1,13 +1,17 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import javax.annotation.PostConstruct;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
+import com.tetrapak.publicweb.core.beans.PseudoCategoriesSectionBean;
+import com.tetrapak.publicweb.core.beans.SectionMenuBean;
+import com.tetrapak.publicweb.core.beans.SubSectionBean;
+import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -20,17 +24,15 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.ExternalTemplateBean;
-import com.tetrapak.publicweb.core.beans.PseudoCategoriesSectionBean;
-import com.tetrapak.publicweb.core.beans.SectionMenuBean;
-import com.tetrapak.publicweb.core.beans.SubSectionBean;
-import com.tetrapak.publicweb.core.beans.SubSectionMenuBean;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.NavigationUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.annotation.PostConstruct;
 
 /**
  * The Class SectionMenuModel.
@@ -102,7 +104,7 @@ public class SectionMenuModel {
      */
     private Page fetchAbsoluteParent(final String solutionPagePath) {
         Page page;
-        if (currentPage.getPath().contains(solutionPagePath)) {
+        if (LinkUtils.sanitizeLink(currentPage.getPath(), request.getResourceResolver()).contains(solutionPagePath)) {
             page = currentPage.getAbsoluteParent(PWConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL);
         } else {
             page = currentPage.getAbsoluteParent(PWConstants.OTHERS_SECTION_MENU_PAGE_LEVEL);
@@ -182,7 +184,7 @@ public class SectionMenuModel {
         final List<PseudoCategoryModel> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
 
         if (pseudoCategories != null && !pseudoCategories.isEmpty()) {
-            for (PseudoCategoryModel pseudoCategory : pseudoCategories) {
+            for (final PseudoCategoryModel pseudoCategory : pseudoCategories) {
                 pseudoCategoryMap.put(pseudoCategory.getPseudoCategoryValue(), new ArrayList<String>());
             }
         }
@@ -197,7 +199,7 @@ public class SectionMenuModel {
         }
 
         final SubSectionMenuBean subSectionMenuBean = new SubSectionMenuBean();
-        if (page.getPath().contains(path)) {
+        if (LinkUtils.sanitizeLink(page.getPath(), resourceResolver).contains(path)) {
             if (isPseudoCategoryMapEmpty(pseudoCategoryMap)) {
                 subSectionMenuBean.setSubSections(subSections);
                 subSectionMenuBean.setSubSectionCount(subSections.size());
@@ -222,13 +224,8 @@ public class SectionMenuModel {
      */
     private boolean isPseudoCategoryMapEmpty(final Map<String, List<String>> pseudoCategoryMap) {
         boolean isEmpty = false;
-        for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
-            if (entrySet.getValue().isEmpty()) {
-                isEmpty = true;
-            } else {
-                isEmpty = false;
-                break;
-            }
+        if (pseudoCategoryMap.isEmpty()) {
+            isEmpty = true;
         }
         return isEmpty;
     }
