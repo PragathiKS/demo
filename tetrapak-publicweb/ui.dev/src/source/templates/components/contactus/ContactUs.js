@@ -16,7 +16,7 @@ class ContactUs {
     /* Initialize selector cache here */
     this.cache.contactusapi = this.root.find('form.pw-form-contactUs');
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
-    this.cache.$submitBtn = $('button[type="submit"]', this.root);
+    this.cache.$submitBtn = $('form.pw-form-contactUs button[type="submit"]', this.root);
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
     this.cache.$radio = this.root.find('input[type=radio][name="purposeOfContactOptions"]');
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
@@ -149,7 +149,7 @@ class ContactUs {
       const tab = $(this).closest('.tab-content-steps');
       const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
       requestPayload['message'] = validateFieldsForTags($('[name="message"]').val());
-      $('input, textarea').each(function () {
+      $('input, textarea', tab).each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
           $(this).closest('.form-group, .formfield').addClass('field-error');

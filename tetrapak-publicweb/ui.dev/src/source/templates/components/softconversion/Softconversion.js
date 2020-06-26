@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
+import { isExternal } from '../../../scripts/utils/updateLink';
 import { validateFieldsForTags, isMobileMode, storageUtil } from '../../../scripts/common/common';
+import { makeLoad, changeStepNext, loadDownloadReady, downloadLinkTrack, changeStepPrev, changeStepError } from './softconversion.analytics.js';
 
 class Softconversion {
   constructor({ el }) {
@@ -15,6 +17,7 @@ class Softconversion {
     this.cache.$downloadbtn = this.root.find('.thankyouTarget');
     this.cache.$radio = this.root.find('input[type=radio][name="typeOfVisitorOptions"]');
     this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSoft"]').val();
+    this.cache.$moreBtn = this.root.find(`.moreButton-${this.cache.$componentName}`);
     this.cache.$company = this.root.find(`.company-${this.cache.$componentName}`);
     this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
     this.cache.$notmebtn = this.root.find(`.notmebtn-${this.cache.$componentName}[type=button]`);
@@ -60,7 +63,40 @@ class Softconversion {
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).addClass('active');
 
+    // do the download analytics call
+    const downloadObj = {
+      linkType: isExternal(downloadLink) ? 'external': 'internal',
+      linkSection: $this.data('link-section'),
+      linkParentTitle:$this.data('parent-title'),
+      linkName: $this.data('link-name'),
+      dwnDocName:$this.data('asset-name'),
+      dwnDocUrl:downloadLink,
+      dwnType:'gated',
+      dwnSource:''
+    };
+
+    downloadLinkTrack(downloadObj, 'downloadClick', this.mainHeading, 'download');
+
     window.open(downloadLink, '_blank');
+  }
+
+  moreBtnHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const $target = $(e.target);
+    const $this = $target.closest(`.moreButton-${this.cache.$componentName}`);
+    const downloadLink = $this.attr('href');
+
+    // do the link click analytics call
+    const downloadObj = {
+      linkType: isExternal(downloadLink) ? 'external': 'internal',
+      linkSection: $this.data('link-section'),
+      linkParentTitle:$this.data('parent-title'),
+      linkName: $this.data('link-name')
+    };
+
+    downloadLinkTrack(downloadObj, 'linkClick');
+    window.open(downloadLink, $this.attr('target'));
   }
 
   notMeBtnHandler = () => {
@@ -68,6 +104,8 @@ class Softconversion {
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`.heading_${this.cache.$componentName}`, this.root).text($(`#heading_${this.cache.$componentName}`).val());
     $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
+    // do the analytics call for not me
+    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()});
   }
 
   yesMeBtnHandler = () => {
@@ -93,6 +131,9 @@ class Softconversion {
         $('.serviceError').removeClass('d-block');
       }
     );
+
+    // do the analytics call for yes its me
+    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()});
   }
 
   submitForm = () => {
@@ -112,7 +153,7 @@ class Softconversion {
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     apiPayload.pardotUrl = pardotUrl;
     apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked'); 
-
+    loadDownloadReady(this.mainHeading, { ...this.restObj2, 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' });
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
@@ -133,7 +174,7 @@ class Softconversion {
 
 
   bindEvents() {
-    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $company, $position, $downloadbtn, $notmebtn, $yesmebtn } = this.cache;
+    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $company, $position, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn } = this.cache;
     const self = this;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('click', function () {
@@ -147,6 +188,7 @@ class Softconversion {
     $radio.on('change', this.onRadioChangeHandler);
 
     $downloadbtn.on('click', this.downloadHandler);
+    $moreBtn.on('click', this.moreBtnHandler);
     $notmebtn.on('click', this.notMeBtnHandler);
     $yesmebtn.on('click', this.yesMeBtnHandler);
 
@@ -155,6 +197,7 @@ class Softconversion {
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
+      const errObj = [];
 
       // hide fields if type of visitor is not customer
       if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitor']!==`customer-${$componentName}`){
@@ -167,6 +210,18 @@ class Softconversion {
         $position.show();
       }
 
+      if ($(this).hasClass('previousbtn')) {
+        switch (target) {
+        case `#cf-step-1-${$componentName}`:
+          changeStepPrev(self.mainHeading, 'Step 2', self.step2heading);
+          break;
+        case `#cf-step-2-${$componentName}`:
+          changeStepPrev(self.mainHeading, 'Step 3', self.step3heading);
+          break;
+        default:
+          break;
+        }
+      }
 
       if (!$(this).hasClass('previousbtn') && (input.length > 0 )) {
         $('input', tab).each(function () {
@@ -182,6 +237,33 @@ class Softconversion {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
+            const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
+            let erLbl = '';
+
+
+            switch (fieldName) {
+            case `typeOfVisitorTitle-${$componentName}`:
+              erLbl = self.step1heading;
+              break;
+            case `firstName-${$componentName}`:
+              erLbl = $(`#cf-step-2-${$componentName} label`)[0].textContent;
+              break;
+            case `lastName-${$componentName}`:
+              erLbl = $(`#cf-step-2-${$componentName} label`)[1].textContent;
+              break;
+            case `email-${$componentName}`:
+              erLbl = $(`#cf-step-2-${$componentName} label`)[2].textContent;
+              break;
+            default:
+              erLbl = fieldName;
+              break;
+            }
+
+            errObj.push({
+              formErrorMessage: errmsg,
+              formErrorField: erLbl
+            });
+
             $(this).closest('.form-group, .formfield').addClass('field-error');
           } else {
             $(this).closest('.form-group, .formfield').removeClass('field-error');
@@ -193,6 +275,32 @@ class Softconversion {
         if (target) {
           $(`.tab-pane.tab-${$componentName}`).removeClass('active');
           $(target).addClass('active');
+          if (!$(this).hasClass('previousbtn')) {
+            switch (target) {
+            case `#cf-step-2-${$componentName}`:
+              changeStepNext(self.mainHeading, 'Step 1', self.step1heading, { [self.step1heading]: self.cache.requestPayload['typeOfVisitorTitle'] });
+              break;
+            case `#cf-step-3-${$componentName}`:
+              changeStepNext(self.mainHeading, 'Step 2', self.step2heading, { ...self.restObj });
+              break;
+            default:
+              break;
+            }
+          } 
+
+
+
+        }
+      }else{
+        switch (target) {
+        case `#cf-step-2-${$componentName}`:
+          changeStepError(self.mainHeading, 'Step 1', self.step1heading, {}, errObj);
+          break;
+        case `#cf-step-3-${$componentName}`:
+          changeStepError(self.mainHeading, 'Step 2', self.step2heading, {}, errObj);
+          break;
+        default:
+          break;
         }
       }
     });
@@ -201,7 +309,9 @@ class Softconversion {
       e.preventDefault();
       e.stopPropagation();
       let isvalid = true;
+      const errObj = [];
       const tab = $(this).closest('.tab-content-steps');
+      const target = $(this).data('target');
       $('input', tab).each(function () {
         const fieldName = $(this).attr('name');
 
@@ -214,6 +324,23 @@ class Softconversion {
         }
         if ($(this).prop('required') && $(this).val() === '' && requestPayload['typeOfVisitor']===`customer-${$componentName}`) {
           isvalid = false;
+          const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
+          let erLbl = '';
+          switch (fieldName) {
+          case `company-${$componentName}`:
+            erLbl = $(`#cf-step-3-${$componentName} label`)[0].textContent;
+            break;
+          case `position-${$componentName}`:
+            erLbl = $(`#cf-step-3-${$componentName} label`)[1].textContent;
+            break;
+          default:
+            erLbl = fieldName;
+            break;
+          }
+          errObj.push({
+            formErrorMessage: errmsg,
+            formErrorField: erLbl
+          });
           $(this).closest('.form-group, .formfield').addClass('field-error');
         }else {
           $(this).closest('.form-group, .formfield').removeClass('field-error');
@@ -221,20 +348,27 @@ class Softconversion {
       });
       if (isvalid) {
         self.submitForm();
+      }else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`){
+        changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, errObj);
+        // case `#cf-step-downloadReady-${$componentName}`:
+        //changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, errObj);
+        //break;
       }
     });
   }
 
   showPopup = () => {
     const $this = this;
-    // check for the cookie present of not
     const visitorMail = storageUtil.getCookie('visitor-mail');
     if(visitorMail) {
+      makeLoad('welcome back', $this.mainHeading, 'welcome back:formstart');
       $(`#visitor-email-${this.cache.$componentName}`).text(visitorMail).css('font-weight', 900);
       $(`.heading_${this.cache.$componentName}`, this.root).text('');
       $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).addClass('active');
       isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
+    }else{
+      makeLoad($this.step1heading, $this.mainHeading);
     }
 
     const { $modal } = $this.cache;
@@ -250,6 +384,14 @@ class Softconversion {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.mainHeading = $(`#heading_${this.cache.$componentName}`).val();
+    this.step1heading = $(`#cf-step-1-${this.cache.$componentName} .radioHeading`).text().trim();
+    this.step2heading = $(`#cf-step-2-${this.cache.$componentName} .tab-content-steps`).find('h4').text();
+    this.step3heading = $(`#cf-step-3-${this.cache.$componentName} .tab-content-steps`).find('h4').text();
+    this.restObj = {};
+    this.restObj2 = {};
+    $(`#cf-step-2-${this.cache.$componentName} label`).each((i, v) => this.restObj[$(v).text()] = 'NA');
+    $(`#cf-step-3-${this.cache.$componentName} label`).slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
   }
 }
 

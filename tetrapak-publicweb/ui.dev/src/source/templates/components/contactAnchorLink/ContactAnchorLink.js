@@ -13,11 +13,10 @@ class ContactAnchorLink {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-pw-contactAnchorLink');
-    this.trackAnalytics();
-    window.open($this.attr('href'),'_self');
+    this.trackAnalytics($this);
   }
 
-  trackAnalytics = () => {
+  trackAnalytics = (el) => {
     const trackingObj = {
       linkType: 'internal',
       linkSection: 'FloatingButton',
@@ -26,9 +25,10 @@ class ContactAnchorLink {
     };
     const eventObj = {
       eventType: 'linkClick',
-      event: 'Contact us envelope'
+      event: 'Contact us form'
     };
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    window.open(el.attr('href'),'_self');
   }
 
   bindEvents() {
