@@ -338,11 +338,11 @@ class Businessinquiryform {
     this.step2head = $('#bef-step-2 .tab-content-steps').find('h4').text();
     this.step3head = $('#bef-step-3 .tab-content-steps').find('h4').text();
     this.step4head = $('#bef-step-4 .tab-content-steps').find('h4').text();
-    this.mainHead = $('.pw-businessEnquiry-form .main-heading').find('h2').text().trim();
+    this.mainHead = $($('.pw-businessEnquiry-form .main-heading').find('h2')[0]).text().trim();
     this.restObj = {};
     this.restObj2 = {};
     this.linkTitle = this.root.find('.thankyou').find('h2').text().trim();
-    this.linkText = this.root.find('.newRequestBtn').text();
+    this.linkText = this.root.find('.newRequestBtn').text().trim();
     $('#bef-step-3 label').each((i, v) => this.restObj[$(v).text()] = 'NA');
     $('#bef-step-4 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     makeLoad(this.step1head, this.mainHead);
