@@ -7,6 +7,9 @@
     .pseudo-category-header {
         text-transform: uppercase;
         color: $color-boulder;
+        > .pseudo-category-link {
+            text-transform: initial;
+        }
     }
 
     @media #{$mobile} {

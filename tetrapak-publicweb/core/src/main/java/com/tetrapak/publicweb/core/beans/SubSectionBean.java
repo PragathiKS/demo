@@ -13,6 +13,8 @@ public class SubSectionBean {
     
     /** The external. */
     private boolean external;
+    
+    private String mobileOverviewLabel;
 
     /**
      * Gets the link text.
@@ -66,5 +68,13 @@ public class SubSectionBean {
      */
     public void setExternal(final boolean external) {
         this.external = external;
+    }
+
+    public String getMobileOverviewLabel() {
+        return mobileOverviewLabel;
+    }
+
+    public void setMobileOverviewLabel(String mobileOverviewLabel) {
+        this.mobileOverviewLabel = mobileOverviewLabel;
     }
 }
