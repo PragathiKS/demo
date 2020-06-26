@@ -119,12 +119,14 @@ public class SectionMenuModel {
     /**
      * Populate section menu. This is called from HeaderModel as well, so public.
      *
+     * @param megaMenuConfigurationModel
+     *            the mega menu configuration model
      * @param page
      *            the page
      * @param path
      *            the path
-     * @param pseudoCategoryService
      * @param resourceResolver
+     *            the resource resolver
      */
     public void populateSectionMenu(final MegaMenuConfigurationModel megaMenuConfigurationModel, final Page page,
             final String path, final ResourceResolver resourceResolver) {
@@ -178,12 +180,14 @@ public class SectionMenuModel {
     /**
      * Populate sub section menu.
      *
+     * @param megaMenuConfigurationModel
+     *            the mega menu configuration model
      * @param page
      *            the page
      * @param path
      *            the path
-     * @param pseudoCategoryService
      * @param resourceResolver
+     *            the resource resolver
      * @return the sub section menu bean
      */
     private SubSectionMenuBean populateSubSectionMenu(final MegaMenuConfigurationModel megaMenuConfigurationModel,
@@ -221,8 +225,233 @@ public class SectionMenuModel {
         } else {
             subSectionMenuBean.setSubSections(subSections);
             subSectionMenuBean.setSubSectionCount(subSections.size());
+            populateLimit(subSections.size(), subSectionMenuBean);
         }
         return subSectionMenuBean;
+    }
+
+    /**
+     * Populate limit.
+     *
+     * @param count
+     *            the count
+     * @param subSectionMenuBean
+     *            the sub section menu bean
+     */
+    private void populateLimit(final int count, final SubSectionMenuBean subSectionMenuBean) {
+        FlyoutLimit flyoutLimit;
+        if (count <= 24) {
+            flyoutLimit = limitTill24(count);
+        } else {
+            flyoutLimit = limitAfter24(count);
+        }
+        subSectionMenuBean.setCol1Limit(flyoutLimit.getCol1Limit());
+        subSectionMenuBean.setCol2Limit(flyoutLimit.getCol2Limit());
+        subSectionMenuBean.setCol3Limit(flyoutLimit.getCol3Limit());
+        subSectionMenuBean.setCol4Limit(flyoutLimit.getCol4Limit());
+    }
+
+    /**
+     * Limit after 24.
+     *
+     * @param count
+     *            the count
+     * @return the flyout limit
+     */
+    private FlyoutLimit limitAfter24(final int count) {
+        int col1Limit = 0;
+        int col2Limit = 0;
+        int col3Limit = 0;
+        int col4Limit = 0;
+        final int columnCount = count / 4;
+        switch (count % 4) {
+            case 3:
+                // 27, 31, 35..
+                col1Limit = columnCount + 1;
+                col2Limit = col1Limit + columnCount + 1;
+                col3Limit = col2Limit + columnCount + 1;
+                col4Limit = count;
+                break;
+            case 2:
+                // 26, 30, 34..
+                col1Limit = columnCount + 1;
+                col2Limit = col1Limit + columnCount + 1;
+                col3Limit = col2Limit + columnCount;
+                col4Limit = count;
+                break;
+            case 1:
+                // 25, 29, 33..
+                col1Limit = columnCount + 1;
+                col2Limit = col1Limit + columnCount;
+                col3Limit = col2Limit + columnCount;
+                col4Limit = count;
+                break;
+            default:
+                // 28, 32, 36...
+                col1Limit = columnCount;
+                col2Limit = col1Limit + columnCount;
+                col3Limit = col2Limit + columnCount;
+                col4Limit = count;
+                break;
+        }
+        return populateFlyoutLimit(col1Limit, col2Limit, col3Limit, col4Limit);
+    }
+
+    /**
+     * Limit till 24.
+     *
+     * @param count
+     *            the count
+     * @return the flyout limit
+     */
+    private FlyoutLimit limitTill24(final int count) {
+        int col1Limit = 0;
+        int col2Limit = 0;
+        int col3Limit = 0;
+        int col4Limit = 0;
+        switch (count / 6) {
+            case 4:
+            case 3:
+                // 18-24
+                col1Limit = 6;
+                col2Limit = col1Limit + 6;
+                col3Limit = col2Limit + 6;
+                col4Limit = count;
+                break;
+            case 2:
+                // 12-17
+                col1Limit = 6;
+                col2Limit = col1Limit + 6;
+                col3Limit = count;
+                break;
+            case 1:
+                // 6-11
+                col1Limit = 6;
+                col2Limit = count;
+                break;
+            default:
+                // 0-5
+                col1Limit = count;
+                break;
+        }
+        return populateFlyoutLimit(col1Limit, col2Limit, col3Limit, col4Limit);
+    }
+
+    /**
+     * Populate flyout limit.
+     *
+     * @param col1Limit
+     *            the col 1 limit
+     * @param col2Limit
+     *            the col 2 limit
+     * @param col3Limit
+     *            the col 3 limit
+     * @param col4Limit
+     *            the col 4 limit
+     * @return the flyout limit
+     */
+    private FlyoutLimit populateFlyoutLimit(final int col1Limit, final int col2Limit, final int col3Limit,
+            final int col4Limit) {
+        final FlyoutLimit limit = new FlyoutLimit();
+        limit.setCol1Limit(col1Limit);
+        limit.setCol2Limit(col2Limit);
+        limit.setCol3Limit(col3Limit);
+        limit.setCol4Limit(col4Limit);
+        return limit;
+    }
+
+    /**
+     * The Class FlyoutLimit.
+     */
+    class FlyoutLimit {
+
+        /** The col 1 limit. */
+        private int col1Limit;
+
+        /** The col 2 limit. */
+        private int col2Limit;
+
+        /** The col 3 limit. */
+        private int col3Limit;
+
+        /** The col 4 limit. */
+        private int col4Limit;
+
+        /**
+         * Gets the col 1 limit.
+         *
+         * @return the col 1 limit
+         */
+        public int getCol1Limit() {
+            return col1Limit;
+        }
+
+        /**
+         * Sets the col 1 limit.
+         *
+         * @param col1Limit
+         *            the new col 1 limit
+         */
+        public void setCol1Limit(final int col1Limit) {
+            this.col1Limit = col1Limit;
+        }
+
+        /**
+         * Gets the col 2 limit.
+         *
+         * @return the col 2 limit
+         */
+        public int getCol2Limit() {
+            return col2Limit;
+        }
+
+        /**
+         * Sets the col 2 limit.
+         *
+         * @param col2Limit
+         *            the new col 2 limit
+         */
+        public void setCol2Limit(final int col2Limit) {
+            this.col2Limit = col2Limit;
+        }
+
+        /**
+         * Gets the col 3 limit.
+         *
+         * @return the col 3 limit
+         */
+        public int getCol3Limit() {
+            return col3Limit;
+        }
+
+        /**
+         * Sets the col 3 limit.
+         *
+         * @param col3Limit
+         *            the new col 3 limit
+         */
+        public void setCol3Limit(final int col3Limit) {
+            this.col3Limit = col3Limit;
+        }
+
+        /**
+         * Gets the col 4 limit.
+         *
+         * @return the col 4 limit
+         */
+        public int getCol4Limit() {
+            return col4Limit;
+        }
+
+        /**
+         * Sets the col 4 limit.
+         *
+         * @param col4Limit
+         *            the new col 4 limit
+         */
+        public void setCol4Limit(final int col4Limit) {
+            this.col4Limit = col4Limit;
+        }
     }
 
     /**
@@ -280,6 +509,7 @@ public class SectionMenuModel {
      * @param pseudoCategoryMap
      *            the pseudo category map
      * @param resourceResolver
+     *            the resource resolver
      * @return the list
      */
     private List<PseudoCategoriesSectionBean> populatePseudoSection(final Map<String, String> pseudoConfigMap,
@@ -306,6 +536,7 @@ public class SectionMenuModel {
      * @param pathList
      *            the path list
      * @param resourceResolver
+     *            the resource resolver
      * @return the sub section bean
      */
     private List<SubSectionBean> getSubSectionList(final List<String> pathList,
@@ -323,6 +554,8 @@ public class SectionMenuModel {
      *
      * @param page
      *            the page
+     * @param resourceResolver
+     *            the resource resolver
      * @return the sub section bean
      */
     private SubSectionBean populateSubSection(final Page page, final ResourceResolver resourceResolver) {
@@ -349,6 +582,8 @@ public class SectionMenuModel {
     /**
      * Gets the page hierarchy.
      *
+     * @param page
+     *            the new page hierarchy
      * @return the page hierarchy
      */
     private void setPageHierarchy(final Page page) {
@@ -401,6 +636,7 @@ public class SectionMenuModel {
      * @param page
      *            the new section home page path
      * @param resourceResolver
+     *            the resource resolver
      */
     public void setSectionHomePagePath(final Page page, final ResourceResolver resourceResolver) {
         sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath(), resourceResolver);

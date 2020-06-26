@@ -205,8 +205,8 @@
           "jcr:primaryType": "cq:PageContent",
           "jcr:createdBy": "admin",
           "jcr:title": "Applications",
-          "cq:lastReplicationAction": "Activate",
           "mobileOverviewLabel":"Application",
+          "cq:lastReplicationAction": "Activate",
           "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
           "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
           "cq:lastModifiedBy": "admin"
@@ -345,5 +345,2022 @@
           }
         }
     }
-  }
+  },
+  "insight":{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Fri May 22 2020 18:14:17 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": [
+			"mix:versionable"
+		],
+		"hideContactFooterForm@Delete": "true",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Insights",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "026fc236-e0e9-4520-849f-bd0943218349",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+		"cq:lastReplicatedBy": "sapient-roopam",
+		"pwLinkTheme": "hyperlink",
+		"pseudoCategory": "CHEESE EQUIPMENT",
+		"jcr:predecessors": [
+			"bb1195ee-cb56-4fa0-8277-f776bb65c130"
+		],
+		"disableEnvelope": "false",
+		"pwButtonTheme": "link",
+		"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:40 GMT+0000",
+		"jcr:created": "Fri May 22 2020 18:14:17 GMT+0530",
+		"cq:lastReplicated": "Mon Jun 22 2020 11:24:03 GMT+0000",
+		"cq:lastModified": "Thu Jun 11 2020 09:13:19 GMT+0000",
+		"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en/insights",
+		"jcr:baseVersion": "bb1195ee-cb56-4fa0-8277-f776bb65c130",
+		"jcr:isCheckedOut": true,
+		"sectionHomePageTitle": "Insights Overview",
+		"hideInSearch@Delete": "true",
+		"linkTarget": "_self",
+		"jcr:uuid": "da0fae65-70df-4e5a-89d7-73ba22962307",
+		"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+		"cq:lastModifiedBy": "sapient-jyoti",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid"
+			}
+		}
+	},
+	"case-article": {
+		"jcr:primaryType": "cq:Page",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:mixinTypes": [
+				"mix:versionable"
+			],
+			"hideContactFooterForm@Delete": "true",
+			"jcr:createdBy": "admin",
+			"jcr:title": "Case Article",
+			"cq:lastReplicationAction": "Activate",
+			"jcr:versionHistory": "32b70477-e0b2-4aa7-b35e-d2cc507b501c",
+			"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+			"cq:lastReplicatedBy": "sapient-roopam",
+			"jcr:predecessors": [
+				"9878c4d4-274e-4526-bdf8-08ff9ab2662d"
+			],
+			"pwButtonTheme": "link",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"cq:lastReplicated": "Tue Jun 23 2020 07:32:55 GMT+0000",
+			"cq:lastModified": "Mon Jun 22 2020 06:34:13 GMT+0000",
+			"jcr:baseVersion": "9878c4d4-274e-4526-bdf8-08ff9ab2662d",
+			"jcr:isCheckedOut": true,
+			"hideInSearch@Delete": "true",
+			"jcr:uuid": "c4c6a806-38da-491f-87e2-2c63f4c3102e",
+			"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+			"cq:lastModifiedBy": "sapient-roopam",
+			"root": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"responsivegrid": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"breadcrumb": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+						"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+						"sling:resourceType": "publicweb/components/content/breadcrumb"
+					},
+					"banner_542976369": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Thu Jun 18 2020 10:27:13 GMT+0000",
+						"jcr:lastModified": "Thu Jun 18 2020 10:27:13 GMT+0000",
+						"sling:resourceType": "publicweb/components/content/banner"
+					},
+					"richtext": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+						"jcr:lastModified": "Thu Jun 18 2020 10:27:23 GMT+0000",
+						"sling:resourceType": "publicweb/components/content/richtext"
+					},
+					"image": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Thu Jun 18 2020 10:27:36 GMT+0000",
+						"jcr:lastModified": "Thu Jun 18 2020 10:27:36 GMT+0000",
+						"sling:resourceType": "publicweb/components/content/image"
+					},
+					"richtext_841558092": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Thu Jun 18 2020 10:29:03 GMT+0000",
+						"jcr:lastModified": "Thu Jun 18 2020 10:29:03 GMT+0000",
+						"sling:resourceType": "publicweb/components/content/richtext"
+					},
+					"banner": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Thu Jun 18 2020 10:30:47 GMT+0000",
+						"jcr:lastModified": "Thu Jun 18 2020 10:30:47 GMT+0000",
+						"sling:resourceType": "publicweb/components/content/banner"
+					},
+					"medialink": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+						"jcr:lastModified": "Thu Jun 18 2020 10:27:59 GMT+0000",
+						"sling:resourceType": "publicweb/components/content/mediaLink"
+					}
+				}
+			}
+		},
+		"milestone-for-fsc-labelled-package": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:mixinTypes": [
+					"mix:versionable"
+				],
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Milestone for FSC labelled packages",
+				"cq:lastReplicationAction": "Activate",
+				"jcr:versionHistory": "7ad36463-dfe5-4f6a-9a89-d4081eb7074d",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"cq:lastReplicatedBy": "sapient-roopam",
+				"jcr:predecessors": [
+					"e0affb35-9523-4e7a-b046-e00b4d74b722"
+				],
+				"disableEnvelope": "false",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastReplicated": "Tue Jun 23 2020 08:40:09 GMT+0000",
+				"cq:lastModified": "Tue Jun 23 2020 11:50:38 GMT+0000",
+				"jcr:description": "Tetra Pak reached a new significant milestone in early 2019, with the total number of FSC-labelled packages delivered passing the 500 billion mark",
+				"jcr:baseVersion": "e0affb35-9523-4e7a-b046-e00b4d74b722",
+				"jcr:isCheckedOut": true,
+				"hideInSearch@Delete": "true",
+				"cq:tags": [],
+				"jcr:uuid": "c741d068-25ed-48b0-8b1e-0ba1a290c9c7",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "sapient-roopam",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"banner": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "tetrapak-user",
+							"fileReference": "/content/dam/tetrapak/publicweb/gb/en/sustainability/sustainability-leaves.jpg",
+							"jcr:lastModifiedBy": "sapient-roopam",
+							"bannerType": "hero",
+							"noButtonLabel": "No, this is not me",
+							"pwButtonTheme": "link",
+							"welcomeBackHeading": "Welcome back",
+							"jcr:created": "Sun Jun 21 2020 12:25:49 GMT+0000",
+							"downloadReadyHeading": "Your download is ready",
+							"pwDisplay": "display-row",
+							"pwTheme": "grayscale-white",
+							"text": "Tetra Pak reached a new significant milestone in early 2019, with the total number of FSC-labelled packages delivered passing the 500 billion mark.",
+							"title": "MILESTONE FOR FSC™-LABELLED PA",
+							"thankyouHeading": "Thank you for your download",
+							"jcr:lastModified": "Tue Jun 23 2020 11:31:15 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner",
+							"yesButtonLabel": "Yes, this is me",
+							"textIsRich": [
+								"true",
+								"true",
+								"true",
+								"true",
+								"true",
+								"true"
+							],
+							"moreButtonLabel": "More white papers"
+						},
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "sapient-roopam",
+							"jcr:lastModifiedBy": "sapient-roopam",
+							"jcr:created": "Tue Jun 23 2020 08:40:03 GMT+0000",
+							"jcr:lastModified": "Tue Jun 23 2020 08:40:03 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "tetrapak-user",
+							"jcr:lastModifiedBy": "tetrapak-user",
+							"jcr:created": "Sun Jun 21 2020 11:50:28 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<p>2019-10-30</p>\r\n<h1>Exponential growth for&nbsp;sustainable cartons</h1>\r\n<p>The number of Forest Stewardship Council™ (FSC™)-labelled packages delivered has grown exponentially since the first such package was produced in 2007. By 2009, the annual total had climbed to 1.5 billion, reaching 18 billion in 2011 and 54 billion by 2015. By spring 2019, we had delivered a total of 500 billion FSC-labelled packages since production began.&nbsp;​</p>\r\n<h2>A history of innovation</h2>\r\n<p>With the launch of the world’s first FSC-certified Tetra Pak® package with J Sainsbury in 2007, the number of cartons bearing the FSC logo increased steadily each year, accelerating in the last three years. The environment is top of mind for consumers and is expected to be an even more relevant topic in the years ahead. Tetra Pak’s recent environmental research shows that there is an ever-growing trend of consumers interested in environmental issues, one in two consumers now look for environmental logos on the products they buy​.</p>\r\n<h2>Meeting growing demand</h2>\r\n<p>Consumers looking for environmental logos when shopping is a growing trend, rising from 37% of consumers saying they are always and often looking for environmental logos on the products they buy in 2013, to 54% in 2019*.</p>\r\n<p>Widely recognised as the highest global certification standard for forest management, the FSC logo enables consumers to choose brands that are committed to sustainable forestry, with 30% of consumers globally having seen or heard of the FSC label*. Collaboration with customers is key to driving sustainability across supply chains.​</p>\r\n",
+							"jcr:lastModified": "Sun Jun 21 2020 11:51:23 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "tetrapak-user",
+							"jcr:lastModifiedBy": "sapient-roopam",
+							"jcr:created": "Sun Jun 21 2020 11:51:59 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"heading": "Related Links",
+							"jcr:lastModified": "Tue Jun 23 2020 11:50:38 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Raising awareness of FSC™",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/raising-awareness-of-fsc"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Sustainable Packages",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/sustainable-packages"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Recart ® - sustainable food cartons",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/tetra-recart-sustainability"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"raising-awareness-of-fsc": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:mixinTypes": [
+					"mix:versionable"
+				],
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Raising awareness of FSC",
+				"cq:lastReplicationAction": "Activate",
+				"jcr:versionHistory": "acbd6a35-b3b8-4e49-b9e5-7eaaa7d6a0ca",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"cq:lastReplicatedBy": "sapient-roopam",
+				"imagePath": "/content/dam/tetrapak/publicweb/gb/en/packaging/employee_inspecting_packages 1.png",
+				"jcr:predecessors": [
+					"9a8bd658-2628-4f09-b2b7-9bdd1f9c238a"
+				],
+				"disableEnvelope": "false",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastReplicated": "Tue Jun 23 2020 07:33:09 GMT+0000",
+				"cq:lastModified": "Tue Jun 23 2020 13:13:38 GMT+0000",
+				"jcr:baseVersion": "9a8bd658-2628-4f09-b2b7-9bdd1f9c238a",
+				"jcr:isCheckedOut": true,
+				"hideInSearch@Delete": "true",
+				"jcr:uuid": "c2f3be75-4df7-4341-b553-1150989d7a00",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "sapient-roopam",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"banner_542976369": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"image": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/image"
+						},
+						"richtext_841558092": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"banner": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink"
+						}
+					}
+				}
+			}
+		},
+		"sustainable-packages": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:mixinTypes": [
+					"mix:versionable"
+				],
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Sustainable packages",
+				"cq:lastReplicationAction": "Activate",
+				"jcr:versionHistory": "57752e40-b854-4e9e-8eef-cbc7bd8102f6",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"cq:lastReplicatedBy": "sapient-roopam",
+				"jcr:predecessors": [
+					"49a848e0-ab79-4d50-b7ac-acba23e4f45d"
+				],
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastReplicated": "Tue Jun 23 2020 07:33:09 GMT+0000",
+				"cq:lastModified": "Mon Jun 22 2020 09:45:29 GMT+0000",
+				"jcr:baseVersion": "49a848e0-ab79-4d50-b7ac-acba23e4f45d",
+				"jcr:isCheckedOut": true,
+				"hideInSearch@Delete": "true",
+				"jcr:uuid": "3492898c-2ddc-4b09-ae64-e6d3b48c6268",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "sapient-roopam",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"banner_542976369": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"image": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/image"
+						},
+						"richtext_841558092": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"banner": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink"
+						}
+					}
+				}
+			}
+		},
+		"tetra-recart-sustainability": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:mixinTypes": [
+					"mix:versionable"
+				],
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Tetra recart sustainability",
+				"cq:lastReplicationAction": "Activate",
+				"jcr:versionHistory": "ac429834-8cc2-466c-9e55-8153f28f5622",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"cq:lastReplicatedBy": "sapient-roopam",
+				"jcr:predecessors": [
+					"752e7f7c-ec06-4aa0-aa12-2ac6966ddc09"
+				],
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastReplicated": "Tue Jun 23 2020 07:33:09 GMT+0000",
+				"cq:lastModified": "Mon Jun 22 2020 09:46:03 GMT+0000",
+				"jcr:baseVersion": "752e7f7c-ec06-4aa0-aa12-2ac6966ddc09",
+				"jcr:isCheckedOut": true,
+				"hideInSearch@Delete": "true",
+				"jcr:uuid": "fd259728-2566-418b-9634-e95334222f58",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "sapient-roopam",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"banner_542976369": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"image": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/image"
+						},
+						"richtext_841558092": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"banner": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink"
+						}
+					}
+				}
+			}
+		},
+		"Test": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Milestone for FSC-labelled packages",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 13:58:03 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"cq:tags": [],
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "sapient-roopam",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"banner_542976369": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "sapient-roopam",
+							"bannerType": "hero",
+							"noButtonLabel": "No, this is not me",
+							"pwButtonTheme": "link",
+							"welcomeBackHeading": "Welcome back",
+							"jcr:created": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"downloadReadyHeading": "Your download is ready",
+							"pwDisplay": "display-row",
+							"pwTheme": "grayscale-white",
+							"text": "Tetra Pak reached a new significant milestone in early 2019, with the total number of FSC-labelled packages delivered passing the 500 billion mark.",
+							"title": "MILESTONE FOR FSC™-LABELLED ",
+							"thankyouHeading": "Thank you for your download",
+							"jcr:lastModified": "Tue Jun 23 2020 12:49:49 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner",
+							"yesButtonLabel": "Yes, this is me",
+							"textIsRich": [
+								"true",
+								"true",
+								"true",
+								"true",
+								"true",
+								"true"
+							],
+							"moreButtonLabel": "More white papers"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "sapient-roopam",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<p>&nbsp;</p>\r\n<table cellpadding=\"1\" cellspacing=\"0\" border=\"0\" width=\"100\" height=\"200\">\r\n<tbody><tr><td>Net sales 2019&nbsp;in € billion</td>\r\n<td>11.5</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Sales by Geography (% of total sales):<br>\r\n</td>\r\n<td>​</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Europe &amp; Central Asia</td>\r\n<td>​28%</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Americas​</td>\r\n<td>​26%</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Asia Pacific</td>\r\n<td>​35%</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Greater Middle East &amp; Africa</td>\r\n<td>​11%</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Countries in which Tetra Pak had sales in 2019:</td>\r\n<td>​​&gt;160​</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Number of employees</td>\r\n<td>​25,555<br>\r\n</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>Filling machines delivered in 2019<br>\r\n</td>\r\n<td>358<br>\r\n</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Processing units delivered in 2019</td>\r\n<td>​2,404</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>Tetra Pak® packages sold in 2019&nbsp;(billion)​</td>\r\n<td>​&gt;190</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Production plants</td>\r\n<td>​55</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Market companies</td>\r\n<td>31​</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Sales offices</td>\r\n<td>​89</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Customer Innovation Centres</td>\r\n<td>​6</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>Technical Training Centres​</td>\r\n<td>​11</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​R&amp;D Centres</td>\r\n<td>​5</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Packaging machines in operation</td>\r\n<td>​&gt;8,770</td>\r\n<td>&nbsp;</td>\r\n</tr><tr><td>​Processing units in operation</td>\r\n<td>&gt;90,350​​​</td>\r\n<td>&nbsp;</td>\r\n</tr></tbody></table>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 13:51:10 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "sapient-roopam",
+							"jcr:lastModifiedBy": "sapient-roopam",
+							"jcr:created": "Tue Jun 23 2020 11:15:57 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"heading": "Related links",
+							"jcr:lastModified": "Tue Jun 23 2020 12:06:34 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnThreeList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured"
+								}
+							}
+						},
+						"teaser": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "sapient-roopam",
+							"logicalOperator": "and",
+							"jcr:lastModifiedBy": "sapient-roopam",
+							"contentType": "semi-automatic",
+							"jcr:created": "Tue Jun 23 2020 12:57:44 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"heading": "Teaser Test",
+							"jcr:lastModified": "Tue Jun 23 2020 13:08:36 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/teaser",
+							"semiAutomaticList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"pageURL": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/raising-awareness-of-fsc"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"pageURL": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing/main-technology-area/Homogenization"
+								}
+							},
+							"manualList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "Body text test",
+									"fileReference": "/content/dam/tetrapak/publicweb/gb/en/sustainability/employees-working-together.png",
+									"pwButtonTheme": "link",
+									"title": "Analyzing data, Tetra Pak Plant Secure",
+									"linkPath": "/content/dam/tetrapak/publicweb/contentfragment/countries/cyprus",
+									"linkText": "Download"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "Body text test",
+									"fileReference": "/content/dam/tetrapak/publicweb/gb/en/sustainability/milk-cartons-on-shelf-UPSCL.jpg",
+									"pwButtonTheme": "link",
+									"title": "Handshake, Tetra Pak Plant Secure",
+									"linkPath": "/content/dam/_CSS/_OOTB/ZoomInButton_dark_down_touch.png",
+									"linkText": "Download"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"pwButtonTheme": "link"
+								},
+								"item3": {
+									"jcr:primaryType": "nt:unstructured",
+									"pwButtonTheme": "link"
+								},
+								"item4": {
+									"jcr:primaryType": "nt:unstructured",
+									"pwButtonTheme": "link"
+								}
+							}
+						},
+						"teaser_580576483": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "sapient-roopam",
+							"jcr:lastModifiedBy": "sapient-roopam",
+							"jcr:created": "Tue Jun 23 2020 13:58:03 GMT+0000",
+							"jcr:lastModified": "Tue Jun 23 2020 13:58:03 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/teaser"
+						}
+					}
+				}
+			}
+		},
+		"2018-leadership-excellence-awards---group-b-manon": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "2018 Leadership Excellence Awards / Group B Manon",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 13:51:55 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "manon.bodel",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "manon.bodel",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<p>2019-04-30</p>\r\n<p>JEDDAH</p>\r\n<h1>​​​​​2018 Leadership Excellence Awards​</h1>\r\n<p>The 2018 Leadership Excellence Awards went to Bulent Kozak, the Factory Director of Jeddah, Saudi Arabia, who successfully raised the competence and maturity of his organisation in a challenging hiring environment, securing high levels of employee engagement throughout the factory.<br>\r\n</p>\r\n<p>His focus on creating an attractive and inclusive work environment has been instrumental in successfully recruiting and integrating significant numbers of talented new employees; securing a sustainable, diverse and motivated workforce.</p>\r\n<p>This leader has also introduced a new organisation structure that supports career progression, ensuring the majority of new-hire requirements can now be filled internally. His ability to embrace and to drive change, as well as with his willingness to collaborate across functions, both in terms of planning and execution, underscore his strong leadership competence.</p>\r\n<p>The EE results of the Factory are consistently above the Tetra Pak results, in the areas of Innovation, Reward and Recognition, Communications and many others.</p>\r\n<p>You can listen to him&nbsp;<a href=\"https://www.tetrapak.com/sustainability/stakeholders-and-reporting/stakeholder-voices\">talk about his pride in his factory and his team here​</a></p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 12:00:26 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "manon.bodel",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"heading": "Related links",
+							"jcr:lastModified": "Tue Jun 23 2020 12:15:52 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Talent",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/de/sustainability/people/talent"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "2017 Leadership Excellence Award",
+									"linkUrl": "https://www.tetrapak.com/sustainability/cases-and-articles/2017-leadership-excellence-award"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "2016 Leadership Excellence Award",
+									"linkUrl": "https://www.tetrapak.com/sustainability/cases-and-articles/2016-leadership-excellence-award"
+								}
+							}
+						},
+						"teaser": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "manon.bodel",
+							"logicalOperator": "and",
+							"jcr:lastModifiedBy": "manon.bodel",
+							"contentType": "manual",
+							"jcr:created": "Tue Jun 23 2020 13:22:50 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"jcr:lastModified": "Tue Jun 23 2020 13:51:55 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/teaser",
+							"manualList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food.",
+									"fileReference": "/content/dam/tetrapak/publicweb/gb/en/processing/yoghurt-blueberries 1 (2).png",
+									"pwButtonTheme": "link",
+									"title": "Processing solutions",
+									"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing",
+									"linkText": "Read more about our processing solutions"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "A complete carton packaging range for consuming fresh products, offering user convenience, easy opening and optimal shelf life.",
+									"fileReference": "/content/dam/tetrapak/publicweb/gb/en/services/three_packages_feat_craft_effect_on_desk 1.png",
+									"pwButtonTheme": "link",
+									"title": "Packaging Solutions",
+									"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging",
+									"linkText": "Read more about our packaging solutions"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "Tetra Pak® Services helps you improve your performance, optimize costs and ensure food safety throughout the lifecycle of your operations.",
+									"fileReference": "/content/dam/tetrapak/media-box/global/en/services/Factory-Workers-with-Tablet.jpg",
+									"pwButtonTheme": "link",
+									"title": "Service Solutions",
+									"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/services",
+									"linkText": "Read more about our service solutions"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"milestone-for-fsc--labelled-packages--mrh": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Milestone for FSC-labelled packages -MRh",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"jcr:language": "en_gb",
+				"disableEnvelope": "false",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 12:47:15 GMT+0000",
+				"jcr:description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Satis est tibi in te, satis in legibus, satis in mediocribus amicitiis praesidii. Sed videbimus. Est igitur officium eius generis, quod nec in bonis ponatur nec in contrariis. Duo Reges: constructio interrete. Videamus animi partes, quarum est conspectus illustrior; De malis autem et bonis ab iis animalibus, quae nondum depravata sint, ait optime iudicari.",
+				"hideInSearch@Delete": "true",
+				"cq:tags": [],
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "tetrapak-user",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"banner_542976369": {
+							"jcr:primaryType": "nt:unstructured",
+							"subtitle": "MILESTONE",
+							"jcr:createdBy": "admin",
+							"fileReference": "/content/dam/tetrapak/publicweb/gb/en/sustainability/sustainability-leaves.jpg",
+							"jcr:lastModifiedBy": "tetrapak-user",
+							"bannerType": "hero",
+							"noButtonLabel": "No, this is not me",
+							"pwButtonTheme": "link",
+							"welcomeBackHeading": "Welcome back",
+							"jcr:created": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"downloadReadyHeading": "Your download is ready",
+							"pwDisplay": "display-row",
+							"pwTheme": "grayscale-white",
+							"text": "Tetra Pak reached a new significant milestone in early 2019, with the total number of FSC-labelled packages delivered passing the 500 billion mark.",
+							"title": "FSC™-LABELLED PACKAGES",
+							"thankyouHeading": "Thank you for your download",
+							"jcr:lastModified": "Tue Jun 23 2020 12:23:44 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner",
+							"yesButtonLabel": "Yes, this is me",
+							"textIsRich": [
+								"true",
+								"true",
+								"true",
+								"true",
+								"true",
+								"true"
+							],
+							"moreButtonLabel": "More white papers"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "tetrapak-user",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<p>2019-10-30</p>\r\n<h1>​​​​​​​Exponential growth for&nbsp;sustainable cartons</h1>\r\n<p>The number of Forest Stewardship Council™ (FSC™)-labelled packages delivered has grown exponentially since the first such package was produced in 2007. By 2009, the annual total had climbed to 1.5 billion, reaching 18 billion in 2011 and 54 billion by 2015. By spring 2019, we had delivered a total of 500 billion FSC-labelled packages since production began.​</p>\r\n<h2>A history of innovation</h2>\r\n<p>With the launch of the world’s first FSC-certified Tetra Pak® package with J Sainsbury in 2007, the number of cartons bearing the FSC logo increased steadily each year, accelerating in the last three years. The environment is top of mind for consumers and is expected to be an even more relevant topic in the years ahead. Tetra Pak’s recent environmental research shows that there is an ever-growing trend of consumers interested in environmental issues, one in two consumers now look for environmental logos on the products they buy​.</p>\r\n<h2>Meeting growing demand</h2>\r\n<p>Consumers looking for environmental logos when shopping is a growing trend, rising from 37% of consumers saying they are always and often looking for environmental logos on the products they buy in 2013, to 54% in 2019*.</p>\r\n<p>Widely recognised as the highest global certification standard for forest management, the FSC logo enables consumers to choose brands that are committed to sustainable forestry, with 30% of consumers globally having seen or heard of the FSC label*. Collaboration with customers is key to driving sustainability across supply chains.​</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 12:14:22 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "tetrapak-user",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"heading": "Related links",
+							"jcr:lastModified": "Tue Jun 23 2020 12:18:25 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Raising awareness of FSC™",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/raising-awareness-of-fsc"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Sustainable packages",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/sustainable-packages"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Recart® - sustainable food cartons",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/tetra-recart-sustainability"
+								}
+							}
+						}
+					}
+				},
+				"image": {
+					"jcr:primaryType": "nt:unstructured",
+					"file.sftmp": {
+						"jcr:primaryType": "nt:file",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+						"jcr:content": {
+							"jcr:primaryType": "nt:resource",
+							"jcr:lastModifiedBy": "tetrapak-user",
+							"jcr:mimeType": "image/png",
+							"jcr:lastModified": "Wed Jun 24 2020 15:53:35 GMT+0530",
+							":jcr:data": 201824,
+							"jcr:uuid": "a2862bbb-bcc8-44b5-b753-a6fb15b4bd09"
+						}
+					}
+				}
+			}
+		},
+		"2018-leadership-excellence-award-group-b-axel": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "​​​​​2018 Leadership Excellence Awards​ / Group B Axel",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 15:01:38 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "axel-holmqvist",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "axel-holmqvist",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<p>2019-04-30<br>\r\nJEDDAH</p>\r\n<h1>​​​​​2018 Leadership Excellence Awards​</h1>\r\n<p>The 2018 Leadership Excellence Awards went to Bulent Kozak, the Factory Director of Jeddah, Saudi Arabia, who successfully raised the competence and maturity of his organisation in a challenging hiring environment, securing high levels of employee engagement throughout the factory.<br>\r\n</p>\r\n<p>His focus on creating an attractive and inclusive work environment has been instrumental in successfully recruiting and integrating significant numbers of talented new employees; securing a sustainable, diverse and motivated workforce.</p>\r\n<p>This leader has also introduced a new organisation structure that supports career progression, ensuring the majority of new-hire requirements can now be filled internally. His ability to embrace and to drive change, as well as with his willingness to collaborate across functions, both in terms of planning and execution, underscore his strong leadership competence.</p>\r\n<p>The EE results of the Factory are consistently above the Tetra Pak results, in the areas of Innovation, Reward and Recognition, Communications and many others.</p>\r\n<p>You can listen to him&nbsp;<a href=\"https://www.tetrapak.com/sustainability/stakeholders-and-reporting/stakeholder-voices\">talk about his pride in his factory and his team here​</a></p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 12:15:16 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "axel-holmqvist",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"heading": "Related links",
+							"jcr:lastModified": "Tue Jun 23 2020 15:01:38 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Talent",
+									"linkUrl": "https://www.tetrapak.com/sustainability/talent"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "2017 Leadership Excellence Award",
+									"linkUrl": "https://www.tetrapak.com/sustainability/cases-and-articles/2017-leadership-excellence-award"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "2016 Leadership Excellence Award",
+									"linkUrl": "https://www.tetrapak.com/sustainability/cases-and-articles/2016-leadership-excellence-award"
+								}
+							}
+						},
+						"teaser": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "axel-holmqvist",
+							"jcr:lastModifiedBy": "axel-holmqvist",
+							"jcr:created": "Tue Jun 23 2020 14:01:31 GMT+0000",
+							"jcr:lastModified": "Tue Jun 23 2020 14:01:31 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/teaser"
+						}
+					}
+				}
+			}
+		},
+		"_a-natural-fit--beckers-bester-and-tetra-pak--craft-packaging-ma": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "​​​​​​​​​​​​​​​​​​​A natural fit: beckers bester and Tetra Pak® Craft packaging material / Jonathan",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/press-release",
+				"disableEnvelope": "false",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 14:52:40 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "jonathan-ferdinand",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:37:45 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:37:45 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "jonathan-ferdinand",
+							"jcr:created": "Thu Jun 18 2020 10:37:51 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<p>2020-01-24</p>\r\n<h1>​​​​​​​​​​​​​​​​​​​A natural fit: beckers bester and Tetra Pak® Craft packaging material</h1>\r\n<h2>The story in brief</h2>\r\n<p>With the domestic juice market in decline, German producer beckers bester set out to find a package that would help its new range of organic juices and nectars stand out from the competition and underline the company’s long-standing commitment to sustainability.&nbsp;<a href=\"/content/tetrapak/publicweb/lang-masters/en/solutions/packaging/packages/tetra-prisma-aseptic.html\" title=\"Tetra Prisma Aseptic carton packages\">Tetra Prisma® Aseptic</a>&nbsp;1000 Square with Bio-based HeliCap™, using&nbsp;<a href=\"https://www.tetrapak.com/packaging/tetra-pak-artistry\" title=\"packaging material effects\">Tetra Pak® Craft packaging material​</a>, proved the perfect solution. A market first, the new package is designed to appeal to beckers’ target consumer groups, and offers significant environmental benefits too.&nbsp;​</p>\r\n<p>&nbsp;</p>\r\n<p><a href=\"https://www.tetrapak.com/packaging/tetra-prisma-aseptic\">&nbsp;</a></p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:52:40 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "zero",
+							"textIsRich": "true"
+						},
+						"image": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "jonathan-ferdinand",
+							"fileReference": "/content/dam/tetrapak/media-box/global/en/packaging/package-type/beckers-bester-four-packages.jpg",
+							"jcr:lastModifiedBy": "jonathan-ferdinand",
+							"jcr:created": "Tue Jun 23 2020 14:00:18 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"jcr:lastModified": "Tue Jun 23 2020 14:15:58 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/image",
+							"pwPadding": "zero"
+						},
+						"richtext_2137490963": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "jonathan-ferdinand",
+							"jcr:created": "Thu Jun 18 2020 10:38:00 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h2>About the company</h2>\r\n<p>The beckers bester story dates back to the early 1930s, when company founder, farmer Bertha Becker, decided to make and sell juice from her surplus apples. Today, the company makes more than 300 different products including juices, nectars and fruit juice drinks at its site in Lütgenrode, Lower Saxony. It remains family-owned – owner and MD Sebastian Koeppel is Bertha Becker’s great grandson – and has kept a strong focus on natural, high quality products. Sustainability is also a key priority for beckers bester: carbon neutral since 2014, the company has its own biomass power plant and wastewater treatment, and in 2018 made the decision to discontinue its PET business.​</p>\r\n<h2>Tetra Pak and beckers bester: a strong track record of innovation</h2>\r\n<p>The relationship between Tetra Pak and beckers bester is a close one, and there is a strong track record of innovation. In 2016, beckers bester implemented its first end-to-end packaging and processing solution with Tetra Pak. The design relaunch of its Tetra Prisma® Aseptic range in 2017 was a significant one, enabling beckers bester to achieve greater differentiation for its products in the marketplace. beckers bester also has the Tetra Pak Maintenance System in place and earlier this year implemented Daily Management System (DMS) and Focused Improvement (FI), working with colleagues from Services Industry 4.0 Solutions to increase overall production capacity and reduce operational costs​.</p>\r\n<h2>A declining market, and growing environmental concerns</h2>\r\n<p>While beckers bester volumes have continued to grow, overall the juice market in Germany has been declining for a number of years. Consumers are increasingly concerned with environmental and sustainability issues and are looking for companies to take a lead in this area. beckers bester set out to build on its existing portfolio of not-from-concentrate juices in carton packages, and further demonstrate its commitment to sustainability, by adding a range of organic juices. It was looking for a packaging material that would match the product concept, and that could be used on its existing lines with no additional investment needed. ​</p>\r\n<h2>An ideal match</h2>\r\n<p>Tetra Pak worked closely with beckers bester to identify the perfect packaging solution for its new organic juices and nectars range. Tetra Prisma Aseptic 1000 Square with Bio-based HeliCap, using Tetra Pak Craft packaging material, proved to be ideal. With its natural look, this innovative material is the ideal match for products that put the emphasis on natural ingredients and authenticity, and gave beckers bester an opportunity to achieve a market first. Overall, the package has impressive environmental credentials. Unbleached, uncoated paperboard is made from FSC™-certified wood and both the cap and the polyethylene film are made from 100% bio-based plastic. The package with Tetra Pak Craft packaging material also weighs around 5% less than with clay-coated duplex board. All of this adds up to reduced CO2 emissions – highly appreciated by beckers bester and totally in line with its sustainability mindset. Tetra Pak also supported beckers bester in creating new designs for this latest organic product range and building a sales kit for retail. ​</p>\r\n<h2>Focus on quality and the environment</h2>\r\n<p>Five varieties of juice – apple, red grape, orange, cherry and rhubarb – were launched earlier this year, at a premium price point of €2.29 compared with €1.79 for the existing range. All five are certified organic, 100% vegan and free from additives and preservatives. Currently, the product is available in the same retail outlets as beckers bester’s other lines, as well as online. The company has plans to target organic supermarkets too. A wide-ranging promotional campaign including online and social media targets two groups in particular, “naturalists” who already tend to buy organic food and drink, and “nest warmers”, parents who are concerned with quality but also with having a lighter, more convenient package compared to returnable glass bottles. ​</p>\r\n<h2>From the customer</h2>\r\n<p>“We respect that there are good reasons in our customers’ everyday lives for using disposable packaging. We offer that – as sustainably as possible – in beverage cartons. Tetra Pak’s own high sustainability goals show that they are the right partner to have by our side.” Sebastian Koeppel, MD, beckers bester​.</p>\r\n<p><i>* Mafowerk consumer insights, Fruchtsaft 2017.​</i></p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:24:47 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "nomargin",
+							"pwPadding": "zero",
+							"textIsRich": "true"
+						},
+						"richtext_429947614": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "jonathan-ferdinand",
+							"jcr:lastModifiedBy": "jonathan-ferdinand",
+							"jcr:created": "Tue Jun 23 2020 14:22:18 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h3>beckers bester at a glance:</h3>\r\n<p><b>Headquarters</b>: Lütgenrode, Lower Saxony</p>\r\n<p><b>Employees</b>: 130</p>\r\n<p><b>Annual turnover</b>: €50 million</p>\r\n<p><b>Brand ranking, Germany*</b>: No. 6 in unprompted brand awareness; No. 4 in recommendation rate of fruit juice brands</p>\r\n<p><b>Export markets</b>: China, Russia, Hong Kong, Romania</p>\r\n<p><b>Business with Tetra Pak</b>: One Tetra Pak® Aseptic Tank, one Tetra Pak® Pasteurizer, one Tetra Pak® CIP unit, one Tetra Pak® A3/Flex line for Tetra Prisma® Aseptic 1000/750ml Square with Bio-based HeliCap™ 27 and one Tetra Pak®</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:24:24 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "nomargin",
+							"pwPadding": "zero",
+							"textIsRich": "true"
+						},
+						"teaser": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "jonathan-ferdinand",
+							"logicalOperator": "and",
+							"jcr:lastModifiedBy": "jonathan-ferdinand",
+							"contentType": "manual",
+							"jcr:created": "Tue Jun 23 2020 13:21:44 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"jcr:lastModified": "Tue Jun 23 2020 14:38:17 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/teaser",
+							"manualList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food.\r\n",
+									"fileReference": "/content/dam/tetrapak/publicweb/gb/en/food/images/shutterstock_54528271.jpg",
+									"pwButtonTheme": "secondary",
+									"title": "Processing Solutions",
+									"linkText": "Read more about our processing solutions"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "A complete carton packaging range for consuming fresh products, offering user convenience, easy opening and optimal shelf life.",
+									"fileReference": "/content/dam/tetrapak/media-box/global/en/packaging/package-type/tetra-brik-aseptic/images/Orange-Pear-cartons-UPSCL.png",
+									"pwButtonTheme": "secondary",
+									"title": "Packaging Solutions",
+									"linkText": "Read more about our carton packaging solutions"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "Tetra Pak® Services helps you improve your performance, optimize costs and ensure food safety throughout the lifecycle of your operations.",
+									"fileReference": "/content/dam/tetrapak/media-box/global/en/services/Factory-Workers-with-Tablet.jpg",
+									"pwButtonTheme": "secondary",
+									"title": "Service Solutions",
+									"linkText": "Read more about our service solutions"
+								}
+							}
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "jonathan-ferdinand",
+							"jcr:created": "Thu Jun 18 2020 10:38:04 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"jcr:lastModified": "Tue Jun 23 2020 14:24:04 GMT+0000",
+							"columnOneTitle": "Related links",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Packaging solutions",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Pak Artistry",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging/tetra-pak-artistry"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "www.beckers-bester.de",
+									"linkUrl": "www.beckers-bester.de"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"beckers-bester-and-tetra-pak-craft-packaging-material": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "A natural fit: beckers bester and Tetra Pak® Craft packaging material / Axel",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/press-release",
+				"disableEnvelope": "false",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 14:58:35 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"cq:tags": [],
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "axel-holmqvist",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:37:45 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:37:45 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "axel-holmqvist",
+							"jcr:created": "Thu Jun 18 2020 10:37:51 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h1>A natural fit: beckers bester and Tetra Pak® Craft packaging material</h1>\r\n<h2>The story in brief</h2>\r\n<p>With the domestic juice market in decline, German producer beckers bester set out to find a package that would help its new range of organic juices and nectars stand out from the competition and underline the company’s long-standing commitment to sustainability. <a href=\"https://www.tetrapak.com/packaging/tetra-prisma-aseptic\" title=\"Tetra Prisma Aseptic carton packages\">Tetra Prisma® Aseptic</a> 1000 Square with Bio-based HeliCap™, using <a href=\"https://www.tetrapak.com/packaging/tetra-pak-artistry\" title=\"packaging material effects\">Tetra Pak® Craft packaging material​</a>, proved the perfect solution. A market first, the new package is designed to appeal to beckers’ target consumer groups, and offers significant environmental benefits too. ​</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:30:22 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "zero",
+							"textIsRich": "true"
+						},
+						"image": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "axel-holmqvist",
+							"fileReference": "/content/dam/tetrapak/media-box/global/en/packaging/package-type/beckers-bester-four-packages.jpg",
+							"jcr:lastModifiedBy": "axel-holmqvist",
+							"jcr:created": "Tue Jun 23 2020 14:29:38 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"jcr:lastModified": "Tue Jun 23 2020 14:31:20 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/image",
+							"pwPadding": "zero"
+						},
+						"richtext_2137490963": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "axel-holmqvist",
+							"jcr:created": "Thu Jun 18 2020 10:38:00 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h2>About the company</h2>\r\n<p>The beckers bester story dates back to the early 1930s, when company founder, farmer Bertha Becker, decided to make and sell juice from her surplus apples. Today, the company makes more than 300 different products including juices, nectars and fruit juice drinks at its site in Lütgenrode, Lower Saxony. It remains family-owned – owner and MD Sebastian Koeppel is Bertha Becker’s great grandson – and has kept a strong focus on natural, high quality products. Sustainability is also a key priority for beckers bester: carbon neutral since 2014, the company has its own biomass power plant and wastewater treatment, and in 2018 made the decision to discontinue its PET business.​</p>\r\n<h2>Tetra Pak and beckers bester: a strong track record of innovation</h2>\r\n<p>The relationship between Tetra Pak and beckers bester is a close one, and there is a strong track record of innovation. In 2016, beckers bester implemented its first end-to-end packaging and processing solution with Tetra Pak. The design relaunch of its Tetra Prisma® Aseptic range in 2017 was a significant one, enabling beckers bester to achieve greater differentiation for its products in the marketplace. beckers bester also has the Tetra Pak Maintenance System in place and earlier this year implemented Daily Management System (DMS) and Focused Improvement (FI), working with colleagues from Services Industry 4.0 Solutions to increase overall production capacity and reduce operational costs​.</p>\r\n<h2>A declining market, and growing environmental concerns</h2>\r\n<p>While beckers bester volumes have continued to grow, overall the juice market in Germany has been declining for a number of years. Consumers are increasingly concerned with environmental and sustainability issues and are looking for companies to take a lead in this area. beckers bester set out to build on its existing portfolio of not-from-concentrate juices in carton packages, and further demonstrate its commitment to sustainability, by adding a range of organic juices. It was looking for a packaging material that would match the product concept, and that could be used on its existing lines with no additional investment needed. ​</p>\r\n<h2>An ideal match</h2>\r\n<p>Tetra Pak worked closely with beckers bester to identify the perfect packaging solution for its new organic juices and nectars range. Tetra Prisma Aseptic 1000 Square with Bio-based HeliCap, using Tetra Pak Craft packaging material, proved to be ideal. With its natural look, this innovative material is the ideal match for products that put the emphasis on natural ingredients and authenticity, and gave beckers bester an opportunity to achieve a market first. Overall, the package has impressive environmental credentials. Unbleached, uncoated paperboard is made from FSC™-certified wood and both the cap and the polyethylene film are made from 100% bio-based plastic. The package with Tetra Pak Craft packaging material also weighs around 5% less than with clay-coated duplex board. All of this adds up to reduced CO2 emissions – highly appreciated by beckers bester and totally in line with its sustainability mindset. Tetra Pak also supported beckers bester in creating new designs for this latest organic product range and building a sales kit for retail. ​</p>\r\n<h2>Focus on quality and the environment</h2>\r\n<p>Five varieties of juice – apple, red grape, orange, cherry and rhubarb – were launched earlier this year, at a premium price point of €2.29 compared with €1.79 for the existing range. All five are certified organic, 100% vegan and free from additives and preservatives. Currently, the product is available in the same retail outlets as beckers bester’s other lines, as well as online. The company has plans to target organic supermarkets too. A wide-ranging promotional campaign including online and social media targets two groups in particular, “naturalists” who already tend to buy organic food and drink, and “nest warmers”, parents who are concerned with quality but also with having a lighter, more convenient package compared to returnable glass bottles. ​</p>\r\n<h2>From the customer</h2>\r\n<p>“We respect that there are good reasons in our customers’ everyday lives for using disposable packaging. We offer that – as sustainably as possible – in beverage cartons. Tetra Pak’s own high sustainability goals show that they are the right partner to have by our side.” Sebastian Koeppel, MD, beckers bester​.</p>\r\n<p><i>* Mafowerk consumer insights, Fruchtsaft 2017.​</i></p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:32:06 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "nomargin",
+							"pwPadding": "zero",
+							"textIsRich": "true"
+						},
+						"richtext_1607116180": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "axel-holmqvist",
+							"jcr:lastModifiedBy": "axel-holmqvist",
+							"jcr:created": "Tue Jun 23 2020 14:36:54 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"text": "<h2>beckers bester at a glance:</h2>\r\n<p><b>Headquarters:</b>&nbsp;Lütgenrode, Lower Saxony</p>\r\n<p><b>Employees:</b>&nbsp;130</p>\r\n<p><b>Annual turnover:</b>&nbsp;€50 million</p>\r\n<p><b>Brand ranking, Germany*:</b>&nbsp;No. 6 in unprompted brand awareness; No. 4 in recommendation rate of fruit juice brands</p>\r\n<p><b>Export markets:</b>&nbsp;China, Russia, Hong Kong, Romania</p>\r\n<p><b>Business with Tetra Pak:</b>&nbsp;One Tetra Pak®&nbsp;Aseptic Tank, one Tetra Pak®&nbsp;Pasteurizer, one Tetra Pak®&nbsp;CIP unit, one Tetra Pak®&nbsp;A3/Flex line for Tetra Prisma®&nbsp;Aseptic 1000/750ml Square with Bio-based HeliCap™ 27 and one Tetra Pak®</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:38:55 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "axel-holmqvist",
+							"jcr:created": "Thu Jun 18 2020 10:38:04 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"heading": "Related links",
+							"jcr:lastModified": "Tue Jun 23 2020 14:37:37 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Packaging solutions",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Pak Artistry",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging/tetra-pak-artistry"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "www.beckers-bester.de",
+									"linkUrl": "https://www.beckers-bester.de/"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"a-natural-fit--beckers-bester-and-tetra-pak--craft-packaging-mat": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "A natural fit: beckers bester and Tetra Pak® Craft packaging material / Manon",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 14:17:19 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "manon.bodel",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "manon.bodel",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h2>The story in brief</h2>\r\n<p>With the domestic juice market in decline, German producer beckers bester set out to find a package that would help its new range of organic juices and nectars stand out from the competition and underline the company’s long-standing commitment to sustainability.&nbsp;<a href=\"https://www.tetrapak.com/packaging/tetra-prisma-aseptic\" title=\"Tetra Prisma Aseptic carton packages\">Tetra Prisma® Aseptic</a>&nbsp;1000 Square with Bio-based HeliCap™, using&nbsp;<a href=\"https://www.tetrapak.com/packaging/tetra-pak-artistry\" title=\"packaging material effects\">Tetra Pak® Craft packaging material​</a>, proved the perfect solution. A market first, the new package is designed to appeal to beckers’ target consumer groups, and offers significant environmental benefits too.&nbsp;​</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:16:28 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "zero",
+							"textIsRich": "true"
+						},
+						"image": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "manon.bodel",
+							"fileReference": "/content/dam/tetrapak/media-box/global/en/packaging/package-type/beckers-bester-four-packages.jpg",
+							"jcr:lastModifiedBy": "manon.bodel",
+							"jcr:created": "Tue Jun 23 2020 14:11:27 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"jcr:lastModified": "Tue Jun 23 2020 14:15:28 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/image",
+							"pwPadding": "zero"
+						},
+						"richtext_412944397": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "manon.bodel",
+							"jcr:lastModifiedBy": "manon.bodel",
+							"jcr:created": "Tue Jun 23 2020 14:16:36 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h2>About the company</h2>\r\n<p>The beckers bester story dates back to the early 1930s, when company founder, farmer Bertha Becker, decided to make and sell juice from her surplus apples. Today, the company makes more than 300 different products including juices, nectars and fruit juice drinks at its site in Lütgenrode, Lower Saxony. It remains family-owned – owner and MD Sebastian Koeppel is Bertha Becker’s great grandson – and has kept a strong focus on natural, high quality products. Sustainability is also a key priority for beckers bester: carbon neutral since 2014, the company has its own biomass power plant and wastewater treatment, and in 2018 made the decision to discontinue its PET business.​</p>\r\n<h2>Tetra Pak and beckers bester: a strong track record of innovation</h2>\r\n<p>The relationship between Tetra Pak and beckers bester is a close one, and there is a strong track record of innovation. In 2016, beckers bester implemented its first end-to-end packaging and processing solution with Tetra Pak. The design relaunch of its Tetra Prisma® Aseptic range in 2017 was a significant one, enabling beckers bester to achieve greater differentiation for its products in the marketplace. beckers bester also has the Tetra Pak Maintenance System in place and earlier this year implemented Daily Management System (DMS) and Focused Improvement (FI), working with colleagues from Services Industry 4.0 Solutions to increase overall production capacity and reduce operational costs​.</p>\r\n<h2>A declining market, and growing environmental concerns</h2>\r\n<p>While beckers bester volumes have continued to grow, overall the juice market in Germany has been declining for a number of years. Consumers are increasingly concerned with environmental and sustainability issues and are looking for companies to take a lead in this area. beckers bester set out to build on its existing portfolio of not-from-concentrate juices in carton packages, and further demonstrate its commitment to sustainability, by adding a range of organic juices. It was looking for a packaging material that would match the product concept, and that could be used on its existing lines with no additional investment needed.&nbsp;​</p>\r\n<h2>An ideal match</h2>\r\n<p>Tetra Pak worked closely with beckers bester to identify the perfect packaging solution for its new organic juices and nectars range. Tetra Prisma Aseptic 1000 Square with Bio-based HeliCap, using Tetra Pak Craft packaging material, proved to be ideal. With its natural look, this innovative material is the ideal match for products that put the emphasis on natural ingredients and authenticity, and gave beckers bester an opportunity to achieve a market first. Overall, the package has impressive environmental credentials. Unbleached, uncoated paperboard is made from FSC™-certified wood and both the cap and the polyethylene film are made from 100% bio-based plastic. The package with Tetra Pak Craft packaging material also weighs around 5% less than with clay-coated duplex board. All of this adds up to reduced CO2 emissions – highly appreciated by beckers bester and totally in line with its sustainability mindset. Tetra Pak also supported beckers bester in creating new designs for this latest organic product range and building a sales kit for retail.&nbsp;​</p>\r\n<h2>Focus on quality and the environment</h2>\r\n<p>Five varieties of juice – apple, red grape, orange, cherry and rhubarb – were launched earlier this year, at a premium price point of €2.29 compared with €1.79 for the existing range. All five are certified organic, 100% vegan and free from additives and preservatives. Currently, the product is available in the same retail outlets as beckers bester’s other lines, as well as online. The company has plans to target organic supermarkets too. A wide-ranging promotional campaign including online and social media targets two groups in particular, “naturalists” who already tend to buy organic food and drink, and “nest warmers”, parents who are concerned with quality but also with having a lighter, more convenient package compared to returnable glass bottles.&nbsp;​</p>\r\n<h2>From the customer</h2>\r\n<p>“We respect that there are good reasons in our customers’ everyday lives for using disposable packaging. We offer that – as sustainably as possible – in beverage cartons. Tetra Pak’s own high sustainability goals show that they are the right partner to have by our side.” Sebastian Koeppel, MD, beckers bester​.</p>\r\n<p><i>* Mafowerk consumer insights, Fruchtsaft 2017.​</i></p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:16:49 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "nomargin",
+							"pwPadding": "zero",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "manon.bodel",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"heading": "Related links",
+							"jcr:lastModified": "Tue Jun 23 2020 14:17:11 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Packaging solutions",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Pak Artistry",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging/packages/tetra-pak-artistry"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "www.beckers-bester.de",
+									"linkUrl": "www.beckers-bester.de"
+								}
+							},
+							"columnTwoList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured"
+								}
+							}
+						},
+						"richtext_841558092": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "manon.bodel",
+							"jcr:created": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h3>beckers bester at a glance:</h3>\r\n<p>Headquarters: Lütgenrode, Lower Saxony</p>\r\n<p>Employees: 130</p>\r\n<p>Annual turnover: €50 million</p>\r\n<p>Brand ranking, Germany*: No. 6 in unprompted brand awareness; No. 4 in recommendation rate of fruit juice brands</p>\r\n<p>Export markets: China, Russia, Hong Kong, Romania</p>\r\n<p>Business with Tetra Pak: One Tetra Pak® Aseptic Tank, one Tetra Pak® Pasteurizer, one Tetra Pak® CIP unit, one Tetra Pak® A3/Flex line for Tetra Prisma® Aseptic 1000/750ml Square with Bio-based HeliCap™ 27 and one Tetra Pak®</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 14:17:19 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						}
+					}
+				}
+			}
+		},
+		"2018-Leadership-Excellence-Awards": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "​​​​​2018 Leadership Excellence Awards​ - Group B Jonathan",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"disableEnvelope": "false",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Wed Jun 24 2020 06:50:00 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "jonathan-ferdinand",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "jonathan-ferdinand",
+							"jcr:lastModifiedBy": "jonathan-ferdinand",
+							"jcr:created": "Tue Jun 23 2020 14:52:53 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<p>2019-04-30<br>\r\nJEDDAH</p>\r\n<h1>​​​​​2018 Leadership Excellence Awards​</h1>\r\n<p>The 2018 Leadership Excellence Awards went to Bulent Kozak, the Factory Director of Jeddah, Saudi Arabia, who successfully raised the competence and maturity of his organisation in a challenging hiring environment, securing high levels of employee engagement throughout the factory.<br>\r\n</p>\r\n<p>His focus on creating an attractive and inclusive work environment has been instrumental in successfully recruiting and integrating significant numbers of talented new employees; securing a sustainable, diverse and motivated workforce.</p>\r\n<p>This leader has also introduced a new organisation structure that supports career progression, ensuring the majority of new-hire requirements can now be filled internally. His ability to embrace and to drive change, as well as with his willingness to collaborate across functions, both in terms of planning and execution, underscore his strong leadership competence.</p>\r\n<p>The EE results of the Factory are consistently above the Tetra Pak results, in the areas of Innovation, Reward and Recognition, Communications and many others.</p>\r\n<p>You can listen to him&nbsp;<a href=\"/content/tetrapak/publicweb/lang-masters/en/sustainability/Stakeholder-engagement/Stakeholder-Voices.html\">talk about his pride in his factory and his team here​</a></p>\r\n",
+							"jcr:lastModified": "Wed Jun 24 2020 06:50:00 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink_copy": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "jonathan-ferdinand",
+							"jcr:created": "Thu Jun 18 2020 10:38:04 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"jcr:lastModified": "Tue Jun 23 2020 15:04:22 GMT+0000",
+							"columnOneTitle": "Related links",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Talent",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/sustainability/Talent"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "​​​​​2017 Leadership Excellence Awards​",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/_2017-leadership-excellence-awards"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "2016 Leadership Excellence Awards​",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/2016-Leadership-Excellence-Awards"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"_2017-leadership-excellence-awards": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "​​​​​2017 Leadership Excellence Awards​",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 14:59:09 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "jonathan-ferdinand",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"banner_542976369": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"image": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/image"
+						},
+						"richtext_841558092": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"banner": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink"
+						}
+					}
+				}
+			}
+		},
+		"2016-Leadership-Excellence-Awards": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "2016 Leadership Excellence Awards​",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Tue Jun 23 2020 15:02:08 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "jonathan-ferdinand",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"banner_542976369": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:13 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"image": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:36 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/image"
+						},
+						"richtext_841558092": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:29:03 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext"
+						},
+						"banner": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:30:47 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/mediaLink"
+						}
+					}
+				}
+			}
+		},
+		"2018-leadership-excellence-awards": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "​​​​​2018 Leadership Excellence Awards​",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Wed Jun 24 2020 06:52:04 GMT+0000",
+				"hideInSearch@Delete": "true",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "jenny-brandt",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "jenny-brandt",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<p>2019-04-30<br>\r\nJEDDAH</p>\r\n<h1>&nbsp;</h1>\r\n<h1>2018 Leadership Excellence Awards​</h1>\r\n<p>The 2018 Leadership Excellence Awards went to Bulent Kozak, the Factory Director of Jeddah, Saudi Arabia, who successfully raised the competence and maturity of his organisation in a challenging hiring environment, securing high levels of employee engagement throughout the factory.<br>\r\n</p>\r\n<p>His focus on creating an attractive and inclusive work environment has been instrumental in successfully recruiting and integrating significant numbers of talented new employees; securing a sustainable, diverse and motivated workforce.</p>\r\n<p>This leader has also introduced a new organisation structure that supports career progression, ensuring the majority of new-hire requirements can now be filled internally. His ability to embrace and to drive change, as well as with his willingness to collaborate across functions, both in terms of planning and execution, underscore his strong leadership competence.</p>\r\n<p>The EE results of the Factory are consistently above the Tetra Pak results, in the areas of Innovation, Reward and Recognition, Communications and many others.</p>\r\n<p>You can listen to him&nbsp;<a href=\"/content/tetrapak/publicweb/lang-masters/en/sustainability/Stakeholder-engagement/Stakeholder-Voices.html\">talk about his pride in his factory and his team here​</a></p>\r\n",
+							"jcr:lastModified": "Wed Jun 24 2020 06:42:41 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "jenny-brandt",
+							"jcr:created": "Thu Jun 18 2020 10:27:59 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"jcr:lastModified": "Wed Jun 24 2020 06:52:04 GMT+0000",
+							"columnOneTitle": "Related links",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Talent",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/sustainability/Talent"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "2017 Leadership Excellence Award",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/_2017-leadership-excellence-awards"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "2016 Leadership Excellence Award",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/insights/case-article/2018-leadership-excellence-awards"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"diversity-and-inclusion0": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:mixinTypes": [
+					"mix:versionable"
+				],
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Diversity and Inclusion - Carl",
+				"jcr:versionHistory": "8990bd51-3e9e-4706-8772-b43f71418a65",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/awareness-campaign",
+				"jcr:predecessors": [
+					"6d641631-7e8f-4170-964a-9878b6402002"
+				],
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Wed Jun 24 2020 06:40:54 GMT+0000",
+				"jcr:description": "We aspire to a work culture in which diversity is integral, evident and valued for the benefits it brings us. Our business’ ongoing success is rooted in maintaining a truly diverse workforce, where every employee is respected, included, engaged and fully contributing.",
+				"jcr:baseVersion": "6d641631-7e8f-4170-964a-9878b6402002",
+				"jcr:isCheckedOut": true,
+				"hideInSearch@Delete": "true",
+				"cq:tags": [],
+				"jcr:uuid": "810ef177-5c7f-42a3-b614-aad216302fce",
+				"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+				"cq:lastModifiedBy": "carl-bengtsson",
+				"navTitle": "diversity",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"banner": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"fileReference": "/content/dam/tetrapak/publicweb/gb/en/corporate/index-people-mosaic-blue-background-banner.jpg",
+							"jcr:lastModifiedBy": "carl-bengtsson",
+							"bannerType": "textImage",
+							"noButtonLabel": "No, this is not me",
+							"pwButtonTheme": "link",
+							"welcomeBackHeading": "Welcome back",
+							"jcr:created": "Thu Jun 18 2020 10:39:34 GMT+0000",
+							"downloadReadyHeading": "Your download is ready",
+							"pwDisplay": "display-row",
+							"pwTheme": "grayscale-white",
+							"text": "We aspire to a work culture in which diversity is integral, evident and valued for the benefits it brings us. Our business’ ongoing success is rooted in maintaining a truly diverse workforce, where every employee is resp",
+							"title": "DIVERSITY AND INCLUSION",
+							"thankyouHeading": "Thank you for your download",
+							"jcr:lastModified": "Tue Jun 23 2020 12:51:24 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/banner",
+							"yesButtonLabel": "Yes, this is me",
+							"textIsRich": [
+								"true",
+								"true",
+								"true",
+								"true",
+								"true",
+								"true"
+							],
+							"moreButtonLabel": "More white papers"
+						},
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:39:40 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:39:40 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "carl-bengtsson",
+							"jcr:lastModifiedBy": "carl-bengtsson",
+							"jcr:created": "Tue Jun 23 2020 12:18:50 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h1>The Diversity and Inclusion Panel</h1>\r\n<p>During 2017, our Diversity and Inclusion (D&amp;I) Panel – a representative group made up of 19 men and women from across Tetra Pak - conducted a qualitative and quantitative review of our company's performance on diversity and inclusion issues.​</p>\r\n<p>They articulated the following business case for increasing diversity and inclusion at Tetra Pak:​​</p>\r\n<ul>\r\n<li>​A competitive advantage: Strengthening our customer value proposition by offering a diverse team with perspectives that match the evolving needs of our customers and consumers</li>\r\n<li>A talent advantage: Maximising our performance by widening our access to talent, creating an environment where everyone is engaged and performs at their best​​ </li>\r\n<li>A decision-making advantage: Leveraging the power of diverse perspectives and experiences to unlock creativity and performance; challenging ourselves to think and act differently.</li>\r\n</ul>\r\n<h2>Our desired future state</h2>\r\n<p>With this business case in mind, we created a ‘desired future state’, which describes a respectful and inclusive work environment, company-wide engagement and dialogue around diversity and its value, and an organisation whose diversity reflects our business and consumers.<br />\r\n</p>\r\n<p>We have put in place a detailed baseline that will allow us to monitor our progress as we implement our action plan. Our work will focus on increasing flexible working arrangements, manager training, training around career development and increasing the focus on diversity and inclusion in our talent review and recruiting process. We will also improve how we communicate around these issues both internally and externally.</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 12:20:52 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"richtext_1444251301": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "carl-bengtsson",
+							"jcr:lastModifiedBy": "carl-bengtsson",
+							"jcr:created": "Tue Jun 23 2020 12:20:15 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"text": "<h2>Our strengths and weaknesses</h2>\r\n<p>The Diversity and Inclusion panel’s performance review helped us identify areas of strength and opportunity across our business.<br>\r\n</p>\r\n<p>Our strengths&nbsp;include a positive culture of empowerment and collaboration, good scores on engagement and a strong mix of nationalities across all levels of our business. When it comes to gender issues, we hire and promote women well at management level and maintain strong investment in women in development programs.​</p>\r\n<p>Our opportunities&nbsp;for change include increasing transparency in our career development process and improving access to networks and work-life programmes. We need to hire and develop more women below management level and increase the percentage of women at senior management level.</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 12:20:45 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"richtext_208873515": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "carl-bengtsson",
+							"jcr:lastModifiedBy": "carl-bengtsson",
+							"jcr:created": "Tue Jun 23 2020 12:23:19 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h2>Moving from Defining to Implementing</h2>\r\n<p>In 2018, we moved from defining our Diversity and Inclusion strategy to implementing it. Here are a few highlights of the results:</p>\r\n<ul>\r\n<li>The number of women at senior leadership level rose from 10 to 14 percent, and women at management level rise from 23 to 24 percent. This is a significant increase in a short amount of time.</li>\r\n<li>We have doubled the reach of our flexible working policy. Flexible working is now available in all countries around the world where Tetra Pak employs more than 50 people.</li>\r\n<li>We now provide Diversity and Inclusivity training to all leaders. We launched a course on inclusive leadership which is being offered to all leaders in during 2019.</li>\r\n</ul>\r\n<p>Looking ahead, we have put plans in place for further improvements in 2019. Each executive team member now has plans to close the gaps in their organisation, most of which were focused on improving gender representation at leadership level.&nbsp;​</p>\r\n<h2>Balanced gender representation</h2>\r\n<p>We want our business to keep progressing towards balanced gender representation as quickly as possible. At the end of 2018, for the fifth year running, 22 percent of our employees (24 percent of middle managers) were women.</p>\r\n<p>Our Diversity and Inclusion panel defined the key needs to increase gender diversity, reviewed and critiqued current people processes and their gender focus, outlined best practices, provided input to the Global Leadership Team around barriers to women, and became visible ambassadors for women across Tetra Pak. We are still struggling to hire as many female graduates as we would like – the talent pools is scarce. More needs to be done to interest girls in science.</p>\r\n<p>Our new action plan for diversity and inclusion will help us step up and tackle this problem with fresh focus in the months and years ahead. In particular, we remain objective, transparent and proactive when it comes to increasing the number of female future leaders. This is embedded within our talent review process, which is based on ability and potential, above all other attributes. As a first step, we expanded our future talent program to include interns – all geographies are now also hiring interns, and in 2019 we also want to show more female role models to break down some of the perceptions around women in technical roles​</p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 12:24:07 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "carl-bengtsson",
+							"jcr:created": "Thu Jun 18 2020 10:41:14 GMT+0000",
+							"pwTheme": "grayscale-lighter",
+							"jcr:lastModified": "Tue Jun 23 2020 13:59:33 GMT+0000",
+							"columnOneTitle": "Related Links",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Protecting People",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/sustainability/protecting-people---joanna"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Our core values",
+									"linkUrl": "/content/tetrapak/publicweb/lang-masters/en/sustainability/our-core-values"
+								}
+							}
+						},
+						"teaser": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "carl-bengtsson",
+							"logicalOperator": "and",
+							"jcr:lastModifiedBy": "carl-bengtsson",
+							"contentType": "manual",
+							"jcr:created": "Tue Jun 23 2020 13:24:29 GMT+0000",
+							"maxTeasers": "3",
+							"pwTheme": "grayscale-white",
+							"jcr:lastModified": "Tue Jun 23 2020 14:03:59 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/teaser",
+							"manualList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food.",
+									"fileReference": "/content/dam/tetrapak/publicweb/gb/en/packaging/employee_inspecting_packages 1.png",
+									"pwButtonTheme": "secondary",
+									"alt": "Processing Solutions",
+									"title": "Processing Solutions",
+									"linkPath": "https://tetrapak.com/processing",
+									"linkText": "Read more about our processing solutions"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "A complete carton packaging range for consuming fresh products, offering user convenience, easy opening and optimal shelf life.",
+									"fileReference": "/content/dam/tetrapak/publicweb/gb/en/sustainability/milk-cartons-on-shelf-UPSCL.jpg",
+									"pwButtonTheme": "secondary",
+									"alt": "Packaging Solution",
+									"title": "Packaging Solutions",
+									"linkPath": "https://tetrapak.com/packaging",
+									"linkText": "Read more about our carton packaging soluton"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"description": "Tetra Pak® Services helps you improve your performance, optimize costs and ensure food safety throughout the lifecycle of your operations.",
+									"fileReference": "/content/dam/tetrapak/publicweb/gb/en/sustainability/employees-working-together.png",
+									"pwButtonTheme": "secondary",
+									"alt": "Service Solutions",
+									"title": "Service Solutions",
+									"linkPath": "https://tetrapak.com/services",
+									"linkText": "Read more about our service solutions"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"facts-figures": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:mixinTypes": [
+					"mix:versionable"
+				],
+				"hideContactFooterForm@Delete": "true",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Tetra Pak in figures - Carl",
+				"jcr:versionHistory": "872b81ef-a46d-48d3-92ef-0aacabc862a4",
+				"cq:template": "/conf/publicweb/settings/wcm/templates/case-article",
+				"jcr:predecessors": [
+					"06cbdbba-8a6c-4ef0-a048-5816b2b9b80b"
+				],
+				"pwButtonTheme": "link",
+				"jcr:created": "Wed Jun 24 2020 15:53:35 GMT+0530",
+				"cq:lastModified": "Wed Jun 24 2020 06:42:15 GMT+0000",
+				"jcr:description": "Working closely with our customers and suppliers, we provide safe, innovative and environmentally sound products that each day meet the needs of hundreds of millions of people in more than 160 countries around the world.",
+				"jcr:baseVersion": "06cbdbba-8a6c-4ef0-a048-5816b2b9b80b",
+				"jcr:isCheckedOut": true,
+				"hideInSearch@Delete": "true",
+				"cq:tags": [],
+				"jcr:uuid": "173d556f-f60b-4727-b655-58767043d4df",
+				"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+				"cq:lastModifiedBy": "carl-bengtsson",
+				"navTitle": "facts-figures",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:created": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"jcr:lastModified": "Thu Jun 18 2020 10:26:01 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/breadcrumb"
+						},
+						"richtext": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "admin",
+							"jcr:lastModifiedBy": "carl-bengtsson",
+							"jcr:created": "Thu Jun 18 2020 10:27:23 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"text": "<h1>Tetra Pak in figures​​</h1>\r\n<p>Working closely with our customers and suppliers, we provide safe, innovative and environmentally sound products that each day meet the needs of hundreds of millions of people in more than 160&nbsp;countries around the world.</p>\r\n<table cellspacing=\"2\">\r\n<tbody><tr><td>Net sales 2019&nbsp;in € billion</td>\r\n<td>11.5</td>\r\n</tr><tr><td>​Sales by Geography (% of total sales):<br>\r\n</td>\r\n<td>​</td>\r\n</tr><tr><td>​Europe &amp; Central Asia</td>\r\n<td>​28%</td>\r\n</tr><tr><td>​Americas​</td>\r\n<td>​26%</td>\r\n</tr><tr><td>​Asia Pacific</td>\r\n<td>​35%</td>\r\n</tr><tr><td>​Greater Middle East &amp; Africa</td>\r\n<td>​11%</td>\r\n</tr><tr><td>​Countries in which Tetra Pak had sales in 2019:</td>\r\n<td>​​&gt;160​</td>\r\n</tr><tr><td>​Number of employees</td>\r\n<td>​25,555<br>\r\n</td>\r\n</tr><tr><td>Filling machines delivered in 2019<br>\r\n</td>\r\n<td>358<br>\r\n</td>\r\n</tr><tr><td>​Processing units delivered in 2019</td>\r\n<td>​2,404</td>\r\n</tr><tr><td>Tetra Pak® packages sold in 2019&nbsp;(billion)​</td>\r\n<td>​&gt;190</td>\r\n</tr><tr><td>​Production plants</td>\r\n<td>​55</td>\r\n</tr><tr><td>​Market companies</td>\r\n<td>31​</td>\r\n</tr><tr><td>​Sales offices</td>\r\n<td>​89</td>\r\n</tr><tr><td>​Customer Innovation Centres</td>\r\n<td>​6</td>\r\n</tr><tr><td>Technical Training Centres​</td>\r\n<td>​11</td>\r\n</tr><tr><td>​R&amp;D Centres</td>\r\n<td>​5</td>\r\n</tr><tr><td>​Packaging machines in operation</td>\r\n<td>​&gt;8,770</td>\r\n</tr><tr><td>​Processing units in operation</td>\r\n<td>&gt;90,350​​​</td>\r\n</tr></tbody></table>\r\n<p><i>Figures at 1 January&nbsp;2020</i></p>\r\n",
+							"jcr:lastModified": "Tue Jun 23 2020 12:40:04 GMT+0000",
+							"sling:resourceType": "publicweb/components/content/richtext",
+							"topSpacing": "topmargin",
+							"pwPadding": "regular",
+							"textIsRich": "true"
+						},
+						"medialink": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:createdBy": "carl-bengtsson",
+							"jcr:lastModifiedBy": "carl-bengtsson",
+							"jcr:created": "Tue Jun 23 2020 12:39:46 GMT+0000",
+							"pwTheme": "grayscale-white",
+							"jcr:lastModified": "Tue Jun 23 2020 12:53:31 GMT+0000",
+							"columnOneTitle": "Related links",
+							"sling:resourceType": "publicweb/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Pak End-to-end solutions"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Our sustainable offering"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Pak Processing solutions"
+								},
+								"item3": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Pak Packaging solutions"
+								}
+							},
+							"columnTwoList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Tetra Pak Services"
+								},
+								"item1": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "News"
+								},
+								"item2": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "Customer cases and articles"
+								},
+								"item3": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkLabel": "www.tetralaval.com",
+									"linkUrl": "https://www.tetralaval.com/"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
 }
