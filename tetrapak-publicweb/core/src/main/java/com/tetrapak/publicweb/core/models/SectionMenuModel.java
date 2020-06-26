@@ -108,7 +108,7 @@ public class SectionMenuModel {
      */
     private Page fetchAbsoluteParent(final String solutionPagePath) {
         Page page;
-        if (LinkUtils.sanitizeLink(currentPage.getPath(), request.getResourceResolver()).contains(solutionPagePath)) {
+        if (currentPage.getPath().contains(solutionPagePath)) {
             page = currentPage.getAbsoluteParent(PWConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL);
         } else {
             page = currentPage.getAbsoluteParent(PWConstants.OTHERS_SECTION_MENU_PAGE_LEVEL);
@@ -144,7 +144,7 @@ public class SectionMenuModel {
                 } else if (!nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
                     sectionMenuBean.setExternal(false);
                     sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), resourceResolver));
-                    ValueMap valueMap = nextPage.getProperties();
+                    final ValueMap valueMap = nextPage.getProperties();
                     if (Objects.nonNull(valueMap)
                             && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
                         sectionMenuBean.setMobileOverviewLabel(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY));
@@ -195,10 +195,11 @@ public class SectionMenuModel {
         final Map<String, List<String>> pseudoCategoryMap = new LinkedHashMap<>();
         final List<SubSectionBean> subSections = new ArrayList<>();
         final List<PseudoCategoryModel> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
-
+        final Map<String, String> pseudoConfigMap = new HashMap<>();
         if (pseudoCategories != null && !pseudoCategories.isEmpty()) {
             for (final PseudoCategoryModel pseudoCategory : pseudoCategories) {
-                pseudoCategoryMap.put(pseudoCategory.getPseudoCategoryValue(), new ArrayList<String>());
+                pseudoConfigMap.put(pseudoCategory.getPseudoCategoryKey(), pseudoCategory.getPseudoCategoryValue());
+                pseudoCategoryMap.put(pseudoCategory.getPseudoCategoryKey(), new ArrayList<String>());
             }
         }
 
@@ -212,13 +213,13 @@ public class SectionMenuModel {
         }
 
         final SubSectionMenuBean subSectionMenuBean = new SubSectionMenuBean();
-        if (LinkUtils.sanitizeLink(page.getPath(), resourceResolver).contains(path)) {
+        if (page.getPath().contains(path)) {
             if (isPseudoCategoryMapEmpty(pseudoCategoryMap)) {
                 subSectionMenuBean.setSubSections(subSections);
                 subSectionMenuBean.setSubSectionCount(subSections.size());
             } else {
-                final List<PseudoCategoriesSectionBean> pseudoSection = populatePseudoSection(pseudoCategoryMap,
-                        resourceResolver);
+                final List<PseudoCategoriesSectionBean> pseudoSection = populatePseudoSection(pseudoConfigMap,
+                        pseudoCategoryMap, resourceResolver);
                 subSectionMenuBean.setPseudoCategoriesSection(pseudoSection);
             }
         } else {
@@ -511,14 +512,14 @@ public class SectionMenuModel {
      *            the resource resolver
      * @return the list
      */
-    private List<PseudoCategoriesSectionBean> populatePseudoSection(final Map<String, List<String>> pseudoCategoryMap,
-            final ResourceResolver resourceResolver) {
+    private List<PseudoCategoriesSectionBean> populatePseudoSection(final Map<String, String> pseudoConfigMap,
+            final Map<String, List<String>> pseudoCategoryMap, final ResourceResolver resourceResolver) {
         final List<PseudoCategoriesSectionBean> pseudoSection = new ArrayList<>();
 
         for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
             if (CollectionUtils.isNotEmpty(entrySet.getValue())) {
                 final PseudoCategoriesSectionBean pseudoCategoriesSectionBean = new PseudoCategoriesSectionBean();
-                pseudoCategoriesSectionBean.setTitle(entrySet.getKey());
+                pseudoCategoriesSectionBean.setTitle(pseudoConfigMap.get(entrySet.getKey()));
 
                 final List<SubSectionBean> subSectionList = getSubSectionList(entrySet.getValue(), resourceResolver);
                 pseudoCategoriesSectionBean.setSubSections(subSectionList);
@@ -568,7 +569,7 @@ public class SectionMenuModel {
         } else {
             subSectionBean.setExternal(false);
             subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath(), resourceResolver));
-            ValueMap valueMap = page.getProperties();
+            final ValueMap valueMap = page.getProperties();
             if (Objects.nonNull(valueMap)
                     && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
                 subSectionBean.setMobileOverviewLabel(valueMap.get("MOBILE_OVERVIEW_LABEL", StringUtils.EMPTY));

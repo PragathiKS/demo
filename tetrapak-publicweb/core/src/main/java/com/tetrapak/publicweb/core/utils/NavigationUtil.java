@@ -75,7 +75,7 @@ public final class NavigationUtil {
      * @return the solution page without extension
      */
     public static String getSolutionPageWithoutExtension(final String path) {
-        return StringUtils.substringBefore(path, ".");
+        return StringUtils.substringBeforeLast(path, ".");
     }
 
 
