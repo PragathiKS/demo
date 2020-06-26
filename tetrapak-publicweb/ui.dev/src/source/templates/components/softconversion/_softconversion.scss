@@ -5,11 +5,18 @@
     .tp-modal-content {
         @media #{$mobile} {
             min-height: 100vh;
+            box-shadow: none;
+        }
+    }
+
+    &.tp-modal {
+        @media #{$mobile} {
+            background-color: $color-wild-sand;
         }
     }
 
     &__header {
-        @include padding($padding-xxl $padding-xl 0 $padding-xl);
+        @include padding($padding-l $padding-md 0 $padding-md);
         border: 0;
         @media #{$desktop} {
             @include padding($padding-xxxl $padding-xxxl $padding-md);
@@ -30,7 +37,7 @@
     }
 
     &__body {
-        @include padding(0 $padding-xl $padding-xl $padding-xl);
+        @include padding(0 $padding-md $padding-md $padding-md);
 
         @media #{$desktop} {
             @include padding(0 $padding-xxxl $padding-xxxl $padding-xxxl);
@@ -52,7 +59,7 @@
     }
 
     .modal-dialog {
-        @include margin(0);
+        @include margin($margin-md);
         max-width: 100%;
 
         @media #{$desktop} {

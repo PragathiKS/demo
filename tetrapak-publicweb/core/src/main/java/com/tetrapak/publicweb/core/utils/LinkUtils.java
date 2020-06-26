@@ -25,6 +25,9 @@ public class LinkUtils extends WCMUsePojo {
             return "#";
         } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
                 && !link.endsWith(".htm")) {
+            if (GlobalUtil.isPublish()) {
+                return resolver.map(link);
+            }
             return resolver.map(link + ".html");
         }
         return link;
@@ -37,10 +40,10 @@ public class LinkUtils extends WCMUsePojo {
      *            the page path
      * @return the root path
      */
-    public static String getRootPath(String pagePath) {
+    public static String getRootPath(final String pagePath) {
         return Text.getAbsoluteParent(pagePath, PWConstants.LANGUAGE_PAGE_LEVEL);
     }
-    
+
     /**
      * Gets the root path.
      *
@@ -48,14 +51,14 @@ public class LinkUtils extends WCMUsePojo {
      *            the page path
      * @return the root path
      */
-    public static String getMarketsRootPath(String pagePath) {
+    public static String getMarketsRootPath(final String pagePath) {
         return Text.getAbsoluteParent(pagePath, PWConstants.MARKET_ROOT_PAGE_LEVEL);
     }
 
     /**
      * Used for analytics code to determine the link type
      */
-    public static String linkType(String linkPath) {
+    public static String linkType(final String linkPath) {
         if (StringUtils.startsWith(linkPath, "/content/dam/") || StringUtils.endsWith(linkPath, ".pdf")) {
             return "download";
         } else if (StringUtils.startsWith(linkPath, "/content/")) {

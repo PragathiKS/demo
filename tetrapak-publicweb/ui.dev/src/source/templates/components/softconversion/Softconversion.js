@@ -387,7 +387,7 @@ class Softconversion {
     this.mainHeading = $(`#heading_${this.cache.$componentName}`).val();
     this.step1heading = $(`#cf-step-1-${this.cache.$componentName} .radioHeading`).text().trim();
     this.step2heading = $(`#cf-step-2-${this.cache.$componentName} .tab-content-steps`).find('h4').text();
-    this.step3heading = $(`#cf-step-3-${this.cache.$componentName} .tab-content-steps`).find('h4').text();
+    this.step3heading = 'Company information';
     this.restObj = {};
     this.restObj2 = {};
     $(`#cf-step-2-${this.cache.$componentName} label`).each((i, v) => this.restObj[$(v).text()] = 'NA');

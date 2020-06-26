@@ -218,7 +218,7 @@
           "jcr:content": {
             "jcr:primaryType": "cq:PageContent",
             "jcr:title": "Diary ",
-             "mobileOverviewLabel":"Application",
+            "mobileOverviewLabel":"Diary",
             "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
             "cq:lastReplicatedBy": "admin",
             "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
