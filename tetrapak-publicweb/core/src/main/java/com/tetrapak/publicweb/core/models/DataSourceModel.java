@@ -56,7 +56,7 @@ public class DataSourceModel {
         final Map<String, String> pseudoCategoriesMap = new LinkedHashMap<>();
         pseudoCategoriesMap.put("Select", "");
         for (final PseudoCategoryModel pseudoCategory : pseudoCategories) {
-            pseudoCategoriesMap.put(pseudoCategory.getPseudoCategoryKey(), pseudoCategory.getPseudoCategoryValue());
+            pseudoCategoriesMap.put(pseudoCategory.getPseudoCategoryKey(), pseudoCategory.getPseudoCategoryKey());
         }
         final DataSource dataSource = new SimpleDataSource(getResourceList(pseudoCategoriesMap).iterator());
         request.setAttribute(DataSource.class.getName(), dataSource);
