@@ -108,7 +108,7 @@ public class SectionMenuModel {
      */
     private Page fetchAbsoluteParent(final String solutionPagePath) {
         Page page;
-        if (LinkUtils.sanitizeLink(currentPage.getPath(), request.getResourceResolver()).contains(solutionPagePath)) {
+        if (currentPage.getPath().contains(solutionPagePath)) {
             page = currentPage.getAbsoluteParent(PWConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL);
         } else {
             page = currentPage.getAbsoluteParent(PWConstants.OTHERS_SECTION_MENU_PAGE_LEVEL);
@@ -142,7 +142,7 @@ public class SectionMenuModel {
                 } else if (!nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
                     sectionMenuBean.setExternal(false);
                     sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), resourceResolver));
-                    ValueMap valueMap = nextPage.getProperties();
+                    final ValueMap valueMap = nextPage.getProperties();
                     if (Objects.nonNull(valueMap)
                             && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
                         sectionMenuBean.setMobileOverviewLabel(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY));
@@ -209,7 +209,7 @@ public class SectionMenuModel {
         }
 
         final SubSectionMenuBean subSectionMenuBean = new SubSectionMenuBean();
-        if (LinkUtils.sanitizeLink(page.getPath(), resourceResolver).contains(path)) {
+        if (page.getPath().contains(path)) {
             if (isPseudoCategoryMapEmpty(pseudoCategoryMap)) {
                 subSectionMenuBean.setSubSections(subSections);
                 subSectionMenuBean.setSubSectionCount(subSections.size());
@@ -336,7 +336,7 @@ public class SectionMenuModel {
         } else {
             subSectionBean.setExternal(false);
             subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath(), resourceResolver));
-            ValueMap valueMap = page.getProperties();
+            final ValueMap valueMap = page.getProperties();
             if (Objects.nonNull(valueMap)
                     && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
                 subSectionBean.setMobileOverviewLabel(valueMap.get("MOBILE_OVERVIEW_LABEL", StringUtils.EMPTY));

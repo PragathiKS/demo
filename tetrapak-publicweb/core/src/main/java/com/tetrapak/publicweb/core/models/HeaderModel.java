@@ -263,7 +263,7 @@ public class HeaderModel {
      * @return the solution page
      */
     public String getSolutionPage() {
-        return solutionPage;
+        return LinkUtils.sanitizeLink(solutionPage, request.getResourceResolver());
     }
 
     /**
