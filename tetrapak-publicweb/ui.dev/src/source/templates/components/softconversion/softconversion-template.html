@@ -19,7 +19,7 @@
     <sly data-sly-test.notmebtn="${'{0}{1}' @ format=['notmebtn notmebtn-', componentName, ')']}" />
     <sly data-sly-test.yesmebtn="${'{0}{1}' @ format=['yesmebtn-', componentName, ')']}" />
 
-    <div class="modal tp-modal pw-softconversion js-soft-modal ${componentName} fade" id="lang-modal" data-module="Softconversion" tabindex="-1" role="dialog">
+    <div class="pw-softconversion modal tp-modal js-soft-modal ${componentName} fade" id="lang-modal" data-module="Softconversion" tabindex="-1" role="dialog">
     	<input type="hidden" class="ComponentNameSoft" name="ComponentNameSoft" value="${componentName}">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
       <div class="modal-content tp-modal-content">
