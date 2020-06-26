@@ -248,6 +248,6 @@ public final class GlobalUtil {
         if (slingSettingsService == null) {
             return false;
         }
-        return slingSettingsService.getRunModes().contains("author");
+        return slingSettingsService.getRunModes().contains("publish");
     }
 }
