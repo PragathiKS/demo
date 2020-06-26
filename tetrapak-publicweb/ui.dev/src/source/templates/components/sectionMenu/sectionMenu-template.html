@@ -42,7 +42,7 @@
         <sly data-sly-test.subSection="${data.subSectionMenu}">
           <sly
             data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
-            data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, parentLinkData=data,subSectionCount=subSection.subSectionCount, activeFlag=activeFlag,selectedL3=selectedL3,selectedL4=selectedL4}">
+            data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, parentLinkData=data,subSectionCount=subSection.subSectionCount, activeFlag=activeFlag,selectedL3=selectedL3,selectedL4=selectedL4,col1=subSection.col1Limit,col2=subSection.col2Limit,col3=subSection.col3Limit,col4=subSection.col4Limit}">
           </sly>
         </sly>
       </div>
@@ -51,7 +51,7 @@
         <sly data-sly-test.subSection="${data.subSectionMenu}">
           <sly
             data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
-            data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, subSectionCount=subSection.subSectionCount, selectedL3=selectedL3,selectedL4=selectedL4}">
+            data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, subSectionCount=subSection.subSectionCount, selectedL3=selectedL3,selectedL4=selectedL4,col1=subSection.col1Limit,col2=subSection.col2Limit,col3=subSection.col3Limit,col4=subSection.col4Limit}">
           </sly>
         </sly>
       </div>
