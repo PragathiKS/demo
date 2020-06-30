@@ -1,6 +1,6 @@
 body{
     @include line-height($font-l,$font-baseline);
-    font-family:$font-bold;
+    font-family:$font-light;
     background: $color-wild-sand;
     font-weight: normal;
     font-size: $font-baseline;
@@ -107,6 +107,17 @@ h1,h2,h3,h4{
 }
 .sticky-section-menu {
     display: block;
+}
+
+.tpatom-btn--primary,
+.tpatom-link--primary,
+.tpatom-btn--secondary,
+.tpatom-link--secondary, .tpatom-btn--transparent, .tpatom-btn--datepicker,
+.tpatom-link--transparent,
+.tpatom-link--datepicker {
+  span {
+    font-family: $font-light;
+  }
 }
 
 @media #{$mobile} {

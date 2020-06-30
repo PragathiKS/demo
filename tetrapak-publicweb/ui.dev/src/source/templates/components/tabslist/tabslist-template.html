@@ -25,14 +25,14 @@
                 data-link-name="${componentName == 'pxpoptions' ? tab.subTitle : tab.title}" data-link-section="tablist_CTA" data-parent-title="CTA_${data.heading}">
                 <sly data-sly-test="${data.pwDisplay == 'display-row'}">
                   <div>
-                    <p class="pw-tablist__event-title-icright semi-bold">${componentName == 'pxpoptions' ? tab.subTitle : tab.title @ context='html'}</p>
+                    <p class="pw-tablist__event-title-icright">${componentName == 'pxpoptions' ? tab.subTitle : tab.title @ context='html'}</p>
                   </div>
                   <i class="icon icon-right icon-Arrow_Right_pw"></i>
                 </sly>
                 <sly data-sly-test="${data.pwDisplay == 'display-row-reversed'}">
                   <i class="icon icon-left icon-Arrow_Right_pw"></i>
                   <div>
-                    <p class="pw-tablist__event-title-icleft semi-bold">${componentName == 'pxpoptions' ? tab.subTitle : tab.title @ context='html'}<p>
+                    <p class="pw-tablist__event-title-icleft">${componentName == 'pxpoptions' ? tab.subTitle : tab.title @ context='html'}<p>
                   </div>
                 </sly>
               </button>

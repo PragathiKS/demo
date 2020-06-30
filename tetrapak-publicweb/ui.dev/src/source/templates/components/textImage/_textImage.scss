@@ -71,6 +71,7 @@
         @include margin-bottom($margin-sm);
         @inlcude line-height($font-normal, $font-sm);
         color: $color-boulder;
+        font-family: $font-bold;
         text-transform: $uppercase;
         @media #{$desktop} {
             @include margin-top($margin-zero);
