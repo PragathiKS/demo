@@ -9,7 +9,6 @@
     .form-check-label {
         @include margin-bottom($margin-md);
         font-size: 14px;
-        font-family: $font-bold;
         z-index: 3;
     }
     .form-check-radio {
