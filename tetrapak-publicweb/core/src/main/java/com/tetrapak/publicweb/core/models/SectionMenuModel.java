@@ -217,6 +217,7 @@ public class SectionMenuModel {
             if (isPseudoCategoryMapEmpty(pseudoCategoryMap)) {
                 subSectionMenuBean.setSubSections(subSections);
                 subSectionMenuBean.setSubSectionCount(subSections.size());
+                populateLimit(subSections.size(), subSectionMenuBean);
             } else {
                 final List<PseudoCategoriesSectionBean> pseudoSection = populatePseudoSection(pseudoConfigMap,
                         pseudoCategoryMap, resourceResolver);
