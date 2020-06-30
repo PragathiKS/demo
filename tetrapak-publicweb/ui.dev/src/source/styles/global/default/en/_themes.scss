@@ -15,7 +15,7 @@ body{
 }
 a {
     @include line-height($font-l,$font-baseline);
-    font-family:$font-light;
+    font-family:$font-bold;
     font-weight: 500;
     font-size: $font-baseline;
 }
@@ -110,11 +110,12 @@ h1,h2,h3,h4{
 }
 
 .tpatom-btn--primary,
-.tpatom-link--primary, .tpatom-btn--secondary,
+.tpatom-link--primary,
+.tpatom-btn--secondary,
 .tpatom-link--secondary, .tpatom-btn--transparent, .tpatom-btn--datepicker,
 .tpatom-link--transparent,
 .tpatom-link--datepicker {
-  .sly-text {
+  span {
     font-family: $font-light;
   }
 }

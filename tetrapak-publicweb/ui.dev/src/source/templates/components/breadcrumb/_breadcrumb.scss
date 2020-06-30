@@ -2,6 +2,7 @@
     @include max-width($body-max-width);
     display: none;
     color: $color-tundora;
+    font-family: $font-bold;
     overflow: hidden;
     position: relative;
     width: 100%;
