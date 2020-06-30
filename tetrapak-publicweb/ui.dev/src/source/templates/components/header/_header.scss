@@ -2,6 +2,8 @@
     background: $color-white;
     a {
         font-family: $font-bold;
+        text-rendering: optimizeLegibility;
+        text-size-adjust: 100%;
     }
     @media #{$mobile} {
         top: 0;
@@ -108,6 +110,8 @@
                     @include padding(0 $padding-sm);
                     @include line-height($font-l, $font-baseline);
                     font-family: $font-bold;
+                    text-rendering: optimizeLegibility;
+                    text-size-adjust: 100%;
                     height: 28px;
                     font-weight: normal;
                 }
