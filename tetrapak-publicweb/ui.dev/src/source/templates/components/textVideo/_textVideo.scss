@@ -71,6 +71,7 @@
         @include font-size($font-sm);
         @include line-height(16px, $font-sm);
         color: $color-boulder;
+        font-family: $font-bold;
         text-transform: uppercase;
     }
     &__link {

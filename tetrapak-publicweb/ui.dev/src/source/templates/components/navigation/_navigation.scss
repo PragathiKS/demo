@@ -2,6 +2,10 @@
     .hr-display {
         display: none;
     }
+
+    a {
+        font-family: $font-bold;
+    }
     &.sticky {
         display: block;
         z-index: $z-index-section-menu;

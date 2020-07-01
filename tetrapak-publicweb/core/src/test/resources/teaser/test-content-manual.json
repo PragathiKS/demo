@@ -27,6 +27,8 @@
 					"anchorTitle": "Anchor title",
 					"jcr:lastModifiedBy": "admin",
 					"anchorId": "anchorId",
+					"linkLabel": "View All",
+					"linkPath":"/content/tetrapak/publicweb/lang-masters/en/search",
 					"contentType": "manual",
 					"jcr:created": "Mon Apr 13 2020 10:49:59 GMT+0530",
 					"maxTeasers": "12",

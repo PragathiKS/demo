@@ -19,7 +19,7 @@ class ContactAnchorLink {
   trackAnalytics = (el) => {
     const trackingObj = {
       linkType: 'internal',
-      linkSection: 'FloatingButton',
+      linkSection: 'Floating Button',
       linkParentTitle: '',
       linkName: 'Contact Us'
     };
