@@ -1,23 +1,26 @@
 body{
     @include line-height($font-l,$font-baseline);
-    font-family:$font-bold;
+    font-family:$font-light;
     background: $color-wild-sand;
     font-weight: normal;
     font-size: $font-baseline;
-   font-style: normal;
-   text-rendering: optimizeLegibility;
+    font-style: normal;
+    position: relative;
+}
+a {
+    @include line-height($font-l,$font-baseline);
+    font-family: $font-light;
+    font-weight: 500;
+    font-size: $font-baseline;
+}
+
+.font-fixing {
+    text-rendering: optimizeLegibility;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    -ms-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
    text-size-adjust: 100%;
-   position: relative;
-}
-a {
-    @include line-height($font-l,$font-baseline);
-    font-family:$font-bold;
-    font-weight: 500;
-    font-size: $font-baseline;
 }
 
 img {
@@ -107,6 +110,17 @@ h1,h2,h3,h4{
 }
 .sticky-section-menu {
     display: block;
+}
+
+.tpatom-btn--primary,
+.tpatom-link--primary,
+.tpatom-btn--secondary,
+.tpatom-link--secondary, .tpatom-btn--transparent, .tpatom-btn--datepicker,
+.tpatom-link--transparent,
+.tpatom-link--datepicker {
+  span {
+    font-family: $font-light;
+  }
 }
 
 @media #{$mobile} {
