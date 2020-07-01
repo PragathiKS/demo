@@ -9,14 +9,8 @@
     background: $color-white;
     z-index: 11;
 
-    @media #{$desktop} {
-        position: relative;
-        visibility: visible;
-        top: unset;
-        left: unset;
-        width: unset;
-        height: unset;
-        z-index: $zindex-nav;
+    hr {
+        @include margin-top($padding-l);
     }
 
     &.is-open {
@@ -42,21 +36,37 @@
         }
     }
     @media #{$desktop} {
+        @include padding($padding-zero $padding-xxxl);
+        @include margin($margin-zero auto);
+        @include padding-top(25px);
         display: flex;
         overflow: hidden;
         position: absolute;
-        left: 0;
-        width: 100%;
+        visibility: visible;
         justify-content: center;
+        background: none;
+        top: unset;
+        max-width: 1440px;
+        z-index: $zindex-nav;
+        left: 50%;
+        height: unset;
+        transform: translate(-50%);
+
+        hr {
+            @include margin-left(-$margin-xxxl);
+            @include margin-right(-$margin-xxxl);
+            @include margin-top($margin-zero);
+            @include margin-bottom(-$margin-zero);
+            border-top: 1px solid $color-mercury;
+        }
         nav {
+            @include margin-left(0);
             width: 100%;
-            margin: 0 auto;
+            border-top: 1px solid $color-white;
             z-index: $zindex-s;
             position: relative;
+            background-color: $color-white;
         }
-    }
-    hr {
-        @include margin-top($padding-l);
     }
     a {
         color: $color-congress-blue;
