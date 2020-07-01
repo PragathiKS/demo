@@ -12,6 +12,10 @@
         }
     }
 
+    a {
+        font-family: $font-bold;
+    }
+
     @media #{$mobile} {
         .category-child-ul {
             display: flex;
