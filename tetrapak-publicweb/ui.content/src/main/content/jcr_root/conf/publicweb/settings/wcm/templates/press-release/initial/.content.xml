@@ -5,6 +5,7 @@
         cq:lastModified="{Date}2020-06-18T10:38:04.013Z"
         cq:lastModifiedBy="admin"
         cq:template="/conf/publicweb/settings/wcm/templates/press-release"
+        disableEnvelope="true"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="publicweb/components/structure/pages/sectionmenupage">
         <root
