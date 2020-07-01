@@ -145,6 +145,8 @@ public class TeaserModelTest {
         model = resource.adaptTo(modelClass);
 
         assertEquals("Heading", model.getHeading());
+        assertEquals("View All", model.getLinkLabel());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/search.html", model.getLinkPath());
         assertEquals("grayscale-white", model.getPwTheme());
         assertEquals("anchorId", model.getAnchorId());
         assertEquals("Anchor title", model.getAnchorTitle());

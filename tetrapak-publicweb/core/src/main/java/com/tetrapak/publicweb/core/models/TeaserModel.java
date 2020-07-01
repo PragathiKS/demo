@@ -54,6 +54,14 @@ public class TeaserModel {
     @ValueMapValue
     private String logicalOperator;
 
+    /** The link label. */
+    @ValueMapValue
+    private String linkLabel;
+
+    /** The link path. */
+    @ValueMapValue
+    private String linkPath;
+
     /** The anchor id. */
     @ValueMapValue
     private String anchorId;
@@ -164,6 +172,24 @@ public class TeaserModel {
      */
     public String getHeading() {
         return heading;
+    }
+
+    /**
+     * Gets the link label.
+     *
+     * @return the link label
+     */
+    public String getLinkLabel() {
+        return linkLabel;
+    }
+
+    /**
+     * Gets the link path.
+     *
+     * @return the link path
+     */
+    public String getLinkPath() {
+        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
     }
 
     /**
