@@ -7,7 +7,7 @@
         }
     }
     .privacy-policy {
-        @include margin-top($margin-l);
+        @include margin-top($margin-md);
         &:hover {
             a {
                 color: $color-jordy-blue;
@@ -75,13 +75,16 @@
     }
     .right-heading h4 {
         &.tpatom-heading--small {
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-md);
         }
     }
     .separator {
         @include padding-bottom($padding-l);
         @include margin-bottom($margin-l);
         border-bottom: 1px solid $color-mercury;
+        .pw-text-left-wrapper {
+            @include margin-top($margin-sm);
+        }
         .pw-image-container {
             @include margin-bottom($padding-l);
         }
@@ -106,7 +109,8 @@
                 @include padding-right($padding-l);
             }
             h4 {
-                @include margin-bottom($margin-l);
+                @include margin-bottom($margin-md);
+                @include margin-top($margin-sm);
             }
         }
     }
@@ -119,14 +123,23 @@
             @include margin-bottom($margin-l);
         }
         h2,
-        .descriptionTextThankyou {
+        .contact-us-thankyou-text {
             @include margin-bottom($margin-md);
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+            }
+        }
+        .button-group {
+            @include margin-top($margin-md);
         }
     }
 
     .summary {
         &:not(:last-child) {
-            @include margin-bottom($margin-md);
+            @include margin-bottom($margin-sm);
+            @media #{$desktop} {
+                @include margin-bottom($margin-zero);
+            }
         }
         div + div {
             font-weight: 900;
@@ -169,6 +182,9 @@
     }
 
     .pw-progress {
+        .pw-progressbar_wrapper {
+            @include margin-top($margin-l);
+        }
         .pw-progressbar__steps {
             @include padding-left($padding-md);
             p {
@@ -176,7 +192,7 @@
                 color: $color-congress-blue;
                 font-size: 12px;
                 @media #{$desktop} {
-                    @include margin-top($margin-xxxl);
+                    @include margin-top($margin-l);
                 }
             }
         }
