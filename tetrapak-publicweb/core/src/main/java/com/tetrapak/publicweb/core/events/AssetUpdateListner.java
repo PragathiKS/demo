@@ -49,23 +49,21 @@ public class AssetUpdateListner implements ResourceChangeListener {
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             if (Objects.nonNull(resolver)) {
                 for (final ResourceChange change : changes) {
-                    if (change.getPath().contains("jcr:content")) {
+                    if (change.getPath().contains(JcrConstants.JCR_CONTENT)) {
                         final String assetJcrContentPath = StringUtils.substringBefore(change.getPath(),
                                 JcrConstants.JCR_CONTENT) + JcrConstants.JCR_CONTENT;
-                        LOGGER.info("Asset Path :: {}", assetJcrContentPath);
+                        LOGGER.info("Asset path :: {}", assetJcrContentPath);
                         final Resource assetJcrResource = resolver.getResource(assetJcrContentPath);
                         final ValueMap valueMap = assetJcrResource.getValueMap();
-                        LOGGER.info("Asset Res :: {}",assetJcrResource);
                         if (Objects.nonNull(assetJcrResource) && valueMap.containsKey(PWConstants.JCR_LAST_MODIFIED)) {
                             final ModifiableValueMap map = assetJcrResource.adaptTo(ModifiableValueMap.class);
-                            LOGGER.info("Asset map :: {}", map);
-                            LOGGER.info("Asset value map :: {}", valueMap);
-                            LOGGER.info("Asset value map prop :: {}", valueMap.get(PWConstants.JCR_LAST_MODIFIED));
                             if(map.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
                                 map.remove(PWConstants.CQ_LAST_MODIFIED);
                             }
                             map.put(PWConstants.CQ_LAST_MODIFIED, valueMap.get(PWConstants.JCR_LAST_MODIFIED));
                             resolver.commit();
+                            LOGGER.debug("Added property {} to asset path :: {}", PWConstants.CQ_LAST_MODIFIED,
+                                    assetJcrContentPath);
                             break;
                         }
                     }
