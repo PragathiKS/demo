@@ -257,7 +257,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Mobile Overview Label"
-												fieldDescription="Provide label to present in mobile"
+												fieldDescription="Provide label to present in mobile. Default is Overview"
 												value="Overview"
                                                 name="./mobileOverviewLabel"/>
                                             <errorpages

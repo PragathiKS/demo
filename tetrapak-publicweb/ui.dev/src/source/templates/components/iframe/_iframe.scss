@@ -1,13 +1,29 @@
-.pw-container.pw-frame iframe {
-    @include margin(0 $margin-md);
-    @include padding(0);
-    display: block;
-    height: 100vh;
-    width: calc(100% - 32px);
-    @media #{$desktop} {
-        @include margin(0 $margin-xxxl);
+.pw-container.pw-frame {
+
+    .frame-body {
+        @include margin(0 $margin-md);
+        @media #{$desktop} {
+            @include margin(0 $margin-xxxl);
+        }
+    }
+
+    .padding-regular {
+        @include padding($padding-l $padding-md);
+        @media #{$desktop} {
+            @include padding($padding-xxxl);
+        }
+    }
+
+    iframe {
         @include padding(0);
-        width: calc(100% - 96px);
-	}
+        display: block;
+        height: 100vh;
+        width: 100%;
+        @media #{$desktop} {
+            @include padding(0);
+            width: 100%;
+	   }
+    }
+
 }
 
