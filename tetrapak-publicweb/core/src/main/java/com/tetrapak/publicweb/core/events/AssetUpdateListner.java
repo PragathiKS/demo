@@ -52,7 +52,7 @@ public class AssetUpdateListner implements ResourceChangeListener {
                     if (change.getPath().contains(JcrConstants.JCR_CONTENT)) {
                         final String assetJcrContentPath = StringUtils.substringBefore(change.getPath(),
                                 JcrConstants.JCR_CONTENT) + JcrConstants.JCR_CONTENT;
-                        LOGGER.info("Asset path :: {}", assetJcrContentPath);
+                        LOGGER.debug("Asset path :: {}", assetJcrContentPath);
                         final Resource assetJcrResource = resolver.getResource(assetJcrContentPath);
                         final ValueMap valueMap = assetJcrResource.getValueMap();
                         if (Objects.nonNull(assetJcrResource) && valueMap.containsKey(PWConstants.JCR_LAST_MODIFIED)) {
