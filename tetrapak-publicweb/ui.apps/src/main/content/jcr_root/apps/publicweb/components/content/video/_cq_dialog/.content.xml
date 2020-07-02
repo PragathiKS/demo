@@ -65,7 +65,7 @@
                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                             fieldLabel="DAM Video Path"
                                             name="./damVideoPath"
-                                            rootPath="/content/dam/tetrapak/publicweb"/>
+                                            rootPath="/content/dam/tetrapak"/>
                                     <image
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
