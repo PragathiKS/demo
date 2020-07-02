@@ -313,7 +313,7 @@
                                                 fieldDescription="Original Image should be in 16:9 aspect ratio"
                                                 fieldLabel="Thumbnail Image path"
                                                 name="./imagePath"
-                                                rootPath="/content/dam/tetrapak/publicweb"/>
+                                                rootPath="/content/dam/tetrapak"/>
                                             <imageAltText
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
