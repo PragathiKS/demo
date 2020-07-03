@@ -81,6 +81,7 @@
         .icon-Burger_pw::before {
             font-size: 20px;
             line-height: 20px;
+            vertical-align: middle;
             @media #{$desktop} {
                 font-size: $font-normal;
                 line-height: $font-normal;

@@ -184,6 +184,9 @@
     .pw-progress {
         .pw-progressbar_wrapper {
             @include margin-top($margin-l);
+            @media #{$desktop} {
+                @include margin-top($margin-xxxl);
+             }
         }
         .pw-progressbar__steps {
             @include padding-left($padding-md);
@@ -192,7 +195,7 @@
                 color: $color-congress-blue;
                 font-size: 12px;
                 @media #{$desktop} {
-                    @include margin-top($margin-l);
+                    @include margin-top($margin-xxxl);
                 }
             }
         }
