@@ -101,6 +101,9 @@ h1,h2,h3,h4{
     position: absolute;
     top: 90px;
     z-index: $zindex-s;
+    @media #{$desktop} {
+        top: 80px;
+    }
 }
 .pw-position-relative {
     position: relative;

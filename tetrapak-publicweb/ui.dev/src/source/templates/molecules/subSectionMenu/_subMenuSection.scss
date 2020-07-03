@@ -66,21 +66,20 @@
 
         & > ul,
         .sub-section-category {
+            @include padding($padding-xl);
             background: $color-wild-sand;
             display: flex;
-            box-shadow: 0 4px 16px $shadow;
-            @include padding($padding-xxxl);
-            @include padding-top($padding-l);
         }
 
         hr {
-            @include margin($margin-md 0);
+            @include margin-top($margin-md);
+            @include margin-bottom($margin-l);
             color: $color-mercury;
         }
 
         & > ul {
             & > li {
-                @include margin-left(56px);
+                @include margin-left($margin-xl);
                 &:first-child {
                     @include margin-left(0);
                 }
@@ -110,9 +109,15 @@
         .category-child-ul {
             display: flex;
             & > ul {
-                @include margin-left(56px);
+                @include margin-left($margin-xl);
                 &:first-child {
                     @include margin-left(0);
+                }
+                li {
+                    @include margin-bottom($margin-sm);
+                    &:last-child {
+                        @include margin-bottom($margin-zero);
+                    }
                 }
             }
         }

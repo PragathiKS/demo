@@ -1,4 +1,3 @@
-
 .pw-megamenu {
     visibility: hidden;
     top: 80px;
@@ -9,14 +8,8 @@
     background: $color-white;
     z-index: 11;
 
-    @media #{$desktop} {
-        position: relative;
-        visibility: visible;
-        top: unset;
-        left: unset;
-        width: unset;
-        height: unset;
-        z-index: $zindex-nav;
+    hr {
+        @include margin-top($padding-l);
     }
 
     &.is-open {
@@ -42,25 +35,42 @@
         }
     }
     @media #{$desktop} {
+        @include padding($padding-zero $padding-xxxl);
+        @include margin($margin-zero auto);
+        @include padding-top(25px);
         display: flex;
         overflow: hidden;
         position: absolute;
-        left: 0;
-        width: 100%;
+        visibility: visible;
         justify-content: center;
+        background: none;
+        top: unset;
+        max-width: 1440px;
+        z-index: $zindex-nav;
+        left: 50%;
+        height: unset;
+        transform: translate(-50%);
+
+        hr {
+            @include margin-left(-$margin-xxxl);
+            @include margin-right(-$margin-xxxl);
+            @include margin-top($margin-zero);
+            @include margin-bottom(-$margin-zero);
+            border-top: 1px solid $color-mercury;
+        }
         nav {
+            @include margin-left(0);
             width: 100%;
-            margin: 0 auto;
+            border-top: 1px solid $color-white;
             z-index: $zindex-s;
             position: relative;
+            background-color: $color-white;
         }
-    }
-    hr {
-        @include margin-top($padding-l);
     }
     a {
         color: $color-congress-blue;
         @media #{$desktop} {
+            @include padding($padding-zero);
             color: $color-tundora;
             line-height: 20px;
         }
@@ -183,12 +193,17 @@
         @include padding(0);
         border: 0;
         @media #{$desktop} {
-            border-left: 1px solid $color-mercury;
+            &.col {
+                border-left: 1px solid $color-mercury;
+                width: 100%;
+                flex: 0;
+                max-width: inherit;
+            }
         }
 
         .list-side-links {
             @media #{$desktop} {
-                @include padding-left(20px);
+                @include padding-left($padding-l);
             }
 
             li {
@@ -228,22 +243,28 @@
         }
         .col {
             @media #{$desktop} {
-                width: 168px;
-                max-width: 168px;
+                width: 154px;
+                max-width: 154px;
             }
             @media #{$desktop-xl} {
-                width: 250px;
-                max-width: 250px;
+                width: 249px;
+                max-width: 249px;
             }
         }
+        @media #{$mobile} {
+            @include padding($padding-zero $padding-md);
+        }
         @media #{$desktop} {
-            @include margin($margin-xl 0);
+            @include margin($margin-xl);
         }
     }
     &__bottom {
         border-bottom: 1px solid $color-mercury;
+        @media #{$mobile} {
+            @include padding($padding-zero $padding-md);
+        }
         @media #{$desktop} {
-            @include padding($margin-xl 0);
+            @include padding($margin-xl);
             background-color: $color-wild-sand;
             border-bottom: 0;
         }
@@ -291,7 +312,6 @@
                 }
                 &:hover {
                     color: $color-jordy-blue;
-
                 }
             }
             @media #{$desktop} {
@@ -376,8 +396,10 @@
                 font-weight: 500;
                 line-height: 20px;
                 @media #{$desktop} {
+                    @include margin-top($margin-sm);
+                    @include padding-top($padding-zero);
                     font-size: $font-sm;
-                 }
+                }
             }
         }
     }

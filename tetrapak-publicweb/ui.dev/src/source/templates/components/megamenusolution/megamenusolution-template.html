@@ -3,7 +3,7 @@
     <!--/* Component HTML code goes here */-->
     <hr class="d-none d-lg-block" />
     <nav>
-      <div class="container-fluid pw-megamenu__top">
+      <div class="pw-megamenu__top">
         <sly data-sly-test.isMobile="${!isMobile}">
           <div class="heading-d-link">
             <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
@@ -46,7 +46,7 @@
           </li>
         </ul>
       </div>
-      <div class="container-fluid pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
+      <div class="pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
         <div class="heading-bottom-cta js-open-menu">
           <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
             data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
