@@ -9,6 +9,7 @@ class SectionMenu {
   cache = {};
   initCache() {
     this.cache.$sectionMenuItem = this.root.find('.js-section-menu-navigation-Link');
+    this.cache.$overlay = $('.js-pw-overlay');
   }
 
   bindEvents() {
@@ -101,12 +102,13 @@ class SectionMenu {
   }
 
   handleSectionMenuItemMouseOver = (e) => {
+    const { $overlay } = this.cache;
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
     $this.find('.js-sub-menu-navigation-Link').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true'); // value changed because of one extra div added
     $sectionMenuItemAnchor.children('.with-arrow').addClass('icon-up');
-
+    $overlay.removeClass('d-none');
     /* check modal view port position */
     const modalPoints =$this.children('.js-sub-menu-navigation-Link')[0] && $this.children('.js-sub-menu-navigation-Link')[0].getBoundingClientRect();
     if(modalPoints && modalPoints.left < 0){
@@ -117,11 +119,13 @@ class SectionMenu {
   }
 
   handleSectionMenuItemMouseOut = (e) => {
+    const { $overlay } = this.cache;
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
     $this.find('.js-sub-menu-navigation-Link').removeClass('show').attr('aria-hidden', 'true').attr('aria-expanded','false');
     $sectionMenuItemAnchor.children('.with-arrow').removeClass('icon-up');
+    $overlay.addClass('d-none');
   }
 
   init() {
