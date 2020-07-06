@@ -203,6 +203,7 @@ class Softconversion {
       if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitor']!==`customer-${$componentName}`){
         $company.hide();
         $position.hide();
+        $('.marketing-consent').addClass('no-form-group');
       }
 
       if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitor']===`customer-${$componentName}`){

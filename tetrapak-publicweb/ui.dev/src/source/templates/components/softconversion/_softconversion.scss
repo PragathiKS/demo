@@ -2,6 +2,14 @@
     color: $color-tundora;
     font-weight: 500;
 
+    .formfield {
+        &:last-child {
+            .form-group {
+                @include margin-bottom($margin-zero);
+            }
+        }
+    }
+
     .tp-modal-content {
         @media #{$mobile} {
             min-height: 100vh;
@@ -19,7 +27,7 @@
         @include padding($padding-l $padding-md 0 $padding-md);
         border: 0;
         @media #{$desktop} {
-            @include padding($padding-xxxl $padding-xxxl $padding-md);
+            @include padding($padding-xxxl $padding-xxxl $padding-l);
         }
         &__heading {
             @include font-size($font-l);
@@ -72,7 +80,7 @@
     &__form {
         border-radius: $border-radius;
         .description {
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-md);
             font-weight: 500;
         }
 
@@ -92,7 +100,6 @@
         .radioWrap {
             font-weight: 500;
         }
-
         .form-group {
             @include margin-bottom($margin-md);
             &.field-error {
@@ -111,7 +118,7 @@
         }
 
         .privacy-policy {
-            @include margin-top($margin-l);
+            @include margin-top($margin-md);
             &:hover {
                 a {
                     color: $color-jordy-blue;
@@ -121,8 +128,13 @@
 
         .marketing-consent {
             .form-group {
-                @include margin-top($margin-l);
+                @include margin-top($margin-zero);
                 @include margin-bottom(0);
+            }
+            &.no-form-group {
+                .form-group {
+                    @include margin-top($margin-zero);
+                }
             }
         }
         .text-capital {
@@ -171,7 +183,7 @@
         }
         .right-heading h4 {
             &.tpatom-heading--small {
-                @include margin-bottom($margin-l);
+                @include margin-bottom($margin-md);
                 @include font-size($font-baseline);
                 @include line-height($padding-l, $font-baseline);
                 font-family: $font-black;
@@ -209,7 +221,7 @@
         }
         .main-heading {
             h4 {
-                @include margin-bottom($margin-l);
+                @include margin-bottom($margin-md);
                 overflow-wrap: break-word;
             }
         }
@@ -220,7 +232,7 @@
             }
             h2,
             h3 {
-                @include margin-bottom($margin-md);
+                @include margin-bottom($margin-l);
                 @include font-size($font-l);
                 @include line-height($font-xl, $font-l);
 
@@ -240,8 +252,11 @@
             //    @include margin-bottom($margin-md);
             // }
             div + div {
-                @include margin-bottom($margin-l);
+                @include margin-bottom($margin-sm);
                 font-weight: 900;
+                @media #{$desktop} {
+                    @include margin-bottom($margin-md);
+                }
             }
         }
 
