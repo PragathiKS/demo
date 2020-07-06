@@ -125,6 +125,17 @@
             @include font-size(16px);
             @include line-height(28px, 16px);
             font-family: $font-light;
+            ul {
+                li {
+                    display: flex;
+                    &::before {
+                        @include margin-right($margin-sm);
+                        display: inline-block;
+                        color: $color-tundora;
+                        content: '\2022';
+                    }
+                }
+            }
             @media #{$desktop} {
                 @include font-size(14px);
                 @include line-height(24px, 14px);
