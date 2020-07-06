@@ -26,13 +26,16 @@
                     jcr:lastModified="{Date}2020-06-18T10:33:09.685Z"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="publicweb/components/content/richtext"/>
+                    pwPadding="zero"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    topSpacing="topmargin"/>
                 <image
                     jcr:created="{Date}2020-06-18T10:33:12.878Z"
                     jcr:createdBy="admin"
                     jcr:lastModified="{Date}2020-06-18T10:33:12.878Z"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
+                    pwPadding="zero"
                     sling:resourceType="publicweb/components/content/image"/>
                 <richtext_2067461171
                     jcr:created="{Date}2020-06-18T10:33:27.028Z"
@@ -40,7 +43,9 @@
                     jcr:lastModified="{Date}2020-06-18T10:33:27.028Z"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="publicweb/components/content/richtext"/>
+                    pwPadding="zero"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    topSpacing="nomargin"/>
                 <medialink
                     jcr:created="{Date}2020-06-18T10:33:34.600Z"
                     jcr:createdBy="admin"
