@@ -55,7 +55,7 @@
 
     h1 {
         @include font-size($font-l);
-        @include margin-bottom(16px);
+        @include margin-bottom($margin-md);
         @include line-height(32px, $font-xl);
         font-weight: 300;
     }
@@ -63,19 +63,19 @@
     h2 {
         @include font-size(18px);
         @include line-height(24px, 18px);
-        @include margin-bottom(16px);
+        @include margin-bottom($margin-md);
     }
 
     h3 {
         @include font-size($font-l);
         @include line-height(32px, $font-l);
-        @include margin-bottom(16px);
+        @include margin-bottom($margin-md);
         font-weight: 300;
     }
 
     h4 {
         @include font-size(20px);
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
         @include line-height(28px, 20px);
         font-weight: 500;
     }
@@ -221,23 +221,19 @@
         h1 {
             @include font-size($font-xxl);
             @include line-height(48px, $font-xxl);
-            @include margin-bottom($margin-l);
             font-weight: 300;
         }
         h2 {
             @include font-size($font-xl);
             @include line-height(40px, $font-xl);
-            @include margin-bottom($margin-l);
         }
         h3 {
             @include font-size($font-l);
             @include line-height(32px, $font-l);
-            @include margin-bottom($margin-l);
             font-weight: 300;
         }
         h4 {
             @include font-size($font-md);
-            @include margin-bottom($margin-l);
             @include line-height(48px, $font-md);
             font-weight: 500;
         }
