@@ -28,6 +28,8 @@
         <section class="pw-banner__contentwrapper">
       </sly>
       <div class="pw-banner__content banner-sibling ${data.pwDisplay}"></div>
+      <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay} ${data.subtitle ? '' : 'no-subtitle'}">
+        <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle">
       <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}">
         <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle font-fixing">
           ${data.subtitle @ context='html'}
