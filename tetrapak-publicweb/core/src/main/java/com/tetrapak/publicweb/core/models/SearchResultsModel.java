@@ -55,7 +55,7 @@ public class SearchResultsModel {
 
     /** The configuration model. */
     private SearchConfigModel configurationModel = new SearchConfigModel();
-
+    
     /** The content type list. */
     List<SearchListModel> contentTypeList = new ArrayList<>();
 
@@ -77,14 +77,12 @@ public class SearchResultsModel {
             setContentType(configurationModel.getMediaLabel(), PWConstants.MEDIA);
         }
     }
-
+    
     /**
      * Sets the content type.
      *
-     * @param label
-     *            the label
-     * @param key
-     *            the key
+     * @param label the label
+     * @param key the key
      */
     private void setContentType(String label, String key) {
         if (StringUtils.isNoneBlank(label)) {
@@ -310,10 +308,8 @@ public class SearchResultsModel {
     /**
      * Sets the template map.
      *
-     * @param list
-     *            the list
-     * @param key
-     *            the key
+     * @param list the list
+     * @param key the key
      */
     private void setTemplateMap(List<SearchPathModel> list, String key) {
         if (list != null && !list.isEmpty()) {
