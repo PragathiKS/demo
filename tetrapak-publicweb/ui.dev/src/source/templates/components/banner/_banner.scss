@@ -67,22 +67,16 @@
             right: 0;
          }
     }
-
     &__content {
-        background-color: $color-white;
-        opacity: unset;
-        position: relative;
-        &.no-subtitle {
-            @media #{$desktop} {
-                @include padding-bottom($padding-xl);
-            }
-        }
         @include border-radius($border-radius);
         @include margin(-48px 16px 0 16px);
         @include padding-top($padding-l);
         @include padding-left($padding-md);
         @include padding-bottom($padding-l);
         @include padding-right($padding-md);
+        background-color: $color-white;
+        opacity: unset;
+        position: relative;
         @media #{$desktop} {
             @include margin-top(0);
             @include padding($padding-l $padding-xl);
@@ -177,6 +171,14 @@
         #{ $self }__content {
             @include right($margin-xxl);
             left: auto;
+        }
+    }
+}
+
+.no-subtitle {
+    .pw-banner__content {
+        @media #{$desktop} {
+            @include padding-bottom($padding-xl);
         }
     }
 }
