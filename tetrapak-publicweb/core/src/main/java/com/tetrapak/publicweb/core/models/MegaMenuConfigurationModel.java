@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
@@ -8,11 +11,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
+import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
 
 /**
  * The Class MegaMenuSolutionModel.
@@ -24,17 +23,9 @@ public class MegaMenuConfigurationModel {
     @ValueMapValue
     private String topSectionSubtitle;
 
-    /** The top section url. */
-    @ValueMapValue
-    private String topSectionUrl;
-
     /** The bottom section subtitle. */
     @ValueMapValue
     private String bottomSectionSubtitle;
-
-    /** The bottom section url. */
-    @ValueMapValue
-    private String bottomSectionUrl;
 
     /** The hide food categories. */
     @ValueMapValue
@@ -51,6 +42,10 @@ public class MegaMenuConfigurationModel {
     /** The food category section. */
     @Inject
     private List<MegaMenuSolutionModel> foodCategorySection;
+    
+    /** The pseudo category bean. */
+    @Inject
+    private List<PseudoCategoryModel> pseudoCategoryBean;
 
     /**
      * Gets the top section subtitle.
@@ -62,30 +57,12 @@ public class MegaMenuConfigurationModel {
     }
 
     /**
-     * Gets the top section url.
-     *
-     * @return the top section url
-     */
-    public String getTopSectionUrl() {
-        return LinkUtils.sanitizeLink(topSectionUrl);
-    }
-
-    /**
      * Gets the bottom section subtitle.
      *
      * @return the bottom section subtitle
      */
     public String getBottomSectionSubtitle() {
         return bottomSectionSubtitle;
-    }
-
-    /**
-     * Gets the bottom section url.
-     *
-     * @return the bottom section url
-     */
-    public String getBottomSectionUrl() {
-        return LinkUtils.sanitizeLink(bottomSectionUrl);
     }
 
     /**
@@ -134,5 +111,18 @@ public class MegaMenuConfigurationModel {
             foodCategoryList.addAll(foodCategorySection);
         }
         return foodCategoryList;
+    }
+    
+    /**
+     * Gets the  pseudo category list.
+     *
+     * @return the  pseudo category list
+     */
+    public List<PseudoCategoryModel> getPseudoCategoryList() {
+        final List<PseudoCategoryModel> pseudoCategoryList = new ArrayList<>();
+        if (CollectionUtils.isNotEmpty(pseudoCategoryBean)) {
+            pseudoCategoryList.addAll(pseudoCategoryBean);
+        }
+        return pseudoCategoryList;
     }
 }

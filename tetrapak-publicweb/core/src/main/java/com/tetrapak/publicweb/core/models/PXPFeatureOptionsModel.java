@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
@@ -18,7 +22,12 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 /**
  * The Class PXPFeatureOptionsModel.
  */
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PXPFeatureOptionsModel {
+
+    /** The resource. */
+    @Self
+    private Resource resource;
 
     /** The pw theme. */
     @ValueMapValue
@@ -59,24 +68,26 @@ public class PXPFeatureOptionsModel {
     public List<TabModel> setTabList(List<FeatureOption> featureOptions) {
         List<TabModel> tabs = new ArrayList<>();
         for (FeatureOption feature : featureOptions) {
-            TabModel tab = new TabModel();
-            tab.setTitle(feature.getHeader());
-            tab.setSubTitle(feature.getName());
-            tab.setDescription(feature.getBody());
-            if (StringUtils.isNotBlank(feature.getImage())) {
-                tab.setFileReference(feature.getImage());
-                tab.setAlt(feature.getName());
-                tab.setTabType("imageText");
-            } else if (Objects.nonNull(feature.getVideo())) {
-                String damVideoPath = feature.getVideo().getSrc();
-                damVideoPath = setDynamicMediaVideoPath(damVideoPath);
-                tab.setDamVideoPath(damVideoPath);
-                tab.setThumbnailPath(feature.getVideo().getPoster());
-                tab.setThumbnailAltText(feature.getName());
-                tab.setTabType("videoText");
-                tab.setVideoSource("damVideo");
+            if (Objects.nonNull(feature.getHeader())) {
+                TabModel tab = new TabModel();
+                tab.setTitle(feature.getHeader());
+                tab.setSubTitle(feature.getName());
+                tab.setDescription(feature.getBody());
+                if (StringUtils.isNotBlank(feature.getImage())) {
+                    tab.setFileReference(feature.getImage());
+                    tab.setAlt(feature.getName());
+                    tab.setTabType("imageText");
+                } else if (Objects.nonNull(feature.getVideo())) {
+                    String damVideoPath = feature.getVideo().getSrc();
+                    damVideoPath = setDynamicMediaVideoPath(damVideoPath);
+                    tab.setDamVideoPath(damVideoPath);
+                    tab.setThumbnailPath(feature.getVideo().getPoster());
+                    tab.setThumbnailAltText(feature.getName());
+                    tab.setTabType("videoText");
+                    tab.setVideoSource("damVideo");
+                }
+                tabs.add(tab);
             }
-            tabs.add(tab);
         }
         return tabs;
     }
@@ -90,7 +101,8 @@ public class PXPFeatureOptionsModel {
      */
     private String setDynamicMediaVideoPath(String damVideoPath) {
         if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath,
+                    dynamicMediaService);
         }
         return damVideoPath;
     }

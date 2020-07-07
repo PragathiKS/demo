@@ -1,6 +1,8 @@
 import Breadcrumb from './Breadcrumb';
 import $ from 'jquery';
 import breadcrumbTemplate from '../../../test-templates-hbs/breadcrumb.hbs';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+
 
 describe('Breadcrumb', function () {
   before(function () {
@@ -23,7 +25,7 @@ describe('Breadcrumb', function () {
   it('should initialize', function () {
     expect(this.breadcrumb.init.called).to.be.true;
   });
-  
+
   it('should call track analytics on click', function () {
     $('.js-tp_pw-breadcrumb__link').trigger('click');
     expect(this.breadcrumb.trackAnalytics.called).to.be.true;

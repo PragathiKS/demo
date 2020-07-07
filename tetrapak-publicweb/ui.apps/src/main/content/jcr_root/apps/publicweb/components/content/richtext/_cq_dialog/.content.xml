@@ -131,9 +131,13 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/include"
                                     path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
                             <padding
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                                    path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/padding"/>
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/padding"/>
+                            <topmargin
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/topmargin"/>
                         </items>
                     </column>
                 </items>

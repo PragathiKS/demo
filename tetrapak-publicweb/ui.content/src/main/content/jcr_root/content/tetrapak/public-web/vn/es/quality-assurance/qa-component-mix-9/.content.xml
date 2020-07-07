@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:23:34.956Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T13:11:57.547Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:42.648Z"
+        cq:tags="[tetrapak:funnel-stages/interest]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-9"
+        jcr:description="Automation is about controlling your equipment, lines and all of your operations. The greater your control, the more value you can squeeze out of your production. We bring you over 40 years of experience in providing automation and information solutions tailored to the needs of the food industry – your needs – and have embedded that intelligence in our equipment and production solutions. This ensures you total control of plant operations, and the benefits that brings: enhanced and guaranteed performance, consistent product quality, uncompromising food safety and reduced environmental impact.​​"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Automation &amp; Information Solutions control your equipment, lines and operations"
+        jcr:uuid="13e1dfe5-c074-4241-910d-e4ffc294bdc5"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Ice Cream"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/tetra-recart-carton-package.jpg"
+        linkPath="/content/tetrapak/public-web/vn/es/home"
+        linkTarget="_self"
+        linkText="Click to navigate to Home Page"
+        pwButtonTheme="secondary"
+        pwLinkTheme="hyperlink"/>
+</jcr:root>

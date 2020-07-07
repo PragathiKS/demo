@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:32:18.933Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:08:27.255Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:42.952Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/allComponents"
+        jcr:description="Pageᵀᴹ with all Componentsₜₘ Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Pageᵀᴹ with all Componentsₜₘ Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+        jcr:uuid="b89c9584-1796-4afa-8bfd-c2169c93f3b8"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <breadcrumb
+                    jcr:created="{Date}2020-04-30T13:17:35.702Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-30T13:17:35.702Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <anchor
+                    jcr:created="{Date}2020-04-30T13:17:23.370Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-30T13:17:23.370Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/anchor"/>
+                <banner
+                    jcr:created="{Date}2020-04-30T13:18:25.017Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T11:58:57.410Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    alt="Tetra Pak® Servicesᵣ"
+                    anchorId="anchorid1"
+                    anchorTitle="Tetra Pak® Servicesᵣ 1"
+                    bannerType="textImage"
+                    fileReference="/content/dam/tetrapak/publicweb/demo-assets/3x1.png"
+                    linkLabel="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    linkPath="/content/tetrapak/public-web/lang-masters/es/home"
+                    linkTarget="_self"
+                    pwButtonTheme="secondary"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subtitle="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub"
+                    text="Tetra Pak&lt;sup>®&lt;/sup> Servicesᵣ"
+                    title="Tetra Pak&lt;sup>®&lt;/sup >Services"/>
+                <medialink
+                    jcr:created="{Date}2020-04-30T13:21:51.706Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T11:58:34.023Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/mediaLink"
+                    anchorId="anchorid2"
+                    anchorTitle="Tetra Pak® Servicesᵣ 2"
+                    columnOneTitle="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    heading="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    pwTheme="grayscale-white">
+                    <columnOneList jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                            linkUrl="/content/tetrapak/public-web/lang-masters/es/home"/>
+                    </columnOneList>
+                </medialink>
+                <richtext
+                    jcr:created="{Date}2020-04-30T13:22:39.172Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T11:59:23.088Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    anchorId="anchorid3"
+                    anchorTitle="Tetra Pak® Servicesᵣ 3"
+                    pwPadding="regular"
+                    pwTheme="grayscale-white"
+                    text="&lt;p>Tetra Pak&lt;sup>®&lt;/sup>Servicesᵣ&lt;sub>©&lt;/sub>&lt;/p>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <tabslist
+                    jcr:created="{Date}2020-04-30T13:23:01.979Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T11:59:48.467Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    anchorId="anchorid4"
+                    anchorTitle="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    contentType="semi-automatic"
+                    heading="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    logicalOperator="and"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMorePath="/content/tetrapak/public-web/lang-masters/es/about-tetra-pak"
+                    readMoreTarget="_self"
+                    readMoreText="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>">
+                    <tabsSemi jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/lang-masters/es/quality-assurance/allComponents"/>
+                    </tabsSemi>
+                </tabslist>
+                <teaser
+                    jcr:created="{Date}2020-04-30T13:24:08.843Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T12:00:16.059Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    anchorId="anchorid5"
+                    anchorTitle="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    contentType="manual"
+                    heading="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    logicalOperator="and"
+                    pwTheme="grayscale-white">
+                    <manualList jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            description="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                            linkPath="/content/tetrapak/public-web/lang-masters/es/home"
+                            linkTarget="_self"
+                            linkText="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"/>
+                    </manualList>
+                </teaser>
+                <textimage
+                    jcr:created="{Date}2020-04-30T13:24:54.004Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T12:00:36.759Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textImage"
+                    anchorId="anchorid6"
+                    anchorTitle="Tetra Pak® Servicesᵣ 6"
+                    description="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    imageAltText="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    imagePath="/content/dam/tetrapak/publicweb/demo-assets/Strawberry.png"
+                    linkText="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    linkURL="/content/tetrapak/public-web/lang-masters/es/about-tetra-pak"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subTitle="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    targetBlank="_self"
+                    title="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"/>
+                <textvideo
+                    jcr:created="{Date}2020-04-30T13:25:45.124Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T12:00:55.382Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textVideo"
+                    anchorId="anchorid7"
+                    anchorTitle="Tetra Pak® Servicesᵣ 7"
+                    description="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    linkTexti18n="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    linkURL="/content/tetrapak/public-web/lang-masters/es/home"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subTitle="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    targetBlank="_self"
+                    title="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"
+                    videoSource="youtube"
+                    youtubeVideoID="1X7zhVCIUtg"/>
+                <findmyoffice
+                    jcr:created="{Date}2020-04-30T13:26:35.264Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T12:01:05.444Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/findMyOffice"
+                    anchorId="anchorid8"
+                    anchorTitle="Tetra Pak® Servicesᵣ 8"
+                    heading="Tetra Pak&lt;sup>®&lt;/sup >Servicesᵣ&lt;sub>&amp;copy&lt;/sub>"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

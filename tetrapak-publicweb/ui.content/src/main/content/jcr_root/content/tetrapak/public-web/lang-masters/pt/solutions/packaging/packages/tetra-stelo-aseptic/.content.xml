@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:31:21.197Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:06:50.406Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:22:05.420Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-package-type-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/solutions/packaging/packages/tetra-stelo-aseptic"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tetra Stelo Aseptic"
+        jcr:uuid="09a8a386-2134-4ff5-8f88-3d7e7bddde74"
+        sling:resourceType="publicweb/components/structure/pages/pxpproductpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        productId="pxp3_tetra_stelo_aseptic"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <breadcrumb
+                    jcr:created="{Date}2020-05-04T13:44:24.038+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-04T13:44:24.038+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <pxpshapesandvolumes
+                    jcr:created="{Date}2020-05-04T13:44:02.176+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-07T13:26:03.094+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpshapesandvolumes"
+                    heading="Shapes &amp; Volumes"
+                    pwTheme="grayscale-white"/>
+                <pxpopenings
+                    jcr:created="{Date}2020-05-04T13:45:49.058+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-04T13:45:49.058+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpopenings"/>
+                <pxpfillingmachines
+                    jcr:created="{Date}2020-05-04T13:45:52.991+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-07T13:40:44.791+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/pxp/pxpfillingmachines"
+                    heading="Filling machine"
+                    linkText="Read more"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

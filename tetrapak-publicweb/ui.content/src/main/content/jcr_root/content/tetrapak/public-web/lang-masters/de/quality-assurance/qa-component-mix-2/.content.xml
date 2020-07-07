@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:32:32.843Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:33.672Z"
+        cq:tags="[tetrapak:funnel-stages,tetrapak:funnel-stages/interest]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-2"
+        jcr:description="With the global demand for milk set to overtake supply within a decade, the dairy industry is facing immense pressure. Through our Dairy Hub model, we help build sustainable value chains by training smallholder farmers and creating a link for our customers to source higher-quality milk."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Dairy development"
+        jcr:uuid="a3fc1669-bd22-48c2-b11b-8dc6329db5a1"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Pakistani Farmer"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/pakistanian_farmer.png"
+        linkPath="http://tetrapak.com/"
+        linkTarget="_blank"
+        linkText="Agg Link"
+        linkType="button"
+        pwButtonTheme="secondary"
+        pwLinkTheme="hyperlink">
+        <root jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <breadcrumb
+                    jcr:created="{Date}2020-04-06T07:21:32.043Z"
+                    jcr:createdBy="sapient-jyoti"
+                    jcr:lastModified="{Date}2020-04-06T07:21:32.043Z"
+                    jcr:lastModifiedBy="sapient-jyoti"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <banner
+                    jcr:created="{Date}2020-04-13T04:19:06.309Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-13T09:24:55.152Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"
+                    alt="Alt text for image"
+                    anchorId="Anchor ID"
+                    anchorTitle="Anchor Title"
+                    bannerType="textImage"
+                    fileReference="/content/dam/tetrapak/publicweb/images/RealImage.png"
+                    imageCrop="563,0,1113,340"
+                    linkLabel="Link Label"
+                    linkPath="/content/tetrapak/public-web/lang-masters/de/quality-assurance"
+                    linkTarget="_self"
+                    pwButtonTheme="secondary"
+                    pwDisplay="display-row-reversed"
+                    pwLinkTheme="download"
+                    pwTheme="grayscale-white"
+                    subtitle="Subtitle"
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Qua tu etiam inprudens utebare non numquam. Sed ad haec, nisi molestum est, habeo quae velim. Quid ergo attinet gloriose loqui, nisi constanter loquare? Sed ne, du"
+                    title="Component Title"/>
+                <textimage
+                    jcr:created="{Date}2020-04-13T04:20:04.871Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-13T08:39:01.170Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textImage"
+                    anchorId="Anchor ID"
+                    anchorTitle="Anchor Title"
+                    description="Low operational cost due to the high level of automation which reduces the need for manual operation (one person only)&#xd;&#xa;Smart design for safe and easy operation with high production performance&#xd;&#xa;Wide range of products to be filled"
+                    imagePath="/content/dam/tetrapak/publicweb/demo-assets/Cooking.png"
+                    linkText="Link Text Random"
+                    linkURL="http://tetrapak.com/packaging/tetra-pak-r1"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subTitle="Tetra Pak® R1"
+                    targetBlank="_blank"
+                    title="A FLEXIBLE, HIGH SPEED AND HIGHLY AUTOMATED FORM AND SEAL MACHINE"/>
+                <richtext_1717502187
+                    jcr:created="{Date}2020-04-13T05:39:32.599Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-13T06:06:43.062Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    pwPadding="regular"
+                    pwTheme="grayscale-white"
+                    text="&lt;p>&lt;img class=&quot;img-responsive&quot; src=&quot;https://assets.tetrapak.com/static/publishingimages/services/content-image/cnbc-johan-nilsson.jpg&quot; alt=&quot;CNBC interview with Johan Nilsson&quot; title=&quot;CNBC interview with Johan Nilsson&quot;>&lt;/p>&#xd;&#xa;&lt;h2 id=&quot;CNBC&quot;>CNBC features Tetra Pak Digitalisation&lt;/h2>&#xd;&#xa;&lt;p>What does digitalisation look like in practice for the Food &amp;amp; Beverage industry? Watch the CNBC interview “Here’s why a world leader in food packaging is turning to mixed reality and the cloud” to hear how we use data, mixed reality and digitalisation to solve our customer challenges.&lt;/p>&#xd;&#xa;&lt;p>What does digitalisation look like in practice for the Food &amp;amp; Beverage industry? Watch the CNBC interview “Here’s why a world leader in food packaging is turning to mixed reality and the cloud” to hear how we use data, mixed reality and digitalisation to solve our customer challenges.&lt;/p>&#xd;&#xa;&lt;p>&lt;a class=&quot;btn&quot; href=&quot;https://www.cnbc.com/2018/07/23/a-world-leader-in-packaging-is-turning-to-mixed-reality-and-the-cloud.html&quot; target=&quot;_blank&quot;>Watch CNBC interview&lt;/a>&lt;/p>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <richtext_1521399007
+                    jcr:created="{Date}2020-04-13T05:45:02.393Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-13T06:02:54.983Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    anchorId="Anchor ID"
+                    anchorTitle="Anchor Title"
+                    pwPadding="regular"
+                    pwTheme="grayscale-lighter"
+                    text="&lt;h1>Esse enim quam vellet iniquus iustus poterat inpune.&lt;/h1>&#xd;&#xa;&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. &lt;a href=&quot;http://loripsum.net/&quot; target=&quot;_blank&quot;>Huius ego nunc auctoritatem sequens idem faciam.&lt;/a> &lt;a href=&quot;http://loripsum.net/&quot; target=&quot;_blank&quot;>Ex rebus enim timiditas, non ex vocabulis nascitur.&lt;/a> Atque ab isto capite fluere necesse est omnem rationem bonorum et malorum. Sin autem est in ea, quod quidam volunt, nihil impedit hanc nostram comprehensionem summi boni. Mihi enim erit isdem istis fortasse iam utendum. Quis enim confidit semper sibi illud stabile et firmum permansurum, quod fragile et caducum sit? Duo Reges: constructio interrete. Nulla profecto est, quin suam vim retineat a primo ad extremum. Id et fieri posse et saepe esse factum et ad voluptates percipiendas maxime pertinere.&lt;/p>&#xd;&#xa;&lt;h2>Philosophi autem in suis lectulis plerumque moriuntur.&lt;/h2>&#xd;&#xa;&lt;p>Duarum enim vitarum nobis erunt instituta capienda. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; &lt;i>Sed haec omittamus;&lt;/i> Omnes enim iucundum motum, quo sensus hilaretur. Amicitiam autem adhibendam esse censent, quia sit ex eo genere, quae prosunt. Expectoque quid ad id, quod quaerebam, respondeas. Stoicos roga. Qui enim existimabit posse se miserum esse beatus non erit. Prioris generis est docilitas, memoria; Quamquam te quidem video minime esse deterritum.&lt;/p>&#xd;&#xa;&lt;ol>&#xd;&#xa;&lt;li>Que Manilium, ab iisque M.&lt;/li>&#xd;&#xa;&lt;li>Cur deinde Metrodori liberos commendas?&lt;/li>&#xd;&#xa;&lt;li>Theophrastus mediocriterne delectat, cum tractat locos ab Aristotele ante tractatos?&lt;/li>&#xd;&#xa;&lt;li>Vitae autem degendae ratio maxime quidem illis placuit quieta.&lt;/li>&#xd;&#xa;&lt;li>Cur fortior sit, si illud, quod tute concedis, asperum et vix ferendum putabit?&lt;/li>&#xd;&#xa;&lt;/ol>&#xd;&#xa;&lt;ul>&#xd;&#xa;&lt;li>Vitiosum est enim in dividendo partem in genere numerare.&lt;/li>&#xd;&#xa;&lt;li>Eam si varietatem diceres, intellegerem, ut etiam non dicente te intellego;&lt;/li>&#xd;&#xa;&lt;li>Materiam vero rerum et copiam apud hos exilem, apud illos uberrimam reperiemus.&lt;/li>&#xd;&#xa;&lt;li>Quem si tenueris, non modo meum Ciceronem, sed etiam me ipsum abducas licebit.&lt;/li>&#xd;&#xa;&lt;li>Servari enim iustitia nisi a forti viro, nisi a sapiente non potest.&lt;/li>&#xd;&#xa;&lt;/ul>&#xd;&#xa;&lt;p>Cur id non ita fit? &lt;mark>Quis non odit sordidos, vanos, leves, futtiles?&lt;/mark> Hoc est dicere: Non reprehenderem asotos, si non essent asoti. Utrum igitur tibi litteram videor an totas paginas commovere?&lt;/p>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <tabslist
+                    jcr:created="{Date}2020-04-15T16:45:01.336Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-04-15T16:45:01.336Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"/>
+                <image
+                    jcr:created="{Date}2020-04-24T12:25:30.783Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-04-24T12:26:31.231Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/image"
+                    fileReference="/content/dam/tetrapak/publicweb/demo-assets/3x1.png"
+                    pwPadding="regular"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

@@ -14,7 +14,7 @@
         jcr:primaryType="cq:PageContent"
         jcr:title="English"
         jcr:uuid="682a4138-3b11-45af-84ca-2783ceaf07bc"
-        sling:resourceType="publicweb/components/structure/pages/emptypage"
+        sling:resourceType="publicweb/components/structure/pages/languagepage"
         errorPages="/content/tetrapak/public-web/lang-masters/en/error"
         socialMedia="[facebook,pinterest]">
         <root
@@ -228,4 +228,5 @@
     <contact-us/>
     <error/>
     <quality-assurance/>
+    <templates/>
 </jcr:root>

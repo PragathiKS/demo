@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
 import { initializeDAMPlayer,ytPromise,initializeYoutubePlayer } from '../../../scripts/utils/videoAnalytics';
 class TextVideo {
   constructor({ el }) {
@@ -12,61 +12,29 @@ class TextVideo {
     this.cache.$textVideoButton = this.root.find('.js-textVideo-analytics');
     ytPromise.then(() => { initializeYoutubePlayer(); });
     initializeDAMPlayer();
+    this.cache.componentName = this.root.find('#componentName-textvideo').val();
   }
 
   bindEvents() {
     const { $textVideoButton } = this.cache;
     $textVideoButton.on('click', this.trackAnalytics);
+
+    this.root.find('.js-softconversion-pw-textvideo').on('click', (e) => {
+      getLinkClickAnalytics(e,'video-title','Text & Video','.js-softconversion-pw-textvideo', false);
+      $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
+    });
   }
 
 
   trackAnalytics = (e) => {
     e.preventDefault();
-    const $target = $(e.target);
-    const $this = $target.closest('.js-textVideo-analytics');
-    let linkParentTitle = '';
-    let trackingObj = {};
-    const dwnType = 'ungated';
-    const eventType = 'download';
-    const linkType = $this.attr('target') === '_blank'?'external':'internal';
-    const linkSection = $this.data('link-section');
-    const linkName = $this.data('link-name');
-    const videoTitle = $this.data('video-title');
-    const buttonLinkType = $this.data('button-link-type');
-    const downloadtype = $this.data('download-type');
-    const dwnDocName = $this.data('asset-name');
-
-    if(buttonLinkType==='secondary' && downloadtype ==='download'){
-      linkParentTitle = `CTA_Download_pdf_${videoTitle}`;
-    }
-
-    if(buttonLinkType==='link' && downloadtype ==='download'){
-      linkParentTitle = `Text hyperlink_Download_pdf_${videoTitle}`;
-    }
-
-    if(downloadtype ==='download'){
-      trackingObj = {
-        linkType,
-        linkSection,
-        linkParentTitle,
-        linkName,
-        dwnDocName,
-        dwnType,
-        eventType
-      };
-      trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false);
-    }
-
-    if(downloadtype!=='download' && $this.attr('target')==='_blank'){
-      window._satellite.track('linkClick');
-    }
-
-    window.open($this.attr('href'), $this.attr('target'));
+    getLinkClickAnalytics(e,'video-title','Text & Video','.js-textVideo-analytics');
   }
 
   init() {
     this.initCache();
     this.bindEvents();
+    addLinkAttr('.js-textVideo-analytics');
   }
 }
 

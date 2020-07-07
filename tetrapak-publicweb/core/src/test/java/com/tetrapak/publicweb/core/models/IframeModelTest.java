@@ -54,6 +54,7 @@ public class IframeModelTest {
         Assert.assertEquals("https://tsoperationalbenchmark.tetrapak.com/Templates/Pages/Intro.aspx", model.getIframe());
         Assert.assertEquals("anchorId", model.getAnchorId());
         Assert.assertEquals("anchor title", model.getAnchorTitle());
+        Assert.assertEquals("regular", model.getPaddingOption());
     }
 
 }

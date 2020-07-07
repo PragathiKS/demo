@@ -11,7 +11,6 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class IframeModel {
 
-
     /** The anchor id. */
     @ValueMapValue
     private String anchorId;
@@ -24,7 +23,15 @@ public class IframeModel {
     @ValueMapValue
     private String iframe;
 
-   
+    /** The padding option. */
+    @ValueMapValue
+    private String paddingOption;
+
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
     public String getAnchorId() {
         return anchorId;
     }
@@ -47,5 +54,13 @@ public class IframeModel {
         return iframe;
     }
 
-  
+    /**
+     * Gets the padding option.
+     *
+     * @return the padding option
+     */
+    public String getPaddingOption() {
+        return paddingOption;
+    }
+
 }

@@ -22,14 +22,14 @@
                                 fieldDescription="Link to Logo image"
                                 fieldLabel="Logo Image path"
                                 name="./logoImagePath"
-                                rootPath="/content/dam/tetrapak/publicweb"/>
+                                rootPath="/content/dam/tetrapak"/>
                             <logolink
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldDescription="Where the logo should direct"
                                 fieldLabel="Logo Image link"
                                 name="./logoLink"
-                                rootPath="/content/tetrapak/public-web"/>
+                                rootPath="/content/tetrapak/publicweb"/>
                             <logoalt
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -37,14 +37,6 @@
                                 fieldLabel="Logo Image Alt Text"
                                 name="./logoAlt"
                                 required="true"/>
-                            <logolinktarget
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Open link in a new window ?"
-                                name="./logoLinkTarget"
-                                text="New Window"
-                                uncheckedValue="_self"
-                                value="_blank"/>
                             <loginlabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -56,34 +48,35 @@
                                 fieldDescription="Link to MyTetraPak Login screen "
                                 fieldLabel="My TetraPak Link"
                                 name="./loginLink"
-                                rootPath="/content/tetrapak/public-web"/>
-                            <contacttext
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Hover text"
-                                fieldLabel="Contact Title"
-                                name="./contactText"/>
+                                rootPath="/content/tetrapak/publicweb"/>
                             <contactlink
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Link to contact us page"
-                                fieldLabel="Contact Link"
+                                fieldLabel="Contact Us Link"
                                 name="./contactLink"
-                                rootPath="/content/tetrapak/public-web"/>
-                            <contactlinktarget
+                                rootPath="/content/tetrapak/publicweb"/>
+							<contacttext
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Open link in a new window ?"
-                                name="./contactLinkTarget"
-                                text="New Window"
-                                uncheckedValue="_self"
-                                value="_blank"/>
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Contact Us Alt Text"
+                                name="./contactText"/>
                             <solutionpage
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldLabel="Solution page path"
                                 name="./solutionPage"
-                                rootPath="/content/tetrapak/public-web"/>
+                                rootPath="/content/tetrapak/publicweb"/>
+                            <marketTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Market Selector Title"
+                                name="./marketTitle"/>
+                            <searchpage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Search page path"
+                                name="./searchPage"
+                                rootPath="/content/tetrapak/publicweb"/>
                         </items>
                     </column>
                 </items>

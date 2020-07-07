@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:32:19.987Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastReplicated="{Date}2020-05-22T11:08:28.211Z"
+        cq:lastReplicatedBy="sapient-user"
+        cq:lastReplicationAction="Activate"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:28.414Z"
+        cq:tags="[tetrapak:material-type/3d-models,tetrapak:material-type/advertisments]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/home"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Home Page"
+        jcr:uuid="7a44ca70-e4e2-4817-bd14-a8ff35ed6cd2"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        disableEnvelope="true"
+        hideInNav="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:mixinTypes="[cq:ReplicationStatus]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <video
+                    jcr:created="{Date}2020-03-31T04:22:44.813Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-06T11:32:36.012Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/video"
+                    anchorId="Anchor ID"
+                    anchorTitle="Anchor Title"
+                    damVideoPath="/content/dam/tetrapak/publicweb/en/global/videos/Transform_your_business_sustainably.mp4"
+                    posterImageAltText="alt"
+                    pwTheme="grayscale-white"
+                    thumbnailPath="/content/dam/tetrapak/publicweb/demo-assets/My Tetra Pak launch video thumbnail.jpg"
+                    videoSource="youtube"
+                    youtubeVideoID="1X7zhVCIUtg?rel=0"/>
+                <imagetextbutton
+                    jcr:created="{Date}2019-03-22T18:01:43.627Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-12-04T14:34:35.788Z"
+                    jcr:lastModifiedBy="roomahaj"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/imageTextButton"
+                    ctaLinkTexti18n="Discover our range of solutions"
+                    ctaLinkURL="/content/tetrapak/public-web/lang-masters/de/solutions"
+                    description="From idea to launch - and beyond. Let us help you integrate and manage the whole value chain of processing and packaging through our complete solutions for food and beverages, expertise and innovations. We are ready to increase efficiency, optimise performance and secure food quality - in a sustainable way. With us as your trusted partner, business will become easier"
+                    imageAltI18n="Discover our range of solutions"
+                    imagePath="/content/dam/publicweb/articles/shopping.png"
+                    pwButtonTheme="secondary"
+                    pwTheme="grayscale-white"
+                    subtitle="COMPLETE SOLUTIONS"
+                    title="Ensure efficiency and quality"/>
+                <textvideo
+                    jcr:created="{Date}2019-03-22T18:13:48.085Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-04-28T10:13:42.547Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textVideo"
+                    damVideoPath="/content/dam/publicweb/videos/SampleVideo_1280x720_5mb.mp4"
+                    description="Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart enviromental thinking. We help you turning ideas into products that your customers love."
+                    linkTexti18n="Discover what we can do for your products"
+                    linkURL="/content/tetrapak/public-web/lang-masters/de/careers"
+                    pwButtonTheme="secondary"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwPadding="regular"
+                    pwTheme="grayscale-white"
+                    targetBlank="_self"
+                    textAlignment="text-right"
+                    thumbnailPath="/content/dam/tetrapak/publicweb/demo-assets/My Tetra Pak launch video thumbnail.jpg"
+                    title="Turn your products into success"
+                    videoSource="damVideo"
+                    youtubeVideoID="ZofQqevIIZA"/>
+                <imagetextbanner
+                    jcr:created="{Date}2019-03-22T18:42:20.680Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-04-22T10:05:19.189-03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/imageTextBanner"
+                    bannerCtaPath="/content/dam/publicweb/articles/Children.png"
+                    bannerCtaTextI18n="Get to know the millenials"
+                    bannerCtaTooltipI18n="Get to know the millenials"
+                    bannerDescriptionI18n="Young, aspirational and demanding. They spend approximately $600 billion anually. But who are the millenials? How can you optimise your products and packages to meet their needs?"
+                    bannerSubtitleI18n="RECOMMENDED WHITEPAPER"
+                    contentAlignment="pw-banner--right"
+                    desktopImage="/content/dam/publicweb/banners/Yogurt1416.png"
+                    desktopImageAltI18n="How well do you know the millenials?"
+                    mobileImage="/content/dam/publicweb/banners/Yogurt1416.png"
+                    mobileImageAltI18n="How well do you know the millenials?"
+                    targetSoftConversion="on"
+                    titleI18n="How well do you know the millenials?"/>
+                <textvideo_1096458480
+                    jcr:created="{Date}2019-12-04T14:30:59.480Z"
+                    jcr:createdBy="roomahaj"
+                    jcr:lastModified="{Date}2020-05-04T12:25:25.614Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textVideo"
+                    description="description for the text video to see how it behaves"
+                    pwButtonTheme="secondary"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwPadding="regular"
+                    pwTheme="grayscale-white"
+                    targetBlank="_self"
+                    title="text video"
+                    videoSource="youtube"
+                    youtubeVideoID="ROR5Pcg9yJg?rel=0"/>
+                <tabslist
+                    jcr:created="{Date}2020-05-06T05:59:23.204Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-06T11:34:24.445Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"
+                    contentType="manual"
+                    logicalOperator="or"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    readMoreTarget="_self">
+                    <tabsManual jcr:primaryType="nt:unstructured">
+                        <item0
+                            jcr:primaryType="nt:unstructured"
+                            pwLinkTheme="hyperlink"
+                            tabType="videoText"
+                            targetBlank="_self"
+                            title="Android &lt;sub>R&lt;/sub>"
+                            videoSource="youtube"
+                            youtubeVideoID="fR-esiS1Pn0?rel=0"/>
+                    </tabsManual>
+                </tabslist>
+                <tabslist_1072277302
+                    jcr:created="{Date}2020-05-07T10:46:07.904Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-07T10:46:07.904Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"/>
+                <tabslist_2031636260
+                    jcr:created="{Date}2020-05-07T10:46:18.012Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-07T10:46:18.012Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/tabslist"/>
+                <softconversionform
+                    jcr:created="{Date}2019-04-21T15:24:18.631-03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-01-28T09:35:27.445Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/softConversionForm"
+                    buttonLabel="Soft Conversion Btn"
+                    companyLabel="Company"
+                    description="In the whitepaper 4 tips to help you choose the right hight Shear Mixer you will learn about selecting the High Shear Mixer that maximises your flexibility and bottom line, while ensuring food safety for your customers."
+                    documentPath="/content/dam/publicweb/1320x500-test1.png"
+                    emailAddressLabel="Email Address"
+                    firstNameLabel="First Name"
+                    headline="Sign Up in a few easy steps to download the whitepaper"
+                    lastNameLabel="Last Name"
+                    nextButtonLabel="Next"
+                    positionLabel="Position"
+                    previousButtonLabel="Previous"
+                    submitButtonLabel="Submit"
+                    titleI18n="How to choose the right High Shear Mixer"/>
+                <richtext
+                    jcr:created="{Date}2019-12-10T09:45:46.514Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-12-10T09:47:57.866Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    text="&lt;table cellpadding=&quot;1&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; width=&quot;100&quot; height=&quot;100&quot;>&#xd;&#xa;&lt;caption>xyz&lt;/caption>&#xd;&#xa;&lt;tbody>&lt;tr>&lt;th scope=&quot;col&quot;>Column1&lt;/th>&#xd;&#xa;&lt;th scope=&quot;col&quot;>Column2&lt;/th>&#xd;&#xa;&lt;th scope=&quot;col&quot;>Column3&lt;/th>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>a1&lt;/td>&#xd;&#xa;&lt;td>aa2&lt;/td>&#xd;&#xa;&lt;td>a3&lt;/td>&#xd;&#xa;&lt;/tr>&lt;/tbody>&lt;/table>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <contactfooterform
+                    jcr:created="{Date}2019-04-08T14:52:02.551-03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2019-04-08T14:52:02.551-03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/contactFooterForm"/>
+                <image
+                    jcr:created="{Date}2020-05-11T11:48:45.567Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-11T11:48:45.567Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/image"/>
+            </responsivegrid>
+        </root>
+        <header
+            jcr:lastModified="{Date}2019-04-05T07:41:07.438Z"
+            jcr:lastModifiedBy="sapient-user"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="publicweb/components/structure/header"
+            enableHeroImage="true"
+            loginTextI18n="My Tetra Pak"
+            megamenuLinks="[{&quot;linkTextI18n&quot;:&quot;Solutions&quot;\,&quot;linkTooltipI18n&quot;:&quot;Solutions&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/lang-masters/de/solutions&quot;},{&quot;linkTextI18n&quot;:&quot;Insights&quot;\,&quot;linkTooltipI18n&quot;:&quot;Insights&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/lang-masters/de/innovations&quot;},{&quot;linkTextI18n&quot;:&quot;Sustainability&quot;\,&quot;linkTooltipI18n&quot;:&quot;Sustainability&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/lang-masters/de/sustainability&quot;},{&quot;linkTextI18n&quot;:&quot;Careers&quot;\,&quot;linkTooltipI18n&quot;:&quot;Carrers&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/lang-masters/de/careers&quot;},{&quot;linkTextI18n&quot;:&quot;About us&quot;\,&quot;linkTooltipI18n&quot;:&quot;About us&quot;\,&quot;linkPath&quot;:&quot;/content/tetrapak/public-web/lang-masters/de/about-us&quot;}]"
+            searchResultsPath="/content/tetrapak/public-web/lang-masters/de/search"
+            searchRootPath="/content/tetrapak/public-web/lang-masters/de">
+            <logo
+                jcr:lastModified="{Date}2019-03-22T03:11:47.411Z"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/logo"
+                imageAltI18n="Tetra Pak Logo"
+                imageLink="/content/tetrapak/public-web/lang-masters/de"
+                imagePath="/content/dam/publicweb/logo_tetra_pak_white.png"/>
+            <imageTextBanner
+                jcr:lastModified="{Date}2020-01-29T09:13:54.628Z"
+                jcr:lastModifiedBy="roomahaj"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/imageTextBanner"
+                bannerCtaPath="/content/tetrapak/public-web/lang-masters/de"
+                bannerCtaTextI18n="Learn more "
+                bannerDescriptionI18n="Make your dairy operations more cost-effective and sustainable – shift focus from homogenization pressure to the actual effects of homogenization when measuring homogenization efficiency."
+                contentAlignment="pw-banner--right"
+                contrastLayer="gradient-to-right"
+                desktopImage="/content/dam/publicweb/banners/hero_newdrink.jpg"
+                desktopImageAltI18n="Where everything comes together"
+                mobileCroppingOption="none"
+                mobileImage="/content/dam/publicweb/Teaser1.png"
+                mobileImageAltI18n="Where everything comes together"
+                softConversionDescription="Soft conversion form"
+                softConversionHeadline="Soft conversion form"
+                softConversionLastStep="This is last step."
+                softConversionTitle="Show Soft conversion"
+                targetBlank="true"
+                targetSoftConversion="true"
+                titleI18n="SAVE ENERGY WITH OPTIMIZED HOMOGENIZATION"/>
+        </header>
+        <footer
+            jcr:lastModified="{Date}2020-02-27T13:28:04.045Z"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="publicweb/components/structure/footer"
+            ctaLabelI18n="To top">
+            <footer
+                jcr:lastModified="{Date}2019-03-11T07:36:48.436-03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="publicweb/components/content/logo"
+                imageAltI18n="Tetra Pak Logo"
+                imageLink="/content/tetrapak/public-web/lang-masters/de"
+                imagePath="/content/dam/publicweb/logo_tetra_pak_white.png"/>
+            <footerNavigationLinks jcr:primaryType="nt:unstructured">
+                <item0
+                    jcr:primaryType="nt:unstructured"
+                    linkPath="/content/asset-share-commons"
+                    linkTextI18n="test"
+                    linkTooltipI18n="test"/>
+            </footerNavigationLinks>
+            <footerSocialLinks jcr:primaryType="nt:unstructured">
+                <item0
+                    jcr:primaryType="nt:unstructured"
+                    socialMedia="Linkedin"
+                    socialMediaLinkPath="adadad"/>
+                <item1
+                    jcr:primaryType="nt:unstructured"
+                    socialMedia="Facebook"
+                    socialMediaLinkPath="adfadfadf"/>
+            </footerSocialLinks>
+        </footer>
+        <contactfooterform
+            jcr:created="{Date}2019-04-08T14:52:02.551-03:00"
+            jcr:createdBy="admin"
+            jcr:lastModified="{Date}2020-01-28T09:35:08.534Z"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="publicweb/components/content/contactFooterForm"
+            companyLabel="Company"
+            contactUsLabel="Where do you want to contact us?"
+            description="Contact Footer Form"
+            emailAddressLabel="Email Address"
+            firstNameLabel="First Name"
+            helpText="Privacy Policy"
+            image="/content/dam/publicweb/ContentImage5.png"
+            lastNameLabel="Last Name"
+            linkPath="/content/tetrapak/public-web/lang-masters/de/about-us"
+            linkTextI18n="Link"
+            messageLabel="Message"
+            nextButtonLabel="Next"
+            phoneNumberLabel="Phone Number"
+            positionLabel="Position"
+            previousButtonLabel="Previous"
+            privacyPolicyText="Headline"
+            submitButtonLabel="Submit"
+            textIsRich="[true,true]"
+            thankYouHeadline="Thank You"
+            thankYouMessage="Thank You for submission"
+            titleI18n="Contact Footer Form"/>
+    </jcr:content>
+    <demo-page---dne/>
+</jcr:root>

@@ -27,6 +27,9 @@ public class RichTextModel {
 
     @ValueMapValue
     private String pwPadding;
+    
+    @ValueMapValue
+    private String topSpacing;
 
     public String getAnchorId() {
         return anchorId;
@@ -47,4 +50,10 @@ public class RichTextModel {
     public String getPwPadding() {
         return pwPadding;
     }
+
+    public String getTopSpacing() {
+        return topSpacing;
+    }
+    
+    
 }

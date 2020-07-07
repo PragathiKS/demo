@@ -5,7 +5,8 @@
         cq:lastModified="{Date}2020-04-22T02:23:04.172+05:30"
         cq:lastModifiedBy="admin"
         cq:templateType="/conf/publicweb/settings/wcm/template-types/landing-page-with-section-menu"
+        jcr:description="Content Page with Section Menu"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Public Web Landing Page with Section Menu"
+        jcr:title="Content Page"
         status="enabled"/>
 </jcr:root>

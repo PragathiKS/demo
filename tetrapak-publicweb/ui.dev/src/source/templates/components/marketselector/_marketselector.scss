@@ -1,0 +1,124 @@
+.pw-lang-selector {
+    color: $color-tundora;
+    font-family: $font-light;
+
+    a {
+        font-family: $font-light;
+    }
+
+    &__header {
+        @include padding($padding-xxl $padding-xl $padding-l $padding-xl);
+        border: 0;
+        @media #{$desktop} {
+            @include padding($padding-xxxl $padding-xxxl $padding-l);
+        }
+        &__heading {
+            @include font-size($font-l);
+            @include line-height(32px, $font-l);
+            font-weight: 300;
+            word-wrap: break-word;
+            @media #{$mobile} {
+                @include padding-top($padding-l);
+                @include padding-bottom($padding-md);
+            }
+        }
+        &__close {
+            @include top($margin-xxl);
+            @include bottom($margin-xxl);
+        }
+    }
+    .row {
+        @include margin-left(0);
+        @include margin-right(0);
+    }
+    &__body {
+        @include padding(0 $padding-xl 0 $padding-xl);
+
+        @media #{$desktop} {
+            @include padding(0 $padding-xxxl $padding-xxxl $padding-xxxl);
+        }
+    }
+
+    &__lang-container {
+        @include padding-left(0);
+        @include padding-right(0);
+        display: flex;
+        flex-wrap: wrap;
+        i {
+            @include margin-left($margin-sm);
+        }
+
+        @media #{$desktop} {
+            @include padding-left(24px);
+            @include padding-right(24px);
+            border-right: 1px solid $color-mercury;
+            &:first-child {
+                @include padding-left(0);
+            }
+            &:nth-child(4n+4) {
+                border-right: 0;
+            }
+        }
+    }
+
+    &__btn {
+        @include padding-bottom($padding-md);
+        color: $color-congress-blue;
+        width: 100%;
+        &:hover {
+            a {
+                color: $color-jordy-blue;
+            }
+        }
+        @media #{$desktop} {
+            &:last-child {
+                @include padding-bottom($padding-l);
+        }
+        }
+
+    }
+
+    .icon-Close_pw {
+        &::before {
+            @include font-size(20px);
+            @include width(20px);
+            @include height(20px);
+            @media #{$desktop} {
+                @include font-size($font-normal);
+                @include width($font-normal);
+                @include height($font-normal);
+            }
+        }
+    }
+
+    .modal-dialog {
+        @include margin(0);
+        max-width: 100%;
+
+        @media #{$desktop} {
+            @include margin(0 $margin-md);
+            @include max-width(1143px);
+            margin: auto;
+        }
+    }
+
+    @media #{$mobile} {
+        .modal-dialog-centered {
+            min-height: 100%;
+        }
+    }
+}
+
+
+.tpmol-modal-header {
+    @include padding($padding-md);
+    border: 0;
+    @media #{$desktop} {
+        @include padding($padding-xxxl $padding-xxxl $padding-l);
+    }
+    &__heading {
+        @include font-size($font-l);
+        @include line-height(32px, $font-l);
+        word-wrap: break-word;
+    }
+}

@@ -1,11 +1,31 @@
 .tp-pw-header {
-    @media #{$desktop} {
-        .pw-header-icons {
-            @include padding-bottom($padding-sm);
-        }
+    background: $color-white;
+    a {
+        font-family: $font-bold;
+        text-rendering: optimizeLegibility;
+        text-size-adjust: 100%;
+    }
+    @media #{$mobile} {
+        top: 0;
+        position: fixed;
+        height: $header-height-mobile * 1px; // header height converted to px
+        z-index: $zindex-header;
+        width: 100%;
     }
 
-    background: $color-white;
+    @media #{$desktop} {
+        height: 80px;
+        width: 100%;
+        top: 0;
+        .pw-header-icons {
+            @include padding-bottom(0);
+            a {
+                &:hover {
+                    color: $color-jordy-blue;
+                }
+            }
+        }
+    }
     .nav-link {
         padding: 16px;
     }
@@ -14,22 +34,29 @@
             display: none;
         }
     }
-    // .tp-pw-mobile-navigation {
-    //     .pw-megamenu {
-    //         display: none;
-    //     }
-    // }
+
     $self: &;
     &__container {
         @include padding(0 3px 0);
         border-bottom: 1px solid $color-mercury;
-        height: #{convert-to-rem(82px)};
-        position: relative;
-        z-index: $zindex-t;
+        background: $color-white;
+        z-index: $zindex-header;
+        width: 100%;
+
+        @media #{$mobile} {
+            height: $header-height-mobile * 1px; // header height converted to px
+            .header-items {
+                height: $header-height-mobile * 1px; // header height converted to px
+            }
+        }
 
         @media #{$desktop} {
-            @include padding(32px 0);
-            height: #{convert-to-rem(90px)};
+            @include padding(23px 0);
+            height: 80px;
+            position: fixed;
+            .header-items {
+                height: 34px;
+            }
         }
     }
 
@@ -53,16 +80,26 @@
         @media #{$desktop} {
             display: none;
         }
+        .icon-Burger_pw::before {
+            font-size: 20px;
+            line-height: 20px;
+            vertical-align: middle;
+            @media #{$desktop} {
+                font-size: $font-normal;
+                line-height: $font-normal;
+            }
+        }
     }
 
     &__main-navigation {
         display: none;
         @media #{$desktop} {
             display: block;
+            position: static;
         }
 
         li {
-            @include margin(0 24px);
+            @include margin(0 12px);
             &:first-child {
                 margin-left: 0;
             }
@@ -71,19 +108,27 @@
             }
             &.hover-menu-link {
                 & > a {
-                    @include padding(0 $padding-sm $padding-sm);
-                    @include line-height($font-l, $font-m-baseline);
-                    height: 30px;
+                    @include padding(0 $padding-sm);
+                    @include line-height($font-l, $font-baseline);
+                    font-family: $font-bold;
+                    text-rendering: optimizeLegibility;
+                    text-size-adjust: 100%;
+                    height: 28px;
+                    font-weight: normal;
                 }
                 &:hover > a {
-                    border-bottom: 3px solid;
+                    color: $color-jordy-blue;
+                }
+                & >a.active {
+                    border-bottom: 2px solid;
                 }
             }
         }
 
         a {
+            @include padding(0 $padding-sm);
             color: $color-congress-blue;
-            font-weight: bold;
+            font-weight: normal;
         }
     }
 
@@ -98,11 +143,24 @@
             @include margin-left($margin-md);
             color: $color-congress-blue;
             font-weight: bold;
+            .login-link {
+                @media #{$desktop} {
+                    @include line-height($font-normal, $font-xs);
+                    font-size: $font-xs;
+                }
+            }
 
             span {
                 display: none;
                 @media #{$desktop} {
                     display: inline;
+                }
+            }
+            .mytp-text {
+                @media #{$desktop} {
+                    @include line-height($font-normal, $font-xs);
+                    font-size: $font-xs;
+                    font-weight: 500;
                 }
             }
 
@@ -117,6 +175,13 @@
                 }
             }
         }
+        .mytp-wrapper {
+            &:hover {
+                @media #{$desktop} {
+                    color: $color-jordy-blue;
+                }
+            }
+        }
         i {
             @include font-size($font-normal);
             vertical-align: middle;
@@ -127,10 +192,20 @@
                 }
             }
         }
+        i.icon-Search_pw,
+        i.icon-Close_pw {
+            font-size: 20px;
+            line-height: 20px;
+            @media #{$desktop} {
+                @include font-size($font-normal);
+                line-height: 16px;
+            }
+
+        }
+
         .icon-ver-line {
             @include margin-left($margin-md);
-            border: 1px solid $color-mercury;
-            transform: rotate(90deg);
+            border-left: 1px solid $color-mercury;
         }
     }
 
@@ -211,10 +286,11 @@
     font-weight: 500;
     width: 100%;
     position: absolute;
-    z-index: $zindex-p;
+    z-index: $zindex-nav;
     overflow-y: auto;
     overflow-x: hidden;
-
+    background-color: $color-white;
+    min-height: 100vh;
     @media #{$desktop} {
         display: none;
     }
@@ -229,13 +305,22 @@
         }
     }
     &__secondary {
-        background: $color-wild-sand;
         li {
             border-bottom: 1px solid $color-mercury;
             a {
                 color: $color-tundora;
                 i:first-child {
                     padding-right: #{convert-to-rem(8px)};
+                }
+                i {
+                    @include font-size($font-normal);
+                    &::before {
+                        @media #{$tablet} {
+                            font-size: 20px;
+                            line-height: 20px;
+                            vertical-align: middle;
+                        }
+                    }
                 }
             }
         }

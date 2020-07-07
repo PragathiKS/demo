@@ -1,0 +1,6 @@
+.spinner-border {
+    &.custom-color {
+        border: 3px solid $color-congress-blue;
+        border-right-color: transparent;
+    }
+}

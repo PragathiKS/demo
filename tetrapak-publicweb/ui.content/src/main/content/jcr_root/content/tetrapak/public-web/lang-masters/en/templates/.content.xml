@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-06-18T12:33:53.491Z"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Templates"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        disableEnvelope="false"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInNav="true"
+        hideInSearch_x0040_Delete="true"
+        pwButtonTheme="link"/>
+    <processing-application-pages/>
+    <processing-application-sub-pages/>
+    <l2-landing-pages/>
+    <sustainability-l2-pages/>
+    <sustainability-sub-pages/>
+    <services-sub-pages/>
+    <services-customer-needs-pages/>
+    <about-us-sub-pages/>
+    <processing-non-pxp-downstream-equipment-pages/>
+</jcr:root>

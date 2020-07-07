@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { scrollToElement } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Anchor {
   constructor({ el }) {
@@ -18,6 +19,22 @@ class Anchor {
     e.preventDefault();
     const $this = $(e.target);
     const anchorId = $this.data('link-section');
+    const linkName = $this.data('link-name');
+    
+    const trackingObj = {
+      linkType: 'internal',
+      linkSection: `Hyperlink click`,
+      linkParentTitle: '',
+      linkName
+    };
+      
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Anchor Tag'
+    };
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+
+    //end of analytics call
     location.hash = anchorId;
     scrollToElement(null,`#${anchorId}`);
   };

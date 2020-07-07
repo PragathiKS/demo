@@ -1,0 +1,76 @@
+ul.pw-progressbar_wrapper {
+    @include margin($margin-l 0 0);
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    @media #{$desktop} {
+        @include margin($margin-xxxl 0 0);
+    }
+    .step-box {
+        display: flex;
+        position: relative;
+        flex: 1;
+        align-items: center;
+        &:not(:first-child) {
+            &::before {
+                content: '';
+                position: relative;
+                flex: 1;
+                height: 1px;
+                margin: 2px 0 0;
+                background-color: $color-mercury;
+            }
+        }
+        &:not(:last-child) {
+            &::after {
+                content: '';
+                position: relative;
+                flex: 1;
+                height: 1px;
+                margin: 2px 0 0;
+                background-color: $color-mercury;
+            }
+        }
+        > .steps {
+            color: $color-jordy-blue;
+            text-decoration: none;
+            text-align: center;
+            .circle {
+                display: inline-block;
+                color: $color-white;
+                width: 8px;
+                height: 8px;
+                text-align: center;
+                background: $color-mercury;
+                border-radius: 50%;
+                z-index: 1;
+                > span {
+                    display: none;
+                }
+            }
+        }
+
+        &.done {
+            .circle {
+                background-color: $color-congress-blue;
+            }
+            &::after,
+            &::before {
+                background: $color-congress-blue;
+            }
+        }
+        &.active {
+            .circle {
+                background-color: $color-congress-blue;
+                height: 24px;
+                width: 24px;
+                > span {
+                    display: block;
+                }
+            }
+            &::before {
+                background-color: $color-congress-blue;
+            }
+        }
+    }
+}

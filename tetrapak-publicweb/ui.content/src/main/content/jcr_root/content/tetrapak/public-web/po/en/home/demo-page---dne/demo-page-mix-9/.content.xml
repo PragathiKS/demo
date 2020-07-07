@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:27:15.854Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:37:55.502Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:tags="[tetrapak:food]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:description="Regardless of whether you're producing meatballs in sauce, jam with strawberries, chocolate pudding or plain white milk, the process involves heat treatment, and this usually means using heat exchangers."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="​​​​​​​​Heat exchangers for consistent high quality results"
+        jcr:uuid="894201f1-646e-48c3-bb8a-e4288dd012bc"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        altText="Thailand"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        imagePath="/content/dam/tetrapak/publicweb/demo-assets/school-feeding-thailand.jpg"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink"/>
+</jcr:root>

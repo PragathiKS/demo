@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:30:00.866Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:38:07.378Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Test_Erik"
+        jcr:uuid="ca294f0b-f558-4df5-973a-8190ccf30b92"
+        sling:resourceType="publicweb/components/structure/pages/landingpage">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:38:07.331Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:38:07.334Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <video
+                    cq:lastRolledout="{Date}2020-05-20T12:38:07.340Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-02-19T08:48:20.302Z"
+                    jcr:createdBy="roomahaj"
+                    jcr:lastModified="{Date}2020-05-20T12:38:07.338Z"
+                    jcr:lastModifiedBy="roomahaj"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="foundation/components/video"/>
+                <text
+                    cq:lastRolledout="{Date}2020-05-20T12:38:07.344Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-02-19T08:50:53.814Z"
+                    jcr:createdBy="roomahaj"
+                    jcr:lastModified="{Date}2020-05-20T12:38:07.341Z"
+                    jcr:lastModifiedBy="roomahaj"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="foundation/components/text"
+                    text="&lt;table cellspacing=&quot;2&quot;>&#xd;&#xa;&lt;tbody>&lt;tr>&lt;td>&lt;b>Net sales 2018 in € billion&lt;/b>&lt;/td>&#xd;&#xa;&lt;td>​​11.2&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Capital equipment - Processing&lt;br />&#xd;&#xa;net sales in € billion&lt;/td>&#xd;&#xa;&lt;td>​ ≈1.29&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Capital equipment - Packaging&lt;br />&#xd;&#xa;net sales in € billion&lt;/td>&#xd;&#xa;&lt;td>≈ 0.86&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Packaging materials&lt;br />&#xd;&#xa;net sales in € billion&lt;/td>&#xd;&#xa;&lt;td>≈ 7.56&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Service Solutions&lt;br />&#xd;&#xa;net sales in € bilion​&lt;/td>&#xd;&#xa;&lt;td>​≈ 1.46&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Countries in which Tetra Pak had sales in 2018: ​​&lt;/td>&#xd;&#xa;&lt;td>​&amp;gt;160​&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Sales by Geography (% of total sales)&lt;/td>&#xd;&#xa;&lt;td> &lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Europe &amp;amp; Central Asia&lt;/td>&#xd;&#xa;&lt;td>29%&lt;br />&#xd;&#xa;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>North, Central &amp;amp; South America&lt;/td>&#xd;&#xa;&lt;td>25%&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>South Asia, East Asia &amp;amp; Oceania​&lt;/td>&#xd;&#xa;&lt;td>19%&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Greater China&lt;br />&#xd;&#xa;&lt;/td>&#xd;&#xa;&lt;td>15%&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Greater Middle East &amp;amp; Africa&lt;/td>&#xd;&#xa;&lt;td>12%​&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​​Number of employees:&lt;/td>&#xd;&#xa;&lt;td>25,488&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Filling machines delivered in 2018&lt;/td>&#xd;&#xa;&lt;td>​351&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Processing units delivered in 2018&lt;/td>&#xd;&#xa;&lt;td>2,301&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Tetra Pak® packages sold in 2018 (billion)&lt;br />&#xd;&#xa;&lt;/td>&#xd;&#xa;&lt;td> &amp;gt;189​&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Production plants​&lt;/td>&#xd;&#xa;&lt;td>​56&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Market companies&lt;/td>&#xd;&#xa;&lt;td>​31&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Sales offices&lt;/td>&#xd;&#xa;&lt;td>93&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Customer Innovation Centres&lt;/td>&#xd;&#xa;&lt;td>​6&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Technical Training Centres&lt;/td>&#xd;&#xa;&lt;td>​11&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​R&amp;amp;D centres:&lt;/td>&#xd;&#xa;&lt;td>​5&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Packaging machines in operation: &lt;/td>&#xd;&#xa;&lt;td>​&amp;gt;8,700&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Processing units in operation:&lt;/td>&#xd;&#xa;&lt;td>​&amp;gt;81,000​&lt;/td>&#xd;&#xa;&lt;/tr>&lt;/tbody>&lt;/table>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <richtext
+                    cq:lastRolledout="{Date}2020-05-20T12:38:07.348Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-02-20T12:16:46.519Z"
+                    jcr:createdBy="roomahaj"
+                    jcr:lastModified="{Date}2020-05-20T12:38:07.346Z"
+                    jcr:lastModifiedBy="roomahaj"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    text="&lt;table cellspacing=&quot;2&quot; border=&quot;2&quot;>&#xd;&#xa;&lt;tbody>&lt;tr>&lt;td>Net sales 2018 in € billion&lt;/td>&#xd;&#xa;&lt;td>​​11.2&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Capital equipment - Processing&lt;br />&#xd;&#xa;net sales in € billion&lt;/td>&#xd;&#xa;&lt;td>​ ≈1.29&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Capital equipment - Packaging&lt;br />&#xd;&#xa;net sales in € billion&lt;/td>&#xd;&#xa;&lt;td>≈ 0.86&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Packaging materials&lt;br />&#xd;&#xa;net sales in € billion&lt;/td>&#xd;&#xa;&lt;td>≈ 7.56&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Service Solutions&lt;br />&#xd;&#xa;net sales in € bilion​&lt;/td>&#xd;&#xa;&lt;td>​≈ 1.46&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Countries in which Tetra Pak had sales in 2018: ​​&lt;/td>&#xd;&#xa;&lt;td>​&amp;gt;160​&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Sales by Geography (% of total sales)&lt;/td>&#xd;&#xa;&lt;td> &lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Europe &amp;amp; Central Asia&lt;/td>&#xd;&#xa;&lt;td>29%&lt;br />&#xd;&#xa;&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>North, Central &amp;amp; South America&lt;/td>&#xd;&#xa;&lt;td>25%&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>South Asia, East Asia &amp;amp; Oceania​&lt;/td>&#xd;&#xa;&lt;td>19%&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Greater China&lt;br />&#xd;&#xa;&lt;/td>&#xd;&#xa;&lt;td>15%&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Greater Middle East &amp;amp; Africa&lt;/td>&#xd;&#xa;&lt;td>12%​&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​​Number of employees:&lt;/td>&#xd;&#xa;&lt;td>25,488&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Filling machines delivered in 2018&lt;/td>&#xd;&#xa;&lt;td>​351&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Processing units delivered in 2018&lt;/td>&#xd;&#xa;&lt;td>2,301&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Tetra Pak® packages sold in 2018 (billion)&lt;br />&#xd;&#xa;&lt;/td>&#xd;&#xa;&lt;td> &amp;gt;189​&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>Production plants​&lt;/td>&#xd;&#xa;&lt;td>​56&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Market companies&lt;/td>&#xd;&#xa;&lt;td>​31&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Sales offices&lt;/td>&#xd;&#xa;&lt;td>93&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Customer Innovation Centres&lt;/td>&#xd;&#xa;&lt;td>​6&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Technical Training Centres&lt;/td>&#xd;&#xa;&lt;td>​11&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​R&amp;amp;D centres:&lt;/td>&#xd;&#xa;&lt;td>​5&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Packaging machines in operation: &lt;/td>&#xd;&#xa;&lt;td>​&amp;gt;8,700&lt;/td>&#xd;&#xa;&lt;/tr>&lt;tr>&lt;td>​Processing units in operation:&lt;/td>&#xd;&#xa;&lt;td>​&amp;gt;81,000​&lt;/td>&#xd;&#xa;&lt;/tr>&lt;/tbody>&lt;/table>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <title
+                    cq:lastRolledout="{Date}2020-05-20T12:38:07.353Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-02-27T08:07:06.312Z"
+                    jcr:createdBy="roomahaj"
+                    jcr:lastModified="{Date}2020-05-20T12:38:07.350Z"
+                    jcr:lastModifiedBy="roomahaj"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Learn More"
+                    sling:resourceType="foundation/components/title"
+                    type="small"/>
+                <richtext_1734699426
+                    cq:lastRolledout="{Date}2020-05-20T12:38:07.357Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-02-27T08:07:47.631Z"
+                    jcr:createdBy="roomahaj"
+                    jcr:lastModified="{Date}2020-05-20T12:38:07.354Z"
+                    jcr:lastModifiedBy="roomahaj"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"
+                    text="&lt;p>&lt;b>Hyperlink test&lt;/b>&lt;/p>&#xa;"
+                    textIsRich="true"/>
+                <breadcrumb
+                    cq:lastRolledout="{Date}2020-05-20T12:38:07.361Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-03-03T16:02:18.471Z"
+                    jcr:createdBy="roomahaj"
+                    jcr:lastModified="{Date}2020-05-20T12:38:07.358Z"
+                    jcr:lastModifiedBy="roomahaj"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <richtext_1792057838
+                    cq:lastRolledout="{Date}2020-05-20T12:38:07.365Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-03-13T13:07:08.668Z"
+                    jcr:createdBy="roomahaj"
+                    jcr:lastModified="{Date}2020-05-20T12:38:07.362Z"
+                    jcr:lastModifiedBy="roomahaj"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/richtext"/>
+            </responsivegrid>
+        </root>
+        <contactFooterForm
+            cq:lastRolledout="{Date}2020-05-20T12:38:07.377Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:lastModified="{Date}2020-05-20T12:38:07.369Z"
+            jcr:lastModifiedBy="roomahaj"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="publicweb/components/content/contactFooterForm"
+            companyLabel="Company"
+            contactUsLabel="Where do you want to contact us?"
+            description="our experts within foos and beverages are always ready to help you improve your business needs"
+            emailAddressLabel="Email Address"
+            firstNameLabel="First Name"
+            image="/content/dam/publicweb/TriangleIcons.png"
+            lastNameLabel="Last Name"
+            messageLabel="Message"
+            nextButtonLabel="Next"
+            phoneNumberLabel="Phone Number"
+            positionLabel="Position"
+            previousButtonLabel="Previous"
+            submitButtonLabel="Submit"
+            textIsRich="[true,true]"
+            titleI18n="How can we help"/>
+    </jcr:content>
+</jcr:root>

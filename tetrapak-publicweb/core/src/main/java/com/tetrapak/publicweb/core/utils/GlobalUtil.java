@@ -2,17 +2,24 @@ package com.tetrapak.publicweb.core.utils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.settings.SlingSettingsService;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 
@@ -61,15 +68,48 @@ public final class GlobalUtil {
      *            dynamic media service
      * @return video path from scene 7
      */
-    public static String getVideoUrlFromScene7(String damVideoPath, final DynamicMediaService dynamicMediaService) {
+    public static String getVideoUrlFromScene7(final ResourceResolver resourceResolver, final String damVideoPath,
+            final DynamicMediaService dynamicMediaService) {
+        String path = damVideoPath;
         if(StringUtils.isNotBlank(damVideoPath)) {
-            final String FORWARD_SLASH = PWConstants.SLASH;
-            damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
-            damVideoPath = StringUtils.substringAfterLast(damVideoPath, FORWARD_SLASH);
-            damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath() + FORWARD_SLASH
-                    + damVideoPath;
+            path = dynamicMediaService.getVideoServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damVideoPath);
         }
-        return damVideoPath;
+        return path;
+    }
+
+    /**
+     * get scene 7 image url
+     *
+     * @param damImagePath
+     *            image path
+     * @param dynamicMediaService
+     *            dynamic media service
+     * @return image path from scene 7
+     */
+    public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
+            final DynamicMediaService dynamicMediaService) {
+        String path = damImagePath;
+        if(StringUtils.isNotBlank(damImagePath)) {
+            path = dynamicMediaService.getImageServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damImagePath);
+        }
+        return path;
+    }
+
+    /**
+     * Gets the scene 7 file name.
+     *
+     * @param resourceResolver the resource resolver
+     * @param path the path
+     * @return the scene 7 file name
+     */
+    public static String getScene7FileName(final ResourceResolver resourceResolver, final String path) {
+        String fileName = StringUtils.EMPTY;
+        final Resource resource = resourceResolver.getResource(path + "/jcr:content/metadata");
+        if (Objects.nonNull(resource)) {
+            final ValueMap properties = resource.getValueMap();
+            fileName = properties.get("dam:scene7File", StringUtils.EMPTY);
+        }
+        return fileName;
     }
 
     /**
@@ -151,7 +191,7 @@ public final class GlobalUtil {
         }
         LOG.debug("asset Type {}", contenType);
         return contenType;
-        }
+    }
 
     /**
      * Fetch Asset Type based on File extension depending on mapping
@@ -170,4 +210,34 @@ public final class GlobalUtil {
         return assetType;
     }
 
+
+    /**
+     * Fetch config resource.
+     *
+     * @param request
+     *            the request
+     * @param configPath
+     *            the config path
+     * @return the resource
+     */
+    public static Resource fetchConfigResource(final Resource resource, final String configPath) {
+        final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        final Page page = pageManager.getContainingPage(resource);
+        final String rootPath = LinkUtils.getRootPath(page.getPath());
+        final String path = new StringBuffer(rootPath).append(configPath).toString();
+        return resource.getResourceResolver().getResource(path);
+    }
+
+    /**
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
+    public static boolean isPublish() {
+        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (slingSettingsService == null) {
+            return false;
+        }
+        return slingSettingsService.getRunModes().contains("publish");
+    }
 }

@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.models;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -11,10 +14,11 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 /**
  * class for dynamic image model
@@ -53,6 +57,9 @@ public class DynamicImageModel {
 
     @RequestAttribute
     private String componentName;
+
+    @RequestAttribute
+    private String imgBackground;
 
     /**
      * The asset alt text.
@@ -103,7 +110,12 @@ public class DynamicImageModel {
      * The Constant FMT_PNG_ALPHA.
      */
     private static final String FMT_PNG_ALPHA = "fmt=png-alpha";
-    
+
+    private static final String IMG_BGC_GRAY = "bg-gray";
+
+    /** The Constant BGC_GRAY. */
+    private static final String BGC_GRAY = "bgc=246,246,246";
+
     /**
      * The Constant IMAGE_SHARPNESS.
      */
@@ -172,21 +184,8 @@ public class DynamicImageModel {
     @PostConstruct
     protected void postConstruct() {
         String dynamicMediaUrl = getImageServiceURL();
-        String rootPath = getRootPath();
-        String damPath;
-        String assetName;
-        String type = StringUtils.EMPTY;
         if (imagePath != null) {
-            String subString;
-            int iend = imagePath.indexOf('.');
-            if (iend != -1) {
-                subString = imagePath.substring(0, iend);
-                damPath = StringUtils.substringBeforeLast(subString, PATH_SEPARATOR);
-                assetName = StringUtils.substringAfterLast(subString, PATH_SEPARATOR);
-                damPath = damPath.replace(damPath, rootPath);
-                type = imagePath.substring(iend + 1);
-                finalPath = damPath + PATH_SEPARATOR + assetName;
-            }
+            finalPath = PWConstants.SLASH + GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
         }
 
         if (null != dynamicMediaUrl) {
@@ -194,10 +193,10 @@ public class DynamicImageModel {
         }
 
         if (StringUtils.isNotBlank(dynamicMediaUrl)) {
-            setDesktopUrl(createDynamicMediaUrl(DESKTOP, dynamicMediaUrl, type));
-            setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl, type));
-            setMobilePortraitUrl(createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl, type));
-            setMobileLandscapeUrl(createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl, type));
+            setDesktopUrl(createDynamicMediaUrl(DESKTOP, dynamicMediaUrl));
+            setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
+            setMobilePortraitUrl(createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl));
+            setMobileLandscapeUrl(createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl));
         }
         setDefaultImage();
     }
@@ -214,7 +213,7 @@ public class DynamicImageModel {
     private static StringBuilder appendTransparency(final StringBuilder url, final String appendingString) {
         return url.append(appendingString).append(FMT_PNG_ALPHA);
     }
-    
+
     /**
      * Append Sharpness.
      *
@@ -229,18 +228,20 @@ public class DynamicImageModel {
     }
 
     /**
-     * Check image transparency.
+     * Append background color.
      *
-     * @param type
-     *            type
-     * @return true, if successful
+     * @param url
+     *            the url
+     * @param appendingString
+     *            the appending string
+     * @return the string builder
      */
-    private static boolean checkImageTransparency(final String type) {
-        return "png".equalsIgnoreCase(type) || "svg".equalsIgnoreCase(type);
+    private static StringBuilder appendBackgroundColor(final StringBuilder url, final String appendingString) {
+        return url.append(appendingString).append(BGC_GRAY);
     }
 
     /**
-     * Creates the url.
+     * Creates the url
      *
      * @param paramUrl
      *            the url
@@ -248,7 +249,7 @@ public class DynamicImageModel {
      *            the image configuration
      * @return the string
      */
-    private String createUrl(final String paramUrl, final String type, final String imageConfiguration) {
+    private String createUrl(final String paramUrl, final String imageConfiguration) {
         final int widthIndex = StringUtils.ordinalIndexOf(imageConfiguration, ",", 1);
         final int heightIndex = StringUtils.ordinalIndexOf(imageConfiguration, ",", 2);
         String width;
@@ -269,39 +270,39 @@ public class DynamicImageModel {
         }
 
         if (StringUtils.isNotEmpty(width) || StringUtils.isNotEmpty(height) || StringUtils.isNotEmpty(crop)) {
-            url = getUrl(paramUrl, type, width, height, crop);
+            url = getUrl(paramUrl, width, height, crop, imgBackground);
         }
         return url;
     }
 
     private String getCroppingFromMobile() {
-        Resource imageResource = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
+        final Resource imageResource = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
         if (null == imageResource) {
             return StringUtils.EMPTY;
         }
-        ValueMap vMap = imageResource.getValueMap();
-        Long height = (Long) vMap.get("tiff:ImageLength");
-        Long width = (Long) vMap.get("tiff:ImageWidth");
+        final ValueMap vMap = imageResource.getValueMap();
+        final Long height = (Long) vMap.get("tiff:ImageLength");
+        final Long width = (Long) vMap.get("tiff:ImageWidth");
         return getCropParameterForScene7(height, width);
     }
 
-    private String getCropParameterForScene7(Long height, Long width) {
+    private String getCropParameterForScene7(final Long height, Long width) {
         if (null == imageCrop) {
             return StringUtils.EMPTY;
         }
         if(width > 1280) {
             width = (long) 1280;
         }
-        String[] cropArray = imageCrop.split(",");
-        Double topW = Double.valueOf(cropArray[0]);
-        Double topH = Double.valueOf(cropArray[1]);
-        Double lowW = Double.valueOf(cropArray[2]);
-        Double lowH = Double.valueOf(cropArray[3]);
+        final String[] cropArray = imageCrop.split(",");
+        final Double topW = Double.valueOf(cropArray[0]);
+        final Double topH = Double.valueOf(cropArray[1]);
+        final Double lowW = Double.valueOf(cropArray[2]);
+        final Double lowH = Double.valueOf(cropArray[3]);
 
-        double normTopW = topW / width;
-        double normTopH = topH / height;
-        double normWidth = (lowW - topW) / width;
-        double normHeight = (lowH - topH) / height;
+        final double normTopW = topW / width;
+        final double normTopH = topH / height;
+        final double normWidth = (lowW - topW) / width;
+        final double normHeight = (lowH - topH) / height;
 
         return normTopW + "," + normTopH + "," + normWidth + "," + normHeight;
     }
@@ -334,8 +335,8 @@ public class DynamicImageModel {
      *            the crop
      * @return the url
      */
-    private static String getUrl(final String paramUrl, final String type, final String width, final String height,
-            final String crop) {
+    private static String getUrl(final String paramUrl, final String width, final String height,
+            final String crop, final String imgBackground) {
         boolean queryFlag = false;
         StringBuilder url = new StringBuilder(paramUrl);
         if (StringUtils.isNotEmpty(width)) {
@@ -359,18 +360,26 @@ public class DynamicImageModel {
             queryFlag = true;
         }
 
-        if (checkImageTransparency(type)) {
+        if (StringUtils.isEmpty(imgBackground)) {
             if (queryFlag) {
                 url = appendTransparency(url, AMPERSAND);
             } else {
                 url = appendTransparency(url, QUERY_PARAMETER);
             }
+            queryFlag = true;
+        } else if (IMG_BGC_GRAY.equalsIgnoreCase(imgBackground)) {
+            if (queryFlag) {
+                url = appendBackgroundColor(url, AMPERSAND);
+            } else {
+                url = appendBackgroundColor(url, QUERY_PARAMETER);
+            }
+            queryFlag = true;
         }
-        
+
         if (queryFlag) {
             url = appendSharpness(url, AMPERSAND);
         } else {
-            url = appendSharpness(url, AMPERSAND);
+            url = appendSharpness(url, QUERY_PARAMETER);
         }
 
         return url.toString();
@@ -383,17 +392,17 @@ public class DynamicImageModel {
      *            the device type
      * @return the string
      */
-    private String createDynamicMediaUrl(final String deviceType, final String imagePath, final String type) {
+    private String createDynamicMediaUrl(final String deviceType, final String imagePath) {
         String url = "";
-        Map<String, String> dynamicMediaConfiguration = getMap(getDynamicMediaConfiguration());
-        final String componentName = getComponentName(request.getResource());
-        if (StringUtils.isNotBlank(componentName)) {
-            final StringBuilder key = new StringBuilder(componentName).append(HYPHEN).append(deviceType);
+        final Map<String, String> dynamicMediaConfiguration = getMap(getDynamicMediaConfiguration());
+        final String finalComponentName = getComponentName(request.getResource());
+        if (StringUtils.isNotBlank(finalComponentName)) {
+            final StringBuilder key = new StringBuilder(finalComponentName).append(HYPHEN).append(deviceType);
 
-            String imageConfiguration = getImageConfigurations(deviceType, dynamicMediaConfiguration, key);
+            final String imageConfiguration = getImageConfigurations(deviceType, dynamicMediaConfiguration, key);
 
             if (StringUtils.isNotEmpty(imageConfiguration)) {
-                url = createUrl(imagePath, type, imageConfiguration);
+                url = createUrl(imagePath, imageConfiguration);
                 hasConfiguraton = true;
             } else {
                 url = imagePath + "?scl=1";
@@ -402,10 +411,10 @@ public class DynamicImageModel {
         return url;
     }
 
-    private String getImageConfigurations(String deviceType, Map<String, String> dynamicMediaConfiguration,
-            StringBuilder key) {
+    private String getImageConfigurations(final String deviceType, final Map<String, String> dynamicMediaConfiguration,
+            final StringBuilder key) {
         String imageConfiguration;
-        String cropping = getCroppingFromMobile();
+        final String cropping = getCroppingFromMobile();
         if (deviceType.equals(DESKTOP) && StringUtils.isNotBlank(dwidth) && StringUtils.isNotBlank(dheight)) {
             imageConfiguration = dwidth + "," + dheight;
         } else if (deviceType.equals(MOBILELANDSCAPE)) {
@@ -420,8 +429,8 @@ public class DynamicImageModel {
         return imageConfiguration;
     }
 
-    private String getImageConfigurationForMobile(Map<String, String> dynamicMediaConfiguration, StringBuilder key,
-            String cropping, String mWidth, String mHeight) {
+    private String getImageConfigurationForMobile(final Map<String, String> dynamicMediaConfiguration, final StringBuilder key,
+            final String cropping, final String mWidth, final String mHeight) {
         if (StringUtils.isNotEmpty(mWidth) && StringUtils.isNotEmpty(mHeight)) {
             return mWidth + "," + mHeight + "," + cropping;
         } else if (StringUtils.isNotEmpty(cropping)) {
@@ -430,9 +439,9 @@ public class DynamicImageModel {
         return dynamicMediaConfiguration.get(key.toString());
     }
 
-    private Map<String, String> getMap(String[] dynamicMediaConfiguration) {
-        Map<String, String> map = new HashMap<>();
-        for (String propValue : dynamicMediaConfiguration) {
+    private Map<String, String> getMap(final String[] dynamicMediaConfiguration) {
+        final Map<String, String> map = new HashMap<>();
+        for (final String propValue : dynamicMediaConfiguration) {
             map.put(StringUtils.substringBefore(propValue, "="), StringUtils.substringAfter(propValue, "="));
         }
         return map;
@@ -470,16 +479,21 @@ public class DynamicImageModel {
         return dynamicMediaService.getVideoServiceUrl();
     }
 
-    public String getRootPath() {
-        return dynamicMediaService.getRootPath();
-    }
-
     public String getMobileLandscapeUrl() {
         return mobileLandscapeUrl;
     }
 
     public String getMobilePortraitUrl() {
         return mobilePortraitUrl;
+    }
+
+    /**
+     * Gets the img background.
+     *
+     * @return the img background
+     */
+    public String getImgBackground() {
+        return imgBackground;
     }
 
     /**
@@ -503,7 +517,7 @@ public class DynamicImageModel {
         return desktopLargeUrl;
     }
 
-    public void setDesktopLargeUrl(String desktopLargeUrl) {
+    public void setDesktopLargeUrl(final String desktopLargeUrl) {
         this.desktopLargeUrl = desktopLargeUrl;
     }
 

@@ -7,11 +7,31 @@
         > .row {
             flex-direction: row;
         }
+        .left-pad {
+            @media #{$desktop} {
+                padding-right: $padding-l;
+            }
+        }
+        .right-pad {
+            @media #{$desktop} {
+                padding-left: $padding-l;
+            }
+        }
     }
 
     &--display-row-reversed {
         > .row {
             flex-direction: row-reverse;
+        }
+        .left-pad {
+            @media #{$desktop} {
+                padding-left: $padding-l;
+            }
+        }
+        .right-pad {
+            @media #{$desktop} {
+                padding-right: $padding-l;
+            }
         }
     }
 
@@ -19,7 +39,6 @@
         > .row {
             flex-direction: column;
         }
-
         #{$self}__video {
             @include margin-top($padding-l);
             @media #{$desktop} {
@@ -32,6 +51,12 @@
         > .row {
             flex-direction: column-reverse;
         }
+        .left-pad {
+            padding-left: 24px;
+        }
+        .right-pad {
+            padding-right: 24px;
+        }
 
         #{$self}__video {
             @include margin-bottom($padding-l);
@@ -42,14 +67,17 @@
     }
 
     &__subTitle {
-        @include margin-bottom($padding-sm);
+        @include margin-bottom($margin-sm);
         @include font-size($font-sm);
         @include line-height(16px, $font-sm);
         color: $color-boulder;
+        font-family: $font-bold;
         text-transform: uppercase;
-
+    }
+    &__link {
+        @include margin-top($margin-md);
         @media #{$desktop} {
-            @include margin-bottom($padding-md);
+            @include margin-top($margin-md);
         }
     }
 
@@ -66,18 +94,18 @@
     }
 
     &__description {
-        @include margin-bottom($padding-l);
+        @include margin-bottom($margin-zero);
         @include font-size($font-baseline);
         @include line-height(24px, $font-baseline);
 
         @media #{$desktop} {
-            @include margin-bottom($padding-l);
+            @include margin-bottom($margin-zero);
         }
     }
 
     &__video {
         @include border-radius($border-radius);
-        @include margin-bottom($padding-l);
+        @include margin-bottom($margin-md);
         height: 0;
         overflow: hidden;
         padding-bottom: 56.25%;

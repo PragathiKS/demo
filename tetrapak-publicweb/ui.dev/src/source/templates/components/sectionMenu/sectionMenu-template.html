@@ -1,0 +1,60 @@
+<sly
+  data-sly-template.sectionMenu_template="${@ data, selectedL2,selectedL3,selectedL4, linkText,linkURL, anchorClass, iconClass,linkSectionListIndex,sectionId,l1,mainHeader,navigationTypeSticky,leftTitle,solutionPageTitle}">
+  <div data-module="SectionMenu">
+    <div class="section-menu-navigation-Link js-section-menu-navigation-Link pw-position-relative">
+    <sly data-sly-test="${!linkURL}">
+      <a auto-locator="SectionMenuLinksFontStyle-SectionMenuLinksPadding" data-link-title="${linkText}" data-link-section='${leftTitle || "NA"}' data-link-name='${navigationTypeSticky == true ? l1 : mainHeader }${(navigationTypeSticky && l1 == solutionPageTitle) ? ":" : ""}${l1 == solutionPageTitle ? selectedL2 : ""}:${linkText}'
+        target="${data.external ? '_blank' : '_self'}" data-url-link="${linkURL}"
+        class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : 'collapsed'} section-menu-item-link js-section-menu-item-link no-url"
+        title="${linkText}" data-toggle="collapse" href="#subSectionMenuCollapse_${linkSectionListIndex}" role="button"
+        aria-expanded="${(selectedL2 == linkText || selectedL3 == linkText) ? 'true' : 'false'}">
+        <span title="">${linkText}</span>
+        <sly data-sly-test="${data.external}">
+          <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding"
+            class="icon is-external ${iconClass}"></i>
+        </sly>
+        <sly data-sly-test="${(data.subSectionMenu.subSections || data.subSectionMenu.pseudoCategoriesSection) && !data.external}">
+          <i title="" auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon with-arrow ${iconClass}"></i>
+        </sly>
+      </a>
+    </sly>
+     <sly data-sly-test="${linkURL}">
+      <a auto-locator="SectionMenuLinksFontStyle-SectionMenuLinksPadding" data-link-title="${linkText}" data-link-section='${leftTitle || "NA"}' data-link-name='${navigationTypeSticky == true ? l1 : mainHeader }${(navigationTypeSticky && l1 == solutionPageTitle) ? ":" : ""}${l1 == solutionPageTitle ? selectedL2 : ""}:${linkText}'
+        target="${data.external ? '_blank' : '_self'}" data-url-link="${linkURL}"
+        class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : 'collapsed'} section-menu-item-link js-section-menu-item-link"
+        title="${linkText}" data-toggle="collapse" href="#subSectionMenuCollapse_${linkSectionListIndex}" role="button"
+        aria-expanded="${(selectedL2 == linkText || selectedL3 == linkText) ? 'true' : 'false'}">
+        <span title="">${linkText}</span>
+        <sly data-sly-test="${data.external}">
+          <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding"
+            class="icon is-external ${iconClass}"></i>
+        </sly>
+        <sly data-sly-test="${(data.subSectionMenu.subSections || data.subSectionMenu.pseudoCategoriesSection) && !data.external}">
+          <i title="" auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding" class="icon with-arrow ${iconClass}"></i>
+        </sly>
+      </a>
+      </sly>
+
+      <!--sub section menu for mobile-->
+      <div class="collapse d-lg-none ${(selectedL2 == linkText || selectedL3 == linkText) ? 'active-accordion show' : ''}"
+        id="subSectionMenuCollapse_${linkSectionListIndex}" data-parent="#sectionMenuCollapseWrapper_${sectionId}">
+        <sly data-sly-test.activeFlag="${(selectedL2 == linkText || selectedL3 == linkText) ? true : false}"/>
+        <sly data-sly-test.subSection="${data.subSectionMenu}">
+          <sly
+            data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
+            data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, parentLinkData=data,subSectionCount=subSection.subSectionCount, activeFlag=activeFlag,selectedL3=selectedL3,selectedL4=selectedL4,col1=subSection.col1Limit,col2=subSection.col2Limit,col3=subSection.col3Limit,col4=subSection.col4Limit}">
+          </sly>
+        </sly>
+      </div>
+      <!--sub section menu for web-->
+      <div class="display-lg">
+        <sly data-sly-test.subSection="${data.subSectionMenu}">
+          <sly
+            data-sly-use.linkMolecule="/apps/publicweb/components/molecules/subSectionMenu/subSectionMenu-template.html"
+            data-sly-call="${linkMolecule.subSectionMenu_template @ data=subSection, subSectionCount=subSection.subSectionCount, selectedL3=selectedL3,selectedL4=selectedL4,col1=subSection.col1Limit,col2=subSection.col2Limit,col3=subSection.col3Limit,col4=subSection.col4Limit}">
+          </sly>
+        </sly>
+      </div>
+    </div>
+  </div>
+</sly>

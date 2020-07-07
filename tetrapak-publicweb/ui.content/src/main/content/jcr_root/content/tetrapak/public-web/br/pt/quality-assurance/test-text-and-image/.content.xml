@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:21:18.675Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:57:59.365Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:22:07.759Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/test-text-and-image"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Test text and image"
+        jcr:uuid="bdddd6c1-4378-4b27-862e-b54f9aa99b6d"
+        sling:resourceType="publicweb/components/structure/pages/landingpage">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:57:59.358Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:57:59.360Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <teaser
+                    cq:lastRolledout="{Date}2020-05-20T12:57:59.365Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-30T10:03:58.717Z"
+                    jcr:createdBy="tetrapak-user"
+                    jcr:lastModified="{Date}2020-05-20T12:57:59.362Z"
+                    jcr:lastModifiedBy="tetrapak-user"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="automatic"
+                    pwTheme="grayscale-white"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+    <RTE/>
+</jcr:root>

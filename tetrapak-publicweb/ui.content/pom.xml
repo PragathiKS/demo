@@ -85,16 +85,9 @@
     <!-- ====================================================================== -->
     <dependencies>
         <dependency>
-            <groupId>tetrapak-publicweb</groupId>
-            <artifactId>tetrapak-publicweb.core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>uber-jar</artifactId>
             <classifier>apis</classifier>
         </dependency>
-
     </dependencies>
 </project>

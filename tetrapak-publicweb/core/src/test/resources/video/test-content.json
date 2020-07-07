@@ -20,7 +20,7 @@
 			"youtubeVideoID": "qwe123",
 			"anchorId": "vid123",
 			"anchorTitle": "video",
-			"linkURL": "/content/tetrapak/public-web/global/en/test",
+			"linkURL": "/content/tetrapak/publicweb/global/en/test",
 			"damVideoPath": "/content/dam/publicweb/Video.mp4",
 			"jcr:lastModified": "Tue Feb 25 2020 16:42:05 GMT+0530",
 			"videoSource": "youtube",

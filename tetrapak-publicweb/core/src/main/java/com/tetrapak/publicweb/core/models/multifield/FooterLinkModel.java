@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models.multifield;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -13,6 +14,10 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterLinkModel {
 
+    /** The resource. */
+    @Self
+    private Resource resource;
+
     /** The link label. */
     @ValueMapValue
     private String linkLabel;
@@ -20,10 +25,6 @@ public class FooterLinkModel {
     /** The link path. */
     @ValueMapValue
     private String linkPath;
-
-    /** The link target. */
-    @ValueMapValue
-    private String linkTarget;
 
     /**
      * Gets the link label.
@@ -40,16 +41,7 @@ public class FooterLinkModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath);
-    }
-
-    /**
-     * Gets the link target.
-     *
-     * @return the link target
-     */
-    public String getLinkTarget() {
-        return linkTarget;
+        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
     }
 
 }

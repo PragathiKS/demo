@@ -11,49 +11,41 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AggregatorModel {
-    
+
     /** The title */
     @Named(value = "jcr:title")
     @ValueMapValue
     private String title;
-    
+
     /** The tags */
     @ValueMapValue
     @Named(value = "cq:tags")
     private String[] tags;
-    
+
     /** The description */
     @ValueMapValue
     @Named(value = "jcr:description")
     private String description;
-    
+
     /** The imagePath */
     @ValueMapValue
     private String imagePath;
-    
+
     /** The altText */
     @ValueMapValue
     private String altText;
-    
+
     /** The linkText */
     @ValueMapValue
     private String linkText;
-    
+
     /** The linkPath */
     @ValueMapValue
     private String linkPath;
-  
+
     /** The pwButtonTheme */
     @ValueMapValue
     private String pwButtonTheme;
-    
-    /** The pwLinkTheme */
-    @ValueMapValue
-    private String pwLinkTheme;
-    
-    /** The linkTarget */
-    @ValueMapValue
-    private String linkTarget;
 
     public String getTitle() {
         return title;
@@ -86,15 +78,5 @@ public class AggregatorModel {
     public String getPwButtonTheme() {
         return pwButtonTheme;
     }
-
-    public String getPwLinkTheme() {
-        return pwLinkTheme;
-    }
-
-    public String getLinkTarget() {
-        return linkTarget;
-    }
-
-    
 
 }

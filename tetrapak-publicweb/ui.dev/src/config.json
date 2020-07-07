@@ -154,7 +154,16 @@
         "source/templates/components/anchor/",
         "source/templates/components/megamenusolution/",
         "source/templates/components/findMyOffice/",
-        "source/templates/components/mediaLink/"
+        "source/templates/components/mediaLink/",
+        "source/templates/components/navigation/",
+        "source/templates/components/sectionMenu/",
+        "source/templates/components/contactus/",
+        "source/templates/components/marketselector/",
+        "source/templates/components/softconversion/",
+        "source/templates/components/businessinquiryform/",
+        "source/templates/components/subscriptionform/",
+        "source/templates/components/searchbar/",
+        "source/templates/components/searchresults/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"

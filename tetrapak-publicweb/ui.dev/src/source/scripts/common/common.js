@@ -3,6 +3,8 @@ import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
 import { $global } from '../utils/commonSelectors';
 import { templates } from '../utils/templates';
+import { trackAnalytics } from '../utils/analytics';
+import { isExternal, isDownloable } from '../utils/updateLink';
 
 const currentUserAgent = window.navigator.userAgent;
 
@@ -78,9 +80,15 @@ export const isCallable = (param) => (typeof param === 'function');
  */
 export const scrollToElement = (callback, selector = document.body, duration = 500) => {
   let executed = false;
+  let stickyViewHeight = $('.tp-pw-header__container').outerHeight();
+
+  if($('.sticky-section-menu').length > 0){
+    stickyViewHeight = stickyViewHeight + $('.sticky-section-menu .js-pw-navigation').outerHeight();
+  }
+
   $global.animate(
     {
-      scrollTop: $(selector).offset().top
+      scrollTop: $(selector).offset().top - parseInt(stickyViewHeight,10)
     },
     {
       duration,
@@ -201,12 +209,12 @@ export const resolveQuery = (queryString, replaceMap) => {
   // Replace the replaceable data
   if (Array.isArray(replaceMap)) {
     replaceMap.forEach(function (value, index) {
-      var keyRegex = new RegExp('\\{' + index + '\\}', 'g');
+      var keyRegex = new RegExp(`\\{${  index  }\\}`, 'g');
       queryString = queryString.replace(keyRegex, value);
     });
   } else if (typeof replaceMap === 'object' && replaceMap !== null) {
     Object.keys(replaceMap).forEach(function (key) {
-      var keyRegex = new RegExp('\\{' + key + '\\}', 'g');
+      var keyRegex = new RegExp(`\\{${  key  }\\}`, 'g');
       queryString = queryString.replace(keyRegex, replaceMap[key]);
     });
   }
@@ -280,5 +288,106 @@ export const loc = {
   },
   open(...args) {
     window.open(...args);
+  }
+};
+
+export const getDocType = (url) => {
+  const fileList = ['pdf', 'xls', 'xlsx', 'doc', 'docx', 'ppt', 'pttx', 'jpeg', 'png', 'jpg', 'svg'];
+  const endPart = url && url.split('/').pop();
+  const docType = endPart.split('.').pop();
+
+  if(fileList.includes(docType)){
+    return docType;
+  }
+};
+
+export const addLinkAttr = (linkClass) => {
+  $(linkClass).each(function() {
+    const thisHref = $(this).attr('href');
+    if (thisHref) {
+      $(this).attr('target', '_self');
+      if (isExternal(thisHref)) {
+        $(this).attr('target', '_blank');
+      }
+      if (isDownloable(thisHref)) {
+        $(this).data('download-type', 'download');
+      }
+    }
+  });
+};
+
+export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redirect=true) => {
+  const $target = $(e.target);
+  const $this = $target.closest(linkClass);
+  const downloadtype = $this.data('download-type');
+  let trackingKey = 'linkClick';
+  let linkParentTitle = `${$this.data('anchor-type')}_${$this.data(
+    parentTitle
+  )}`;
+  let linkSection = $this.data('link-section');
+  const linkName = $this.data('link-name');
+  const linkType =
+      $this.attr('target') === '_blank' ? 'external' : 'internal';
+
+  const trackingObj = {};
+  const eventObject = {};
+  let eventType = 'linkClick';
+
+  if (downloadtype === 'download') {
+    trackingObj['dwnDocName'] = $this.data('asset-name');
+    linkSection = `${$this.data('anchor-type')}_Download`;
+    linkParentTitle = `${componentName}_${$this.data('anchor-type')}_Download_${getDocType(
+      $this.attr('href')
+    )}_${$this.data(parentTitle)}`;
+    trackingObj['eventType'] = 'download';
+    trackingObj['dwnType'] = 'ungated';
+    trackingKey = 'downloadClick';
+    eventType = 'downloadClick';
+  }
+
+  trackingObj['linkSection'] = linkSection;
+  trackingObj['linkName'] = linkName;
+  trackingObj['linkParentTitle'] = linkParentTitle;
+  trackingObj['linkType'] = linkType;
+
+  eventObject['event'] = componentName;
+  eventObject['eventType'] = eventType;
+
+  trackAnalytics(
+    trackingObj,
+    'linkClick',
+    trackingKey,
+    undefined,
+    false,
+    eventObject
+  );
+
+  if(redirect){
+    window.open($this.attr('href'), $this.attr('target'));
+  }
+};
+
+export const validateFieldsForTags = (value='') => value.replace(/[`<>]/gi, '');
+
+export const updateQueryStringParameter = (uri, key, value) => {
+  var re = new RegExp(`([?&])${  key  }=.*?(&|$)`, 'i');
+  var separator = uri.indexOf('?') !== -1 ? '&' : '?';
+  if (uri.match(re)) {
+    return uri.replace(re, `$1${  key  }=${  value  }$2`);
+  }
+  else {
+    return `${uri + separator + key  }=${  value}`;
+  }
+};
+
+export const checkActiveOverlay = (activeOverlays) => {
+  let isActiveOverlay = false;
+  activeOverlays.forEach((overlayClass) => {
+    if($(overlayClass).hasClass('show') || $(overlayClass).css('display') !== 'none'){
+      isActiveOverlay = true;
+    }
+  });
+  if(!isActiveOverlay) {
+    $('body').css('overflow','auto');
   }
 };

@@ -1,15 +1,30 @@
 body{
     @include line-height($font-l,$font-baseline);
-    font-family:$font-bold;
+    font-family:$font-light;
     background: $color-wild-sand;
     font-weight: normal;
     font-size: $font-baseline;
+    font-style: normal;
+    position: relative;
 }
 a {
     @include line-height($font-l,$font-baseline);
-    font-family:$font-bold;
+    font-family: $font-light;
     font-weight: 500;
     font-size: $font-baseline;
+}
+
+.font-fixing {
+    text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   -ms-text-size-adjust: 100%;
+   -webkit-text-size-adjust: 100%;
+   text-size-adjust: 100%;
+}
+
+img {
+    border-radius: 4px;
 }
 h1,h2,h3,h4{
     font-family:$font-light;
@@ -86,10 +101,43 @@ h1,h2,h3,h4{
     position: absolute;
     top: 90px;
     z-index: $zindex-s;
+    @media #{$desktop} {
+        top: 80px;
+    }
 }
 .pw-position-relative {
     position: relative;
 }
 .pw-position-static {
     position: static;
+}
+.sticky-section-menu {
+    display: block;
+}
+
+.tpatom-btn--primary,
+.tpatom-link--primary,
+.tpatom-btn--secondary,
+.tpatom-link--secondary, .tpatom-btn--transparent, .tpatom-btn--datepicker,
+.tpatom-link--transparent,
+.tpatom-link--datepicker {
+  span {
+    font-family: $font-light;
+  }
+}
+
+@media #{$mobile} {
+    .body-content {
+        @include padding-top($header-height-mobile * 1px); // with reference to Sticky Mobile Header navigation
+        &.body-top-padding {
+            @include padding-top($sticky-view-height * 1px); // with reference to Sticky Mobile Header + section menu
+        }
+    }
+}
+@media #{$desktop} {
+    .body-content {
+        &.body-top-padding {
+            @include padding-top(62px); // with reference to desktop section menu height
+        }
+    }
 }

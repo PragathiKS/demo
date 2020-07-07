@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:allowedTemplates="[/conf/publicweb/settings/wcm/templates/public-web-landing-page,/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu,/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page]"
+        cq:conf=""
+        cq:lastModified="{Date}2020-05-22T09:19:04.799Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T12:40:22.601Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:21:45.859Z"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-language-level-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,cq:LiveSync,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Italian"
+        jcr:uuid="8103d7bb-c082-4dc4-8bfc-f8a1e004ed03"
+        sling:resourceType="publicweb/components/structure/pages/languagepage"
+        errorPages="/content/tetrapak/public-web/it/it/error"
+        socialMedia="[facebook,pinterest]">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T12:40:22.464Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T12:40:22.472Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship,cq:ReplicationStatus]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <headerconfiguration
+                    cq:lastRolledout="{Date}2020-05-20T12:40:22.485Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-03-25T13:22:51.024Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-20T12:40:22.477Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship,cq:ReplicationStatus]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/structure/headerconfiguration"
+                    contactLink="/content/tetrapak/public-web/it/it/contact-us"
+                    contactLinkTarget="_self"
+                    contactText="Contact Us"
+                    loginLabel="My Tetra Pak"
+                    loginLink="/content/tetrapak/customerhub/global/en/dashboard"
+                    logoAlt="TetraPak"
+                    logoImagePath="/content/dam/tetrapak/publicweb/en/global/header/Blue_Red_logo.png"
+                    logoLink="/content/tetrapak/public-web/it/it/home"
+                    logoLinkTarget="_self"
+                    solutionPage="/content/tetrapak/public-web/it/it/solutions"/>
+                <footerconfiguration
+                    cq:lastRolledout="{Date}2020-05-20T12:40:22.491Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-03-31T06:42:21.276Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-05-20T12:40:22.487Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/structure/footerconfiguration"
+                    goToTopLabel="Go to Top"
+                    logoAlt="image"
+                    logoImagePath="/content/dam/tetrapak/publicweb/en/global/footer/logo_tetra_pak_white.png"
+                    logoLink="/content/tetrapak/public-web/it/it/home"
+                    logoLinkTarget="_blank">
+                    <footerLinks
+                        cq:lastRolledout="{Date}2020-05-20T12:40:22.494Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.501Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Legal Information"
+                            linkPath="/content/tetrapak/public-web/it/it/about-us"
+                            linkTarget="_self"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.504Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Contact Us"
+                            linkPath="/content/tetrapak/public-web/it/it/about-tetra-pak"
+                            linkTarget="_self"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.507Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="Tetra Laval Group"
+                            linkPath="https://www.tetralaval.com/"
+                            linkTarget="_self"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.509Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkLabel="沪ICP备17056308号-1"
+                            linkPath="https://www.tetrapak.com/cn"
+                            linkTarget="_self"/>
+                    </footerLinks>
+                    <socialLinks
+                        cq:lastRolledout="{Date}2020-05-20T12:40:22.511Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.516Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            socialMedia="Facebook"
+                            socialMediaLink="https://www.facebook.com/TetraPak"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.518Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            socialMedia="Twitter"
+                            socialMediaLink="https://twitter.com/tetrapak"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.523Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            socialMedia="WeChat"
+                            socialMediaLink="https://tetrapak-test64.adobecqms.net/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-7.html"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.525Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            socialMedia="Weibo"
+                            socialMediaLink="https://tetrapak-test64.adobecqms.net/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-7.html"/>
+                    </socialLinks>
+                </footerconfiguration>
+                <cookieconfiguration
+                    cq:lastRolledout="{Date}2020-05-20T12:40:22.531Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-01T05:32:18.083Z"
+                    jcr:createdBy="sapient-sandip"
+                    jcr:lastModified="{Date}2020-05-20T12:40:22.527Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/structure/cookieconfiguration"
+                    cookieConsentButtonText="Ok, I understand!"
+                    cookieConsentDisabled="false"
+                    cookieConsentText="&lt;p>We are using cookies. By continuing to use our website without changing the settings, you're agreeing to our use of cookies. &lt;a href=&quot;/content/tetrapak/public-web/it/it/about-us.html&quot;>Learn more about our cookie policy&lt;/a>&lt;/p>&#xd;&#xa;"
+                    textIsRich="true"/>
+                <siteimproveconfig
+                    cq:lastRolledout="{Date}2020-05-20T12:40:22.535Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-16T05:57:07.436Z"
+                    jcr:createdBy="sapient-jyoti"
+                    jcr:lastModified="{Date}2020-05-20T12:40:22.532Z"
+                    jcr:lastModifiedBy="sapient-user"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/structure/siteimproveconfig"/>
+                <megamenuconfig
+                    cq:lastRolledout="{Date}2020-05-20T12:40:22.542Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-28T05:10:21.591Z"
+                    jcr:createdBy="sapient-jyoti"
+                    jcr:lastModified="{Date}2020-05-20T12:40:22.537Z"
+                    jcr:lastModifiedBy="sapient-jyoti"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/structure/megamenuconfig"
+                    bottomSectionSubtitle="Food Categories"
+                    hideFoodCategories="false"
+                    topSectionSubtitle="Tetra pak End to End Solutions"
+                    topSectionUrl="/content/tetrapak/public-web/it/it/solutions/automation-solutions">
+                    <endToEndSolutionSection
+                        cq:lastRolledout="{Date}2020-05-20T12:40:22.545Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.549Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="We enable brands in the cheese, dairy, prepared foods, ice cream and beverage businesses to find ways to move forward."
+                            fileReference="/content/dam/tetrapak/publicweb/text-and-image/yoghurt-blueberries 1 (2).png"
+                            path="/content/tetrapak/public-web/it/it/solutions/processing"
+                            title="Processing"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.553Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Everyone in the food industry wants to boost sales, trim costs or come up with a taste sensation that takes the world by storm."
+                            fileReference="/content/dam/tetrapak/publicweb/tp-end-to-end-section--solutions/employee_inspecting_packages 1.png"
+                            path="/content/tetrapak/public-web/it/it/solutions/packaging"
+                            title="Packaging"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.556Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="The process of producing ice cream is highly complex. The producers need to control the structure of fat globules, ice."
+                            fileReference="/content/dam/tetrapak/publicweb/tp-end-to-end-section--solutions/three_packages_feat_craft_effect_on_desk 1.png"
+                            path="/content/tetrapak/public-web/it/it/solutions/services"
+                            title="Services"/>
+                    </endToEndSolutionSection>
+                    <linkSection
+                        cq:lastRolledout="{Date}2020-05-20T12:40:22.558Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.562Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkText="Solutions Overview"
+                            linkUrl="/content/tetrapak/public-web/it/it/solutions"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.564Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkText="Aseptic Solutions"
+                            linkUrl="/content/tetrapak/public-web/it/it/solutions/aseptic-solutions"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.567Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkText="Product Development Centers"
+                            linkUrl="/content/tetrapak/public-web/it/it/solutions/product-development-centers"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.569Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            linkText="Automation Solutions"
+                            linkUrl="/content/tetrapak/public-web/it/it/solutions/automation-solutions"/>
+                    </linkSection>
+                    <foodCategorySection
+                        cq:lastRolledout="{Date}2020-05-20T12:40:22.572Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.578Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/cheese 1.png"
+                            path="/content/tetrapak/public-web/it/it/solutions/processing/applications/cheese-whey"
+                            title="Cheese"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.581Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/milk 1.png"
+                            path="/content/tetrapak/public-web/it/it/solutions/processing/applications/diary-"
+                            title="Dairy"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.583Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/fbf_food_landing_2 1.png"
+                            path="/content/tetrapak/public-web/it/it/solutions/processing/applications/prepared-food-"
+                            title="Food"/>
+                        <item3
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.587Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/ice-cream 1.png"
+                            path="/content/tetrapak/public-web/it/it/solutions/processing/applications/ice-cream"
+                            title="Ice Cream"/>
+                        <item4
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.589Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/juice-drinks 1.png"
+                            title="Juice &amp; Drink"/>
+                        <item5
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.591Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/fbf_pet_food 1.png"
+                            title="Pet Food"/>
+                        <item6
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.594Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/fbf_sot_new-1 1.png"
+                            title="Plant based Drinks"/>
+                        <item7
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.596Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/powder-spoon 1.png"
+                            title="Whey Powder"/>
+                        <item8
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.598Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/food-category--solutions/wine-based-drinks 1.png"
+                            title="Wine and Spirits"/>
+                        <item9
+                            cq:lastRolledout="{Date}2020-05-20T12:40:22.601Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            fileReference="/content/dam/tetrapak/publicweb/text-and-image/shutterstock_104710151_flying_fruits.png"
+                            path="/content/tetrapak/public-web/it/it/solutions/processing/applications/diary-"
+                            title="Demo Text"/>
+                    </foodCategorySection>
+                </megamenuconfig>
+            </responsivegrid>
+        </root>
+        <cq:LiveSyncConfig
+            cq:isDeep="{Boolean}true"
+            cq:master="/content/tetrapak/public-web/lang-masters/it"
+            cq:rolloutConfigs="[/libs/msm/wcm/rolloutconfigs/default]"
+            jcr:primaryType="cq:LiveCopy"/>
+    </jcr:content>
+    <home/>
+    <solutions/>
+    <insights/>
+    <sustainability/>
+    <about-tetra-pak/>
+    <search/>
+    <contact-us/>
+    <error/>
+    <quality-assurance/>
+</jcr:root>

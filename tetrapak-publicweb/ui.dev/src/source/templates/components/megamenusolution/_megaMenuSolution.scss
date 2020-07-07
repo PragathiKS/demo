@@ -8,14 +8,8 @@
     background: $color-white;
     z-index: 11;
 
-    @media #{$desktop} {
-        position: relative;
-        visibility: visible;
-        top: unset;
-        left: unset;
-        width: unset;
-        height: unset;
-        z-index: 11;
+    hr {
+        @include margin-top($padding-l);
     }
 
     &.is-open {
@@ -41,26 +35,44 @@
         }
     }
     @media #{$desktop} {
+        @include padding($padding-zero $padding-xxxl);
+        @include margin($margin-zero auto);
+        @include padding-top(25px);
         display: flex;
         overflow: hidden;
         position: absolute;
-        left: 0;
-        width: 100%;
+        visibility: visible;
         justify-content: center;
+        background: none;
+        top: unset;
+        max-width: 1440px;
+        z-index: $zindex-nav;
+        left: 50%;
+        height: unset;
+        transform: translate(-50%);
+
+        hr {
+            @include margin-left(-$margin-xxxl);
+            @include margin-right(-$margin-xxxl);
+            @include margin-top($margin-zero);
+            @include margin-bottom(-$margin-zero);
+            border-top: 1px solid $color-mercury;
+        }
         nav {
+            @include margin-left(0);
             width: 100%;
-            margin: 0 auto;
+            border-top: 1px solid $color-white;
             z-index: $zindex-s;
             position: relative;
+            background-color: $color-white;
         }
-    }
-    hr {
-        @include margin-top($padding-l);
     }
     a {
         color: $color-congress-blue;
         @media #{$desktop} {
+            @include padding($padding-zero);
             color: $color-tundora;
+            line-height: 20px;
         }
     }
 
@@ -102,6 +114,11 @@
                 @include margin(auto);
                 background-color: none;
             }
+            &::before {
+                font-size: 16px;
+                line-height: 16px;
+                transform: rotate(180deg);
+            }
         }
 
         @media #{$desktop} {
@@ -123,31 +140,32 @@
         }
     }
     h2 {
-        @include font-size($font-m-sm);
-        @include line-height($font-l, $font-m-sm);
+        @include line-height($font-l, $font-baseline);
         display: flex;
+        font-family: $font-bold;
+        font-size: $font-baseline;
         font-weight: 500;
         justify-content: space-between;
         text-align: center;
         @media #{$desktop} {
             @include line-height($font-l, $font-baseline);
             display: block;
-            font-family: $font-bold;
+            font-family: $font-black;
+            font-size: $font-baseline;
             justify-content: center;
         }
     }
     h3 {
-        @include font-size($font-m-sm);
-        @include line-height($font-l, $font-m-sm);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
         @include margin(0);
         color: $color-congress-blue;
         font-family: $font-bold;
-        font-weight: 900;
         @media #{$desktop} {
-            @include font-size($font-md);
-            @include margin($margin-l 0);
+            @include margin($margin-l $margin-zero $margin-zero);
             color: $color-tundora;
-            font-family: $font-light;
+            font-family: $font-bold;
+            font-size: 18px;
             font-weight: 500;
             line-height: 24px;
         }
@@ -165,16 +183,27 @@
         font-weight: 500;
     }
 
+    p.teaser-spacing {
+        @media #{$desktop} {
+            margin-top: $margin-md;
+        }
+    }
+
     .col-side-links {
         @include padding(0);
         border: 0;
         @media #{$desktop} {
-            border-left: 1px solid $color-mercury;
+            &.col {
+                border-left: 1px solid $color-mercury;
+                width: 100%;
+                flex: 0;
+                max-width: inherit;
+            }
         }
 
         .list-side-links {
             @media #{$desktop} {
-                @include padding-left(20px);
+                @include padding-left($padding-l);
             }
 
             li {
@@ -183,15 +212,26 @@
                 border-bottom: 1px solid $color-mercury;
                 a {
                     color: $color-congress-blue;
+                    font-size: $font-baseline;
                     font-weight: 500;
                     line-height: 20px;
                 }
+
                 @media #{$desktop} {
                     @include margin-bottom($margin-l);
                     @include margin-left(0);
                     @include padding(0);
                     @include font-size($font-sm);
+                    @include margin-right(0);
                     border-bottom: 0;
+                }
+            }
+            span {
+                @media #{$desktop} {
+                    display: inline-block;
+                    position: relative;
+                    padding-right: 10px;
+                    width: 220px;
                 }
             }
         }
@@ -203,22 +243,28 @@
         }
         .col {
             @media #{$desktop} {
-                width: 168px;
-                max-width: 168px;
+                width: 154px;
+                max-width: 154px;
             }
             @media #{$desktop-xl} {
-                width: 250px;
-                max-width: 250px;
+                width: 249px;
+                max-width: 249px;
             }
         }
+        @media #{$mobile} {
+            @include padding($padding-zero $padding-md);
+        }
         @media #{$desktop} {
-            @include margin($margin-xl 0);
+            @include margin($margin-xl);
         }
     }
     &__bottom {
         border-bottom: 1px solid $color-mercury;
+        @media #{$mobile} {
+            @include padding($padding-zero $padding-md);
+        }
         @media #{$desktop} {
-            @include padding($margin-xl 0);
+            @include padding($margin-xl);
             background-color: $color-wild-sand;
             border-bottom: 0;
         }
@@ -230,17 +276,27 @@
                 @include margin-bottom($margin-xl);
                 justify-content: center;
             }
+            i.icon-Arrow_Right_pw {
+                &::before {
+                    font-size: 16px;
+                    line-height: 16px;
+                }
+            }
         }
         h2 {
             @include margin(0);
             @include padding($padding-md 0);
             display: inline-block;
             color: $color-congress-blue;
+            font-family: $font-bold;
+            font-size: $font-baseline;
+            font-weight: 500;
             // border-bottom: 1px solid $color-mercury;
             text-align: left;
             @media #{$desktop} {
                 @include padding(0);
                 color: $color-tundora;
+                font-family: $font-black;
                 border-bottom: 0;
                 text-align: center;
             }
@@ -252,6 +308,10 @@
                 color: $color-congress-blue;
                 @media #{$desktop} {
                     color: $color-tundora;
+                    padding: $padding-zero;
+                }
+                &:hover {
+                    color: $color-jordy-blue;
                 }
             }
             @media #{$desktop} {
@@ -301,6 +361,9 @@
                 @include padding(18px $margin-md);
                 @include margin(-16px);
                 background-color: $color-wild-sand;
+                &::before {
+                    transform: rotate(-180deg);
+                }
             }
 
             &.active {
@@ -332,7 +395,26 @@
                 display: inline-block;
                 font-weight: 500;
                 line-height: 20px;
+                @media #{$desktop} {
+                    @include margin-top($margin-sm);
+                    @include padding-top($padding-zero);
+                    font-size: $font-sm;
+                }
             }
         }
+    }
+}
+.pw-megamenu .col-side-links .list-side-links li a:hover {
+    color: $color-jordy-blue;
+}
+.pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw {
+    display: none;
+    margin-left: $margin-sm;
+    vertical-align: middle;
+    @media #{$desktop} {
+        display: inline-block;
+        position: relative;
+        margin-right: -10px;
+        top: -8px;
     }
 }

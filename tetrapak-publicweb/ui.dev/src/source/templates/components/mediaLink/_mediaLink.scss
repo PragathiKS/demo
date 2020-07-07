@@ -16,6 +16,7 @@
         @include margin-bottom($margin-md);
         @media #{$desktop} {
             @include padding-top($padding-zero);
+            @include margin-bottom($margin-l);
         }
 
         h2 {
@@ -74,7 +75,6 @@
         span {
             @include margin($margin-md);
             @include line-height(24px, 14px);
-            color: $color-congress-blue;
             font-weight: 500;
         }
         i.icon {
@@ -90,6 +90,7 @@
         }
         .icon.icon-Circle_Arrow_Right_pw {
             @include margin-top(16px);
+            @include padding-right(16px);
             line-height: 24px;
         }
     }

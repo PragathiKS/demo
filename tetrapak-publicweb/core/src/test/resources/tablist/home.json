@@ -32,7 +32,7 @@
 "properties:orientation/landscape"
 ],
 "jcr:uuid": "bbfcb71c-d1c5-4e02-b59f-e5a8a74b9dec",
-"linkPath": "/content/tetrapak/public-web/lang-masters/es/home",
+"linkPath": "/content/tetrapak/publicweb/lang-masters/es/home",
 "linkText": "link text2",
 "sling:resourceType": "publicweb/components/structure/pages/landingpage",
 "cq:lastModifiedBy": "admin"

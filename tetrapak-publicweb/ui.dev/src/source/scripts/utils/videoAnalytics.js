@@ -39,7 +39,7 @@ function _trackVideoParameters(
   videoTime,
   trackingKey
 ) {
-  const { videoName } = $(this)
+  const { videoName,videoType } = $(this)
     .parents('.js-video-props')
     .data();
 
@@ -50,7 +50,8 @@ function _trackVideoParameters(
     (videoInteraction === 'end' && '100');
   const trackingObj = {
     videoName,
-    videoSection: (window.digitalData.pageinfo && window.digitalData.pageinfo.siteSection1) || '',
+    videoType,
+    videoSection: (window.digitalData && window.digitalData.pageinfo && window.digitalData.pageinfo.siteSection1) || '',
     videoLength: new Date(videoLength * 1000).toISOString().substr(11, 8),
     videoTime: new Date(Math.round(videoTime) * 1000)
       .toISOString()
@@ -139,6 +140,9 @@ export function pauseVideosByReference(el) {
  * @param {object} e Event object
  */
 function _onStateChange(thisIns, e) {
+  // hide search bar on state change of youTube player
+  $('.js-pw-header-search-bar').removeClass('show');
+
   const totalTime = thisIns.ytPlayer.getDuration();
   const videoTime = thisIns.ytPlayer.getCurrentTime();
   const $this = $(this);

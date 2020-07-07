@@ -6,23 +6,22 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
  * The Class HeaderModel.
@@ -43,23 +42,17 @@ public class HeaderModel {
     /** The logo link. */
     private String logoLink;
 
-    /** The logo link target. */
-    private String logoLinkTarget;
-
     /** The logo alt. */
     private String logoAlt;
 
     /** The login link. */
     private String loginLink;
 
-    /** The contact link. */
-    private String contactLink;
+    /** The contact us link. */
+    private String contactUsLink;
 
-    /** The contact link target. */
-    private String contactLinkTarget;
-
-    /** The contact text. */
-    private String contactText;
+    /** The contact us alt text. */
+    private String contactUsAltText;
 
     /** The login label. */
     private String loginLabel;
@@ -67,14 +60,26 @@ public class HeaderModel {
     /** The solution page. */
     private String solutionPage;
 
+    /** The search page. */
+    private String searchPage;
+
     /** The mega menu links list. */
     private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
     /** The mega menu configuration model. */
-    private MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
+    private MegaMenuConfigurationModel megaMenuConfigurationModel;
 
     /** The solution page title. */
     private String solutionPageTitle;
+
+    /** The market page. */
+    private Page marketPage;
+
+    /** The language page. */
+    private Page languagePage;
+
+    /** The MORE_THAN_ONE_LANGAUGES. */
+    private static final int MORE_THAN_ONE_LANGAUGES = 2;
 
     /**
      * Inits the.
@@ -83,39 +88,31 @@ public class HeaderModel {
     protected void init() {
         LOGGER.debug("inside init method");
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        languagePage = PageUtil.getCurrentPage(request.getResourceResolver().getResource(rootPath));
+        if (languagePage != null && languagePage.getParent() != null) {
+            marketPage = languagePage.getParent();
+        }
         final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
         final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
+        megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request, request.getPathInfo());
         if (Objects.nonNull(headerConfigurationResource)) {
             final HeaderConfigurationModel configurationModel = headerConfigurationResource
                     .adaptTo(HeaderConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
                 logoImagePath = configurationModel.getLogoImagePath();
                 logoLink = configurationModel.getLogoLink();
-                logoLinkTarget = configurationModel.getLogoLinkTarget();
                 logoAlt = configurationModel.getLogoAlt();
-                contactLink = configurationModel.getContactLink();
-                contactLinkTarget = configurationModel.getContactLinkTarget();
-                contactText = configurationModel.getContactText();
+                contactUsLink = configurationModel.getContactLink();
+                contactUsAltText = configurationModel.getContactText();
                 loginLabel = configurationModel.getLoginLabel();
                 loginLink = configurationModel.getLoginLink();
                 solutionPage = configurationModel.getSolutionPage();
+                searchPage = configurationModel.getSearchPage();
             }
             setMegaMenuLinksList(rootPath);
             setSolutionPageTitle();
         }
-        populateMegaMenuConfigurationModel();
-    }
 
-    /**
-     * Populate mega menu configuration model.
-     */
-    private void populateMegaMenuConfigurationModel() {
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";
-        final Resource megaMenuConfigResource = request.getResourceResolver().getResource(pagePath);
-        if (Objects.nonNull(megaMenuConfigResource)) {
-            megaMenuConfigurationModel = megaMenuConfigResource.adaptTo(MegaMenuConfigurationModel.class);
-        }
     }
 
     /**
@@ -124,7 +121,7 @@ public class HeaderModel {
      * @param rootPath
      *            the new mega menu links list
      */
-    public void setMegaMenuLinksList(String rootPath) {
+    public void setMegaMenuLinksList(final String rootPath) {
         final Resource rootResource = request.getResourceResolver().getResource(rootPath);
         if (Objects.nonNull(rootResource)) {
             final ResourceResolver resourceResolver = rootResource.getResourceResolver();
@@ -144,22 +141,38 @@ public class HeaderModel {
      * @param page
      *            the new link bean
      */
-    private void setLinkBean(Page page) {
+    private void setLinkBean(final Page page) {
         if (Objects.nonNull(page)) {
             final Iterator<Page> childPages = page.listChildren();
             while (childPages.hasNext()) {
-                final Page childPage = childPages.next();
-                if (!childPage.isHideInNav()) {
-                    final LinkBean linkBean = new LinkBean();
-                    String title = childPage.getNavigationTitle();
-                    if(StringUtils.isBlank(title)) {
-                        title = childPage.getTitle();
-                    }
-                    linkBean.setLinkText(title);
-                    linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath()));
-                    megaMenuLinksList.add(linkBean);
-                }
+                populateMegaMenuLinksList(childPages);
             }
+        }
+    }
+
+    /**
+     * Populate mega menu links list.
+     *
+     * @param childPages
+     *            the child pages
+     */
+    private void populateMegaMenuLinksList(final Iterator<Page> childPages) {
+        final Page childPage = childPages.next();
+        if (!childPage.isHideInNav()) {
+            final LinkBean linkBean = new LinkBean();
+            final String title = NavigationUtil.getNavigationTitle(childPage);
+            linkBean.setLinkText(title);
+            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath(), request.getResourceResolver()));
+            final String solutionPageWithoutExtension = NavigationUtil.getSolutionPageWithoutExtension(solutionPage);
+            if (!childPage.getPath().equalsIgnoreCase(solutionPageWithoutExtension)) {
+                final SectionMenuModel sectionMenuModel = new SectionMenuModel();
+                sectionMenuModel.setSectionHomePageTitle(childPage);
+                sectionMenuModel.setSectionHomePagePath(childPage, request.getResourceResolver());
+                sectionMenuModel.populateSectionMenu(megaMenuConfigurationModel, childPage,
+                        solutionPageWithoutExtension, request.getResourceResolver());
+                linkBean.setNavigationConfigurationModel(sectionMenuModel);
+            }
+            megaMenuLinksList.add(linkBean);
         }
     }
 
@@ -179,15 +192,6 @@ public class HeaderModel {
      */
     public String getLogoLink() {
         return logoLink;
-    }
-
-    /**
-     * Gets the logo link target.
-     *
-     * @return the logo link target
-     */
-    public String getLogoLinkTarget() {
-        return logoLinkTarget;
     }
 
     /**
@@ -213,17 +217,8 @@ public class HeaderModel {
      *
      * @return the contact link
      */
-    public String getContactLink() {
-        return contactLink;
-    }
-
-    /**
-     * Gets the contact link target.
-     *
-     * @return the contact link target
-     */
-    public String getContactLinkTarget() {
-        return contactLinkTarget;
+    public String getContactUsLink() {
+        return contactUsLink;
     }
 
     /**
@@ -231,8 +226,8 @@ public class HeaderModel {
      *
      * @return the contact text
      */
-    public String getContactText() {
-        return contactText;
+    public String getContactUsAltText() {
+        return contactUsAltText;
     }
 
     /**
@@ -268,7 +263,7 @@ public class HeaderModel {
      * @return the solution page
      */
     public String getSolutionPage() {
-        return solutionPage;
+        return LinkUtils.sanitizeLink(solutionPage, request.getResourceResolver());
     }
 
     /**
@@ -283,14 +278,67 @@ public class HeaderModel {
     /**
      * Sets the solution page title.
      *
-     * @param headerConfigurationResource the new solution page title
+     * @param headerConfigurationResource
+     *            the new solution page title
      */
     private void setSolutionPageTitle() {
-        final String solutionPageJcrContentPath = StringUtils.substringBefore(solutionPage, ".") + "/jcr:content";
-        final Resource solutionPageResource = request.getResourceResolver().getResource(solutionPageJcrContentPath);
-        if (Objects.nonNull(solutionPageResource)) {
-            final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
-            solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
+        this.solutionPageTitle = NavigationUtil.getSolutionPageTitle(request, solutionPage);
+    }
+
+    /**
+     * @return markets list
+     */
+    public MarketSelectorModel getMarketList() {
+        return request.adaptTo(MarketSelectorModel.class);
+    }
+
+    /**
+     * @return current language
+     */
+    public String getCurrentLanguage() {
+        if (null != languagePage) {
+            return languagePage.getTitle();
         }
+        return StringUtils.EMPTY;
+    }
+
+    /**
+     * @return current market
+     */
+    public String getCurrentMarket() {
+        if (null != marketPage) {
+            return marketPage.getTitle();
+        }
+        return StringUtils.EMPTY;
+    }
+
+    /**
+     * @return DisplayCurrentLanguage
+     */
+    public Boolean getDisplayCurrentLanguage() {
+        Boolean isDisplayCurrentLanguage = false;
+        if (null != marketPage) {
+            final Iterator<Page> childPages = marketPage.listChildren();
+            int languagesCount = 0;
+            while (childPages.hasNext()) {
+                childPages.next();
+                languagesCount++;
+                if (languagesCount >= MORE_THAN_ONE_LANGAUGES) {
+                    isDisplayCurrentLanguage = true;
+                    break;
+                }
+            }
+
+        }
+        return isDisplayCurrentLanguage;
+    }
+
+    /**
+     * Gets the search page.
+     *
+     * @return the search page
+     */
+    public String getSearchPage() {
+        return searchPage;
     }
 }

@@ -1,0 +1,46 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:49:50 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"hideContactFooterForm@Delete": "true",
+"jcr:createdBy": "admin",
+"jcr:title": "News room",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "adfec582-6b42-419c-b5e0-fb0494676113",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+"cq:lastReplicatedBy": "admin",
+"pwLinkTheme": "hyperlink",
+"jcr:predecessors": [
+"c6d936bc-bc79-4eeb-9ff0-d5d535d82d2c"
+],
+"disableEnvelope": "false",
+"pwButtonTheme": "link",
+"jcr:created": "Wed Jun 10 2020 23:49:50 GMT+0530",
+"cq:lastReplicated": "Thu Jun 11 2020 15:46:36 GMT+0530",
+"cq:lastModified": "Thu Jun 11 2020 18:00:07 GMT+0530",
+"jcr:baseVersion": "c6d936bc-bc79-4eeb-9ff0-d5d535d82d2c",
+"jcr:isCheckedOut": true,
+"hideInSearch@Delete": "true",
+"linkTarget": "_self",
+"cq:tags": [
+"we-retail:activity"
+],
+"jcr:uuid": "fb984180-df7f-4d63-b458-1755904c6695",
+"linkText": "dasdasd",
+"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+"cq:lastModifiedBy": "admin",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"responsivegrid": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid"
+}
+}
+}
+}

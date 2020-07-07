@@ -9,13 +9,14 @@
     border: 1px solid $color-tundora;
     background-color: $color-white;
     cursor: pointer;
-    font-family: $font-bold;
+    font-family: $font-light;
     margin: 5px;
 }
 
 .pw-find-my-office {
     &__map {
         @include height(288px);
+        border-radius: 4px;
     }
     &__wrapper {
         @include margin-left($margin-md);
@@ -27,6 +28,7 @@
         background-color: $color-white;
         position: static;
         width: 100%;
+        border-radius: 4px;
         h2 {
             @include line-height(32px, $font-l);
             font-weight: 300;
@@ -42,7 +44,7 @@
             @include margin-top($margin-md);
         }
         &__field {
-            @include margin-top($margin-l);
+            @include margin-top($margin-md);
             font-weight: 500;
             font-size: 14px;
             line-height: 24px;
@@ -52,6 +54,14 @@
             &:disabled {
                 opacity: $opacity-disabled;
                 cursor: auto;
+            }
+            .icon-Arrow_Right_pw {
+                &::before {
+                    color: $color-text;
+                    font-size: $font-sm;
+                    line-height: $font-sm;
+                    transform: rotate(90deg);
+                }
             }
         }
         &__city-field,
@@ -64,12 +74,11 @@
 
     &__form-group__address {
         &__office-name,
-        &__office-phone-number,
         &__office-site {
-            @include margin-top($margin-l);
+            @include margin-top($margin-md);
         }
-
-        &__office-address {
+        &__office-address,
+        &__office-phone-number {
             @include margin-top($margin-md);
         }
         &__office-phone-number {
@@ -101,6 +110,9 @@
             top: $margin-xxxl;
             left: $margin-xxxl;
             z-index: $zindex-p;
+            .country-field {
+                @include margin-top($margin-l);
+            }
         }
         &__form-group__address {
             &__office-name {
@@ -109,6 +121,9 @@
                     line-height: 24px;
                     font-weight: 900;
                 }
+            }
+            &__office-site {
+                @include margin-top($margin-l);
             }
         }
         h2 {

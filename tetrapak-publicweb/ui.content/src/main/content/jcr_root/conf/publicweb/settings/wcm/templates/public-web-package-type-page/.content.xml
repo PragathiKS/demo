@@ -5,8 +5,8 @@
         cq:lastModified="{Date}2020-05-04T13:47:54.586+05:30"
         cq:lastModifiedBy="admin"
         cq:templateType="/conf/publicweb/settings/wcm/template-types/pxp-product-page"
-        jcr:description="Public Web Package Type Page Template"
+        jcr:description="Package Type Page Template"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Public Web Package Type Page"
+        jcr:title="Package Type Page"
         status="enabled"/>
 </jcr:root>

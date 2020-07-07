@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-22T09:22:54.781Z"
+        cq:lastModifiedBy="sapient-sandip"
+        cq:lastRolledout="{Date}2020-05-20T13:05:51.595Z"
+        cq:lastRolledoutBy="sapient-user"
+        cq:lastTranslationUpdate="{Date}2020-05-20T12:18:21.598Z"
+        cq:tags="[tetrapak:funnel-stages/interest]"
+        cq:template="/conf/publicweb/settings/wcm/templates/public-web-landing-page"
+        cq:translationSourcePath="/content/tetrapak/public-web/lang-masters/en/quality-assurance/qa-component-mix-7"
+        jcr:description="Tetra Laval Food for Development drives the development of the dairy and food value chain through cooperation with customers, governments, development cooperation agencies, funding organisations and NGO’s all over the world."
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[cq:LiveRelationship,mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Food for Development"
+        jcr:uuid="6595e1e6-9538-44be-b807-d2233ff61734"
+        sling:resourceType="publicweb/components/structure/pages/landingpage"
+        hideContactFooterForm_x0040_Delete="true"
+        hideInSearch_x0040_Delete="true"
+        linkTarget="_self"
+        pwButtonTheme="link"
+        pwLinkTheme="hyperlink">
+        <root
+            cq:lastRolledout="{Date}2020-05-20T13:05:51.487Z"
+            cq:lastRolledoutBy="sapient-user"
+            jcr:mixinTypes="[cq:LiveRelationship]"
+            jcr:primaryType="nt:unstructured">
+            <responsivegrid
+                cq:lastRolledout="{Date}2020-05-20T13:05:51.492Z"
+                cq:lastRolledoutBy="sapient-user"
+                jcr:mixinTypes="[cq:LiveRelationship]"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <teaser
+                    cq:lastRolledout="{Date}2020-05-20T13:05:51.502Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-15T14:06:54.129Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T13:05:51.498Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    anchorId="anchorid"
+                    anchorTitle="Automatic Teaser"
+                    contentType="automatic"
+                    heading="Heading: Automatic Teaser"
+                    maxTeasers="12"
+                    pwTheme="grayscale-white"
+                    tags="[tetrapak:funnel-stages/interest]"/>
+                <teaser_1496690409
+                    cq:lastRolledout="{Date}2020-05-20T13:05:51.507Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-15T14:14:50.752Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T13:05:51.503Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="semi-automatic"
+                    heading="Heading: Semi-automatic Teaser"
+                    pwTheme="grayscale-lighter">
+                    <semiAutomaticList
+                        cq:lastRolledout="{Date}2020-05-20T13:05:51.509Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.512Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/mta/fr/quality-assurance/qa-component-mix-10"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.514Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/mta/fr/quality-assurance/qa-component-mix-12"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.516Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            pageURL="/content/tetrapak/public-web/mta/fr/quality-assurance/qa-component-mix-7"/>
+                    </semiAutomaticList>
+                </teaser_1496690409>
+                <teaser_1163905206
+                    cq:lastRolledout="{Date}2020-05-20T13:05:51.521Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-15T14:16:17.633Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T13:05:51.518Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="manual"
+                    heading="Heading: Learn more about mixing (Manual)"
+                    pwTheme="grayscale-white">
+                    <manualList
+                        cq:lastRolledout="{Date}2020-05-20T13:05:51.523Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.530Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Food Testing"
+                            description="Traceability is becoming increasingly important in demonstrating food safety for manufacturers and consumers.&#xd;&#xa;&#xd;&#xa;Our Food Safety Policy commits us to maintaining the highest standards of safety and achieve full product traceability through the entire food processing and packaging value chain. We back this commitment in a number of ways, including through the development of automated solutions such as Tetra Pak® PlantMaster, a factory-wide control system that fully and seamlessly integrates intelligence from each unit of the dairy production line.&#xd;&#xa;&#xd;&#xa;Read more about traceability and food safety: "
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/testing-food.jpg"
+                            linkPath="https://assets.tetrapak.com/static/documents/processing/food-safety-brochure.pdf"
+                            linkTarget="_blank"
+                            linkText="Our commitment to Food Safety (pdf)"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="hyperlink"
+                            title="Trust and traceability"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.536Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="China"
+                            description="Tetra Pak is part of a collaborative initiative to improve milk safety in schools connected to the School Milk Programme in China. Step by step, we can help spread knowledge about nutritious and safe milk across the world’s most populous country."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/chinese-children-drinking-milk (1).jpg"
+                            linkPath="http://tetrapak.com/sustainability/cases-and-articles/milk-safety-schools-in-china"
+                            linkTarget="_self"
+                            linkText="Read more about milk safety at schools in China"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Establishing standards in milk safety at schools in China"/>
+                        <item2
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.542Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            alt="Recart"
+                            description="Since launching the Tetra Classic® Aseptic carton in 1961, we have come up with hundreds of new packaging solutions that keep food safe from harmful bacteria. In 2001, Tetra Recart® was the first package on the market to pack traditionally canned foods such as chopped tomatoes, beans and soups in a carton.&#xd;&#xa;&#xd;&#xa;We are also pioneers in food safety technologies such as juice pasteurisation and ultra-high temperature treatment. We are continually finding new ways to help our customers respond to challenging market conditions and consumer demands around the world."
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/tetra-recart-carton-package.jpg"
+                            linkPath="/content/tetrapak/public-web/mta/fr/home/food-safety"
+                            linkTarget="_blank"
+                            linkText="Read more about sustainable packages and ​​​​​​​​​​​renewable materials"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Pioneering new ideas"/>
+                    </manualList>
+                </teaser_1163905206>
+                <teaser_888631742
+                    cq:lastRolledout="{Date}2020-05-20T13:05:51.548Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-15T14:43:49.881Z"
+                    jcr:createdBy="sapient-suraksha"
+                    jcr:lastModified="{Date}2020-05-20T13:05:51.544Z"
+                    jcr:lastModifiedBy="sapient-suraksha"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="manual"
+                    heading="Manual (Without Image)"
+                    pwTheme="grayscale-white">
+                    <manualList
+                        cq:lastRolledout="{Date}2020-05-20T13:05:51.549Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.555Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Tetra Pak is part of a collaborative initiative to improve milk safety in schools connected to the School Milk Programme in China. Step by step, we can help spread knowledge about nutritious and safe milk across the world’s most populous country."
+                            linkPath="/content/tetrapak/public-web/mta/fr/home"
+                            linkTarget="_self"
+                            linkText="Link Text"
+                            pwButtonTheme="secondary"
+                            pwLinkTheme="hyperlink"
+                            title="Title"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.559Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Tetra Pak is part of a collaborative initiative to improve milk safety in schools connected to the School Milk Programme in China. Step by step, we can help spread knowledge about nutritious and safe milk across the world’s most populous country."
+                            linkPath="/content/dam/tetrapak/publicweb/pdf-files/tp_magazine_no_100.pdf"
+                            linkTarget="_blank"
+                            linkText="Link Text"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="Title"/>
+                    </manualList>
+                </teaser_888631742>
+                <teaser_538981414
+                    cq:lastRolledout="{Date}2020-05-20T13:05:51.564Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-24T14:37:56.138Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T13:05:51.561Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/teaser"
+                    contentType="manual"
+                    heading="teaser 2 column"
+                    pwTheme="grayscale-white">
+                    <manualList
+                        cq:lastRolledout="{Date}2020-05-20T13:05:51.566Z"
+                        cq:lastRolledoutBy="sapient-user"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
+                        jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.572Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Lorem ipsum  Lorem ipsum  Lorem ipsum  Lorem ipsum  Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/shutterstock_421600312 1.jpg"
+                            linkPath="/content/tetrapak/public-web/mta/fr/solutions"
+                            linkTarget="_self"
+                            linkText="Read more"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="test1"/>
+                        <item1
+                            cq:lastRolledout="{Date}2020-05-20T13:05:51.577Z"
+                            cq:lastRolledoutBy="sapient-user"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
+                            jcr:primaryType="nt:unstructured"
+                            description="Lorem ipsum  Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "
+                            fileReference="/content/dam/tetrapak/publicweb/demo-assets/shutterstock_421600312 1.jpg"
+                            linkPath="/content/tetrapak/public-web/mta/fr/solutions"
+                            linkTarget="_self"
+                            linkText="read new"
+                            pwButtonTheme="link"
+                            pwLinkTheme="hyperlink"
+                            title="teaser 2"/>
+                    </manualList>
+                </teaser_538981414>
+                <video
+                    cq:lastRolledout="{Date}2020-05-20T13:05:51.582Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-24T14:57:51.558Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T13:05:51.579Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/video"
+                    damVideoPath="/content/dam/tetrapak/publicweb/demo-assets/SampleVideo_1280x720_5mb.mp4"
+                    pwTheme="grayscale-white"
+                    thumbnailPath="/content/dam/tetrapak/publicweb/1320x500-test2.png"
+                    videoSource="damVideo"/>
+                <textvideo
+                    cq:lastRolledout="{Date}2020-05-20T13:05:51.591Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-24T15:13:09.982Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T13:05:51.586Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/textVideo"
+                    damVideoPath="/content/dam/tetrapak/publicweb/demo-assets/SampleVideo_1280x720_5mb.mp4"
+                    description="test"
+                    pwButtonTheme="link"
+                    pwDisplay="display-row"
+                    pwLinkTheme="hyperlink"
+                    pwTheme="grayscale-white"
+                    subTitle="test"
+                    targetBlank="_self"
+                    thumbnailPath="/content/dam/tetrapak/publicweb/demo-assets/food-quality-customer.jpg"
+                    title="test"
+                    videoSource="damVideo"/>
+                <banner
+                    cq:lastRolledout="{Date}2020-05-20T13:05:51.594Z"
+                    cq:lastRolledoutBy="sapient-user"
+                    jcr:created="{Date}2020-04-24T15:18:29.227Z"
+                    jcr:createdBy="sapient-anshika"
+                    jcr:lastModified="{Date}2020-05-20T13:05:51.592Z"
+                    jcr:lastModifiedBy="sapient-anshika"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

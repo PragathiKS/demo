@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { $win, $global } from '../../../scripts/utils/commonSelectors';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class ContactAnchorLink {
   constructor({ el }) {
@@ -9,29 +9,30 @@ class ContactAnchorLink {
   initCache() {
     this.cache.$contactAnchor = this.root.find('.js-pw-contactAnchorLink');
   }
-  goToContactForm(e) {
+  goToContactForm = (e) => {
     e.preventDefault();
-    const $target = $($(this).attr('href'));
-    if ($target.length) {
-      $global.animate({
-        scrollTop: parseInt($target.offset().top, 10)
-      }, 1000);
-    }
+    const $target = $(e.target);
+    const $this = $target.closest('.js-pw-contactAnchorLink');
+    this.trackAnalytics($this);
   }
+
+  trackAnalytics = (el) => {
+    const trackingObj = {
+      linkType: 'internal',
+      linkSection: 'Floating Button',
+      linkParentTitle: '',
+      linkName: 'Contact Us'
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Contact us form'
+    };
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    window.open(el.attr('href'),'_self');
+  }
+
   bindEvents() {
     const { $contactAnchor } = this.cache;
-    $win.on('scroll', function () {
-      const $this = $(this);
-      var windowBottom = $this.scrollTop() + $this.innerHeight();
-      $contactAnchor.each(function () {
-        const $this = $(this);
-        const $target = $($this.attr('href')); // Hash link used as ID selector
-        if ($target.length) {
-          var objectBottom = $target.offset().top + $target.outerHeight();
-          $this[(objectBottom < windowBottom) ? 'addClass' : 'removeClass']('fade-out');
-        }
-      });
-    }).scroll();
     $contactAnchor.on('click', this.goToContactForm);
   }
   init() {

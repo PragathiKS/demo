@@ -1,11 +1,11 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.i18n.I18n;
-import com.day.cq.wcm.api.Page;
-import com.tetrapak.publicweb.core.beans.pxp.Openingclosure;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.models.multifield.ManualModel;
-import com.tetrapak.publicweb.core.utils.PageUtil;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -19,12 +19,12 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-import javax.annotation.PostConstruct;
+import com.day.cq.i18n.I18n;
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.beans.pxp.Openingclosure;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.multifield.ManualModel;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
  * The Class PXPOpeningsModel.
@@ -64,6 +64,9 @@ public class PXPOpeningsModel {
     /** The anchor title. */
     @ValueMapValue(via = "resource")
     private String anchorTitle;
+
+    @ValueMapValue(via = "resource")
+    private String pwImgBackground;
 
     /** The i18n. */
     private I18n i18n;
@@ -161,6 +164,15 @@ public class PXPOpeningsModel {
      */
     public String getHeading() {
         return heading;
+    }
+
+    /**
+     * Gets the card style.
+     *
+     * @return the card style
+     */
+    public String getPwImgBackground() {
+        return pwImgBackground;
     }
 
     /**

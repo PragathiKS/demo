@@ -41,6 +41,12 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="jcr:title"/>
                                             </title>
+                                            <titlesuffix
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Title suffix"
+                                                name="./titleSuffix"
+                                                renderReadOnly="{Boolean}true"/>
                                             <pagename
                                                 cq:hideOnEdit="{Boolean}true"
                                                 cq:showOnCreate="{Boolean}true"
@@ -246,6 +252,14 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                 name="./hideInSearch@Delete"
                                                 value="{Boolean}true"/>
+											<mobileoverviewlabel
+                                                cq:showOnCreate="{Boolean}true"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Mobile Overview Label"
+												fieldDescription="Provide label to present in mobile. Default is Overview"
+												value="Overview"
+                                                name="./mobileOverviewLabel"/>
                                             <errorpages
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
@@ -254,6 +268,19 @@
                                                 fieldLabel="Error Pages"
                                                 name="./errorPages"
                                                 rootPath="/content"/>
+											<disableenvelope
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./disableEnvelope"
+                                                text="Disable Contact us Envelope"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true"/>
+											<articledate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                                fieldLabel="Article Date"
+                                                name="./articleDate"
+                                                type="date"/>
                                         </items>
                                     </baseProperties>
                                 </items>
@@ -286,7 +313,7 @@
                                                 fieldDescription="Original Image should be in 16:9 aspect ratio"
                                                 fieldLabel="Thumbnail Image path"
                                                 name="./imagePath"
-                                                rootPath="/content/dam/tetrapak/publicweb"/>
+                                                rootPath="/content/dam/tetrapak"/>
                                             <imageAltText
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
@@ -314,19 +341,6 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/include"
                                                 path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
-                                            <linkTheme
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwLinkThemes"/>
-                                            <openInNewWindow
-                                                cq:showOnCreate="{Boolean}true"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                fieldDescription="Check this to open the link in a new window"
-                                                name="./linkTarget"
-                                                text="Open In New Window? (for External URLs and PDFs)"
-                                                uncheckedValue="_self"
-                                                value="_blank"/>
                                         </items>
                                     </aggregator>
                                 </items>

@@ -19,8 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.dam.api.AssetManager;
-import com.day.cq.replication.ReplicationActionType;
-import com.day.cq.replication.ReplicationException;
 import com.day.cq.replication.Replicator;
 import com.tetrapak.publicweb.core.beans.pxp.AssetDetail;
 import com.tetrapak.publicweb.core.constants.PWConstants;
@@ -58,8 +56,8 @@ public class ProductAssetsImportJob implements JobConsumer {
             if (resourceResolver != null) {
                 session = resourceResolver.adaptTo(Session.class);
                 if (null != session) {
-                    String sourceurl = job.getProperty("sourceurl").toString();
-                    String finalDAMPath = job.getProperty("finalDAMPath").toString();
+                    final String sourceurl = job.getProperty("sourceurl").toString();
+                    final String finalDAMPath = job.getProperty("finalDAMPath").toString();
                     LOGGER.debug("final DAMPath {}", finalDAMPath);
                     return processAsset(session, resourceResolver, sourceurl, finalDAMPath);
                 }
@@ -76,19 +74,19 @@ public class ProductAssetsImportJob implements JobConsumer {
      * @param sourceurl
      * @param finalDAMPath
      */
-    private JobResult processAsset(Session session, ResourceResolver resourceResolver, String sourceurl,
-            String finalDAMPath) {
+    private JobResult processAsset(final Session session, final ResourceResolver resourceResolver, final String sourceurl,
+            final String finalDAMPath) {
         // check if resource already exists
-        Resource resource = resourceResolver.getResource(finalDAMPath);
+        final Resource resource = resourceResolver.getResource(finalDAMPath);
         if (resource == null) {
             LOGGER.debug("Asset doesn't exist");
             // fetch the Asset binary from given URL
-            AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
+            final AssetDetail assetDetail = assetimportservice.getAssetDetailfromInputStream(sourceurl);
             if (null != assetDetail) {
                 try (InputStream is = assetDetail.getIs()) {
                     // upload the assets in AEM DAM
                     return createAsset(finalDAMPath, assetDetail.getContentType(), is, session, resourceResolver);
-                } catch (IOException e) {
+                } catch (final IOException e) {
                     LOGGER.error("Error while closing Input Stream for damPath {} \nSource URL {}", finalDAMPath,
                             sourceurl, e);
                 }
@@ -109,48 +107,34 @@ public class ProductAssetsImportJob implements JobConsumer {
      * @param resourceResolver
      * @return
      */
-    private JobResult createAsset(String finalDAMPath, String contentType, InputStream is, Session session,
-            ResourceResolver resourceResolver) {
+    private JobResult createAsset(final String finalDAMPath, final String contentType, final InputStream is, final Session session,
+            final ResourceResolver resourceResolver) {
         LOGGER.debug("Inside creatin assets {}", finalDAMPath);
-        AssetManager assetManager = resourceResolver.adaptTo(AssetManager.class);
+        final AssetManager assetManager = resourceResolver.adaptTo(AssetManager.class);
         if (assetManager != null) {
             assetManager.createAsset(finalDAMPath, is, contentType, true);
             try {
                 addReplicationNodeProperty(finalDAMPath, resourceResolver);
-            } catch (RepositoryException e) {
+            } catch (final RepositoryException e) {
                 LOGGER.error("Exception occured while setting property {}", e.getMessage(), e);
             }
             LOGGER.debug("Asset Created at location{}", finalDAMPath);
-            if (JobResult.OK == saveSession(session)) {
-                // activate the asset
-                return replicateAsset(finalDAMPath, session);
-            }
+            return saveSession(session);
         }
         return JobResult.FAILED;
     }
 
+    /**
+     * Adds flag on asset to check for pxp feed uploaded assets
+     *
+     * @param finalDAMPath
+     * @param resourceResolver
+     * @throws RepositoryException
+     */
     private void addReplicationNodeProperty(String finalDAMPath, ResourceResolver resourceResolver) throws RepositoryException {
         Resource resource = resourceResolver.getResource(finalDAMPath.concat("/jcr:content/metadata"));
         Node assetNode = resource.adaptTo(Node.class);
         assetNode.setProperty(PWConstants.REPLICATION_PXP,"true");
-    }
-
-    /**
-     * Replicate the asset
-     * 
-     * @param assetsLocation
-     * @param session
-     * @return
-     */
-    private JobResult replicateAsset(String assetsLocation, Session session) {
-        try {
-            replicator.replicate(session, ReplicationActionType.ACTIVATE, assetsLocation);
-            LOGGER.debug("Asset replicated");
-            return JobResult.OK;
-        } catch (ReplicationException e) {
-            LOGGER.error("Exception while replicating asset {}", e.getMessage(), e);
-            return JobResult.FAILED;
-        }
     }
 
     /**

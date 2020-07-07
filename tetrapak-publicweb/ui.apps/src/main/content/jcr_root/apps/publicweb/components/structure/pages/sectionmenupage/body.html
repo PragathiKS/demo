@@ -1,13 +1,13 @@
 <div>
   <sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/header'}"/>
 </div>
-<div>
-  <sly data-sly-resource="${'header' @ resourceType='publicweb/components/structure/sectionmenu'}"/>
+<div class='sticky-section-menu'>
+  <sly data-sly-resource="${'sectionmenu' @ resourceType='publicweb/components/structure/sectionmenu'}"/>
 </div>
 <div>
   <sly data-sly-resource="${'contactAnchorLink' @ resourceType='publicweb/components/structure/contactAnchorLink'}"/>
 </div>
-<div>
+<div class='body-content'>
   <sly data-sly-include="content.html"></sly>
 </div>
 

@@ -1,0 +1,8 @@
+<sly
+    data-sly-template.tabbutton_template="${@ btnTarget, btnType ,btnText, variant, customClasses, icon_classes, autoLocator, currentTarget}">
+    <button data-sly-test="${btnText}" data-current-target="${currentTarget}" data-target="${btnTarget}" type="${btnType ? btnType : 'button'}"
+        class="tpatom-btn tpatom-btn--${variant || 'primary'} ${customClasses}" auto_locator="${autoLocator}">
+        <span class="tp-next-btn__text">${btnText @ i18n}</span>
+        <i class="tpatom-button__icon ${icon_classes}"></i>
+    </button>
+</sly>

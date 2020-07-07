@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { isExternal } from '../../../scripts/utils/updateLink';
 class RichText {
   constructor({ el }) {
     this.root = $(el);
@@ -6,7 +8,6 @@ class RichText {
   cache = {};
   initCache() {
     this.cache.$anchorLink = this.root.find('a');
-    this.addIcon();
     this.cache.$attributeDivId = this.root.find('.tp-pw-richText-wrapper');
   }
   bindEvents() {
@@ -15,18 +16,29 @@ class RichText {
   }
 
   trackAnalytics = e => {
+    e.preventDefault();
     const $this = $(e.target);
-    const anchorText = $this.text();
-    this.cache.$attributeDivId.attr('data-link-name', anchorText);
-    return true;
-  };
+    const linkName = $this.text();
+    const thisHref = $this.attr('href');
+    const linkType =  isExternal(thisHref) ? 'external':'internal'; 
+    const firstH1 = this.cache.$attributeDivId.find('h1:first').text();
+    const firstH2 = this.cache.$attributeDivId.find('h2:first').text();
+    const parentTitleText = firstH1 || firstH2 || 'RTE';
 
-  addIcon = () => {
-    const { $anchorLink } = this.cache;
-    $.each($anchorLink, function() {
-      const $this = $(this);
-      $this.append(`<i class="icon icon-Circle_Arrow_Right"></i>`);
-    });
+    const trackingObj = {
+      linkType,
+      linkSection:'RTE_Text Hyperlink',
+      linkParentTitle:`Text Hyperlink_${parentTitleText}`,
+      linkName
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'RTE'
+    };
+    
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    window.open($this.attr('href'), $this.attr('target'));
+ 
   };
 
   init() {

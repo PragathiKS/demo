@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
-import org.apache.sling.api.resource.Resource;
+import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
@@ -31,13 +32,10 @@ public class BreadcrumbModelTest {
     private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/language-masters/en/solution";
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
+    private static final String RESOURCE = TEST_CONTENT_ROOT + "/check/checkdisableLink/jcr:content";
 
     /** The model. */
     private BreadcrumbModel model;
-
-    /** The resource. */
-    private Resource resource;
 
     /**
      * Sets the up.
@@ -48,14 +46,13 @@ public class BreadcrumbModelTest {
     @Before
     public void setUp() throws Exception {
 
-        Class<BreadcrumbModel> modelClass = BreadcrumbModel.class;
-        MockSlingHttpServletRequest request = context.request();
+        final Class<BreadcrumbModel> modelClass = BreadcrumbModel.class;
+        final MockSlingHttpServletRequest request = context.request();
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
 
-        context.request().setPathInfo(TEST_CONTENT_ROOT);
+        context.request().setPathInfo(TEST_CONTENT_ROOT + "/check/checkdisableLink");
         request.setResource(context.resourceResolver().getResource(RESOURCE));
-        resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
     }
 
@@ -67,8 +64,11 @@ public class BreadcrumbModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        String[] methods = new String[] { "getHomeLabel", "getHomePagePath", "getBreadcrumbSubpages" };
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("Home", model.getHomeLabel());
+        assertEquals("/content/tetrapak/publicweb/language-masters/en/home.html", model.getHomePagePath());
+        assertEquals("/content/tetrapak/publicweb/language-masters/en/solution.html",
+                model.getBreadcrumbSubpages().get("English"));
+        assertEquals(null, model.getBreadcrumbSubpages().get("check"));
     }
 
 }
