@@ -5,8 +5,8 @@
         cq:lastModified="{Date}2020-05-04T13:47:54.586+05:30"
         cq:lastModifiedBy="admin"
         cq:templateType="/conf/publicweb/settings/wcm/template-types/pxp-product-page"
-        jcr:description="Public Web Processing Equipment Page Template"
+        jcr:description="Processing Equipment Page Template"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Public Web Processing Equipment Page"
+        jcr:title="Processing Equipment Page"
         status="enabled"/>
 </jcr:root>

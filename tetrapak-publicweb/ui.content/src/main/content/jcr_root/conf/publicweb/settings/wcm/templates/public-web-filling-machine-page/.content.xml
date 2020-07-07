@@ -5,8 +5,8 @@
         cq:lastModified="{Date}2020-05-01T16:21:26.081+05:30"
         cq:lastModifiedBy="admin"
         cq:templateType="/conf/publicweb/settings/wcm/template-types/pxp-product-page"
-        jcr:description="Public Web Filling Machine Page Template"
+        jcr:description="Filling Machines Page Template"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Public Web Filling Machine Page"
+        jcr:title="Filling Machines Page"
         status="enabled"/>
 </jcr:root>
