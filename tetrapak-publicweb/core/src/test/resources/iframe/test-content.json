@@ -15,6 +15,7 @@
 			"jcr:primaryType": "nt:unstructured",
 			"jcr:createdBy": "admin",
 			"anchorTitle": "anchor title",
+			"paddingOption":"regular",
 			"jcr:lastModifiedBy": "admin",
 			"iframe": "https://tsoperationalbenchmark.tetrapak.com/Templates/Pages/Intro.aspx",
 			"anchorId": "anchorId",

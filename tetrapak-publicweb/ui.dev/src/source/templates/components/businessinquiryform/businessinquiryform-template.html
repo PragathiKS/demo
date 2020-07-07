@@ -322,6 +322,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep3">
+                                        <div class="col-lg-9">
+                                            <sly data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
+                                                data-sly-call="${progressBar.progressbar_template @ activeStep=4, totalStep=[1,2,3,4]}">
+                                            </sly>
+                                        </div>
+                                        <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
+                                            <p> ${'pw.form.step {0} of {1}' @i18n, format=['4','4']}</p>
+                                        </div>
+                                    </div>
                                     <div class="row no-gutters button-group">
                                         <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
                                             data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-3', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep4' }" />
@@ -335,8 +345,8 @@
                     <!---step 4 end-->
                     <!--step 5 start-->
                     <div class="bef-tab-pane" role="tabpanel" id="bef-step-final" auto_locator="businessEnquiryListContainerStepFinal">
-                        <div class="row thankyou">
-                            <div class="col text-center" auto_locator="befUsThankYouMessage">
+                        <div class="row no-gutters thankyou">
+                            <div class="col-md-8 offset-md-2 text-center" auto_locator="befUsThankYouMessage">
                                 <div class="bef-thankyou-img">
                                     <sly data-sly-test="${!wcmmode.edit}">
                                         <sly data-sly-test="${data.formConfig.thankyouImage}"

@@ -359,6 +359,7 @@
         @include line-height($font-m-md, $font-sm);
         @include margin-bottom($margin-sm);
         color: $color-boulder;
+        font-family: $font-bold;
         text-transform: uppercase;
 
         @media #{$desktop} {

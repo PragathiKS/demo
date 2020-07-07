@@ -30,14 +30,16 @@
       <div class="pw-banner__content banner-sibling ${data.pwDisplay}"></div>
       <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay} ${data.subtitle ? '' : 'no-subtitle'}">
         <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle">
+      <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}">
+        <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle font-fixing">
           ${data.subtitle @ context='html'}
         </div>
         <div data-sly-test="${data.title}" class="pw-banner__content__title">
           <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
             data-sly-call="${title.heading_h2_template @ headingText=data.title, variant='regular'}" />
         </div>
-        <p class="pw-banner__content__description">${data.text @ context='html'}</p>
-        
+        <div class="pw-banner__content__description">${data.text @ context='html'}</div>
+
         <a data-sly-test="${data.linkLabel && !data.enableSoftcoversion}" href="${data.linkPath}"
           class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics"
           title="${btnTooltip}" data-asset-name="${data.assetName}"
@@ -49,7 +51,7 @@
         </a>
 
          <input type="hidden" id="componentName-banner" name="componentName" value="${resource.name}">
-             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-banner" 
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-banner"
              data-link-section="button click"
              data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
              data-anchor-type="CTA"
@@ -58,7 +60,7 @@
                                             <span class="tpatom-link__text sly-text"> ${data.linkLabel @ context='html'}
                                                 <i class="icon icon--link icon-Download"></i>
                                                     </span>
-                                            </button> 
+                                            </button>
       </div>
     </div>
 

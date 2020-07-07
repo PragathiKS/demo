@@ -198,6 +198,18 @@
                                     jcr:primaryType="nt:unstructured"
                                     showhidetargetvalue="manual"/>
                             </manualcontent>
+							<linklabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="View all label"
+                                name="./linkLabel"/>
+                            <linkpath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Link to destination path"
+                                fieldLabel="View all path"
+                                name="./linkPath"
+                                rootPath="/content"/>
                         </items>
                     </column>
                 </items>

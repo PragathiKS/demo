@@ -101,4 +101,19 @@
             @include margin-bottom($margin-zero);
         }
     }
+
+    &__seeAllLink {
+        @include margin(0);
+        border-top: 1px solid $color-mercury;
+        a {
+            @include margin-top($margin-l);
+            @include margin-bottom(0);
+        }
+        @media #{$desktop} {
+            @include margin(0 $margin-l);
+            a {
+                @include margin-bottom($margin-xxxl);
+            }
+        }
+    }
 }
