@@ -38,6 +38,9 @@ public class ContactUsSendMailServletTest {
     private ContactUsMailService contactUsMailService;
 
     private CountryDetailService countryDetailService;
+    
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String EN_CONTENT_ROOT = "/content/tetrapak/public-web/lang-masters/en";
 
     private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/contentfragment/countries";
 
@@ -62,6 +65,7 @@ public class ContactUsSendMailServletTest {
         MockOsgi.activate(context.getService(ContactUsMailService.class), context.bundleContext());
 
         contactUsSendMailServlet = MockHelper.getServlet(context, ContactUsSendMailServlet.class);
+        context.load().json("/searchresult/en.json", EN_CONTENT_ROOT);
         context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
 
         // set request Input Json
@@ -73,6 +77,8 @@ public class ContactUsSendMailServletTest {
         context.request().setParameterMap(parameterMap);
 
         context.request().setResource(context.currentResource());
+        
+        context.request().setPathInfo("/content/tetrapak/public-web/lang-masters/en");
 
         context.registerAdapter(SlingHttpServletRequest.class, XSSAPI.class,
                 new Function<SlingHttpServletRequest, XSSAPI>() {

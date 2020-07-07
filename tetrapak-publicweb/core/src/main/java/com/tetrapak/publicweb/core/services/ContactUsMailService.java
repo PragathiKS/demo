@@ -5,6 +5,6 @@ import com.tetrapak.publicweb.core.beans.ContactUsResponse;
 
 public interface ContactUsMailService {
 
-    ContactUsResponse sendEmailForNotification(ContactUs contactUs, String[] mailAddresses);
+    ContactUsResponse sendEmailForNotification(ContactUs contactUs, String logo, String[] mailAddresses);
 
 }

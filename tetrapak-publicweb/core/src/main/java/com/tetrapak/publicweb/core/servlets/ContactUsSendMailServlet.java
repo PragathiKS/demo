@@ -1,12 +1,14 @@
 package com.tetrapak.publicweb.core.servlets;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.servlet.Servlet;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.xss.XSSAPI;
@@ -20,8 +22,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.ContactUsResponse;
+import com.tetrapak.publicweb.core.models.HeaderConfigurationModel;
 import com.tetrapak.publicweb.core.services.ContactUsMailService;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class ContactUsSubmitRequestServlet.
@@ -70,7 +74,8 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
                     final String[] mailAddresses = countryDetailService.fetchContactEmailAddresses(contactUs,
                             request.getResourceResolver());
                     // send email
-                    contactusResp = contactUsMailService.sendEmailForNotification(contactUs, mailAddresses);
+                    contactusResp = contactUsMailService.sendEmailForNotification(contactUs, getLogo(request),
+                            mailAddresses);
                 } else {
                     contactusResp.setStatusMessage("Mandatory fields Validation Error");
                 }
@@ -114,5 +119,18 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
         resp.getWriter().write(mapper.writeValueAsString(contactUsResponse));
     }
 
+    private String getLogo(final SlingHttpServletRequest request) {
+        String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
+        final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
+        if (Objects.nonNull(headerConfigurationResource)) {
+            final HeaderConfigurationModel configurationModel = headerConfigurationResource
+                    .adaptTo(HeaderConfigurationModel.class);
+            if (Objects.nonNull(configurationModel)) {
+                return configurationModel.getLogoImagePath();
+            }
+        }
+        return StringUtils.EMPTY;
+    }
 
 }
