@@ -1,8 +1,0 @@
-<sly data-sly-template.pageStickyLink_template="${@ thumbnailImagePath,stickyNavTitle,stickyNavDescription,navLinkText,navLinkPath,navLinkTarget} ">
-  <div style="background-color:lightblue;">
-      <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=thumbnailImagePath}" />
-    <h4>Title - ${stickyNavTitle}</h4>
-    <p>Description - ${stickyNavDescription}</p>
-    <a href="${navLinkPath}" target="${navLinkTarget}">${navLinkText}</a>
-  </div>
-</sly>
