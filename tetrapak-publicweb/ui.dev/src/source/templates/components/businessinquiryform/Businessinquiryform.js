@@ -27,7 +27,7 @@ class Businessinquiryform {
       'interestArea': '',
       'firstName': '',
       'lastName': '',
-      'email': '',
+      'emailBef': '',
       'message': '',
       'phone': '',
       'purposeOfContactInBusinessEqTitle': '',
@@ -65,7 +65,7 @@ class Businessinquiryform {
     dataObj['businessArea'] = this.cache.requestPayload.purposeOfInterestAreaEqTitle;
     dataObj['firstName'] = this.cache.requestPayload.firstName;
     dataObj['lastName'] = this.cache.requestPayload.lastName;
-    dataObj['email'] = this.cache.requestPayload.email;
+    dataObj['email'] = this.cache.requestPayload.emailBef;
     dataObj['phoneNumber'] = this.cache.requestPayload.phone;
     dataObj['company'] = this.cache.requestPayload.company;
     dataObj['position'] = this.cache.requestPayload.position;
@@ -264,7 +264,7 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailBef') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -284,7 +284,7 @@ class Businessinquiryform {
             case 'lastName':
               erLbl = $('#bef-step-3 label')[1].textContent;
               break;
-            case 'email':
+            case 'emailBef':
               erLbl = $('#bef-step-3 label')[2].textContent;
               break;
             case 'company':
