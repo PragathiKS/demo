@@ -38,28 +38,26 @@
             data-sly-call="${title.heading_h2_template @ headingText=data.title, variant='regular'}" />
         </div>
         <p class="pw-banner__content__description">${data.text @ context='html'}</p>
-        
+
         <a data-sly-test="${data.linkLabel && !data.enableSoftcoversion}" href="${data.linkPath}"
           class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics"
           title="${btnTooltip}" data-asset-name="${data.assetName}"
           data-link-section="Hero Image_${dataLinkSectionCTAText}" data-link-type="internal"
           data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
           data-anchor-type="${dataLinkSectionCTAText}">
-          <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}<i
+          <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span class="nowrap-text">&nbsp;<i
               class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
         </a>
 
          <input type="hidden" id="componentName-banner" name="componentName" value="${resource.name}">
-             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-banner" 
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-banner"
              data-link-section="button click"
              data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
              data-anchor-type="CTA"
 
              title="${'pw.form.button.download' @ i18n}">
-                                            <span class="tpatom-link__text sly-text"> ${data.linkLabel @ context='html'}
-                                                <i class="icon icon--link icon-Download"></i>
-                                                    </span>
-                                            </button> 
+                                            <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span class="nowrap-text">&nbsp;<i class="icon icon--link icon-Download"></i></span>
+                                            </button>
       </div>
     </div>
   </div>

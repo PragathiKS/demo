@@ -298,3 +298,13 @@ $progress-units: (
 .xf-content-height {
     margin: 0 0 !important;
 }
+
+.tpatom-link {
+    &__text.sly-text {
+        display: inline;
+    }
+    .nowrap-text {
+        display: inline;
+        white-space: nowrap;
+    }
+}
