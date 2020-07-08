@@ -37,7 +37,7 @@
           <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
             data-sly-call="${title.heading_h2_template @ headingText=data.title, variant='regular'}" />
         </div>
-        <p class="pw-banner__content__description">${data.text @ context='html'}</p>
+        <div class="pw-banner__content__description">${data.text @ context='html'}</div>
 
         <a data-sly-test="${data.linkLabel && !data.enableSoftcoversion}" href="${data.linkPath}"
           class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics"
