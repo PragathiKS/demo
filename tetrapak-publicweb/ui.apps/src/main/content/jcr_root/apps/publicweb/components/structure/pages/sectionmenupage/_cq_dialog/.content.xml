@@ -34,15 +34,22 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Section menu title"
-                                                name="./sectionHomePageTitle"/>
+                                                name="./sectionHomePageTitle">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="sectionHomePageTitle"/>
+                                            </title>
                                             <disableclickinnavigation
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                                 name="./disableClickInNavigation"
-												fieldDescription="Disable click function for section menu links in navigation"
                                                 text="Disable click in navigation"
-                                                value="true"/>
+                                                value="true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="disableClickInNavigation"/>
+                                            </disableclickinnavigation>
                                         </items>
                                     </sectionmenu>
                                     <categories
@@ -59,6 +66,9 @@
                                                 <datasource
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="/apps/publicweb/components/content/datasource"/>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="pseudoCategory"/>
                                             </pseudocategories>
                                         </items>
                                     </categories>

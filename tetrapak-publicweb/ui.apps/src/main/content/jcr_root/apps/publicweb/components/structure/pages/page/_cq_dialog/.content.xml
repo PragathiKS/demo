@@ -46,7 +46,11 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Title suffix"
                                                 name="./titleSuffix"
-                                                renderReadOnly="{Boolean}true"/>
+                                                renderReadOnly="{Boolean}true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="titleSuffix"/>
+                                            </titlesuffix>
                                             <pagename
                                                 cq:hideOnEdit="{Boolean}true"
                                                 cq:showOnCreate="{Boolean}true"
@@ -232,34 +236,53 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                                 name="./hideContactFooterForm"
                                                 text="Hide Contact Footer Form?"
-                                                value="true"/>
+                                                value="true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="hideContactFooterForm"/>
+                                            </hideContactFooterForm>
                                             <hideContactFooterFormDelete
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                 name="./hideContactFooterForm@Delete"
-                                                value="{Boolean}true"/>
+                                                value="{Boolean}true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="hideContactFooterForm@Delete"/>
+                                            </hideContactFooterFormDelete>
                                             <hideInSearch
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                                 name="./hideInSearch"
                                                 text="Hide in search?"
-                                                value="true"/>
+                                                value="true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="hideInSearch"/>
+                                            </hideInSearch>
                                             <hideInSearchDelete
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                 name="./hideInSearch@Delete"
-                                                value="{Boolean}true"/>
-											<mobileoverviewlabel
+                                                value="{Boolean}true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="hideInSearch@Delete"/>
+                                            </hideInSearchDelete>
+                                            <mobileoverviewlabel
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Mobile Overview Label"
-												fieldDescription="Provide label to present in mobile. Default is Overview"
-												value="Overview"
-                                                name="./mobileOverviewLabel"/>
+                                                name="./mobileOverviewLabel"
+                                                value="Overview">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="mobileOverviewLabel"/>
+                                            </mobileoverviewlabel>
                                             <errorpages
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
@@ -267,20 +290,32 @@
                                                 fieldDescription="Error pages for this content tree"
                                                 fieldLabel="Error Pages"
                                                 name="./errorPages"
-                                                rootPath="/content"/>
-											<disableenvelope
+                                                rootPath="/content">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="errorPages"/>
+                                            </errorpages>
+                                            <disableenvelope
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                                 name="./disableEnvelope"
                                                 text="Disable Contact us Envelope"
                                                 uncheckedValue="{Boolean}false"
-                                                value="{Boolean}true"/>
-											<articledate
+                                                value="{Boolean}true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="disableEnvelope"/>
+                                            </disableenvelope>
+                                            <articledate
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
                                                 fieldLabel="Article Date"
                                                 name="./articleDate"
-                                                type="date"/>
+                                                type="date">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="articleDate"/>
+                                            </articledate>
                                         </items>
                                     </baseProperties>
                                 </items>
@@ -313,21 +348,33 @@
                                                 fieldDescription="Original Image should be in 16:9 aspect ratio"
                                                 fieldLabel="Thumbnail Image path"
                                                 name="./imagePath"
-                                                rootPath="/content/dam/tetrapak"/>
+                                                rootPath="/content/dam/tetrapak">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="imagePath"/>
+                                            </imagePath>
                                             <imageAltText
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Required for Accessibility use"
                                                 fieldLabel="Thumbnail Image Alt Text"
-                                                name="./altText"/>
+                                                name="./altText">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="altText"/>
+                                            </imageAltText>
                                             <linkText
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Text available for the visitor"
                                                 fieldLabel="Link Text"
-                                                name="./linkText"/>
+                                                name="./linkText">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="linkText"/>
+                                            </linkText>
                                             <linkPath
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
@@ -335,12 +382,31 @@
                                                 fieldDescription="Link to destination URL"
                                                 fieldLabel="Link Path"
                                                 name="./linkPath"
-                                                rootPath="/content"/>
+                                                rootPath="/content">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="linkPath"/>
+                                            </linkPath>
                                             <linkType
-                                                cq:showOnCreate="{Boolean}true"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
+                                               cq:showOnCreate="{Boolean}true"
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/select"
+												fieldLabel="Link Type"
+												name="./pwButtonTheme">
+												<items jcr:primaryType="nt:unstructured">
+													<linkButton
+															jcr:primaryType="nt:unstructured"
+															text="Link Text"
+															value="link"/>
+													<button
+															jcr:primaryType="nt:unstructured"
+															text="Button"
+															value="secondary"/>
+												</items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="pwButtonTheme"/>
+                                            </linkType>
                                         </items>
                                     </aggregator>
                                 </items>
