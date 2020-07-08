@@ -101,7 +101,7 @@
         }
         &__container {
             @include padding-bottom(18px);
-
+            min-height: 42px; // equal to container height: 60 including padding
             .section-link-home {
                 @include padding($padding-zero 15px);
                 position: absolute;
