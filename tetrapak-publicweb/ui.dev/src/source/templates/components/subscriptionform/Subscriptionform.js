@@ -16,7 +16,7 @@ class Subscriptionform {
     this.cache.$inputEmail = $('form.pw-form-subscriptionForm  input[type="email"]', this.root);
 
     this.cache.requestPayload = {
-      'email': '',
+      'emailSubscription': '',
       'consent' :''
     };
 
@@ -34,7 +34,7 @@ class Subscriptionform {
     
     const dataObj = {};
     dataObj['marketingConsent'] = this.cache.requestPayload.consent;
-    dataObj['email'] = this.cache.requestPayload.email;
+    dataObj['email'] = this.cache.requestPayload.emailSubscription;
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
@@ -83,7 +83,7 @@ class Subscriptionform {
           if($(this).attr('type') === 'checkbox'){
             requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
