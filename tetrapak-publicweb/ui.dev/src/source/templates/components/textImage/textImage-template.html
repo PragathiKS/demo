@@ -70,11 +70,9 @@
                 data-asset-name="${data.assetName}"
                 data-image-title="${data.title}"
                 data-anchor-type="CTA"
-             title="${'pw.form.button.download' @ i18n}">
-                                            <span class="tpatom-link__text sly-text"> ${data.linkText @ context='html'}
-                                                <i class="icon icon--link icon-Download"></i>
-                                                    </span>
-                                            </button>
+                title="${'pw.form.button.download' @ i18n}">
+                  <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&nbsp;<i class="icon icon--link icon-Download"></i></span>
+                </button>
             </div>
           </div>
         </div>
