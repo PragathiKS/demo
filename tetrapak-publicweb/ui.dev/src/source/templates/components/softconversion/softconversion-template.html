@@ -1,4 +1,4 @@
-<sly data-sly-template.softconversion_template="${@data, componentName, downloadPath, assetName}">
+<sly data-sly-template.softconversion_template="${@data, componentName, downloadPath, assetName, parentComponent}">
 	<sly data-sly-test.cfstep1="${'{0}{1}' @ format=['cf-step-1-', componentName, ')']}" />
 	<sly data-sly-test.cfstep1Target="${'{0}{1}' @ format=['#cf-step-1-', componentName, ')']}" />
 	<sly data-sly-test.cfstep2="${'{0}{1}' @ format=['cf-step-2-', componentName, ')']}" />
@@ -21,6 +21,7 @@
 
     <div class="pw-softconversion modal tp-modal js-soft-modal ${componentName} fade" id="lang-modal" data-module="Softconversion" tabindex="-1" role="dialog">
     	<input type="hidden" class="ComponentNameSoft" name="ComponentNameSoft" value="${componentName}">
+        <input type="hidden" class="parentComponent" name="parentComponent" value="${parentComponent}">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
       <div class="modal-content tp-modal-content">
 

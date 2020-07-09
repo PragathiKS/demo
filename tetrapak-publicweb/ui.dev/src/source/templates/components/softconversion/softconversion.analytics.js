@@ -1,6 +1,6 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const makeLoad = function (label, formName, eventType='formstart') {
+export const makeLoad = function (label, formName, eventType='formstart', parentComponent) {
   const formObj = {
     formName: formName,
     formStep: 'Step 1',
@@ -9,13 +9,13 @@ export const makeLoad = function (label, formName, eventType='formstart') {
   };
   const eventObj = {
     eventType: eventType,
-    event: 'Soft Conversion Form'
+    event: `${parentComponent} : Soft Conversion Form`
   };
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 
-export const changeStepNext = function (formName, formStep, formType, dataObj) {
+export const changeStepNext = function (formName, formStep, formType, dataObj, parentComponent) {
   const formObj = {
     formName: formName,
     formStep: formStep,
@@ -24,7 +24,7 @@ export const changeStepNext = function (formName, formStep, formType, dataObj) {
   };
   const eventObj = {
     eventType: `${formStep} Next`,
-    event: 'Soft Conversion Form'
+    event: `${parentComponent} : Soft Conversion Form`
   };
   Object.keys(dataObj).forEach(i => {
     if(dataObj[i]) {
@@ -38,7 +38,7 @@ export const changeStepNext = function (formName, formStep, formType, dataObj) {
 };
 
 
-export const changeStepPrev = function (formName, formStep, formType) {
+export const changeStepPrev = function (formName, formStep, formType, parentComponent) {
   const formObj = {
     formName: formName,
     formStep: formStep,
@@ -47,13 +47,13 @@ export const changeStepPrev = function (formName, formStep, formType) {
   };
   const eventObj = {
     eventType: `${formStep} previous`,
-    event: 'Soft Conversion Form'
+    event: `${parentComponent} : Soft Conversion Form`
   };
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
 
-export const changeStepError = function (formName, formStep, formType, dataObj, errorObj={}) {
+export const changeStepError = function (formName, formStep, formType, dataObj, errorObj={}, parentComponent) {
   const formObj = {
     formName: formName,
     formStep: formStep,
@@ -63,7 +63,7 @@ export const changeStepError = function (formName, formStep, formType, dataObj, 
   };
   const eventObj = {
     eventType: 'formerror',
-    event: 'Soft Conversion Form'
+    event: `${parentComponent} : Soft Conversion Form`
   };
   Object.keys(dataObj).forEach(i => {
     if(dataObj[i]) {
@@ -78,7 +78,7 @@ export const changeStepError = function (formName, formStep, formType, dataObj, 
 
 
 
-export const loadDownloadReady = function (formName, dataObj) {
+export const loadDownloadReady = function (formName, dataObj, parentComponent) {
   const formObj = {
     formName: formName,
     formStep: 'Step 3',
@@ -86,8 +86,8 @@ export const loadDownloadReady = function (formName, dataObj) {
     formField: []
   };
   const eventObj = {
-    eventType: 'Step 3 Next',
-    event: 'Soft Conversion Form'
+    eventType: 'formcomplete',
+    event: `${parentComponent} : Soft Conversion Form`
   };
   Object.keys(dataObj).forEach(i => {
     if(dataObj[i]) {
@@ -97,30 +97,30 @@ export const loadDownloadReady = function (formName, dataObj) {
       });  
     }
   });
-  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
-export const downloadLinkTrack = function (downObj, eventType, formName='', caseCheck='') {
+export const downloadLinkTrack = function (downObj, eventType, parentComponent) {
   const eventObj = {
     eventType: eventType,
-    event: 'Soft Conversion Form'
+    event: `${parentComponent} : Soft Conversion Form`
   };
 
   trackAnalytics(downObj, 'linkClick', eventType, undefined, false, eventObj);
 
-  if(caseCheck === 'download'){
-    const formObj = {
-      formName: formName,
-      formStep: 'Step 4',
-      formType: 'Download Ready',
-      formField: []
-    };
-    const eventObjN = {
-      eventType: 'formcomplete',
-      event: 'Soft Conversion Form'
-    };
-    trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObjN);
-  }
+  // if(caseCheck === 'download'){
+  //   const formObj = {
+  //     formName: formName,
+  //     formStep: 'Step 4',
+  //     formType: 'Download Ready',
+  //     formField: []
+  //   };
+  //   const eventObjN = {
+  //     eventType: 'formcomplete',
+  //     event: 'Soft Conversion Form'
+  //   };
+  //   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObjN);
+  // }
 
 };
 
