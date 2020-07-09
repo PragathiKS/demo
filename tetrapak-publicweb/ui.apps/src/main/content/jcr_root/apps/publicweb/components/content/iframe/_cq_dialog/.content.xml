@@ -32,10 +32,10 @@
                                         jcr:primaryType="nt:unstructured"
                                         text="Padding"
                                         value="regular"/>
-                                    <nonpadding
+                                    <nopadding
                                         jcr:primaryType="nt:unstructured"
                                         selected="{Boolean}true"
-                                        text="Non-padding"
+                                        text="No padding"
                                         value="zero"/>
                                 </items>
                             </paddingoption>
