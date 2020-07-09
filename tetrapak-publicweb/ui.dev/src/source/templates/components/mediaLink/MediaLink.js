@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { saveAs } from 'file-saver';
 
 
 class MediaLink {
@@ -48,6 +49,7 @@ class MediaLink {
         event: 'Related links and downloads'
       };
       trackAnalytics(trackingObj, 'linkClick', 'downloadClick', undefined, false, eventObj);
+      saveAs($this.attr('href'), dwnDocName);
     }
 
     if (downloadtype !== 'download') {
@@ -64,10 +66,9 @@ class MediaLink {
         event: 'Related links and downloads'
       };
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+      window.open($this.attr('href'), $this.attr('target'));
     }
 
-
-    window.open($this.attr('href'), $this.attr('target'));
   }
 
   init() {
