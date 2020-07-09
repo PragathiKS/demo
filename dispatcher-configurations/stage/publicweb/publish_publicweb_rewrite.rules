@@ -19,342 +19,332 @@ RewriteRule   "^/(.*)$"  "/$1.html" [PT,L]
 
 ## This ruleset is use for Country  based  URL redirection
 
-RewriteRule   "^/ar/es/(.*).html$" "/content/tetrapak/publicweb/ar/es/error/404.html" [PT,L]
-RewriteRule   "^/ar/es$" "/content/tetrapak/publicweb/ar/es/home.html" [PT,L]
+RewriteRule   "^/es-ar/(.*).html$" "/content/tetrapak/publicweb/ar/es/error/404.html" [PT,L]
+RewriteRule   "^/es-ar$" "/content/tetrapak/publicweb/ar/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ar/(.*)$" "/content/tetrapak/publicweb/ar/$1.html" [PT,L]
+RewriteRule   "^/es-ar/(.*)$" "/content/tetrapak/publicweb/ar/es/$1.html" [PT,L]
 
-
-RewriteRule   "^/ar/es/(.*).html$" "/content/tetrapak/publicweb/ar/es/error/404.html" [PT,L]
-RewriteRule   "^/ar/es$" "/content/tetrapak/publicweb/ar/es/home.html" [PT,L]
+RewriteRule   "^/en-au/(.*).html$" "/content/tetrapak/publicweb/au/en/error/404.html" [PT,L]
+RewriteRule   "^/en-au$" "/content/tetrapak/publicweb/au/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ar/(.*)$" "/content/tetrapak/publicweb/ar/$1.html" [PT,L]
+RewriteRule   "^/en-au/(.*)$" "/content/tetrapak/publicweb/au/en/$1.html" [PT,L]
 
-RewriteRule   "^/au/en/(.*).html$" "/content/tetrapak/publicweb/au/en/error/404.html" [PT,L]
-RewriteRule   "^/au/en$" "/content/tetrapak/publicweb/au/en/home.html" [PT,L]
+RewriteRule   "^/fr-be/(.*).html$" "/content/tetrapak/publicweb/be/fr/error/404.html" [PT,L]
+RewriteRule   "^/fr-be$" "/content/tetrapak/publicweb/be/fr/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/au/(.*)$" "/content/tetrapak/publicweb/au/$1.html" [PT,L]
+RewriteRule   "^/fr-be/(.*)$" "/content/tetrapak/publicweb/be/fr/$1.html" [PT,L]
 
-RewriteRule   "^/be/fr/(.*).html$" "/content/tetrapak/publicweb/be/fr/error/404.html" [PT,L]
-RewriteRule   "^/be/fr$" "/content/tetrapak/publicweb/be/fr/home.html" [PT,L]
+RewriteRule   "^/pt-br/(.*).html$" "/content/tetrapak/publicweb/br/pt/error/404.html" [PT,L]
+RewriteRule   "^/pt-br$" "/content/tetrapak/publicweb/br/pt/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/be/(.*)$" "/content/tetrapak/publicweb/be/$1.html" [PT,L]
+RewriteRule   "^/pt-br/(.*)$" "/content/tetrapak/publicweb/br/pt/$1.html" [PT,L]
 
-RewriteRule   "^/br/pt/(.*).html$" "/content/tetrapak/publicweb/br/pt/error/404.html" [PT,L]
-RewriteRule   "^/br/pt$" "/content/tetrapak/publicweb/br/pt/home.html" [PT,L]
+RewriteRule   "^/en-ca/(.*).html$" "/content/tetrapak/publicweb/ca/en/error/404.html" [PT,L]
+RewriteRule   "^/en-ca$" "/content/tetrapak/publicweb/ca/en/home.html" [PT,L]
+RewriteRule   "^/fr-ca/(.*).html$" "/content/tetrapak/publicweb/ca/fr/error/404.html" [PT,L]
+RewriteRule   "^/fr-ca$" "/content/tetrapak/publicweb/ca/fr/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/br/(.*)$" "/content/tetrapak/publicweb/br/$1.html" [PT,L]
+RewriteRule   "^/en-ca/(.*)$" "/content/tetrapak/publicweb/ca/en/$1.html" [PT,L]
+RewriteRule   "^/fr-ca/(.*)$" "/content/tetrapak/publicweb/ca/fr/$1.html" [PT,L]
 
-RewriteRule   "^/ca/en/(.*).html$" "/content/tetrapak/publicweb/ca/en/error/404.html" [PT,L]
-RewriteRule   "^/ca/en$" "/content/tetrapak/publicweb/ca/en/home.html" [PT,L]
-RewriteRule   "^/ca/fr/(.*).html$" "/content/tetrapak/publicweb/ca/fr/error/404.html" [PT,L]
-RewriteRule   "^/ca/fr$" "/content/tetrapak/publicweb/ca/fr/home.html" [PT,L]
+RewriteRule   "^/fr-ch/(.*).html$" "/content/tetrapak/publicweb/ch/fr/error/404.html" [PT,L]
+RewriteRule   "^/fr-ch$" "/content/tetrapak/publicweb/ch/fr/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ca/(.*)$" "/content/tetrapak/publicweb/ca/$1.html" [PT,L]
+RewriteRule   "^/fr-ch/(.*)$" "/content/tetrapak/publicweb/ch/fr/$1.html" [PT,L]
 
-RewriteRule   "^/ch/fr/(.*).html$" "/content/tetrapak/publicweb/ch/fr/error/404.html" [PT,L]
-RewriteRule   "^/ch/fr$" "/content/tetrapak/publicweb/ch/fr/home.html" [PT,L]
+RewriteRule   "^/es-cl/(.*).html$" "/content/tetrapak/publicweb/cl/es/error/404.html" [PT,L]
+RewriteRule   "^/es-cl$" "/content/tetrapak/publicweb/cl/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ch/(.*)$" "/content/tetrapak/publicweb/ch/$1.html" [PT,L]
+RewriteRule   "^/es-cl/(.*)$" "/content/tetrapak/publicweb/cl/es/$1.html" [PT,L]
 
-RewriteRule   "^/cl/es/(.*).html$" "/content/tetrapak/publicweb/cl/es/error/404.html" [PT,L]
-RewriteRule   "^/cl/es$" "/content/tetrapak/publicweb/cl/es/home.html" [PT,L]
+RewriteRule   "^/zh-cn/(.*).html$" "/content/tetrapak/publicweb/cn/zh/error/404.html" [PT,L]
+RewriteRule   "^/zh-cn$" "/content/tetrapak/publicweb/cn/zh/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/cl/(.*)$" "/content/tetrapak/publicweb/cl/$1.html" [PT,L]
+RewriteRule   "^/zh-cn/(.*)$" "/content/tetrapak/publicweb/cn/zh/$1.html" [PT,L]
 
-RewriteRule   "^/cn/zh/(.*).html$" "/content/tetrapak/publicweb/cn/zh/error/404.html" [PT,L]
-RewriteRule   "^/cn/zh$" "/content/tetrapak/publicweb/cn/zh/home.html" [PT,L]
+RewriteRule   "^/es-co/(.*).html$" "/content/tetrapak/publicweb/co/es/error/404.html" [PT,L]
+RewriteRule   "^/es-co$" "/content/tetrapak/publicweb/co/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/cn/(.*)$" "/content/tetrapak/publicweb/cn/$1.html" [PT,L]
+RewriteRule   "^/es-co/(.*)$" "/content/tetrapak/publicweb/co/es/$1.html" [PT,L]
 
-RewriteRule   "^/co/es/(.*).html$" "/content/tetrapak/publicweb/co/es/error/404.html" [PT,L]
-RewriteRule   "^/co/es$" "/content/tetrapak/publicweb/co/es/home.html" [PT,L]
+RewriteRule   "^/en-cz/(.*).html$" "/content/tetrapak/publicweb/cz/en/error/404.html" [PT,L]
+RewriteRule   "^/en-cz$" "/content/tetrapak/publicweb/cz/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/co/(.*)$" "/content/tetrapak/publicweb/co/$1.html" [PT,L]
+RewriteRule   "^/en-cz/(.*)$" "/content/tetrapak/publicweb/cz/en/$1.html" [PT,L]
 
-RewriteRule   "^/cz/en/(.*).html$" "/content/tetrapak/publicweb/cz/en/error/404.html" [PT,L]
-RewriteRule   "^/cz/en$" "/content/tetrapak/publicweb/cz/en/home.html" [PT,L]
+RewriteRule   "^/de/(.*).html$" "/content/tetrapak/publicweb/de/de/error/404.html" [PT,L]
+RewriteRule   "^/de$" "/content/tetrapak/publicweb/de/de/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/cz/(.*)$" "/content/tetrapak/publicweb/cz/$1.html" [PT,L]
+RewriteRule   "^/de/(.*)$" "/content/tetrapak/publicweb/de/de/$1.html" [PT,L]
 
-RewriteRule   "^/de/de/(.*).html$" "/content/tetrapak/publicweb/de/de/error/404.html" [PT,L]
-RewriteRule   "^/de/de$" "/content/tetrapak/publicweb/de/de/home.html" [PT,L]
+RewriteRule   "^/es-ec/(.*).html$" "/content/tetrapak/publicweb/ec/es/error/404.html" [PT,L]
+RewriteRule   "^/es-ec$" "/content/tetrapak/publicweb/ec/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/de/(.*)$" "/content/tetrapak/publicweb/de/$1.html" [PT,L]
+RewriteRule   "^/es-ec/(.*)$" "/content/tetrapak/publicweb/ec/es/$1.html" [PT,L]
 
-RewriteRule   "^/ec/es/(.*).html$" "/content/tetrapak/publicweb/ec/es/error/404.html" [PT,L]
-RewriteRule   "^/ec/es$" "/content/tetrapak/publicweb/ec/es/home.html" [PT,L]
+RewriteRule   "^/es-es/(.*).html$" "/content/tetrapak/publicweb/es/es/error/404.html" [PT,L]
+RewriteRule   "^/es-es$" "/content/tetrapak/publicweb/es/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ec/(.*)$" "/content/tetrapak/publicweb/ec/$1.html" [PT,L]
+RewriteRule   "^/es-es/(.*)$" "/content/tetrapak/publicweb/es/es/$1.html" [PT,L]
 
-RewriteRule   "^/es/es/(.*).html$" "/content/tetrapak/publicweb/es/es/error/404.html" [PT,L]
-RewriteRule   "^/es/es$" "/content/tetrapak/publicweb/es/es/home.html" [PT,L]
+RewriteRule   "^/en-fi/(.*).html$" "/content/tetrapak/publicweb/fi/en/error/404.html" [PT,L]
+RewriteRule   "^/en-fi$" "/content/tetrapak/publicweb/fi/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/es/(.*)$" "/content/tetrapak/publicweb/es/$1.html" [PT,L]
+RewriteRule   "^/en-fi/(.*)$" "/content/tetrapak/publicweb/fi/en/$1.html" [PT,L]
 
-RewriteRule   "^/fi/en/(.*).html$" "/content/tetrapak/publicweb/fi/en/error/404.html" [PT,L]
-RewriteRule   "^/fi/en$" "/content/tetrapak/publicweb/fi/en/home.html" [PT,L]
+RewriteRule   "^/fr-fr/(.*).html$" "/content/tetrapak/publicweb/fr/fr/error/404.html" [PT,L]
+RewriteRule   "^/fr-fr$" "/content/tetrapak/publicweb/fr/fr/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/fi/(.*)$" "/content/tetrapak/publicweb/fi/$1.html" [PT,L]
+RewriteRule   "^/fr-fr/(.*)$" "/content/tetrapak/publicweb/fr/fr/$1.html" [PT,L]
 
-RewriteRule   "^/fr/fr/(.*).html$" "/content/tetrapak/publicweb/fr/fr/error/404.html" [PT,L]
-RewriteRule   "^/fr/fr$" "/content/tetrapak/publicweb/fr/fr/home.html" [PT,L]
+RewriteRule   "^/en-gr/(.*).html$" "/content/tetrapak/publicweb/gr/en/error/404.html" [PT,L]
+RewriteRule   "^/en-gr$" "/content/tetrapak/publicweb/gr/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/fr/(.*)$" "/content/tetrapak/publicweb/fr/$1.html" [PT,L]
+RewriteRule   "^/en-gr/(.*)$" "/content/tetrapak/publicweb/gr/en/$1.html" [PT,L]
 
-RewriteRule   "^/fi/en/(.*).html$" "/content/tetrapak/publicweb/fi/en/error/404.html" [PT,L]
-RewriteRule   "^/fi/en$" "/content/tetrapak/publicweb/fi/en/home.html" [PT,L]
+RewriteRule   "^/en-hr/(.*).html$" "/content/tetrapak/publicweb/hr/en/error/404.html" [PT,L]
+RewriteRule   "^/en-hr$" "/content/tetrapak/publicweb/hr/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/fi/(.*)$" "/content/tetrapak/publicweb/fi/$1.html" [PT,L]
+RewriteRule   "^/en-hr/(.*)$" "/content/tetrapak/publicweb/hr/en/$1.html" [PT,L]
 
-RewriteRule   "^/fr/fr/(.*).html$" "/content/tetrapak/publicweb/fr/fr/error/404.html" [PT,L]
-RewriteRule   "^/fr/fr$" "/content/tetrapak/publicweb/fr/fr/home.html" [PT,L]
+RewriteRule   "^/en-hu/(.*).html$" "/content/tetrapak/publicweb/hu/en/error/404.html" [PT,L]
+RewriteRule   "^/en-hu$" "/content/tetrapak/publicweb/hu/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/fr/(.*)$" "/content/tetrapak/publicweb/fr/$1.html" [PT,L]
+RewriteRule   "^/en-hu/(.*)$" "/content/tetrapak/publicweb/hu/en/$1.html" [PT,L]
 
-RewriteRule   "^/gr/en/(.*).html$" "/content/tetrapak/publicweb/gr/en/error/404.html" [PT,L]
-RewriteRule   "^/gr/en$" "/content/tetrapak/publicweb/gr/en/home.html" [PT,L]
+RewriteRule   "^/en-id/(.*).html$" "/content/tetrapak/publicweb/id/en/error/404.html" [PT,L]
+RewriteRule   "^/en-id$" "/content/tetrapak/publicweb/id/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/gr/(.*)$" "/content/tetrapak/publicweb/gr/$1.html" [PT,L]
+RewriteRule   "^/en-id/(.*)$" "/content/tetrapak/publicweb/id/en/$1.html" [PT,L]
 
-RewriteRule   "^/hr/en/(.*).html$" "/content/tetrapak/publicweb/hr/en/error/404.html" [PT,L]
-RewriteRule   "^/hr/en$" "/content/tetrapak/publicweb/hr/en/home.html" [PT,L]
+RewriteRule   "^/en-ie/(.*).html$" "/content/tetrapak/publicweb/ie/en/error/404.html" [PT,L]
+RewriteRule   "^/en-ie$" "/content/tetrapak/publicweb/ie/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/hr/(.*)$" "/content/tetrapak/publicweb/hr/$1.html" [PT,L]
+RewriteRule   "^/en-ie/(.*)$" "/content/tetrapak/publicweb/ie/en/$1.html" [PT,L]
 
-RewriteRule   "^/hu/en/(.*).html$" "/content/tetrapak/publicweb/hu/en/error/404.html" [PT,L]
-RewriteRule   "^/hu/en$" "/content/tetrapak/publicweb/hu/en/home.html" [PT,L]
+RewriteRule   "^/en-in/(.*).html$" "/content/tetrapak/publicweb/in/en/error/404.html" [PT,L]
+RewriteRule   "^/en-in$" "/content/tetrapak/publicweb/in/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/hu/(.*)$" "/content/tetrapak/publicweb/hu/$1.html" [PT,L]
+RewriteRule   "^/en-in/(.*)$" "/content/tetrapak/publicweb/in/en/$1.html" [PT,L]
 
-RewriteRule   "^/id/en/(.*).html$" "/content/tetrapak/publicweb/id/en/error/404.html" [PT,L]
-RewriteRule   "^/id/en$" "/content/tetrapak/publicweb/id/en/home.html" [PT,L]
+RewriteRule   "^/en-ir/(.*).html$" "/content/tetrapak/publicweb/ir/en/error/404.html" [PT,L]
+RewriteRule   "^/en-ir$" "/content/tetrapak/publicweb/ir/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/id/(.*)$" "/content/tetrapak/publicweb/id/$1.html" [PT,L]
+RewriteRule   "^/en-ir/(.*)$" "/content/tetrapak/publicweb/ir/en/$1.html" [PT,L]
 
-RewriteRule   "^/ie/en/(.*).html$" "/content/tetrapak/publicweb/ie/en/error/404.html" [PT,L]
-RewriteRule   "^/ie/en$" "/content/tetrapak/publicweb/ie/en/home.html" [PT,L]
+RewriteRule   "^/it-it/(.*).html$" "/content/tetrapak/publicweb/it/it/error/404.html" [PT,L]
+RewriteRule   "^/it-it$" "/content/tetrapak/publicweb/it/it/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ie/(.*)$" "/content/tetrapak/publicweb/ie/$1.html" [PT,L]
+RewriteRule   "^/it-it/(.*)$" "/content/tetrapak/publicweb/it/it/$1.html" [PT,L]
 
-RewriteRule   "^/in/en/(.*).html$" "/content/tetrapak/publicweb/in/en/error/404.html" [PT,L]
-RewriteRule   "^/in/en$" "/content/tetrapak/publicweb/in/en/home.html" [PT,L]
+RewriteRule   "^/ja-jp/(.*).html$" "/content/tetrapak/publicweb/ja/jp/error/404.html" [PT,L]
+RewriteRule   "^/ja-jp$" "/content/tetrapak/publicweb/jp/ja/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/in/(.*)$" "/content/tetrapak/publicweb/in/$1.html" [PT,L]
+RewriteRule   "^/ja-jp/(.*)$" "/content/tetrapak/publicweb/jp/ja/$1.html" [PT,L]
 
-RewriteRule   "^/ir/en/(.*).html$" "/content/tetrapak/publicweb/ir/en/error/404.html" [PT,L]
-RewriteRule   "^/ir/en$" "/content/tetrapak/publicweb/ir/en/home.html" [PT,L]
+RewriteRule   "^/en-kr/(.*).html$" "/content/tetrapak/publicweb/kr/en/error/404.html" [PT,L]
+RewriteRule   "^/en-kr$" "/content/tetrapak/publicweb/kr/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ir/(.*)$" "/content/tetrapak/publicweb/ir/$1.html" [PT,L]
+RewriteRule   "^/en-kr/(.*)$" "/content/tetrapak/publicweb/kr/en/$1.html" [PT,L]
 
-RewriteRule   "^/it/it/(.*).html$" "/content/tetrapak/publicweb/it/it/error/404.html" [PT,L]
-RewriteRule   "^/it/it$" "/content/tetrapak/publicweb/it/it/home.html" [PT,L]
+RewriteRule   "^/en-lv/(.*).html$" "/content/tetrapak/publicweb/lv/en/error/404.html" [PT,L]
+RewriteRule   "^/en-lv$" "/content/tetrapak/publicweb/lv/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/it/(.*)$" "/content/tetrapak/publicweb/it/$1.html" [PT,L]
+RewriteRule   "^/en-lv/(.*)$" "/content/tetrapak/publicweb/lv/en/$1.html" [PT,L]
 
-RewriteRule   "^/it/it/(.*).html$" "/content/tetrapak/publicweb/it/it/error/404.html" [PT,L]
-RewriteRule   "^/jp/ja$" "/content/tetrapak/publicweb/jp/ja/home.html" [PT,L]
+RewriteRule   "^/es-mx/(.*).html$" "/content/tetrapak/publicweb/mx/es/error/404.html" [PT,L]
+RewriteRule   "^/es-mx$" "/content/tetrapak/publicweb/mx/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/jp/(.*)$" "/content/tetrapak/publicweb/jp/$1.html" [PT,L]
+RewriteRule   "^/es-mx/(.*)$" "/content/tetrapak/publicweb/mx/es/$1.html" [PT,L]
 
-RewriteRule   "^/kr/en/(.*).html$" "/content/tetrapak/publicweb/kr/en/error/404.html" [PT,L]
-RewriteRule   "^/kr/en$" "/content/tetrapak/publicweb/kr/en/home.html" [PT,L]
+RewriteRule   "^/en-my/(.*).html$" "/content/tetrapak/publicweb/my/en/error/404.html" [PT,L]
+RewriteRule   "^/en-my$" "/content/tetrapak/publicweb/my/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/kr/(.*)$" "/content/tetrapak/publicweb/kr/$1.html" [PT,L]
+RewriteRule   "^/en-my/(.*)$" "/content/tetrapak/publicweb/my/en/$1.html" [PT,L]
 
-RewriteRule   "^/lv/en/(.*).html$" "/content/tetrapak/publicweb/lv/en/error/404.html" [PT,L]
-RewriteRule   "^/lv/en$" "/content/tetrapak/publicweb/lv/en/home.html" [PT,L]
+RewriteRule   "^/en-nl/(.*).html$" "/content/tetrapak/publicweb/nl/en/error/404.html" [PT,L]
+RewriteRule   "^/en-nl$" "/content/tetrapak/publicweb/nl/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/lv/(.*)$" "/content/tetrapak/publicweb/lv/$1.html" [PT,L]
+RewriteRule   "^/en-nl/(.*)$" "/content/tetrapak/publicweb/nl/en/$1.html" [PT,L]
 
-RewriteRule   "^/lv/en/(.*).html$" "/content/tetrapak/publicweb/lv/en/error/404.html" [PT,L]
-RewriteRule   "^/mx/es$" "/content/tetrapak/publicweb/mx/es/home.html" [PT,L]
+RewriteRule   "^/en-no/(.*).html$" "/content/tetrapak/publicweb/no/en/error/404.html" [PT,L]
+RewriteRule   "^/en-no$" "/content/tetrapak/publicweb/no/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/mx/(.*)$" "/content/tetrapak/publicweb/mx/$1.html" [PT,L]
+RewriteRule   "^/en-no/(.*)$" "/content/tetrapak/publicweb/no/en/$1.html" [PT,L]
 
-RewriteRule   "^/my/en/(.*).html$" "/content/tetrapak/publicweb/my/en/error/404.html" [PT,L]
-RewriteRule   "^/my/en$" "/content/tetrapak/publicweb/my/en/home.html" [PT,L]
+RewriteRule   "^/es/(.*).html$" "/content/tetrapak/publicweb/cac/es/error/404.html" [PT,L]
+RewriteRule   "^/es$" "/content/tetrapak/publicweb/cac/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/my/(.*)$" "/content/tetrapak/publicweb/my/$1.html" [PT,L]
+RewriteRule   "^/es/(.*)$" "/content/tetrapak/publicweb/cac/es/$1.html" [PT,L]
 
-RewriteRule   "^/nl/en/(.*).html$" "/content/tetrapak/publicweb/nl/en/error/404.html" [PT,L]
-RewriteRule   "^/nl/en$" "/content/tetrapak/publicweb/nl/en/home.html" [PT,L]
+RewriteRule   "^/es-pe/(.*).html$" "/content/tetrapak/publicweb/pe/es/error/404.html" [PT,L]
+RewriteRule   "^/es-pe$" "/content/tetrapak/publicweb/pe/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/nl/(.*)$" "/content/tetrapak/publicweb/nl/$1.html" [PT,L]
+RewriteRule   "^/es-pe/(.*)$" "/content/tetrapak/publicweb/pe/es/$1.html" [PT,L]
 
-RewriteRule   "^/no/en/(.*).html$" "/content/tetrapak/publicweb/no/en/error/404.html" [PT,L]
-RewriteRule   "^/no/en$" "/content/tetrapak/publicweb/no/en/home.html" [PT,L]
+RewriteRule   "^/en-ph/(.*).html$" "/content/tetrapak/publicweb/ph/en/error/404.html" [PT,L]
+RewriteRule   "^/en-ph$" "/content/tetrapak/publicweb/ph/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/no/(.*)$" "/content/tetrapak/publicweb/no/$1.html" [PT,L]
+RewriteRule   "^/en-ph/(.*)$" "/content/tetrapak/publicweb/ph/en/$1.html" [PT,L]
 
-RewriteRule   "^/pa/es/(.*).html$" "/content/tetrapak/publicweb/pa/es/error/404.html" [PT,L]
-RewriteRule   "^/pa/es$" "/content/tetrapak/publicweb/pa/es/home.html" [PT,L]
+RewriteRule   "^/en-pk/(.*).html$" "/content/tetrapak/publicweb/pk/en/error/404.html" [PT,L]
+RewriteRule   "^/en-pk$" "/content/tetrapak/publicweb/pk/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/pa/(.*)$" "/content/tetrapak/publicweb/pa/$1.html" [PT,L]
+RewriteRule   "^/en-pk/(.*)$" "/content/tetrapak/publicweb/pk/en/$1.html" [PT,L]
 
-RewriteRule   "^/pe/es/(.*).html$" "/content/tetrapak/publicweb/pe/es/error/404.html" [PT,L]
-RewriteRule   "^/pe/es$" "/content/tetrapak/publicweb/pe/es/home.html" [PT,L]
+RewriteRule   "^/en-pl/(.*).html$" "/content/tetrapak/publicweb/pl/en/error/404.html" [PT,L]
+RewriteRule   "^/en-pl$" "/content/tetrapak/publicweb/pl/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/pe/(.*)$" "/content/tetrapak/publicweb/pe/$1.html" [PT,L]
+RewriteRule   "^/en-pl/(.*)$" "/content/tetrapak/publicweb/pl/en/$1.html" [PT,L]
 
-RewriteRule   "^/ph/en/(.*).html$" "/content/tetrapak/publicweb/ph/en/error/404.html" [PT,L]
-RewriteRule   "^/ph/en$" "/content/tetrapak/publicweb/ph/en/home.html" [PT,L]
+RewriteRule   "^/pt-pt/(.*).html$" "/content/tetrapak/publicweb/pt/pt/error/404.html" [PT,L]
+RewriteRule   "^/pt-pt$" "/content/tetrapak/publicweb/pt/pt/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ph/(.*)$" "/content/tetrapak/publicweb/ph/$1.html" [PT,L]
+RewriteRule   "^/pt-pt/(.*)$" "/content/tetrapak/publicweb/pt/pt/$1.html" [PT,L]
 
-RewriteRule   "^/pk/en/(.*).html$" "/content/tetrapak/publicweb/pk/en/error/404.html" [PT,L]
-RewriteRule   "^/pk/en$" "/content/tetrapak/publicweb/pk/en/home.html" [PT,L]
+RewriteRule   "^/es-py/(.*).html$" "/content/tetrapak/publicweb/py/es/error/404.html" [PT,L]
+RewriteRule   "^/es-py$" "/content/tetrapak/publicweb/py/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/pk/(.*)$" "/content/tetrapak/publicweb/pk/$1.html" [PT,L]
+RewriteRule   "^/es-py/(.*)$" "/content/tetrapak/publicweb/py/es/$1.html" [PT,L]
 
-RewriteRule   "^/pl/en/(.*).html$" "/content/tetrapak/publicweb/pl/en/error/404.html" [PT,L]
-RewriteRule   "^/pl/en$" "/content/tetrapak/publicweb/pl/en/home.html" [PT,L]
+RewriteRule   "^/en-ro/(.*).html$" "/content/tetrapak/publicweb/ro/en/error/404.html" [PT,L]
+RewriteRule   "^/en-ro$" "/content/tetrapak/publicweb/ro/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/pl/(.*)$" "/content/tetrapak/publicweb/pl/$1.html" [PT,L]
+RewriteRule   "^/en-ro/(.*)$" "/content/tetrapak/publicweb/ro/en/$1.html" [PT,L]
 
-RewriteRule   "^/pt/pt/(.*).html$" "/content/tetrapak/publicweb/pt/pt/error/404.html" [PT,L]
-RewriteRule   "^/pt/pt$" "/content/tetrapak/publicweb/pt/pt/home.html" [PT,L]
+RewriteRule   "^/en-rs/(.*).html$" "/content/tetrapak/publicweb/rs/en/error/404.html" [PT,L]
+RewriteRule   "^/en-rs$" "/content/tetrapak/publicweb/rs/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/pt/(.*)$" "/content/tetrapak/publicweb/pt/$1.html" [PT,L]
+RewriteRule   "^/en-rs/(.*)$" "/content/tetrapak/publicweb/rs/en/$1.html" [PT,L]
 
-RewriteRule   "^/py/es/(.*).html$" "/content/tetrapak/publicweb/py/es/error/404.html" [PT,L]
-RewriteRule   "^/py/es$" "/content/tetrapak/publicweb/py/es/home.html" [PT,L]
+RewriteRule   "^/en-sa/(.*).html$" "/content/tetrapak/publicweb/sa/en/error/404.html" [PT,L]
+RewriteRule   "^/en-sa$" "/content/tetrapak/publicweb/sa/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/py/(.*)$" "/content/tetrapak/publicweb/py/$1.html" [PT,L]
+RewriteRule   "^/en-sa/(.*)$" "/content/tetrapak/publicweb/sa/en/$1.html" [PT,L]
 
-RewriteRule   "^/ro/en/(.*).html$" "/content/tetrapak/publicweb/ro/en/error/404.html" [PT,L]
-RewriteRule   "^/ro/en$" "/content/tetrapak/publicweb/ro/en/home.html" [PT,L]
+RewriteRule   "^/sv-se/(.*).html$" "/content/tetrapak/publicweb/se/sv/error/404.html" [PT,L]
+RewriteRule   "^/sv-se$" "/content/tetrapak/publicweb/se/sv/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ro/(.*)$" "/content/tetrapak/publicweb/ro/$1.html" [PT,L]
+RewriteRule   "^/sv-se/(.*)$" "/content/tetrapak/publicweb/se/sv/$1.html" [PT,L]
 
-RewriteRule   "^/rs/en/(.*).html$" "/content/tetrapak/publicweb/rs/en/error/404.html" [PT,L]
-RewriteRule   "^/rs/en$" "/content/tetrapak/publicweb/rs/en/home.html" [PT,L]
+RewriteRule   "^/en-sg/(.*).html$" "/content/tetrapak/publicweb/sg/en/error/404.html" [PT,L]
+RewriteRule   "^/en-sg$" "/content/tetrapak/publicweb/sg/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/rs/(.*)$" "/content/tetrapak/publicweb/rs/$1.html" [PT,L]
+RewriteRule   "^/en-sg/(.*)$" "/content/tetrapak/publicweb/sg/en/$1.html" [PT,L]
 
-RewriteRule   "^/sa/en/(.*).html$" "/content/tetrapak/publicweb/sa/en/error/404.html" [PT,L]
-RewriteRule   "^/sa/en$" "/content/tetrapak/publicweb/sa/en/home.html" [PT,L]
+RewriteRule   "^/en-sk/(.*).html$" "/content/tetrapak/publicweb/sk/en/error/404.html" [PT,L]
+RewriteRule   "^/en-sk$" "/content/tetrapak/publicweb/sk/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/sa/(.*)$" "/content/tetrapak/publicweb/sa/$1.html" [PT,L]
+RewriteRule   "^/en-sk/(.*)$" "/content/tetrapak/publicweb/sk/en/$1.html" [PT,L]
 
-RewriteRule   "^/se/sv/(.*).html$" "/content/tetrapak/publicweb/se/sv/error/404.html" [PT,L]
-RewriteRule   "^/se/sv$" "/content/tetrapak/publicweb/se/sv/home.html" [PT,L]
+RewriteRule   "^/en-th/(.*).html$" "/content/tetrapak/publicweb/th/en/error/404.html" [PT,L]
+RewriteRule   "^/en-th$" "/content/tetrapak/publicweb/th/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/se/(.*)$" "/content/tetrapak/publicweb/se/$1.html" [PT,L]
+RewriteRule   "^/en-th/(.*)$" "/content/tetrapak/publicweb/th/en/$1.html" [PT,L]
 
-RewriteRule   "^/sg/en/(.*).html$" "/content/tetrapak/publicweb/sg/en/error/404.html" [PT,L]
-RewriteRule   "^/sg/en$" "/content/tetrapak/publicweb/sg/en/home.html" [PT,L]
+RewriteRule   "^/tr-tr/(.*).html$" "/content/tetrapak/publicweb/tr/tr/error/404.html" [PT,L]
+RewriteRule   "^/tr-tr$" "/content/tetrapak/publicweb/tr/tr/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/sg/(.*)$" "/content/tetrapak/publicweb/sg/$1.html" [PT,L]
+RewriteRule   "^/tr-tr/(.*)$" "/content/tetrapak/publicweb/tr/tr/$1.html" [PT,L]
 
-RewriteRule   "^/sk/en/(.*).html$" "/content/tetrapak/publicweb/sk/en/error/404.html" [PT,L]
-RewriteRule   "^/sk/en$" "/content/tetrapak/publicweb/sk/en/home.html" [PT,L]
+RewriteRule   "^/en-tw/(.*).html$" "/content/tetrapak/publicweb/tw/en/error/404.html" [PT,L]
+RewriteRule   "^/en-tw$" "/content/tetrapak/publicweb/tw/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/sk/(.*)$" "/content/tetrapak/publicweb/sk/$1.html" [PT,L]
+RewriteRule   "^/en-tw/(.*)$" "/content/tetrapak/publicweb/tw/en/$1.html" [PT,L]
 
-RewriteRule   "^/th/en/(.*).html$" "/content/tetrapak/publicweb/th/en/error/404.html" [PT,L]
-RewriteRule   "^/th/en$" "/content/tetrapak/publicweb/th/en/home.html" [PT,L]
+RewriteRule   "^/en-uk/(.*).html$" "/content/tetrapak/publicweb/uk/en/error/404.html" [PT,L]
+RewriteRule   "^/en-uk$" "/content/tetrapak/publicweb/uk/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/th/(.*)$" "/content/tetrapak/publicweb/th/$1.html" [PT,L]
+RewriteRule   "^/en-uk/(.*)$" "/content/tetrapak/publicweb/uk/en/$1.html" [PT,L]
 
-RewriteRule   "^/tr/tr/(.*).html$" "/content/tetrapak/publicweb/tr/tr/error/404.html" [PT,L]
-RewriteRule   "^/tr/tr$" "/content/tetrapak/publicweb/tr/tr/home.html" [PT,L]
+RewriteRule   "^/en-us/(.*).html$" "/content/tetrapak/publicweb/us/en/error/404.html" [PT,L]
+RewriteRule   "^/en-us$" "/content/tetrapak/publicweb/us/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/tr/(.*)$" "/content/tetrapak/publicweb/tr/$1.html" [PT,L]
+RewriteRule   "^/en-us/(.*)$" "/content/tetrapak/publicweb/us/en/$1.html" [PT,L]
 
-RewriteRule   "^/tw/en/(.*).html$" "/content/tetrapak/publicweb/tw/en/error/404.html" [PT,L]
-RewriteRule   "^/tw/en$" "/content/tetrapak/publicweb/tw/en/home.html" [PT,L]
+RewriteRule   "^/es-ve/(.*).html$" "/content/tetrapak/publicweb/ve/es/error/404.html" [PT,L]
+RewriteRule   "^/es-ve$" "/content/tetrapak/publicweb/ve/es/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/tw/(.*)$" "/content/tetrapak/publicweb/tw/$1.html" [PT,L]
+RewriteRule   "^/es-ve/(.*)$" "/content/tetrapak/publicweb/ve/es/$1.html" [PT,L]
 
-RewriteRule   "^/uk/en/(.*).html$" "/content/tetrapak/publicweb/uk/en/error/404.html" [PT,L]
-RewriteRule   "^/uk/en$" "/content/tetrapak/publicweb/uk/en/home.html" [PT,L]
+RewriteRule   "^/en-vn/(.*).html$" "/content/tetrapak/publicweb/vn/en/error/404.html" [PT,L]
+RewriteRule   "^/en-vn$" "/content/tetrapak/publicweb/vn/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/uk/(.*)$" "/content/tetrapak/publicweb/uk/$1.html" [PT,L]
+RewriteRule   "^/en-vn/(.*)$" "/content/tetrapak/publicweb/vn/en/$1.html" [PT,L]
 
-RewriteRule   "^/us/en/(.*).html$" "/content/tetrapak/publicweb/us/en/error/404.html" [PT,L]
-RewriteRule   "^/us/en$" "/content/tetrapak/publicweb/us/en/home.html" [PT,L]
+RewriteRule   "^/en-za/(.*).html$" "/content/tetrapak/publicweb/za/en/error/404.html" [PT,L]
+RewriteRule   "^/en-za$" "/content/tetrapak/publicweb/za/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/us/(.*)$" "/content/tetrapak/publicweb/us/$1.html" [PT,L]
+RewriteRule   "^/en-za/(.*)$" "/content/tetrapak/publicweb/za/en/$1.html" [PT,L]
 
-RewriteRule   "^/ve/es/(.*).html$" "/content/tetrapak/publicweb/ve/es/error/404.html" [PT,L]
-RewriteRule   "^/ve/es$" "/content/tetrapak/publicweb/ve/es/home.html" [PT,L]
-RewriteRule   "^/ve/(.*)$" "/content/tetrapak/publicweb/ve/$1.html" [PT,L]
-
-RewriteRule   "^/za/en/(.*).html$" "/content/tetrapak/publicweb/za/en/error/404.html" [PT,L]
-RewriteRule   "^/za/en$" "/content/tetrapak/publicweb/za/en/home.html" [PT,L]
+RewriteRule   "^/ru/(.*).html$" "/content/tetrapak/publicweb/ru/ru/error/404.html" [PT,L]
+RewriteRule   "^/ru$" "/content/tetrapak/publicweb/ru/ru/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/za/(.*)$" "/content/tetrapak/publicweb/za/$1.html" [PT,L]
+RewriteRule   "^/ru/(.*)$" "/content/tetrapak/publicweb/ru/ru/$1.html" [PT,L]
 
-RewriteRule   "^/ru/ru/(.*).html$" "/content/tetrapak/publicweb/ru/ru/error/404.html" [PT,L]
-RewriteRule   "^/ru/ru$" "/content/tetrapak/publicweb/ru/ru/home.html" [PT,L]
+RewriteRule   "^/fr/(.*).html$" "/content/tetrapak/publicweb/mta/fr/error/404.html" [PT,L]
+RewriteRule   "^/fr$" "/content/tetrapak/publicweb/mta/fr/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/ru/(.*)$" "/content/tetrapak/publicweb/ru/$1.html" [PT,L]
+RewriteRule   "^/fr/(.*)$" "/content/tetrapak/publicweb/mta/fr/$1.html" [PT,L]
 
-RewriteRule   "^/cac/es/(.*).html$" "/content/tetrapak/publicweb/cac/es/error/404.html" [PT,L]
-RewriteRule   "^/cac/es$" "/content/tetrapak/publicweb/cac/es/home.html" [PT,L]
+RewriteRule   "^/en-gb/(.*).html$" "/content/tetrapak/publicweb/uk/en/error/404.html" [PT,L]
+RewriteRule   "^/en-gb$" "/content/tetrapak/publicweb/uk/en/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/cac/(.*)$" "/content/tetrapak/publicweb/cac/$1.html" [PT,L]
-
-RewriteRule   "^/mta/fr/(.*).html$" "/content/tetrapak/publicweb/mta/fr/error/404.html" [PT,L]
-RewriteRule   "^/mta/fr$" "/content/tetrapak/publicweb/mta/fr/home.html" [PT,L]
-RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
-RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/mta/(.*)$" "/content/tetrapak/publicweb/mta/$1.html" [PT,L]
+RewriteRule   "^/en-gb/(.*)$" "/content/tetrapak/publicweb/uk/en/$1.html" [PT,L]
 
 RewriteCond   %{HTTP_HOST}  'www-stage.tetrapak.com$'
 RewriteRule   "^/$"  "/content/tetrapak/publicweb/gb/en/home.html" [PT,L]
