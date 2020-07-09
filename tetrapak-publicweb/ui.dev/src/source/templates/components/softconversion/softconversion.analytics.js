@@ -108,19 +108,5 @@ export const downloadLinkTrack = function (downObj, eventType, parentComponent) 
 
   trackAnalytics(downObj, 'linkClick', eventType, undefined, false, eventObj);
 
-  // if(caseCheck === 'download'){
-  //   const formObj = {
-  //     formName: formName,
-  //     formStep: 'Step 4',
-  //     formType: 'Download Ready',
-  //     formField: []
-  //   };
-  //   const eventObjN = {
-  //     eventType: 'formcomplete',
-  //     event: 'Soft Conversion Form'
-  //   };
-  //   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObjN);
-  // }
-
 };
 
