@@ -2,7 +2,7 @@
 ## Collect the dispatchers number
 PassEnv DISP_ID
 
-# Defining Virtual host for tetrapak-stage64a.adobecqms.net
+# Defining Virtual host for tetrapak-prod64.adobecqms.net
 <VirtualHost *:80>
         ServerName      tetrapak-prod64.adobecqms.net
         ## Put names of which domains are used for your published site/content here
