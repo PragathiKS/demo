@@ -12,8 +12,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.text.ParseException;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -366,10 +368,10 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 setMediaSize(searchResultItem, assetMetadataProperties);
                 searchResultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf('.') + 1));
                 searchResultItem.setAssetType(mediaType);
-                if(PWConstants.VIDEO.equalsIgnoreCase(mediaType)) {
+                if (PWConstants.VIDEO.equalsIgnoreCase(mediaType)) {
                     searchResultItem.setAssetThumbnail(searchResultsModel.getVideoThumbnail());
                 }
-                if(PWConstants.DOCUMENT.equalsIgnoreCase(mediaType)) {
+                if (PWConstants.DOCUMENT.equalsIgnoreCase(mediaType)) {
                     searchResultItem.setAssetThumbnail(searchResultsModel.getDocumentThumbnail());
                 }
             } else {
@@ -458,9 +460,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             searchResultItem.setType(searchResultsModel.getProductLabel());
         } else {
             if (Objects.nonNull(hit.getProperties().get("articleDate"))) {
-                searchResultItem.setDate(formatDate(hit.getProperties().get("articleDate", Date.class)));
+                searchResultItem.setDate(formatDate(hit.getProperties().get("articleDate", String.class)));
             } else if (Objects.nonNull(hit.getProperties().get("cq:lastModified"))) {
-                searchResultItem.setDate(formatDate(hit.getProperties().get("cq:lastModified", Date.class)));
+                searchResultItem.setDate(formatDate(hit.getProperties().get("cq:lastModified", String.class)));
             }
             if (PWConstants.EVENTS.equalsIgnoreCase(contentType)) {
                 searchResultItem.setType(searchResultsModel.getEventLabel());
@@ -531,13 +533,26 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /**
      * Format date.
      *
-     * @param date
-     *            the date
+     * @param dateString
+     *            the date string
      * @return the string
      */
-    public String formatDate(Date date) {
-        final DateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
-        return formatter.format(date);
+    public static String formatDate(String dateString) {
+        if (dateString != null && dateString.length() > 0 && dateString.contains("T")) {
+            final String parsedDate = dateString.substring(0, dateString.indexOf('T'));
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date d = null;
+            if (parsedDate.length() > 0) {
+                try {
+                    d = formatter.parse(parsedDate);
+                } catch (final ParseException e) {
+                    LOGGER.error("Error occurred while parsing date: {} ", e.getMessage(), e);
+                }
+            }
+            formatter = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+            return formatter.format(d);
+        }
+        return StringUtils.EMPTY;
     }
 
     /**
