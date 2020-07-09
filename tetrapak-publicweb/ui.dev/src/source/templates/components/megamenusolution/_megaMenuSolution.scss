@@ -215,6 +215,9 @@
                     font-size: $font-baseline;
                     font-weight: 500;
                     line-height: 20px;
+                    @media #{$desktop} {
+                        @include font-size($font-sm);
+                    }
                 }
 
                 @media #{$desktop} {
