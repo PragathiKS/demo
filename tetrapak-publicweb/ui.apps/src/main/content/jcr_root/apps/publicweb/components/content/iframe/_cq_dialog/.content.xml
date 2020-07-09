@@ -35,7 +35,7 @@
                                     <nopadding
                                         jcr:primaryType="nt:unstructured"
                                         selected="{Boolean}true"
-                                        text="No padding"
+                                        text="No Padding"
                                         value="zero"/>
                                 </items>
                             </paddingoption>
