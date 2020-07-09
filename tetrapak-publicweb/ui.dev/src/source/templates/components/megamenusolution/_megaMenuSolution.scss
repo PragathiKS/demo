@@ -163,7 +163,6 @@
         font-family: $font-bold;
         @media #{$desktop} {
             @include margin($margin-l $margin-zero $margin-zero);
-            color: $color-tundora;
             font-family: $font-bold;
             font-size: 18px;
             font-weight: 500;
