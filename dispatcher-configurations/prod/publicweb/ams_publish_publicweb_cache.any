@@ -17,7 +17,7 @@
 
 ## Cache /content/tetrapak/customerhub
 /0008 {
-        /glob "/content/tetrapak/public-web[./]*"
+        /glob "/content/tetrapak/publicweb[./]*"
         /type "allow"
       }
 
