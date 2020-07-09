@@ -17,6 +17,7 @@ class Softconversion {
     this.cache.$downloadbtn = this.root.find('.thankyouTarget');
     this.cache.$radio = this.root.find('input[type=radio][name="typeOfVisitorOptions"]');
     this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSoft"]').val();
+    this.cache.$parentComponent = this.root.find('input[type="hidden"][name="parentComponent"]').val();
     this.cache.$moreBtn = this.root.find(`.moreButton-${this.cache.$componentName}`);
     this.cache.$company = this.root.find(`.company-${this.cache.$componentName}`);
     this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
@@ -75,7 +76,7 @@ class Softconversion {
       dwnSource:''
     };
 
-    downloadLinkTrack(downloadObj, 'downloadClick', this.mainHeading, 'download');
+    downloadLinkTrack(downloadObj, 'downloadClick', this.cache.$parentComponent);
 
     window.open(downloadLink, '_blank');
   }
@@ -95,7 +96,7 @@ class Softconversion {
       linkName: $this.data('link-name')
     };
 
-    downloadLinkTrack(downloadObj, 'linkClick');
+    downloadLinkTrack(downloadObj, 'linkClick', this.cache.$parentComponent);
     window.open(downloadLink, $this.attr('target'));
   }
 
@@ -105,7 +106,7 @@ class Softconversion {
     $(`.heading_${this.cache.$componentName}`, this.root).text($(`#heading_${this.cache.$componentName}`).val());
     $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
     // do the analytics call for not me
-    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()});
+    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
   }
 
   yesMeBtnHandler = () => {
@@ -133,7 +134,7 @@ class Softconversion {
     );
 
     // do the analytics call for yes its me
-    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()});
+    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
   }
 
   submitForm = () => {
@@ -153,7 +154,7 @@ class Softconversion {
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     apiPayload.pardotUrl = pardotUrl;
     apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked'); 
-    loadDownloadReady(this.mainHeading, { ...this.restObj2, 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' });
+    loadDownloadReady(this.mainHeading, { ...this.restObj2, 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' }, this.cache.$parentComponent);
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
@@ -174,7 +175,7 @@ class Softconversion {
 
 
   bindEvents() {
-    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $company, $position, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn } = this.cache;
+    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $parentComponent, $company, $position, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn } = this.cache;
     const self = this;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('click', function () {
@@ -214,10 +215,10 @@ class Softconversion {
       if ($(this).hasClass('previousbtn')) {
         switch (target) {
         case `#cf-step-1-${$componentName}`:
-          changeStepPrev(self.mainHeading, 'Step 2', self.step2heading);
+          changeStepPrev(self.mainHeading, 'Step 2', self.step2heading, $parentComponent);
           break;
         case `#cf-step-2-${$componentName}`:
-          changeStepPrev(self.mainHeading, 'Step 3', self.step3heading);
+          changeStepPrev(self.mainHeading, 'Step 3', self.step3heading, $parentComponent);
           break;
         default:
           break;
@@ -279,10 +280,10 @@ class Softconversion {
           if (!$(this).hasClass('previousbtn')) {
             switch (target) {
             case `#cf-step-2-${$componentName}`:
-              changeStepNext(self.mainHeading, 'Step 1', self.step1heading, { [self.step1heading]: self.cache.requestPayload['typeOfVisitorTitle'] });
+              changeStepNext(self.mainHeading, 'Step 1', self.step1heading, { [self.step1heading]: self.cache.requestPayload['typeOfVisitorTitle'] }, $parentComponent);
               break;
             case `#cf-step-3-${$componentName}`:
-              changeStepNext(self.mainHeading, 'Step 2', self.step2heading, { ...self.restObj });
+              changeStepNext(self.mainHeading, 'Step 2', self.step2heading, { ...self.restObj }, $parentComponent);
               break;
             default:
               break;
@@ -295,10 +296,10 @@ class Softconversion {
       }else{
         switch (target) {
         case `#cf-step-2-${$componentName}`:
-          changeStepError(self.mainHeading, 'Step 1', self.step1heading, {}, errObj);
+          changeStepError(self.mainHeading, 'Step 1', self.step1heading, {}, errObj, $parentComponent);
           break;
         case `#cf-step-3-${$componentName}`:
-          changeStepError(self.mainHeading, 'Step 2', self.step2heading, {}, errObj);
+          changeStepError(self.mainHeading, 'Step 2', self.step2heading, {}, errObj, $parentComponent);
           break;
         default:
           break;
@@ -350,7 +351,7 @@ class Softconversion {
       if (isvalid) {
         self.submitForm();
       }else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`){
-        changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, errObj);
+        changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, errObj, $parentComponent);
         // case `#cf-step-downloadReady-${$componentName}`:
         //changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, errObj);
         //break;
@@ -362,14 +363,14 @@ class Softconversion {
     const $this = this;
     const visitorMail = storageUtil.getCookie('visitor-mail');
     if(visitorMail) {
-      makeLoad('welcome back', $this.mainHeading, 'welcome back:formstart');
+      makeLoad('welcome back', $this.mainHeading, 'welcome back:formstart', this.cache.$parentComponent);
       $(`#visitor-email-${this.cache.$componentName}`).text(visitorMail).css('font-weight', 900);
       $(`.heading_${this.cache.$componentName}`, this.root).text('');
       $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).addClass('active');
       isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
     }else{
-      makeLoad($this.step1heading, $this.mainHeading);
+      makeLoad($this.step1heading, $this.mainHeading, 'formstart', this.cache.$parentComponent);
     }
 
     const { $modal } = $this.cache;

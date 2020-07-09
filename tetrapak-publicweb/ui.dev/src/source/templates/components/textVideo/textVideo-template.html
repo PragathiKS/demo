@@ -105,7 +105,7 @@
     </div>
   </div>
   <sly data-sly-test="${data.enableSoftcoversion}" data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
-      data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkURL, assetName=data.assetName}" />
+      data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkURL, assetName=data.assetName, parentComponent='Text & Video'}" />
   </div>
   <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
 </sly>
