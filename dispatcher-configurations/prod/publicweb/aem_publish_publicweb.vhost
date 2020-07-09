@@ -2,30 +2,19 @@
 ## Collect the dispatchers number
 PassEnv DISP_ID
 
-# Defining Virtual host for tetrapak-prod64.adobecqms.net
+# Defining Virtual host for tetrapak-stage64a.adobecqms.net
 <VirtualHost *:80>
         ServerName      tetrapak-prod64.adobecqms.net
         ## Put names of which domains are used for your published site/content here
         #ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} tetrapak-prod64.adobecqms.net
-		#ServerAlias     tetrapak-prod64.adobecqms.net
-		
+                ServerAlias     tetrapak-prod64.adobecqms.net
+
         ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
         DocumentRoot    ${PUBLISH_DOCROOT}/publicweb
         ## Add header breadcrumbs for help in troubleshooting
         <IfModule mod_headers.c>
                 Header add X-Dispatcher ${DISP_ID}
                 Header add X-Vhost "publish"
-				
-				<FilesMatch "\.(html)$">
-                        Header set Cache-Control no-cache,no-store
-                        Header set Pragma no-cache
-                </FilesMatch>
-                <FilesMatch "\.(woff)$">
-                        Header set Cache-Control max-age=2592000
-                </FilesMatch>
-                 <FilesMatch "\.(png)$">
-                        Header set Cache-Control max-age=432000
-                </FilesMatch>
          </IfModule>
         <Directory />
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_WHITELIST_ENABLED from 0 or 1 to enable or disable ip restriction rules
@@ -62,6 +51,7 @@ PassEnv DISP_ID
                 Header append Vary User-Agent env=!dont-vary
                 #### Prevent clickjacking
                 Header always append X-Frame-Options SAMEORIGIN
+
         </Directory>
         <Directory "${PUBLISH_DOCROOT}">
                 AllowOverride None
@@ -78,18 +68,41 @@ PassEnv DISP_ID
                 LogLevel warn rewrite:info
                 ##Global rewrite include
                 Include /etc/httpd/conf.d/rewrites/base_rewrite.rules
-					##Publish  rewrite include
+                                        ##Publish  rewrite include
                 Include /etc/httpd/conf.d/rewrites/publish_publicweb_rewrite.rules
-				
+
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_FORCE_SSL from 0 or 1 to enable or disable enforcing SSL
                 <If "${PUBLISH_FORCE_SSL} == 1">
                         Include /etc/httpd/conf.d/rewrites/xforwarded_forcessl_rewrite.rules
                 </If>
         </IfModule>
-		<IfModule mod_expires.c>
-				SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.js" long_expires=true
-				SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.css" long_expires=true
-				Header set Cache-Control max-age=432000 env=long_expires
-		</IfModule>
-</VirtualHost>
 
+                <IfModule mod_expires.c>
+                ## Updated Expirs header for media
+                    ExpiresActive On
+                    ExpiresByType image/jpg "access plus 1 day"
+                    ExpiresByType image/jpeg "access plus 1 day"
+                    ExpiresByType image/gif "access plus 1 day"
+                    ExpiresByType image/png "access plus 2 day"
+                    ExpiresByType application/pdf "access plus 1 day"
+                    ExpiresByType image/x-icon "access plus 1 day"
+
+                    SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.js" long_expires=true
+                    SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.css" long_expires=true
+                    SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.woff" long_expires=true
+                    Header set Cache-Control max-age=2592000 env=long_expires
+                </IfModule>
+
+                ## Updated Content-Disposition to inline for opening the media links in new Tab
+                <IfModule mod_headers.c>
+                        #<FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV|pdf|PDF|xls|XLS|xlsx|XLSX|doc|DOC|docx|DOCX)$">
+                        <FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV)$">
+                                Header set Content-Disposition "inline"
+                        </FilesMatch>
+
+                       # <LocationMatch ".*/gated-assets/.*">
+                       #         Header set Content-Disposition "attachment"
+                       # </LocationMatch>
+
+                </IfModule>
+</VirtualHost>
