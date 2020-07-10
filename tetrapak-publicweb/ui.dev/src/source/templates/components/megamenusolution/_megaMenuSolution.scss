@@ -174,7 +174,7 @@
         @include line-height($font-l, $font-baseline);
         @include margin($margin-l 0);
         @media #{$desktop} {
-            @include font-size($font-sm);
+            @include font-size($font-m-sm);
             @include line-height($font-l, $font-baseline);
             @include margin($margin-l 0);
         }
