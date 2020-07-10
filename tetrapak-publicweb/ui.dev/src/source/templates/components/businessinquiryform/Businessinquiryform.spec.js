@@ -45,12 +45,12 @@ describe('BusinessInquiryForm', function () {
   it('should update request payload when step-3 next button is clicked', function (done) {
     document.getElementById('firstName').value = 'first';
     document.getElementById('lastName').value = 'last';
-    document.getElementById('email').value = 'email';
+    document.getElementById('emailBef').value = 'email';
     document.getElementById('phone').value = 'phone';
     document.getElementById('step3btn').click();
     expect(this.businessinquiry.cache.requestPayload['firstName']).to.equal('first');
     expect(this.businessinquiry.cache.requestPayload['lastName']).to.equal('last');
-    expect(this.businessinquiry.cache.requestPayload['email']).to.equal('email');
+    expect(this.businessinquiry.cache.requestPayload['emailBef']).to.equal('email');
     expect(this.businessinquiry.cache.requestPayload['phone']).to.equal('phone');
     done();
   });
@@ -61,7 +61,7 @@ describe('BusinessInquiryForm', function () {
     $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
     document.getElementById('firstName').value = 'first';
     document.getElementById('lastName').value = 'last';
-    document.getElementById('email').value = 'email';
+    document.getElementById('emailBef').value = 'email';
     document.getElementById('phone').value = 'mockmessage';
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
@@ -76,7 +76,7 @@ describe('BusinessInquiryForm', function () {
     $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
     document.getElementById('firstName').value = 'first';
     document.getElementById('lastName').value = 'last';
-    document.getElementById('email').value = 'email';
+    document.getElementById('emailBef').value = 'email';
     document.getElementById('phone').value = 'mockmessage';
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
