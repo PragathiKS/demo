@@ -1,9 +1,0 @@
-{
-	"activity": {
-		"jcr:primaryType": "cq:Tag",
-		"jcr:createdBy": "admin",
-		"jcr:title": "Activity",
-		"jcr:created": "Wed Feb 26 2020 13:00:24 GMT+0530",
-		"sling:resourceType": "cq/tagging/components/tag"
-	}
-}

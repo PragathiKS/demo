@@ -138,11 +138,6 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/listContentImage/",
-        "source/templates/components/carousel/",
-        "source/templates/components/carouselWithFilters/",
-        "source/templates/components/softConversionForm/",
-        "source/templates/components/contactFooterForm/",
         "source/templates/components/contactAnchorLink/",
         "source/templates/components/analyticsglobaltagspw/",
         "source/templates/components/image/",
