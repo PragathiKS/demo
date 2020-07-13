@@ -24,6 +24,7 @@
 							<paddingoption
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                defaultValue="zero"
                                 fieldLabel="Select padding option"
                                 name="./paddingOption">
                                 <items jcr:primaryType="nt:unstructured">
@@ -31,9 +32,10 @@
                                         jcr:primaryType="nt:unstructured"
                                         text="Padding"
                                         value="regular"/>
-                                    <nonpadding
+                                    <nopadding
                                         jcr:primaryType="nt:unstructured"
-                                        text="Non-padding"
+                                        selected="{Boolean}true"
+                                        text="No Padding"
                                         value="zero"/>
                                 </items>
                             </paddingoption>

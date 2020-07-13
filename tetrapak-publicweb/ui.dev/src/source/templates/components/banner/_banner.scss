@@ -13,7 +13,7 @@
         &__content {
             @include margin(0);
             @media #{$desktop} {
-                max-width: calc(45% - #{convert-to-rem(24px)});
+                width:  540px;
             }
         }
         .banner-sibling {
@@ -67,7 +67,6 @@
             right: 0;
          }
     }
-
     &__content {
         @include border-radius($border-radius);
         @include margin(-48px 16px 0 16px);
@@ -78,14 +77,13 @@
         background-color: $color-white;
         opacity: unset;
         position: relative;
-
         @media #{$desktop} {
             @include margin-top(0);
-            @include padding($padding-xxxl);
+            @include padding($padding-l $padding-xl);
             @include margin(0);
             color: $color-tundora;
             background-color: transparent;
-            max-width: calc(45% - #{convert-to-rem(24px)});
+            width: 540px;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -100,7 +98,7 @@
             font-family: $font-bold;
             line-height: $font-normal;
             @media #{$desktop} {
-                @include margin-bottom($margin-sm);
+                @include margin-bottom($margin-zero);
                 display: block;
                 text-transform: $uppercase;
             }
@@ -108,6 +106,7 @@
 
         &__title {
             @include margin-bottom($margin-md);
+            @include margin-top($margin-sm);
             h2 {
                 @include font-size($font-l);
                 @include line-height($font-xl, $font-l);
@@ -125,6 +124,17 @@
             @include font-size(16px);
             @include line-height(28px, 16px);
             font-family: $font-light;
+            ul {
+                li {
+                    display: flex;
+                    &::before {
+                        @include margin-right($margin-sm);
+                        display: inline-block;
+                        color: $color-tundora;
+                        content: '\2022';
+                    }
+                }
+            }
             @media #{$desktop} {
                 @include font-size(14px);
                 @include line-height(24px, 14px);
@@ -161,6 +171,14 @@
         #{ $self }__content {
             @include right($margin-xxl);
             left: auto;
+        }
+    }
+}
+
+.no-subtitle {
+    .pw-banner__content {
+        @media #{$desktop} {
+            @include padding-bottom($padding-xl);
         }
     }
 }

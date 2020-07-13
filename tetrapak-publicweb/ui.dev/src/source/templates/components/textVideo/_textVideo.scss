@@ -97,7 +97,17 @@
         @include margin-bottom($margin-zero);
         @include font-size($font-baseline);
         @include line-height(24px, $font-baseline);
-
+        ul {
+            li {
+                display: flex;
+                &::before {
+                    @include margin-right($margin-sm);
+                    display: inline-block;
+                    color: $color-tundora;
+                    content: '\2022';
+                }
+            }
+        }
         @media #{$desktop} {
             @include margin-bottom($margin-zero);
         }

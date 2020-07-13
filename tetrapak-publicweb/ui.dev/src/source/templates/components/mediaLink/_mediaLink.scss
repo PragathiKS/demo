@@ -74,6 +74,9 @@
         border-bottom: 1px solid $color-mercury;
         span {
             @include margin($margin-md);
+            @media #{$desktop} {
+                @include margin-left($margin-zero);
+            }
             @include line-height(24px, 14px);
             font-weight: 500;
         }

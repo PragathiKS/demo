@@ -1,5 +1,7 @@
 import $ from 'jquery';
+import { getI18n } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+
 
 const trackAnalyticsContactUs = (formTrackingObj,eventObj,formVal='formclick') => {
 
@@ -23,7 +25,13 @@ const trackAnalyticsContactUs = (formTrackingObj,eventObj,formVal='formclick') =
 };
 
 export const onErrorAnalytics = (currentTarget,tab) => {
-  const formType = tab.find('.form-field-heading').data('step-heading');
+  let formType;
+  if (currentTarget ==='cf-step-3') {
+    formType=getI18n('pw.form.heading.howcanihelp');
+  }
+  else {
+    formType = tab.find('.form-field-heading').data('step-heading');
+  }
   const formError = [];
   const formField = [];
   const event = {
@@ -62,8 +70,7 @@ export const onErrorAnalytics = (currentTarget,tab) => {
 
 export const newRequestButtonAnalytics = (e) => {
   const $target = $(e.target);
-  const $this = $target.closest('.js-pw-contactAnchorLink');
-  const linkName = $this.closest('.newRequestBtn').text();
+  const linkName = $target.text();
   const trackingObj = {
     linkType: 'internal',
     linkSection: 'button click',
@@ -138,10 +145,13 @@ export const onLoadTrackAnalytics = () => {
 };
 
 export const onSubmitClickAnalytics = () => {
+  const formTitle = getI18n('pw.form.label.message');
+  const formField = [];
+  formField.push({formFieldName:formTitle, formFieldValue:'NA'});
   const form = {
-    formType:'ThankYou',
+    formType:getI18n('pw.form.heading.howcanihelp'),
     formStep:'step 3',
-    formField: []
+    formField
   };
   const event = {
     eventType : 'formComplete'

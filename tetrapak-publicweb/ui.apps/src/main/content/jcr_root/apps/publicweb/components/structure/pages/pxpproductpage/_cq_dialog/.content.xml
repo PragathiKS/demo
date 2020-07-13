@@ -34,7 +34,11 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Product id"
-                                                name="./productId"/>
+                                                name="./productId">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="productId"/>
+                                            </productId>
                                         </items>
                                     </properties>
                                 </items>

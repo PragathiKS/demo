@@ -13,13 +13,6 @@
             <responsivegrid
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
-                <banner
-                    jcr:created="{Date}2020-06-18T10:39:34.786Z"
-                    jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2020-06-18T10:39:34.786Z"
-                    jcr:lastModifiedBy="admin"
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="publicweb/components/content/banner"/>
                 <breadcrumb
                     jcr:created="{Date}2020-06-18T10:39:40.623Z"
                     jcr:createdBy="admin"
@@ -27,6 +20,13 @@
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="publicweb/components/content/breadcrumb"/>
+                <banner
+                    jcr:created="{Date}2020-06-18T10:39:34.786Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-06-18T10:39:34.786Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/banner"/>
                 <textimage
                     jcr:created="{Date}2020-06-18T10:40:14.048Z"
                     jcr:createdBy="admin"

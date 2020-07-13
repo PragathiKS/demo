@@ -97,9 +97,13 @@ PassEnv DISP_ID
 
                 ## Updated Content-Disposition to inline for opening the media links in new Tab
                 <IfModule mod_headers.c>
-                        <FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV|pdf|PDF|xls|XLS|xlsx|XLSX|doc|DOC|docx|DOCX)$">
+                        #<DirectoryMatch "^/gated-assets/">
+                        #       Header set Content-Disposition "attachment"
+                        #</DirectoryMatch>
+
+                        #<FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV|pdf|PDF|xls|XLS|xlsx|XLSX|doc|DOC|docx|DOCX)$">
+                        <FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV)$">
                                 Header set Content-Disposition "inline"
                         </FilesMatch>
                 </IfModule>
 </VirtualHost>
-

@@ -85,8 +85,8 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
 export const loadThankYou = function (formName, areaofInterest, dataObj) {
   const formObj = {
     formName: formName,
-    formStep: 'Thankyou',
-    formType: 'Thank You',
+    formStep: 'Step 4',
+    formType: 'Thankyou',
     areaofInterest: areaofInterest,
     formField: []
   };

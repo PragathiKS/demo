@@ -19,6 +19,13 @@
             <responsivegrid
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
+                <breadcrumb
+                    jcr:created="{Date}2020-06-18T13:09:25.308Z"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2020-06-18T13:09:25.308Z"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="publicweb/components/content/breadcrumb"/>
                 <banner
                     jcr:created="{Date}2020-06-18T13:09:21.809Z"
                     jcr:createdBy="admin"
@@ -37,13 +44,6 @@
                     thankyouHeading="Thank you for your download"
                     welcomeBackHeading="Welcome back"
                     yesButtonLabel="Yes, this is me"/>
-                <breadcrumb
-                    jcr:created="{Date}2020-06-18T13:09:25.308Z"
-                    jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2020-06-18T13:09:25.308Z"
-                    jcr:lastModifiedBy="admin"
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="publicweb/components/content/breadcrumb"/>
                 <anchor
                     jcr:created="{Date}2020-06-18T13:09:34.112Z"
                     jcr:createdBy="admin"

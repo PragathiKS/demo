@@ -163,7 +163,6 @@
         font-family: $font-bold;
         @media #{$desktop} {
             @include margin($margin-l $margin-zero $margin-zero);
-            color: $color-tundora;
             font-family: $font-bold;
             font-size: 18px;
             font-weight: 500;
@@ -175,7 +174,7 @@
         @include line-height($font-l, $font-baseline);
         @include margin($margin-l 0);
         @media #{$desktop} {
-            @include font-size($font-sm);
+            @include font-size($font-m-sm);
             @include line-height($font-l, $font-baseline);
             @include margin($margin-l 0);
         }
@@ -215,6 +214,9 @@
                     font-size: $font-baseline;
                     font-weight: 500;
                     line-height: 20px;
+                    @media #{$desktop} {
+                        @include font-size($font-sm);
+                    }
                 }
 
                 @media #{$desktop} {
