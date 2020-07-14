@@ -31,7 +31,7 @@
           <input type="hidden" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
           <button type="button" class="tp-close-btn icon-Close_pw pw-softconversion__header__close js-close-btn"></button>
         </div>
-        
+
         <div class="modal-body pw-softconversion__body pw-sf_body_${componentName} row no-gutters" auto_locator="softConversionSectionBody">
 
         <div class="col-lg-12">
@@ -43,7 +43,7 @@
                     <div class="tab-pane tab-${componentName} active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel"
                         id="${cfstep1}">
                         <div class="row no-gutters">
-                           
+
                             <div class="col-lg-7 separator" auto_locator="leftColumnPaddingStep1">
                                 <div class="tab-content tab-content-steps">
                                     <div class="row">
@@ -97,14 +97,14 @@
                                                 data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
                                     </div>
                                 </div>
-                             
+
                             </div>
                         </div>
                     </div>
                    <div class="tab-pane tab-${componentName}" data-stepNumber="2" data-stepName="contactInfo" role="tabpanel"
                         id="${cfstep2}">
                         <div class="row no-gutters">
-                            
+
                             <div class="col-lg-7 separator">
                                 <div class="tab-content tab-content-steps">
                                     <div class="row no-gutters">
@@ -128,7 +128,7 @@
                                                 data-sly-call="${inputField.inputfield_template @ inputType='email', id=emailid, label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags'}">
                                             </sly>
                                         </div>
-                                    
+
                                     </div>
                                     <div class="row no-gutters pw-progress" auto_locator="progressBarStep2">
                                         <div class="col-lg-9">
@@ -149,10 +149,10 @@
                                 </div>
                             </div>
                             <div class="col-lg-5" auto_locator="softConversionRightContainerSummaryAreaStep2">
-                               
+
                                     <div class="row no-gutters">
                                         <div class="col-sm-12 main-heading" auto_locator="softConversionRightContainerHeadingTextStep2">
-                                            <sly 
+                                            <sly
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
                                         </div>
@@ -161,14 +161,14 @@
                                         <div class="col-lg-12">${'pw.form.heading.typeofvisitor' @ i18n}</div>
                                         <div class="col-lg-12 typeOfVisitorTitle-${componentName}" auto_locator="softConversionRightContainerSummaryVisitorTitleStep2"></div>
                                     </div>
-                                
+
                             </div>
 
                         </div>
                     </div>
                     <div class="tab-pane tab-${componentName}" data-stepNumber="3" data-stepName="submitForm" role="tabpanel" id="${cfstep3}">
                         <div class="row no-gutters">
-                            
+
                             <div class="col-lg-7 separator">
                                 <div class="tab-content tab-content-steps">
                                     <div class="serviceError">${'pw.form.errormsg.serviceerror' @i18n}</div>
@@ -192,7 +192,7 @@
                                             <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                                             </label>
         								</div>
-                                        
+
     									<div class="col-sm-11 marketingConsentText">${data.consentConfig.marketingConsent @ context="html"} </div>
 											<div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
 										</div>
@@ -207,7 +207,7 @@
                                         <div class="privacy-policy" auto_locator="softConversionMarketingPrivacyStep3">
                                                 ${data.consentConfig.privacyPolicy @ context="html"}
                                             </div>
-                                        
+
                                     </div>
                                     <div class="row no-gutters pw-progress" auto_locator="progressBarStep3">
                                         <div class="col-lg-9">
@@ -229,7 +229,7 @@
                             </div>
 
                             <div class="col-lg-5">
-                        
+
                                 <div auto_locator="softConversionContainerSummaryAreaStep3">
                                     <div class="row no-gutters">
                                         <div class="col-sm-12 main-heading" auto_locator="softConversionRightContainerHeadingTextStep3">
@@ -265,7 +265,7 @@
                     <div class="tab-pane tab-${componentName}" role="tabpanel" id="${cfstepdownloadReady}">
                         <div class="row thankyou">
                             <div class="col text-center" auto_locator="readyForDownload">
-      
+
                                 <div auto_locator="readyForDownloadHeading">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                         data-sly-call="${heading.heading_h3_template @ headingText=data.formConfig.downloadReadyHeading}" />
@@ -274,25 +274,23 @@
                                     ${data.formConfig.downloadReadyDescriptionText @ context='html'}
                                 </div>
                                 <div class="button-group">
-                                       <a data-downloadlink="${downloadPath}" 
-                                          data-asset-name="${assetName}" 
+                                       <a data-downloadlink="${downloadPath}"
+                                          data-asset-name="${assetName}"
                                           data-link-section="button click"
-                                          data-link-name="${'pw.form.button.download' @ i18n}"  
+                                          data-link-name="${'pw.form.button.download' @ i18n}"
                                           data-parent-title="${data.formConfig.downloadReadyHeading}"
-                                       href="${cfstepthankyouTarget}" class="tpatom-link tpatom-link--primary thankyouTarget" title="${'pw.form.button.download' @ i18n}">
-                                            <span class="tpatom-link__text sly-text"> ${'pw.form.button.download' @ i18n}
-                                                <i class="icon icon--link icon-Download"></i>
-                                                    </span>
-                                            </a> 
+                                       href="${cfstepthankyouTarget}" class="tpatom-link tpatom-link--primary thankyouTarget text-left" title="${'pw.form.button.download' @ i18n}">
+                                            <span class="tpatom-link__text sly-text text-left">${'pw.form.button.download' @ i18n}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
+                                            </a>
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="tab-pane tab-${componentName}" role="tabpanel" id="${cfstepthankyou}">
                         <div class="row thankyou">
                             <div class="col text-center" auto_locator="thankyouPage">
-      
+
                                 <div auto_locator="thankyouHeading">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                         data-sly-call="${heading.heading_h3_template @ headingText=data.formConfig.thankyouHeading}" />
@@ -301,15 +299,15 @@
                                     ${data.formConfig.thankyouDescriptionText @ context='html'}
                                 </div>
                                 <div class="button-group">
-                                    <a href="${data.moreButtonAction}" class="tpatom-link tpatom-link--primary moreButton-${componentName}" 
+                                    <a href="${data.moreButtonAction}" class="tpatom-link tpatom-link--primary moreButton-${componentName}"
                                     data-link-section="button click"
-                                    data-link-name="${data.moreButtonLabel}"  
+                                    data-link-name="${data.moreButtonLabel}"
                                     data-parent-title="${data.formConfig.thankyouHeading}"
                                     title="${data.moreButtonLabel}"
                                     target="_self">
                                             <span class="tpatom-link__text sly-text"> ${data.moreButtonLabel}
                                                     </span>
-                                            </a> 
+                                            </a>
                                 </div>
                             </div>
                         </div>
@@ -318,7 +316,7 @@
                     <div class="tab-pane tab-${componentName}" role="tabpanel" id="cf-step-welcomeback-${componentName}">
                         <div class="row thankyou">
                             <div class="col text-center" auto_locator="welcomeBackPage">
-      
+
                                 <div auto_locator="welcomeBackHeading">
                                     <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                         data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.welcomeBackHeading}" />
@@ -335,7 +333,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
 
                 </form>
             </div>

@@ -45,20 +45,18 @@
           data-link-section="Hero Image_${dataLinkSectionCTAText}" data-link-type="internal"
           data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
           data-anchor-type="${dataLinkSectionCTAText}">
-          <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}<i
+          <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span class="nowrap-text">&#8288;<i
               class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
         </a>
 
          <input type="hidden" id="componentName-banner" name="componentName" value="${resource.name}">
-             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-banner"
+             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-banner text-left"
              data-link-section="button click"
              data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
              data-anchor-type="CTA"
 
              title="${'pw.form.button.download' @ i18n}">
-                                            <span class="tpatom-link__text sly-text"> ${data.linkLabel @ context='html'}
-                                                <i class="icon icon--link icon-Download"></i>
-                                                    </span>
+                                            <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
                                             </button>
       </div>
     </div>
