@@ -79,7 +79,7 @@ export const newRequestButtonAnalytics = (e) => {
   };
   const eventObj = {
     eventType: 'linkClick',
-    event: 'Contact us'
+    event: 'Contact us form'
   };
   trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 };
