@@ -11,6 +11,7 @@ public final class FormConstants {
     public static final String COUNTRY = "country";
     public static final String MESSAGE = "message";
     public static final String EMAIL = "email";
+    public static final String LOGO = "logo";
 
     /**
      * Instantiates a new PW Form constants.

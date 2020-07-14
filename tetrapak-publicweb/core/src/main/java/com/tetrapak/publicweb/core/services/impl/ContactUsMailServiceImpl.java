@@ -26,7 +26,8 @@ public class ContactUsMailServiceImpl implements ContactUsMailService {
     private JobManager jobMgr;
 
     @Override
-    public ContactUsResponse sendEmailForNotification(final ContactUs contactUs, final String[] mailAddresses) {
+    public ContactUsResponse sendEmailForNotification(final ContactUs contactUs, String logo,
+            final String[] mailAddresses) {
         LOGGER.debug("inside sendEmailForNotification");
 
         if (Objects.nonNull(mailAddresses)) {
@@ -41,6 +42,7 @@ public class ContactUsMailServiceImpl implements ContactUsMailService {
             emailParams.put(FormConstants.COUNTRY, contactUs.getCountryTitle());
             emailParams.put(FormConstants.MESSAGE, contactUs.getMessage());
             emailParams.put(FormConstants.EMAIL, contactUs.getEmail());
+            emailParams.put(FormConstants.LOGO, logo);
             emailParams.put("domainURL", contactUs.getDomainURL());
             final Map<String, Object> properties = new HashMap<>();
             properties.put("templatePath", PWConstants.CONTACT_US_MAIL_TEMPLATE_PATH);
