@@ -8,7 +8,7 @@
         ## hostname globbing for farm selection (virtual domain addressing)
         /virtualhosts {
                 #$include "/etc/httpd/conf.dispatcher.d/vhosts/ams_publish_vhosts.any"
-				 "tetrapak-stage64a.adobecqms.net"
+                                 "tetrapak-stage64a.adobecqms.net"
         }
 
         ## the load will be balanced among these render instances
@@ -52,7 +52,7 @@
                 ## - only unauthorized pages are cached unless allowUnauthorized is set to 1
                 /rules {
                         $include "/etc/httpd/conf.dispatcher.d/cache/ams_publish_publicweb_cache.any"
-		 }		
+                 }
                 # the invalidate section defines those pages which are 'invalidated' after
                 # any activation. please note that, the activated page itself and all
                 # related documents are flushed on an modification. for example: if the
@@ -76,7 +76,7 @@
                         ## By default block all IP from allowing to initiate the invalidation commands
                         /0000 {
                                 /glob "*.*.*.*"
-                                /type "allow"
+                                /type "deny"
                         }
                         ## Allow certain IP's like publishers to invalidate cache
                         $include "/etc/httpd/conf.dispatcher.d/cache/ams_publish_invalidate_allowed.any"

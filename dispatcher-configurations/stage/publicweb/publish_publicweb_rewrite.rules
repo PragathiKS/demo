@@ -4,7 +4,6 @@ RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 
 ## This ruleset is use for lang-masters based dispatcher URL redirection
-
 RewriteCond   %{HTTP_HOST}  'tetrapak-stage64a.adobecqms.net'
 RewriteCond   %{REQUEST_URI} ^/
 RewriteRule   "^/$"  "/content/tetrapak/publicweb/lang-masters/en/home.html" [R]
@@ -16,6 +15,7 @@ RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
 RewriteCond   %{HTTP_HOST}  'tetrapak-stage64a.adobecqms.net'
 RewriteRule   "^/(.*)$"  "/$1.html" [PT,L]
+
 
 ## This ruleset is use for Country  based  URL redirection
 
@@ -334,11 +334,17 @@ RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
 RewriteRule   "^/ru/(.*)$" "/content/tetrapak/publicweb/ru/ru/$1.html" [PT,L]
 
-RewriteRule   "^/fr/(.*).html$" "/content/tetrapak/publicweb/mta/fr/error/404.html" [PT,L]
-RewriteRule   "^/fr$" "/content/tetrapak/publicweb/mta/fr/home.html" [PT,L]
+RewriteRule   "^/maghreb/(.*).html$" "/content/tetrapak/publicweb/maghreb/fr/error/404.html" [PT,L]
+RewriteRule   "^/maghreb$" "/content/tetrapak/publicweb/maghreb/fr/home.html" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
-RewriteRule   "^/fr/(.*)$" "/content/tetrapak/publicweb/mta/fr/$1.html" [PT,L]
+RewriteRule   "^/maghreb/(.*)$" "/content/tetrapak/publicweb/maghreb/fr/$1.html" [PT,L]
+
+RewriteRule   "^/es-pa/(.*).html$" "/content/tetrapak/publicweb/pa/es/error/404.html" [PT,L]
+RewriteRule   "^/es-pa$" "/content/tetrapak/publicweb/pa/es/home.html" [PT,L]
+RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
+RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf)$"
+RewriteRule   "^/es-pa/(.*)$" "/content/tetrapak/publicweb/pa/es/$1.html" [PT,L]
 
 RewriteRule   "^/en-gb/(.*).html$" "/content/tetrapak/publicweb/uk/en/error/404.html" [PT,L]
 RewriteRule   "^/en-gb$" "/content/tetrapak/publicweb/uk/en/home.html" [PT,L]
