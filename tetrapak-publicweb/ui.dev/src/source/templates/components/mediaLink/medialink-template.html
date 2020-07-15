@@ -4,7 +4,7 @@
         <div class="medialink pw-theme--${data.pwTheme}" data-module="MediaLink">
             <div data-sly-test="${data.heading}" class="medialink__heading">
                 <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                    data-sly-call="${heading.heading_h2_template @ headingText=data.heading, variant='regular'}" />
+                    data-sly-call="${heading.heading_h3_template @ headingText=data.heading, variant='regular'}" />
             </div>
             <div  data-sly-test="${(data.columnOneList || data.columnTwoList || data.columnThreeList)}"
                 class="medialink__subheadingwrap">

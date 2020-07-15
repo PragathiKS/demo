@@ -13,7 +13,7 @@
         &__content {
             @include margin(0);
             @media #{$desktop} {
-                width:  540px;
+                width: 540px;
             }
         }
         .banner-sibling {
@@ -45,7 +45,7 @@
             max-width: unset;
             width: 100%;
             border-radius: 0;
-         }
+        }
     }
 
     &__image {
@@ -65,7 +65,7 @@
             justify-content: center;
             left: 0;
             right: 0;
-         }
+        }
     }
     &__content {
         @include border-radius($border-radius);
@@ -107,14 +107,16 @@
         &__title {
             @include margin-bottom($margin-md);
             @include margin-top($margin-sm);
-            h2 {
+            h1,
+            h2,
+            h3 {
                 @include font-size($font-l);
                 @include line-height($font-xl, $font-l);
                 @media #{$desktop} {
                     @include font-size($font-xl);
                     line-height: 40px;
-              }
-           }
+                }
+            }
             @include max-height(64px);
             @media #{$desktop} {
                 max-height: convert-to-rem(140px);
@@ -145,7 +147,6 @@
             @include margin-top($margin-md);
             font-family: $font-light;
         }
-
     }
     .banner-sibling {
         display: none;

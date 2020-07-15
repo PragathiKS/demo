@@ -15,7 +15,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-sm-12 main-heading"  data-sly-test="${data.formConfig.heading}" auto_locator="businessEnquiryLeftContainerHeadingTextStep1">
                                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                            data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.heading}" />
+                                            data-sly-call="${heading.heading_h3_template @ headingText=data.formConfig.heading}" />
                                     </div>
                                 </div>
                                 <div class="row no-gutters">
@@ -173,7 +173,7 @@
                                 </div>
                                 <div auto_locator="businessFormLeftContainerSummaryAreaStep3">
                                     <div class="row no-gutters">
-                                        <div class="col-sm-12"> 
+                                        <div class="col-sm-12">
                                             <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
                                                 data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                                 data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
