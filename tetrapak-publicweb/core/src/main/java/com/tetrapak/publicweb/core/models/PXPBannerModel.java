@@ -23,6 +23,7 @@ public class PXPBannerModel {
 
     /** The heading tag. */
     @ValueMapValue
+    @Default(values = "h3")
     private String headingTag;
 
     /** The title. */
