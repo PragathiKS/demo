@@ -26,6 +26,7 @@
 			"pwTheme": "grayscale-white",
 			"pwLinkTheme": "download",
 			"pwDisplay": "display-row",
+			"headingTag":"h1",
 			"jcr:created": "Wed Feb 26 2020 12:31:03 GMT+0530",
 			"imageAltText": "Desktop Image Alt Text",
 			"title": "Title",

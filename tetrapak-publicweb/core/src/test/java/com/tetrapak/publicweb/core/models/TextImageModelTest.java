@@ -57,14 +57,21 @@ public class TextImageModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        final String[] methods = new String[] { "getAnchorId", "getAnchorTitle", "getSubTitle", "getTitle",
-                "getDescription", "getImagePath", "getImageAltText", "getLinkText", "getLinkURL", "getPwTheme",
-                "getPwButtonTheme", "getPwDisplay" };
-        Util.testLoadAndGetters(methods, model, resource);
+        assertEquals("anchor123", model.getAnchorId());
+        assertEquals("Anchor title", model.getAnchorTitle());
+        assertEquals("Subtitle", model.getSubTitle());
+        assertEquals("h1", model.getHeadingTag());
+        assertEquals("Title", model.getTitle());
+        assertEquals("Description", model.getDescription());
+        assertEquals("/content/dam/publicweb/asset.jpg", model.getImagePath());
+        assertEquals("Desktop Image Alt Text", model.getImageAltText());
+        assertEquals("Test", model.getLinkText());
+        assertEquals("/content/dam/publicweb/Petrol.pdf", model.getLinkURL());
+        assertEquals("grayscale-white", model.getPwTheme());
+        assertEquals("secondary", model.getPwButtonTheme());
+        assertEquals("display-row", model.getPwDisplay());
+        assertEquals("Petrol.pdf", model.getAssetName());
+        
     }
 
-    @Test
-    public void testNotEmptyAssetName() {
-        assertEquals("Petrol.pdf", model.getAssetName());
-    }
 }

@@ -87,6 +87,8 @@ public class PXPBannerModelTest {
         assertEquals("PXPBanner",
                 "<ul><li>Easy conversion between different family package shapes and sizes</li><li>Easy adaptation to many different closures</li><li>High food safety (unique aseptic process FDA filed)</li></ul>",
                 model.getDescription());
+
+        assertEquals("PXPBanner","h1", model.getHeadingTag());
         assertEquals("PXPBanner", "Anchor title", model.getAnchorTitle());
         assertEquals("PXPBanner", "anchor123", model.getAnchorId());
         assertEquals("PXPBanner", "grayscale-white", model.getPwTheme());

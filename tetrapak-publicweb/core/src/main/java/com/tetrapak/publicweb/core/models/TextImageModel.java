@@ -33,6 +33,10 @@ public class TextImageModel {
     @ValueMapValue
     private String subTitle;
 
+    /** The heading tag. */
+    @ValueMapValue
+    private String headingTag;
+
     /** The title. */
     @ValueMapValue
     private String title;
@@ -108,6 +112,15 @@ public class TextImageModel {
      */
     public String getSubTitle() {
         return subTitle;
+    }
+
+    /**
+     * Gets the heading tag.
+     *
+     * @return the heading tag
+     */
+    public String getHeadingTag() {
+        return headingTag;
     }
 
     /**

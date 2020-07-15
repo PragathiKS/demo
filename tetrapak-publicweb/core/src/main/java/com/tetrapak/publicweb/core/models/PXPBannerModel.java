@@ -8,7 +8,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-
 /**
  * The Class PXPBannerModel.
  */
@@ -22,6 +21,10 @@ public class PXPBannerModel {
     /** The subTitle. */
     private String subTitle;
 
+    /** The heading tag. */
+    @ValueMapValue
+    private String headingTag;
+
     /** The title. */
     private String title;
 
@@ -30,7 +33,7 @@ public class PXPBannerModel {
 
     /** The image Alt Text. */
     private String imageAltText;
-    
+
     /** The image Path. */
     private String imagePath;
 
@@ -51,7 +54,7 @@ public class PXPBannerModel {
     /** The anchor title. */
     @ValueMapValue
     private String anchorTitle;
-    
+
     /**
      * Inits the.
      */
@@ -72,6 +75,15 @@ public class PXPBannerModel {
      */
     public String getSubTitle() {
         return subTitle;
+    }
+
+    /**
+     * Gets the heading tag.
+     *
+     * @return the heading tag
+     */
+    public String getHeadingTag() {
+        return headingTag;
     }
 
     /**
@@ -145,7 +157,5 @@ public class PXPBannerModel {
     public String getAnchorTitle() {
         return anchorTitle;
     }
-
-    
 
 }

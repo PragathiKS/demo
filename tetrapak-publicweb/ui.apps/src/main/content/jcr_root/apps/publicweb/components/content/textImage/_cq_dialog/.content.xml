@@ -22,6 +22,22 @@
                                 fieldDescription="Suggested to use characters less than recommended Limit: 35 chars considering translations"
                                 fieldLabel="Subtitle"
                                 name="./subTitle"/>
+							<headingtag
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="HeadingTag "
+                                name="./headingTag">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <h1
+                                        jcr:primaryType="nt:unstructured"
+                                        text="H1"
+                                        value="h1"/>
+                                    <h2
+                                        jcr:primaryType="nt:unstructured"
+                                        text="H2"
+                                        value="h2"/>
+                                </items>
+                            </headingtag>
                             <title
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
