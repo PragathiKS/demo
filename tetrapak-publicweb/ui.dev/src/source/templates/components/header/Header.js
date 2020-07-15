@@ -109,9 +109,6 @@ class Header {
       eventType: 'linkClick',
       event: 'Search'
     };
-    //(dataObj, eventObj, trackingObjKey, satelliteKey)
-    //searchAnalytics(dataObj, eventObj, 'linkClick', 'linkClick');
-    //trackAnalytics(dataObj, trackingObjKey, satelliteKey, undefined, false, eventObj, linkClickObject);
     trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 
   }
