@@ -323,7 +323,7 @@ class Searchresults {
     };
 
     const eventObj = {
-      eventType : 'search result click',
+      eventType : 'search result clicked',
       event : 'Search'
     };
 
