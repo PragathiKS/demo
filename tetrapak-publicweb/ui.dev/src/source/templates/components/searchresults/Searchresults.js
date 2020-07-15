@@ -119,7 +119,7 @@ class Searchresults {
     };
 
     const eventObj = {
-      eventType : 'internalsearch',
+      eventType : 'internal search',
       event : 'Search'
     };
 
@@ -158,7 +158,7 @@ class Searchresults {
       const category = $(`#${filter}`).data('category');
       $(`#${filter}`).prop('checked', false);
       delete this.cache.searchParams[category][filter];
-      this.applyFilters(false);
+      this.applyFilters(false, true);
     }
   }
 
@@ -221,7 +221,7 @@ class Searchresults {
         };
 
         const eventObj = {  
-          eventType : 'internalsearch',
+          eventType : 'search results page',
           event : 'Search'
         };
 
@@ -276,7 +276,7 @@ class Searchresults {
     }
   };
 
-  renderFilterTags = () => {
+  renderFilterTags = (remove) => {
     const { contentType, theme, searchTerm } = this.cache.searchParams;
     let joinedFilterTags = { ...contentType, ...theme };
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
@@ -288,7 +288,7 @@ class Searchresults {
     };
 
     const eventObj = {
-      eventType : 'internalsearch',
+      eventType : remove ? 'search filter removed' : 'search filter applied',
       event : 'Search'
     };
 
@@ -308,7 +308,9 @@ class Searchresults {
     });
   }
 
-  searchResultLinkAnalytics = () => {
+  searchResultLinkAnalytics = (e) => {
+    const $target = $(e.target);
+    const $this = $target.closest('.pw-search-results__results-list__item__title-link');
     const { contentType, theme, searchTerm } = this.cache.searchParams;
     let joinedFilterTags = { ...contentType, ...theme };
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
@@ -321,7 +323,7 @@ class Searchresults {
     };
 
     const eventObj = {
-      eventType : 'internalsearch',
+      eventType : 'search result clicked',
       event : 'Search'
     };
 
@@ -329,7 +331,7 @@ class Searchresults {
       linkType: 'internal',
       linkSection: 'Hyperlink click',
       linkParentTitle: '',
-      linkName: 'Search'
+      linkName: $this.data('link-name')
     };
 
     trackAnalytics(searchObj, 'search', 'linkClick', undefined, false, eventObj, linkClickObject);
@@ -389,11 +391,11 @@ class Searchresults {
     window.history.pushState(null, null, (`?${url}`));
   }
 
-  applyFilters = (toggle = true) => {
+  applyFilters = (toggle = true, remove = false) => {
     this.cache.searchParams['page'] = 1;
     this.pushIntoUrl();
     this.search();
-    this.renderFilterTags();
+    this.renderFilterTags(remove);
     toggle && this.toggleFilterContainer();
   };
 

@@ -44,7 +44,7 @@ class Searchbar {
       };
 
       const eventObj = {
-        eventType : 'internalsearch',
+        eventType : 'internal search',
         event : 'Search'
       };
 
