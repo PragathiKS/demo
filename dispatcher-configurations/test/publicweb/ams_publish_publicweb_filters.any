@@ -7,7 +7,7 @@
 #/003 { /type "allow" /url "/system/*" }  ## allow OSGi console
 
 ## allow non-public content directories if this isn't a production environment by uncommenting the next few lines
-#/004 { /type "allow" /url "/apps/settings/wcm/designs/*"   }  ## allow apps access
+/004 { /type "allow" /url "/apps/settings/wcm/designs/*"   }  ## allow apps access
 /005 { /type "allow" /url "/libs/cq/i18n/*" } ## allow i18n in libs access
 
 #/006 { /type "allow" /url "/bin/*"    }  ## allow bin path access
