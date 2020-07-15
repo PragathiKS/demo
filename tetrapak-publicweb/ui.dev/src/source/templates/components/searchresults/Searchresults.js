@@ -185,27 +185,11 @@ class Searchresults {
       }).done((data) => {
         this.cache.$spinner.addClass('d-none');
         this.cache.$filterChecks.removeAttr('disabled');
+        let resultCount = 0;
         
         if (data.totalResults > 0) {
 
-          let joinedFilterTags = { ...contentType, ...theme };
-          joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
-          const searchfiltersString = Object.values(joinedFilterTags).join(',');
-
-          // do the analytics call 
-          const searchObj = {
-            searchTerm : searchTerm, 
-            searchResults: data.totalResults,
-            searchFilters : searchfiltersString
-          };
-
-          const eventObj = {  
-            eventType : 'internalsearch',
-            event : 'Search'
-          };
-
-          trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj);
-
+          resultCount = data.totalResults;
           this.cache.totalResultCount = data.totalResults;
           this.cache.results = data.searchResults;
           this.cache.totalPages = data.totalPages;
@@ -224,6 +208,26 @@ class Searchresults {
           this.cache.$resultsList.empty();
           this.cache.$pagination.addClass('d-none');
         }
+
+        let joinedFilterTags = { ...contentType, ...theme };
+        joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
+        const searchfiltersString = Object.values(joinedFilterTags).join(',');
+
+        // do the analytics call 
+        const searchObj = {
+          searchTerm : searchTerm, 
+          searchResults: resultCount,
+          searchFilters : searchfiltersString
+        };
+
+        const eventObj = {  
+          eventType : 'internalsearch',
+          event : 'Search'
+        };
+
+        trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj);
+
+
       }).fail(() => {
         this.cache.$spinner.addClass('d-none');
         this.renderTitle(null, this.cache.noResultsText, null);
@@ -312,7 +316,7 @@ class Searchresults {
     // do the analytics call 
     const searchObj = {
       searchTerm : searchTerm, 
-      searchResults: this.cache.totalResultCount,
+      searchResults: this.cache.totalResultCount || 0,
       searchFilters : Object.values(joinedFilterTags).join(',')
     };
 
