@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import deparam from 'deparam.js';
 import { saveAs } from 'file-saver';
-
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -25,6 +25,7 @@ class Searchresults {
     this.cache.servletPath = this.root.data('servlet');
     this.cache.$filterRemoveBtn = this.root.find('.js-filter-remove');
     this.cache.$spinner = this.root.find('.pw-search-results__spinner');
+    this.cache.$searchResultLink = this.root.find('.pw-search-results__results-list__item__title-link');
     this.cache.results = [];
     this.cache.queryParams = '';
     this.cache.$resultsList = $('.js-pw-search-results__results-list', this.root);
@@ -37,6 +38,7 @@ class Searchresults {
     this.cache.$pagination = $('.js-pagination', this.root);
     this.cache.searchParams = { 'searchTerm': '', 'contentType': {}, 'theme': {}, 'page': 1 };
     this.cache.totalPages = 0;
+    this.cache.totalResultCount = 0;
   }
 
   bindEvents() {
@@ -54,6 +56,8 @@ class Searchresults {
       const extension = $target.data('assetExtension');
       saveAs(assetUrl, `download.${extension}`);
     });
+
+    this.root.on('click', '.pw-search-results__results-list__item__title-link', this.searchResultLinkAnalytics);
 
     this.cache.$filterChecks.change((e) => {
       const $this = $(e.target);
@@ -155,7 +159,28 @@ class Searchresults {
       }).done((data) => {
         this.cache.$spinner.addClass('d-none');
         this.cache.$filterChecks.removeAttr('disabled');
+        
         if (data.totalResults > 0) {
+
+          let joinedFilterTags = { ...contentType, ...theme };
+          joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
+          const searchfiltersString = Object.values(joinedFilterTags).join(',');
+
+          // do the analytics call 
+          const searchObj = {
+            searchTerm : searchTerm, 
+            searchResults: data.totalResults,
+            searchFilters : searchfiltersString
+          };
+
+          const eventObj = {  
+            eventType : 'internalsearch',
+            event : 'Search'
+          };
+
+          trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj);
+
+          this.cache.totalResultCount = data.totalResults;
           this.cache.results = data.searchResults;
           this.cache.totalPages = data.totalPages;
           const title = searchTerm ? this.cache.resultSearchTermText : this.cache.resultsTitle;
@@ -222,14 +247,62 @@ class Searchresults {
   };
 
   renderFilterTags = () => {
-    const { contentType, theme } = this.cache.searchParams;
+    const { contentType, theme, searchTerm } = this.cache.searchParams;
     let joinedFilterTags = { ...contentType, ...theme };
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
+
+    // do the analytics call 
+    const searchObj = {
+      searchTerm : searchTerm, 
+      searchFilters : Object.values(joinedFilterTags).join(',')
+    };
+
+    const eventObj = {
+      eventType : 'internalsearch',
+      event : 'Search'
+    };
+
+    const linkClickObject = {
+      linkType: 'internal',
+      linkSection: 'Hyperlink click',
+      linkParentTitle: '',
+      linkName: 'Search'
+    };
+
+    trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
+    
     render.fn({
       template: 'searchFilters',
       data: joinedFilterTags,
       target: '.js-filter-container-chips'
     });
+  }
+
+  searchResultLinkAnalytics = () => {
+    const { contentType, theme, searchTerm } = this.cache.searchParams;
+    let joinedFilterTags = { ...contentType, ...theme };
+    joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
+
+    // do the analytics call 
+    const searchObj = {
+      searchTerm : searchTerm, 
+      searchResults: this.cache.totalResultCount,
+      searchFilters : Object.values(joinedFilterTags).join(',')
+    };
+
+    const eventObj = {
+      eventType : 'internalsearch',
+      event : 'Search'
+    };
+
+    const linkClickObject = {
+      linkType: 'internal',
+      linkSection: 'Hyperlink click',
+      linkParentTitle: '',
+      linkName: 'Search'
+    };
+
+    trackAnalytics(searchObj, 'search', 'linkClick', undefined, false, eventObj, linkClickObject);
   }
 
   convertToUrl = (data) => {

@@ -99,6 +99,21 @@ class Header {
     }
     $('.search-bar-input').focus();
 
+    const dataObj = {
+      linkType: 'internal',
+      linkSection: 'Hyperlink click',
+      linkParentTitle: '',
+      linkName: 'Search'
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Search'
+    };
+    //(dataObj, eventObj, trackingObjKey, satelliteKey)
+    //searchAnalytics(dataObj, eventObj, 'linkClick', 'linkClick');
+    //trackAnalytics(dataObj, trackingObjKey, satelliteKey, undefined, false, eventObj, linkClickObject);
+    trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+
   }
 
   trackLanguageSelector = () => {
