@@ -28,6 +28,10 @@
                                 fieldLabel="HeadingTag "
                                 name="./headingTag">
                                 <items jcr:primaryType="nt:unstructured">
+									<default
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Default"
+                                        value="h3"/>
                                     <h1
                                         jcr:primaryType="nt:unstructured"
                                         text="H1"
