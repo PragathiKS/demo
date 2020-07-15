@@ -106,6 +106,32 @@ class Searchresults {
   searchBtnHandler = () => {
     const { searchParams } = this.cache;
     const searchVal = this.cache.$searchInput.val().trim();
+
+    const { contentType, theme } = this.cache.searchParams;
+
+    let joinedFilterTags = { ...contentType, ...theme };
+    joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
+
+    // do the analytics call 
+    const searchObj = {
+      searchTerm : searchVal, 
+      searchFilters : Object.values(joinedFilterTags).join(',')
+    };
+
+    const eventObj = {
+      eventType : 'internalsearch',
+      event : 'Search'
+    };
+
+    const linkClickObject = {
+      linkType: 'internal',
+      linkSection: 'Hyperlink click',
+      linkParentTitle: '',
+      linkName: 'Search'
+    };
+      
+    trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
+
     if (searchVal === '') {
       searchParams['searchTerm'] = '';
       if ($.isEmptyObject(searchParams['contentType']) && $.isEmptyObject(searchParams['theme'])) {
