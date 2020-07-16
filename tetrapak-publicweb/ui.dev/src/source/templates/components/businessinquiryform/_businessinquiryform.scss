@@ -8,8 +8,15 @@
     }
     .form-group {
         @include margin-bottom($margin-md);
+        label {
+            @include margin-bottom(0);
+            padding-top: 2px;
+        }
         &.field-error {
             @include margin-bottom(0);
+            .errorMsg {
+                display: block;
+            }
         }
     }
     .errorMsg {
@@ -23,9 +30,14 @@
             @include margin-top($margin-sm);
         }
     }
-
-    .formfield,
-    .form-group {
+    .formfield {
+        .formfield {
+            &:last-child {
+                .form-group {
+                    margin-bottom: 0;
+                }
+            }
+        }
         label {
             @include margin-bottom(0);
             padding-top: 2px;
