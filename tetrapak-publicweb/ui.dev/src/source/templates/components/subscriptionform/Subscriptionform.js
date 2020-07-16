@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import { validateFieldsForTags } from '../../../scripts/common/common';
@@ -33,11 +34,14 @@ class Subscriptionform {
     const pardot_extra_field = $('#pardot_extra_field_sf').val();
     
     const dataObj = {};
-    dataObj['marketingConsent'] = this.cache.requestPayload.consent;
+    dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
     dataObj['email'] = this.cache.requestPayload.emailSubscription;
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
+
+    subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'subscribeclick', 'formclick', [], 'Step 1');
+    subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', [], 'Step 2:Thank you');
    
 
     ajaxWrapper.getXhrObj({
@@ -69,6 +73,7 @@ class Subscriptionform {
       e.preventDefault();
       e.stopPropagation();
       let isvalid = true;
+      const errObj = [];
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
@@ -85,6 +90,12 @@ class Subscriptionform {
           }
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
             isvalid = false;
+            const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
+            const erLbl = $(`#sf-step-1 label`)[0].textContent;
+            errObj.push({
+              formErrorMessage: errmsg,
+              formErrorField: erLbl
+            });
             e.preventDefault();
             e.stopPropagation();
             $(this).closest('.form-group, .formfield').addClass('field-error');
@@ -102,6 +113,8 @@ class Subscriptionform {
       }
       if (isvalid) {
         self.submitForm();
+      }else{
+        subscriptionAnalytics(self.mainHead, [], 'formerror', 'formclick', errObj, 'Step 1');
       }
     });
 
@@ -111,7 +124,13 @@ class Subscriptionform {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.restObj = {};
+    this.mainHead = $($('#sf-step-1 .main-heading').find('h2')[0]).text().trim();
+    $('#sf-step-1 label').slice(0,1).each((i, v) => this.restObj[$(v).text()] = 'NA');
+    subscriptionAnalytics(this.mainHead, [], 'formstart', 'formload', [], '');
   }
 }
+
+
 
 export default Subscriptionform;
