@@ -58,6 +58,7 @@ public class BannerModelTest {
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("textImage", model.getBannerType());
+        assertEquals("h1", model.getHeadingTag());
         assertEquals("Subtitle", model.getSubtitle());
         assertEquals("Title", model.getTitle());
         assertEquals("Lorem Ipsum is simply dummy text of the printing and typesetting industry.", model.getText());

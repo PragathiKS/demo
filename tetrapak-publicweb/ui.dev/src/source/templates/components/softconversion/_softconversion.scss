@@ -251,6 +251,11 @@
             //&:not(:last-child) {
             //    @include margin-bottom($margin-md);
             // }
+            &:last-child {
+                div + div {
+                    @include margin-bottom($margin-zero);
+                }
+            }
             div + div {
                 @include margin-bottom($margin-sm);
                 font-weight: 900;

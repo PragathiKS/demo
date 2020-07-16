@@ -27,6 +27,10 @@ public class BannerModel {
     @ValueMapValue
     private String subtitle;
 
+    /** The heading tag. */
+    @ValueMapValue
+    private String headingTag;
+
     /** The title. */
     @ValueMapValue
     private String title;
@@ -101,6 +105,15 @@ public class BannerModel {
     }
 
     /**
+     * Gets the heading tag.
+     *
+     * @return the heading tag
+     */
+    public String getHeadingTag() {
+        return headingTag;
+    }
+
+    /**
      * Gets the title.
      *
      * @return the title
@@ -135,7 +148,6 @@ public class BannerModel {
     public String getLinkPath() {
         return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
     }
-
 
     /**
      * Gets the file reference.

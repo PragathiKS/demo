@@ -30,6 +30,7 @@
 			"pwTheme":"grayscale-white",
 			"pwButtonTheme":"link",
 			"pwLinkTheme":"download",
+			"headingTag":"h1",
 			"anchorId":"test",
 			"anchorTitle":"title",
 			"imageCrop":"103,146,629,672"

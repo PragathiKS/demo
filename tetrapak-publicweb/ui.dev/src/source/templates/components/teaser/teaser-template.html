@@ -3,7 +3,7 @@
     <section class="tp-teaser pw-theme--${data.pwTheme}"  id="${data.anchorId}" title="${data.anchorTitle}" >
       <div data-sly-test="${data.heading}" class="tp-teaser__heading">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-            data-sly-call="${heading.heading_h2_template @ headingText=data.heading}"/>
+            data-sly-call="${heading.heading_h3_template @ headingText=data.heading}"/>
       </div>
       <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
       <div class="tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
@@ -38,7 +38,7 @@
               <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
             </sly>
           </span>
-          <p data-sly-test = "${child.title}" class="tilte ${child.fileReference ? 'noTopPad' : ''}">${child.title @ context='html'}</p>
+          <h4 data-sly-test = "${child.title}" class="tilte ${child.fileReference ? 'noTopPad' : ''}">${child.title @ context='html'}</h4>
 
           <p  data-sly-test = "${child.description}" class="description">${child.description @ context='html'}</p>
 

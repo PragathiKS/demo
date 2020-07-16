@@ -45,8 +45,12 @@
                 data-sly-call="${subheading.subheading_template @ headingText=data.subTitle}" />
             </div>
             <div data-sly-test="${data.title}" class="pw-text-image__title">
-              <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+              <sly data-sly-test="${data.headingTag == 'h1'}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                data-sly-call="${heading.heading_h1_template @ headingText=data.title, variant='regular'}" />
+              <sly data-sly-test="${data.headingTag == 'h2'}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                 data-sly-call="${heading.heading_h2_template @ headingText=data.title, variant='regular'}" />
+              <sly data-sly-test="${data.headingTag != 'h2' && data.headingTag != 'h1'}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                data-sly-call="${heading.heading_h3_template @ headingText=data.title, variant='regular'}" />
             </div>
             <div class="pw-text-image__description">${data.description @context='html'}</div>
             <div class="pw-text-image__link" data-sly-test="${data.linkURL}">

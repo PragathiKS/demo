@@ -19,7 +19,7 @@
             @include margin-bottom($margin-l);
         }
 
-        h2 {
+        h3 {
             @include font-size($font-l);
             @include line-height($font-xl, $font-l);
             font-weight: 300;

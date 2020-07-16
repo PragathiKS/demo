@@ -11,7 +11,7 @@
         <sly data-sly-test="${data.subTitle}"><p class="pw-text-video__subTitle font-fixing d-none d-lg-block">${data.subTitle @ context='html'}</p></sly>
         <div class="pw-text-video__title d-none d-lg-block">
           <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
-               data-sly-call="${title.heading_h4_template @ headingText=data.title, variant='regular'}"/>
+               data-sly-call="${title.heading_h3_template @ headingText=data.title, variant='regular'}"/>
         </div>
         <div class="pw-text-video__description d-none d-lg-block">${data.description @ context='html'}</div>
         <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
@@ -69,7 +69,7 @@
         <sly data-sly-test="${data.subTitle}"><p class="pw-text-video__subTitle font-fixing d-md-block d-lg-none">${data.subTitle @ context='html'}</p></sly>
         <div class="pw-text-video__title d-md-block d-lg-none">
           <sly data-sly-test="${data.title}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html"
-               data-sly-call="${title.heading_h4_template @ headingText=data.title, variant='regular'}"/>
+               data-sly-call="${title.heading_h3_template @ headingText=data.title, variant='regular'}"/>
         </div>
         <div class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n,context='html'}</div>
         <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
