@@ -12,7 +12,7 @@ const trackAnalyticsContactUs = (formTrackingObj,eventObj,formVal='formclick') =
 
   eventObj = {
     ...eventObj,
-    event:'Contact Us'
+    event:'Contact us form'
   };
   trackAnalytics(
     formTrackingObj,

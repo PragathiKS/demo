@@ -99,6 +99,18 @@ class Header {
     }
     $('.search-bar-input').focus();
 
+    const dataObj = {
+      linkType: 'internal',
+      linkSection: 'Hyperlink click',
+      linkParentTitle: '',
+      linkName: 'Search'
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Search'
+    };
+    trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+
   }
 
   trackLanguageSelector = () => {
