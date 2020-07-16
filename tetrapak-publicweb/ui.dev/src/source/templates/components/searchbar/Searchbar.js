@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { updateQueryStringParameter } from '../../../scripts/common/common';
 class Searchbar {
   constructor({ el }) {
@@ -36,6 +37,26 @@ class Searchbar {
       const url = $this.data('search-url');
       let updatedUrl = updateQueryStringParameter(url,'searchTerm',inp.val());
       updatedUrl = updateQueryStringParameter(updatedUrl,'page',1);
+
+      const searchObj = {
+        searchTerm : inp.val(), 
+        searchFilters : ''
+      };
+
+      const eventObj = {
+        eventType : 'internal search',
+        event : 'Search'
+      };
+
+      const linkClickObject = {
+        linkType: 'internal',
+        linkSection: 'Hyperlink click',
+        linkParentTitle: '',
+        linkName: 'Search'
+      };
+      
+      trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
+
       window.open(updatedUrl,'_self');
     }
   };

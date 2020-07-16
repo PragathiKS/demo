@@ -27,7 +27,7 @@
     <span class="tpatom-subheading tpatom-heading--small" auto_locator="contentTypePadding">
       {{this.typeI18n}}{{#if this.date}}, {{this.date}} {{/if}}
     </span>
-    <a href="{{this.path}}" target="{{#if this.size}}_blank{{else}}_self{{/if}}" class="pw-search-results__results-list__item__title-link">
+    <a href="{{this.path}}" target="{{#if this.size}}_blank{{else}}_self{{/if}}" class="pw-search-results__results-list__item__title-link" data-link-name="{{this.title}}">
       <h3 class="tpatom-heading tpatom-heading--small-flat" auto_locator="searchItemTitle">{{this.title}}</h3>
     </a>
     {{#if this.size}}
