@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceSuperType="/libs/cq/gui/content/common/managepublicationwizard">
+    <body jcr:primaryType="nt:unstructured">
+        <items jcr:primaryType="nt:unstructured">
+            <form jcr:primaryType="nt:unstructured">
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    requestActivationWorkflow="/etc/workflow/models/request-to-publish-page-asset/jcr:content/model"
+                    requestDeactivationWorkflow="/etc/workflow/models/request-for-deactivation-of-page-asset/jcr:content/model"/>
+            </form>
+        </items>
+    </body>
+</jcr:root>
