@@ -40,7 +40,7 @@ class Subscriptionform {
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
 
-    subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'subscribeclick', 'formclick', [], 'Step 1');
+    subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'subscribeclick', 'formclick', [], 'Step 1:Subscribe');
     subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', [], 'Step 2:Thank you');
    
 
