@@ -19,7 +19,7 @@
 
         @media #{$desktop} {
             @include max-width($body-max-width);
-            margin: 48px auto 0;
+            margin: $margin-l auto $margin-zero;
     }
     }
     &__zero {
@@ -31,7 +31,7 @@
         @media #{$desktop} {
             @include max-width($body-max-width);
             @include padding($padding-zero $padding-xxxl);
-            margin: 0 auto;
+            margin: $margin-zero auto;
     }
     }
 }

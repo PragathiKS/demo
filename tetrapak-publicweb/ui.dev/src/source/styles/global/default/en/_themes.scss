@@ -90,7 +90,7 @@ h1,h2,h3,h4{
 
     @media #{$desktop} {
         @include max-width($body-max-width);
-        margin: 48px auto 0 auto;
+        margin: 24px auto 0 auto;
     }
 }
 .pw-overlay {
@@ -140,4 +140,7 @@ h1,h2,h3,h4{
             @include padding-top(62px); // with reference to desktop section menu height
         }
     }
+}
+.tpatom-subheading {
+    letter-spaing: 0;
 }

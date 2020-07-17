@@ -4,7 +4,7 @@
 
     @media #{$desktop} {
         @include padding($padding-xxxl $padding-l $padding-zero $padding-l);
-        @include margin($margin-xxxl);
+        @include margin($margin-zero $margin-xxxl);
     }
 
     &__heading {

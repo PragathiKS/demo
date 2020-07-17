@@ -31,7 +31,6 @@
             @include max-width($body-max-width);
             @include padding(0);
             @include margin($margin-xl auto $margin-zero auto);
-            @include margin-bottom(-$margin-md);
         }
         .pw-anchor-list {
             @include border-radius($border-radius);
