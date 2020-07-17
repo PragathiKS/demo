@@ -3,7 +3,7 @@
     max-width: 100%;
     @media #{$desktop} {
         @include max-width($body-max-width);
-        margin: 48px auto 0;
+        margin: 24px auto 0;
     }
     .pw-banner {
         @include margin(0 16px 16px 16px);

@@ -14,12 +14,12 @@
 }
 
 .pw-container.pw-margin--zero.topmargin {
-    @include margin-top($margin-xxxl);
+    @include margin-top($margin-l);
 }
 
 @media #{$desktop} {
     .pw-container.pw-margin--regular.reference-class {
-        @include margin-top(48px);
+        @include margin-top($margin-l);
     }
 }
 

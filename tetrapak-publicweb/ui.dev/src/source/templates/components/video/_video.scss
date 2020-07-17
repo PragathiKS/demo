@@ -84,7 +84,7 @@
     @include margin($margin-md);
     @include margin-bottom($margin-zero);
     @media #{$desktop} {
-        @include margin($margin-xxxl);
+        @include margin($margin-l $margin-xxxl);
         @include margin-bottom($margin-zero);
     }
 }

@@ -70,7 +70,7 @@ export const onErrorAnalytics = (currentTarget,tab) => {
 
 export const newRequestButtonAnalytics = (e) => {
   const $target = $(e.target);
-  const linkName = $target.text();
+  const linkName = $target.text().trim();
   const trackingObj = {
     linkType: 'internal',
     linkSection: 'button click',
@@ -146,10 +146,11 @@ export const onLoadTrackAnalytics = () => {
 
 export const onSubmitClickAnalytics = () => {
   const formTitle = getI18n('pw.form.label.message');
+  const formHeading = getI18n('pw.form.heading.howcanihelp');
   const formField = [];
   formField.push({formFieldName:formTitle, formFieldValue:'NA'});
   const form = {
-    formType:getI18n('pw.form.heading.howcanihelp'),
+    formType: formHeading,
     formStep:'step 3',
     formField
   };

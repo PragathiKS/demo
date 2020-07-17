@@ -3,7 +3,7 @@
     min-height: 100px;
     background-color: $color-congress-blue;
     @media #{$desktop} {
-        @include margin-top(48px);
+        @include margin-top(24px);
     }
 
     &__container {

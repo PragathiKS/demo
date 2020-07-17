@@ -73,6 +73,7 @@
         color: $color-boulder;
         font-family: $font-bold;
         text-transform: $uppercase;
+        letter-spacing: normal;
         @media #{$desktop} {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-sm);
