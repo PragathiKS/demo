@@ -157,7 +157,7 @@ class ContactUs {
         }
       });
       if (isvalid && !honeyPotFieldValue) {
-        onSubmitClickAnalytics();
+        onSubmitClickAnalytics(tab);
         self.submitForm();
 
       }

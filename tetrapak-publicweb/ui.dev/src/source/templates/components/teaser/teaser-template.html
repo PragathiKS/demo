@@ -16,7 +16,7 @@
             class="js-teaser-analytics"
             title="${child.linkText}"
             data-link-section="Teaser_imageClick"
-            data-link-name="${child.linkText}"
+            data-link-name="${child.linkText || child.title || data.heading}"
             data-link-title="${child.title || data.heading}"
             data-asset-name="${child.assetName}"
             data-download-type=""
