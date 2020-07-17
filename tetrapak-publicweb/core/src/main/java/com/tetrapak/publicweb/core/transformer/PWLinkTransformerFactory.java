@@ -230,8 +230,8 @@ public class PWLinkTransformerFactory implements TransformerFactory {
         public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
             final AttributesImpl attributes = new AttributesImpl(atts);
             final String href = attributes.getValue("href");
-            if (!isSkip && Boolean.TRUE.equals(isValidURL(href)) && "a".equals(localName)
-                    && StringUtils.isNotBlank(href)) {
+            if (!isSkip && StringUtils.isNotBlank(href) && Boolean.TRUE.equals(isValidURL(href))
+                    && "a".equals(localName)) {
                 for (int i = 0; i < attributes.getLength(); i++) {
                     if ("href".equalsIgnoreCase(attributes.getQName(i))) {
                         attributes.setValue(i,
