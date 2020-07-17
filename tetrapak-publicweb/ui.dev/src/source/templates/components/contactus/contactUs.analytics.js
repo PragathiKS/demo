@@ -25,13 +25,7 @@ const trackAnalyticsContactUs = (formTrackingObj,eventObj,formVal='formclick') =
 };
 
 export const onErrorAnalytics = (currentTarget,tab) => {
-  let formType;
-  if (currentTarget ==='cf-step-3') {
-    formType=getI18n('pw.form.heading.howcanihelp');
-  }
-  else {
-    formType = tab.find('.form-field-heading').data('step-heading');
-  }
+  const formType = tab.find('.form-field-heading').data('step-heading');
   const formError = [];
   const formField = [];
   const event = {
@@ -144,9 +138,9 @@ export const onLoadTrackAnalytics = () => {
   trackAnalyticsContactUs(form,event,'formload');
 };
 
-export const onSubmitClickAnalytics = () => {
+export const onSubmitClickAnalytics = (tab) => {
   const formTitle = getI18n('pw.form.label.message');
-  const formHeading = getI18n('pw.form.heading.howcanihelp');
+  const formHeading = tab.find('.form-field-heading').data('step-heading');
   const formField = [];
   formField.push({formFieldName:formTitle, formFieldValue:'NA'});
   const form = {

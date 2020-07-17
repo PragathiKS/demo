@@ -37,6 +37,7 @@ class Teaser {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-teaser-analytics');
+    const mainHeading= $('.tp-teaser__heading .tpatom-heading').text().trim();
     let linkParentTitle = '';
     let trackingObj = {};
     let eventObj = {};
@@ -69,6 +70,9 @@ class Teaser {
 
     if (buttonLinkType === 'link' && downloadtype !== 'download') {
       linkParentTitle = `Text hyperlink_${linkTitle}`;
+    }
+    if(linkSection === 'Teaser_imageClick') {
+      linkParentTitle = '' || mainHeading;
     }
 
     if (downloadtype === 'download') {
