@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
+	<filter root="/apps/cq/gui" mode="update"/>
     <filter root="/apps/publicweb" mode="update"/>
+	<filter root="/apps/publicweb/ac-config" mode="update"/>
     <filter root="/apps/publicweb/i18n/en" mode="update"/>
     <filter root="/etc/acs-commons/lists/countries" mode="update"/>
     <filter root="/etc/notification/email/publicweb" mode="update"/>
