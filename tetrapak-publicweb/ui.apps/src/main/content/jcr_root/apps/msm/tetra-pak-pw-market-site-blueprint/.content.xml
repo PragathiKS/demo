@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-07-18T13:47:32.727Z"
+        cq:lastModifiedBy="sapient-akash"
+        cq:template="/libs/wcm/msm/templates/blueprint"
+        jcr:description="This blueprint is used to create a new market site for Tetra Pak Public Web"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Tetra Pak PW Market Website Blueprint"
+        sling:resourceType="wcm/msm/components/blueprint"
+        sitePath="/content/tetrapak/publicweb/lang-masters">
+        <dialog/>
+    </jcr:content>
+</jcr:root>
