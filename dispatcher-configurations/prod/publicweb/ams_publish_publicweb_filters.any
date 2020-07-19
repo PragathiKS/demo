@@ -13,43 +13,49 @@
 #/006 { /type "allow" /url "/bin/*"    }  ## allow bin path access
 
 ## This rule allows content to be access
-/0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv)' /path "/content/*" }  ## disable this rule to allow mapped content only
+#/0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv)' /path "/content/*" }  ## disable this rule to allow mapped content only
+/0010 { /type "allow" /path  "/content/*"}
 
 ## Enable specific mime types in non-public content directories
-/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2|video/mp4)' }
+/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2|mp4)' }
 
 ## Enable clientlibs proxy servlet
 /0012 { /type "allow" /method "GET" /url "/etc.clientlibs/*" }
 
 ## Enable basic features
 /0013 { /type "allow" /method "GET" /url '/libs/granite/csrf/token.json' /extension 'json' } ## AEM provides a framework aimed at preventing Cross-Site Request Forgery attacks
-/0014 { /type "allow" /method "POST" /url "/content/[.]*.form.html" }  ## allow POSTs to form selectors under content
+#/0014 { /type "allow" /method "POST" /url "/content/[.]*.form.html" }  ## allow POSTs to form selectors under content
 
-/0015 { /type "allow" /method "GET" /path "/libs/cq/personalization" }  ## enable personalization
-/0016 { /type "allow" /method "POST" /path "/content/[.]*.commerce.cart.json" }  ## allow POSTs to update the shopping cart
+#/0015 { /type "allow" /method "GET" /path "/libs/cq/personalization" }  ## enable personalization
+#/0016 { /type "allow" /method "POST" /path "/content/[.]*.commerce.cart.json" }  ## allow POSTs to update the shopping cart
 
 ## Deny content grabbing for greedy queries and prevent un-intended self DOS attacks
-/0017 { /type "deny" /selectors '(feed|rss|pages|languages|blueprint|infinity|tidy|sysview|docview|query|[0-9-]+|jcr:content)' /extension '(json|xml|html|feed)' }
+#/0017 { /type "deny" /selectors '(feed|rss|pages|languages|blueprint|infinity|tidy|sysview|docview|query|[0-9-]+|jcr:content)' /extension '(json|xml|html|feed)' }
+/0018 { /type "deny" /selectors '((sys|doc)view|query|[0-9-]+)' /extension '(json|xml)' }
+# Deny content grabbing for /content and its subtree
+/0019 { /type "deny" /path "/content/*" /selectors '(feed|rss|pages|languages|blueprint|infinity|tidy)' /extension '(json|xml|html)' }
 
 ## Deny authoring query params
-/0018 { /type "deny" /method "GET" /query "debug=*" }
-/0019 { /type "deny" /method "GET" /query "wcmmode=*" }
+/0020 { /type "deny" /method "GET" /query "debug=*" }
+/0021 { /type "deny" /method "GET" /query "wcmmode=*" }
 #### Deny front door entry
-/0020 { /type "deny" /path "/content/ams/healthcheck/*"}
-/0021 { /type "deny" /url "/content/regent.html"}
+/0022 { /type "deny" /path "/content/ams/healthcheck/*"}
+/0023 { /type "deny" /url "/content/regent.html"}
 
 ## allow some requests
-/0022 { /type "allow" /method "GET" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
-/0023 { /type "allow" /method "POST" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
-/0031 { /type "allow" /method "GET" /url "/bin/tetrapak/*" } ## allow GET for publicweb services
+#/0024 { /type "allow" /method "GET" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
+#/0025 { /type "allow" /method "POST" /extension "html" /url "/libs/granite/core/content/login.html*" } ## allow login
+#/0026 { /type "allow" /method "GET" /url "/bin/tetrapak/*" } ## allow GET for publicweb services
 
-/0032 { /type "allow" /method "GET" /url "/*/root/responsivegrid/findmyoffice.json" }
+## Allow GET Requests 41 - 60
+/0041 { /type "allow" /method "GET" /url "/*/root/responsivegrid/findmyoffice.json" }
+/0042 { /type "allow" /method "GET" /url "*/*sitemap.xml" }
+/0043 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/searchresults*" }
 
-/0033 { /type "allow" /method "GET" /url "*/*sitemap.xml" }
-/0034 { /type "allow" /method "POST" /url "/*/root/responsivegrid/contactus.sendmail.json" }
 
-/0035 { /type "allow" /method "POST" /url "/*/root/responsivegrid/businessinquiryform.pardotbusinessenquiry.json" }
-/0036 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/searchresults*" }
+## Allow POST Requests 61 - 80
 
-/0037 { /type "allow" /method "POST" /url "/*/root/responsivegrid/*.pardotsoftconversion.json" }
-/0038 { /type "allow" /method "POST" /url "/*/root/responsivegrid/*.pardotsubscription.json" }
+/0061 { /type "allow" /method "POST" /url "/*/root/responsivegrid/contactus.sendmail.json" }
+/0062 { /type "allow" /method "POST" /url "/*/root/responsivegrid/businessinquiryform.pardotbusinessenquiry.json" }
+/0063 { /type "allow" /method "POST" /url "/*/root/responsivegrid/*.pardotsoftconversion.json" }
+/0064 { /type "allow" /method "POST" /url "/*/root/responsivegrid/*.pardotsubscription.json" }

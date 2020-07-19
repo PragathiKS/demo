@@ -16,16 +16,16 @@
 }
 
 ## Cache /content/tetrapak/customerhub
-/0008 {
-        /glob "/content/tetrapak/publicweb[./]*"
-        /type "allow"
-      }
-
-/0009
-      {
-        /glob "/libs/cq/i18n[./]*"
-        /type "allow"
-      }
+#/0008 {
+#        /glob "/content/tetrapak/publicweb[./]*"
+#        /type "allow"
+#      }
+#
+#/0009
+#      {
+#        /glob "/libs/cq/i18n[./]*"
+#        /type "allow"
+#      }
 
 ## Don't cache SDI resources
 /0010 {

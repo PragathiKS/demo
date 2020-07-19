@@ -76,7 +76,7 @@
                         ## By default block all IP from allowing to initiate the invalidation commands
                         /0000 {
                                 /glob "*.*.*.*"
-                                /type "allow"
+                                /type "deny"
                         }
                         ## Allow certain IP's like publishers to invalidate cache
                         $include "/etc/httpd/conf.dispatcher.d/cache/ams_publish_invalidate_allowed.any"
