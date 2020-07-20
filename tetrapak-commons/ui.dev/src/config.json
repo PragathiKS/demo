@@ -101,7 +101,7 @@
     "src": "<%= config.source %>/assets/pwIcons/*.svg",
     "target": "<%= config.source %>/assets/fonts",
     "scss": {
-      "target": "<%= config.source %>/styles/global/pw-icons-fonts"
+      "target": "<%= config.source %>/styles/global/pw-icon-fonts"
     },
     "fontFile": "pw-icons",
     "relativePath": "../../../assets/fonts"
