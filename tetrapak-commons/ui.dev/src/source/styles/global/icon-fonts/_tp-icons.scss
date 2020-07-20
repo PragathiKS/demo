@@ -5,10 +5,10 @@
 
 @font-face {
 	font-family:"tp-icons";
-	src:url("../../../assets/fonts/tp-icons.eot?c8a24d9e4d1c176aad43efc97700cc82");
-	src:url("../../../assets/fonts/tp-icons.eot?c8a24d9e4d1c176aad43efc97700cc82#iefix") format("embedded-opentype"),
-		url("../../../assets/fonts/tp-icons.woff?c8a24d9e4d1c176aad43efc97700cc82") format("woff"),
-		url("../../../assets/fonts/tp-icons.ttf?c8a24d9e4d1c176aad43efc97700cc82") format("truetype");
+	src:url("../../../assets/fonts/tp-icons.eot?22cec66bbffcf4e40e931dab8c7539d4");
+	src:url("../../../assets/fonts/tp-icons.eot?22cec66bbffcf4e40e931dab8c7539d4#iefix") format("embedded-opentype"),
+		url("../../../assets/fonts/tp-icons.woff?22cec66bbffcf4e40e931dab8c7539d4") format("woff"),
+		url("../../../assets/fonts/tp-icons.ttf?22cec66bbffcf4e40e931dab8c7539d4") format("truetype");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -35,739 +35,559 @@
 // Icons
 
 
-.icon-Active_Icon_pw:before {
+.icon-Animal_Food:before {
 	content:"\f101";
 }
 
 
 
-.icon-Animal_Food:before {
+.icon-Apple:before {
 	content:"\f102";
 }
 
 
 
-.icon-Apple:before {
+.icon-Avatar:before {
 	content:"\f103";
 }
 
 
 
-.icon-Arrow_Right_pw:before {
+.icon-Bell:before {
 	content:"\f104";
 }
 
 
 
-.icon-Avatar:before {
+.icon-Bin_X:before {
 	content:"\f105";
 }
 
 
 
-.icon-Bell:before {
+.icon-Bold_Arrow_Down:before {
 	content:"\f106";
 }
 
 
 
-.icon-Bin_X:before {
+.icon-Bold_Arrow_Left:before {
 	content:"\f107";
 }
 
 
 
-.icon-Bold_Arrow_Down:before {
+.icon-Bold_arrow_Right:before {
 	content:"\f108";
 }
 
 
 
-.icon-Bold_Arrow_Left:before {
+.icon-Bold_Arrow_Up:before {
 	content:"\f109";
 }
 
 
 
-.icon-Bold_arrow_Right:before {
+.icon-Bookmark:before {
 	content:"\f10a";
 }
 
 
 
-.icon-Bold_Arrow_Up:before {
+.icon-Burger:before {
 	content:"\f10b";
 }
 
 
 
-.icon-Bookmark:before {
+.icon-Calendar2:before {
 	content:"\f10c";
 }
 
 
 
-.icon-Burger_pw:before {
+.icon-Calender:before {
 	content:"\f10d";
 }
 
 
 
-.icon-Burger:before {
+.icon-Cart:before {
 	content:"\f10e";
 }
 
 
 
-.icon-BurgerV2_pw:before {
+.icon-Catalog:before {
 	content:"\f10f";
 }
 
 
 
-.icon-Calendar2:before {
+.icon-Cheese:before {
 	content:"\f110";
 }
 
 
 
-.icon-Calender:before {
+.icon-Chevron_Down:before {
 	content:"\f111";
 }
 
 
 
-.icon-Cart:before {
+.icon-Chevron_Left:before {
 	content:"\f112";
 }
 
 
 
-.icon-Catalog:before {
+.icon-Chevron_Right:before {
 	content:"\f113";
 }
 
 
 
-.icon-Cheese:before {
+.icon-Chevron_Up:before {
 	content:"\f114";
 }
 
 
 
-.icon-Chevron_Down:before {
+.icon-Circle_arrow_Down:before {
 	content:"\f115";
 }
 
 
 
-.icon-Chevron_Left:before {
+.icon-Circle_Arrow_Left:before {
 	content:"\f116";
 }
 
 
 
-.icon-Chevron_Right_pw:before {
+.icon-Circle_Arrow_Right:before {
 	content:"\f117";
 }
 
 
 
-.icon-Chevron_Right:before {
+.icon-Circle_Arrow_Up:before {
 	content:"\f118";
 }
 
 
 
-.icon-Chevron_Up:before {
+.icon-Circle_Filled_Arrow_Left:before {
 	content:"\f119";
 }
 
 
 
-.icon-Circle_arrow_Down:before {
+.icon-Circle_Filled_Arrow_Right:before {
 	content:"\f11a";
 }
 
 
 
-.icon-Circle_Arrow_Left:before {
+.icon-Circle_filled_Tick:before {
 	content:"\f11b";
 }
 
 
 
-.icon-Circle_Arrow_Right_pw:before {
+.icon-Circle_Plus:before {
 	content:"\f11c";
 }
 
 
 
-.icon-Circle_Arrow_Right:before {
+.icon-Circle_Tick:before {
 	content:"\f11d";
 }
 
 
 
-.icon-Circle_Arrow_Up:before {
+.icon-Close:before {
 	content:"\f11e";
 }
 
 
 
-.icon-Circle_Filled_Arrow_Left:before {
+.icon-Coffee:before {
 	content:"\f11f";
 }
 
 
 
-.icon-Circle_Filled_Arrow_Right:before {
+.icon-Cog:before {
 	content:"\f120";
 }
 
 
 
-.icon-Circle_filled_Tick:before {
+.icon-Collaboration:before {
 	content:"\f121";
 }
 
 
 
-.icon-Circle_Plus:before {
+.icon-Dashboard:before {
 	content:"\f122";
 }
 
 
 
-.icon-Circle_Tick:before {
+.icon-Document:before {
 	content:"\f123";
 }
 
 
 
-.icon-Close_pw:before {
+.icon-Door:before {
 	content:"\f124";
 }
 
 
 
-.icon-Close:before {
+.icon-Download:before {
 	content:"\f125";
 }
 
 
 
-.icon-Coffee:before {
+.icon-Edit:before {
 	content:"\f126";
 }
 
 
 
-.icon-Cog:before {
+.icon-Envelope:before {
 	content:"\f127";
 }
 
 
 
-.icon-Collaboration:before {
+.icon-error:before {
 	content:"\f128";
 }
 
 
 
-.icon-Contact_Floater_pw:before {
+.icon-Excel:before {
 	content:"\f129";
 }
 
 
 
-.icon-Dashboard:before {
+.icon-External_Link:before {
 	content:"\f12a";
 }
 
 
 
-.icon-Document:before {
+.icon-Facebook:before {
 	content:"\f12b";
 }
 
 
 
-.icon-Door:before {
+.icon-Factory:before {
 	content:"\f12c";
 }
 
 
 
-.icon-Download:before {
+.icon-Financials:before {
 	content:"\f12d";
 }
 
 
 
-.icon-Edit:before {
+.icon-Frozen_kopi_5:before {
 	content:"\f12e";
 }
 
 
 
-.icon-Envelope_Outlined_Blue_pw:before {
+.icon-Frozen:before {
 	content:"\f12f";
 }
 
 
 
-.icon-Envelope_pw:before {
+.icon-Globe:before {
 	content:"\f130";
 }
 
 
 
-.icon-Envelope:before {
+.icon-Heart:before {
 	content:"\f131";
 }
 
 
 
-.icon-Envolopeup_pw:before {
+.icon-Home:before {
 	content:"\f132";
 }
 
 
 
-.icon-error:before {
+.icon-Icecream:before {
 	content:"\f133";
 }
 
 
 
-.icon-Excel:before {
+.icon-Idea:before {
 	content:"\f134";
 }
 
 
 
-.icon-External_Link:before {
+.icon-Info:before {
 	content:"\f135";
 }
 
 
 
-.icon-Facebook_pw:before {
+.icon-Install:before {
 	content:"\f136";
 }
 
 
 
-.icon-Facebook:before {
+.icon-Inventory:before {
 	content:"\f137";
 }
 
 
 
-.icon-Factory:before {
+.icon-Jar:before {
 	content:"\f138";
 }
 
 
 
-.icon-FilterSettings_pw:before {
+.icon-Juice_Drink:before {
 	content:"\f139";
 }
 
 
 
-.icon-Financials:before {
+.icon-Linkedin:before {
 	content:"\f13a";
 }
 
 
 
-.icon-FloaterEnvolope_pw:before {
+.icon-Logout:before {
 	content:"\f13b";
 }
 
 
 
-.icon-Frozen_kopi_5:before {
+.icon-Mail:before {
 	content:"\f13c";
 }
 
 
 
-.icon-Frozen:before {
+.icon-Maintenance:before {
 	content:"\f13d";
 }
 
 
 
-.icon-Globe_blue_pw:before {
+.icon-Microsoft_Teams:before {
 	content:"\f13e";
 }
 
 
 
-.icon-Globe_grey_pw:before {
+.icon-Milk_Carton:before {
 	content:"\f13f";
 }
 
 
 
-.icon-Globe_grey-pw:before {
+.icon-Packaging_Design:before {
 	content:"\f140";
 }
 
 
 
-.icon-Globe:before {
+.icon-pdf_with_border:before {
 	content:"\f141";
 }
 
 
 
-.icon-Heart:before {
+.icon-PDF:before {
 	content:"\f142";
 }
 
 
 
-.icon-Home:before {
+.icon-peech:before {
 	content:"\f143";
 }
 
 
 
-.icon-Icecream:before {
+.icon-Performance:before {
 	content:"\f144";
 }
 
 
 
-.icon-Idea:before {
+.icon-Person:before {
 	content:"\f145";
 }
 
 
 
-.icon-Info:before {
+.icon-Phone:before {
 	content:"\f146";
 }
 
 
 
-.icon-Install:before {
+.icon-Plant_Based:before {
 	content:"\f147";
 }
 
 
 
-.icon-Inventory:before {
+.icon-Play:before {
 	content:"\f148";
 }
 
 
 
-.icon-Jar:before {
+.icon-Plus:before {
 	content:"\f149";
 }
 
 
 
-.icon-Juice_Drink:before {
+.icon-Powerpoint:before {
 	content:"\f14a";
 }
 
 
 
-.icon-Linkedin_pw:before {
+.icon-PTU:before {
 	content:"\f14b";
 }
 
 
 
-.icon-Linkedin:before {
+.icon-Recycle:before {
 	content:"\f14c";
 }
 
 
 
-.icon-Logout:before {
+.icon-Save:before {
 	content:"\f14d";
 }
 
 
 
-.icon-Mail:before {
+.icon-Search:before {
 	content:"\f14e";
 }
 
 
 
-.icon-Maintenance:before {
+.icon-Share:before {
 	content:"\f14f";
 }
 
 
 
-.icon-Microsoft_Teams:before {
+.icon-Star:before {
 	content:"\f150";
 }
 
 
 
-.icon-Milk_Carton:before {
+.icon-Stop:before {
 	content:"\f151";
 }
 
 
 
-.icon-MyTetraPak_User_blue_pw:before {
+.icon-Storage:before {
 	content:"\f152";
 }
 
 
 
-.icon-MyTetraPak_User_grey_pw:before {
+.icon-TetraPak:before {
 	content:"\f153";
 }
 
 
 
-.icon-Navigation_Right_pw:before {
+.icon-Tick:before {
 	content:"\f154";
 }
 
 
 
-.icon-Packaging_Design:before {
+.icon-Time:before {
 	content:"\f155";
 }
 
 
 
-.icon-pdf_with_border:before {
+.icon-Training:before {
 	content:"\f156";
 }
 
 
 
-.icon-PDF:before {
+.icon-Truck:before {
 	content:"\f157";
 }
 
 
 
-.icon-peech:before {
+.icon-Twitter:before {
 	content:"\f158";
 }
 
 
 
-.icon-Performance:before {
+.icon-Union:before {
 	content:"\f159";
 }
 
 
 
-.icon-Person:before {
+.icon-video_with_border:before {
 	content:"\f15a";
 }
 
 
 
-.icon-Phone:before {
+.icon-Wine_Spirit:before {
 	content:"\f15b";
 }
 
 
 
-.icon-Plant_Based:before {
+.icon-Word:before {
 	content:"\f15c";
 }
 
 
 
-.icon-Play:before {
-	content:"\f15d";
-}
-
-
-
-.icon-Plus:before {
-	content:"\f15e";
-}
-
-
-
-.icon-Powerpoint:before {
-	content:"\f15f";
-}
-
-
-
-.icon-PTU:before {
-	content:"\f160";
-}
-
-
-
-.icon-Recycle:before {
-	content:"\f161";
-}
-
-
-
-.icon-Save:before {
-	content:"\f162";
-}
-
-
-
-.icon-Search_blue_pw:before {
-	content:"\f163";
-}
-
-
-
-.icon-Search_grey_pw:before {
-	content:"\f164";
-}
-
-
-
-.icon-Search_pw:before {
-	content:"\f165";
-}
-
-
-
-.icon-Search:before {
-	content:"\f166";
-}
-
-
-
-.icon-Share:before {
-	content:"\f167";
-}
-
-
-
-.icon-Spinner_pw:before {
-	content:"\f168";
-}
-
-
-
-.icon-Star:before {
-	content:"\f169";
-}
-
-
-
-.icon-Stop:before {
-	content:"\f16a";
-}
-
-
-
-.icon-Storage:before {
-	content:"\f16b";
-}
-
-
-
-.icon-TetraPak:before {
-	content:"\f16c";
-}
-
-
-
-.icon-Tick_pw:before {
-	content:"\f16d";
-}
-
-
-
-.icon-Tick:before {
-	content:"\f16e";
-}
-
-
-
-.icon-Time:before {
-	content:"\f16f";
-}
-
-
-
-.icon-Training:before {
-	content:"\f170";
-}
-
-
-
-.icon-Truck:before {
-	content:"\f171";
-}
-
-
-
-.icon-Twitter_pw:before {
-	content:"\f172";
-}
-
-
-
-.icon-Twitter:before {
-	content:"\f173";
-}
-
-
-
-.icon-Union:before {
-	content:"\f174";
-}
-
-
-
-.icon-video_with_border:before {
-	content:"\f175";
-}
-
-
-
-.icon-WeChat_pw:before {
-	content:"\f176";
-}
-
-
-
-.icon-Weibo_pw:before {
-	content:"\f177";
-}
-
-
-
-.icon-Wine_Spirit:before {
-	content:"\f178";
-}
-
-
-
-.icon-Word:before {
-	content:"\f179";
-}
-
-
-
-.icon-Youtube_pw:before {
-	content:"\f17a";
-}
-
-
-
 .icon-Youtube:before {
-	content:"\f17b";
+	content:"\f15d";
 }
 

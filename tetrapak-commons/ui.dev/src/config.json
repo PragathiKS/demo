@@ -97,6 +97,15 @@
     "fontFile": "tp-icons",
     "relativePath": "../../../assets/fonts"
   },
+  "pw_webfont": {
+    "src": "<%= config.source %>/assets/pwIcons/*.svg",
+    "target": "<%= config.source %>/assets/fonts",
+    "scss": {
+      "target": "<%= config.source %>/styles/global/pw-icons-fonts"
+    },
+    "fontFile": "pw-icons",
+    "relativePath": "../../../assets/fonts"
+  },
   "webpack": {
     "filePath": "apps/settings/wcm/designs/commons/clientlibs/[name].publish/js/[name].js",
     "chunkFilePath": "apps/settings/wcm/designs/commons/clientlibs/[name].publish/js/[name].[chunkhash].js",
