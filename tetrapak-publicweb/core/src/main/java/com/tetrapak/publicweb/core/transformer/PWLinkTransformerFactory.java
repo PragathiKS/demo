@@ -9,6 +9,8 @@ import org.apache.sling.rewriter.ProcessingContext;
 import org.apache.sling.rewriter.Transformer;
 import org.apache.sling.rewriter.TransformerFactory;
 import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -26,6 +28,10 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
         service = TransformerFactory.class,
         property = { "pipeline.type=pwlinkrewriter" })
 public class PWLinkTransformerFactory implements TransformerFactory {
+    
+    
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(PWLinkTransformerFactory.class);
 
     /**
      * Creates a new PWLinkTransformer object.
@@ -34,6 +40,7 @@ public class PWLinkTransformerFactory implements TransformerFactory {
      */
     @Override
     public Transformer createTransformer() {
+        LOGGER.info("PWLink Transformer called");
         return new PWLinkRewriterTransformer();
     }
 
@@ -147,6 +154,7 @@ public class PWLinkTransformerFactory implements TransformerFactory {
         public void init(ProcessingContext context, ProcessingComponentConfiguration config) throws IOException {
             request = context.getRequest();
             final WCMMode wcmMode = WCMMode.fromRequest(context.getRequest());
+            LOGGER.info("PWLink Transformer WCMMode: {}",wcmMode);
             isSkip = wcmMode != WCMMode.DISABLED;
         }
 
@@ -230,8 +238,10 @@ public class PWLinkTransformerFactory implements TransformerFactory {
         public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
             final AttributesImpl attributes = new AttributesImpl(atts);
             final String href = attributes.getValue("href");
+            LOGGER.info("PWLink Transformer href: {}",href);
             if (!isSkip && StringUtils.isNotBlank(href) && Boolean.TRUE.equals(isValidURL(href))
                     && "a".equals(localName)) {
+                LOGGER.info("PWLink Transformer processing valid : {}",href);
                 for (int i = 0; i < attributes.getLength(); i++) {
                     if ("href".equalsIgnoreCase(attributes.getQName(i))) {
                         attributes.setValue(i,
