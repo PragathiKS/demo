@@ -30,6 +30,11 @@ h1,h2,h3,h4{
     font-family:$font-light;
     font-weight:500;
 }
+
+li {
+    display: flex;
+}
+
 .pw-theme {
     $self: &;
     &--grayscale-white {
