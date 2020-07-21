@@ -279,6 +279,7 @@ class Searchresults {
   renderFilterTags = (remove) => {
     const { contentType, theme, searchTerm } = this.cache.searchParams;
     let joinedFilterTags = { ...contentType, ...theme };
+    const filterCheck = joinedFilterTags;
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
 
     // do the analytics call 
@@ -298,8 +299,12 @@ class Searchresults {
       linkParentTitle: '',
       linkName: 'Search'
     };
-
-    trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
+    
+    if(remove){
+      trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
+    }else if (!remove && !$.isEmptyObject(filterCheck)){
+      trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
+    }
     
     render.fn({
       template: 'searchFilters',
