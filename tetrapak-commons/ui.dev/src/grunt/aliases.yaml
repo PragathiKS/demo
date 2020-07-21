@@ -37,6 +37,15 @@ aemStart:
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'
 
+icons:
+  tasks:
+    - 'webfont:common_icons'
+
+pwIcons:
+  tasks:
+    - 'webfont:pw_icons'
+
+
 default:
   description: "build app with ux-lib for development without watch mode"
   tasks:
