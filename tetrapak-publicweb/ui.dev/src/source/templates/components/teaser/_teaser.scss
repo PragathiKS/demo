@@ -54,7 +54,7 @@
             margin-right: auto;
         }
         .teaserMargin {
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-xxxl);
             @media #{$desktop} {
                 @include margin-bottom($margin-xxxl);
                 @include padding-left($margin-l);
