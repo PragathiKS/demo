@@ -47,7 +47,7 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Title suffix"
                                                 name="./titleSuffix"
-												value="Tetra Pak"
+												value="Tetra Pak">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="titleSuffix"/>
