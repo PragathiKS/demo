@@ -48,7 +48,6 @@
                                                 fieldLabel="Title suffix"
                                                 name="./titleSuffix"
 												value="Tetra Pak"
-                                                renderReadOnly="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="titleSuffix"/>
