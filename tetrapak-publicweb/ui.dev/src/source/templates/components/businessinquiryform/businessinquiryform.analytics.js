@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 export const makeLoad = function (label, formName) {
