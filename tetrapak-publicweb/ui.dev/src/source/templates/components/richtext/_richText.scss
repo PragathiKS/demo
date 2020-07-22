@@ -32,6 +32,10 @@
         width: auto;
     }
 
+    li {
+        display: flex;
+    }
+
     .tp-pw-richText-wrapper a {
         @include padding(0);
         border: 0;
