@@ -82,9 +82,10 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
 
 
 
-export const loadThankYou = function (formName, areaofInterest, dataObj) {
+export const loadThankYou = function (areaofInterest, dataObj) {
+  const formTitle = $('.heading-summary h4').text().trim();
   const formObj = {
-    formName: formName,
+    formName: formTitle,
     formStep: 'Step 4',
     formType: 'Thankyou',
     areaofInterest: areaofInterest,
