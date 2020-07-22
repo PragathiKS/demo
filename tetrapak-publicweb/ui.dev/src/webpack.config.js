@@ -12,6 +12,7 @@ if (prod === dev) {
     new TerserPlugin({
       cache: true,
       parallel: true,
+      extractComments: false,
       chunkFilter(chunk) {
         if (['common', 'global', 'vendor'].includes(chunk.name)) {
           return false;
