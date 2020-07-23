@@ -214,7 +214,7 @@
     <pw.form.softconversion.pressandmedia
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.pressandmedia"
-        sling:message="Press & Media"/>
+        sling:message="Press &amp; Media"/>
     <pw.form.softconversion.talent
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.talent"
