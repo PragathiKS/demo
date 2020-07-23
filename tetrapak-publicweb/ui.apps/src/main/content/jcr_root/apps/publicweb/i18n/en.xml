@@ -154,7 +154,7 @@
     <pw.form.heading.typeofvisitor
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.typeofvisitor"
-        sling:message="Type of Visitor"/>
+        sling:message="Reasons for visit today"/>
     <pw.form.label.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
@@ -210,15 +210,15 @@
     <pw.form.softconversion.customer
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.customer"
-        sling:message="Customer"/>
+        sling:message="Business"/>
     <pw.form.softconversion.pressandmedia
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.pressandmedia"
-        sling:message="Press and media"/>
+        sling:message="Press & Media"/>
     <pw.form.softconversion.talent
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.talent"
-        sling:message="Talent"/>
+        sling:message="Careers"/>
     <pw.form.step
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.step {0} of {1}"
