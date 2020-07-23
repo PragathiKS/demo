@@ -90,11 +90,7 @@ public class CDNCachePurgeCustomTransportHandler implements TransportHandler {
 	 */
 	private static final String SI_PARAM_URLS = "urls";
 
-	/**
-	 * CF test endpoint
-	 */
-	private static final String SI_TEST_ENDPOINT = "https://%s/api/wserp/check-exist-by-domain-name";
-
+	private static final String SI_PARAM_DIRS = "dirs";
 	/**
 	 * {@inheritDoc}
 	 */
@@ -138,8 +134,7 @@ public class CDNCachePurgeCustomTransportHandler implements TransportHandler {
 	private ReplicationResult doTest(final TransportContext ctx, final ReplicationTransaction tx) {
 		String uri = ctx.getConfig().getTransportURI().replace(SI_PROTOCOL, "");
 		String domain = uri.substring(0, uri.indexOf("/"));
-		String paramStr = "www-dev.tetrapak.com";
-		final String fullHttpUrl = String.format(SI_TEST_ENDPOINT, domain) + "?domainName=" + paramStr;
+		String fullHttpUrl = "https://" + domain + ctx.getConfig().getProperties().get("testUri").toString();
 		final HttpGet request = new HttpGet(fullHttpUrl);
 		tx.getLog().info("------ Triggering TEST RUN ------");
 		tx.getLog().info("URL :: " + fullHttpUrl);
@@ -259,17 +254,21 @@ public class CDNCachePurgeCustomTransportHandler implements TransportHandler {
 	 */
 	private void createPostBody(final HttpPost request, final ReplicationTransaction tx) {
 		JsonObject json = new JsonObject();
-		JsonArray purgeObjects = new JsonArray();
+		JsonArray purgeURLs = new JsonArray();
+		JsonArray purgeDirs = new JsonArray();
+
 		for (String path : tx.getAction().getPaths()) {
 			if (StringUtils.isNotBlank(path)
 					&& (path.startsWith("/content/tetrapak/publicweb/") || path.startsWith("/content/dam/"))) {
 				final String contentPath = LinkUtils.sanitizeLink(path,
 						GlobalUtil.getResourceResolverFromSubService(resolverFactory));
-				purgeObjects.add(contentPath);
+				purgeURLs.add(contentPath);
+				purgeDirs.add(contentPath.substring(0,contentPath.length()-1));
 			}
 		}
-		if (purgeObjects.size() > 0) {
-			json.add(SI_PARAM_URLS, purgeObjects);
+		if (purgeURLs.size() > 0) {
+			json.add(SI_PARAM_URLS, purgeURLs);
+			json.add(SI_PARAM_DIRS, purgeDirs);
 			final StringEntity entity = new StringEntity(json.toString(), CharEncoding.ISO_8859_1);
 			tx.getLog().info("Clearing cache for paths param: " + json);
 			request.setEntity(entity);
