@@ -30,7 +30,7 @@
         &.tp-container {
             @include max-width($body-max-width);
             @include padding(0);
-            @include margin($margin-xl auto $margin-zero auto);
+            @include margin($margin-l auto $margin-zero auto);
         }
         .pw-anchor-list {
             @include border-radius($border-radius);

@@ -73,7 +73,7 @@ class Businessinquiryform {
     dataObj['site'] = countryCode;
     dataObj['marketingConsent'] = this.root.find(`#consentcheckbox`).is(':checked');
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
-    loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
+    loadThankYou(self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
 
     ajaxWrapper.getXhrObj({
