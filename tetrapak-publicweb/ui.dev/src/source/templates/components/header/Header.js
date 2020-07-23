@@ -21,6 +21,7 @@ class Header {
     this.cache.$hoverMenuLink = this.root.find('.js-hover-menu-link');
     this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
     this.cache.$headerMobile = this.root.find('.tp-pw-header__container');
+    this.cache.$headerItems = this.root.find('.tp-pw-header__container .header-items');
     this.cache.$megaMenuDesktop = this.root.find('.tp-pw-header__container .pw-megamenu');
     this.cache.$megaMenuMobile = this.root.find('.pw-megamenu');
     this.cache.$parentNavElement = this.root.find('.tp-pw-header__main-navigation.col-6');
@@ -35,7 +36,7 @@ class Header {
   //
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker,$searchIcon, $headerMobile, $megaMenuDesktop} = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker,$searchIcon, $headerItems, $megaMenuDesktop} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
@@ -56,7 +57,7 @@ class Header {
 
     if(isDesktop) {
       $(window).on('load', function () {
-        const headerWidth = $headerMobile.outerWidth();
+        const headerWidth = $headerItems.outerWidth();
         $megaMenuDesktop.css('width', headerWidth - 96);
       });
     }
