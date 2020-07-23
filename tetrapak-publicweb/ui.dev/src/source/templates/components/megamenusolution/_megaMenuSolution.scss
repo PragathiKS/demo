@@ -35,7 +35,6 @@
         }
     }
     @media #{$desktop} {
-        @include padding($padding-zero $padding-xxxl);
         @include margin($margin-zero auto);
         @include padding-top(25px);
         display: flex;
@@ -45,7 +44,6 @@
         justify-content: center;
         background: none;
         top: unset;
-        max-width: 1440px;
         z-index: $zindex-nav;
         left: 50%;
         height: unset;

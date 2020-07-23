@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
-import { isMobile,checkActiveOverlay } from '../../../scripts/common/common';
+import { isMobile,checkActiveOverlay, isDesktop } from '../../../scripts/common/common';
 
 class Header {
   constructor({ el }) {
@@ -35,7 +35,7 @@ class Header {
   //
 
   bindEvents() {
-    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker,$searchIcon} = this.cache;
+    const { $hamburgerToggle, $headerLogoPlaceholder, $headerItem, $headerLogoTracker,$searchIcon, $headerMobile, $megaMenuDesktop} = this.cache;
     $hamburgerToggle.on('click', this.openMobileMenuBoxToggle);
     $headerLogoPlaceholder.on('click', this.trackAnalytics);
     $(window).on('resize', this.hideMobileMenuOnResize);
@@ -53,6 +53,13 @@ class Header {
       this.trackLanguageSelector(e);
     });
     $searchIcon.on('click', this.searchIconClick);
+
+    if(isDesktop) {
+      $(window).on('load', function () {
+        const headerWidth = $headerMobile.outerWidth();
+        $megaMenuDesktop.css('width', headerWidth - 96);
+      });
+    }
 
     // bind event to close search if clicked outside the searchbar
     if(!isMobile()){
