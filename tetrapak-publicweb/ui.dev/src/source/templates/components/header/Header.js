@@ -294,7 +294,7 @@ class Header {
     const url = $this.attr('href');
     const myDomain = 'tetrapak.com';
     if (url && (url.includes('http://') || url.includes('https://'))) {
-      if (!url.includes(myDomain)) {
+      if (url.includes(myDomain)) {
         $this.attr('target','_blank');
       } else {
         $this.attr('target','_self');  
