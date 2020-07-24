@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.services.impl;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -118,10 +121,8 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
 				String str = null;
 				try {
 					str = EntityUtils.toString(entity);
-				} catch (ParseException e) {
-
-				} catch (IOException e) {
-
+				} catch (ParseException | IOException e) {
+					tx.getLog().error("------- Error while parsing response -----");
 				}
 				tx.getLog().info(str);
 			}
@@ -159,7 +160,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
 		return response;
 	}
 
-	private static void addAuthHeader(AbstractHttpMessage request, final TransportContext ctx) throws Exception {
+	private static void addAuthHeader(AbstractHttpMessage request, final TransportContext ctx) throws InvalidKeyException, NoSuchAlgorithmException {
 		Date date = new Date();
 		String dateString = getDate(date);
 		String authoriztion = encode(dateString, ctx.getConfig().getTransportUser(),
@@ -171,17 +172,16 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
 	private static String getDate(Date date) {
 		SimpleDateFormat rfc822DateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
 		rfc822DateFormat.setTimeZone(new SimpleTimeZone(0, "GMT"));
-		String dateString = rfc822DateFormat.format(date);
-		return dateString;
+		return rfc822DateFormat.format(date);
 	}
 
-	private static String encode(String dateString, String username, String apikey) throws Exception {
+	private static String encode(String dateString, String username, String apikey) throws InvalidKeyException, NoSuchAlgorithmException {
 		String signature = signAndBase64Encode(dateString.getBytes(), apikey);
 		String userAndPwd = username + ":" + signature;
-		return new String(Base64.encodeBase64(userAndPwd.getBytes("UTF-8")));
+		return new String(Base64.encodeBase64(userAndPwd.getBytes(StandardCharsets.UTF_8)));
 	}
 
-	private static String signAndBase64Encode(byte[] data, String apikey) throws Exception {
+	private static String signAndBase64Encode(byte[] data, String apikey) throws NoSuchAlgorithmException, InvalidKeyException {
 		Mac mac = Mac.getInstance("HmacSHA256");// 如果使用sha256则参数是：HmacSHA256
 		mac.init(new SecretKeySpec(apikey.getBytes(), "HmacSHA256"));// 如果使用sha256则参数是：HmacSHA256
 		byte[] signature = mac.doFinal(data);
