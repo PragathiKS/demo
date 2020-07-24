@@ -230,6 +230,7 @@ class Header {
   }
 
   trackBrandLogo = (e) => {
+    e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     const url = $this.attr('href');
@@ -257,7 +258,7 @@ class Header {
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 
     if(url && linkType){
-      window.open(url, linkType);
+      window.open(url, $this.attr('target'));
     }
   }
 
