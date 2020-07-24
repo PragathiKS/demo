@@ -52,8 +52,10 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
 	 * files parameter name
 	 */
 	private static final String SI_PARAM_URLS = "urls";
-
 	private static final String SI_PARAM_DIRS = "dirs";
+	private static final String SI_PARAM_URL_ACTION = "urlAction";
+	private static final String SI_PARAM_DIR_ACTION = "dirAction";
+	
 	/**
 	 * Protocol for replication agent transport URI that triggers this transport
 	 * handler.
@@ -206,12 +208,14 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
 				final String contentPath = LinkUtils.sanitizeLink(path,
 						GlobalUtil.getResourceResolverFromSubService(resolverFactory));
 				purgeURLs.add(contentPath);
-				purgeDirs.add(contentPath.substring(0,contentPath.length()-1));
+				purgeDirs.add(contentPath.replace(".html","/"));
 			}
 		}
 		if (purgeURLs.size() > 0) {
 			json.add(SI_PARAM_URLS, purgeURLs);
+			json.addProperty(SI_PARAM_URL_ACTION, "delete");
 			json.add(SI_PARAM_DIRS, purgeDirs);
+			json.addProperty(SI_PARAM_DIR_ACTION, "delete");
 			final StringEntity entity = new StringEntity(json.toString(), CharEncoding.ISO_8859_1);
 			tx.getLog().info("Clearing cache for paths param: " + json);
 			request.setEntity(entity);
