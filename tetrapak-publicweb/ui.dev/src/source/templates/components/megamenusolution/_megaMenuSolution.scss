@@ -183,6 +183,7 @@
     p.teaser-spacing {
         @media #{$desktop} {
             margin-top: $margin-md;
+            margin-bottom: 0;
         }
     }
 
@@ -218,7 +219,7 @@
                 }
 
                 @media #{$desktop} {
-                    @include margin-bottom($margin-l);
+                    @include margin-bottom($margin-md);
                     @include margin-left(0);
                     @include padding(0);
                     @include font-size($font-sm);
