@@ -66,15 +66,15 @@
     <pw.form.contactus.career
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.career"
-        sling:message="Career"/>
+        sling:message="Careers"/>
     <pw.form.contactus.other
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.other"
-        sling:message="Other"/>
+        sling:message="Press &amp; Media"/>
     <pw.form.contactus.sustainability
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.sustainability"
-        sling:message="Sustainability"/>
+        sling:message="Business"/>
     <pw.form.errormsg.businessareofinterest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.businessareofinterest"
@@ -146,7 +146,7 @@
     <pw.form.heading.purposeofcontact
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.purposeofcontact"
-        sling:message="Purpose of contact"/>
+        sling:message="Reason for visit today"/>
     <pw.form.heading.summary
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.summary"
