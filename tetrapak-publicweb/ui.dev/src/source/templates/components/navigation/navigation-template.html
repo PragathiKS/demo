@@ -3,14 +3,14 @@
     class="${ navigationTypeSticky ? 'd-lg-block sticky' :''} js-pw-navigation pw-navigation" aria-hidden="true"
     aria-expanded="false" data-module="Navigation">
     <hr class="hr-display" />
-    <a auto-locator="m_StickySectionMenuLink-m_StickySectionMenuPadding" class="d-lg-none collapse-button collapsed" data-toggle="collapse" href="#sectionMenuCollapse" role="button"
+    <a auto-locator="m_StickySectionMenuLink-m_StickySectionMenuPadding" class="d-lg-none collapse-button collapsed" data-toggle="collapse" href="#sectionMenuCollapse_${sectionId}" role="button"
       aria-expanded="false" aria-controls="sectionMenuCollapse">${data.pageHierarchy['l1'] == data.solutionPageTitle ?
       data.pageHierarchy['l2'] :
       data.pageHierarchy['l1']}
       <i auto-locator="ArrowIconsSectionMenu-ArrowIconsSectionMenuPadding"
         class="icon without-arrow icon-Navigation_Right_pw ${iconClass}"></i>
     </a>
-    <div id="sectionMenuCollapse" auto-locator="SectionMenuPaddingMargin"
+    <div id="sectionMenuCollapse_${sectionId}" auto-locator="SectionMenuPaddingMargin"
       class='tp-container js-pw-navigation__container pw-navigation__container d-lg-block collapse'>
       <div class='row'>
         <sly data-sly-test="${data.sectionHomePageTitle}">
