@@ -197,9 +197,6 @@
       ],
       "paths": [
         "apps/settings/wcm/designs/publicweb/clientlibs/vendor.publish"
-      ],
-      "dependencies": [
-        "granite.jquery"
       ]
     },
     "anlyticscode": {
