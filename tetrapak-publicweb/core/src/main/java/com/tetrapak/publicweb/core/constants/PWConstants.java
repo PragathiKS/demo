@@ -191,7 +191,7 @@ public final class PWConstants {
     /** The Constant CASES. */
     public static final String CASES = "cases";
     
-    /** The Constant MEDIA. */
+    /** The Constant MEDIA. */	
     public static final String MEDIA = "media";
     
     /** The Constant PRODUCTS. */
@@ -203,6 +203,10 @@ public final class PWConstants {
     /** The Constant CQ_LAST_MODIFIED. */
     public static final String CQ_LAST_MODIFIED = "cq:lastModified";
 
+    public static final String HTTPS_PROTOCOL = "https://"; 
+
+    public static final String HTML_EXTENSION = ".html"; 
+    
     /**
      * Instantiates a new PW constants.
      */
