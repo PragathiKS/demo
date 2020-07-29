@@ -25,11 +25,11 @@ class Businessinquiryform {
       'domainURL': window.location.host,
       'purposeOfContact': '',
       'interestArea': '',
-      'firstName': '',
-      'lastName': '',
+      'firstNameField': '',
+      'lastNameField': '',
       'emailBef': '',
       'message': '',
-      'phone': '',
+      'phoneField': '',
       'purposeOfContactInBusinessEqTitle': '',
       'purposeOfInterestAreaEqTitle': '',
       'company': '',
@@ -63,10 +63,10 @@ class Businessinquiryform {
     const dataObj = {};
     dataObj['purpose'] = this.cache.requestPayload.purposeOfContactInBusinessEqTitle;
     dataObj['businessArea'] = this.cache.requestPayload.purposeOfInterestAreaEqTitle;
-    dataObj['firstName'] = this.cache.requestPayload.firstName;
-    dataObj['lastName'] = this.cache.requestPayload.lastName;
+    dataObj['firstName'] = this.cache.requestPayload.firstNameField;
+    dataObj['lastName'] = this.cache.requestPayload.lastNameField;
     dataObj['email'] = this.cache.requestPayload.emailBef;
-    dataObj['phoneNumber'] = this.cache.requestPayload.phone;
+    dataObj['phoneNumber'] = this.cache.requestPayload.phoneField;
     dataObj['company'] = this.cache.requestPayload.company;
     dataObj['position'] = this.cache.requestPayload.position;
     dataObj['language'] = langCode;
@@ -155,7 +155,7 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
-          if (($(this).prop('required') && $(this).val() === '') || self.validateField(requestPayload[fieldName]) || (fieldName === 'email') && !self.validEmail($(this).val()) || (fieldName === 'consent') && $(this).prop('checked')) {
+          if (($(this).prop('required') && $(this).val() === '') || self.validateField(requestPayload[fieldName]) || (fieldName === 'emailBef') && !self.validEmail($(this).val()) || (fieldName === 'consent') && $(this).prop('checked')) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -169,13 +169,13 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step2head;
               break;
-            case 'firstName':
+            case 'firstNameField':
               erLbl = $('#bef-step-3 label')[0].textContent;
               break;
-            case 'lastName':
+            case 'lastNameField':
               erLbl = $('#bef-step-3 label')[1].textContent;
               break;
-            case 'email':
+            case 'emailBef':
               erLbl = $('#bef-step-3 label')[2].textContent;
               break;
             case 'company':
@@ -200,7 +200,7 @@ class Businessinquiryform {
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
-        if (!(self.cache.requestPayload['phone']).length > 0) {
+        if (!(self.cache.requestPayload['phoneField']).length > 0) {
           $('#phoneSummery').hide();
         }
         else {
@@ -278,10 +278,10 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step2head;
               break;
-            case 'firstName':
+            case 'firstNameField':
               erLbl = $('#bef-step-3 label')[0].textContent;
               break;
-            case 'lastName':
+            case 'lastNameField':
               erLbl = $('#bef-step-3 label')[1].textContent;
               break;
             case 'emailBef':

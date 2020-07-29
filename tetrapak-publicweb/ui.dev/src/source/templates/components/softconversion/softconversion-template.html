@@ -198,7 +198,7 @@
 										</div>
     									</div>
                                          <input type="text" name="pardot_extra_field_${componentName}" id="pardot_extra_field_${componentName}"
-                                                    class="d-none" tabindex="-1" />
+                                                    class="d-none" tabindex="-1" title="padot input field for soft conversion form" />
                                          <input type="hidden" name="site_language_${componentName}" id="site_language_${componentName}" value="${data.siteLanguage}"
                                                     class="d-none" tabindex="-1" />
                                          <input type="hidden" name="site_country_${componentName}" id="site_country_${componentName}" value="${data.siteCountry}"
@@ -318,7 +318,7 @@
                             <div class="col text-center" auto_locator="welcomeBackPage">
 
                                 <div auto_locator="welcomeBackHeading">
-                                    <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                    <sly data-sly-test="data.formConfig.welcomeBackHeading" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                         data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.welcomeBackHeading}" />
                                 </div>
                                 <div class="descriptionTextThankyou" auto_locator="welcomeBackDescription">
