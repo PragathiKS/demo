@@ -35,7 +35,6 @@
         }
     }
     @media #{$desktop} {
-        @include padding($padding-zero $padding-xxxl);
         @include margin($margin-zero auto);
         @include padding-top(25px);
         display: flex;
@@ -45,7 +44,6 @@
         justify-content: center;
         background: none;
         top: unset;
-        max-width: 1440px;
         z-index: $zindex-nav;
         left: 50%;
         height: unset;
@@ -185,6 +183,7 @@
     p.teaser-spacing {
         @media #{$desktop} {
             margin-top: $margin-md;
+            margin-bottom: 0;
         }
     }
 
@@ -220,7 +219,7 @@
                 }
 
                 @media #{$desktop} {
-                    @include margin-bottom($margin-l);
+                    @include margin-bottom($margin-md);
                     @include margin-left(0);
                     @include padding(0);
                     @include font-size($font-sm);
