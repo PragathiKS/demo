@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Panel"
+    title="Transport">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <uri
+            jcr:primaryType="cq:Widget"
+            fieldDescription="target uri. eg: http://localhost:4503/bin/receive"
+            fieldLabel="URI"
+            name="./transportUri"
+            xtype="textfield"/>
+        <user
+            jcr:primaryType="cq:Widget"
+            fieldDescription="user name for the transport credentials"
+            fieldLabel="User"
+            name="./transportUser"
+            xtype="textfield"/>
+        <password
+            jcr:primaryType="cq:Widget"
+            fieldDescription="API Key for the user role"
+            fieldLabel="API Key"
+            name="./transportPassword"
+            xtype="password"/>
+        <domain
+            jcr:primaryType="cq:Widget"
+            fieldDescription="Test URI. eg: https://api.cdnetworks.com/testconnection"
+            fieldLabel="Test URI"
+            name="./testUri"
+            xtype="textfield"/>
+    </items>
+</jcr:root>
