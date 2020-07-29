@@ -1,1 +1,5 @@
 https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/solutions.html
+https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/home.html
+https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/contact-us.html
+https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/home/demo-page---dne/demo-page-mix-1.html
+https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/home/demo-page---dne/demo-page-mix-2.html
