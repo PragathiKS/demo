@@ -43,15 +43,15 @@ describe('BusinessInquiryForm', function () {
   });
 
   it('should update request payload when step-3 next button is clicked', function (done) {
-    document.getElementById('firstName').value = 'first';
-    document.getElementById('lastName').value = 'last';
+    document.getElementById('firstNameField').value = 'first';
+    document.getElementById('lastNameField').value = 'last';
     document.getElementById('emailBef').value = 'email';
-    document.getElementById('phone').value = 'phone';
+    document.getElementById('phoneField').value = 'phone';
     document.getElementById('step3btn').click();
-    expect(this.businessinquiry.cache.requestPayload['firstName']).to.equal('first');
-    expect(this.businessinquiry.cache.requestPayload['lastName']).to.equal('last');
+    expect(this.businessinquiry.cache.requestPayload['firstNameField']).to.equal('first');
+    expect(this.businessinquiry.cache.requestPayload['lastNameField']).to.equal('last');
     expect(this.businessinquiry.cache.requestPayload['emailBef']).to.equal('email');
-    expect(this.businessinquiry.cache.requestPayload['phone']).to.equal('phone');
+    expect(this.businessinquiry.cache.requestPayload['phoneField']).to.equal('phone');
     done();
   });
 
@@ -59,10 +59,10 @@ describe('BusinessInquiryForm', function () {
   it('should submit Form when required fields are not empty', function (done) {
     $('input[name="purposeOfContactInBusinessEqTitle"]').val("Contact me");
     $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
-    document.getElementById('firstName').value = 'first';
-    document.getElementById('lastName').value = 'last';
+    document.getElementById('firstNameField').value = 'first';
+    document.getElementById('lastNameField').value = 'last';
     document.getElementById('emailBef').value = 'email';
-    document.getElementById('phone').value = 'mockmessage';
+    document.getElementById('phoneField').value = 'mockmessage';
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
     document.getElementById('consentcheckbox').checked = true;
@@ -74,10 +74,10 @@ describe('BusinessInquiryForm', function () {
   it('should submit Form when honeypot field is filled', function (done) {
     $('input[name="purposeOfContactInBusinessEqTitle"]').val("Contact me");
     $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
-    document.getElementById('firstName').value = 'first';
-    document.getElementById('lastName').value = 'last';
+    document.getElementById('firstNameField').value = 'first';
+    document.getElementById('lastNameField').value = 'last';
     document.getElementById('emailBef').value = 'email';
-    document.getElementById('phone').value = 'mockmessage';
+    document.getElementById('phoneField').value = 'mockmessage';
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
     document.getElementById('consentcheckbox').checked = true;

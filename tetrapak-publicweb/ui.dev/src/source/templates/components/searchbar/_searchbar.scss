@@ -5,7 +5,9 @@
     &.show {
         display: flex;
     }
-
+    .search-label {
+        text-indent: -10000px;
+    }
     @media #{$mobile} {
         height: calc(100vh - #{$header-height-mobile * 1px});
         .tp-container {

@@ -3,10 +3,11 @@
     <div auto-locator="searchBoxContainerPaddingMargin" class="d-flex align-items-center tp-container pw-header-search-bar__container">
       <div auto-locator="searchBoxPaddingTopAndBottom" class="row no-gutters">
         <div class="col-lg-8 input-box">
-          <input auto-locator="searchBoxDescriptionText-searchBoxDescriptionTextFontStyle" type="text" class="search-bar-input js-search-bar-input" placeholder="${'pw.search.searchbarplaceholder' @i18n}" />
-          <div auto-locator="crossLeftPadding" class='icon-wrapper'><button class='search-bar-close'><i class="icon icon-Close_pw"></i></button>
+          <label for="searchLabel" class="search-label">${'pw.search.searchbarplaceholder' @i18n}</label>
+          <input id="searchLabel" auto-locator="searchBoxDescriptionText-searchBoxDescriptionTextFontStyle" type="text" class="search-bar-input js-search-bar-input" placeholder="${'pw.search.searchbarplaceholder' @i18n}" />
+          <div auto-locator="crossLeftPadding" class='icon-wrapper'><button class='search-bar-close' aria-label="close search box"><i class="icon icon-Close_pw"></i></button>
             <div auto-locator="VerticalLineMargin" class="vl"></div>
-            <a data-search-url="${searchPage}" class="search-icon"><i class="icon icon-Search_pw"></i></a>
+            <a data-search-url="${searchPage}" class="search-icon"><span><i class="icon icon-Search_pw"></i></span></a>
           </div>
         </div>
       </div>
