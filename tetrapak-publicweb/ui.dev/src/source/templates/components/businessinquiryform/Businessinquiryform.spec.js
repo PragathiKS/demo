@@ -65,7 +65,7 @@ describe('BusinessInquiryForm', function () {
     document.getElementById('phoneField').value = 'mockmessage';
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
-    document.getElementById('consentcheckbox').checked = true;
+    document.getElementById('befconsentcheckbox').checked = true;
     this.businessinquiry.cache.$submitBtn.click();
     expect(this.businessinquiry.submitForm.called).to.be.true;
     done();
@@ -80,7 +80,7 @@ describe('BusinessInquiryForm', function () {
     document.getElementById('phoneField').value = 'mockmessage';
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
-    document.getElementById('consentcheckbox').checked = true;
+    document.getElementById('befconsentcheckbox').checked = true;
     document.getElementById('pardot_extra_field_bef').value = 'honeypot';
     this.businessinquiry.cache.$submitBtn.click();
     expect(this.businessinquiry.submitForm.called).to.be.true;
@@ -90,7 +90,7 @@ describe('BusinessInquiryForm', function () {
   it('should update request payload when step-4 next button is clicked', function (done) {
     document.getElementById('company').value = 'company';
     document.getElementById('position').value = 'position';
-    document.getElementById('consentcheckbox').checked = true;
+    document.getElementById('befconsentcheckbox').checked = true;
     $(document.getElementById('step4btn')).click();
     expect(this.businessinquiry.cache.requestPayload['company']).to.equal('company');
     expect(this.businessinquiry.cache.requestPayload['position']).to.equal('position');
