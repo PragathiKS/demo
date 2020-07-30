@@ -4,4 +4,4 @@
     cq.wcm.msm.action.excludednodetypes="[cq:LiveSyncConfig,cq:BlueprintSyncConfig,cq:LiveSyncAction,cq:CatalogSyncConfig,cq:CatalogSyncAction,cq:meta]"
     cq.wcm.msm.action.excludedparagraphitems="[cq:propertyInheritanceCancelled]"
 	cq.wcm.msm.action.ignoredMixin=".*"
-    cq.wcm.msm.action.excludedprops="[jcr:(?!(title|description)$).*,sling:(?!(resourceType|resourceSuperType)$).*,cq:(?!(designPath|template|lastTranslationUpdate|targetEngine|tags|allowedTemplate)$).*,publishCampaignId]"/>
+    cq.wcm.msm.action.excludedprops="[jcr:(?!(title|description)$).*,sling:(?!(resourceType|resourceSuperType)$).*,cq:(?!(designPath|template|lastTranslationUpdate|targetEngine|tags|allowedTemplates)$).*,publishCampaignId]"/>
