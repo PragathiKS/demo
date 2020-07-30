@@ -31,4 +31,10 @@ public @interface CDNCacheInvalidationServiceConfig {
             type = AttributeType.STRING)
     String domainForCDN();
 
+    @AttributeDefinition(
+            name = "AEM Content path to URL mapping",
+            description = "Mapping for AEM content path to CDN path. Example 'en-gb=/gb/en'",
+            type = AttributeType.STRING)
+    String[] urlMapping();
+
 }

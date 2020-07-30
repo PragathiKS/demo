@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
@@ -123,11 +124,13 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      */
     @Override
     public ReplicationResult doActivate(final TransportContext ctx, final ReplicationTransaction tx) {
-        tx.getLog().info("--------- Triggering CDN Cache Flush ------------------");
         final String cfEndPoint = ctx.getConfig().getTransportURI().replace(SI_PROTOCOL, PWConstants.HTTPS_PROTOCOL);
         final HttpPost request = new HttpPost(cfEndPoint);
-        createPostBody(request, tx);
-        return getResult(sendRequest(request, ctx, tx), tx);
+        if (createPostBody(request, tx)) {
+            tx.getLog().info("--------- Triggering CDN Cache Flush ------------------");
+            return getResult(sendRequest(request, ctx, tx), tx);
+        }
+        return ReplicationResult.OK;
     }
 
     /**
@@ -261,28 +264,40 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      * @param tx
      *            ReplicationTransaction
      * @param resolverFactory
+     * @return
      */
-    private void createPostBody(final HttpPost request, final ReplicationTransaction tx) {
+    private boolean createPostBody(final HttpPost request, final ReplicationTransaction tx) {
         tx.getLog().debug("Inside create request JSON");
-        final JsonObject json = new JsonObject();
+        JsonObject json = null;
         final JsonArray purgeDirs = new JsonArray();
         for (final String path : tx.getAction().getPaths()) {
             if (StringUtils.isNotBlank(path) && (path.startsWith(config.contentPathForCDNCacheInvalidation())
                     || path.startsWith(config.damPathForCDNCacheInvalidation()))) {
-                final String contentPath = config.domainForCDN()
-                        + LinkUtils.getRootPath(path).replace(config.contentPathForCDNCacheInvalidation(), "")
-                        + PWConstants.SLASH;
+                final String contentPath = config.domainForCDN() + findUrlMapping(
+                        LinkUtils.getRootPath(path).replace(config.contentPathForCDNCacheInvalidation(), ""));
                 purgeDirs.add(contentPath);
             }
         }
 
         if (purgeDirs.size() > 0) {
+            json = new JsonObject();
             json.add(SI_PARAM_DIRS, purgeDirs);
             json.addProperty(SI_PARAM_DIR_ACTION, SI_ACTION_EXPIRE);
             final StringEntity entity = new StringEntity(json.toString(), CharEncoding.ISO_8859_1);
             request.setEntity(entity);
+            tx.getLog().info("Clearing cache for paths param: " + json);
+            return true;
         }
-        tx.getLog().info("Clearing cache for paths param: " + json);
+        return false;
     }
 
+    /**
+     *
+     * @param path
+     * @return
+     */
+    private String findUrlMapping(final String path) {
+        return Arrays.stream(config.urlMapping()).filter(e -> e.contains(path)).findAny().orElse(StringUtils.EMPTY)
+                .split("=")[0] + PWConstants.SLASH;
+    }
 }
