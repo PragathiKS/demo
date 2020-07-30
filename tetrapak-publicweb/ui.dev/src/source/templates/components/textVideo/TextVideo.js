@@ -12,7 +12,7 @@ class TextVideo {
     this.cache.$textVideoButton = this.root.find('.js-textVideo-analytics');
     ytPromise.then(() => { initializeYoutubePlayer(); });
     initializeDAMPlayer();
-    this.cache.componentName = this.root.find('#componentName-textvideo').val();
+    this.cache.componentName = this.root.find('.componentName-textvideo').val();
   }
 
   bindEvents() {

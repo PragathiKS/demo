@@ -56,10 +56,8 @@ class Header {
     $searchIcon.on('click', this.searchIconClick);
 
     if(isDesktop) {
-      $(window).on('load', function () {
-        const headerWidth = $headerItems.outerWidth();
-        $megaMenuDesktop.css('width', headerWidth - 96);
-      });
+      const headerWidth = $headerItems.outerWidth();
+      $megaMenuDesktop.css('width', headerWidth - 96);
     }
 
     // bind event to close search if clicked outside the searchbar
@@ -183,6 +181,8 @@ class Header {
     this.cache.$hamburgerToggle.children(this.toggleButtonId).removeClass('icon-Close_pw');
     this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
     this.toggleFlag = false;
+    const headerWidth = this.cache.$headerItems.outerWidth();
+    this.cache.$megaMenuDesktop.css('width', headerWidth - 96);
   }
 
   openMobileMenuBoxToggle = () => {

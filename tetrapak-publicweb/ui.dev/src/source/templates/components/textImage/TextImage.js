@@ -8,7 +8,7 @@ class TextImage {
   cache = {};
   initCache() {
     this.cache.$textImageLink = this.root.find('.js-textImage-analytics');
-    this.cache.componentName = this.root.find('#componentName').val();
+    this.cache.componentName = this.root.find('.componentNameTextImage').val();
   }
   bindEvents() {
     this.cache.$textImageLink.on('click', this.trackAnalytics);

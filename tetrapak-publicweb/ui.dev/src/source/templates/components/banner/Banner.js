@@ -11,7 +11,7 @@ class Banner {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
     this.cache.$existingBanner = this.root.find('.pw-banner__content.banner-parent');
     this.cache.$siblingBanner = this.root.find('.pw-banner__content.banner-sibling');
-    this.cache.componentName = this.root.find('#componentName-banner').val();
+    this.cache.componentName = this.root.find('.componentName-banner').val();
   }
 
   bindEvents() {
