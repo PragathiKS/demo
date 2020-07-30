@@ -4,7 +4,7 @@
   <div data-sly-test="${data.damVideoPath || data.youtubeEmbedURL}" id="${data.anchorId}" title="${data.anchorTitle}"
        class="pw-container"
        data-locator="text-video" data-module="TextVideo">
-       <input type="hidden" id="componentName-textvideo" name="componentName" value="${resource.name}">
+       <input type="hidden" class="componentName-textvideo" name="componentName" value="${resource.name}">
     <div class="pw-text-video pw-text-video--${data.pwDisplay} pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular">
     <div class="row no-gutters">
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-4 left-pad': ''}">
