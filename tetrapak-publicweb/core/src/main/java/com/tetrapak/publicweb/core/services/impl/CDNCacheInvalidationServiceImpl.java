@@ -154,7 +154,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                 } catch (ParseException | IOException e) {
                     tx.getLog().error("Error while parsing response :: " + e);
                 }
-                tx.getLog().debug("Response body :: " + str);
+                tx.getLog().info("Response body :: " + str);
             }
             if (statusCode == HttpStatus.SC_OK) {
                 return ReplicationResult.OK;
