@@ -33,7 +33,7 @@ class Searchbar {
     const inp = $('.js-search-bar-input');
     if (inp.val().length > 0) {
       const $target = $('.search-icon');
-      const $this = $target.closest('a');
+      const $this = $target.closest('button');
       const url = $this.data('search-url');
       let updatedUrl = updateQueryStringParameter(url,'searchTerm',inp.val());
       updatedUrl = updateQueryStringParameter(updatedUrl,'page',1);
