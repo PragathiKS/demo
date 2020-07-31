@@ -23,8 +23,8 @@ class TabsList {
   cache = {};
   initCache() {
     this.cache.selectedTabIndex = 0;
-    this.cache.componentId = this.root.find('#tabComponentId').val();
-    this.cache.activeTheme = this.root.find('#activeTheme').val();
+    this.cache.componentId = this.root.find('.tabComponentId').val();
+    this.cache.activeTheme = this.root.find('.activeTheme').val();
     this.cache.tabButton = this.root.find('.js-pw-tablist__event');
     this.cache.heading = $.trim(this.root.find('.js-tablist__heading').text());
   }

@@ -3,8 +3,8 @@
   <div auto-locator="${componentName}" id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-module="TabsList">
     <div
       class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
-      <input type="hidden" id="tabComponentId" name="tabComponentId" value="${resource.name}" />
-      <input type="hidden" id="activeTheme" name="activeTheme" value="${data.pwTheme}" />
+      <input type="hidden" class="tabComponentId" name="tabComponentId" value="${resource.name}" />
+      <input type="hidden" class="activeTheme" name="activeTheme" value="${data.pwTheme}" />
       <h3 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading @
         context='html'}</h3>
       <div class="row">
