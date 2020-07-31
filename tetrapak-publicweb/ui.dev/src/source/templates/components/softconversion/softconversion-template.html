@@ -19,7 +19,7 @@
     <sly data-sly-test.notmebtn="${'{0}{1}' @ format=['notmebtn notmebtn-', componentName, ')']}" />
     <sly data-sly-test.yesmebtn="${'{0}{1}' @ format=['yesmebtn-', componentName, ')']}" />
 
-    <div class="pw-softconversion modal tp-modal js-soft-modal ${componentName} fade" id="lang-modal" data-module="Softconversion" tabindex="-1" role="dialog">
+    <div class="pw-softconversion modal tp-modal js-soft-modal ${componentName} fade"  data-module="Softconversion" tabindex="-1" role="dialog">
     	<input type="hidden" class="ComponentNameSoft" name="ComponentNameSoft" value="${componentName}">
         <input type="hidden" class="parentComponent" name="parentComponent" value="${parentComponent}">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
@@ -29,7 +29,7 @@
           <h2 role="heading" class="pw-softconversion__header__heading heading_${componentName}" auto_locator="headingFontStep1">${data.heading}
           </h2>
           <input type="hidden" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
-          <button type="button" class="tp-close-btn icon-Close_pw pw-softconversion__header__close js-close-btn"></button>
+          <button type="button" class="tp-close-btn icon-Close_pw pw-softconversion__header__close js-close-btn" aria-label="close button" title="close button"></button>
         </div>
 
         <div class="modal-body pw-softconversion__body pw-sf_body_${componentName} row no-gutters" auto_locator="softConversionSectionBody">
@@ -65,7 +65,7 @@
                                                 data-sly-call="${radioField.radiofieldinput_template @ id=concatepressandmedia, label='pw.form.softconversion.pressandmedia', name='typeOfVisitorOptions', labelClass='mb-0'}">
                                             </sly>
                                             <input type="hidden" name="typeOfVisitorTitle-${componentName}" class="form-control"
-                                                id="typeOfVisitor" required>
+                                                id="typeOfVisitor-${componentName}" required>
                                             <div class="errorMsg purposeOfContactError">${'pw.form.errormsg.typeofvisitor' @i18n}
                                             </div>
                                         </div>

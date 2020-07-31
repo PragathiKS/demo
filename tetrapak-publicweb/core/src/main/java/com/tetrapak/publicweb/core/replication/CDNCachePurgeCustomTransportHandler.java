@@ -4,8 +4,6 @@ import java.util.Objects;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.day.cq.replication.AgentConfig;
 import com.day.cq.replication.ReplicationActionType;
@@ -37,8 +35,6 @@ import com.tetrapak.publicweb.core.services.CDNCacheInvalidationService;
 @Component(service = TransportHandler.class, name = "CDN-Cache-Purge-Agent", immediate = true)
 public class CDNCachePurgeCustomTransportHandler implements TransportHandler {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CDNCachePurgeCustomTransportHandler.class);
-
     /**
      * externalizer
      */
@@ -56,9 +52,7 @@ public class CDNCachePurgeCustomTransportHandler implements TransportHandler {
     @Override
     public final boolean canHandle(final AgentConfig config) {
         final String transportURI = config.getTransportURI();
-        LOG.info("checking can handle {}", config.getTransportURI());
         if (Objects.nonNull(transportURI)) {
-            LOG.info("not null URI");
             return transportURI.toLowerCase().startsWith(SI_PROTOCOL);
         } else {
             return false;

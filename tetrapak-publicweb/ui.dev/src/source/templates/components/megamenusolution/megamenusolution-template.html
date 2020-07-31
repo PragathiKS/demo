@@ -6,7 +6,7 @@
       <div class="pw-megamenu__top">
         <sly data-sly-test.isMobile="${!isMobile}">
           <div class="heading-d-link">
-            <sly data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
+            <sly data-sly-test="${data.topSectionSubtitle}" data-sly-use.topSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
               data-sly-call="${topSectionSubtitle.heading_h2_template @ headingText=data.topSectionSubtitle, variant='regular'}" />
           </div>
         </sly>
@@ -48,7 +48,7 @@
       </div>
       <div class="pw-megamenu__bottom" data-sly-test="${!data.hideFoodCategories}">
         <div class="heading-bottom-cta js-open-menu">
-          <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
+          <sly data-sly-test="${data.bottomSectionSubtitle}" data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
             data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
           <i class="icon icon-Arrow_Right_pw d-md-none"></i>
         </div>
@@ -57,7 +57,7 @@
             <li class="col d-md-none js-close-menu" data-sly-test="${foodCategorySectionList.first}">
               <div>
                 <i class="icon icon-Arrow_Right_pw d-md-none js-design-close-menu"></i>
-                <sly data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
+                <sly data-sly-test="${data.bottomSectionSubtitle}" data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
                   data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
               </div>
             </li>

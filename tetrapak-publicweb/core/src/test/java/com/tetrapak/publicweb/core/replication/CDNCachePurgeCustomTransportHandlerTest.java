@@ -7,8 +7,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.Before;
@@ -21,11 +19,9 @@ import com.day.cq.replication.AgentConfig;
 import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.replication.ReplicationContent;
-import com.day.cq.replication.ReplicationLog;
 import com.day.cq.replication.ReplicationResult;
 import com.day.cq.replication.ReplicationTransaction;
 import com.day.cq.replication.TransportContext;
-import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.mock.MockAgentConfig;
 import com.tetrapak.publicweb.core.mock.MockHelper;
 import com.tetrapak.publicweb.core.mock.MockReplicationTransaction;
@@ -45,30 +41,15 @@ public class CDNCachePurgeCustomTransportHandlerTest {
     private TransportContext transportContext;
 
     @Mock
-    private ResourceResolver resourceResolver;
-
-    @Mock
-    private PageManager pageManager;
-
-    @Mock
-    private ResourceResolverFactory resourceResolverFactory;
-
-    @Mock
     private ReplicationTransaction replicationTransaction;
 
     @Mock
     private ReplicationContent replicationContent;
 
-    @Mock
-    private ReplicationLog log;
-
     private MockAgentConfig config = null;
 
     @Mock
     private ReplicationAction replicationAction;
-
-    /** The Constant REPLICATION_CONTENT. */
-    private static final String REPLICATION_CONTENT = "/replication/test-content.json";
 
     @InjectMocks
     private CDNCachePurgeCustomTransportHandler underTest = new CDNCachePurgeCustomTransportHandler();
