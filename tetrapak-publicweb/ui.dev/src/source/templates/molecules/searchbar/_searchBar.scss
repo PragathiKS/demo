@@ -11,6 +11,9 @@
         border-left: 1px solid $color-mercury;
         height: 65%;
     }
+    &.search-label {
+        text-indent: -10000px;
+    }
     &__input {
         @include padding-right($padding-md);
         display: flex;
