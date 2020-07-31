@@ -18,8 +18,9 @@ describe('Subscriptionform', function () {
     this.submitFormSpy.restore();
   });
 
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.subscription.init.called).to.be.true;
+    done();
   });
 
   it('should submit Form when required fields are empty', function (done) {

@@ -23,11 +23,13 @@ describe('RichText', function () {
     this.openStub.restore();
   });
 
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.richText.init.called).to.be.true;
+    done();
   });
-  it('should call track analytics on click', function () {
+  it('should call track analytics on click', function (done) {
     $('a').trigger('click');
     expect(this.richText.trackAnalytics.called).to.be.true;
+    done();
   });
 });

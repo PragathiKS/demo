@@ -29,24 +29,29 @@ describe('SectionMenu', function() {
     this.openStub.restore();
     this.handleSubSectionMenuClickSpy.restore();
   });
-  it('should initialize', function() {
+  it('should initialize', function(done) {
     expect(this.sectionMenu.init.called).to.be.true;
+    done();
   });
-  it('should call handleSectionMenuItemMouseOver on mouseover', function () {
+  it('should call handleSectionMenuItemMouseOver on mouseover', function (done) {
     $('.js-section-menu-navigation-Link').trigger('mouseover');
     expect(this.sectionMenu.handleSectionMenuItemMouseOver.called).to.be.true;
+    done();
   });
 
-  it('should call handleSectionMenuItemMouseOut on mouseout', function () {
+  it('should call handleSectionMenuItemMouseOut on mouseout', function (done) {
     $('.js-section-menu-navigation-Link').trigger('mouseout');
     expect(this.sectionMenu.handleSectionMenuItemMouseOut.called).to.be.true;
+    done();
   });
-  it('should call handleSectionMenuClick on click', function () {
+  it('should call handleSectionMenuClick on click', function (done) {
     $('.js-section-menu-item-link').trigger('click');
     expect(this.sectionMenu.handleSectionMenuClick.called).to.be.true;
+    done();
   });
-  it('should call handleSubSectionMenuClick on click', function () {
+  it('should call handleSubSectionMenuClick on click', function (done) {
     $('.js-sub-menu-navigation-link-item').trigger('click');
     expect(this.sectionMenu.handleSubSectionMenuClick.called).to.be.true;
+    done();
   });
 });

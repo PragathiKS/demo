@@ -12,6 +12,9 @@ function _renderFirstTab() {
   $tabSection.find('.js-yt-player, .js-dam-player').removeClass('video-init');
   ytPromise.then(() => {
     initializeYoutubePlayer();
+  }).catch( err => {
+    // eslint-disable-next-line no-console
+    console.log('err in Tablist>>>',err);
   });
   initializeDAMPlayer();
 }

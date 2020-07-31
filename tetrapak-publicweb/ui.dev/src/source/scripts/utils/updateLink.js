@@ -57,7 +57,7 @@ export default () => {
           $(this).attr('target', '_self');
         } else if (isExternal(thisHref) || iconExternal) {
           $(iconEl).addClass('icon-Union');
-          $(this).attr('target', '_blank');
+          // $(this).attr('target', '_blank');
         } else if($(iconEl).hasClass('with-arrow')){
           $(iconEl).addClass('icon-Navigation_Right_pw');
           $(this).attr('target','_self');

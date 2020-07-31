@@ -26,16 +26,19 @@ describe('Footer', function () {
     this.trackAnalyticsSpy.restore();
     this.openStub.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.initSpy.called).to.be.true;
+    done();
   });
-  it('should go to top on click of "top" button', function () {
+  it('should go to top on click of "top" button', function (done) {
      $('#tp-pw-footer__link').trigger('click');
      expect(this.goToTopSpy.called).to.be.true;
+     done();
   });
-  it('should call track analytics on click', function () {
+  it('should call track analytics on click', function (done) {
     $('.tp-pw-footer-data-analytics').trigger('click');
     expect(this.footer.trackAnalytics.called).to.be.true;
+    done();
   });
 
 });

@@ -20,11 +20,13 @@ describe('Teaser', function () {
     this.analyticsSpy.restore();
     this.openStub.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.teaser.init.called).to.be.true;
+    done();
   });
-  it('should track analytics on click of "teaser" button', function () {
+  it('should track analytics on click of "teaser" button', function (done) {
     $('.js-teaser-analytics').trigger('click');
     expect(this.teaser.trackAnalytics.called).to.be.true;
+    done();
   });
 })

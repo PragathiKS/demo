@@ -13,7 +13,7 @@ describe('TabsList', function() {
     this.initSpy = sinon.spy(this.tabslist, 'init');
     this.showTabDetailSpy = sinon.spy(this.tabslist, 'showTabDetail');
     this.openStub = sinon.stub(window, 'open');
-  
+
 
     this.trackAnalyticsSpy = sinon.spy(this.tabslist, 'trackAnalytics');
     window._satellite = {
@@ -34,16 +34,19 @@ describe('TabsList', function() {
 
   });
 
-  it('should initialize', function() {
+  it('should initialize', function(done) {
     expect(this.tabslist.init.called).to.be.true;
+    done();
   });
-  it('should call track analytics on click', function () {
+  it('should call track analytics on click', function (done) {
     $('.js-tablist__event-detail-description-link').trigger('click');
     expect(this.tabslist.trackAnalytics.called).to.be.true;
+    done();
   });
 
-  it('should call showTabDetail on tab click', function () {
+  it('should call showTabDetail on tab click', function (done) {
     $('.js-tablist__event').trigger('click');
     expect(this.tabslist.showTabDetail.called).to.be.true;
+    done();
   });
 });

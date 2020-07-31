@@ -75,8 +75,9 @@ describe('FindMyOffice', function() {
     this.renderMarkerPositionSpy.restore();
   });
 
-  it('should initialize', function() {
+  it('should initialize', function(done) {
     expect(this.findMyOffice.init.called).to.be.true;
+    done();
   });
   it('should call handleGoogleMapApi', function(done) {
     expect(this.findMyOffice.handleGoogleMapApi.called).to.be.true;
@@ -95,13 +96,15 @@ describe('FindMyOffice', function() {
     expect(this.findMyOffice.renderCountries.called).to.be.true;
     done();
   });
-  it('should call onClickCountryItem on click', function() {
+  it('should call onClickCountryItem on click', function(done) {
     $('.js-dropdown-item-country').trigger('click');
     expect(this.findMyOffice.onClickCountryItem.called).to.be.true;
+    done();
   });
-  it('should call onClickCityItem on click', function() {
+  it('should call onClickCityItem on click', function(done) {
     $('.js-dropdown-item-city').trigger('click');
     expect(this.findMyOffice.onClickCityItem.called).to.be.true;
+    done();
   });
   it('should render renderMarkerPosition', function(done) {
     expect(this.findMyOffice.renderMarkerPosition.called).to.be.true;

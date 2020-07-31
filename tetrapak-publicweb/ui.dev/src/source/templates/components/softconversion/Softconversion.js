@@ -23,12 +23,12 @@ class Softconversion {
     this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
     this.cache.$notmebtn = this.root.find(`.notmebtn-${this.cache.$componentName}[type=button]`);
     this.cache.$yesmebtn = this.root.find(`.yesmebtn-${this.cache.$componentName}[type=button]`);
-    
+
     this.cache.softconversionapi = this.root.find(`form.pw-form-softconversion-${this.cache.$componentName}`);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
-   
+
     this.cache.requestPayload = {};
-    this.cache.requestPayload['typeOfVisitor']=''; 
+    this.cache.requestPayload['typeOfVisitor']='';
     this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
@@ -78,7 +78,7 @@ class Softconversion {
 
     downloadLinkTrack(downloadObj, 'downloadClick', this.cache.$parentComponent);
 
-    window.open(downloadLink, '_blank');
+    // window.open(downloadLink, '_blank');
   }
 
   moreBtnHandler = (e) => {
@@ -140,7 +140,7 @@ class Softconversion {
   submitForm = () => {
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
     const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
-    
+
     const apiPayload =  {};
 
     apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
@@ -153,7 +153,7 @@ class Softconversion {
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     apiPayload.pardotUrl = pardotUrl;
-    apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked'); 
+    apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
     loadDownloadReady(this.mainHeading, { ...this.restObj2, 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' }, this.cache.$parentComponent);
     ajaxWrapper.getXhrObj({
       url: servletPath,
@@ -164,7 +164,7 @@ class Softconversion {
         $('.serviceError').removeClass('d-block');
       }
     );
-    //drop cookies of email id 
+    //drop cookies of email id
     storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
 
     $(`.heading_${this.cache.$componentName}`, this.root).text('');
@@ -233,7 +233,7 @@ class Softconversion {
           $('div.' + fieldName).text(newSafeValues);
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
-            
+
           }
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === `email-${$componentName}`) && !self.validEmail($(this).val())) {
             isvalid = false;
@@ -288,7 +288,7 @@ class Softconversion {
             default:
               break;
             }
-          } 
+          }
 
 
 
@@ -322,7 +322,7 @@ class Softconversion {
         if (fieldName in self.cache.requestPayload) {
           requestPayload[fieldName] = newSafeValues;
 
-       
+
         }
         if ($(this).prop('required') && $(this).val() === '' && requestPayload['typeOfVisitor']===`customer-${$componentName}`) {
           isvalid = false;

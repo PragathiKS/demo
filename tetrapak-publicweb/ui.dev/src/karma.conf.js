@@ -11,29 +11,35 @@ module.exports = function (config) {
       ChromeHeadlessCustom: {
         base: 'Chrome',
         flags: [
-          '--headless',
+          // '--headless',
           '--window-size=1920,1080',
-          '--remote-debugging-port=9222',
-          '--no-sandbox'
+          '--remote-debugging-port=9222'
+          // '--no-sandbox'
         ]
       }
     },
     browserNoActivityTimeout: 210000,
     browserDisconnectTolerance: 3,
     browserDisconnectTimeout: 210000,
-    singleRun: true, //just run once by default
+    singleRun: false, //just run once by default
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     failOnEmptyTestSuite: false,
     frameworks: ['mocha', 'chai', 'sinon'],
+    proxies :  {
+      '/content/': 'http://localhost:4502/content/',
+      '/libs/': 'http://localhost:4502/libs/'
+    },
     files: [
-      'testcases.webpack.js' //just load this file
+      // 'testcases.webpack.js' //just load this file
+      { pattern:'source/templates/components/**/*.spec.js', watched: false} //just load this file
     ],
     preprocessors: {
       '**/*.js': 'coverage',
-      'testcases.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
+      // 'testcases.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
+      'source/templates/components/**/*.spec.js': ['webpack','sourcemap'] //preprocess with webpack and our sourcemap loader
     },
     reporters: [
       'progress',

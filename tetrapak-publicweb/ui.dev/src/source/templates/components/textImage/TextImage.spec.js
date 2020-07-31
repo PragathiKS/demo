@@ -24,11 +24,15 @@ describe('TextImage', function () {
     this.analyticsSpy.restore();
     this.openStub.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
+    // eslint-disable-next-line no-console
+    console.log('text image test cases called23');
     expect(this.textImage.init.called).to.be.true;
+    done();
   });
-  it('should track analytics on click of "TextImage" button', function () {
+  it('should track analytics on click of "TextImage" button', function (done) {
     $('.js-textImage-analytics').trigger('click');
     expect(this.textImage.trackAnalytics.called).to.be.true;
+    done();
   });
 })

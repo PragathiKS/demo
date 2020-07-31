@@ -39,7 +39,7 @@ class Searchbar {
       updatedUrl = updateQueryStringParameter(updatedUrl,'page',1);
 
       const searchObj = {
-        searchTerm : inp.val(), 
+        searchTerm : inp.val(),
         searchFilters : ''
       };
 
@@ -54,7 +54,7 @@ class Searchbar {
         linkParentTitle: '',
         linkName: 'Search'
       };
-      
+
       trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
 
       window.open(updatedUrl,'_self');

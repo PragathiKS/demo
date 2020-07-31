@@ -9,6 +9,9 @@ class Video {
   initCache() {
     ytPromise.then(() => {
       initializeYoutubePlayer();
+    }).catch(err => {
+      // eslint-disable-next-line no-console
+      console.log('video component err is >>>>>',err);
     });
     initializeDAMPlayer();
   }

@@ -22,17 +22,20 @@ describe('Searchbar', function () {
     this.searchIconClickSpy.restore();
     this.openStub.restore();
   });
-  it('should call searchbarCloseClick on click', function () {
+  it('should call searchbarCloseClick on click', function (done) {
     $('.search-bar-close').trigger('click');
     expect(this.searchbar.searchbarCloseClick.called).to.be.true;
+    done();
   });
-  it('should call searchIconClick with value on click', function () {
+  it('should call searchIconClick with value on click', function (done) {
     $('.search-icon').trigger('click');
     expect(this.searchbar.searchIconClick.called).to.be.true;
+    done();
   });
-  it('should call searchIconClick without value on click', function () {
+  it('should call searchIconClick without value on click', function (done) {
     $('.js-search-bar-input').val('');
     $('.search-icon').trigger('click');
     expect(this.searchbar.searchIconClick.called).to.be.true;
+    done();
   });
 });

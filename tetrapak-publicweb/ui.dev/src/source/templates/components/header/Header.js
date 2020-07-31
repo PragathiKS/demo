@@ -238,7 +238,7 @@ class Header {
 
     if (url && (url.includes('http://') || url.includes('https://'))) {
       if (url.includes(myDomain)) {
-        $this.attr('target','_blank');
+        // $this.attr('target','_blank');
       }
     }
     else {
@@ -258,7 +258,7 @@ class Header {
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 
     if(url && linkType){
-      window.open(url, $this.attr('target'));
+      // window.open(url, $this.attr('target'));
     }
   }
 
@@ -304,9 +304,9 @@ class Header {
     const myDomain = 'tetrapak.com';
     if (url && (url.includes('http://') || url.includes('https://'))) {
       if (url.includes(myDomain)) {
-        $this.attr('target','_blank');
+        // $this.attr('target','_blank');
       } else {
-        $this.attr('target','_self');  
+        // $this.attr('target','_self');
       }
     }
     else {
@@ -329,7 +329,7 @@ class Header {
     }
 
     if(url && targetLink){
-      window.open(url, targetLink);
+      // window.open(url, targetLink);
     }
   }
 
