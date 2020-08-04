@@ -1,10 +1,14 @@
 package com.tetrapak.publicweb.core.schedulers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.jcr.Session;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -19,7 +23,9 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.day.cq.replication.Replicator;
+import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
 import com.tetrapak.publicweb.core.beans.pxp.DeltaFillingMachine;
 import com.tetrapak.publicweb.core.beans.pxp.DeltaPackageType;
@@ -39,7 +45,7 @@ import com.tetrapak.publicweb.core.utils.ResourceUtil;
  * The Class DeltaFeedImportScheduledTask.
  *
  * @author Sandip Kumar
- * 
+ *
  *         Delta Feed Scheduler for products import.
  */
 @Designate(ocd = DeltaPXPConfig.class)
@@ -72,6 +78,9 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     @Reference
     private Scheduler scheduler;
 
+    @Reference
+    private LiveRelationshipManager liveRelManager;
+
     /** The resolver. */
     private ResourceResolver resolver;
 
@@ -96,6 +105,8 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     /** The paths to deactivate. */
     private Set<String> deletedProducts;
 
+    private List<String> langsToActivate;
+
     /**
      * start scheduler.
      */
@@ -109,6 +120,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         }
         pathsToActivate = new HashSet<>();
         deletedProducts = new HashSet<>();
+        langsToActivate = new ArrayList<>();
         this.session = resolver.adaptTo(Session.class);
         timer = new Timer();
         try {
@@ -116,6 +128,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
             processFiles();
             DeltaFeedUtil.activateUpdatedProducts(resolver, replicator, session, pathsToActivate);
             DeltaFeedUtil.deactivatePDPs(resolver, replicator, session, deletedProducts);
+            DeltaFeedUtil.cachePurge(resolver, replicator, session, langsToActivate, liveRelManager);
         } finally {
             timer.cancel();
             timer.purge();
@@ -131,9 +144,10 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      */
     private void processFiles() {
         if (bearerToken != null && StringUtils.isNotBlank(bearerToken.getAccessToken())) {
-            Files listOfFiles = apiGEEService.getListOfFiles(PWConstants.DELTA_FEED, bearerToken.getAccessToken());
+            final Files listOfFiles = apiGEEService.getListOfFiles(PWConstants.DELTA_FEED,
+                    bearerToken.getAccessToken());
             if (listOfFiles.getFiles() != null && !listOfFiles.getFiles().isEmpty()) {
-                for (File file : listOfFiles.getFiles()) {
+                for (final File file : listOfFiles.getFiles()) {
                     processFile(file);
                 }
             }
@@ -146,10 +160,13 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      * @param file
      *            the file
      */
-    private void processFile(File file) {
+    private void processFile(final File file) {
         if (file != null && StringUtils.isNotBlank(file.getName())) {
-            String fileType = ProductUtil.getFileType(file.getName());
-            String language = ProductUtil.getLanguage(file.getName());
+            final String fileType = ProductUtil.getFileType(file.getName());
+            final String language = ProductUtil.getLanguage(file.getName());
+            if (!langsToActivate.contains(language)) {
+                langsToActivate.add(language);
+            }
             switch (fileType) {
                 case "fillingmachines":
                     processFillingMachines(file.getName(), fileType, language);
@@ -177,9 +194,9 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      * @param language
      *            the language
      */
-    private void processFillingMachines(String fileURI, String fileType, String language) {
-        DeltaFillingMachine deltaFillingMachines = apiGEEService.getDeltaFillingMachines(bearerToken.getAccessToken(),
-                PWConstants.FEED_FILES_URI + fileURI);
+    private void processFillingMachines(final String fileURI, final String fileType, final String language) {
+        final DeltaFillingMachine deltaFillingMachines = apiGEEService
+                .getDeltaFillingMachines(bearerToken.getAccessToken(), PWConstants.FEED_FILES_URI + fileURI);
         if (deltaFillingMachines != null && deltaFillingMachines.getFillingMachine() != null
                 && !deltaFillingMachines.getFillingMachine().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductFillingMachine(resolver, session, fileType,
@@ -188,7 +205,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (deltaFillingMachines != null && deltaFillingMachines.getDeleted() != null
                 && !deltaFillingMachines.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaFillingMachines.getDeleted());
-            for (String deletedProduct : deltaFillingMachines.getDeleted()) {
+            for (final String deletedProduct : deltaFillingMachines.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
                         + PWConstants.FILLING_MACHINE + PWConstants.SLASH + deletedProduct);
                 ResourceUtil.deleteResource(resolver, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
@@ -208,8 +225,8 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      * @param language
      *            the language
      */
-    private void processEquipments(String fileURI, String fileType, String language) {
-        DeltaProcessingEquipement deltaEquipements = apiGEEService
+    private void processEquipments(final String fileURI, final String fileType, final String language) {
+        final DeltaProcessingEquipement deltaEquipements = apiGEEService
                 .getDeltaProcessingEquipements(bearerToken.getAccessToken(), PWConstants.FEED_FILES_URI + fileURI);
         if (deltaEquipements != null && deltaEquipements.getProcessingEquipement() != null
                 && !deltaEquipements.getProcessingEquipement().isEmpty()) {
@@ -219,7 +236,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (deltaEquipements != null && deltaEquipements.getDeleted() != null
                 && !deltaEquipements.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaEquipements.getDeleted());
-            for (String deletedProduct : deltaEquipements.getDeleted()) {
+            for (final String deletedProduct : deltaEquipements.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
                         + PWConstants.PROCESSING_EQUIPEMENT + PWConstants.SLASH + deletedProduct);
                 ResourceUtil.deleteResource(resolver, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
@@ -238,8 +255,8 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      * @param language
      *            the language
      */
-    private void processPackageTypes(String fileURI, String fileType, String language) {
-        DeltaPackageType deltaPackageTypes = apiGEEService.getDeltaPackageTypes(bearerToken.getAccessToken(),
+    private void processPackageTypes(final String fileURI, final String fileType, final String language) {
+        final DeltaPackageType deltaPackageTypes = apiGEEService.getDeltaPackageTypes(bearerToken.getAccessToken(),
                 PWConstants.FEED_FILES_URI + fileURI);
         if (deltaPackageTypes != null && deltaPackageTypes.getPackagetype() != null
                 && !deltaPackageTypes.getPackagetype().isEmpty()) {
@@ -249,7 +266,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (deltaPackageTypes != null && deltaPackageTypes.getDeleted() != null
                 && !deltaPackageTypes.getDeleted().isEmpty()) {
             deletedProducts.addAll(deltaPackageTypes.getDeleted());
-            for (String deletedProduct : deltaPackageTypes.getDeleted()) {
+            for (final String deletedProduct : deltaPackageTypes.getDeleted()) {
                 ResourceUtil.deactivatePath(replicator, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
                         + PWConstants.PACKAGE_TYPE + PWConstants.SLASH + deletedProduct);
                 ResourceUtil.deleteResource(resolver, session, PWConstants.PXP_ROOT_PATH + PWConstants.SLASH
@@ -263,7 +280,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      */
     private void setBearerToken() {
         bearerToken = apiGEEService.getBearerToken();
-        TimerTask scheduleBearerTokenUpdate = new TimerTask() {
+        final TimerTask scheduleBearerTokenUpdate = new TimerTask() {
             public void run() {
                 bearerToken = apiGEEService.getBearerToken();
                 if (bearerToken != null) {
@@ -288,7 +305,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      *            the config
      */
     @Activate
-    protected void activate(DeltaPXPConfig config) {
+    protected void activate(final DeltaPXPConfig config) {
         schedulerID = PWConstants.DELTA_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
         addScheduler(config);
@@ -301,7 +318,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      *            the config
      */
     @Modified
-    protected void modified(DeltaPXPConfig config) {
+    protected void modified(final DeltaPXPConfig config) {
         removeScheduler();
         schedulerID = PWConstants.DELTA_FEED_SCHEDULER_ID.hashCode();
         refreshTokenTime = config.schedulerRefreshTokenTime();
@@ -315,7 +332,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      *            the config
      */
     @Deactivate
-    protected void deactivate(DeltaPXPConfig config) {
+    protected void deactivate(final DeltaPXPConfig config) {
         removeScheduler();
     }
 
@@ -325,9 +342,9 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      * @param config
      *            the config
      */
-    private void addScheduler(DeltaPXPConfig config) {
+    private void addScheduler(final DeltaPXPConfig config) {
         if (!config.deltaFeedSchedulerDisable()) {
-            ScheduleOptions sopts = scheduler.EXPR(config.deltaFeedSchedulerExpression());
+            final ScheduleOptions sopts = scheduler.EXPR(config.deltaFeedSchedulerExpression());
             sopts.name(String.valueOf(schedulerID));
             sopts.canRunConcurrently(false);
             scheduler.schedule(this, sopts);
