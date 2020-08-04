@@ -2,7 +2,6 @@ import Header from './Header';
 import $ from 'jquery';
 import headerTemplate from '../../../test-templates-hbs/header.hbs';
 import { loc } from '../../../scripts/common/common';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Header', function () {
   before(function () {

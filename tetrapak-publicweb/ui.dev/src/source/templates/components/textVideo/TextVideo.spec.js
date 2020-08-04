@@ -28,8 +28,6 @@ describe('TextVideo', function () {
   });
 
   it('should call track analytics on click', function (done) {
-    // eslint-disable-next-line no-console
-    console.log('text video test cases called13');
     $('.js-textVideo-analytics').trigger('click');
     expect(this.textVideo.trackAnalytics.called).to.be.true;
     done();

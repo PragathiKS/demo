@@ -16,6 +16,7 @@ describe('Softconversion', function () {
     this.onRadioChangeHandlerSpy = sinon.spy(this.softconversion, 'onRadioChangeHandler');
 
     this.softconversion.root.modal = ()=>{};
+    this.openStub = sinon.stub(window, 'open');
     this.softconversion.init();
   });
 
@@ -29,6 +30,7 @@ describe('Softconversion', function () {
     this.notMeBtnHandlerSpy.restore();
     this.yesMeBtnHandlerSpy.restore();
     this.onRadioChangeHandlerSpy.restore();
+    this.openStub.restore();
   });
 
   it('should initialize', function (done) {
@@ -83,13 +85,13 @@ describe('Softconversion', function () {
 
   it('should download on download button click', function (done) {
     $('.thankyouTarget').click();
-    expect(this.softconversion.downloadHandler.called).to.be.false;
+    expect(this.softconversion.downloadHandler.called).to.be.true;
     done();
   });
 
   it('should open more white paper on more whitepaper button click', function (done) {
     $('.moreButton-textimage').click();
-    expect(this.softconversion.moreBtnHandler.called).to.be.false;
+    expect(this.softconversion.moreBtnHandler.called).to.be.true;
     done();
   });
 

@@ -147,8 +147,8 @@ class FindMyOffice {
     );
     this.cache.marker = new this.cache.googleMaps.Marker({
       position: latLng,
-      title: office.name
-      // icon: '/content/dam/tetrapak/publicweb/Pin.png'
+      title: office.name,
+      icon: '/content/dam/tetrapak/publicweb/Pin.png'
     });
 
     // To add the marker to the map, call setMap();

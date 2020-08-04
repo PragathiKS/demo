@@ -78,7 +78,7 @@ class Softconversion {
 
     downloadLinkTrack(downloadObj, 'downloadClick', this.cache.$parentComponent);
 
-    // window.open(downloadLink, '_blank');
+    window.open(downloadLink, '_blank');
   }
 
   moreBtnHandler = (e) => {

@@ -36,6 +36,7 @@ describe('FindMyOffice', function() {
     this.goToLocalSiteSpy = sinon.spy(this.findMyOffice, 'goToLocalSite');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse(tpOffices));
+    this.openStub = sinon.stub(window, 'open');
     this.onClickCountryItemSpy = sinon.spy(
       this.findMyOffice,
       'onClickCountryItem'
@@ -73,6 +74,7 @@ describe('FindMyOffice', function() {
     this.onClickCountryItemSpy.restore();
     this.onClickCityItemSpy.restore();
     this.renderMarkerPositionSpy.restore();
+    this.openStub.restore();
   });
 
   it('should initialize', function(done) {

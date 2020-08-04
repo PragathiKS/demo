@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { initializeDAMPlayer,ytPromise,initializeYoutubePlayer } from '../../../scripts/utils/videoAnalytics';
+import { logger } from '../../../scripts/utils/logger';
 
 class Video {
   constructor({ el }) {
@@ -10,8 +11,7 @@ class Video {
     ytPromise.then(() => {
       initializeYoutubePlayer();
     }).catch(err => {
-      // eslint-disable-next-line no-console
-      console.log('video component err is >>>>>',err);
+      logger.log('video component err is >>>>>',err);
     });
     initializeDAMPlayer();
   }

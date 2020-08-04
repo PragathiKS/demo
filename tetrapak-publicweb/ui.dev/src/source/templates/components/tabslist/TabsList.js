@@ -3,7 +3,7 @@ import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { isExternal } from '../../../scripts/utils/updateLink';
 import { pauseVideosByReference, initializeYoutubePlayer, removeYTReferences, ytPromise, initializeDAMPlayer } from '../../../scripts/utils/videoAnalytics';
-
+import { logger } from '../../../scripts/utils/logger';
 
 function _renderFirstTab() {
   const { componentId } = this.cache;
@@ -13,8 +13,7 @@ function _renderFirstTab() {
   ytPromise.then(() => {
     initializeYoutubePlayer();
   }).catch( err => {
-    // eslint-disable-next-line no-console
-    console.log('err in Tablist>>>',err);
+    logger.log('err in Tablist>>>',err);
   });
   initializeDAMPlayer();
 }
