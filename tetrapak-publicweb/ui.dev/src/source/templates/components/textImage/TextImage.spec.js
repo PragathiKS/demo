@@ -1,7 +1,5 @@
 import $ from 'jquery';
 import TextImage from './TextImage';
-import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
-
 
 describe('TextImage', function () {
   before(function () {
@@ -25,8 +23,6 @@ describe('TextImage', function () {
     this.openStub.restore();
   });
   it('should initialize', function (done) {
-    // eslint-disable-next-line no-console
-    console.log('text image test cases called23');
     expect(this.textImage.init.called).to.be.true;
     done();
   });
