@@ -10,6 +10,7 @@ import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -71,19 +72,26 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
         final PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
         final Page publicWebRootPage = pageManager.getContainingPage(slingRequest.getResource());
 
-        final XMLOutputFactory outputFactory = XMLOutputFactory.newFactory();
         try {
-            final XMLStreamWriter stream = outputFactory.createXMLStreamWriter(slingResponse.getWriter());
-            stream.writeStartDocument("1.0");
-            stream.writeStartElement("", "sitemapindex", SITEMAP_NAMESPACE);
-            stream.writeNamespace("", SITEMAP_NAMESPACE);
-            if (Objects.nonNull(publicWebRootPage)) {
-                getMarketPages(publicWebRootPage.listChildren(), stream, resourceResolver);
+            final XMLOutputFactory outputFactory = XMLOutputFactory.newFactory();
+            final XMLStreamWriter xmlStreamWriter = outputFactory.createXMLStreamWriter(slingResponse.getWriter());
+            try {
+                xmlStreamWriter.writeStartDocument("1.0");
+                xmlStreamWriter.writeStartElement(StringUtils.EMPTY, "sitemapindex", SITEMAP_NAMESPACE);
+                xmlStreamWriter.writeNamespace(StringUtils.EMPTY, SITEMAP_NAMESPACE);
+                if (Objects.nonNull(publicWebRootPage)) {
+                    getMarketPages(publicWebRootPage.listChildren(), xmlStreamWriter, resourceResolver);
+                }
+                xmlStreamWriter.writeEndElement();
+                xmlStreamWriter.writeEndDocument();
+            } finally {
+                if(Objects.nonNull(xmlStreamWriter)) {
+                    xmlStreamWriter.flush();
+                    xmlStreamWriter.close();
+                }               
             }
-            stream.writeEndElement();
-            stream.writeEndDocument();
-        } catch (XMLStreamException e) {
-            LOGGER.error("Error in doGet method {}", e.getMessage());
+        } catch (XMLStreamException xmlStreamException) {
+            LOGGER.error("MasterSiteMapXmlServlet :: Error in doGet method {}", xmlStreamException.getMessage());
         }
     }
 
@@ -92,13 +100,14 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      *
      * @param marketPages
      *            the market pages
-     * @param stream
-     *            the stream
+     * @param xmlStreamWriter
+     *            the xml stream writer
      * @param resourceResolver
      *            the resource resolver
      * @return the market pages
      */
-    private void getMarketPages(Iterator<Page> marketPages, XMLStreamWriter stream, ResourceResolver resourceResolver) {
+    private void getMarketPages(Iterator<Page> marketPages, XMLStreamWriter xmlStreamWriter,
+            ResourceResolver resourceResolver) {
 
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();
@@ -106,7 +115,7 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 while (languagePages.hasNext()) {
                     Page languagePage = languagePages.next();
-                    createSiteMapXml(stream, resourceResolver, languagePage.getPath());
+                    createSiteMapXml(xmlStreamWriter, resourceResolver, languagePage.getPath());
                 }
             }
         }
@@ -115,18 +124,19 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
     /**
      * Creates the site map xml.
      *
-     * @param stream
-     *            the stream
+     * @param xmlStreamWriter
+     *            the xml stream writer
      * @param resourceResolver
      *            the resource resolver
      * @param siteMapPath
      *            the site map path
      */
-    private void createSiteMapXml(XMLStreamWriter stream, ResourceResolver resourceResolver, String siteMapPath) {
+    private void createSiteMapXml(XMLStreamWriter xmlStreamWriter, ResourceResolver resourceResolver,
+            String siteMapPath) {
         try {
-            writeXML(siteMapPath, stream, resourceResolver);
+            writeXML(siteMapPath, xmlStreamWriter, resourceResolver);
         } catch (XMLStreamException e) {
-            LOGGER.error("Error while writing XML {}", e.getMessage());
+            LOGGER.error("MasterSiteMapXmlServlet :: Error while writing XML {}", e.getMessage());
         }
     }
 
@@ -135,28 +145,27 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      *
      * @param siteMapPath
      *            the site map path
-     * @param xmlStream
-     *            the xml stream
+     * @param xmlStreamWriter
+     *            the xml stream writer
      * @param resolver
      *            the resolver
      * @throws XMLStreamException
      *             the XML stream exception
      */
-    private void writeXML(String siteMapPath, XMLStreamWriter xmlStream, ResourceResolver resolver)
+    private void writeXML(String siteMapPath, XMLStreamWriter xmlStreamWriter, ResourceResolver resolver)
             throws XMLStreamException {
 
-        xmlStream.writeStartElement(SITEMAP_NAMESPACE, "sitemap");
+        xmlStreamWriter.writeStartElement(SITEMAP_NAMESPACE, "sitemap");
         String siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver);
-        writeXMLElement(xmlStream, "loc", siteMapURL.replace(PWConstants.HTML_EXTENSION, SITEMAP_XML));
-        xmlStream.writeEndElement();
-
+        writeXMLElement(xmlStreamWriter, "loc", siteMapURL.replace(PWConstants.HTML_EXTENSION, SITEMAP_XML));
+        xmlStreamWriter.writeEndElement();
     }
 
     /**
      * Write XML element.
      *
-     * @param xmlStream
-     *            the xml stream
+     * @param xmlStreamWriter
+     *            the xml stream writer
      * @param elementName
      *            the element name
      * @param xmlText
@@ -164,10 +173,10 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      * @throws XMLStreamException
      *             the XML stream exception
      */
-    private void writeXMLElement(final XMLStreamWriter xmlStream, final String elementName, final String xmlText)
+    private void writeXMLElement(final XMLStreamWriter xmlStreamWriter, final String elementName, final String xmlText)
             throws XMLStreamException {
-        xmlStream.writeStartElement(SITEMAP_NAMESPACE, elementName);
-        xmlStream.writeCharacters(xmlText);
-        xmlStream.writeEndElement();
+        xmlStreamWriter.writeStartElement(SITEMAP_NAMESPACE, elementName);
+        xmlStreamWriter.writeCharacters(xmlText);
+        xmlStreamWriter.writeEndElement();
     }
 }
