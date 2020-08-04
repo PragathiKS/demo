@@ -50,7 +50,9 @@ PassEnv DISP_ID
                 #### Make sure proxies don't deliver the wrong content
                 Header append Vary User-Agent env=!dont-vary
                 #### Prevent clickjacking
-                Header always append X-Frame-Options SAMEORIGIN
+                ##Header always append X-Frame-Options SAMEORIGIN
+                Header append X-Frame-Options SAMEORIGIN
+                Header append X-XSS-Protection 1
                 <If "%{HTTP_HOST} =~ /tetrapak-dev64a.dev.adobecqms.net/">
                 RequestHeader append Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
                 #Header add Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
@@ -98,8 +100,12 @@ PassEnv DISP_ID
 
                 ## Updated Content-Disposition to inline for opening the media links in new Tab
                 <IfModule mod_headers.c>
-                        <FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV|pdf|PDF|xls|XLS|xlsx|XLSX|doc|DOC|docx|DOCX)$">
+                        #<FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV|pdf|PDF|xls|XLS|xlsx|XLSX|doc|DOC|docx|DOCX)$">
+                        <FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV)$">
                                 Header set Content-Disposition "inline"
                         </FilesMatch>
+                        #<LocationMatch ".*/gated-assets/.*">
+                        #       Header set Content-Disposition "attachment"
+                        #</LocationMatch>
                 </IfModule>
 </VirtualHost>
