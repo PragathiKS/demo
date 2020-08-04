@@ -207,6 +207,9 @@ public final class PWConstants {
 
     public static final String HTML_EXTENSION = ".html"; 
     
+    /** The Constant HYPHEN. */
+    public static final String HYPHEN = "-";
+    
     /**
      * Instantiates a new PW constants.
      */
