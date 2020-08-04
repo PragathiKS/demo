@@ -50,7 +50,9 @@ PassEnv DISP_ID
                 #### Make sure proxies don't deliver the wrong content
                 Header append Vary User-Agent env=!dont-vary
                 #### Prevent clickjacking
-                Header always append X-Frame-Options SAMEORIGIN
+                ##Header always append X-Frame-Options SAMEORIGIN
+                Header append X-Frame-Options SAMEORIGIN
+                Header append X-XSS-Protection 1
                 <If "%{HTTP_HOST} =~ /tetrapak-dev64a.dev.adobecqms.net/">
                 RequestHeader append Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
                 #Header add Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
