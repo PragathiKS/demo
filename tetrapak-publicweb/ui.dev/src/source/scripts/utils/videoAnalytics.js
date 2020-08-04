@@ -39,7 +39,7 @@ function _trackVideoParameters(
   videoTime,
   trackingKey
 ) {
-  const { videoName,videoType } = $(this)
+  const { videoName, videoType } = $(this)
     .parents('.js-video-props')
     .data();
 
@@ -214,18 +214,17 @@ function _onStateChange(thisIns, e) {
  * Promise that ensures that youtube API is ready
  * @public
  */
-export const ytPromise = new Promise(function(resolve,reject) {
-  const scr = document.createElement('script');
-  scr.src = 'https://www.youtube.com/iframe_api';
-  const firstScript = document.getElementsByTagName('script')[0];
-  // eslint-disable-next-line no-console
-  console.log('firstScript>>>>>>>>',firstScript);
-  if(firstScript){
-    firstScript.parentNode.insertBefore(scr, firstScript);
+export const ytPromise = new Promise(function(resolve) {
+  try {
     window.onYouTubeIframeAPIReady = function(...args) {
+      const scr = document.createElement('script');
+      scr.src = 'https://www.youtube.com/iframe_api';
+      const firstScript = document.getElementsByTagName('script')[0];
+      firstScript.parentNode.insertBefore(scr, firstScript);
       resolve(args);
-    };} else {
-    reject('error occured in youtube api>>>');
+    };
+  } catch {
+    logger.log('Error in youTube api>>>>>>>>>>>>');
   }
 });
 
@@ -382,10 +381,9 @@ export default {
   init() {
     ytPromise.then(() => {
       initializeYoutubePlayer();
-    }).catch( err => {
-      // eslint-disable-next-line no-console
-      console.log('error in video analytics>>>>>',err);
-    } );
+    }).catch(err => {
+      logger.log('error in video analytics>>>>>', err);
+    });
     initializeDAMPlayer();
   }
 };
