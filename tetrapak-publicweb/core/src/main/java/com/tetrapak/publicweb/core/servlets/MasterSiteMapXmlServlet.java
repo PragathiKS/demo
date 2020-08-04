@@ -64,33 +64,26 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
     protected void doGet(SlingHttpServletRequest slingRequest, SlingHttpServletResponse slingResponse)
             throws ServletException, IOException {
 
-        LOGGER.info("Inside doGet method");
+        LOGGER.debug("MasterSiteMapXmlServlet :: Inside doGet method");
 
         slingResponse.setContentType(slingRequest.getResponseContentType());
-
         final ResourceResolver resourceResolver = slingRequest.getResourceResolver();
         final PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+        final Page publicWebRootPage = pageManager.getContainingPage(slingRequest.getResource());
 
-        Page publicWebRootPage = pageManager.getContainingPage(slingRequest.getResource());
-        LOGGER.info("Resource path {}", publicWebRootPage.getPath());
-
-        XMLOutputFactory outputFactory = XMLOutputFactory.newFactory();
+        final XMLOutputFactory outputFactory = XMLOutputFactory.newFactory();
         try {
-            XMLStreamWriter stream = outputFactory.createXMLStreamWriter(slingResponse.getWriter());
-
+            final XMLStreamWriter stream = outputFactory.createXMLStreamWriter(slingResponse.getWriter());
             stream.writeStartDocument("1.0");
             stream.writeStartElement("", "sitemapindex", SITEMAP_NAMESPACE);
             stream.writeNamespace("", SITEMAP_NAMESPACE);
-
             if (Objects.nonNull(publicWebRootPage)) {
                 getMarketPages(publicWebRootPage.listChildren(), stream, resourceResolver);
             }
-
             stream.writeEndElement();
             stream.writeEndDocument();
-
         } catch (XMLStreamException e) {
-            throw new IOException(e);
+            LOGGER.error("Error in doGet method {}", e.getMessage());
         }
     }
 
@@ -113,10 +106,7 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 while (languagePages.hasNext()) {
                     Page languagePage = languagePages.next();
-                    String siteMapPath = PWConstants.CONTENT_ROOT_PATH + PWConstants.SLASH + languagePage.getName()
-                            + PWConstants.HYPHEN + marketPage.getName();
-                    LOGGER.info("Sitemap URL {}", siteMapPath);
-                    createSiteMapXml(stream, resourceResolver, siteMapPath);
+                    createSiteMapXml(stream, resourceResolver, languagePage.getPath());
                 }
             }
         }
