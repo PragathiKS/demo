@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 function searchOptionInRange(start, end, options) {
   for (let i = start; i < end; i++) {
     const opt = options[i].toUpperCase();
