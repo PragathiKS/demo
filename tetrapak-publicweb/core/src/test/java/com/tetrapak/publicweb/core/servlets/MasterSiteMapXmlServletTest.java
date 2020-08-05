@@ -60,7 +60,7 @@ public class MasterSiteMapXmlServletTest {
 
         masterSiteMapXmlServlet.doGet(request, response);
         assertEquals(
-                "<?xml version=\"1.0\"?><sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><sitemap><loc>/content/tetrapak/publicweb/publicweb/gb/en.sitemap.xml</loc></sitemap><sitemap><loc>/content/tetrapak/publicweb/publicweb/ca/fr.sitemap.xml</loc></sitemap><sitemap><loc>/content/tetrapak/publicweb/publicweb/ca/en.sitemap.xml</loc></sitemap></sitemapindex>",
+                "<?xml version=\"1.0\"?><sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><sitemap><loc>/content/tetrapak/publicweb/publicweb/ca/fr.html/sitemap.xml</loc></sitemap><sitemap><loc>/content/tetrapak/publicweb/publicweb/ca/en.html/sitemap.xml</loc></sitemap></sitemapindex>",
                 context.response().getOutputAsString());
     }
 }

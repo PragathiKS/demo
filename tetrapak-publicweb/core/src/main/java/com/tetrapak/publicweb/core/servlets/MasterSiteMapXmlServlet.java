@@ -47,7 +47,7 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
     private static final String SITEMAP_NAMESPACE = "http://www.sitemaps.org/schemas/sitemap/0.9";
 
     /** The Constant SITEMAP_XML. */
-    public static final String SITEMAP_XML = ".sitemap.xml";
+    public static final String SITEMAP_XML = "/sitemap.xml";
 
     /**
      * Do get.
@@ -155,9 +155,13 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
     private void writeXML(String siteMapPath, XMLStreamWriter xmlStreamWriter, ResourceResolver resolver)
             throws XMLStreamException {
 
+        String siteMapURL;
         xmlStreamWriter.writeStartElement(SITEMAP_NAMESPACE, "sitemap");
-        String siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver);
-        writeXMLElement(xmlStreamWriter, "loc", siteMapURL.replace(PWConstants.HTML_EXTENSION, SITEMAP_XML));
+        siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver);
+        if(siteMapPath.contains("/gb/en")) {
+            siteMapURL = siteMapURL.concat("/en-gb");
+        }      
+        writeXMLElement(xmlStreamWriter, "loc", siteMapURL.concat(SITEMAP_XML));
         xmlStreamWriter.writeEndElement();
     }
 
