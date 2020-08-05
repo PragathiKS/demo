@@ -146,7 +146,8 @@ public final class DeltaFeedUtil {
     public static void cachePurge(final ResourceResolver resolver, final Replicator replicator, final Session session,
             final List<String> langsToActivate, final LiveRelationshipManager liveRelManager) {
         for (final String path : langsToActivate) {
-            final Resource res = resolver.getResource("/content/tetrapak/publicweb/lang-masters/" + path);
+            final Resource res = resolver.getResource(PWConstants.CONTENT_ROOT_PATH + PWConstants.SLASH
+                    + PWConstants.LANG_MASTERS + PWConstants.SLASH + path);
             if (Objects.nonNull(res)) {
                 RangeIterator rangeIterator;
                 try {
