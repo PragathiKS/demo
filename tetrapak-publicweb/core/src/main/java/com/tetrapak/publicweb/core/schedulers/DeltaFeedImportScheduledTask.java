@@ -165,6 +165,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
             final String fileType = ProductUtil.getFileType(file.getName());
             final String language = ProductUtil.getLanguage(file.getName());
             if (!langsToActivate.contains(language)) {
+                LOGGER.debug("Adding langugae :: {} ", language);
                 langsToActivate.add(language);
             }
             switch (fileType) {
