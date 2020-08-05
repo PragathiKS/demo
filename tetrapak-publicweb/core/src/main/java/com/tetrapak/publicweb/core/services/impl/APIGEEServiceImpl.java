@@ -265,6 +265,7 @@ public class APIGEEServiceImpl implements APIGEEService {
 
         // GET API Call to APIGEE End point to get json data
         final String apiURL = config.apigeeServiceUrl() + apiURI;
+        LOGGER.debug("Http Get request URL : {}", apiURL);
         final HttpGet getRequest = new HttpGet(apiURL);
         getRequest.addHeader("Authorization", authType + " " + encodedAuthString);
         getRequest.addHeader("Accept", "application/json");
