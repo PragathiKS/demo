@@ -154,15 +154,15 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      */
     private void writeXML(String siteMapPath, XMLStreamWriter xmlStreamWriter, ResourceResolver resolver)
             throws XMLStreamException {
-        
+
         String siteMapURL;
         xmlStreamWriter.writeStartElement(SITEMAP_NAMESPACE, "sitemap");
+        
         if(siteMapPath.contains("/gb/en")) {
-            String globalTetrapakPagePath = siteMapPath.concat("/en-gb");
-            siteMapURL = LinkUtils.sanitizeLink(globalTetrapakPagePath, resolver);
+            siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver).concat("/en-gb");
         } else {
             siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver);
-        }       
+        }      
         writeXMLElement(xmlStreamWriter, "loc", siteMapURL.concat(SITEMAP_XML));
         xmlStreamWriter.writeEndElement();
     }
