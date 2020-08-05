@@ -157,11 +157,9 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
 
         String siteMapURL;
         xmlStreamWriter.writeStartElement(SITEMAP_NAMESPACE, "sitemap");
-        
+        siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver);
         if(siteMapPath.contains("/gb/en")) {
-            siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver).concat("/en-gb");
-        } else {
-            siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver);
+            siteMapURL = siteMapURL.concat("/en-gb");
         }      
         writeXMLElement(xmlStreamWriter, "loc", siteMapURL.concat(SITEMAP_XML));
         xmlStreamWriter.writeEndElement();
