@@ -186,7 +186,7 @@ public class APIGEEServiceImpl implements APIGEEService {
         if(StringUtils.isNotBlank(jsonResponse)) {
             try {
                 equipements = new ObjectMapper().readValue(jsonResponse, DeltaProcessingEquipement.class);
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 LOGGER.error("Unable to convert equipements to pojo for the list of files response", e.getMessage(), e);
             }
         }
