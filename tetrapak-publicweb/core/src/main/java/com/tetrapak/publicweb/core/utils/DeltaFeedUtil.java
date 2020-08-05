@@ -149,6 +149,7 @@ public final class DeltaFeedUtil {
             final Resource res = resolver.getResource(PWConstants.CONTENT_ROOT_PATH + PWConstants.SLASH
                     + PWConstants.LANG_MASTERS + PWConstants.SLASH + path);
             if (Objects.nonNull(res)) {
+                LOGGER.debug("Resource not null {}", res.getPath());
                 RangeIterator rangeIterator;
                 try {
                     rangeIterator = liveRelManager.getLiveRelationships(res, "", null);
