@@ -1,6 +1,6 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const makeLoad = function (label, formName, eventType='formstart', parentComponent) {
+export const makeLoad = function (label, formName, parentComponent, eventType='formstart') {
   const formObj = {
     formName: formName,
     formStep: 'Step 1',
@@ -53,7 +53,7 @@ export const changeStepPrev = function (formName, formStep, formType, parentComp
 };
 
 
-export const changeStepError = function (formName, formStep, formType, dataObj, errorObj={}, parentComponent) {
+export const changeStepError = function (formName, formStep, formType, dataObj, parentComponent, errorObj={}) {
   const formObj = {
     formName: formName,
     formStep: formStep,

@@ -1,6 +1,6 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const subscriptionAnalytics = function (formName, dataObj, eventType, trackingKey, errorObj=[], Step, formType) {
+export const subscriptionAnalytics = function (formName, dataObj, eventType, trackingKey, Step, formType, errorObj=[]) {
   const formObj = {
     formName: formName,
     formStep: Step,
