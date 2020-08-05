@@ -40,6 +40,7 @@ import com.tetrapak.publicweb.core.services.config.APIGEEServiceConfig;
 
 /**
  * Impl class for API GEE Service
+ *
  * @author Sandip Kumar
  */
 @Component(immediate = true, service = APIGEEService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
@@ -48,25 +49,27 @@ public class APIGEEServiceImpl implements APIGEEService {
 
     /** The config. */
     private APIGEEServiceConfig config;
-    
+
     /** The logger. */
-    private static final Logger LOGGER =  LoggerFactory.getLogger(APIGEEServiceImpl.class);
-    
+    private static final Logger LOGGER = LoggerFactory.getLogger(APIGEEServiceImpl.class);
+
     /** The token api url. */
-    private static final String TOKEN_API_URI = "/oauth2/v2/token";
-    
+    private static String TOKEN_API_URI = "/oauth2/v2/token";
+
     /** The bearer. */
-    private static final String BEARER = "Bearer";
-    
+    private static String BEARER = "Bearer";
+
     /** The success. */
     private static final int SUCESSS = 200;
 
     /**
      * activate method
-     * @param config API GEE Service configuration
+     *
+     * @param config
+     *            API GEE Service configuration
      */
     @Activate
-    public void activate(APIGEEServiceConfig config) {
+    public void activate(final APIGEEServiceConfig config) {
 
         this.config = config;
     }
@@ -78,13 +81,14 @@ public class APIGEEServiceImpl implements APIGEEService {
     public BearerToken getBearerToken() {
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
         BearerToken bearerToken = new BearerToken();
-        String authString = config.apigeeClientID() + ":" + config.apigeeClientSecret();
-        String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
-        String jsonResponse = getAPIGeePostRespose("Basic", TOKEN_API_URI, encodedAuthString);
-        if(StringUtils.isNotBlank(jsonResponse)) {
+        final String authString = config.apigeeClientID() + ":" + config.apigeeClientSecret();
+        final String encodedAuthString = Base64.getEncoder()
+                .encodeToString(authString.getBytes(StandardCharsets.UTF_8));
+        final String jsonResponse = getAPIGeePostRespose("Basic", TOKEN_API_URI, encodedAuthString);
+        if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 bearerToken = new ObjectMapper().readValue(jsonResponse, BearerToken.class);
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 LOGGER.error("Unable to convert json to pojo for the bearer token response", e.getMessage(), e);
             }
         }
@@ -95,95 +99,99 @@ public class APIGEEServiceImpl implements APIGEEService {
      * return filling machines
      */
     @Override
-    public List<FillingMachine> getFillingMachines(String token, String fileURI) {
+    public List<FillingMachine> getFillingMachines(final String token, final String fileURI) {
         List<FillingMachine> fillingMachines = new ArrayList<>();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
-        if(StringUtils.isNotBlank(jsonResponse)) {
+        final String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 fillingMachines = Arrays.asList(new ObjectMapper().readValue(jsonResponse, FillingMachine[].class));
-            } catch (IOException e) {
-                LOGGER.error("Unable to convert filling machine to pojo for the list of files response", e.getMessage(), e);
+            } catch (final IOException e) {
+                LOGGER.error("Unable to convert filling machine to pojo for the list of files response", e.getMessage(),
+                        e);
             }
         }
         return fillingMachines;
     }
-    
+
     /**
      * return package types
      */
     @Override
-    public List<Packagetype> getPackageTypes(String token, String fileURI) {
+    public List<Packagetype> getPackageTypes(final String token, final String fileURI) {
         List<Packagetype> packageType = new ArrayList<>();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
-        if(StringUtils.isNotBlank(jsonResponse)) {
+        final String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 packageType = Arrays.asList(new ObjectMapper().readValue(jsonResponse, Packagetype[].class));
-            } catch (IOException e) {
-                LOGGER.error("Unable to convert package types to pojo for the list of files response", e.getMessage(), e);
+            } catch (final IOException e) {
+                LOGGER.error("Unable to convert package types to pojo for the list of files response", e.getMessage(),
+                        e);
             }
         }
         return packageType;
     }
-    
+
     /**
      * return processing equipements
      */
     @Override
-    public List<ProcessingEquipement> getProcessingEquipements(String token, String fileURI) {
+    public List<ProcessingEquipement> getProcessingEquipements(final String token, final String fileURI) {
         List<ProcessingEquipement> equipements = new ArrayList<>();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
-        if(StringUtils.isNotBlank(jsonResponse)) {
+        final String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 equipements = Arrays.asList(new ObjectMapper().readValue(jsonResponse, ProcessingEquipement[].class));
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 LOGGER.error("Unable to convert equipements to pojo for the list of files response", e.getMessage(), e);
             }
         }
         return equipements;
     }
-    
+
     /**
      * return delta filling machines
      */
     @Override
-    public DeltaFillingMachine getDeltaFillingMachines(String token, String fileURI) {
+    public DeltaFillingMachine getDeltaFillingMachines(final String token, final String fileURI) {
         DeltaFillingMachine fillingMachines = new DeltaFillingMachine();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
-        if(StringUtils.isNotBlank(jsonResponse)) {
+        final String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 fillingMachines = new ObjectMapper().readValue(jsonResponse, DeltaFillingMachine.class);
-            } catch (IOException e) {
-                LOGGER.error("Unable to convert filling machine to pojo for the list of files response", e.getMessage(), e);
+            } catch (final IOException e) {
+                LOGGER.error("Unable to convert filling machine to pojo for the list of files response", e.getMessage(),
+                        e);
             }
         }
         return fillingMachines;
     }
-    
+
     /**
      * return delta package types
      */
     @Override
-    public DeltaPackageType getDeltaPackageTypes(String token, String fileURI) {
+    public DeltaPackageType getDeltaPackageTypes(final String token, final String fileURI) {
         DeltaPackageType packageType = new DeltaPackageType();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
-        if(StringUtils.isNotBlank(jsonResponse)) {
+        final String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 packageType = new ObjectMapper().readValue(jsonResponse, DeltaPackageType.class);
-            } catch (IOException e) {
-                LOGGER.error("Unable to convert package types to pojo for the list of files response", e.getMessage(), e);
+            } catch (final IOException e) {
+                LOGGER.error("Unable to convert package types to pojo for the list of files response", e.getMessage(),
+                        e);
             }
         }
         return packageType;
     }
-    
+
     /**
      * return delta processing equipements
      */
     @Override
-    public DeltaProcessingEquipement getDeltaProcessingEquipements(String token, String fileURI) {
+    public DeltaProcessingEquipement getDeltaProcessingEquipements(final String token, final String fileURI) {
         DeltaProcessingEquipement equipements = new DeltaProcessingEquipement();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
-        if(StringUtils.isNotBlank(jsonResponse)) {
+        final String jsonResponse = getAPIGeeGetRespose(BEARER, fileURI, token);
+        if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 equipements = new ObjectMapper().readValue(jsonResponse, DeltaProcessingEquipement.class);
             } catch (final IOException e) {
@@ -193,83 +201,85 @@ public class APIGEEServiceImpl implements APIGEEService {
         return equipements;
     }
 
-    /** return list of files
+    /**
+     * return list of files
      *
      */
     @Override
-    public Files getListOfFiles(String feedType, String token) {
+    public Files getListOfFiles(final String feedType, final String token) {
         Files listOfFiles = new Files();
-        String jsonResponse = getAPIGeeGetRespose(BEARER, PWConstants.FEED_FILES_URI + feedType,
-                token);
-        if(StringUtils.isNotBlank(jsonResponse)) {
+        final String jsonResponse = getAPIGeeGetRespose(BEARER, PWConstants.FEED_FILES_URI + feedType, token);
+        if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 listOfFiles = new ObjectMapper().readValue(jsonResponse, Files.class);
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 LOGGER.error("Unable to convert json to pojo for the list of files response", e);
             }
         }
         return listOfFiles;
     }
-    
+
     /**
      * @param authType
      * @param apiURI
      * @param encodedAuthString
      * @return api gee post response
      */
-    private String getAPIGeePostRespose(String authType,String apiURI,String encodedAuthString) {
+    private String getAPIGeePostRespose(final String authType, final String apiURI, final String encodedAuthString) {
         String jsonResponse = StringUtils.EMPTY;
-        
-        //POST API Call to APIGEE End point to get json data
+
+        // POST API Call to APIGEE End point to get json data
         final String apiURL = config.apigeeServiceUrl() + apiURI;
-        HttpPost postRequest = new HttpPost(apiURL);
+        final HttpPost postRequest = new HttpPost(apiURL);
         postRequest.addHeader("Authorization", authType + " " + encodedAuthString);
-        postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");       
+        postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
         postRequest.addHeader("Accept", "application/json");
-        ArrayList<NameValuePair> postParameters = new ArrayList<>();
+        final ArrayList<NameValuePair> postParameters = new ArrayList<>();
         postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
-     
-        HttpClient httpClient = HttpClientBuilder.create().build();
+
+        final HttpClient httpClient = HttpClientBuilder.create().build();
         int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
-        try {             
+        try {
             postRequest.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
-            HttpResponse httpResponse = httpClient.execute(postRequest);
-            statusCode = httpResponse.getStatusLine().getStatusCode();  
-            if(statusCode == SUCESSS) {
+            final HttpResponse httpResponse = httpClient.execute(postRequest);
+            statusCode = httpResponse.getStatusLine().getStatusCode();
+            if (statusCode == SUCESSS) {
                 jsonResponse = EntityUtils.toString(httpResponse.getEntity());
             }
             LOGGER.debug("Http Post request status code: {}", statusCode);
-        } catch (IOException e) {
+            LOGGER.debug("HTTP Post request Jsonresponse {}", jsonResponse);
+        } catch (final IOException e) {
             LOGGER.error("Unable to connect to the url {}", apiURL, e);
         }
         return jsonResponse;
     }
-    
+
     /**
      * @param authType
      * @param apiURI
      * @param encodedAuthString
      * @return api gee get response
      */
-    private String getAPIGeeGetRespose(String authType,String apiURI,String encodedAuthString) {
+    private String getAPIGeeGetRespose(final String authType, final String apiURI, final String encodedAuthString) {
         String jsonResponse = StringUtils.EMPTY;
-        
-        //GET API Call to APIGEE End point to get json data
+
+        // GET API Call to APIGEE End point to get json data
         final String apiURL = config.apigeeServiceUrl() + apiURI;
-        HttpGet getRequest = new HttpGet(apiURL);
-        getRequest.addHeader("Authorization", authType + " " + encodedAuthString);      
+        final HttpGet getRequest = new HttpGet(apiURL);
+        getRequest.addHeader("Authorization", authType + " " + encodedAuthString);
         getRequest.addHeader("Accept", "application/json");
-     
-        HttpClient httpClient = HttpClientBuilder.create().build();
+
+        final HttpClient httpClient = HttpClientBuilder.create().build();
         int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
-        try {             
-            HttpResponse httpResponse = httpClient.execute(getRequest);
-            statusCode = httpResponse.getStatusLine().getStatusCode();  
-            if(statusCode == SUCESSS) {
+        try {
+            final HttpResponse httpResponse = httpClient.execute(getRequest);
+            statusCode = httpResponse.getStatusLine().getStatusCode();
+            if (statusCode == SUCESSS) {
                 jsonResponse = EntityUtils.toString(httpResponse.getEntity());
             }
-            LOGGER.debug("Http Post request status code: {}", statusCode);
-        } catch (IOException e) {
+            LOGGER.debug("Http Get request status code: {}", statusCode);
+            LOGGER.debug("HTTP GET request Jsonresponse {}", jsonResponse);
+        } catch (final IOException e) {
             LOGGER.error("Unable to connect to the url {}", apiURL, e);
         }
         return jsonResponse;
