@@ -6,7 +6,7 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the environment')
+        choice(name: 'Environment', choices: ['DEV', 'QA'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetraPak Module', name: 'DeployMyTetrapak'
         booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
