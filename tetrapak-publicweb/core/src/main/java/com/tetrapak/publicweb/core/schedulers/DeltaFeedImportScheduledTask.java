@@ -164,10 +164,6 @@ public class DeltaFeedImportScheduledTask implements Runnable {
         if (file != null && StringUtils.isNotBlank(file.getName())) {
             final String fileType = ProductUtil.getFileType(file.getName());
             final String language = ProductUtil.getLanguage(file.getName());
-            if (!langsToActivate.contains(language)) {
-                LOGGER.debug("Adding langugae :: {} ", language);
-                langsToActivate.add(language);
-            }
             switch (fileType) {
                 case "fillingmachines":
                     processFillingMachines(file.getName(), fileType, language);
@@ -202,6 +198,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
                 && !deltaFillingMachines.getFillingMachine().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductFillingMachine(resolver, session, fileType,
                     deltaFillingMachines.getFillingMachine(), language));
+            addLanguage(language);
         }
         if (deltaFillingMachines != null && deltaFillingMachines.getDeleted() != null
                 && !deltaFillingMachines.getDeleted().isEmpty()) {
@@ -233,6 +230,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
                 && !deltaEquipements.getProcessingEquipement().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductProcessingEquipement(resolver, session, fileType,
                     deltaEquipements.getProcessingEquipement(), language));
+            addLanguage(language);
         }
         if (deltaEquipements != null && deltaEquipements.getDeleted() != null
                 && !deltaEquipements.getDeleted().isEmpty()) {
@@ -263,6 +261,7 @@ public class DeltaFeedImportScheduledTask implements Runnable {
                 && !deltaPackageTypes.getPackagetype().isEmpty()) {
             pathsToActivate.addAll(productService.createOrUpdateProductPackageType(resolver, session, fileType,
                     deltaPackageTypes.getPackagetype(), language));
+            addLanguage(language);
         }
         if (deltaPackageTypes != null && deltaPackageTypes.getDeleted() != null
                 && !deltaPackageTypes.getDeleted().isEmpty()) {
@@ -361,6 +360,17 @@ public class DeltaFeedImportScheduledTask implements Runnable {
     private void removeScheduler() {
         LOGGER.debug("Removing DeltaFeedImportScheduledTask Job '{}'", schedulerID);
         scheduler.unschedule(String.valueOf(schedulerID));
+    }
+
+    /**
+     * Adds language to the list
+     *
+     * @param language
+     */
+    private void addLanguage(final String language) {
+        if (!langsToActivate.contains(language)) {
+            langsToActivate.add(language);
+        }
     }
 
 }

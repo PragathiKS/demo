@@ -145,11 +145,11 @@ public final class DeltaFeedUtil {
      */
     public static void cachePurge(final ResourceResolver resolver, final Replicator replicator, final Session session,
             final List<String> langsToActivate, final LiveRelationshipManager liveRelManager) {
+        LOGGER.debug("Inside cache purge function -no of languages :: {}", langsToActivate.size());
         for (final String path : langsToActivate) {
             final Resource res = resolver.getResource(PWConstants.CONTENT_ROOT_PATH + PWConstants.SLASH
                     + PWConstants.LANG_MASTERS + PWConstants.SLASH + path);
             if (Objects.nonNull(res)) {
-                LOGGER.debug("Resource not null {}", res.getPath());
                 RangeIterator rangeIterator;
                 try {
                     rangeIterator = liveRelManager.getLiveRelationships(res, "", null);
@@ -159,7 +159,7 @@ public final class DeltaFeedUtil {
                         replicator.replicate(session, ReplicationActionType.ACTIVATE, liveCopy.getTargetPath());
                     }
                 } catch (final WCMException | ReplicationException e) {
-                    LOGGER.error("Error while finding live copies");
+                    LOGGER.error("Error while finding live copies {} {}", e.getMessage(), e);
                 }
             }
         }
