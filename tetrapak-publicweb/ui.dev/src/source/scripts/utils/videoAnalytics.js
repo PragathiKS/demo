@@ -216,11 +216,13 @@ function _onStateChange(thisIns, e) {
  */
 export const ytPromise = new Promise(function(resolve) {
   try {
-    window.onYouTubeIframeAPIReady = function(...args) {
+    if(!window.Mocha){
       const scr = document.createElement('script');
       scr.src = 'https://www.youtube.com/iframe_api';
       const firstScript = document.getElementsByTagName('script')[0];
       firstScript.parentNode.insertBefore(scr, firstScript);
+    }
+    window.onYouTubeIframeAPIReady = function(...args) {
       resolve(args);
     };
   } catch {
