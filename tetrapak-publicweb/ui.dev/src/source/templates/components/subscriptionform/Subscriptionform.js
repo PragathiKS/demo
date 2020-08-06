@@ -40,7 +40,7 @@ class Subscriptionform {
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
 
-    subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', [], 'Step 1', 'Subscribe');
+    subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
    
 
     ajaxWrapper.getXhrObj({
@@ -113,7 +113,7 @@ class Subscriptionform {
       if (isvalid) {
         self.submitForm();
       }else{
-        subscriptionAnalytics(self.mainHead, {}, 'formerror', 'formclick', errObj, 'Step 1', 'Subscribe');
+        subscriptionAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', 'Subscribe', errObj);
       }
     });
 
@@ -126,7 +126,7 @@ class Subscriptionform {
     this.restObj = {};
     this.mainHead = $($('#sf-step-1 .main-heading').find('h2')[0]).text().trim();
     $('#sf-step-1 label').slice(0,1).each((i, v) => this.restObj[$(v).text()] = 'NA');
-    subscriptionAnalytics(this.mainHead, {}, 'formstart', 'formload', [], '', '');
+    subscriptionAnalytics(this.mainHead, {}, 'formstart', 'formload', '', '', []);
   }
 }
 

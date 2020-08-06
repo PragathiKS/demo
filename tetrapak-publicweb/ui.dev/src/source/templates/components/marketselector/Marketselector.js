@@ -14,11 +14,6 @@ class Marketselector {
   bindEvents() {
     const { $marketSelectorList} = this.cache;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
-      .on('click', function () {
-        if ($(this).hasClass('js-lang-modal')) {
-          this.hidePopUp;
-        }
-      })
       .on('showlanuagepreferencepopup-pw', this.showPopup);
     $marketSelectorList.on('click', this.trackMarketSelectorAnalytics);
   }

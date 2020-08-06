@@ -178,12 +178,6 @@ class Softconversion {
     const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $parentComponent, $company, $position, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn } = this.cache;
     const self = this;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
-      .on('click', function () {
-        if ($(this).hasClass('js-soft-modal')) {
-          this.hidePopUp;
-
-        }
-      })
       .on('showsoftconversion-pw', this.showPopup);
 
     $radio.on('change', this.onRadioChangeHandler);
@@ -296,10 +290,10 @@ class Softconversion {
       }else{
         switch (target) {
         case `#cf-step-2-${$componentName}`:
-          changeStepError(self.mainHeading, 'Step 1', self.step1heading, {}, errObj, $parentComponent);
+          changeStepError(self.mainHeading, 'Step 1', self.step1heading, {}, $parentComponent, errObj);
           break;
         case `#cf-step-3-${$componentName}`:
-          changeStepError(self.mainHeading, 'Step 2', self.step2heading, {}, errObj, $parentComponent);
+          changeStepError(self.mainHeading, 'Step 2', self.step2heading, {}, $parentComponent, errObj);
           break;
         default:
           break;
@@ -351,10 +345,7 @@ class Softconversion {
       if (isvalid) {
         self.submitForm();
       }else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`){
-        changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, errObj, $parentComponent);
-        // case `#cf-step-downloadReady-${$componentName}`:
-        //changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, errObj);
-        //break;
+        changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, $parentComponent, errObj);
       }
     });
   }
@@ -363,14 +354,14 @@ class Softconversion {
     const $this = this;
     const visitorMail = storageUtil.getCookie('visitor-mail');
     if(visitorMail) {
-      makeLoad('welcome back', $this.mainHeading, 'welcome back:formstart', this.cache.$parentComponent);
+      makeLoad('welcome back', $this.mainHeading, this.cache.$parentComponent, 'welcome back:formstart');
       $(`#visitor-email-${this.cache.$componentName}`).text(visitorMail).css('font-weight', 900);
       $(`.heading_${this.cache.$componentName}`, this.root).text('');
       $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).addClass('active');
       isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
     }else{
-      makeLoad($this.step1heading, $this.mainHeading, 'formstart', this.cache.$parentComponent);
+      makeLoad($this.step1heading, $this.mainHeading, this.cache.$parentComponent, 'formstart');
     }
 
     const { $modal } = $this.cache;
