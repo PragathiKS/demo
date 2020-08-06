@@ -29,7 +29,7 @@ import com.tetrapak.publicweb.core.services.DynamicMediaService;
  * This is a global util class to access globally common utility methods
  *
  * @author Nitin Kumar
- */p
+ */
 public final class GlobalUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
