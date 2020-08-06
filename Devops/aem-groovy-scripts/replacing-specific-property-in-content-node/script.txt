@@ -1,0 +1,41 @@
+componentList = [
+                "publicweb/components/content/textImage",
+                "publicweb/components/content/textVideo",
+                "publicweb/components/content/banner"
+                   ];
+rootPath = '/content/tetrapak/publicweb/lang-masters/en'
+propertyName = 'pardotUrl'
+propertyValue = 'http://go.tetrapak.com/l/857883/2020-04-30/xyxxx'
+ 
+findAllComponents()
+
+
+def buildQuery(page, term) {
+    def queryManager = session.workspace.queryManager;
+    def statement = 'select * from nt:base where jcr:path like \''+page+'/%\' and sling:resourceType = \'' + term + '\'';
+    queryManager.createQuery(statement, 'sql');
+}
+ 
+ 
+def findAllComponents() {
+     def count = 0;
+        componentList.each {
+            component ->
+            
+            final def query = buildQuery(rootPath,component);
+            final def result = query.execute();
+            result.nodes.each { node ->
+				if(node.hasProperty(propertyName)){
+					node.set(propertyName, (Value)null);
+					node.set(propertyName, propertyValue);
+					session.save();
+					
+					count++;
+					println node.path
+					println "_________________________________"
+				}
+				 
+            } 
+        }
+        println count
+}
