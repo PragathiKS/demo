@@ -24,14 +24,14 @@ class TextImage {
     getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics');
   };
 
-  
+
   seoChanges() {
     const titleDiv = this.root.find('.pw-text-image__title');
     const h1tag = titleDiv.find('h1') ;
     if( h1tag.length) {
       $(h1tag).attr('class','tpatom-heading tpatom-heading--regular');
       const h2Tag = titleDiv.find('h2')[0];
-      h2Tag.parentNode.removeChild(h2Tag);
+      h2Tag && h2Tag.parentNode.removeChild(h2Tag);
     }
   }
 

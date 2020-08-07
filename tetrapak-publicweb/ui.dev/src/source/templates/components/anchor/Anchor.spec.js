@@ -1,7 +1,6 @@
 import Anchor from './Anchor';
 import $ from 'jquery';
 import anchorTemplate from '../../../test-templates-hbs/anchor.hbs';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Anchor', function() {
   before(function() {
@@ -22,11 +21,13 @@ describe('Anchor', function() {
     this.scrollToSectionSpy.restore();
   });
 
-  it('should initialize', function() {
+  it('should initialize', function(done) {
     expect(this.Anchor.init.called).to.be.true;
+    done();
   });
-  it('should call scrollToSection on click', function() {
+  it('should call scrollToSection on click', function(done) {
     $('a').trigger('click');
     expect(this.Anchor.scrollToSection.called).to.be.true;
+    done();
   });
 });

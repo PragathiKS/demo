@@ -25,16 +25,19 @@ describe('Navigation', function() {
     this.initSpy.restore();
     this.sectionMenuToggleClickSpy.restore();
   });
-  it('should initialize', function() {
+  it('should initialize', function(done) {
     expect(this.navigation.init.called).to.be.true;
+    done();
   });
-  it('should call sectionMenuToggleClick on click', function() {
+  it('should call sectionMenuToggleClick on click', function(done) {
     $('.collapse-button').trigger('click');
     expect(this.navigation.sectionMenuToggleClick.called).to.be.true;
+    done();
   });
-  it('add class overflow auto in body when section menu closed ', function() {
+  it('add class overflow auto in body when section menu closed ', function(done) {
     $('.collapse-button').removeClass('collapsed');
     $('.collapse-button').trigger('click');
     expect(document.body.style.overflow).to.equal('auto');
+    done();
   });
 });

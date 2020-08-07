@@ -61,7 +61,7 @@ class Banner {
       $this.attr('target', '_blank');
     }
 
-    getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);  
+    getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);
 
 
     if (isExternal($anchor)) {
@@ -93,7 +93,7 @@ class Banner {
     if( h1tag.length) {
       $(h1tag).attr('class','tpatom-heading tpatom-heading--regular');
       const h2Tag = titleDiv.find('h2')[0];
-      h2Tag.parentNode.removeChild(h2Tag);
+      h2Tag && h2Tag.parentNode.removeChild(h2Tag);
     }
   }
 

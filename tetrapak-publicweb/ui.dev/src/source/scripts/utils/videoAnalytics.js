@@ -39,7 +39,7 @@ function _trackVideoParameters(
   videoTime,
   trackingKey
 ) {
-  const { videoName,videoType } = $(this)
+  const { videoName, videoType } = $(this)
     .parents('.js-video-props')
     .data();
 
@@ -215,13 +215,17 @@ function _onStateChange(thisIns, e) {
  * @public
  */
 export const ytPromise = new Promise(function(resolve) {
-  const scr = document.createElement('script');
-  scr.src = 'https://www.youtube.com/iframe_api';
-  const firstScript = document.getElementsByTagName('script')[0];
-  firstScript.parentNode.insertBefore(scr, firstScript);
-  window.onYouTubeIframeAPIReady = function(...args) {
-    resolve(args);
-  };
+  try {
+    const scr = document.createElement('script');
+    scr.src = 'https://www.youtube.com/iframe_api';
+    const firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(scr, firstScript);
+    window.onYouTubeIframeAPIReady = function(...args) {
+      resolve(args);
+    };
+  } catch {
+    logger.log('Error in youTube api>>>>>>>>>>>>');
+  }
 });
 
 /**
@@ -377,6 +381,8 @@ export default {
   init() {
     ytPromise.then(() => {
       initializeYoutubePlayer();
+    }).catch(err => {
+      logger.log('error in video analytics>>>>>', err);
     });
     initializeDAMPlayer();
   }

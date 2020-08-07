@@ -11,7 +11,8 @@ describe('Error Page', function () {
   after(function () {
     this.initSpy.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.errorPage.init.called).to.be.true;
+    done();
   });
 });

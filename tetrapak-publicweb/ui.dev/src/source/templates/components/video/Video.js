@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import { initializeDAMPlayer,ytPromise,initializeYoutubePlayer } from '../../../scripts/utils/videoAnalytics';
 
 class Video {
   constructor({ el }) {
@@ -7,10 +6,7 @@ class Video {
   }
   cache = {};
   initCache() {
-    ytPromise.then(() => {
-      initializeYoutubePlayer();
-    });
-    initializeDAMPlayer();
+    // define initial method
   }
   bindEvents() {
     /* Bind jQuery events here */

@@ -13,7 +13,7 @@ describe('Banner', function () {
     this.initSpy = sinon.spy(this.banner, 'init');
     this.analyticsSpy = sinon.spy(this.banner, 'trackAnalytics');
     this.trackBannerImageClickSpy = sinon.spy(this.banner, 'trackBannerImageClick');
-    
+
     this.openStub = sinon.stub(window, 'open');
     window.digitalData = {};
     window._satellite = {
@@ -28,17 +28,20 @@ describe('Banner', function () {
     this.trackBannerImageClickSpy.restore();
     this.openStub.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.initSpy.called).to.be.true;
+    done();
   });
-  it('should track analytics on click of "itblink" link', function () {
+  it('should track analytics on click of "itblink" link', function (done) {
     $('.js-banner-analytics').trigger('click');
     expect(this.analyticsSpy.called).to.be.true;
+    done();
   });
 
-  it('should enable click on image', function () {
+  it('should enable click on image', function (done) {
     $('.pw-banner').trigger('click');
     expect(this.trackBannerImageClickSpy.called).to.be.true;
+    done();
   });
 
 });

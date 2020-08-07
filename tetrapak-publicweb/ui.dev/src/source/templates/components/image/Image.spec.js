@@ -22,13 +22,15 @@ describe('Image', function () {
     this.trackAnalyticsSpy.restore();
   });
 
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.image.init.called).to.be.true;
+    done();
   });
-  
-  it('should call track analytics on click', function () {
+
+  it('should call track analytics on click', function (done) {
     $('.js-tp-pw-image').trigger('click');
     expect(this.image.trackAnalytics.called).to.be.true;
+    done();
   });
 
 });

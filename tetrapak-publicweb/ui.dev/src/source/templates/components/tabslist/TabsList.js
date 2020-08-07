@@ -3,7 +3,7 @@ import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { isExternal } from '../../../scripts/utils/updateLink';
 import { pauseVideosByReference, initializeYoutubePlayer, removeYTReferences, ytPromise, initializeDAMPlayer } from '../../../scripts/utils/videoAnalytics';
-
+import { logger } from '../../../scripts/utils/logger';
 
 function _renderFirstTab() {
   const { componentId } = this.cache;
@@ -12,6 +12,8 @@ function _renderFirstTab() {
   $tabSection.find('.js-yt-player, .js-dam-player').removeClass('video-init');
   ytPromise.then(() => {
     initializeYoutubePlayer();
+  }).catch( err => {
+    logger.log('err in Tablist>>>',err);
   });
   initializeDAMPlayer();
 }

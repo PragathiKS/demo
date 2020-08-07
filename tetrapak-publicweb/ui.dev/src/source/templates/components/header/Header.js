@@ -306,7 +306,7 @@ class Header {
       if (url.includes(myDomain)) {
         $this.attr('target','_blank');
       } else {
-        $this.attr('target','_self');  
+        $this.attr('target','_self');
       }
     }
     else {

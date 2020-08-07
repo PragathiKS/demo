@@ -2,7 +2,6 @@ import Header from './Header';
 import $ from 'jquery';
 import headerTemplate from '../../../test-templates-hbs/header.hbs';
 import { loc } from '../../../scripts/common/common';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Header', function () {
   before(function () {
@@ -47,61 +46,73 @@ describe('Header', function () {
     this.searchIconClickSpy.restore();
     this.handleCloseSolEventSpy.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.header.init.called).to.be.true;
+    done();
   });
 
-  it('should open mobile menu box on click', function () {
+  it('should open mobile menu box on click', function (done) {
     $('.js-tp-pw-header__hamburger').trigger('click');
     expect(this.header.openMobileMenuBoxToggle.called).to.be.true;
+    done();
   });
 
-  it('should close mobile menu on window resize', function() {
+  it('should close mobile menu on window resize', function(done) {
     $(window).trigger('resize');
     expect(this.header.hideMobileMenuOnResize.called).to.be.true;
+    done();
   });
 
-  it('should close mobile menu box on click', function () {
+  it('should close mobile menu box on click', function (done) {
     this.header.toggleFlag = true;
     $('.js-tp-pw-header__hamburger').trigger('click');
     expect(this.header.openMobileMenuBoxToggle.called).to.be.true;
+    done();
   });
 
-  it('should call track analytics on click', function () {
+  it('should call track analytics on click', function (done) {
     $('.js-tp-pw-header-logo-digital-data').trigger('click');
     expect(this.header.trackAnalytics.called).to.be.true;
+    done();
   });
 
-  it('should call handleMouseOver on mouseover', function () {
+  it('should call handleMouseOver on mouseover', function (done) {
     $('.js-hover-menu-link').trigger('mouseover');
     expect(this.header.handleMouseOver.called).to.be.true;
+    done();
   });
 
-  it('should call handleMouseOut on mouseout', function () {
+  it('should call handleMouseOut on mouseout', function (done) {
     $('.js-hover-menu-link').trigger('mouseout');
     expect(this.header.handleMouseOut.called).to.be.true;
+    done();
   });
 
-  it('should call handleMenuClick on click', function () {
+  it('should call handleMenuClick on click', function (done) {
     $('.js-click-menu-link').trigger('click');
     expect(this.header.handleMenuClick.called).to.be.true;
+    done();
   });
-  it('should call handleHeaderItemMouseOver on mouseover', function () {
+  it('should call handleHeaderItemMouseOver on mouseover', function (done) {
     $('.js-main-menu-link-hover').trigger('mouseover');
     expect(this.header.handleHeaderItemMouseOver.called).to.be.true;
+    done();
   });
 
-  it('should call handleHeaderItemMouseOut on mouseout', function () {
+  it('should call handleHeaderItemMouseOut on mouseout', function (done) {
     $('.js-main-menu-link-hover').trigger('mouseout');
     expect(this.header.handleHeaderItemMouseOut.called).to.be.true;
+    done();
   });
-  it('should call searchIconClick on click', function () {
+  it('should call searchIconClick on click', function (done) {
     $('.js-tp-pw-header__search-box-toggle').trigger('click');
     expect(this.header.searchIconClick.called).to.be.true;
+    done();
   });
-  it('should call handleCloseSolEvent on click', function () {
+  it('should call handleCloseSolEvent on click', function (done) {
     $('.js-close-menu-solution').trigger('click');
     expect(this.header.handleCloseSolEvent.called).to.be.true;
+    done();
   });
 
 });

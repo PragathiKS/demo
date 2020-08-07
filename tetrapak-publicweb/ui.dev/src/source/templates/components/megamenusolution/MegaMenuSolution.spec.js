@@ -28,21 +28,25 @@ describe('MegaMenuSolution', function () {
     this.mobileModeStub.restore();
     this.openStub.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.initSpy.called).to.be.true;
+    done();
   });
 
-  it('should call handleOpenEvent on click', function () {
+  it('should call handleOpenEvent on click', function (done) {
     $('.js-open-menu').trigger('click');
     expect(this.megaMenu.handleOpenEvent.called).to.be.true;
+    done();
   });
 
-  it('should call handleCloseEvent on click', function () {
+  it('should call handleCloseEvent on click', function (done) {
     $('.js-close-menu').trigger('click');
     expect(this.megaMenu.handleCloseEvent.called).to.be.true;
+    done();
   });
-  it('should call trackAnalytics on click', function () {
+  it('should call trackAnalytics on click', function (done) {
     $('.js-navigation-Link').trigger('click');
     expect(this.megaMenu.trackAnalytics.called).to.be.true;
+    done();
   });
 });

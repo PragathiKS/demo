@@ -26,16 +26,19 @@ describe('Marketselector', function () {
     this.openStub.restore();
   });
 
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.marketselector.init.called).to.be.true;
+    done();
   });
-  it('should call track analytics on click', function () {
+  it('should call track analytics on click', function (done) {
     $('.js-lang-selector__btn > a').trigger('click');
     expect(this.marketselector.trackMarketSelectorAnalytics.called).to.be.true;
+    done();
   });
 
-  it('should close popup when close button is clicked', function () {
+  it('should close popup when close button is clicked', function (done) {
     $('.js-close-btn').trigger('click');
     expect(this.marketselector.hidePopUp.called).to.be.true;
+    done();
   });
 });

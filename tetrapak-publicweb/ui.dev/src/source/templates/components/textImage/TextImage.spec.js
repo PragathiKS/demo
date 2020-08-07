@@ -1,7 +1,5 @@
 import $ from 'jquery';
 import TextImage from './TextImage';
-import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
-
 
 describe('TextImage', function () {
   before(function () {
@@ -24,11 +22,13 @@ describe('TextImage', function () {
     this.analyticsSpy.restore();
     this.openStub.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.textImage.init.called).to.be.true;
+    done();
   });
-  it('should track analytics on click of "TextImage" button', function () {
+  it('should track analytics on click of "TextImage" button', function (done) {
     $('.js-textImage-analytics').trigger('click');
     expect(this.textImage.trackAnalytics.called).to.be.true;
+    done();
   });
 })

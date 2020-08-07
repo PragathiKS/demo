@@ -22,13 +22,15 @@ describe('Breadcrumb', function () {
     this.initSpy.restore();
     this.trackAnalyticsSpy.restore();
   });
-  it('should initialize', function () {
+  it('should initialize', function (done) {
     expect(this.breadcrumb.init.called).to.be.true;
+    done();
   });
 
-  it('should call track analytics on click', function () {
+  it('should call track analytics on click', function (done) {
     $('.js-tp_pw-breadcrumb__link').trigger('click');
     expect(this.breadcrumb.trackAnalytics.called).to.be.true;
+    done();
   });
 
 });
