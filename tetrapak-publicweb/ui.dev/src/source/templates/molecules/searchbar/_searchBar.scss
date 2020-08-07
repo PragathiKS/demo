@@ -19,6 +19,7 @@
         display: flex;
         flex: 1;
         flex-wrap: wrap;
+        text-indent: -10000px;
         input {
             @include padding(0);
             border: none;
