@@ -7,6 +7,7 @@ import dynamicMedia from './dynamicMedia';
 import customEvents from './customEvents';
 import updateLink from './updateLink';
 import movehash from './moveHash';
+import videoAnalytics from './videoAnalytics';
 import { $body } from './commonSelectors';
 import $ from 'jquery';
 import { responsive } from './responsive';
@@ -16,6 +17,8 @@ export default {
     customEvents.init();
     dynamicMedia.init();
     responsive.init();
+    // Video analytics
+    videoAnalytics.init();
     updateLink();
     movehash();
     $body.on('show.bs.modal', function () {
