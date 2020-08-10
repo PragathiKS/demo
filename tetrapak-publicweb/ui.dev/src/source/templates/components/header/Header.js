@@ -236,12 +236,9 @@ class Header {
     const url = $this.attr('href');
     const myDomain = 'tetrapak.com';
 
-    if (url && (url.includes('http://') || url.includes('https://'))) {
-      if (url.includes(myDomain)) {
-        $this.attr('target','_blank');
-      }
-    }
-    else {
+    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain)) {
+      $this.attr('target','_blank');
+    }else {
       $this.attr('target','_self');
     }
     const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
@@ -302,14 +299,9 @@ class Header {
     const targetLink = $this.attr('target');
     const url = $this.attr('href');
     const myDomain = 'tetrapak.com';
-    if (url && (url.includes('http://') || url.includes('https://'))) {
-      if (url.includes(myDomain)) {
-        $this.attr('target','_blank');
-      } else {
-        $this.attr('target','_self');
-      }
-    }
-    else {
+    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain)) {
+      $this.attr('target','_blank');
+    } else {
       $this.attr('target','_self');
     }
     const linkType = $this.attr('target') === '_blank'? 'external' :'internal';

@@ -27,10 +27,8 @@ class Footer {
     const linkText = $this.text().trim();
     const linkName = linkText ? linkText : $this.data('link-name');
     const myDomain = 'tetrapak.com';
-    if (url && (url.includes('http://') || url.includes('https://'))) {
-      if (url.includes(myDomain)) {
-        $this.attr('target','_blank');
-      }
+    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain)) {
+      $this.attr('target','_blank');
     }
     else {
       $this.attr('target','_self');
