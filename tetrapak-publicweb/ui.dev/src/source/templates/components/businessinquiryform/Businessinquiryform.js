@@ -48,11 +48,15 @@ class Businessinquiryform {
     return REG_EMAIL.test(email);
   }
 
+  reloadPage() {
+    location.reload();
+  }
+
   newRequestHanlder = e => {
     e.preventDefault();
     e.stopPropagation();
     newPage(this.linkTitle, this.linkText);
-    location.reload();
+    this.reloadPage();
   }
 
   submitForm = () => {

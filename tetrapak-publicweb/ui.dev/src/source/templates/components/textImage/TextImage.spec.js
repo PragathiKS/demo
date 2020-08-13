@@ -4,7 +4,7 @@ import TextImage from './TextImage';
 describe('TextImage', function () {
   before(function () {
     this.enableTimeouts(false);
-    $(document.body).empty().html('<a class="TextImage js-textImage-analytics">Image Text Button</a>');
+    $(document.body).empty().html('<div class="pw-text-image__title"><div class="js-softconversion-pw" /><h1></h1><a class="TextImage js-textImage-analytics">Image Text Button</a></div>');
     this.textImage = new TextImage({
       el: document.body
     });
@@ -29,6 +29,15 @@ describe('TextImage', function () {
   it('should track analytics on click of "TextImage" button', function (done) {
     $('.js-textImage-analytics').trigger('click');
     expect(this.textImage.trackAnalytics.called).to.be.true;
+    done();
+  });
+  it('should click of js-softconversion-pw form', function (done) {
+    $('.js-softconversion-pw').trigger('click');
+    done();
+  });
+  it('check for h2 tag', function (done) {
+    $('h1').remove();
+    this.textImage.init();
     done();
   });
 })
