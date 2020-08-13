@@ -35,6 +35,8 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.replication.ReplicationResult;
 import com.day.cq.replication.ReplicationTransaction;
@@ -56,6 +58,9 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
         configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = CDNCacheInvalidationServiceConfig.class)
 public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationService {
+    
+    /** LOGGER */
+    private static final Logger LOGGER = LoggerFactory.getLogger(CDNCacheInvalidationServiceImpl.class);
 
     private CDNCacheInvalidationServiceConfig config;
 
@@ -186,7 +191,9 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
             final HttpClient client = HttpClientBuilder.create().build();
             response = client.execute(request);
         } catch (final Exception e) {
-            tx.getLog().error("Could not send replication request- " + e.getMessage());
+            tx.getLog().error("Could not send replication request {}", e.getMessage());
+            LOGGER.error("Could not send replication request {}", e.getMessage());
+            
         }
         return response;
     }
