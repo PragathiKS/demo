@@ -17,7 +17,8 @@
 /0010 { /type "allow" /path  "/content/*"}
 
 ## Enable specific mime types in non-public content directories
-/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2|mp4)' }
+##Disabling this rule to remediate the vulnerability
+#/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2|mp4)' }
 
 ## Enable clientlibs proxy servlet
 /0012 { /type "allow" /method "GET" /url "/etc.clientlibs/*" }
