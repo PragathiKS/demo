@@ -31,7 +31,7 @@ class MediaLink {
     const sectionTitle = $this.data('section-name');
     let linkSection = $this.data('link-section');
     if(downloadtype ==='download') {
-      const extension = $this.attr('href').split('.').pop();
+      const extension = $this.attr('href') && $this.attr('href').split('.').pop();
       linkParentTitle = `Text Hyperlink_Download_${extension}_${sectionTitle}`;
       linkSection = 'Related links and downloads_Text Hyperlink_Download';
       trackingObj = {
@@ -60,7 +60,7 @@ class MediaLink {
         linkParentTitle,
         linkName
       };
-      
+
       eventObj = {
         eventType: 'linkClick',
         event: 'Related links and downloads'

@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import Footer from './Footer';
 import footerTemplate from '../../../test-templates-hbs/footer.hbs';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Footer', function () {
   before(function () {
@@ -13,6 +12,8 @@ describe('Footer', function () {
     this.trackAnalyticsSpy = sinon.spy(this.footer, 'trackAnalytics');
     this.goToTopSpy = sinon.spy(this.footer, 'goToTop');
     this.openStub = sinon.stub(window, 'open');
+    this.isExternalStub = sinon.stub(this.footer, 'isExternal');
+    this.isExternalStub.returns(true);
     window.digitalData = {};
     window._satellite = {
       track() { /* Dummy method */ }
@@ -25,14 +26,15 @@ describe('Footer', function () {
     this.goToTopSpy.restore();
     this.trackAnalyticsSpy.restore();
     this.openStub.restore();
+    this.isExternalStub.restore();
   });
   it('should initialize', function (done) {
-    expect(this.initSpy.called).to.be.true;
+    expect(this.footer.init.called).to.be.true;
     done();
   });
   it('should go to top on click of "top" button', function (done) {
      $('#tp-pw-footer__link').trigger('click');
-     expect(this.goToTopSpy.called).to.be.true;
+     expect(this.footer.goToTop.called).to.be.true;
      done();
   });
   it('should call track analytics on click', function (done) {

@@ -34,6 +34,7 @@ describe('FindMyOffice', function() {
     this.renderCountriesSpy = sinon.spy(this.findMyOffice, 'renderCountries');
     this.getOfficesListSpy = sinon.spy(this.findMyOffice, 'getOfficesList');
     this.goToLocalSiteSpy = sinon.spy(this.findMyOffice, 'goToLocalSite');
+    this.onKeydownSpy = sinon.spy(this.findMyOffice, 'onKeydown');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse(tpOffices));
     this.openStub = sinon.stub(window, 'open');
@@ -75,6 +76,7 @@ describe('FindMyOffice', function() {
     this.onClickCityItemSpy.restore();
     this.renderMarkerPositionSpy.restore();
     this.openStub.restore();
+    this.onKeydownSpy.restore();
   });
 
   it('should initialize', function(done) {
@@ -87,6 +89,8 @@ describe('FindMyOffice', function() {
   });
   it('should call getOfficeList', function(done) {
     expect(this.findMyOffice.getOfficesList.called).to.be.true;
+    $('.js-pw-form__dropdown__country,.js-pw-form__dropdown__country-select').keydown();
+    expect(this.findMyOffice.onKeydown.called).to.be.true;
     done();
   });
   it('should call goToLocalSite', function(done) {

@@ -61,11 +61,17 @@ class Footer {
     $global.animate({ scrollTop: 0 }, 700);
     return false;
   }
+
+  isExternal(thisHref){
+    return isExternal(thisHref);
+  }
+
   addLinkAttr() {
+    const that = this;
     $('.tp-pw-footer-data-analytics').each(function () {
       const thisHref = $(this).attr('href');
       if (thisHref) {
-        if (isExternal(thisHref)) {
+        if (that.isExternal(thisHref)) {
           $(this).attr('target', '_blank');
           $(this).data('download-type', 'download');
           $(this).data('link-section', $(this).data('link-section') + '_Download');
