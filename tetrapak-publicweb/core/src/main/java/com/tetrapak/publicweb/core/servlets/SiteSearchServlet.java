@@ -487,26 +487,41 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      *             the repository exception
      */
     private String getContentTypeFromTemplate(Hit hit) throws RepositoryException {
+        String contentType = StringUtils.EMPTY;
         if (hit.getProperties().containsKey(PWConstants.CQ_TEMPLATE)) {
             String template = hit.getProperties().get(PWConstants.CQ_TEMPLATE).toString();
-            if (templatesMap != null && templatesMap.containsKey(PWConstants.NEWS)
-                    && templatesMap.get(PWConstants.NEWS).indexOf(template) >= 0) {
-                return PWConstants.NEWS;
+            if (Objects.nonNull(templatesMap)) {
+                contentType = setContentType(template);
             }
-            if (templatesMap != null && templatesMap.containsKey(PWConstants.EVENTS)
-                    && templatesMap.get(PWConstants.EVENTS).indexOf(template) >= 0) {
-                return PWConstants.EVENTS;
-            }
-            if (templatesMap != null && templatesMap.containsKey(PWConstants.PRODUCTS)
-                    && templatesMap.get(PWConstants.PRODUCTS).indexOf(template) >= 0) {
-                return PWConstants.PRODUCTS;
-            }
-            if (templatesMap != null && templatesMap.containsKey(PWConstants.CASES)
-                    && templatesMap.get(PWConstants.CASES).indexOf(template) >= 0) {
-                return PWConstants.CASES;
-            }
+
         }
-        return StringUtils.EMPTY;
+        return contentType;
+    }
+
+    /**
+     * Sets the content type.
+     *
+     * @param template
+     *            the template
+     * @return the string
+     */
+    private String setContentType(String template) {
+        String contentType = StringUtils.EMPTY;
+        if (templatesMap.containsKey(PWConstants.NEWS) && templatesMap.get(PWConstants.NEWS).indexOf(template) >= 0) {
+            contentType = PWConstants.NEWS;
+        }
+        if (templatesMap.containsKey(PWConstants.EVENTS)
+                && templatesMap.get(PWConstants.EVENTS).indexOf(template) >= 0) {
+            contentType = PWConstants.EVENTS;
+        }
+        if (templatesMap.containsKey(PWConstants.PRODUCTS)
+                && templatesMap.get(PWConstants.PRODUCTS).indexOf(template) >= 0) {
+            contentType = PWConstants.PRODUCTS;
+        }
+        if (templatesMap.containsKey(PWConstants.CASES) && templatesMap.get(PWConstants.CASES).indexOf(template) >= 0) {
+            contentType = PWConstants.CASES;
+        }
+        return contentType;
     }
 
     /**
