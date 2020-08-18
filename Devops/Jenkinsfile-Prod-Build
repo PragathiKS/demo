@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        node {
+        label 'cfe-deploy'
+        }
+    }
     parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetrapak Module', name: 'Build_MyTetrapak'
