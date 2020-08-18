@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        node {
+        label 'cfe-deploy'
+        }
+    }
     parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetrapak Module', name: 'Build_MyTetrapak'
@@ -30,7 +34,7 @@ pipeline {
             agent {
                 dockerfile {
                     args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
-                    label 'linux&&docker'
+                    label 'cfe-deploy'
                 }
             }
             steps {
