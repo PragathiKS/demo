@@ -101,14 +101,6 @@
     ol,
     ul {
         @include margin-bottom(8px);
-        li {
-            &::before {
-                color: $color-tundora;
-            }
-            &:last-child {
-                @include padding-bottom(0);
-            }
-        }
     }
 
     ul {
@@ -144,21 +136,23 @@
     ul > li > ul,
     ol > li > ol {
         @include margin-bottom(0);
+        :last-child {
+            @include padding-bottom(0);
+        }
     }
 
     ul li,
     ol li {
         @include font-size(14px);
         @include padding-bottom(16px);
+        &::before {
+            color: $color-tundora;
+        }
+        &:last-child {
+            @include padding-bottom(0);
+        }
         li {
             @include padding-bottom(8px);
-        }
-    }
-
-    ol > li > ol,
-    ul > li > ul {
-        :last-child {
-            @include padding-bottom(0);
         }
     }
 

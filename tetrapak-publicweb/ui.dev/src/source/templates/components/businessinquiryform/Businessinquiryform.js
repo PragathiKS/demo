@@ -121,7 +121,6 @@ class Businessinquiryform {
 
 
   bindEvents() {
-    /* Bind jQuery events here */
     const { requestPayload, $radioListFirst, $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn } = this.cache;
     const self = this;
     $radioListFirst.on('change', this.onRadioChangeHandlerFirst);
@@ -130,11 +129,7 @@ class Businessinquiryform {
 
     $nextbtn.click(function (e) {
       let isvalid = true;
-      const target = $(this).data('target');
-      const tab = $(this).closest('.tab-content-steps');
-      const input = tab.find('input');
-      const textarea = tab.find('textarea');
-      const errObj = [];
+      const target = $(this).data('target'),  tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea'), errObj = [];
       if ($(this).hasClass('previousbtn')) {
         switch (target) {
         case '#bef-step-1':
@@ -163,8 +158,7 @@ class Businessinquiryform {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
-            const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
-            const fieldName = $(this).attr('name');
+            const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim(), fieldName = $(this).attr('name');
             let erLbl = '';
             switch (fieldName) {
             case 'purposeOfContactInBusinessEqTitle':
@@ -254,11 +248,8 @@ class Businessinquiryform {
       e.preventDefault();
       e.stopPropagation();
       let isvalid = true;
-      const errObj = [];
-      const target = $(this).data('target');
-      const tab = $(this).closest('.tab-content-steps');
-      const input = tab.find('input');
-      const textarea = tab.find('textarea');
+      const errObj = [], target = $(this).data('target'), tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea');
+    
       if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
         $('input, textarea', tab).each(function () {
           const fieldName = $(this).attr('name');

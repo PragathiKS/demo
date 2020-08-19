@@ -300,9 +300,7 @@ class Searchresults {
       linkName: 'Search'
     };
     
-    if(remove){
-      trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
-    }else if (!remove && !$.isEmptyObject(filterCheck)){
+    if(remove || (!remove && !$.isEmptyObject(filterCheck))){
       trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
     }
     

@@ -293,10 +293,6 @@
                     border-radius: 4px;
                 }
             }
-            &__size {
-                color: $color-congress-blue;
-                text-align: left;
-            }
 
             &:first-child {
                 @include padding-top($padding-zero);
@@ -335,6 +331,8 @@
             }
             &__size {
                 @include padding-top($padding-sm);
+                color: $color-congress-blue;
+                text-align: left;
                 i {
                     font-size: 12px;
                 }
