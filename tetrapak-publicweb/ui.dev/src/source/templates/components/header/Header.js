@@ -235,8 +235,9 @@ class Header {
     const $this = $target.closest('.js-tp-pw-header-logo-digital-data');
     const url = $this.attr('href');
     const myDomain = 'tetrapak.com';
+    const myDomainAdobe = 'adobecqms.net';
 
-    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain)) {
+    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain) && !url.includes(myDomainAdobe)) {
       $this.attr('target','_blank');
     }else {
       $this.attr('target','_self');
@@ -299,7 +300,8 @@ class Header {
     const targetLink = $this.attr('target');
     const url = $this.attr('href');
     const myDomain = 'tetrapak.com';
-    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain)) {
+    const myDomainAdobe = 'adobecqms.net';
+    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain) && !url.includes(myDomainAdobe)) {
       $this.attr('target','_blank');
     } else {
       $this.attr('target','_self');
@@ -321,7 +323,7 @@ class Header {
     }
 
     if(url && targetLink){
-      window.open(url, targetLink);
+      window.open(url, $this.attr('target'));
     }
   }
 
