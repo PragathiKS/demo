@@ -1,8 +1,6 @@
 import $ from 'jquery';
 import Banner from './Banner';
 import bannerTemplate from '../../../test-templates-hbs/banner.hbs';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
-
 
 describe('Banner', function () {
   before(function () {
@@ -43,5 +41,8 @@ describe('Banner', function () {
     expect(this.trackBannerImageClickSpy.called).to.be.true;
     done();
   });
-
+  it('trigger softconversion form on click', function (done) {
+    $('.js-softconversion-pw-banner').trigger('click');
+    done();
+  });
 });

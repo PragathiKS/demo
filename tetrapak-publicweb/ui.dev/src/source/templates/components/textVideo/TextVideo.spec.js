@@ -32,5 +32,9 @@ describe('TextVideo', function () {
     expect(this.textVideo.trackAnalytics.called).to.be.true;
     done();
   });
+  it('trigger softconversion form on click', function (done) {
+    $('.js-softconversion-pw-textvideo').trigger('click');
+    done();
+  });
 
 });

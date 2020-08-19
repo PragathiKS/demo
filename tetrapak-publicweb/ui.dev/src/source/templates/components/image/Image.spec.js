@@ -1,7 +1,6 @@
 import Image from './Image';
 import $ from 'jquery';
 import imageTemplate from '../../../test-templates-hbs/image.hbs';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 describe('Image', function () {
   before(function () {
@@ -9,6 +8,7 @@ describe('Image', function () {
     this.image = new Image({el: document.body});
     this.initSpy = sinon.spy(this.image, 'init');
     this.trackAnalyticsSpy = sinon.spy(this.image, 'trackAnalytics');
+    this.openStub = sinon.stub(window, 'open');
     window.digitalData = {};
     window._satellite = {
       track() { /* Dummy method */ }
@@ -20,6 +20,7 @@ describe('Image', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.trackAnalyticsSpy.restore();
+    this.openStub.restore();
   });
 
   it('should initialize', function (done) {

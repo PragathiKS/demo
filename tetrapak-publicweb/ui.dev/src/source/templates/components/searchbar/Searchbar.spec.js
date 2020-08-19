@@ -38,4 +38,19 @@ describe('Searchbar', function () {
     expect(this.searchbar.searchIconClick.called).to.be.true;
     done();
   });
+  it('should call searchIconClick when enter key press', function (done) {
+    $('.js-search-bar-input').val('dummy search');
+    var e = $.Event('keypress');
+    e.which = 13;
+    $('.js-search-bar-input').trigger(e);
+    expect(this.searchbar.searchIconClick.called).to.be.true;
+    done();
+  });
+  it('should not call searchIconClick when other than enter key press', function (done) {
+    $('.js-search-bar-input').val('dummy search');
+    var e = $.Event('keypress');
+    e.which = 34;
+    $('.js-search-bar-input').trigger(e);
+    done();
+  });
 });

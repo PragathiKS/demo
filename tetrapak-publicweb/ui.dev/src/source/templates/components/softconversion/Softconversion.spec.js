@@ -9,6 +9,7 @@ describe('Softconversion', function () {
     this.initSpy = sinon.spy(this.softconversion, 'init');
     this.submitFormSpy = sinon.spy(this.softconversion, 'submitForm');
     this.hidePopUpSpy = sinon.spy(this.softconversion, 'hidePopUp');
+    this.showPopupSpy = sinon.spy(this.softconversion, 'showPopup');
     this.downloadHandlerSpy = sinon.spy(this.softconversion, 'downloadHandler');
     this.moreBtnHandlerSpy = sinon.spy(this.softconversion, 'moreBtnHandler');
     this.notMeBtnHandlerSpy = sinon.spy(this.softconversion, 'notMeBtnHandler');
@@ -31,6 +32,7 @@ describe('Softconversion', function () {
     this.yesMeBtnHandlerSpy.restore();
     this.onRadioChangeHandlerSpy.restore();
     this.openStub.restore();
+    this.showPopupSpy.restore();
   });
 
   it('should initialize', function (done) {
@@ -110,6 +112,12 @@ describe('Softconversion', function () {
   it('should call RadioHandler on change of radio button', function (done) {
     $('input[type=radio][name="typeOfVisitorOptions"]').change();
     expect(this.softconversion.onRadioChangeHandler.called).to.be.true;
+    done();
+  });
+
+  it('should call showPopup', function (done) {
+    $(document.body).trigger('showsoftconversion-pw');
+    expect(this.softconversion.showPopup.called).to.be.true;
     done();
   });
 
