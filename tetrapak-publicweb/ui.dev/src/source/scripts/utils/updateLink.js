@@ -1,7 +1,6 @@
 import $ from 'jquery';
 
 const myDomain = 'tetrapak.com';
-const myDomainAdobe = 'adobecqms.net';
 const componentList = [
   '.medialink',
   '.textImage',
@@ -21,7 +20,7 @@ const componentList = [
 
 export const isExternal = function (url) {
   if (url && (url.includes('http://') || url.includes('https://'))) {
-    if (url.includes(myDomain) || url.includes(myDomainAdobe)) {
+    if (url.includes(myDomain)) {
       return false;
     } else {
       return true;

@@ -27,8 +27,7 @@ class Footer {
     const linkText = $this.text().trim();
     const linkName = linkText ? linkText : $this.data('link-name');
     const myDomain = 'tetrapak.com';
-    const myDomainAdobe = 'adobecqms.net';
-    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain) && !url.includes(myDomainAdobe)) {
+    if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain)) {
       $this.attr('target','_blank');
     }
     else {
@@ -54,7 +53,7 @@ class Footer {
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 
     if(url && targetLink){
-      window.open(url, $this.attr('target'));
+      window.open(url, targetLink);
     }
   }
   goToTop(e) {
