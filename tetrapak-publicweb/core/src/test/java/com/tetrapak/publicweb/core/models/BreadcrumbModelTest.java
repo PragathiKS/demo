@@ -64,7 +64,6 @@ public class BreadcrumbModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Home", model.getHomeLabel());
         assertEquals("/content/tetrapak/publicweb/language-masters/en/home.html", model.getHomePagePath());
         assertEquals("/content/tetrapak/publicweb/language-masters/en/solution.html",
                 model.getBreadcrumbSubpages().get("English"));

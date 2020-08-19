@@ -306,4 +306,9 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.searchresultsTextFor"
         sling:message="search results for"/>
+	<pw.breadcrumb.home
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.breadcrumb.home"
+        sling:message="Home"/>
 </jcr:root>
