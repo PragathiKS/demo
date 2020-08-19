@@ -216,11 +216,11 @@ public final class PWConstants {
     public static final String CONTENT_ROOT_FOLDER_PUBLIC_WEB = "/content/tetrapak/publicweb";
     public static final String CONTENT_ROOT_FOLDER_CUSTOMER_HUB = "/content/tetrapak/customerhub";
     /**Externalizer**/
-    public static final  String EXTERNALIZER_DOMAIN_PUBLICWEB = "tetrapak";
+    public static final  String EXTERNALIZER_DOMAIN_PUBLICWEB = "publicweb";
     public static final  String EXTERNALIZER_DOMAIN_CUSTOMERHUB = "customerhub";
 
     public static final List<String> siteRootPathConfig = Arrays.asList(
-            CONTENT_ROOT_FOLDER_PUBLIC_WEB,EXTERNALIZER_DOMAIN_CUSTOMERHUB);
+            CONTENT_ROOT_FOLDER_PUBLIC_WEB,CONTENT_ROOT_FOLDER_CUSTOMER_HUB);
 
 
     public static final Map<String, String> siteRootPathConfigForExternalizer;

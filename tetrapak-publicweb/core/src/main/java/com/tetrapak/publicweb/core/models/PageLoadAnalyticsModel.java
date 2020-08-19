@@ -17,6 +17,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
+import org.apache.sling.xss.XSSAPI;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -35,6 +36,9 @@ public class PageLoadAnalyticsModel {
 
     @Inject
     private SlingSettingsService slingSettingsService;
+    
+    @Inject
+    protected XSSAPI xssapi;
 
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
@@ -60,7 +64,6 @@ public class PageLoadAnalyticsModel {
     private List<String> hreflangValues=new ArrayList<>();
 
 
-    private String canonicalURL = StringUtils.EMPTY;
 
     @PostConstruct
     public void initModel() {
@@ -259,9 +262,8 @@ public class PageLoadAnalyticsModel {
     }
 
     public String getCanonicalURL() {
-        canonicalURL = GlobalUtil.dotHtmlLink(currentPage.getPath(),resource.getResourceResolver()).concat(".html");;
-        return canonicalURL;
-    }
+   	 return xssapi.getValidHref(GlobalUtil.dotHtmlLink(currentPage.getPath(),resource.getResourceResolver()));
+   }
 
     public List<String> getHreflangValues() {
         hreflangValues.add("en-gb");
