@@ -44,10 +44,7 @@ public class BreadcrumbModel {
 
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
-
-    /** The home label. */
-    private final String homeLabel = "Home";
-
+    
     /**
      * Inits the.
      */
@@ -103,14 +100,5 @@ public class BreadcrumbModel {
     public String getHomePagePath() {
         return LinkUtils.sanitizeLink(homePagePath, request.getResourceResolver());
     }
-
-    /**
-     * Gets the home label.
-     *
-     * @return the home label
-     */
-    public String getHomeLabel() {
-        return homeLabel;
-    }
-
+    
 }

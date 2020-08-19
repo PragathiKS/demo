@@ -3,7 +3,7 @@
     <sly data-sly-test="${data.breadcrumbSubpages}">
         <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
             <div class="tp_pw-breadcrumb__wrapper">
-            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.homePagePath}">${data.homeLabel}</a>
+            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.homePagePath}">${'pw.breadcrumb.home' @ i18n}</a>
             <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
 <sly data-sly-test="${!subpagesList.last}">
             <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.breadcrumbSubpages[subpages]}"><i class="icon-Arrow_Right_pw tp_icon"></i>${subpages}</a>
