@@ -6,7 +6,7 @@
       <a auto-locator="SectionMenuLinksFontStyle-SectionMenuLinksPadding" data-link-title="${linkText}" data-link-section='${leftTitle || "NA"}' data-link-name='${navigationTypeSticky == true ? l1 : mainHeader }${(navigationTypeSticky && l1 == solutionPageTitle) ? ":" : ""}${l1 == solutionPageTitle ? selectedL2 : ""}:${linkText}'
         target="${data.external ? '_blank' : '_self'}" data-url-link="${linkURL}"
         class="${(selectedL2 == linkText || selectedL3 == linkText) ? 'active' : 'collapsed'} section-menu-item-link js-section-menu-item-link no-url"
-        title="${linkText}" data-toggle="collapse" href="#subSectionMenuCollapse_${linkSectionListIndex}" role="button"
+        title="${linkText}" data-toggle="collapse" href="#subSectionMenuCollapse_${linkSectionListIndex}_${sectionId}" role="button"
         aria-expanded="${(selectedL2 == linkText || selectedL3 == linkText) ? 'true' : 'false'}">
         <span title="">${linkText}</span>
         <sly data-sly-test="${data.external}">
