@@ -2,6 +2,7 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/sling/servlet/errorhandler" mode="merge"/>
 	<filter root="/apps/settings/wcm/designs/commons" mode="replace"/>
+	<filter root="/apps/core/wcm/components/page/v2/page/cq:infoProviders" mode="update"/>
 	<filter root="/apps/commons/components" mode="update"/>
     <filter root="/apps/commons/config" mode="replace"/>
 	<filter root="/apps/commons/config.author" mode="replace"/>
