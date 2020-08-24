@@ -1,17 +1,23 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
+import org.apache.sling.xss.XSSAPI;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -30,6 +36,9 @@ public class PageLoadAnalyticsModel {
 
     @Inject
     private SlingSettingsService slingSettingsService;
+    
+    @Inject
+    protected XSSAPI xssapi;
 
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
@@ -52,6 +61,9 @@ public class PageLoadAnalyticsModel {
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
     private static final int COUNTRY_LEVEL = 4;
     private static final int LANGUAGE_LEVEL = 5;
+    private List<String> hreflangValues=new ArrayList<>();
+
+
 
     @PostConstruct
     public void initModel() {
@@ -249,4 +261,13 @@ public class PageLoadAnalyticsModel {
         return digitalData;
     }
 
+    public String getCanonicalURL() {
+   	 return xssapi.getValidHref(GlobalUtil.dotHtmlLink(currentPage.getPath(),resource.getResourceResolver()));
+   }
+
+    public List<String> getHreflangValues() {
+        hreflangValues.add("en-gb");
+        hreflangValues.add("en-ca");
+        return hreflangValues;
+    }
 }
