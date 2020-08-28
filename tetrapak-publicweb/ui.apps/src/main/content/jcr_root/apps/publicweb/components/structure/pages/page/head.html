@@ -19,12 +19,18 @@
     <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description}"/>
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--/* remove the below flag once all requirements are ready for SMAR-15151 */-->
+    <sly data-sly-test="${false}">
     <sly data-sly-test="${digitalDataModel.canonicalURL}">
         <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
     </sly>
     <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues}">
         <link rel="alternate" hreflang="${hreflangData}" href="https://www.tetrapak.com/gb" />
     </sly>
+    </sly>
+     <!--/* End of SEO canonical and href functionality */-->
+
     <sly data-sly-include="customheaderlibs.html"></sly>
      <sly data-sly-call="${headlibRenderer.headlibs @
                                 designPath         = page.designPath,
