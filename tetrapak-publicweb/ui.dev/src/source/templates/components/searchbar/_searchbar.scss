@@ -7,6 +7,7 @@
     }
     .search-label {
         text-indent: -10000px;
+        position:absolute;
     }
     @media #{$mobile} {
         height: calc(100vh - #{$header-height-mobile * 1px});
