@@ -239,8 +239,13 @@ public final class GlobalUtil {
         }
         return slingSettingsService.getRunModes().contains("publish");
     }
+
     /**
-     * Method to fetch domain value from externalizer.
+     * method to check the if path is external or internal and appends html accordingly
+     * method also uses externalizer
+     * @param link
+     * @param resourceResolver
+     * @return String full path along with domain
      */
 	public static String dotHtmlLink(String link, ResourceResolver resourceResolver) {
 		String linkPath = link;
@@ -293,4 +298,13 @@ public final class GlobalUtil {
 	private static Optional<String> getSiteRootPath(String contentPath) {
 		return PWConstants.siteRootPathConfig.stream().filter(contentPath::startsWith).findFirst();
 	}
+
+    /**
+     * This method is used for getting locale in form of language-country say en-gb
+     * @param page
+     * @return String locale in form of language-country
+     */
+	public static String getLocale (final Page page){
+        return page.getLanguage(Boolean.TRUE).toString().concat(PWConstants.HYPHEN).concat(page.getAbsoluteParent(PWConstants.COUNTRY_PAGE_LEVEL).getPath().substring(page.getAbsoluteParent(PWConstants.COUNTRY_PAGE_LEVEL).getPath().length() - 2));
+    }
 }

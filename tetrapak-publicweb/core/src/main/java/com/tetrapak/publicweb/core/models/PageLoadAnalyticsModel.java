@@ -1,24 +1,24 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
-
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
 import org.apache.sling.xss.XSSAPI;
-
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.google.gson.FieldNamingPolicy;
@@ -40,10 +40,14 @@ public class PageLoadAnalyticsModel {
     @Inject
     protected XSSAPI xssapi;
 
+    @Inject
+    private ResourceResolverFactory resolverFactory;
+
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
     private static final String PW_ERROR_PAGE_TEMPLATE_NAME = "public-web-error-page";
+    private static final String X_DEFAULT = "x-default";
     private String channel = StringUtils.EMPTY;
     private String pageName = StringUtils.EMPTY;
     private String siteLanguage = StringUtils.EMPTY;
@@ -61,8 +65,7 @@ public class PageLoadAnalyticsModel {
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
     private static final int COUNTRY_LEVEL = 4;
     private static final int LANGUAGE_LEVEL = 5;
-    private List<String> hreflangValues=new ArrayList<>();
-
+    private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<> () ;;
 
 
     @PostConstruct
@@ -70,6 +73,14 @@ public class PageLoadAnalyticsModel {
         final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         if (null != pageManager) {
             currentPage = pageManager.getContainingPage(resource);
+            final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
+            Resource marketRootResource = currentPage.getContentResource().getResourceResolver().getResource(marketRootPath);
+            if (Objects.nonNull(marketRootResource)) {
+                Page marketRootPage = PageUtil.getCurrentPage(marketRootResource);
+                if (Objects.nonNull(marketRootPage)) {
+                    updateHrefLang(marketRootPage.listChildren());
+                }
+            }
             if (null != currentPage) {
                 final String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
                 pageType = StringUtils.substringAfterLast(templatePath, "/");
@@ -180,6 +191,64 @@ public class PageLoadAnalyticsModel {
         }
     }
 
+    /**
+     * This method is used to set hreflang values and page paths
+     * @param marketPages
+     */
+    private void updateHrefLang ( Iterator<Page> marketPages ){
+        while (marketPages.hasNext()) {
+            Page marketPage = marketPages.next();
+            if (!marketPage.getName().equalsIgnoreCase(PWConstants.LANG_MASTERS)) {
+                Iterator<Page> languagePages = marketPage.listChildren();
+                while (languagePages.hasNext()) {
+                    final Page currentLanguagePage = languagePages.next();
+                    final String currentPagePathInLoop = getPagePathForCountryLanguage(
+                            currentLanguagePage.getAbsoluteParent(PWConstants.COUNTRY_PAGE_LEVEL).getPath(),
+                            currentLanguagePage.getLanguage(Boolean.TRUE),currentPage);
+                    final ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
+                    setHrefLangValues(resourceResolver, GlobalUtil.getLocale(currentLanguagePage), currentPagePathInLoop );
+                }
+            }
+        }
+    }
+
+    /**This method is used to get any page in another locale from current page say
+     * from path /content/tetrapak/publicweb/gb/en/home to a locale say fr/en, then this will return
+     * /content/tetrapak/publicweb/fr/en/home
+     *
+     * @param countryPagePath
+     * @param language
+     * @param currentPage
+     * @return String valid page path for any locale
+     */
+    private String getPagePathForCountryLanguage (final String countryPagePath, final Locale language, final Page currentPage){
+        return  countryPagePath.concat(PWConstants.SLASH).concat(language.toString()).
+                concat(currentPage.getPath().substring(countryPagePath.length()+3));
+    }
+
+    /**
+     * This method is used to set hreflang and its url
+     * @param resourceResolver
+     * @param locale
+     * @param currentPagePathInLoop
+     */
+    private void setHrefLangValues(final ResourceResolver resourceResolver,final String locale, final String currentPagePathInLoop){
+        CountryLanguageCodeBean countryLanguageCodeBean = new CountryLanguageCodeBean();
+        final Resource currentResource= resourceResolver.getResource(currentPagePathInLoop);
+        if(null != currentResource &&
+                (!currentResource.getPath().equalsIgnoreCase(currentPage.getPath()) ||
+                        locale.equalsIgnoreCase(PWConstants.EN_GB))){
+            if(!locale.equalsIgnoreCase(PWConstants.EN_GB)) {
+                countryLanguageCodeBean.setLocale(locale);
+            } else {
+                countryLanguageCodeBean.setLocale(X_DEFAULT);
+            }
+            countryLanguageCodeBean.setPageUrl(GlobalUtil.dotHtmlLink(currentResource.getPath(),resourceResolver));
+            hrefLangValues.add(countryLanguageCodeBean);
+        }
+
+    }
+
     private String buildDigitalDataJson() {
 
         final JsonObject jsonObject = new JsonObject();
@@ -265,9 +334,8 @@ public class PageLoadAnalyticsModel {
    	 return xssapi.getValidHref(GlobalUtil.dotHtmlLink(currentPage.getPath(),resource.getResourceResolver()));
    }
 
-    public List<String> getHreflangValues() {
-        hreflangValues.add("en-gb");
-        hreflangValues.add("en-ca");
-        return hreflangValues;
+    public List<CountryLanguageCodeBean> getHreflangValues() {
+        return hrefLangValues;
     }
+
 }

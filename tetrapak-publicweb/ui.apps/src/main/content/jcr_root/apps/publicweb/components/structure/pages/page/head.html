@@ -21,14 +21,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!--/* remove the below flag once all requirements are ready for SMAR-15151 */-->
-    <sly data-sly-test="${false}">
+
     <sly data-sly-test="${digitalDataModel.canonicalURL}">
         <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
     </sly>
     <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues}">
-        <link rel="alternate" hreflang="${hreflangData}" href="https://www.tetrapak.com/gb" />
+        <link rel="alternate" hreflang=${hreflangData.locale} href=${hreflangData.pageUrl} />
     </sly>
-    </sly>
+
      <!--/* End of SEO canonical and href functionality */-->
 
     <sly data-sly-include="customheaderlibs.html"></sly>
