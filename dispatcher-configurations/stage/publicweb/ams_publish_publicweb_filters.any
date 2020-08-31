@@ -55,6 +55,7 @@
 /0041 { /type "allow" /method "GET" /url "/*/root/responsivegrid/findmyoffice.json" }
 /0042 { /type "allow" /method "GET" /url "*/*sitemap.xml" }
 /0043 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/searchresults*" }
+/0044 { /type "allow" /method "GET" /url "*/libs/cq/i18n/dict.(.*).json" }
 
 
 ## Allow POST Requests 61 - 80
