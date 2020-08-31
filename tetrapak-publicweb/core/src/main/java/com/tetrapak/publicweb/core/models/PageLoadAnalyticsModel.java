@@ -254,7 +254,7 @@ public class PageLoadAnalyticsModel {
             } else {
                 countryLanguageCodeBean.setLocale(X_DEFAULT);
             }
-            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(currentPage.getPath(), resource.getResourceResolver()));
+            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(currentResource.getPath(),resourceResolver));
             hrefLangValues.add(countryLanguageCodeBean);
         }
 
