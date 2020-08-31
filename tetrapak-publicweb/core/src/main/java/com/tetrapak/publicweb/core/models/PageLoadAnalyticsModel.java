@@ -11,11 +11,15 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
 import org.apache.sling.xss.XSSAPI;
@@ -26,12 +30,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
-@Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
-    @Self
+    @Self @Via("resource")
     private Resource resource;
 
+    /** The current page. */
+    @Inject @Via("resource")
     private Page currentPage;
 
     @Inject
@@ -42,6 +48,9 @@ public class PageLoadAnalyticsModel {
 
     @Inject
     private ResourceResolverFactory resolverFactory;
+
+    @RequestAttribute
+    private Boolean hrefLangFlag;
 
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
@@ -73,12 +82,14 @@ public class PageLoadAnalyticsModel {
         final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         if (null != pageManager) {
             currentPage = pageManager.getContainingPage(resource);
-            final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
-            Resource marketRootResource = currentPage.getContentResource().getResourceResolver().getResource(marketRootPath);
-            if (Objects.nonNull(marketRootResource)) {
-                Page marketRootPage = PageUtil.getCurrentPage(marketRootResource);
-                if (Objects.nonNull(marketRootPage)) {
-                    updateHrefLang(marketRootPage.listChildren());
+            if(hrefLangFlag) {
+                final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
+                Resource marketRootResource = currentPage.getContentResource().getResourceResolver().getResource(marketRootPath);
+                if (Objects.nonNull(marketRootResource)) {
+                    Page marketRootPage = PageUtil.getCurrentPage(marketRootResource);
+                    if (Objects.nonNull(marketRootPage)) {
+                        updateHrefLang(marketRootPage.listChildren());
+                    }
                 }
             }
             if (null != currentPage) {
@@ -338,4 +349,7 @@ public class PageLoadAnalyticsModel {
         return hrefLangValues;
     }
 
+    public Boolean getHrefLangFlag() {
+        return hrefLangFlag;
+    }
 }

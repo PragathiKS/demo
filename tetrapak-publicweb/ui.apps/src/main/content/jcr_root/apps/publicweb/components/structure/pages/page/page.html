@@ -2,7 +2,8 @@
 <html data-sly-use.page="com.adobe.cq.wcm.core.components.models.Page" lang="${page.language}"
       data-sly-use.head="head.html"
       data-sly-use.footer="footer.html">
-    <sly data-sly-use.digitalDataModel="com.tetrapak.publicweb.core.models.PageLoadAnalyticsModel"></sly>
+<!--/* hrefLangFlag parameter should be removed once all requirement for SMAR-15151 is complete */-->
+    <sly data-sly-use.digitalDataModel="${'com.tetrapak.publicweb.core.models.PageLoadAnalyticsModel' @ hrefLangFlag=false}"></sly>
     <head data-sly-call="${head.head @ page = page, digitalDataModel = digitalDataModel }"></head>
     <body>
         <sly data-sly-include="body.html"></sly>

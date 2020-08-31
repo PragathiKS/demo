@@ -20,13 +20,14 @@
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!--/* remove the below flag once all requirements are ready for SMAR-15151 */-->
-
+    <!--/* remove the below hrefLangFlag once all requirements are ready for SMAR-15151 */-->
+    <sly data-sly-test="${digitalDataModel.hrefLangFlag}">
     <sly data-sly-test="${digitalDataModel.canonicalURL}">
         <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
     </sly>
     <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues}">
         <link rel="alternate" hreflang=${hreflangData.locale} href=${hreflangData.pageUrl} />
+    </sly>
     </sly>
 
      <!--/* End of SEO canonical and href functionality */-->
