@@ -3,7 +3,6 @@ package com.tetrapak.publicweb.core.utils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import com.day.cq.commons.Externalizer;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
@@ -11,7 +10,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
-import java.util.Optional;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -240,65 +238,7 @@ public final class GlobalUtil {
         return slingSettingsService.getRunModes().contains("publish");
     }
 
-    /**
-     * method to check the if path is external or internal and appends html accordingly
-     * method also uses externalizer
-     * @param link
-     * @param resourceResolver
-     * @return String full path along with domain
-     */
-	public static String dotHtmlLink(String link, ResourceResolver resourceResolver) {
-		String linkPath = link;
-		Externalizer externalizer = resourceResolver.adaptTo(Externalizer.class);
-		if (null != linkPath) {
-			String domainName = getExternalizerDomainNameBySiteRootPath(linkPath);
-			if (startsWithAnySiteContentRootPath(linkPath)) {
-				linkPath = externalizer.externalLink(resourceResolver, domainName,
-						LinkUtils.sanitizeLink(linkPath, resourceResolver));
-			} else if (!StringUtils.startsWith(linkPath, PWConstants.HTTP_PROTOCOL)
-					&& !StringUtils.startsWith(linkPath, PWConstants.HTTPS_PROTOCOL)) {
-				linkPath = externalizer.externalLink(resourceResolver, domainName,
-						LinkUtils.sanitizeLink(linkPath, resourceResolver));
-			} else if (StringUtils.startsWith(linkPath, PWConstants.HTTP_PROTOCOL)
-					|| StringUtils.startsWith(linkPath, PWConstants.HTTPS_PROTOCOL)) {
-				linkPath = link;
-			} else if (StringUtils.startsWith(linkPath, PWConstants.WWW)) {
-				linkPath = PWConstants.HTTP_PROTOCOL + linkPath;
-			}
-		} else {
-			linkPath = StringUtils.EMPTY;
-		}
-		return linkPath;
-	}
-
-	public static String getExternalizerDomainNameBySiteRootPath(final String contentPath) {
-		String domainName = getMatchedTagPathBySiteRootPathPrefix(contentPath,
-				PWConstants.siteRootPathConfigForExternalizer);
-		return StringUtils.isNotBlank(domainName) ? domainName : PWConstants.EXTERNALIZER_DOMAIN_PUBLICWEB;
-	}
-
-	public static String getMatchedTagPathBySiteRootPathPrefix(String contentPath,
-			final Map<String, String> tagPathConfigs) {
-		String tagPath = StringUtils.EMPTY;
-		if (StringUtils.isNotBlank(contentPath)) {
-			for (Map.Entry<String, String> marketTagEntry : tagPathConfigs.entrySet()) {
-				if (contentPath.startsWith(marketTagEntry.getKey())) {
-					tagPath = marketTagEntry.getValue();
-					break;
-				}
-			}
-		}
-		return tagPath;
-	}
-
-	public static boolean startsWithAnySiteContentRootPath(final String contentPath) {
-		return getSiteRootPath(contentPath).isPresent();
-	}
-
-	private static Optional<String> getSiteRootPath(String contentPath) {
-		return PWConstants.siteRootPathConfig.stream().filter(contentPath::startsWith).findFirst();
-	}
-
+   
     /**
      * This method is used for getting locale in form of language-country say en-gb
      * @param page
