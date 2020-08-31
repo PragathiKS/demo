@@ -15,6 +15,7 @@ PassEnv DISP_ID
         <IfModule mod_headers.c>
                 Header add X-Dispatcher ${DISP_ID}
                 Header add X-Vhost "publish"
+                Header add Strict-Transport-Security: max-age=86400
          </IfModule>
         <Directory />
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_WHITELIST_ENABLED from 0 or 1 to enable or disable ip restriction rules
