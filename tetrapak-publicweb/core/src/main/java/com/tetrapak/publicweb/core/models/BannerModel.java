@@ -67,6 +67,10 @@ public class BannerModel {
     @ValueMapValue
     private String pwButtonTheme;
 
+    /** The pw card theme. */
+    @ValueMapValue
+    private String pwCardTheme;
+
     /** The anchor id. */
     @ValueMapValue
     private String anchorId;
@@ -192,6 +196,15 @@ public class BannerModel {
      */
     public String getPwButtonTheme() {
         return pwButtonTheme;
+    }
+
+    /**
+     * Gets the pw card theme.
+     *
+     * @return the pw card theme
+     */
+    public String getPwCardTheme() {
+        return pwCardTheme;
     }
 
     /**

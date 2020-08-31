@@ -31,6 +31,7 @@
 			"pwButtonTheme":"link",
 			"pwLinkTheme":"download",
 			"headingTag":"h1",
+			"pwCardTheme":"gray",
 			"anchorId":"test",
 			"anchorTitle":"title",
 			"imageCrop":"103,146,629,672"
