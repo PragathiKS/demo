@@ -13,6 +13,7 @@
     }
     .search-label {
         text-indent: -10000px;
+        position: absolute;
     }
     &__input {
         @include padding-right($padding-md);
