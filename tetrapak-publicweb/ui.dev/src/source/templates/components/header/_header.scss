@@ -43,6 +43,10 @@
         z-index: $zindex-header;
         width: 100%;
 
+        .pw-header-logo {
+            z-index: $zindex-pw-logo;
+        }
+
         @media #{$mobile} {
             height: $header-height-mobile * 1px; // header height converted to px
             .header-items {
