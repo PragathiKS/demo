@@ -15,6 +15,10 @@
             @media #{$desktop} {
                 width: 540px;
             }
+            &.sky-blue {
+                color: $color-white;
+                background-color: $color-sky-blue;
+            }
         }
         .banner-sibling {
             display: none;
@@ -23,6 +27,9 @@
                 background-color: $color-wild-sand;
                 position: absolute;
                 opacity: 0.9;
+            }
+            &.sky-blue {
+                background-color: $color-sky-blue;
             }
         }
     }
@@ -146,6 +153,29 @@
             @include margin-top($margin-md);
             font-family: $font-light;
         }
+        &.sky-blue {
+            color: $color-white;
+            background-color: $color-sky-blue;
+            @media #{$desktop} {
+                background-color: transparent;
+            }
+            .tpatom-link {
+                &--primary {
+                    color: $color-congress-blue;
+                    background-color: $color-white;
+                    &:hover {
+                        color: $color-jordy-blue;
+                    }
+                }
+                &--transparent {
+                    color: $color-white;
+                    background-color: transparent;
+                    &:hover {
+                        color: $color-congress-blue;
+                    }
+                }
+            }
+        }
     }
     .banner-sibling {
         display: none;
@@ -154,6 +184,9 @@
             background-color: $color-wild-sand;
             position: absolute;
             opacity: 0.9;
+        }
+        &.sky-blue {
+            background-color: $color-sky-blue;
         }
     }
     .display-row {

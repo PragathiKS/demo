@@ -73,6 +73,7 @@ public class BannerModelTest {
         assertEquals("title", model.getAnchorTitle());
         assertEquals("103,146,629,672", model.getImageCrop());
         assertEquals("en.html", model.getAssetName());
+        assertEquals("gray", model.getPwCardTheme());
 
     }
 }
