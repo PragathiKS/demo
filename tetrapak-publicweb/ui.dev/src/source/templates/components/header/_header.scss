@@ -21,7 +21,7 @@
             @include padding-bottom(0);
             a {
                 &:hover {
-                    color: $color-jordy-blue;
+                    color: $color-sky-blue;
                 }
             }
         }
@@ -121,7 +121,7 @@
                     font-weight: normal;
                 }
                 &:hover > a {
-                    color: $color-jordy-blue;
+                    color: $color-sky-blue;
                 }
                 & >a.active {
                     border-bottom: 2px solid;
@@ -182,7 +182,7 @@
         .mytp-wrapper {
             &:hover {
                 @media #{$desktop} {
-                    color: $color-jordy-blue;
+                    color: $color-sky-blue;
                 }
             }
         }
