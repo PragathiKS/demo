@@ -299,12 +299,4 @@ public final class GlobalUtil {
 		return PWConstants.siteRootPathConfig.stream().filter(contentPath::startsWith).findFirst();
 	}
 
-    /**
-     * This method is used for getting locale in form of language-country say en-gb
-     * @param page
-     * @return String locale in form of language-country
-     */
-	public static String getLocale (final Page page){
-        return page.getLanguage(Boolean.TRUE).toString().concat(PWConstants.HYPHEN).concat(page.getAbsoluteParent(PWConstants.COUNTRY_PAGE_LEVEL).getPath().substring(page.getAbsoluteParent(PWConstants.COUNTRY_PAGE_LEVEL).getPath().length() - 2));
-    }
 }
