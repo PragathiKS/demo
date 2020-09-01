@@ -213,6 +213,30 @@
                                             </redirectVanityURL>
                                         </items>
                                     </vanityurl>
+									<metarobots
+                                        cq:showOnCreate="{Boolean}false"
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Meta Robots"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <noIndex
+												jcr:primaryType="nt:unstructured"
+												cq:showOnCreate="{Boolean}true"
+												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+												fieldLabel="No Index"
+												name="./noIndex"
+												text="No Index"
+												value="noindex"/>
+											<noFollow
+												jcr:primaryType="nt:unstructured"
+												cq:showOnCreate="{Boolean}true"
+												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+												fieldLabel="No Follow"
+												name="./noFollow"
+												text="No Follow"
+												value="nofollow"/>
+                                        </items>
+                                    </metarobots>
                                 </items>
                             </column>
                         </items>
