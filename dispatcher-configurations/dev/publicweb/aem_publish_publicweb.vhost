@@ -74,7 +74,7 @@ PassEnv DISP_ID
                 LogLevel warn rewrite:info
                 ##Global rewrite include
                 Include /etc/httpd/conf.d/rewrites/base_rewrite.rules
-                ##Publish  rewrite include
+                                        ##Publish  rewrite include
                 Include /etc/httpd/conf.d/rewrites/publish_publicweb_rewrite.rules
 
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_FORCE_SSL from 0 or 1 to enable or disable enforcing SSL
@@ -108,5 +108,9 @@ PassEnv DISP_ID
                         <FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV)$">
                                 Header set Content-Disposition "inline"
                         </FilesMatch>
+
+                        <LocationMatch ".*/content/dam/tetrapak/publicweb/robots.txt">
+                                Header set Content-Disposition "inline"
+                        </LocationMatch>
                 </IfModule>
 </VirtualHost>

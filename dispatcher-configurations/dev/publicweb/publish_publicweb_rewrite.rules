@@ -7,7 +7,7 @@ RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 RewriteCond   %{HTTP_HOST}  'tetrapak-dev64a.adobecqms.net'
 RewriteCond   %{REQUEST_URI} ^/
 RewriteRule   "^/$"  "/content/tetrapak/publicweb/gb/en/home.html" [PT,L]
-RewriteRule   "^/robots.txt"  "/content/tetrapak/publicweb/robots.txt" [PT]
+RewriteRule   "^/robots.txt"  "/content/dam/tetrapak/publicweb/robots.txt" [PT]
 
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mov|avi|mp4|json|css|ico|woff|ttf|svg)$"
