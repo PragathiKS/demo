@@ -19,7 +19,6 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
-import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
 import org.apache.sling.xss.XSSAPI;
@@ -83,14 +82,7 @@ public class PageLoadAnalyticsModel {
         if (null != pageManager) {
             currentPage = pageManager.getContainingPage(resource);
             if(hrefLangFlag) {
-                final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
-                Resource marketRootResource = currentPage.getContentResource().getResourceResolver().getResource(marketRootPath);
-                if (Objects.nonNull(marketRootResource)) {
-                    Page marketRootPage = PageUtil.getCurrentPage(marketRootResource);
-                    if (Objects.nonNull(marketRootPage)) {
-                        updateHrefLang(marketRootPage.listChildren());
-                    }
-                }
+                updateHrefLang(currentPage);
             }
             if (null != currentPage) {
                 final String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
@@ -204,9 +196,25 @@ public class PageLoadAnalyticsModel {
 
     /**
      * This method is used to set hreflang values and page paths
+     * @param  currentPage
+     */
+    private void updateHrefLang (final Page currentPage){
+        final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
+        Resource marketRootResource = currentPage.getContentResource().getResourceResolver().getResource(marketRootPath);
+        if (Objects.nonNull(marketRootResource)) {
+            Page marketRootPage = PageUtil.getCurrentPage(marketRootResource);
+            if (Objects.nonNull(marketRootPage)) {
+                Iterator<Page> marketPages = marketRootPage.listChildren();
+                callHrefLangSetter(marketPages);
+            }
+        }
+    }
+
+    /**
+     * This method is used to iterate languagePages and call hrefLang setter
      * @param marketPages
      */
-    private void updateHrefLang ( Iterator<Page> marketPages ){
+    private void callHrefLangSetter (Iterator<Page> marketPages) {
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();
             if (!marketPage.getName().equalsIgnoreCase(PWConstants.LANG_MASTERS)) {
@@ -216,8 +224,8 @@ public class PageLoadAnalyticsModel {
                     final String currentPagePathInLoop = getPagePathForCountryLanguage(
                             currentLanguagePage.getAbsoluteParent(PWConstants.COUNTRY_PAGE_LEVEL).getPath(),
                             currentLanguagePage.getLanguage(Boolean.TRUE),currentPage);
-                    final ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
-                    setHrefLangValues(resourceResolver, GlobalUtil.getLocale(currentLanguagePage), currentPagePathInLoop );
+                    final ResourceResolver resourceResolver = resource.getResourceResolver();
+                    setHrefLangValues(resourceResolver, PageUtil.getLocaleFromURL(currentLanguagePage), currentPagePathInLoop );
                 }
             }
         }
