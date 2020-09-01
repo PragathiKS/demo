@@ -22,10 +22,10 @@
 
     <!--/* remove the below hrefLangFlag once all requirements are ready for SMAR-15151 */-->
     <sly data-sly-test="${digitalDataModel.hrefLangFlag}">
-    <sly data-sly-test="${digitalDataModel.canonicalURL}">
+    <sly data-sly-test="${digitalDataModel.canonicalURL && digitalDataModel.isPublisher}">
         <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
     </sly>
-    <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues}">
+    <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues && digitalDataModel.isPublisher}">
         <link rel="alternate" hreflang=${hreflangData.locale} href=${hreflangData.pageUrl} />
     </sly>
     </sly>

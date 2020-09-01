@@ -254,7 +254,7 @@ public class PageLoadAnalyticsModel {
             } else {
                 countryLanguageCodeBean.setLocale(X_DEFAULT);
             }
-            countryLanguageCodeBean.setPageUrl(GlobalUtil.dotHtmlLink(currentResource.getPath(),resourceResolver));
+            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(currentResource.getPath(),resourceResolver));
             hrefLangValues.add(countryLanguageCodeBean);
         }
 
@@ -342,7 +342,11 @@ public class PageLoadAnalyticsModel {
     }
 
     public String getCanonicalURL() {
-   	 return xssapi.getValidHref(GlobalUtil.dotHtmlLink(currentPage.getPath(),resource.getResourceResolver()));
+    	return  xssapi.getValidHref(LinkUtils.sanitizeLink(currentPage.getPath(), resource.getResourceResolver()));
+   }
+    
+   public Boolean isPublisher(){
+ 	   return GlobalUtil.isPublish();
    }
 
     public List<CountryLanguageCodeBean> getHreflangValues() {
