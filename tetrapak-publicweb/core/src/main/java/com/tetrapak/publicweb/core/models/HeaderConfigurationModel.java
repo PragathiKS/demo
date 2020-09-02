@@ -61,6 +61,7 @@ public class HeaderConfigurationModel {
     @ValueMapValue
     private String searchPage;
 
+    /** Note : Line no 65-67 is just a temporary check and should be removed once SMAR-15151 is completely delivered **/
     /** The hreflang flag. */
     @ValueMapValue @Default(values="true")
     private String hrefLangFlag;

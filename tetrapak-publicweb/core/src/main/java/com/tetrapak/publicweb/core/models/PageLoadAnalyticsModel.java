@@ -76,6 +76,9 @@ public class PageLoadAnalyticsModel {
         final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         if (null != pageManager) {
             currentPage = pageManager.getContainingPage(resource);
+            /**
+             * Note : Line no 82-89 is just a temporary check and should be removed once SMAR-15151 is completely delivered
+             */
             final Resource headerConfigurationResource = resource.getResourceResolver().
                     getResource(LinkUtils.getRootPath(currentPage.getPath()).
                             concat("/jcr:content/root/responsivegrid/headerconfiguration"));
