@@ -222,8 +222,8 @@ public class PageLoadAnalyticsModel {
                 while (languagePages.hasNext()) {
                     final Page currentLanguagePage = languagePages.next();
                     final String currentPagePathInLoop = getPagePathForCountryLanguage(
-                            currentLanguagePage.getAbsoluteParent(PWConstants.COUNTRY_PAGE_LEVEL).getPath(),
-                            currentLanguagePage.getLanguage(Boolean.TRUE),currentPage);
+                            PageUtil.getCountryPage(currentLanguagePage).getPath(),
+                            PageUtil.getLanguageCode(currentLanguagePage),currentPage);
                     final ResourceResolver resourceResolver = resource.getResourceResolver();
                     setHrefLangValues(resourceResolver, PageUtil.getLocaleFromURL(currentLanguagePage), currentPagePathInLoop );
                 }
@@ -240,9 +240,9 @@ public class PageLoadAnalyticsModel {
      * @param currentPage
      * @return String valid page path for any locale
      */
-    private String getPagePathForCountryLanguage (final String countryPagePath, final Locale language, final Page currentPage){
-        return  countryPagePath.concat(PWConstants.SLASH).concat(language.toString()).
-                concat(currentPage.getPath().substring(countryPagePath.length()+3));
+    private String getPagePathForCountryLanguage (final String countryPagePath, final String language, final Page currentPage){
+        return  countryPagePath.concat(PWConstants.SLASH).concat(language).
+                concat(currentPage.getPath().substring(PageUtil.getLanguagePage(currentPage).getPath().length()));
     }
 
     /**
@@ -256,8 +256,8 @@ public class PageLoadAnalyticsModel {
         final Resource currentResource= resourceResolver.getResource(currentPagePathInLoop);
         if(null != currentResource &&
                 (!currentResource.getPath().equalsIgnoreCase(currentPage.getPath()) ||
-                        locale.equalsIgnoreCase(PWConstants.EN_GB))){
-            if(!locale.equalsIgnoreCase(PWConstants.EN_GB)) {
+                        locale.equalsIgnoreCase(PWConstants.GLOBAL_LOCALE))){
+            if(!locale.equalsIgnoreCase(PWConstants.GLOBAL_LOCALE)) {
                 countryLanguageCodeBean.setLocale(locale);
             } else {
                 countryLanguageCodeBean.setLocale(X_DEFAULT);

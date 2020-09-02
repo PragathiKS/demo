@@ -17,7 +17,7 @@ public final class PWConstants {
     public static final String GB_ISO_CODE = "gb";
 
     /** The Constant EN_GB. This can be use as default locale*/
-    public static final String EN_GB = "en-gb";
+    public static final String GLOBAL_LOCALE = "en-global";
 
     /** The Constant LANGUAGE_LEVEL. */
     public static final int LANGUAGE_PAGE_LEVEL = 4;
