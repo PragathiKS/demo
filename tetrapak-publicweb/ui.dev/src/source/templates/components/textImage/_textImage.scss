@@ -40,17 +40,21 @@
         .rightPad {
             @include padding-left($padding-zero);
             @include padding-right($padding-zero);
+            @include margin-top($margin-md);
             @media #{$desktop} {
                 @include padding-left($padding-zero);
                 @include padding-right($padding-l);
+                @include margin-top($margin-zero);
             }
         }
         .leftPad {
             @include padding-left($padding-zero);
             @include padding-right($padding-zero);
+            @include margin-top($margin-zero);
             @media #{$desktop} {
                 @include padding-right($padding-zero);
                 @include padding-left($padding-l);
+                @include margin-top($margin-zero);
             }
         }
     }
