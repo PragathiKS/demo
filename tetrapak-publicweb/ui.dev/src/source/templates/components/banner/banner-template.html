@@ -28,9 +28,10 @@
         <section class="pw-banner__contentwrapper">
       </sly>
       <div class="${data.subtitle ? '' : 'no-subtitle'}">
-      <div class="pw-banner__content banner-sibling ${data.pwDisplay}"></div>
-      <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}">
-        <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle">
+      <div class="pw-banner__content banner-sibling ${data.pwDisplay} ${data.pwCardTheme}"></div>
+      <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay} 
+      ${data.pwCardTheme}">
+        <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle ${data.pwCardTheme}">
           ${data.subtitle @ context='html'}
         </div>
         <div data-sly-test="${data.title}" class="pw-banner__content__title">

@@ -140,6 +140,10 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
                                 path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/display"/>
+							<pwCardTheme
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwCardTheme"/>
                         </items>
                     </column>
                 </items>

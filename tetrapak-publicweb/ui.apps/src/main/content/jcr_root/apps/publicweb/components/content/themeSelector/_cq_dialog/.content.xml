@@ -138,6 +138,23 @@
                                             value="display-row-reversed"/>
                                 </items>
                             </display>
+							<pwCardTheme
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Card Background Theme"
+                                name="./pwCardTheme">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <gray
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="true"
+                                        text="Gray"
+                                        value="gray"/>
+                                    <skyblue
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Sky Blue"
+                                        value="sky-blue"/>
+                                </items>
+                            </pwCardTheme>
                         </items>
                     </column>
                 </items>

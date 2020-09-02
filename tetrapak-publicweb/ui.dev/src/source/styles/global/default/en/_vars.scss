@@ -33,6 +33,7 @@ $zindex-nav: $zindex-header+1;
 $z-index-section-menu: 90;
 $z-index-search-bar: 99;
 $zindex-top: 9999;
+$zindex-pw-logo: 999;
 // Patternlab variables
 $spacing-big: 24px;
 $spacing-small: 16px;
@@ -54,6 +55,7 @@ $color-text-link: $color-congress-blue;
 $color-text-link-hover: $color-tundora;
 $color-text-link-visited: $color-congress-blue;
 $color-text-link-active: $color-congress-blue;
+$color-sky-blue:#00BDF2;
 /*
  * Border Colors
  * 1) Border colors are used as decoration or dividers, such as as a seperator

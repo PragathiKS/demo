@@ -368,10 +368,8 @@ public class DeltaFeedImportScheduledTask implements Runnable {
      * @param language
      */
     private void addLanguage(final String language) {
-        for(int i=0; i < langsToActivate.size(); i++){
-            if (!langsToActivate.get(i).equals(language)) {
-                langsToActivate.add(language);
-            }               
+        if(!langsToActivate.stream().anyMatch(language::contains)) {
+            langsToActivate.add(language);
         }
     }
 

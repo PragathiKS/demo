@@ -32,6 +32,18 @@
 
      <!--/* End of SEO canonical and href functionality */-->
 
+	<meta name="robots" data-sly-test.indexVal="${properties.noIndex ? properties.noIndex : 'index'}" data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" content="${indexVal}, ${followVal}"/>
+
+	<meta data-sly-test="${properties['jcr:title']}" property="og:title" content="${properties['jcr:title']}"/>
+	<meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description']}"/>                                                
+	<meta property="og:type" content="website"/>                                                                                           
+	<meta property="og:url" content="${currentPage.path}"/>
+
+	<meta data-sly-test="${properties['jcr:description']}" name="twitter:description" content="${properties['jcr:description']}"/>
+  	<meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title']}"/>
+  	<meta name="twitter:site" content="@tetrapak" />
+    <meta name="twitter:card" content="summary" />
+
     <sly data-sly-include="customheaderlibs.html"></sly>
      <sly data-sly-call="${headlibRenderer.headlibs @
                                 designPath         = page.designPath,
