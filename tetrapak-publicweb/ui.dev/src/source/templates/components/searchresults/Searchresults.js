@@ -226,7 +226,14 @@ class Searchresults {
         };
 
         trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj);
+        let titlePage = document.title;
+        const pageNumber = new URLSearchParams(queryParams).get('page');
+        if(titlePage.search(' - Page')){
+          const splitArr = titlePage.split(' - Page');
+          titlePage = splitArr[0];
+        }
 
+        document.title = `${titlePage} - Page ${pageNumber}`;
 
       }).fail(() => {
         this.cache.$spinner.addClass('d-none');
