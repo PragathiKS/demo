@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -59,6 +60,10 @@ public class HeaderConfigurationModel {
     /** The search page. */
     @ValueMapValue
     private String searchPage;
+
+    /** The hreflang flag. */
+    @ValueMapValue @Default(values="true")
+    private String hrefLangFlag;
 
     /**
      * Gets the logo image path.
@@ -148,5 +153,13 @@ public class HeaderConfigurationModel {
      */
     public String getSearchPage() {
         return LinkUtils.sanitizeLink(searchPage, resource.getResourceResolver());
+    }
+
+    /**
+     * Get the hreflang flag
+     * @return
+     */
+    public String getHrefLangFlag() {
+        return hrefLangFlag;
     }
 }

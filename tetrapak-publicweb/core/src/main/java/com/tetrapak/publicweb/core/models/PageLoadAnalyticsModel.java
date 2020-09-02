@@ -29,14 +29,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
-@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
-    @Self @Via("resource")
+    @Self
     private Resource resource;
 
     /** The current page. */
-    @Inject @Via("resource")
     private Page currentPage;
 
     @Inject
@@ -45,11 +44,7 @@ public class PageLoadAnalyticsModel {
     @Inject
     protected XSSAPI xssapi;
 
-    @Inject
-    private ResourceResolverFactory resolverFactory;
-
-    @RequestAttribute
-    private Boolean hrefLangFlag;
+    private Boolean hrefLangFlag = Boolean.FALSE;
 
     private static final String SITE_NAME = "publicweb";
     private static final String PAGE_LOAD_EVENT = "content-load";
@@ -81,8 +76,16 @@ public class PageLoadAnalyticsModel {
         final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         if (null != pageManager) {
             currentPage = pageManager.getContainingPage(resource);
-            if(hrefLangFlag) {
-                updateHrefLang(currentPage);
+            final Resource headerConfigurationResource = resource.getResourceResolver().
+                    getResource(LinkUtils.getRootPath(currentPage.getPath()).
+                            concat("/jcr:content/root/responsivegrid/headerconfiguration"));
+            if(Objects.nonNull(headerConfigurationResource)) {
+                final HeaderConfigurationModel configurationModel = headerConfigurationResource
+                        .adaptTo(HeaderConfigurationModel.class);
+                hrefLangFlag = configurationModel.getHrefLangFlag().equalsIgnoreCase("true");
+                if (Objects.nonNull(configurationModel) && hrefLangFlag) {
+                    updateHrefLang(currentPage);
+                }
             }
             if (null != currentPage) {
                 final String templatePath = currentPage.getProperties().get("cq:template", StringUtils.EMPTY);
