@@ -73,7 +73,7 @@ public class PageLoadAnalyticsModel {
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
     private static final int COUNTRY_LEVEL = 4;
     private static final int LANGUAGE_LEVEL = 5;
-    private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<> () ;;
+    private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<> ();
 
 
     @PostConstruct
@@ -358,7 +358,7 @@ public class PageLoadAnalyticsModel {
    }
 
     public List<CountryLanguageCodeBean> getHreflangValues() {
-        return hrefLangValues;
+        return new ArrayList<>(hrefLangValues);
     }
 
     public Boolean getHrefLangFlag() {
