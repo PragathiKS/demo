@@ -45,6 +45,7 @@
         a {
             @media #{$desktop} {
                 @include margin-right(-$margin-l);
+                position: relative;
             }
         }
 
@@ -68,6 +69,7 @@
         div {
             @media #{$desktop} {
                 @include margin-left(-$margin-l);
+                position: relative;
             }
         }
 
