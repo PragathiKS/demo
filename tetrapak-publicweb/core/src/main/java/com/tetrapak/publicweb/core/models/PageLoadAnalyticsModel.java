@@ -350,6 +350,10 @@ public class PageLoadAnalyticsModel {
     public String getDigitalData() {
         return digitalData;
     }
+	
+	public String getCurrentPageURL() {
+        return LinkUtils.sanitizeLink(currentPage.getPath(), resource.getResourceResolver());
+    }
 
     public String getCanonicalURL() {
     	return  xssapi.getValidHref(LinkUtils.sanitizeLink(currentPage.getPath(), resource.getResourceResolver()));
