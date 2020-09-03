@@ -147,7 +147,7 @@
                                     <gray
                                         jcr:primaryType="nt:unstructured"
                                         selected="true"
-                                        text="Gray"
+                                        text="Grey"
                                         value="gray"/>
                                     <skyblue
                                         jcr:primaryType="nt:unstructured"
