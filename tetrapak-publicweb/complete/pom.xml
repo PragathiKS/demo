@@ -33,7 +33,7 @@
 		
 		<package.name>${project.artifactId}</package.name>
 		<package.group>publicweb</package.group>
-		<package.root>/apps/publicweb</package.root>
+		<package.root>/apps/publicweb/install</package.root>
 		<package.install.root>${package.root}</package.install.root>
 		<crx.workspace>crx.default</crx.workspace>
 		<package.jcr.root>src/main/jcr_root</package.jcr.root> 
