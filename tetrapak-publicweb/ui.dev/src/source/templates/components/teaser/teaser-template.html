@@ -13,7 +13,7 @@
 
           <a data-sly-test="${child.linkPath && child.linkPath!='#' && child.fileReference}"
             href="${child.linkPath}"
-            class="js-teaser-analytics"
+            class="js-teaser-analytics teaser-image-link"
             title="${child.linkText}"
             data-link-section="Teaser_imageClick"
             data-link-name="${child.linkText || child.title || data.heading}"
@@ -46,7 +46,7 @@
 
             <a data-sly-test="${child.linkText}"
                 href="${child.linkPath}"
-                class="tpatom-link tpatom-link--${child.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-teaser-analytics"
+                class="tpatom-link tpatom-link--${child.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-teaser-analytics teaser-image-link"
                 title="${child.linkText}"
                 data-link-section="Teaser${buttonLinkType}"
                 data-link-name="${child.linkText}"
