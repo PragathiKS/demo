@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.utils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
@@ -10,11 +11,13 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
@@ -66,7 +69,7 @@ public final class GlobalUtil {
      * @return video path from scene 7
      */
     public static String getVideoUrlFromScene7(final ResourceResolver resourceResolver, final String damVideoPath,
-            final DynamicMediaService dynamicMediaService) {
+                                               final DynamicMediaService dynamicMediaService) {
         String path = damVideoPath;
         if(StringUtils.isNotBlank(damVideoPath)) {
             path = dynamicMediaService.getVideoServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damVideoPath);
@@ -84,7 +87,7 @@ public final class GlobalUtil {
      * @return image path from scene 7
      */
     public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
-            final DynamicMediaService dynamicMediaService) {
+                                               final DynamicMediaService dynamicMediaService) {
         String path = damImagePath;
         if(StringUtils.isNotBlank(damImagePath)) {
             path = dynamicMediaService.getImageServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damImagePath);
@@ -140,7 +143,7 @@ public final class GlobalUtil {
      * @return
      */
     public static String getDAMPath(final String damRootPath, final String sourceurl, final String categoryId, final String productId,
-            final String videoTypes) {
+                                    final String videoTypes) {
         String finalDAMPath = null;
         final String assetType = getAssetType(sourceurl, videoTypes);
         final String fileName = getFileName(sourceurl);
@@ -237,5 +240,4 @@ public final class GlobalUtil {
         }
         return slingSettingsService.getRunModes().contains("publish");
     }
-
 }
