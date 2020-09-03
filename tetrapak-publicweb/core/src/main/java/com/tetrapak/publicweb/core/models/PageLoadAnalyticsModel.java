@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.Set;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -64,7 +64,7 @@ public class PageLoadAnalyticsModel {
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
     private static final int COUNTRY_LEVEL = 4;
     private static final int LANGUAGE_LEVEL = 5;
-    private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<> ();
+    private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
 
     @PostConstruct
