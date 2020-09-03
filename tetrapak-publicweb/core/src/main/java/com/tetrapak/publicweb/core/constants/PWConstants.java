@@ -1,10 +1,5 @@
 package com.tetrapak.publicweb.core.constants;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * The Class PWConstants.
  */
@@ -215,31 +210,8 @@ public final class PWConstants {
     public static final String CQ_LAST_MODIFIED = "cq:lastModified";
 
     public static final String HTTPS_PROTOCOL = "https://";
-    public static final String HTTP_PROTOCOL = "http://";
     public static final String WWW = "www.";
 
-    public static final String HTML_EXTENSION = ".html";
-    public static final String CONTENT_ROOT_FOLDER_PUBLIC_WEB = "/content/tetrapak/publicweb";
-    public static final String CONTENT_ROOT_FOLDER_CUSTOMER_HUB = "/content/tetrapak/customerhub";
-    /**Externalizer**/
-    public static final  String EXTERNALIZER_DOMAIN_PUBLICWEB = "publicweb";
-    public static final  String EXTERNALIZER_DOMAIN_CUSTOMERHUB = "customerhub";
-
-    public static final List<String> siteRootPathConfig = Arrays.asList(
-            CONTENT_ROOT_FOLDER_PUBLIC_WEB,CONTENT_ROOT_FOLDER_CUSTOMER_HUB);
-
-
-    public static final Map<String, String> siteRootPathConfigForExternalizer;
-
-    static {
-        siteRootPathConfigForExternalizer = new HashMap<>();
-        siteRootPathConfigForExternalizer.put(CONTENT_ROOT_FOLDER_PUBLIC_WEB,EXTERNALIZER_DOMAIN_PUBLICWEB);
-        siteRootPathConfigForExternalizer.put(CONTENT_ROOT_FOLDER_CUSTOMER_HUB,EXTERNALIZER_DOMAIN_CUSTOMERHUB);
-
-    }
-
-
-    
     /**
      * Instantiates a new PW constants.
      */
