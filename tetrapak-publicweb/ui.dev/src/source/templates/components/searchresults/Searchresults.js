@@ -115,7 +115,7 @@ class Searchresults {
     // do the analytics call 
     const searchObj = {
       searchTerm : searchVal, 
-      searchFilters : Object.values(joinedFilterTags).join(',')
+      searchFilters : Object.keys(joinedFilterTags).map(e => joinedFilterTags[e]).join(',')
     };
 
     const eventObj = {
@@ -211,7 +211,7 @@ class Searchresults {
 
         let joinedFilterTags = { ...contentType, ...theme };
         joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
-        const searchfiltersString = Object.values(joinedFilterTags).join(',');
+        const searchfiltersString = Object.keys(joinedFilterTags).map(e => joinedFilterTags[e]).join(',');
 
         // do the analytics call 
         const searchObj = {
@@ -292,7 +292,7 @@ class Searchresults {
     // do the analytics call 
     const searchObj = {
       searchTerm : searchTerm, 
-      searchFilters : Object.values(joinedFilterTags).join(',')
+      searchFilters : Object.keys(joinedFilterTags).map(e => joinedFilterTags[e]).join(',')
     };
 
     const eventObj = {
@@ -329,7 +329,7 @@ class Searchresults {
     const searchObj = {
       searchTerm : searchTerm, 
       searchResults: this.cache.totalResultCount || 0,
-      searchFilters : Object.values(joinedFilterTags).join(',')
+      searchFilters : Object.keys(joinedFilterTags).map(e => joinedFilterTags[e]).join(',')
     };
 
     const eventObj = {
