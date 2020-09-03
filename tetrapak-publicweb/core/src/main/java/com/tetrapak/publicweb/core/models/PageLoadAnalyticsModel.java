@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.*;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
