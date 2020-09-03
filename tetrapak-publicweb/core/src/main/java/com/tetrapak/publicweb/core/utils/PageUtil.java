@@ -139,4 +139,14 @@ public final class PageUtil {
         return country;
     }
 
+    /**
+     * This method is used for getting locale in form of language-country say en-gb
+     * @param page
+     * @return String locale in form of language-country
+     */
+    public static String getLocaleFromURL (final Page page){
+        return getLanguageCode(page).concat(PWConstants.HYPHEN).
+                concat(getCountryCode(page));
+    }
+
 }

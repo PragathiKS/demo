@@ -77,6 +77,14 @@
                                 fieldLabel="Search page path"
                                 name="./searchPage"
                                 rootPath="/content/tetrapak/publicweb"/>
+							<hreflangflag
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"                                fieldDescription="Uncheck to not populate hreflang and canonical"
+                                fieldLabel="Disable hreflang and canonical"
+                                name="./hrefLangFlag"
+                                text="Disable hreflang and canonical"
+                                uncheckedValue="{Boolean}true"
+                                value="{Boolean}false"/>
                         </items>
                     </column>
                 </items>

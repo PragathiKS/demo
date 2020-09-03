@@ -11,6 +11,9 @@ public final class PWConstants {
     /** The Constant GB_COUNTRY_ISO_CODE. */
     public static final String GB_ISO_CODE = "gb";
 
+    /** The Constant EN_GB. This can be use as default locale*/
+    public static final String GLOBAL_LOCALE = "en-global";
+
     /** The Constant LANGUAGE_LEVEL. */
     public static final int LANGUAGE_PAGE_LEVEL = 4;
 
@@ -34,6 +37,9 @@ public final class PWConstants {
 
     /** The Constant SLASH. */
     public static final String SLASH = "/";
+
+    /** The Constant HYPHEN. */
+    public static final String HYPHEN = "-";
 
     /** The Constant ROOT_PATH. */
     public static final String ROOT_PATH = "/var/commerce/products";
@@ -203,10 +209,9 @@ public final class PWConstants {
     /** The Constant CQ_LAST_MODIFIED. */
     public static final String CQ_LAST_MODIFIED = "cq:lastModified";
 
-    public static final String HTTPS_PROTOCOL = "https://"; 
+    public static final String HTTPS_PROTOCOL = "https://";
+    public static final String WWW = "www.";
 
-    public static final String HTML_EXTENSION = ".html"; 
-    
     /**
      * Instantiates a new PW constants.
      */
