@@ -5,4 +5,4 @@
     cq.wcm.msm.action.excludednodetypes="[cq:LiveSyncConfig,cq:BlueprintSyncConfig,cq:LiveSyncAction,cq:meta]"
 	cq.wcm.msm.action.excludedparagraphitems="[cq:propertyInheritanceCancelled]"
 	cq.wcm.msm.impl.action.referencesupdate.prop_updateNested="{Boolean}true"
-	cq.wcm.msm.action.excludedprops="[jcr:.*,sling:.*,cq:.*]"/>
+	cq.wcm.msm.action.excludedprops="[jcr:.*,sling:.*,cq:(?!(redirectTarget)$).*]"/>
