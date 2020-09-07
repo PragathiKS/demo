@@ -223,18 +223,26 @@
 												jcr:primaryType="nt:unstructured"
 												cq:showOnCreate="{Boolean}true"
 												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-												fieldLabel="No Index"
+												renderReadOnly="true"
 												name="./noIndex"
 												text="No Index"
-												value="noindex"/>
+												value="noindex">
+												<granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="noIndex"/>
+                                            </noIndex>
 											<noFollow
 												jcr:primaryType="nt:unstructured"
 												cq:showOnCreate="{Boolean}true"
 												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-												fieldLabel="No Follow"
+												renderReadOnly="true"
 												name="./noFollow"
 												text="No Follow"
-												value="nofollow"/>
+												value="nofollow">
+												<granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="noFollow"/>
+											</noFollow>
                                         </items>
                                     </metarobots>
                                 </items>
