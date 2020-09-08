@@ -28,7 +28,7 @@ public class LinkUtils extends WCMUsePojo {
             if (GlobalUtil.isPublish()) {
                 return resolver.map(link);
             }
-            return resolver.map(link);
+            return resolver.map(link + ".html");
         }
         return link;
     }
