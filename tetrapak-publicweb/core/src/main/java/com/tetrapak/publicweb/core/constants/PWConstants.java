@@ -1,5 +1,8 @@
 package com.tetrapak.publicweb.core.constants;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * The Class PWConstants.
  */
@@ -211,6 +214,34 @@ public final class PWConstants {
 
     public static final String HTTPS_PROTOCOL = "https://";
     public static final String WWW = "www.";
+
+    /** The Constant MAGHREB_COUNTRY_CODE. */
+    public static final String MAGHREB_COUNTRY_CODE = "maghreb";
+
+    /** The Constant ES_COUNTRY_CODE for Central America & Caribbean */
+    public static final String ES_COUNTRY_CODE = "es";
+
+    /** The Constant DE_COUNTRY_CODE for Germany, Austria, Switzerland. */
+    public static final String DE_COUNTRY_CODE = "de";
+
+    /** The Constant RU_COUNTRY_CODE for Russia, Kazakhstan, Ukraine. */
+    public static final String RU_COUNTRY_CODE = "ru";
+
+   /** list exceptionCountriesList contains all countries which are exceptions for country code .**/
+    public static final List<String> exceptionCountriesList =
+           Arrays.asList(MAGHREB_COUNTRY_CODE, ES_COUNTRY_CODE,DE_COUNTRY_CODE,RU_COUNTRY_CODE);
+
+    /** list maghrebLocaleValues contains all locales for maghreb. **/
+    public static final List<String> maghrebLocaleValues = Arrays.asList("fr-dz", "fr-ly", "fr-m", "fr-ma", "fr-tn");
+
+    /** list esLocaleValues contains all locales for Central America & Caribbean. **/
+    public static final List<String> esLocaleValues = Arrays.asList("es");
+
+    /** list deLocaleValues contains all locales for Germany, Austria, Switzerland .**/
+    public static final List<String> deLocaleValues = Arrays.asList("de-de", "es-at", "es-ch");
+
+    /** list ruLocaleValues contains all locales for  Russia, Kazakhstan, Ukraine.**/
+    public static final List<String> ruLocaleValues = Arrays.asList("ru-ru", "ru-kz", "ru-ua");
 
     /**
      * Instantiates a new PW constants.
