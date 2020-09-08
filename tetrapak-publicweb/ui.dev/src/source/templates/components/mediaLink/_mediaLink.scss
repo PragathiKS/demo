@@ -26,7 +26,7 @@
             @media #{$desktop} {
                 @include font-size($font-xl);
                 @include line-height(40px, $font-xl);
-                font-size: 700;
+                font-weight: 700;
             }
         }
     }
