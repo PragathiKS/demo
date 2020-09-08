@@ -421,6 +421,7 @@ class Softconversion {
     this.restObj2 = {};
     $(`#cf-step-2-${this.cache.$componentName} label`).each((i, v) => this.restObj[$(v).text()] = 'NA');
     $(`#cf-step-3-${this.cache.$componentName} label`).slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
+    this.getCountryList();
   }
 }
 
