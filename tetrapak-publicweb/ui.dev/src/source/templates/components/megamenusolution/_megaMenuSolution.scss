@@ -140,7 +140,6 @@
     h2 {
         @include line-height($font-l, $font-baseline);
         display: flex;
-        font-family: $font-bold;
         font-size: $font-baseline;
         font-weight: 500;
         justify-content: space-between;
@@ -148,7 +147,7 @@
         @media #{$desktop} {
             @include line-height($font-l, $font-baseline);
             display: block;
-            font-family: $font-black;
+            font-weight: 700;
             font-size: $font-baseline;
             justify-content: center;
         }
@@ -158,10 +157,8 @@
         @include line-height($font-l, $font-baseline);
         @include margin(0);
         color: $color-congress-blue;
-        font-family: $font-bold;
         @media #{$desktop} {
             @include margin($margin-l $margin-zero $margin-zero);
-            font-family: $font-bold;
             font-size: 18px;
             font-weight: 500;
             line-height: 24px;
@@ -289,7 +286,6 @@
             @include padding($padding-md 0);
             display: inline-block;
             color: $color-congress-blue;
-            font-family: $font-bold;
             font-size: $font-baseline;
             font-weight: 500;
             // border-bottom: 1px solid $color-mercury;
@@ -297,7 +293,7 @@
             @media #{$desktop} {
                 @include padding(0);
                 color: $color-tundora;
-                font-family: $font-black;
+                font-weight: 700;
                 border-bottom: 0;
                 text-align: center;
             }

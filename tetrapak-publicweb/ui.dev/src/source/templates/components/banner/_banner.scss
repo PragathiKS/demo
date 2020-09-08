@@ -98,8 +98,8 @@
             @include margin-bottom($margin-sm);
             color: $color-boulder;
             text-transform: $uppercase;
-            font-family: $font-bold;
             line-height: $font-normal;
+            font-weight: 500;
             @media #{$desktop} {
                 @include margin-bottom($margin-zero);
                 display: block;
@@ -118,8 +118,10 @@
             h3 {
                 @include font-size($font-l);
                 @include line-height($font-xl, $font-l);
+                font-weight: 400;
                 @media #{$desktop} {
                     @include font-size($font-xl);
+                    font-weight: 700;
                     line-height: 40px;
                 }
             }
@@ -131,7 +133,6 @@
         &__description {
             @include font-size(16px);
             @include line-height(28px, 16px);
-            font-family: $font-light;
             ul {
                 li {
                     display: flex;
@@ -150,7 +151,7 @@
         }
         .tpatom-link {
             @include margin-top($margin-md);
-            font-family: $font-light;
+            font-family: $font-monsterrat;
         }
         &.sky-blue {
             color: $color-white;

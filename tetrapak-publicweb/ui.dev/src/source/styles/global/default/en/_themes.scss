@@ -1,16 +1,16 @@
 body{
     @include line-height($font-l,$font-baseline);
-    font-family:$font-light;
+    font-family:$font-monsterrat;
     background: $color-wild-sand;
-    font-weight: normal;
+    font-weight: 400;
     font-size: $font-baseline;
     font-style: normal;
     position: relative;
 }
 a {
     @include line-height($font-l,$font-baseline);
-    font-family: $font-light;
-    font-weight: 500;
+    font-family: $font-monsterrat;
+    font-weight:400;
     font-size: $font-baseline;
 }
 
@@ -26,9 +26,17 @@ a {
 img {
     border-radius: 4px;
 }
-h1,h2,h3,h4{
-    font-family:$font-light;
-    font-weight:500;
+h1,h2 {
+    font-family: $font-monsterrat;
+    font-weight:700;
+}
+h3 {
+    font-family: $font-monsterrat;
+    font-weight:400;   
+}
+h4 {
+    font-family: $font-monsterrat;
+    font-weight:500;     
 }
 
 .pw-theme {
@@ -123,7 +131,7 @@ h1,h2,h3,h4{
 .tpatom-link--transparent,
 .tpatom-link--datepicker {
   span {
-    font-family: $font-light;
+    font-family: $font-monsterrat;
   }
 }
 
@@ -144,4 +152,13 @@ h1,h2,h3,h4{
 }
 .tpatom-subheading {
     letter-spacing: 0;
+}
+.tpatom-heading {
+    font-family:$font-monsterrat;
+    &--regular {
+        font-weight: 400;
+        @media #{$desktop} {
+            font-weight: 700;
+        }
+    }
 }

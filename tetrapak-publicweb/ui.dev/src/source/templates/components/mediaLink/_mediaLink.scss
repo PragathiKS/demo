@@ -22,10 +22,11 @@
         h3 {
             @include font-size($font-l);
             @include line-height($font-xl, $font-l);
-            font-weight: 300;
+            font-weight: 400;
             @media #{$desktop} {
                 @include font-size($font-xl);
                 @include line-height(40px, $font-xl);
+                font-size: 700;
             }
         }
     }
@@ -78,7 +79,7 @@
                 @include margin-left($margin-zero);
             }
             @include line-height(24px, 14px);
-            font-weight: 500;
+            font-weight: 400;
         }
         i.icon {
             @include margin-left(16px);
