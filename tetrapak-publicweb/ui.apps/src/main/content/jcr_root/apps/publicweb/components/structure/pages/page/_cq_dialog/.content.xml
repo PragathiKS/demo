@@ -41,20 +41,6 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="jcr:title"/>
                                             </title>
-											<errorpages
-												  jcr:primaryType="nt:unstructured"
-												 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-												 cq:showOnCreate="{Boolean}true"
-												 fieldDescription="Error pages for this content tree"
-												  fieldLabel="Error Pages"
-												  name="./errorPages"
-												  rootPath="/content">
-												 <granite:rendercondition
-												jcr:primaryType="nt:unstructured"
-													sling:resourceType="publicweb/granite/rendercondition/template"
-													templatePath="/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page"/>
-											</errorpages>
-
                                             <titlesuffix
 												cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
