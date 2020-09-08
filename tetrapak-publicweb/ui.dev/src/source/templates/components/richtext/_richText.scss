@@ -74,7 +74,7 @@
         @include font-size($font-l);
         @include line-height(32px, $font-l);
         @include margin-bottom($margin-md);
-        font-weight: 300;
+        font-weight: 400;
     }
 
     h4 {
@@ -167,7 +167,7 @@
             @include padding-bottom(8px);
             &::before {
                 content: '\2012';
-                font-weight: 500;
+                font-weight: 400;
             }
         }
     }
@@ -219,7 +219,7 @@
         h1 {
             @include font-size($font-xxl);
             @include line-height(48px, $font-xxl);
-            font-weight: 300;
+            font-weight: 700;
         }
         h2 {
             @include font-size($font-xl);
@@ -228,7 +228,7 @@
         h3 {
             @include font-size($font-l);
             @include line-height(32px, $font-l);
-            font-weight: 300;
+            font-weight: 400;
         }
         h4 {
             @include font-size($font-md);
@@ -238,7 +238,7 @@
         p {
             @include font-size(14px);
             @include line-height(24px, 14px);
-            font-weight: 500;
+            font-weight: 400;
         }
 
         small {
