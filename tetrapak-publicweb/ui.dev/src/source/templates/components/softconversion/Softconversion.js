@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import 'bootstrap';
+import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
 import { isExternal } from '../../../scripts/utils/updateLink';
@@ -23,6 +25,7 @@ class Softconversion {
     this.cache.$position = this.root.find(`.position-${this.cache.$componentName}`);
     this.cache.$notmebtn = this.root.find(`.notmebtn-${this.cache.$componentName}[type=button]`);
     this.cache.$yesmebtn = this.root.find(`.yesmebtn-${this.cache.$componentName}[type=button]`);
+    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
 
     this.cache.softconversionapi = this.root.find(`form.pw-form-softconversion-${this.cache.$componentName}`);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
@@ -39,11 +42,29 @@ class Softconversion {
     this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`]='';
     this.cache.requestPayload['market-consent']='';
     this.cache.requestPayload['typeOfVisitorTitle']='';
+    this.cache.requestPayload['countryTitle']='';
+    this.cache.requestPayload['country']='';
+    this.cache.countryList = [];
 
   }
 
   validEmail(email) {
     return REG_EMAIL.test(email);
+  }
+
+  onKeydown = (event, options) => {
+    if ($('.dropdown-menu').hasClass('show')) {
+      keyDownSearch.call(this, event, options);
+    }
+  };
+
+  getCountryList() {
+    const self = this;
+    $('.country-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.countryList.push($(datael).data('countrytitle'));
+    });
+    $('.country-dropdown, .country-dropdown-select').keydown(e => this.onKeydown(e, this.cache.countryList));
   }
 
   onRadioChangeHandler = e => {
@@ -144,6 +165,8 @@ class Softconversion {
     const apiPayload =  {};
 
     apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
+    apiPayload.countryTitle = this.cache.requestPayload['countryTitle'];
+    apiPayload.country = this.cache.requestPayload['country'];
     apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
     apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
     apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
@@ -175,7 +198,7 @@ class Softconversion {
 
 
   bindEvents() {
-    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $parentComponent, $company, $position, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn } = this.cache;
+    const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $parentComponent, $company, $position, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn, $dropItem } = this.cache;
     const self = this;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('showsoftconversion-pw', this.showPopup);
@@ -347,6 +370,19 @@ class Softconversion {
       }else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`){
         changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, $parentComponent, errObj);
       }
+    });
+
+    $dropItem.click(function (e) {
+      e.preventDefault();
+      const country = $(this).data('country');
+      const countryTitle = $(this).data('countrytitle');
+      const parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle span', parentDrop).text(countryTitle);
+      $('input', parentDrop).val(countryTitle);
+      requestPayload['country'] = country;
+      requestPayload['countryTitle'] = countryTitle;
+      $dropItem.removeClass('active');
+      $(this).addClass('active');
     });
   }
 
