@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.Collections;
 
 
 @Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -66,6 +67,7 @@ public class PageLoadAnalyticsModel {
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
     private static final int COUNTRY_LEVEL = 4;
     private static final int LANGUAGE_LEVEL = 5;
+    private static final int HREFLANG_LIST_MINIMUM_SIZE = 2;
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
 
@@ -202,9 +204,14 @@ public class PageLoadAnalyticsModel {
 
     /**
      * This method is used to iterate languagePages and call hrefLang setter
-     * @param marketPages
+     * @param marketPages list of marketPages
      */
     private void callHrefLangSetter (Iterator<Page> marketPages) {
+        final ResourceResolver resourceResolver = resource.getResourceResolver();
+        CountryLanguageCodeBean countryLanguageCodeBean = new CountryLanguageCodeBean();
+        countryLanguageCodeBean.setLocale(X_DEFAULT);
+        countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE,resourceResolver));
+        hrefLangValues.add(countryLanguageCodeBean);
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();
             if (!marketPage.getName().equalsIgnoreCase(PWConstants.LANG_MASTERS)) {
@@ -213,30 +220,8 @@ public class PageLoadAnalyticsModel {
                     final Page currentLanguagePage = languagePages.next();
                     final String currentPagePathInLoop = getPagePathForCountryLanguage(
                             PageUtil.getCountryPage(currentLanguagePage).getPath(),
-                            PageUtil.getLanguageCode(currentLanguagePage),currentPage);
-                    final ResourceResolver resourceResolver = resource.getResourceResolver();
-                    // checking the exceptional countries like magreb, central America etc
-                    if(!PWConstants.exceptionCountriesList.contains(PageUtil.getCountryCode(currentLanguagePage))){
-                        setHrefLangValues(resourceResolver, PageUtil.getLocaleFromURL(currentLanguagePage), currentPagePathInLoop);
-                    } else {
-                        if(PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.MAGHREB_COUNTRY_CODE)) {
-                            for (String magrebLocale: PWConstants.maghrebLocaleValues) {
-                                setHrefLangValues(resourceResolver, magrebLocale, currentPagePathInLoop );
-                            }
-                        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.DE_COUNTRY_CODE)){
-                            for (String deLocale: PWConstants.deLocaleValues) {
-                                setHrefLangValues(resourceResolver, deLocale, currentPagePathInLoop );
-                            }
-                        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)){
-                            for (String ruLocale: PWConstants.ruLocaleValues) {
-                                setHrefLangValues(resourceResolver, ruLocale, currentPagePathInLoop );
-                            }
-                        } else {
-                            for (String esLocale: PWConstants.esLocaleValues) {
-                                setHrefLangValues(resourceResolver, esLocale, currentPagePathInLoop );
-                            }
-                        }
-                    }
+                            PageUtil.getLanguageCode(currentLanguagePage), currentPage);
+                    hrefLangSetter(currentLanguagePage, currentPagePathInLoop, resourceResolver);
                 }
             }
         }
@@ -246,9 +231,9 @@ public class PageLoadAnalyticsModel {
      * from path /content/tetrapak/publicweb/gb/en/home to a locale say fr/en, then this will return
      * /content/tetrapak/publicweb/fr/en/home
      *
-     * @param countryPagePath
-     * @param language
-     * @param currentPage
+     * @param countryPagePath country page path
+     * @param language locale language
+     * @param currentPage current page
      * @return String valid page path for any locale
      */
     private String getPagePathForCountryLanguage (final String countryPagePath, final String language, final Page currentPage){
@@ -257,21 +242,51 @@ public class PageLoadAnalyticsModel {
     }
 
     /**
+     * This method is used to get the locale and check for exceptional regions and then call the setter
+     * @param currentLanguagePage current language page
+     * @param currentPagePathInLoop current Page path in the loop
+     * @param resourceResolver the resourceResolver
+     */
+    private void hrefLangSetter(final Page currentLanguagePage, final String currentPagePathInLoop,
+                                final ResourceResolver resourceResolver){
+        // checking the exceptional countries like magreb, central America
+        if(!PWConstants.exceptionCountriesList.contains(PageUtil.getCountryCode(currentLanguagePage))){
+            setHrefLangValues(resourceResolver, PageUtil.getLocaleFromURL(currentLanguagePage), currentPagePathInLoop);
+        } else {
+            if(PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.MAGHREB_COUNTRY_CODE)) {
+                for (String magrebLocale: PWConstants.maghrebLocaleValues) {
+                    setHrefLangValues(resourceResolver, magrebLocale, currentPagePathInLoop );
+                }
+            } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.DE_COUNTRY_CODE)){
+                for (String deLocale: PWConstants.deLocaleValues) {
+                    setHrefLangValues(resourceResolver, deLocale, currentPagePathInLoop );
+                }
+            } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)){
+                for (String ruLocale: PWConstants.ruLocaleValues) {
+                    setHrefLangValues(resourceResolver, ruLocale, currentPagePathInLoop );
+                }
+            } else {
+                for (String esLocale: PWConstants.esLocaleValues) {
+                    setHrefLangValues(resourceResolver, esLocale, currentPagePathInLoop );
+                }
+            }
+        }
+    }
+
+    /**
      * This method is used to set hreflang and its url
-     * @param resourceResolver
-     * @param locale
-     * @param currentPagePathInLoop
+     * @param resourceResolver resourceResolver
+     * @param locale current locale
+     * @param currentPagePathInLoop currentpage path in the loop
      */
     private void setHrefLangValues(final ResourceResolver resourceResolver,final String locale, final String currentPagePathInLoop){
         CountryLanguageCodeBean countryLanguageCodeBean = new CountryLanguageCodeBean();
         final Resource currentResource= resourceResolver.getResource(currentPagePathInLoop);
-        if(null != currentResource &&
-                (!currentResource.getPath().equalsIgnoreCase(currentPage.getPath()) ||
-                        locale.equalsIgnoreCase(PWConstants.GLOBAL_LOCALE))){
+        if(null != currentResource){
             if(!locale.equalsIgnoreCase(PWConstants.GLOBAL_LOCALE)) {
                 countryLanguageCodeBean.setLocale(locale);
             } else {
-                countryLanguageCodeBean.setLocale(X_DEFAULT);
+                countryLanguageCodeBean.setLocale(PWConstants.ENGLISH_LANGUAGE_ISO_CODE);
             }
             countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(currentResource.getPath(),resourceResolver));
             hrefLangValues.add(countryLanguageCodeBean);
@@ -373,7 +388,14 @@ public class PageLoadAnalyticsModel {
    }
 
     public List<CountryLanguageCodeBean> getHreflangValues() {
-        return new ArrayList<>(hrefLangValues);
+        /*
+        Below condition is to ensure Hreflang tags should be
+         automatically inserted into pages which exist in more than one region/language and thus
+         it should be more than two considering the x-default be one of them
+         */
+        if(hrefLangValues.size() > HREFLANG_LIST_MINIMUM_SIZE){
+            return new ArrayList<>(hrefLangValues);
+        }
+        return Collections.emptyList();
     }
-
 }
