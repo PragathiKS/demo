@@ -5,6 +5,7 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 
 public class LinkUtils extends WCMUsePojo {
@@ -42,6 +43,15 @@ public class LinkUtils extends WCMUsePojo {
      */
     public static String getRootPath(final String pagePath) {
         return Text.getAbsoluteParent(pagePath, PWConstants.LANGUAGE_PAGE_LEVEL);
+    }
+    
+    public static Boolean isPreviewURL(SlingHttpServletRequest request) {
+        String previewHeader = request.getHeader("preview");
+        Boolean isPreviewURL = false;
+        if("true".equalsIgnoreCase(previewHeader)) {
+            isPreviewURL = true;
+        }
+        return isPreviewURL;
     }
 
     /**
