@@ -2,6 +2,11 @@
 	"jcr:primaryType": "cq:Page",
 	"jcr:createdBy": "admin",
 	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Country page"
+		},
 	"en":{
 		"jcr:primaryType": "cq:Page",
 		"jcr:createdBy": "admin",
@@ -9,7 +14,7 @@
 		"jcr:content": {
 			"jcr:primaryType": "cq:PageContent",
 			"jcr:createdBy": "admin",
-			"jcr:title": "country page",
+			"jcr:title": "Homepage",
 			"root" : {
 				"responsivegrid" : {
 					"businessinquiryformc" : {
@@ -22,7 +27,6 @@
 			  "alt": "Contact us",
 			  "image": "/content/dam/tetrapak/publicweb/contactus.PNG",
 			  "heading": "Business Enquiry",
-			  "thankyouHeading": "Thank you for your request",
 			  "descriptionText": "Description",
 			  "thankyouImageAltText": "Thank you",
 			  "thankyouImage": "/content/dam/tetrapak/publicweb/contactus.PNG",
@@ -81,7 +85,6 @@
 					  "alt": "Contact us",
 					  "image": "/content/dam/tetrapak/publicweb/contactus.PNG",
 					  "heading": "Business Enquiry",
-					  "thankyouHeading": "Thank you for your request",
 					  "descriptionText": "Description",
 					  "thankyouImageAltText": "Thank you",
 					  "thankyouImage": "/content/dam/tetrapak/publicweb/contactus.PNG",
