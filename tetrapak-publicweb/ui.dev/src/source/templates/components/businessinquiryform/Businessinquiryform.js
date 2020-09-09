@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError, newPage } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
@@ -20,6 +21,8 @@ class Businessinquiryform {
     this.cache.$submitBtn = $('form.pw-form-businessEnquiry button[type="submit"]', this.root);
     this.cache.$inputText = $('form.pw-form-businessEnquiry  input[type="text"]', this.root);
     this.cache.$inputEmail = $('form.pw-form-businessEnquiry  input[type="email"]', this.root);
+    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.countryList = [];
 
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -33,8 +36,25 @@ class Businessinquiryform {
       'purposeOfContactInBusinessEqTitle': '',
       'purposeOfInterestAreaEqTitle': '',
       'company': '',
-      'position': ''
+      'position': '',
+      'country': '',
+      'countryTitle': ''
     };
+  }
+
+  onKeydown = (event, options) => {
+    if ($('.dropdown-menu').hasClass('show')) {
+      keyDownSearch.call(this, event, options);
+    }
+  };
+
+  getCountryList() {
+    const self = this;
+    $('.country-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.countryList.push($(datael).data('countrytitle'));
+    });
+    $('.country-dropdown, .country-dropdown-select').keydown(e => this.onKeydown(e, this.cache.countryList));
   }
 
   validateField(val) {
@@ -73,6 +93,8 @@ class Businessinquiryform {
     dataObj['phoneNumber'] = this.cache.requestPayload.phoneField;
     dataObj['company'] = this.cache.requestPayload.company;
     dataObj['position'] = this.cache.requestPayload.position;
+    dataObj['country'] = this.cache.requestPayload.country;
+    dataObj['countryTitle'] = this.cache.requestPayload.countryTitle;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
     dataObj['marketingConsent'] = this.root.find(`#befconsentcheckbox`).is(':checked');
@@ -121,7 +143,7 @@ class Businessinquiryform {
 
 
   bindEvents() {
-    const { requestPayload, $radioListFirst, $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn } = this.cache;
+    const { requestPayload, $radioListFirst, $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn, $dropItem } = this.cache;
     const self = this;
     $radioListFirst.on('change', this.onRadioChangeHandlerFirst);
     $radioListSecond.on('change', this.onRadioChangeHandlerSecond);
@@ -249,7 +271,7 @@ class Businessinquiryform {
       e.stopPropagation();
       let isvalid = true;
       const errObj = [], target = $(this).data('target'), tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea');
-    
+
       if (!$(this).hasClass('previousbtn') && (input.length > 0 || textarea.length > 0)) {
         $('input, textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
@@ -322,6 +344,19 @@ class Businessinquiryform {
       }
     });
 
+    $dropItem.click(function (e) {
+      e.preventDefault();
+      const country = $(this).data('country');
+      const countryTitle = $(this).data('countrytitle');
+      const parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle span', parentDrop).text(countryTitle);
+      $('input', parentDrop).val(countryTitle);
+      requestPayload['country'] = country;
+      requestPayload['countryTitle'] = countryTitle;
+      $dropItem.removeClass('active');
+      $(this).addClass('active');
+    });
+
   }
   init() {
     /* Mandatory method */
@@ -341,6 +376,7 @@ class Businessinquiryform {
     $('#bef-step-3 label').each((i, v) => this.restObj[$(v).text()] = 'NA');
     $('#bef-step-4 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     makeLoad(this.step1head, this.mainHead);
+    this.getCountryList();
   }
 }
 
