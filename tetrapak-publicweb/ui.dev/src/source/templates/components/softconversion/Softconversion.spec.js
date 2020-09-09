@@ -15,6 +15,7 @@ describe('Softconversion', function () {
     this.notMeBtnHandlerSpy = sinon.spy(this.softconversion, 'notMeBtnHandler');
     this.yesMeBtnHandlerSpy = sinon.spy(this.softconversion, 'yesMeBtnHandler');
     this.onRadioChangeHandlerSpy = sinon.spy(this.softconversion, 'onRadioChangeHandler');
+    this.getCountryListSpy = sinon.spy(this.softconversion, 'getCountryList');
 
     this.softconversion.root.modal = ()=>{};
     this.openStub = sinon.stub(window, 'open');
@@ -33,11 +34,24 @@ describe('Softconversion', function () {
     this.onRadioChangeHandlerSpy.restore();
     this.openStub.restore();
     this.showPopupSpy.restore();
+    this.getCountryListSpy.restore();
   });
 
   it('should initialize', function (done) {
     expect(this.softconversion.init.called).to.be.true;
     done();
+  });
+
+  it('should get country list and it should be equal to 2', function () {
+    expect(this.softconversion.getCountryList.called).to.be.true;
+    expect(this.softconversion.cache.countryList.length).to.equal(2);
+    $('.country-dropdown, .country-dropdown-select').keydown();
+  });
+
+  it('Should update payload with dropItem changes', function() {
+    document.getElementById('ddtest').click();
+    expect(this.softconversion.cache.requestPayload['countryTitle']).to.equal('Albania');
+    expect(this.softconversion.cache.requestPayload['country']).to.equal('albania');
   });
 
   it('should not submit Form when required fields are empty', function (done) {

@@ -12,30 +12,54 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
+import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
 import com.tetrapak.publicweb.core.services.impl.PardotServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
-
+/**
+ * The Class BusinessInquiryModelTest.
+ */
 public class BusinessInquiryModelTest {
 
     /** The context. */
     @Rule
     public AemContext context = new AemContext();
+    
+    /** The context 2. */
+    @Rule
+    public AemContext context2 = new AemContext();
 
     /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
+
+    /** The Constant TEST_CONTENT_ROOT. */
     private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
 
-    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb/en/contact-us";
+    /** The Constant CONTACT_US_CONTENT_ROOT. */
+    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb/en/contact-us"; 
+    
+    /** The Constant TEST_RESOURCE_CFM. */
+    private static final String TEST_RESOURCE_CFM = "/contactus/test-countries-content.json";
+    
+    /** The Constant COUNTRIES_ROOT. */
+    private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/cfm/countries";
+    
+    
     /** The model class. */
     Class<BusinessInquiryModel> modelClass = BusinessInquiryModel.class;
 
     /** The model. */
     private BusinessInquiryModel model;
 
+    /** The pardot service. */
     private PardotService pardotService;
+    
+    
+    /** The country detail service. */
+    private CountryDetailService countryDetailService;
 
     /**
      * The resource.
@@ -57,14 +81,22 @@ public class BusinessInquiryModelTest {
     public void setUp() throws Exception {
         pardotService = new PardotServiceImpl();
         context.load().json(TEST_RESOURCE_CONTENT, TEST_CONTENT_ROOT);
-
+        context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
+        
         context.addModelsForClasses(modelClass);
         context.registerService(PardotService.class, pardotService);
         // context.registerInjectActivateService(countryDetailService);
         final Map<String, Object> pardotConfig = new HashMap<>();
-        pardotConfig.put("pardotBusinessInquiryServiceUrl",
-                "http://pardotURL");
+        pardotConfig.put("pardotBusinessInquiryServiceUrl", "http://pardotURL");
         MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
+        
+        countryDetailService = new CountryDetailServiceImpl();
+        context.registerService(CountryDetailService.class, countryDetailService);
+        // context.registerInjectActivateService(countryDetailService);
+        final Map<String, Object> countryConfig = new HashMap<>();
+        countryConfig.put("getCountriesContentFragmentRootPath",
+                "/content/dam/tetrapak/publicweb/cfm/countries");
+        MockOsgi.activate(context.getService(CountryDetailService.class), context.bundleContext(), countryConfig);
 
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
@@ -72,6 +104,7 @@ public class BusinessInquiryModelTest {
     }
 
     /**
+     * Test dailog values.
      *
      * @throws Exception
      *             the exception
@@ -97,16 +130,35 @@ public class BusinessInquiryModelTest {
                 "/content/tetrapak/publicweb/gb/en/contact-us/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
                 model.getApiUrl());
         assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
-       }
+    }
 
+    /**
+     * Test fetch language.
+     */
     @Test
     public void testFetchLanguage() {
         assertEquals("en", model.getSiteLanguage());
     }
 
+    /**
+     * Test fetch country.
+     */
     @Test
     public void testFetchCountry() {
         assertEquals("gb", model.getSiteCountry());
+
+    }
+       
+    /**
+     * Test countries.
+     *
+     * @throws Exception the exception
+     */
+    @Test
+    public void testCountries() throws Exception {      
+
+        assertEquals("ContactUs", 2, model.getCountryOptions().size());
+        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
 
     }
 

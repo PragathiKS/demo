@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +11,8 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
+import com.tetrapak.publicweb.core.beans.DropdownOption;
+import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -32,12 +35,20 @@ public class BusinessInquiryModel extends FormModel {
     private FormConfigModel formConfig;
 
     private FormConsentConfigModel consentConfig;
+    
+    /** The country options. */
+    private List<DropdownOption> countryOptions;
+    
+    /** The country detail service. */
+    @OSGiService
+    private CountryDetailService countryDetailService;
 
     /**
      * The init method.
      */
     @PostConstruct
     protected void init() {
+        setCountryOptions();
         setFormConfig();
     }
 
@@ -95,6 +106,24 @@ public class BusinessInquiryModel extends FormModel {
      */
     public FormConsentConfigModel getConsentConfig() {
         return consentConfig;
+    }
+    
+    /**
+     * Gets the country options.
+     *
+     * @return the country options
+     */
+    public List<DropdownOption> getCountryOptions() {
+        return countryOptions;
+    }
+
+
+    /**
+     * Fetches country list from content fragments.
+     *
+     */
+    private void setCountryOptions() {
+        this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
     }
 
 }

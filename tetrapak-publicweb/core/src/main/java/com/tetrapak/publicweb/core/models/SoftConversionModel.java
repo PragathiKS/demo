@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.tetrapak.publicweb.core.beans.DropdownOption;
+import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -40,7 +43,7 @@ public class SoftConversionModel extends FormModel {
     @ValueMapValue
     private String moreButtonLabel;
 
-
+    /** The pardot url. */
     @ValueMapValue
     private String pardotUrl;
 
@@ -49,6 +52,13 @@ public class SoftConversionModel extends FormModel {
 
     /** The consent config. */
     private FormConsentConfigModel consentConfig;
+
+    /** The country options. */
+    private List<DropdownOption> countryOptions;
+
+    /** The country detail service. */
+    @OSGiService
+    private CountryDetailService countryDetailService;
 
     /**
      * The init method.
@@ -59,7 +69,7 @@ public class SoftConversionModel extends FormModel {
             moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction, resource.getResourceResolver());
         }
         setFormConfig();
-
+        setCountryOptions();
     }
 
     /**
@@ -123,6 +133,11 @@ public class SoftConversionModel extends FormModel {
         return PageUtil.getCountryCodeFromResource(resource);
     }
 
+    /**
+     * Gets the pardot url.
+     *
+     * @return the pardot url
+     */
     public String getPardotUrl() {
         return pardotUrl;
     }
@@ -143,6 +158,23 @@ public class SoftConversionModel extends FormModel {
      */
     public FormConsentConfigModel getConsentConfig() {
         return consentConfig;
+    }
+
+    /**
+     * Gets the country options.
+     *
+     * @return the country options
+     */
+    public List<DropdownOption> getCountryOptions() {
+        return countryOptions;
+    }
+
+    /**
+     * Fetches country list from content fragments.
+     *
+     */
+    private void setCountryOptions() {
+        this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
     }
 
 }
