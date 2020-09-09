@@ -218,6 +218,36 @@
                                                     data-sly-call="${inputField.inputfield_template @ inputType='text', id='phoneField', label='pw.form.label.phonenumber' , placeholder='pw.form.label.phoneplaceholder',   autoLocatorInput='phoneInput', autoLocatorLabel='phoneText', inputClass='validateForTags'}">
                                                 </sly>
                                             </div>
+                                            <div class="country-field-wrapper col-sm-12 col-lg-6">
+                                              <div class="formfield country-field country" data-country-name-label="${'pw.form.label.country' @i18n}">
+                                                <label for="country"
+                                                    auto_locator="contactUsCountrySelectorHelpText">${'pw.form.label.country' @
+                                                    i18n}</label>
+                                                <div class="pw-form__dropdown dropdown text-left">
+                                                    <button
+                                                        class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                                        type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        auto_locator="countrySelectDropdown" aria-expanded="false">
+                                                        <span
+                                                            class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
+                                                            @ i18n}</span>
+                                                        <i class="icon icon-Arrow_Right_pw"></i></button>
+                                                    </button>
+                                                    <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
+                                                        data-sly-list.country="${data.countryOptions}">
+                                                        <a href="#"
+                                                            class="dropdown-item"
+                                                            data-country="${country.key}"
+                                                            data-countrytitle="${country.value}">
+                                                            ${country.value}
+                                                        </a>
+                                                    </div>
+                                                    <input type="hidden" name="countryTitle" class="form-control validateForTags"
+                                                        id="country" required>
+                                                </div>
+                                                <div data-country-error-msg="${'pw.form.errormsg.country' @i18n}" class="errorMsg">${'pw.form.errormsg.country' @i18n}</div>
+                                            </div>
+                                          </div>
                                         </div>
                                     </div>
                                     <div class="row no-gutters pw-progress" auto_locator="progressBarStep2">
@@ -286,6 +316,10 @@
                                     <div class="row no-gutters summary" id="phoneSummery">
                                         <div class="col-lg-5">${'pw.form.label.phonenumber' @i18n}</div>
                                         <div class="col-lg-7 phoneField"></div>
+                                    </div>
+                                    <div class="row no-gutters summary">
+                                      <div class="col-lg-5">${'pw.form.label.country' @ i18n}</div>
+                                      <div class="col-lg-7 countryTitle countryField"></div>
                                     </div>
                                 </div>
                             </div>

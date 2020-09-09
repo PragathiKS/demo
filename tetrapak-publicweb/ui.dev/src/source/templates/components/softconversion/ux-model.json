@@ -1,1 +1,12 @@
-{}
+{
+  "countryOptions": [
+    {
+        "key": "denmark",
+        "value": "Denmark"
+    },
+    {
+        "key": "australia",
+        "value": "Australia"
+    }
+  ]
+}

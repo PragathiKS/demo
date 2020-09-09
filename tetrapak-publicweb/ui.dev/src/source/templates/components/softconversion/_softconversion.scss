@@ -10,6 +10,11 @@
         }
     }
 
+    .country-field-wrapper {
+        @include padding-left($padding-zero);
+        @include padding-right($padding-zero);
+    }
+
     .tp-modal-content {
         @media #{$mobile} {
             min-height: 100vh;
@@ -113,6 +118,19 @@
 
             .tpatom-checkbox__icon {
                 border-color: $color-alert;
+            }
+        }
+
+        // Dropdown styling
+        .country-field {
+            .pw-form__dropdown__menu {
+                .active {
+                    border: 0;
+                    background-color: transparent;
+                    &:hover {
+                        background-color: $color-wild-sand;
+                    }
+                }
             }
         }
 

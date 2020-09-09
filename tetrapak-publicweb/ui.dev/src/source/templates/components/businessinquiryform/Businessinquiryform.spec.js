@@ -24,6 +24,7 @@ describe('BusinessInquiryForm', function () {
     this.onRadioChangeHandlerSecondSpy = sinon.spy(this.businessinquiry, 'onRadioChangeHandlerSecond');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse({statusCode:'200'}));
+    this.getCountryListSpy = sinon.spy(this.businessinquiry, 'getCountryList');
     this.businessinquiry.init();
   });
   after(function () {
@@ -34,11 +35,24 @@ describe('BusinessInquiryForm', function () {
     this.reloadStub.restore();
     this.onRadioChangeHandlerFirstSpy.restore();
     this.onRadioChangeHandlerSecondSpy.restore();
+    this.getCountryListSpy.restore();
     this.ajaxStub.restore();
   });
 
   it('should initialize', function () {
     expect(this.businessinquiry.init.called).to.be.true;
+  });
+
+  it('should get country list and it should be equal to 2', function () {
+    expect(this.businessinquiry.getCountryList.called).to.be.true;
+    expect(this.businessinquiry.cache.countryList.length).to.equal(2);
+    $('.country-dropdown, .country-dropdown-select').keydown();
+  });
+
+  it('Should update payload with dropItem changes', function() {
+    document.getElementById('ddtest').click();
+    expect(this.businessinquiry.cache.requestPayload['countryTitle']).to.equal('Albania');
+    expect(this.businessinquiry.cache.requestPayload['country']).to.equal('albania');
   });
 
   it('Should update request payload on step-1 next button click', function () {
