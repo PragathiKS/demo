@@ -3,28 +3,40 @@ package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.servlethelpers.MockSlingHttpServletRequest;
+import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.tetrapak.publicweb.core.services.CountryDetailService;
+import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
+
 import io.wcm.testing.mock.aem.junit.AemContext;
 
-
+/**
+ * The Class SoftConversionModelTest.
+ */
 public class SoftConversionModelTest {
 
     /** The context. */
     @Rule
     public AemContext context = new AemContext();
 
-    /** The request. */
-    private final MockSlingHttpServletRequest request = context.request();
-
     /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/softconversion/test-content.json";
+
+    /** The Constant SOFTCONVERSION_CONTENT_ROOT. */
     private static final String SOFTCONVERSION_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
-    // private static final String TEXT_IMAGE_CONTENT_ROOT = "/content/tetrapak/publicweb/gb/en/textimage";
+
+    /** The Constant TEST_RESOURCE_CFM. */
+    private static final String TEST_RESOURCE_CFM = "/contactus/test-countries-content.json";
+
+    /** The Constant COUNTRIES_ROOT. */
+    private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/cfm/countries";
 
     /** The model class. */
     Class<SoftConversionModel> modelClass = SoftConversionModel.class;
@@ -34,6 +46,9 @@ public class SoftConversionModelTest {
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = "/content/tetrapak/publicweb/gb/en/textimage/jcr:content/textimage";
+
+    /** The country detail service. */
+    private CountryDetailService countryDetailService;
 
     /**
      * The resource.
@@ -48,14 +63,25 @@ public class SoftConversionModelTest {
      */
     @Before
     public void setUp() throws Exception {
+
         context.load().json(TEST_RESOURCE_CONTENT, SOFTCONVERSION_CONTENT_ROOT);
+        context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
         context.addModelsForClasses(modelClass);
+
+        countryDetailService = new CountryDetailServiceImpl();
+        context.registerService(CountryDetailService.class, countryDetailService);
+        // context.registerInjectActivateService(countryDetailService);
+        final Map<String, Object> countryConfig = new HashMap<>();
+        countryConfig.put("getCountriesContentFragmentRootPath", "/content/dam/tetrapak/publicweb/cfm/countries");
+        MockOsgi.activate(context.getService(CountryDetailService.class), context.bundleContext(), countryConfig);
+
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
 
     }
 
     /**
+     * Test dailog values.
      *
      * @throws Exception
      *             the exception
@@ -84,17 +110,36 @@ public class SoftConversionModelTest {
         assertEquals("Form", "No, I am not", model.getFormConfig().getNoButtonLabel());
         assertEquals("form", "http://pardotURL", model.getPardotUrl());
 
-       }
+    }
 
-
+    /**
+     * Test fetch language.
+     */
     @Test
     public void testFetchLanguage() {
         assertEquals("en", model.getSiteLanguage());
     }
 
+    /**
+     * Test fetch country.
+     */
     @Test
     public void testFetchCountry() {
         assertEquals("gb", model.getSiteCountry());
+
+    }
+
+    /**
+     * Test countries.
+     *
+     * @throws Exception
+     *             the exception
+     */
+    @Test
+    public void testCountries() throws Exception {
+
+        assertEquals("ContactUs", 2, model.getCountryOptions().size());
+        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
 
     }
 
