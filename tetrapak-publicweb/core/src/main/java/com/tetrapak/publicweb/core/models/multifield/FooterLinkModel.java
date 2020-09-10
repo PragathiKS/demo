@@ -41,7 +41,7 @@ public class FooterLinkModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver(),LinkUtils.isPreviewURL(request));
+        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
     }
 
 }
