@@ -211,6 +211,11 @@ public final class PWConstants {
 
     public static final String HTTPS_PROTOCOL = "https://";
     public static final String WWW = "www.";
+	/** The Constant HTML. */   
+    public static final String HTML = ".html";
+    
+    /** The Constant JCR VALUE. */  
+    public static final String JCR = "/jcr:content";
 
     /**
      * Instantiates a new PW constants.
