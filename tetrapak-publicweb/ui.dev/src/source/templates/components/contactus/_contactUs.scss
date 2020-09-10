@@ -67,7 +67,7 @@
     }
     // Right heading styling
     h4 {
-        font-family: $font-bold;
+        font-weight: 500;
         &.tpatom-heading--small {
             @include margin-bottom($margin-md);
             font-size: $font-md;

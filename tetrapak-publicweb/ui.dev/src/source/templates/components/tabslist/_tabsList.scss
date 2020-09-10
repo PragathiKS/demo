@@ -97,11 +97,12 @@
         @include font-size($font-l);
         @include line-height($padding-xl, $font-l);
         @include margin-bottom($margin-md);
-        font-weight: 300;
+        font-weight: 400;
         @media #{$desktop} {
             @include font-size($font-xl);
             @include line-height($padding-xxl, $font-xl);
             @include margin-bottom($margin-l);
+            font-weight: 700;
         }
     }
 
@@ -280,12 +281,11 @@
         &:not(.collapsed) {
             @media #{$mobile} {
                 color: $color-tundora;
-                font-family: $font-black;
-                font-weight: 900;
+                font-weight: 700;
             }
             .semi-bold {
                 @media #{$mobile} {
-                    font-family: $font-black;
+                    font-weight: 700;
                 }
             }
 
@@ -322,8 +322,7 @@
     &__event-title-icleft {
         &.semi-bold {
             @media #{$desktop} {
-                font-family: $font-bold;
-                font-weight: normal;
+                font-weight: 400;
             }
         }
         @include margin-left(0);
@@ -334,6 +333,7 @@
 
     &__event-title-icright {
         @include margin-right(0);
+        font-weight: 400;
         @media #{$desktop} {
             @include margin-right($margin-l);
         }
@@ -349,10 +349,11 @@
         @include font-size($font-l);
         @include line-height($font-xl, $font-l);
         @include margin-bottom($margin-l);
-        font-weight: 300;
+        font-weight: 700;
 
         @media #{$desktop} {
             @include margin-bottom($margin-md);
+            font-weight: 400;
         }
     }
 
@@ -361,7 +362,7 @@
         @include line-height($font-m-md, $font-sm);
         @include margin-bottom($margin-sm);
         color: $color-boulder;
-        font-family: $font-bold;
+        font-weight: 500;
         text-transform: uppercase;
 
         @media #{$desktop} {
@@ -373,7 +374,7 @@
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
         @include margin-bottom($margin-l);
-        font-weight: 500;
+        font-weight: 400;
         @media #{$desktop} {
             @include margin-bottom($margin-l);
         }

@@ -455,7 +455,8 @@
                                     sling:resourceType="dam/gui/components/admin/schemafield"
                                     fieldLabel="Tags"
                                     name="./jcr:content/metadata/cq:tags"
-                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
+									multiple="{Boolean}true"
+                                    resourceType="cq/gui/components/coral/common/form/tagfield">
                                     <granite:data
                                         jcr:primaryType="nt:unstructured"
                                         cq-msm-lockable="./metadata/cq:tags"

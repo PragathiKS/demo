@@ -75,7 +75,7 @@
         @include margin-bottom($margin-sm);
         @include line-height($font-normal, $font-sm);
         color: $color-boulder;
-        font-family: $font-bold;
+        font-weight: 500;
         text-transform: $uppercase;
         letter-spacing: normal;
         @media #{$desktop} {
@@ -86,7 +86,6 @@
         span.tpatom-subheading {
             @include font-size($font-sm);
             @include line-height($font-normal, $font-sm);
-            font-family: $font-bold;
             font-weight: 500;
         }
     }

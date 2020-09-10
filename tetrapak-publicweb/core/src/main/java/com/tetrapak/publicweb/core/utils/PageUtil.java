@@ -141,7 +141,7 @@ public final class PageUtil {
 
     /**
      * This method is used for getting locale in form of language-country say en-gb
-     * @param page
+     * @param page page
      * @return String locale in form of language-country
      */
     public static String getLocaleFromURL (final Page page){

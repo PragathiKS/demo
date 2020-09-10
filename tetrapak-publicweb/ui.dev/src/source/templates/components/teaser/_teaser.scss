@@ -12,19 +12,21 @@
         @media #{$desktop} {
             @include padding-left($padding-l);
             @include padding-bottom($padding-l);
+            font-weight: 700;
         }
-        h2.tp-atom-heading {
+        h2,
+        h3 {
             @include font-size($font-l);
             @include line-height($font-xl, $font-l);
             @media #{$desktop} {
                 @include font-size($font-xl);
                 line-height: 40px;
+                font-weight: 700;
             }
         }
     }
 
     &__details {
-        font-weight: 500;
         &__details.row {
             @media #{$desktop} {
                 @include margin-left($margin-zero);
@@ -35,7 +37,7 @@
         h5 {
             @include font-size($font-baseline);
             @include line-height($font-l, $font-baseline);
-            font-family: $font-black;
+            font-weight: 700;
         }
         ul {
             li {
