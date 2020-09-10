@@ -105,7 +105,7 @@ public class MarketSelectorModel {
         }
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();
-            if (!marketPage.getName().equalsIgnoreCase(PWConstants.GB_ISO_CODE)
+            if (!marketPage.getName().equalsIgnoreCase(PWConstants.GLOBAL_ISO_CODE)
                     && !marketPage.getName().equalsIgnoreCase(PWConstants.LANG_MASTERS)) {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 MarketBean marketBean = new MarketBean();
