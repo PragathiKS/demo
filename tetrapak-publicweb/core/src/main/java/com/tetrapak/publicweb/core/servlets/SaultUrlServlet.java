@@ -81,10 +81,10 @@ public class SaultUrlServlet extends SlingSafeMethodsServlet {
         String saultValue = StringUtils.EMPTY;
         try {
             MessageDigest messagedigest = MessageDigest.getInstance("SHA-512");
-            byte[] data = messagedigest.digest(path.getBytes());
+            byte[] hashedValue = messagedigest.digest(path.getBytes());
             final StringBuilder stringbuilder = new StringBuilder();
-            for (int i = 0; i < data.length; i++) {
-                stringbuilder.append(String.format("%02x", data[i]));
+            for (int i = 0; i < hashedValue.length; i++) {
+                stringbuilder.append(String.format("%02x", hashedValue[i]));
 
             }
             saultValue = stringbuilder.toString();
