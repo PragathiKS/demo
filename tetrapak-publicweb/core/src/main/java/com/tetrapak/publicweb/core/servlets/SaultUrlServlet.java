@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -81,16 +82,16 @@ public class SaultUrlServlet extends SlingSafeMethodsServlet {
         String saultValue = StringUtils.EMPTY;
         try {
             MessageDigest messagedigest = MessageDigest.getInstance("SHA-512");
-            byte[] hashedValue = messagedigest.digest(path.getBytes());
+            byte[] hashedValue = messagedigest.digest(path.getBytes("UTF-8"));
             final StringBuilder stringbuilder = new StringBuilder();
             for (int i = 0; i < hashedValue.length; i++) {
                 stringbuilder.append(String.format("%02x", hashedValue[i]));
 
             }
             saultValue = stringbuilder.toString();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 
-            LOGGER.error("NoSuchAlgorithmException", e);
+            LOGGER.error("Error while generating the hash value.", e);
         }
         return saultValue;
 
