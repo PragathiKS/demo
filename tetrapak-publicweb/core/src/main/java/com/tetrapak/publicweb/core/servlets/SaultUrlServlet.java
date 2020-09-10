@@ -32,13 +32,13 @@ public class SaultUrlServlet extends SlingSafeMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(SaultUrlServlet.class);
 
     /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = -5454240563218059527L;
+    private static final long serialVersionUID = -5454240563218095276L;
 
     /**
      * Do get.
      *
-     * @param request the request
-     * @param response    the response
+     * @param request  the request
+     * @param response the response
      */
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
@@ -81,8 +81,8 @@ public class SaultUrlServlet extends SlingSafeMethodsServlet {
     private static String generateSault(String path) {
         String saultValue = StringUtils.EMPTY;
         try {
-            MessageDigest messagedigest = MessageDigest.getInstance("SHA-512");
-            byte[] hashedValue = messagedigest.digest(path.getBytes("UTF-8"));
+            final MessageDigest messagedigest = MessageDigest.getInstance("SHA-512");
+            final byte[] hashedValue = messagedigest.digest(path.getBytes("UTF-8"));
             final StringBuilder stringbuilder = new StringBuilder();
             for (int i = 0; i < hashedValue.length; i++) {
                 stringbuilder.append(String.format("%02x", hashedValue[i]));
