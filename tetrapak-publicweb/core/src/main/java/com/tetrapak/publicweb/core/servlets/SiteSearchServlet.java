@@ -169,9 +169,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 themes = themesParam.split(",");
             }
             final int pageParam = xssAPI.getValidInteger(request.getParameter("page"), 1);
-            String fulltextSearchTerm = URLDecoder
-                    .decode(xssAPI.getValidHref(request.getParameter("searchTerm")), "UTF-8")
-                    .replace("%20", PWConstants.SPACE);
+            String fulltextSearchTerm = request.getParameter("searchTerm");
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
 
             // search for resources

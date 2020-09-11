@@ -35,7 +35,7 @@ class Searchbar {
       const $target = $('.search-icon');
       const $this = $target.closest('button');
       const url = $this.data('search-url');
-      let updatedUrl = updateQueryStringParameter(url,'searchTerm',inp.val());
+      let updatedUrl = updateQueryStringParameter(url,'searchTerm',encodeURIComponent(inp.val()));
       updatedUrl = updateQueryStringParameter(updatedUrl,'page',1);
 
       const searchObj = {
