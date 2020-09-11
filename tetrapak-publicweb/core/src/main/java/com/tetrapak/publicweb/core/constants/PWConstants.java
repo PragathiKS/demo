@@ -12,8 +12,8 @@ public final class PWConstants {
     /** The Constant ENGLISH_LANGUAGE_ISO_CODE. */
     public static final String ENGLISH_LANGUAGE_ISO_CODE = "en";
 
-    /** The Constant GB_COUNTRY_ISO_CODE. */
-    public static final String GB_ISO_CODE = "gb";
+    /** The Constant GLOBAL_ISO_CODE. */
+    public static final String GLOBAL_ISO_CODE = "global";
 
     /** The Constant GLOBAL_HOME_PAGE. */
     public static final String GLOBAL_HOME_PAGE = "/content/tetrapak/publicweb/global/en/home";
@@ -58,7 +58,7 @@ public final class PWConstants {
     public static final String CONTENT_ROOT_PATH = "/content/tetrapak/publicweb";
 
     /** The Constant GLOBLA_LANG_PATH. */
-    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/publicweb/gb";
+    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/publicweb/global";
 
     /** The Constant PXP. */
     public static final String PXP = "pxp";
