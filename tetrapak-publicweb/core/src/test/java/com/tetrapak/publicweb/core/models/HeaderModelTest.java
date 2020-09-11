@@ -72,8 +72,9 @@ public class HeaderModelTest {
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
         
-        marketBean.setMarketName("Australia");
-        languageBean.setLanguageName("English");
+        marketBean.setMarketName("Belgium");
+        languageBean.setLanguageName("French");
+        
     }
 
     /**
@@ -99,17 +100,17 @@ public class HeaderModelTest {
         assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/search.html", model.getSearchPage());
         assertEquals("Header", "Solutions", model.getSolutionPageTitle());
         assertEquals("Header", true, model.getMarketList().getMarkets().get(2).equals(marketBean));
-        assertEquals("Header", "Australia", model.getMarketList().getMarkets().get(2).getMarketName());
-        assertEquals("Header", "English",
+        assertEquals("Header", "Belgium", model.getMarketList().getMarkets().get(2).getMarketName());
+        assertEquals("Header", "French",
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLanguageName());
-        assertEquals("Header", "/content/tetrapak/publicweb/au/en/home.html",
+        assertEquals("Header", "/content/tetrapak/publicweb/be/fr/home.html",
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLinkPath());
         assertEquals("Header", true,
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).equals(languageBean));
         assertEquals("Header", 3,
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLanguageIndex());
         assertEquals("Header", "Choose Your Market", model.getMarketList().getMarketTitle());
-        assertEquals("Header", "/content/tetrapak/publicweb/gb/en/home.html",
+        assertEquals("Header", "/content/tetrapak/publicweb/global/en/home.html",
                 model.getMarketList().getGlobalMarketPath());
         assertEquals("Header", "", model.getCurrentMarket());
         assertEquals("Header", "English", model.getCurrentLanguage());
