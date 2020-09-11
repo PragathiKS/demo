@@ -112,9 +112,9 @@ class Searchresults {
     let joinedFilterTags = { ...contentType, ...theme };
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
 
-    // do the analytics call 
+    // do the analytics call
     const searchObj = {
-      searchTerm : searchVal, 
+      searchTerm : searchVal,
       searchFilters : Object.keys(joinedFilterTags).map(e => joinedFilterTags[e]).join(',')
     };
 
@@ -129,7 +129,7 @@ class Searchresults {
       linkParentTitle: '',
       linkName: 'Search'
     };
-      
+
     trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
 
     if (searchVal === '') {
@@ -186,7 +186,7 @@ class Searchresults {
         this.cache.$spinner.addClass('d-none');
         this.cache.$filterChecks.removeAttr('disabled');
         let resultCount = 0;
-        
+
         if (data.totalResults > 0) {
 
           resultCount = data.totalResults;
@@ -213,14 +213,14 @@ class Searchresults {
         joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
         const searchfiltersString = Object.keys(joinedFilterTags).map(e => joinedFilterTags[e]).join(',');
 
-        // do the analytics call 
+        // do the analytics call
         const searchObj = {
-          searchTerm : searchTerm, 
+          searchTerm : searchTerm,
           searchResults: resultCount,
           searchFilters : searchfiltersString
         };
 
-        const eventObj = {  
+        const eventObj = {
           eventType : 'search results page',
           event : 'Search'
         };
@@ -289,9 +289,9 @@ class Searchresults {
     const filterCheck = joinedFilterTags;
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
 
-    // do the analytics call 
+    // do the analytics call
     const searchObj = {
-      searchTerm : searchTerm, 
+      searchTerm : searchTerm,
       searchFilters : Object.keys(joinedFilterTags).map(e => joinedFilterTags[e]).join(',')
     };
 
@@ -306,11 +306,11 @@ class Searchresults {
       linkParentTitle: '',
       linkName: 'Search'
     };
-    
+
     if(remove || (!remove && !$.isEmptyObject(filterCheck))){
       trackAnalytics(searchObj, 'search', 'internalsearch', undefined, false, eventObj, linkClickObject);
     }
-    
+
     render.fn({
       template: 'searchFilters',
       data: joinedFilterTags,
@@ -325,9 +325,9 @@ class Searchresults {
     let joinedFilterTags = { ...contentType, ...theme };
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
 
-    // do the analytics call 
+    // do the analytics call
     const searchObj = {
-      searchTerm : searchTerm, 
+      searchTerm : searchTerm,
       searchResults: this.cache.totalResultCount || 0,
       searchFilters : Object.keys(joinedFilterTags).map(e => joinedFilterTags[e]).join(',')
     };
@@ -388,7 +388,8 @@ class Searchresults {
   }
 
   pushIntoUrl = () => {
-    let url = this.convertToUrl(this.cache.searchParams);
+    const { searchTerm, ...rest } = this.cache.searchParams;
+    let url = this.convertToUrl({searchTerm:encodeURIComponent(searchTerm),...rest});
     const lastIndex = url.length - 1;
     if (url.charAt(lastIndex) === '&' && url.charAt(0) === '&') {
       url = url.slice(1, -1);
