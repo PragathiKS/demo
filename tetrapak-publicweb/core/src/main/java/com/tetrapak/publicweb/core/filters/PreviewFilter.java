@@ -99,7 +99,7 @@ public class PreviewFilter implements Filter {
      */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        isSkip = false;// settingsService.getRunModes().contains("publish");
+        isSkip = settingsService.getRunModes().contains("publish");
     }
 
     /**

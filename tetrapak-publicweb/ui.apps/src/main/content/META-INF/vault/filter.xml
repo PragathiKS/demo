@@ -7,4 +7,5 @@
 	<filter root="/apps/wcm/foundation" mode="update"/>
     <filter root="/etc/acs-commons/lists/countries" mode="update"/>
     <filter root="/etc/notification/email/publicweb" mode="update"/>
+	<filter root="/apps/wcm/core/content/editor/jcr:content/content/items/content/header/items/headerbar/items/pageinfopopover/items/list/items/preview-page" mode="update"/>
 </workspaceFilter>
