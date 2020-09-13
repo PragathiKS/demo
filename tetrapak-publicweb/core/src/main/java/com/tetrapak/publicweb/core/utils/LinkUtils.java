@@ -21,15 +21,15 @@ public class LinkUtils extends WCMUsePojo {
      *
      * @param link
      */
-    public static String sanitizeLink(final String link, final ResourceResolver resolver) {
-        if (StringUtils.isBlank(link)) {
+    public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {
+        if (StringUtils.isBlank(link) || isPreviewURL(request)) {
             return "#";
         } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
-                return resolver.map(link);
+                return request.getResourceResolver().map(link);
             }
-            return resolver.map(link + ".html");
+            return request.getResourceResolver().map(link + ".html");
         }
         return link;
     }
@@ -84,7 +84,7 @@ public class LinkUtils extends WCMUsePojo {
     }
 
     public String getSanitizedLink() {
-        return LinkUtils.sanitizeLink(sanitizedLink, getResourceResolver());
+        return LinkUtils.sanitizeLink(sanitizedLink, getRequest());
     }
 
     /**

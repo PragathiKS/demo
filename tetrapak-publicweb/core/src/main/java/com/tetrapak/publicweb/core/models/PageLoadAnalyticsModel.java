@@ -9,11 +9,12 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.settings.SlingSettingsService;
 import org.apache.sling.xss.XSSAPI;
 import com.day.cq.wcm.api.Page;
@@ -29,10 +30,14 @@ import java.util.Set;
 import java.util.Iterator;
 
 
-@Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
-    @Self
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
+    
+    /** The resource. */
     private Resource resource;
 
     /** The current page. */
@@ -73,6 +78,7 @@ public class PageLoadAnalyticsModel {
 
     @PostConstruct
     public void initModel() {
+        resource = request.getResource();
         final PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         if (null != pageManager) {
             currentPage = pageManager.getContainingPage(resource);
@@ -268,7 +274,7 @@ public class PageLoadAnalyticsModel {
             } else {
                 countryLanguageCodeBean.setLocale(X_DEFAULT);
             }
-            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(currentResource.getPath(),resourceResolver));
+            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(currentResource.getPath(),request));
             hrefLangValues.add(countryLanguageCodeBean);
         }
 
@@ -356,11 +362,11 @@ public class PageLoadAnalyticsModel {
     }
 	
 	public String getCurrentPageURL() {
-        return LinkUtils.sanitizeLink(currentPage.getPath(), resource.getResourceResolver());
+        return LinkUtils.sanitizeLink(currentPage.getPath(), request);
     }
 
     public String getCanonicalURL() {
-    	return  xssapi.getValidHref(LinkUtils.sanitizeLink(currentPage.getPath(), resource.getResourceResolver()));
+    	return  xssapi.getValidHref(LinkUtils.sanitizeLink(currentPage.getPath(), request));
    }
     
    public Boolean isPublisher(){

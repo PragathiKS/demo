@@ -1,10 +1,10 @@
 package com.tetrapak.publicweb.core.models.multifield;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -12,12 +12,12 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 /**
  * The Class LinkModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LinkModel {
 
     /** The resource. */
-    @Self
-    private Resource resource;
+    @SlingObject
+    SlingHttpServletRequest request;
 
     /** The link label. */
     @ValueMapValue
@@ -58,7 +58,7 @@ public class LinkModel {
      * @return the link url
      */
     public String getLinkUrl() {
-        return LinkUtils.sanitizeLink(linkUrl, resource.getResourceResolver());
+        return LinkUtils.sanitizeLink(linkUrl, request);
     }
 
     /**

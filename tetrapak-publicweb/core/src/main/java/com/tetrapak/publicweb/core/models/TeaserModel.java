@@ -7,11 +7,12 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,14 +25,17 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 /**
  * The Class TeaserModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TeaserModel {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(TeaserModel.class);
 
+    /** The request */
+    @SlingObject
+    private SlingHttpServletRequest request;
+    
     /** The resource. */
-    @Self
     private Resource resource;
 
     /** The heading. */
@@ -94,6 +98,7 @@ public class TeaserModel {
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
         if (StringUtils.isNotBlank(contentType)) {
             switch (contentType) {
                 case "automatic":
@@ -131,7 +136,7 @@ public class TeaserModel {
      */
     public void getManualList() {
         manualList.stream().forEach(model -> model
-                .setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), resource.getResourceResolver())));
+                .setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)));
         teaserList.addAll(manualList);
     }
 
@@ -159,7 +164,7 @@ public class TeaserModel {
             teaser.setFileReference(aggregator.getImagePath());
             teaser.setAlt(aggregator.getAltText());
             teaser.setLinkText(aggregator.getLinkText());
-            teaser.setLinkPath(LinkUtils.sanitizeLink(aggregator.getLinkPath(), resource.getResourceResolver()));
+            teaser.setLinkPath(LinkUtils.sanitizeLink(aggregator.getLinkPath(), request));
             teaser.setPwButtonTheme(aggregator.getPwButtonTheme());
             teaserList.add(teaser);
         }
@@ -189,7 +194,7 @@ public class TeaserModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
+        return LinkUtils.sanitizeLink(linkPath, request);
     }
 
     /**

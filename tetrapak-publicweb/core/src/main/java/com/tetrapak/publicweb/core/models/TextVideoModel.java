@@ -4,13 +4,12 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 
@@ -19,12 +18,12 @@ import javax.annotation.PostConstruct;
 /**
  * The Class TextVideoModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextVideoModel {
 
-    /** The resource. */
-    @Self
-    private Resource resource;
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
 
     /** The sling settings service. */
     @OSGiService
@@ -122,7 +121,7 @@ public class TextVideoModel {
     @PostConstruct
     protected void init() {
         if (StringUtils.isNotEmpty(linkURL)) {
-            linkURL = LinkUtils.sanitizeLink(linkURL, resource.getResourceResolver());
+            linkURL = LinkUtils.sanitizeLink(linkURL, request);
         }
 
         if (youtubeVideoID != null) {
@@ -132,7 +131,7 @@ public class TextVideoModel {
         }
 
         if (!slingSettingsService.getRunModes().contains(AUTHOR) && null != dynamicMediaService) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath,
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(request.getResourceResolver(), damVideoPath,
                     dynamicMediaService);
         }
     }
@@ -332,7 +331,7 @@ public class TextVideoModel {
      * @return the soft conversion data
      */
     public SoftConversionModel getSoftConversionData() {
-        return resource.adaptTo(SoftConversionModel.class);
+        return request.getResource().adaptTo(SoftConversionModel.class);
     }
 
 }

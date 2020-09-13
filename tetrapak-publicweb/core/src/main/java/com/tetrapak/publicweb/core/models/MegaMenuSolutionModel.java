@@ -2,21 +2,23 @@ package com.tetrapak.publicweb.core.models;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  * The Class MegaMenuSolutionModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MegaMenuSolutionModel {
 
-    /** The resource. */
-    @Self
-    private Resource resource;
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
 
     /** The file reference. */
     @ValueMapValue
@@ -80,6 +82,6 @@ public class MegaMenuSolutionModel {
      * @return the path
      */
     public String getPath() {
-        return LinkUtils.sanitizeLink(path, resource.getResourceResolver());
+        return LinkUtils.sanitizeLink(path, request);
     }
 }

@@ -162,7 +162,7 @@ public class HeaderModel {
             final LinkBean linkBean = new LinkBean();
             final String title = NavigationUtil.getNavigationTitle(childPage);
             linkBean.setLinkText(title);
-            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath(), request.getResourceResolver()));
+            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath(), request));
             final String solutionPageWithoutExtension = NavigationUtil.getSolutionPageWithoutExtension(solutionPage);
             if (!childPage.getPath().equalsIgnoreCase(solutionPageWithoutExtension)) {
                 final SectionMenuModel sectionMenuModel = new SectionMenuModel();
@@ -263,7 +263,7 @@ public class HeaderModel {
      * @return the solution page
      */
     public String getSolutionPage() {
-        return LinkUtils.sanitizeLink(solutionPage, request.getResourceResolver());
+        return LinkUtils.sanitizeLink(solutionPage, request);
     }
 
     /**

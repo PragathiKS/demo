@@ -143,7 +143,7 @@ public class SectionMenuModel {
                     sectionMenuBean.setLinkPath(externalTemplate.getExternalUrl());
                 } else if (!nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
                     sectionMenuBean.setExternal(false);
-                    sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), resourceResolver));
+                    sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), request));
                     final ValueMap valueMap = nextPage.getProperties();
                     if (Objects.nonNull(valueMap)
                             && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
@@ -574,7 +574,7 @@ public class SectionMenuModel {
             subSectionBean.setLinkPath(externalTemplate.getExternalUrl());
         } else {
             subSectionBean.setExternal(false);
-            subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath(), resourceResolver));
+            subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath(), request));
             final ValueMap valueMap = page.getProperties();
             if (Objects.nonNull(valueMap)
                     && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
@@ -651,7 +651,7 @@ public class SectionMenuModel {
      *            the resource resolver
      */
     public void setSectionHomePagePath(final Page page, final ResourceResolver resourceResolver) {
-        sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath(), resourceResolver);
+        sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath(), request);
     }
 
     /**

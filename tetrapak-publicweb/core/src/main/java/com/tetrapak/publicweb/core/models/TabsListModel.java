@@ -7,12 +7,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,11 +28,14 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
  *
  * @author Sandip Kumar
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TabsListModel {
 
+    /** The request */
+    @SlingObject
+    private SlingHttpServletRequest request;
+    
     /** The resource */
-    @Self
     private Resource resource;
 
     /** The heading. */
@@ -106,21 +110,22 @@ public class TabsListModel {
      */
     @PostConstruct
     protected void init() {
-    if(StringUtils.isNotBlank(contentType)) {
-    	switch (contentType) {
-    	case "automatic":
-    	    generateListAutomaticWay();
-    	    break;
-    	case "semi-automatic":
-    	    generateListSemiAutomatically();
-    	    break;
-    	case "manual":
-    	    generateListManually();
-    	    break;
-    	default:
-    	    LOGGER.info("Not a valid content-type");
-    	}
-    }
+        resource = request.getResource();    
+        if(StringUtils.isNotBlank(contentType)) {
+        	switch (contentType) {
+        	case "automatic":
+        	    generateListAutomaticWay();
+        	    break;
+        	case "semi-automatic":
+        	    generateListSemiAutomatically();
+        	    break;
+        	case "manual":
+        	    generateListManually();
+        	    break;
+        	default:
+        	    LOGGER.info("Not a valid content-type");
+        	}
+        }
     }
 
     /**
@@ -161,7 +166,7 @@ public class TabsListModel {
 	    tabBean.setFileReference(aggregator.getImagePath());
 	    tabBean.setAlt(aggregator.getAltText());
 	    tabBean.setLinkText(aggregator.getLinkText());
-	    tabBean.setLinkURL(LinkUtils.sanitizeLink(aggregator.getLinkPath(), resource.getResourceResolver()));
+	    tabBean.setLinkURL(LinkUtils.sanitizeLink(aggregator.getLinkPath(), request));
 	    tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
 	    tabBean.setTabType(TAB_LAYOUT_IMAGE);
 	    tabs.add(tabBean);
@@ -173,7 +178,7 @@ public class TabsListModel {
      */
     private void generateListManually() {
         tabListManual.stream().forEach(model -> model
-                .setLinkURL(LinkUtils.sanitizeLink(model.getLinkURL(), resource.getResourceResolver())));
+                .setLinkURL(LinkUtils.sanitizeLink(model.getLinkURL(), request)));
         tabs.addAll(tabListManual);
     }
 
@@ -195,7 +200,7 @@ public class TabsListModel {
      * @return the readMorePath
      */
     public String getReadMorePath() {
-	return LinkUtils.sanitizeLink(readMorePath, resource.getResourceResolver());
+	return LinkUtils.sanitizeLink(readMorePath, request);
     }
 
     /**

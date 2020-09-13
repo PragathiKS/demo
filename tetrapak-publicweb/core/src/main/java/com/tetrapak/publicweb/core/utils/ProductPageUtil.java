@@ -7,6 +7,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -43,8 +44,8 @@ public final class ProductPageUtil {
      *
      * @return the product page map
      */
-    public static Map<String, String> getProductPageMap(final List<String> list, final Resource resource,
-            final QueryBuilder queryBuilder) {
+    public static Map<String, String> getProductPageMap(final SlingHttpServletRequest request, final List<String> list,
+            final Resource resource, final QueryBuilder queryBuilder) {
         final Map<String, String> productPageMap = new HashMap<>();
         final SearchResult searchResult = executeProductIdQuery(list, resource, queryBuilder);
         for (final Hit hit : searchResult.getHits()) {
@@ -55,7 +56,7 @@ public final class ProductPageUtil {
                 final Resource pageResource = resourceResolver.getResource(hit.getPath() + "/jcr:content");
                 final ValueMap valueMap = pageResource.getValueMap();
                 if (valueMap.containsKey(PWConstants.PRODUCT_ID)) {
-                    final String pagePath = LinkUtils.sanitizeLink(hit.getPath(), resourceResolver);
+                    final String pagePath = LinkUtils.sanitizeLink(hit.getPath(), request);
                     LOGGER.debug("Product id: {} and page path: {}", valueMap.get(PWConstants.PRODUCT_ID), pagePath);
                     productPageMap.put(valueMap.get(PWConstants.PRODUCT_ID).toString(), pagePath);
                 }

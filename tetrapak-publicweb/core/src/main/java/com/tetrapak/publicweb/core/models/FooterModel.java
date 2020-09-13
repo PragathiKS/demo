@@ -26,7 +26,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 public class FooterModel {
 
     /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(HeaderModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FooterModel.class);
 
     /** The request. */
     @SlingObject

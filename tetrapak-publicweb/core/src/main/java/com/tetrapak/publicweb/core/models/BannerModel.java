@@ -1,10 +1,10 @@
 package com.tetrapak.publicweb.core.models;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -12,12 +12,12 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 /**
  * The Class BannerModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BannerModel {
 
     /** The resource. */
-    @Self
-    private Resource resource;
+    @SlingObject
+    private SlingHttpServletRequest request;
 
     /** The banner type. */
     @ValueMapValue
@@ -150,7 +150,7 @@ public class BannerModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
+        return LinkUtils.sanitizeLink(linkPath, request);
     }
 
     /**
@@ -262,7 +262,7 @@ public class BannerModel {
      * @return the soft conversion data
      */
     public SoftConversionModel getSoftConversionData() {
-        return resource.adaptTo(SoftConversionModel.class);
+        return request.getResource().adaptTo(SoftConversionModel.class);
     }
 
 }

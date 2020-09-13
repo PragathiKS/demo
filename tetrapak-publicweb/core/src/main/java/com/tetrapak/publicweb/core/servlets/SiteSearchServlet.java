@@ -184,7 +184,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 SearchMapHelper.setCommonMap(fulltextSearchTerm, map, pageParam, noOfResultsPerHit, guessTotal);
                 SearchMapHelper.setThemesMap(themes, map, themeMap);
                 SearchMapHelper.filterGatedContent(map, index, searchResultsModel);
-                setSearchBean(map, searchResultsModel);
+                setSearchBean(request, map, searchResultsModel);
             }
             Gson gson = new Gson();
             String responseJSON;
@@ -310,7 +310,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      * @param searchResultsModel
      *            the search results model
      */
-    private void setSearchBean(Map<String, String> map, SearchResultsModel searchResultsModel) {
+    private void setSearchBean(SlingHttpServletRequest request, Map<String, String> map,
+            SearchResultsModel searchResultsModel) {
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
         SearchResult result = query.getResult();
         long noOfResults = result.getTotalMatches();
@@ -327,7 +328,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         for (Hit hit : query.getResult().getHits()) {
             try {
                 LOGGER.debug("Hit : {}", hit.getPath());
-                resource.add(setSearchResultItemData(hit, searchResultsModel));
+                resource.add(setSearchResultItemData(request, hit, searchResultsModel));
             } catch (RepositoryException e) {
                 LOGGER.error("[performSearch] There was an issue getting the resource", e);
             }
@@ -346,8 +347,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      * @throws RepositoryException
      *             the repository exception
      */
-    private SearchResultBean setSearchResultItemData(Hit hit, SearchResultsModel searchResultsModel)
-            throws RepositoryException {
+    private SearchResultBean setSearchResultItemData(SlingHttpServletRequest request, Hit hit,
+            SearchResultsModel searchResultsModel) throws RepositoryException {
 
         SearchResultBean searchResultItem = new SearchResultBean();
         Resource resource = hit.getResource();
@@ -359,7 +360,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 searchResultItem.setType(searchResultsModel.getMediaLabel());
                 ValueMap assetMetadataProperties = ResourceUtil.getValueMap(metadataResource);
                 String mediaType = getMediaType(assetMetadataProperties);
-                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), resourceResolver));
+                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), request));
                 String mediaTitle = assetMetadataProperties.get("dc:title", StringUtils.EMPTY);
                 if (StringUtils.isBlank(mediaTitle)) {
                     mediaTitle = hit.getTitle();
@@ -376,7 +377,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 }
             } else {
                 searchResultItem.setTitle(PageUtil.getCurrentPage(hit.getResource()).getTitle());
-                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), resourceResolver));
+                searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), request));
                 searchResultItem.setDescription(hit.getProperties().get("jcr:description", StringUtils.EMPTY));
                 setContentFields(searchResultItem, hit, searchResultsModel);
             }

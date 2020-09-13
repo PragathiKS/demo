@@ -80,7 +80,7 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
                 xmlStreamWriter.writeStartElement(StringUtils.EMPTY, "sitemapindex", SITEMAP_NAMESPACE);
                 xmlStreamWriter.writeNamespace(StringUtils.EMPTY, SITEMAP_NAMESPACE);
                 if (Objects.nonNull(publicWebRootPage)) {
-                    getMarketPages(publicWebRootPage.listChildren(), xmlStreamWriter, resourceResolver);
+                    getMarketPages(publicWebRootPage.listChildren(), xmlStreamWriter, slingRequest);
                 }
                 xmlStreamWriter.writeEndElement();
                 xmlStreamWriter.writeEndDocument();
@@ -107,7 +107,7 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      * @return the market pages
      */
     private void getMarketPages(Iterator<Page> marketPages, XMLStreamWriter xmlStreamWriter,
-            ResourceResolver resourceResolver) {
+            SlingHttpServletRequest slingRequest) {
 
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();
@@ -115,7 +115,7 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 while (languagePages.hasNext()) {
                     Page languagePage = languagePages.next();
-                    createSiteMapXml(xmlStreamWriter, resourceResolver, languagePage.getPath());
+                    createSiteMapXml(xmlStreamWriter, slingRequest, languagePage.getPath());
                 }
             }
         }
@@ -131,10 +131,10 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      * @param siteMapPath
      *            the site map path
      */
-    private void createSiteMapXml(XMLStreamWriter xmlStreamWriter, ResourceResolver resourceResolver,
+    private void createSiteMapXml(XMLStreamWriter xmlStreamWriter, SlingHttpServletRequest slingRequest,
             String siteMapPath) {
         try {
-            writeXML(siteMapPath, xmlStreamWriter, resourceResolver);
+            writeXML(siteMapPath, xmlStreamWriter, slingRequest);
         } catch (XMLStreamException e) {
             LOGGER.error("MasterSiteMapXmlServlet :: Error while writing XML {}", e.getMessage());
         }
@@ -152,12 +152,12 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      * @throws XMLStreamException
      *             the XML stream exception
      */
-    private void writeXML(String siteMapPath, XMLStreamWriter xmlStreamWriter, ResourceResolver resolver)
+    private void writeXML(String siteMapPath, XMLStreamWriter xmlStreamWriter, SlingHttpServletRequest slingRequest)
             throws XMLStreamException {
 
         String siteMapURL;
         xmlStreamWriter.writeStartElement(SITEMAP_NAMESPACE, "sitemap");
-        siteMapURL = LinkUtils.sanitizeLink(siteMapPath, resolver);
+        siteMapURL = LinkUtils.sanitizeLink(siteMapPath, slingRequest);
         if(siteMapPath.contains("/gb/en")) {
             siteMapURL = siteMapURL.concat("/en-gb");
         }      
