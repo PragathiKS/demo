@@ -1,12 +1,13 @@
 package com.tetrapak.publicweb.core.servlets;
 
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 import javax.servlet.Servlet;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.ModifiableValueMap;
+import org.apache.sling.api.resource.PersistenceException;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -25,6 +26,7 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
 /**
  * The Class SaultUrlServlet.
@@ -74,7 +76,7 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
             jsonResponse.addProperty("status", "success");
             String hostURL = request.getRequestURL().toString().replace("/bin/publicweb/preview", "");
             jsonResponse.addProperty("saultPagePath", hostURL.concat(saultPagePath));
-        } catch (RepositoryException e) {
+        } catch (PersistenceException e) {
             jsonResponse.addProperty("status", "fail");
             LOGGER.error("Error while writing the response object.", e.getMessage(), e);
         }
@@ -90,17 +92,19 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
      *            the encoded sault string
      * @param relativePath
      *            the relative path
+     * @throws PersistenceException 
      * @throws RepositoryException
      *             the repository exception
      */
     private void saveSaultToRepository(final ResourceResolver resolver, final String encodedSaultString,
-            final String relativePath) throws RepositoryException {
+            final String relativePath) throws PersistenceException {
         if (null != resolver) {
-            final Session session = resolver.adaptTo(Session.class);
-            final Node node = session.getNode(relativePath);
-            node.setProperty("previewSalt", encodedSaultString);
-            session.save();
-            session.logout();
+            Resource pageContentResource = resolver.getResource(relativePath);
+            if (Objects.nonNull(pageContentResource)) {
+                ModifiableValueMap map = pageContentResource.adaptTo(ModifiableValueMap.class);
+                map.put("previewSalt", encodedSaultString);
+            }
+            resolver.commit();
         }
     }
 

@@ -37,7 +37,7 @@ public class ContactUsEnvelopeModel {
             final HeaderConfigurationModel configurationModel = headerConfigurationResource
                     .adaptTo(HeaderConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
-                contactUsLink = configurationModel.getContactLink();
+                contactUsLink = LinkUtils.sanitizeLink(configurationModel.getContactLink(), request);
                 contactUsAltText = configurationModel.getContactText();
             }
         }

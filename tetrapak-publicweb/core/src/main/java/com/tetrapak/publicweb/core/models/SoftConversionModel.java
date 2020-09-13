@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -41,15 +40,15 @@ public class SoftConversionModel extends FormModel {
     private PardotService pardotService;
 
     /** The more link action. */
-    @Inject
+    @ValueMapValue
     private String moreButtonAction;
 
     /** The more link label. */
-    @Inject
+    @ValueMapValue
     private String moreButtonLabel;
 
     /** The pardot url. */
-    @Inject
+    @ValueMapValue
     private String pardotUrl;
 
     /** The form config. */
