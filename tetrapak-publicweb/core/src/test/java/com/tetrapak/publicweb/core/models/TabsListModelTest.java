@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.jcr.Session;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -165,8 +166,12 @@ public class TabsListModelTest {
     public void testMethodsManual() throws Exception {
 
 	context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);
-	resource = context.currentResource(RESOURCE);
-	model = resource.adaptTo(modelClass);
+	
+    MockSlingHttpServletRequest request = context.request();
+    context.request().setPathInfo(RESOURCE);
+    request.setResource(context.resourceResolver().getResource(RESOURCE));
+    resource = context.currentResource(RESOURCE);
+    model = request.adaptTo(modelClass);
 	
 	assertEquals("Some Heading", model.getHeading());
 	assertEquals("Read for here", model.getReadMoreText());

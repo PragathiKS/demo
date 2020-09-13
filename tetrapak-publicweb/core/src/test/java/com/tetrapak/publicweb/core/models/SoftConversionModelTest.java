@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -75,8 +76,11 @@ public class SoftConversionModelTest {
         countryConfig.put("getCountriesContentFragmentRootPath", "/content/dam/tetrapak/publicweb/cfm/countries");
         MockOsgi.activate(context.getService(CountryDetailService.class), context.bundleContext(), countryConfig);
 
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
-        model = resource.adaptTo(modelClass);
+        model = request.adaptTo(modelClass);
 
     }
 
