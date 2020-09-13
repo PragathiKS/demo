@@ -100,14 +100,14 @@ public class HeaderModel {
                     .adaptTo(HeaderConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
                 logoImagePath = configurationModel.getLogoImagePath();
-                logoLink = configurationModel.getLogoLink();
+                logoLink = LinkUtils.sanitizeLink(configurationModel.getLogoLink(),request);
                 logoAlt = configurationModel.getLogoAlt();
-                contactUsLink = configurationModel.getContactLink();
+                contactUsLink = LinkUtils.sanitizeLink(configurationModel.getContactLink(),request);
                 contactUsAltText = configurationModel.getContactText();
                 loginLabel = configurationModel.getLoginLabel();
-                loginLink = configurationModel.getLoginLink();
+                loginLink = LinkUtils.sanitizeLink(configurationModel.getLoginLink(),request);
                 solutionPage = configurationModel.getSolutionPage();
-                searchPage = configurationModel.getSearchPage();
+                searchPage = LinkUtils.sanitizeLink(configurationModel.getSearchPage(),request);
             }
             setMegaMenuLinksList(rootPath);
             setSolutionPageTitle();
@@ -167,9 +167,9 @@ public class HeaderModel {
             if (!childPage.getPath().equalsIgnoreCase(solutionPageWithoutExtension)) {
                 final SectionMenuModel sectionMenuModel = new SectionMenuModel();
                 sectionMenuModel.setSectionHomePageTitle(childPage);
-                sectionMenuModel.setSectionHomePagePath(childPage, request.getResourceResolver());
+                sectionMenuModel.setSectionHomePagePath(childPage, request);
                 sectionMenuModel.populateSectionMenu(megaMenuConfigurationModel, childPage,
-                        solutionPageWithoutExtension, request.getResourceResolver());
+                        solutionPageWithoutExtension, request);
                 linkBean.setNavigationConfigurationModel(sectionMenuModel);
             }
             megaMenuLinksList.add(linkBean);

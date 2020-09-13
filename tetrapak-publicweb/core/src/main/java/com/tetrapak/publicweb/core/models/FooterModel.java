@@ -46,6 +46,9 @@ public class FooterModel {
 
     /** The footer links. */
     private List<FooterLinkModel> footerLinks;
+    
+    /** The footer links. */
+    private List<FooterLinkModel> footerLinksSanitized;
 
     /** The go to top label. */
     private String goToTopLabel;
@@ -64,10 +67,15 @@ public class FooterModel {
                     .adaptTo(FooterConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
                 logoImagePath = configurationModel.getLogoImagePath();
-                logoLink = configurationModel.getLogoLink();
+                logoLink = LinkUtils.sanitizeLink(configurationModel.getLogoLink(), request);
                 logoAlt = configurationModel.getLogoAlt();
                 socialLinks = configurationModel.getSocialLinks();
                 footerLinks = configurationModel.getFooterLinks();
+                for(FooterLinkModel footerLink:footerLinks) {
+                    String sanitizedPath = LinkUtils.sanitizeLink(footerLink.getLinkPath(), request);
+                    footerLink.setLinkPath(sanitizedPath);
+                    footerLinksSanitized.add(footerLink);
+                }
                 goToTopLabel = configurationModel.getGoToTopLabel();
 
             }
@@ -116,7 +124,7 @@ public class FooterModel {
      * @return the footer links
      */
     public List<FooterLinkModel> getFooterLinks() {
-        return new ArrayList<>(footerLinks);
+        return new ArrayList<>(footerLinksSanitized);
     }
 
     /**

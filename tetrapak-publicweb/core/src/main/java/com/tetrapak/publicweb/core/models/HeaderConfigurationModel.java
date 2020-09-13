@@ -3,10 +3,12 @@ package com.tetrapak.publicweb.core.models;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.inject.Inject;
@@ -14,12 +16,12 @@ import javax.inject.Inject;
 /**
  * The Class HeaderConfigurationModel.
  */
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class} , defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderConfigurationModel {
 
-    /** The request. */
+    /** The resource. */
     @Self
-    private SlingHttpServletRequest request;
+    private Resource resource;
 
     /** The logo image path. */
     @Inject
@@ -81,7 +83,7 @@ public class HeaderConfigurationModel {
      * @return the logo link
      */
     public String getLogoLink() {
-        return LinkUtils.sanitizeLink(logoLink, request);
+        return logoLink;
     }
 
     /**
@@ -99,7 +101,7 @@ public class HeaderConfigurationModel {
      * @return the login link
      */
     public String getLoginLink() {
-        return LinkUtils.sanitizeLink(loginLink, request);
+        return loginLink;
     }
 
     /**
@@ -117,7 +119,7 @@ public class HeaderConfigurationModel {
      * @return the contact link
      */
     public String getContactLink() {
-        return LinkUtils.sanitizeLink(contactLink, request);
+        return contactLink;
     }
 
     /**
@@ -153,7 +155,7 @@ public class HeaderConfigurationModel {
      * @return the search page
      */
     public String getSearchPage() {
-        return LinkUtils.sanitizeLink(searchPage, request);
+        return searchPage;
     }
 
     /**

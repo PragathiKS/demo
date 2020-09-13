@@ -4,25 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.inject.Inject;
-import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
 import com.tetrapak.publicweb.core.models.multifield.FooterLinkModel;
 import com.tetrapak.publicweb.core.models.multifield.SocialLinkModel;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class FooterConfigurationModel.
  */
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterConfigurationModel {
 
     /** The request. */
     @Self
-    private SlingHttpServletRequest request;
+    private Resource resource;
 
     /** The logo image path. */
     @ValueMapValue
@@ -63,7 +61,7 @@ public class FooterConfigurationModel {
      * @return the logo link
      */
     public String getLogoLink() {
-        return LinkUtils.sanitizeLink(logoLink, request);
+        return logoLink;
     }
 
     /**

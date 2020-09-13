@@ -22,7 +22,7 @@ public class LinkUtils extends WCMUsePojo {
      * @param link
      */
     public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {
-        if (StringUtils.isBlank(link) || isPreviewURL(request)) {
+        if (StringUtils.isBlank(link) || Boolean.TRUE.equals(isPreviewURL(request))) {
             return "#";
         } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
                 && !link.endsWith(".htm")) {

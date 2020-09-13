@@ -233,7 +233,7 @@ public class TextImageModel {
      * @return the soft conversion data
      */
     public SoftConversionModel getSoftConversionData() {
-        return resource.adaptTo(SoftConversionModel.class);
+        return request.adaptTo(SoftConversionModel.class);
     }
 
 }

@@ -1,22 +1,21 @@
 package com.tetrapak.publicweb.core.models.multifield;
 
-import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-
+// TODO: Auto-generated Javadoc
 /**
  * The Class FooterLinkModel.
  */
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterLinkModel {
 
-    /** The request. */
-    @SlingObject
-    SlingHttpServletRequest request;
+    /** The resource. */
+    @Self
+    Resource request;
 
     /** The link label. */
     @ValueMapValue
@@ -41,7 +40,16 @@ public class FooterLinkModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath, request);
+        return linkPath;
+    }
+    
+    /**
+     * Sets the link path.
+     *
+     * @param linkPath the new link path
+     */
+    public void setLinkPath(String linkPath) {
+        this.linkPath=linkPath;
     }
 
 }

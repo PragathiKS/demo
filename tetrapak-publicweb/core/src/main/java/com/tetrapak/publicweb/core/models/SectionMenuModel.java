@@ -91,7 +91,7 @@ public class SectionMenuModel {
         // Set section menu home page title
         setSectionHomePageTitle(page);
         // Set section menu home page url
-        setSectionHomePagePath(page, request.getResourceResolver());
+        setSectionHomePagePath(page, request);
         // Set page hierarchy
         setPageHierarchy(currentPage);
         // Populate section menu
@@ -650,7 +650,7 @@ public class SectionMenuModel {
      * @param resourceResolver
      *            the resource resolver
      */
-    public void setSectionHomePagePath(final Page page, final ResourceResolver resourceResolver) {
+    public void setSectionHomePagePath(final Page page, final SlingHttpServletRequest request) {
         sectionHomePagePath = LinkUtils.sanitizeLink(page.getPath(), request);
     }
 
