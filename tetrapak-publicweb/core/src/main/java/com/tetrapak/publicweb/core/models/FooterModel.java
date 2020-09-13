@@ -48,7 +48,7 @@ public class FooterModel {
     private List<FooterLinkModel> footerLinks;
     
     /** The footer links. */
-    private List<FooterLinkModel> footerLinksSanitized;
+    private List<FooterLinkModel> footerLinksSanitized = new ArrayList<>();
 
     /** The go to top label. */
     private String goToTopLabel;

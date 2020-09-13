@@ -14,7 +14,6 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -96,7 +95,7 @@ public class SectionMenuModel {
         setPageHierarchy(currentPage);
         // Populate section menu
         populateSectionMenu(NavigationUtil.getMegaMenuConfigurationModel(request, request.getPathInfo()), page,
-                solutionPagePath, request.getResourceResolver());
+                solutionPagePath, request);
     }
 
     /**
@@ -129,7 +128,7 @@ public class SectionMenuModel {
      *            the resource resolver
      */
     public void populateSectionMenu(final MegaMenuConfigurationModel megaMenuConfigurationModel, final Page page,
-            final String path, final ResourceResolver resourceResolver) {
+            final String path, final SlingHttpServletRequest request) {
         final Iterator<Page> pages = page.listChildren();
         while (pages.hasNext()) {
             final Page nextPage = pages.next();
@@ -151,7 +150,7 @@ public class SectionMenuModel {
                     }
                 }
                 sectionMenuBean.setSubSectionMenu(
-                        populateSubSectionMenu(megaMenuConfigurationModel, nextPage, path, resourceResolver));
+                        populateSubSectionMenu(megaMenuConfigurationModel, nextPage, path, request));
                 sectionMenu.add(sectionMenuBean);
             }
         }
@@ -191,7 +190,7 @@ public class SectionMenuModel {
      * @return the sub section menu bean
      */
     private SubSectionMenuBean populateSubSectionMenu(final MegaMenuConfigurationModel megaMenuConfigurationModel,
-            final Page page, final String path, final ResourceResolver resourceResolver) {
+            final Page page, final String path, final SlingHttpServletRequest request) {
         final Map<String, List<String>> pseudoCategoryMap = new LinkedHashMap<>();
         final List<SubSectionBean> subSections = new ArrayList<>();
         final List<PseudoCategoryModel> pseudoCategories = megaMenuConfigurationModel.getPseudoCategoryList();
@@ -208,7 +207,7 @@ public class SectionMenuModel {
             final Page nextPage = pages.next();
             if (!nextPage.isHideInNav()) {
                 populatePseudoCategoryMap(pseudoCategoryMap, nextPage);
-                subSections.add(populateSubSection(nextPage, resourceResolver));
+                subSections.add(populateSubSection(nextPage, request));
             }
         }
 
@@ -220,7 +219,7 @@ public class SectionMenuModel {
                 populateLimit(subSections.size(), subSectionMenuBean);
             } else {
                 final List<PseudoCategoriesSectionBean> pseudoSection = populatePseudoSection(pseudoConfigMap,
-                        pseudoCategoryMap, resourceResolver);
+                        pseudoCategoryMap, request);
                 subSectionMenuBean.setPseudoCategoriesSection(pseudoSection);
             }
         } else {
@@ -519,7 +518,7 @@ public class SectionMenuModel {
      * @return the list
      */
     private List<PseudoCategoriesSectionBean> populatePseudoSection(final Map<String, String> pseudoConfigMap,
-            final Map<String, List<String>> pseudoCategoryMap, final ResourceResolver resourceResolver) {
+            final Map<String, List<String>> pseudoCategoryMap, final SlingHttpServletRequest request) {
         final List<PseudoCategoriesSectionBean> pseudoSection = new ArrayList<>();
 
         for (final Entry<String, List<String>> entrySet : pseudoCategoryMap.entrySet()) {
@@ -527,7 +526,7 @@ public class SectionMenuModel {
                 final PseudoCategoriesSectionBean pseudoCategoriesSectionBean = new PseudoCategoriesSectionBean();
                 pseudoCategoriesSectionBean.setTitle(pseudoConfigMap.get(entrySet.getKey()));
 
-                final List<SubSectionBean> subSectionList = getSubSectionList(entrySet.getValue(), resourceResolver);
+                final List<SubSectionBean> subSectionList = getSubSectionList(entrySet.getValue(), request);
                 pseudoCategoriesSectionBean.setSubSections(subSectionList);
                 pseudoCategoriesSectionBean.setSubSectionCount(subSectionList.size());
                 pseudoSection.add(pseudoCategoriesSectionBean);
@@ -546,11 +545,11 @@ public class SectionMenuModel {
      * @return the sub section bean
      */
     private List<SubSectionBean> getSubSectionList(final List<String> pathList,
-            final ResourceResolver resourceResolver) {
+            final SlingHttpServletRequest request) {
         final List<SubSectionBean> subSections = new ArrayList<>();
         for (final String path : pathList) {
             final Page page = pageManager.getPage(path);
-            subSections.add(populateSubSection(page, resourceResolver));
+            subSections.add(populateSubSection(page, request));
         }
         return subSections;
     }
@@ -564,7 +563,7 @@ public class SectionMenuModel {
      *            the resource resolver
      * @return the sub section bean
      */
-    private SubSectionBean populateSubSection(final Page page, final ResourceResolver resourceResolver) {
+    private SubSectionBean populateSubSection(final Page page, final SlingHttpServletRequest request) {
         final SubSectionBean subSectionBean = new SubSectionBean();
         subSectionBean.setLinkText(NavigationUtil.getNavigationTitle(page));
 
