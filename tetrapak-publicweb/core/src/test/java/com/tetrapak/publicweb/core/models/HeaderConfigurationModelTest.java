@@ -3,7 +3,6 @@ package com.tetrapak.publicweb.core.models;
 import static org.junit.Assert.assertEquals;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -45,11 +44,8 @@ public class HeaderConfigurationModelTest {
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
 
-        MockSlingHttpServletRequest request = context.request();
-        context.request().setPathInfo(RESOURCE);
-        request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
-        model = request.adaptTo(modelClass);
+        model = resource.adaptTo(modelClass);
     }
 
     /**
@@ -60,14 +56,14 @@ public class HeaderConfigurationModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("/content/tetrapak/publicweb/global/en.html", model.getLogoLink());
+        assertEquals("/content/tetrapak/publicweb/global/en", model.getLogoLink());
         assertEquals("Logo ", model.getLogoAlt());
         assertEquals("http://www.google.com", model.getLoginLink());
         assertEquals("Login Label", model.getLoginLabel());
-        assertEquals("/content/tetrapak/publicweb/global/en.html", model.getContactLink());
+        assertEquals("/content/tetrapak/publicweb/global/en", model.getContactLink());
         assertEquals("Contact Us Label", model.getContactText());
         assertEquals("/content/tetrapak/publicweb/global/en/solutions", model.getSolutionPage());
         assertEquals("/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/search.html", model.getSearchPage());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/search", model.getSearchPage());
     }
 }

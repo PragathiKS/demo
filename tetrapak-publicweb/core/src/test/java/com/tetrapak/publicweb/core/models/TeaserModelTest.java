@@ -37,6 +37,7 @@ public class TeaserModelTest {
 
     @Rule
     public AemContext context = new AemContext();
+  
 
     /** The Constant RESOURCE_CONTENT_MANUAL. */
     private static final String RESOURCE_CONTENT_MANUAL = "/teaser/test-content-manual.json";
@@ -175,8 +176,11 @@ public class TeaserModelTest {
     @Test
     public void testAssetName() throws Exception {
         context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE_TWO);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_TWO));
         resource = context.currentResource(RESOURCE_TWO);
-        model = resource.adaptTo(modelClass);
+        model = request.adaptTo(modelClass);
         assertEquals("abc.pdf", model.getTeaserList().get(0).getAssetName());
     }
 
@@ -189,8 +193,11 @@ public class TeaserModelTest {
     @Test
     public void testMethodsSemiAuto() throws Exception {
         context.load().json(RESOURCE_CONTENT_SEMI, TEST_CONTENT_ROOT);
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
-        model = resource.adaptTo(modelClass);
+        model = request.adaptTo(modelClass);
         assertEquals("Solutions", model.getTeaserList().get(0).getTitle());
         assertEquals("Solution Desc", model.getTeaserList().get(0).getDescription());
         assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",

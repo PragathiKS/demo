@@ -4,7 +4,6 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
@@ -15,15 +14,12 @@ import javax.annotation.PostConstruct;
 /**
  * The Class TextImageModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TextImageModel {
 
     /** The request */
     @SlingObject
     private SlingHttpServletRequest request;
-    
-    /** The resource. */
-    private Resource resource;
 
     /** The anchor id. */
     @ValueMapValue
@@ -86,7 +82,6 @@ public class TextImageModel {
      */
     @PostConstruct
     protected void init() {
-        resource = request.getResource();
         if (StringUtils.isNotEmpty(linkURL)) {
             linkURL = LinkUtils.sanitizeLink(linkURL, request);
         }
