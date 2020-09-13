@@ -8,8 +8,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.auth.Authenticator;
@@ -107,6 +105,7 @@ public class PreviewFilter implements Filter {
      */
     @Override
     public void destroy() {
+        // This is override method
     }
 
 }

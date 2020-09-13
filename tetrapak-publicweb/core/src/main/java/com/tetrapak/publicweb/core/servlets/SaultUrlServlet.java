@@ -72,7 +72,8 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
         try (ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             saveSaultToRepository(resourceResolver, encodedSaultString, relativePath);
             jsonResponse.addProperty("status", "success");
-            jsonResponse.addProperty("saultPagePath", request.getRequestURL().append(saultPagePath).toString());
+            String hostURL = request.getRequestURL().toString().replace("/bin/publicweb/preview", "");
+            jsonResponse.addProperty("saultPagePath", hostURL.concat(saultPagePath));
         } catch (RepositoryException e) {
             jsonResponse.addProperty("status", "fail");
             LOGGER.error("Error while writing the response object.", e.getMessage(), e);

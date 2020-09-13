@@ -22,7 +22,6 @@
 
 $(document).on("click", ".pw-preview-generator", function(e){
     e.preventDefault();
-    alert(path);
     $(".pw-preview-generator").hide();
 
     $.ajax({
