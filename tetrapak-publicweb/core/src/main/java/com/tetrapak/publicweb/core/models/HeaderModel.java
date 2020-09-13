@@ -13,12 +13,15 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.xss.XSSAPI;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.NavigationUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -80,6 +83,10 @@ public class HeaderModel {
 
     /** The MORE_THAN_ONE_LANGAUGES. */
     private static final int MORE_THAN_ONE_LANGAUGES = 2;
+    
+    /** The xssApi. */
+    @Reference
+    XSSAPI xssApi;
 
     /**
      * Inits the.
@@ -182,6 +189,9 @@ public class HeaderModel {
      * @return the logo image path
      */
     public String getLogoImagePath() {
+        if (Boolean.TRUE.equals(LinkUtils.isPreviewURL(request))) {
+            logoImagePath = GlobalUtil.getScene7FileName(request.getResourceResolver(), logoImagePath);
+        }
         return logoImagePath;
     }
 
