@@ -6,6 +6,11 @@
             line-height: 12px;
         }
     }
+    h3 {
+        @media #{$desktop} {
+            font-weight: 700;
+        }
+    }
     .form-group {
         @include margin-bottom($margin-md);
         label {
@@ -151,7 +156,7 @@
         .lastNameField ,
         .emailBef ,
         .phoneField {
-            font-weight: 900;
+            font-weight: 700;
         }
         .col-lg-5 {
             @media #{$desktop} {

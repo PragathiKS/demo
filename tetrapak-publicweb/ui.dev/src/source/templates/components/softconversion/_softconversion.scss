@@ -237,6 +237,7 @@
                 @media #{$desktop} {
                     @include font-size($font-xl);
                     @include line-height($padding-xxl, $font-xl);
+                    font-weight: 700;
                 }
             }
 

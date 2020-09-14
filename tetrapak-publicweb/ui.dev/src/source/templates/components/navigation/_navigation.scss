@@ -59,6 +59,7 @@
                     @include padding($padding-md);
                     color: $color-congress-blue;
                     width: 100%;
+                    font-weight: 500;
                     &:hover {
                         color: $color-congress-blue;
                     }
@@ -109,9 +110,10 @@
                 & > a {
                     @include padding-left($padding-zero);
                     color: $color-tundora;
+                    font-weight: 500;
                     &:hover {
                         color: $color-sky-blue;
-                        font-weight: 900;
+                        font-weight: 500;
                     }
                 }
             }

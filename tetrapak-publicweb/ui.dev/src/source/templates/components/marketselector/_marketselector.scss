@@ -4,6 +4,7 @@
 
     a {
         font-family: $font-monsterrat;
+        font-weight: 400;
     }
 
     &__header {
@@ -15,7 +16,7 @@
         &__heading {
             @include font-size($font-l);
             @include line-height(32px, $font-l);
-            font-weight: 300;
+            font-weight: 400;
             word-wrap: break-word;
             @media #{$mobile} {
                 @include padding-top($padding-l);
