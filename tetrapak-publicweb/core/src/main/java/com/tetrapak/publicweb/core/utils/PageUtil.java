@@ -52,7 +52,7 @@ public final class PageUtil {
         }
 
         return new Locale.Builder().setLanguage(PWConstants.ENGLISH_LANGUAGE_ISO_CODE)
-                .setRegion(PWConstants.GB_ISO_CODE).build();
+                .setRegion(PWConstants.GLOBAL_ISO_CODE).build();
     }
 
     /**
@@ -132,7 +132,7 @@ public final class PageUtil {
      * @return the country code
      */
     public static String getCountryCode(final Page languagePage) {
-        final String country = PWConstants.GB_ISO_CODE;
+        final String country = PWConstants.GLOBAL_ISO_CODE;
         if (languagePage != null) {
             return languagePage.getParent().getName();
         }
@@ -141,7 +141,7 @@ public final class PageUtil {
 
     /**
      * This method is used for getting locale in form of language-country say en-gb
-     * @param page
+     * @param page page
      * @return String locale in form of language-country
      */
     public static String getLocaleFromURL (final Page page){

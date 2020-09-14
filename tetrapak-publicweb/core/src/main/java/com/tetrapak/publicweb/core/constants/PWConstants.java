@@ -1,5 +1,9 @@
 package com.tetrapak.publicweb.core.constants;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * The Class PWConstants.
  */
@@ -8,8 +12,11 @@ public final class PWConstants {
     /** The Constant ENGLISH_LANGUAGE_ISO_CODE. */
     public static final String ENGLISH_LANGUAGE_ISO_CODE = "en";
 
-    /** The Constant GB_COUNTRY_ISO_CODE. */
-    public static final String GB_ISO_CODE = "gb";
+    /** The Constant GLOBAL_ISO_CODE. */
+    public static final String GLOBAL_ISO_CODE = "global";
+
+    /** The Constant GLOBAL_HOME_PAGE. */
+    public static final String GLOBAL_HOME_PAGE = "/content/tetrapak/publicweb/global/en/home";
 
     /** The Constant EN_GB. This can be use as default locale*/
     public static final String GLOBAL_LOCALE = "en-global";
@@ -51,7 +58,7 @@ public final class PWConstants {
     public static final String CONTENT_ROOT_PATH = "/content/tetrapak/publicweb";
 
     /** The Constant GLOBLA_LANG_PATH. */
-    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/publicweb/gb";
+    public static final String GLOBLA_MARKET_PATH = "/content/tetrapak/publicweb/global";
 
     /** The Constant PXP. */
     public static final String PXP = "pxp";
@@ -216,6 +223,35 @@ public final class PWConstants {
     
     /** The Constant JCR VALUE. */  
     public static final String JCR = "/jcr:content";
+
+    /** The Constant MAGHREB_COUNTRY_CODE. */
+    public static final String MAGHREB_COUNTRY_CODE = "maghreb";
+
+    /** The Constant ES_COUNTRY_CODE for Central America & Caribbean */
+    public static final String ES_COUNTRY_CODE = "es";
+
+    /** The Constant DE_COUNTRY_CODE for Germany, Austria, Switzerland. */
+    public static final String DE_COUNTRY_CODE = "de";
+
+    /** The Constant RU_COUNTRY_CODE for Russia, Kazakhstan, Ukraine. */
+    public static final String RU_COUNTRY_CODE = "ru";
+
+   /** list exceptionCountriesList contains all countries which are exceptions for country code .**/
+    public static final List<String> exceptionCountriesList =
+           Collections.unmodifiableList(Arrays.asList(MAGHREB_COUNTRY_CODE, ES_COUNTRY_CODE,DE_COUNTRY_CODE,RU_COUNTRY_CODE));
+
+    /** list maghrebLocaleValues contains all locales for maghreb. **/
+    public static final List<String> maghrebLocaleValues =
+            Collections.unmodifiableList(Arrays.asList("fr-dz", "fr-ly", "fr-mr", "fr-ma", "fr-tn"));
+
+    /** list esLocaleValues contains all locales for Central America & Caribbean. **/
+    public static final List<String> esLocaleValues = Collections.unmodifiableList(Collections.singletonList("es"));
+
+    /** list deLocaleValues contains all locales for Germany, Austria, Switzerland .**/
+    public static final List<String> deLocaleValues = Collections.unmodifiableList(Arrays.asList("de-de", "de-at", "de-ch"));
+
+    /** list ruLocaleValues contains all locales for  Russia, Kazakhstan, Ukraine.**/
+    public static final List<String> ruLocaleValues = Collections.unmodifiableList(Arrays.asList("ru-ru", "ru-kz", "ru-ua"));
 
     /**
      * Instantiates a new PW constants.
