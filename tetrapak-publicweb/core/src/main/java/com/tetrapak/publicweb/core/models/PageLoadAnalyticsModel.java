@@ -14,6 +14,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.settings.SlingSettingsService;
 import org.apache.sling.xss.XSSAPI;
@@ -43,10 +44,10 @@ public class PageLoadAnalyticsModel {
     /** The current page. */
     private Page currentPage;
 
-    @Inject
+    @OSGiService
     private SlingSettingsService slingSettingsService;
     
-    @Inject
+    @OSGiService
     protected XSSAPI xssapi;
 
     private Boolean hrefLangFlag = Boolean.FALSE;

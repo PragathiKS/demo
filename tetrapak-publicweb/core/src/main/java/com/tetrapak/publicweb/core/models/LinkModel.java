@@ -1,22 +1,15 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-
-import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  * The Class LinkModel.
  */
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LinkModel {
-
-    /** The request. */
-    @Self
-    private SlingHttpServletRequest request;
     
     /** The link text. */
     @ValueMapValue
@@ -41,6 +34,15 @@ public class LinkModel {
      * @return the link url
      */
     public String getLinkUrl() {
-        return LinkUtils.sanitizeLink(linkUrl, request);
+        return linkUrl;
+    }
+    
+    /**
+     * Sets the linkUrl.
+     *
+     * @param linkUrl the new linkUrl
+     */
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
     }
 }

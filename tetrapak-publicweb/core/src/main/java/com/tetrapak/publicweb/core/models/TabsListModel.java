@@ -12,6 +12,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -86,11 +87,13 @@ public class TabsListModel {
     /** The tab List Manual. */
     @Inject
     @Named(value = "tabsManual")
+    @Via("resource")
     private List<TabModel> tabListManual = new ArrayList<>();
 
     /** The tab List Semi Auto. */
     @Inject
     @Named(value = "tabsSemi")
+    @Via("resource")
     private List<SemiAutomaticModel> pagePaths = new ArrayList<>();
     
     /** The aggregator Service. */

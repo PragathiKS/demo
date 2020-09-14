@@ -2,23 +2,28 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class MegaMenuSolutionModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MegaMenuConfigurationModel {
 
+    /** The request. */
+    @SlingObject
+    SlingHttpServletRequest request;
+    
     /** The top section subtitle. */
     @ValueMapValue
     private String topSectionSubtitle;
@@ -33,18 +38,22 @@ public class MegaMenuConfigurationModel {
 
     /** The end to end solution section. */
     @Inject
+    @Via("resource")
     private List<MegaMenuSolutionModel> endToEndSolutionSection;
 
     /** The link section. */
     @Inject
+    @Via("resource")
     private List<LinkModel> linkSection;
 
     /** The food category section. */
     @Inject
+    @Via("resource")
     private List<MegaMenuSolutionModel> foodCategorySection;
     
     /** The pseudo category bean. */
     @Inject
+    @Via("resource")
     private List<PseudoCategoryModel> pseudoCategoryBean;
 
     /**
@@ -82,7 +91,10 @@ public class MegaMenuConfigurationModel {
     public List<MegaMenuSolutionModel> getEndToEndSolutionSection() {
         final List<MegaMenuSolutionModel> endToEndSolutionList = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(endToEndSolutionSection)) {
-            endToEndSolutionList.addAll(endToEndSolutionSection);
+            endToEndSolutionSection.forEach(f -> {
+                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
+                endToEndSolutionList.add(f);
+            });
         }
         return endToEndSolutionList;
     }
@@ -95,7 +107,10 @@ public class MegaMenuConfigurationModel {
     public List<LinkModel> getLinkSection() {
         final List<LinkModel> linkSectionList = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(linkSection)) {
-            linkSectionList.addAll(linkSection);
+            linkSection.forEach(f -> {
+                f.setLinkUrl(LinkUtils.sanitizeLink(f.getLinkUrl(), request));
+                linkSectionList.add(f);
+            });
         }
         return linkSectionList;
     }
@@ -108,7 +123,10 @@ public class MegaMenuConfigurationModel {
     public List<MegaMenuSolutionModel> getFoodCategorySection() {
         final List<MegaMenuSolutionModel> foodCategoryList = new ArrayList<>();
         if (CollectionUtils.isNotEmpty(foodCategorySection)) {
-            foodCategoryList.addAll(foodCategorySection);
+            foodCategorySection.forEach(f -> {
+                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
+                foodCategoryList.add(f);
+            });         
         }
         return foodCategoryList;
     }
