@@ -1,0 +1,9 @@
+RewriteCond   %{HTTP_HOST}  'author-tetrapak-dev64a.adobecqms.net'
+RewriteCond %{QUERY_STRING} ^preview=([^&]+) [NC,OR]
+RewriteCond %{QUERY_STRING} &preview=([^&]+) [NC]
+Header set preview true
+
+RewriteCond %{HTTP_HOST}  'author-tetrapak-dev64a.adobecqms.net'
+RewriteCond %{QUERY_STRING} ^preview=([^&]+) [NC,OR]
+RewriteCond %{QUERY_STRING} &preview=([^&]+) [NC]
+RewriteRule /(.*)$ /$1?wcmmode=disabled [QSA]
