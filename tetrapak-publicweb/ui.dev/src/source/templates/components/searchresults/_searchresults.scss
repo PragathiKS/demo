@@ -21,6 +21,7 @@
         &__btn,
         &__text {
             @include margin-left($margin-sm);
+            font-weight: 500;
         }
         &__previous + button {
             @include margin-left($margin-l);
@@ -44,7 +45,8 @@
         display: block;
         color: $color-boulder;
         text-transform: uppercase;
-        font-family: $font-bold;
+        font-family: $font-monsterrat;
+        font-weight: 500;
     }
 
     &__search-bar {
@@ -73,6 +75,7 @@
             label {
                 @include margin-bottom(0);
                 cursor: pointer;
+                font-weight: 700;
             }
 
             i {
@@ -165,6 +168,7 @@
         }
         .tpatom-subheading {
             @include margin-bottom($margin-md);
+            font-weight: 500;
             @media #{$desktop} {
                 @include padding-bottom($padding-md);
                 border-bottom: 1px solid $color-mercury;
@@ -200,6 +204,7 @@
             }
             &__text {
                 display: flex;
+                font-weight: 500;
             }
             @media #{$desktop} {
                 &:nth-child(odd) {
@@ -304,6 +309,7 @@
                 position: relative;
                 max-height: 54px;
                 text-align: justify;
+                font-weight: 500;
                 > span {
                     &::after {
                         content: '\0000a0';
