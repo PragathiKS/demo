@@ -14,7 +14,7 @@
 
 ## This rule allows content to be access
 #/0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv)' /path "/content/*" }  ## disable this rule to allow mapped content only
-/006 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv|txt)' /path "/content/dam/tetrapak/*" }
+/006 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|txt|tif|ppt|pptx)' /path "/content/dam/tetrapak/*" }
 /007 { /type "allow" /extension "html" /path "/content/tetrapak/publicweb/*" }
 #/0010 { /type "allow" /path  "/content/*"}
 
