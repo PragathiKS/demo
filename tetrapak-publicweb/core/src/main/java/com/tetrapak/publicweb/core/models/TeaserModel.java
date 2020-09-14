@@ -11,6 +11,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -80,10 +81,12 @@ public class TeaserModel {
 
     /** The manual list. */
     @Inject
+    @Via("resource")
     private List<ManualModel> manualList;
 
     /** The semi automatic list. */
     @Inject
+    @Via("resource")
     private List<SemiAutomaticModel> semiAutomaticList;
 
     /** The teaser list. */

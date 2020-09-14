@@ -209,8 +209,11 @@ public class TabsListModelTest {
     @Test
     public void testAssetName() throws Exception {
         context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);
-        resource = context.currentResource(RESOURCE_TWO);
-        model = resource.adaptTo(modelClass);
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
+        resource = context.currentResource(RESOURCE);
+        model = request.adaptTo(modelClass);
         assertEquals("abc.mp4", model.getTabs().get(0).getAssetName());
     }
 
@@ -255,8 +258,11 @@ public class TabsListModelTest {
     @Test
     public void testMethodsSemiAuto() throws Exception {
 	context.load().json(RESOURCE_CONTENT_SEMI, TEST_CONTENT_ROOT);
-	resource = context.currentResource(RESOURCE);
-	model = resource.adaptTo(modelClass);
+    MockSlingHttpServletRequest request = context.request();
+    context.request().setPathInfo(RESOURCE);
+    request.setResource(context.resourceResolver().getResource(RESOURCE));
+    resource = context.currentResource(RESOURCE);
+    model = request.adaptTo(modelClass);
 	assertEquals("Solutions", model.getTabs().get(0).getTitle());
 	assertEquals("Solution Desc", model.getTabs().get(0).getDescription());
 	assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",

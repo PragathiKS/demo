@@ -3,7 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -44,8 +44,11 @@ public class MegaMenuConfigurationSolutionModelTest {
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
-        final Resource resource = context.currentResource(RESOURCE_PATH);
-        model = resource.adaptTo(modelClass);
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE_PATH);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
+        context.currentResource(RESOURCE_PATH);
+        model = request.adaptTo(modelClass);
     }
 
     /**
