@@ -85,7 +85,7 @@ export const onNextClickAnalytics = (currentTarget,tab,requestPayload) => {
     eventType : 'step 1 next'
   };
   if(currentTarget === 'cf-step-1'){
-    formField.push({formFieldName:tab.find('.form-field-heading').data('step-heading'), formFieldValue:requestPayload['purposeOfContact']});
+    formField.push({formFieldName:tab.find('.form-field-heading').data('step-heading'), formFieldValue:requestPayload['purposeOfContactTitle']});
   } else if(currentTarget === 'cf-step-2'){
     formField.push(
       {formFieldName:tab.find('.first-name').data('first-name-label'), formFieldValue:'NA'},
