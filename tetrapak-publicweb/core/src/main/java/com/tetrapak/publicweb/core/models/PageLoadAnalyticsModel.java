@@ -217,7 +217,7 @@ public class PageLoadAnalyticsModel {
         final ResourceResolver resourceResolver = resource.getResourceResolver();
         CountryLanguageCodeBean countryLanguageCodeBean = new CountryLanguageCodeBean();
         countryLanguageCodeBean.setLocale(X_DEFAULT);
-        countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE,resourceResolver));
+        countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE,request));
         hrefLangValues.add(countryLanguageCodeBean);
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();

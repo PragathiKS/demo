@@ -210,9 +210,9 @@ public class TabsListModelTest {
     public void testAssetName() throws Exception {
         context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);
         MockSlingHttpServletRequest request = context.request();
-        context.request().setPathInfo(RESOURCE);
-        request.setResource(context.resourceResolver().getResource(RESOURCE));
-        resource = context.currentResource(RESOURCE);
+        context.request().setPathInfo(RESOURCE_TWO);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_TWO));
+        resource = context.currentResource(RESOURCE_TWO);
         model = request.adaptTo(modelClass);
         assertEquals("abc.mp4", model.getTabs().get(0).getAssetName());
     }
