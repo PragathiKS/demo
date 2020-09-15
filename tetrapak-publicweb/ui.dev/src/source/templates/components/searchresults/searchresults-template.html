@@ -67,6 +67,10 @@
                             <div class="js-filter-container-chips d-none">
                                 <!-- Loading filter tags/chips here -->
                             </div>
+                            <div class="pw-search-results__spinner text-center d-none">
+                              <sly data-sly-use.spinner="/apps/publicweb/components/atoms/spinner/spinner-template.html"
+                                  data-sly-call="${spinner.spinner_template}" />
+                            </div>
                             <div class="js-pw-search-results__title"
                                 data-result-search-term="${'pw.searchResults.searchresultsTextFor' @ i18n}"
                                 data-results-title="${'pw.searchResults.searchresultsText' @ i18n}"
@@ -76,10 +80,6 @@
                         </div>
                     </div>
                     <div class="pw-search-results__main-container">
-                        <div class="pw-search-results__spinner text-center d-none">
-                            <sly data-sly-use.spinner="/apps/publicweb/components/atoms/spinner/spinner-template.html"
-                                data-sly-call="${spinner.spinner_template}" />
-                        </div>
                         <div class="pw-search-results__results">
                             <div class="pw-search-results__results-list js-pw-search-results__results-list"></div>
                             <div class="js-pagination d-none" aria-live="polite"

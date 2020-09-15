@@ -1,6 +1,7 @@
-.spinner-border {
-    &.custom-color {
-        border: 3px solid $color-congress-blue;
-        border-right-color: transparent;
+i.icon-Spinner_pw {
+    &::before {
+        font-size: $font-l;
+        line-height: 24px;
+        color: $color-congress-blue;
     }
 }
