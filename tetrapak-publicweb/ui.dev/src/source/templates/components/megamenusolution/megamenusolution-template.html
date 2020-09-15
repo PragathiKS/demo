@@ -1,4 +1,4 @@
-<sly data-sly-template.megamenusolution_template="${@data, isMobile, flag, mainHeader}">
+<sly data-sly-template.megamenusolution_template="${@data, endToEndSolutionSectionList, linkSectionList, foodCategorySectionList, isMobile, flag, mainHeader}">
   <div data-module="MegaMenuSolution" class="pw-megamenu" aria-hidden="true" aria-expanded="false">
     <!--/* Component HTML code goes here */-->
     <hr class="d-none d-lg-block" />
@@ -15,7 +15,7 @@
           <sly data-sly-use.solutiontitle="/apps/commons/components/atoms/heading/heading.html"
             data-sly-call="${solutiontitle.heading_h2_template @ headingText='Solution', variant='regular'}" />
         </div>
-        <ul class="row" data-sly-list.endToEndSolutionSection=${data.endToEndSolutionSection}>
+        <ul class="row" data-sly-list.endToEndSolutionSection=${endToEndSolutionSectionList}>
           <li class="col">
             <a class="js-navigation-Link" data-link-section='Tetra Pak end to end solutions'
               data-link-title="${endToEndSolutionSection.title}" data-link-name='${mainHeader}:${endToEndSolutionSection.title}' href="${endToEndSolutionSection.path}">
@@ -36,7 +36,7 @@
             </a>
           </li>
           <li class="col col-side-links" data-sly-test="${endToEndSolutionSectionList.last}">
-            <ul class="list-side-links" data-sly-list.linkSection=${data.linkSection}>
+            <ul class="list-side-links" data-sly-list.linkSection=${linkSectionList}>
               <li>
                 <sly data-sly-use.linkAtom="/apps/publicweb/components/atoms/link/link-template.html"
                   data-sly-call="${linkAtom.link_template @ linkUrl=linkSection.linkUrl, parentLink=mainHeader, linkText=linkSection.linkText, anchorClass='', iconClass='d-none d-md-inline-block'}">
@@ -53,7 +53,7 @@
           <i class="icon icon-Arrow_Right_pw d-md-none"></i>
         </div>
         <div class="bottom-teaser-list js-bottom-teaser-list">
-          <ul class="row" data-sly-list.foodCategorySection=${data.foodCategorySection}>
+          <ul class="row" data-sly-list.foodCategorySection=${foodCategorySectionList}>
             <li class="col d-md-none js-close-menu" data-sly-test="${foodCategorySectionList.first}">
               <div>
                 <i class="icon icon-Arrow_Right_pw d-md-none js-design-close-menu"></i>
