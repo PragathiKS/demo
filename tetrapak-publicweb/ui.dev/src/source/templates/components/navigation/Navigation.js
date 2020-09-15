@@ -9,6 +9,7 @@ class Navigation {
   initCache() {
     this.cache.$stickySectionMenu = this.root.closest('.sticky-section-menu');
     this.cache.$sectionMenuToggle = this.root.find('.collapse-button');
+    this.cache.$stickySectionMenu = $('.sticky-section-menu');
     this.cache.$navigationElement= this.root;
   }
   bindEvents() {
@@ -38,6 +39,19 @@ class Navigation {
 
     $sectionMenuToggle.on('click', this.sectionMenuToggleClick);
     this.showSelectedHeader();
+    this.checkForSectionMenuOverlap();
+  }
+
+  checkForSectionMenuOverlap = () => {
+    const $sectionLinkAnchor = this.cache.$stickySectionMenu.find('.section-link-home');
+    const $sectionLinkAnchorLabel = this.cache.$stickySectionMenu.find('.section-link-home a')[0];
+    const sectionLinkAnchorRect = $sectionLinkAnchor.length > 0 && $sectionLinkAnchor[0].getBoundingClientRect();
+    const sectionFirstLinkReact = this.cache.$stickySectionMenu.find('.list-section-menu-links li').first()[0].getBoundingClientRect();
+    const overlap = !(sectionLinkAnchorRect.right < sectionFirstLinkReact.left ||
+      sectionLinkAnchorRect.left > sectionFirstLinkReact.right);
+    if(overlap) {
+      this.cache.$stickySectionMenu.find('.list-section-menu-links').css('padding-left', $sectionLinkAnchorLabel.clientWidth - 15);
+    }
   }
 
   sectionMenuToggleClick = (e) => {

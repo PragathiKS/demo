@@ -135,4 +135,13 @@
             display: block;
         }
     }
+    @media #{$small-desktop} {
+        &__container {
+            .list-section-menu-links {
+                & > li {
+                    @include margin(0 6px);
+                }
+            }
+        }
+    }
 }

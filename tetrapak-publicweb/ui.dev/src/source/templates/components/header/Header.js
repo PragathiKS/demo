@@ -31,6 +31,7 @@ class Header {
     this.cache.$headerItemLink = this.root.find('.js-main-menu-link-hover');
     this.cache.$overlay = $('.js-pw-overlay');
     this.cache.$searchIcon = this.root.find('.js-tp-pw-header__search-box-toggle');
+    this.cache.$sectionLinkHome = this.root.find('.section-link-home');
   }
 
   //
@@ -73,6 +74,19 @@ class Header {
         }
       });
     }
+  }
+
+  checkForSectionMenuOverlap = ($this) => {
+    const $sectionLinkAnchor = $this.find('.section-link-home');
+    const $sectionLinkAnchorLabel = $this.find('.section-link-home a')[0];
+    const sectionLinkAnchorRect = $sectionLinkAnchor.length > 0 && $sectionLinkAnchor[0].getBoundingClientRect();
+    const sectionFirstLinkReact = $this.find('.list-section-menu-links li').first()[0].getBoundingClientRect();
+    const overlap = !(sectionLinkAnchorRect.right < sectionFirstLinkReact.left ||
+      sectionLinkAnchorRect.left > sectionFirstLinkReact.right);
+    if(overlap) {
+      $this.find('.list-section-menu-links').css('padding-left', $sectionLinkAnchorLabel.clientWidth - 15);
+    }
+
   }
 
   hideSearchbar = () => {
@@ -147,6 +161,7 @@ class Header {
       return false;
     }
     $this.children('.pw-navigation').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true');
+    this.checkForSectionMenuOverlap($this);
   }
 
   handleHeaderItemMouseOut = (e) => {
