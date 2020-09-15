@@ -33,7 +33,7 @@
         @include margin-right(0);
     }
     &__body {
-        @include padding(0 $padding-xl 0 $padding-xl);
+        @include padding(0 $padding-xl $padding-md $padding-xl);
 
         @media #{$desktop} {
             @include padding(0 $padding-xxxl $padding-xxxl $padding-xxxl);
