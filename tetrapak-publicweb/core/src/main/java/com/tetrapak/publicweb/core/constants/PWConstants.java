@@ -247,6 +247,15 @@ public final class PWConstants {
 
     /** list ruLocaleValues contains all locales for  Russia, Kazakhstan, Ukraine.**/
     public static final List<String> ruLocaleValues = Collections.unmodifiableList(Arrays.asList("ru-ru", "ru-kz", "ru-ua"));
+    
+    /** The Constant CAC_COUNTRY_CODE Central America & Caribbean */
+    public static final String CAC_COUNTRY_CODE = "cac";
+    
+    /** The Constant MAGHREB_MARKET_CODE. */
+    public static final String MAGHREB_MARKET_CODE = "ma";
+    
+    /** The Constant CAC_MARKET_CODE. */
+    public static final String CAC_MARKET_CODE = "pa";
 
     /**
      * Instantiates a new PW constants.
