@@ -2,6 +2,7 @@
     @include border-radius($border-radius);
     @include padding-left($padding-md);
     @include padding-right($padding-md);
+    @include padding-top($padding-l);
     @include margin(0 $margin-md);
     @media #{$desktop} {
         @include padding($padding-xxxl);
@@ -12,7 +13,7 @@
 
     &__heading {
         @include font-size($font-l);
-        @include padding-top($padding-l);
+        @include padding-top($padding-zero);
         @include margin-bottom($margin-md);
         @media #{$desktop} {
             @include padding-top($padding-zero);
