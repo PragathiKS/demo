@@ -28,6 +28,9 @@
             @include padding-right($padding-xl);
             flex: 1;
         }
+        a:hover {
+            color: $color-sky-blue;
+        }
     }
 
     &__btn {

@@ -7,7 +7,7 @@
     }
     .search-label {
         text-indent: -10000px;
-        position:absolute;
+        position: absolute;
     }
     @media #{$mobile} {
         height: calc(100vh - #{$header-height-mobile * 1px});
@@ -31,6 +31,7 @@
                     border: 0;
                     color: $color-boulder;
                     flex: 1;
+                    font-weight: 700;
                     &::placeholder {
                         color: $color-boulder;
                     }
