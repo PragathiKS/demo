@@ -4,6 +4,8 @@ import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -16,6 +18,12 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
  */
 public final class PageUtil {
 
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageUtil.class);
+
+    /**
+     * Instantiates a new page util.
+     */
     private PageUtil() {
         /*
          * adding a private constructor to hide the implicit one
@@ -56,7 +64,10 @@ public final class PageUtil {
     }
 
     /**
+     * Gets the language page.
+     *
      * @param currentPage
+     *            the current page
      * @return language
      */
     public static Page getLanguagePage(final Page currentPage) {
@@ -67,6 +78,8 @@ public final class PageUtil {
     }
 
     /**
+     * Gets the language page.
+     *
      * @param resource
      *            the resource
      * @return language page
@@ -80,7 +93,10 @@ public final class PageUtil {
     }
 
     /**
+     * Gets the country page.
+     *
      * @param currentPage
+     *            the current page
      * @return country page
      */
     public static Page getCountryPage(final Page currentPage) {
@@ -88,7 +104,10 @@ public final class PageUtil {
     }
 
     /**
+     * Gets the language code.
+     *
      * @param languagePage
+     *            the language page
      * @return current language
      */
     public static String getLanguageCode(final Page languagePage) {
@@ -140,13 +159,37 @@ public final class PageUtil {
     }
 
     /**
-     * This method is used for getting locale in form of language-country say en-gb
-     * @param page page
+     * This method is used for getting locale in form of language-country say en-gb.
+     *
+     * @param page
+     *            page
      * @return String locale in form of language-country
      */
-    public static String getLocaleFromURL (final Page page){
-        return getLanguageCode(page).concat(PWConstants.HYPHEN).
-                concat(getCountryCode(page));
+    public static String getLocaleFromURL(final Page page) {
+        return getLanguageCode(page).concat(PWConstants.HYPHEN).concat(getCountryCode(page));
     }
 
+    /**
+     * Gets the market code.
+     *
+     * @param resource
+     *            the resource
+     * @return the market code
+     */
+    public static String getMarketCode(Resource resource) {
+        String marketCode = PageUtil.getCountryCodeFromResource(resource);
+        if (StringUtils.isNotBlank(marketCode)) {
+            switch (marketCode) {
+                case PWConstants.MAGHREB_COUNTRY_CODE:
+                    marketCode = PWConstants.MAGHREB_MARKET_CODE;
+                    break;
+                case PWConstants.CAC_COUNTRY_CODE:
+                    marketCode = PWConstants.CAC_MARKET_CODE;
+                    break;
+                default:
+                    LOGGER.info("Not a valid country code");
+            }
+        }
+        return marketCode;
+    }
 }

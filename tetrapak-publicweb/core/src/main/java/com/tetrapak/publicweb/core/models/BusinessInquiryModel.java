@@ -87,7 +87,7 @@ public class BusinessInquiryModel extends FormModel {
      * @return the site country
      */
     public String getSiteCountry() {
-        return PageUtil.getCountryCodeFromResource(resource);
+        return PageUtil.getMarketCode(resource);
     }
 
     /**
