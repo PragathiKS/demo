@@ -9,17 +9,15 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class MegaMenuSolutionModel.
  */
 @Model(
-        adaptables = { SlingHttpServletRequest.class, Resource.class },
+        adaptables = { Resource.class },
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MegaMenuConfigurationModel {
 
@@ -41,22 +39,18 @@ public class MegaMenuConfigurationModel {
 
     /** The end to end solution section. */
     @Inject
-    @Via("resource")
     private List<MegaMenuSolutionModel> endToEndSolutionSection;
 
     /** The link section. */
     @Inject
-    @Via("resource")
     private List<LinkModel> linkSection;
 
     /** The food category section. */
     @Inject
-    @Via("resource")
     private List<MegaMenuSolutionModel> foodCategorySection;
 
     /** The pseudo category bean. */
     @Inject
-    @Via("resource")
     private List<PseudoCategoryModel> pseudoCategoryBean;
 
     /**
@@ -92,14 +86,7 @@ public class MegaMenuConfigurationModel {
      * @return the end to end solution section
      */
     public List<MegaMenuSolutionModel> getEndToEndSolutionSection() {
-        final List<MegaMenuSolutionModel> endToEndSolutionList = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(endToEndSolutionSection)) {
-            endToEndSolutionSection.forEach(f -> {
-                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
-                endToEndSolutionList.add(f);
-            });
-        }
-        return endToEndSolutionList;
+        return endToEndSolutionSection;
     }
 
     /**
@@ -108,14 +95,7 @@ public class MegaMenuConfigurationModel {
      * @return the link section
      */
     public List<LinkModel> getLinkSection() {
-        final List<LinkModel> linkSectionList = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(linkSection)) {
-            linkSection.forEach(f -> {
-                f.setLinkUrl(LinkUtils.sanitizeLink(f.getLinkUrl(), request));
-                linkSectionList.add(f);
-            });
-        }
-        return linkSectionList;
+        return linkSection;
     }
 
     /**
@@ -124,14 +104,7 @@ public class MegaMenuConfigurationModel {
      * @return the food category section
      */
     public List<MegaMenuSolutionModel> getFoodCategorySection() {
-        final List<MegaMenuSolutionModel> foodCategoryList = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(foodCategorySection)) {
-            foodCategorySection.forEach(f -> {
-                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
-                foodCategoryList.add(f);
-            });
-        }
-        return foodCategoryList;
+        return foodCategorySection;
     }
 
     /**

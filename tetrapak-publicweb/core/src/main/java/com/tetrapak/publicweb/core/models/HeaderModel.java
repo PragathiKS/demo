@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -257,14 +259,65 @@ public class HeaderModel {
     public List<LinkBean> getMegaMenuLinksList() {
         return new ArrayList<>(megaMenuLinksList);
     }
+    
+    /**
+    * Gets the mega menu configuration model.
+    *
+    * @return the mega menu configuration model
+    */
+   public MegaMenuConfigurationModel getMegaMenuConfigurationModel() {
+       return megaMenuConfigurationModel;
+    }
 
     /**
-     * Gets the mega menu configuration model.
+     * Gets the end to end solution section.
      *
-     * @return the mega menu configuration model
+     * @return the end to end solution section
      */
-    public MegaMenuConfigurationModel getMegaMenuConfigurationModel() {
-        return megaMenuConfigurationModel;
+    public List<MegaMenuSolutionModel> getEndToEndSolutionSection() {
+        final List<MegaMenuSolutionModel> endToEndSolutionList = new ArrayList<>();
+        final List<MegaMenuSolutionModel> endToEndSolution = megaMenuConfigurationModel.getEndToEndSolutionSection();
+        if (CollectionUtils.isNotEmpty(endToEndSolution)) {
+            endToEndSolution.forEach(f -> {
+                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
+                endToEndSolutionList.add(f);
+            });
+        }
+        return endToEndSolutionList;
+    }
+
+    /**
+     * Gets the link section.
+     *
+     * @return the link section
+     */
+    public List<LinkModel> getLinkSection() {
+        final List<LinkModel> linkSectionList = new ArrayList<>();
+        final List<LinkModel> linkSection = megaMenuConfigurationModel.getLinkSection();
+        if (CollectionUtils.isNotEmpty(linkSection)) {
+            linkSection.forEach(f -> {
+                f.setLinkUrl(LinkUtils.sanitizeLink(f.getLinkUrl(), request));
+                linkSectionList.add(f);
+            });
+        }
+        return linkSectionList;
+    }
+
+    /**
+     * Gets the food category section.
+     *
+     * @return the food category section
+     */
+    public List<MegaMenuSolutionModel> getFoodCategorySection() {
+        final List<MegaMenuSolutionModel> foodCategoryList = new ArrayList<>();
+        final List<MegaMenuSolutionModel> foodCategorySection = megaMenuConfigurationModel.getFoodCategorySection();
+        if (CollectionUtils.isNotEmpty(foodCategorySection)) {
+            foodCategorySection.forEach(f -> {
+                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
+                foodCategoryList.add(f);
+            });
+        }
+        return foodCategoryList;
     }
 
     /**
