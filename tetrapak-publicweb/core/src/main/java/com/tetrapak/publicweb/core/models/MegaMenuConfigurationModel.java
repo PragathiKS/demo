@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
@@ -17,13 +18,15 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 /**
  * The Class MegaMenuSolutionModel.
  */
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(
+        adaptables = { SlingHttpServletRequest.class, Resource.class },
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MegaMenuConfigurationModel {
 
     /** The request. */
     @SlingObject
     SlingHttpServletRequest request;
-    
+
     /** The top section subtitle. */
     @ValueMapValue
     private String topSectionSubtitle;
@@ -50,7 +53,7 @@ public class MegaMenuConfigurationModel {
     @Inject
     @Via("resource")
     private List<MegaMenuSolutionModel> foodCategorySection;
-    
+
     /** The pseudo category bean. */
     @Inject
     @Via("resource")
@@ -126,15 +129,15 @@ public class MegaMenuConfigurationModel {
             foodCategorySection.forEach(f -> {
                 f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
                 foodCategoryList.add(f);
-            });         
+            });
         }
         return foodCategoryList;
     }
-    
+
     /**
-     * Gets the  pseudo category list.
+     * Gets the pseudo category list.
      *
-     * @return the  pseudo category list
+     * @return the pseudo category list
      */
     public List<PseudoCategoryModel> getPseudoCategoryList() {
         final List<PseudoCategoryModel> pseudoCategoryList = new ArrayList<>();
