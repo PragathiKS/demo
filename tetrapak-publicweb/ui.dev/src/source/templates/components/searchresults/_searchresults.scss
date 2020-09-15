@@ -140,9 +140,6 @@
     }
     &__spinner {
         position: relative;
-        @media #{$desktop} {
-            top: -32px;
-        }
     }
 
     &__title,
