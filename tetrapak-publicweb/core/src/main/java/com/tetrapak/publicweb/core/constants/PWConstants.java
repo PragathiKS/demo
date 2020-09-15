@@ -253,6 +253,8 @@ public final class PWConstants {
     /** list ruLocaleValues contains all locales for  Russia, Kazakhstan, Ukraine.**/
     public static final List<String> ruLocaleValues = Collections.unmodifiableList(Arrays.asList("ru-ru", "ru-kz", "ru-ua"));
 
+    /** The Constant JCR PREVIEW_SALT. */  
+    public static final String PREVIEW_SALT = "previewSalt";
     /**
      * Instantiates a new PW constants.
      */

@@ -32,7 +32,7 @@ $(document).on("click", ".pw-preview-generator", function(e){
           if(data){
               if(JSON.parse(data).status == 'success')
                 {
-                  fui.prompt("Sucess", "Page preview link is <a href='" + JSON.parse(data).saultPagePath + "'>"+ JSON.parse(data).saultPagePath + "</a>", "default", resubmitOptions);
+                  fui.prompt("Success", "Page preview link is <a href='" + JSON.parse(data).saultPagePath + "'>"+ JSON.parse(data).saultPagePath + "</a>", "default", resubmitOptions);
                 }
                else {
                   fui.prompt("Error", "Request for preview URL generation failed.", "default", options);

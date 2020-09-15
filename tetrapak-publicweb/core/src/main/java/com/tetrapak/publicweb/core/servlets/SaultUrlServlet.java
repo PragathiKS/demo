@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.servlets;
 
-import javax.jcr.RepositoryException;
 import javax.servlet.Servlet;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -69,10 +68,14 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
         final String currentPagePath = xssAPI.getValidHref(request.getParameter("path"));
         final String relativePath = currentPagePath.concat(PWConstants.JCR);
         java.util.Date date = new java.util.Date();
-        final String encodedSaultString = generateSault(currentPagePath.concat(date.toString()));
-        final String saultPagePath = currentPagePath.concat(".html?preview=").concat(encodedSaultString);
+
         try (ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
-            saveSaultToRepository(resourceResolver, encodedSaultString, relativePath);
+            String encodedSaultString = getSaltFromPage(resourceResolver, relativePath);
+            if (StringUtils.isBlank(encodedSaultString)) {
+                encodedSaultString = generateSalt(currentPagePath.concat(date.toString()));
+            }
+            final String saultPagePath = currentPagePath.concat(".html?preview=").concat(encodedSaultString);
+            saveSaltToRepository(resourceResolver, encodedSaultString, relativePath);
             jsonResponse.addProperty("status", "success");
             String hostURL = request.getRequestURL().toString().replace("/bin/publicweb/preview", "");
             jsonResponse.addProperty("saultPagePath", hostURL.concat(saultPagePath));
@@ -86,26 +89,39 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
     /**
      * Method to update "preview-sault" value into repository.
      *
-     * @param resolver
-     *            the resolver
-     * @param encodedSaultString
-     *            the encoded sault string
-     * @param relativePath
-     *            the relative path
-     * @throws PersistenceException 
-     * @throws RepositoryException
-     *             the repository exception
+     * @param resolver            the resolver
+     * @param encodedSaultString            the encoded sault string
+     * @param relativePath            the relative path
+     * @throws PersistenceException the persistence exception
      */
-    private void saveSaultToRepository(final ResourceResolver resolver, final String encodedSaultString,
+    private void saveSaltToRepository(final ResourceResolver resolver, final String encodedSaultString,
             final String relativePath) throws PersistenceException {
         if (null != resolver) {
             Resource pageContentResource = resolver.getResource(relativePath);
             if (Objects.nonNull(pageContentResource)) {
                 ModifiableValueMap map = pageContentResource.adaptTo(ModifiableValueMap.class);
-                map.put("previewSalt", encodedSaultString);
+                map.put(PWConstants.PREVIEW_SALT, encodedSaultString);
             }
             resolver.commit();
         }
+    }
+
+    /**
+     * Gets the salt from page.
+     *
+     * @param resolver the resolver
+     * @param relativePath the relative path
+     * @return the salt from page
+     */
+    private String getSaltFromPage(final ResourceResolver resolver, final String relativePath) {
+        String encodedSaultString = StringUtils.EMPTY;
+        if (null != resolver) {
+            Resource pageContentResource = resolver.getResource(relativePath);
+            if (Objects.nonNull(pageContentResource) && pageContentResource.getValueMap().containsKey(PWConstants.PREVIEW_SALT)) {
+                encodedSaultString = (String) pageContentResource.getValueMap().get(PWConstants.PREVIEW_SALT);
+            }
+        }
+        return encodedSaultString;
     }
 
     /**
@@ -115,7 +131,7 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
      *            the path
      * @return the string
      */
-    private static String generateSault(String path) {
+    private static String generateSalt(String path) {
         String saultValue = StringUtils.EMPTY;
         try {
             final MessageDigest messagedigest = MessageDigest.getInstance("SHA-512");
