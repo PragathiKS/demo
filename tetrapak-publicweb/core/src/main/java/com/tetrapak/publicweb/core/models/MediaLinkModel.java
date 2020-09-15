@@ -2,27 +2,29 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
-import org.apache.sling.api.resource.Resource;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.models.multifield.LinkModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class MediaLinkModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MediaLinkModel {
 
-    /** The resource. */
-    @Self
-    private Resource resource;
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
 
     /** The heading. */
     @ValueMapValue
@@ -54,14 +56,17 @@ public class MediaLinkModel {
 
     /** The column one list. */
     @Inject
+    @Via("resource")
     private List<LinkModel> columnOneList;
 
     /** The column two list. */
     @Inject
+    @Via("resource")
     private List<LinkModel> columnTwoList;
 
     /** The column three list. */
     @Inject
+    @Via("resource")
     private List<LinkModel> columnThreeList;
 
     /**
@@ -134,8 +139,11 @@ public class MediaLinkModel {
      */
     public List<LinkModel> getColumnOneList() {
         final List<LinkModel> lists = new ArrayList<>();
-        if (Objects.nonNull(columnOneList)) {
-            lists.addAll(columnOneList);
+        if (CollectionUtils.isNotEmpty(columnOneList)) {
+            columnOneList.forEach(f -> {
+                f.setLinkUrl(LinkUtils.sanitizeLink(f.getLinkUrl(), request));
+                lists.add(f);
+            });
         }
         return lists;
     }
@@ -147,8 +155,11 @@ public class MediaLinkModel {
      */
     public List<LinkModel> getColumnTwoList() {
         final List<LinkModel> lists = new ArrayList<>();
-        if (Objects.nonNull(columnTwoList)) {
-            lists.addAll(columnTwoList);
+        if (CollectionUtils.isNotEmpty(columnTwoList)) {
+            columnTwoList.forEach(f -> {
+                f.setLinkUrl(LinkUtils.sanitizeLink(f.getLinkUrl(), request));
+                lists.add(f);
+            });
         }
         return lists;
     }
@@ -160,8 +171,11 @@ public class MediaLinkModel {
      */
     public List<LinkModel> getColumnThreeList() {
         final List<LinkModel> lists = new ArrayList<>();
-        if (Objects.nonNull(columnThreeList)) {
-            lists.addAll(columnThreeList);
+        if (CollectionUtils.isNotEmpty(columnThreeList)) {
+            columnThreeList.forEach(f -> {
+                f.setLinkUrl(LinkUtils.sanitizeLink(f.getLinkUrl(), request));
+                lists.add(f);
+            });
         }
         return lists;
     }

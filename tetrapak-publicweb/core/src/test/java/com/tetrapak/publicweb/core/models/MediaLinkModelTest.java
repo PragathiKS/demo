@@ -1,6 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,9 +25,6 @@ public class MediaLinkModelTest {
     /** The model. */
     private MediaLinkModel model;
 
-    /** The resource. */
-    private Resource resource;
-
     /**
      * Sets the up.
      *
@@ -44,8 +41,10 @@ public class MediaLinkModelTest {
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
 
-        resource = context.currentResource(RESOURCE);
-        model = resource.adaptTo(modelClass);
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
+        model = request.adaptTo(modelClass);
     }
 
     @Test
