@@ -38,6 +38,15 @@ class Navigation {
 
     $sectionMenuToggle.on('click', this.sectionMenuToggleClick);
     this.showSelectedHeader();
+    this.checkForSectionMenuOverlap();
+  }
+
+  checkForSectionMenuOverlap = () => {
+    const $sectionLinkAnchorLabel = this.cache.$stickySectionMenu.find('.section-link-home');
+    const sectionListSize = this.cache.$stickySectionMenu.find('.list-section-menu-links > li').length;
+    if($sectionLinkAnchorLabel.length > 0 && sectionListSize >= 5) {
+      this.cache.$stickySectionMenu.find('.list-section-menu-links').addClass('align-right');
+    }
   }
 
   sectionMenuToggleClick = (e) => {

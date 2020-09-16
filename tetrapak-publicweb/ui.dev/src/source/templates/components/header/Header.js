@@ -75,6 +75,14 @@ class Header {
     }
   }
 
+  checkForSectionMenuOverlap = ($this) => {
+    const $sectionLinkAnchorLabel = $this.find('.section-link-home');
+    const sectionListSize = $this.find('.list-section-menu-links > li').length;
+    if($sectionLinkAnchorLabel.length > 0 && sectionListSize >= 5) {
+      $this.find('.list-section-menu-links').addClass('align-right');
+    }
+  }
+
   hideSearchbar = () => {
     $('.js-pw-header-search-bar').removeClass('show');
   }
@@ -147,6 +155,7 @@ class Header {
       return false;
     }
     $this.children('.pw-navigation').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true');
+    this.checkForSectionMenuOverlap($this);
   }
 
   handleHeaderItemMouseOut = (e) => {

@@ -135,4 +135,16 @@
             display: block;
         }
     }
+    @media #{$small-desktop} {
+        &__container {
+            .list-section-menu-links {
+                &.align-right {
+                    justify-content: flex-end;
+                }
+                & > li {
+                    @include margin(0 6px);
+                }
+            }
+        }
+    }
 }
