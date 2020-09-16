@@ -6,8 +6,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-
+// TODO: Auto-generated Javadoc
 /**
  * The Class FooterLinkModel.
  */
@@ -16,7 +15,7 @@ public class FooterLinkModel {
 
     /** The resource. */
     @Self
-    private Resource resource;
+    Resource request;
 
     /** The link label. */
     @ValueMapValue
@@ -41,7 +40,16 @@ public class FooterLinkModel {
      * @return the link path
      */
     public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath, resource.getResourceResolver());
+        return linkPath;
+    }
+    
+    /**
+     * Sets the link path.
+     *
+     * @param linkPath the new link path
+     */
+    public void setLinkPath(String linkPath) {
+        this.linkPath=linkPath;
     }
 
 }

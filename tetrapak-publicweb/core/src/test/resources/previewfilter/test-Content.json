@@ -1,0 +1,43 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Jun 10 2020 23:49:46 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"hideContactFooterForm@Delete": "true",
+"jcr:createdBy": "admin",
+"jcr:title": "Tetra Pak A1 for TFA",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "f76cc96e-f4b1-4998-b080-4bf4e7c9a8a3",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page",
+"cq:lastReplicatedBy": "sapient-bimmi",
+"productId": "equipment1251",
+"previewSalt": "daad42342wada4242tget4354rewf",
+"pwLinkTheme": "hyperlink",
+"jcr:predecessors": [
+"ce3df20a-63fc-42d6-a07d-dfa34ed39c94"
+],
+"pwButtonTheme": "link",
+"jcr:created": "Wed Jun 10 2020 23:49:46 GMT+0530",
+"cq:lastReplicated": "Wed May 13 2020 10:23:00 GMT+0000",
+"cq:lastModified": "Tue May 12 2020 05:48:19 GMT+0000",
+"jcr:baseVersion": "ce3df20a-63fc-42d6-a07d-dfa34ed39c94",
+"jcr:isCheckedOut": true,
+"hideInSearch@Delete": "true",
+"linkTarget": "_self",
+"jcr:uuid": "8216605a-57e5-4fe0-be8d-e51d0b3a4e72",
+"sling:resourceType": "publicweb/components/structure/pages/pxpproductpage",
+"cq:lastModifiedBy": "sapient-suraksha",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"responsivegrid": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid"
+}
+}
+}
+}

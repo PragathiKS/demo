@@ -218,6 +218,11 @@ public final class PWConstants {
 
     public static final String HTTPS_PROTOCOL = "https://";
     public static final String WWW = "www.";
+	/** The Constant HTML. */   
+    public static final String HTML = ".html";
+    
+    /** The Constant JCR VALUE. */  
+    public static final String JCR = "/jcr:content";
 
     /** The Constant MAGHREB_COUNTRY_CODE. */
     public static final String MAGHREB_COUNTRY_CODE = "maghreb";
@@ -257,6 +262,8 @@ public final class PWConstants {
     /** The Constant CAC_MARKET_CODE. */
     public static final String CAC_MARKET_CODE = "pa";
 
+    /** The Constant JCR PREVIEW_SALT. */  
+    public static final String PREVIEW_SALT = "previewSalt";
     /**
      * Instantiates a new PW constants.
      */

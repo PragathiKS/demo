@@ -245,7 +245,7 @@ public class PWLinkTransformerFactory implements TransformerFactory {
                 for (int i = 0; i < attributes.getLength(); i++) {
                     if ("href".equalsIgnoreCase(attributes.getQName(i))) {
                         attributes.setValue(i,
-                                LinkUtils.sanitizeLink(attributes.getValue(i).replaceAll(".html", ""), request.getResourceResolver()));
+                                LinkUtils.sanitizeLink(attributes.getValue(i).replaceAll(".html", ""), request));
                         break;
                     }
                 }

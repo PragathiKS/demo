@@ -10,6 +10,7 @@ import javax.jcr.Session;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -111,9 +112,13 @@ public class PXPPackageTypesModelTest {
         idList.add("/content/tetrapak/publicweb/lang-masters/en/packagetypes/tetra-brik-aseptic");
         idList.add("/content/tetrapak/publicweb/lang-masters/en/packagetypes/tetra-classic");
         MockHelper.loadQuery(context, idList);
-
+        
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE_PATH);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
         resource = context.currentResource(RESOURCE_PATH);
-        pxpPackageTypesModel = resource.adaptTo(modelClass);
+        pxpPackageTypesModel = request.adaptTo(modelClass);
+        
         initMocks(this);
     }
 

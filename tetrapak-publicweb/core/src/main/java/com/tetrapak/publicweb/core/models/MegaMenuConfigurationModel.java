@@ -2,22 +2,28 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.tetrapak.publicweb.core.models.multifield.PseudoCategoryModel;
 
 /**
  * The Class MegaMenuSolutionModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(
+        adaptables = { Resource.class },
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MegaMenuConfigurationModel {
+
+    /** The request. */
+    @SlingObject
+    SlingHttpServletRequest request;
 
     /** The top section subtitle. */
     @ValueMapValue
@@ -42,7 +48,7 @@ public class MegaMenuConfigurationModel {
     /** The food category section. */
     @Inject
     private List<MegaMenuSolutionModel> foodCategorySection;
-    
+
     /** The pseudo category bean. */
     @Inject
     private List<PseudoCategoryModel> pseudoCategoryBean;
@@ -80,11 +86,7 @@ public class MegaMenuConfigurationModel {
      * @return the end to end solution section
      */
     public List<MegaMenuSolutionModel> getEndToEndSolutionSection() {
-        final List<MegaMenuSolutionModel> endToEndSolutionList = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(endToEndSolutionSection)) {
-            endToEndSolutionList.addAll(endToEndSolutionSection);
-        }
-        return endToEndSolutionList;
+        return endToEndSolutionSection;
     }
 
     /**
@@ -93,11 +95,7 @@ public class MegaMenuConfigurationModel {
      * @return the link section
      */
     public List<LinkModel> getLinkSection() {
-        final List<LinkModel> linkSectionList = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(linkSection)) {
-            linkSectionList.addAll(linkSection);
-        }
-        return linkSectionList;
+        return linkSection;
     }
 
     /**
@@ -106,17 +104,13 @@ public class MegaMenuConfigurationModel {
      * @return the food category section
      */
     public List<MegaMenuSolutionModel> getFoodCategorySection() {
-        final List<MegaMenuSolutionModel> foodCategoryList = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(foodCategorySection)) {
-            foodCategoryList.addAll(foodCategorySection);
-        }
-        return foodCategoryList;
+        return foodCategorySection;
     }
-    
+
     /**
-     * Gets the  pseudo category list.
+     * Gets the pseudo category list.
      *
-     * @return the  pseudo category list
+     * @return the pseudo category list
      */
     public List<PseudoCategoryModel> getPseudoCategoryList() {
         final List<PseudoCategoryModel> pseudoCategoryList = new ArrayList<>();

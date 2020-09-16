@@ -6,11 +6,12 @@ import java.util.Objects;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.publicweb.core.beans.DropdownOption;
@@ -24,11 +25,14 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
  * The Class SoftConversionModel.
  *
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SoftConversionModel extends FormModel {
 
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
+   
     /** The resource. */
-    @Self
     private Resource resource;
 
     /** The pardot service. */
@@ -65,8 +69,9 @@ public class SoftConversionModel extends FormModel {
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
         if (StringUtils.isNotEmpty(moreButtonAction)) {
-            moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction, resource.getResourceResolver());
+            moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction, request);
         }
         setFormConfig();
         setCountryOptions();

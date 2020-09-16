@@ -21,7 +21,7 @@
                 ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
               <sly data-sly-test="${megaMenuItem.linkPath == data.solutionPage}"
                 data-sly-use.megaMenuSolution="/apps/publicweb/components/content/megamenusolution/megamenusolution-template.html"
-                data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, mainHeader=megaMenuItem.linkText}" />
+                data-sly-call="${megaMenuSolution.megamenusolution_template  @ data=data.megaMenuConfigurationModel, endToEndSolutionSectionList=data.endToEndSolutionSection, linkSectionList=data.linkSection, foodCategorySectionList=data.foodCategorySection, mainHeader=megaMenuItem.linkText}" />
               <sly data-sly-test="${megaMenuItem.linkPath != data.solutionPage}"
                 data-sly-use.navigation="/apps/publicweb/components/content/navigation/navigation-template.html"
                 data-sly-call="${navigation.navigation_template  @ data=megaMenuItem.navigationConfigurationModel,sectionId=megaMenuItemList.index,mainHeader=megaMenuItem.linkText}" />

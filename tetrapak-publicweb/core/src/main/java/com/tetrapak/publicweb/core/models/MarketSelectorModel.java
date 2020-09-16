@@ -118,7 +118,7 @@ public class MarketSelectorModel {
                     languageBean.setLanguageName(languagePage.getTitle());
                     languageBean.setLinkPath(LinkUtils
                             .sanitizeLink(languagePage.getPath() + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH,
-                                    request.getResourceResolver()));
+                                    request));
                     languages.add(languageBean);
                 }
                 marketBean.setLanguages(languages);
@@ -165,7 +165,7 @@ public class MarketSelectorModel {
      */
     public String getGlobalMarketPath() {
         return LinkUtils.sanitizeLink(PWConstants.GLOBLA_MARKET_PATH + PWConstants.SLASH
-                + PWConstants.ENGLISH_LANGUAGE_ISO_CODE + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH, request.getResourceResolver());
+                + PWConstants.ENGLISH_LANGUAGE_ISO_CODE + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH, request);
     }
 
     /**

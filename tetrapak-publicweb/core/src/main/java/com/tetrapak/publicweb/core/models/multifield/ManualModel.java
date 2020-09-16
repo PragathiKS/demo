@@ -7,8 +7,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-
 /**
  * The Class ManualModel.
  */

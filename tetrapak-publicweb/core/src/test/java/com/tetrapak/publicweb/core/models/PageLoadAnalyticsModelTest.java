@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -54,8 +55,11 @@ public class PageLoadAnalyticsModelTest {
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
 
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
-        model = resource.adaptTo(modelClass);
+        model = request.adaptTo(modelClass);
     }
 
     /**

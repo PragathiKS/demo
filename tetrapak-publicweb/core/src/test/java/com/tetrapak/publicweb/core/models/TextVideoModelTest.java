@@ -7,6 +7,7 @@ import com.tetrapak.publicweb.core.services.impl.DynamicMediaServiceImpl;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,6 +24,9 @@ public class TextVideoModelTest {
 
     @Rule
     public AemContext context = new AemContext();
+    
+    @Rule
+    public AemContext context1 = new AemContext();
 
     /** The Constant RESOURCE_CONTENT. */
     private static final String RESOURCE_CONTENT = "/textvideo/test-content.json";
@@ -88,8 +92,12 @@ public class TextVideoModelTest {
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.load().json(DAM_VIDEO_DATA, DAM_VIDEO_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
+
+       MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE_PATH);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
         resource = context.currentResource(RESOURCE_PATH);
-        model = resource.adaptTo(modelClass);
+        model = request.adaptTo(modelClass);
     }
 
     /**
@@ -98,10 +106,14 @@ public class TextVideoModelTest {
     private void loadContextTwo() {
         final Class<TextVideoModel> modelClass = TextVideoModel.class;
         // load the resources for each object
-        context.load().json(ANOTHER_RESOURCE_CONTENT, ANOTHER_TEST_CONTENT_ROOT);
-        context.addModelsForClasses(modelClass);
-        resource = context.currentResource(ANOTHER_RESOURCE_PATH);
-        textVideoModel = resource.adaptTo(modelClass);
+        context1.load().json(ANOTHER_RESOURCE_CONTENT, ANOTHER_TEST_CONTENT_ROOT);
+        context1.addModelsForClasses(modelClass);
+        
+        MockSlingHttpServletRequest request1 = context1.request();        
+        request1.setPathInfo(ANOTHER_RESOURCE_PATH);
+        request1.setResource(context1.resourceResolver().getResource(ANOTHER_RESOURCE_PATH));
+        resource = context1.currentResource(ANOTHER_RESOURCE_PATH);
+        textVideoModel = request1.adaptTo(modelClass);
     }
 
     /**

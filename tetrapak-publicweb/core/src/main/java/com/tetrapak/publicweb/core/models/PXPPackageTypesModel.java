@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -27,14 +28,16 @@ import com.tetrapak.publicweb.core.utils.ProductPageUtil;
  * The Class PXPPackageTypesModel.
  *
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PXPPackageTypesModel {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PXPPackageTypesModel.class);
 
-    /** The resource. */
+    /** The request. */
     @Self
+    private SlingHttpServletRequest request;
+    
     private Resource resource;
 
     /** The heading. */
@@ -72,6 +75,7 @@ public class PXPPackageTypesModel {
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
         final ProductModel product = resource.adaptTo(ProductModel.class);
         setPackageTypeList(product.getPackageTypeReferences());
     }
@@ -83,7 +87,7 @@ public class PXPPackageTypesModel {
      */
     private void setPackageTypeList(final List<Packagetype> list) {
 
-        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(getIdList(list), resource,
+        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(request, getIdList(list), resource,
                 queryBuilder);
         for (final Packagetype packageType : list) {
             for (final Shape shape : packageType.getShapes()) {

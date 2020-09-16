@@ -54,7 +54,7 @@ public class BreadcrumbModel {
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
         homePagePath = LinkUtils.sanitizeLink(rootPath + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH,
-                request.getResourceResolver());
+                request);
         final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
         final String[] pages = path.split("/");
         final int length = pages.length - 1;
@@ -69,8 +69,7 @@ public class BreadcrumbModel {
                     breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent), null);
                 } else {
                     breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent),
-                            LinkUtils.sanitizeLink(parent.getPath(),
-                                    request.getResourceResolver()));
+                            LinkUtils.sanitizeLink(parent.getPath(), request));
                 }
 
                 parent = parent.getParent();
@@ -98,7 +97,7 @@ public class BreadcrumbModel {
      * @return the home page path
      */
     public String getHomePagePath() {
-        return LinkUtils.sanitizeLink(homePagePath, request.getResourceResolver());
+        return LinkUtils.sanitizeLink(homePagePath, request);
     }
     
 }

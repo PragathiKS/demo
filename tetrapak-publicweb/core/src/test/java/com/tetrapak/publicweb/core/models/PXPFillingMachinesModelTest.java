@@ -10,6 +10,7 @@ import javax.jcr.Session;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -110,9 +111,13 @@ public class PXPFillingMachinesModelTest {
         final List<String> pathList = new ArrayList<>();
         pathList.add("/content/tetrapak/publicweb/lang-masters/en/test-equip-19647");
         MockHelper.loadQuery(context, pathList);
-
+        
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE_PATH);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
         resource = context.currentResource(RESOURCE_PATH);
-        pxpFillingMachinesModel = resource.adaptTo(modelClass);
+        pxpFillingMachinesModel = request.adaptTo(modelClass);
+        
         initMocks(this);
     }
 

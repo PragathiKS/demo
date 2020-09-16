@@ -33,6 +33,15 @@ public class HeaderModelTest {
 
     /** The Constant MARKETS_CONTENT_ROOT. */
     private static final String MARKETS_CONTENT_ROOT = "/content/tetrapak/publicweb";
+    
+    /** The Constant RESOURCE_CONTENT1. */
+    private static final String RESOURCE_CONTENT1 = "/megamenu/test-content.json";
+
+    /** The Constant TEST_CONTENT_ROOT1. */
+    private static final String TEST_CONTENT_ROOT1 = "/content/tetrapak/publicweb/language-masters/en";
+
+    /** The Constant RESOURCE1. */
+    private static final String RESOURCE1 = TEST_CONTENT_ROOT1 + "/jcr:content/root/responsivegrid/megamenuconfig";
 
     /** The model. */
     private HeaderModel model;
@@ -48,7 +57,7 @@ public class HeaderModelTest {
 
     @Mock
     private HeaderConfigurationModel headerConfig;
-
+    
     /**
      * Sets the up.
      *
@@ -59,12 +68,11 @@ public class HeaderModelTest {
      */
     @Before
     public void setUp() throws Exception {
-
         Class<HeaderModel> modelClass = HeaderModel.class;
-
         MockSlingHttpServletRequest request = context.request();
         context.load().json(MARKETS_CONTENT, MARKETS_CONTENT_ROOT);
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
+        //context.load().json(RESOURCE_CONTENT1, TEST_CONTENT_ROOT1);
         context.addModelsForPackage("com.tetrapak.publicweb.core.models");
 
         context.request().setPathInfo(TEST_CONTENT_ROOT);
@@ -74,7 +82,6 @@ public class HeaderModelTest {
         
         marketBean.setMarketName("Belgium");
         languageBean.setLanguageName("French");
-        
     }
 
     /**
@@ -84,7 +91,7 @@ public class HeaderModelTest {
      *             the exception
      */
     @Test
-    public void simpleLoadAndGettersTest() throws Exception {
+    public void simpleLoadAndGettersTest() throws Exception {             
         assertEquals("Header", "/content/tetrapak/publicweb/global/en.html", model.getLogoLink());
         assertEquals("Header", "Logo ", model.getLogoAlt());
         assertEquals("Header", "http://www.google.com", model.getLoginLink());
@@ -122,6 +129,43 @@ public class HeaderModelTest {
         assertEquals("Header", 42, model.getMarketList().getCol3End());
         assertEquals("Header", 43, model.getMarketList().getCol4Start());
         assertEquals("Header", 54, model.getMarketList().getCol4End());
+    }
+    
+    /**
+     * Test end to end solution section.
+     */
+    @Test
+    public void testEndToEndSolutionSection() {       
+        
+        assertEquals("Lorem ipsum", model.getEndToEndSolutionSection().get(0).getDescription());
+        assertEquals("/content/dam/tetrapak/processing.jpg",
+                model.getEndToEndSolutionSection().get(0).getFileReference());
+        assertEquals("Processing", model.getEndToEndSolutionSection().get(0).getAlt());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en.html",
+                model.getEndToEndSolutionSection().get(0).getPath());
+        assertEquals("Processing", model.getEndToEndSolutionSection().get(0).getTitle());
+    }
+
+    /**
+     * Test link section.
+     */
+    @Test
+    public void testLinkSection() {        
+        assertEquals("Aseptic solutions", model.getLinkSection().get(0).getLinkText());
+        assertEquals("/content/tetrapak/publicweb/language-masters/en/aseptic.html",
+                model.getLinkSection().get(0).getLinkUrl());
+    }
+
+    /**
+     * Test food category section.
+     */
+    @Test
+    public void testFoodCategorySection() {        
+        assertEquals("/content/dam/tetrapak/cheese.jpg", model.getFoodCategorySection().get(0).getFileReference());
+        assertEquals("Cheese", model.getFoodCategorySection().get(0).getAlt());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/food-categories/cheese.html",
+                model.getFoodCategorySection().get(0).getPath());
+        assertEquals("Cheese", model.getFoodCategorySection().get(0).getTitle());
     }
 
 }

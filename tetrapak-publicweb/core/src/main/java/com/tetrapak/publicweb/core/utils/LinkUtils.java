@@ -5,6 +5,7 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 
 public class LinkUtils extends WCMUsePojo {
@@ -20,15 +21,15 @@ public class LinkUtils extends WCMUsePojo {
      *
      * @param link
      */
-    public static String sanitizeLink(final String link, final ResourceResolver resolver) {
-        if (StringUtils.isBlank(link)) {
+    public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {
+        if (StringUtils.isBlank(link) || Boolean.TRUE.equals(isPreviewURL(request))) {
             return "#";
         } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
-                return resolver.map(link);
+                return request.getResourceResolver().map(link);
             }
-            return resolver.map(link + ".html");
+            return request.getResourceResolver().map(link + ".html");
         }
         return link;
     }
@@ -42,6 +43,15 @@ public class LinkUtils extends WCMUsePojo {
      */
     public static String getRootPath(final String pagePath) {
         return Text.getAbsoluteParent(pagePath, PWConstants.LANGUAGE_PAGE_LEVEL);
+    }
+    
+    public static Boolean isPreviewURL(SlingHttpServletRequest request) {
+        String previewHeader = request.getHeader("preview");
+        Boolean isPreviewURL = false;
+        if("true".equalsIgnoreCase(previewHeader)) {
+            isPreviewURL = true;
+        }
+        return isPreviewURL;
     }
 
     /**
@@ -74,7 +84,7 @@ public class LinkUtils extends WCMUsePojo {
     }
 
     public String getSanitizedLink() {
-        return LinkUtils.sanitizeLink(sanitizedLink, getResourceResolver());
+        return LinkUtils.sanitizeLink(sanitizedLink, getRequest());
     }
 
     /**

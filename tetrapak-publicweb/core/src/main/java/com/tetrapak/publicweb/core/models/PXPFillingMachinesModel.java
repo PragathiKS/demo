@@ -7,12 +7,13 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +26,17 @@ import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 /**
  * The Class PXPFillingMachinesModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PXPFillingMachinesModel {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PXPFillingMachinesModel.class);
-
+    
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
+    
     /** The resource. */
-    @Self
     private Resource resource;
 
     /** The heading. */
@@ -73,6 +77,7 @@ public class PXPFillingMachinesModel {
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
         final ProductModel product = resource.adaptTo(ProductModel.class);
         fillingMachineList = product.getFillingMachineReferences();
         setTeaserList(fillingMachineList);
@@ -93,7 +98,7 @@ public class PXPFillingMachinesModel {
      * @param list the new teaser list
      */
     private void setTeaserList(final List<FillingMachine> list) {
-        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(getIdList(), resource,
+        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(request, getIdList(), resource,
                 queryBuilder);
         for (final FillingMachine fillingMachine : list) {
             final ManualModel teaser = new ManualModel();

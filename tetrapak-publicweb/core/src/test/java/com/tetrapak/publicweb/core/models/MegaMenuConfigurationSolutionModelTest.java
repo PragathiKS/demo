@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,6 +31,9 @@ public class MegaMenuConfigurationSolutionModelTest {
 
     /** The model. */
     private MegaMenuConfigurationModel model;
+    
+    /** The resource. */
+    private Resource resource;
 
     /**
      * The setup method.
@@ -44,7 +48,7 @@ public class MegaMenuConfigurationSolutionModelTest {
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
-        final Resource resource = context.currentResource(RESOURCE_PATH);
+        resource = context.currentResource(RESOURCE_PATH);
         model = resource.adaptTo(modelClass);
     }
 
@@ -65,39 +69,5 @@ public class MegaMenuConfigurationSolutionModelTest {
         assertTrue(model.getHideFoodCategories());
     }
 
-    /**
-     * Test end to end solution section.
-     */
-    @Test
-    public void testEndToEndSolutionSection() {
-        assertEquals("Lorem ipsum", model.getEndToEndSolutionSection().get(0).getDescription());
-        assertEquals("/content/dam/tetrapak/processing.jpg",
-                model.getEndToEndSolutionSection().get(0).getFileReference());
-        assertEquals("Processing", model.getEndToEndSolutionSection().get(0).getAlt());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en.html",
-                model.getEndToEndSolutionSection().get(0).getPath());
-        assertEquals("Processing", model.getEndToEndSolutionSection().get(0).getTitle());
-    }
-
-    /**
-     * Test link section.
-     */
-    @Test
-    public void testLinkSection() {
-        assertEquals("Aseptic solutions", model.getLinkSection().get(0).getLinkText());
-        assertEquals("/content/tetrapak/publicweb/language-masters/en/aseptic.html",
-                model.getLinkSection().get(0).getLinkUrl());
-    }
-
-    /**
-     * Test food category section.
-     */
-    @Test
-    public void testFoodCategorySection() {
-        assertEquals("/content/dam/tetrapak/cheese.jpg", model.getFoodCategorySection().get(0).getFileReference());
-        assertEquals("Cheese", model.getFoodCategorySection().get(0).getAlt());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/food-categories/cheese.html",
-                model.getFoodCategorySection().get(0).getPath());
-        assertEquals("Cheese", model.getFoodCategorySection().get(0).getTitle());
-    }
+    
 }

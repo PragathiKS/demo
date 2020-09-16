@@ -2,10 +2,12 @@ package com.tetrapak.publicweb.core.models;
 
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.inject.Inject;
@@ -13,7 +15,7 @@ import javax.inject.Inject;
 /**
  * The Class HeaderConfigurationModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class} , defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderConfigurationModel {
 
     /** The resource. */
@@ -75,7 +77,7 @@ public class HeaderConfigurationModel {
      * @return the logo link
      */
     public String getLogoLink() {
-        return LinkUtils.sanitizeLink(logoLink, resource.getResourceResolver());
+        return logoLink;
     }
 
     /**
@@ -93,7 +95,7 @@ public class HeaderConfigurationModel {
      * @return the login link
      */
     public String getLoginLink() {
-        return LinkUtils.sanitizeLink(loginLink, resource.getResourceResolver());
+        return loginLink;
     }
 
     /**
@@ -111,7 +113,7 @@ public class HeaderConfigurationModel {
      * @return the contact link
      */
     public String getContactLink() {
-        return LinkUtils.sanitizeLink(contactLink, resource.getResourceResolver());
+        return contactLink;
     }
 
     /**
@@ -147,7 +149,7 @@ public class HeaderConfigurationModel {
      * @return the search page
      */
     public String getSearchPage() {
-        return LinkUtils.sanitizeLink(searchPage, resource.getResourceResolver());
+        return searchPage;
     }
 
 }

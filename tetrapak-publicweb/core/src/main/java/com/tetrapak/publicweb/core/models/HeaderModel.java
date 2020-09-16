@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -13,12 +15,15 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.xss.XSSAPI;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.NavigationUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -80,6 +85,10 @@ public class HeaderModel {
 
     /** The MORE_THAN_ONE_LANGAUGES. */
     private static final int MORE_THAN_ONE_LANGAUGES = 2;
+    
+    /** The xssApi. */
+    @Reference
+    XSSAPI xssApi;
 
     /**
      * Inits the.
@@ -100,14 +109,14 @@ public class HeaderModel {
                     .adaptTo(HeaderConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
                 logoImagePath = configurationModel.getLogoImagePath();
-                logoLink = configurationModel.getLogoLink();
+                logoLink = LinkUtils.sanitizeLink(configurationModel.getLogoLink(),request);
                 logoAlt = configurationModel.getLogoAlt();
-                contactUsLink = configurationModel.getContactLink();
+                contactUsLink = LinkUtils.sanitizeLink(configurationModel.getContactLink(),request);
                 contactUsAltText = configurationModel.getContactText();
                 loginLabel = configurationModel.getLoginLabel();
-                loginLink = configurationModel.getLoginLink();
+                loginLink = LinkUtils.sanitizeLink(configurationModel.getLoginLink(),request);
                 solutionPage = configurationModel.getSolutionPage();
-                searchPage = configurationModel.getSearchPage();
+                searchPage = LinkUtils.sanitizeLink(configurationModel.getSearchPage(),request);
             }
             setMegaMenuLinksList(rootPath);
             setSolutionPageTitle();
@@ -162,14 +171,14 @@ public class HeaderModel {
             final LinkBean linkBean = new LinkBean();
             final String title = NavigationUtil.getNavigationTitle(childPage);
             linkBean.setLinkText(title);
-            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath(), request.getResourceResolver()));
+            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath(), request));
             final String solutionPageWithoutExtension = NavigationUtil.getSolutionPageWithoutExtension(solutionPage);
             if (!childPage.getPath().equalsIgnoreCase(solutionPageWithoutExtension)) {
                 final SectionMenuModel sectionMenuModel = new SectionMenuModel();
                 sectionMenuModel.setSectionHomePageTitle(childPage);
-                sectionMenuModel.setSectionHomePagePath(childPage, request.getResourceResolver());
+                sectionMenuModel.setSectionHomePagePath(childPage, request);
                 sectionMenuModel.populateSectionMenu(megaMenuConfigurationModel, childPage,
-                        solutionPageWithoutExtension, request.getResourceResolver());
+                        solutionPageWithoutExtension, request);
                 linkBean.setNavigationConfigurationModel(sectionMenuModel);
             }
             megaMenuLinksList.add(linkBean);
@@ -182,6 +191,9 @@ public class HeaderModel {
      * @return the logo image path
      */
     public String getLogoImagePath() {
+        if (Boolean.TRUE.equals(LinkUtils.isPreviewURL(request))) {
+            logoImagePath = GlobalUtil.getScene7FileName(request.getResourceResolver(), logoImagePath);
+        }
         return logoImagePath;
     }
 
@@ -247,14 +259,65 @@ public class HeaderModel {
     public List<LinkBean> getMegaMenuLinksList() {
         return new ArrayList<>(megaMenuLinksList);
     }
+    
+    /**
+    * Gets the mega menu configuration model.
+    *
+    * @return the mega menu configuration model
+    */
+   public MegaMenuConfigurationModel getMegaMenuConfigurationModel() {
+       return megaMenuConfigurationModel;
+    }
 
     /**
-     * Gets the mega menu configuration model.
+     * Gets the end to end solution section.
      *
-     * @return the mega menu configuration model
+     * @return the end to end solution section
      */
-    public MegaMenuConfigurationModel getMegaMenuConfigurationModel() {
-        return megaMenuConfigurationModel;
+    public List<MegaMenuSolutionModel> getEndToEndSolutionSection() {
+        final List<MegaMenuSolutionModel> endToEndSolutionList = new ArrayList<>();
+        final List<MegaMenuSolutionModel> endToEndSolution = megaMenuConfigurationModel.getEndToEndSolutionSection();
+        if (CollectionUtils.isNotEmpty(endToEndSolution)) {
+            endToEndSolution.forEach(f -> {
+                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
+                endToEndSolutionList.add(f);
+            });
+        }
+        return endToEndSolutionList;
+    }
+
+    /**
+     * Gets the link section.
+     *
+     * @return the link section
+     */
+    public List<LinkModel> getLinkSection() {
+        final List<LinkModel> linkSectionList = new ArrayList<>();
+        final List<LinkModel> linkSection = megaMenuConfigurationModel.getLinkSection();
+        if (CollectionUtils.isNotEmpty(linkSection)) {
+            linkSection.forEach(f -> {
+                f.setLinkUrl(LinkUtils.sanitizeLink(f.getLinkUrl(), request));
+                linkSectionList.add(f);
+            });
+        }
+        return linkSectionList;
+    }
+
+    /**
+     * Gets the food category section.
+     *
+     * @return the food category section
+     */
+    public List<MegaMenuSolutionModel> getFoodCategorySection() {
+        final List<MegaMenuSolutionModel> foodCategoryList = new ArrayList<>();
+        final List<MegaMenuSolutionModel> foodCategorySection = megaMenuConfigurationModel.getFoodCategorySection();
+        if (CollectionUtils.isNotEmpty(foodCategorySection)) {
+            foodCategorySection.forEach(f -> {
+                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
+                foodCategoryList.add(f);
+            });
+        }
+        return foodCategoryList;
     }
 
     /**
@@ -263,7 +326,7 @@ public class HeaderModel {
      * @return the solution page
      */
     public String getSolutionPage() {
-        return LinkUtils.sanitizeLink(solutionPage, request.getResourceResolver());
+        return LinkUtils.sanitizeLink(solutionPage, request);
     }
 
     /**

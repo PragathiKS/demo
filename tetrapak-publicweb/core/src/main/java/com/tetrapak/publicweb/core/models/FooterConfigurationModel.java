@@ -3,18 +3,14 @@ package com.tetrapak.publicweb.core.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import javax.inject.Inject;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
 import com.tetrapak.publicweb.core.models.multifield.FooterLinkModel;
 import com.tetrapak.publicweb.core.models.multifield.SocialLinkModel;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class FooterConfigurationModel.
@@ -22,7 +18,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterConfigurationModel {
 
-    /** The resource. */
+    /** The request. */
     @Self
     private Resource resource;
 
@@ -65,7 +61,7 @@ public class FooterConfigurationModel {
      * @return the logo link
      */
     public String getLogoLink() {
-        return LinkUtils.sanitizeLink(logoLink, resource.getResourceResolver());
+        return logoLink;
     }
 
     /**
