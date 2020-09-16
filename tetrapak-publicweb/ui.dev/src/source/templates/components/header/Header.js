@@ -31,7 +31,6 @@ class Header {
     this.cache.$headerItemLink = this.root.find('.js-main-menu-link-hover');
     this.cache.$overlay = $('.js-pw-overlay');
     this.cache.$searchIcon = this.root.find('.js-tp-pw-header__search-box-toggle');
-    this.cache.$sectionLinkHome = this.root.find('.section-link-home');
   }
 
   //

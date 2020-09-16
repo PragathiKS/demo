@@ -9,7 +9,6 @@ class Navigation {
   initCache() {
     this.cache.$stickySectionMenu = this.root.closest('.sticky-section-menu');
     this.cache.$sectionMenuToggle = this.root.find('.collapse-button');
-    this.cache.$stickySectionMenu = $('.sticky-section-menu');
     this.cache.$navigationElement= this.root;
   }
   bindEvents() {
