@@ -77,16 +77,11 @@ class Header {
   }
 
   checkForSectionMenuOverlap = ($this) => {
-    const $sectionLinkAnchor = $this.find('.section-link-home');
-    const $sectionLinkAnchorLabel = $this.find('.section-link-home a')[0];
-    const sectionLinkAnchorRect = $sectionLinkAnchor.length > 0 && $sectionLinkAnchor[0].getBoundingClientRect();
-    const sectionFirstLinkReact = $this.find('.list-section-menu-links li').first()[0].getBoundingClientRect();
-    const overlap = !(sectionLinkAnchorRect.right < sectionFirstLinkReact.left ||
-      sectionLinkAnchorRect.left > sectionFirstLinkReact.right);
-    if(overlap) {
-      $this.find('.list-section-menu-links').css('padding-left', $sectionLinkAnchorLabel.clientWidth - 15);
+    const $sectionLinkAnchorLabel = $this.find('.section-link-home');
+    const sectionListSize = $this.find('.list-section-menu-links > li').length;
+    if($sectionLinkAnchorLabel.length > 0 && sectionListSize >= 5) {
+      $this.find('.list-section-menu-links').addClass('align-right');
     }
-
   }
 
   hideSearchbar = () => {
