@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.net.URLDecoder;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.text.ParseException;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -170,6 +169,15 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             }
             final int pageParam = xssAPI.getValidInteger(request.getParameter("page"), 1);
             String fulltextSearchTerm = request.getParameter("searchTerm");
+            if (StringUtils.isNotBlank(fulltextSearchTerm)) {
+                if (fulltextSearchTerm.contains("<script>")) {
+                    fulltextSearchTerm = fulltextSearchTerm.replace("<script>", "");
+                } else if (fulltextSearchTerm.contains("<")) {
+                    fulltextSearchTerm = fulltextSearchTerm.replace("<", "");
+                } else if (fulltextSearchTerm.contains(">")) {
+                    fulltextSearchTerm = fulltextSearchTerm.replace(">", "");
+                }
+            }
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
 
             // search for resources
