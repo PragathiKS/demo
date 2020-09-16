@@ -159,6 +159,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
         sling:message="Company"/>
+    <pw.form.country
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.country"
+        sling:message="Country"/>
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"

@@ -23,6 +23,7 @@ class Businessinquiryform {
     this.cache.$inputEmail = $('form.pw-form-businessEnquiry  input[type="email"]', this.root);
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.countryList = [];
+    this.cache.$countryField = this.root.find('.formfield.country-field');
 
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -352,6 +353,7 @@ class Businessinquiryform {
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
       $('input', parentDrop).val(countryTitle);
       requestPayload['country'] = country;
+      self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload['country'];
       requestPayload['countryTitle'] = countryTitle;
       $dropItem.removeClass('active');
       $(this).addClass('active');
@@ -373,7 +375,7 @@ class Businessinquiryform {
     this.restObj2 = {};
     this.linkTitle = this.root.find('.thankyou').find('h2').text().trim();
     this.linkText = this.root.find('.newRequestBtn').text().trim();
-    $('#bef-step-3 label').each((i, v) => this.restObj[$(v).text()] = 'NA');
+    $('#bef-step-3 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
     $('#bef-step-4 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     makeLoad(this.step1head, this.mainHead);
     this.getCountryList();

@@ -29,6 +29,7 @@ class Softconversion {
 
     this.cache.softconversionapi = this.root.find(`form.pw-form-softconversion-${this.cache.$componentName}`);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
+    this.cache.$countryField = this.root.find('.formfield.country-field');
 
     this.cache.requestPayload = {};
     this.cache.requestPayload['typeOfVisitor']='';
@@ -380,6 +381,7 @@ class Softconversion {
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
       $('input', parentDrop).val(countryTitle);
       requestPayload['country'] = country;
+      self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload['country'];
       requestPayload['countryTitle'] = countryTitle;
       $dropItem.removeClass('active');
       $(this).addClass('active');
@@ -419,7 +421,7 @@ class Softconversion {
     this.step3heading = 'Company information';
     this.restObj = {};
     this.restObj2 = {};
-    $(`#cf-step-2-${this.cache.$componentName} label`).each((i, v) => this.restObj[$(v).text()] = 'NA');
+    $(`#cf-step-2-${this.cache.$componentName} label:not(.country-value)`).each((i, v) => this.restObj[$(v).text()] = 'NA');
     $(`#cf-step-3-${this.cache.$componentName} label`).slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     this.getCountryList();
   }
