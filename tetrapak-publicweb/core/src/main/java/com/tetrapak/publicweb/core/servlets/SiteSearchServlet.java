@@ -171,11 +171,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             String fulltextSearchTerm = request.getParameter("searchTerm");
             if (StringUtils.isNotBlank(fulltextSearchTerm)) {
                 if (fulltextSearchTerm.contains("<script>")) {
-                    fulltextSearchTerm = fulltextSearchTerm.replace("<script>", "");
+                    fulltextSearchTerm = fulltextSearchTerm.replace("<script>", StringUtils.EMPTY);
                 } else if (fulltextSearchTerm.contains("<")) {
-                    fulltextSearchTerm = fulltextSearchTerm.replace("<", "");
+                    fulltextSearchTerm = fulltextSearchTerm.replace("<", StringUtils.EMPTY);
                 } else if (fulltextSearchTerm.contains(">")) {
-                    fulltextSearchTerm = fulltextSearchTerm.replace(">", "");
+                    fulltextSearchTerm = fulltextSearchTerm.replace(">", StringUtils.EMPTY);
                 }
             }
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
