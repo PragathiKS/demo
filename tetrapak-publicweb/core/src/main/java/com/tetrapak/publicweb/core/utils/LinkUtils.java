@@ -1,14 +1,11 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.Objects;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.SiteDomainService;
 
 public class LinkUtils extends WCMUsePojo {
 
@@ -18,16 +15,16 @@ public class LinkUtils extends WCMUsePojo {
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
 
-    private static String domain;
-
     /**
      * Add .html to link if is internal
      *
      * @param link
      */
     public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {
-        if (StringUtils.isBlank(link) || Boolean.TRUE.equals(isPreviewURL(request))) {
-            return domain + link;
+        if (StringUtils.isBlank(link)) {
+            return "#";
+        } else if (Boolean.TRUE.equals(isPreviewURL(request))) {
+            return request.getResourceResolver().map(link);
         } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
@@ -85,10 +82,7 @@ public class LinkUtils extends WCMUsePojo {
     @Override
     public void activate() throws Exception {
         sanitizedLink = get(PARAM_LINK, String.class);
-        SiteDomainService domainService = getSlingScriptHelper().getService(SiteDomainService.class);
-        if (Objects.nonNull(domainService)) {
-            domain = domainService.getDomain();
-        }
+
     }
 
     public String getSanitizedLink() {
