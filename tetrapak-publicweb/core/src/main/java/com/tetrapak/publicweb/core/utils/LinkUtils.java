@@ -1,12 +1,11 @@
 package com.tetrapak.publicweb.core.utils;
 
-import com.adobe.cq.sightly.WCMUsePojo;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.ResourceResolver;
+
+import com.adobe.cq.sightly.WCMUsePojo;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 
 public class LinkUtils extends WCMUsePojo {
 
@@ -22,8 +21,10 @@ public class LinkUtils extends WCMUsePojo {
      * @param link
      */
     public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {
-        if (StringUtils.isBlank(link) || Boolean.TRUE.equals(isPreviewURL(request))) {
+        if (StringUtils.isBlank(link)) {
             return "#";
+        } else if (Boolean.TRUE.equals(isPreviewURL(request))) {
+            return request.getResourceResolver().map(link);
         } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
@@ -44,11 +45,11 @@ public class LinkUtils extends WCMUsePojo {
     public static String getRootPath(final String pagePath) {
         return Text.getAbsoluteParent(pagePath, PWConstants.LANGUAGE_PAGE_LEVEL);
     }
-    
+
     public static Boolean isPreviewURL(SlingHttpServletRequest request) {
         String previewHeader = request.getHeader("preview");
         Boolean isPreviewURL = false;
-        if("true".equalsIgnoreCase(previewHeader)) {
+        if ("true".equalsIgnoreCase(previewHeader)) {
             isPreviewURL = true;
         }
         return isPreviewURL;
@@ -81,6 +82,7 @@ public class LinkUtils extends WCMUsePojo {
     @Override
     public void activate() throws Exception {
         sanitizedLink = get(PARAM_LINK, String.class);
+
     }
 
     public String getSanitizedLink() {
@@ -90,7 +92,8 @@ public class LinkUtils extends WCMUsePojo {
     /**
      * Gets the asset name.
      *
-     * @param path the asset path.
+     * @param path
+     *            the asset path.
      * @return the asset name.
      */
     public static String getAssetName(final String path) {
@@ -104,7 +107,8 @@ public class LinkUtils extends WCMUsePojo {
     /**
      * Gets the substring after last.
      *
-     * @param path the path
+     * @param path
+     *            the path
      * @return the substring after last
      */
     private static String getSubstringAfterLast(final String path) {
