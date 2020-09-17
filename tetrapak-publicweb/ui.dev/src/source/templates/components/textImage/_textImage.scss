@@ -86,6 +86,7 @@
         span.tpatom-subheading {
             @include font-size($font-sm);
             @include line-height($font-normal, $font-sm);
+            font-family: $font-monsterrat;
             font-weight: 500;
         }
     }
