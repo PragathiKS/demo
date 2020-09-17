@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.workflow;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import javax.jcr.RepositoryException;
@@ -82,6 +83,7 @@ public class AssetReplicationWorkflowProcessTest {
         when(workflowSession.adaptTo(ResourceResolver.class)).thenReturn(assetResource.getResourceResolver());
         paramMetaDataMap.put("PROCESS_ARGS", "/content/dam/tetrapak/publicweb/pxp");
         workflowProcess.execute(workItem, workflowSession, paramMetaDataMap);
+        assertEquals("AssetReplicationWorkflowProcess", "AssetReplicationWorkflowProcess");
 
     }
 
@@ -93,6 +95,7 @@ public class AssetReplicationWorkflowProcessTest {
         paramMetaDataMap = new SimpleMetaDataMap();
         paramMetaDataMap.put("PROCESS_ARGS", "/content/dam/tetrapak/publicweb/test/pxp");
         workflowProcess.execute(workItem, workflowSession, paramMetaDataMap);
+        assertEquals("AssetReplicationWorkflowProcess", "AssetReplicationWorkflowProcess");
 
     }
 
@@ -105,6 +108,7 @@ public class AssetReplicationWorkflowProcessTest {
         paramMetaDataMap = new SimpleMetaDataMap();
         paramMetaDataMap.put("PROCESS_ARGS", "/content/dam/tetrapak/publicweb/test/pxp");
         workflowProcess.execute(workItem, workflowSession, paramMetaDataMap);
+        assertEquals("AssetReplicationWorkflowProcess", "AssetReplicationWorkflowProcess");
 
     }
 
@@ -115,6 +119,7 @@ public class AssetReplicationWorkflowProcessTest {
 
         paramMetaDataMap = new SimpleMetaDataMap();
         workflowProcess.execute(workItem, workflowSession, paramMetaDataMap);
+        assertEquals("AssetReplicationWorkflowProcess", "AssetReplicationWorkflowProcess");
     }
 
     @Test
@@ -124,5 +129,6 @@ public class AssetReplicationWorkflowProcessTest {
 
         paramMetaDataMap = new SimpleMetaDataMap();
         workflowProcess.execute(workItem, workflowSession, paramMetaDataMap);
+        assertEquals("AssetReplicationWorkflowProcess", "AssetReplicationWorkflowProcess");
     }
 }

@@ -1,7 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
