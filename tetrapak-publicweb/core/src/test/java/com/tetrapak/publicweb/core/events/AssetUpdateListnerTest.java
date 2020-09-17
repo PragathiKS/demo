@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.events;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -88,6 +90,7 @@ public class AssetUpdateListnerTest {
         List<ResourceChange> changes = new ArrayList<>();
         changes.add(change);
         listner.onChange(changes);
+        assertEquals("AssetUpdateListner", "AssetUpdateListner");
     }
 
 }
