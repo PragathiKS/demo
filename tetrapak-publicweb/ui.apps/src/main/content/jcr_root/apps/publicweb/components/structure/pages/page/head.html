@@ -4,7 +4,7 @@
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>
-        ${page.title} | ${inheritedPageProperties.titleSuffix ? inheritedPageProperties.titleSuffix : 'Tetra Pak'}
+        ${page.title @ context='scriptComment'} | ${inheritedPageProperties.titleSuffix ? inheritedPageProperties.titleSuffix : 'Tetra Pak'}
     </title>
     <script>
         var digitalData = ${digitalDataModel.digitalData @ context="unsafe"};
@@ -17,7 +17,7 @@
         <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
     </sly>
     <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
-    <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description @ context='html'}"/>
+    <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description @ context='scriptComment'}"/>
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!--/* Start of SEO canonical and href functionality */-->
@@ -33,13 +33,13 @@
 	
 	<meta name="robots" data-sly-test.indexVal="${properties.noIndex ? properties.noIndex : 'index'}" data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" content="${indexVal}, ${followVal}"/>
 
-	<meta data-sly-test="${properties['jcr:title']}" property="og:title" content="${properties['jcr:title'] @ context='html'}"/>
-	<meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description'] @ context='html'}"/>                                                
+	<meta data-sly-test="${properties['jcr:title']}" property="og:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
+	<meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>                                                
 	<meta property="og:type" content="website"/>                                                                                           
 	<meta property="og:url" content="${digitalDataModel.currentPageURL}"/>
 
-	<meta data-sly-test="${properties['jcr:description']}" name="twitter:description" content="${properties['jcr:description'] @ context='html'}"/>
-  	<meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='html'}"/>
+	<meta data-sly-test="${properties['jcr:description']}" name="twitter:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>
+  	<meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
   	<meta name="twitter:site" content="@tetrapak" />
     <meta name="twitter:card" content="summary" />
 	
