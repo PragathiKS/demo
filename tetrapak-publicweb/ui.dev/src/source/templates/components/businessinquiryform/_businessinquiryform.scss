@@ -21,7 +21,6 @@
         @include margin-bottom($margin-md);
         label {
             @include margin-bottom(0);
-            padding-top: 2px;
         }
         &.field-error {
             @include margin-bottom(0);
@@ -60,7 +59,6 @@
         }
         label {
             @include margin-bottom(0);
-            padding-top: 2px;
         }
         &.field-error {
             .errorMsg {
