@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.NavigationUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -191,9 +190,6 @@ public class HeaderModel {
      * @return the logo image path
      */
     public String getLogoImagePath() {
-        if (Boolean.TRUE.equals(LinkUtils.isPreviewURL(request))) {
-            logoImagePath = GlobalUtil.getScene7FileName(request.getResourceResolver(), logoImagePath);
-        }
         return logoImagePath;
     }
 
