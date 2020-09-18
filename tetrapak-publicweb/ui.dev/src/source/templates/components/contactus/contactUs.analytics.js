@@ -40,8 +40,8 @@ export const onErrorAnalytics = (currentTarget,tab) => {
     if(tab.find('.last-name .field-error').length > 0){
       formError.push({formErrorField:tab.find('.last-name').data('last-name-label'), formErrorMessage:tab.find('.last-name .errorMsg').data('error-msg')});
     }
-    if(tab.find('.email .field-error').length > 0){
-      formError.push({formErrorField:tab.find('.email').data('email-name-label'), formErrorMessage:tab.find('.email .errorMsg').data('error-msg')});
+    if(tab.find('.email-contact .field-error').length > 0){
+      formError.push({formErrorField:tab.find('.email-contact').data('email-name-label'), formErrorMessage:tab.find('.email-contact .errorMsg').data('error-msg')});
     }
     if(tab.find('.country.field-error').length > 0){
       formError.push({formErrorField:tab.find('.country').data('country-name-label'), formErrorMessage:tab.find('.country .errorMsg').data('country-error-msg')});
@@ -90,7 +90,7 @@ export const onNextClickAnalytics = (currentTarget,tab,requestPayload) => {
     formField.push(
       {formFieldName:tab.find('.first-name').data('first-name-label'), formFieldValue:'NA'},
       {formFieldName:tab.find('.last-name').data('last-name-label'), formFieldValue:'NA'},
-      {formFieldName:tab.find('.email').data('email-name-label'), formFieldValue:'NA'},
+      {formFieldName:tab.find('.email-contact').data('email-name-label'), formFieldValue:'NA'},
       {formFieldName:tab.find('.country').data('country-name-label'), formFieldValue:requestPayload['country']},
     );
     event = {
