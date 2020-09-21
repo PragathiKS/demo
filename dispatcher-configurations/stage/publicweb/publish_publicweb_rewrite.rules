@@ -6,18 +6,18 @@ RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 ## This ruleset is use for lang-masters based dispatcher URL redirection
 RewriteCond   %{HTTP_HOST}  'tetrapak-stage64a.adobecqms.net'
 RewriteCond   %{REQUEST_URI} ^/
-RewriteRule   "^/$"  "/content/tetrapak/publicweb/lang-masters/en/home.html" [R]
+RewriteRule   "^/$"  "/content/tetrapak/publicweb/global/en/home.html" [PT,L]
 RewriteRule   "^/robots.txt"  "/content/dam/tetrapak/publicweb/robots.txt" [PT]
 
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
 RewriteCond   %{HTTP_HOST}  'tetrapak-stage64a.adobecqms.net'
-RewriteRule   "^/(.*)$"  "/$1.html" [PT,L]
+RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
 RewriteCond   %{HTTP_HOST}  'tetrapak-stage64a.adobecqms.net'
 RewriteCond   %{REQUEST_URI} ^/
-ErrorDocument 404 /content/tetrapak/publicweb/gb/en/error/404
-ErrorDocument 500 /content/tetrapak/publicweb/gb/en/error/500
+ErrorDocument 404 /content/tetrapak/publicweb/global/en/error/404
+ErrorDocument 500 /content/tetrapak/publicweb/global/en/error/500
 
 ## This ruleset is use for Country  based  URL redirection
 
@@ -347,12 +347,12 @@ RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
 RewriteRule   "^/en-tw/(.*)$" "/content/tetrapak/publicweb/tw/en/$1.html" [PT,L]
 
-RewriteRule   "^/en-uk/(.*).html$" "/content/tetrapak/publicweb/uk/en/error/404.html" [PT,L]
-RewriteRule   "^/en-uk$" "/content/tetrapak/publicweb/uk/en/home.html" [PT,L]
-RewriteRule   "^/en-uk/sitemap.xml" "/content/tetrapak/publicweb/uk/en.sitemap.xml" [PT,L]
-RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
-RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
-RewriteRule   "^/en-uk/(.*)$" "/content/tetrapak/publicweb/uk/en/$1.html" [PT,L]
+#RewriteRule   "^/en-uk/(.*).html$" "/content/tetrapak/publicweb/uk/en/error/404.html" [PT,L]
+#RewriteRule   "^/en-uk$" "/content/tetrapak/publicweb/uk/en/home.html" [PT,L]
+#RewriteRule   "^/en-uk/sitemap.xml" "/content/tetrapak/publicweb/uk/en.sitemap.xml" [PT,L]
+#RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
+#RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
+#RewriteRule   "^/en-uk/(.*)$" "/content/tetrapak/publicweb/uk/en/$1.html" [PT,L]
 
 RewriteRule   "^/en-us/(.*).html$" "/content/tetrapak/publicweb/us/en/error/404.html" [PT,L]
 RewriteRule   "^/en-us$" "/content/tetrapak/publicweb/us/en/home.html" [PT,L]
@@ -403,20 +403,28 @@ RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
 RewriteRule   "^/es-pa/(.*)$" "/content/tetrapak/publicweb/pa/es/$1.html" [PT,L]
 
-RewriteRule   "^/en-gb/(.*).html$" "/content/tetrapak/publicweb/uk/en/error/404.html" [PT,L]
-RewriteRule   "^/en-gb$" "/content/tetrapak/publicweb/uk/en/home.html" [PT,L]
+RewriteRule   "^/en-gb/(.*).html$" "/content/tetrapak/publicweb/gb/en/error/404.html" [PT,L]
+RewriteRule   "^/en-gb$" "/content/tetrapak/publicweb/gb/en/home.html" [PT,L]
 RewriteRule   "^/en-gb/sitemap.xml" "/content/tetrapak/publicweb/gb/en.sitemap.xml" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
-RewriteRule   "^/en-gb/(.*)$" "/content/tetrapak/publicweb/uk/en/$1.html" [PT,L]
+RewriteRule   "^/en-gb/(.*)$" "/content/tetrapak/publicweb/gb/en/$1.html" [PT,L]
+
+RewriteRule   "^/en-global/(.*).html$" "/content/tetrapak/publicweb/global/en/error/404.html" [PT,L]
+RewriteRule   "^/en-global$" "/content/tetrapak/publicweb/global/en/home.html" [PT,L]
+RewriteRule   "^/en-global/sitemap.xml" "/content/tetrapak/publicweb/global/en.sitemap.xml" [PT,L]
+RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
+RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
+RewriteRule   "^/en-global/(.*)$" "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
 RewriteCond   %{HTTP_HOST}  'www-stage.tetrapak.com$'
-RewriteRule   "^/$"  "/content/tetrapak/publicweb/gb/en/home.html" [PT,L]
+RewriteRule   "^/$"  "/content/tetrapak/publicweb/global/en/home.html" [PT,L]
 RewriteRule   "^/sitemap.xml" "/content/tetrapak/publicweb.sitemap.xml" [PT,L]
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   %{HTTP_HOST}  'www-stage.tetrapak.com'
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
-RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/gb/en/$1.html" [PT,L]
+RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
-ErrorDocument 404 /content/tetrapak/publicweb/gb/en/error/404
-ErrorDocument 500 /content/tetrapak/publicweb/gb/en/error/500
+ErrorDocument 404 /content/tetrapak/publicweb/global/en/error/404
+ErrorDocument 400 /content/tetrapak/publicweb/global/en/error/400
+ErrorDocument 500 /content/tetrapak/publicweb/global/en/error/500
