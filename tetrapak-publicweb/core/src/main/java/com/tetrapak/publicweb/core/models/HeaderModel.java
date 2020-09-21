@@ -67,6 +67,9 @@ public class HeaderModel {
     /** The search page. */
     private String searchPage;
 
+    /** The market Selector Flag. */
+    private Boolean marketSelectorDisabled;
+
     /** The mega menu links list. */
     private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
@@ -116,6 +119,7 @@ public class HeaderModel {
                 loginLink = LinkUtils.sanitizeLink(configurationModel.getLoginLink(),request);
                 solutionPage = configurationModel.getSolutionPage();
                 searchPage = LinkUtils.sanitizeLink(configurationModel.getSearchPage(),request);
+                marketSelectorDisabled = configurationModel.getMarketSelectorDisabled();
             }
             setMegaMenuLinksList(rootPath);
             setSolutionPageTitle();
@@ -399,5 +403,13 @@ public class HeaderModel {
      */
     public String getSearchPage() {
         return searchPage;
+    }
+
+    /**
+     * checks if market selector is needed 
+     * @return marketSelector flag
+     */
+    public Boolean getMarketSelectorDisabled() {
+        return marketSelectorDisabled;
     }
 }
