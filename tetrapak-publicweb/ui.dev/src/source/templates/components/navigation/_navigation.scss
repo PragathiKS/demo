@@ -80,7 +80,7 @@
         background: $color-white;
         box-shadow: 0 4px 16px -10px $shadow;
         a {
-            @include padding($padding-zero $padding-sm);
+            @include padding($padding-zero 20px);
             color: $color-congress-blue;
             font-weight: normal;
         }
@@ -127,7 +127,7 @@
                     &:last-child {
                         @include margin-right($margin-zero);
                     }
-                    @include margin($margin-zero 12px);
+                    @include margin($margin-zero);
                 }
             }
         }
@@ -136,13 +136,13 @@
         }
     }
     @media #{$small-desktop} {
+        a {
+            @include padding($padding-zero 14px);
+        }
         &__container {
             .list-section-menu-links {
                 &.align-right {
                     justify-content: flex-end;
-                }
-                & > li {
-                    @include margin(0 6px);
                 }
             }
         }
