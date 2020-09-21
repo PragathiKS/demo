@@ -65,5 +65,6 @@ public class HeaderConfigurationModelTest {
         assertEquals("/content/tetrapak/publicweb/global/en/solutions", model.getSolutionPage());
         assertEquals("/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/search", model.getSearchPage());
+        assertEquals(false, model.getMarketSelectorDisabled());
     }
 }

@@ -1,13 +1,10 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.inject.Inject;
@@ -57,6 +54,10 @@ public class HeaderConfigurationModel {
     /** The market title. */
     @ValueMapValue
     private String marketTitle;
+
+    /** The market title. */
+    @ValueMapValue @Default(values = "false")
+    private Boolean marketSelectorDisabled;
 
     /** The search page. */
     @ValueMapValue
@@ -152,4 +153,11 @@ public class HeaderConfigurationModel {
         return searchPage;
     }
 
+    /**
+     * Get the market selector flag
+     * @return
+     */
+    public Boolean getMarketSelectorDisabled() {
+        return marketSelectorDisabled;
+    }
 }

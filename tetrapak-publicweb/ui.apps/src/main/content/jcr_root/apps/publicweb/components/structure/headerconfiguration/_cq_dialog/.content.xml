@@ -66,6 +66,15 @@
                                 fieldLabel="Solution page path"
                                 name="./solutionPage"
                                 rootPath="/content/tetrapak/publicweb"/>
+                            <marketSelectorDisabled
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                    fieldDescription="Select to Disable market selector"
+                                    fieldLabel="Disable market selector"
+                                    name="./marketSelectorDisabled"
+                                    text="Disable market selector"
+                                    uncheckedValue="{Boolean}false"
+                                    value="{Boolean}true"/>
                             <marketTitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
