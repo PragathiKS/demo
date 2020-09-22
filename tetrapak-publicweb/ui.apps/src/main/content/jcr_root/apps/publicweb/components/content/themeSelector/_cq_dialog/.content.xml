@@ -142,6 +142,7 @@
                                 granite:class="bannerType-disable-enable-target"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="For Top Banner Display Mode, only sky blue is selected"
                                 fieldLabel="Card Background Theme"
                                 name="./pwCardTheme">
                                 <items jcr:primaryType="nt:unstructured">
