@@ -17,6 +17,7 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
                             <bannertype
+                                granite:class="cq-dialog-dropdown-disable-enable"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldLabel="Select behaviour"
@@ -31,6 +32,9 @@
                                         text="Top Banner"
                                         value="hero"/>
                                 </items>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-dialog-dropdown-disable-enable-target=".bannerType-disable-enable-target"/>
                             </bannertype>
                         </items>
                     </column>
