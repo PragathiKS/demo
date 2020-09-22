@@ -1,17 +1,24 @@
 package com.tetrapak.publicweb.core.servlets;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import static org.junit.Assert.assertEquals;
+
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.apache.sling.xss.XSSAPI;
+import org.apache.sling.xss.XSSFilter;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 import com.day.cq.search.QueryBuilder;
 import com.google.common.base.Function;
 import com.tetrapak.publicweb.core.mock.MockHelper;
@@ -57,6 +64,9 @@ public class SiteSearchServletTest {
     
     SiteSearchServlet siteSerarchServlet = new SiteSearchServlet();
     
+    @Mock
+    XSSFilter xssFilter;
+    
 
     @Before
     public void setUp() throws Exception {
@@ -94,6 +104,7 @@ public class SiteSearchServletTest {
         context.registerService(SiteSearchServlet.class, siteSerarchServlet);
         context.getService(SiteSearchServlet.class);
         MockOsgi.activate(context.getService(SiteSearchServlet.class), context.bundleContext(), config);
+        MockitoAnnotations.initMocks(this);
 
     }
 
@@ -109,6 +120,7 @@ public class SiteSearchServletTest {
         
         XSSAPI xssAPI = new MockXSSAPI(CONTENT_TYPES);
         context.registerService(XSSAPI.class, xssAPI);
+        context.registerService(XSSFilter.class, xssFilter);
 
         context.request().setParameterMap(parameterMap);
         siteSerarchServlet = MockHelper.getServlet(context, SiteSearchServlet.class);
@@ -128,7 +140,8 @@ public class SiteSearchServletTest {
         
         XSSAPI xssAPI = new MockXSSAPI(THEME);
         context.registerService(XSSAPI.class, xssAPI);
-
+        context.registerService(XSSFilter.class, xssFilter);
+        
         context.request().setParameterMap(parameterMap);
         siteSerarchServlet = MockHelper.getServlet(context, SiteSearchServlet.class);
         siteSerarchServlet.doGet(context.request(), context.response());

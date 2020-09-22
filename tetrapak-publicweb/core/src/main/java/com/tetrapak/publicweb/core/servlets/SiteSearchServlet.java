@@ -33,6 +33,7 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.xss.XSSAPI;
+import org.apache.sling.xss.XSSFilter;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -112,6 +113,10 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /** The xss API. */
     @Reference
     private transient XSSAPI xssAPI;
+    
+    /** The xss Filter. */
+    @Reference
+    private transient XSSFilter xssFilter;
 
     /** The session. */
     private transient Session session;
@@ -168,11 +173,10 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 themes = themesParam.split(",");
             }
             final int pageParam = xssAPI.getValidInteger(request.getParameter("page"), 1);
-            String fulltextSearchTerm = request.getParameter("searchTerm");
+            String fulltextSearchTerm = xssFilter.filter(request.getParameter("searchTerm"));
+
             if (StringUtils.isNotBlank(fulltextSearchTerm)) {
-                if (fulltextSearchTerm.contains("<script>")) {
-                    fulltextSearchTerm = fulltextSearchTerm.replace("<script>", StringUtils.EMPTY);
-                } else if (fulltextSearchTerm.contains("<")) {
+                if (fulltextSearchTerm.contains("<")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace("<", StringUtils.EMPTY);
                 } else if (fulltextSearchTerm.contains(">")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace(">", StringUtils.EMPTY);
