@@ -17,7 +17,7 @@
             }
             &.sky-blue {
                 color: $color-white;
-                background-color: $color-sky-blue;
+                background: transparent;
             }
         }
         .banner-sibling {
@@ -71,9 +71,27 @@
             right: 0;
         }
     }
+    &__sideSection {
+        @media #{$desktop} {
+            background-color: $color-sky-blue;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+    }
+    &__bgcolor {
+        @media #{$desktop} {
+            background: linear-gradient(to right, $color-sky-blue 76.01%, rgba(0, 189, 242, 0.8) 100%);
+            height: 100%;
+            position: absolute;
+            top: 0;
+            width: 588px;
+        }
+    }
     &__content {
         @include border-radius($border-radius);
-        @include margin(-48px 16px 0 16px);
+        @include margin(-48px 0);
         @include padding-top($padding-l);
         @include padding-left($padding-md);
         @include padding-bottom($padding-l);
@@ -155,9 +173,9 @@
         }
         &.sky-blue {
             color: $color-white;
-            background-color: $color-sky-blue;
+            background: linear-gradient(101.77deg, $color-sky-blue 8.01%, rgba(0, 189, 242, 0.8) 90.8%);
             @media #{$desktop} {
-                background-color: transparent;
+                background: transparent;
             }
             .tpatom-link {
                 &--primary {
@@ -187,6 +205,9 @@
         }
         &.sky-blue {
             background-color: $color-sky-blue;
+            @media #{$desktop} {
+                background: unset;
+            }
         }
     }
     .display-row {

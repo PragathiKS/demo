@@ -25,7 +25,11 @@
         </div>
       </sly>
       <sly data-sly-test="${data.bannerType == 'hero'}">
+        <div class="pw-banner__sideSection"></div>
         <section class="pw-banner__contentwrapper">
+      </sly>
+      <sly data-sly-test="${data.pwCardTheme =='sky-blue'}">
+        <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'}">
       </sly>
       <div class="${data.subtitle ? '' : 'no-subtitle'}">
       <div class="pw-banner__content banner-sibling ${data.pwDisplay} ${data.pwCardTheme}"></div>
