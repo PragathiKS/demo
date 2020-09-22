@@ -34,11 +34,11 @@
                                 </items>
                             </pwThemes>
                             <pwButtonThemes
-                                    cq:showOnCreate="{Boolean}true"
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldLabel="Link Type"
-                                    name="./pwButtonTheme">
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Link Type"
+                                name="./pwButtonTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <linkButton
                                             jcr:primaryType="nt:unstructured"
@@ -51,41 +51,41 @@
                                 </items>
                             </pwButtonThemes>
                             <pwLinkThemes
-                                    cq:showOnCreate="{Boolean}true"
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldLabel="Link behavior"
-                                    name="./pwLinkTheme">
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Link behavior"
+                                name="./pwLinkTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <hyperlink
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Hyper Link"
-                                            value="hyperlink"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Hyper Link"
+                                        value="hyperlink"/>
                                     <download
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Download"
-                                            value="download"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Download"
+                                        value="download"/>
                                 </items>
                             </pwLinkThemes>
                             <pwImageBackground
-                                    cq:showOnCreate="{Boolean}true"
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldLabel="Image background"
-                                    name="./pwImgBackground">
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Image background"
+                                name="./pwImgBackground">
                                 <items jcr:primaryType="nt:unstructured">
                                     <default
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Default"
-                                            value=""/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Default"
+                                        value=""/>
                                     <white
-                                            jcr:primaryType="nt:unstructured"
-                                            text="White"
-                                            value="bg-white"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="White"
+                                        value="bg-white"/>
                                     <gray
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Grey"
-                                            value="bg-gray"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Grey"
+                                        value="bg-gray"/>
                                 </items>
                             </pwImageBackground>
                             <padding
@@ -105,27 +105,27 @@
                                 </items>
                             </padding>
                             <topmargin
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldLabel="Top Spacing"
-                                    name="./topSpacing">
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Top Spacing"
+                                name="./topSpacing">
                                 <items jcr:primaryType="nt:unstructured">
                                     <topMargin
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Top Margin"
-                                            value="topmargin"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Top Margin"
+                                        value="topmargin"/>
                                     <noMargin
-                                            jcr:primaryType="nt:unstructured"
-                                            text="No Top Margin"
-                                            value="nomargin"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="No Top Margin"
+                                        value="nomargin"/>
                                 </items>
                             </topmargin>
                             <display
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldDescription="Select to align text left or right"
-                                    fieldLabel="Card Alignment"
-                                    name="./pwDisplay">
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="Select to align text left or right"
+                                fieldLabel="Card Alignment"
+                                name="./pwDisplay">
                                 <items jcr:primaryType="nt:unstructured">
                                     <rowLeftToRight
                                             jcr:primaryType="nt:unstructured"
@@ -138,26 +138,22 @@
                                             value="display-row-reversed"/>
                                 </items>
                             </display>
-                            <pwCardTheme
-                                    granite:class="bannerType-disable-enable-target"
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldLabel="Card Background Theme"
-                                    name="./pwCardTheme">
+							<pwCardTheme
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Card Background Theme"
+                                name="./pwCardTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <gray
-                                            jcr:primaryType="nt:unstructured"
-                                            selected="true"
-                                            text="Grey"
-                                            value="gray"/>
-                                    <skyblue
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Sky Blue"
-                                            value="sky-blue"/>
-                                </items>
-                                <granite:data
                                         jcr:primaryType="nt:unstructured"
-                                        disableenabletargetvalue="hero"/>
+                                        selected="true"
+                                        text="Grey"
+                                        value="gray"/>
+                                    <skyblue
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Sky Blue"
+                                        value="sky-blue"/>
+                                </items>
                             </pwCardTheme>
                         </items>
                     </column>
