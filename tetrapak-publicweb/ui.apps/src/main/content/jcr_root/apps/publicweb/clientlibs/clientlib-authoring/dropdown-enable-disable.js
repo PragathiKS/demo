@@ -45,6 +45,7 @@
                 value = component.getValue();
             }
             if(value == "hero") {
+              $(target +' .coral3-Select-label').text("Sky Blue");
               $(target).first().attr("disabled","true");
             } else {
                $(target).first().removeAttr("disabled","true");
