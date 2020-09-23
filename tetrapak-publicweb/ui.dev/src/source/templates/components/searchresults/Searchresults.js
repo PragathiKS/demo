@@ -171,7 +171,6 @@ class Searchresults {
       this.cache.$spinner.addClass('d-none');
       this.cache.$pagination.addClass('d-none');
     } else {
-      const { searchTerm } = deparam(window.location.search);
       this.cache.$filterChecks.attr('disabled', true);
       let queryParams = this.cache.queryParams;
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
