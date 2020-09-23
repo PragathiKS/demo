@@ -192,4 +192,8 @@ public final class PageUtil {
         }
         return marketCode;
     }
+
+    public static Boolean isHomePage(final String currentPagePath){
+        return currentPagePath.endsWith(PWConstants.HOME_PAGE_REL_PATH);
+    }
 }
