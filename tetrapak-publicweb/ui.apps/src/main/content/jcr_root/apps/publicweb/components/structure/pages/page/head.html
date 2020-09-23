@@ -20,8 +20,9 @@
     <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description @ context='scriptComment'}"/>
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="robots" data-sly-test.indexVal="${properties.noIndex ? properties.noIndex : 'index'}" data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" content="${indexVal}, ${followVal}"/>
     <!--/* Start of SEO canonical and href functionality */-->
-    <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.hreflangValues}">
+    <sly data-sly-test="${indexVal != 'noindex' && followVal != 'nofollow' && digitalDataModel.isPublisher && digitalDataModel.hreflangValues}">
     <sly data-sly-test="${digitalDataModel.canonicalURL}">
         <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
     </sly>
@@ -31,8 +32,6 @@
     </sly>
      <!--/* End of SEO canonical and href functionality */-->
 	
-	<meta name="robots" data-sly-test.indexVal="${properties.noIndex ? properties.noIndex : 'index'}" data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" content="${indexVal}, ${followVal}"/>
-
 	<meta data-sly-test="${properties['jcr:title']}" property="og:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
 	<meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>                                                
 	<meta property="og:type" content="website"/>                                                                                           

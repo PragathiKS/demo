@@ -224,11 +224,17 @@ public final class PWConstants {
     /** The Constant JCR VALUE. */  
     public static final String JCR = "/jcr:content";
 
+    /** The Constant CAC_COUNTRY_CODE Central America & Caribbean */
+    public static final String CAC_COUNTRY_CODE = "cac";
+
+    /** The Constant MAGHREB_MARKET_CODE. */
+    public static final String MAGHREB_MARKET_CODE = "ma";
+
+    /** The Constant CAC_MARKET_CODE. */
+    public static final String CAC_MARKET_CODE = "pa";
+
     /** The Constant MAGHREB_COUNTRY_CODE. */
     public static final String MAGHREB_COUNTRY_CODE = "maghreb";
-
-    /** The Constant ES_COUNTRY_CODE for Central America & Caribbean */
-    public static final String ES_COUNTRY_CODE = "es";
 
     /** The Constant DE_COUNTRY_CODE for Germany, Austria, Switzerland. */
     public static final String DE_COUNTRY_CODE = "de";
@@ -238,7 +244,7 @@ public final class PWConstants {
 
    /** list exceptionCountriesList contains all countries which are exceptions for country code .**/
     public static final List<String> exceptionCountriesList =
-           Collections.unmodifiableList(Arrays.asList(MAGHREB_COUNTRY_CODE, ES_COUNTRY_CODE,DE_COUNTRY_CODE,RU_COUNTRY_CODE));
+           Collections.unmodifiableList(Arrays.asList(MAGHREB_COUNTRY_CODE, CAC_COUNTRY_CODE,DE_COUNTRY_CODE,RU_COUNTRY_CODE));
 
     /** list maghrebLocaleValues contains all locales for maghreb. **/
     public static final List<String> maghrebLocaleValues =
@@ -253,16 +259,7 @@ public final class PWConstants {
     /** list ruLocaleValues contains all locales for  Russia, Kazakhstan, Ukraine.**/
     public static final List<String> ruLocaleValues = Collections.unmodifiableList(Arrays.asList("ru-ru", "ru-kz", "ru-ua"));
     
-    /** The Constant CAC_COUNTRY_CODE Central America & Caribbean */
-    public static final String CAC_COUNTRY_CODE = "cac";
-    
-    /** The Constant MAGHREB_MARKET_CODE. */
-    public static final String MAGHREB_MARKET_CODE = "ma";
-    
-    /** The Constant CAC_MARKET_CODE. */
-    public static final String CAC_MARKET_CODE = "pa";
-
-    /** The Constant JCR PREVIEW_SALT. */  
+    /** The Constant JCR PREVIEW_SALT. */
     public static final String PREVIEW_SALT = "previewSalt";
     /**
      * Instantiates a new PW constants.
