@@ -197,6 +197,13 @@ public class PageLoadAnalyticsModel {
      *
      * */
     private void updateHrefLang (){
+        Boolean isHomePage = PageUtil.isHomePage(currentPage.getPath());
+        if(Boolean.TRUE.equals(isHomePage)){
+            CountryLanguageCodeBean countryLanguageCodeBean = new CountryLanguageCodeBean();
+            countryLanguageCodeBean.setLocale(X_DEFAULT);
+            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE,request));
+            hrefLangValues.add(countryLanguageCodeBean);
+        }
         final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
         Resource marketRootResource = currentPage.getContentResource().getResourceResolver().getResource(marketRootPath);
         if (Objects.nonNull(marketRootResource)) {
@@ -255,23 +262,7 @@ public class PageLoadAnalyticsModel {
         if(!PWConstants.exceptionCountriesList.contains(PageUtil.getCountryCode(currentLanguagePage))){
             setHrefLangValues(resourceResolver, PageUtil.getLocaleFromURL(currentLanguagePage), currentPagePathInLoop);
         } else {
-            if(PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.MAGHREB_COUNTRY_CODE)) {
-                for (String magrebLocale: PWConstants.maghrebLocaleValues) {
-                    setHrefLangValues(resourceResolver, magrebLocale, currentPagePathInLoop );
-                }
-            } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.DE_COUNTRY_CODE)){
-                for (String deLocale: PWConstants.deLocaleValues) {
-                    setHrefLangValues(resourceResolver, deLocale, currentPagePathInLoop );
-                }
-            } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)){
-                for (String ruLocale: PWConstants.ruLocaleValues) {
-                    setHrefLangValues(resourceResolver, ruLocale, currentPagePathInLoop );
-                }
-            } else {
-                for (String esLocale: PWConstants.esLocaleValues) {
-                    setHrefLangValues(resourceResolver, esLocale, currentPagePathInLoop );
-                }
-            }
+            handleExceptionalMarkets(currentLanguagePage, currentPagePathInLoop, resourceResolver);
         }
     }
 
@@ -294,6 +285,27 @@ public class PageLoadAnalyticsModel {
             hrefLangValues.add(countryLanguageCodeBean);
         }
 
+    }
+
+    private void handleExceptionalMarkets(final Page currentLanguagePage, final String currentPagePathInLoop,
+                                          final ResourceResolver resourceResolver){
+        if(PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.MAGHREB_COUNTRY_CODE)) {
+            for (String magrebLocale: PWConstants.maghrebLocaleValues) {
+                setHrefLangValues(resourceResolver, magrebLocale, currentPagePathInLoop );
+            }
+        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.DE_COUNTRY_CODE)){
+            for (String deLocale: PWConstants.deLocaleValues) {
+                setHrefLangValues(resourceResolver, deLocale, currentPagePathInLoop );
+            }
+        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)){
+            for (String ruLocale: PWConstants.ruLocaleValues) {
+                setHrefLangValues(resourceResolver, ruLocale, currentPagePathInLoop );
+            }
+        } else {
+            for (String esLocale: PWConstants.esLocaleValues) {
+                setHrefLangValues(resourceResolver, esLocale, currentPagePathInLoop );
+            }
+        }
     }
 
     private String buildDigitalDataJson() {
