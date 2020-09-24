@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import deparam from 'deparam.js';
 import { saveAs } from 'file-saver';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { render } from '../../../scripts/utils/render';
@@ -171,6 +170,8 @@ class Searchresults {
       this.cache.$spinner.addClass('d-none');
       this.cache.$pagination.addClass('d-none');
     } else {
+      let searchTerm = this.parseQueryString() && this.parseQueryString().searchTerm;
+      searchTerm = decodeURIComponent(searchTerm) && decodeURIComponent(searchTerm).trim();
       this.cache.$filterChecks.attr('disabled', true);
       let queryParams = this.cache.queryParams;
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
@@ -362,8 +363,23 @@ class Searchresults {
     return str;
   };
 
+  parseQueryString = () => {
+
+    var str = window.location.search;
+    var objURL = {};
+
+    str.replace(
+      new RegExp( '([^?=&]+)(=([^&]*))?', 'g' ),
+      function( $0, $1, $2, $3 ){
+        objURL[ $1 ] = $3;
+      }
+    );
+    return objURL;
+  };
+
   extractQueryParams = () => {
-    const params = deparam(window.location.search);
+    const params = this.parseQueryString();
+    params['searchTerm'] = decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim();
     this.cache.$searchInput.val(params['searchTerm']);
     this.cache.queryParams = window.location.search;
     Object.keys(params).map(key => {
