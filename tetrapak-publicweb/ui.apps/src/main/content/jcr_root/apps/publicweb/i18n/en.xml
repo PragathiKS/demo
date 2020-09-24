@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:language="en"
     jcr:mixinTypes="[mix:language]"
     jcr:primaryType="nt:folder">
@@ -72,21 +72,13 @@
         sling:key="pw.form.contactus.career"
         sling:message="Careers"/>
     <pw.form.contactus.other
-        cq:lastReplicated="{Date}2020-08-20T10:36:22.666Z"
-        cq:lastReplicatedBy="sapient-daniel"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.other"
-        sling:message="General"/>
+        sling:message="Press &amp; Media"/>
     <pw.form.contactus.sustainability
-        cq:lastReplicated="{Date}2020-08-20T10:35:48.027Z"
-        cq:lastReplicatedBy="sapient-daniel"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.sustainability"
-        sling:message="Sustainability"/>
+        sling:message="Business"/>
     <pw.form.errormsg.businessareofinterest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.businessareofinterest"
@@ -156,37 +148,33 @@
         sling:key="pw.form.heading.howcanihelp"
         sling:message="How can I help you?"/>
     <pw.form.heading.purposeofcontact
-        cq:lastReplicated="{Date}2020-08-20T10:31:34.321Z"
-        cq:lastReplicatedBy="sapient-daniel"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.purposeofcontact"
-        sling:message="Purpose of contact"/>
+        sling:message="Reason for visit today"/>
     <pw.form.heading.summary
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.summary"
         sling:message="Summary"/>
     <pw.form.heading.typeofvisitor
-        cq:lastReplicated="{Date}2020-08-20T10:34:11.204Z"
-        cq:lastReplicatedBy="sapient-daniel"
-        cq:lastReplicationAction="Activate"
-        jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.typeofvisitor"
-        sling:message="Reason for visit today"/>
+        sling:message="Reasons for visit today"/>
     <pw.form.label.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
         sling:message="Company"/>
+    <pw.form.country
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.country"
+        sling:message="Country"/>
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
-        sling:message="Country"/>
+        sling:message="Country/Location"/>
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
-        sling:message="Select Country"/>
+        sling:message="Select Country/Location"/>
     <pw.form.label.email
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.email"
@@ -319,4 +307,32 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.video"
         sling:message="video"/>
+	<pw.searchResults.contentPage
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.contentPage"
+        sling:message="Content Page"/>
+	<pw.searchResults.emptySearchText
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.emptySearchText"
+        sling:message="Please try again to enter a search text in the above field"/>        
+    <pw.search.searchbarplaceholder
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.search.searchbarplaceholder"
+        sling:message="What are you looking for?"/>
+    <pw.form.button.subscribe
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.button.subscribe"
+        sling:message="Subscribe"/>
+    <pw.searchResults.searchresultsTextFor
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.searchResults.searchresultsTextFor"
+        sling:message="search results for"/>
+	<pw.breadcrumb.home
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.breadcrumb.home"
+        sling:message="Home"/>
 </jcr:root>
