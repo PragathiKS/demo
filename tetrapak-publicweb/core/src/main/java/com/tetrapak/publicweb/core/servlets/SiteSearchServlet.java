@@ -177,9 +177,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
             if (StringUtils.isNotBlank(fulltextSearchTerm)) {
                 if (fulltextSearchTerm.contains("<")) {
-                    fulltextSearchTerm = fulltextSearchTerm.replace("<", StringUtils.EMPTY);
+                    fulltextSearchTerm = fulltextSearchTerm.replace("&lt;", StringUtils.EMPTY);
                 } else if (fulltextSearchTerm.contains(">")) {
-                    fulltextSearchTerm = fulltextSearchTerm.replace(">", StringUtils.EMPTY);
+                    fulltextSearchTerm = fulltextSearchTerm.replace("&gt;", StringUtils.EMPTY);
                 }
             }
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
