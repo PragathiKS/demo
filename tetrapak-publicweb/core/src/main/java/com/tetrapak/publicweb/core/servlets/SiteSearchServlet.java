@@ -176,9 +176,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             String fulltextSearchTerm = xssFilter.filter(request.getParameter("searchTerm"));
 
             if (StringUtils.isNotBlank(fulltextSearchTerm)) {
-                if (fulltextSearchTerm.contains("<")) {
+                if (fulltextSearchTerm.contains("&lt;")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&lt;", StringUtils.EMPTY);
-                } else if (fulltextSearchTerm.contains(">")) {
+                } else if (fulltextSearchTerm.contains("&gt;")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&gt;", StringUtils.EMPTY);
                 }
             }
