@@ -119,9 +119,15 @@ public class DynamicImageModel {
     private boolean hasConfiguraton;
 
     /**
-     * The Constant FMT_PNG_ALPHA.
+     * The Constant FMT_JPG.
      */
-    private static final String FMT_PNG_ALPHA = "fmt=png-alpha";
+    private static final String FMT_JPG = "fmt=jpg";
+
+    /** The Constant ADDITIONAL_PARAMETER. */
+    private static final String ADDITIONAL_PARAMETER = "qlt=85,0";
+
+    /** The Constant OP_USM. */
+    private static final String OP_USM = "op_usm=1.75,0.3,2,0";
 
     /** The Constant IMG_BGC_GRAY. */
     private static final String IMG_BGC_GRAY = "bg-gray";
@@ -132,7 +138,7 @@ public class DynamicImageModel {
     /**
      * The Constant IMAGE_SHARPNESS.
      */
-    private static final String IMAGE_SHARPNESS = "resMode=bisharp";
+    private static final String IMAGE_SHARPNESS = "resMode=sharp2";
 
     /**
      * The Constant HEIGHT.
@@ -227,7 +233,7 @@ public class DynamicImageModel {
      * @return the string builder
      */
     private static StringBuilder appendTransparency(final StringBuilder url, final String appendingString) {
-        return url.append(appendingString).append(FMT_PNG_ALPHA);
+        return url.append(appendingString).append(FMT_JPG);
     }
 
     /**
@@ -241,6 +247,42 @@ public class DynamicImageModel {
      */
     private static StringBuilder appendSharpness(final StringBuilder url, final String appendingString) {
         return url.append(appendingString).append(IMAGE_SHARPNESS);
+    }
+
+    /**
+     * Additional parameter. Added this parameter to reduce the size of the img, as recommended by Adobe
+     * 
+     * @param url
+     *            the url
+     * @param queryFlag
+     *            the query flag
+     * @return the string builder
+     */
+    private static StringBuilder additionalParameter(StringBuilder url, boolean queryFlag) {
+        if (queryFlag) {
+            url = url.append(AMPERSAND).append(ADDITIONAL_PARAMETER);
+        } else {
+            url = url.append(QUERY_PARAMETER).append(AMPERSAND).append(ADDITIONAL_PARAMETER);
+        }
+        return url;
+    }
+
+    /**
+     * Append opsm. Added this parameter to reduce the size of the img, as recommended by Adobe
+     *
+     * @param url
+     *            the url
+     * @param queryFlag
+     *            the query flag
+     * @return the string builder
+     */
+    private static StringBuilder appendOpsm(StringBuilder url, boolean queryFlag) {
+        if (queryFlag) {
+            url = url.append(AMPERSAND).append(OP_USM);
+        } else {
+            url = url.append(QUERY_PARAMETER).append(AMPERSAND).append(OP_USM);
+        }
+        return url;
     }
 
     /**
@@ -398,6 +440,8 @@ public class DynamicImageModel {
             url = appendSharpness(url, QUERY_PARAMETER);
         }
 
+        url = additionalParameter(url, queryFlag);
+        url = appendOpsm(url, queryFlag);
         return url.toString();
     }
 
