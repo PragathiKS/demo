@@ -88,9 +88,10 @@ class MegaMenuSolution {
     if (trident > 0) { // detect ie 11
       $('.pw-megamenu').css('height', 'auto');
       $('.pw-megamenu .pw-megamenu__top ul').css('margin', '0 auto').css('width', '80%');
-      $('.pw-megamenu__top .col').css('max-width', 'none');
+      $('.pw-megamenu__top .col').css('flex-basis', 'auto');
       $('.pw-megamenu__bottom ul').css('margin', '0 auto').css('width', '80%');
-      $('.pw-megamenu__bottom ul .col').css('max-width', 'none');
+      $('.pw-megamenu__bottom ul .col').css('flex-basis', 'auto');
+      $('.col-side-links.col').css('flex', '1');
       $('.pw-megamenu__bottom .bottom-teaser-list').css({'display':'block','width':'80%','margin':'0 auto'});
     }
   }
