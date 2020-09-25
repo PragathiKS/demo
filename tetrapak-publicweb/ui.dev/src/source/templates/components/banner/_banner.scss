@@ -13,11 +13,14 @@
         &__content {
             @include margin(0);
             @media #{$desktop} {
-                width: 540px;
+                width: 478px;
             }
             &.sky-blue {
                 color: $color-white;
-                background: transparent;
+                background: linear-gradient(101.77deg, $color-sky-blue 8.01%, rgba(0, 189, 242, 0.8) 90.8%);
+                @media #{$desktop} {
+                    background: transparent;
+                }
             }
         }
         .banner-sibling {
@@ -72,21 +75,44 @@
         }
     }
     &__sideSection {
+        display: none;
         @media #{$desktop} {
+            display: block;
             background-color: $color-sky-blue;
             position: absolute;
             top: 0;
             left: 0;
             height: 100%;
         }
+        &.right {
+            @media #{$desktop} {
+                right: 0;
+                left: unset;
+            }
+        }
     }
-    &__bgcolor {
+    .pw-banner__bgcolor {
         @media #{$desktop} {
-            background: linear-gradient(to right, $color-sky-blue 76.01%, rgba(0, 189, 242, 0.8) 100%);
+            @include padding-top($padding-l);
+            @include padding-bottom($padding-l);
+            background: linear-gradient(to right, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
             height: 100%;
             position: absolute;
             top: 0;
-            width: 588px;
+            width: 540px;
+        }
+        &.no-subtitle {
+            @media #{$desktop} {
+                @include padding-bottom($padding-xl);
+                @include padding-top($padding-xl);
+            }
+        }
+        &.display-row-reversed-wrapper {
+            @media #{$desktop} {
+                background: linear-gradient(to left, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
+                right: 0;
+            }
+
         }
     }
     &__content {
@@ -176,6 +202,7 @@
             background: linear-gradient(101.77deg, $color-sky-blue 8.01%, rgba(0, 189, 242, 0.8) 90.8%);
             @media #{$desktop} {
                 background: transparent;
+                width: 478px;
             }
             .tpatom-link {
                 &--primary {
@@ -191,6 +218,18 @@
                     &:hover {
                         color: $color-congress-blue;
                     }
+                }
+            }
+            &.display-row {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    left: 0;
+                }
+            }
+            &.display-row-reversed {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    right: 0;
                 }
             }
         }
@@ -234,5 +273,21 @@
         @media #{$desktop} {
             @include padding-bottom($padding-xl);
         }
+        &.sky-blue {
+            @media #{$desktop} {
+                @include padding-bottom($padding-zero);
+            }
+        }
+    }
+}
+
+.tp-container-textImage .pw-banner__content.sky-blue.display-row-reversed {
+    @media #{$desktop} {
+        @include padding-right($padding-xxxl);
+    }
+}
+.tp-container-textImage .pw-banner__content.sky-blue.display-row {
+    @media #{$desktop} {
+        @include padding-left($padding-xxxl);
     }
 }

@@ -25,14 +25,36 @@
         </div>
       </sly>
       <sly data-sly-test="${data.bannerType == 'hero'}">
-        <div class="pw-banner__sideSection"></div>
+        <sly data-sly-test="${data.pwDisplay =='display-row'}">
+          <div class="pw-banner__sideSection"></div>
+        </sly>
+        <sly data-sly-test="${data.pwDisplay =='display-row-reversed'}">
+          <div class="pw-banner__sideSection right"></div>
+        </sly>
+
         <section class="pw-banner__contentwrapper">
       </sly>
-      <sly data-sly-test="${data.pwCardTheme =='sky-blue'}">
-        <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'}">
+    <sly data-sly-test="${data.bannerType == 'textImage'}">
+        <sly data-sly-test="${data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed'}">
+         <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} display-row-reversed-wrapper">
       </sly>
-      <div class="${data.subtitle ? '' : 'no-subtitle'}">
-      <div class="pw-banner__content banner-sibling ${data.pwDisplay} ${data.pwCardTheme}"></div>
+         <sly data-sly-test="${data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row'}">
+         <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'}">
+      </sly>
+        <sly data-sly-test="${data.pwCardTheme =='gray'}">
+          <div class="${data.subtitle ? '' : 'no-subtitle'}">
+        </sly>
+    </sly>
+    <sly data-sly-test="${data.bannerType == 'hero'}">
+       <sly data-sly-test="${data.pwDisplay =='display-row-reversed'}">
+          <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} display-row-reversed-wrapper">
+        </sly>
+      <sly data-sly-test="${data.pwDisplay =='display-row'}">
+        <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay}">
+      </sly>
+   </sly>
+    <div class="pw-banner__content banner-sibling ${data.pwDisplay} ${data.pwCardTheme}"></div>
+
       <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay} 
       ${data.pwCardTheme}">
         <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle ${data.pwCardTheme}">
