@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
           xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
           jcr:primaryType="nt:unstructured"
           sling:resourceType="cq/gui/components/authoring/dialog">
@@ -139,8 +139,10 @@
                                 </items>
                             </display>
 							<pwCardTheme
+                                granite:class="bannerType-disable-enable-target"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="For Top Banner Display Mode, only sky blue is selected"
                                 fieldLabel="Card Background Theme"
                                 name="./pwCardTheme">
                                 <items jcr:primaryType="nt:unstructured">
@@ -154,6 +156,9 @@
                                         text="Sky Blue"
                                         value="sky-blue"/>
                                 </items>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        disableenabletargetvalue="hero"/>
                             </pwCardTheme>
                         </items>
                     </column>

@@ -11,6 +11,8 @@ class Banner {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
     this.cache.$existingBanner = this.root.find('.pw-banner__content.banner-parent');
     this.cache.$siblingBanner = this.root.find('.pw-banner__content.banner-sibling');
+    this.cache.$sideSection = this.root.find('.pw-banner__sideSection');
+    this.cache.$sideSectionright = this.root.find('.pw-banner__sideSection.right');
     this.cache.componentName = this.root.find('.componentName-banner').val();
   }
 
@@ -20,12 +22,23 @@ class Banner {
       isDesktopMode()) {
       const { $existingBanner } = this.cache;
       const { $siblingBanner } = this.cache;
+      const { $sideSection } = this.cache;
+      const { $sideSectionright } = this.cache;
 
       $(window).on('load resize', function () {
         const bannerHeight = $existingBanner.outerHeight();
         const bannerWidth = $existingBanner.outerWidth();
+        const bannerOffset = $existingBanner.offset();
+        const windowWidth = $('body').outerWidth();
         $siblingBanner.css('width', bannerWidth);
         $siblingBanner.css('height', bannerHeight);
+        if ($sideSection.length) {
+          $sideSection.css('width', bannerOffset.left +'px');
+        }
+        if ($sideSectionright.length) {
+          const finalWidth = windowWidth - bannerOffset.left -  bannerWidth;
+          $sideSectionright.css('width', finalWidth +'px');
+        }
       });
     }
     $itbLink.on('click', this.trackAnalytics);
