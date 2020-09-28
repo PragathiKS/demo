@@ -52,7 +52,7 @@ describe('BusinessInquiryForm', function () {
   it('Should update payload with dropItem changes', function() {
     document.getElementById('ddtest').click();
     expect(this.businessinquiry.cache.requestPayload['countryTitle']).to.equal('Albania');
-    expect(this.businessinquiry.cache.requestPayload['country']).to.equal('albania');
+    expect(this.businessinquiry.cache.requestPayload['country']).to.equal('Albania');
   });
 
   it('Should update request payload on step-1 next button click', function () {
