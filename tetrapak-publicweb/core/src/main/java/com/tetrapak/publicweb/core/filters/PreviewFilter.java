@@ -17,6 +17,7 @@ import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
@@ -63,6 +64,7 @@ public class PreviewFilter implements Filter {
                 && "true".equalsIgnoreCase(slingRequest.getHeader("preview")) 
                 && Boolean.TRUE.equals(isSaltInValid(slingRequest, previewParam))) {
             authenticator.logout(slingRequest, slingResponse);
+            slingResponse.sendRedirect(slingRequest.getPathInfo() + PWConstants.HTML);
         }
         chain.doFilter(request, response);
     }
