@@ -6,71 +6,71 @@
     <filters
         jcr:primaryType="sling:MessageEntry"
         sling:key="filters"
-        sling:message="Filters"/>
+        sling:message="Фильтры"/>
     <pw.findMyOffice.goToLocalSite
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.goToLocalSite"
-        sling:message="Go to Local Site"/>
+        sling:message="Перейти на региональный сайт"/>
     <pw.findMyOffice.viewLargerMap
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.viewLargerMap"
-        sling:message="View larger map"/>
+        sling:message="Посмотреть увеличенную карту"/>
     <pw.form.businessenq.contactme
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.contactme"
-        sling:message="Contact me"/>
+        sling:message="Свяжитесь со мной"/>
     <pw.form.businessenq.endtoendsolution
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.endtoendsolution"
-        sling:message="End-to-End solutions"/>
+        sling:message="Комплексные решения"/>
     <pw.form.businessenq.packaging
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.packaging"
-        sling:message="Packaging"/>
+        sling:message="Упаковка"/>
     <pw.form.businessenq.processing
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.processing"
-        sling:message="Processing"/>
+        sling:message="Обработка"/>
     <pw.form.businessenq.requestaquote
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.requestaquote"
-        sling:message="Request a quote"/>
+        sling:message="Запросить цену"/>
     <pw.form.businessenq.requestforproductinfo
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.requestforproductinfo"
-        sling:message="Request for product information"/>
+        sling:message="Запросить информацию о продукте"/>
     <pw.form.businessenq.services
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.services"
-        sling:message="Services"/>
+        sling:message="Услуги"/>
     <pw.form.button.download
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.download"
-        sling:message="Download"/>
+        sling:message="Загрузка"/>
     <pw.form.button.newrequest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.newrequest"
-        sling:message="New Request"/>
+        sling:message="Новый запрос"/>
     <pw.form.button.next
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.next"
-        sling:message="Next"/>
+        sling:message="Далее"/>
     <pw.form.button.previous
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.previous"
-        sling:message="Previous"/>
+        sling:message="Назад"/>
     <pw.form.button.submit
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.submit"
-        sling:message="Submit"/>
+        sling:message="Отправить"/>
     <pw.form.button.subscribe
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.subscribe"
-        sling:message="Subscribe"/>
+        sling:message="Подписаться"/>
     <pw.form.contactus.career
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.career"
-        sling:message="Careers"/>
+        sling:message="Карьера"/>
     <pw.form.contactus.other
         cq:lastReplicated="{Date}2020-08-20T10:36:22.666Z"
         cq:lastReplicatedBy="sapient-daniel"
@@ -78,7 +78,7 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.other"
-        sling:message="General"/>
+        sling:message="Общая информация"/>
     <pw.form.contactus.sustainability
         cq:lastReplicated="{Date}2020-08-20T10:35:48.027Z"
         cq:lastReplicatedBy="sapient-daniel"
@@ -86,75 +86,75 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.sustainability"
-        sling:message="Sustainability"/>
+        sling:message="Устойчивое развитие"/>
     <pw.form.errormsg.businessareofinterest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.businessareofinterest"
-        sling:message="Please select business area of interest"/>
+        sling:message="Выберите интересующую сферу деятельности"/>
     <pw.form.errormsg.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.company"
-        sling:message="Enter your company name"/>
+        sling:message="Введите название своей компании"/>
     <pw.form.errormsg.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.country"
-        sling:message="Please select country"/>
+        sling:message="Выберите страну"/>
     <pw.form.errormsg.firstname
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.firstname"
-        sling:message="Enter your first name"/>
+        sling:message="Введите имя"/>
     <pw.form.errormsg.invalidemail
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.invalidemail"
-        sling:message="Please enter your email in this format: example@example.com"/>
+        sling:message="Введите адрес электронной почты в следующем формате: example@example.com"/>
     <pw.form.errormsg.invalidphonenumber
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.invalidphonenumber"
-        sling:message="Please write numbers"/>
+        sling:message="Напишите числа"/>
     <pw.form.errormsg.lastname
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.lastname"
-        sling:message="Enter your last name"/>
+        sling:message="Введите фамилию"/>
     <pw.form.errormsg.marketingconsent
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.marketingconsent"
-        sling:message="Please select marketing consent"/>
+        sling:message="Выберите согласие на маркетинговые мероприятия"/>
     <pw.form.errormsg.messagebox
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.messagebox"
-        sling:message="Fill in your query/message"/>
+        sling:message="Введите запрос/сообщение"/>
     <pw.form.errormsg.position
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.position"
-        sling:message="Enter your position"/>
+        sling:message="Введите должность"/>
     <pw.form.errormsg.purposeofcontact
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.purposeofcontact"
-        sling:message="Please select purpose of contact"/>
+        sling:message="Выберите цель обращения"/>
     <pw.form.errormsg.serviceerror
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.serviceerror"
-        sling:message="Something went wrong. Please try again."/>
+        sling:message="Что-то пошло не так. Попробуйте снова."/>
     <pw.form.errormsg.typeofvisitor
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.typeofvisitor"
-        sling:message="Please select type of visitor"/>
+        sling:message="Выберите тип посетителя"/>
     <pw.form.heading.businessarea
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.businessarea"
-        sling:message="Business area of interest"/>
+        sling:message="Интересующая сфера деятельности"/>
     <pw.form.heading.companyinformation
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.companyinformation"
-        sling:message="Company information"/>
+        sling:message="Информация о компании"/>
     <pw.form.heading.contactinformation
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.contactinformation"
-        sling:message="Contact information"/>
+        sling:message="Контактная информация"/>
     <pw.form.heading.howcanihelp
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.howcanihelp"
-        sling:message="How can I help you?"/>
+        sling:message="Чем я могу вам помочь?"/>
     <pw.form.heading.purposeofcontact
         cq:lastReplicated="{Date}2020-08-20T10:31:34.321Z"
         cq:lastReplicatedBy="sapient-daniel"
@@ -162,11 +162,11 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.purposeofcontact"
-        sling:message="Purpose of contact"/>
+        sling:message="Цель обращения"/>
     <pw.form.heading.summary
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.summary"
-        sling:message="Summary"/>
+        sling:message="Сводка"/>
     <pw.form.heading.typeofvisitor
         cq:lastReplicated="{Date}2020-08-20T10:34:11.204Z"
         cq:lastReplicatedBy="sapient-daniel"
@@ -174,23 +174,23 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.typeofvisitor"
-        sling:message="Reason for visit today"/>
+        sling:message="Причина, чтобы посетить сегодня"/>
     <pw.form.label.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
-        sling:message="Company"/>
+        sling:message="Компания"/>
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
-        sling:message="Country"/>
+        sling:message="Страна"/>
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
-        sling:message="Select Country"/>
+        sling:message="Выберите страну"/>
     <pw.form.label.email
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.email"
-        sling:message="E-mail"/>
+        sling:message="Адрес эл. почты"/>
     <pw.form.label.emailPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.emailPlaceholder"
@@ -198,125 +198,125 @@
     <pw.form.label.firstName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.firstName"
-        sling:message="First name"/>
+        sling:message="Имя"/>
     <pw.form.label.lastName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.lastName"
-        sling:message="Last name"/>
+        sling:message="Фамилия"/>
     <pw.form.label.message
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.message"
-        sling:message="Message"/>
+        sling:message="Сообщение"/>
     <pw.form.label.office
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.office"
-        sling:message="Office"/>
+        sling:message="Офис"/>
     <pw.form.label.officePlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.officePlaceholder"
-        sling:message="Select Office"/>
+        sling:message="Выберите представительство"/>
     <pw.form.label.phonenumber
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phonenumber"
-        sling:message="Phone number (optional)"/>
+        sling:message="Номер телефона (необязательно)"/>
     <pw.form.label.phoneplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phoneplaceholder"
-        sling:message="Country code and Number"/>
+        sling:message="Код страны и номер"/>
     <pw.form.label.position
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.position"
-        sling:message="Position"/>
+        sling:message="Позиция"/>
     <pw.form.softconversion.customer
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.customer"
-        sling:message="Business"/>
+        sling:message="Бизнес"/>
     <pw.form.softconversion.pressandmedia
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.pressandmedia"
-        sling:message="Press &amp; Media"/>
+        sling:message="Пресса и СМИ"/>
     <pw.form.softconversion.talent
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.talent"
-        sling:message="Careers"/>
+        sling:message="Карьера"/>
     <pw.form.step
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.step {0} of {1}"
-        sling:message="Step {0} of {1}"/>
+        sling:message="Шаг {0} из {1}"/>
     <pw.pxp.openingbenefits
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingbenefits"
-        sling:message="Benefits:"/>
+        sling:message="Преимущества:"/>
     <pw.pxp.openingprinciple
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingprinciple"
-        sling:message="Principle:"/>
+        sling:message="Принцип:"/>
     <pw.pxp.openingtype
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingtype"
-        sling:message="Type:"/>
+        sling:message="Тип:"/>
     <pw.search.searchbarplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.search.searchbarplaceholder"
-        sling:message="What are you looking for?"/>
+        sling:message="Что вы ищете?"/>
     <pw.searchResults.contentPage
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.contentPage"
-        sling:message="Content Page"/>
+        sling:message="Страница с документами"/>
     <pw.searchResults.contenttype
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.contenttype"
-        sling:message="CONTENT TYPES"/>
+        sling:message="ТИПЫ СОДЕРЖИМОГО"/>
     <pw.searchResults.document
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.document"
-        sling:message="document"/>
+        sling:message="документ"/>
     <pw.searchResults.emptySearchText
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.emptySearchText"
-        sling:message="Please try again to enter a search text in the above field"/>
+        sling:message="Введите текст для поиска в поле выше еще раз"/>
     <pw.searchResults.image
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.image"
-        sling:message="image"/>
+        sling:message="изображение"/>
     <pw.searchResults.kb
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.kbyte"
-        sling:message="KB"/>
+        sling:message="КБ"/>
     <pw.searchResults.mb
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.mbyte"
-        sling:message="MB"/>
+        sling:message="МБ"/>
     <pw.searchResults.nosearchresults
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.nosearchresults"
-        sling:message="No search results"/>
+        sling:message="Результаты поиска отсутствуют"/>
     <pw.searchResults.of
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.of"
-        sling:message="of"/>
+        sling:message="в"/>
     <pw.searchResults.ok
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.ok"
-        sling:message="OK"/>
+        sling:message="ОК"/>
     <pw.searchResults.searchplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.searchplaceholder"
-        sling:message="What are you looking for?"/>
+        sling:message="Что вы ищете?"/>
     <pw.searchResults.searchresultsText
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.searchresultsText"
-        sling:message="search results"/>
+        sling:message="результаты поиска"/>
     <pw.searchResults.searchresultsTextFor
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.searchresultsTextFor"
-        sling:message="search results for"/>
+        sling:message="результаты поиска для"/>
     <pw.searchResults.themes
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.themes"
-        sling:message="THEMES"/>
+        sling:message="ТЕМЫ"/>
     <pw.searchResults.video
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.video"
-        sling:message="video"/>
+        sling:message="видео"/>
 </jcr:root>
