@@ -5,7 +5,10 @@
             @include margin-bottom(0);
         }
     }
-
+    .tpatom-checkbox__icon {
+        border: 1px solid $color-tundora;
+        color: $color-congress-blue;
+    }
     .emailDiv {
         @include margin-bottom($margin-md);
     }

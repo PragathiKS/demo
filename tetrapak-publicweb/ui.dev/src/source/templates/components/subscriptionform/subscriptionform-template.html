@@ -38,10 +38,11 @@
                         <div class="formfield">
                           <div class="form-group formfield">
                             <div class="checboxField">
-                              <input id="consentcheckbox" class="consentCheckbox" type="checkbox"
+                            <label class="consentlabel" for="consentcheckbox"> ${data.consentConfig.marketingConsent @
+                                context='html'}
+                              <input id="consentcheckbox" class="form-control tpatom-checkbox__input float-left" type="checkbox"
                                 name="consent">
-                              <label class="consentlabel" for="consentcheckbox"> ${data.consentConfig.marketingConsent @
-                                context='html'}</label>
+                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${data.consentConfig.marketingConsent @ context='html'}</label>
                             </div>
                             <div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
                           </div>
