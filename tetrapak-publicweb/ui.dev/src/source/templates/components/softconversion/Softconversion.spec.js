@@ -51,7 +51,7 @@ describe('Softconversion', function () {
   it('Should update payload with dropItem changes', function() {
     document.getElementById('ddtest').click();
     expect(this.softconversion.cache.requestPayload['countryTitle']).to.equal('Albania');
-    expect(this.softconversion.cache.requestPayload['country']).to.equal('albania');
+    expect(this.softconversion.cache.requestPayload['country']).to.equal('Albania');
   });
 
   it('should not submit Form when required fields are empty', function (done) {
