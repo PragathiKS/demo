@@ -104,15 +104,7 @@ pipeline {
                     }
     }
    
-    def devartifactdownload() {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
-        {
-                sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
-                echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
 
-        }
-    }
-	
 	def sonarreport() {
                 echo "Publishing Sonar report"
                 sh 'sudo mkdir -p reports'
