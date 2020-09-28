@@ -6,71 +6,71 @@
     <filters
         jcr:primaryType="sling:MessageEntry"
         sling:key="filters"
-        sling:message="Filters"/>
+        sling:message="フィルター"/>
     <pw.findMyOffice.goToLocalSite
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.goToLocalSite"
-        sling:message="Go to Local Site"/>
+        sling:message="ローカルサイトへ行く"/>
     <pw.findMyOffice.viewLargerMap
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.viewLargerMap"
-        sling:message="View larger map"/>
+        sling:message="大きな地図で見る"/>
     <pw.form.businessenq.contactme
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.contactme"
-        sling:message="Contact me"/>
+        sling:message="連絡を希望します"/>
     <pw.form.businessenq.endtoendsolution
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.endtoendsolution"
-        sling:message="End-to-End solutions"/>
+        sling:message="エンドツーエンドのソリューション"/>
     <pw.form.businessenq.packaging
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.packaging"
-        sling:message="Packaging"/>
+        sling:message="パッケージング"/>
     <pw.form.businessenq.processing
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.processing"
-        sling:message="Processing"/>
+        sling:message="プロセッシング"/>
     <pw.form.businessenq.requestaquote
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.requestaquote"
-        sling:message="Request a quote"/>
+        sling:message="見積りを依頼"/>
     <pw.form.businessenq.requestforproductinfo
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.requestforproductinfo"
-        sling:message="Request for product information"/>
+        sling:message="製品情報のリクエスト"/>
     <pw.form.businessenq.services
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.services"
-        sling:message="Services"/>
+        sling:message="サービス"/>
     <pw.form.button.download
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.download"
-        sling:message="Download"/>
+        sling:message="ダウンロード"/>
     <pw.form.button.newrequest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.newrequest"
-        sling:message="New Request"/>
+        sling:message="新しいリクエスト"/>
     <pw.form.button.next
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.next"
-        sling:message="Next"/>
+        sling:message="次へ"/>
     <pw.form.button.previous
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.previous"
-        sling:message="Previous"/>
+        sling:message="前へ"/>
     <pw.form.button.submit
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.submit"
-        sling:message="Submit"/>
+        sling:message="送信"/>
     <pw.form.button.subscribe
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.subscribe"
-        sling:message="Subscribe"/>
+        sling:message="登録"/>
     <pw.form.contactus.career
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.career"
-        sling:message="Careers"/>
+        sling:message="採用情報"/>
     <pw.form.contactus.other
         cq:lastReplicated="{Date}2020-08-20T10:36:22.666Z"
         cq:lastReplicatedBy="sapient-daniel"
@@ -78,7 +78,7 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.other"
-        sling:message="General"/>
+        sling:message="一般"/>
     <pw.form.contactus.sustainability
         cq:lastReplicated="{Date}2020-08-20T10:35:48.027Z"
         cq:lastReplicatedBy="sapient-daniel"
@@ -86,75 +86,75 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.sustainability"
-        sling:message="Sustainability"/>
+        sling:message="サステイナビリティ"/>
     <pw.form.errormsg.businessareofinterest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.businessareofinterest"
-        sling:message="Please select business area of interest"/>
+        sling:message="関心のある事業分野を選択してください"/>
     <pw.form.errormsg.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.company"
-        sling:message="Enter your company name"/>
+        sling:message="所属会社名を入力してください"/>
     <pw.form.errormsg.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.country"
-        sling:message="Please select country"/>
+        sling:message="国を選択してください"/>
     <pw.form.errormsg.firstname
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.firstname"
-        sling:message="Enter your first name"/>
+        sling:message="名を入力してください"/>
     <pw.form.errormsg.invalidemail
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.invalidemail"
-        sling:message="Please enter your email in this format: example@example.com"/>
+        sling:message="次の形式でメールアドレスを入力してください: example@example.com"/>
     <pw.form.errormsg.invalidphonenumber
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.invalidphonenumber"
-        sling:message="Please write numbers"/>
+        sling:message="数字を書いてください"/>
     <pw.form.errormsg.lastname
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.lastname"
-        sling:message="Enter your last name"/>
+        sling:message="姓を入力してください"/>
     <pw.form.errormsg.marketingconsent
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.marketingconsent"
-        sling:message="Please select marketing consent"/>
+        sling:message="マーケティング情報配信に関する同意を選択してください"/>
     <pw.form.errormsg.messagebox
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.messagebox"
-        sling:message="Fill in your query/message"/>
+        sling:message="問い合わせ/メッセージを入力してください"/>
     <pw.form.errormsg.position
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.position"
-        sling:message="Enter your position"/>
+        sling:message="役職を入力してください"/>
     <pw.form.errormsg.purposeofcontact
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.purposeofcontact"
-        sling:message="Please select purpose of contact"/>
+        sling:message="お問い合わせの目的を選択してください"/>
     <pw.form.errormsg.serviceerror
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.serviceerror"
-        sling:message="Something went wrong. Please try again."/>
+        sling:message="送信できませんでした。 もう一度お試しください。"/>
     <pw.form.errormsg.typeofvisitor
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.typeofvisitor"
-        sling:message="Please select type of visitor"/>
+        sling:message="訪問者のタイプを選択してください"/>
     <pw.form.heading.businessarea
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.businessarea"
-        sling:message="Business area of interest"/>
+        sling:message="関心のある事業分野"/>
     <pw.form.heading.companyinformation
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.companyinformation"
-        sling:message="Company information"/>
+        sling:message="企業情報"/>
     <pw.form.heading.contactinformation
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.contactinformation"
-        sling:message="Contact information"/>
+        sling:message="連絡先情報"/>
     <pw.form.heading.howcanihelp
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.howcanihelp"
-        sling:message="How can I help you?"/>
+        sling:message="ご用件は何ですか？"/>
     <pw.form.heading.purposeofcontact
         cq:lastReplicated="{Date}2020-08-20T10:31:34.321Z"
         cq:lastReplicatedBy="sapient-daniel"
@@ -162,11 +162,11 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.purposeofcontact"
-        sling:message="Purpose of contact"/>
+        sling:message="お問い合わせの目的"/>
     <pw.form.heading.summary
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.summary"
-        sling:message="Summary"/>
+        sling:message="概要"/>
     <pw.form.heading.typeofvisitor
         cq:lastReplicated="{Date}2020-08-20T10:34:11.204Z"
         cq:lastReplicatedBy="sapient-daniel"
@@ -174,23 +174,23 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.typeofvisitor"
-        sling:message="Reason for visit today"/>
+        sling:message="今日の訪問理由"/>
     <pw.form.label.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
-        sling:message="Company"/>
+        sling:message="会社名"/>
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
-        sling:message="Country"/>
+        sling:message="国"/>
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
-        sling:message="Select Country"/>
+        sling:message="国を選択"/>
     <pw.form.label.email
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.email"
-        sling:message="E-mail"/>
+        sling:message="電子メール"/>
     <pw.form.label.emailPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.emailPlaceholder"
@@ -198,87 +198,87 @@
     <pw.form.label.firstName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.firstName"
-        sling:message="First name"/>
+        sling:message="名"/>
     <pw.form.label.lastName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.lastName"
-        sling:message="Last name"/>
+        sling:message="姓"/>
     <pw.form.label.message
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.message"
-        sling:message="Message"/>
+        sling:message="メッセージ"/>
     <pw.form.label.office
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.office"
-        sling:message="Office"/>
+        sling:message="オフィス"/>
     <pw.form.label.officePlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.officePlaceholder"
-        sling:message="Select Office"/>
+        sling:message="オフィスを選択"/>
     <pw.form.label.phonenumber
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phonenumber"
-        sling:message="Phone number (optional)"/>
+        sling:message="電話番号（オプション）"/>
     <pw.form.label.phoneplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phoneplaceholder"
-        sling:message="Country code and Number"/>
+        sling:message="国コードと番号"/>
     <pw.form.label.position
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.position"
-        sling:message="Position"/>
+        sling:message="役職"/>
     <pw.form.softconversion.customer
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.customer"
-        sling:message="Business"/>
+        sling:message="ビジネス"/>
     <pw.form.softconversion.pressandmedia
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.pressandmedia"
-        sling:message="Press &amp; Media"/>
+        sling:message="プレス＆メディア"/>
     <pw.form.softconversion.talent
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.talent"
-        sling:message="Careers"/>
+        sling:message="採用情報"/>
     <pw.form.step
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.step {0} of {1}"
-        sling:message="Step {0} of {1}"/>
+        sling:message="ステップ{0} / {1}"/>
     <pw.pxp.openingbenefits
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingbenefits"
-        sling:message="Benefits:"/>
+        sling:message="利点:"/>
     <pw.pxp.openingprinciple
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingprinciple"
-        sling:message="Principle:"/>
+        sling:message="原則:"/>
     <pw.pxp.openingtype
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingtype"
-        sling:message="Type:"/>
+        sling:message="タイプ:"/>
     <pw.search.searchbarplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.search.searchbarplaceholder"
-        sling:message="What are you looking for?"/>
+        sling:message="お客様がお探しのものは何でしょうか？"/>
     <pw.searchResults.contentPage
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.contentPage"
-        sling:message="Content Page"/>
+        sling:message="コンテンツページ"/>
     <pw.searchResults.contenttype
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.contenttype"
-        sling:message="CONTENT TYPES"/>
+        sling:message="コンテンツタイプ"/>
     <pw.searchResults.document
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.document"
-        sling:message="document"/>
+        sling:message="ドキュメント"/>
     <pw.searchResults.emptySearchText
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.emptySearchText"
-        sling:message="Please try again to enter a search text in the above field"/>
+        sling:message="上記のフィールドに検索条件をもう一度入力してください"/>
     <pw.searchResults.image
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.image"
-        sling:message="image"/>
+        sling:message="画像"/>
     <pw.searchResults.kb
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.kbyte"
@@ -290,11 +290,11 @@
     <pw.searchResults.nosearchresults
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.nosearchresults"
-        sling:message="No search results"/>
+        sling:message="検索結果がありません"/>
     <pw.searchResults.of
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.of"
-        sling:message="of"/>
+        sling:message="環境"/>
     <pw.searchResults.ok
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.ok"
@@ -302,21 +302,21 @@
     <pw.searchResults.searchplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.searchplaceholder"
-        sling:message="What are you looking for?"/>
+        sling:message="お客様がお探しのものは何でしょうか？"/>
     <pw.searchResults.searchresultsText
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.searchresultsText"
-        sling:message="search results"/>
+        sling:message="検索結果"/>
     <pw.searchResults.searchresultsTextFor
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.searchresultsTextFor"
-        sling:message="search results for"/>
+        sling:message="以下の項目に対する検索結果"/>
     <pw.searchResults.themes
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.themes"
-        sling:message="THEMES"/>
+        sling:message="テーマ"/>
     <pw.searchResults.video
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.video"
-        sling:message="video"/>
+        sling:message="ビデオ"/>
 </jcr:root>
