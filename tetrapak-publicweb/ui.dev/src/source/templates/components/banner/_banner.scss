@@ -117,7 +117,7 @@
     }
     &__content {
         @include border-radius($border-radius);
-        @include margin(-48px 0);
+        @include margin(-96px 0 0 0);
         @include padding-top($padding-l);
         @include padding-left($padding-md);
         @include padding-bottom($padding-l);
