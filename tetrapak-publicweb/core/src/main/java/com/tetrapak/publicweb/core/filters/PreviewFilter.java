@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.filters;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -76,12 +77,14 @@ public class PreviewFilter implements Filter {
      * @return true, if is salt in valid
      */
     public boolean isSaltInValid(final SlingHttpServletRequest slingRequest, String previewParam) {
-        boolean isSaltInValid = true;
-        Resource pageContentRes = PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource();
-        if (pageContentRes != null && pageContentRes.getValueMap().containsKey("previewSalt")) {
-            String previewSalt = (String) pageContentRes.getValueMap().get("previewSalt");
-            if (previewSalt.equals(previewParam)) {
-                isSaltInValid = false;
+        boolean isSaltInValid = true;  
+        if(Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource())) {
+            Resource pageContentRes = PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource();
+            if (Objects.nonNull(pageContentRes) && pageContentRes.getValueMap().containsKey("previewSalt")) {
+                String previewSalt = (String) pageContentRes.getValueMap().get("previewSalt");
+                if (previewSalt.equals(previewParam)) {
+                    isSaltInValid = false;
+                }
             }
         }
         return isSaltInValid;
