@@ -67,7 +67,8 @@ PassEnv DISP_ID
                 ## Enabled to allow rewrites to take affect and not be ignored by the dispatcher module
                 DispatcherUseProcessedURL       1
                 ## Default setting to allow all errors to come from the aem instance
-                DispatcherPassError             0
+                DispatcherPassError             1
+                #DispatcherPassError             0
         </IfModule>
         <IfModule mod_rewrite.c>
                 ReWriteEngine   on

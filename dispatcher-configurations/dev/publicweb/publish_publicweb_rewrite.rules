@@ -16,8 +16,8 @@ RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
 RewriteCond   %{HTTP_HOST}  'tetrapak-dev64a.adobecqms.net'
 RewriteCond   %{REQUEST_URI} ^/
-ErrorDocument 404 /content/tetrapak/publicweb/global/en/error/404
-ErrorDocument 500 /content/tetrapak/publicweb/global/en/error/500
+#ErrorDocument 404 /content/tetrapak/publicweb/global/en/error/404
+#ErrorDocument 500 /error/500
 
 ## This ruleset is use for Country  based  URL redirection
 
@@ -425,6 +425,366 @@ RewriteCond   %{HTTP_HOST}  'www-dev.tetrapak.com'
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
 RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
-ErrorDocument 404 /content/tetrapak/publicweb/global/en/error/404
-ErrorDocument 403 /content/tetrapak/publicweb/global/en/error/404
-ErrorDocument 500 /content/tetrapak/publicweb/global/en/error/500
+<LocationMatch "/content/tetrapak/publicweb/global/en*">
+ErrorDocument 500 "/error/500"
+ErrorDocument 400 "/error/400"
+ErrorDocument 404 "/error/404"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ar/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ar/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ar/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ar/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/au/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/au/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/au/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/au/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/be/fr*">
+ErrorDocument 404 "/content/tetrapak/publicweb/be/fr/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/be/fr/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/be/fr/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/br/pt*">
+ErrorDocument 404 "/content/tetrapak/publicweb/br/pt/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/br/pt/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/br/pt/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ca/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ca/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ca/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ca/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ca/fr*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ca/fr/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ca/fr/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ca/fr/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ch/fr*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ch/fr/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ch/fr/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ch/fr/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/cl/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/cl/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/cl/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/cl/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/cn/zh*">
+ErrorDocument 404 "/content/tetrapak/publicweb/cn/zh/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/cn/zh/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/cn/zh/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/co/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/co/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/co/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/co/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/cz/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/cz/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/cz/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/cz/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/de/de*">
+ErrorDocument 404 "/content/tetrapak/publicweb/de/de/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/de/de/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/de/de/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ec/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ec/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ec/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ec/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/es/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/es/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/es/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/es/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/fi/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/fi/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/fi/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/fi/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/fr/fr*">
+ErrorDocument 404 "/content/tetrapak/publicweb/fr/fr/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/fr/fr/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/fr/fr/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/gr/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/gr/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/gr/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/gr/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/hr/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/hr/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/hr/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/hr/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/hu/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/hu/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/hu/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/hu/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/id/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/id/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/id/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/id/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ie/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ie/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ie/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ie/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/in/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/in/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/in/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/in/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ir/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ir/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ir/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ir/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/it/it*">
+ErrorDocument 404 "/content/tetrapak/publicweb/it/it/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/it/it/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/it/it/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/it/it*">
+ErrorDocument 404 "/content/tetrapak/publicweb/it/it/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/it/it/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/it/it/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ja/jp*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ja/jp/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ja/jp/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ja/jp/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/kr/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/kr/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/kr/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/kr/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/lv/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/lv/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/lv/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/lv/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/mx/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/mx/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/mx/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/mx/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/my/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/my/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/my/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/my/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/nl/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/nl/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/nl/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/nl/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/no/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/no/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/no/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/no/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/cac/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/cac/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/cac/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/cac/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/pe/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/pe/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/pe/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/pe/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ph/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ph/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ph/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ph/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/pk/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/pk/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/pk/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/pk/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/pl/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/pl/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/pl/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/pl/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/pt/pt*">
+ErrorDocument 404 "/content/tetrapak/publicweb/pt/pt/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/pt/pt/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/pt/pt/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/py/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/py/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/py/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/py/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ro/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ro/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ro/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ro/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/rs/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/rs/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/rs/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/rs/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/sa/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/sa/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/sa/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/sa/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/se/sv*">
+ErrorDocument 404 "/content/tetrapak/publicweb/se/sv/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/se/sv/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/se/sv/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/sg/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/sg/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/sg/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/sg/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/sk/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/sk/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/sk/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/sk/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/th/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/th/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/th/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/th/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/tr/tr*">
+ErrorDocument 404 "/content/tetrapak/publicweb/tr/tr/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/tr/tr/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/tr/tr/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/tw/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/tw/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/tw/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/tw/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/uk/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/uk/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/uk/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/uk/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/us/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/us/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/us/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/us/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ve/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ve/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ve/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ve/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/vn/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/vn/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/vn/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/vn/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/za/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/za/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/za/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/za/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ru/ru*">
+ErrorDocument 404 "/content/tetrapak/publicweb/ru/ru/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/ru/ru/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/ru/ru/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/maghreb/fr*">
+ErrorDocument 404 "/content/tetrapak/publicweb/maghreb/fr/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/maghreb/fr/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/maghreb/fr/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/pa/es*">
+ErrorDocument 404 "/content/tetrapak/publicweb/pa/es/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/pa/es/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/pa/es/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/global/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/global/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/global/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/global/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/gb/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/gb/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/gb/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/gb/en/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/gb/en*">
+ErrorDocument 404 "/content/tetrapak/publicweb/gb/en/error/404"
+ErrorDocument 500 "/content/tetrapak/publicweb/gb/en/error/500"
+ErrorDocument 403 "/content/tetrapak/publicweb/gb/en/error/403"
+</LocationMatch>
+
+ErrorDocument 500 "/error/500"
+ErrorDocument 400 "/error/400"
+ErrorDocument 404 "/error/404"
