@@ -375,12 +375,11 @@ class Softconversion {
 
     $dropItem.click(function (e) {
       e.preventDefault();
-      const country = $(this).data('country');
       const countryTitle = $(this).data('countrytitle');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
       $('input', parentDrop).val(countryTitle);
-      requestPayload['country'] = country;
+      requestPayload['country'] = countryTitle;
       self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload['country'];
       requestPayload['countryTitle'] = countryTitle;
       $dropItem.removeClass('active');
