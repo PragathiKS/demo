@@ -4,7 +4,7 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import { getI18n } from '../../../scripts/common/common';
+import { getI18n, parseQueryString } from '../../../scripts/common/common';
 
 class Searchresults {
   constructor({ el }) {
@@ -170,7 +170,7 @@ class Searchresults {
       this.cache.$spinner.addClass('d-none');
       this.cache.$pagination.addClass('d-none');
     } else {
-      let searchTerm = this.parseQueryString() && this.parseQueryString().searchTerm;
+      let searchTerm = parseQueryString().searchTerm;
       searchTerm = decodeURIComponent(searchTerm) && decodeURIComponent(searchTerm).trim();
       this.cache.$filterChecks.attr('disabled', true);
       let queryParams = this.cache.queryParams;
@@ -363,22 +363,8 @@ class Searchresults {
     return str;
   };
 
-  parseQueryString = () => {
-
-    var str = window.location.search;
-    var objURL = {};
-
-    str.replace(
-      new RegExp( '([^?=&]+)(=([^&]*))?', 'g' ),
-      function( $0, $1, $2, $3 ){
-        objURL[ $1 ] = $3;
-      }
-    );
-    return objURL;
-  };
-
   extractQueryParams = () => {
-    const params = this.parseQueryString();
+    const params = parseQueryString();
     params['searchTerm'] = decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim();
     this.cache.$searchInput.val(params['searchTerm']);
     this.cache.queryParams = window.location.search;
