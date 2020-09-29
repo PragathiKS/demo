@@ -59,7 +59,7 @@ public class PreviewFilter implements Filter {
                 && "true".equalsIgnoreCase(slingRequest.getHeader("preview")) 
                 && Boolean.TRUE.equals(isSaltInValid(slingRequest, previewParam))) {
             slingResponse.sendRedirect(
-                    "/system/sling/logout.html?resource=" + slingRequest.getPathInfo() + PWConstants.HTML);
+                    "/system/sling/logout.html?resource=" + slingRequest.getPathInfo());
         }
         chain.doFilter(request, response);
     }
