@@ -23,6 +23,9 @@
                  <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
             </div>
         </sly>
+         <sly data-sly-test="${data.bannerType == 'hero'}">
+            <div class="pw-banner-herowrapper">
+        </sly>
         <sly data-sly-test="${data.bannerType == 'hero'}">
             <sly data-sly-test="${data.pwDisplay =='display-row'}">
                 <div class="pw-banner__sideSection"></div>
@@ -91,5 +94,8 @@
         <sly data-sly-test="${data.bannerType == 'hero'}">
             </section>
          </sly>
+    <sly data-sly-test="${data.bannerType == 'hero'}">
+        </div>
+    </sly>
     </div>
 </sly>
