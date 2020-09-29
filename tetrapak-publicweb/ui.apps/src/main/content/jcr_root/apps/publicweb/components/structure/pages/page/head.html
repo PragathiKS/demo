@@ -26,7 +26,7 @@
     <sly data-sly-test="${digitalDataModel.canonicalURL}">
         <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
     </sly>
-	<sly data-sly-test="digitalDataModel.hreflangValues}">
+	<sly data-sly-test="${digitalDataModel.hreflangValues}">
     <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues}">
         <link rel="alternate" hreflang=${hreflangData.locale} href=${hreflangData.pageUrl}/>
     </sly>
