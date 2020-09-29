@@ -34,10 +34,16 @@ class Banner {
         $siblingBanner.css('height', bannerHeight);
         if ($sideSection.length) {
           $sideSection.css('width', bannerOffset.left +'px');
+          if($('.pw-banner-herowrapper').length) {
+            $('.pw-banner-herowrapper').css('visibility','visible');
+          }
         }
         if ($sideSectionright.length) {
           const finalWidth = windowWidth - bannerOffset.left -  bannerWidth;
           $sideSectionright.css('width', finalWidth +'px');
+          if($('.pw-banner-herowrapper').length) {
+            $('.pw-banner-herowrapper').css('visibility','visible');
+          }
         }
       });
     }
