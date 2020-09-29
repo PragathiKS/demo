@@ -63,8 +63,8 @@ public class PreviewFilter implements Filter {
         if (Boolean.FALSE.equals(isSkip) && slingRequest.getPathInfo().startsWith("/content/tetrapak/publicweb")
                 && "true".equalsIgnoreCase(slingRequest.getHeader("preview")) 
                 && Boolean.TRUE.equals(isSaltInValid(slingRequest, previewParam))) {
-            authenticator.logout(slingRequest, slingResponse);
-            slingResponse.sendRedirect(slingRequest.getPathInfo() + PWConstants.HTML);
+            //authenticator.logout(slingRequest, slingResponse);
+            slingResponse.sendRedirect("/system/sling/logout.html");
         }
         chain.doFilter(request, response);
     }
