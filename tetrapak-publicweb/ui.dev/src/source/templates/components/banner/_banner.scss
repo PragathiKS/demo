@@ -24,7 +24,7 @@
             }
             &.sky-blue {
                 color: $color-white;
-                background: linear-gradient(101.77deg, $color-sky-blue 8.01%, rgba(0, 189, 242, 0.8) 90.8%);
+                background: linear-gradient(to top, $color-sky-blue 84.01%, rgba(0, 189, 242, 0.8) 98.8%);
                 @media #{$desktop} {
                     background: transparent;
                 }
@@ -207,7 +207,7 @@
         }
         &.sky-blue {
             color: $color-white;
-            background: linear-gradient(101.77deg, $color-sky-blue 8.01%, rgba(0, 189, 242, 0.8) 90.8%);
+            background: linear-gradient(to top, $color-sky-blue 84.01%, rgba(0, 189, 242, 0.8) 98.8%);
             @media #{$desktop} {
                 background: transparent;
                 width: 492px;
@@ -301,5 +301,7 @@
     }
 }
 .pw-banner-herowrapper {
-    visibility: hidden;
+    @media #{$desktop} {
+        visibility: hidden;
+    }
 }
