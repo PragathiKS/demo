@@ -62,6 +62,7 @@ class Banner {
   }
 
   trackBannerImageClick = (e) => {
+    e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.pw-banner');
     const $anchor = $this.data('href');
