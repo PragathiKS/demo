@@ -216,13 +216,18 @@ function _onStateChange(thisIns, e) {
  */
 export const ytPromise = new Promise(function(resolve) {
   try {
-    const scr = document.createElement('script');
-    scr.src = 'https://www.youtube.com/iframe_api';
-    const firstScript = document.getElementsByTagName('script')[0];
-    firstScript.parentNode.insertBefore(scr, firstScript);
-    window.onYouTubeIframeAPIReady = function(...args) {
-      resolve(args);
-    };
+    if($('.js-yt-player').length > 0){
+      const scr = document.createElement('script');
+      scr.src = 'https://www.youtube.com/iframe_api';
+      const firstScript = document.getElementsByTagName('script')[0];
+      firstScript.parentNode.insertBefore(scr, firstScript);
+      window.onYouTubeIframeAPIReady = function(...args) {
+        resolve(args);
+      };
+    } else {
+      resolve();
+    }
+
   } catch {
     logger.log('Error in youTube api>>>>>>>>>>>>');
   }
