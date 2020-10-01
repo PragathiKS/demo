@@ -11,7 +11,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.auth.Authenticator;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.service.component.annotations.Component;
@@ -32,10 +31,6 @@ public class PreviewFilter implements Filter {
     /** The settings service. */
     @Reference
     private SlingSettingsService settingsService;
-
-    /** The authenticator. */
-    @Reference
-    Authenticator authenticator;
 
     /** The is skip. */
     Boolean isSkip = true;
@@ -63,8 +58,8 @@ public class PreviewFilter implements Filter {
         if (Boolean.FALSE.equals(isSkip) && slingRequest.getPathInfo().startsWith("/content/tetrapak/publicweb")
                 && "true".equalsIgnoreCase(slingRequest.getHeader("preview")) 
                 && Boolean.TRUE.equals(isSaltInValid(slingRequest, previewParam))) {
-            authenticator.logout(slingRequest, slingResponse);
-            slingResponse.sendRedirect(slingRequest.getPathInfo() + PWConstants.HTML);
+            slingResponse.sendRedirect(
+                    "/system/sling/logout.html?resource=" + slingRequest.getPathInfo());
         }
         chain.doFilter(request, response);
     }
