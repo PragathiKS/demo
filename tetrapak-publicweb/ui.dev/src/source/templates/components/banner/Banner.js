@@ -63,30 +63,31 @@ class Banner {
 
   trackBannerImageClick = (e) => {
     const $target = $(e.target);
-    const $this = $target.closest('.pw-banner');
-    const $anchor = $this.data('href');
-    if (!($anchor && $anchor !== '#')) {
-      return false;
-    }
-    if ($(e.target).closest('.pw-banner__content').length) {
-      return true;
-    }
+    if($target.hasClass('js-dynamic-media')){
+      const $this = $target.closest('.pw-banner');
+      const $anchor = $this.data('href');
+      if (!($anchor && $anchor !== '#')) {
+        return false;
+      }
+      if ($(e.target).closest('.pw-banner__content').length) {
+        return true;
+      }
 
-    if (isDownloable($anchor)) {
-      $this.data('download-type', 'download');
-    }
+      if (isDownloable($anchor)) {
+        $this.data('download-type', 'download');
+      }
 
-    if (isExternal($anchor)) {
-      $this.attr('target', '_blank');
-    }
+      if (isExternal($anchor)) {
+        $this.attr('target', '_blank');
+      }
 
-    getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);
+      getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);
 
-
-    if (isExternal($anchor)) {
-      window.open($anchor, '_blank');
-    } else {
-      window.location.href = $anchor;
+      if (isExternal($anchor)) {
+        window.open($anchor, '_blank');
+      } else {
+        window.location.href = $anchor;
+      }
     }
   }
 
