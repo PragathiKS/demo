@@ -312,7 +312,7 @@ class Header {
     const myDomainAdobe = 'adobecqms.net';
     if (url && (url.includes('http://') || url.includes('https://')) && !url.includes(myDomain) && !url.includes(myDomainAdobe)) {
       $this.attr('target','_blank');
-    } else {
+    } else if(!$this.hasClass('js-click-menu-link')) {
       $this.attr('target','_self');
     }
     const linkType = $this.attr('target') === '_blank'? 'external' :'internal';
