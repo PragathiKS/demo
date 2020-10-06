@@ -15,6 +15,8 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.beans.pxp.Category;
@@ -28,13 +30,16 @@ import com.tetrapak.publicweb.core.beans.pxp.TechnologyType;
 import com.tetrapak.publicweb.core.beans.pxp.Video;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import com.tetrapak.publicweb.core.utils.SearchMapHelper;
 
 /**
  * The Class ProductModel.
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ProductModel {
-
+    
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductModel.class);
 
     /** The resource. */
     @Self
@@ -68,7 +73,8 @@ public class ProductModel {
     /**
      * Gets the template type.
      *
-     * @param template the template
+     * @param template
+     *            the template
      * @return the template type
      */
     private String getTemplateType(String template) {
@@ -88,16 +94,27 @@ public class ProductModel {
     /**
      * Gets the language code.
      *
-     * @param languageCode the language code
+     * @param languageCode
+     *            the language code
      * @return the language code
      */
     private String getLanguageCode(String languageCode) {
         String langCode = languageCode;
-        if(languageCode.startsWith("pt")) {
-            langCode = "pt-br";
-        }
-        if(languageCode.startsWith("es")) {
-            langCode = "es-xl";
+        switch (langCode) {
+            case "pt":
+                langCode = "pt-br";
+                break;
+            case "es":
+                langCode = "es-xl";
+                break;
+            case "ja":
+                langCode = "jp";
+                break;
+            case "zh_cn":
+                langCode = "cn";
+                break;
+            default:
+                LOGGER.debug("Return the language code without manipulation");
         }
         return langCode;
     }
@@ -162,7 +179,8 @@ public class ProductModel {
     /**
      * Gets the shapes.
      *
-     * @param rootResource the root resource
+     * @param rootResource
+     *            the root resource
      * @return the shapes
      */
     private List<Shape> getShapes(Resource rootResource) {
@@ -217,8 +235,10 @@ public class ProductModel {
     /**
      * Gets the featues or options list.
      *
-     * @param list the list
-     * @param type the type
+     * @param list
+     *            the list
+     * @param type
+     *            the type
      * @return the featues or options list
      */
     private List<FeatureOption> getFeatuesOrOptionsList(List<FeatureOption> list, String type) {
