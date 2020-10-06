@@ -110,7 +110,7 @@ public class ProductModel {
             case "ja":
                 langCode = "jp";
                 break;
-            case "zh_cn":
+            case "zh":
                 langCode = "cn";
                 break;
             default:
