@@ -37,7 +37,7 @@ import com.tetrapak.publicweb.core.utils.SearchMapHelper;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ProductModel {
-    
+
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductModel.class);
 
@@ -114,7 +114,7 @@ public class ProductModel {
                 langCode = "cn";
                 break;
             default:
-                LOGGER.debug("Return the language code without manipulation");
+                LOGGER.debug("Return the language code without manipulation, languageCode : {}", langCode);
         }
         return langCode;
     }
