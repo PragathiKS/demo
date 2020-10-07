@@ -49,6 +49,13 @@
     $self: &;
     position: relative;
 
+    &.pw-theme--grayscale-white {
+        background-color: transparent;
+        @media #{$desktop} {
+            background-color: $color-white;
+        }
+    }
+
     &__image-wrapper {
         position: relative;
         width: 100%;
@@ -125,7 +132,7 @@
     }
     &__content {
         @include border-radius($border-radius);
-        @include margin(-48px 0 0 0);
+        @include margin(-24px 0 0 0);
         @include padding-top($padding-l);
         @include padding-left($padding-md);
         @include padding-bottom($padding-l);
