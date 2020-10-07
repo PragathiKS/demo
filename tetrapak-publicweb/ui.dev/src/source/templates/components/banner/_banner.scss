@@ -165,6 +165,7 @@
         &__title {
             @include margin-bottom($margin-md);
             @include margin-top($margin-sm);
+            max-height: unset;
             h1,
             h2,
             h3 {
@@ -177,7 +178,6 @@
                     line-height: 40px;
                 }
             }
-            @include max-height(64px);
             @media #{$desktop} {
                 max-height: convert-to-rem(140px);
             }
