@@ -75,7 +75,7 @@ public class PreviewFilter implements Filter {
      */
     public boolean isSaltInValid(final SlingHttpServletRequest slingRequest, String previewParam) {
         boolean isSaltInValid = true;  
-        if(Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource())) {
+        if(Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource())) && Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource())) {
             Resource pageContentRes = PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource();
             if (Objects.nonNull(pageContentRes) && pageContentRes.getValueMap().containsKey("previewSalt")) {
                 String previewSalt = (String) pageContentRes.getValueMap().get("previewSalt");
