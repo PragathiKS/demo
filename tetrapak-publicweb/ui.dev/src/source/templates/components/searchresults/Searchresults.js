@@ -435,7 +435,7 @@ class Searchresults {
   }
 
   renderPagination = () => {
-    const currentPage = this.cache.searchParams.page;
+    const currentPage = this.cache.searchParams.page && parseInt(this.cache.searchParams.page,10);
     const totalPages = this.cache.totalPages;
     const paginationText = this.cache.$pagination.data('paginationText');
     const paginationData = {
