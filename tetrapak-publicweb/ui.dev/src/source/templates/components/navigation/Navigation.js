@@ -34,6 +34,12 @@ class Navigation {
       if(event.target === event.currentTarget){
         $(this).parent().children('a.collapse-button').children('.without-arrow').removeClass('icon-Close_pw').addClass('icon-Navigation_Right_pw');
       }
+    }).on('shown.bs.collapse', function(){
+      $('.js-pw-navigation__container').each(function() {
+        const headerHeightMobile = 62; // mobile sticky header height
+        const sectionMenuHeightMobile = 56; // mobile sticky section hight
+        $( this ).css('height',window.innerHeight - (headerHeightMobile + sectionMenuHeightMobile));
+      });
     });
 
     $sectionMenuToggle.on('click', this.sectionMenuToggleClick);
