@@ -41,7 +41,7 @@ class Marketselector {
 
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
       if(url){
-        window.open(url);
+        window.open(url,$target.attr('target'));
       }
     }
 
