@@ -171,7 +171,7 @@ class Searchresults {
       this.cache.$pagination.addClass('d-none');
     } else {
       let searchTerm = parseQueryString().searchTerm;
-      searchTerm = decodeURIComponent(searchTerm) && decodeURIComponent(searchTerm).trim();
+      searchTerm = searchTerm && decodeURIComponent(searchTerm) && decodeURIComponent(searchTerm).trim() || '';
       this.cache.$filterChecks.attr('disabled', true);
       let queryParams = this.cache.queryParams;
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
@@ -365,7 +365,7 @@ class Searchresults {
 
   extractQueryParams = () => {
     const params = parseQueryString();
-    params['searchTerm'] = decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim();
+    params['searchTerm'] = params['searchTerm'] && decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim() || '';
     this.cache.$searchInput.val(params['searchTerm']);
     this.cache.queryParams = window.location.search;
     Object.keys(params).map(key => {
