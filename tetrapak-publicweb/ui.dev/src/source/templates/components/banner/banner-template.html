@@ -49,9 +49,11 @@
         <sly data-sly-test="${data.bannerType == 'hero'}">
             <sly data-sly-test="${data.pwDisplay =='display-row-reversed'}">
                 <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} display-row-reversed-wrapper">
+                    <div class="pw-banner__gradient-bg"></div>
             </sly>
             <sly data-sly-test="${data.pwDisplay =='display-row'}">
                 <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay}">
+                     <div class="pw-banner__gradient-bg"></div>
             </sly>
         </sly>
             <div class="pw-banner__content banner-sibling ${data.pwDisplay} ${data.pwCardTheme}"></div>
