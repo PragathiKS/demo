@@ -50,10 +50,15 @@ class FindMyOffice {
 
   bindEvents() {
     const googleApiKey = this.cache.googleApi.data('google-api-key');
-    loadGoogleMapsApi({
-      key: googleApiKey,
-      libraries: ['places', 'geometry']
-    }).then(this.handleGoogleMapApi);
+    const isChina = window.location.href.indexOf('zh-cn');
+    if(isChina === -1){
+      loadGoogleMapsApi({
+        key: googleApiKey,
+        libraries: ['places', 'geometry']
+      }).then(this.handleGoogleMapApi);
+    } else {
+      this.getOfficesList();
+    }
     this.root.on('click', '.js-localSiteUrl', this.goToLocalSite);
   }
 
