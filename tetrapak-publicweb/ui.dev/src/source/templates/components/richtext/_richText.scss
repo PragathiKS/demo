@@ -24,6 +24,11 @@
 }
 
 .tp-pw-richText {
+    sup {
+        @include line-height($font-l, $font-baseline);
+        top: 0;
+    }
+
     &.tp-pw-richText-container {
         @include margin-top(0);
         @include margin-left(16px);
@@ -33,7 +38,7 @@
     }
 
     li {
-        display: flex;
+        display: inline-block;
     }
 
     .tp-pw-richText-wrapper a {
@@ -88,7 +93,7 @@
         @include font-size(16px);
         @include line-height(28px, 16px);
         @include margin-bottom(24px);
-        font-weight: 500;
+        font-weight: 400;
     }
 
     small {
