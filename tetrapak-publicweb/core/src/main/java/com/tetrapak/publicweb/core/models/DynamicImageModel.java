@@ -358,13 +358,14 @@ public class DynamicImageModel {
      *            the width
      * @return the crop parameter for scene 7
      */
-    private String getCropParameterForScene7(final Long height, Long width) {
+    private String getCropParameterForScene7(Long height, Long width) {
         if (null == imageCrop) {
             return StringUtils.EMPTY;
         }
         if (width > 1280) {
             width = (long) 1280;
-        }
+            height = (long) 250;
+        }      
         final String[] cropArray = imageCrop.split(",");
         final Double topW = Double.valueOf(cropArray[0]);
         final Double topH = Double.valueOf(cropArray[1]);
