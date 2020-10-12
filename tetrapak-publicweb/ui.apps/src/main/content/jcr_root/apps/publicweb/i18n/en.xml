@@ -74,11 +74,11 @@
     <pw.form.contactus.other
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.other"
-        sling:message="Press &amp; Media"/>
+        sling:message="General"/>
     <pw.form.contactus.sustainability
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.contactus.sustainability"
-        sling:message="Business"/>
+        sling:message="Sustainability"/>
     <pw.form.errormsg.businessareofinterest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.businessareofinterest"
@@ -150,7 +150,7 @@
     <pw.form.heading.purposeofcontact
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.purposeofcontact"
-        sling:message="Reason for visit today"/>
+        sling:message="Purpose of contact"/>
     <pw.form.heading.summary
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.summary"
