@@ -19,6 +19,7 @@
         }
         &__content {
             @include margin(0);
+            @include padding-top($padding-l);
             @media #{$desktop} {
                 width: 540px;
             }
