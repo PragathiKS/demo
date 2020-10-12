@@ -201,6 +201,17 @@ class Softconversion {
   bindEvents() {
     const {requestPayload, $radio, $nextbtn, $submitBtn, $componentName, $parentComponent, $company, $position, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn, $dropItem } = this.cache;
     const self = this;
+
+    $(window).ready(function() {
+      $('#pw-form-soft-conversion').on('keypress', function (event) {
+        var keyPressed = event.keyCode || event.which;
+        if (keyPressed === 13) {
+          event.preventDefault();
+          return false;
+        }
+      });
+    });
+
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('showsoftconversion-pw', this.showPopup);
 
