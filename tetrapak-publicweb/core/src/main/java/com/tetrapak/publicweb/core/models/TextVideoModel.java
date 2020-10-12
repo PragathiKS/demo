@@ -331,7 +331,7 @@ public class TextVideoModel {
      * @return the soft conversion data
      */
     public SoftConversionModel getSoftConversionData() {
-        return request.getResource().adaptTo(SoftConversionModel.class);
+        return request.adaptTo(SoftConversionModel.class);
     }
 
 }
