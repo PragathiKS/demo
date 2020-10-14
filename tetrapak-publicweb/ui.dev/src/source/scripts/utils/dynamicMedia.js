@@ -52,6 +52,15 @@ function _processImageAttributes(container,isMediaChanged) {
       //desktop xtra large
       $this.attr('data-src', desktopXL);
     }
+
+    if($this.hasClass('load-mega-menu-dynamic-media')){
+      if($('.pw-megamenu__top .pw-mega-menu-col').length <=3 && (window.matchMedia('(min-width: 1200px) and (max-width: 1439px)').matches || window.matchMedia('(min-width: 1200px) and (max-width: 1439px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1200px) and (max-width: 1439px) and (min-resolution: 192dpi), (min-width: 1200px) and (max-width: 1439px) and (min-resolution: 2dppx)').matches)) {
+        // desktop Large
+        $this.attr('data-src', desktopL);
+      }
+    }
+
+
   });
   if (typeof container === 'string') {
     return new LazyLoad({
