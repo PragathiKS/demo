@@ -44,7 +44,7 @@ describe('ContactUs', function () {
   it('Should update payload with dropItem changes', function() {
     document.getElementById('ddtest').click();
     expect(this.contactUs.cache.requestPayload['countryTitle']).to.equal('Denmark');
-    expect(this.contactUs.cache.requestPayload['country']).to.equal('Denmark');
+    expect(this.contactUs.cache.requestPayload['country']).to.equal('denmark');
   });
 
   it('should update request payload when step-2 next button is clicked', function (done) {
