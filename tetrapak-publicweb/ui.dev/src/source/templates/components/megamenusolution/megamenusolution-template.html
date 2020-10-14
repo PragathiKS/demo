@@ -1,4 +1,4 @@
-<sly data-sly-template.megamenusolution_template="${@data, endToEndSolutionSectionList, linkSectionList, foodCategorySectionList, isMobile, flag, mainHeader}">
+<sly data-sly-template.megamenusolution_template="${@data, endToEndSolutionSectionList, linkSectionList, foodCategorySectionList, isMobile, isMobileMegaMenu, flag, mainHeader}">
   <div data-module="MegaMenuSolution" class="pw-megamenu" aria-hidden="true" aria-expanded="false">
     <!--/* Component HTML code goes here */-->
     <hr class="d-none d-lg-block" />
@@ -16,7 +16,7 @@
             data-sly-call="${solutiontitle.heading_h2_template @ headingText='Solution', variant='regular'}" />
         </div>
         <ul class="row" data-sly-list.endToEndSolutionSection=${endToEndSolutionSectionList}>
-          <li class="col pw-mega-menu-col">
+          <li class="col ${isMobileMegaMenu == true ? '' : 'pw-mega-menu-col'}">
             <a class="js-navigation-Link" data-link-section='Tetra Pak end to end solutions'
               data-link-title="${endToEndSolutionSection.title}" data-link-name='${mainHeader}:${endToEndSolutionSection.title}' href="${endToEndSolutionSection.path}">
               <sly data-sly-test="${!wcmmode.edit}">
