@@ -25,6 +25,9 @@ class MegaMenuSolution {
     $menuCloser.on('click', this.handleCloseEvent);
     $navigationLink.on('click', this.trackAnalytics);
     this.loadMegaMenuCol();
+    $( window ).resize(() => {
+      this.loadMegaMenuCol();
+    });
   }
 
   loadMegaMenuCol = () => {
@@ -35,6 +38,14 @@ class MegaMenuSolution {
         $(this).css({'width':249,'max-width':249});
       });
     }
+
+    if(window.innerWidth >= 1024 && window.innerWidth <= 1199) {
+      $megaMenuNavCol.each(function(){
+        $(this).find('img').removeClass('load-mega-menu-dynamic-media');
+        $(this).css({'width':154,'max-width':154});
+      });
+    }
+
   }
 
   handleCloseEvent = () => {
