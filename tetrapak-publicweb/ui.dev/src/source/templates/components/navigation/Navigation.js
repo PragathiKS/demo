@@ -38,7 +38,9 @@ class Navigation {
       $('.js-pw-navigation__container').each(function() {
         const headerHeightMobile = 62; // mobile sticky header height
         const sectionMenuHeightMobile = 56; // mobile sticky section hight
-        $( this ).css('height',window.innerHeight - (headerHeightMobile + sectionMenuHeightMobile));
+        if(window.innerWidth < 1024){
+          $( this ).css('height',window.innerHeight - (headerHeightMobile + sectionMenuHeightMobile));
+        }
       });
     });
 
