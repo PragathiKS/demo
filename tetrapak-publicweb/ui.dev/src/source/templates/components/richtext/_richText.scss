@@ -24,7 +24,6 @@
 }
 
 .tp-pw-richText {
-
     &.tp-pw-richText-container {
         @include margin-top(0);
         @include margin-left(16px);
@@ -111,7 +110,6 @@
                 display: inline-block;
                 color: $color-tundora;
                 content: '\2022';
-                
             }
         }
     }
