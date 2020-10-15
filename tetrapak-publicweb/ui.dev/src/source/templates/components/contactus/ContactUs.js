@@ -166,10 +166,11 @@ class ContactUs {
     $dropItem.click(function (e) {
       e.preventDefault();
       const countryTitle = $(this).data('countrytitle');
+      const country = $(this).data('country');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
       $('input', parentDrop).val(countryTitle);
-      requestPayload['country'] = countryTitle;
+      requestPayload['country'] = country;
       requestPayload['countryTitle'] = countryTitle;
       $dropItem.removeClass('active');
       $(this).addClass('active');
