@@ -32,10 +32,9 @@ class MegaMenuSolution {
 
   loadMegaMenuCol = () => {
     const { $megaMenuNavCol } = this.cache;
-    if($megaMenuNavCol.length <= 3 && (window.innerWidth >= 1200 && window.innerWidth <= 1439)) {
+    if(window.innerWidth >= 1200 && window.innerWidth <= 1439) {
       $megaMenuNavCol.each(function(){
         $(this).find('img').addClass('load-mega-menu-dynamic-media');
-        $(this).css({'width':249,'max-width':249});
       });
     }
   }
