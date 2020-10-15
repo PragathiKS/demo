@@ -62,7 +62,18 @@ pipeline {
                             
                         //}
                     }                 
+                    if (params.Environment == "SUP") {
 
+                        author_url = "http://20.50.198.76:4502"
+                        publish_url = "http://20.50.197.184:4503" 
+                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredsup', usernameVariable: 'username', passwordVariable: 'password']])
+                        {
+                            supdeployment()
+                            echo "$username"
+                            echo "$password"
+                            
+                        }
+                    }
                 }
             }
         }
@@ -204,6 +215,53 @@ pipeline {
             } 
     }
 
+    def supdeployment() {
+                
+        if (params.DeployCommons)    {
+                packageName = "tetrapak-commons.complete"
+                repoName = "tetrapak"
+                fileName = "1.0.0-DEV${Snapshot_Commons}-SNAPSHOT"
+                devartifactdownload()
+                parallel (
+                    "Author Commons" : {
+                        authordeploy()
+                    },
+                    "Publisher Commons" : {
+                        publishdeploy()
+                    }
+                )
+
+            }
+        if (params.DeployMyTetrapak) {
+                packageName = "tetrapak-customerhub.complete"
+                repoName = "tetrapak-customerhub"                
+                fileName = "1.0.0-DEV${Snapshot_MyTetrapak}-SNAPSHOT"
+                devartifactdownload()
+                parallel (  
+                    "Author MyTetrapak" : {                                  
+                authordeploy()
+                    },
+                    "Publisher MyTetrapak" : {                                    
+                publishdeploy() 
+                    }
+                )                           
+        }
+        if (params.DeployPublicWeb) {
+                packageName = "tetrapak-publicweb.complete"
+                repoName = "tetrapak-publicweb"                
+                fileName = "1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT"
+                devartifactdownload()
+                parallel (    
+                    "Author PublicWeb" : {                                    
+                authordeploy()
+                    },
+                    "Publisher PublicWeb" : {                     
+                publishdeploy()  
+                    }
+                )
+            }             
+
+        }
 
     def authordeploy() {
                 
