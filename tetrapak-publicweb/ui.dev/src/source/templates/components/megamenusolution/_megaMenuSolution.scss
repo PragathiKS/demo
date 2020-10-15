@@ -241,7 +241,9 @@
             width: 100%;
         }
         .col {
-            flex: 1;
+            @media #{$desktop} {
+                flex: 1;
+            }
         }
         @media #{$mobile} {
             @include padding($padding-zero $padding-md);
