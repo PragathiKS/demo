@@ -1,6 +1,6 @@
-body{
-    @include line-height($font-l,$font-baseline);
-    font-family:$font-monsterrat;
+body {
+    @include line-height($font-l, $font-baseline);
+    font-family: $font-monsterrat;
     background: $color-wild-sand;
     font-weight: 400;
     font-size: $font-baseline;
@@ -8,35 +8,36 @@ body{
     position: relative;
 }
 a {
-    @include line-height($font-l,$font-baseline);
+    @include line-height($font-l, $font-baseline);
     font-family: $font-monsterrat;
-    font-weight:400;
+    font-weight: 400;
     font-size: $font-baseline;
 }
 
 .font-fixing {
     text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
-   -ms-text-size-adjust: 100%;
-   -webkit-text-size-adjust: 100%;
-   text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 img {
     border-radius: 4px;
 }
-h1,h2 {
+h1,
+h2 {
     font-family: $font-monsterrat;
-    font-weight:700;
+    font-weight: 700;
 }
 h3 {
     font-family: $font-monsterrat;
-    font-weight:400;   
+    font-weight: 400;
 }
 h4 {
     font-family: $font-monsterrat;
-    font-weight:500;     
+    font-weight: 500;
 }
 
 .pw-theme {
@@ -127,26 +128,46 @@ h4 {
 .tpatom-btn--primary,
 .tpatom-link--primary,
 .tpatom-btn--secondary,
-.tpatom-link--secondary, .tpatom-btn--transparent, .tpatom-btn--datepicker,
+.tpatom-link--secondary,
+.tpatom-btn--transparent,
+.tpatom-btn--datepicker,
 .tpatom-link--transparent,
 .tpatom-link--datepicker {
-  span {
-    font-family: $font-monsterrat;
-  }
+    span {
+        font-family: $font-monsterrat;
+    }
 }
 
 @media #{$mobile} {
     .body-content {
-        @include padding-top($header-height-mobile * 1px); // with reference to Sticky Mobile Header navigation
+        @include padding-top(
+            $header-height-mobile * 1px
+        ); // with reference to Sticky Mobile Header navigation
         &.body-top-padding {
-            @include padding-top($sticky-view-height * 1px); // with reference to Sticky Mobile Header + section menu
+            @include padding-top(
+                $sticky-view-height * 1px
+            ); // with reference to Sticky Mobile Header + section menu
         }
     }
 }
 @media #{$desktop} {
     .body-content {
         &.body-top-padding {
-            @include padding-top(62px); // with reference to desktop section menu height
+            @include padding-top(
+                62px
+            ); // with reference to desktop section menu height
+        }
+    }
+}
+@media #{$i-pad} {
+    .body-content {
+        @include padding-top(
+            $header-height-mobile * 1px
+        ); // with reference to Sticky Mobile Header navigation
+        &.body-top-padding {
+            @include padding-top(
+                $sticky-view-height * 1px
+            ); // with reference to Sticky Mobile Header + section menu
         }
     }
 }
@@ -154,11 +175,57 @@ h4 {
     letter-spacing: 0;
 }
 .tpatom-heading {
-    font-family:$font-monsterrat;
+    font-family: $font-monsterrat;
     &--regular {
         font-weight: 400;
         @media #{$desktop} {
             font-weight: 700;
+        }
+    }
+}
+
+@media #{$i-pad} {
+    .ipad-logo {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .pw-header-icons {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .ipad-logo {
+        justify-content: center !important;
+    }
+    .mega-menu-hr {
+        display: none !important;
+    }
+    .ipad-mega-menu-des {
+        display: none !important;
+    }
+    .heading-cta {
+        display: block !important;
+    }
+    .ipad-collapse-button {
+        display: flex !important;
+    }
+    .collapse.show {
+        display: block !important;
+    }
+    .collapse:not(.show) {
+        display: none !important;
+    }
+    a {
+        font-weight: 500;
+        @include font-size(14px);
+        @include line-height(24px, 14px);
+    }
+    .pw-megamenu__top {
+        img {
+            display: none !important;
         }
     }
 }

@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import { isDesktop } from '../../../scripts/common/common';
 
 class Navigation {
   constructor({ el }) {
@@ -38,7 +39,7 @@ class Navigation {
       $('.js-pw-navigation__container').each(function() {
         const headerHeightMobile = 62; // mobile sticky header height
         const sectionMenuHeightMobile = 56; // mobile sticky section hight
-        if(window.innerWidth < 1024){
+        if(!isDesktop()){
           $( this ).css('height',window.innerHeight - (headerHeightMobile + sectionMenuHeightMobile));
         }
       });

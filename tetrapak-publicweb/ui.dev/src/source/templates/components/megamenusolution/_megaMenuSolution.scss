@@ -33,6 +33,10 @@
         @media #{$desktop} {
             display: block;
         }
+        @media #{$i-pad} {
+            @include border-radius($border-radius);
+            display: none;
+        }
     }
     @media #{$desktop} {
         @include margin($margin-zero auto);
@@ -65,6 +69,17 @@
             background-color: $color-white;
         }
     }
+    @media #{$i-pad} {
+        @include padding-top($padding-zero);
+        visibility: hidden;
+        top: 80px;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: $color-white;
+        z-index: 11;
+    }
     a {
         color: $color-congress-blue;
         @media #{$desktop} {
@@ -93,6 +108,11 @@
                 @include padding(0);
                 border-bottom: 0;
             }
+        }
+        @media #{$i-pad} {
+            @include padding($padding-md);
+            border-bottom: 1px solid $color-mercury;
+            flex-basis: auto;
         }
     }
     .heading-cta {
@@ -136,6 +156,9 @@
         @media #{$desktop} {
             @include margin($margin-xl 0);
         }
+        @media #{$i-pad} {
+            @include margin(28px 0);
+        }
     }
     h2 {
         @include line-height($font-l, $font-baseline);
@@ -151,6 +174,14 @@
             font-size: $font-baseline;
             justify-content: center;
         }
+        @media #{$i-pad} {
+            @include line-height($font-l, $font-baseline);
+            display: flex;
+            font-size: $font-baseline;
+            font-weight: 500;
+            justify-content: space-between;
+            text-align: center;
+        }
     }
     h3 {
         @include font-size($font-baseline);
@@ -162,6 +193,13 @@
             font-size: 18px;
             font-weight: 500;
             line-height: 24px;
+        }
+        @media #{$i-pad} {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            @include margin(0);
+            color: $color-congress-blue;
+            font-weight: 400;
         }
     }
     p {
@@ -195,10 +233,20 @@
                 max-width: inherit;
             }
         }
+        @media #{$i-pad} {
+            &.col {
+                border-left: 0;
+                width: 100%;
+                flex: auto;
+            }
+        }
 
         .list-side-links {
             @media #{$desktop} {
                 @include padding-left($padding-l);
+            }
+            @media #{$i-pad} {
+                @include padding-left($padding-zero);
             }
 
             li {
@@ -213,6 +261,9 @@
                     @media #{$desktop} {
                         @include font-size($font-sm);
                     }
+                    @media #{$i-pad} {
+                        font-size: $font-baseline;
+                    }
                 }
 
                 @media #{$desktop} {
@@ -223,6 +274,11 @@
                     @include margin-right(0);
                     border-bottom: 0;
                 }
+                @media #{$i-pad} {
+                    @include margin-bottom(0);
+                    @include padding($padding-md);
+                    border-bottom: 1px solid $color-mercury;
+                }
             }
             span {
                 @media #{$desktop} {
@@ -230,6 +286,12 @@
                     position: relative;
                     padding-right: 10px;
                     width: 220px;
+                }
+                @media #{$i-pad} {
+                    display: inline;
+                    position: static;
+                    padding-right: 0;
+                    width: auto;
                 }
             }
         }
@@ -244,6 +306,9 @@
             @media #{$desktop} {
                 flex: 1;
             }
+            @media #{$i-pad} {
+                flex-basis: auto;
+            }
         }
         @media #{$mobile} {
             @include padding($padding-zero $padding-md);
@@ -254,6 +319,10 @@
         }
         @media #{$small-desktop} {
             @include padding(0 $padding-l);
+        }
+        @media #{$i-pad} {
+            padding: unset;
+            margin: unset;
         }
     }
     &__bottom {
@@ -413,5 +482,8 @@
         position: relative;
         margin-right: -10px;
         top: -8px;
+    }
+    @media #{$i-pad} {
+        display: none;
     }
 }
