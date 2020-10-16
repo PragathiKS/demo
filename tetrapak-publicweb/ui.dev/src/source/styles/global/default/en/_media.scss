@@ -22,3 +22,5 @@ $tablet-landscape: '#{$tablet} and (orientation: landscape)'; // Usage => @media
 $tablet-large-landscape: '#{$tablet-large} and (orientation: landscape)'; // Usage => @media #{tablet-large-landscape}
 $mobile-landscape: '#{$mobile} and (orientation: landscape)'; // Usage => @media #{$mobile-landscape} { ... }
 $mobile-large-landscape: '#{$mobile-large} and (orientation: landscape)'; // Usage => @media #{$mobile-large-landscape} { ... }
+
+$i-pad: '(min-device-width: 768px) and (max-device-width: 1366px)'; // Usage => @media #{$i-pad} { ... }

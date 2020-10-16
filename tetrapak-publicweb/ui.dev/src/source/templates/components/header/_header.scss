@@ -27,6 +27,20 @@
             }
         }
     }
+    @media #{$i-pad} {
+        top: 0;
+        position: fixed;
+        height: $header-height-mobile * 1px; // header height converted to px
+        z-index: $zindex-header;
+        width: 100%;
+        .pw-header-icons {
+            a {
+                &:hover {
+                    color: $color-congress-blue;
+                }
+            }
+        }
+    }
     .nav-link {
         padding: 16px;
     }
@@ -63,6 +77,14 @@
                 height: 34px;
             }
         }
+        @media #{$i-pad} {
+            @include padding(0 3px 0);
+            position: static;
+            height: $header-height-mobile * 1px; // header height converted to px
+            .header-items {
+                height: $header-height-mobile * 1px; // header height converted to px
+            }
+        }
     }
 
     &__logo-placeholder {
@@ -71,6 +93,9 @@
             @include padding-bottom($padding-sm);
             @include padding-left(36px);
             display: block;
+        }
+        @media #{$i-pad} {
+            display: none;
         }
 
         img {
@@ -84,6 +109,9 @@
         color: $color-congress-blue;
         @media #{$desktop} {
             display: none;
+        }
+        @media #{$i-pad} {
+            display: flex;
         }
         .icon-Burger_pw::before {
             font-size: 20px;
@@ -101,6 +129,9 @@
         @media #{$desktop} {
             display: block;
             position: static;
+        }
+        @media #{$i-pad} {
+            display: none;
         }
 
         li {
@@ -124,7 +155,7 @@
                 &:hover > a {
                     color: $color-sky-blue;
                 }
-                & >a.active {
+                & > a.active {
                     border-bottom: 2px solid;
                 }
             }
@@ -143,6 +174,9 @@
             @media #{$desktop} {
                 display: inline;
             }
+            @media #{$i-pad} {
+                display: none;
+            }
         }
         &__link {
             @include margin-left($margin-md);
@@ -159,6 +193,9 @@
                 display: none;
                 @media #{$desktop} {
                     display: inline;
+                }
+                @media #{$i-pad} {
+                    display: none;
                 }
             }
             .mytp-text {
@@ -177,6 +214,9 @@
                 display: none;
                 @media #{$desktop} {
                     display: inline;
+                }
+                @media #{$i-pad} {
+                    display: none;
                 }
             }
         }
@@ -205,7 +245,10 @@
                 @include font-size($font-normal);
                 line-height: 16px;
             }
-
+            @media #{$i-pad} {
+                font-size: 20px;
+                line-height: 20px;
+            }
         }
 
         .icon-ver-line {
@@ -235,6 +278,9 @@
 
             @media #{$desktop} {
                 max-height: #{convert-to-rem(140px)};
+            }
+            @media #{$i-pad} {
+                max-height: none;
             }
         }
         &--right {
@@ -267,6 +313,9 @@
         @include padding(0 $padding-xxxl);
         @include max-width($body-max-width);
         margin: 0 auto;
+    }
+    @media #{$i-pad} {
+        @include padding(20px 15px);
     }
 
     .row {

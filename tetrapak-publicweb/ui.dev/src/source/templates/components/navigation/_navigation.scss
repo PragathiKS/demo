@@ -147,4 +147,41 @@
             }
         }
     }
+    @media #{$i-pad} {
+        &.sticky {
+            top: $header-height-mobile * 1px; // this is section menu margin from header
+            & > .pw-navigation__container {
+                @include padding($padding-zero);
+            }
+        }
+        &__container {
+            height: calc(100vh - #{$sticky-view-height * 1px});
+            overflow-y: auto;
+            background: $color-white;
+            .list-section-menu-links {
+                display: block;
+            }
+            .section-link-home {
+                @include padding($padding-zero 15px);
+                width: 100%;
+                position: static;
+                border-bottom: 1px solid $color-mercury;
+
+                & > a {
+                    @include padding($padding-md);
+                    color: $color-congress-blue;
+                    width: 100%;
+                    font-weight: 500;
+                    &:hover {
+                        color: $color-congress-blue;
+                    }
+                }
+            }
+
+            .pw-mobile-navigation-section-list {
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+    }
+
 }
