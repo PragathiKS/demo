@@ -30,4 +30,19 @@
             }
         }
     }
+    @media #{$i-pad} {
+        display: flex;
+        justify-content: space-between;
+        &,
+        &:hover {
+            color: $color-tundora;
+        }
+        i.icon {
+            @include margin-left($margin-xs);
+            &::before {
+                font-size: $font-normal;
+                line-height: $font-normal;
+            }
+        }
+    }
 }

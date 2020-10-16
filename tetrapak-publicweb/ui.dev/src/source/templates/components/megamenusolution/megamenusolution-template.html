@@ -1,7 +1,7 @@
 <sly data-sly-template.megamenusolution_template="${@data, endToEndSolutionSectionList, linkSectionList, foodCategorySectionList, isMobile, flag, mainHeader}">
   <div data-module="MegaMenuSolution" class="pw-megamenu" aria-hidden="true" aria-expanded="false">
     <!--/* Component HTML code goes here */-->
-    <hr class="d-none d-lg-block" />
+    <hr class="d-none mega-menu-hr d-lg-block" />
     <nav>
       <div class="pw-megamenu__top">
         <sly data-sly-test.isMobile="${!isMobile}">
@@ -30,7 +30,7 @@
               </sly>
               <sly data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
                 data-sly-call="${title.heading_h3_template @ headingText=endToEndSolutionSection.title, variant='regular'}" />
-              <p class="d-none d-lg-block teaser-spacing">
+              <p class="d-none d-lg-block ipad-mega-menu-des teaser-spacing">
                 ${endToEndSolutionSection.description}
               </p>
             </a>
