@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.utils;
 
 import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.HeaderConfigurationModel;
@@ -29,7 +30,8 @@ public final class NavigationUtil {
     /**
      * Fetch solution page path.
      *
-     * @param request the request
+     * @param request
+     *            the request
      * @return the string
      */
     public static String fetchSolutionPagePath(final SlingHttpServletRequest request) {
@@ -50,8 +52,10 @@ public final class NavigationUtil {
     /**
      * Gets the solution page title.
      *
-     * @param request the request
-     * @param solutionPage the solution page
+     * @param request
+     *            the request
+     * @param solutionPage
+     *            the solution page
      * @return the solution page title
      */
     public static String getSolutionPageTitle(final SlingHttpServletRequest request, final String solutionPage) {
@@ -63,7 +67,12 @@ public final class NavigationUtil {
         final Resource solutionPageResource = resourceResolver.getResource(solutionPageJcrContentPath);
         if (Objects.nonNull(solutionPageResource)) {
             final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
-            solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
+            final String navTitle = properties.get(NameConstants.PN_NAV_TITLE, StringUtils.EMPTY);
+            if (StringUtils.isNotBlank(navTitle)) {
+                solutionPageTitle = navTitle;
+            } else {
+                solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
+            }
         }
         return solutionPageTitle;
     }
@@ -71,13 +80,13 @@ public final class NavigationUtil {
     /**
      * Gets the solution page without extension.
      *
-     * @param path the path
+     * @param path
+     *            the path
      * @return the solution page without extension
      */
     public static String getSolutionPageWithoutExtension(final String path) {
         return StringUtils.substringBeforeLast(path, ".");
     }
-
 
     /**
      * Fetch navigation title of page, if not present sends page Title as fallback
@@ -97,10 +106,12 @@ public final class NavigationUtil {
     /**
      * Gets the mega menu configuration model.
      *
-     * @param request the request
+     * @param request
+     *            the request
      * @return the mega menu configuration model
      */
-    public static MegaMenuConfigurationModel getMegaMenuConfigurationModel(final SlingHttpServletRequest request,final String path) {
+    public static MegaMenuConfigurationModel getMegaMenuConfigurationModel(final SlingHttpServletRequest request,
+            final String path) {
         MegaMenuConfigurationModel megaMenuConfigurationModel = new MegaMenuConfigurationModel();
         final String rootPath = LinkUtils.getRootPath(path);
         final String pagePath = rootPath + "/jcr:content/root/responsivegrid/megamenuconfig";
