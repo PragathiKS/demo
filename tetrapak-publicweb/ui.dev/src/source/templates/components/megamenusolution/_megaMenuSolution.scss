@@ -238,15 +238,11 @@
         img {
             max-width: 100%;
             height: auto;
+            width: 100%;
         }
         .col {
             @media #{$desktop} {
-                width: 154px;
-                max-width: 154px;
-            }
-            @media #{$desktop-xl} {
-                width: 249px;
-                max-width: 249px;
+                flex: 1;
             }
         }
         @media #{$mobile} {
@@ -254,6 +250,10 @@
         }
         @media #{$desktop} {
             @include margin($margin-xl);
+            @include padding(0 $padding-xxxl);
+        }
+        @media #{$small-desktop} {
+            @include padding(0 $padding-l);
         }
     }
     &__bottom {

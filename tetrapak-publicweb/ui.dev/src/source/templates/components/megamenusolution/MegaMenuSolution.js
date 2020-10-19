@@ -15,6 +15,7 @@ class MegaMenuSolution {
     this.cache.$bottomTeaser = this.root.find('.js-bottom-teaser-list');
     this.cache.$megamenuBottom = this.root.find('.pw-megamenu__bottom');
     this.cache.$navigationLink = this.root.find('.js-navigation-Link');
+    this.cache.$megaMenuNavCol = this.root.find('.pw-mega-menu-col');
     // this.cache.$headingBottom = this.root.find('.heading-bottom-cta');
   }
   bindEvents() {
@@ -23,6 +24,19 @@ class MegaMenuSolution {
     $menuOpener.on('click', this.handleOpenEvent);
     $menuCloser.on('click', this.handleCloseEvent);
     $navigationLink.on('click', this.trackAnalytics);
+    this.loadMegaMenuCol();
+    $( window ).resize(() => {
+      this.loadMegaMenuCol();
+    });
+  }
+
+  loadMegaMenuCol = () => {
+    const { $megaMenuNavCol } = this.cache;
+    if(window.innerWidth >= 1200 && window.innerWidth <= 1439) {
+      $megaMenuNavCol.each(function(){
+        $(this).find('img').addClass('load-mega-menu-dynamic-media');
+      });
+    }
   }
 
   handleCloseEvent = () => {
