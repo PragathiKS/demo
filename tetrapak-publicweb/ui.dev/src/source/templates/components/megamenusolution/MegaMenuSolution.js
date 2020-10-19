@@ -25,6 +25,9 @@ class MegaMenuSolution {
     $menuCloser.on('click', this.handleCloseEvent);
     $navigationLink.on('click', this.trackAnalytics);
     this.loadMegaMenuCol();
+    $( window ).resize(() => {
+      this.loadMegaMenuCol();
+    });
   }
 
   loadMegaMenuCol = () => {
