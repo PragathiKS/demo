@@ -2,6 +2,7 @@
     .section-menu-item-link ~ .display-lg {
         display: none;
     }
+
     .section-menu-item-link {
         &.active {
             font-weight: 700;
@@ -72,6 +73,45 @@
             i.with-arrow.icon-up {
                 &::before {
                     transform: rotate(-90deg);
+                }
+            }
+        }
+    }
+    @media #{$i-pad} {
+        .section-menu-item-link ~ .display-lg {
+            display: none;
+        }
+        & > .active.section-menu-item-link,
+        & > .section-menu-item-link {
+            i.with-arrow {
+                &::before {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+
+        & > .collapsed.section-menu-item-link,
+        & > .active.collapsed.section-menu-item-link {
+            i.with-arrow {
+                &::before {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+
+        .section-menu-item-link {
+            @include padding($padding-md);
+            display: flex;
+            justify-content: space-between;
+            &,
+            &:hover {
+                color: $color-congress-blue;
+            }
+            i.icon {
+                @include margin-left($margin-xs);
+                &::before {
+                    font-size: $font-normal;
+                    line-height: $font-normal;
                 }
             }
         }

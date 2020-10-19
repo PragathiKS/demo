@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { dynMedia } from '../../../scripts/utils/dynamicMedia';
-import { isMobile,checkActiveOverlay, isDesktop } from '../../../scripts/common/common';
+import { checkActiveOverlay, isDesktop } from '../../../scripts/common/common';
 
 class Header {
   constructor({ el }) {
@@ -61,7 +61,7 @@ class Header {
     }
 
     // bind event to close search if clicked outside the searchbar
-    if(!isMobile()){
+    if(isDesktop()){
       $(document).mouseup((e) =>
       {
         var container = $('.js-pw-header-search-bar');
@@ -89,7 +89,7 @@ class Header {
 
   searchIconClick = () => {
     $('.js-search-bar-input').val('');
-    if(isMobile()){
+    if(!isDesktop()){
       // to hide navigation if opened
       $('.js-tp-pw-mobile-navigation').css('display','none');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
