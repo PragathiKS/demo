@@ -108,11 +108,21 @@
                 @include padding(0);
                 border-bottom: 0;
             }
+            @media #{$i-pad} {
+                @include padding($padding-md);
+                border-bottom: 1px solid $color-mercury;
+            }
         }
         @media #{$i-pad} {
             @include padding($padding-md);
+            margin-left: 0;
+            margin-right: 0;
             border-bottom: 1px solid $color-mercury;
             flex-basis: auto;
+            &:last-child.col-side-links {
+                @include padding(0);
+                border-bottom: 0;
+            }
         }
     }
     .heading-cta {
@@ -142,6 +152,10 @@
         @media #{$desktop} {
             margin-left: auto;
             margin-right: auto;
+        }
+        @media #{$i-pad} {
+            margin-left: -15px;
+            margin-right: -15px;
         }
 
         h2 {
@@ -316,13 +330,15 @@
         }
         @media #{$mobile} {
             @include padding($padding-zero $padding-md);
+            min-height: 100vh;
         }
         @media #{$desktop} {
             @include margin($margin-xl);
         }
         @media #{$i-pad} {
-            padding: unset;
+            @include padding($padding-zero $padding-md);
             margin: unset;
+            min-height: 100vh;
         }
     }
     &__bottom {
