@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { isMobile } from '../../../scripts/common/common';
+import { isDesktop } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 class SectionMenu {
   constructor({ el }) {
@@ -31,7 +31,7 @@ class SectionMenu {
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-item-link');
     const iconEl = $this.find('i.icon:not(.is-external)');
-    if(isMobile() && iconEl.length > 0) {
+    if(!isDesktop() && iconEl.length > 0) {
       return;
     }
     this.getSectionMenuAnalyticsValue(e);
@@ -106,6 +106,9 @@ class SectionMenu {
     const $target = $(e.target);
     const $this = $target.closest('.js-section-menu-navigation-Link');
     const $sectionMenuItemAnchor = $this.children('a');
+    if(isDesktop()){
+      $sectionMenuItemAnchor.attr('href',$sectionMenuItemAnchor.data('url-link'));
+    }
     $this.find('.js-sub-menu-navigation-Link').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true'); // value changed because of one extra div added
     $sectionMenuItemAnchor.children('.with-arrow').addClass('icon-up');
     $sectionMenuItemAnchor.children('.with-arrow').length && $overlay.removeClass('d-none');
