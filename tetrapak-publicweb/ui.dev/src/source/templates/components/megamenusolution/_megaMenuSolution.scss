@@ -242,7 +242,7 @@
         @media #{$desktop} {
             &.col {
                 border-left: 1px solid $color-mercury;
-                width: 100%;
+                width: auto;
                 flex: 0;
                 max-width: inherit;
             }
@@ -317,11 +317,13 @@
             width: 100%;
         }
         .col {
-            @media #{$desktop} {
-                flex: 1;
-            }
-            @media #{$i-pad} {
-                flex-basis: auto;
+            &:not(.col-side-links) {
+                @media #{$desktop} {
+                    flex: 1;
+                }
+                @media #{$i-pad} {
+                    flex-basis: auto;
+                }
             }
         }
         @media #{$mobile} {

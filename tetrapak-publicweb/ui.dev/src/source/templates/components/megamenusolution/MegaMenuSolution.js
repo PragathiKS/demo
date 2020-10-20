@@ -100,9 +100,6 @@ class MegaMenuSolution {
     var ua = window.navigator.userAgent;
     var trident = ua.indexOf('Trident/');
     if (trident > 0) { // detect ie 11
-      $('.pw-megamenu').css('height', 'auto');
-      $('.pw-megamenu .pw-megamenu__top ul').css('margin', '0 auto');
-      $('.pw-megamenu__top .col:not(.col-side-links)').css('flex-basis', 'auto');
       $('.pw-megamenu__bottom ul').css('margin', '0 auto');
       $('.pw-megamenu__bottom ul .col').css('flex-basis', 'auto');
       $('.pw-megamenu__bottom .bottom-teaser-list').css({'display':'block','width':'80%','margin':'0 auto'});
