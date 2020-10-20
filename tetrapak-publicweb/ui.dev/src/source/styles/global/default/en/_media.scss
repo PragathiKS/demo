@@ -23,4 +23,4 @@ $tablet-large-landscape: '#{$tablet-large} and (orientation: landscape)'; // Usa
 $mobile-landscape: '#{$mobile} and (orientation: landscape)'; // Usage => @media #{$mobile-landscape} { ... }
 $mobile-large-landscape: '#{$mobile-large} and (orientation: landscape)'; // Usage => @media #{$mobile-large-landscape} { ... }
 
-$i-pad: '(min-device-width: 768px) and (max-device-width: 1366px)'; // Usage => @media #{$i-pad} { ... }
+$i-pad: '(min-device-width: 768px) and (max-device-width: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),(min-device-width: 768px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)'; // Usage => @media #{$i-pad} { ... }
