@@ -38,6 +38,13 @@
             display: none;
         }
     }
+
+    @media #{$mobile} {
+        nav {
+            min-height: 100vh;
+        }
+    }
+
     @media #{$desktop} {
         @include margin($margin-zero auto);
         @include padding-top(25px);
@@ -79,6 +86,9 @@
         position: absolute;
         background: $color-white;
         z-index: 11;
+        nav {
+            min-height: 100vh;
+        }
     }
     a {
         color: $color-congress-blue;
@@ -86,6 +96,10 @@
             @include padding($padding-zero);
             color: $color-tundora;
             line-height: 20px;
+        }
+        @media #{$i-pad} {
+            color: $color-congress-blue;
+            line-height: 24px;
         }
     }
 
@@ -142,9 +156,9 @@
                 @include margin(auto);
                 background-color: none;
             }
+            font-size: 16px;
+            line-height: 16px;
             &::before {
-                font-size: 16px;
-                line-height: 16px;
                 transform: rotate(180deg);
             }
         }
@@ -328,7 +342,6 @@
         }
         @media #{$mobile} {
             @include padding($padding-zero $padding-md);
-            min-height: 100vh;
         }
         @media #{$desktop} {
             @include margin($margin-xl);
@@ -340,7 +353,6 @@
         @media #{$i-pad} {
             @include padding($padding-zero $padding-md);
             margin: unset;
-            min-height: 100vh;
         }
     }
     &__bottom {
@@ -350,6 +362,8 @@
         }
         @media #{$desktop} {
             @include padding($margin-xl);
+            @include font-size($font-sm);
+            @include line-height($font-m-md, $font-baseline);
             background-color: $color-wild-sand;
             border-bottom: 0;
         }
@@ -360,6 +374,10 @@
             @media #{$desktop} {
                 @include margin-bottom($margin-xl);
                 justify-content: center;
+            }
+            @media #{$i-pad} {
+                @include margin-bottom($margin-zero);
+                justify-content: space-between;
             }
             i.icon-Arrow_Right_pw {
                 &::before {
@@ -384,6 +402,13 @@
                 border-bottom: 0;
                 text-align: center;
             }
+            @media #{$i-pad} {
+                @include padding($padding-md 0);
+                color: $color-congress-blue;
+                font-size: $font-baseline;
+                font-weight: 500;
+                text-align: center;
+            }
         }
         .col {
             @include margin(0);
@@ -393,9 +418,15 @@
                 @media #{$desktop} {
                     color: $color-tundora;
                     padding: $padding-zero;
+                    &:hover {
+                        color: $color-sky-blue;
+                    }
                 }
-                &:hover {
-                    color: $color-sky-blue;
+                @media #{$i-pad} {
+                    color: $color-congress-blue;
+                    &:hover {
+                        color: $color-congress-blue;
+                    }
                 }
             }
             @media #{$desktop} {
@@ -408,16 +439,22 @@
                 width: 97px;
                 max-width: 97px;
             }
+            @media #{$i-pad} {
+                @include margin(0);
+                @include padding($padding-md);
+                width: 100%;
+                max-width: 100%;
+            }
+
             &:last-child {
                 border-bottom: 1px solid $color-mercury;
                 @media #{$desktop} {
                     border-bottom: 0;
                 }
+                @media #{$i-pad} {
+                    border-bottom: 1px solid $color-mercury;
+                }
             }
-        }
-        @media #{$desktop} {
-            @include font-size($font-sm);
-            @include line-height($font-m-md, $font-baseline);
         }
         .bottom-teaser-list {
             @include padding(0 $padding-md);
@@ -440,11 +477,31 @@
                 justify-content: center;
                 background: $color-wild-sand;
             }
+            @media #{$i-pad} {
+                display: block;
+                visibility: hidden;
+                top: 80px;
+                left: 100%;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                overflow: auto;
+                background: $color-white;
+                z-index: 11;
+            }
 
             .js-design-close-menu {
                 @include padding(18px $margin-md);
                 @include margin(-16px);
                 background-color: $color-wild-sand;
+                @media #{$mobile} {
+                    font-size: 16px;
+                    line-height: 16px;
+                }
+                @media #{$i-pad} {
+                    font-size: 16px;
+                    line-height: 16px;
+                }
                 &::before {
                     transform: rotate(-180deg);
                 }
@@ -474,17 +531,26 @@
                 }
             }
             .img-title {
-                @include margin-top($margin-xs);
-                @include padding-top($padding-xxs);
                 display: inline-block;
                 font-weight: 500;
-                line-height: 20px;
+                line-height: 24px;
                 @media #{$desktop} {
                     @include margin-top($margin-sm);
                     @include padding-top($padding-zero);
+                    line-height: 20px;
                     font-size: $font-sm;
                 }
+                @media #{$i-pad} {
+                    @include margin-top($margin-zero);
+                    font-size: 14px;
+                    line-height: 24px;
+                }
             }
+        }
+        @media #{$i-pad} {
+            @include padding($padding-zero $padding-md);
+            border-bottom: 1px solid $color-mercury;
+            background-color: $color-white;
         }
     }
 }

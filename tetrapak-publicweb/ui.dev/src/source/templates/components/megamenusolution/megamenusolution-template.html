@@ -50,13 +50,13 @@
         <div class="heading-bottom-cta js-open-menu">
           <sly data-sly-test="${data.bottomSectionSubtitle}" data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
             data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
-          <i class="icon icon-Arrow_Right_pw d-md-none"></i>
+          <i class="icon icon-Arrow_Right_pw ipad-icon-arrow-right d-md-none"></i>
         </div>
         <div class="bottom-teaser-list js-bottom-teaser-list">
           <ul class="row" data-sly-list.foodCategorySection=${foodCategorySectionList}>
-            <li class="col d-md-none js-close-menu" data-sly-test="${foodCategorySectionList.first}">
+            <li class="col d-md-none ipad-food-category-d-md js-close-menu" data-sly-test="${foodCategorySectionList.first}">
               <div>
-                <i class="icon icon-Arrow_Right_pw d-md-none js-design-close-menu"></i>
+                <i class="icon icon-Arrow_Right_pw d-md-none ipad-icon-arrow-left js-design-close-menu"></i>
                 <sly data-sly-test="${data.bottomSectionSubtitle}" data-sly-use.bottomSectionSubtitle="/apps/commons/components/atoms/heading/heading.html"
                   data-sly-call="${bottomSectionSubtitle.heading_h2_template @ headingText=data.bottomSectionSubtitle, variant='regular'}" />
               </div>
