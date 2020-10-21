@@ -212,10 +212,10 @@ h4 {
     .ipad-collapse-button {
         display: flex !important;
     }
-    .collapse.show {
+    .collapse.ipad-collapse.show {
         display: block !important;
     }
-    .collapse:not(.show) {
+    .collapse.ipad-collapse:not(.show) {
         display: none !important;
     }
     a {
