@@ -228,8 +228,7 @@ public class PageLoadAnalyticsModel {
                 while (languagePages.hasNext()) {
                     final Page currentLanguagePage = languagePages.next();
                     final String currentPagePathInLoop = getPagePathForCountryLanguage(
-                            PageUtil.getCountryPage(currentLanguagePage).getPath(),
-                            PageUtil.getLanguageCode(currentLanguagePage), currentPage);
+                            PageUtil.getLanguagePage(currentPage), currentPage);
                     hrefLangSetter(currentLanguagePage, currentPagePathInLoop, resourceResolver);
                 }
             }
@@ -240,14 +239,13 @@ public class PageLoadAnalyticsModel {
      * from path /content/tetrapak/publicweb/gb/en/home to a locale say fr/en, then this will return
      * /content/tetrapak/publicweb/fr/en/home
      *
-     * @param countryPagePath country page path
-     * @param language locale language
+     * @param languagePage language page path
      * @param currentPage current page
      * @return String valid page path for any locale
      */
-    private String getPagePathForCountryLanguage (final String countryPagePath, final String language, final Page currentPage){
-        return  countryPagePath.concat(PWConstants.SLASH).concat(language).
-                concat(currentPage.getPath().substring(PageUtil.getLanguagePage(currentPage).getPath().length()));
+    private String getPagePathForCountryLanguage (final Page languagePage, final Page currentPage){
+        return  languagePage.getPath().
+                concat(currentPage.getPath().substring(languagePage.getPath().length()));
     }
 
     /**
@@ -300,6 +298,10 @@ public class PageLoadAnalyticsModel {
         } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)){
             for (String ruLocale: PWConstants.ruLocaleValues) {
                 setHrefLangValues(resourceResolver, ruLocale, currentPagePathInLoop );
+            }
+        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.SE_COUNTRY_CODE)) {
+            for (String seLocale : PWConstants.seLocaleValues) {
+                setHrefLangValues(resourceResolver, seLocale, currentPagePathInLoop);
             }
         } else {
             for (String esLocale: PWConstants.esLocaleValues) {

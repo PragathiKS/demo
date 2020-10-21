@@ -242,9 +242,12 @@ public final class PWConstants {
     /** The Constant RU_COUNTRY_CODE for Russia, Kazakhstan, Ukraine. */
     public static final String RU_COUNTRY_CODE = "ru";
 
+    /** The Constant SE_COUNTRY_CODE for Sweden. */
+    public static final String SE_COUNTRY_CODE = "se";
+
    /** list exceptionCountriesList contains all countries which are exceptions for country code .**/
     public static final List<String> exceptionCountriesList =
-           Collections.unmodifiableList(Arrays.asList(MAGHREB_COUNTRY_CODE, CAC_COUNTRY_CODE,DE_COUNTRY_CODE,RU_COUNTRY_CODE));
+           Collections.unmodifiableList(Arrays.asList(MAGHREB_COUNTRY_CODE, CAC_COUNTRY_CODE,DE_COUNTRY_CODE,RU_COUNTRY_CODE,SE_COUNTRY_CODE));
 
     /** list maghrebLocaleValues contains all locales for maghreb. **/
     public static final List<String> maghrebLocaleValues =
@@ -258,7 +261,10 @@ public final class PWConstants {
 
     /** list ruLocaleValues contains all locales for  Russia, Kazakhstan, Ukraine.**/
     public static final List<String> ruLocaleValues = Collections.unmodifiableList(Arrays.asList("ru-ru", "ru-kz", "ru-ua"));
-    
+
+    /** list seLocaleValues contains all locales for Sweden**/
+    public static final List<String> seLocaleValues = Collections.unmodifiableList(Collections.singletonList("sv-se"));
+
     /** The Constant JCR PREVIEW_SALT. */
     public static final String PREVIEW_SALT = "previewSalt";
     /**
