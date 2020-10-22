@@ -228,7 +228,7 @@ public class PageLoadAnalyticsModel {
                 while (languagePages.hasNext()) {
                     final Page currentLanguagePage = languagePages.next();
                     final String currentPagePathInLoop = getPagePathForCountryLanguage(
-                            PageUtil.getLanguagePage(currentPage), currentPage);
+                            currentLanguagePage, currentPage);
                     hrefLangSetter(currentLanguagePage, currentPagePathInLoop, resourceResolver);
                 }
             }
@@ -244,8 +244,8 @@ public class PageLoadAnalyticsModel {
      * @return String valid page path for any locale
      */
     private String getPagePathForCountryLanguage (final Page languagePage, final Page currentPage){
-        return  languagePage.getPath().
-                concat(currentPage.getPath().substring(languagePage.getPath().length()));
+        return  languagePage.getPath().concat(PWConstants.SLASH).
+                concat(currentPage.getPath().substring(PageUtil.getLanguagePage(currentPage).getPath().length()));
     }
 
     /**
