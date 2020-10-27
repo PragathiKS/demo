@@ -171,8 +171,12 @@ class Softconversion {
     apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
     apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
     apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
-    apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
-    apiPayload.position = this.cache.requestPayload[`position-${this.cache.$componentName}`];
+    if(this.cache.requestPayload[`company-${this.cache.$componentName}`]){
+      apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
+    }
+    if(this.cache.requestPayload[`position-${this.cache.$componentName}`]){
+      apiPayload.position = this.cache.requestPayload[`position-${this.cache.$componentName}`];
+    }
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
