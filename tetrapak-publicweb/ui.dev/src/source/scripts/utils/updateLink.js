@@ -1,6 +1,5 @@
 import $ from 'jquery';
 
-const myDomain = 'tetrapak.com';
 const myDomainAdobe = 'adobecqms.net';
 const componentList = [
   '.medialink',
@@ -17,22 +16,46 @@ const componentList = [
   '.pw-navigation'
 ];
 
+const isInternalUrl = url => {
+  let isInternal = false;
+  const setOfInternalUrl = [
+    'https://www-dev.tetrapak.com/',
+    'https://www-qa.tetrapak.com/',
+    'https://www-stage.tetrapak.com/',
+    'https://www.tetrapak.com/'
+  ];
 
-
-export const isExternal = function (url) {
-  if (url && (url.includes('http://') || url.includes('https://'))) {
-    if (url.includes(myDomain) || url.includes(myDomainAdobe)) {
-      return false;
-    } else {
-      return true;
+  for (var i = 0; i < setOfInternalUrl.length; i++) {
+    if (setOfInternalUrl[i] && url.indexOf(setOfInternalUrl[i]) !== -1) {
+      isInternal = true;
+      break;
     }
+  }
+  return isInternal;
+};
+
+export const isExternal = function(url) {
+  if (url && (url.includes('http://') || url.includes('https://'))) {
+    return isInternalUrl(url) || url.includes(myDomainAdobe) ? false : true;
   } else {
     return false;
   }
 };
 
-export const isDownloable = function (url) {
-  const fileList = ['.pdf', '.xls', '.xlsx', '.doc', '.docx', '.ppt', '.pttx', '.jpeg', '.png', '.jpg', '.svg'];
+export const isDownloable = function(url) {
+  const fileList = [
+    '.pdf',
+    '.xls',
+    '.xlsx',
+    '.doc',
+    '.docx',
+    '.ppt',
+    '.pttx',
+    '.jpeg',
+    '.png',
+    '.jpg',
+    '.svg'
+  ];
   let flag = false;
   const endPart = url && url.split('/').pop();
 
@@ -61,11 +84,10 @@ export default () => {
           $(this).attr('target', '_blank');
         } else if($(iconEl).hasClass('with-arrow')){
           $(iconEl).addClass('icon-Navigation_Right_pw');
-          $(this).attr('target','_self');
+          $(this).attr('target', '_self');
         } else if($(iconEl).hasClass('without-arrow')){
           $(iconEl).addClass('');
-        }
-        else {
+        } else {
           if ($(this).hasClass('tpatom-link--primary')) {
             $(iconEl).addClass('icon-Arrow_Right_pw');
           } else {
