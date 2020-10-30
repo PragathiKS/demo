@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 import { checkActiveOverlay, isDesktop } from '../../../scripts/common/common';
 
 class Header {
@@ -145,7 +144,6 @@ class Header {
     const { $megaMenuDesktop, $overlay } = this.cache;
     $megaMenuDesktop.addClass('d-block').attr('aria-hidden','false').attr('aria-expanded','true');
     $overlay.removeClass('d-none');
-    dynMedia.processImages();
   }
 
   handleHeaderItemMouseOver = (e) => {
