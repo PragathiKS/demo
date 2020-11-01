@@ -5,7 +5,7 @@ RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 
 ## This ruleset is use for Country  based  URL redirection
 
-RewriteCond   %{HTTP_HOST}  'tetrapak-prod64.adobecqms.net$'
+RewriteCond   %{HTTP_HOST}  'tetrapak-prod64.adobecqms.net'
 RewriteRule   "^/$"  "/content/tetrapak/publicweb/global/en/home.html" [PT,L]
 RewriteRule   "^/robots.txt"  "/content/dam/tetrapak/publicweb/robots.txt" [PT]
 RewriteRule   "^/sitemap.xml" "/content/tetrapak/publicweb.sitemap.xml" [PT,L]

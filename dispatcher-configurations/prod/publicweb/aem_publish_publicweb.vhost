@@ -1,3 +1,4 @@
+
 ## Collect any enviromental variables that are set in /etc/sysconfig/httpd
 ## Collect the dispatchers number
 PassEnv DISP_ID
@@ -7,7 +8,7 @@ PassEnv DISP_ID
         ServerName      tetrapak-prod64.adobecqms.net
         ## Put names of which domains are used for your published site/content here
         #ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} tetrapak-prod64.adobecqms.net
-                ServerAlias     tetrapak-prod64.adobecqms.net
+                ServerAlias     tetrapak-prod64.adobecqms.net www.tetrapak.com tetrapak.com
 
         ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
         DocumentRoot    ${PUBLISH_DOCROOT}/publicweb
@@ -63,7 +64,8 @@ PassEnv DISP_ID
                 ## Enabled to allow rewrites to take affect and not be ignored by the dispatcher module
                 DispatcherUseProcessedURL       1
                 ## Default setting to allow all errors to come from the aem instance
-                DispatcherPassError             0
+                DispatcherPassError             1
+                #DispatcherPassError             0
         </IfModule>
         <IfModule mod_rewrite.c>
                 ReWriteEngine   on
