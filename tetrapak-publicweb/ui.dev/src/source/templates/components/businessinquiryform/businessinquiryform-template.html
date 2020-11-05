@@ -47,13 +47,13 @@
                                         <div class="col-sm-12 formfield"
                                             auto_locator="businessEnquiryListContainerStep1">
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='requestAQuote',  required=true, label='pw.form.businessenq.requestaquote', name='purposeOfContactOptionsInBusinessEq'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='requestAQuote',  required=true, label='pw.form.businessenq.requestaquote', name='purposeOfContactOptionsInBusinessEq', locale= 'en'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='requestAProductInfo',  required=true, label='pw.form.businessenq.requestforproductinfo', name='purposeOfContactOptionsInBusinessEq'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='requestAProductInfo',  required=true, label='pw.form.businessenq.requestforproductinfo', name='purposeOfContactOptionsInBusinessEq', locale= 'en'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='ContactMe', required=true, label='pw.form.businessenq.contactme', name='purposeOfContactOptionsInBusinessEq', labelClass='mb-0'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='ContactMe', required=true, label='pw.form.businessenq.contactme', name='purposeOfContactOptionsInBusinessEq', labelClass='mb-0', locale= 'en'}">
                                             </sly>
                                             <input type="hidden" name="purposeOfContactInBusinessEqTitle"
                                                 class="form-control" id="purposeOfContactInBusinessEqTitle" required>
@@ -119,16 +119,16 @@
                                         <div class="col-sm-12 formfield"
                                             auto_locator="businessEnquiryListContainerStep2">
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='Processing', label='pw.form.businessenq.processing', name='purposeOfContactOptionsInInterestArea'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='Processing', label='pw.form.businessenq.processing', name='purposeOfContactOptionsInInterestArea', locale= 'en'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='packaging', label='pw.form.businessenq.packaging', name='purposeOfContactOptionsInInterestArea'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='packaging', label='pw.form.businessenq.packaging', name='purposeOfContactOptionsInInterestArea', locale= 'en'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='services', label='pw.form.businessenq.services', name='purposeOfContactOptionsInInterestArea'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='services', label='pw.form.businessenq.services', name='purposeOfContactOptionsInInterestArea', locale= 'en'}">
                                             </sly>
                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id='etesolution', label='pw.form.businessenq.endtoendsolution', name='purposeOfContactOptionsInInterestArea', labelClass='mb-0'}">
+                                                data-sly-call="${radioField.radiofieldinput_template @ id='etesolution', label='pw.form.businessenq.endtoendsolution', name='purposeOfContactOptionsInInterestArea', labelClass='mb-0', locale= 'en'}">
                                             </sly>
                                             <input type="hidden" name="purposeOfInterestAreaEqTitle"
                                                 class="form-control" id="purposeOfInterestAreaEqTitle" required>
