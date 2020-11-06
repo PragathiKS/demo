@@ -34,7 +34,7 @@ pipeline {
 
                     withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
                     {
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 104.46.45.30 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 52.149.68.17 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
                 }
                     }
                 }
