@@ -4,16 +4,20 @@ package com.tetrapak.publicweb.core.beans;
  * The Class SubSectionBean.
  */
 public class SubSectionBean {
-    
+
     /** The link text. */
     private String linkText;
-    
+
     /** The link path. */
     private String linkPath;
-    
+
+    /** The highlighted. */
+    private boolean highlighted;
+
     /** The external. */
     private boolean external;
-    
+
+    /** The mobile overview label. */
     private String mobileOverviewLabel;
 
     /**
@@ -28,7 +32,8 @@ public class SubSectionBean {
     /**
      * Sets the link text.
      *
-     * @param linkText the new link text
+     * @param linkText
+     *            the new link text
      */
     public void setLinkText(final String linkText) {
         this.linkText = linkText;
@@ -46,10 +51,30 @@ public class SubSectionBean {
     /**
      * Sets the link path.
      *
-     * @param linkPath the new link path
+     * @param linkPath
+     *            the new link path
      */
     public void setLinkPath(final String linkPath) {
         this.linkPath = linkPath;
+    }
+
+    /**
+     * Checks if is highlighted.
+     *
+     * @return true, if is highlighted
+     */
+    public boolean isHighlighted() {
+        return highlighted;
+    }
+
+    /**
+     * Sets the highlighted.
+     *
+     * @param highlighted
+     *            the new highlighted
+     */
+    public void setHighlighted(boolean highlighted) {
+        this.highlighted = highlighted;
     }
 
     /**
@@ -64,16 +89,28 @@ public class SubSectionBean {
     /**
      * Sets the external.
      *
-     * @param external the new external
+     * @param external
+     *            the new external
      */
     public void setExternal(final boolean external) {
         this.external = external;
     }
 
+    /**
+     * Gets the mobile overview label.
+     *
+     * @return the mobile overview label
+     */
     public String getMobileOverviewLabel() {
         return mobileOverviewLabel;
     }
 
+    /**
+     * Sets the mobile overview label.
+     *
+     * @param mobileOverviewLabel
+     *            the new mobile overview label
+     */
     public void setMobileOverviewLabel(String mobileOverviewLabel) {
         this.mobileOverviewLabel = mobileOverviewLabel;
     }

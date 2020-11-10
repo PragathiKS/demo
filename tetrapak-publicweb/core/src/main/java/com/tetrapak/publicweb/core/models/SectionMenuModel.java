@@ -135,6 +135,9 @@ public class SectionMenuModel {
             if (!nextPage.isHideInNav()) {
                 final SectionMenuBean sectionMenuBean = new SectionMenuBean();
                 sectionMenuBean.setLinkText(NavigationUtil.getNavigationTitle(nextPage));
+                if(request.getPathInfo().contains(nextPage.getPath())) {
+                    sectionMenuBean.setHighlighted(true);
+                }
                 // Set external page url
                 final ExternalTemplateBean externalTemplate = checkExternalTemplate(nextPage);
                 if (externalTemplate.isExternal()) {
@@ -574,6 +577,9 @@ public class SectionMenuModel {
         } else {
             subSectionBean.setExternal(false);
             subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath(), request));
+            if(request.getPathInfo().contains(page.getPath())) {
+                subSectionBean.setHighlighted(true); 
+            }
             final ValueMap valueMap = page.getProperties();
             if (Objects.nonNull(valueMap)
                     && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
