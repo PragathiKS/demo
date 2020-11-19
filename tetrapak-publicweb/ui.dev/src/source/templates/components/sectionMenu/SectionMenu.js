@@ -112,12 +112,13 @@ class SectionMenu {
     $this.find('.js-sub-menu-navigation-Link').addClass('show').attr('aria-hidden','false').attr('aria-expanded','true'); // value changed because of one extra div added
     $sectionMenuItemAnchor.children('.with-arrow').addClass('icon-up');
     $sectionMenuItemAnchor.children('.with-arrow').length && $overlay.removeClass('d-none');
-    /* check modal view port position */
-    const modalPoints =$this.children('.js-sub-menu-navigation-Link')[0] && $this.children('.js-sub-menu-navigation-Link')[0].getBoundingClientRect();
+    /* check modal view port position for web */
+    const modalDiv = $this.find('.web-sub-section-custom-class.js-sub-menu-navigation-Link');
+    const modalPoints = modalDiv[0] && modalDiv[0].getBoundingClientRect();
     if(modalPoints && modalPoints.left < 0){
-      $this.children('.js-sub-menu-navigation-Link').addClass('show-modal-from-left');
+      modalDiv.addClass('show-modal-from-left');
     } else if(modalPoints && modalPoints.right > (window.innerWidth || document.documentElement.clientWidth)){
-      $this.children('.js-sub-menu-navigation-Link').addClass('show-modal-from-right');
+      modalDiv.addClass('show-modal-from-right');
     }
   }
 

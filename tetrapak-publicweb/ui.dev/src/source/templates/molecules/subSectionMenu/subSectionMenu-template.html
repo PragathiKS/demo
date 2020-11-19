@@ -1,6 +1,6 @@
-<sly data-sly-template.subSectionMenu_template="${@ data, parentLinkData, subSectionCount, activeFlag, selectedL3,selectedL4,col1,col2,col3,col4}">
+<sly data-sly-template.subSectionMenu_template="${@ data, parentLinkData, subSectionCount, activeFlag, selectedL3,selectedL4,col1,col2,col3,col4,webClassName}">
 
-  <div auto-locator="L3L4FlyoutContainer-L3L4FlyoutContainerPadding" class="pw-sub-section-menu js-sub-menu-navigation-Link" aria-hidden="true" aria-expanded="false">
+  <div auto-locator="L3L4FlyoutContainer-L3L4FlyoutContainerPadding" class="${webClassName} pw-sub-section-menu js-sub-menu-navigation-Link" aria-hidden="true" aria-expanded="false">
     <sly data-sly-test="${data.subSections}">
       <div auto-locator="L3L4Flyout-L3L4FlyoutPadding" class='category-child-ul sub-section-category'>
         <ul data-sly-list.subSectionsItem=${data.subSections}>
