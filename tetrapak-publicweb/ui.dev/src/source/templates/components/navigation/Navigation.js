@@ -17,6 +17,9 @@ class Navigation {
     if ($stickySectionMenu.length > 0) {
       $('.body-content').addClass('body-top-padding');
     }
+    if(isDesktop()){
+      $('.section-link-home').css('display','none');
+    }
 
     /* the below function uses the bootstrap for the toggle the close and open icon */
     $('.js-pw-navigation__container').on('show.bs.collapse', function(event){
