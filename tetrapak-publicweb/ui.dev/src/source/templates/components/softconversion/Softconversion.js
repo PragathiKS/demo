@@ -171,10 +171,10 @@ class Softconversion {
     apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
     apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
     apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
-    if(this.cache.requestPayload[`company-${this.cache.$componentName}`]){
+    if(this.cache.requestPayload[`company-${this.cache.$componentName}`].trim()){
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
     }
-    if(this.cache.requestPayload[`position-${this.cache.$componentName}`]){
+    if(this.cache.requestPayload[`position-${this.cache.$componentName}`].trim()){
       apiPayload.position = this.cache.requestPayload[`position-${this.cache.$componentName}`];
     }
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
@@ -235,6 +235,8 @@ class Softconversion {
 
       // hide fields if type of visitor is not customer
       if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitor']!==`customer-${$componentName}`){
+        $(`input#company-${$componentName}.form-control.validateForTags`).val('');
+        $(`input#position-${$componentName}.form-control.validateForTags`).val('');
         $company.hide();
         $position.hide();
         $('.marketing-consent').addClass('no-form-group');
@@ -383,7 +385,7 @@ class Softconversion {
       });
       if (isvalid) {
         self.submitForm();
-      }else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`){
+      } else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`) {
         changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, $parentComponent, errObj);
       }
     });
