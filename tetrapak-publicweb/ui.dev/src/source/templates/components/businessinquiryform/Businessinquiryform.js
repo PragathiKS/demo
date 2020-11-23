@@ -100,7 +100,9 @@ class Businessinquiryform {
     dataObj['countryTitle'] = this.cache.requestPayload.countryTitle;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    dataObj['marketingConsent'] = this.root.find(`#befconsentcheckbox`).is(':checked');
+    if(this.root.find(`#befconsentcheckbox`).is(':checked')){
+      dataObj['marketingConsent'] = this.root.find(`#befconsentcheckbox`).is(':checked');
+    }
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);

@@ -32,16 +32,18 @@ class Subscriptionform {
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
     const langCode = this.cache.businessformapi.data('sf-langcode');
     const pardot_extra_field = $('#pardot_extra_field_sf').val();
-    
+
     const dataObj = {};
-    dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
+    if($('input[name="consent"]').is(':checked')) {
+      dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
+    }
     dataObj['email'] = this.cache.requestPayload.emailSubscription;
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
 
     subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
-   
+
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
