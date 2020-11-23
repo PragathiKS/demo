@@ -13,6 +13,11 @@ class Businessinquiryform {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
+    const ua = window.navigator.userAgent;
+    const trident = ua.indexOf('Trident/');
+    if (trident > 0) { // detect ie 11
+      $('.pw-progressbar__steps').css('padding-left', '32px');
+    }
     this.cache.businessformapi = this.root.find('form.pw-form-businessEnquiry');
     this.cache.$nextbtn = this.root.find('.pw-businessEnquiry-form .tpatom-btn[type=button]');
     this.cache.$radioListFirst = this.root.find('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]');
