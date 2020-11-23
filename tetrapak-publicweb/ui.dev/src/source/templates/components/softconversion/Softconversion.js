@@ -243,8 +243,6 @@ class Softconversion {
 
       // hide fields if type of visitor is not customer
       if(target ===`#cf-step-3-${$componentName}` && requestPayload['typeOfVisitor']!==`customer-${$componentName}`){
-        $(`input#company-${$componentName}.form-control.validateForTags`).val('');
-        $(`input#position-${$componentName}.form-control.validateForTags`).val('');
         $company.hide();
         $position.hide();
         $('.marketing-consent').addClass('no-form-group');
