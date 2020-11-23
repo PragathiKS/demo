@@ -64,8 +64,8 @@ pipeline {
                     }                 
                     if (params.Environment == "SUP") {
 
-                        author_url = "http://20.50.198.76:4502"
-                        publish_url = "http://20.50.197.184:4503" 
+                        author_url = "https://author1westeurope.sup.tetrapak.adobecqms.net"
+                        publish_url = "https://publish1westeurope.sup.tetrapak.adobecqms.net" 
                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredsup', usernameVariable: 'username', passwordVariable: 'password']])
                         {
                             supdeployment()
