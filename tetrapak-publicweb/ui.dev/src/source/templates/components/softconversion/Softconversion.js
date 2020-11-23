@@ -46,6 +46,7 @@ class Softconversion {
     this.cache.requestPayload['countryTitle']='';
     this.cache.requestPayload['country']='';
     this.cache.countryList = [];
+    this.cache.inputFields = this.root.find('.tab-content .formfield input');
 
   }
 
@@ -70,9 +71,10 @@ class Softconversion {
 
   onRadioChangeHandler = e => {
     const { requestPayload } = this.cache;
-    const value = e.target.value;
+    const value = e.target.value || $(e.target).data('persist-val');
     const id = e.target.id;
     const radioName = `typeOfVisitorTitle-${this.cache.$componentName}`;
+    $(e.target).val(value);
     $(`input[type=hidden][name=${radioName}]`).val(value);
     requestPayload['typeOfVisitor'] = id;
     requestPayload['typeOfVisitorTitle'] = value;
@@ -129,6 +131,12 @@ class Softconversion {
     $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
     // do the analytics call for not me
     changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
+    // reset the input values for all fields
+    this.cache.inputFields.each(function(){
+      $(this).val('');
+      $(this).prop('checked', false);
+    });
+    this.root.find('.dropdown-toggle span').text(this.root.find('.formfield.country-field .js-pw-form__dropdown__country-text').data('country-placeholder'));
   }
 
   yesMeBtnHandler = () => {
