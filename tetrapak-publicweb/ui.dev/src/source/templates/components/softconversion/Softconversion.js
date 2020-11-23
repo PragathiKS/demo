@@ -189,7 +189,9 @@ class Softconversion {
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     apiPayload.pardotUrl = pardotUrl;
-    apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
+    if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
+      apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
+    }
     loadDownloadReady(this.mainHeading, { ...this.restObj2, 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' }, this.cache.$parentComponent);
     ajaxWrapper.getXhrObj({
       url: servletPath,
