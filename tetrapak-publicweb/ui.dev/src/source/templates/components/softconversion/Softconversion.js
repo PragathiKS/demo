@@ -46,6 +46,7 @@ class Softconversion {
     this.cache.requestPayload['countryTitle']='';
     this.cache.requestPayload['country']='';
     this.cache.countryList = [];
+    this.cache.inputFields = this.root.find('.tab-content .formfield input');
 
   }
 
@@ -70,9 +71,10 @@ class Softconversion {
 
   onRadioChangeHandler = e => {
     const { requestPayload } = this.cache;
-    const value = e.target.value;
+    const value = e.target.value || $(e.target).data('persist-val');
     const id = e.target.id;
     const radioName = `typeOfVisitorTitle-${this.cache.$componentName}`;
+    $(e.target).val(value);
     $(`input[type=hidden][name=${radioName}]`).val(value);
     requestPayload['typeOfVisitor'] = id;
     requestPayload['typeOfVisitorTitle'] = value;
@@ -129,6 +131,12 @@ class Softconversion {
     $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
     // do the analytics call for not me
     changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
+    // reset the input values for all fields
+    this.cache.inputFields.each(function(){
+      $(this).val('');
+      $(this).prop('checked', false);
+    });
+    this.root.find('.dropdown-toggle span').text(this.root.find('.formfield.country-field .js-pw-form__dropdown__country-text').data('country-placeholder'));
   }
 
   yesMeBtnHandler = () => {
@@ -171,10 +179,10 @@ class Softconversion {
     apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
     apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
     apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
-    if(this.cache.requestPayload[`company-${this.cache.$componentName}`]){
+    if(this.cache.requestPayload[`company-${this.cache.$componentName}`].trim()){
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
     }
-    if(this.cache.requestPayload[`position-${this.cache.$componentName}`]){
+    if(this.cache.requestPayload[`position-${this.cache.$componentName}`].trim()){
       apiPayload.position = this.cache.requestPayload[`position-${this.cache.$componentName}`];
     }
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
@@ -383,7 +391,7 @@ class Softconversion {
       });
       if (isvalid) {
         self.submitForm();
-      }else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`){
+      } else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`) {
         changeStepError(self.mainHeading, 'Step 3', self.step3heading, {}, $parentComponent, errObj);
       }
     });

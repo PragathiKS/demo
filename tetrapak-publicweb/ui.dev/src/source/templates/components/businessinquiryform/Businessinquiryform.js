@@ -91,7 +91,9 @@ class Businessinquiryform {
     dataObj['firstName'] = this.cache.requestPayload.firstNameField;
     dataObj['lastName'] = this.cache.requestPayload.lastNameField;
     dataObj['email'] = this.cache.requestPayload.emailBef;
-    dataObj['phoneNumber'] = this.cache.requestPayload.phoneField;
+    if(this.cache.requestPayload.phoneField.trim()){
+      dataObj['phoneNumber'] = this.cache.requestPayload.phoneField;
+    }
     dataObj['company'] = this.cache.requestPayload.company;
     dataObj['position'] = this.cache.requestPayload.position;
     dataObj['country'] = this.cache.requestPayload.country;
