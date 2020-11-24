@@ -62,15 +62,16 @@ function _setRequestDataAndHeaders(dataObject, currentId, req) {
   if (!('length' in dataObject)) {
     dataObject.length = 0;
   }
-  currentId.forEach(id => {
-    dataObject[id] = req.data;
-    dataObject.requestHeader[id] = {
+
+  for (var i = 0; i < currentId.length; i++) {
+    dataObject[currentId[i]] = req.data;
+    dataObject.requestHeader[currentId[i]] = {
       url: req.url,
       requestData: req.requestData,
       pathObject: req.pathObject
     };
     dataObject.length += 1;
-  });
+  }
   return dataObject;
 }
 
