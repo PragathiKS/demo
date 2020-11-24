@@ -6,7 +6,7 @@ pipeline {
 }
     
     parameters {
-        choice choices: ['DEV', 'QA', 'STAGE'], description: '', name: 'ENVIRONMENT'
+        choice choices: ['DEV', 'QA', 'STAGE', 'SUP', 'DEV65'], description: '', name: 'ENVIRONMENT'
 	}
 
     options {
@@ -49,6 +49,24 @@ pipeline {
                 }
                     }
                 }
+                script {
+                    if (params.ENVIRONMENT == "SUP") {
+
+                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    {
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.50.198.70 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
+                    }
+                }
+                script {
+                    if (params.ENVIRONMENT == "DEV65") {
+
+                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    {
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
+                    }
+                }				
             }
         }
         }
