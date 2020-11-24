@@ -3,6 +3,14 @@ RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 
+# Rewrite rules
+RewriteMap map.legacy dbm:/etc/httpd/conf/redirectmap.map
+RewriteCond ${map.legacy:$1} !=""
+RewriteRule ^(.*)$              /${map.legacy:$1|/} [L,R=301]
+RewriteRule ^/en-au(.*)$        /en-au/${map.legacy:$1|/} [L,R=301]
+
+###RewriteCond   %{HTTP_HOST}  'www-qa.tetrapak.com$'
+###RewriteRule   "^/about/tetra-pak-orange-book"  "https://www-qa.tetrapak.com/insights/handbooks/tetra-pak-orange-book"  [R,L]
 ## This ruleset is use for lang-masters based dispatcher URL redirection
 RewriteCond   %{HTTP_HOST}  'tetrapak-test64.adobecqms.net'
 RewriteCond   %{REQUEST_URI} ^/
@@ -313,6 +321,7 @@ RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
 RewriteRule   "^/sv-se/(.*)$" "/content/tetrapak/publicweb/se/sv_se/$1.html" [PT,L]
 
+
 RewriteRule   "^/en-sg/(.*).html$" "/content/tetrapak/publicweb/sg/en/error/404.html" [PT,L]
 RewriteRule   "^/en-sg$" "/content/tetrapak/publicweb/sg/en/home.html" [PT,L]
 RewriteRule   "^/en-sg/sitemap.xml" "/content/tetrapak/publicweb/sg/en.sitemap.xml" [PT,L]
@@ -429,3 +438,4 @@ RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 ErrorDocument 404 /content/tetrapak/publicweb/global/en/error/404
 ErrorDocument 403 /content/tetrapak/publicweb/global/en/error/404
 ErrorDocument 500 /content/tetrapak/publicweb/global/en/error/500
+
