@@ -78,7 +78,7 @@ pipeline {
 
                         author_url = "https://author1westeurope.dev65.tetrapak.adobecqms.net"
                         publish_url = "https://publish1westeurope.dev65.tetrapak.adobecqms.net"
-                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredsup', usernameVariable: 'username', passwordVariable: 'password']])
+                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username', passwordVariable: 'password']])
                         {
                             devdeployment()
                             echo "$username"
