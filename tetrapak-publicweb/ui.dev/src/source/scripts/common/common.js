@@ -393,15 +393,29 @@ export const checkActiveOverlay = (activeOverlays) => {
 };
 
 export const parseQueryString = () => {
+  // Use location.search to access query string instead
+  const qs = window.location.search.replace('?', '');
+  const items = qs.split('&');
 
-  var str = window.location.search;
-  var objURL = {};
+  // Consider using reduce to create the data mapping
+  return items.reduce((data, item) => {
+    const [key, value] = item.split('=');
 
-  str.replace(
-    new RegExp( '([^?=&]+)(=([^&]*))?', 'g' ),
-    function( $0, $1, $2, $3 ){
-      objURL[ $1 ] = $3;
+    // Sometimes a query string can have multiple values
+    // for the same key, so to factor that case in, you
+    // could collect an array of values for the same key
+    if(data[key] !== undefined) {
+
+      // If the value for this key was not previously an
+      // array, update it
+      if(!Array.isArray(data[key])) {
+        data[key] = [ data[key] ];
+      }
+      data[key].push(value);
     }
-  );
-  return objURL;
+    else {
+      data[key] = value;
+    }
+    return data;
+  }, {});
 };
