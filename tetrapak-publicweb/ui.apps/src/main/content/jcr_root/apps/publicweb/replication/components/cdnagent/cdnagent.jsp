@@ -60,7 +60,7 @@
     }
 
 %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html>
+<html lang="en">
 <head>
     <title><%= i18n.get("AEM Replication") %> | <%= xssAPI.encodeForHTML(title) %></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
