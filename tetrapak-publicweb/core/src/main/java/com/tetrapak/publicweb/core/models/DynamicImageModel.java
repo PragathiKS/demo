@@ -1,8 +1,11 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.DynamicMediaService;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -14,11 +17,9 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
  * class for dynamic image model.
@@ -206,6 +207,14 @@ public class DynamicImageModel {
     @PostConstruct
     protected void postConstruct() {
         String dynamicMediaUrl = getImageServiceURL();
+        Resource imageRes = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
+        if (Objects.nonNull(imageRes)) {
+            final ValueMap vMap = imageRes.getValueMap();
+            String fileFormat = vMap.get("dam:Fileformat", StringUtils.EMPTY);
+            if (fileFormat.equalsIgnoreCase("GIF")) {
+                dynamicMediaUrl = getVideoServiceUrl();
+            }
+        }
         if (imagePath != null) {
             finalPath = PWConstants.SLASH + GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
         }
@@ -365,7 +374,7 @@ public class DynamicImageModel {
         if (width > 1280) {
             width = (long) 1280;
             height = (long) 468;
-        }      
+        }
         final String[] cropArray = imageCrop.split(",");
         final Double topW = Double.valueOf(cropArray[0]);
         final Double topH = Double.valueOf(cropArray[1]);
