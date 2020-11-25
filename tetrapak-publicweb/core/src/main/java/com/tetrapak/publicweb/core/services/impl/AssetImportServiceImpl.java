@@ -20,10 +20,9 @@ import com.tetrapak.publicweb.core.services.AssetImportService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
- * IMPL class for Asset Import Service
+ * IMPL class for Asset Import Service.
  *
  * @author Akash Bansal
- *
  */
 @Component(immediate = true, service = AssetImportService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @Designate(ocd = AssetImportServiceImpl.AssetImportServiceConfig.class)
@@ -37,6 +36,11 @@ public class AssetImportServiceImpl implements AssetImportService {
             description = "PXP Asset Import Service Configuration")
     @interface AssetImportServiceConfig {
 
+        /**
+         * Gets the content type mapping.
+         *
+         * @return the content type mapping
+         */
         @AttributeDefinition(
                 name = "Content Type Mapping",
                 description = "Content Type Mapping, add comma seperated mapping in fomrmat video/mp4=mp4")
@@ -44,9 +48,19 @@ public class AssetImportServiceImpl implements AssetImportService {
 
     }
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(AssetImportServiceImpl.class);
+
+    /** The config. */
     private AssetImportServiceConfig config;
 
+    /**
+     * Gets the asset detailfrom input stream.
+     *
+     * @param sourceurl
+     *            the sourceurl
+     * @return the asset detailfrom input stream
+     */
     @Override
     public AssetDetail getAssetDetailfromInputStream(final String sourceurl) {
 

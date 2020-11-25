@@ -19,7 +19,7 @@ public class ImageModel {
 
     /** The request. */
     @SlingObject
-    SlingHttpServletRequest request;
+    private SlingHttpServletRequest request;
 
     /** The anchor id. */
     @ValueMapValue

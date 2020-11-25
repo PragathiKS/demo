@@ -12,9 +12,7 @@ import com.adobe.acs.commons.email.EmailService;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 
 /**
- * Sling job to send email
- *
- *
+ * Sling job to send email.
  */
 @Component(
         immediate = true,
@@ -22,15 +20,22 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
         property = { JobConsumer.PROPERTY_TOPICS + "=" + PWConstants.SEND_EMAIL_JOB_TOPIC })
 public class SendEmailJob implements JobConsumer {
 
+    /** The email service. */
     @Reference
     private EmailService emailService;
 
+    /**
+     * Process.
+     *
+     * @param job
+     *            the job
+     * @return the job result
+     */
     @Override
     public JobResult process(final Job job) {
 
         emailService.sendEmail(job.getProperty("templatePath").toString(),
-                (Map<String, String>) job.getProperty("emailParams"),
-                (String[]) job.getProperty("receipientsArray"));
-                    return JobResult.OK;
+                (Map<String, String>) job.getProperty("emailParams"), (String[]) job.getProperty("receipientsArray"));
+        return JobResult.OK;
     }
 }

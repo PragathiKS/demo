@@ -23,8 +23,7 @@ import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.services.config.PardotServiceConfig;
 
 /**
- * Impl class for PardotService
- *
+ * Impl class for PardotService.
  */
 @Component(immediate = true, service = PardotService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = PardotServiceConfig.class)
@@ -33,10 +32,11 @@ public class PardotServiceImpl implements PardotService {
     /** The config. */
     private PardotServiceConfig config;
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PardotServiceImpl.class);
 
     /**
-     * activate method
+     * activate method.
      *
      * @param config
      *            Pardot Service configuration
@@ -47,15 +47,23 @@ public class PardotServiceImpl implements PardotService {
         this.config = config;
     }
 
+    /**
+     * Gets the busines inquiry service URL.
+     *
+     * @return the busines inquiry service URL
+     */
     @Override
     public String getBusinesInquiryServiceURL() {
         return config.pardotBusinessInquiryServiceUrl();
     }
 
     /**
-     * @param authType
-     * @param apiURI
-     * @param encodedAuthString
+     * Submit pardot post respose.
+     *
+     * @param parameters
+     *            the parameters
+     * @param url
+     *            the url
      * @return api gee post response
      */
     @Override
@@ -85,6 +93,12 @@ public class PardotServiceImpl implements PardotService {
         }
     }
 
+    /**
+     * Submit pardot post respose.
+     *
+     * @param parameterMap
+     *            the parameter map
+     */
     @Override
     public void submitPardotPostRespose(final Map<String, String[]> parameterMap) {
 
@@ -93,6 +107,11 @@ public class PardotServiceImpl implements PardotService {
 
     }
 
+    /**
+     * Gets the subscription form pardot URL.
+     *
+     * @return the subscription form pardot URL
+     */
     @Override
     public String getSubscriptionFormPardotURL() {
         return config.pardotSubscriptionFormURL();

@@ -33,22 +33,22 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Component(
         service = Servlet.class,
         property = { Constants.SERVICE_DESCRIPTION + "=Contact Us form Submit Servlet",
-                "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-                "sling.servlet.selectors=" + "sendmail", "sling.servlet.extensions=" + "json",
+                "sling.servlet.methods=" + HttpConstants.METHOD_POST, "sling.servlet.selectors=" + "sendmail",
+                "sling.servlet.extensions=" + "json",
                 "sling.servlet.resourceTypes=" + "publicweb/components/content/contactus" })
 public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
 
-    /**
-     *
-     */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -4582610735374949058L;
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactUsSendMailServlet.class);
 
+    /** The contact us mail service. */
     @Reference
     private ContactUsMailService contactUsMailService;
 
+    /** The country detail service. */
     @Reference
     private CountryDetailService countryDetailService;
 
@@ -92,10 +92,11 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
     }
 
     /**
-     * Validate if all mandatory fields are present in request
+     * Validate if all mandatory fields are present in request.
      *
      * @param contactUs
-     * @return
+     *            the contact us
+     * @return true, if successful
      */
     private boolean validateRequest(final ContactUs contactUs) {
         return !(StringUtils.isEmpty(contactUs.getCountry()) || StringUtils.isEmpty(contactUs.getEmail())
@@ -104,12 +105,14 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
     }
 
     /**
-     * Sends HTTPServlet response
+     * Sends HTTPServlet response.
      *
      * @param resp
+     *            the resp
      * @param contactUsResponse
+     *            the contact us response
      * @throws IOException
-     * @throws JsonProcessingException
+     *             Signals that an I/O exception has occurred.
      */
     private void sendResponse(final SlingHttpServletResponse resp, final ContactUsResponse contactUsResponse)
             throws IOException {
@@ -119,6 +122,13 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
         resp.getWriter().write(mapper.writeValueAsString(contactUsResponse));
     }
 
+    /**
+     * Gets the logo.
+     *
+     * @param request
+     *            the request
+     * @return the logo
+     */
     private String getLogo(final SlingHttpServletRequest request) {
         String rootPath = LinkUtils.getRootPath(request.getPathInfo());
         final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";

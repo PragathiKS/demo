@@ -45,11 +45,11 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
 
     /** The xss API. */
     @Reference
-    transient XSSAPI xssAPI;
+    protected transient XSSAPI xssAPI;
 
     /** The resolver factory. */
     @Reference
-    transient ResourceResolverFactory resolverFactory;
+    private transient ResourceResolverFactory resolverFactory;
 
     /**
      * Do post.
@@ -89,10 +89,14 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
     /**
      * Method to update "preview-sault" value into repository.
      *
-     * @param resolver            the resolver
-     * @param encodedSaultString            the encoded sault string
-     * @param relativePath            the relative path
-     * @throws PersistenceException the persistence exception
+     * @param resolver
+     *            the resolver
+     * @param encodedSaultString
+     *            the encoded sault string
+     * @param relativePath
+     *            the relative path
+     * @throws PersistenceException
+     *             the persistence exception
      */
     private void saveSaltToRepository(final ResourceResolver resolver, final String encodedSaultString,
             final String relativePath) throws PersistenceException {
@@ -109,15 +113,18 @@ public class SaultUrlServlet extends SlingAllMethodsServlet {
     /**
      * Gets the salt from page.
      *
-     * @param resolver the resolver
-     * @param relativePath the relative path
+     * @param resolver
+     *            the resolver
+     * @param relativePath
+     *            the relative path
      * @return the salt from page
      */
     private String getSaltFromPage(final ResourceResolver resolver, final String relativePath) {
         String encodedSaultString = StringUtils.EMPTY;
         if (null != resolver) {
             Resource pageContentResource = resolver.getResource(relativePath);
-            if (Objects.nonNull(pageContentResource) && pageContentResource.getValueMap().containsKey(PWConstants.PREVIEW_SALT)) {
+            if (Objects.nonNull(pageContentResource)
+                    && pageContentResource.getValueMap().containsKey(PWConstants.PREVIEW_SALT)) {
                 encodedSaultString = (String) pageContentResource.getValueMap().get(PWConstants.PREVIEW_SALT);
             }
         }

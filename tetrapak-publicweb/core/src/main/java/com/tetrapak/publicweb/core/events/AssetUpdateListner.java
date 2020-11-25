@@ -22,12 +22,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The Class AssetUpdateListner.
+ */
 @Component(
         immediate = true,
         configurationPolicy = ConfigurationPolicy.REQUIRE,
         service = ResourceChangeListener.class,
-        property = {
-                ResourceChangeListener.PATHS + "=" + "glob:/content/dam/tetrapak/publicweb/**/jcr:content",
+        property = { ResourceChangeListener.PATHS + "=" + "glob:/content/dam/tetrapak/publicweb/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/dam/tetrapak/products/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/dam/tetrapak/media-box/**/jcr:content",
                 ResourceChangeListener.CHANGES + "=" + "ADDED", ResourceChangeListener.CHANGES + "=" + "CHANGED",
@@ -43,6 +45,12 @@ public class AssetUpdateListner implements ResourceChangeListener {
     @Reference
     private ResourceResolverFactory resolverFactory;
 
+    /**
+     * On change.
+     *
+     * @param changes
+     *            the changes
+     */
     @Override
     public void onChange(final List<ResourceChange> changes) {
         LOGGER.info("Copying jcr last modified to cq last modified for search");
@@ -57,7 +65,7 @@ public class AssetUpdateListner implements ResourceChangeListener {
                         final ValueMap valueMap = assetJcrResource.getValueMap();
                         if (Objects.nonNull(assetJcrResource) && valueMap.containsKey(PWConstants.JCR_LAST_MODIFIED)) {
                             final ModifiableValueMap map = assetJcrResource.adaptTo(ModifiableValueMap.class);
-                            if(map.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
+                            if (map.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
                                 map.remove(PWConstants.CQ_LAST_MODIFIED);
                             }
                             map.put(PWConstants.CQ_LAST_MODIFIED, valueMap.get(PWConstants.JCR_LAST_MODIFIED));

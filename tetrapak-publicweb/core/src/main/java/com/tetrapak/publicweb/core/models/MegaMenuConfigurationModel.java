@@ -23,7 +23,7 @@ public class MegaMenuConfigurationModel {
 
     /** The request. */
     @SlingObject
-    SlingHttpServletRequest request;
+    private SlingHttpServletRequest request;
 
     /** The top section subtitle. */
     @ValueMapValue

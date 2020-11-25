@@ -9,6 +9,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -16,7 +17,6 @@ import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
@@ -33,7 +33,7 @@ public class PreviewFilter implements Filter {
     private SlingSettingsService settingsService;
 
     /** The is skip. */
-    Boolean isSkip = true;
+    private Boolean isSkip = true;
 
     /**
      * Do filter.
@@ -56,10 +56,9 @@ public class PreviewFilter implements Filter {
         final SlingHttpServletResponse slingResponse = (SlingHttpServletResponse) response;
         final String previewParam = slingRequest.getParameter("preview");
         if (Boolean.FALSE.equals(isSkip) && slingRequest.getPathInfo().startsWith("/content/tetrapak/publicweb")
-                && "true".equalsIgnoreCase(slingRequest.getHeader("preview")) 
+                && "true".equalsIgnoreCase(slingRequest.getHeader("preview"))
                 && Boolean.TRUE.equals(isSaltInValid(slingRequest, previewParam))) {
-            slingResponse.sendRedirect(
-                    "/system/sling/logout.html?resource=" + slingRequest.getPathInfo());
+            slingResponse.sendRedirect("/system/sling/logout.html?resource=" + slingRequest.getPathInfo());
         }
         chain.doFilter(request, response);
     }
@@ -74,8 +73,9 @@ public class PreviewFilter implements Filter {
      * @return true, if is salt in valid
      */
     public boolean isSaltInValid(final SlingHttpServletRequest slingRequest, String previewParam) {
-        boolean isSaltInValid = true;  
-        if(Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource())) && Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource())) {
+        boolean isSaltInValid = true;
+        if (Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource()))
+                && Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource())) {
             Resource pageContentRes = PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource();
             if (Objects.nonNull(pageContentRes) && pageContentRes.getValueMap().containsKey("previewSalt")) {
                 String previewSalt = (String) pageContentRes.getValueMap().get("previewSalt");

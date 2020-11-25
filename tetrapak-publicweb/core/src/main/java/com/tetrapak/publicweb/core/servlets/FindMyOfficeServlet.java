@@ -34,8 +34,10 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(FindMyOfficeServlet.class);
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -5454246014078059527L;
 
+    /** The find my office service. */
     @Reference
     private FindMyOfficeService findMyOfficeService;
 
@@ -55,7 +57,7 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
         Map<String, CountryBean> fullMap = new LinkedHashMap<>();
         fullMap.putAll(findMyOfficeService.getCorporateOfficeList());
         fullMap.putAll(treeMap);
-        ObjectMapper mapper = new ObjectMapper();      
+        ObjectMapper mapper = new ObjectMapper();
         try {
             resp.setContentType("text/html; charset=UTF-8");
             resp.setCharacterEncoding("UTF-8");

@@ -30,52 +30,105 @@ import java.util.Set;
 import java.util.Iterator;
 import java.util.Collections;
 
-
-@Model(adaptables = {SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+/**
+ * The Class PageLoadAnalyticsModel.
+ */
+@Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-    
+
     /** The resource. */
     private Resource resource;
 
     /** The current page. */
     private Page currentPage;
 
+    /** The sling settings service. */
     @OSGiService
     private SlingSettingsService slingSettingsService;
-    
+
+    /** The xssapi. */
     @OSGiService
     protected XSSAPI xssapi;
 
+    /** The Constant SITE_NAME. */
     private static final String SITE_NAME = "publicweb";
+
+    /** The Constant PAGE_LOAD_EVENT. */
     private static final String PAGE_LOAD_EVENT = "content-load";
+
+    /** The Constant TETRAPAK_TAGS_ROOT_PATH. */
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
+
+    /** The Constant PW_ERROR_PAGE_TEMPLATE_NAME. */
     private static final String PW_ERROR_PAGE_TEMPLATE_NAME = "public-web-error-page";
+
+    /** The Constant X_DEFAULT. */
     private static final String X_DEFAULT = "x-default";
+
+    /** The channel. */
     private String channel = StringUtils.EMPTY;
+
+    /** The page name. */
     private String pageName = StringUtils.EMPTY;
+
+    /** The site language. */
     private String siteLanguage = StringUtils.EMPTY;
+
+    /** The site country. */
     private String siteCountry = StringUtils.EMPTY;
+
+    /** The page type. */
     private String pageType = StringUtils.EMPTY;
+
+    /** The digital data. */
     private String digitalData;
+
+    /** The production. */
     private boolean production;
+
+    /** The staging. */
     private boolean staging;
+
+    /** The development. */
     private boolean development;
+
+    /** The product name. */
     private String productName;
+
+    /** The site section 0. */
     private final StringBuilder siteSection0 = new StringBuilder(StringUtils.EMPTY);
+
+    /** The site section 1. */
     private StringBuilder siteSection1 = new StringBuilder(StringUtils.EMPTY);
+
+    /** The site section 2. */
     private final StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
+
+    /** The site section 3. */
     private final StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
+
+    /** The site section 4. */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
+
+    /** The Constant COUNTRY_LEVEL. */
     private static final int COUNTRY_LEVEL = 4;
+
+    /** The Constant LANGUAGE_LEVEL. */
     private static final int LANGUAGE_LEVEL = 5;
+
+    /** The Constant HREFLANG_LIST_MINIMUM_SIZE. */
     private static final int HREFLANG_LIST_MINIMUM_SIZE = 2;
+
+    /** The href lang values. */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
-
+    /**
+     * Inits the model.
+     */
     @PostConstruct
     public void initModel() {
         resource = request.getResource();
@@ -105,6 +158,9 @@ public class PageLoadAnalyticsModel {
         productName = product.getName();
     }
 
+    /**
+     * Update language and country.
+     */
     private void updateLanguageAndCountry() {
         final Page countryPage = currentPage.getAbsoluteParent(COUNTRY_LEVEL - 1);
         if (countryPage != null) {
@@ -119,6 +175,9 @@ public class PageLoadAnalyticsModel {
         }
     }
 
+    /**
+     * Update site sections.
+     */
     private void updateSiteSections() {
         int siteSectionIndex = LANGUAGE_LEVEL;
         final int currentPageIndex = currentPage.getDepth();
@@ -135,6 +194,14 @@ public class PageLoadAnalyticsModel {
         }
     }
 
+    /**
+     * Update section 4.
+     *
+     * @param siteSectionIndex
+     *            the site section index
+     * @param currentPageIndex
+     *            the current page index
+     */
     private void updateSection4(int siteSectionIndex, final int currentPageIndex) {
         if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection3)) {
             siteSectionIndex++;
@@ -142,6 +209,9 @@ public class PageLoadAnalyticsModel {
         }
     }
 
+    /**
+     * Update page name.
+     */
     private void updatePageName() {
         pageName = "pw:" + siteLanguage;
         if (StringUtils.isNotEmpty(siteSection0.toString())) {
@@ -156,6 +226,9 @@ public class PageLoadAnalyticsModel {
         }
     }
 
+    /**
+     * Update lower section.
+     */
     private void updateLowerSection() {
         if (StringUtils.isNotEmpty(siteSection2.toString())) {
             pageName += ":" + siteSection2.toString();
@@ -168,7 +241,19 @@ public class PageLoadAnalyticsModel {
         }
     }
 
-    private boolean updateSectionName(final int siteSectionIndex, final int currentPageIndex, final StringBuilder siteSection) {
+    /**
+     * Update section name.
+     *
+     * @param siteSectionIndex
+     *            the site section index
+     * @param currentPageIndex
+     *            the current page index
+     * @param siteSection
+     *            the site section
+     * @return true, if successful
+     */
+    private boolean updateSectionName(final int siteSectionIndex, final int currentPageIndex,
+            final StringBuilder siteSection) {
         if (siteSectionIndex < currentPageIndex) {
             final Page siteSectionPage = currentPage.getAbsoluteParent(siteSectionIndex);
             if (siteSectionPage != null) {
@@ -179,6 +264,9 @@ public class PageLoadAnalyticsModel {
         return false;
     }
 
+    /**
+     * Update run mode.
+     */
     private void updateRunMode() {
         if (slingSettingsService != null) {
             final Set<String> runModes = slingSettingsService.getRunModes();
@@ -193,19 +281,19 @@ public class PageLoadAnalyticsModel {
     }
 
     /**
-     * This method is used to set hreflang values and page paths
-     *
-     * */
-    private void updateHrefLang (){
+     * This method is used to set hreflang values and page paths.
+     */
+    private void updateHrefLang() {
         Boolean isHomePage = PageUtil.isHomePage(currentPage.getPath());
-        if(Boolean.TRUE.equals(isHomePage)){
+        if (Boolean.TRUE.equals(isHomePage)) {
             CountryLanguageCodeBean countryLanguageCodeBean = new CountryLanguageCodeBean();
             countryLanguageCodeBean.setLocale(X_DEFAULT);
-            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE,request));
+            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE, request));
             hrefLangValues.add(countryLanguageCodeBean);
         }
         final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
-        Resource marketRootResource = currentPage.getContentResource().getResourceResolver().getResource(marketRootPath);
+        Resource marketRootResource = currentPage.getContentResource().getResourceResolver()
+                .getResource(marketRootPath);
         if (Objects.nonNull(marketRootResource)) {
             Page marketRootPage = PageUtil.getCurrentPage(marketRootResource);
             if (Objects.nonNull(marketRootPage)) {
@@ -216,10 +304,12 @@ public class PageLoadAnalyticsModel {
     }
 
     /**
-     * This method is used to iterate languagePages and call hrefLang setter
-     * @param marketPages list of marketPages
+     * This method is used to iterate languagePages and call hrefLang setter.
+     *
+     * @param marketPages
+     *            list of marketPages
      */
-    private void callHrefLangSetter (Iterator<Page> marketPages) {
+    private void callHrefLangSetter(Iterator<Page> marketPages) {
         final ResourceResolver resourceResolver = resource.getResourceResolver();
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();
@@ -227,37 +317,44 @@ public class PageLoadAnalyticsModel {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 while (languagePages.hasNext()) {
                     final Page currentLanguagePage = languagePages.next();
-                    final String currentPagePathInLoop = getPagePathForCountryLanguage(
-                            currentLanguagePage, currentPage);
+                    final String currentPagePathInLoop = getPagePathForCountryLanguage(currentLanguagePage,
+                            currentPage);
                     hrefLangSetter(currentLanguagePage, currentPagePathInLoop, resourceResolver);
                 }
             }
         }
     }
 
-    /**This method is used to get any page in another locale from current page say
-     * from path /content/tetrapak/publicweb/gb/en/home to a locale say fr/en, then this will return
-     * /content/tetrapak/publicweb/fr/en/home
+    /**
+     * This method is used to get any page in another locale from current page say from path
+     * /content/tetrapak/publicweb/gb/en/home to a locale say fr/en, then this will return
+     * /content/tetrapak/publicweb/fr/en/home.
      *
-     * @param languagePage language page path
-     * @param currentPage current page
+     * @param languagePage
+     *            language page path
+     * @param currentPage
+     *            current page
      * @return String valid page path for any locale
      */
-    private String getPagePathForCountryLanguage (final Page languagePage, final Page currentPage){
-        return  languagePage.getPath().concat(PWConstants.SLASH).
-                concat(currentPage.getPath().substring(PageUtil.getLanguagePage(currentPage).getPath().length()));
+    private String getPagePathForCountryLanguage(final Page languagePage, final Page currentPage) {
+        return languagePage.getPath().concat(PWConstants.SLASH)
+                .concat(currentPage.getPath().substring(PageUtil.getLanguagePage(currentPage).getPath().length()));
     }
 
     /**
-     * This method is used to get the locale and check for exceptional regions and then call the setter
-     * @param currentLanguagePage current language page
-     * @param currentPagePathInLoop current Page path in the loop
-     * @param resourceResolver the resourceResolver
+     * This method is used to get the locale and check for exceptional regions and then call the setter.
+     *
+     * @param currentLanguagePage
+     *            current language page
+     * @param currentPagePathInLoop
+     *            current Page path in the loop
+     * @param resourceResolver
+     *            the resourceResolver
      */
     private void hrefLangSetter(final Page currentLanguagePage, final String currentPagePathInLoop,
-                                final ResourceResolver resourceResolver){
+            final ResourceResolver resourceResolver) {
         // checking the exceptional countries like magreb, central America
-        if(!PWConstants.exceptionCountriesList.contains(PageUtil.getCountryCode(currentLanguagePage))){
+        if (!PWConstants.exceptionCountriesList.contains(PageUtil.getCountryCode(currentLanguagePage))) {
             setHrefLangValues(resourceResolver, PageUtil.getLocaleFromURL(currentLanguagePage), currentPagePathInLoop);
         } else {
             handleExceptionalMarkets(currentLanguagePage, currentPagePathInLoop, resourceResolver);
@@ -265,51 +362,71 @@ public class PageLoadAnalyticsModel {
     }
 
     /**
-     * This method is used to set hreflang and its url
-     * @param resourceResolver resourceResolver
-     * @param locale current locale
-     * @param currentPagePathInLoop currentpage path in the loop
+     * This method is used to set hreflang and its url.
+     *
+     * @param resourceResolver
+     *            resourceResolver
+     * @param locale
+     *            current locale
+     * @param currentPagePathInLoop
+     *            currentpage path in the loop
      */
-    private void setHrefLangValues(final ResourceResolver resourceResolver,final String locale, final String currentPagePathInLoop){
+    private void setHrefLangValues(final ResourceResolver resourceResolver, final String locale,
+            final String currentPagePathInLoop) {
         CountryLanguageCodeBean countryLanguageCodeBean = new CountryLanguageCodeBean();
-        final Resource currentResource= resourceResolver.getResource(currentPagePathInLoop);
-        if(null != currentResource){
-            if(!locale.equalsIgnoreCase(PWConstants.GLOBAL_LOCALE)) {
+        final Resource currentResource = resourceResolver.getResource(currentPagePathInLoop);
+        if (null != currentResource) {
+            if (!locale.equalsIgnoreCase(PWConstants.GLOBAL_LOCALE)) {
                 countryLanguageCodeBean.setLocale(locale);
             } else {
                 countryLanguageCodeBean.setLocale(PWConstants.ENGLISH_LANGUAGE_ISO_CODE);
             }
-            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(currentResource.getPath(),request));
+            countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(currentResource.getPath(), request));
             hrefLangValues.add(countryLanguageCodeBean);
         }
 
     }
 
+    /**
+     * Handle exceptional markets.
+     *
+     * @param currentLanguagePage
+     *            the current language page
+     * @param currentPagePathInLoop
+     *            the current page path in loop
+     * @param resourceResolver
+     *            the resource resolver
+     */
     private void handleExceptionalMarkets(final Page currentLanguagePage, final String currentPagePathInLoop,
-                                          final ResourceResolver resourceResolver){
-        if(PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.MAGHREB_COUNTRY_CODE)) {
-            for (String magrebLocale: PWConstants.maghrebLocaleValues) {
-                setHrefLangValues(resourceResolver, magrebLocale, currentPagePathInLoop );
+            final ResourceResolver resourceResolver) {
+        if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.MAGHREB_COUNTRY_CODE)) {
+            for (String magrebLocale : PWConstants.maghrebLocaleValues) {
+                setHrefLangValues(resourceResolver, magrebLocale, currentPagePathInLoop);
             }
-        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.DE_COUNTRY_CODE)){
-            for (String deLocale: PWConstants.deLocaleValues) {
-                setHrefLangValues(resourceResolver, deLocale, currentPagePathInLoop );
+        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.DE_COUNTRY_CODE)) {
+            for (String deLocale : PWConstants.deLocaleValues) {
+                setHrefLangValues(resourceResolver, deLocale, currentPagePathInLoop);
             }
-        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)){
-            for (String ruLocale: PWConstants.ruLocaleValues) {
-                setHrefLangValues(resourceResolver, ruLocale, currentPagePathInLoop );
+        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)) {
+            for (String ruLocale : PWConstants.ruLocaleValues) {
+                setHrefLangValues(resourceResolver, ruLocale, currentPagePathInLoop);
             }
         } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.SE_COUNTRY_CODE)) {
             for (String seLocale : PWConstants.seLocaleValues) {
                 setHrefLangValues(resourceResolver, seLocale, currentPagePathInLoop);
             }
         } else {
-            for (String esLocale: PWConstants.esLocaleValues) {
-                setHrefLangValues(resourceResolver, esLocale, currentPagePathInLoop );
+            for (String esLocale : PWConstants.esLocaleValues) {
+                setHrefLangValues(resourceResolver, esLocale, currentPagePathInLoop);
             }
         }
     }
 
+    /**
+     * Builds the digital data json.
+     *
+     * @return the string
+     */
     private String buildDigitalDataJson() {
 
         final JsonObject jsonObject = new JsonObject();
@@ -326,9 +443,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteLanguage", siteLanguage);
         pageInfo.addProperty("siteName", SITE_NAME);
 
-
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
-
 
         final JsonObject userInfo = new JsonObject();
         userInfo.addProperty("userId", StringUtils.EMPTY);
@@ -355,6 +470,11 @@ public class PageLoadAnalyticsModel {
         return gson.toJson(jsonObject);
     }
 
+    /**
+     * Gets the error code.
+     *
+     * @return the error code
+     */
     private String getErrorCode() {
         if (resource.getPath().contains("500")) {
             return Integer.toString(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -365,6 +485,11 @@ public class PageLoadAnalyticsModel {
         }
     }
 
+    /**
+     * Gets the error message.
+     *
+     * @return the error message
+     */
     private String getErrorMessage() {
         if (resource.getPath().contains("500")) {
             return "internal server error";
@@ -375,41 +500,80 @@ public class PageLoadAnalyticsModel {
         }
     }
 
+    /**
+     * Checks if is production.
+     *
+     * @return true, if is production
+     */
     public boolean isProduction() {
         return production;
     }
 
+    /**
+     * Checks if is staging.
+     *
+     * @return true, if is staging
+     */
     public boolean isStaging() {
         return staging;
     }
 
+    /**
+     * Checks if is development.
+     *
+     * @return true, if is development
+     */
     public boolean isDevelopment() {
         return development;
     }
 
+    /**
+     * Gets the digital data.
+     *
+     * @return the digital data
+     */
     public String getDigitalData() {
         return digitalData;
     }
-	
-	public String getCurrentPageURL() {
+
+    /**
+     * Gets the current page URL.
+     *
+     * @return the current page URL
+     */
+    public String getCurrentPageURL() {
         return LinkUtils.sanitizeLink(currentPage.getPath(), request);
     }
 
+    /**
+     * Gets the canonical URL.
+     *
+     * @return the canonical URL
+     */
     public String getCanonicalURL() {
-    	return  xssapi.getValidHref(LinkUtils.sanitizeLink(currentPage.getPath(), request));
-   }
-    
-   public Boolean isPublisher(){
- 	   return GlobalUtil.isPublish();
-   }
+        return xssapi.getValidHref(LinkUtils.sanitizeLink(currentPage.getPath(), request));
+    }
 
+    /**
+     * Checks if is publisher.
+     *
+     * @return the boolean
+     */
+    public Boolean isPublisher() {
+        return GlobalUtil.isPublish();
+    }
+
+    /**
+     * Gets the hreflang values.
+     *
+     * @return the hreflang values
+     */
     public List<CountryLanguageCodeBean> getHreflangValues() {
         /*
-        Below condition is to ensure Hreflang tags should be
-         automatically inserted into pages which exist in more than one region/language and thus
-         it should be more than two considering the x-default be one of them
+         * Below condition is to ensure Hreflang tags should be automatically inserted into pages which exist in more
+         * than one region/language and thus it should be more than two considering the x-default be one of them
          */
-        if(hrefLangValues.size() > HREFLANG_LIST_MINIMUM_SIZE){
+        if (hrefLangValues.size() > HREFLANG_LIST_MINIMUM_SIZE) {
             return new ArrayList<>(hrefLangValues);
         }
         return Collections.emptyList();

@@ -16,7 +16,7 @@ import org.apache.sling.settings.SlingSettingsService;
 import javax.annotation.PostConstruct;
 
 /**
- * This is a model class for video component
+ * This is a model class for video component.
  *
  * @author Nitin Kumar
  */
@@ -27,27 +27,35 @@ public class VideoModel {
     @Self
     private Resource resource;
 
+    /** The sling settings service. */
     @OSGiService
     private SlingSettingsService slingSettingsService;
 
+    /** The dynamic media service. */
     @OSGiService
     private DynamicMediaService dynamicMediaService;
 
+    /** The anchor id. */
     @ValueMapValue
     private String anchorId;
 
+    /** The anchor title. */
     @ValueMapValue
     private String anchorTitle;
 
+    /** The video source. */
     @ValueMapValue
     private String videoSource;
 
+    /** The youtube video ID. */
     @ValueMapValue
     private String youtubeVideoID;
 
+    /** The dam video path. */
     @ValueMapValue
     private String damVideoPath;
 
+    /** The thumbnail path. */
     @ValueMapValue
     private String thumbnailPath;
 
@@ -55,11 +63,16 @@ public class VideoModel {
     @ValueMapValue
     private String posterImageAltText;
 
+    /** The youtube embed URL. */
     private String youtubeEmbedURL;
 
+    /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
 
+    /**
+     * Inits the.
+     */
     @PostConstruct
     protected void init() {
         if (youtubeVideoID != null) {
@@ -74,22 +87,47 @@ public class VideoModel {
         }
     }
 
+    /**
+     * Gets the video source.
+     *
+     * @return the video source
+     */
     public String getVideoSource() {
         return videoSource;
     }
 
+    /**
+     * Gets the youtube video ID.
+     *
+     * @return the youtube video ID
+     */
     public String getYoutubeVideoID() {
         return youtubeVideoID;
     }
 
+    /**
+     * Gets the youtube embed URL.
+     *
+     * @return the youtube embed URL
+     */
     public String getYoutubeEmbedURL() {
         return youtubeEmbedURL;
     }
 
+    /**
+     * Gets the dam video path.
+     *
+     * @return the dam video path
+     */
     public String getDamVideoPath() {
         return damVideoPath;
     }
 
+    /**
+     * Gets the thumbnail path.
+     *
+     * @return the thumbnail path
+     */
     public String getThumbnailPath() {
         return thumbnailPath;
     }
@@ -103,14 +141,29 @@ public class VideoModel {
         return posterImageAltText;
     }
 
+    /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
     public String getPwTheme() {
         return pwTheme;
     }
 
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
     public String getAnchorId() {
         return anchorId;
     }
 
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
     public String getAnchorTitle() {
         return anchorTitle;
     }

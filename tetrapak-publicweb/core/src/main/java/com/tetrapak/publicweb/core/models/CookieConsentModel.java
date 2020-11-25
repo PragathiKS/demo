@@ -20,17 +20,25 @@ import javax.annotation.PostConstruct;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CookieConsentModel {
 
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
 
+    /** The cookie consent disabled. */
     private Boolean cookieConsentDisabled;
 
+    /** The cookie consent text. */
     private String cookieConsentText;
 
+    /** The cookie consent button text. */
     private String cookieConsentButtonText;
 
+    /** The selected language. */
     private String selectedLanguage;
 
+    /**
+     * Inits the.
+     */
     @PostConstruct
     protected void init() {
         Page languagePage = PageUtil.getLanguagePage(request.getResource());
@@ -47,18 +55,38 @@ public class CookieConsentModel {
         }
     }
 
+    /**
+     * Checks if is cookie consent disabled.
+     *
+     * @return the boolean
+     */
     public Boolean isCookieConsentDisabled() {
         return cookieConsentDisabled;
     }
 
+    /**
+     * Gets the cookie consent text.
+     *
+     * @return the cookie consent text
+     */
     public String getCookieConsentText() {
         return cookieConsentText;
     }
 
+    /**
+     * Gets the cookie consent button text.
+     *
+     * @return the cookie consent button text
+     */
     public String getCookieConsentButtonText() {
         return cookieConsentButtonText;
     }
 
+    /**
+     * Gets the locale.
+     *
+     * @return the locale
+     */
     public String getLocale() {
         if (StringUtils.isEmpty(selectedLanguage)) {
             selectedLanguage = "en";

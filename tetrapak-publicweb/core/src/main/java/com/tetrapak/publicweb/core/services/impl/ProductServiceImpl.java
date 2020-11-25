@@ -30,20 +30,22 @@ import com.tetrapak.publicweb.core.utils.ProcessingEquipementUtil;
 import com.tetrapak.publicweb.core.utils.ProductUtil;
 
 /**
- * Impl class for API GEE Service
- * 
+ * Impl class for API GEE Service.
+ *
  * @author Sandip Kumar
  */
 @Designate(ocd = ProductServiceImpl.Config.class)
 @Component(immediate = true, service = ProductService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 public class ProductServiceImpl implements ProductService {
-    
-    @ObjectClassDefinition(name = "Public Web Product Import Config",
-            description = "Public Web Product Import Config")
+
+    /**
+     * The Interface Config.
+     */
+    @ObjectClassDefinition(name = "Public Web Product Import Config", description = "Public Web Product Import Config")
     public static @interface Config {
 
         /**
-         * PXP DAM ROOT PATH
+         * PXP DAM ROOT PATH.
          *
          * @return dam root path
          */
@@ -51,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
         String damRootPath() default "/content/dam/tetrapak/products/pxp";
 
         /**
-         * PXP Video Types
+         * PXP Video Types.
          *
          * @return video types
          */
@@ -64,22 +66,27 @@ public class ProductServiceImpl implements ProductService {
 
     /** The paths to replicate. */
     private List<String> pathToReplicate;
-    
+
     /** The dam root path. */
     private String damRootPath;
-    
+
     /** The video types. */
     private String videoTypes;
 
     /**
+     * Creates the or update product filling machine.
+     *
      * @param resolver
+     *            the resolver
      * @param session
+     *            the session
      * @param productType
+     *            the product type
      * @param fillingMachines
+     *            the filling machines
      * @param language
-     * @param damRootPath
-     * @param videoTypes
-     * @return
+     *            the language
+     * @return the list
      */
     @Override
     public List<String> createOrUpdateProductFillingMachine(ResourceResolver resolver, Session session,
@@ -102,14 +109,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
+     * Process filling machine.
+     *
      * @param resolver
+     *            the resolver
      * @param productTypeResPath
+     *            the product type res path
      * @param productType
+     *            the product type
      * @param fillingMachine
+     *            the filling machine
      * @param language
+     *            the language
      * @param damRootPath
+     *            the dam root path
      * @param videoTypes
+     *            the video types
      * @throws PersistenceException
+     *             the persistence exception
      */
     private void processFillingMachine(ResourceResolver resolver, String productTypeResPath, String productType,
             FillingMachine fillingMachine, String language, String damRootPath, String videoTypes)
@@ -122,14 +139,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
+     * Creates the or update product package type.
+     *
      * @param resolver
+     *            the resolver
      * @param session
+     *            the session
      * @param productType
+     *            the product type
      * @param packageTypes
+     *            the package types
      * @param language
-     * @param damRootPath
-     * @param videoTypes
-     * @return
+     *            the language
+     * @return the list
      */
     @Override
     public List<String> createOrUpdateProductPackageType(ResourceResolver resolver, Session session, String productType,
@@ -154,13 +176,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
+     * Creates the or update product processing equipement.
+     *
      * @param resolver
+     *            the resolver
      * @param session
+     *            the session
      * @param productType
+     *            the product type
      * @param equipments
+     *            the equipments
      * @param language
-     * @param damRootPath
-     * @param videoTypes
+     *            the language
+     * @return the list
      */
     @Override
     public List<String> createOrUpdateProductProcessingEquipement(ResourceResolver resolver, Session session,
@@ -200,9 +228,12 @@ public class ProductServiceImpl implements ProductService {
         }
 
     }
-    
+
     /**
+     * Activate.
+     *
      * @param config
+     *            the config
      */
     @Activate
     protected void activate(final Config config) {
@@ -211,7 +242,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
+     * Modified.
+     *
      * @param config
+     *            the config
      */
     @Modified
     protected void modified(final Config config) {
