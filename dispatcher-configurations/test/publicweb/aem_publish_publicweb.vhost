@@ -75,6 +75,7 @@ PassEnv DISP_ID
                 ##Global rewrite include
                 Include /etc/httpd/conf.d/rewrites/base_rewrite.rules
                                         ##Publish  rewrite include
+                Include /etc/httpd/conf.d/rewrites/publish_publicweb_sharepoint_rewrite.rules
                 Include /etc/httpd/conf.d/rewrites/publish_publicweb_rewrite.rules
 
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_FORCE_SSL from 0 or 1 to enable or disable enforcing SSL

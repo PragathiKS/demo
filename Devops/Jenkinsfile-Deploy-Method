@@ -6,7 +6,7 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE'], description: 'Select the environment')
+        choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE', 'SUP', 'DEV65'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetraPak Module', name: 'DeployMyTetrapak'
         booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
@@ -62,7 +62,30 @@ pipeline {
                             
                         //}
                     }                 
+                    if (params.Environment == "SUP") {
 
+                        author_url = "https://author1westeurope.sup.tetrapak.adobecqms.net"
+                        publish_url = "https://publish1westeurope.sup.tetrapak.adobecqms.net" 
+                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredsup', usernameVariable: 'username', passwordVariable: 'password']])
+                        {
+                            supdeployment()
+                            echo "$username"
+                            echo "$password"
+                            
+                        }
+                    }
+                    if (params.Environment == "DEV65") {
+
+                        author_url = "https://author1westeurope.dev65.tetrapak.adobecqms.net"
+                        publish_url = "https://publish1westeurope.dev65.tetrapak.adobecqms.net"
+                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username', passwordVariable: 'password']])
+                        {
+                            devdeployment()
+                            echo "$username"
+                            echo "$password"
+                            
+                        }
+                    }					
                 }
             }
         }
@@ -204,6 +227,53 @@ pipeline {
             } 
     }
 
+    def supdeployment() {
+                
+        if (params.DeployCommons)    {
+                packageName = "tetrapak-commons.complete"
+                repoName = "tetrapak"
+                fileName = "1.0.0-DEV${Snapshot_Commons}-SNAPSHOT"
+                devartifactdownload()
+                parallel (
+                    "Author Commons" : {
+                        authordeploy()
+                    },
+                    "Publisher Commons" : {
+                        publishdeploy()
+                    }
+                )
+
+            }
+        if (params.DeployMyTetrapak) {
+                packageName = "tetrapak-customerhub.complete"
+                repoName = "tetrapak-customerhub"                
+                fileName = "1.0.0-DEV${Snapshot_MyTetrapak}-SNAPSHOT"
+                devartifactdownload()
+                parallel (  
+                    "Author MyTetrapak" : {                                  
+                authordeploy()
+                    },
+                    "Publisher MyTetrapak" : {                                    
+                publishdeploy() 
+                    }
+                )                           
+        }
+        if (params.DeployPublicWeb) {
+                packageName = "tetrapak-publicweb.complete"
+                repoName = "tetrapak-publicweb"                
+                fileName = "1.0.0-DEV${Snapshot_PublicWeb}-SNAPSHOT"
+                devartifactdownload()
+                parallel (    
+                    "Author PublicWeb" : {                                    
+                authordeploy()
+                    },
+                    "Publisher PublicWeb" : {                     
+                publishdeploy()  
+                    }
+                )
+            }             
+
+        }
 
     def authordeploy() {
                 
