@@ -208,6 +208,7 @@
         th {
             @include padding-left(8px);
             @include padding-right(14px);
+            white-space: pre-wrap;
         }
     }
     @media #{$desktop} {
