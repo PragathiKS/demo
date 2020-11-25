@@ -4,7 +4,6 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { isExternal } from '../../../scripts/utils/updateLink';
 import { pauseVideosByReference, initializeYoutubePlayer, removeYTReferences, ytPromise, initializeDAMPlayer } from '../../../scripts/utils/videoAnalytics';
 import { logger } from '../../../scripts/utils/logger';
-import { dynMedia } from '../../../scripts/utils/dynamicMedia';
 
 function _renderFirstTab() {
   const { componentId } = this.cache;
@@ -44,15 +43,9 @@ class TabsList {
         self.addClass(`active--${activeTheme}`).toggleClass('m-active');
       })
       .on('click', '.js-tablist__event-detail-description-link', this.trackAnalytics)
-      .on('hidden.bs.collapse', '.collapse', this.pauseVideoIfExists)
-      .on('shown.bs.collapse','.collapse', this.processDynamicImage);
+      .on('hidden.bs.collapse', '.collapse', this.pauseVideoIfExists);
 
     tabButton.on('click', this.trackAnalyticsTabs);
-  }
-
-
-  processDynamicImage = () => {
-    dynMedia.processImages();
   }
 
   showTabDetail = (el) => {

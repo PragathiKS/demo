@@ -65,11 +65,13 @@ function _processImageAttributes(container,isMediaChanged) {
   if (typeof container === 'string') {
     return new LazyLoad({
       container: document.querySelector(container),
-      elements_selector: '.js-dynamic-media[data-src]'
+      elements_selector: '.js-dynamic-media[data-src]',
+      skip_invisible: false
     });
   }
   return new LazyLoad({
-    elements_selector: '.js-dynamic-media[data-src]'
+    elements_selector: '.js-dynamic-media[data-src]',
+    skip_invisible: false
   });
 }
 
