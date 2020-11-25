@@ -10,13 +10,18 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SemiAutomaticModel {
-    
-    /** The pageURL */
+
+    /** The pageURL. */
     @ValueMapValue
     private String pageURL;
 
+    /**
+     * Gets the page URL.
+     *
+     * @return the page URL
+     */
     public String getPageURL() {
         return pageURL;
-    }  
+    }
 
 }

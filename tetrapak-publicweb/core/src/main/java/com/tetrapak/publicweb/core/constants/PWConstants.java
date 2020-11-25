@@ -18,7 +18,7 @@ public final class PWConstants {
     /** The Constant GLOBAL_HOME_PAGE. */
     public static final String GLOBAL_HOME_PAGE = "/content/tetrapak/publicweb/global/en/home";
 
-    /** The Constant EN_GB. This can be use as default locale*/
+    /** The Constant EN_GB. This can be use as default locale */
     public static final String GLOBAL_LOCALE = "en-global";
 
     /** The Constant LANGUAGE_LEVEL. */
@@ -34,7 +34,7 @@ public final class PWConstants {
     public static final String HOME_PAGE_REL_PATH = "home";
 
     /** The Constant LANG_MASTERS. */
-    public static final String LANG_MASTERS= "lang-masters";
+    public static final String LANG_MASTERS = "lang-masters";
 
     /** The Constant OTHERS_SECTION_MENU_PAGE_LEVEL. */
     public static final int OTHERS_SECTION_MENU_PAGE_LEVEL = 5;
@@ -125,7 +125,7 @@ public final class PWConstants {
 
     /** The Constant VIDEO. */
     public static final String VIDEO = "video";
-    
+
     /** The Constant DOCUMENT. */
     public static final String DOCUMENT = "document";
 
@@ -169,7 +169,7 @@ public final class PWConstants {
     public static final String DELTA_FEED = "delta";
 
     /** The default bearer token refresh time. */
-    public static final int  FIFTY_MIN_IN_MILLI_SECONDS = 3_000_000;
+    public static final int FIFTY_MIN_IN_MILLI_SECONDS = 3_000_000;
 
     /** The Constant REPLICATION_PXP. */
     public static final String REPLICATION_PXP = "replicationpxp";
@@ -186,45 +186,51 @@ public final class PWConstants {
     /** The TARGET SAME TAB. */
     public static final String SELF_TARGET = "_self";
 
+    /** The Constant APPLICATION_OCTET_STREAM. */
     public static final String APPLICATION_OCTET_STREAM = "application/octet-stream";
 
+    /** The Constant CONTACT_US_MAIL_TEMPLATE_PATH. */
     public static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/publicweb/contactusemail.html";
 
+    /** The Constant SEND_EMAIL_JOB_TOPIC. */
     public static final String SEND_EMAIL_JOB_TOPIC = "com/tetrapak/publicweb/sendemail";
-    
+
     /** The Constant SPACE. */
     public static final String SPACE = " ";
-    
+
     /** The Constant NEWS. */
     public static final String NEWS = "news";
-    
+
     /** The Constant EVENTS. */
     public static final String EVENTS = "events";
-    
+
     /** The Constant CASES. */
     public static final String CASES = "cases";
-    
-    /** The Constant MEDIA. */	
+
+    /** The Constant MEDIA. */
     public static final String MEDIA = "media";
-    
+
     /** The Constant PRODUCTS. */
     public static final String PRODUCTS = "products";
-    
+
     /** The Constant JCR_LAST_MODIFIED. */
     public static final String JCR_LAST_MODIFIED = "jcr:lastModified";
-    
+
     /** The Constant CQ_LAST_MODIFIED. */
     public static final String CQ_LAST_MODIFIED = "cq:lastModified";
 
+    /** The Constant HTTPS_PROTOCOL. */
     public static final String HTTPS_PROTOCOL = "https://";
+
+    /** The Constant WWW. */
     public static final String WWW = "www.";
-	/** The Constant HTML. */   
+    /** The Constant HTML. */
     public static final String HTML = ".html";
-    
-    /** The Constant JCR VALUE. */  
+
+    /** The Constant JCR VALUE. */
     public static final String JCR = "/jcr:content";
 
-    /** The Constant CAC_COUNTRY_CODE Central America & Caribbean */
+    /** The Constant CAC_COUNTRY_CODE Central America & Caribbean. */
     public static final String CAC_COUNTRY_CODE = "cac";
 
     /** The Constant MAGHREB_MARKET_CODE. */
@@ -245,28 +251,31 @@ public final class PWConstants {
     /** The Constant SE_COUNTRY_CODE for Sweden. */
     public static final String SE_COUNTRY_CODE = "se";
 
-   /** list exceptionCountriesList contains all countries which are exceptions for country code .**/
-    public static final List<String> exceptionCountriesList =
-           Collections.unmodifiableList(Arrays.asList(MAGHREB_COUNTRY_CODE, CAC_COUNTRY_CODE,DE_COUNTRY_CODE,RU_COUNTRY_CODE,SE_COUNTRY_CODE));
+    /** list exceptionCountriesList contains all countries which are exceptions for country code . **/
+    public static final List<String> exceptionCountriesList = Collections.unmodifiableList(
+            Arrays.asList(MAGHREB_COUNTRY_CODE, CAC_COUNTRY_CODE, DE_COUNTRY_CODE, RU_COUNTRY_CODE, SE_COUNTRY_CODE));
 
     /** list maghrebLocaleValues contains all locales for maghreb. **/
-    public static final List<String> maghrebLocaleValues =
-            Collections.unmodifiableList(Arrays.asList("fr-dz", "fr-ly", "fr-mr", "fr-ma", "fr-tn"));
+    public static final List<String> maghrebLocaleValues = Collections
+            .unmodifiableList(Arrays.asList("fr-dz", "fr-ly", "fr-mr", "fr-ma", "fr-tn"));
 
     /** list esLocaleValues contains all locales for Central America & Caribbean. **/
     public static final List<String> esLocaleValues = Collections.unmodifiableList(Collections.singletonList("es"));
 
-    /** list deLocaleValues contains all locales for Germany, Austria, Switzerland .**/
-    public static final List<String> deLocaleValues = Collections.unmodifiableList(Arrays.asList("de-de", "de-at", "de-ch"));
+    /** list deLocaleValues contains all locales for Germany, Austria, Switzerland . **/
+    public static final List<String> deLocaleValues = Collections
+            .unmodifiableList(Arrays.asList("de-de", "de-at", "de-ch"));
 
-    /** list ruLocaleValues contains all locales for  Russia, Kazakhstan, Ukraine.**/
-    public static final List<String> ruLocaleValues = Collections.unmodifiableList(Arrays.asList("ru-ru", "ru-kz", "ru-ua"));
+    /** list ruLocaleValues contains all locales for Russia, Kazakhstan, Ukraine. **/
+    public static final List<String> ruLocaleValues = Collections
+            .unmodifiableList(Arrays.asList("ru-ru", "ru-kz", "ru-ua"));
 
-    /** list seLocaleValues contains all locales for Sweden**/
+    /** list seLocaleValues contains all locales for Sweden*. */
     public static final List<String> seLocaleValues = Collections.unmodifiableList(Collections.singletonList("sv-se"));
 
     /** The Constant JCR PREVIEW_SALT. */
     public static final String PREVIEW_SALT = "previewSalt";
+
     /**
      * Instantiates a new PW constants.
      */

@@ -16,7 +16,6 @@ import org.apache.sling.settings.SlingSettingsService;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class TabBeanModel.
@@ -181,7 +180,8 @@ public class TabModel {
     public String getDamVideoPath() {
         if (Objects.nonNull(slingSettingsService) && Objects.nonNull(dynamicMediaService)
                 && !slingSettingsService.getRunModes().contains(AUTHOR)) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath, dynamicMediaService);
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resource.getResourceResolver(), damVideoPath,
+                    dynamicMediaService);
         }
 
         return damVideoPath;

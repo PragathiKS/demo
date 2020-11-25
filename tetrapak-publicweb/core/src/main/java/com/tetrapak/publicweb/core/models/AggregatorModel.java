@@ -12,69 +12,109 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AggregatorModel {
 
-    /** The title */
+    /**  The title. */
     @Named(value = "jcr:title")
     @ValueMapValue
     private String title;
 
-    /** The tags */
+    /**  The tags. */
     @ValueMapValue
     @Named(value = "cq:tags")
     private String[] tags;
 
-    /** The description */
+    /**  The description. */
     @ValueMapValue
     @Named(value = "jcr:description")
     private String description;
 
-    /** The imagePath */
+    /**  The imagePath. */
     @ValueMapValue
     private String imagePath;
 
-    /** The altText */
+    /**  The altText. */
     @ValueMapValue
     private String altText;
 
-    /** The linkText */
+    /**  The linkText. */
     @ValueMapValue
     private String linkText;
 
-    /** The linkPath */
+    /**  The linkPath. */
     @ValueMapValue
     private String linkPath;
 
-    /** The pwButtonTheme */
+    /**  The pwButtonTheme. */
     @ValueMapValue
     private String pwButtonTheme;
 
+    /**
+     * Gets the title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Gets the tags.
+     *
+     * @return the tags
+     */
     public String[] getTags() {
         return tags;
     }
 
+    /**
+     * Gets the description.
+     *
+     * @return the description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the image path.
+     *
+     * @return the image path
+     */
     public String getImagePath() {
         return imagePath;
     }
 
+    /**
+     * Gets the alt text.
+     *
+     * @return the alt text
+     */
     public String getAltText() {
         return altText;
     }
 
+    /**
+     * Gets the link text.
+     *
+     * @return the link text
+     */
     public String getLinkText() {
         return linkText;
     }
 
+    /**
+     * Gets the link path.
+     *
+     * @return the link path
+     */
     public String getLinkPath() {
         return linkPath;
     }
 
+    /**
+     * Gets the pw button theme.
+     *
+     * @return the pw button theme
+     */
     public String getPwButtonTheme() {
         return pwButtonTheme;
     }

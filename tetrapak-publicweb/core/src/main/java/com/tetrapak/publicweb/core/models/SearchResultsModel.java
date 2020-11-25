@@ -51,13 +51,13 @@ public class SearchResultsModel {
     private Map<String, String> themeMap = new LinkedHashMap<>();
 
     /** The template map. */
-    Map<String, String> templateMap = new HashMap<>();
+    private Map<String, String> templateMap = new HashMap<>();
 
     /** The configuration model. */
     private SearchConfigModel configurationModel = new SearchConfigModel();
     
     /** The content type list. */
-    List<SearchListModel> contentTypeList = new ArrayList<>();
+    private List<SearchListModel> contentTypeList = new ArrayList<>();
 
     /**
      * Inits the.

@@ -39,7 +39,7 @@ import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.config.APIGEEServiceConfig;
 
 /**
- * Impl class for API GEE Service
+ * Impl class for API GEE Service.
  *
  * @author Sandip Kumar
  */
@@ -63,7 +63,7 @@ public class APIGEEServiceImpl implements APIGEEService {
     private static final int SUCESSS = 200;
 
     /**
-     * activate method
+     * activate method.
      *
      * @param config
      *            API GEE Service configuration
@@ -75,7 +75,9 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
-     * return bearer token
+     * return bearer token.
+     *
+     * @return the bearer token
      */
     @Override
     public BearerToken getBearerToken() {
@@ -96,7 +98,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
-     * return filling machines
+     * return filling machines.
+     *
+     * @param token
+     *            the token
+     * @param fileURI
+     *            the file URI
+     * @return the filling machines
      */
     @Override
     public List<FillingMachine> getFillingMachines(final String token, final String fileURI) {
@@ -114,7 +122,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
-     * return package types
+     * return package types.
+     *
+     * @param token
+     *            the token
+     * @param fileURI
+     *            the file URI
+     * @return the package types
      */
     @Override
     public List<Packagetype> getPackageTypes(final String token, final String fileURI) {
@@ -132,7 +146,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
-     * return processing equipements
+     * return processing equipements.
+     *
+     * @param token
+     *            the token
+     * @param fileURI
+     *            the file URI
+     * @return the processing equipements
      */
     @Override
     public List<ProcessingEquipement> getProcessingEquipements(final String token, final String fileURI) {
@@ -149,7 +169,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
-     * return delta filling machines
+     * return delta filling machines.
+     *
+     * @param token
+     *            the token
+     * @param fileURI
+     *            the file URI
+     * @return the delta filling machines
      */
     @Override
     public DeltaFillingMachine getDeltaFillingMachines(final String token, final String fileURI) {
@@ -167,7 +193,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
-     * return delta package types
+     * return delta package types.
+     *
+     * @param token
+     *            the token
+     * @param fileURI
+     *            the file URI
+     * @return the delta package types
      */
     @Override
     public DeltaPackageType getDeltaPackageTypes(final String token, final String fileURI) {
@@ -185,7 +217,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
-     * return delta processing equipements
+     * return delta processing equipements.
+     *
+     * @param token
+     *            the token
+     * @param fileURI
+     *            the file URI
+     * @return the delta processing equipements
      */
     @Override
     public DeltaProcessingEquipement getDeltaProcessingEquipements(final String token, final String fileURI) {
@@ -202,8 +240,13 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
-     * return list of files
+     * return list of files.
      *
+     * @param feedType
+     *            the feed type
+     * @param token
+     *            the token
+     * @return the list of files
      */
     @Override
     public Files getListOfFiles(final String feedType, final String token) {
@@ -220,9 +263,14 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
+     * Gets the API gee post respose.
+     *
      * @param authType
+     *            the auth type
      * @param apiURI
+     *            the api URI
      * @param encodedAuthString
+     *            the encoded auth string
      * @return api gee post response
      */
     private String getAPIGeePostRespose(final String authType, final String apiURI, final String encodedAuthString) {
@@ -255,9 +303,14 @@ public class APIGEEServiceImpl implements APIGEEService {
     }
 
     /**
+     * Gets the API gee get respose.
+     *
      * @param authType
+     *            the auth type
      * @param apiURI
+     *            the api URI
      * @param encodedAuthString
+     *            the encoded auth string
      * @return api gee get response
      */
     private String getAPIGeeGetRespose(final String authType, final String apiURI, final String encodedAuthString) {

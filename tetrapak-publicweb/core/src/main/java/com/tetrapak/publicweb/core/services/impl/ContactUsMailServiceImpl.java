@@ -17,14 +17,30 @@ import com.tetrapak.publicweb.core.constants.FormConstants;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.ContactUsMailService;
 
+/**
+ * The Class ContactUsMailServiceImpl.
+ */
 @Component(immediate = true, service = ContactUsMailService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 public class ContactUsMailServiceImpl implements ContactUsMailService {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactUsMailServiceImpl.class);
 
+    /** The job mgr. */
     @Reference
     private JobManager jobMgr;
 
+    /**
+     * Send email for notification.
+     *
+     * @param contactUs
+     *            the contact us
+     * @param logo
+     *            the logo
+     * @param mailAddresses
+     *            the mail addresses
+     * @return the contact us response
+     */
     @Override
     public ContactUsResponse sendEmailForNotification(final ContactUs contactUs, String logo,
             final String[] mailAddresses) {

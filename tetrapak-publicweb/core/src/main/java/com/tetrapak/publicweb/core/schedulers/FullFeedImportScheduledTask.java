@@ -36,10 +36,11 @@ import com.tetrapak.publicweb.core.utils.ProductUtil;
 import com.tetrapak.publicweb.core.utils.ResourceUtil;
 
 /**
+ * The Class FullFeedImportScheduledTask.
+ *
  * @author Sandip Kumar
  * 
  *         Full Feed Scheduler for products import.
- *
  */
 @Designate(ocd = PXPConfig.class)
 @Component(
@@ -48,6 +49,7 @@ import com.tetrapak.publicweb.core.utils.ResourceUtil;
         configurationPolicy = ConfigurationPolicy.REQUIRE)
 public class FullFeedImportScheduledTask implements Runnable {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(FullFeedImportScheduledTask.class);
 
     /** The apiGEE service. */
@@ -89,7 +91,7 @@ public class FullFeedImportScheduledTask implements Runnable {
     private int schedulerID;
 
     /**
-     * start scheduler
+     * start scheduler.
      */
     @Override
     public void run() {
@@ -116,7 +118,7 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
 
     /**
-     * process files
+     * process files.
      */
     private void processFiles() {
         if (bearerToken != null && StringUtils.isNotBlank(bearerToken.getAccessToken())) {
@@ -130,7 +132,10 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
 
     /**
+     * Process file.
+     *
      * @param file
+     *            the file
      */
     private void processFile(File file) {
         if (file != null && StringUtils.isNotBlank(file.getName())) {
@@ -154,50 +159,63 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
 
     /**
+     * Process filling machines.
+     *
      * @param fileURI
+     *            the file URI
      * @param fileType
+     *            the file type
      * @param language
+     *            the language
      */
     private void processFillingMachines(String fileURI, String fileType, String language) {
         List<FillingMachine> fillingMachines = apiGEEService.getFillingMachines(bearerToken.getAccessToken(),
                 PWConstants.FEED_FILES_URI + fileURI);
         if (!fillingMachines.isEmpty()) {
-            productService.createOrUpdateProductFillingMachine(resolver, session, fileType,
-                    fillingMachines, language);
+            productService.createOrUpdateProductFillingMachine(resolver, session, fileType, fillingMachines, language);
         }
 
     }
 
     /**
+     * Process equipments.
+     *
      * @param fileURI
+     *            the file URI
      * @param fileType
+     *            the file type
      * @param language
+     *            the language
      */
     private void processEquipments(String fileURI, String fileType, String language) {
         List<ProcessingEquipement> equipements = apiGEEService.getProcessingEquipements(bearerToken.getAccessToken(),
                 PWConstants.FEED_FILES_URI + fileURI);
         if (!equipements.isEmpty()) {
-            productService.createOrUpdateProductProcessingEquipement(resolver, session,
-                    fileType, equipements, language);
+            productService.createOrUpdateProductProcessingEquipement(resolver, session, fileType, equipements,
+                    language);
         }
     }
 
     /**
+     * Process package types.
+     *
      * @param fileURI
+     *            the file URI
      * @param fileType
+     *            the file type
      * @param language
+     *            the language
      */
     private void processPackageTypes(String fileURI, String fileType, String language) {
         List<Packagetype> packageTypes = apiGEEService.getPackageTypes(bearerToken.getAccessToken(),
                 PWConstants.FEED_FILES_URI + fileURI);
         if (!packageTypes.isEmpty()) {
-            productService.createOrUpdateProductPackageType(resolver, session, fileType,
-                    packageTypes, language);
+            productService.createOrUpdateProductPackageType(resolver, session, fileType, packageTypes, language);
         }
     }
 
     /**
-     * set bearer token
+     * set bearer token.
      */
     private void setBearerToken() {
         bearerToken = apiGEEService.getBearerToken();
@@ -234,7 +252,10 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
 
     /**
+     * Activate.
+     *
      * @param config
+     *            the config
      */
     @Activate
     protected void activate(PXPConfig config) {
@@ -244,7 +265,10 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
 
     /**
+     * Modified.
+     *
      * @param config
+     *            the config
      */
     @Modified
     protected void modified(PXPConfig config) {
@@ -255,7 +279,10 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
 
     /**
+     * Deactivate.
+     *
      * @param config
+     *            the config
      */
     @Deactivate
     protected void deactivate(PXPConfig config) {
@@ -263,7 +290,10 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
 
     /**
-     * Add a scheduler based on the scheduler ID
+     * Add a scheduler based on the scheduler ID.
+     *
+     * @param config
+     *            the config
      */
     private void addScheduler(PXPConfig config) {
         if (!config.fullFeedSchedulerDisable()) {
@@ -278,7 +308,7 @@ public class FullFeedImportScheduledTask implements Runnable {
     }
 
     /**
-     * Remove a scheduler based on the scheduler ID
+     * Remove a scheduler based on the scheduler ID.
      */
     private void removeScheduler() {
         LOGGER.debug("Removing FullFeedImportScheduledTask Job '{}'", schedulerID);

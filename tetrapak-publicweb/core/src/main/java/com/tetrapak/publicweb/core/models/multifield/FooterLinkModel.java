@@ -15,7 +15,7 @@ public class FooterLinkModel {
 
     /** The resource. */
     @Self
-    Resource request;
+    private Resource request;
 
     /** The link label. */
     @ValueMapValue

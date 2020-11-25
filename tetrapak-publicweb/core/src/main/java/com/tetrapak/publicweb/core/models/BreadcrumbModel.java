@@ -44,7 +44,7 @@ public class BreadcrumbModel {
 
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
-    
+
     /**
      * Inits the.
      */
@@ -53,8 +53,7 @@ public class BreadcrumbModel {
         LOGGER.debug("Inside init method");
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        homePagePath = LinkUtils.sanitizeLink(rootPath + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH,
-                request);
+        homePagePath = LinkUtils.sanitizeLink(rootPath + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH, request);
         final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
         final String[] pages = path.split("/");
         final int length = pages.length - 1;
@@ -99,5 +98,5 @@ public class BreadcrumbModel {
     public String getHomePagePath() {
         return LinkUtils.sanitizeLink(homePagePath, request);
     }
-    
+
 }

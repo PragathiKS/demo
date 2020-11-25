@@ -113,7 +113,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
     /** The xss API. */
     @Reference
     private transient XSSAPI xssAPI;
-    
+
     /** The xss Filter. */
     @Reference
     private transient XSSFilter xssFilter;

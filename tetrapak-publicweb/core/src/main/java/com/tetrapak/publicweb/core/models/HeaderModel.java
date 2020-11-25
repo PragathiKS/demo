@@ -90,7 +90,7 @@ public class HeaderModel {
     
     /** The xssApi. */
     @Reference
-    XSSAPI xssApi;
+    private XSSAPI xssApi;
 
     /**
      * Inits the.

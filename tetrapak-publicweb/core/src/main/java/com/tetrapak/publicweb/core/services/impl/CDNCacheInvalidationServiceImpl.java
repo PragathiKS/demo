@@ -49,8 +49,7 @@ import com.tetrapak.publicweb.core.services.config.CDNCacheInvalidationServiceCo
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
- * Impl class for CDNCacheInvalidationService
- *
+ * Impl class for CDNCacheInvalidationService.
  */
 @Component(
         immediate = true,
@@ -58,20 +57,29 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
         configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = CDNCacheInvalidationServiceConfig.class)
 public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationService {
-    
-    /** LOGGER */
+
+    /** LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(CDNCacheInvalidationServiceImpl.class);
 
+    /** The config. */
     private CDNCacheInvalidationServiceConfig config;
 
-    /**
-     * files parameter name
-     */
+    /** files parameter name. */
     private static final String SI_PARAM_DIRS = "dirs";
+
+    /** The Constant SI_PARAM_DIR_ACTION. */
     private static final String SI_PARAM_DIR_ACTION = "dirAction";
+
+    /** The Constant SI_ACTION_EXPIRE. */
     private static final String SI_ACTION_EXPIRE = "expire";
+
+    /** The Constant SI_PROP_TESTURI. */
     private static final String SI_PROP_TESTURI = "testUri";
+
+    /** The Constant BASIC_AUTH_HEADER_PREFIX. */
     private static final String BASIC_AUTH_HEADER_PREFIX = "Basic ";
+
+    /** The Constant MAC_ALGORITHM. */
     private static final String MAC_ALGORITHM = "HmacSHA256";
 
     /**
@@ -80,7 +88,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     private static final String SI_PROTOCOL = "cdn-serviceinsight://";
 
     /**
-     * activate method
+     * activate method.
      *
      * @param config
      *            Pardot Service configuration
@@ -139,7 +147,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     }
 
     /**
-     * Get Replication Result
+     * Get Replication Result.
      *
      * @param response
      *            - HttpResponse object
@@ -193,18 +201,22 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
         } catch (final Exception e) {
             tx.getLog().error("Could not send replication request {}", e.getMessage());
             LOGGER.error("Could not send replication request {}", e.getMessage());
-            
+
         }
         return response;
     }
 
     /**
-     * Forms and Adds authorization header to the request headers
+     * Forms and Adds authorization header to the request headers.
      *
      * @param request
+     *            the request
      * @param ctx
+     *            the ctx
      * @throws InvalidKeyException
+     *             the invalid key exception
      * @throws NoSuchAlgorithmException
+     *             the no such algorithm exception
      */
     private static void addAuthHeader(final AbstractHttpMessage request, final TransportContext ctx)
             throws InvalidKeyException, NoSuchAlgorithmException {
@@ -217,10 +229,11 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     }
 
     /**
-     * Method provides date in a format specified by service insight API
+     * Method provides date in a format specified by service insight API.
      *
      * @param date
-     * @return
+     *            the date
+     * @return the date
      */
     private static String getDate(final Date date) {
         final SimpleDateFormat rfc822DateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
@@ -229,14 +242,19 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     }
 
     /**
-     * Provides encoded authorization header key
+     * Provides encoded authorization header key.
      *
      * @param dateString
+     *            the date string
      * @param username
+     *            the username
      * @param apikey
-     * @return
+     *            the apikey
+     * @return the string
      * @throws InvalidKeyException
+     *             the invalid key exception
      * @throws NoSuchAlgorithmException
+     *             the no such algorithm exception
      */
     private static String encode(final String dateString, final String username, final String apikey)
             throws InvalidKeyException, NoSuchAlgorithmException {
@@ -246,13 +264,17 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     }
 
     /**
-     * Provides signature encoded in base64
+     * Provides signature encoded in base64.
      *
      * @param data
+     *            the data
      * @param apikey
-     * @return
+     *            the apikey
+     * @return the string
      * @throws NoSuchAlgorithmException
+     *             the no such algorithm exception
      * @throws InvalidKeyException
+     *             the invalid key exception
      */
     private static String signAndBase64Encode(final byte[] data, final String apikey)
             throws NoSuchAlgorithmException, InvalidKeyException {
@@ -270,8 +292,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      *            The HTTP POST request to append the request body
      * @param tx
      *            ReplicationTransaction
-     * @param resolverFactory
-     * @return
+     * @return true, if successful
      */
     private boolean createPostBody(final HttpPost request, final ReplicationTransaction tx) {
         tx.getLog().debug("Inside create request JSON");
@@ -299,9 +320,11 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     }
 
     /**
+     * Find url mapping.
      *
      * @param path
-     * @return
+     *            the path
+     * @return the string
      */
     private String findUrlMapping(final String path) {
         return Arrays.stream(config.urlMapping()).filter(e -> e.contains(path)).findAny().orElse(StringUtils.EMPTY)
