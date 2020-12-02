@@ -213,5 +213,9 @@
             <version>5.5.9</version>
             <scope>provided</scope>
         </dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
     </dependencies>
 </project>
