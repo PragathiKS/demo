@@ -343,6 +343,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.message"
         sling:message="Message"/>
+     <pw.form.businessenq.errorMessage
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.businessenq.errorMessage"
+        sling:message="Fill in your query/message as mandatory message."/>
      <pw.form.label.cSuite
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.cSuite"
