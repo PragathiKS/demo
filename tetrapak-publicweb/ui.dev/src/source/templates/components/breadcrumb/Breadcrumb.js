@@ -36,7 +36,12 @@ class Breadcrumb {
     };
 
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    window.open($this.attr('href'), '_self');
+    if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+      window.open($this.attr('href'), '_blank');
+    }
+    else {
+      window.open($this.attr('href'), '_self');
+    }
   }
 
   init() {
