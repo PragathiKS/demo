@@ -1,4 +1,4 @@
-FROM maven:3-jdk-8-openj9
+FROM maven:3.6.3-jdk-11-openj9
 
 RUN apt-get update && apt-get install -y curl
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash 
