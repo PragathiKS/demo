@@ -11,10 +11,10 @@
         var digitalData = ${digitalDataModel.digitalData @ context="unsafe"};
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-     <sly data-sly-test="${digitalDataModel.production}">
+     <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
         <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
     </sly>
-    <sly data-sly-test="${digitalDataModel.development || digitalDataModel.staging}">
+    <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher || digitalDataModel.staging && digitalDataModel.isPublisher}">
         <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
     </sly>
     <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
