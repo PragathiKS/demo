@@ -164,12 +164,6 @@
            <version>3.4</version>
            <scope>provided</scope>
         </dependency>
-        <dependency>
-        	<groupId>org.apache.poi</groupId>
-	        <artifactId>poi-ooxml-schemas</artifactId>
-	        <version>3.9</version>
-	        <scope>provided</scope>
-    	</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -214,8 +208,20 @@
             <scope>provided</scope>
         </dependency>
 		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 		</dependency>
+		 <dependency>
+        	<groupId>org.apache.poi</groupId>
+	        <artifactId>poi-ooxml-schemas</artifactId>
+    	</dependency>
     </dependencies>
 </project>
