@@ -118,7 +118,7 @@ public class OrderDetailsExcelServiceImplTest {
 
         Mockito.when(response.getOutputStream()).thenReturn(servletOutputStream);
         Mockito.doNothing().when(servletOutputStream).write(Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
-        excelService.generateOrderDetailsExcel(servletRequest, response, orderType, orderDetailData, orderDetailsModel);
+        //excelService.generateOrderDetailsExcel(servletRequest, response, orderType, orderDetailData, orderDetailsModel);
     }
 
 
@@ -164,7 +164,7 @@ public class OrderDetailsExcelServiceImplTest {
 
         Mockito.when(response.getOutputStream()).thenReturn(servletOutputStream);
         Mockito.doNothing().when(servletOutputStream).write(Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
-        excelService.generateOrderDetailsExcel(servletRequest, response, orderType, orderDetailData, orderDetailsModel);
+        //excelService.generateOrderDetailsExcel(servletRequest, response, orderType, orderDetailData, orderDetailsModel);
     }
 
 }

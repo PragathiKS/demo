@@ -166,5 +166,9 @@
             <version>1.6.4</version>
             <scope>test</scope>
         </dependency>
+		<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+			</dependency>
     </dependencies>
 </project>
