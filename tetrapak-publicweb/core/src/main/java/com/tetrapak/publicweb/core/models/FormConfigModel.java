@@ -42,7 +42,16 @@ public class FormConfigModel {
     /** The thankyou description text. */
     @ValueMapValue
     private String thankyouDescriptionText;
-
+    
+    /** The tags. */
+    @ValueMapValue
+    private String tags;
+     
+    public String getTags() {
+        return tags;
+    }
+    
+   
     /**
      * Gets the heading.
      *
