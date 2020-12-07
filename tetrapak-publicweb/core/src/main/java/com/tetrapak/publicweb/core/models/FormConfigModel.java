@@ -43,7 +43,11 @@ public class FormConfigModel {
     @ValueMapValue
     private String thankyouDescriptionText;
     
-    /** The tags. */
+    /**
+     * Gets the tags.
+     *
+     * @return the tags
+     */
     @ValueMapValue
     private String tags;
      
