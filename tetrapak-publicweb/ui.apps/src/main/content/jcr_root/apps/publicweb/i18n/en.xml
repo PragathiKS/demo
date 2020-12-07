@@ -347,32 +347,12 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.errorMessage"
         sling:message="Fill in your query/message as mandatory message."/>
-     <pw.form.label.cSuite
+     <pw.form.businessenq.jobTitle
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.cSuite"
-        sling:message="C-suite"/>
-     <pw.form.label.vicePresident
+        sling:key="pw.form.businessenq.jobTitle"
+        sling:message="Job title"/>
+      <pw.form.businessenq.selectTitle
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.vicePresident"
-        sling:message="Vice President"/>
-     <pw.form.label.director
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.director"
-        sling:message="Director"/>
-     <pw.form.label.manager
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.manager"
-        sling:message="Manager"/>
-      <pw.form.label.associate
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.associate"
-        sling:message="Associate"/>
-      <pw.form.label.entryLevel
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.entryLevel"
-        sling:message="Entry level"/>
-      <pw.form.label.other
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.label.other"
-        sling:message="Other"/>      
+        sling:key="pw.form.businessenq.selectTitle"
+        sling:message="Select title"/>        
 </jcr:root>
