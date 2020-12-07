@@ -12,18 +12,13 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
-
 import javax.annotation.PostConstruct;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
@@ -38,9 +33,6 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BusinessInquiryModel extends FormModel {
-	
-	/** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(BusinessInquiryModel.class);
 
     /** The resource. */
     @Self
@@ -72,9 +64,7 @@ public class BusinessInquiryModel extends FormModel {
     protected void init() {
         setCountryOptions();
         setFormConfig();
-        getTagTitles();
-       
-    }
+  }
 
     /**
      * Sets the form configs.
@@ -93,48 +83,41 @@ public class BusinessInquiryModel extends FormModel {
     }
     
     /**
-     * Gets the tags Value via Map.
+     * Gets the tags Value and sorting it with Alphabetical order.
      *
      */
     
 	public Map<String, String> getTagTitles() {
 
 		String rootTag = formConfig.getTags();
-
 		ResourceResolver resolver = resource.getResourceResolver();
 		TagManager tagManager = resolver.adaptTo(TagManager.class);
-
 		Tag tag = tagManager.resolve(rootTag);
 		Iterator<Tag> tagIterator = tag.listChildren();
 		Map<String, String> tagsVal = new HashMap<>();
 		while (tagIterator.hasNext()) {
 
-			Tag newtag = tagIterator.next();
-			newtag.getName();
-			newtag.getTitle();
-
-			String localTitle = newtag.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
-			if (localTitle == null) {
-				tagsVal.put(newtag.getName(), newtag.getTitle());
-			}
-
-			else {
-				tagsVal.put(newtag.getName(), localTitle);
+			Tag childtag = tagIterator.next();
+			String tagName = childtag.getName();
+			String defaulTitle = childtag.getTitle();
+			String localizedTitle = childtag
+					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
+			if (localizedTitle == null) {
+				tagsVal.put(tagName, defaulTitle);
+			} else {
+				tagsVal.put(tagName, localizedTitle);
 			}
 
 		}
 
-		// sort logic with values:
+		// sorting of map alphabetically with values:
 		TreeMap<String, String> sorted = new TreeMap<>(tagsVal);
 		Set<Entry<String, String>> mappings = sorted.entrySet();
-		Map<String, String> newMap = new LinkedHashMap<>();
+		Map<String, String> tagsValues = new LinkedHashMap<>();
 		Comparator<Entry<String, String>> valueComparator = new Comparator<Entry<String, String>>() {
-
 			@Override
 			public int compare(Entry<String, String> e1, Entry<String, String> e2) {
-				String v1 = e1.getValue();
-				String v2 = e2.getValue();
-				return v1.compareTo(v2);
+				return e1.getValue().compareTo(e2.getValue());
 			}
 		};
 		List<Entry<String, String>> listOfEntries = new ArrayList<>(mappings);
@@ -146,18 +129,17 @@ public class BusinessInquiryModel extends FormModel {
 		Set<Entry<String, String>> entrySetSortedByValue = sortedByValue.entrySet();
 
 		for (Entry<String, String> mapping : entrySetSortedByValue) {
-			mapping.getKey();
-			mapping.getValue();
-			newMap.put(mapping.getKey(), mapping.getValue());
+			String sortedTagKeys = mapping.getKey();
+			String sortedTagValues = mapping.getValue();
+			tagsValues.put(sortedTagKeys, sortedTagValues);
 		}
-		LOGGER.info("values here..."+newMap);
-		return newMap;
+		return tagsValues;
 
 	}  
 
     public String getApiUrl() {
         return resource.getPath() + ".pardotbusinessenquiry.json";
-    }
+    }  
 
     /**
      * Gets the site language.
