@@ -140,7 +140,7 @@ pipeline {
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-MyTetraPak', reportTitles: ''])
                     pallycuhuscript()
                     //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerhub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReport- MyTetraPak', reportTitles: ''])
-                    zaptest()
+                    //zaptest()
                 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerhub', reportFiles: 'zap.html', reportName: 'ZAPReport-MyTetraPak', reportTitles: ''])            
 
                 }
@@ -151,7 +151,7 @@ pipeline {
 					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
                     pallypwscript()
 					//publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicweb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
-                    zaptest()
+                    //zaptest()
 					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicweb', reportFiles: 'zap.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
 
                 }
