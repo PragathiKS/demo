@@ -226,9 +226,11 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
             Resource res = resolver.getResource(payload);
             List<String> liveCopyList = getLiveCopies(liveRelManager, res);
             String rootPath = LinkUtils.getRootPath(payload);
+            LOGGER.debug("rootPath : {}", rootPath);
             String page = payload.replace(rootPath, StringUtils.EMPTY);
             for (String path : getLiveCopyBasePaths(language)) {
                 String pagePath = path + page;
+                LOGGER.debug("pagepath : {}", pagePath);
                 if (!liveCopyList.contains(pagePath)) {
                     createLiveCopies(resolver, payload, pagePath, res);
                 }
@@ -304,6 +306,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
             try {
                 if (Objects.nonNull(replicator)) {
                     replicator.replicate(resolver.adaptTo(Session.class), ReplicationActionType.ACTIVATE, liveCopyPath);
+                    LOGGER.debug("{} ,Replicated", liveCopyPath);
                 }
             } catch (ReplicationException e) {
                 LOGGER.error("Error occured while rollout :: {}", e.getMessage(), e);
@@ -329,6 +332,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
         while (Objects.nonNull(rangeIterator) && rangeIterator.hasNext()) {
             LiveRelationship liveCopy = (LiveRelationship) rangeIterator.next();
             String liveCopyPath = liveCopy.getLiveCopy().getPath();
+            LOGGER.debug("LiveCopy path: {}", liveCopyPath);
             liveCopyList.add(liveCopyPath);
         }
         return liveCopyList;
@@ -345,6 +349,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      *             the WCM exception
      */
     private void rolloutLiveCopies(RolloutManager rolloutManager, final Page blueprintPage) throws WCMException {
+        LOGGER.debug("inside rolloutLiveCopies method");
         final RolloutParams rolloutParams = new RolloutParams();
         rolloutParams.isDeep = false;
         rolloutParams.master = blueprintPage;
@@ -374,6 +379,8 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
         final String rootPath = StringUtils.substringBeforeLast(pagePath, PWConstants.SLASH);
         ValueMap vMap = res.getValueMap();
         Map<String, Object> params = new HashMap<>();
+        LOGGER.debug("payload path : {}", payload);
+        LOGGER.debug("Root Path : {}", rootPath);
         params.put(CHARSET, StandardCharsets.UTF_8);
         params.put(CMD, CMD_LIVE_COPY);
         params.put(WCMCommand.SRC_PATH_PARAM, payload);
