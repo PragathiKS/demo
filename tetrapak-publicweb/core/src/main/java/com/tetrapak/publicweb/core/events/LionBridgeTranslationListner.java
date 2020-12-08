@@ -78,7 +78,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
      */
     @Override
     public void onChange(final List<ResourceChange> changes) {
-        LOGGER.info("{{LionBridgeTranslationListner started}}");
+        LOGGER.debug("{{LionBridgeTranslationListner started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             if (Objects.nonNull(resolver)) {
                 for (final ResourceChange change : changes) {
@@ -100,7 +100,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
         if (change.getPath().contains(JcrConstants.JCR_CONTENT)) {
             final String jcrContentPath = StringUtils.substringBefore(change.getPath(), JcrConstants.JCR_CONTENT)
                     + JcrConstants.JCR_CONTENT;
-            LOGGER.debug("LionBridgeTranslationListner Listnering on :: {}", jcrContentPath);
+            LOGGER.info("LionBridgeTranslationListner Listnering on :: {}", jcrContentPath);
             final Resource jcrResource = resolver.getResource(jcrContentPath);
             final ValueMap valueMap = jcrResource.getValueMap();
             if (valueMap.containsKey(CQ_CT_TRANSLATED) && valueMap.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
