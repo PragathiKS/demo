@@ -418,6 +418,29 @@
                           <div class="errorMsg">Enter your position</div>
                         </div>
                       </div>
+                      <div class="position-field-wrapper col-sm-12 col-lg-6">
+                          <div class="formfield position-field country form-group" data-position-name-label="Job title">
+                            <label class="position-value" for="country">Job title</label>
+                            <div class="pw-form__dropdown dropdown text-left">
+                              <button class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" auto_locator="positionSelectDropdown" aria-expanded="false">
+                                <span class="js-pw-form__dropdown__country-text">Select title</span>
+                                <i class="icon icon-Arrow_Right_pw"></i></button>
+
+                              <div class="dropdown-menu pw-form__dropdown__menu">
+                                <a href="#" id="pddtest" class="dropdown-item" data-positionkey="associate" data-positiontitle="Associate">
+                                  Associate
+                                </a>
+
+                                <a href="#" class="dropdown-item" data-positionkey="be-electronics" data-positiontitle="BE Electronics">
+                                  BE Electronics
+                                </a>
+                              </div>
+                              <input type="hidden" name="positionTitle" class="form-control validateForTags" id="positionTitle" required="">
+                            </div>
+                            <div data-position-error-msg="Enter your position" class="errorMsg">
+                              Enter your position</div>
+                          </div>
+                      </div>
                       <div class="col-sm-12 formfield">
                         <div class="form-group">
                           <input id="befconsentcheckbox" required="" type="checkbox" name="consent">

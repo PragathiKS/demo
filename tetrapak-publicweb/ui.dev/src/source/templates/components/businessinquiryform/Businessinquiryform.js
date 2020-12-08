@@ -26,9 +26,11 @@ class Businessinquiryform {
     this.cache.$submitBtn = $('form.pw-form-businessEnquiry button[type="submit"]', this.root);
     this.cache.$inputText = $('form.pw-form-businessEnquiry  input[type="text"]', this.root);
     this.cache.$inputEmail = $('form.pw-form-businessEnquiry  input[type="email"]', this.root);
-    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$dropItem = $('.country-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$positionDropItem = $('.position-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.countryList = [];
     this.cache.$countryField = this.root.find('.formfield.country-field');
+    this.cache.$positionField = this.root.find('.formfield.position-field');
 
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -100,6 +102,7 @@ class Businessinquiryform {
       dataObj['phoneNumber'] = this.cache.requestPayload.phoneField;
     }
     dataObj['company'] = this.cache.requestPayload.company;
+    dataObj['message'] = this.cache.requestPayload.message;
     dataObj['position'] = this.cache.requestPayload.position;
     dataObj['country'] = this.cache.requestPayload.country;
     dataObj['countryTitle'] = this.cache.requestPayload.countryTitle;
@@ -151,9 +154,16 @@ class Businessinquiryform {
     requestPayload['areaOfInterestTitle'] = value;
   }
 
+  checkMessageLength = () => {
+    const msgBox = this.root.find('textarea#businessEnquiryMessageText');
+    if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 170){
+      this.root.find('.message').text(`${msgBox.val().substring(0, 170)}...`);
+    }
+  }
+
 
   bindEvents() {
-    const { requestPayload, $radioListFirst, $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn, $dropItem } = this.cache;
+    const { requestPayload, $radioListFirst, $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn, $dropItem, $positionDropItem } = this.cache;
     const self = this;
     $radioListFirst.on('change', this.onRadioChangeHandlerFirst);
     $radioListSecond.on('change', this.onRadioChangeHandlerSecond);
@@ -172,6 +182,9 @@ class Businessinquiryform {
           break;
         case '#bef-step-3':
           changeStepPrev(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          break;
+        case '#bef-step-4':
+          changeStepPrev(self.mainHead, 'Step 5', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
           break;
         default:
           break;
@@ -199,20 +212,23 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step2head;
               break;
-            case 'firstNameField':
+            case 'message':
               erLbl = $('#bef-step-3 label')[0].textContent;
               break;
-            case 'lastNameField':
-              erLbl = $('#bef-step-3 label')[1].textContent;
-              break;
-            case 'emailBef':
-              erLbl = $('#bef-step-3 label')[2].textContent;
-              break;
-            case 'company':
+            case 'firstNameField':
               erLbl = $('#bef-step-4 label')[0].textContent;
               break;
-            case 'position':
+            case 'lastNameField':
               erLbl = $('#bef-step-4 label')[1].textContent;
+              break;
+            case 'emailBef':
+              erLbl = $('#bef-step-4 label')[2].textContent;
+              break;
+            case 'company':
+              erLbl = $('#bef-step-5 label')[0].textContent;
+              break;
+            case 'position':
+              erLbl = $('#bef-step-5 label')[1].textContent;
               break;
             default:
               erLbl = fieldName;
@@ -249,7 +265,10 @@ class Businessinquiryform {
               changeStepNext(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step2head]: self.cache.requestPayload['purposeOfInterestAreaEqTitle'] });
               break;
             case '#bef-step-4':
-              changeStepNext(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj });
+              changeStepNext(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step3head]: 'NA' });
+              break;
+            case '#bef-step-5':
+              changeStepNext(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj });
               break;
             default:
               break;
@@ -267,13 +286,17 @@ class Businessinquiryform {
         case '#bef-step-4':
           changeStepError(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
-        case '#bef-step-final':
+        case '#bef-step-5':
           changeStepError(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          break;
+        case '#bef-step-final':
+          changeStepError(self.mainHead, 'Step 5', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         default:
           break;
         }
       }
+      self.checkMessageLength();
     });
 
     $submitBtn.click(function (e) {
@@ -306,19 +329,19 @@ class Businessinquiryform {
               erLbl = self.step2head;
               break;
             case 'firstNameField':
-              erLbl = $('#bef-step-3 label')[0].textContent;
-              break;
-            case 'lastNameField':
-              erLbl = $('#bef-step-3 label')[1].textContent;
-              break;
-            case 'emailBef':
-              erLbl = $('#bef-step-3 label')[2].textContent;
-              break;
-            case 'company':
               erLbl = $('#bef-step-4 label')[0].textContent;
               break;
-            case 'position':
+            case 'lastNameField':
               erLbl = $('#bef-step-4 label')[1].textContent;
+              break;
+            case 'emailBef':
+              erLbl = $('#bef-step-4 label')[2].textContent;
+              break;
+            case 'company':
+              erLbl = $('#bef-step-5 label')[0].textContent;
+              break;
+            case 'position':
+              erLbl = $('#bef-step-5 label')[1].textContent;
               break;
             default:
               erLbl = fieldName;
@@ -343,7 +366,7 @@ class Businessinquiryform {
       } else {
         switch (target) {
         case '#bef-step-final':
-          changeStepError(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 5', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         default:
           break;
@@ -367,6 +390,19 @@ class Businessinquiryform {
       $(this).addClass('active');
     });
 
+    $positionDropItem.click(function (e) {
+      e.preventDefault();
+      const positionTitle = $(this).data('positiontitle');
+      const positionKey = $(this).data('positionkey');
+      const parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle span', parentDrop).text(positionTitle);
+      $('input', parentDrop).val(positionKey);
+      requestPayload['position'] = positionKey;
+      self.restObj[self.cache.$positionField.data('position-name-label')] = requestPayload['position'];
+      $positionDropItem.removeClass('active');
+      $(this).addClass('active');
+    });
+
   }
   init() {
     /* Mandatory method */
@@ -378,13 +414,14 @@ class Businessinquiryform {
     this.step2head = $('#bef-step-2 .tab-content-steps').find('h4').text();
     this.step3head = $('#bef-step-3 .tab-content-steps').find('h4').text();
     this.step4head = $('#bef-step-4 .tab-content-steps').find('h4').text();
+    this.step5head = $('#bef-step-5 .tab-content-steps').find('h4').text();
     this.mainHead = $($('.pw-businessEnquiry-form .main-heading').find('h2')[0]).text().trim();
     this.restObj = {};
     this.restObj2 = {};
     this.linkTitle = this.root.find('.thankyou').find('h2').text().trim();
     this.linkText = this.root.find('.newRequestBtn').text().trim();
-    $('#bef-step-3 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
-    $('#bef-step-4 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
+    $('#bef-step-4 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
+    $('#bef-step-5 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     makeLoad(this.step1head, this.mainHead);
     this.getCountryList();
   }
