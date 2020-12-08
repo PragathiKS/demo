@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+	xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="sling:OsgiConfig"
+	getRolloutConfigs="[/libs/msm/wcm/rolloutconfigs/default,/libs/msm/wcm/rolloutconfigs/activate,/libs/msm/wcm/rolloutconfigs/deactivate]"
+	getRussianLiveCopyBasePaths="[/content/tetrapak/publicweb/ru/ru]"
+	getGermanLiveCopyBasePaths="[/content/tetrapak/publicweb/de/de]"
+	getFrenchLiveCopyBasePaths="[/content/tetrapak/publicweb/be/fr,/content/tetrapak/publicweb/ca/fr,/content/tetrapak/publicweb/fr/fr,/content/tetrapak/publicweb/maghreb/fr,/content/tetrapak/publicweb/ch/fr]"
+	getItalianLiveCopyBasePaths="[/content/tetrapak/publicweb/it/it]"
+	getJapaneseLiveCopyBasePaths="[/content/tetrapak/publicweb/jp/ja]"
+	getPortugeseLiveCopyBasePaths="[/content/tetrapak/publicweb/br/pt,/content/tetrapak/publicweb/pt/pt]"
+	getTurkishLiveCopyBasePaths="[/content/tetrapak/publicweb/tr/tr]"
+	getSpanishLiveCopyBasePaths="[/content/tetrapak/publicweb/ar/es,/content/tetrapak/publicweb/cac/es,/content/tetrapak/publicweb/cl/es,/content/tetrapak/publicweb/co/es,/content/tetrapak/publicweb/ec/es,/content/tetrapak/publicweb/mx/es,/content/tetrapak/publicweb/py/es,/content/tetrapak/publicweb/pe/es,/content/tetrapak/publicweb/es/es,/content/tetrapak/publicweb/ve/es]"
+	getChineseLiveCopyBasePaths="[/content/tetrapak/publicweb/cn/zh]"
+	getSwedishLiveCopyBasePaths="[/content/tetrapak/publicweb/tr/tr]"
+	getEnglishLiveCopyBasePaths="[/content/tetrapak/publicweb/gb/en,/content/tetrapak/publicweb/au/en,/content/tetrapak/publicweb/ca/en,/content/tetrapak/publicweb/hr/en,/content/tetrapak/publicweb/cz/en,/content/tetrapak/publicweb/gr/en,/content/tetrapak/publicweb/hu/en,/content/tetrapak/publicweb/fi/en,/content/tetrapak/publicweb/in/en,/content/tetrapak/publicweb/id/en,/content/tetrapak/publicweb/ir/en,/content/tetrapak/publicweb/ie/en,/content/tetrapak/publicweb/lv/en,/content/tetrapak/publicweb/my/en,/content/tetrapak/publicweb/nl/en,/content/tetrapak/publicweb/no/en,/content/tetrapak/publicweb/pk/en,/content/tetrapak/publicweb/ph/en,/content/tetrapak/publicweb/pl/en,/content/tetrapak/publicweb/ro/en,/content/tetrapak/publicweb/sa/en,/content/tetrapak/publicweb/rs/en,/content/tetrapak/publicweb/sg/en,/content/tetrapak/publicweb/sk/en,/content/tetrapak/publicweb/za/en,/content/tetrapak/publicweb/kr/en,/content/tetrapak/publicweb/tw/en,/content/tetrapak/publicweb/gb/en,/content/tetrapak/publicweb/vn/en,/content/tetrapak/publicweb/us/en,/content/tetrapak/publicweb/th/en]" />
