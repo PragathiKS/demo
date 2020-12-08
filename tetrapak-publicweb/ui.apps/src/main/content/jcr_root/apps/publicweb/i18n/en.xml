@@ -335,4 +335,24 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.breadcrumb.home"
         sling:message="Home"/>
+    <pw.form.businessenq.howCanHelpText
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.businessenq.howCanHelpText"
+        sling:message="How can we help you?"/>
+    <pw.form.businessenq.message
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.businessenq.message"
+        sling:message="Message"/>
+     <pw.form.businessenq.errorMessage
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.businessenq.errorMessage"
+        sling:message="Fill in your query/message as mandatory message."/>
+     <pw.form.businessenq.jobTitle
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.businessenq.jobTitle"
+        sling:message="Job title"/>
+      <pw.form.businessenq.selectTitle
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.businessenq.selectTitle"
+        sling:message="Select title"/>        
 </jcr:root>
