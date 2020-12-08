@@ -143,8 +143,8 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
          *
          * @return the sweedish live copy base paths
          */
-        @AttributeDefinition(name = "Sweedish Live Copy Base Paths", description = "Sweedish Live Copy Base Paths")
-        String[] getSweedishLiveCopyBasePaths();
+        @AttributeDefinition(name = "Swedish Live Copy Base Paths", description = "Swedish Live Copy Base Paths")
+        String[] getSwedishLiveCopyBasePaths();
 
         /**
          * Gets the turkish live copy base paths.
@@ -276,7 +276,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                 liveCopyBasePaths = config.getRussianLiveCopyBasePaths();
                 break;
             case "sv_se":
-                liveCopyBasePaths = config.getSweedishLiveCopyBasePaths();
+                liveCopyBasePaths = config.getSwedishLiveCopyBasePaths();
                 break;
             case "tr":
                 liveCopyBasePaths = config.getTurkishLiveCopyBasePaths();
