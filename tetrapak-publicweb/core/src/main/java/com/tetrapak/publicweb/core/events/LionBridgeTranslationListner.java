@@ -101,6 +101,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
             final String jcrContentPath = StringUtils.substringBefore(change.getPath(), JcrConstants.JCR_CONTENT)
                     + JcrConstants.JCR_CONTENT;
             LOGGER.info("LionBridgeTranslationListener Listenering on :: {}", jcrContentPath);
+            LOGGER.info("LionBridgeTranslationListener change on1");
             LOGGER.info("LionBridgeTranslationListener change on :: {}", change.getChangedPropertyNames().toString());
             final Resource jcrResource = resolver.getResource(jcrContentPath);
             final ValueMap valueMap = jcrResource.getValueMap();
