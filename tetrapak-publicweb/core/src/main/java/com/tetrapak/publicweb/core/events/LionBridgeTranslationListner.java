@@ -78,7 +78,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
      */
     @Override
     public void onChange(final List<ResourceChange> changes) {
-        LOGGER.debug("{{LionBridgeTranslationListner started}}");
+        LOGGER.debug("{{LionBridgeTranslationListener started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             if (Objects.nonNull(resolver)) {
                 for (final ResourceChange change : changes) {
@@ -86,7 +86,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
                 }
             }
         } finally {
-            LOGGER.debug("{{LionBridgeTranslationListner started}}");
+            LOGGER.debug("{{LionBridgeTranslationListener ended}}");
         }
     }
 
@@ -100,13 +100,17 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
         if (change.getPath().contains(JcrConstants.JCR_CONTENT)) {
             final String jcrContentPath = StringUtils.substringBefore(change.getPath(), JcrConstants.JCR_CONTENT)
                     + JcrConstants.JCR_CONTENT;
-            LOGGER.info("LionBridgeTranslationListner Listnering on :: {}", jcrContentPath);
+            LOGGER.info("LionBridgeTranslationListener Listenering on :: {}", jcrContentPath);
+            LOGGER.info("LionBridgeTranslationListener change on :: {}", change.getChangedPropertyNames().toString());
             final Resource jcrResource = resolver.getResource(jcrContentPath);
             final ValueMap valueMap = jcrResource.getValueMap();
             if (valueMap.containsKey(CQ_CT_TRANSLATED) && valueMap.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
+                LOGGER.info("LionBridgeTranslationListener change 1");
                 Calendar lastModified = valueMap.get(PWConstants.CQ_LAST_MODIFIED, Calendar.class);
                 Calendar ctTranslated = valueMap.get(CQ_CT_TRANSLATED, Calendar.class);
+                LOGGER.info("time comparision :: {}",ctTranslated.before(lastModified));
                 if (!ctTranslated.before(lastModified)) {
+                    LOGGER.info("LionBridgeTranslationListener change 2");                    
                     String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(jcrContentPath));
                     createLiveCopyService.createLiveCopy(resolver, jcrContentPath, rolloutManager, liveRelManager,language);
                 }
