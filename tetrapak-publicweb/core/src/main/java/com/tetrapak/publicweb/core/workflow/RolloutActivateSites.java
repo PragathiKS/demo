@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.workflow;
 
+import java.util.Objects;
+
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.framework.Constants;
@@ -16,9 +18,10 @@ import com.adobe.granite.workflow.metadata.MetaDataMap;
 import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.day.cq.wcm.msm.api.RolloutManager;
 import com.tetrapak.publicweb.core.services.CreateLiveCopyService;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
- * The Class RolloutActivateEnglishSite.
+ * The Class RolloutActivateSites.
  */
 @Component(
         service = WorkflowProcess.class,
@@ -26,10 +29,10 @@ import com.tetrapak.publicweb.core.services.CreateLiveCopyService;
                 Constants.SERVICE_DESCRIPTION
                         + "=Public Web - Custom workflow process for rollout and replication of english site pages",
                 Constants.SERVICE_VENDOR + "=Tetrapak", "process.label" + "=Rollout and Activate English Site" })
-public class RolloutActivateEnglishSite implements WorkflowProcess {
+public class RolloutActivateSites implements WorkflowProcess {
 
     /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(RolloutActivateEnglishSite.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RolloutActivateSites.class);
 
     /** The rollout manager. */
     @Reference
@@ -38,6 +41,8 @@ public class RolloutActivateEnglishSite implements WorkflowProcess {
     /** The live rel manager. */
     @Reference
     private LiveRelationshipManager liveRelManager;
+    
+    /** The create live copy service. */
     @Reference
     private CreateLiveCopyService createLiveCopyService;
 
@@ -57,12 +62,14 @@ public class RolloutActivateEnglishSite implements WorkflowProcess {
      */
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap paramMetaDataMap) {
         LOGGER.debug("inside execute method");
+        ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
         // get the payload page from the workflow data
         WorkflowData workflowData = workItem.getWorkflowData();
         String payload = workflowData.getPayload().toString();
-        ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
-        // Get Instance of PageManager
-        createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, "en");
+        if (Objects.nonNull(resolver)) {
+            String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(payload));
+            createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, language);
+        }
 
     }
 }
