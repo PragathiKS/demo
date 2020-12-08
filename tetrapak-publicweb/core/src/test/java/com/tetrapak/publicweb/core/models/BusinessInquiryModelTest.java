@@ -109,7 +109,7 @@ public class BusinessInquiryModelTest {
 		assertEquals("Form", "Business Enquiry", model.getFormConfig().getHeading());
 		assertEquals("Form", "title", model.getAnchorTitle());
 		assertEquals("Form", "test01", model.getAnchorId());
-		assertEquals("Form", "Thank you for your requests", model.getFormConfig().getThankyouHeading());
+		assertEquals("Form", "Thank you for your request", model.getFormConfig().getThankyouHeading());
 		assertEquals("Form", "/content/dam/tetrapak/publicweb/contactus.PNG", model.getFormConfig().getThankyouImage());
 		assertEquals("Form", "Thank you", model.getFormConfig().getThankyouImageAltText());
 		assertEquals("Form", "We will get back to you as soon as possible",

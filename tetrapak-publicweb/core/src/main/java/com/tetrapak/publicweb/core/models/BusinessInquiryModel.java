@@ -176,7 +176,6 @@ public class BusinessInquiryModel extends FormModel {
 	 * @return the country options
 	 */
 	public List<DropdownOption> getCountryOptions() {
-
 		return countryOptions;
 	}
 
