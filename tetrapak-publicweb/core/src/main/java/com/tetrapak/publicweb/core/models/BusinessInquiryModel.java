@@ -88,8 +88,9 @@ public class BusinessInquiryModel extends FormModel {
      */
     
 	public Map<String, String> getTagTitles() {
+		
 
-		String rootTag = formConfig.getTags();
+		String rootTag = formConfig.getTags(); 
 		ResourceResolver resolver = resource.getResourceResolver();
 		TagManager tagManager = resolver.adaptTo(TagManager.class);
 		Tag tag = tagManager.resolve(rootTag);
@@ -113,15 +114,14 @@ public class BusinessInquiryModel extends FormModel {
 		// sorting of map alphabetically with values:
 		TreeMap<String, String> sorted = new TreeMap<>(tagsVal);
 		Set<Entry<String, String>> mappings = sorted.entrySet();
+		
 		Map<String, String> tagsValues = new LinkedHashMap<>();
-		Comparator<Entry<String, String>> valueComparator = new Comparator<Entry<String, String>>() {
-			@Override
-			public int compare(Entry<String, String> e1, Entry<String, String> e2) {
-				return e1.getValue().compareTo(e2.getValue());
-			}
-		};
+		
+		Comparator<Entry<String, String>> valueComparator = (e1, e2) -> e1.getValue().compareTo(e2.getValue());
+		
 		List<Entry<String, String>> listOfEntries = new ArrayList<>(mappings);
 		Collections.sort(listOfEntries, valueComparator);
+		
 		LinkedHashMap<String, String> sortedByValue = new LinkedHashMap<>(listOfEntries.size());
 		for (Entry<String, String> entry : listOfEntries) {
 			sortedByValue.put(entry.getKey(), entry.getValue());

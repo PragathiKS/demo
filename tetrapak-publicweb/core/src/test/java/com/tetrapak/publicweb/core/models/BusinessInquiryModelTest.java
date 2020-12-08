@@ -130,6 +130,7 @@ public class BusinessInquiryModelTest {
                 "/content/tetrapak/publicweb/gb/en/contact-us/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
                 model.getApiUrl());
         assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
+		assertEquals("Form","tetrapak:job-title", model.getFormConfig().getTags());
     }
 
     /**
