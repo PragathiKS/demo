@@ -232,12 +232,15 @@ class Header {
   handleMainNavClick =(e) => {
     e.preventDefault();
     const $target = $(e.target);
+    const url = $target.attr('href');
     const $this = $target.closest('.js-tp-pw-header-item');
-    if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
-      window.open($this.attr('href'),'_blank');
-    }
-    else {
-      window.open($this.attr('href'),'_self'); 
+    if (url) {
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
+        window.open($this.attr('href'),'_blank');
+      }
+      else {
+        window.open($this.attr('href'),'_self'); 
+      }
     }
   }
 
@@ -268,7 +271,12 @@ class Header {
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 
     if(url && linkType){
-      window.open(url, $this.attr('target'));
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+        window.open(url,'_blank');
+      }
+      else {
+        window.open(url,'_self');
+      }
     }
   }
 
@@ -335,7 +343,12 @@ class Header {
     }
 
     if(url && targetLink){
-      window.open(url, $this.attr('target'));
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+        window.open(url,'_blank');
+      }
+      else {
+        window.open(url,'_self');
+      }
     }
   }
 

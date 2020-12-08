@@ -48,6 +48,7 @@ class MegaMenuSolution {
   trackAnalytics = e => {
     e.preventDefault();
     const $target = $(e.target);
+    const url = $target.attr('href');
     const $this = $target.closest('.js-navigation-Link');
     const navigationSection = $this.data('link-section');
     const navigationLinkName = $this.data('link-name');
@@ -82,11 +83,13 @@ class MegaMenuSolution {
       eventObj,
       linkClickObject
     );
-    if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
-      window.open($this.attr('href'), '_blank');
-    }
-    else {
-      window.open($this.attr('href'), '_self');
+    if(url){
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+        window.open($this.attr('href'), '_blank');
+      }
+      else {
+        window.open($this.attr('href'), '_self');
+      }
     }
   };
 

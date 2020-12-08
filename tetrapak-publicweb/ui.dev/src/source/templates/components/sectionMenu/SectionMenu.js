@@ -46,14 +46,17 @@ class SectionMenu {
   handleSubSectionMenuClick =(e) => {
     e.preventDefault();
     const $target = $(e.target);
+    const url = $target.attr('href');
     const $this = $target.closest('.js-sub-menu-navigation-link-item');
     const parentLink = $this.closest('.js-section-menu-navigation-Link');
     this.getSubSectionAnalyticsValue(e,parentLink);
-    if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
-      window.open($this.attr('href'),'_blank');
-    }
-    else {
-      window.open($this.attr('href'),'_self');
+    if(url) {
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
+        window.open($this.attr('href'),'_blank');
+      }
+      else {
+        window.open($this.attr('href'),'_self');
+      }
     }
   }
 

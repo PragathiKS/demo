@@ -137,18 +137,20 @@ class Businessinquiryform {
     const { requestPayload } = this.cache;
     const value = e.target.value;
     const id = e.target.id;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
     $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(value);
     requestPayload['purposeOfContact'] = id;
-    requestPayload['purposeOfContactTitle'] = value;
+    requestPayload['purposeOfContactTitle'] = labelValue;
   }
 
   onRadioChangeHandlerSecond = e => {
     const { requestPayload } = this.cache;
     const value = e.target.value;
     const id = e.target.id;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
     $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(value);
     requestPayload['areaOfInterest'] = id;
-    requestPayload['areaOfInterestTitle'] = value;
+    requestPayload['areaOfInterestTitle'] = labelValue;
   }
 
 
