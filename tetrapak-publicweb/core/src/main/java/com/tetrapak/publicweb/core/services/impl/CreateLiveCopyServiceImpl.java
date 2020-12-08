@@ -67,12 +67,92 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
     @interface CreateLiveCopyServiceConfig {
 
         /**
-         * Gets the countries content fragment root path.
+         * Gets the english live copy base paths.
          *
-         * @return the countries content fragment root path
+         * @return the english live copy base paths
          */
         @AttributeDefinition(name = "English Live Copy Base Paths", description = "English Live Copy Base Paths")
         String[] getEnglishLiveCopyBasePaths();
+
+        /**
+         * Gets the french live copy base paths.
+         *
+         * @return the french live copy base paths
+         */
+        @AttributeDefinition(name = "French Live Copy Base Paths", description = "French Live Copy Base Paths")
+        String[] getFrenchLiveCopyBasePaths();
+
+        /**
+         * Gets the chinese live copy base paths.
+         *
+         * @return the chinese live copy base paths
+         */
+        @AttributeDefinition(name = "Chinese Live Copy Base Paths", description = "Chinese Live Copy Base Paths")
+        String[] getChineseLiveCopyBasePaths();
+
+        /**
+         * Gets the german live copy base paths.
+         *
+         * @return the german live copy base paths
+         */
+        @AttributeDefinition(name = "German Live Copy Base Paths", description = "German Live Copy Base Paths")
+        String[] getGermanLiveCopyBasePaths();
+
+        /**
+         * Gets the italian live copy base paths.
+         *
+         * @return the italian live copy base paths
+         */
+        @AttributeDefinition(name = "Italian Live Copy Base Paths", description = "Italian Live Copy Base Paths")
+        String[] getItalianLiveCopyBasePaths();
+
+        /**
+         * Gets the japanese live copy base paths.
+         *
+         * @return the japanese live copy base paths
+         */
+        @AttributeDefinition(name = "Japanese Live Copy Base Paths", description = "Japanese Live Copy Base Paths")
+        String[] getJapaneseLiveCopyBasePaths();
+
+        /**
+         * Gets the portugese live copy base paths.
+         *
+         * @return the portugese live copy base paths
+         */
+        @AttributeDefinition(name = "Portugese Live Copy Base Paths", description = "Portugese Live Copy Base Paths")
+        String[] getPortugeseLiveCopyBasePaths();
+
+        /**
+         * Gets the russian live copy base paths.
+         *
+         * @return the russian live copy base paths
+         */
+        @AttributeDefinition(name = "Russian Live Copy Base Paths", description = "Russian Live Copy Base Paths")
+        String[] getRussianLiveCopyBasePaths();
+
+        /**
+         * Gets the spanish live copy base paths.
+         *
+         * @return the spanish live copy base paths
+         */
+        @AttributeDefinition(name = "Spanish Live Copy Base Paths", description = "Spanish Live Copy Base Paths")
+        String[] getSpanishLiveCopyBasePaths();
+
+        /**
+         * Gets the sweedish live copy base paths.
+         *
+         * @return the sweedish live copy base paths
+         */
+        @AttributeDefinition(name = "Sweedish Live Copy Base Paths", description = "Sweedish Live Copy Base Paths")
+        String[] getSweedishLiveCopyBasePaths();
+
+        /**
+         * Gets the turkish live copy base paths.
+         *
+         * @return the turkish live copy base paths
+         */
+        @AttributeDefinition(name = "Turkish Live Copy Base Paths", description = "Turkish Live Copy Base Paths")
+        String[] getTurkishLiveCopyBasePaths();
 
         /**
          * Gets the rollout configs.
@@ -86,9 +166,6 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(CreateLiveCopyServiceImpl.class);
-
-    /** The page manager. */
-    private PageManager pageManager;
 
     /** The replicator. */
     @Reference
@@ -114,9 +191,6 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
     @Reference
     private SlingRequestProcessor requestProcessor;
 
-    /** The page. */
-    private String page = StringUtils.EMPTY;
-
     /**
      * activate method.
      *
@@ -140,19 +214,20 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      *            the rollout manager
      * @param liveRelManager
      *            the live rel manager
+     * @param language
+     *            the language
      */
     @Override
     public void createLiveCopy(ResourceResolver resolver, String payload, RolloutManager rolloutManager,
-            LiveRelationshipManager liveRelManager) {
+            LiveRelationshipManager liveRelManager, String language) {
         try {
-            pageManager = resolver.adaptTo(PageManager.class);
+            PageManager pageManager = resolver.adaptTo(PageManager.class);
             final Page blueprintPage = pageManager.getPage(payload);
             Resource res = resolver.getResource(payload);
-            List<String> liveCopyList = new ArrayList<>();
-            liveCopyList = getLiveCopies(liveRelManager, res);
+            List<String> liveCopyList = getLiveCopies(liveRelManager, res);
             String rootPath = LinkUtils.getRootPath(payload);
-            page = payload.replace(rootPath, StringUtils.EMPTY);
-            for (String path : config.getEnglishLiveCopyBasePaths()) {
+            String page = payload.replace(rootPath, StringUtils.EMPTY);
+            for (String path : getLiveCopyBasePaths(language)) {
                 String pagePath = path + page;
                 if (!liveCopyList.contains(pagePath)) {
                     createLiveCopies(resolver, payload, pagePath, res);
@@ -164,6 +239,56 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
         } catch (ServletException | IOException | WCMException e) {
             LOGGER.error("An error occurred while creating live copy", e);
         }
+    }
+
+    /**
+     * Gets the live copy base paths.
+     *
+     * @param language
+     *            the language
+     * @return the live copy base paths
+     */
+    private String[] getLiveCopyBasePaths(String language) {
+        String[] liveCopyBasePaths = null;
+        switch (language) {
+            case "en":
+                liveCopyBasePaths = config.getEnglishLiveCopyBasePaths();
+                break;
+            case "fr":
+                liveCopyBasePaths = config.getFrenchLiveCopyBasePaths();
+                break;
+            case "de":
+                liveCopyBasePaths = config.getGermanLiveCopyBasePaths();
+                break;
+            case "es":
+                liveCopyBasePaths = config.getSpanishLiveCopyBasePaths();
+                break;
+            case "it":
+                liveCopyBasePaths = config.getItalianLiveCopyBasePaths();
+                break;
+            case "ja":
+                liveCopyBasePaths = config.getJapaneseLiveCopyBasePaths();
+                break;
+            case "pt":
+                liveCopyBasePaths = config.getPortugeseLiveCopyBasePaths();
+                break;
+            case "ru":
+                liveCopyBasePaths = config.getRussianLiveCopyBasePaths();
+                break;
+            case "sv_se":
+                liveCopyBasePaths = config.getSweedishLiveCopyBasePaths();
+                break;
+            case "tr":
+                liveCopyBasePaths = config.getTurkishLiveCopyBasePaths();
+                break;
+            case "zh":
+                liveCopyBasePaths = config.getChineseLiveCopyBasePaths();
+                break;
+            default:
+                liveCopyBasePaths = config.getEnglishLiveCopyBasePaths();
+        }
+        return liveCopyBasePaths;
+
     }
 
     /**

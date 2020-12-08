@@ -45,9 +45,6 @@ public class RolloutActivateEnglishSite implements WorkflowProcess {
     @Reference
     private ResourceResolverFactory resourceResolverFactory;
 
-    /** The resolver. */
-    private ResourceResolver resolver;
-
     /**
      * Execute.
      *
@@ -63,9 +60,9 @@ public class RolloutActivateEnglishSite implements WorkflowProcess {
         // get the payload page from the workflow data
         WorkflowData workflowData = workItem.getWorkflowData();
         String payload = workflowData.getPayload().toString();
-        resolver = workflowSession.adaptTo(ResourceResolver.class);
+        ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
         // Get Instance of PageManager
-        createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager);
+        createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, "en");
 
     }
 }
