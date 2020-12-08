@@ -446,13 +446,15 @@
                                   @ i18n}</span>
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
-                              <div class="dropdown-menu pw-form__dropdown__menu"
-                                    data-sly-list.tagName="${data.TagTitles}">
-                                <a href="#" class="dropdown-item" data-positionKey="${tagName}"
-                                  data-positionTitle="${data.TagTitles[tagName]}">
-                                  ${data.TagTitles[tagName]}
-                                </a>
-                              </div>
+                              <sly data-sly-test="${data.TagTitles}">
+                                <div class="dropdown-menu pw-form__dropdown__menu"
+                                      data-sly-list.tagName="${data.TagTitles}">
+                                  <a href="#" class="dropdown-item" data-positionKey="${tagName}"
+                                    data-positionTitle="${data.TagTitles[tagName]}">
+                                    ${data.TagTitles[tagName]}
+                                  </a>
+                                </div>
+                              </sly>
                               <input type="hidden" name="position" class="form-control validateForTags" id="position"
                                 required>
                             </div>
