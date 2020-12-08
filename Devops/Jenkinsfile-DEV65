@@ -320,17 +320,17 @@ pipeline {
     }
 
     def zaptest() {
-                echo "Starting Zap Test Run- ${appname}"
+                echo "Starting Zap65 Test Run- ${appname}"
                 sh 'docker ps -a'
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap65 -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
                 sleep 30
-                echo "Starting ZAP test Run on ${appname} Urls"
-                sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
-                sh 'docker exec  zap zap-cli report -f html -o zap.html'
+                echo "Starting ZAP65 test Run on ${appname} Urls"
+                sh 'docker exec  zap65 zap-cli spider ${test_url_pally_zap_pw}'
+                sh 'docker exec  zap65 zap-cli report -f html -o zap.html'
                 sh "mkdir -p zap-${appname}"
                 sh "docker cp zap:zap/zap.html zap-${appname}"
-                sh 'docker stop zap'
-                sh 'docker rm zap'
+                sh 'docker stop zap65'
+                sh 'docker rm zap65'
         }
 
 
