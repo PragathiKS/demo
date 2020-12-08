@@ -66,11 +66,16 @@ class MediaLink {
         event: 'Related links and downloads'
       };
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
-        window.open($this.attr('href'), '_blank');
+      if (linkType === 'internal') {
+        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+          window.open($this.attr('href'), '_blank');
+        }
+        else {
+          window.open($this.attr('href'),'_self');  
+        }
       }
       else {
-        window.open($this.attr('href'),'_self');  
+        window.open($this.attr('href'), $this.attr('target'));
       }
     }
 
