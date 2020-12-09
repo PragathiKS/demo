@@ -138,20 +138,18 @@ class Businessinquiryform {
 
   onRadioChangeHandlerFirst = e => {
     const { requestPayload } = this.cache;
-    const value = e.target.value;
     const id = e.target.id;
     const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(value);
+    $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(labelValue);
     requestPayload['purposeOfContact'] = id;
     requestPayload['purposeOfContactTitle'] = labelValue;
   }
 
   onRadioChangeHandlerSecond = e => {
     const { requestPayload } = this.cache;
-    const value = e.target.value;
     const id = e.target.id;
     const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(value);
+    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(labelValue);
     requestPayload['areaOfInterest'] = id;
     requestPayload['areaOfInterestTitle'] = labelValue;
   }
