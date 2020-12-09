@@ -102,7 +102,7 @@ class Businessinquiryform {
       dataObj['phoneNumber'] = this.cache.requestPayload.phoneField;
     }
     dataObj['company'] = this.cache.requestPayload.company;
-    dataObj['message'] = this.cache.requestPayload.message;
+    dataObj['businessEnquiryMessage'] = this.cache.requestPayload.message;
     dataObj['position'] = this.cache.requestPayload.position;
     dataObj['country'] = this.cache.requestPayload.country;
     dataObj['countryTitle'] = this.cache.requestPayload.countryTitle;
@@ -398,7 +398,7 @@ class Businessinquiryform {
       $('.dropdown-toggle span', parentDrop).text(positionTitle);
       $('input', parentDrop).val(positionKey);
       requestPayload['position'] = positionKey;
-      self.restObj[self.cache.$positionField.data('position-name-label')] = requestPayload['position'];
+      self.restObj2[self.cache.$positionField.data('position-name-label')] = positionTitle;
       $positionDropItem.removeClass('active');
       $(this).addClass('active');
     });
@@ -421,7 +421,7 @@ class Businessinquiryform {
     this.linkTitle = this.root.find('.thankyou').find('h2').text().trim();
     this.linkText = this.root.find('.newRequestBtn').text().trim();
     $('#bef-step-4 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
-    $('#bef-step-5 label').slice(0, 2).each((i, v) => this.restObj2[$(v).text()] = 'NA');
+    $('#bef-step-5 label').slice(0, 1).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     makeLoad(this.step1head, this.mainHead);
     this.getCountryList();
   }
