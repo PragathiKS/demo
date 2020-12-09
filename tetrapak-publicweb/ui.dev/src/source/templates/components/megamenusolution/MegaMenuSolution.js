@@ -48,7 +48,7 @@ class MegaMenuSolution {
   trackAnalytics = e => {
     e.preventDefault();
     const $target = $(e.target);
-    const url = $target.attr('href');
+    const url = $target.parent().attr('href');
     const $this = $target.closest('.js-navigation-Link');
     const navigationSection = $this.data('link-section');
     const navigationLinkName = $this.data('link-name');
