@@ -86,48 +86,34 @@ public class BusinessInquiryModel extends FormModel {
 	 *
 	 */
 	public Map<String, String> getTagTitles() {
-		String rootTag = formConfig.getProfileTags();
-		ResourceResolver resolver = resource.getResourceResolver();
-		TagManager tagManager = resolver.adaptTo(TagManager.class);
-		Tag tag = tagManager.resolve(rootTag);
-		Iterator<Tag> tagIterator = tag.listChildren();
-		Map<String, String> tagsVal = new HashMap<>();
+		final String rootTag = formConfig.getProfileTags();
+		final ResourceResolver resolver = resource.getResourceResolver();
+		final TagManager tagManager = resolver.adaptTo(TagManager.class);
+		final Tag tag = tagManager.resolve(rootTag);
+		final Iterator<Tag> tagIterator = tag.listChildren();
+		final Map<String, String> tagsVal = new HashMap<>();
 		while (tagIterator.hasNext()) {
-			Tag childtag = tagIterator.next();
-			String tagName = childtag.getName();
-			String defaulTitle = childtag.getTitle();
-			String localizedTitle = childtag
+			final Tag childtag = tagIterator.next();
+			String defaulTagTitle = childtag.getTitle();
+			String localizedTagTitle = childtag
 					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
-			if (localizedTitle == null) {
-				tagsVal.put(tagName, defaulTitle);
+			if (null != localizedTagTitle) {
+				tagsVal.put(childtag.getName(), localizedTagTitle);
 			} else {
-				tagsVal.put(tagName, localizedTitle);
+				tagsVal.put(childtag.getName(), defaulTagTitle);
 			}
 		}
 		// sorting of map alphabetically with values:
-		TreeMap<String, String> sorted = new TreeMap<>(tagsVal);
-		Set<Entry<String, String>> mappings = sorted.entrySet();
-
-		Map<String, String> tagsValues = new LinkedHashMap<>();
-
-		Comparator<Entry<String, String>> valueComparator = (e1, e2) -> e1.getValue().compareTo(e2.getValue());
-
-		List<Entry<String, String>> listOfEntries = new ArrayList<>(mappings);
+		final TreeMap<String, String> sorted = new TreeMap<>(tagsVal);
+		final Set<Entry<String, String>> mappings = sorted.entrySet();
+		final Comparator<Entry<String, String>> valueComparator = (e1, e2) -> e1.getValue().compareTo(e2.getValue());
+		final List<Entry<String, String>> listOfEntries = new ArrayList<>(mappings);
 		Collections.sort(listOfEntries, valueComparator);
-
-		LinkedHashMap<String, String> sortedByValue = new LinkedHashMap<>(listOfEntries.size());
+		final LinkedHashMap<String, String> sortedByTagValue = new LinkedHashMap<>(listOfEntries.size());
 		for (Entry<String, String> entry : listOfEntries) {
-			sortedByValue.put(entry.getKey(), entry.getValue());
+			sortedByTagValue.put(entry.getKey(), entry.getValue());
 		}
-		Set<Entry<String, String>> entrySetSortedByValue = sortedByValue.entrySet();
-
-		for (Entry<String, String> mapping : entrySetSortedByValue) {
-			String sortedTagKeys = mapping.getKey();
-			String sortedTagValues = mapping.getValue();
-			tagsValues.put(sortedTagKeys, sortedTagValues);
-		}
-		return tagsValues;
-
+		return sortedByTagValue;
 	}
 
 	public String getApiUrl() {
