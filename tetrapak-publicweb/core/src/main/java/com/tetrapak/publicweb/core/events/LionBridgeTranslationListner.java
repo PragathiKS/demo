@@ -99,24 +99,24 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
      *            the resolver
      */
     private void processChange(final ResourceChange change, final ResourceResolver resolver) {
-        if (change.getPath().contains(JcrConstants.JCR_CONTENT)) {
-            final String jcrContentPath = StringUtils.substringBefore(change.getPath(),
+        String changePath = change.getPath();
+        if (changePath.contains(JcrConstants.JCR_CONTENT)) {
+            final String contentPath = StringUtils.substringBefore(changePath,
                     PWConstants.SLASH + JcrConstants.JCR_CONTENT);
-            LOGGER.info("LionBridgeTranslationListener Listenering on :: {}", jcrContentPath);
-            LOGGER.info("LionBridgeTranslationListener change on1");
-            final Resource jcrResource = resolver.getResource(jcrContentPath);
+            LOGGER.info("LionBridgeTranslationListener Listenering on :: {}", changePath);
+            LOGGER.info(" contentPath :: {}", contentPath);
+            final Resource jcrResource = resolver.getResource(changePath);
+            LOGGER.info("jcr resource path : {}", jcrResource.getPath());
             final ValueMap valueMap = jcrResource.getValueMap();
             if (valueMap.containsKey(CQ_CT_TRANSLATED) && valueMap.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
-                LOGGER.info("LionBridgeTranslationListener change 1");
+                LOGGER.info("LionBridgeTranslationListener inside if");
                 Calendar lastModified = valueMap.get(PWConstants.CQ_LAST_MODIFIED, Calendar.class);
                 Calendar ctTranslated = valueMap.get(CQ_CT_TRANSLATED, Calendar.class);
                 LOGGER.info("time comparision :: {}", ctTranslated.before(lastModified));
                 if (!ctTranslated.before(lastModified)) {
-                    LOGGER.info("LionBridgeTranslationListener change 2");
-                    String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(jcrContentPath));
-                    LOGGER.info("Payload path  jcrContentPath:: {}", jcrContentPath);
+                    String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(contentPath));
                     LOGGER.info("language:: {}", language);
-                    createLiveCopyService.createLiveCopy(resolver, jcrContentPath, rolloutManager, liveRelManager,
+                    createLiveCopyService.createLiveCopy(resolver, contentPath, rolloutManager, liveRelManager,
                             language);
                 }
             }
