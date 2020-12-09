@@ -107,6 +107,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
     public void createLiveCopy(ResourceResolver resolver, String payload, RolloutManager rolloutManager,
             LiveRelationshipManager liveRelManager, String language) {
         try {
+            LOGGER.info("payload : {}", payload);
             PageManager pageManager = resolver.adaptTo(PageManager.class);
             final Page blueprintPage = pageManager.getPage(payload);
             Resource res = resolver.getResource(payload);
