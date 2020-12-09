@@ -114,6 +114,8 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
                 if (!ctTranslated.before(lastModified)) {
                     LOGGER.info("LionBridgeTranslationListener change 2");
                     String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(jcrContentPath));
+                    LOGGER.info("Payload path  jcrContentPath:: {}", jcrContentPath);
+                    LOGGER.info("language:: {}", language);
                     createLiveCopyService.createLiveCopy(resolver, jcrContentPath, rolloutManager, liveRelManager,
                             language);
                 }

@@ -69,6 +69,7 @@ public final class CreateLiveCopyServiceUtil {
      *             the WCM exception
      */
     public static List<String> getLiveCopies(LiveRelationshipManager liveRelManager, Resource res) throws WCMException {
+        LOGGER.info("res path : {}", res.getPath());
         RangeIterator rangeIterator = liveRelManager.getLiveRelationships(res, "", null);
         List<String> liveCopyList = new ArrayList<>();
         while (Objects.nonNull(rangeIterator) && rangeIterator.hasNext()) {
