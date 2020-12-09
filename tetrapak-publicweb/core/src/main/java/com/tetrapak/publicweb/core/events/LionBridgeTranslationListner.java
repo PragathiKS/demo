@@ -50,9 +50,9 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(LionBridgeTranslationListner.class);
-    
+
     /** The Constant CQ_CT_TRANSLATED. */
-    private static final String CQ_CT_TRANSLATED  = "cq:ctTranslated";
+    private static final String CQ_CT_TRANSLATED = "cq:ctTranslated";
 
     /** The resolverFactory. */
     @Reference
@@ -93,8 +93,10 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
     /**
      * Process change.
      *
-     * @param change the change
-     * @param resolver the resolver
+     * @param change
+     *            the change
+     * @param resolver
+     *            the resolver
      */
     private void processChange(final ResourceChange change, final ResourceResolver resolver) {
         if (change.getPath().contains(JcrConstants.JCR_CONTENT)) {
@@ -102,18 +104,18 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
                     + JcrConstants.JCR_CONTENT;
             LOGGER.info("LionBridgeTranslationListener Listenering on :: {}", jcrContentPath);
             LOGGER.info("LionBridgeTranslationListener change on1");
-            LOGGER.info("LionBridgeTranslationListener change on :: {}", change.getChangedPropertyNames().toString());
             final Resource jcrResource = resolver.getResource(jcrContentPath);
             final ValueMap valueMap = jcrResource.getValueMap();
             if (valueMap.containsKey(CQ_CT_TRANSLATED) && valueMap.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
                 LOGGER.info("LionBridgeTranslationListener change 1");
                 Calendar lastModified = valueMap.get(PWConstants.CQ_LAST_MODIFIED, Calendar.class);
                 Calendar ctTranslated = valueMap.get(CQ_CT_TRANSLATED, Calendar.class);
-                LOGGER.info("time comparision :: {}",ctTranslated.before(lastModified));
+                LOGGER.info("time comparision :: {}", ctTranslated.before(lastModified));
                 if (!ctTranslated.before(lastModified)) {
-                    LOGGER.info("LionBridgeTranslationListener change 2");                    
+                    LOGGER.info("LionBridgeTranslationListener change 2");
                     String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(jcrContentPath));
-                    createLiveCopyService.createLiveCopy(resolver, jcrContentPath, rolloutManager, liveRelManager,language);
+                    createLiveCopyService.createLiveCopy(resolver, jcrContentPath, rolloutManager, liveRelManager,
+                            language);
                 }
             }
         }

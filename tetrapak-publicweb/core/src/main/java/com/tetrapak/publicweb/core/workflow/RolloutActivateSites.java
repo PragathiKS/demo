@@ -27,8 +27,8 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
         service = WorkflowProcess.class,
         property = {
                 Constants.SERVICE_DESCRIPTION
-                        + "=Public Web - Custom workflow process for rollout and replication of english site pages",
-                Constants.SERVICE_VENDOR + "=Tetrapak", "process.label" + "=Rollout and Activate English Site" })
+                        + "=Public Web - Custom workflow process for rollout and replication of pages",
+                Constants.SERVICE_VENDOR + "=Tetrapak", "process.label" + "=Rollout and Activate pages" })
 public class RolloutActivateSites implements WorkflowProcess {
 
     /** The Constant LOGGER. */
