@@ -100,8 +100,8 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
      */
     private void processChange(final ResourceChange change, final ResourceResolver resolver) {
         if (change.getPath().contains(JcrConstants.JCR_CONTENT)) {
-            final String jcrContentPath = StringUtils.substringBefore(change.getPath(), JcrConstants.JCR_CONTENT)
-                    + JcrConstants.JCR_CONTENT;
+            final String jcrContentPath = StringUtils.substringBefore(change.getPath(),
+                    PWConstants.SLASH + JcrConstants.JCR_CONTENT);
             LOGGER.info("LionBridgeTranslationListener Listenering on :: {}", jcrContentPath);
             LOGGER.info("LionBridgeTranslationListener change on1");
             final Resource jcrResource = resolver.getResource(jcrContentPath);
