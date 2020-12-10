@@ -15,6 +15,7 @@ import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -82,7 +83,7 @@ public class BusinessInquiryModel extends FormModel {
 	}
 
 	/**
-	 * Gets the tags Value and sorting it with Alphabetical order.
+	 * Gets the tags Value and sorting it with Alphabetical order except "Other".
 	 *
 	 */
 	public Map<String, String> getTagTitles() {
@@ -91,29 +92,38 @@ public class BusinessInquiryModel extends FormModel {
 		final TagManager tagManager = resolver.adaptTo(TagManager.class);
 		final Tag tag = tagManager.resolve(rootTag);
 		final Iterator<Tag> tagIterator = tag.listChildren();
-		final Map<String, String> tagsVal = new HashMap<>();
+		final Map<String, String> tagsValues = new HashMap<>();
+		String otherTagName = StringUtils.EMPTY;
+		String otherTagTitle = StringUtils.EMPTY;
 		while (tagIterator.hasNext()) {
 			final Tag childtag = tagIterator.next();
-			String defaulTagTitle = childtag.getTitle();
-			String localizedTagTitle = childtag
+			final String defaultTagTitle = childtag.getTitle();
+			final String tagName = childtag.getName();
+			final String localizedTagTitle = childtag
 					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
-			if (null != localizedTagTitle) {
-				tagsVal.put(childtag.getName(), localizedTagTitle);
+			if (tagName.equalsIgnoreCase("other")) {
+				otherTagTitle = localizedTagTitle != null ? localizedTagTitle : defaultTagTitle;
+				otherTagName = childtag.getName();
 			} else {
-				tagsVal.put(childtag.getName(), defaulTagTitle);
+				if (null != localizedTagTitle) {
+					tagsValues.put(tagName, localizedTagTitle);
+				} else {
+					tagsValues.put(tagName, defaultTagTitle);
+				}
 			}
 		}
 		// sorting of map alphabetically with values:
-		final TreeMap<String, String> sorted = new TreeMap<>(tagsVal);
+		final TreeMap<String, String> sorted = new TreeMap<>(tagsValues);
 		final Set<Entry<String, String>> mappings = sorted.entrySet();
 		final Comparator<Entry<String, String>> valueComparator = (e1, e2) -> e1.getValue().compareTo(e2.getValue());
 		final List<Entry<String, String>> listOfEntries = new ArrayList<>(mappings);
 		Collections.sort(listOfEntries, valueComparator);
-		final LinkedHashMap<String, String> sortedByTagValue = new LinkedHashMap<>(listOfEntries.size());
+		final LinkedHashMap<String, String> sortedTagsByValue = new LinkedHashMap<>(listOfEntries.size());
 		for (Entry<String, String> entry : listOfEntries) {
-			sortedByTagValue.put(entry.getKey(), entry.getValue());
+			sortedTagsByValue.put(entry.getKey(), entry.getValue());
 		}
-		return sortedByTagValue;
+		sortedTagsByValue.put(otherTagName, otherTagTitle);
+		return sortedTagsByValue;
 	}
 
 	public String getApiUrl() {

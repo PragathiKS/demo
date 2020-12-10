@@ -83,7 +83,7 @@
                                 fieldDescription="Job title displayed based on tags selected."
                                 fieldLabel="Tags"
                                 name="./tags"
-                                rootPath="/content/cq:tags/tetrapak"/>
+                                rootPath="/content/cq:tags/pardot-system-config"/>
                         </items>
                     </column>
                 </items>
