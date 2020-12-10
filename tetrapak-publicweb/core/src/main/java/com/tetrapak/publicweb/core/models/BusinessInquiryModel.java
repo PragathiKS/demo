@@ -76,7 +76,7 @@ public class BusinessInquiryModel extends FormModel {
 	}
 
 	/**
-	 * Gets the tags Value for displaying Job-Title.
+	 * Get the tags Value for displaying Position.
 	 *
 	 */
 	public Map<String, String> getTagTitles() {
