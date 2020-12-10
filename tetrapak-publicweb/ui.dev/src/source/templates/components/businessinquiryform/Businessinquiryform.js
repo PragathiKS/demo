@@ -93,8 +93,8 @@ class Businessinquiryform {
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
     const dataObj = {};
-    dataObj['purpose'] = this.cache.requestPayload.purposeOfContactInBusinessEqTitle;
-    dataObj['businessArea'] = this.cache.requestPayload.purposeOfInterestAreaEqTitle;
+    dataObj['purpose'] = this.cache.requestPayload.purposeOfContactTitle;
+    dataObj['businessArea'] = this.cache.requestPayload.areaOfInterestTitle;
     dataObj['firstName'] = this.cache.requestPayload.firstNameField;
     dataObj['lastName'] = this.cache.requestPayload.lastNameField;
     dataObj['email'] = this.cache.requestPayload.emailBef;
@@ -139,19 +139,23 @@ class Businessinquiryform {
   onRadioChangeHandlerFirst = e => {
     const { requestPayload } = this.cache;
     const id = e.target.id;
+    const value = e.target.value;
     const labelValue = $('label[for="'+id+'"]').text().trim();
     $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(labelValue);
     requestPayload['purposeOfContact'] = id;
-    requestPayload['purposeOfContactTitle'] = labelValue;
+    requestPayload['purposeOfContactTitle'] = value;
+    requestPayload['purposeOfContactInBusinessEqTitle'] = labelValue;
   }
 
   onRadioChangeHandlerSecond = e => {
     const { requestPayload } = this.cache;
     const id = e.target.id;
+    const value = e.target.value;
     const labelValue = $('label[for="'+id+'"]').text().trim();
     $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(labelValue);
     requestPayload['areaOfInterest'] = id;
-    requestPayload['areaOfInterestTitle'] = labelValue;
+    requestPayload['purposeOfInterestAreaEqTitle'] = labelValue;
+    requestPayload['areaOfInterestTitle'] = value;
   }
 
   checkMessageLength = () => {
