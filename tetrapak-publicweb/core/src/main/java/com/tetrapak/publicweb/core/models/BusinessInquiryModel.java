@@ -1,17 +1,10 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.Set;
-import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 
@@ -83,7 +76,7 @@ public class BusinessInquiryModel extends FormModel {
 	}
 
 	/**
-	 * Gets the tags Value and sorting it with Alphabetical order except "Other".
+	 * Gets the tags Value for displaying Job-Title.
 	 *
 	 */
 	public Map<String, String> getTagTitles() {
@@ -92,7 +85,7 @@ public class BusinessInquiryModel extends FormModel {
 		final TagManager tagManager = resolver.adaptTo(TagManager.class);
 		final Tag tag = tagManager.resolve(rootTag);
 		final Iterator<Tag> tagIterator = tag.listChildren();
-		final Map<String, String> tagsValues = new HashMap<>();
+		final Map<String, String> tagsValues = new LinkedHashMap<>();
 		String otherTagName = StringUtils.EMPTY;
 		String otherTagTitle = StringUtils.EMPTY;
 		while (tagIterator.hasNext()) {
@@ -101,6 +94,7 @@ public class BusinessInquiryModel extends FormModel {
 			final String tagName = childtag.getName();
 			final String localizedTagTitle = childtag
 					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
+
 			if (tagName.equalsIgnoreCase("other")) {
 				otherTagTitle = localizedTagTitle != null ? localizedTagTitle : defaultTagTitle;
 				otherTagName = childtag.getName();
@@ -112,18 +106,8 @@ public class BusinessInquiryModel extends FormModel {
 				}
 			}
 		}
-		// sorting of map alphabetically with values:
-		final TreeMap<String, String> sorted = new TreeMap<>(tagsValues);
-		final Set<Entry<String, String>> mappings = sorted.entrySet();
-		final Comparator<Entry<String, String>> valueComparator = (e1, e2) -> e1.getValue().compareTo(e2.getValue());
-		final List<Entry<String, String>> listOfEntries = new ArrayList<>(mappings);
-		Collections.sort(listOfEntries, valueComparator);
-		final LinkedHashMap<String, String> sortedTagsByValue = new LinkedHashMap<>(listOfEntries.size());
-		for (Entry<String, String> entry : listOfEntries) {
-			sortedTagsByValue.put(entry.getKey(), entry.getValue());
-		}
-		sortedTagsByValue.put(otherTagName, otherTagTitle);
-		return sortedTagsByValue;
+		tagsValues.put(otherTagName, otherTagTitle);
+		return tagsValues;
 	}
 
 	public String getApiUrl() {
