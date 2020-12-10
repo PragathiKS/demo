@@ -351,8 +351,8 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.jobTitle"
         sling:message="Job title"/>
-      <pw.form.businessenq.selectTitle
+     <pw.form.businessenq.selectPosition
         jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.businessenq.selectTitle"
-        sling:message="Select title"/>        
+        sling:key="pw.form.businessenq.selectPosition"
+        sling:message="Select your position"/>        
 </jcr:root>
