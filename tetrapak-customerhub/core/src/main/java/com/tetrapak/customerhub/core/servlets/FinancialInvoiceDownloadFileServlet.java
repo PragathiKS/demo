@@ -43,6 +43,10 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
     @Reference
     private FinancialResultsApiService financialsResultsApiService;
 
+    /** The XSSAPI  */
+    @Reference
+    private transient XSSAPI xssAPI;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialInvoiceDownloadFileServlet.class);
 
     private static final String AUTH_TOKEN = "authToken";
@@ -109,7 +113,6 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
         if (null == request.getCookie(AUTH_TOKEN)) {
             return StringUtils.EMPTY;
         }
-        XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
         return xssAPI.encodeForHTML(request.getCookie(AUTH_TOKEN).getValue());
     }
 }
