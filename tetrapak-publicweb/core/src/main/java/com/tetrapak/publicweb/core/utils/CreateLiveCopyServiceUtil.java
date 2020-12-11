@@ -50,7 +50,7 @@ public final class CreateLiveCopyServiceUtil {
     public static void rolloutLiveCopies(RolloutManager rolloutManager, final Page blueprintPage) throws WCMException {
         LOGGER.debug("inside rolloutLiveCopies method");
         final RolloutParams rolloutParams = new RolloutParams();
-        rolloutParams.isDeep = false;
+        rolloutParams.isDeep = true;
         rolloutParams.master = blueprintPage;
         rolloutParams.reset = false;
         rolloutParams.trigger = RolloutManager.Trigger.ROLLOUT;
@@ -143,7 +143,9 @@ public final class CreateLiveCopyServiceUtil {
         for (String liveCopyPath : liveCopies) {
             try {
                 if (Objects.nonNull(replicator)) {
-                    replicator.replicate(resolver.adaptTo(Session.class), ReplicationActionType.ACTIVATE, liveCopyPath);
+                    Session session = resolver.adaptTo(Session.class);
+                    replicator.replicate(session, ReplicationActionType.ACTIVATE, liveCopyPath);
+                    ResourceUtil.replicateChildResources(replicator, session, resolver.getResource(liveCopyPath));
                     LOGGER.debug("{} ,Replicated", liveCopyPath);
                 }
             } catch (ReplicationException e) {
