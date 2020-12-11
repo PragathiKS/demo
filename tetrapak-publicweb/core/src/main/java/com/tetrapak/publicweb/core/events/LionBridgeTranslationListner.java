@@ -36,7 +36,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/it/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/es/**/jcr:content",
                 ResourceChangeListener.PATHS + "="
-                        + "glob:/content/tetrapak/publicweb/lang-masters/sv_se**/jcr:content",
+                        + "glob:/content/tetrapak/publicweb/lang-masters/sv_se/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/ru/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/zh/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/tr/**/jcr:content",
