@@ -117,7 +117,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
                     String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(contentPath));
                     LOGGER.info("language:: {}", language);
                     createLiveCopyService.createLiveCopy(resolver, contentPath, rolloutManager, liveRelManager,
-                            language);
+                            language, false);
                 }
             }
         }

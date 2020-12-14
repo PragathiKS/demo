@@ -23,8 +23,10 @@ public interface CreateLiveCopyService {
      *            the live rel manager
      * @param language
      *            the language
+     * @param isDeep
+     *            the is deep
      */
     public void createLiveCopy(ResourceResolver resourceResolver, String srcPath, RolloutManager rolloutManager,
-            LiveRelationshipManager liveRelManager, String language);
+            LiveRelationshipManager liveRelManager, String language, boolean isDeep);
 
 }
