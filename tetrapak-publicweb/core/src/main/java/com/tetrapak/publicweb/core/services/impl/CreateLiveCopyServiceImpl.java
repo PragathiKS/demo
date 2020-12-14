@@ -119,7 +119,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                 LOGGER.debug("rootPath : {}", rootPath);
                 String page = payload.replace(rootPath, StringUtils.EMPTY);
                 checkAndCreateLiveCopies(resolver, payload, language, res, liveCopyList, page);
-                CreateLiveCopyServiceUtil.rolloutLiveCopies(resolver,rolloutManager, blueprintPage, isDeep);
+                CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
                 liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
                 CreateLiveCopyServiceUtil.replicatePaths(resolver, liveCopyList, replicator);
             }
