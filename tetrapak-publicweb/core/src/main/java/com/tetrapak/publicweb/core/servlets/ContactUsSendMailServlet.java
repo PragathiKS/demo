@@ -17,8 +17,6 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.ContactUsResponse;
@@ -52,6 +50,10 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
     @Reference
     private CountryDetailService countryDetailService;
 
+    /** The xss API. */
+    @Reference
+    protected transient XSSAPI xssAPI;
+
     /**
      * Do get.
      *
@@ -65,8 +67,7 @@ public class ContactUsSendMailServlet extends SlingAllMethodsServlet {
         ContactUsResponse contactusResp = new ContactUsResponse("500", "Server Error");
         try {
             String inputJson = request.getParameter("inputJson");
-            final XSSAPI xssapi = request.adaptTo(XSSAPI.class);
-            inputJson = xssapi.getValidJSON(inputJson, "");
+            inputJson = xssAPI.getValidJSON(inputJson, "");
             LOGGER.debug("Contact us servlet InputJson :: {}", inputJson);
             if (!StringUtils.isEmpty(inputJson)) {
                 final ContactUs contactUs = new ObjectMapper().readValue(inputJson, ContactUs.class);

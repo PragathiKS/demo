@@ -64,7 +64,6 @@ public class ContactUsSendMailServletTest {
         context.registerService(ContactUsMailService.class, contactUsMailService);
         MockOsgi.activate(context.getService(ContactUsMailService.class), context.bundleContext());
 
-        contactUsSendMailServlet = MockHelper.getServlet(context, ContactUsSendMailServlet.class);
         context.load().json("/searchresult/en.json", EN_CONTENT_ROOT);
         context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
 
@@ -72,6 +71,12 @@ public class ContactUsSendMailServletTest {
         inputJson = IOUtils
                 .toString(this.getClass().getResourceAsStream("/contactus/test-sendmailrequest.json"),
                 "UTF-8");
+
+        XSSAPI xssAPI = new MockXSSAPI(inputJson);
+        context.registerService(XSSAPI.class, xssAPI);
+
+        contactUsSendMailServlet = MockHelper.getServlet(context, ContactUsSendMailServlet.class);
+
         final Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("inputJson", inputJson);
         context.request().setParameterMap(parameterMap);
