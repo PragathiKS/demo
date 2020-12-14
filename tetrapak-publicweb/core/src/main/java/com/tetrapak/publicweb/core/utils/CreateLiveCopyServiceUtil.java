@@ -23,6 +23,9 @@ import com.day.cq.wcm.msm.api.RolloutManager;
 import com.day.cq.wcm.msm.api.RolloutManager.RolloutParams;
 import com.tetrapak.publicweb.core.services.config.CreateLiveCopyServiceConfig;
 
+/**
+ * The Class CreateLiveCopyServiceUtil.
+ */
 public final class CreateLiveCopyServiceUtil {
 
     /** The Constant LOGGER. */
@@ -44,13 +47,17 @@ public final class CreateLiveCopyServiceUtil {
      *            the rollout manager
      * @param blueprintPage
      *            the blueprint page
+     * @param isDeep
+     *            the is deep
      * @throws WCMException
      *             the WCM exception
      */
-    public static void rolloutLiveCopies(RolloutManager rolloutManager, final Page blueprintPage) throws WCMException {
+    public static void rolloutLiveCopies(RolloutManager rolloutManager, final Page blueprintPage, boolean isDeep)
+            throws WCMException {
         LOGGER.debug("inside rolloutLiveCopies method");
         final RolloutParams rolloutParams = new RolloutParams();
-        rolloutParams.isDeep = true;
+        LOGGER.debug("isDeep : {}", isDeep);
+        rolloutParams.isDeep = isDeep;
         rolloutParams.master = blueprintPage;
         rolloutParams.reset = false;
         rolloutParams.trigger = RolloutManager.Trigger.ROLLOUT;
@@ -86,6 +93,8 @@ public final class CreateLiveCopyServiceUtil {
      *
      * @param language
      *            the language
+     * @param config
+     *            the config
      * @return the live copy base paths
      */
     public static String[] getLiveCopyBasePaths(String language, CreateLiveCopyServiceConfig config) {
@@ -138,6 +147,8 @@ public final class CreateLiveCopyServiceUtil {
      *            the resolver
      * @param liveCopies
      *            the live copies
+     * @param replicator
+     *            the replicator
      */
     public static void replicatePaths(ResourceResolver resolver, List<String> liveCopies, Replicator replicator) {
         for (String liveCopyPath : liveCopies) {

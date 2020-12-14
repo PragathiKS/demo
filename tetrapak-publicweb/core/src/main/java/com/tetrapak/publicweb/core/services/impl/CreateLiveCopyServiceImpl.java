@@ -102,10 +102,12 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      *            the live rel manager
      * @param language
      *            the language
+     * @param isDeep
+     *            the is deep
      */
     @Override
     public void createLiveCopy(ResourceResolver resolver, String payload, RolloutManager rolloutManager,
-            LiveRelationshipManager liveRelManager, String language) {
+            LiveRelationshipManager liveRelManager, String language, boolean isDeep) {
         try {
             LOGGER.info("payload : {}", payload);
             PageManager pageManager = resolver.adaptTo(PageManager.class);
@@ -122,7 +124,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                     createLiveCopies(resolver, payload, pagePath, res);
                 }
             }
-            CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage);
+            CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
             liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
             CreateLiveCopyServiceUtil.replicatePaths(resolver, liveCopyList, replicator);
         } catch (ServletException | IOException | WCMException e) {
