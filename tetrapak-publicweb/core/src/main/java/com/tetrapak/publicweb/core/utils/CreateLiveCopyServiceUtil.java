@@ -56,6 +56,7 @@ public final class CreateLiveCopyServiceUtil {
             throws WCMException {
         LOGGER.debug("inside rolloutLiveCopies method");
         final RolloutParams rolloutParams = new RolloutParams();
+        LOGGER.debug("isDeep : {}", isDeep);
         rolloutParams.isDeep = isDeep;
         rolloutParams.master = blueprintPage;
         rolloutParams.reset = false;
