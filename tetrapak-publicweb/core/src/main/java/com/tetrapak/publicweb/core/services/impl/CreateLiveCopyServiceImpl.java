@@ -109,26 +109,53 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
     public void createLiveCopy(ResourceResolver resolver, String payload, RolloutManager rolloutManager,
             LiveRelationshipManager liveRelManager, String language, boolean isDeep) {
         try {
-            LOGGER.info("payload : {}", payload);
-            PageManager pageManager = resolver.adaptTo(PageManager.class);
-            final Page blueprintPage = pageManager.getPage(payload);
-            Resource res = resolver.getResource(payload);
-            List<String> liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
-            String rootPath = LinkUtils.getRootPath(payload);
-            LOGGER.debug("rootPath : {}", rootPath);
-            String page = payload.replace(rootPath, StringUtils.EMPTY);
-            for (String path : CreateLiveCopyServiceUtil.getLiveCopyBasePaths(language, config)) {
-                String pagePath = path + page;
-                LOGGER.debug("pagepath : {}", pagePath);
-                if (!liveCopyList.contains(pagePath)) {
-                    createLiveCopies(resolver, payload, pagePath, res);
-                }
+            if (config.enableConfig()) {
+                LOGGER.info("payload : {}", payload);
+                PageManager pageManager = resolver.adaptTo(PageManager.class);
+                final Page blueprintPage = pageManager.getPage(payload);
+                Resource res = resolver.getResource(payload);
+                List<String> liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
+                String rootPath = LinkUtils.getRootPath(payload);
+                LOGGER.debug("rootPath : {}", rootPath);
+                String page = payload.replace(rootPath, StringUtils.EMPTY);
+                checkAndCreateLiveCopies(resolver, payload, language, res, liveCopyList, page);
+                CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
+                liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
+                CreateLiveCopyServiceUtil.replicatePaths(resolver, liveCopyList, replicator);
             }
-            CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
-            liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
-            CreateLiveCopyServiceUtil.replicatePaths(resolver, liveCopyList, replicator);
         } catch (ServletException | IOException | WCMException e) {
             LOGGER.error("An error occurred while creating live copy", e);
+        }
+    }
+
+    /**
+     * Check and create live copies.
+     *
+     * @param resolver
+     *            the resolver
+     * @param payload
+     *            the payload
+     * @param language
+     *            the language
+     * @param res
+     *            the res
+     * @param liveCopyList
+     *            the live copy list
+     * @param page
+     *            the page
+     * @throws ServletException
+     *             the servlet exception
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     */
+    private void checkAndCreateLiveCopies(ResourceResolver resolver, String payload, String language, Resource res,
+            List<String> liveCopyList, String page) throws ServletException, IOException {
+        for (String path : CreateLiveCopyServiceUtil.getLiveCopyBasePaths(language, config)) {
+            String pagePath = path + page;
+            LOGGER.debug("pagepath : {}", pagePath);
+            if (!liveCopyList.contains(pagePath)) {
+                createLiveCopies(resolver, payload, pagePath, res);
+            }
         }
     }
 

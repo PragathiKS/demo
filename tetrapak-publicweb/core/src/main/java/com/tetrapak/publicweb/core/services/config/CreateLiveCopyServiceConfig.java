@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.services.config;
 
 import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 /**
@@ -8,6 +9,17 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
  */
 @ObjectClassDefinition(name = "Public Web Create Live Copy Config", description = "Public Web Create Live Copy Config")
 public @interface CreateLiveCopyServiceConfig {
+
+    /**
+     * Enable config.
+     *
+     * @return true, if successful
+     */
+    @AttributeDefinition(
+            name = "Enable automatic rollout and activate",
+            description = "Enable automatic rollout and activate",
+            type = AttributeType.BOOLEAN)
+    boolean enableConfig() default false;
 
     /**
      * Gets the english live copy base paths.
