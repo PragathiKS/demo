@@ -120,6 +120,7 @@ public class LionBridgeTranslationListnerTest {
 
         createLiveCopyService = new CreateLiveCopyServiceImpl();
         final Map<String, Object> configuraionServiceConfig = new HashMap<String, Object>();
+        configuraionServiceConfig.put("enableConfig",true);
         configuraionServiceConfig.put("getEnglishLiveCopyBasePaths", englishLiveCopyBasePaths);
         configuraionServiceConfig.put("getRolloutConfigs", rolloutConfigs);
         aemContext.registerInjectActivateService(createLiveCopyService, configuraionServiceConfig);
