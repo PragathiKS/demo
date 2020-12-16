@@ -108,14 +108,11 @@ public class LionBridgeScheduledTask implements Runnable {
      */
     public void createRolloutAndActivate(final ResourceResolver resolver, final Resource lbChildResource) {
         if (lbChildResource.getValueMap().containsKey(PWConstants.LB_TRANSLATED_PROP)) {
-            String[] translatedPages = (String[]) lbChildResource.getValueMap().get(PWConstants.LB_TRANSLATED_PROP);
-            if (Objects.nonNull(translatedPages)) {
-                for (String translatedPage : translatedPages) {
-                    String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(translatedPage));
-                    createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager, liveRelManager,
-                            language, false);
-                }
-            }
+            String translatedPage = lbChildResource.getValueMap().get(PWConstants.LB_TRANSLATED_PROP).toString();
+            String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(translatedPage));
+            createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager, liveRelManager, language,
+                    false);
+
         }
     }
 
