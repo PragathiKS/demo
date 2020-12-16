@@ -2,12 +2,11 @@ package com.tetrapak.publicweb.core.schedulers;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-import org.apache.sling.api.resource.PersistenceException;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -40,10 +39,7 @@ import com.tetrapak.publicweb.core.utils.ResourceUtil;
 public class LionBridgeScheduledTask implements Runnable {
 
     /** The scheduler ID. */
-    private int schedulerID; 
-
-    /** The Constant CQ_CT_TRANSLATED. */
-    private static final String CQ_CT_TRANSLATED = "cq:ctTranslated";
+    private int schedulerID;
 
     /** The scheduler. */
     @Reference
@@ -76,27 +72,51 @@ public class LionBridgeScheduledTask implements Runnable {
         LOGGER.debug("{{LionBridgeScheduledTask started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             Resource lbTranslationRes = resolver.getResource(PWConstants.LB_TRANSLATED_PAGES_NODE);
-            if (Objects.nonNull(lbTranslationRes) && lbTranslationRes.getValueMap().containsKey(PWConstants.LB_TRANSLATED_PROP)) {
-                String[] translatedPages = (String[]) lbTranslationRes.getValueMap().get(PWConstants.LB_TRANSLATED_PROP);
-                if (Objects.nonNull(translatedPages)) {
-                    List<String> translationInProgressPages = new ArrayList<>();
-                    for (String translatedPage : translatedPages) {
-                        if (Boolean.TRUE.equals(isRolloutRequired(resolver, translatedPage))) {
-                            String language = PageUtil
-                                    .getLanguageCodeFromResource(resolver.getResource(translatedPage));
-                            createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager,
-                                    liveRelManager, language, false);
-                        } else {
-                            translationInProgressPages.add(translatedPage);
-                        }
+            if (Objects.nonNull(lbTranslationRes) && lbTranslationRes.hasChildren()) {
+                Iterator<Resource> lbChildResources = lbTranslationRes.getChildren().iterator();
+                List<String> deleteResourcesList = new ArrayList<>();
+                while (lbChildResources.hasNext()) {
+                    Resource lbChildResource = lbChildResources.next();
+                    Long lbResourceTime = Long
+                            .valueOf(lbChildResource.getName().replace("lbtranslatedpages-", StringUtils.EMPTY));
+                    Long timeDiff = Calendar.getInstance().getTimeInMillis() - lbResourceTime;
+                    if (timeDiff >= 600000) {
+                        createRolloutAndActivate(resolver, lbChildResource);
+                        deleteResourcesList.add(lbChildResource.getPath());
                     }
-                    updateLionbridgeResource(resolver, translationInProgressPages);
+
+                }
+                if (!deleteResourcesList.isEmpty()) {
+                    deleteResources(resolver, deleteResourcesList);
                 }
             }
         } finally {
             LOGGER.debug("{{LionBridgeScheduledTask ended}}");
         }
 
+    }
+
+    /**
+     * Createrollout and activate.
+     *
+     * @param resolver
+     *            the resolver
+     * @param lbChildResource
+     *            the lb child resource
+     * @param lbTranslationRes
+     *            the lb translation res
+     */
+    public void createRolloutAndActivate(final ResourceResolver resolver, final Resource lbChildResource) {
+        if (lbChildResource.getValueMap().containsKey(PWConstants.LB_TRANSLATED_PROP)) {
+            String[] translatedPages = (String[]) lbChildResource.getValueMap().get(PWConstants.LB_TRANSLATED_PROP);
+            if (Objects.nonNull(translatedPages)) {
+                for (String translatedPage : translatedPages) {
+                    String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(translatedPage));
+                    createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager, liveRelManager,
+                            language, false);
+                }
+            }
+        }
     }
 
     /**
@@ -107,40 +127,10 @@ public class LionBridgeScheduledTask implements Runnable {
      * @param translationInProgressPages
      *            the translation in progress pages
      */
-    public void updateLionbridgeResource(final ResourceResolver resolver,
-            final List<String> translationInProgressPages) {
-        final Map<String, Object> properties = new HashMap<>();
-        properties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
-        properties.put(PWConstants.LB_TRANSLATED_PROP,
-                translationInProgressPages.toArray(new String[translationInProgressPages.size()]));
-        try {
-            ResourceUtil.createOrUpdateResource(resolver, PWConstants.ROOT_PATH, PWConstants.LB_TRANSLATED_PAGES_NODE,
-                    properties);
-        } catch (PersistenceException e) {
-            LOGGER.error("{{LionBridgeScheduledTask PersistenceException}}", e.getMessage(), e);
+    public void deleteResources(final ResourceResolver resolver, final List<String> deleteResourcesList) {
+        for (String deleteResources : deleteResourcesList) {
+            ResourceUtil.deleteResource(resolver, deleteResources);
         }
-    }
-
-    /**
-     * Checks if is rollout required.
-     *
-     * @param resolver
-     *            the resolver
-     * @param translatedPage
-     *            the translated page
-     * @return the boolean
-     */
-    Boolean isRolloutRequired(final ResourceResolver resolver, String translatedPage) {
-        Boolean isRolloutRequired = false;
-        Resource translatedPageRes = resolver.getResource(translatedPage + "/jcr:content");
-        if (Objects.nonNull(translatedPageRes) && translatedPageRes.getValueMap().containsKey(CQ_CT_TRANSLATED)) {
-            Calendar ctTranslated = translatedPageRes.getValueMap().get(CQ_CT_TRANSLATED, Calendar.class);
-            Long timeDiff = Calendar.getInstance().getTimeInMillis() - ctTranslated.getTimeInMillis();
-            if (timeDiff >= 600000) {
-                isRolloutRequired = true;
-            }
-        }
-        return isRolloutRequired;
     }
 
     /**
