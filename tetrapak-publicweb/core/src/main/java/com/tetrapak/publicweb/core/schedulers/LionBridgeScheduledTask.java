@@ -1,8 +1,13 @@
 package com.tetrapak.publicweb.core.schedulers;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -25,6 +30,7 @@ import com.tetrapak.publicweb.core.services.CreateLiveCopyService;
 import com.tetrapak.publicweb.core.services.config.LBConfig;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import com.tetrapak.publicweb.core.utils.ResourceUtil;
 
 /**
  * The Class LionBridgeScheduledTask.
@@ -34,7 +40,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
 public class LionBridgeScheduledTask implements Runnable {
 
     /** The scheduler ID. */
-    private int schedulerID;
+    private int schedulerID; 
 
     /** The Constant CQ_CT_TRANSLATED. */
     private static final String CQ_CT_TRANSLATED = "cq:ctTranslated";
@@ -70,23 +76,49 @@ public class LionBridgeScheduledTask implements Runnable {
         LOGGER.debug("{{LionBridgeScheduledTask started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             Resource lbTranslationRes = resolver.getResource(PWConstants.LB_TRANSLATED_PAGES_NODE);
-            if (Objects.nonNull(lbTranslationRes) && lbTranslationRes.getValueMap().containsKey("lbtranslatedpages")) {
-                String[] translatedPages = (String[]) lbTranslationRes.getValueMap().get("lbtranslatedpages");
+            if (Objects.nonNull(lbTranslationRes) && lbTranslationRes.getValueMap().containsKey(PWConstants.LB_TRANSLATED_PROP)) {
+                String[] translatedPages = (String[]) lbTranslationRes.getValueMap().get(PWConstants.LB_TRANSLATED_PROP);
                 if (Objects.nonNull(translatedPages)) {
+                    List<String> translationInProgressPages = new ArrayList<>();
                     for (String translatedPage : translatedPages) {
                         if (Boolean.TRUE.equals(isRolloutRequired(resolver, translatedPage))) {
                             String language = PageUtil
                                     .getLanguageCodeFromResource(resolver.getResource(translatedPage));
                             createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager,
                                     liveRelManager, language, false);
+                        } else {
+                            translationInProgressPages.add(translatedPage);
                         }
                     }
+                    updateLionbridgeResource(resolver, translationInProgressPages);
                 }
             }
         } finally {
             LOGGER.debug("{{LionBridgeScheduledTask ended}}");
         }
 
+    }
+
+    /**
+     * Update lionbridge resource.
+     *
+     * @param resolver
+     *            the resolver
+     * @param translationInProgressPages
+     *            the translation in progress pages
+     */
+    public void updateLionbridgeResource(final ResourceResolver resolver,
+            final List<String> translationInProgressPages) {
+        final Map<String, Object> properties = new HashMap<>();
+        properties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
+        properties.put(PWConstants.LB_TRANSLATED_PROP,
+                translationInProgressPages.toArray(new String[translationInProgressPages.size()]));
+        try {
+            ResourceUtil.createOrUpdateResource(resolver, PWConstants.ROOT_PATH, PWConstants.LB_TRANSLATED_PAGES_NODE,
+                    properties);
+        } catch (PersistenceException e) {
+            LOGGER.error("{{LionBridgeScheduledTask PersistenceException}}", e.getMessage(), e);
+        }
     }
 
     /**

@@ -281,6 +281,9 @@ public final class PWConstants {
     
     /** The Constant LB TRANSLATED PAGES NODE. */
     public static final String LB_TRANSLATED_PAGES_NODE = "/var/commerce/lbtranslatedpages";
+    
+    /** The Constant LB TRANSLATED PROP. */
+    public static final String LB_TRANSLATED_PROP = "lbtranslatedpages";
 
     /**
      * Instantiates a new PW constants.
