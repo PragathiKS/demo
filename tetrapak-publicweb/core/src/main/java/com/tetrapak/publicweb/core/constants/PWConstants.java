@@ -146,6 +146,9 @@ public final class PWConstants {
 
     /** The DELTA FEED Scheduler ID. */
     public static final String DELTA_FEED_SCHEDULER_ID = "pwpxpdeltafeedschedulerID@tetrapak";
+    
+    /** The LB Scheduler ID. */
+    public static final String LB_SCHEDULER_ID = "lionbridgeschedulerID@tetrapak";
 
     /** The feed files uri. */
     public static final String FEED_FILES_URI = "/equipment/pxpparameters/files/";
@@ -275,6 +278,9 @@ public final class PWConstants {
 
     /** The Constant JCR PREVIEW_SALT. */
     public static final String PREVIEW_SALT = "previewSalt";
+    
+    /** The Constant LB TRANSLATED PAGES NODE. */
+    public static final String LB_TRANSLATED_PAGES_NODE = "/var/commerce/lbtranslatedpages";
 
     /**
      * Instantiates a new PW constants.
