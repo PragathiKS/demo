@@ -1,0 +1,6 @@
+{
+	"jcr:primaryType": "sling:Folder",
+	"jcr:mixinTypes": ["rep:AccessControllable"],
+	"jcr:createdBy": "admin",
+	"jcr:created": "Thu Dec 03 2020 11:49:10 GMT+0530"
+}
