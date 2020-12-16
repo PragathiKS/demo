@@ -28,7 +28,13 @@ class ContactAnchorLink {
       event: 'Contact us form'
     };
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    window.open(el.attr('href'),'_self');
+    if (el.metaKey || el.ctrlKey || el.keyCode === 91 || el.keyCode === 224){
+      window.open(el.attr('href'),'_blank');
+    }
+    else {
+      window.open(el.attr('href'),'_self');
+    }
+
   }
 
   bindEvents() {

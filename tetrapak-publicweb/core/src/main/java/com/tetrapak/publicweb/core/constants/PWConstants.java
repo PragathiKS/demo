@@ -54,6 +54,12 @@ public final class PWConstants {
     /** The Constant PXP_ROOT_PATH. */
     public static final String PXP_ROOT_PATH = "/var/commerce/products/pxp";
 
+    /** The Constant LB_TRANSLATED_PATH. */
+    public static final String LB_TRANSLATED_PATH = "/var/commerce/lbtranslatedpages";
+
+    /** The Constant VAR_COMMERCE_PATH. */
+    public static final String VAR_COMMERCE_PATH = "/var/commerce";
+
     /** The Constant CONTENT_ROOT_PATH. */
     public static final String CONTENT_ROOT_PATH = "/content/tetrapak/publicweb";
 
@@ -284,6 +290,9 @@ public final class PWConstants {
     
     /** The Constant LB TRANSLATED PROP. */
     public static final String LB_TRANSLATED_PROP = "lbtranslatedpages";
+
+    /** The Constant LB_TRNSLATED_PAGES. */
+    public static final String LB_TRNSLATED_PAGES = "lbtranslatedpages";
 
     /**
      * Instantiates a new PW constants.

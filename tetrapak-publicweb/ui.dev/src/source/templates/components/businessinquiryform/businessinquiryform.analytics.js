@@ -34,7 +34,7 @@ export const changeStepNext = function (formName, formStep, formType, areaofInte
       formObj.formField.push({
         formFieldName: i,
         formFieldValue: dataObj[i]
-      });  
+      });
     }
   });
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
@@ -75,7 +75,7 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
       formObj.formField.push({
         formFieldName: i,
         formFieldValue: dataObj[i]
-      });  
+      });
     }
   });
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
@@ -87,7 +87,7 @@ export const loadThankYou = function (formName, areaofInterest, dataObj) {
   const formTitle = $('.heading-summary h4').text().trim();
   const formObj = {
     formName: formName,
-    formStep: 'Step 4',
+    formStep: 'Step 5',
     formType: formTitle,
     areaofInterest: areaofInterest,
     formField: []
@@ -101,7 +101,7 @@ export const loadThankYou = function (formName, areaofInterest, dataObj) {
       formObj.formField.push({
         formFieldName: i,
         formFieldValue: dataObj[i]
-      });  
+      });
     }
   });
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);

@@ -41,7 +41,12 @@ class Marketselector {
 
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
       if(url){
-        window.open(url,$target.attr('target'));
+        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+          window.open(url,'_blank');
+        }
+        else {
+          window.open(url,'_self'); 
+        }
       }
     }
 

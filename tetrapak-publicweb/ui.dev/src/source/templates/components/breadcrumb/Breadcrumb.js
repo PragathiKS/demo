@@ -21,6 +21,7 @@ class Breadcrumb {
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
+    const url = $target.attr('href');
     const $this = $target.closest('.js-tp_pw-breadcrumb__link');
     const linkName = $this.text().trim();
 
@@ -36,7 +37,14 @@ class Breadcrumb {
     };
 
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    window.open($this.attr('href'), '_self');
+    if(url){
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+        window.open($this.attr('href'), '_blank');
+      }
+      else {
+        window.open($this.attr('href'), '_self');
+      }
+    }
   }
 
   init() {

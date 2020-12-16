@@ -41,7 +41,8 @@
         }
     }
 
-    .country-field-wrapper {
+    .country-field-wrapper,
+    .position-field-wrapper {
         @include padding-left($padding-zero);
         @include padding-right($padding-zero);
     }
@@ -66,7 +67,8 @@
             }
         }
         // Dropdown styling
-        .country-field {
+        .country-field,
+        .position-field {
             .pw-form__dropdown__menu {
                 .active {
                     border: 0;
@@ -181,6 +183,7 @@
         .lastNameField,
         .emailBef,
         .countryField,
+        .message,
         .phoneField {
             font-weight: 700;
         }
