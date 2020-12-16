@@ -22,7 +22,6 @@ import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.day.cq.wcm.msm.api.RolloutManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CreateLiveCopyService;
-import com.tetrapak.publicweb.core.services.config.DeltaPXPConfig;
 import com.tetrapak.publicweb.core.services.config.LBConfig;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -119,7 +118,7 @@ public class LionBridgeScheduledTask implements Runnable {
      *            the config
      */
     @Activate
-    protected void activate(final DeltaPXPConfig config) {
+    protected void activate(final LBConfig config) {
         schedulerID = PWConstants.LB_SCHEDULER_ID.hashCode();
         addScheduler(config);
     }
@@ -131,7 +130,7 @@ public class LionBridgeScheduledTask implements Runnable {
      *            the config
      */
     @Modified
-    protected void modified(final DeltaPXPConfig config) {
+    protected void modified(final LBConfig config) {
         removeScheduler();
         schedulerID = PWConstants.LB_SCHEDULER_ID.hashCode();
         addScheduler(config);
@@ -144,7 +143,7 @@ public class LionBridgeScheduledTask implements Runnable {
      *            the config
      */
     @Deactivate
-    protected void deactivate(final DeltaPXPConfig config) {
+    protected void deactivate(final LBConfig config) {
         removeScheduler();
     }
 
@@ -154,9 +153,9 @@ public class LionBridgeScheduledTask implements Runnable {
      * @param config
      *            the config
      */
-    private void addScheduler(final DeltaPXPConfig config) {
-        if (!config.deltaFeedSchedulerDisable()) {
-            final ScheduleOptions sopts = scheduler.EXPR(config.deltaFeedSchedulerExpression());
+    private void addScheduler(final LBConfig config) {
+        if (!config.lbSchedulerDisable()) {
+            final ScheduleOptions sopts = scheduler.EXPR(config.lbSchedulerExpression());
             sopts.name(String.valueOf(schedulerID));
             sopts.canRunConcurrently(false);
             scheduler.schedule(this, sopts);
