@@ -16,8 +16,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.resource.observation.ResourceChange;
-import org.apache.sling.engine.SlingRequestProcessor;
-import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,18 +26,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.day.cq.contentsync.handler.util.RequestResponseFactory;
-import com.day.cq.replication.Replicator;
-import com.day.cq.wcm.msm.api.LiveRelationshipManager;
-import com.day.cq.wcm.msm.api.RolloutManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.mock.MockLiveRelationshipManagerImpl;
-import com.tetrapak.publicweb.core.mock.MockReplicatorImpl;
-import com.tetrapak.publicweb.core.mock.MockRequestProcessorImpl;
-import com.tetrapak.publicweb.core.mock.MockRequestResponseFactoryImpl;
-import com.tetrapak.publicweb.core.mock.MockRolloutManagerImpl;
 import com.tetrapak.publicweb.core.services.CreateLiveCopyService;
-import com.tetrapak.publicweb.core.services.impl.CreateLiveCopyServiceImpl;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
@@ -78,8 +66,12 @@ public class LionBridgeTranslationListnerTest {
     /** The payload path. */
     private final String PAYLOAD_PATH = "/content/tetrapak/publicweb/lang-masters/en/home/jcr:content";
 
+    private final String VAR_COMMERCE = "/var/commerce";
+
     /** The payload resource content. */
     private final String PAYLOAD_RESOURCE_CONTENT = "/lionBridgeTranslationListener/test.json";
+
+    private final String VAR_COMMERCE_CONTENT = "/lionBridgeTranslationListener/var.json";
 
     /** The create live copy service. */
     private CreateLiveCopyService createLiveCopyService;
@@ -104,32 +96,8 @@ public class LionBridgeTranslationListnerTest {
     @Before
     public void setUp() throws Exception {
 
-        RolloutManager rolloutManager = new MockRolloutManagerImpl();
-        SlingRequestProcessor requestProcessor = new MockRequestProcessorImpl();
-        Replicator replicator = new MockReplicatorImpl();
-        aemContext.registerService(Replicator.class, replicator);
-        aemContext.registerService(SlingRequestProcessor.class, requestProcessor);
-
-        RequestResponseFactory requestResponseFactory = new MockRequestResponseFactoryImpl();
-        aemContext.registerService(Replicator.class, replicator);
-        aemContext.registerService(SlingRequestProcessor.class, requestProcessor);
-        aemContext.registerService(RolloutManager.class, rolloutManager);
-        aemContext.registerService(RequestResponseFactory.class, requestResponseFactory);
-        LiveRelationshipManager liveRelManager = new MockLiveRelationshipManagerImpl();
-        aemContext.registerService(LiveRelationshipManager.class, liveRelManager);
-
-        createLiveCopyService = new CreateLiveCopyServiceImpl();
-        final Map<String, Object> configuraionServiceConfig = new HashMap<String, Object>();
-        configuraionServiceConfig.put("enableConfig",true);
-        configuraionServiceConfig.put("getEnglishLiveCopyBasePaths", englishLiveCopyBasePaths);
-        configuraionServiceConfig.put("getRolloutConfigs", rolloutConfigs);
-        aemContext.registerInjectActivateService(createLiveCopyService, configuraionServiceConfig);
-
-        MockOsgi.injectServices(listner, aemContext.bundleContext());
-        final Map<String, Object> config = new HashMap<String, Object>();
-        MockOsgi.activate(listner, aemContext.bundleContext(), config);
-
         aemContext.load().json(PAYLOAD_RESOURCE_CONTENT, PAYLOAD_PATH);
+        aemContext.load().json(VAR_COMMERCE_CONTENT, VAR_COMMERCE);
         MockitoAnnotations.initMocks(this);
         jcrResource = aemContext.currentResource(PAYLOAD_PATH);
         resolver = jcrResource.getResourceResolver();
@@ -157,7 +125,7 @@ public class LionBridgeTranslationListnerTest {
     public void testOnChange() throws Exception {
         List<ResourceChange> changes = new ArrayList<>();
         changes.add(change);
-       // listner.onChange(changes);
+        listner.onChange(changes);
         assertEquals("LionBridgeTranslationListner", "LionBridgeTranslationListner");
     }
 }
