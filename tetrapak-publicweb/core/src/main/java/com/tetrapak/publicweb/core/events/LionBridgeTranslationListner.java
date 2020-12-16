@@ -1,9 +1,13 @@
 package com.tetrapak.publicweb.core.events;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -15,6 +19,7 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.day.cq.wcm.msm.api.RolloutManager;
@@ -70,6 +75,9 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
     @Reference
     private LiveRelationshipManager liveRelManager;
 
+    /** The Constant LB_TRANSLATED_PAGES. */
+    public static final String LB_TRANSLATED_PAGES = "lbtranslatedpages";
+
     /**
      * On change.
      *
@@ -85,6 +93,8 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
                     processChange(change, resolver);
                 }
             }
+        } catch (PersistenceException e) {
+            LOGGER.error("Error :: {}", e.getMessage(), e);
         } finally {
             LOGGER.debug("{{LionBridgeTranslationListener ended}}");
         }
@@ -97,8 +107,11 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
      *            the change
      * @param resolver
      *            the resolver
+     * @throws PersistenceException
+     *             the persistence exception
      */
-    private void processChange(final ResourceChange change, final ResourceResolver resolver) {
+    private void processChange(final ResourceChange change, final ResourceResolver resolver)
+            throws PersistenceException {
         String changePath = change.getPath();
         if (changePath.contains(JcrConstants.JCR_CONTENT)) {
             final String contentPath = StringUtils.substringBefore(changePath,
@@ -116,10 +129,63 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
                 if (!ctTranslated.before(lastModified)) {
                     String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(contentPath));
                     LOGGER.info("language:: {}", language);
-                    createLiveCopyService.createLiveCopy(resolver, contentPath, rolloutManager, liveRelManager,
-                            language, false);
+                    createOrUpdateLBTraslatedNode(resolver, contentPath);
                 }
             }
         }
+    }
+
+    /**
+     * Creates the or update LB traslated node.
+     *
+     * @param resolver
+     *            the resolver
+     * @param contentPath
+     *            the content path
+     * @throws PersistenceException
+     *             the persistence exception
+     */
+    private void createOrUpdateLBTraslatedNode(final ResourceResolver resolver, final String contentPath)
+            throws PersistenceException {
+        LOGGER.debug("Inside createOrUpdateLBTraslatedNode");
+        Resource lbTraslatedRes = resolver.getResource(PWConstants.LB_TRANSLATED_PATH);
+        String nodeName;
+        Map<String, Object> properties = new HashMap<>();
+        properties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
+        properties.put(LB_TRANSLATED_PAGES, contentPath);
+        nodeName = PWConstants.LB_TRNSLATED_PAGES + PWConstants.HYPHEN + Calendar.getInstance().getTimeInMillis();
+        if (Objects.nonNull(lbTraslatedRes)) {
+            createNode(resolver, properties, nodeName, lbTraslatedRes);
+            LOGGER.debug("Node created with name :{}", nodeName);
+        } else {
+            Map<String, Object> prop = new HashMap<>();
+            prop.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
+            nodeName = PWConstants.LB_TRNSLATED_PAGES;
+            Resource res = resolver.getResource(PWConstants.VAR_COMMERCE_PATH);
+            createNode(resolver, prop, nodeName, res);
+            Resource resource = resolver.getResource(PWConstants.LB_TRANSLATED_PATH);
+            createNode(resolver, properties, nodeName, resource);
+            LOGGER.debug("Node created with name :{}", nodeName);
+        }
+        resolver.commit();
+    }
+
+    /**
+     * Creates the node.
+     *
+     * @param resolver
+     *            the resolver
+     * @param properties
+     *            the properties
+     * @param nodeName
+     *            the node name
+     * @param res
+     *            the res
+     * @throws PersistenceException
+     *             the persistence exception
+     */
+    private void createNode(final ResourceResolver resolver, final Map<String, Object> properties, String nodeName,
+            Resource res) throws PersistenceException {
+        resolver.create(res, nodeName, properties);
     }
 }
