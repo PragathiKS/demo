@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+import javax.jcr.Session;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -72,15 +74,18 @@ public class LionBridgeScheduledTask implements Runnable {
         LOGGER.debug("{{LionBridgeScheduledTask started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             Resource lbTranslationRes = resolver.getResource(PWConstants.LB_TRANSLATED_PAGES_NODE);
-            if (Objects.nonNull(lbTranslationRes) && lbTranslationRes.hasChildren()) {
+            if (Objects.nonNull(lbTranslationRes) && lbTranslationRes.hasChildren()) {               
                 Iterator<Resource> lbChildResources = lbTranslationRes.getChildren().iterator();
                 List<String> deleteResourcesList = new ArrayList<>();
-                while (lbChildResources.hasNext()) {
+                while (lbChildResources.hasNext()) {                    
                     Resource lbChildResource = lbChildResources.next();
+                    LOGGER.info("LionBridgeScheduledTask starts processing on {}",lbChildResource.getName());
                     Long lbResourceTime = Long
                             .valueOf(lbChildResource.getName().replace("lbtranslatedpages-", StringUtils.EMPTY));
                     Long timeDiff = Calendar.getInstance().getTimeInMillis() - lbResourceTime;
+                    LOGGER.info("LionBridgeScheduledTask time diff on resource {} is {}",lbChildResource.getName(),timeDiff);
                     if (timeDiff >= 600000) {
+                        LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate started on {}",lbChildResource.getName());
                         createRolloutAndActivate(resolver, lbChildResource);
                         deleteResourcesList.add(lbChildResource.getPath());
                     }
@@ -109,6 +114,7 @@ public class LionBridgeScheduledTask implements Runnable {
     public void createRolloutAndActivate(final ResourceResolver resolver, final Resource lbChildResource) {
         if (lbChildResource.getValueMap().containsKey(PWConstants.LB_TRANSLATED_PROP)) {
             String translatedPage = lbChildResource.getValueMap().get(PWConstants.LB_TRANSLATED_PROP).toString();
+            LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate on page {}",translatedPage);
             String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(translatedPage));
             createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager, liveRelManager, language,
                     false);
@@ -126,7 +132,9 @@ public class LionBridgeScheduledTask implements Runnable {
      */
     public void deleteResources(final ResourceResolver resolver, final List<String> deleteResourcesList) {
         for (String deleteResources : deleteResourcesList) {
-            ResourceUtil.deleteResource(resolver, deleteResources);
+            LOGGER.info("LionBridgeScheduledTask deleteResources started on {}",deleteResources);
+            ResourceUtil.deleteResource(resolver,resolver.adaptTo(Session.class),deleteResources);
+            
         }
     }
 
