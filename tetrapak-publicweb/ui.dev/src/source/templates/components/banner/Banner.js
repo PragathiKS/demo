@@ -9,9 +9,10 @@ class Banner {
   cache = {};
   initCache() {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
+    this.cache.$pwBanner = this.root.find('.js-pw-banner');
     this.cache.$existingBanner = this.root.find('.pw-banner__content.banner-parent');
     this.cache.$siblingBanner = this.root.find('.pw-banner__content.banner-sibling');
-    this.cache.$sideSection = this.root.find('.pw-banner__sideSection');
+    this.cache.$sideSection = this.root.find('.pw-banner__sideSection.left');
     this.cache.$sideSectionright = this.root.find('.pw-banner__sideSection.right');
     this.cache.componentName = this.root.find('.componentName-banner').val();
   }
@@ -24,23 +25,38 @@ class Banner {
       const { $siblingBanner } = this.cache;
       const { $sideSection } = this.cache;
       const { $sideSectionright } = this.cache;
-
+      const { $pwBanner } = this.cache;
+      if($sideSection.length || $sideSectionright.length) {
+        $pwBanner.css({'max-width':window.screen.availWidth,'margin-left':'auto','margin-right':'auto'});
+      }
       $(window).on('load resize', function () {
+        const zoomLevel = (( window.outerWidth) / window.innerWidth) * 100;
         const bannerHeight = $existingBanner.outerHeight();
         const bannerWidth = $existingBanner.outerWidth();
         const bannerOffset = $existingBanner.offset();
+        const pwBannerContainerOffset = $pwBanner.offset();
         const windowWidth = $('body').outerWidth();
         $siblingBanner.css('width', bannerWidth);
         $siblingBanner.css('height', bannerHeight);
         if ($sideSection.length) {
-          $sideSection.css('width', bannerOffset.left +'px');
+          if(zoomLevel === 100) {
+            $sideSection.css('width', bannerOffset.left +'px');
+          } else {
+            $sideSection.css('width', (bannerOffset.left - pwBannerContainerOffset.left)  +'px');
+          }
           if($('.pw-banner-herowrapper').length) {
             $('.pw-banner-herowrapper').css('visibility','visible');
           }
         }
         if ($sideSectionright.length) {
-          const finalWidth = windowWidth - bannerOffset.left -  bannerWidth;
-          $sideSectionright.css('width', finalWidth +'px');
+          if(zoomLevel === 100) {
+            const finalWidth = windowWidth - bannerOffset.left -  bannerWidth;
+            $sideSectionright.css('width', finalWidth +'px');
+          } else {
+            const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
+            const bannerRightOffset = bannerOffset.left + bannerWidth;
+            $sideSectionright.css('width', `${(pwContainerRightOffset - bannerRightOffset)}px`);
+          }
           if($('.pw-banner-herowrapper').length) {
             $('.pw-banner-herowrapper').css('visibility','visible');
           }
