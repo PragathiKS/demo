@@ -148,7 +148,7 @@ class ContactUs {
       let isvalid = true;
       const tab = $(this).closest('.tab-content-steps');
       const honeyPotFieldValue = $('#pardot_extra_field', self.root).val();
-      requestPayload['message'] = validateFieldsForTags($('[name="message"]').val());
+      requestPayload['message'] = validateFieldsForTags($('.pw-contactus-form textarea#messageText').val());
       $('input, textarea', tab).each(function () {
         if ($(this).prop('required') && $(this).val() === '') {
           isvalid = false;
