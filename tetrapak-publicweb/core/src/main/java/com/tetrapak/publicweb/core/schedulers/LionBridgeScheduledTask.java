@@ -2,9 +2,12 @@ package com.tetrapak.publicweb.core.schedulers;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.jcr.Session;
 
@@ -66,6 +69,9 @@ public class LionBridgeScheduledTask implements Runnable {
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(LionBridgeScheduledTask.class);
 
+    /** The pages to roll out. */
+    private Set<String> pagesToRollOut = new TreeSet<>();
+
     /**
      * Run.
      */
@@ -74,25 +80,30 @@ public class LionBridgeScheduledTask implements Runnable {
         LOGGER.debug("{{LionBridgeScheduledTask started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             Resource lbTranslationRes = resolver.getResource(PWConstants.LB_TRANSLATED_PAGES_NODE);
-            if (Objects.nonNull(lbTranslationRes) && lbTranslationRes.hasChildren()) {               
+            if (Objects.nonNull(lbTranslationRes) && lbTranslationRes.hasChildren()) {
                 Iterator<Resource> lbChildResources = lbTranslationRes.getChildren().iterator();
                 List<String> deleteResourcesList = new ArrayList<>();
-                while (lbChildResources.hasNext()) {                    
+                while (lbChildResources.hasNext()) {
                     Resource lbChildResource = lbChildResources.next();
-                    LOGGER.info("LionBridgeScheduledTask starts processing on {}",lbChildResource.getName());
+                    LOGGER.info("LionBridgeScheduledTask starts processing on {}", lbChildResource.getName());
                     Long lbResourceTime = Long
                             .valueOf(lbChildResource.getName().replace("lbtranslatedpages-", StringUtils.EMPTY));
                     Long timeDiff = Calendar.getInstance().getTimeInMillis() - lbResourceTime;
-                    LOGGER.info("LionBridgeScheduledTask time diff on resource {} is {}",lbChildResource.getName(),timeDiff);
+                    LOGGER.info("LionBridgeScheduledTask time diff on resource {} is {}", lbChildResource.getName(),
+                            timeDiff);
                     if (timeDiff >= 600000) {
-                        LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate started on {}",lbChildResource.getName());
-                        createRolloutAndActivate(resolver, lbChildResource);
+                        LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate started on {}",
+                                lbChildResource.getName());
+                        pagesToRolloutAndActivate(resolver, lbChildResource);
                         deleteResourcesList.add(lbChildResource.getPath());
                     }
 
                 }
                 if (!deleteResourcesList.isEmpty()) {
                     deleteResources(resolver, deleteResourcesList);
+                }
+                if (!pagesToRollOut.isEmpty()) {
+                    createRolloutAndActivate(resolver, pagesToRollOut);
                 }
             }
         } finally {
@@ -102,39 +113,46 @@ public class LionBridgeScheduledTask implements Runnable {
     }
 
     /**
-     * Createrollout and activate.
+     * pagesTorollout and activate.
      *
-     * @param resolver
-     *            the resolver
-     * @param lbChildResource
-     *            the lb child resource
-     * @param lbTranslationRes
-     *            the lb translation res
+     * @param resolver            the resolver
+     * @param lbChildResource            the lb child resource
      */
-    public void createRolloutAndActivate(final ResourceResolver resolver, final Resource lbChildResource) {
+    public void pagesToRolloutAndActivate(final ResourceResolver resolver, final Resource lbChildResource) {
         if (lbChildResource.getValueMap().containsKey(PWConstants.LB_TRANSLATED_PROP)) {
             String translatedPage = lbChildResource.getValueMap().get(PWConstants.LB_TRANSLATED_PROP).toString();
-            LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate on page {}",translatedPage);
+            LOGGER.info("LionBridgeScheduledTask pagesToRolloutAndActivate on page {}", translatedPage);
+            pagesToRollOut.add(translatedPage);
+
+        }
+    }
+
+    /**
+     * Createrollout and activate.
+     *
+     * @param resolver            the resolver
+     * @param translatedPages the translated pages
+     */
+    public void createRolloutAndActivate(final ResourceResolver resolver, final Set<String> translatedPages) {
+        for (String translatedPage : translatedPages) {
             String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(translatedPage));
+            LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate on page {}", translatedPage);
             createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager, liveRelManager, language,
                     false);
-
         }
     }
 
     /**
      * Update lionbridge resource.
      *
-     * @param resolver
-     *            the resolver
-     * @param translationInProgressPages
-     *            the translation in progress pages
+     * @param resolver            the resolver
+     * @param deleteResourcesList the delete resources list
      */
     public void deleteResources(final ResourceResolver resolver, final List<String> deleteResourcesList) {
         for (String deleteResources : deleteResourcesList) {
-            LOGGER.info("LionBridgeScheduledTask deleteResources started on {}",deleteResources);
-            ResourceUtil.deleteResource(resolver,resolver.adaptTo(Session.class),deleteResources);
-            
+            LOGGER.info("LionBridgeScheduledTask deleteResources started on {}", deleteResources);
+            ResourceUtil.deleteResource(resolver, resolver.adaptTo(Session.class), deleteResources);
+
         }
     }
 
