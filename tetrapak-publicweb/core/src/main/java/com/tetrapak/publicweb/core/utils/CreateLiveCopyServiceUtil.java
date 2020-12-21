@@ -1,13 +1,10 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.jcr.RangeIterator;
 import javax.jcr.Session;
 
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +14,6 @@ import com.day.cq.replication.ReplicationException;
 import com.day.cq.replication.Replicator;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMException;
-import com.day.cq.wcm.msm.api.LiveRelationship;
-import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.day.cq.wcm.msm.api.RolloutManager;
 import com.day.cq.wcm.msm.api.RolloutManager.RolloutParams;
 import com.tetrapak.publicweb.core.services.config.CreateLiveCopyServiceConfig;
@@ -64,29 +59,6 @@ public final class CreateLiveCopyServiceUtil {
         rolloutManager.rollout(rolloutParams);
     }
 
-    /**
-     * Gets the live copies.
-     *
-     * @param liveRelManager
-     *            the live rel manager
-     * @param res
-     *            the res
-     * @return the live copies
-     * @throws WCMException
-     *             the WCM exception
-     */
-    public static List<String> getLiveCopies(LiveRelationshipManager liveRelManager, Resource res) throws WCMException {
-        LOGGER.info("res path : {}", res.getPath());
-        RangeIterator rangeIterator = liveRelManager.getLiveRelationships(res, "", null);
-        List<String> liveCopyList = new ArrayList<>();
-        while (Objects.nonNull(rangeIterator) && rangeIterator.hasNext()) {
-            LiveRelationship liveCopy = (LiveRelationship) rangeIterator.next();
-            String liveCopyPath = liveCopy.getLiveCopy().getPath();
-            LOGGER.debug("LiveCopy path: {}", liveCopyPath);
-            liveCopyList.add(liveCopyPath);
-        }
-        return liveCopyList;
-    }
 
     /**
      * Gets the live copy base paths.

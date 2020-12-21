@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.services.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +77,8 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
     /** The request processor. */
     @Reference
     private SlingRequestProcessor requestProcessor;
+    
+    List<String> pathToReplicate = new ArrayList<>();
 
     /**
      * activate method.
@@ -114,14 +117,14 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                 PageManager pageManager = resolver.adaptTo(PageManager.class);
                 final Page blueprintPage = pageManager.getPage(payload);
                 Resource res = resolver.getResource(payload);
-                List<String> liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
                 String rootPath = LinkUtils.getRootPath(payload);
                 LOGGER.debug("rootPath : {}", rootPath);
                 String page = payload.replace(rootPath, StringUtils.EMPTY);
-                checkAndCreateLiveCopies(resolver, payload, language, res, liveCopyList, page);
-                CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
-                liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
-                CreateLiveCopyServiceUtil.replicatePaths(resolver, liveCopyList, replicator);
+                Boolean isLiveCopyExists = checkAndCreateLiveCopies(resolver, payload, language, res, page);
+                if(Boolean.TRUE.equals(isLiveCopyExists)) {
+                    CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
+                }
+                CreateLiveCopyServiceUtil.replicatePaths(resolver, pathToReplicate, replicator);
             }
         } catch (ServletException | IOException | WCMException e) {
             LOGGER.error("An error occurred while creating live copy", e);
@@ -148,15 +151,19 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      * @throws IOException
      *             Signals that an I/O exception has occurred.
      */
-    private void checkAndCreateLiveCopies(ResourceResolver resolver, String payload, String language, Resource res,
-            List<String> liveCopyList, String page) throws ServletException, IOException {
+    private Boolean checkAndCreateLiveCopies(ResourceResolver resolver, String payload, String language, Resource res,
+             String page) throws ServletException, IOException {
+        Boolean isLiveCopyExists= true;
         for (String path : CreateLiveCopyServiceUtil.getLiveCopyBasePaths(language, config)) {
             String pagePath = path + page;
             LOGGER.debug("pagepath : {}", pagePath);
-            if (!liveCopyList.contains(pagePath)) {
+            if (resolver.getResource(pagePath) == null) {
                 createLiveCopies(resolver, payload, pagePath, res);
+                isLiveCopyExists=false;
             }
+            pathToReplicate.add(pagePath);
         }
+        return isLiveCopyExists;
     }
 
     /**
