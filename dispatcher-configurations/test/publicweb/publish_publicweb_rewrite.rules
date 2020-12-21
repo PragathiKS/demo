@@ -435,6 +435,14 @@ RewriteCond   %{HTTP_HOST}  'www-qa.tetrapak.com'
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
 RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
+RewriteCond   %{HTTP_HOST}  'tetrapak-test64.adobecqms.net'
+RewriteCond   %{REQUEST_URI} ^/
+RewriteRule   "^/online-help/(.*).html$" "/content/tetrapak/publicweb/global/en/error/404.html" [PT,L]
+RewriteRule   "^/online-help$" "/content/online-help/publicweb/gb/en/home.html" [PT,L]
+RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
+RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
+RewriteRule   "^/online-help/(.*)$" "/content/online-help/publicweb/gb/en/$1.html" [PT,L]
+
 ErrorDocument 404 /content/tetrapak/publicweb/global/en/error/404
 ErrorDocument 403 /content/tetrapak/publicweb/global/en/error/404
 ErrorDocument 500 /content/tetrapak/publicweb/global/en/error/500

@@ -55,6 +55,11 @@ describe('BusinessInquiryForm', function () {
     expect(this.businessinquiry.cache.requestPayload['country']).to.equal('Albania');
   });
 
+  it('Should update payload with positionDropItem changes', function() {
+    document.getElementById('pddtest').click();
+    expect(this.businessinquiry.cache.requestPayload['position']).to.equal('associate');
+  });
+
   it('Should update request payload on step-1 next button click', function () {
     $('input[name="purposeOfContactOptionsInBusinessEq"]').click({target : { value : 'Contact me' , id : 'demo'}});
     $('input[name="purposeOfContactInBusinessEqTitle"]').val('Contact me');
@@ -159,16 +164,15 @@ describe('BusinessInquiryForm', function () {
     document.getElementById('emailBef').value = 'email@gmail.com';
     document.getElementById('phoneField').value = 'phone';
     document.getElementById('company').value = 'company';
-    document.getElementById('step3btn').click();
+    document.getElementById('step4btn').click();
     document.getElementById('firstNameField').value = 'first';
     document.getElementById('lastNameField').value = '';
-    document.getElementById('step3btn').click();
+    document.getElementById('step4btn').click();
     document.getElementById('phoneField').value = '';
     document.getElementById('lastNameField').value = 'last';
-    document.getElementById('step3btn').click();
+    document.getElementById('step4btn').click();
     document.getElementById('phoneField').value = 'phone';
     document.getElementById('company').value = '';
-    document.getElementById('step4btn').click();
     $('input[name="purposeOfContactInBusinessEqTitle"]').val('');
     $('input[name="purposeOfInterestAreaEqTitle"]').val('value');
     $('#step1btn').addClass('previousbtn');

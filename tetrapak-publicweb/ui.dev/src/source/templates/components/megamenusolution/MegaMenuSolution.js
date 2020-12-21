@@ -48,6 +48,7 @@ class MegaMenuSolution {
   trackAnalytics = e => {
     e.preventDefault();
     const $target = $(e.target);
+    const url = $target.parent().attr('href');
     const $this = $target.closest('.js-navigation-Link');
     const navigationSection = $this.data('link-section');
     const navigationLinkName = $this.data('link-name');
@@ -82,7 +83,14 @@ class MegaMenuSolution {
       eventObj,
       linkClickObject
     );
-    window.open($this.attr('href'), '_self');
+    if(url){
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
+        window.open($this.attr('href'), '_blank');
+      }
+      else {
+        window.open($this.attr('href'), '_self');
+      }
+    }
   };
 
   handleOpenEvent = e => {
@@ -101,7 +109,7 @@ class MegaMenuSolution {
     var trident = ua.indexOf('Trident/');
     if (trident > 0) { // detect ie 11
       $('.pw-megamenu').css('height', 'auto');
-      $('.col-side-links.col').css({'flex':'1','min-width':'60px'});
+      $('.col-side-links.col').css({'min-width':'240px'});
       $('.pw-megamenu__bottom ul').css('margin', '0 auto');
       $('.pw-megamenu__bottom ul .col').css('flex-basis', 'auto');
       $('.pw-megamenu__bottom .bottom-teaser-list').css({'display':'block','width':'80%','margin':'0 auto'});

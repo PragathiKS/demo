@@ -326,8 +326,7 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
   )}`;
   let linkSection = $this.data('link-section');
   const linkName = $this.data('link-name');
-  const linkType =
-      $this.attr('target') === '_blank' ? 'external' : 'internal';
+  const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
 
   const trackingObj = {};
   const eventObject = {};
@@ -363,7 +362,17 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
   );
 
   if(redirect){
-    window.open($this.attr('href'), $this.attr('target'));
+    if (linkType === 'internal')  {
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+        window.open($this.attr('href'), '_blank');
+      }
+      else {
+        window.open($this.attr('href'), '_self');
+      }
+    }
+    else {
+      window.open($this.attr('href'), $this.attr('target'));
+    }
   }
 };
 

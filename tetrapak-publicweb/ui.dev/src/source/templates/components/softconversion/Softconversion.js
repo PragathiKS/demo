@@ -75,7 +75,8 @@ class Softconversion {
     const id = e.target.id;
     const radioName = `typeOfVisitorTitle-${this.cache.$componentName}`;
     $(e.target).val(value);
-    $(`input[type=hidden][name=${radioName}]`).val(value);
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $(`input[type=hidden][name=${radioName}]`).val(labelValue);
     requestPayload['typeOfVisitor'] = id;
     requestPayload['typeOfVisitorTitle'] = value;
   }
