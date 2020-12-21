@@ -764,13 +764,18 @@
    			<dependency>
 			    <groupId>com.adobe.acs</groupId>
 			    <artifactId>acs-aem-commons-bundle</artifactId>
-			    <version>3.17.4</version>
+			    <version>4.8.6</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-core</artifactId>
 				<version>2.10.2</version>
 			</dependency>
+            <dependency>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bndlib</artifactId>
+                <version>2.4.0</version>
+            </dependency>
 		</dependencies>
     </dependencyManagement>
 
