@@ -246,7 +246,7 @@
               <div class="row no-gutters">
                 <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep4">
                   <div class="row no-gutters">
-                    <div class="col-sm-12 main-heading" auto_locator="businessFormLeftContainerHeadingStep3">
+                    <div class="col-sm-12 main-heading" auto_locator="businessFormLeftContainerHeadingStep4">
                       <sly data-sly-test="${data.formConfig.heading}"
                         data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                         data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.heading}" />
@@ -338,7 +338,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep3">
+                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep4">
                       <div class="col-lg-9">
                         <sly
                           data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
@@ -354,9 +354,9 @@
                     <div class="row no-gutters button-group">
                       <sly
                         data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-3', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep3' }" />
+                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-3', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep4' }" />
                       <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-5', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep3' }" />
+                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-5', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep4' }" />
                     </div>
                   </div>
                 </div>
@@ -367,16 +367,16 @@
             <div class="bef-tab-pane" data-stepNumber="5" data-stepName="contactInfo" role="tabpanel"
               auto_locator="businessEnquiryListContainerStep5" id="bef-step-5">
               <div class="row no-gutters">
-                <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep4">
+                <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep5">
                   <div class="row no-gutters">
                     <div class="col-sm-12 main-heading" data-sly-test="${data.formConfig.heading}"
-                      auto_locator="businessFormLeftContainerHeadingStep4">
+                      auto_locator="businessFormLeftContainerHeadingStep5">
                       <sly data-sly-test="${data.formConfig.heading}"
                         data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                         data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.heading}" />
                     </div>
                   </div>
-                  <div auto_locator="businessFormLeftContainerSummaryAreaStep4">
+                  <div auto_locator="businessFormLeftContainerSummaryAreaStep5">
                     <div class="row no-gutters">
                       <div class="col-sm-12">
                         <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
@@ -425,7 +425,7 @@
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                           data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.companyinformation', variant='small'}" />
                       </div>
-                      <div class="col-sm-12 formfield" auto_locator="businessEnquiryListContainerStep4">
+                      <div class="col-sm-12 formfield" auto_locator="businessEnquiryListContainerStep5">
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
@@ -479,7 +479,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep3">
+                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep5">
                       <div class="col-lg-9">
                         <sly
                           data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
@@ -493,9 +493,9 @@
                     <div class="row no-gutters button-group">
                       <sly
                         data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-4', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep4' }" />
+                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-4', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep5' }" />
                       <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.submit', btnType='submit', btnTarget='#bef-step-final', autoLocator='businessFormSubmitButtonStep4', customClasses='previewLinkBtn'}" />
+                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.submit', btnType='submit', btnTarget='#bef-step-final', autoLocator='businessFormSubmitButtonStep5', customClasses='previewLinkBtn'}" />
                     </div>
                   </div>
                 </div>
