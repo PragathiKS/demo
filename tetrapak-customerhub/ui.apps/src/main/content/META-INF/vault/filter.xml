@@ -6,13 +6,12 @@
     <filter root="/apps/customerhub/config" mode="replace"/>
 	<filter root="/apps/customerhub/config.author" mode="replace"/>
 	<filter root="/apps/customerhub/config.publish" mode="replace"/>
+	<filter root="/apps/customerhub/config.dev.author" mode="replace"/>
 	<filter root="/apps/customerhub/config.dev.publish" mode="replace"/>
 	<filter root="/apps/customerhub/config.prod.author" mode="replace"/>
 	<filter root="/apps/customerhub/config.prod.publish" mode="replace"/>
 	<filter root="/apps/customerhub/config.qa.author" mode="replace"/>
 	<filter root="/apps/customerhub/config.qa.publish" mode="replace"/>
-	<filter root="/apps/customerhub/config.sapedev.author" mode="replace"/>
-	<filter root="/apps/customerhub/config.sapedev.publish" mode="replace"/>
 	<filter root="/apps/customerhub/config.stage.author" mode="replace"/>
 	<filter root="/apps/customerhub/config.stage.publish" mode="replace"/>
 	<filter root="/apps/customerhub/install" mode="update"/>
