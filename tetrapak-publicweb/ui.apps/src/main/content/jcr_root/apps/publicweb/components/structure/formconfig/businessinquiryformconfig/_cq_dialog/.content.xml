@@ -84,7 +84,7 @@
                                 fieldLabel="Tags"
                                 name="./tags"
                                 rootPath="/content/cq:tags/pardot-system-config"
-                                validation="tags.validator"/>
+                                validation="pw.businessForm.tags.validator"/>
                         </items>
                     </column>
                 </items>

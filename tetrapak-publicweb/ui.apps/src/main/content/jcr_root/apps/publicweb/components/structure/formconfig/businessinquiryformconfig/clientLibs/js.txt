@@ -1,1 +1,1 @@
-tags-validator.js
+businessinquiryformconfig-tags-validator.js
