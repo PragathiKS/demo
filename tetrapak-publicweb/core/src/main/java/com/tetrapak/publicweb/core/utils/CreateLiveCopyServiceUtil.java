@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
