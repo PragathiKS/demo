@@ -1,21 +1,22 @@
 package com.tetrapak.publicweb.core.services.impl;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+import javax.jcr.lock.LockException;
+import javax.jcr.nodetype.ConstraintViolationException;
+import javax.jcr.nodetype.NoSuchNodeTypeException;
+import javax.jcr.version.VersionException;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.engine.SlingRequestProcessor;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -24,21 +25,16 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.contentsync.handler.util.RequestResponseFactory;
 import com.day.cq.replication.Replicator;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
-import com.day.cq.wcm.api.commands.WCMCommand;
 import com.day.cq.wcm.msm.api.LiveRelationshipManager;
-import com.day.cq.wcm.msm.api.MSMNameConstants;
 import com.day.cq.wcm.msm.api.RolloutManager;
-import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CreateLiveCopyService;
 import com.tetrapak.publicweb.core.services.config.CreateLiveCopyServiceConfig;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.CreateLiveCopyServiceUtil;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class CreateLiveCopyServiceImpl.
@@ -49,6 +45,9 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
 
     /** The config. */
     private CreateLiveCopyServiceConfig config;
+    
+    /** The Constant CHAPTER_LEVEL. */
+    public static final int CHAPTER_LEVEL = 6;
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(CreateLiveCopyServiceImpl.class);
@@ -57,25 +56,8 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
     @Reference
     private Replicator replicator;
 
-    /** The Constant CMD_LIVE_COPY. */
-    private static final String CMD_LIVE_COPY = "createLiveCopy";
-
-    /** The Constant CMD. */
-    private static final String CMD = "cmd";
-
-    /** The Constant WCM_COMMAND_ENDPOINT. */
-    private static final String WCM_COMMAND_ENDPOINT = "/bin/wcmcommand";
-
-    /** The Constant CHARSET. */
-    private static final String CHARSET = "_charset_";
-
-    /** The request response factory. */
-    @Reference
-    private RequestResponseFactory requestResponseFactory;
-
-    /** The request processor. */
-    @Reference
-    private SlingRequestProcessor requestProcessor;
+    /** The path to replicate. */
+    List<String> pathToReplicate = new ArrayList<>();
 
     /**
      * activate method.
@@ -113,17 +95,16 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                 LOGGER.info("payload : {}", payload);
                 PageManager pageManager = resolver.adaptTo(PageManager.class);
                 final Page blueprintPage = pageManager.getPage(payload);
-                Resource res = resolver.getResource(payload);
-                List<String> liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
                 String rootPath = LinkUtils.getRootPath(payload);
                 LOGGER.debug("rootPath : {}", rootPath);
                 String page = payload.replace(rootPath, StringUtils.EMPTY);
-                checkAndCreateLiveCopies(resolver, payload, language, res, liveCopyList, page);
-                CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
-                liveCopyList = CreateLiveCopyServiceUtil.getLiveCopies(liveRelManager, res);
-                CreateLiveCopyServiceUtil.replicatePaths(resolver, liveCopyList, replicator);
+                Boolean isLiveCopyExists = checkAndCreateLiveCopies(resolver, payload, language, page, isDeep);
+                if (Boolean.TRUE.equals(isLiveCopyExists)) {
+                    CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
+                }
+                CreateLiveCopyServiceUtil.replicatePaths(resolver, pathToReplicate, replicator);
             }
-        } catch (ServletException | IOException | WCMException e) {
+        } catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
             LOGGER.error("An error occurred while creating live copy", e);
         }
     }
@@ -139,59 +120,96 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      *            the language
      * @param res
      *            the res
-     * @param liveCopyList
-     *            the live copy list
      * @param page
      *            the page
+     * @param isDeep
+     *            the is deep
+     * @param liveRelManager
+     *            the live rel manager
+     * @return the boolean
      * @throws ServletException
      *             the servlet exception
      * @throws IOException
      *             Signals that an I/O exception has occurred.
+     * @throws WCMException
+     *             the WCM exception
+     * @throws RepositoryException
+     * @throws PersistenceException
+     * @throws LockException
+     * @throws ConstraintViolationException
+     * @throws VersionException
+     * @throws NoSuchNodeTypeException
      */
-    private void checkAndCreateLiveCopies(ResourceResolver resolver, String payload, String language, Resource res,
-            List<String> liveCopyList, String page) throws ServletException, IOException {
+    private Boolean checkAndCreateLiveCopies(ResourceResolver resolver, String payload, String language,
+            String page, Boolean isDeep)
+            throws WCMException, RepositoryException, PersistenceException {
+        Boolean isLiveCopyExists = true;
+        PageManager pageManager = resolver.adaptTo(PageManager.class);
+        final Page blueprintPage = pageManager.getPage(payload);
         for (String path : CreateLiveCopyServiceUtil.getLiveCopyBasePaths(language, config)) {
             String pagePath = path + page;
             LOGGER.debug("pagepath : {}", pagePath);
-            if (!liveCopyList.contains(pagePath)) {
-                createLiveCopies(resolver, payload, pagePath, res);
+            if (resolver.getResource(pagePath) == null) {
+                isLiveCopyExists = false;
+                pageManager.copy(blueprintPage, pagePath, getNextPage(blueprintPage), !isDeep, false, true);
+                if (resolver.getResource(pagePath + "/jcr:content") != null) {
+                    Resource contentRes = resolver.getResource(pagePath + "/jcr:content");
+                    Node contentNode = contentRes.adaptTo(Node.class);
+                    LOGGER.debug("depth : {}",blueprintPage.getDepth());
+                    contentNode.addMixin("cq:LiveRelationship");
+                    setRelationShip(contentRes);
+                    if (blueprintPage.getDepth() == CHAPTER_LEVEL) {                        
+                        contentNode.addMixin("cq:LiveSync");
+                        contentNode.addNode("cq:LiveSyncConfig", "cq:LiveCopy");
+                        Node syncNode = contentNode.getNode("cq:LiveSyncConfig");
+                        syncNode.setProperty("cq:isDeep", true);
+                        syncNode.setProperty("cq:master", blueprintPage.getPath());
+                        syncNode.setProperty("cq:rolloutConfigs",
+                                new String[] { "/libs/msm/wcm/rolloutconfigs/default" });
+                    }
+                    resolver.commit();
+                }
             }
+            pathToReplicate.add(pagePath);
+        }
+        return isLiveCopyExists;
+    }
+    
+    public void setRelationShip(Resource rootRes) throws RepositoryException {
+        if (rootRes == null || !rootRes.hasChildren()) {
+            return;
+        }
+        Iterator<Resource> itr = rootRes.listChildren();
+        while (itr.hasNext()) {
+            Resource res = itr.next();
+            Node contentNode = res.adaptTo(Node.class);
+            contentNode.addMixin("cq:LiveRelationship");
+            setRelationShip(res);
         }
     }
 
     /**
-     * Creates the live copies.
+     * Gets the next page.
      *
-     * @param resolver
-     *            the resolver
-     * @param payload
-     *            the payload
-     * @param pagePath
-     *            the page path
-     * @param res
-     *            the res
-     * @throws ServletException
-     *             the servlet exception
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
+     * @param blueprintPage
+     *            the blueprint page
+     * @return the next page
      */
-    private void createLiveCopies(ResourceResolver resolver, String payload, String pagePath, Resource res)
-            throws ServletException, IOException {
-        final String rootPath = StringUtils.substringBeforeLast(pagePath, PWConstants.SLASH);
-        ValueMap vMap = res.getValueMap();
-        Map<String, Object> params = new HashMap<>();
-        LOGGER.debug("payload path : {}", payload);
-        LOGGER.debug("Root Path : {}", rootPath);
-        params.put(CHARSET, StandardCharsets.UTF_8);
-        params.put(CMD, CMD_LIVE_COPY);
-        params.put(WCMCommand.SRC_PATH_PARAM, payload);
-        params.put(WCMCommand.DEST_PATH_PARAM, rootPath);
-        params.put(WCMCommand.PAGE_TITLE_PARAM, vMap.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY));
-        params.put(WCMCommand.PAGE_LABEL_PARAM, vMap.get(JcrConstants.JCR_NAME, StringUtils.EMPTY));
-        params.put(MSMNameConstants.PN_ROLLOUT_CONFIGS, config.getRolloutConfigs());
-        HttpServletRequest req = requestResponseFactory.createRequest("POST", WCM_COMMAND_ENDPOINT, params);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        HttpServletResponse response = requestResponseFactory.createResponse(out);
-        requestProcessor.processRequest(req, response, resolver);
+    private String getNextPage(Page blueprintPage) {
+        Iterator<Page> pages = blueprintPage.getParent().listChildren();
+        int count = 0;
+        String nextPageName = StringUtils.EMPTY;
+        while (pages.hasNext()) {
+            Page page = pages.next();
+            if (count == 1) {
+                nextPageName = page.getName();
+                break;
+            }
+
+            if (page.getName().equals(blueprintPage.getName())) {
+                count++;
+            }
+        }
+        return nextPageName;
     }
 }

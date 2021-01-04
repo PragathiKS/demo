@@ -70,17 +70,15 @@ public class LionBridgeScheduledTaskTest {
     private RequestResponseFactory requestResponseFactory;
 
     private final LionBridgeScheduledTask lionBridgeTask = new LionBridgeScheduledTask();
-
-    private static final String HOME_PAGE = "/content/tetrapak/publicweb/lang-masters/en/home";
     
-    private static final String CONTACT_PAGE = "/content/tetrapak/publicweb/lang-masters/en/contact-us";
+    private static final String EN_PAGE = "/content/tetrapak/publicweb/lang-masters/en";
+    
 
     @Before
     public void setUp() throws Exception {
 
         context.load().json("/lbscheduler/test-lbnode.json", PWConstants.LB_TRANSLATED_PAGES_NODE);
-        context.load().json("/lbscheduler/home.json", HOME_PAGE);
-        context.load().json("/lbscheduler/home.json", CONTACT_PAGE);
+        context.load().json("/workflow/en.json", EN_PAGE);
         MockitoAnnotations.initMocks(this);
 
         replicator = new MockReplicatorImpl();

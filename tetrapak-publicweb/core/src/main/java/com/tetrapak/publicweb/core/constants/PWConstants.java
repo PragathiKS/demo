@@ -21,6 +21,9 @@ public final class PWConstants {
     /** The Constant EN_GB. This can be use as default locale */
     public static final String GLOBAL_LOCALE = "en-global";
 
+    /** The Constant CHAPTER_LEVEL. */
+    public static final int CHAPTER_LEVEL = 5;
+    
     /** The Constant LANGUAGE_LEVEL. */
     public static final int LANGUAGE_PAGE_LEVEL = 4;
 
