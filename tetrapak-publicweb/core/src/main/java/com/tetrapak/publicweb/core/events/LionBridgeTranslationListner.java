@@ -164,7 +164,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
             Resource res = resolver.getResource(PWConstants.VAR_COMMERCE_PATH);
             createNode(resolver, prop, nodeName, res);
             Resource resource = resolver.getResource(PWConstants.LB_TRANSLATED_PATH);
-            nodeName = PWConstants.LB_TRNSLATED_PAGES + Calendar.getInstance().getTimeInMillis();
+            nodeName = PWConstants.LB_TRNSLATED_PAGES + PWConstants.HYPHEN + Calendar.getInstance().getTimeInMillis();
             createNode(resolver, properties, nodeName, resource);
             LOGGER.debug("Node created with name :{}", nodeName);
         }
