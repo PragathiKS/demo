@@ -135,7 +135,7 @@ public class SectionMenuModel {
             if (!nextPage.isHideInNav()) {
                 final SectionMenuBean sectionMenuBean = new SectionMenuBean();
                 sectionMenuBean.setLinkText(NavigationUtil.getNavigationTitle(nextPage));
-                if(request.getPathInfo().contains(nextPage.getPath())) {
+                if(request.getPathInfo().equalsIgnoreCase(nextPage.getPath())) {
                     sectionMenuBean.setHighlighted(true);
                 }
                 // Set external page url
