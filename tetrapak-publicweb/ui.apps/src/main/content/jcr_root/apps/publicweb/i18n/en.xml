@@ -231,6 +231,26 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.step {0} of {1}"
         sling:message="Step {0} of {1}"/>
+    <pw.form.subscriptionFormCommSubTitle
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.subscriptionFormCommSubTitle"
+        sling:message="Please select the kind of updates you are interested in."/>
+    <pw.form.subscriptionFormCommTitle
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.subscriptionFormCommTitle"
+        sling:message="What news do you want to receive?"/>
+    <pw.form.subscriptionFormEventInvitation
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.subscriptionFormEventInvitation"
+        sling:message="Event Invitations"/>
+    <pw.form.subscriptionFormMarketingComm
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.subscriptionFormMarketingComm"
+        sling:message="Marketing Communication"/>
+    <pw.form.subscriptionFormPressMediaComm
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.subscriptionFormPressMediaComm"
+        sling:message="Press and Media Communication"/>
     <pw.pxp.openingbenefits
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingbenefits"
