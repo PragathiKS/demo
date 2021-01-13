@@ -36,10 +36,10 @@
                           </sly>
                         </div>
                         <div class="formfield communication-title">
-                          <p>What news do you want to receive?</p>
+                          <p>${'pw.form.subscriptionFormCommTitle' @i18n}</p>
                         </div>
                         <div class="formfield communication-subtitle">
-                          <p>Please select the kind of updates you are interested in.</p>
+                          <p>${'pw.form.subscriptionFormCommSubTitle' @i18n}</p>
                         </div>
                         <div class="hr">
                         </div>
@@ -49,9 +49,8 @@
                               <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-1">
                                 <input id="typeOfCommunicationcheckbox-1"
                                   class="form-control tpatom-checkbox__input float-left communication-type"
-                                  type="checkbox" name="marketing" value='Marketing Communication'>
-                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> Marketing
-                                Communication</label>
+                                  type="checkbox" name="marketing" value="${'pw.form.subscriptionFormMarketingComm' @i18n, locale = locale}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${'pw.form.subscriptionFormMarketingComm' @i18n}</label>
                             </div>
                           </div>
                           <div class="col-sm-12 col-md-6 press-media-type">
@@ -60,9 +59,8 @@
                               <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-2">
                                 <input id="typeOfCommunicationcheckbox-2"
                                   class="form-control tpatom-checkbox__input float-left communication-type"
-                                  type="checkbox" name="pressAndMedia" value='Press and Media Communication'>
-                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> Press and
-                                Media Communication</label>
+                                  type="checkbox" name="pressAndMedia" value="${'pw.form.subscriptionFormPressMediaComm' @i18n, locale = locale}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${'pw.form.subscriptionFormPressMediaComm' @i18n}</label>
                             </div>
                           </div>
                         </div>
@@ -73,9 +71,8 @@
                               <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-3">
                                 <input id="typeOfCommunicationcheckbox-3"
                                   class="form-control tpatom-checkbox__input float-left communication-type"
-                                  type="checkbox" name="event" value="Event Invitation">
-                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> Event
-                                Invitation</label>
+                                  type="checkbox" name="event" value="${'pw.form.subscriptionFormEventInvitation' @i18n, locale = locale}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${'pw.form.subscriptionFormEventInvitation' @i18n}</label>
                             </div>
                           </div>
                         </div>
