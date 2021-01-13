@@ -35,8 +35,9 @@
         label {
             @include margin-bottom(0);
         }
-        label.mobile-subscription-email-label {
+        label.subscription-email-label {
             @include margin-bottom(20px);
+            font-size: $font-md;
             font-weight: 700;
         }
         &.field-error {
