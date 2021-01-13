@@ -32,19 +32,64 @@
                         <div class="formfield emailDiv">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='email', id='emailSubscription', label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='email', id='emailSubscription', label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags', labelClass='mobile-subscription-email-label' }">
                           </sly>
                         </div>
+                        <div class="formfield communication-title">
+                          <p>What news do you want to receive?</p>
+                        </div>
+                        <div class="formfield communication-subtitle">
+                          <p>Please select the kind of updates you are interested in.</p>
+                        </div>
+                        <div class="hr">
+                        </div>
+                        <div class='row no-gutters'>
+                          <div class="col-sm-12 col-md-6">
+                            <div class="checboxField">
+                              <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-1">
+                                <input id="typeOfCommunicationcheckbox-1"
+                                  class="form-control tpatom-checkbox__input float-left communication-type"
+                                  type="checkbox" name="marketing" value='Marketing Communication'>
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> Marketing
+                                Communication</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6 press-media-type">
+
+                            <div class="checboxField">
+                              <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-2">
+                                <input id="typeOfCommunicationcheckbox-2"
+                                  class="form-control tpatom-checkbox__input float-left communication-type"
+                                  type="checkbox" name="pressAndMedia" value='Press and Media Communication'>
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> Press and
+                                Media Communication</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class='row no-gutters padding-top'>
+                          <div class="col-sm-12 col-md-6">
+
+                            <div class="checboxField">
+                              <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-3">
+                                <input id="typeOfCommunicationcheckbox-3"
+                                  class="form-control tpatom-checkbox__input float-left communication-type"
+                                  type="checkbox" name="event" value="Event Invitation">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> Event
+                                Invitation</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="errorMsg communication-error">Please select at least one option</div>
+                        <div class="hr"></div>
                         <div class="formfield">
                           <div class="form-group formfield">
                             <div class="checboxField">
-                            <label class="consentlabel" for="consentcheckbox"> ${data.consentConfig.marketingConsent @
-                                context='html'}
-                              <input id="consentcheckbox" class="form-control tpatom-checkbox__input float-left" type="checkbox"
-                                name="consent">
-                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${data.consentConfig.marketingConsent @ context='html'}</label>
+                              <label class="consentlabel subscription-marketing-consent" for="consentcheckbox">
+                                <input id="consentcheckbox" class="form-control tpatom-checkbox__input float-left"
+                                  type="checkbox" name="consent" required>
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${data.consentConfig.marketingConsent @ context='html'}</label>
                             </div>
-                            <div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
+                            <div class="errorMsg consent-error">${'pw.form.errormsg.marketingconsent' @i18n}</div>
                           </div>
                         </div>
                         <div class="formfield">
