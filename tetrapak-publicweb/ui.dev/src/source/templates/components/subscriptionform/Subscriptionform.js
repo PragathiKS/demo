@@ -21,7 +21,7 @@ class Subscriptionform {
     this.cache.requestPayload = {
       'emailSubscription': '',
       'consent' :'',
-      'types-communication':[]
+      'types-communication':''
     };
 
   }
@@ -32,10 +32,10 @@ class Subscriptionform {
 
   selectCommunicationHandler = () => {
     const {requestPayload,communicationTypes} = this.cache;
-    requestPayload['types-communication'] = [];
+    requestPayload['types-communication'] = '';
     communicationTypes.each(function(){
       if($(this).is(':checked')){
-        requestPayload['types-communication'].push($(this).val());
+        requestPayload['types-communication'] =  requestPayload['types-communication'] ? `${requestPayload['types-communication']},${$(this).val()}`: $(this).val();
       }
     });
   }
