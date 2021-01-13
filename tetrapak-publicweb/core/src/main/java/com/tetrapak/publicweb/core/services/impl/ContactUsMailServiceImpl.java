@@ -11,6 +11,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adobe.acs.commons.email.EmailServiceConstants;
 import com.tetrapak.publicweb.core.beans.ContactUs;
 import com.tetrapak.publicweb.core.beans.ContactUsResponse;
 import com.tetrapak.publicweb.core.constants.FormConstants;
@@ -51,10 +52,13 @@ public class ContactUsMailServiceImpl implements ContactUsMailService {
             final Map<String, String> emailParams = new HashMap<>();
 
             // these parameters are used in email template
-
+            String emailSubject = "Contact request from "+contactUs.getDomainURL()+" for ";
+            emailSubject = emailSubject+contactUs.getCountryTitle()+", "+contactUs.getPurposeOfContactTitle()+".";
+            
             emailParams.put(FormConstants.FIRST_NAME, contactUs.getFirstName());
             emailParams.put(FormConstants.LAST_NAME, contactUs.getLastName());
             emailParams.put(FormConstants.PURPOSE, contactUs.getPurposeOfContactTitle());
+            emailParams.put(EmailServiceConstants.SUBJECT, emailSubject);
             emailParams.put(FormConstants.COUNTRY, contactUs.getCountryTitle());
             emailParams.put(FormConstants.MESSAGE, contactUs.getMessage());
             emailParams.put(FormConstants.EMAIL, contactUs.getEmail());
@@ -72,5 +76,4 @@ public class ContactUsMailServiceImpl implements ContactUsMailService {
         }
         return new ContactUsResponse("200", "Success");
     }
-
 }
