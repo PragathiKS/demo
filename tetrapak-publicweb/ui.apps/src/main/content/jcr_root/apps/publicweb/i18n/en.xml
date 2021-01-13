@@ -127,6 +127,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.serviceerror"
         sling:message="Something went wrong. Please try again."/>
+    <pw.form.errormsg.subscriptionFormSelectComm
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.errormsg.subscriptionFormSelectComm"
+        sling:message="Please select the checkbox"/>		
     <pw.form.errormsg.typeofvisitor
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.typeofvisitor"
