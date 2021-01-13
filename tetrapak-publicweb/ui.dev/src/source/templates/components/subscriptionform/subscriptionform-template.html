@@ -46,20 +46,20 @@
                         <div class='row no-gutters'>
                           <div class="col-sm-12 col-md-6">
                             <div class="checboxField">
-                              <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-1">
+                              <label class="typeOfCommunicationLabel subscription-checkbox-label" for="typeOfCommunicationcheckbox-1">
                                 <input id="typeOfCommunicationcheckbox-1"
                                   class="form-control tpatom-checkbox__input float-left communication-type"
-                                  type="checkbox" name="marketing" value="${'pw.form.subscriptionFormMarketingComm' @i18n, locale = locale}">
+                                  type="checkbox" name="marketing" value="${'pw.form.subscriptionFormMarketingComm' @i18n, locale = 'en'}">
                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${'pw.form.subscriptionFormMarketingComm' @i18n}</label>
                             </div>
                           </div>
                           <div class="col-sm-12 col-md-6 press-media-type">
 
                             <div class="checboxField">
-                              <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-2">
+                              <label class="typeOfCommunicationLabel subscription-checkbox-label" for="typeOfCommunicationcheckbox-2">
                                 <input id="typeOfCommunicationcheckbox-2"
                                   class="form-control tpatom-checkbox__input float-left communication-type"
-                                  type="checkbox" name="pressAndMedia" value="${'pw.form.subscriptionFormPressMediaComm' @i18n, locale = locale}">
+                                  type="checkbox" name="pressAndMedia" value="${'pw.form.subscriptionFormPressMediaComm' @i18n, locale = 'en'}">
                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${'pw.form.subscriptionFormPressMediaComm' @i18n}</label>
                             </div>
                           </div>
@@ -68,10 +68,10 @@
                           <div class="col-sm-12 col-md-6">
 
                             <div class="checboxField">
-                              <label class="typeOfCommunicationLabel" for="typeOfCommunicationcheckbox-3">
+                              <label class="typeOfCommunicationLabel subscription-checkbox-label" for="typeOfCommunicationcheckbox-3">
                                 <input id="typeOfCommunicationcheckbox-3"
                                   class="form-control tpatom-checkbox__input float-left communication-type"
-                                  type="checkbox" name="event" value="${'pw.form.subscriptionFormEventInvitation' @i18n, locale = locale}">
+                                  type="checkbox" name="event" value="${'pw.form.subscriptionFormEventInvitation' @i18n, locale = 'en'}">
                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${'pw.form.subscriptionFormEventInvitation' @i18n}</label>
                             </div>
                           </div>
@@ -81,7 +81,7 @@
                         <div class="formfield">
                           <div class="form-group formfield">
                             <div class="checboxField">
-                              <label class="consentlabel subscription-marketing-consent" for="consentcheckbox">
+                              <label class="consentlabel subscription-checkbox-label" for="consentcheckbox">
                                 <input id="consentcheckbox" class="form-control tpatom-checkbox__input float-left"
                                   type="checkbox" name="consent" required>
                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i> ${data.consentConfig.marketingConsent @ context='html'}</label>
