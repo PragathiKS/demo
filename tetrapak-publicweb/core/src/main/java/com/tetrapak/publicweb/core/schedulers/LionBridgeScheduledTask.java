@@ -2,7 +2,6 @@ package com.tetrapak.publicweb.core.schedulers;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -70,13 +69,14 @@ public class LionBridgeScheduledTask implements Runnable {
     private static final Logger LOGGER = LoggerFactory.getLogger(LionBridgeScheduledTask.class);
 
     /** The pages to roll out. */
-    private Set<String> pagesToRollOut = new TreeSet<>();
+    private Set<String> pagesToRollOut;
 
     /**
      * Run.
      */
     @Override
     public void run() {
+        pagesToRollOut = new TreeSet<>();
         LOGGER.debug("{{LionBridgeScheduledTask started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             Resource lbTranslationRes = resolver.getResource(PWConstants.LB_TRANSLATED_PAGES_NODE);
