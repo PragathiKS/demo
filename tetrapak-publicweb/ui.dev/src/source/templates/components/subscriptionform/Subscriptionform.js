@@ -15,16 +15,29 @@ class Subscriptionform {
     this.cache.businessformapi = this.root.find('form.pw-form-subscriptionForm');
     this.cache.$submitBtn = $('form.pw-form-subscriptionForm button[type="submit"]', this.root);
     this.cache.$inputEmail = $('form.pw-form-subscriptionForm  input[type="email"]', this.root);
+    this.cache.communicationTypes = this.root.find('.communication-type');
+    this.cache.communicationError = this.root.find('.communication-error');
 
     this.cache.requestPayload = {
       'emailSubscription': '',
-      'consent' :''
+      'consent' :'',
+      'types-communication':''
     };
 
   }
 
   validEmail(email) {
     return REG_EMAIL.test(email);
+  }
+
+  selectCommunicationHandler = () => {
+    const {requestPayload,communicationTypes} = this.cache;
+    requestPayload['types-communication'] = '';
+    communicationTypes.each(function(){
+      if($(this).is(':checked')){
+        requestPayload['types-communication'] =  requestPayload['types-communication'] ? `${requestPayload['types-communication']},${$(this).val()}`: $(this).val();
+      }
+    });
   }
 
   submitForm = () => {
@@ -41,6 +54,7 @@ class Subscriptionform {
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
+    dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
 
     subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
@@ -73,23 +87,31 @@ class Subscriptionform {
     $submitBtn.click(function (e) {
       e.preventDefault();
       e.stopPropagation();
+      self.selectCommunicationHandler();
       let isvalid = true;
       const errObj = [];
       const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
+      if(requestPayload['types-communication'].length === 0){
+        isvalid = false;
+        self.cache.communicationError.addClass('field-error-communication');
+      } else {
+        isvalid = true;
+        self.cache.communicationError.removeClass('field-error-communication');
+      }
       if (!$(this).hasClass('previousbtn') && (input.length > 0)) {
-        $('input, textarea', tab).each(function () {
+        $('input:not(.communication-type), textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
           $('div.' + fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
-          if($(this).attr('type') === 'checkbox'){
+          if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
             requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
+          if (($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent' && !$(this).is(':checked')) || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
             const erLbl = $(`#sf-step-1 label`)[0].textContent;

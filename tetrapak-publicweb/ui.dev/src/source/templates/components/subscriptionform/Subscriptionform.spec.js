@@ -33,6 +33,7 @@ describe('Subscriptionform', function () {
   it('should submit Form when required fields are not empty', function (done) {
     $('#email').val('example@example.com');
     $('#consentcheckbox').attr('checked','true');
+    $('#typeOfCommunicationcheckbox-3').attr('checked','true');
     this.subscription.cache.$submitBtn.click();
     expect(this.subscription.submitForm.called).to.be.true;
     done();
