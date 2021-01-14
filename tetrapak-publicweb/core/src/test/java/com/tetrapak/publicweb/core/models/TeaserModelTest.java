@@ -9,6 +9,7 @@ import javax.jcr.Session;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
@@ -114,6 +115,9 @@ public class TeaserModelTest {
     /** The hit. */
     @Mock
     private Hit hit;
+    
+    @Mock
+    private ValueMap properties;
 
     /**
      * Sets the up.
@@ -232,6 +236,8 @@ public class TeaserModelTest {
         hits.add(hit);
         Mockito.when(searchResult.getHits()).thenReturn(hits);
         Mockito.when(hit.getPath()).thenReturn(SOLUTIONS_PAGE);
+        Mockito.when(properties.get("articleDate",String.class)).thenReturn("2020-12-12");
+        Mockito.when(hit.getProperties()).thenReturn(properties);
         Mockito.when(pageManager.getPage(SOLUTIONS_PAGE)).thenReturn(context.pageManager().getPage(SOLUTIONS_PAGE));
         List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, 4, "and");
         assertEquals("Solutions", aggregatorList.get(0).getTitle());

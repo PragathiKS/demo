@@ -70,13 +70,14 @@ public class LionBridgeScheduledTask implements Runnable {
     private static final Logger LOGGER = LoggerFactory.getLogger(LionBridgeScheduledTask.class);
 
     /** The pages to roll out. */
-    private Set<String> pagesToRollOut = new TreeSet<>();
+    private Set<String> pagesToRollOut;
 
     /**
      * Run.
      */
     @Override
     public void run() {
+        pagesToRollOut = new TreeSet<>();
         LOGGER.debug("{{LionBridgeScheduledTask started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             Resource lbTranslationRes = resolver.getResource(PWConstants.LB_TRANSLATED_PAGES_NODE);
