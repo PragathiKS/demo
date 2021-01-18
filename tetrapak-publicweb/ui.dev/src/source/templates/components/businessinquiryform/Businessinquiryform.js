@@ -46,7 +46,8 @@ class Businessinquiryform {
       'company': '',
       'position': '',
       'country': '',
-      'countryTitle': ''
+      'countryTitle': '',
+      'pageurl': window.location.href
     };
   }
 
@@ -112,6 +113,7 @@ class Businessinquiryform {
       dataObj['marketingConsent'] = this.root.find(`#befconsentcheckbox`).is(':checked');
     }
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
+    dataObj['pageurl'] = this.cache.requestPayload.pageurl;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
 
