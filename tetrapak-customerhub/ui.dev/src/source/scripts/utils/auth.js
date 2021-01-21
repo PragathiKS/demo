@@ -64,7 +64,7 @@ function generateToken() {
           });
         });
       } else {
-        logger.log('No apigee call on author');
+        logger.log('No api gee call on author for financial page');
       }
     })
   );
