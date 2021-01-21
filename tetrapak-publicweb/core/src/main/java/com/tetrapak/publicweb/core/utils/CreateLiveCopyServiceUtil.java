@@ -157,7 +157,8 @@ public final class CreateLiveCopyServiceUtil {
                 if (Objects.nonNull(replicator)) {
                     Session session = resolver.adaptTo(Session.class);
                     replicator.replicate(session, ReplicationActionType.ACTIVATE, liveCopyPath);
-                    ResourceUtil.replicateChildResources(replicator, session, resolver.getResource(liveCopyPath));
+                    replicator.replicate(session, ReplicationActionType.ACTIVATE, liveCopyPath+"/jcr:content");
+                    ResourceUtil.replicateChildResources(replicator, session, resolver.getResource(liveCopyPath+"/jcr:content"));
                     LOGGER.debug("{} ,Replicated", liveCopyPath);
                 }
             } catch (ReplicationException e) {
