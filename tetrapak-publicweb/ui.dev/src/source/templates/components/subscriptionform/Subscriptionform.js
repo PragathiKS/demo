@@ -21,7 +21,8 @@ class Subscriptionform {
     this.cache.requestPayload = {
       'emailSubscription': '',
       'consent' :'',
-      'types-communication':''
+      'types-communication':[],
+      'interestArea':['Processing','End To End - Solutions','Services','Sustainability','Packaging','Innovation']
     };
 
   }
@@ -32,10 +33,10 @@ class Subscriptionform {
 
   selectCommunicationHandler = () => {
     const {requestPayload,communicationTypes} = this.cache;
-    requestPayload['types-communication'] = '';
+    requestPayload['types-communication'] = [];
     communicationTypes.each(function(){
       if($(this).is(':checked')){
-        requestPayload['types-communication'] =  requestPayload['types-communication'] ? `${requestPayload['types-communication']},${$(this).val()}`: $(this).val();
+        requestPayload['types-communication'].push($(this).val());
       }
     });
   }
@@ -55,6 +56,7 @@ class Subscriptionform {
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
+    dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
 
     subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
@@ -62,7 +64,7 @@ class Subscriptionform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: dataObj
+      data: $.param(dataObj,true)
     }).done(
       (response) => {
         if (response.statusCode === '200') {
