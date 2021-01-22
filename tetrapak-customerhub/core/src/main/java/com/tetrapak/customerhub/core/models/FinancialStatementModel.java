@@ -5,7 +5,9 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.settings.SlingSettingsService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -102,6 +104,11 @@ public class FinancialStatementModel {
 
     @Inject
     private String noCustomerErrorText;
+
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
+    private boolean isPublishEnvironment= Boolean.FALSE;
 
     public String getStatementOfAccount() {
         return statementOfAccount;
@@ -219,6 +226,10 @@ public class FinancialStatementModel {
         return "/bin/customerhub/invoice/document.{docId}.pdf";
     }
 
+    public boolean isPublishEnvironment() {
+        return isPublishEnvironment;
+    }
+
     /**
      * init method
      */
@@ -252,7 +263,9 @@ public class FinancialStatementModel {
         i18KeyMap.put("dateRangeErrorLabel", getDateRangeErrorLabel());
         i18KeyMap.put("noCustomerErrorText", getNoCustomerErrorText());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
-
+        if (slingSettingsService.getRunModes().contains("publish")) {
+            isPublishEnvironment = Boolean.TRUE;
+        }
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
         downloadPdfExcelServletUrl = resource.getPath() + ".download.{extnType}";
