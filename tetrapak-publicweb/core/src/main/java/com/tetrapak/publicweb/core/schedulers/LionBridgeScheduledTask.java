@@ -2,7 +2,6 @@ package com.tetrapak.publicweb.core.schedulers;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;

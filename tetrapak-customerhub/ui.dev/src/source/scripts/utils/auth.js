@@ -11,6 +11,7 @@ import { logger } from './logger';
  * Generates a valid APIGEE token and ensures token validity
  */
 function generateToken() {
+  const env_var = $('.tp-financials').attr('data-src_ispublishenvironment');
   return (
     new Promise(function (resolve, reject) {
       const access_token = storageUtil.get(AUTH_TOKEN_COOKIE);
@@ -24,7 +25,7 @@ function generateToken() {
             fromStorage: true
           }
         });
-      } else {
+      } else if(env_var === 'true'){
         ajaxWrapper.getXhrObj({
           url: getURL(API_TOKEN),
           method: ajaxMethods.GET
@@ -62,6 +63,8 @@ function generateToken() {
             jqXHR
           });
         });
+      } else {
+        logger.log('No api gee call on author for financial page');
       }
     })
   );

@@ -1,7 +1,5 @@
 package com.tetrapak.publicweb.core.mock;
 
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.xss.XSSAPI;
 
 public class MockXSSAPI implements XSSAPI {
@@ -50,18 +48,6 @@ public class MockXSSAPI implements XSSAPI {
 
     @Override
     public String filterHTML(final String arg0) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public XSSAPI getRequestSpecificAPI(final SlingHttpServletRequest arg0) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public XSSAPI getResourceResolverSpecificAPI(final ResourceResolver arg0) {
         // TODO Auto-generated method stub
         return null;
     }

@@ -166,5 +166,13 @@
             <version>1.6.4</version>
             <scope>test</scope>
         </dependency>
+		<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+			</dependency>
+        <dependency>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bndlib</artifactId>
+        </dependency>
     </dependencies>
 </project>

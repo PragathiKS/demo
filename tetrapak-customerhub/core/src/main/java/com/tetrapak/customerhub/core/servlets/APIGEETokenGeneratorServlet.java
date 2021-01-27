@@ -47,6 +47,10 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
     @Reference
     private APIGEEService apigeeService;
 
+    /** The XSSAPI  */
+    @Reference
+    private transient XSSAPI xssAPI;
+
     private static final long serialVersionUID = 1;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(APIGEETokenGeneratorServlet.class);
@@ -57,7 +61,6 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
         JsonObject jsonResponse = new JsonObject();
         final String apiURL = apigeeService.getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(apigeeService, "auth-token");
-        final XSSAPI xssAPI = request.getResourceResolver().adaptTo(XSSAPI.class);
         String acctkn = StringUtils.EMPTY;
         if (ObjectUtils.notEqual(null, request.getCookie("acctoken"))) {
             acctkn = xssAPI.encodeForHTML(request.getCookie("acctoken").getValue());
