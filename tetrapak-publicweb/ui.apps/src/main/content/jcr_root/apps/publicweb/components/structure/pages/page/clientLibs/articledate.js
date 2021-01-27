@@ -1,5 +1,5 @@
 (function($, ns, channel, window, undefined) {
-
+	
     $(document).on('foundation-contentloaded', function (e) {
         if ($('.pw-datepicker').length > 0 && $('.pw-datepicker').hasClass("cq-msm-lockable-field")) {
 			var articleDate = $('.pw-datepicker').attr("value");
