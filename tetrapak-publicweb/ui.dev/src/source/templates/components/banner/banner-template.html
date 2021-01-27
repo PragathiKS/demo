@@ -1,7 +1,7 @@
 <sly data-sly-template.banner_template="${@data, flag}">
   <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
     <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner">
-        <div class="pw-banner pw-theme--${data.pwTheme}" data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}" data-link-section="Hero Image_imageClick" data-link-name="${data.linkLabel}" data-asset-name="${data.assetName}" data-href="${data.enableSoftcoversion ? '': data.linkPath}">
+        <div class="pw-banner ${data.bannerType == 'hero' ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}" data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}" data-link-section="Hero Image_imageClick" data-link-name="${data.linkLabel}" data-asset-name="${data.assetName}" data-href="${data.enableSoftcoversion ? '': data.linkPath}">
         <sly data-sly-test="${!wcmmode.edit}">
             <div class="pw-banner__image-wrapper">
             <sly data-sly-test="${data.bannerType == 'hero'}">
@@ -28,7 +28,7 @@
         </sly>
         <sly data-sly-test="${data.bannerType == 'hero'}">
             <sly data-sly-test="${data.pwDisplay =='display-row'}">
-                <div class="pw-banner__sideSection"></div>
+                <div class="pw-banner__sideSection left"></div>
             </sly>
             <sly data-sly-test="${data.pwDisplay =='display-row-reversed'}">
                 <div class="pw-banner__sideSection right"></div>
@@ -57,7 +57,7 @@
             </sly>
         </sly>
             <div class="pw-banner__content banner-sibling ${data.pwDisplay} ${data.pwCardTheme}"></div>
-            <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay} 
+            <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}
                 ${data.pwCardTheme}">
                 <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle ${data.pwCardTheme}">
                         ${data.subtitle @ context='html'}

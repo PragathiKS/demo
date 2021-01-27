@@ -1,0 +1,714 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:07 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"jcr:createdBy": "admin",
+"socialMedia": [
+"facebook",
+"pinterest"
+],
+"jcr:title": "English",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "86ee7511-087b-4568-bb05-8721c3c1d0c8",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+"cq:lastReplicatedBy": "sapient-suraksha",
+"jcr:language": "en",
+"jcr:predecessors": [
+"ccb6d038-386b-4066-b5d9-8538ad37ff81"
+],
+"disableEnvelope": "false",
+"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:36 GMT+0000",
+"jcr:created": "Tue Jun 23 2020 15:38:07 GMT+0530",
+"cq:lastReplicated": "Wed Aug 12 2020 14:37:50 GMT+0000",
+"cq:lastModified": "Tue Aug 25 2020 07:55:10 GMT+0000",
+"jcr:baseVersion": "ccb6d038-386b-4066-b5d9-8538ad37ff81",
+"jcr:isCheckedOut": true,
+"jcr:uuid": "f169bbe7-4a26-4238-9ae7-8884f00676fd",
+"sling:resourceType": "publicweb/components/structure/pages/languagepage",
+"cq:allowedTemplates": [
+"/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+"/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
+"/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page",
+"/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page",
+"/conf/publicweb/settings/wcm/templates/public-web-package-type-page",
+"/conf/publicweb/settings/wcm/templates/case-article",
+"/conf/publicweb/settings/wcm/templates/news-article",
+"/conf/publicweb/settings/wcm/templates/press-release",
+"/conf/publicweb/settings/wcm/templates/event",
+"/conf/publicweb/settings/wcm/templates/awareness-campaign",
+"/conf/publicweb/settings/wcm/templates/product-campaign",
+"/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+],
+"errorPages": "/content/tetrapak/publicweb/lang-masters/en/error",
+"cq:lastModifiedBy": "sapient-sandip"
+},
+"home": {
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Thu Dec 03 2020 12:48:42 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": ["mix:versionable"],
+		"jcr:createdBy": "admin",
+		"jcr:title": "Tetra Pak processing and packaging solutions for food and beverages",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "a6bdfec9-718b-4e7f-b715-2d07ccaa63c0",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"cq:lastReplicatedBy": "sapient-daniel",
+		"pwLinkTheme": "hyperlink",
+		"altText": "Family in sunset",
+		"imagePath": "/content/dam/tetrapak/media-box/global/en/images/family-field-sunset-16-9.jpg",
+		"jcr:predecessors": ["a11ac721-1873-47ff-8a6a-7a136c348e72"],
+		"disableEnvelope": "false",
+		"pwButtonTheme": "link",
+		"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:36 GMT+0000",
+		"jcr:created": "Thu Dec 03 2020 12:48:42 GMT+0530",
+		"cq:lastReplicated": "Thu Oct 22 2020 13:12:08 GMT+0000",
+		"cq:lastModified": "Mon Dec 07 2020 16:19:56 GMT+0530",
+		"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en/home",
+		"jcr:description": "Tetra Pak is the world's leading food processing and packaging solutions company working closely with our customers and suppliers to provide safe food.",
+		"jcr:baseVersion": "a11ac721-1873-47ff-8a6a-7a136c348e72",
+		"jcr:isCheckedOut": true,
+		"hideInNav": "true",
+		"linkTarget": "_self",
+		"jcr:uuid": "40a9ce98-3d87-4bd4-abb5-d617799416d0",
+		"linkPath": "/content/tetrapak/publicweb/lang-masters/en/home",
+		"linkText": "Tetra Pak Home",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:mixinTypes": ["cq:ReplicationStatus"],
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"imagetextbutton": {
+					"jcr:primaryType": "nt:unstructured",
+					"subtitle": "COMPLETE SOLUTIONS",
+					"jcr:createdBy": "admin",
+					"ctaLinkTexti18n": "Discover our range of solutions",
+					"description": "From idea to launch - and beyond. Let us help you integrate and manage the whole value chain of processing and packaging through our complete solutions for food and beverages, expertise and innovations. We are ready to increase efficiency, optimise performance and secure food quality - in a sustainable way. With us as your trusted partner, business will become easier",
+					"jcr:lastModifiedBy": "roomahaj",
+					"imagePath": "/content/dam/publicweb/articles/shopping.png",
+					"pwButtonTheme": "secondary",
+					"jcr:created": "Fri Mar 22 2019 18:01:43 GMT+0000",
+					"imageAltI18n": "Discover our range of solutions",
+					"pwTheme": "grayscale-white",
+					"title": "Ensure efficiency and quality",
+					"jcr:lastModified": "Wed Dec 04 2019 14:34:35 GMT+0000",
+					"sling:resourceType": "publicweb/components/content/imageTextButton",
+					"ctaLinkURL": "/content/tetrapak/publicweb/lang-masters/en/solutions"
+				},
+				"imagetextbanner": {
+					"jcr:primaryType": "nt:unstructured",
+					"titleI18n": "How well do you know the millenials?",
+					"jcr:createdBy": "admin",
+					"bannerCtaPath": "/content/dam/publicweb/articles/Children.png",
+					"mobileImage": "/content/dam/publicweb/banners/Yogurt1416.png",
+					"bannerDescriptionI18n": "Young, aspirational and demanding. They spend approximately $600 billion anually. But who are the millenials? How can you optimise your products and packages to meet their needs?",
+					"targetSoftConversion": "on",
+					"jcr:lastModifiedBy": "admin",
+					"contentAlignment": "pw-banner--right",
+					"jcr:created": "Fri Mar 22 2019 18:42:20 GMT+0000",
+					"bannerCtaTextI18n": "Get to know the millenials",
+					"jcr:lastModified": "Mon Apr 22 2019 10:05:19 GMT-0300",
+					"desktopImage": "/content/dam/publicweb/banners/Yogurt1416.png",
+					"mobileImageAltI18n": "How well do you know the millenials?",
+					"bannerSubtitleI18n": "RECOMMENDED WHITEPAPER",
+					"sling:resourceType": "publicweb/components/content/imageTextBanner",
+					"desktopImageAltI18n": "How well do you know the millenials?",
+					"bannerCtaTooltipI18n": "Get to know the millenials"
+				},
+				"banner": {
+					"jcr:primaryType": "nt:unstructured",
+					"subtitle": "Go Nature. Go Carton.",
+					"jcr:createdBy": "elisabet.jonsdottir",
+					"linkLabel": "Explore here",
+					"fileReference": "/content/dam/tetrapak/publicweb/gb/en/campaigns/gngc/gngc-delivering-the-food-package-of-the-future-banner.jpg",
+					"jcr:lastModifiedBy": "sapient-daniel",
+					"bannerType": "hero",
+					"imageCrop": "549,20,1101,361",
+					"pwButtonTheme": "secondary",
+					"jcr:created": "Thu Jul 16 2020 12:02:19 GMT+0000",
+					"pwDisplay": "display-row",
+					"pwTheme": "grayscale-white",
+					"alt": "man on ice cap",
+					"text": "What if all packaging were carbon-neutral? At Tetra Pak, we’re on a journey to deliver the world's most sustainable food package. That’s why we say Go Nature. Go Carton.",
+					"title": "WHAT IF?",
+					"jcr:lastModified": "Thu Oct 22 2020 13:13:39 GMT+0000",
+					"linkPath": "/content/tetrapak/publicweb/lang-masters/en/campaigns/go-nature-go-carton",
+					"sling:resourceType": "publicweb/components/content/banner",
+					"textIsRich": "true",
+					"moreButtonLabel": "More white papers",
+					"headingTag": "h2"
+				},
+				"textimage": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "joanna-hildebrand",
+					"description": "The COVID-19 outbreak is an unprecedented event, affecting communities worldwide. None of us have previously experienced a situation like the one we are currently going through . Our thoughts are with those most affected. In this context, extraordinary measures are needed to ensure we can continue to deliver on our promise to protect what's good. ",
+					"jcr:lastModifiedBy": "jonathan-ferdinand",
+					"imagePath": "/content/dam/tetrapak/media-box/global/en/images/adolfo-orive.jpg",
+					"pwButtonTheme": "link",
+					"jcr:created": "Thu Jul 30 2020 06:20:34 GMT+0000",
+					"imageAltText": "Adolfo Orive",
+					"pwDisplay": "display-row-reversed",
+					"pwTheme": "grayscale-white",
+					"title": "Making food safe and available everywhere",
+					"linkURL": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/tetra-pak-actions-covid-19",
+					"jcr:lastModified": "Mon Aug 10 2020 09:28:44 GMT+0000",
+					"linkText": "Read more",
+					"sling:resourceType": "publicweb/components/content/textImage",
+					"textIsRich": "true",
+					"moreButtonLabel": "More white papers",
+					"headingTag": "h3"
+				},
+				"banner_231940160": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "joanna-hildebrand",
+					"linkLabel": "Read more about our end-to-end solutions",
+					"fileReference": "/content/dam/tetrapak/publicweb/gb/en/processing/end-to-end-solutions.jpg",
+					"jcr:lastModifiedBy": "joanna-hildebrand",
+					"bannerType": "textImage",
+					"pwButtonTheme": "link",
+					"jcr:created": "Thu Jul 30 2020 06:20:40 GMT+0000",
+					"pwDisplay": "display-row-reversed",
+					"pwTheme": "grayscale-white",
+					"alt": "End to end solutions",
+					"text": "Processing, packaging and service solutions, maintaining the highest standards of food safety, operational performance and sustainability.  ",
+					"title": "End to end solutions",
+					"jcr:lastModified": "Fri Aug 07 2020 09:28:54 GMT+0000",
+					"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions",
+					"sling:resourceType": "publicweb/components/content/banner",
+					"textIsRich": "true",
+					"moreButtonLabel": "More white papers",
+					"headingTag": "h3"
+				},
+				"teaser": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "joanna-hildebrand",
+					"logicalOperator": "and",
+					"jcr:lastModifiedBy": "tetrapak-user",
+					"contentType": "manual",
+					"jcr:created": "Thu Jul 30 2020 06:20:45 GMT+0000",
+					"pwTheme": "grayscale-lighter",
+					"jcr:lastModified": "Wed Aug 05 2020 10:25:25 GMT+0000",
+					"sling:resourceType": "publicweb/components/content/teaser",
+					"semiAutomaticList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"pageURL": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"pageURL": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"pageURL": "/content/tetrapak/publicweb/lang-masters/en/solutions/services"
+						}
+					},
+					"manualList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "Processing solutions and equipment for dairy, cheese, ice cream, beverages and prepared food. ",
+							"fileReference": "/content/dam/tetrapak/publicweb/gb/en/food/images/Girl drinking milk.jpg",
+							"pwButtonTheme": "link",
+							"alt": "Girl drinking milk",
+							"title": "Processing Solutions",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/processing",
+							"linkText": "Read more about our processing solutions"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "A complete carton packaging range for consuming fresh products, offering user convenience, easy opening and optimal shelf life.",
+							"fileReference": "/content/dam/tetrapak/publicweb/gb/en/packaging/top-view-carton-packages-packaging.jpg",
+							"pwButtonTheme": "link",
+							"alt": "Packages",
+							"title": "Packaging Solutions",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/packaging",
+							"linkText": "Read more about our carton packaging solutions"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "Tetra Pak<sup>®</sup> Services helps you improve your performance, optimize costs and ensure food safety throughout the lifecycle of your operations. ",
+							"fileReference": "/content/dam/tetrapak/media-box/global/en/images/women-wearing-hololens-16-9.jpg",
+							"pwButtonTheme": "link",
+							"alt": "Engineer wearing Hololens",
+							"title": "Service Solutions",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/services",
+							"linkText": "Read more about our service solutions"
+						}
+					}
+				},
+				"teaser_802694532": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "joanna-hildebrand",
+					"logicalOperator": "and",
+					"linkLabel": "Go to News room",
+					"jcr:lastModifiedBy": "tetrapak-user",
+					"contentType": "semi-automatic",
+					"jcr:created": "Thu Jul 30 2020 06:20:49 GMT+0000",
+					"maxTeasers": "3",
+					"pwTheme": "grayscale-white",
+					"tags": ["news"],
+					"heading": "News",
+					"jcr:lastModified": "Thu Aug 06 2020 10:10:44 GMT+0000",
+					"linkPath": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/news-room",
+					"sling:resourceType": "publicweb/components/content/teaser",
+					"semiAutomaticList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"pageURL": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/newsarchive/innovating-together-sustainable-future"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"pageURL": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/newsarchive/first-low-energy-processing-line-for-jnsd"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"pageURL": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/newsarchive/tetra-pak-commits-to-net-zero-emissions"
+						}
+					},
+					"manualList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "A complete processing line for feta type white cheese products, with fully automated and integrated solution to ensure the highest standard of food safety.",
+							"pwButtonTheme": "link",
+							"title": "Tetra Pak launches its first complete processing line for white cheese",
+							"linkText": "Read more"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "Tetra Pak has announced its acquisition of South African based asset management company Gaussian to enhance its existing outcome-based solutions for customers. ",
+							"pwButtonTheme": "link",
+							"title": "Tetra Pak acquires asset management consultancy to boost productivity for food and beverage producers",
+							"linkText": "Read more"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"description": "The COVID-19 pandemic has made an unprecedented impact on communities worldwide. Our thoughts and concern are with all those whose lives have been affected",
+							"pwButtonTheme": "link",
+							"title": "Tetra Pak earns Top Award for Manufacturing Excellence for Lahore and Hohhot Factory",
+							"linkText": "Read more"
+						}
+					}
+				},
+				"richtext": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "joanna-hildebrand",
+					"jcr:lastModifiedBy": "tetrapak-user",
+					"jcr:created": "Thu Jul 30 2020 06:21:01 GMT+0000",
+					"pwTheme": "grayscale-lighter",
+					"text": "<h2 style=\"text-align: center;\">LATEST CASES &amp; ARTICLES</h2>\r\n",
+					"jcr:lastModified": "Mon Aug 10 2020 14:21:20 GMT+0000",
+					"sling:resourceType": "publicweb/components/content/richtext",
+					"topSpacing": "topmargin",
+					"pwPadding": "zero",
+					"textIsRich": "true"
+				},
+				"textimage_114442302": {
+					"jcr:primaryType": "nt:unstructured",
+					"subTitle": "CASE PAGE JULY 20 2020",
+					"jcr:createdBy": "joanna-hildebrand",
+					"description": "Should I wash food cartons after bringing them home from shopping? The pandemic has radically changed our world. Find out more about food safety and COVID-19",
+					"jcr:lastModifiedBy": "tetrapak-user",
+					"imagePath": "/content/dam/tetrapak/publicweb/gb/en/to-be-reviewed-images/martin-lappann-tetra-pak.jpg",
+					"pwButtonTheme": "link",
+					"jcr:created": "Thu Jul 30 2020 06:21:11 GMT+0000",
+					"imageAltText": "Martin Lappann",
+					"pwDisplay": "display-row-reversed",
+					"pwTheme": "grayscale-lighter",
+					"title": "COVID-19 and food safety",
+					"linkURL": "/content/tetrapak/publicweb/lang-masters/en/insights/cases-articles/covid-19-and-food-safety",
+					"jcr:lastModified": "Mon Aug 10 2020 12:29:47 GMT+0000",
+					"linkText": "Read more",
+					"sling:resourceType": "publicweb/components/content/textImage",
+					"textIsRich": "true",
+					"moreButtonLabel": "More white papers",
+					"headingTag": "h3"
+				},
+				"textimage_1957626217": {
+					"jcr:primaryType": "nt:unstructured",
+					"subTitle": "CASE PAGE JULY 16 2020",
+					"jcr:createdBy": "joanna-hildebrand",
+					"description": "Make Juice, Nectars and Still drinks using 50% less water and nearly 70% less energy. Tetra Pak's new JNSD line is a first-of-its-kind for the industry.",
+					"jcr:lastModifiedBy": "tetrapak-user",
+					"imagePath": "/content/dam/tetrapak/publicweb/gb/en/food/images/orange-juice-in-glass.jpg",
+					"pwButtonTheme": "link",
+					"jcr:created": "Thu Jul 30 2020 06:21:05 GMT+0000",
+					"imageAltText": "Orange juice",
+					"pwDisplay": "display-row",
+					"pwTheme": "grayscale-white",
+					"title": "Juice, Nectars and Still drinks using less water and energy",
+					"linkURL": "/content/tetrapak/publicweb/lang-masters/en/insights/cases-articles/low-energy-less-water-juice-processing-line",
+					"jcr:lastModified": "Mon Aug 10 2020 12:30:42 GMT+0000",
+					"linkText": "Read more",
+					"sling:resourceType": "publicweb/components/content/textImage",
+					"textIsRich": "true",
+					"moreButtonLabel": "More white papers",
+					"headingTag": "h3"
+				},
+				"textimage_139932615": {
+					"jcr:primaryType": "nt:unstructured",
+					"subTitle": "CASE PAGE JULY 13 2020",
+					"jcr:createdBy": "joanna-hildebrand",
+					"description": "Shakarganj<sup>®</sup> launches all-purpose UHT milk in \"Easy Pack\" – Tetra Brik<sup>®</sup> Aseptic Base Leaf with the innovative Micro Injection Moulding (MiM) opening",
+					"jcr:lastModifiedBy": "tetrapak-user",
+					"imagePath": "/content/dam/tetrapak/publicweb/gb/en/to-be-reviewed-images/easy-pack-good-milk.jpg",
+					"pwButtonTheme": "link",
+					"jcr:created": "Thu Jul 30 2020 06:21:07 GMT+0000",
+					"imageAltText": "Easy Pack Good Milk",
+					"pwDisplay": "display-row-reversed",
+					"pwTheme": "grayscale-lighter",
+					"title": "Shakarganj<sup>®</sup> launches all-purpose UHT milk in Tetra Brik<sup>®</sup> Aseptic",
+					"linkURL": "/content/tetrapak/publicweb/lang-masters/en/insights/cases-articles/innovation-tetra-brik-aseptic-mim",
+					"jcr:lastModified": "Mon Aug 10 2020 12:30:48 GMT+0000",
+					"linkText": "Read more",
+					"sling:resourceType": "publicweb/components/content/textImage",
+					"textIsRich": "true",
+					"moreButtonLabel": "More white papers",
+					"headingTag": "h3"
+				},
+				"teaser_407862806": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "innagavekarb",
+					"jcr:lastModifiedBy": "innagavekarb",
+					"jcr:created": "Mon Nov 09 2020 09:12:31 GMT+0000",
+					"jcr:lastModified": "Mon Nov 09 2020 09:12:31 GMT+0000",
+					"sling:resourceType": "publicweb/components/content/teaser"
+				}
+			}
+		},
+		"header": {
+			"jcr:primaryType": "nt:unstructured",
+			"loginTextI18n": "My Tetra Pak",
+			"megamenuLinks": ["{\"linkTextI18n\":\"Solutions\",\"linkTooltipI18n\":\"Solutions\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/solutions\"}", "{\"linkTextI18n\":\"Insights\",\"linkTooltipI18n\":\"Insights\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/innovations\"}", "{\"linkTextI18n\":\"Sustainability\",\"linkTooltipI18n\":\"Sustainability\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/sustainability\"}", "{\"linkTextI18n\":\"Careers\",\"linkTooltipI18n\":\"Carrers\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/careers\"}", "{\"linkTextI18n\":\"About us\",\"linkTooltipI18n\":\"About us\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/about-us\"}"],
+			"jcr:lastModifiedBy": "sapient-user",
+			"enableHeroImage": "true",
+			"jcr:lastModified": "Fri Apr 05 2019 07:41:07 GMT+0000",
+			"sling:resourceType": "publicweb/components/structure/header",
+			"searchRootPath": "/content/tetrapak/publicweb/lang-masters/en",
+			"searchResultsPath": "/content/tetrapak/publicweb/lang-masters/en/search",
+			"logo": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:lastModifiedBy": "admin",
+				"imageLink": "/content/tetrapak/publicweb/lang-masters/en",
+				"imagePath": "/content/dam/publicweb/logo_tetra_pak_white.png",
+				"imageAltI18n": "Tetra Pak Logo",
+				"jcr:lastModified": "Fri Mar 22 2019 03:11:47 GMT+0000",
+				"sling:resourceType": "publicweb/components/content/logo"
+			},
+			"imageTextBanner": {
+				"jcr:primaryType": "nt:unstructured",
+				"titleI18n": "SAVE ENERGY WITH OPTIMIZED HOMOGENIZATION",
+				"targetBlank": "true",
+				"bannerCtaPath": "/content/tetrapak/publicweb/lang-masters/en",
+				"mobileImage": "/content/dam/publicweb/Teaser1.png",
+				"bannerDescriptionI18n": "Make your dairy operations more cost-effective and sustainable – shift focus from homogenization pressure to the actual effects of homogenization when measuring homogenization efficiency.",
+				"targetSoftConversion": "true",
+				"mobileCroppingOption": "none",
+				"jcr:lastModifiedBy": "roomahaj",
+				"softConversionDescription": "Soft conversion form",
+				"softConversionTitle": "Show Soft conversion",
+				"contentAlignment": "pw-banner--right",
+				"bannerCtaTextI18n": "Learn more ",
+				"contrastLayer": "gradient-to-right",
+				"jcr:lastModified": "Wed Jan 29 2020 09:13:54 GMT+0000",
+				"desktopImage": "/content/dam/publicweb/banners/hero_newdrink.jpg",
+				"mobileImageAltI18n": "Where everything comes together",
+				"sling:resourceType": "publicweb/components/content/imageTextBanner",
+				"softConversionLastStep": "This is last step.",
+				"desktopImageAltI18n": "Where everything comes together",
+				"softConversionHeadline": "Soft conversion form"
+			}
+		},
+		"footer": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:lastModifiedBy": "admin",
+			"jcr:lastModified": "Thu Feb 27 2020 13:28:04 GMT+0000",
+			"sling:resourceType": "publicweb/components/structure/footer",
+			"ctaLabelI18n": "To top",
+			"footer": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:lastModifiedBy": "admin",
+				"imageLink": "/content/tetrapak/publicweb/lang-masters/en",
+				"imagePath": "/content/dam/publicweb/logo_tetra_pak_white.png",
+				"imageAltI18n": "Tetra Pak Logo",
+				"jcr:lastModified": "Mon Mar 11 2019 07:36:48 GMT-0300",
+				"sling:resourceType": "publicweb/components/content/logo"
+			},
+			"footerNavigationLinks": {
+				"jcr:primaryType": "nt:unstructured",
+				"item0": {
+					"jcr:primaryType": "nt:unstructured",
+					"linkTooltipI18n": "test",
+					"linkTextI18n": "test",
+					"linkPath": "/content/asset-share-commons"
+				}
+			},
+			"footerSocialLinks": {
+				"jcr:primaryType": "nt:unstructured",
+				"item0": {
+					"jcr:primaryType": "nt:unstructured",
+					"socialMedia": "Linkedin",
+					"socialMediaLinkPath": "adadad"
+				},
+				"item1": {
+					"jcr:primaryType": "nt:unstructured",
+					"socialMedia": "Facebook",
+					"socialMediaLinkPath": "adfadfadf"
+				}
+			}
+		},
+		"contactfooterform": {
+			"jcr:primaryType": "nt:unstructured",
+			"titleI18n": "Contact Footer Form",
+			"jcr:createdBy": "admin",
+			"previousButtonLabel": "Previous",
+			"firstNameLabel": "First Name",
+			"description": "Contact Footer Form",
+			"thankYouMessage": "Thank You for submission",
+			"messageLabel": "Message",
+			"jcr:lastModifiedBy": "admin",
+			"helpText": "Privacy Policy",
+			"contactUsLabel": "Where do you want to contact us?",
+			"lastNameLabel": "Last Name",
+			"jcr:created": "Mon Apr 08 2019 14:52:02 GMT-0300",
+			"nextButtonLabel": "Next",
+			"image": "/content/dam/publicweb/ContentImage5.png",
+			"linkTextI18n": "Link",
+			"submitButtonLabel": "Submit",
+			"phoneNumberLabel": "Phone Number",
+			"thankYouHeadline": "Thank You",
+			"jcr:lastModified": "Tue Jan 28 2020 09:35:08 GMT+0000",
+			"positionLabel": "Position",
+			"privacyPolicyText": "Headline",
+			"emailAddressLabel": "Email Address",
+			"linkPath": "/content/tetrapak/publicweb/lang-masters/en/about-us",
+			"sling:resourceType": "publicweb/components/content/contactFooterForm",
+			"companyLabel": "Company",
+			"textIsRich": ["true", "true"]
+		}
+	},
+	"test1": {
+		"jcr:primaryType": "cq:Page",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Thu Dec 03 2020 12:48:42 GMT+0530",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:createdBy": "admin",
+			"mobileOverviewLabel": "Overview",
+			"jcr:title": "test1",
+			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+			"pwButtonTheme": "link",
+			"jcr:created": "Thu Dec 03 2020 12:48:42 GMT+0530",
+			"cq:lastModified": "Thu Nov 26 2020 11:21:56 GMT+0000",
+			"titleSuffix": "Tetra Pak",
+			"hideInSearch@Delete": "true",
+			"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+			"cq:lastModifiedBy": "sapient-bimmi"
+		}
+	},
+	"test2": {
+		"jcr:primaryType": "cq:Page",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Thu Dec 03 2020 12:48:42 GMT+0530",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:mixinTypes": ["mix:versionable"],
+			"jcr:createdBy": "admin",
+			"mobileOverviewLabel": "Overview",
+			"jcr:title": "test2",
+			"cq:lastReplicationAction": "Activate",
+			"jcr:versionHistory": "79128984-b6a2-4242-ab9f-8f7f60be7f49",
+			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+			"cq:lastReplicatedBy": "sapient-bimmi",
+			"jcr:predecessors": ["eb0cfec3-25c3-40b0-b0d1-37b1847d12f4"],
+			"pwButtonTheme": "link",
+			"jcr:created": "Thu Dec 03 2020 12:48:42 GMT+0530",
+			"cq:lastReplicated": "Thu Nov 26 2020 11:23:39 GMT+0000",
+			"cq:lastModified": "Thu Nov 26 2020 11:23:30 GMT+0000",
+			"titleSuffix": "Tetra Pak",
+			"jcr:baseVersion": "eb0cfec3-25c3-40b0-b0d1-37b1847d12f4",
+			"jcr:isCheckedOut": true,
+			"hideInSearch@Delete": "true",
+			"jcr:uuid": "0c50cef6-82ce-45ef-821f-3d262aa1eba0",
+			"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+			"cq:lastModifiedBy": "sapient-bimmi"
+		}
+	}
+},
+"solutions": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:08 GMT+0530"
+},
+"insights": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:29 GMT+0530"
+},
+"sustainability": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:30 GMT+0530"
+},
+"about-tetra-pak": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:30 GMT+0530"
+},
+"search": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:31 GMT+0530"
+},
+"contact-us": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:31 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable",
+"mix:lockable"
+],
+"hideContactFooterForm@Delete": "true",
+"jcr:createdBy": "admin",
+"jcr:title": "Contact Us",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "b7988131-ea61-4a16-9912-cf9aec13a9c2",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+"cq:lastReplicatedBy": "sapient-suraksha",
+"previewSalt": "07d955cd4142c5b24c088c2205f713c8e2c4e077d3ff7143729870a46c8a477c1b191f7ca53e54a5b19ecc5161fa417a4ac829d940a6b4bcdab9d3bd19ff9759",
+"pwLinkTheme": "hyperlink",
+"altText": "Office Building - Tetra Pak Lausanne, Switzerland",
+"imagePath": "/content/dam/tetrapak/media-box/global/en/images/Lausanne_Building.jpg",
+"jcr:predecessors": [
+"a1ac7876-6326-4cca-9543-cc870565de3c"
+],
+"disableEnvelope": "true",
+"pwButtonTheme": "link",
+"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:41 GMT+0000",
+"jcr:created": "Tue Jun 23 2020 15:38:31 GMT+0530",
+"cq:lastReplicated": "Wed Aug 12 2020 14:38:47 GMT+0000",
+"cq:lastModified": "Wed Dec 16 2020 14:06:00 GMT+0530",
+"cq:ctTranslated": "Wed Dec 16 2020 14:06:00 GMT+0530",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en/contact-us",
+"jcr:description": "Contact Tetra Pak, contact information to all our local offices and plants in the world. Maps, addresses, phone numbers and a contact form.",
+"jcr:baseVersion": "a1ac7876-6326-4cca-9543-cc870565de3c",
+"jcr:isCheckedOut": true,
+"hideInSearch@Delete": "true",
+"hideInNav": "true",
+"linkTarget": "_self",
+"jcr:uuid": "00636978-e597-476b-8e8b-498f3248ded2",
+"linkPath": "/content/tetrapak/publicweb/lang-masters/en/contact-us",
+"linkText": "Contact Tetra Pak, contact information to all our offices",
+"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+"cq:lastModifiedBy": "admin",
+"navTitle": "Contact Tetra Pak, contact information to all our offices",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"responsivegrid": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"richtext": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "elisabet.jonsdottir",
+"jcr:lastModifiedBy": "jonathan-ferdinand",
+"jcr:created": "Mon Jul 13 2020 11:41:35 GMT+0000",
+"pwTheme": "grayscale-white",
+"text": "<h2>We would like to hear from you 3</h2>\n<h1>Contact Tetra Pak</h1>\n<p>Please select the country/location and office you wish to contact. Our local offices answer all business-related questions. For questions related to jobs at Tetra Pak,​ please use&nbsp;<a href=\"/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/careers/jobs-traineeships.html\">Apply online in our Career section</a></p>\n",
+"jcr:lastModified": "Wed Dec 16 2020 13:11:00 GMT+0530",
+"sling:resourceType": "publicweb/components/content/richtext",
+"topSpacing": "topmargin",
+"pwPadding": "regular",
+"textIsRich": "true"
+},
+"contactus": {
+"jcr:primaryType": "nt:unstructured",
+"thankyouDescriptionText": "<p>We have now received your query and we will get back to you as soon as possible. Please click on the button below if you want to submit another request or if you have another query for us.</p>\r\n",
+"jcr:createdBy": "sapient-madhupriya",
+"jcr:lastModifiedBy": "joanna-hildebrand",
+"jcr:created": "Fri Jul 10 2020 06:34:41 GMT+0000",
+"pwTheme": "grayscale-white",
+"alt": "Laussane Building",
+"image": "/content/dam/tetrapak/media-box/global/en/images/Lausanne_Building.jpg",
+"heading": "Contact us",
+"thankyouHeading": "Thank you for your query",
+"jcr:lastModified": "Mon Aug 10 2020 07:43:24 GMT+0000",
+"descriptionText": "<p>Please fill out the form and tell us in more detail about your query and we will get back to you as soon as possible.</p>\r\n<p> </p>\r\n",
+"sling:resourceType": "publicweb/components/content/contactus",
+"textIsRich": [
+"true",
+"true"
+]
+},
+"businessinquiryform": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "elisabet.jonsdottir",
+"language": "en",
+"lastName": "Kumar",
+"jcr:lastModifiedBy": "joanna-hildebrand",
+"phoneNumber": "09717344484",
+"businessArea": "Services",
+"jcr:created": "Mon Jul 13 2020 12:17:04 GMT+0000",
+"purpose": "Request a quote",
+"pwTheme": "grayscale-white",
+"site": "lang-masters",
+"email": "jj@jj.com",
+"firstName": "Sandip",
+"marketingConsent": "true",
+"position": "sal",
+"company": "PS",
+"jcr:lastModified": "Mon Aug 10 2020 07:43:29 GMT+0000",
+"sling:resourceType": "publicweb/components/content/businessinquiryform"
+},
+"findmyoffice": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "elisabet.jonsdottir",
+"jcr:lastModifiedBy": "joanna-hildebrand",
+"jcr:created": "Mon Jul 13 2020 12:17:37 GMT+0000",
+"jcr:lastModified": "Fri Aug 07 2020 07:56:43 GMT+0000",
+"sling:resourceType": "publicweb/components/content/findMyOffice"
+}
+}
+}
+}
+},
+"error": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:31 GMT+0530"
+},
+"campaigns": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Sep 02 2020 09:59:50 GMT+0530"
+},
+"suppliers": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Sep 02 2020 09:59:51 GMT+0530"
+},
+"test-es-xl": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Wed Sep 02 2020 09:59:52 GMT+0530"
+},
+"test-bimmi": {
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Fri Dec 18 2020 18:10:39 GMT+0530"
+}
+}

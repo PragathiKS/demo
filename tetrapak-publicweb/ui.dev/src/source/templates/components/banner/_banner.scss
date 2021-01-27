@@ -102,7 +102,7 @@
         &.right {
             @media #{$desktop} {
                 right: 0;
-                left: unset;
+                left: auto;
             }
         }
     }

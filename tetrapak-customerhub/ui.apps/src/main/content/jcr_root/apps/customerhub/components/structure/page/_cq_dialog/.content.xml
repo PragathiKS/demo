@@ -124,6 +124,9 @@
                                                     <Info jcr:primaryType="nt:unstructured"
                                                           text="Info"
                                                           value="icon-Info"/>
+													<Catalog jcr:primaryType="nt:unstructured"
+                                                          text="Catalog"
+                                                          value="icon-Catalog"/>
                                                     <Logout jcr:primaryType="nt:unstructured"
                                                             text="Logout"
                                                             value="icon-Logout"/>

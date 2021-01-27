@@ -69,7 +69,7 @@ public class RolloutActivateSites implements WorkflowProcess {
         if (Objects.nonNull(resolver)) {
             String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(payload));
             LOGGER.info("language : {}",language);
-            createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, language,true);
+            createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, language,false);
         }
 
     }

@@ -86,9 +86,12 @@ public class RolloutActivateSitesTest {
 
     /** The payload path. */
     private final String PAYLOAD_PATH = "/content/tetrapak/publicweb/lang-masters/en/home";
+    
+    /** The payload path. */
+    private final String PARENT_PAYLOAD_PATH = "/content/tetrapak/publicweb/lang-masters/en";
 
     /** The payload resource content. */
-    private final String PAYLOAD_RESOURCE_CONTENT = "/workflow/test.json";
+    private final String PARENT_PAYLOAD_RESOURCE_CONTENT = "/workflow/en.json";
 
     /** The english live copy base paths. */
     private String[] englishLiveCopyBasePaths = { "/content/tetrapak/publicweb/us/en" };
@@ -125,7 +128,8 @@ public class RolloutActivateSitesTest {
         MockOsgi.activate(workflowProcess, aemContext.bundleContext(), config);
         // Set run modes
         aemContext.runMode("publish");
-        aemContext.load().json(PAYLOAD_RESOURCE_CONTENT, PAYLOAD_PATH);
+        
+        aemContext.load().json(PARENT_PAYLOAD_RESOURCE_CONTENT, PARENT_PAYLOAD_PATH);
         MockitoAnnotations.initMocks(this);
         payloadRes = aemContext.currentResource(PAYLOAD_PATH);
         when(workItem.getWorkflowData()).thenReturn(workflowData);
@@ -135,7 +139,7 @@ public class RolloutActivateSitesTest {
      * Test execute.
      */
     @Test
-    public void testExecute() {
+    public void testExecute(){
         when(workflowData.getPayload()).thenReturn(PAYLOAD_PATH);
         when(workflowSession.adaptTo(ResourceResolver.class)).thenReturn(payloadRes.getResourceResolver());
         paramMetaDataMap = new SimpleMetaDataMap();

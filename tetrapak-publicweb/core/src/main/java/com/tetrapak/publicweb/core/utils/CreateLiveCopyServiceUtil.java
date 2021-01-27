@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,8 +18,10 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMException;
 import com.day.cq.wcm.msm.api.LiveRelationship;
 import com.day.cq.wcm.msm.api.LiveRelationshipManager;
+import com.day.cq.wcm.msm.api.RolloutConfig;
 import com.day.cq.wcm.msm.api.RolloutManager;
 import com.day.cq.wcm.msm.api.RolloutManager.RolloutParams;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.config.CreateLiveCopyServiceConfig;
 
 /**
@@ -63,7 +64,7 @@ public final class CreateLiveCopyServiceUtil {
         rolloutParams.trigger = RolloutManager.Trigger.ROLLOUT;
         rolloutManager.rollout(rolloutParams);
     }
-
+    
     /**
      * Gets the live copies.
      *
@@ -75,18 +76,18 @@ public final class CreateLiveCopyServiceUtil {
      * @throws WCMException
      *             the WCM exception
      */
-    public static List<String> getLiveCopies(LiveRelationshipManager liveRelManager, Resource res) throws WCMException {
+    public static RolloutConfig[] getRollOutConfigs(LiveRelationshipManager liveRelManager, Resource res) throws WCMException {
         LOGGER.info("res path : {}", res.getPath());
-        RangeIterator rangeIterator = liveRelManager.getLiveRelationships(res, "", null);
-        List<String> liveCopyList = new ArrayList<>();
+        RangeIterator rangeIterator = liveRelManager.getLiveRelationships(res.getParent(), PWConstants.CONTENT_ROOT_PATH, null);
+        RolloutConfig[] rolloutConfigs = null;
         while (Objects.nonNull(rangeIterator) && rangeIterator.hasNext()) {
             LiveRelationship liveCopy = (LiveRelationship) rangeIterator.next();
-            String liveCopyPath = liveCopy.getLiveCopy().getPath();
-            LOGGER.debug("LiveCopy path: {}", liveCopyPath);
-            liveCopyList.add(liveCopyPath);
+            rolloutConfigs = (RolloutConfig[])liveCopy.getRolloutConfigs().toArray();
+            break;
         }
-        return liveCopyList;
+        return rolloutConfigs;
     }
+
 
     /**
      * Gets the live copy base paths.
@@ -156,7 +157,8 @@ public final class CreateLiveCopyServiceUtil {
                 if (Objects.nonNull(replicator)) {
                     Session session = resolver.adaptTo(Session.class);
                     replicator.replicate(session, ReplicationActionType.ACTIVATE, liveCopyPath);
-                    ResourceUtil.replicateChildResources(replicator, session, resolver.getResource(liveCopyPath));
+                    replicator.replicate(session, ReplicationActionType.ACTIVATE, liveCopyPath+"/jcr:content");
+                    ResourceUtil.replicateChildResources(replicator, session, resolver.getResource(liveCopyPath+"/jcr:content"));
                     LOGGER.debug("{} ,Replicated", liveCopyPath);
                 }
             } catch (ReplicationException e) {
