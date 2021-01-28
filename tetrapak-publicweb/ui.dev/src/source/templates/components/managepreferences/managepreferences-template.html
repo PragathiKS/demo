@@ -1,0 +1,306 @@
+<sly data-sly-template.managepreferences_template="${@data, flag}">
+  <div class="pw-container" data-locator="ManagePreferencesForm" data-module="ManagePreferences">
+    <div class="pw-padding--regular pw-theme--grayscale-white pw-margin--regular"
+      auto_locator="subscriptionFormRightContainerStep1">
+      <form data-selected-communication="${data.typesOfCommunication}" data-selected-interest="${data.areaOfInterest}"
+        class="pw-form pw-form-managePreferences" accept-charset="UTF-8" data-sf-api-servlet="${data.apiUrl}"
+        data-sf-countryCode="${data.siteCountry}" data-sf-langCode="${data.siteLanguage}" autocomplete="off">
+        <div class="tab-contenpw-form-managePreferencest tab-content-steps">
+          <div class="row">
+            <div class="col-sm-12" auto_locator="subscriptionFormListContainerStep1">
+              <div class="row no-gutters">
+                <div class="col-sm-12 main-heading">
+                  Manage Your Preferences
+                </div>
+                <div class="col-md-12 col-lg-6 email">
+                  <div class="heading-label">Is This You?</div>
+                  <div class="email-input-box"><span>ashwani.pahal@outlook.com</span></div>
+                </div>
+                <div class="col-sm-12 setting-update">
+                  <div class="heading-label">Setting</div>
+                  <div class="setting-update-input">
+                    <p>Do you wish to receive other kinds of updates from us?</p>
+                    <p>Please update your preferences below.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="selection-box">
+                <div class="row no-gutters">
+                  <!-- Country Language Selection -->
+                  <div class="section-wrapper col-md-12 col-lg-3">
+                    <div class="section-box padding-16">
+                      <div class="selection-box-title">Country and Language</div>
+                      <div class="input-field-wrapper country-field-wrapper option-selection">
+                        <div class="formfield country-field country"
+                          data-country-name-label="${'pw.form.country' @i18n}">
+                          <label class="country-value" for="country">${'pw.form.label.country' @
+                            i18n}</label>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button
+                              class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                              type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <sly data-sly-test.countryValue="${data.selectedCountry.value}">
+                                <span class="js-pw-form__dropdown__country-text">${data.selectedCountry.value}</span>
+                              </sly>
+                              <sly data-sly-test.countryValue="${!data.selectedCountry.value}">
+                                <span class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
+                                  @ i18n}</span>
+                              </sly>
+
+                              <i class="icon icon-Arrow_Right_pw"></i>
+                            </button>
+                            </button>
+                            <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
+                              data-sly-list.country="${data.countryOptions}">
+                              <a href="#" class="dropdown-item" data-country="${country.key}"
+                                data-countrytitle="${country.value}">
+                                ${country.value}
+                              </a>
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="input-field-wrapper language-field-wrapper">
+                        <div class="formfield">
+                          <label for="language">Preferred Language</label>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button
+                              class="btn dropdown-toggle js-pw-form__dropdown__toggle pw-form__dropdown__toggle text-left"
+                              type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="js-pw-form__dropdown__language-text">Select Language</span>
+                              <i class="icon icon-Arrow_Right_pw"></i></button>
+                            </button>
+                            <div class="dropdown-menu pw-form__dropdown__menu laguage-dropdown-select"
+                              data-sly-list.language="${data.languageOptions}">
+                              <a href="#" class="dropdown-item" data-language="${language.key}"
+                                data-languagetitle="${language.value}">
+                                ${language.value}
+                              </a>
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="hr"></div>
+
+                  </div>
+                  <!-- Types of communication -->
+                  <div class="js-types-of-communication section-wrapper padding-24 col-md-12 col-lg-3">
+
+                    <div class="section-box padding-16">
+                      <div class="selection-box-title">${'pw.form.managepreferences.receive' @i18n}</div>
+                      <div class="formfield input-group" data-input-value="false">
+                        <div class='row no-gutters'>
+                          <div class="input-field-wrapper col-lg-12 option-selection">
+                            <div class="checboxField">
+                              <label auto-locator="managePreferenceFormMarketingCommunicationText"
+                                class="checkbox-label typeOfCommunicationLabel" for="marketing-communication">
+                                <input auto-locator="managePreferenceFormMarketingCommunicationInput"
+                                  id="marketing-communication"
+                                  class="form-control tpatom-checkbox__input float-left  communication-type"
+                                  type="checkbox" name="marketing-communication"
+                                  value="${'pw.form.managepreferences.marketingcomm' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.managepreferences.marketingcomm' @i18n}</label>
+                            </div>
+                          </div>
+                          <div class="input-field-wrapper col-lg-12 option-selection">
+
+                            <div class="checboxField">
+                              <label auto-locator="managePreferenceFormPressMediaText"
+                                class="checkbox-label typeOfCommunicationLabel" for="pres-and-media-communication">
+                                <input auto-locator="managePreferenceFormPressMediaCommunicationTnput"
+                                  id="pres-and-media-communication"
+                                  class="form-control tpatom-checkbox__input float-left  communication-type"
+                                  type="checkbox" name="pres-and-media-communication"
+                                  value="${'pw.form.managepreferences.pressmediacomm' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.managepreferences.pressmediacomm' @i18n}</label>
+                            </div>
+                          </div>
+
+                          <div class="input-field-wrapper col-lg-12 option-selection">
+
+                            <div class="checboxField">
+                              <label auto-locator="managePreferenceFormEventInvitationText"
+                                class="checkbox-label typeOfCommunicationLabel" for="event-invitation">
+                                <input auto-locator="managePreferenceFormEventInvitationInput" id="event-invitation"
+                                  class="form-control tpatom-checkbox__input float-left  communication-type"
+                                  type="checkbox" name="event-invitation"
+                                  value="${'pw.form.managepreferences.eventinvitation' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.managepreferences.eventinvitation' @i18n}</label>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12">
+
+                            <div class="checboxField">
+                              <label class="checkbox-label" auto-locator="managePreferenceFormUnsubscribeText"
+                                for="unsubscribe-all">
+                                <input auto-locator="managePreferenceFormUnsubscribeInput" id="unsubscribe-all"
+                                  class="form-control tpatom-checkbox__input float-left communication-type"
+                                  type="checkbox" name="unsubscribe"
+                                  value="${'pw.form.managepreferences.unsubscribeall' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.managepreferences.unsubscribeall' @i18n}</label>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="errorMsg">${'pw.form.errormsg.subscriptionFormSelectComm' @i18n}</div>
+                      </div>
+                    </div>
+                    <div class="hr"></div>
+
+                  </div>
+
+                  <!-- Area of interest -->
+
+                  <div class="padding-24 col-md-12 col-lg-6">
+
+                    <div class="selection-box-title">${'pw.form.managepreferences.areasofinterest' @i18n}</div>
+                    <div name="area-of-interest" class="formfield input-group" data-input-value="false">
+                      <div class="input-field-wrapper row no-gutters">
+                        <div class='col-md-12 col-lg-6'>
+                          <div class="option-selection">
+                            <div class="checboxField">
+                              <label class="checkbox-label" auto-locator="managePreferenceFormServicesText"
+                                for="services">
+                                <input auto-locator="managePreferenceFormServicesInput" id="services"
+                                  class="form-control tpatom-checkbox__input float-left interest-type"
+                                  type="checkbox" name="services"
+                                  value="${'pw.form.businessenq.services' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.businessenq.services' @i18n}</label>
+                            </div>
+                          </div>
+                          <div class="option-selection">
+
+                            <div class="checboxField">
+                              <label auto-locator="managePreferenceFormPackagingText"
+                                class="checkbox-label typeOfCommunicationLabel" for="packaging">
+                                <input auto-locator="managePreferenceFormPackagingTnput" id="packaging"
+                                  class="form-control tpatom-checkbox__input float-left interest-type"
+                                  type="checkbox" name="packaging"
+                                  value="${'pw.form.businessenq.packaging' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.businessenq.packaging' @i18n}</label>
+                            </div>
+                          </div>
+
+                          <div class="option-selection">
+
+                            <div class="checboxField">
+                              <label auto-locator="managePreferenceFormProcessingText"
+                                class="checkbox-label typeOfCommunicationLabel" for="processing">
+                                <input auto-locator="managePreferenceFormProcessingInput" id="processing"
+                                  class="form-control tpatom-checkbox__input float-left interest-type"
+                                  type="checkbox" name="processing"
+                                  value="${'pw.form.businessenq.processing' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.businessenq.processing' @i18n}</label>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class='col-md-12 col-lg-6'>
+                          <div class="option-selection">
+                            <div class="checboxField">
+                              <label class="checkbox-label" auto-locator="managePreferenceFormInnovationText"
+                                for="innovation">
+                                <input auto-locator="managePreferenceFormInnovationInput" id="innovation"
+                                  class="form-control tpatom-checkbox__input float-left interest-type"
+                                  type="checkbox" name="innovation"
+                                  value="${'pw.form.managepreferences.innovation' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.managepreferences.innovation' @i18n}</label>
+                            </div>
+                          </div>
+                          <div class="option-selection">
+
+                            <div class="checboxField">
+                              <label auto-locator="managePreferenceFormSustainabilityText"
+                                class="checkbox-label typeOfCommunicationLabel" for="sustainability">
+                                <input auto-locator="managePreferenceFormSustainabilityTnput" id="sustainability"
+                                  class="form-control tpatom-checkbox__input float-left interest-type"
+                                  type="checkbox" name="sustainability"
+                                  value="${'pw.form.contactus.sustainability' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.contactus.sustainability' @i18n}</label>
+                            </div>
+                          </div>
+
+                          <div class="option-selection">
+
+                            <div class="checboxField">
+                              <label auto-locator="managePreferenceFormEndtoEndSolutionText"
+                                class="checkbox-label typeOfCommunicationLabel" for="end-to-end-solutions">
+                                <input auto-locator="managePreferenceFormEndtoEndSolutionInput"
+                                  id="end-to-end-solutions"
+                                  class="form-control tpatom-checkbox__input float-left interest-type"
+                                  type="checkbox" name="end-to-end-solutions"
+                                  value="${'pw.form.businessenq.endtoendsolution' @i18n, locale = 'en'}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.businessenq.endtoendsolution' @i18n}</label>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="errorMsg">${'pw.form.errormsg.subscriptionFormSelectComm' @i18n}</div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </div>
+
+              <!-- unsubscribe all content -->
+              <div class="unsubscribe-box row no-gutters">
+                <div class="col-md-12 col-lg-6">
+                  <div class="unsubscribe-header heading-label">
+                    Do you want to unsubscribe from all communication?
+                  </div>
+                  <div class="unsubscribe-description">
+                    If you choose to unsubscribe you will no longer receive updates from us.
+                    You are always welcome back if you change your mind.
+                  </div>
+                  <div name="consent-checkbox" class="consent-checkbox formfield input-group" data-input-value="false">
+
+                    <div class="checboxField">
+                      <label class="checkbox-label consentlabel" for="consentcheckbox">
+                        <input id="consentcheckbox" class="form-control tpatom-checkbox__input float-left"
+                          type="checkbox" name="consent" required>
+                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                        I do not want to recieve communication from Tetra Pak</label>
+                    </div>
+                    <div class="errorMsg consent-error">${'pw.form.errormsg.marketingconsent' @i18n}</div>
+                  </div>
+                </div>
+              </div>
+              <!-- privacy policy -->
+              <div class="privacy-policy" auto_locator="managePreferencesPolicyText">
+                When updating your preferences you agree that the information you have provided will only be used in
+                accordance with Tetra Pak ’s privacy policy.
+              </div>
+
+
+            </div>
+          </div>
+          <div class="row no-gutters subscribeButton button-group">
+            <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+              data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.subscribe', btnTarget='#sf-step-final', btnType='submit', customClasses='previewLinkBtn', autoLocator='subscriptionFormNextButtonStep'}" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</sly>
