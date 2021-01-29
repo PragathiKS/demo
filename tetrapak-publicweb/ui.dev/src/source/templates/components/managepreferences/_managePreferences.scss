@@ -126,6 +126,27 @@
             cursor: not-allowed;
         }
     }
+    .unsubscribe-box {
+        display: none;
+        &.show {
+            display: flex;
+        }
+    }
+    .savePreferenceButton {
+        display: flex;
+        margin-top: $margin-l;
+        &.hide {
+            display: none;
+        }
+    }
+
+    .unsubscribeButton {
+        display: none;
+        margin-top: $margin-l;
+        &.show {
+            display: flex;
+        }
+    }
 
     @media #{$desktop} {
         .main-heading {

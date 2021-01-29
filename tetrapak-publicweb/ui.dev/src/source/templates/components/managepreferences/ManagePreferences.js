@@ -73,6 +73,9 @@ class ManagePreferences {
       });
       $('.input-field-wrapper',this.root).addClass('disable-input');
       $('.dropdown-toggle',self.root).addClass('disabled button-disabled');
+      $('.unsubscribe-box',self.root).addClass('show');
+      $('.savePreferenceButton',self.root).addClass('hide');
+      $('.unsubscribeButton',self.root).addClass('show');
     } else {
       $('form.pw-form-managePreferences input[type="checkbox"]', this.root).not('#consentcheckbox,#unsubscribe-all').each(function(){
         const $this = $(this);
@@ -81,6 +84,9 @@ class ManagePreferences {
       });
       $('.input-field-wrapper',this.root).removeClass('disable-input');
       $('.dropdown-toggle',self.root).removeClass('disabled button-disabled');
+      $('.unsubscribe-box',self.root).removeClass('show');
+      $('.savePreferenceButton',self.root).removeClass('hide');
+      $('.unsubscribeButton',self.root).removeClass('show');
     }
   }
 

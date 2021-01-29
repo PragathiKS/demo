@@ -10,17 +10,16 @@
             <div class="col-sm-12" auto_locator="subscriptionFormListContainerStep1">
               <div class="row no-gutters">
                 <div class="col-sm-12 main-heading">
-                  Manage Your Preferences
+                  ${data.headline}
                 </div>
                 <div class="col-md-12 col-lg-6 email">
-                  <div class="heading-label">Is This You?</div>
-                  <div class="email-input-box"><span>ashwani.pahal@outlook.com</span></div>
+                  <div class="heading-label">${'pw.form.managepreferences.isthisyou' @i18n}</div>
+                  <div class="email-input-box"><span>${data.email}</span></div>
                 </div>
                 <div class="col-sm-12 setting-update">
-                  <div class="heading-label">Setting</div>
+                  <div class="heading-label">${'pw.form.managepreferences.yoursettings' @i18n}</div>
                   <div class="setting-update-input">
-                    <p>Do you wish to receive other kinds of updates from us?</p>
-                    <p>Please update your preferences below.</p>
+                    ${data.introText @ context='html'}
                   </div>
                 </div>
               </div>
@@ -29,11 +28,11 @@
                   <!-- Country Language Selection -->
                   <div class="section-wrapper col-md-12 col-lg-3">
                     <div class="section-box padding-16">
-                      <div class="selection-box-title">Country and Language</div>
+                      <div class="selection-box-title">${'pw.form.managepreferences.countrylang' @i18n}</div>
                       <div class="input-field-wrapper country-field-wrapper option-selection">
                         <div class="formfield country-field country"
                           data-country-name-label="${'pw.form.country' @i18n}">
-                          <label class="country-value" for="country">${'pw.form.label.country' @
+                          <label class="country-value" for="country">${'pw.form.country' @
                             i18n}</label>
                           <div class="pw-form__dropdown dropdown text-left">
                             <button
@@ -64,12 +63,12 @@
                       </div>
                       <div class="input-field-wrapper language-field-wrapper">
                         <div class="formfield">
-                          <label for="language">Preferred Language</label>
+                          <label for="language">${'pw.form.managepreferences.prefferedlang' @i18n}</label>
                           <div class="pw-form__dropdown dropdown text-left">
                             <button
                               class="btn dropdown-toggle js-pw-form__dropdown__toggle pw-form__dropdown__toggle text-left"
                               type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="js-pw-form__dropdown__language-text">Select Language</span>
+                              <span class="js-pw-form__dropdown__language-text">${'pw.form.managepreferences.selectlang' @i18n}</span>
                               <i class="icon icon-Arrow_Right_pw"></i></button>
                             </button>
                             <div class="dropdown-menu pw-form__dropdown__menu laguage-dropdown-select"
@@ -264,14 +263,13 @@
               </div>
 
               <!-- unsubscribe all content -->
-              <div class="unsubscribe-box row no-gutters">
+              <div class="unsubscribe-box hide row no-gutters">
                 <div class="col-md-12 col-lg-6">
                   <div class="unsubscribe-header heading-label">
-                    Do you want to unsubscribe from all communication?
+                    ${'pw.form.managepreferences.unsubscribeintrotext' @i18n}
                   </div>
                   <div class="unsubscribe-description">
-                    If you choose to unsubscribe you will no longer receive updates from us.
-                    You are always welcome back if you change your mind.
+                    ${data.unsubscribeIntroText @ context='html'}
                   </div>
                   <div name="consent-checkbox" class="consent-checkbox formfield input-group" data-input-value="false">
 
@@ -280,24 +278,29 @@
                         <input id="consentcheckbox" class="form-control tpatom-checkbox__input float-left"
                           type="checkbox" name="consent" required>
                         <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-                        I do not want to recieve communication from Tetra Pak</label>
+                        ${'pw.form.managepreferences.nocommmessage' @i18n}</label>
                     </div>
-                    <div class="errorMsg consent-error">${'pw.form.errormsg.marketingconsent' @i18n}</div>
+                    <div class="errorMsg consent-error">${'pw.form.managepreferences.errormsg1' @i18n}</div>
                   </div>
                 </div>
               </div>
               <!-- privacy policy -->
               <div class="privacy-policy" auto_locator="managePreferencesPolicyText">
-                When updating your preferences you agree that the information you have provided will only be used in
-                accordance with Tetra Pak ’s privacy policy.
+                ${data.privacyPolicy @ context='html'}
               </div>
 
 
             </div>
           </div>
-          <div class="row no-gutters subscribeButton button-group">
+          <!-- save preferences button -->
+          <div class="row no-gutters savePreferenceButton button-group">
             <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-              data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.subscribe', btnTarget='#sf-step-final', btnType='submit', customClasses='previewLinkBtn', autoLocator='subscriptionFormNextButtonStep'}" />
+              data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.managepreferences.save', btnTarget='#sf-step-final', btnType='submit', autoLocator='managePreferenceFormSavePreferenceStep'}" />
+          </div>
+          <!-- unsubscribe button -->
+          <div class="row no-gutters unsubscribeButton button-group">
+            <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+              data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.managepreferences.unsubscribebtn', btnTarget='#sf-step-final', btnType='submit', customClasses='previewLinkBtn', autoLocator='managePreferenceFormUnsubscribeStep'}" />
           </div>
         </div>
       </form>
