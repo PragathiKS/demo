@@ -215,6 +215,74 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.position"
         sling:message="Position"/>
+    <pw.form.managepreferences.areasofinterest
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.areasofinterest"
+        sling:message="Areas of Interest"/>
+    <pw.form.managepreferences.countrylang
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.countrylang"
+        sling:message="Country and Language"/>
+    <pw.form.managepreferences.errormsg1
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.errormsg1"
+        sling:message="Please select the checkbox"/>
+    <pw.form.managepreferences.eventinvitation
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.eventinvitation"
+        sling:message="Event Invitations"/>
+    <pw.form.managepreferences.innovation
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.innovation"
+        sling:message="Innovation"/>
+    <pw.form.managepreferences.isthisyou
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.isthisyou"
+        sling:message="Is this you"/>
+    <pw.form.managepreferences.marketingcomm
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.marketingcomm"
+        sling:message="Marketing Communication"/>
+    <pw.form.managepreferences.nocommmessage
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.nocommmessage"
+        sling:message="I do not want to receive communication from Tetra Pak"/>
+    <pw.form.managepreferences.prefferedlang
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.prefferedlang"
+        sling:message="Please select Preferred Language"/>
+    <pw.form.managepreferences.pressmediacomm
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.pressmediacomm"
+        sling:message="Press and Media Communication"/>
+    <pw.form.managepreferences.receive
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.receive"
+        sling:message="Yes, I want to receive"/>
+    <pw.form.managepreferences.save
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.save"
+        sling:message="Save Preferences"/>
+    <pw.form.managepreferences.selectlang
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.selectlang"
+        sling:message="Select Language"/>
+    <pw.form.managepreferences.unsubscribeall
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.unsubscribeall"
+        sling:message="Unsubscribe from all"/>
+    <pw.form.managepreferences.unsubscribebtn
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.unsubscribebtn"
+        sling:message="Unsubscribe"/>
+    <pw.form.managepreferences.unsubscribeintrotext
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.unsubscribeintrotext"
+        sling:message="Do you want to unsubscribe from all communication"/>
+    <pw.form.managepreferences.yoursettings
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.yoursettings"
+        sling:message="Your Settings"/>
     <pw.form.softconversion.customer
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.softconversion.customer"
