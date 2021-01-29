@@ -1,0 +1,34 @@
+{
+  "countryOptions": [
+    {
+      "key": "denmark",
+      "value": "Denmark"
+    },
+    {
+      "key": "australia",
+      "value": "Australia"
+    }
+  ],
+  "languageOptions": [
+    {
+      "key": "english",
+      "value": "English"
+    },
+    {
+      "key": "french",
+      "value": "French"
+    }
+  ],
+  "headline": "Manage Your Preferences",
+  "email": "email",
+  "introText": "rich text",
+  "selectedCountry": { "key": "australia", "value": "Australia" },
+  "selectedLanguage": {
+    "key": "french",
+    "value": "French"
+  },
+  "typesOfCommunication": "pw.form.managepreferences.marketingcomm,pw.form.managepreferences.eventinvitation",
+  "areaOfInterest": "pw.form.businessenq.packaging,pw.form.businessenq.processing",
+  "unsubscribeIntroText": "rich text",
+  "privacyPolicy": "rich text"
+}

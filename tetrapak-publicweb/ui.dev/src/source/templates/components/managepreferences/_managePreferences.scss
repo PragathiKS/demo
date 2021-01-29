@@ -1,0 +1,202 @@
+.pw-form-managePreferences {
+    .form-group {
+        @include margin-bottom($margin-md);
+        &.field-error {
+            @include margin-bottom(0);
+        }
+    }
+    .tpatom-checkbox__icon {
+        @include min-width(20px);
+        @include min-height(20px);
+        border: 1px solid $color-tundora;
+        color: $color-congress-blue;
+        &.disable-checkbox {
+            border: 0;
+            background: $color-mercury;
+            opacity: 1;
+        }
+    }
+
+    .errorMsg {
+        display: none;
+        color: $color-alert;
+        font-size: 12px;
+    }
+
+    .formfield,
+    .form-group {
+        .form-control {
+            line-height: 24px;
+        }
+        label {
+            @include margin-bottom(0);
+            padding-top: 2px;
+        }
+        &.field-error {
+            .errorMsg {
+                display: block;
+            }
+        }
+    }
+
+    .consentlabel p {
+        display: inline;
+    }
+
+    .checboxField {
+        display: flex;
+    }
+
+    .subscribeButton {
+        margin-top: $margin-l;
+    }
+
+    .main-heading {
+        @include font-size($font-l);
+        font-weight: 400;
+        line-height: 32px;
+    }
+
+    .email {
+        @include margin-top($margin-md);
+        .email-input-box {
+            @include margin-top($margin-md);
+            @include padding($padding-sm 0 $padding-sm $padding-md);
+            border: 1px solid $color-tundora;
+            border-radius: 4px;
+            opacity: 0.4;
+            span {
+                @include font-size($font-baseline);
+                font-weight: 400;
+                line-height: 24px;
+            }
+        }
+    }
+    .setting-update {
+        @include margin-top($margin-l);
+        .setting-update-input {
+            @include margin-top($margin-md);
+        }
+    }
+    .heading-label {
+        @include font-size($font-md);
+        line-height: 24px;
+        font-weight: 700;
+    }
+    .selection-box {
+        @include margin-bottom($margin-l);
+        .selection-box-title {
+            @include padding-top($padding-l);
+            @include padding-bottom($padding-md);
+            @include font-size($font-baseline);
+            line-height: 24px;
+            font-weight: 700;
+        }
+    }
+    .option-selection {
+        @include margin-bottom($margin-md);
+    }
+    .hr {
+        @include margin-top($margin-l);
+        border: 1px solid $color-mercury;
+        width: 100%;
+    }
+    .section-wrapper {
+        display: block;
+    }
+    .unsubscribe-header,
+    .unsubscribe-description,
+    .consent-checkbox {
+        @include margin-bottom($margin-md);
+    }
+
+    .checkbox-label {
+        display: flex;
+    }
+
+    .disable-input {
+        opacity: 0.4;
+    }
+    .visible-false {
+        opacity: 0;
+    }
+
+    .dropdown-toggle {
+        &.button-disabled {
+            cursor: not-allowed;
+        }
+    }
+    .unsubscribe-box {
+        display: none;
+        &.show {
+            display: flex;
+        }
+    }
+    .savePreferenceButton {
+        display: flex;
+        margin-top: $margin-l;
+        &.hide {
+            display: none;
+        }
+    }
+
+    .unsubscribeButton {
+        display: none;
+        margin-top: $margin-l;
+        &.show {
+            display: flex;
+        }
+    }
+
+    @media #{$desktop} {
+        .main-heading {
+            @include font-size($font-xl);
+            font-weight: 700;
+            line-height: 40px;
+        }
+        .email {
+            @include margin-top($margin-l);
+            .email-input-box {
+                @include margin-top($margin-l);
+                span {
+                    font-weight: 500;
+                }
+            }
+        }
+        .setting-update {
+            @include margin-top($margin-xl);
+            .setting-update-input {
+                @include margin-top($margin-l);
+            }
+        }
+        .selection-box {
+            @include margin-bottom($margin-xl);
+            @include margin-top($margin-xl);
+            .selection-box-title {
+                @include padding-top($padding-zero);
+            }
+        }
+        .hr {
+            @include margin-left($margin-l);
+            @include margin-top($margin-zero);
+            width: 0;
+        }
+        .padding-16 {
+            @include padding-bottom($padding-md);
+        }
+        .section-wrapper {
+            display: flex;
+        }
+        .section-box {
+            flex: 1;
+        }
+        .padding-24 {
+            @include padding-left($padding-l);
+        }
+        .unsubscribe-header,
+        .unsubscribe-description,
+        .consent-checkbox {
+            @include margin-bottom($margin-l);
+        }
+    }
+}

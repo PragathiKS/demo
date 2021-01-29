@@ -158,7 +158,8 @@
         "source/templates/components/businessinquiryform/",
         "source/templates/components/subscriptionform/",
         "source/templates/components/searchbar/",
-        "source/templates/components/searchresults/"
+        "source/templates/components/searchresults/",
+        "source/templates/components/managepreferences/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
