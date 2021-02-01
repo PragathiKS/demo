@@ -7,17 +7,32 @@ class ManagePreferences {
   }
   cache = {};
   initCache() {
-    this.cache.$submitBtn = $('form.pw-form-managePreferences button[type="submit"]', this.root);
-    this.cache.$unsubscribeBtn = $('#unsubscribe-all', this.root);
+    // change to submit type
+    this.cache.$submitBtn = $('form.pw-form-managePreferences .savePreferenceButton button[type="button"]', this.root);
+    // change to submit type
+    this.cache.$unsubscribeBtn = $('form.pw-form-managePreferences .unsubscribeButton button[type="button"]', this.root);
+    this.cache.$unsubscribeCheckbox = $('#unsubscribe-all', this.root);
     this.cache.communicationTypes = this.root.find('.communication-type');
+    this.cache.interestType = this.root.find('.interest-type');
     this.cache.$dropItem = $('.country-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$languageDropItem = $('.language-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.requestPayload = {
       'types-communication':[],
+      'area-of-interest':[],
       'country':'',
       'countryTitle':'',
       'language':''
     };
+  }
+
+  selectAreaOfInterestHandler = () => {
+    const {requestPayload,interestType} = this.cache;
+    requestPayload['area-of-interest'] = [];
+    interestType.each(function(){
+      if($(this).is(':checked')){
+        requestPayload['area-of-interest'].push($(this).val());
+      }
+    });
   }
 
   selectCommunicationHandler = () => {
@@ -32,12 +47,11 @@ class ManagePreferences {
 
   checkValues = (inputGroup) => {
     const { requestPayload } = this.cache;
-    if(inputGroup.attr('name') === 'communication-type' && requestPayload['types-communication'].length > 0){
+    if(inputGroup.attr('name') === 'communication-type-input' && requestPayload['types-communication'].length > 0){
       inputGroup.data('input-value',true);
     }
-    if(inputGroup.attr('name') === 'consent-checkbox' && $('input[name="consent"]:checked').length > 0){
+    if(inputGroup.attr('name') === 'area-of-interest' && requestPayload['area-of-interest'].length > 0){
       inputGroup.data('input-value',true);
-      requestPayload['marketingConsent'] = $('input[name="consent"]:checked').length > 0;
     }
   }
 
@@ -66,6 +80,7 @@ class ManagePreferences {
 
   unsubscribeHandler = (params) => {
     const self = this;
+    $('.form-group, .formfield',this.root).removeClass('field-error');
     if(params.prop('checked')){
       $('form.pw-form-managePreferences input[type="checkbox"]', this.root).not('#consentcheckbox,#unsubscribe-all').each(function(){
         const $this = $(this);
@@ -94,10 +109,10 @@ class ManagePreferences {
   }
 
   bindEvents() {
-    const { requestPayload, $submitBtn, $dropItem, $languageDropItem,$unsubscribeBtn } = this.cache;
+    const { requestPayload, $submitBtn, $dropItem, $languageDropItem,$unsubscribeBtn, $unsubscribeCheckbox } = this.cache;
     const self = this;
     this.setDefaultCheckboxValue();
-    $unsubscribeBtn.change(function(e){
+    $unsubscribeCheckbox.change(function(e){
       e.preventDefault();
       e.stopPropagation();
       self.unsubscribeHandler($(this));
@@ -106,6 +121,7 @@ class ManagePreferences {
       e.preventDefault();
       e.stopPropagation();
       self.selectCommunicationHandler();
+      self.selectAreaOfInterestHandler();
       let isvalid = true;
       const tab = $(this).closest('.tab-content-steps');
 
@@ -113,6 +129,27 @@ class ManagePreferences {
         $(this).data('input-value',false);
         self.checkValues($(this));
         if (!$(this).data('input-value')) {
+          isvalid = false;
+          e.preventDefault();
+          e.stopPropagation();
+          $(this).closest('.form-group, .formfield').addClass('field-error');
+        } else {
+          $(this).closest('.form-group, .formfield').removeClass('field-error');
+        }
+      });
+
+      if (isvalid) {
+        // submit form
+      }
+    });
+
+    $unsubscribeBtn.click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      let isvalid = true;
+      const tab = $(this).closest('.tab-content-steps');
+      $('.consent-checkbox', tab).each(function () {
+        if ($('input[name="consent"]:checked').length === 0) {
           isvalid = false;
           e.preventDefault();
           e.stopPropagation();

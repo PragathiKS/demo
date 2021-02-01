@@ -147,6 +147,9 @@
             display: flex;
         }
     }
+    .error-msg {
+        @include margin-top($margin-md)
+    }
 
     @media #{$desktop} {
         .main-heading {
