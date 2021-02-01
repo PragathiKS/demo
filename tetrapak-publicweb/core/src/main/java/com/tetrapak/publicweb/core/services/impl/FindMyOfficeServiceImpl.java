@@ -103,33 +103,34 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      *            the resource resolver
      * @return the find my office data
      */
-    @Override
-    public Map<String, CountryBean> getFindMyOfficeData(ResourceResolver resourceResolver) {
-        LOGGER.debug("Inside getFindMyOfficeData method");
-        Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
-        if (Objects.nonNull(countriesRootRes)) {
-            final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
-            while (rootIterator.hasNext()) {
-                final CountryBean countryBean = new CountryBean();
-                final Resource childResource = rootIterator.next();
-                if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
-                    String countryTitle = StringUtils.EMPTY;
-                    final String jcrPath = childResource.getPath() + "/" + JcrConstants.JCR_CONTENT;
-                    Resource jcrResource = resourceResolver.getResource(jcrPath);
-                    countryTitle = setCountryTitle(countryTitle, jcrResource);
-                    final String countryName = childResource.getName();
-                    final String dataPath = childResource.getPath() + DATA_ROOT_PATH;
-                    Resource dataResource = resourceResolver.getResource(dataPath);
-                    setCountryBean(resourceResolver, countryBean, countryName, dataResource);
-                    setLists(countryBean, countryTitle);
-                }
+	@Override
+	public Map<String, CountryBean> getFindMyOfficeData(final ResourceResolver resourceResolver) {
+		LOGGER.debug("Inside getFindMyOfficeData method");
+		corporateOfficeList.clear();
+		countryOfficeList.clear();
+		final Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
+		if (Objects.nonNull(countriesRootRes)) {
+			final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
+			while (rootIterator.hasNext()) {
+				final CountryBean countryBean = new CountryBean();
+				final Resource childResource = rootIterator.next();
+				if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
+					String countryTitle = StringUtils.EMPTY;
+					final String jcrPath = childResource.getPath() + "/" + JcrConstants.JCR_CONTENT;
+					Resource jcrResource = resourceResolver.getResource(jcrPath);
+					countryTitle = setCountryTitle(countryTitle, jcrResource);
+					final String countryName = childResource.getName();
+					final String dataPath = childResource.getPath() + DATA_ROOT_PATH;
+					Resource dataResource = resourceResolver.getResource(dataPath);
+					setCountryBean(resourceResolver, countryBean, countryName, dataResource);
+					setLists(countryBean, countryTitle);
+				}
 
-            }
+			}
 
-        }
-
-        return countryOfficeList;
-    }
+		}
+		return countryOfficeList;
+	}
 
     /**
      * Sets the lists.
@@ -139,7 +140,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      * @param countryTitle
      *            the country title
      */
-    private void setLists(final CountryBean countryBean, String countryTitle) {
+    private void setLists(final CountryBean countryBean,final String countryTitle) {
         if (countryTitle.contains("Corporate")) {
             corporateOfficeList.put(countryTitle, countryBean);
         } else {
