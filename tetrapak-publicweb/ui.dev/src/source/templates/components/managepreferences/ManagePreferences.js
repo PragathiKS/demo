@@ -13,7 +13,10 @@ class ManagePreferences {
     this.cache.$dropItem = $('.country-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$languageDropItem = $('.language-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.requestPayload = {
-      'types-communication':[]
+      'types-communication':[],
+      'country':'',
+      'countryTitle':'',
+      'language':''
     };
   }
 
@@ -127,9 +130,10 @@ class ManagePreferences {
     $dropItem.click(function (e) {
       e.preventDefault();
       const countryTitle = $(this).data('countrytitle');
+      const country = $(this).data('country');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
-      requestPayload['country'] = countryTitle;
+      requestPayload['country'] = country;
       // self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload['country'];
       requestPayload['countryTitle'] = countryTitle;
     });
