@@ -58,9 +58,9 @@ class ManagePreferences {
   setDefaultCheckboxValue = () => {
     const selectedFormData = $('form.pw-form-managePreferences', this.root);
     let selectedCommunication = selectedFormData.data('selected-communication');
-    selectedCommunication = selectedCommunication && selectedCommunication.split(',').map((val) => val.trim());
+    selectedCommunication = selectedCommunication && selectedCommunication.split(',').map((val) => val.trim()) || [];
     let selectedInterest = selectedFormData.data('selected-interest');
-    selectedInterest = selectedInterest && selectedInterest.split(',').map((val) => val.trim());
+    selectedInterest = selectedInterest && selectedInterest.split(',').map((val) => val.trim()) || [];
     $('.communication-type',this.root).each(function(){
       const $this = $(this);
       if(selectedCommunication.indexOf($this.val()) !== -1) {

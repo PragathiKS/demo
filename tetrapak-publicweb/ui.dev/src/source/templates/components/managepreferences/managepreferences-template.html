@@ -5,7 +5,7 @@
       <form data-selected-communication="${data.typesOfCommunication}" data-selected-interest="${data.areaOfInterest}"
         class="pw-form pw-form-managePreferences" accept-charset="UTF-8" data-sf-api-servlet="${data.apiUrl}"
         data-sf-countryCode="${data.siteCountry}" data-sf-langCode="${data.siteLanguage}" autocomplete="off">
-        <div class="tab-contenpw-form-managePreferencest tab-content-steps">
+        <div class="tab-content pw-form-managePreferencest tab-content-steps">
           <div class="row">
             <div class="col-sm-12" auto_locator="subscriptionFormListContainerStep1">
               <div class="row no-gutters">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-12 col-lg-6 email">
                   <div class="heading-label">${'pw.form.managepreferences.isthisyou' @i18n}</div>
-                  <div class="email-input-box"><span>${data.configItems.email}</span></div>
+                  <div class="email-input-box"><span>${data.email}</span></div>
                 </div>
                 <div class="col-sm-12 setting-update">
                   <div class="heading-label">${'pw.form.managepreferences.yoursettings' @i18n}</div>
