@@ -81,8 +81,13 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                 emailParams.put("pageLink", newsEventbean.getPageLink());
                 emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
                 emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
-                emailParams.put("managePreferenceLink",
-                        newsEventbean.getManagePreferenceLink() + "?id=" + encryptionService.encryptText(mailAddress));
+                String encryptedMailAddress = encryptionService.encryptText(mailAddress);
+                if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)) {
+                    emailParams.put("managePreferenceLink", newsEventbean.getManagePreferenceLink() + "?id="
+                            + encryptionService.encryptText(mailAddress));
+                } else {
+                    emailParams.put("managePreferenceLink", "#");
+                }
                 emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
                 Map<String, Object> properties = new HashMap<>();
                 properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage()));

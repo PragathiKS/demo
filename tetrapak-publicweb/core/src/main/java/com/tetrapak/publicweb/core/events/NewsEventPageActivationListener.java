@@ -96,7 +96,7 @@ public class NewsEventPageActivationListener implements EventHandler {
                 }
             }
         } catch (Exception ex) {
-            LOGGER.error(ex.getMessage());
+            LOGGER.error("Error in NewsEventPageActivationListener" + ex.getMessage());
         }
 
     }

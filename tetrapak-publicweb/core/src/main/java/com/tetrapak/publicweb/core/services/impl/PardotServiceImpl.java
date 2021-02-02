@@ -131,7 +131,7 @@ public class PardotServiceImpl implements PardotService {
     public String getSubscriptionFormPardotURL() {
         return config.pardotSubscriptionFormURL();
     }
-    
+
     /**
      * Gets the subscriber mail addresses.
      *
@@ -145,7 +145,6 @@ public class PardotServiceImpl implements PardotService {
         try {
             final HttpClient httpClient = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet();
-            String url = getPardotSubscriberDataApiUrl();
             request.setURI(new URI(getPardotSubscriberDataApiUrl()));
             HttpResponse response = httpClient.execute(request);
             InputStream ips = response.getEntity().getContent();
@@ -181,7 +180,7 @@ public class PardotServiceImpl implements PardotService {
             }
 
         } catch (URISyntaxException | IOException | JSONException | NullPointerException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error("Error while fetching Subscriber data" + e.getMessage());
         }
         return mailAddresses;
 
@@ -196,6 +195,5 @@ public class PardotServiceImpl implements PardotService {
     public String getPardotSubscriberDataApiUrl() {
         return config.pardotSubscribersDataApiURL();
     }
-
 
 }

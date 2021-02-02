@@ -14,7 +14,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.commons.lang3.StringUtils;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -22,9 +21,9 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DataEncryptionService;
 import com.tetrapak.publicweb.core.services.config.DataEncryptionServiceConfig;
-
 
 /**
  * The Class DataEncryptionServiceImpl.
@@ -38,7 +37,7 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
 
     /** The config. */
     private DataEncryptionServiceConfig config;
-    
+
     /** The secret key. */
     private SecretKeySpec secretKey;
 
@@ -58,10 +57,10 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
             key = encryptionKey.getBytes(StandardCharsets.UTF_8);
             sha = MessageDigest.getInstance("SHA-1");
             key = sha.digest(key);
-            key = Arrays.copyOf(key, 16); 
+            key = Arrays.copyOf(key, 16);
             secretKey = new SecretKeySpec(key, "AES");
         } catch (NoSuchAlgorithmException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error("Error while DataEncryptionService activation" + e.getMessage());
         }
     }
 
@@ -79,19 +78,22 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
      * Encrypt text.
      *
      * @param plainText
-     *            the plain text
+     *            the plain text @return the string @throws NoSuchPaddingException @throws
+     *            NoSuchAlgorithmException @throws
      * @return the string
      */
     @Override
     public String encryptText(String plainText) {
+        Cipher cipher;
         try {
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes("UTF-8")));
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException | UnsupportedEncodingException e) {
-            LOGGER.error(e.getMessage());
-        } 
-        return StringUtils.EMPTY;
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException
+                | BadPaddingException | UnsupportedEncodingException e) {
+            LOGGER.error("Error in DataEncryptionService while encryption" + e.getMessage());
+        }
+        return PWConstants.STATUS_ERROR;
     }
 
     /**
@@ -103,14 +105,16 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
      */
     @Override
     public String decryptText(String encryptedText) {
+        Cipher cipher;
         try {
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedText)));
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-            LOGGER.error(e.getMessage());
-        } 
-        return StringUtils.EMPTY;
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException
+                | BadPaddingException e) {
+            LOGGER.error("Error in DataEncryptionService while decryption" + e.getMessage());
+        }
+        return PWConstants.STATUS_ERROR;
     }
 
 }
