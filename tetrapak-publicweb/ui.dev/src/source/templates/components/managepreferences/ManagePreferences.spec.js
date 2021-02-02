@@ -29,7 +29,11 @@ describe('ManagePreferences', function () {
     document.getElementById('language-select').click();
     expect(this.managePreferences.cache.requestPayload['language']).to.equal('english');
   });
-  it('Should call unsubscribe button change', function () {
+  it('should call the functions', function () {
     $('#unsubscribe-all').trigger('change');
+    $('#processing','.pw-form-managePreferences').prop('checked', true);
+    $('#event-invitation','.pw-form-managePreferences').prop('checked', true);
+    $('#save-preferences').trigger('click');
+    $('#unsubscribe-button').trigger('click');
   });
 });

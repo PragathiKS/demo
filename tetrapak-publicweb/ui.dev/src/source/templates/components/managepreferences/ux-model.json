@@ -19,16 +19,19 @@
       "value": "French"
     }
   ],
-  "headline": "Manage Your Preferences",
+
+  "configItems":{
+    "headline": "Manage Your Preferences",
+    "introText": "rich text",
+    "unsubscribeIntroText": "rich text",
+    "privacyPolicy": "rich text"
+  },
   "email": "email",
-  "introText": "rich text",
   "selectedCountry": { "key": "australia", "value": "Australia" },
   "selectedLanguage": {
     "key": "french",
     "value": "French"
   },
-  "typesOfCommunication": "pw.form.managepreferences.marketingcomm,pw.form.managepreferences.eventinvitation",
-  "areaOfInterest": "pw.form.businessenq.packaging,pw.form.businessenq.processing",
-  "unsubscribeIntroText": "rich text",
-  "privacyPolicy": "rich text"
+  "typesOfCommunication": "Marketing Communication,Press and Media Communication",
+  "areaOfInterest": "Services, Packaging"
 }
