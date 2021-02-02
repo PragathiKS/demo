@@ -218,7 +218,7 @@
     <pw.form.managepreferences.areasofinterest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.areasofinterest"
-        sling:message="Areas of Interest"/>
+        sling:message="Areas of Interest:"/>
     <pw.form.managepreferences.countrylang
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.countrylang"
@@ -227,6 +227,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.errormsg1"
         sling:message="Please select the checkbox"/>
+	<pw.form.managepreferences.errormsg1
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.managepreferences.errormsg2"
+        sling:message="Minimum 1 checkbox to be selected"/>
     <pw.form.managepreferences.eventinvitation
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.eventinvitation"
@@ -238,7 +242,7 @@
     <pw.form.managepreferences.isthisyou
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.isthisyou"
-        sling:message="Is this you"/>
+        sling:message="Is this you?"/>
     <pw.form.managepreferences.marketingcomm
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.marketingcomm"
@@ -250,7 +254,7 @@
     <pw.form.managepreferences.prefferedlang
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.prefferedlang"
-        sling:message="Please select Preferred Language"/>
+        sling:message="Preferred Language"/>
     <pw.form.managepreferences.pressmediacomm
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.pressmediacomm"
@@ -258,7 +262,7 @@
     <pw.form.managepreferences.receive
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.receive"
-        sling:message="Yes, I want to receive"/>
+        sling:message="Yes, I want to receive:"/>
     <pw.form.managepreferences.save
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.save"

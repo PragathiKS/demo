@@ -250,6 +250,10 @@ public final class PWConstants {
 
     /** The Constant SE_COUNTRY_CODE for Sweden. */
     public static final String SE_COUNTRY_CODE = "se";
+    
+    public static final int NUMBER_FOUR = 4;
+    
+    public static final int NUMBER_TWO = 2;
 
     /** list exceptionCountriesList contains all countries which are exceptions for country code . **/
     public static final List<String> exceptionCountriesList = Collections.unmodifiableList(
