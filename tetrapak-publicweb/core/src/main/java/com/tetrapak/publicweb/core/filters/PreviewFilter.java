@@ -16,7 +16,10 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.tetrapak.publicweb.core.utils.DeltaFeedUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
@@ -31,6 +34,9 @@ public class PreviewFilter implements Filter {
     /** The settings service. */
     @Reference
     private SlingSettingsService settingsService;
+    
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(PreviewFilter.class);
 
     /** The is skip. */
     private Boolean isSkip = true;
@@ -55,6 +61,9 @@ public class PreviewFilter implements Filter {
         final SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
         final SlingHttpServletResponse slingResponse = (SlingHttpServletResponse) response;
         final String previewParam = slingRequest.getParameter("preview");
+        LOGGER.info("previewParam : {} , header :{}, salt: {}, pathinfo: {}", previewParam,
+                slingRequest.getHeader("preview"), isSaltInValid(slingRequest, previewParam),
+                slingRequest.getPathInfo());
         if (Boolean.FALSE.equals(isSkip) && slingRequest.getPathInfo().startsWith("/content/tetrapak/publicweb")
                 && "true".equalsIgnoreCase(slingRequest.getHeader("preview"))
                 && Boolean.TRUE.equals(isSaltInValid(slingRequest, previewParam))) {
