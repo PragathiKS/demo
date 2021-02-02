@@ -31,5 +31,16 @@ public @interface PardotServiceConfig {
             description = "Pardot Subscription Form URL",
             type = AttributeType.STRING)
     String pardotSubscriptionFormURL();
+    
+    /**
+     * Pardot subscribers data api URL.
+     *
+     * @return the string
+     */
+    @AttributeDefinition(
+            name = "Pardot Subscribers Data API URL",
+            description = "Pardot Subscribers Data API URL",
+            type = AttributeType.STRING)
+    String pardotSubscribersDataApiURL();
 
 }
