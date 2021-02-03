@@ -73,16 +73,15 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                 emailParams.put("bannerImage",
                         GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeroImage(), mediaService));
                 emailParams.put("headerLogo",
-                        GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService)
-                                + "?wid=156&fmt=jpg&resMode=sharp2&qlt=85,0");
+                        GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
                 emailParams.put("footerLogo",
-                        GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getFooterLogo(), mediaService)
-                                + "?wid=156&fmt=jpg&resMode=sharp2&qlt=85,0");
+                        GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getFooterLogo(), mediaService));
                 emailParams.put("pageLink", newsEventbean.getPageLink());
                 emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
                 emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
                 String encryptedMailAddress = encryptionService.encryptText(mailAddress);
-                if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)) {
+                if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)
+                        && newsEventbean.getManagePreferenceLink().startsWith(PWConstants.HTTPS_PROTOCOL)) {
                     emailParams.put("managePreferenceLink", newsEventbean.getManagePreferenceLink() + "?id="
                             + encryptionService.encryptText(mailAddress));
                 } else {

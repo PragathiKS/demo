@@ -48,7 +48,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                 Constants.SERVICE_DESCRIPTION
                         + "=This event handler listens the event on news and events page activation",
                 EventConstants.EVENT_TOPIC + "=" + ReplicationAction.EVENT_TOPIC, EventConstants.EVENT_FILTER
-                        + "=(paths=/content/tetrapak/publicweb/**/about-tetra-pak/news-and-events/events/*)" })
+                        + "=(paths=/content/tetrapak/publicweb/**/about-tetra-pak/news-and-events/*)" })
 public class NewsEventPageActivationListener implements EventHandler {
 
     /** The Constant LOGGER. */
@@ -84,7 +84,7 @@ public class NewsEventPageActivationListener implements EventHandler {
                     if (Objects.isNull(valueMap.get("eventPublished"))) {
                         NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
                         List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
-                        if (Objects.nonNull(emailAddresses)) {
+                        if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
                             String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
                             if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
                                 ModifiableValueMap modifiableMap = resource.adaptTo(ModifiableValueMap.class);
@@ -96,7 +96,7 @@ public class NewsEventPageActivationListener implements EventHandler {
                 }
             }
         } catch (Exception ex) {
-            LOGGER.error("Error in NewsEventPageActivationListener" + ex.getMessage());
+            LOGGER.error("Error in NewsEventPageActivationListener {}", ex.getMessage());
         }
 
     }
@@ -112,7 +112,7 @@ public class NewsEventPageActivationListener implements EventHandler {
      *            the resolver
      * @return the news event bean
      */
-    private NewsEventBean getNewsEventBean(ValueMap valueMap, String pagePath, ResourceResolver resolver) {
+    public NewsEventBean getNewsEventBean(ValueMap valueMap, String pagePath, ResourceResolver resolver) {
         NewsEventBean bean = new NewsEventBean();
         PageManager pageManager = resolver.adaptTo(PageManager.class);
         String rootPath = LinkUtils.getRootPath(pagePath);

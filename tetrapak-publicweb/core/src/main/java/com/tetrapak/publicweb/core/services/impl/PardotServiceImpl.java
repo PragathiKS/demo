@@ -145,6 +145,7 @@ public class PardotServiceImpl implements PardotService {
         try {
             final HttpClient httpClient = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet();
+            request.addHeader("Authorization", "Basic " + getPardotSubscriberDataApiCredentials());
             request.setURI(new URI(getPardotSubscriberDataApiUrl()));
             HttpResponse response = httpClient.execute(request);
             InputStream ips = response.getEntity().getContent();
@@ -180,7 +181,7 @@ public class PardotServiceImpl implements PardotService {
             }
 
         } catch (URISyntaxException | IOException | JSONException | NullPointerException e) {
-            LOGGER.error("Error while fetching Subscriber data" + e.getMessage());
+            LOGGER.error("Error while fetching Subscriber data {}", e.getMessage());
         }
         return mailAddresses;
 
@@ -194,6 +195,16 @@ public class PardotServiceImpl implements PardotService {
     @Override
     public String getPardotSubscriberDataApiUrl() {
         return config.pardotSubscribersDataApiURL();
+    }
+
+    /**
+     * To be removed later Gets the pardot subscriber data api credentials.
+     *
+     * @return the pardot subscriber data api credentials
+     */
+    @Override
+    public String getPardotSubscriberDataApiCredentials() {
+        return config.pardotSubscribersDataApiCredentials();
     }
 
 }

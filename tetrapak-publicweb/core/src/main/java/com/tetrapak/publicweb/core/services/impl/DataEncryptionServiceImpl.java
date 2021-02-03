@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.services.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -60,7 +59,7 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
             key = Arrays.copyOf(key, 16);
             secretKey = new SecretKeySpec(key, "AES");
         } catch (NoSuchAlgorithmException e) {
-            LOGGER.error("Error while DataEncryptionService activation" + e.getMessage());
+            LOGGER.error("Error while DataEncryptionService activation {}", e.getMessage());
         }
     }
 
@@ -88,10 +87,10 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
         try {
             cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes("UTF-8")));
+            return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8)));
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException
-                | BadPaddingException | UnsupportedEncodingException e) {
-            LOGGER.error("Error in DataEncryptionService while encryption" + e.getMessage());
+                | BadPaddingException e) {
+            LOGGER.error("Error in DataEncryptionService while encryption {}", e.getMessage());
         }
         return PWConstants.STATUS_ERROR;
     }
@@ -112,7 +111,7 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
             return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedText)));
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException
                 | BadPaddingException e) {
-            LOGGER.error("Error in DataEncryptionService while decryption" + e.getMessage());
+            LOGGER.error("Error in DataEncryptionService while decryption {}", e.getMessage());
         }
         return PWConstants.STATUS_ERROR;
     }

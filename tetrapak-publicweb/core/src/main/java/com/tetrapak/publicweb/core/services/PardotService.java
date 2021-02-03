@@ -49,6 +49,13 @@ public interface PardotService {
      */
     String getPardotSubscriberDataApiUrl();
     
+    /**
+     * Gets the pardot subscriber data api credentials.
+     *
+     * @return the pardot subscriber data api credentials
+     */
+    String getPardotSubscriberDataApiCredentials();
+    
     
     /**
      * Gets the subscriber mail addresses.
