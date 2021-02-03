@@ -39,10 +39,10 @@
                             <button
                               class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                               type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <sly data-sly-test.countryValue="${data.selectedCountry.value}">
-                                <span class="js-pw-form__dropdown__country-text">${data.selectedCountry.value}</span>
+                              <sly data-sly-list.selectedCountryValue="${data.selectedCountry}">
+                                <span class="js-pw-form__dropdown__country-text">${selectedCountryValue.value}</span>
                               </sly>
-                              <sly data-sly-test.countryValue="${!data.selectedCountry.value}">
+                              <sly data-sly-test.selectedCountryValue="${!data.selectedCountry}">
                                 <span class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
                                   @ i18n}</span>
                               </sly>
@@ -69,10 +69,10 @@
                             <button
                               class="btn dropdown-toggle js-pw-form__dropdown__toggle pw-form__dropdown__toggle text-left"
                               type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <sly data-sly-test.countryValue="${data.selectedLanguage.value}">
-                                <span class="js-pw-form__dropdown__language-text">${data.selectedLanguage.value}</span>
+                              <sly data-sly-list.selectedLanguageValue="${data.selectedLanguage}">
+                                <span class="js-pw-form__dropdown__language-text">${selectedLanguageValue.value}</span>
                               </sly>
-                              <sly data-sly-test.countryValue="${!data.selectedLanguage.value}">
+                              <sly data-sly-test.selectedLanguageValue="${!data.selectedLanguage}">
                                 <span class="js-pw-form__dropdown__language-text">${'pw.form.managepreferences.selectlang' @i18n}</span>
                               </sly>
                               <i class="icon icon-Arrow_Right_pw"></i></button>

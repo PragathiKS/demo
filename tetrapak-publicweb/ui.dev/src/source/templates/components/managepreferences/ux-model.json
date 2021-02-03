@@ -27,11 +27,11 @@
     "privacyPolicy": "rich text"
   },
   "email": "testing@gmail.com",
-  "selectedCountry": { "key": "australia", "value": "Australia" },
-  "selectedLanguage": {
+  "selectedCountry": [{ "key": "australia", "value": "Australia" }],
+  "selectedLanguage": [{
     "key": "french",
     "value": "French"
-  },
+  }],
   "typesOfCommunication": "Marketing Communication, Press and Media Communication",
   "areaOfInterest": "Services, Packaging"
 }
