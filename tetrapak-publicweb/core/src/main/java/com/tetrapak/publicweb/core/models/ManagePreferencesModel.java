@@ -241,7 +241,7 @@ public class ManagePreferencesModel extends FormModel {
 		String finalData = StringUtils.EMPTY;
 		for (Map.Entry<String, JsonElement> entry : obj.entrySet()) {
 			if ("Y".equalsIgnoreCase(entry.getValue().getAsString())) {
-				finalData = entry.getKey() + ",";
+				finalData = finalData.concat(entry.getKey()) + ",";
 			}
 		}
 		if (finalData.endsWith(",")) {
