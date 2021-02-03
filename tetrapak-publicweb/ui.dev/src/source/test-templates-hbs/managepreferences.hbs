@@ -1,7 +1,7 @@
 <div class="pw-container" data-locator="ManagePreferencesForm" data-module="ManagePreferences">
     <div class="pw-padding--regular pw-theme--grayscale-white pw-margin--regular" auto_locator="subscriptionFormRightContainerStep1">
       <form data-selected-communication="pw.form.managepreferences.marketingcomm,pw.form.managepreferences.eventinvitation" data-selected-interest="pw.form.businessenq.packaging,pw.form.businessenq.processing" class="pw-form pw-form-managePreferences" accept-charset="UTF-8" autocomplete="off">
-        <div class="tab-contenpw-form-managePreferencest tab-content-steps">
+        <div class="tab-content-steps">
           <div class="row">
             <div class="col-sm-12" auto_locator="subscriptionFormListContainerStep1">
               <div class="row no-gutters">
@@ -83,7 +83,7 @@
 
                     <div class="section-box padding-16">
                       <div class="selection-box-title">Yes, I want to receive</div>
-                      <div class="formfield input-group" data-input-value="false">
+                      <div name='communication-type-input' class="formfield input-group" data-input-value="false">
                         <div class="row no-gutters">
                           <div class="input-field-wrapper col-lg-12 option-selection disable-input">
                             <div class="checboxField">
@@ -242,7 +242,7 @@
           <!-- save preferences button -->
           <div class="row no-gutters savePreferenceButton button-group hide">
 
-    <button data-target="#sf-step-final" type="submit" class="tpatom-btn tpatom-btn--primary " auto_locator="managePreferenceFormSavePreferenceStep">
+    <button data-target="#sf-step-final" type="button" id="save-preferences" class="tpatom-btn tpatom-btn--primary " auto_locator="managePreferenceFormSavePreferenceStep">
         <span class="tp-next-btn__text">Save Preferences</span>
         <i class="tpatom-button__icon "></i>
     </button>
@@ -251,7 +251,7 @@
           <!-- unsubscribe button -->
           <div class="row no-gutters unsubscribeButton button-group show">
 
-    <button data-target="#sf-step-final" type="submit" class="tpatom-btn tpatom-btn--primary previewLinkBtn" auto_locator="managePreferenceFormUnsubscribeStep">
+    <button data-target="#sf-step-final" type="button" id="unsubscribe-button" class="tpatom-btn tpatom-btn--primary previewLinkBtn" auto_locator="managePreferenceFormUnsubscribeStep">
         <span class="tp-next-btn__text">Unsubscribe</span>
         <i class="tpatom-button__icon "></i>
     </button>
