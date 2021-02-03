@@ -1,5 +1,5 @@
 <sly data-sly-template.managepreferences_template="${@data, flag}">
-  <div class="pw-container" data-locator="ManagePreferencesForm" data-module="ManagePreferences">
+  <div id="${data.anchorId}" class="pw-container" data-locator="ManagePreferencesForm" data-module="ManagePreferences">
     <div class="pw-padding--regular pw-theme--grayscale-white pw-margin--regular"
       auto_locator="subscriptionFormRightContainerStep1">
       <form data-selected-communication="${data.typesOfCommunication}" data-selected-interest="${data.areaOfInterest}"
