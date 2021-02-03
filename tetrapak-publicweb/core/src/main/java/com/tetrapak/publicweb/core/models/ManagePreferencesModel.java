@@ -226,7 +226,7 @@ public class ManagePreferencesModel extends FormModel {
 		setSelectedCountry(cfCountryData);
 		List<DropdownOption> cfLanguageData = cfService.getSpecificData(PWConstants.LANGUAGE_CF,
 				resource.getResourceResolver(), languageFromJson);
-		setSelectedCountry(cfLanguageData);
+		setSelectedLanguage(cfLanguageData);
 		setAreaOfInterest(getAoiCtData(aoi));
 		setTypesOfCommunication(getAoiCtData(ct));
 	}
