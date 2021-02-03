@@ -13,14 +13,14 @@
         &.disable-checkbox {
             border: 0;
             background: $color-mercury;
-            opacity: 1;
+            opacity: $opacity-visible;
         }
     }
 
     .errorMsg {
+        @include font-size($font-sm);
         display: none;
         color: $color-alert;
-        font-size: 12px;
     }
 
     .formfield,
@@ -43,18 +43,14 @@
         display: inline;
     }
 
-    .checboxField {
+    .checkbox-field {
         display: flex;
-    }
-
-    .subscribeButton {
-        margin-top: $margin-l;
     }
 
     .main-heading {
         @include font-size($font-l);
+        @include line-height(32px, $font-l);
         font-weight: 400;
-        line-height: 32px;
     }
 
     .email {
@@ -63,12 +59,12 @@
             @include margin-top($margin-md);
             @include padding($padding-sm 0 $padding-sm $padding-md);
             border: 1px solid $color-tundora;
-            border-radius: 4px;
-            opacity: 0.4;
+            border-radius: $border-radius;
+            opacity: $opacity-disabled;
             span {
                 @include font-size($font-baseline);
+                @include line-height(24px, $font-baseline);
                 font-weight: 400;
-                line-height: 24px;
             }
         }
     }
@@ -80,7 +76,7 @@
     }
     .heading-label {
         @include font-size($font-md);
-        line-height: 24px;
+        @include line-height(24px, $font-md);
         font-weight: 700;
     }
     .selection-box {
@@ -89,7 +85,7 @@
             @include padding-top($padding-l);
             @include padding-bottom($padding-md);
             @include font-size($font-baseline);
-            line-height: 24px;
+            @include line-height(24px, $font-baseline);
             font-weight: 700;
         }
     }
@@ -115,10 +111,10 @@
     }
 
     .disable-input {
-        opacity: 0.4;
+        opacity: $opacity-disabled;
     }
     .visible-false {
-        opacity: 0;
+        opacity: $opacity-null;
     }
 
     .dropdown-toggle {
@@ -132,7 +128,7 @@
             display: flex;
         }
     }
-    .savePreferenceButton {
+    .save-preference-button {
         display: flex;
         margin-top: $margin-l;
         &.hide {
@@ -140,7 +136,7 @@
         }
     }
 
-    .unsubscribeButton {
+    .unsubscribe-button {
         display: none;
         margin-top: $margin-l;
         &.show {
@@ -154,8 +150,8 @@
     @media #{$desktop} {
         .main-heading {
             @include font-size($font-xl);
+            @include line-height(40px, $font-xl);
             font-weight: 700;
-            line-height: 40px;
         }
         .email {
             @include margin-top($margin-l);
