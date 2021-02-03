@@ -227,7 +227,7 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.errormsg1"
         sling:message="Please select the checkbox"/>
-	<pw.form.managepreferences.errormsg1
+	<pw.form.managepreferences.errormsg2
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.errormsg2"
         sling:message="Minimum 1 checkbox to be selected"/>
