@@ -69,7 +69,12 @@
                             <button
                               class="btn dropdown-toggle js-pw-form__dropdown__toggle pw-form__dropdown__toggle text-left"
                               type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="js-pw-form__dropdown__language-text">${'pw.form.managepreferences.selectlang' @i18n}</span>
+                              <sly data-sly-test.countryValue="${data.selectedLanguage.value}">
+                                <span class="js-pw-form__dropdown__language-text">${data.selectedLanguage.value}</span>
+                              </sly>
+                              <sly data-sly-test.countryValue="${!data.selectedLanguage.value}">
+                                <span class="js-pw-form__dropdown__language-text">${'pw.form.managepreferences.selectlang' @i18n}</span>
+                              </sly>
                               <i class="icon icon-Arrow_Right_pw"></i></button>
                             </button>
                             <div class="dropdown-menu pw-form__dropdown__menu laguage-dropdown-select"
