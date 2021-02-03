@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.commons.jcr.JcrConstants;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.ManagePrefContentFragService;
 
 /**
@@ -143,12 +144,7 @@ public class ManagePrefContentFragServiceImpl implements ManagePrefContentFragSe
             final Iterator<Resource> rootIterator = cfRootResource.listChildren();
             while (rootIterator.hasNext()) {
                 final Resource childResource = rootIterator.next();
-                if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
-                    final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
-                    if (Objects.nonNull(jcrResource)) {
-                        addEntryToList(dataList, childResource, jcrResource);
-                    }
-                }
+                populateDataList(childResource, dataList);
             }
         }
         dataList.sort((final DropdownOption op1, final DropdownOption op2) -> op1.getValue().compareTo(op2.getValue()));
@@ -169,4 +165,50 @@ public class ManagePrefContentFragServiceImpl implements ManagePrefContentFragSe
         optionList.setValue(setCountryTitle(jcrResource));
         dataList.add(optionList);
     }
+
+	/**
+	 * Gets the spec data.
+	 *
+	 * @param selectCf the select cf
+	 * @param resolver the resolver
+	 * @param entryFromJson the entry from json
+	 * @return the spec data
+	 */
+	@Override
+	public List<DropdownOption> getSpecificData(String selectCf, ResourceResolver resolver, String entryFromJson) {
+		final List<DropdownOption> dataList = new ArrayList<>();
+		String cfRootPath;
+		if(selectCf.equals(PWConstants.COUNTRY_CF)) {
+			cfRootPath = getCountryCfRootPath();
+		} else {
+			cfRootPath = getLanguageCfRootPath();
+		}
+		final Resource cfRootResource = resolver.getResource(cfRootPath);
+		if (Objects.nonNull(cfRootResource)) {
+            final Iterator<Resource> rootIterator = cfRootResource.listChildren();
+            while (rootIterator.hasNext()) {
+            	final Resource childResource = rootIterator.next();
+            	if(childResource.getName().equalsIgnoreCase(entryFromJson)) {
+            		populateDataList(childResource, dataList);
+            		break;
+            	}
+            }
+    	}
+		return dataList;
+	}
+
+	/**
+	 * Populate data list.
+	 *
+	 * @param childResource the child resource
+	 * @param dataList the data list
+	 */
+	private void populateDataList(Resource childResource, List<DropdownOption> dataList) {
+		if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
+			final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
+			if (Objects.nonNull(jcrResource)) {
+				addEntryToList(dataList, childResource, jcrResource);
+			}
+		}
+	}
 }

@@ -41,5 +41,12 @@ public interface ManagePrefContentFragService {
      * @return the language cf root path
      */
     String getLanguageCfRootPath();
-
+    
+    /**
+     * Gets the spec data.
+     *
+     * @param entryFromJson the entry from json
+     * @return the spec data
+     */
+    List<DropdownOption> getSpecificData(String selectCf, ResourceResolver resolver, String entryFromJson);
 }
