@@ -43,6 +43,7 @@ public class ManagePreferencesModel {
 	@OSGiService
 	private ManagePrefContentFragService cfService;
 	
+	/** The pardot service. */
 	@OSGiService
 	private PardotService pardotService;
 	
