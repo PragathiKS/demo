@@ -190,9 +190,10 @@ public class ManagePreferencesModel {
 	 * Sets the email.
 	 */
 	public void setEmail() {
-		if (Objects.nonNull(request.getRequestParameter(PWConstants.ID))
-				&& StringUtils.isNotBlank(request.getRequestParameter(PWConstants.ID).getString())) {
-			emailToCheck = encryptionService.decryptText(request.getRequestParameter(PWConstants.ID).getString());
+		String idValue = request.getQueryString();
+		idValue = idValue.substring(idValue.indexOf('=') + 1);
+		if (Objects.nonNull(idValue) && StringUtils.isNotBlank(idValue)) {
+			emailToCheck = encryptionService.decryptText(idValue);
 			if (emailToCheck.contains(PWConstants.AT_THE_RATE) && !PWConstants.STATUS_ERROR.equalsIgnoreCase(emailToCheck)) {
 				fetchData = true;
 				this.email = maskEmailAddress(emailToCheck, '*');
