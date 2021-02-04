@@ -77,8 +77,7 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
      * Encrypt text.
      *
      * @param plainText
-     *            the plain text @return the string @throws NoSuchPaddingException @throws
-     *            NoSuchAlgorithmException @throws
+     *            
      * @return the string
      */
     @Override
@@ -110,7 +109,7 @@ public class DataEncryptionServiceImpl implements DataEncryptionService {
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedText)));
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException
-                | BadPaddingException e) {
+                | BadPaddingException|IllegalArgumentException e) {
             LOGGER.error("Error in DataEncryptionService while decryption {}", e.getMessage());
         }
         return PWConstants.STATUS_ERROR;

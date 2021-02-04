@@ -63,43 +63,48 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
             ResourceResolver resolver) {
         LOGGER.debug("Inside sendSubcriptionEmail");
         String status = PWConstants.STATUS_ERROR;
-        if (Objects.nonNull(mailAddresses)) {
-            status = PWConstants.STATUS_SUCCESS;
-            for (String mailAddress : mailAddresses) {
-                String[] receipientArray = { mailAddress };
-                Map<String, String> emailParams = new HashMap<>();
-                emailParams.put("title", newsEventbean.getTitle());
-                emailParams.put("description", newsEventbean.getDescription());
-                emailParams.put("bannerImage",
-                        GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeroImage(), mediaService));
-                emailParams.put("headerLogo",
-                        GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
-                emailParams.put("footerLogo",
-                        GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getFooterLogo(), mediaService));
-                emailParams.put("pageLink", newsEventbean.getPageLink());
-                emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
-                emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
-                String encryptedMailAddress = encryptionService.encryptText(mailAddress);
-                if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)
-                        && newsEventbean.getManagePreferenceLink().startsWith(PWConstants.HTTPS_PROTOCOL)) {
-                    emailParams.put("managePreferenceLink", newsEventbean.getManagePreferenceLink() + "?id="
-                            + encryptionService.encryptText(mailAddress));
-                } else {
-                    emailParams.put("managePreferenceLink", "#");
+        try {
+            if (Objects.nonNull(mailAddresses)) {
+                status = PWConstants.STATUS_SUCCESS;
+                for (String mailAddress : mailAddresses) {
+                    String[] receipientArray = { mailAddress };
+                    Map<String, String> emailParams = new HashMap<>();
+                    emailParams.put("title", newsEventbean.getTitle());
+                    emailParams.put("description", newsEventbean.getDescription());
+                    emailParams.put("bannerImage",
+                            GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeroImage(), mediaService));
+                    emailParams.put("headerLogo",
+                            GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
+                    emailParams.put("footerLogo",
+                            GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getFooterLogo(), mediaService));
+                    emailParams.put("pageLink", newsEventbean.getPageLink());
+                    emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
+                    emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
+                    String encryptedMailAddress = encryptionService.encryptText(mailAddress);
+                    if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)
+                            && newsEventbean.getManagePreferenceLink().startsWith(PWConstants.HTTPS_PROTOCOL)) {
+                        emailParams.put("managePreferenceLink", newsEventbean.getManagePreferenceLink() + "?id="
+                                + encryptionService.encryptText(mailAddress));
+                    } else {
+                        emailParams.put("managePreferenceLink", "#");
+                    }
+                    emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
+                    Map<String, Object> properties = new HashMap<>();
+                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage()));
+                    properties.put("emailParams", emailParams);
+                    properties.put("receipientsArray", receipientArray);
+                    if (jobMgr != null) {
+                        jobMgr.addJob(PWConstants.SEND_EMAIL_JOB_TOPIC, properties);
+                    } else {
+                        status = PWConstants.STATUS_ERROR;
+                        LOGGER.error("JobManager Reference null");
+                    }
                 }
-                emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
-                Map<String, Object> properties = new HashMap<>();
-                properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage()));
-                properties.put("emailParams", emailParams);
-                properties.put("receipientsArray", receipientArray);
-                if (jobMgr != null) {
-                    jobMgr.addJob(PWConstants.SEND_EMAIL_JOB_TOPIC, properties);
-                } else {
-                    status = PWConstants.STATUS_ERROR;
-                    LOGGER.error("JobManager Reference null");
-                }
-            }
 
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error in SubscriptionMailService {}", e.getMessage());
+            status = PWConstants.STATUS_ERROR;
         }
         return status;
 

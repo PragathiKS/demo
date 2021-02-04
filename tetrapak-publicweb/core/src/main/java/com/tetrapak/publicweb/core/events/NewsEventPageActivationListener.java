@@ -48,7 +48,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                 Constants.SERVICE_DESCRIPTION
                         + "=This event handler listens the event on news and events page activation",
                 EventConstants.EVENT_TOPIC + "=" + ReplicationAction.EVENT_TOPIC, EventConstants.EVENT_FILTER
-                        + "=(paths=/content/tetrapak/publicweb/**/about-tetra-pak/news-and-events/*)" })
+                        + "=(paths=/content/tetrapak/publicweb/**/about-tetra-pak/news-and-events/**)" })
 public class NewsEventPageActivationListener implements EventHandler {
 
     /** The Constant LOGGER. */
@@ -74,15 +74,15 @@ public class NewsEventPageActivationListener implements EventHandler {
     @Override
     public void handleEvent(Event event) {
         LOGGER.debug("Event is registered : {}", event.getTopic());
-        try {
+        try (final ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             String[] paths = (String[]) event.getProperty("paths");
-            final ResourceResolver resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
             if (Objects.nonNull(paths) && Objects.nonNull(resourceResolver)) {
                 for (String path : paths) {
                     Resource resource = resourceResolver.getResource(path + "/jcr:content");
                     ValueMap valueMap = resource.getValueMap();
                     if (Objects.isNull(valueMap.get("eventPublished"))) {
                         NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
+                        bean = addPageLinks(bean, path, resourceResolver);
                         List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
                         if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
                             String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
@@ -116,9 +116,6 @@ public class NewsEventPageActivationListener implements EventHandler {
         NewsEventBean bean = new NewsEventBean();
         PageManager pageManager = resolver.adaptTo(PageManager.class);
         String rootPath = LinkUtils.getRootPath(pagePath);
-        String newsRoomPagePath = rootPath + "/about-tetra-pak/news-and-events/news-room";
-        String legalInfoPagePath = rootPath + "/about-tetra-pak/legal-information";
-        String managePreferencePagePath = rootPath + "/about-tetra-pak/manage-preference";
         Page page = pageManager.getPage(LinkUtils.getRootPath(rootPath));
         bean.setLanguage(PageUtil.getLanguageCode(page));
         bean.setLocale(PageUtil.getLocaleFromURL(page));
@@ -131,9 +128,9 @@ public class NewsEventPageActivationListener implements EventHandler {
             bean.setPageTags(valueMap.get("cq:tags", String[].class));
         }
         bean.setPageLink(resolver.map(pagePath));
-        bean.setNewsroomLink(resolver.map(newsRoomPagePath));
-        bean.setLegalInformationLink(resolver.map(legalInfoPagePath));
-        bean.setManagePreferenceLink(managePreferencePagePath);
+        bean.setNewsroomLink("#");
+        bean.setLegalInformationLink("#");
+        bean.setManagePreferenceLink("#");
         bean.setHeaderLogo(getHeaderLogo(pagePath, resolver));
         bean.setFooterLogo(getFooterLogo(pagePath, resolver));
         bean.setHeroImage(getBannerImage(pagePath, resolver));
@@ -205,6 +202,25 @@ public class NewsEventPageActivationListener implements EventHandler {
             }
         }
         return StringUtils.EMPTY;
+    }
+    
+    private NewsEventBean addPageLinks(NewsEventBean bean , String pagePath, ResourceResolver resolver) {
+        String rootPath = LinkUtils.getRootPath(pagePath);
+        final String path = rootPath + "/jcr:content/root/responsivegrid/subscriptionformconf";
+        Resource subcriptionFormConfigResource = resolver.getResource(path);
+        if(Objects.nonNull(subcriptionFormConfigResource)) {
+            ValueMap valueMap = subcriptionFormConfigResource.getValueMap();
+            if(Objects.nonNull(valueMap.get("pressroomLink",String.class))) {
+                bean.setNewsroomLink(resolver.map(valueMap.get("pressroomLink",String.class)));
+            }
+            if(Objects.nonNull(valueMap.get("legalInfoLink",String.class))) {
+                bean.setLegalInformationLink(resolver.map(valueMap.get("legalInfoLink",String.class)));
+            }
+            if(Objects.nonNull(valueMap.get("managePreferenceLink",String.class))) {
+                bean.setManagePreferenceLink(resolver.map(valueMap.get("managePreferenceLink",String.class)));
+            }
+        }
+        return bean;
     }
 
 }

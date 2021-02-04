@@ -116,6 +116,8 @@ public class NewsEventPageActivationListenerTest {
                 .currentResource(LANGUAGE_PAGE_PATH + "/jcr:content/root/responsivegrid/headerconfiguration");
         Resource footerConfigResource = context
                 .currentResource(LANGUAGE_PAGE_PATH + "/jcr:content/root/responsivegrid/footerconfiguration");
+        Resource subscriptionformconfResource = context
+                .currentResource(LANGUAGE_PAGE_PATH + "/jcr:content/root/responsivegrid/subscriptionformconf");
         Page languagePage = languagePageResource.adaptTo(Page.class);
         context.load().json(PAYLOAD_RESOURCE_PATH, PAYLOAD_PATH);
         resource = context.currentResource(PAYLOAD_PATH);
@@ -131,6 +133,8 @@ public class NewsEventPageActivationListenerTest {
                 .thenReturn(headerConfigResource);
         Mockito.when(resolver.getResource(LANGUAGE_PAGE_PATH + "/jcr:content/root/responsivegrid/footerconfiguration"))
                 .thenReturn(footerConfigResource);
+        Mockito.when(resolver.getResource(LANGUAGE_PAGE_PATH + "/jcr:content/root/responsivegrid/subscriptionformconf"))
+                .thenReturn(subscriptionformconfResource);
         Mockito.when(resolver.adaptTo(PageManager.class)).thenReturn(pageManager);
         Mockito.when(pageManager.getPage(LinkUtils.getRootPath(PAGE_EVENT_PATH))).thenReturn(languagePage);
         String[] paths = { PAGE_EVENT_PATH };

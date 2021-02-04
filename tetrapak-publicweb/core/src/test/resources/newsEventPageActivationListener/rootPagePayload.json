@@ -1,35 +1,4 @@
 {
-  "jcr:primaryType": "cq:Page",
-  "jcr:mixinTypes": [
-    "rep:AccessControllable"
-  ],
-  "jcr:createdBy": "admin",
-  "jcr:created": "Mon Jan 25 2021 14:29:26 GMT+0530",
-  "jcr:content": {
-    "jcr:primaryType": "cq:PageContent",
-    "jcr:mixinTypes": [
-      "mix:versionable"
-    ],
-    "jcr:createdBy": "admin",
-    "jcr:title": "Language Masters",
-    "cq:lastReplicationAction": "Activate",
-    "jcr:versionHistory": "f8d3794e-c2fb-46f6-a2a0-450346370a56",
-    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-    "cq:lastReplicatedBy": "admin",
-    "jcr:predecessors": [
-      "c642df55-4cf3-4341-87d1-774e8a9aa57d"
-    ],
-    "jcr:created": "Mon Jan 25 2021 14:29:26 GMT+0530",
-    "cq:lastReplicated": "Mon Oct 12 2020 06:06:18 GMT+0000",
-    "cq:lastModified": "Sat May 30 2020 08:04:26 GMT+0000",
-    "jcr:baseVersion": "c642df55-4cf3-4341-87d1-774e8a9aa57d",
-    "jcr:isCheckedOut": true,
-    "jcr:uuid": "2d82e3c3-0c14-4941-849e-4e78df4d53c8",
-    "sling:resourceType": "publicweb/components/structure/pages/landingpage",
-    "cq:allowedTemplates": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
-    "cq:lastModifiedBy": "reference-adjustment-service"
-  },
-  "en":{
 	"jcr:primaryType": "cq:Page",
 	"jcr:mixinTypes": [
 		"rep:AccessControllable"
@@ -42,92 +11,141 @@
 			"mix:versionable"
 		],
 		"jcr:createdBy": "admin",
-		"socialMedia": [
-			"facebook",
-			"pinterest"
-		],
-		"jcr:title": "English",
+		"jcr:title": "Language Masters",
 		"cq:lastReplicationAction": "Activate",
-		"jcr:versionHistory": "ef2ed2bc-192e-4386-8be7-2f211af34399",
-		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
-		"cq:lastReplicatedBy": "sapient-suraksha",
-		"jcr:language": "en",
+		"jcr:versionHistory": "f8d3794e-c2fb-46f6-a2a0-450346370a56",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"cq:lastReplicatedBy": "admin",
 		"jcr:predecessors": [
-			"577e48cb-9d19-454b-a79f-a51e6fbc91a6"
+			"c642df55-4cf3-4341-87d1-774e8a9aa57d"
 		],
-		"disableEnvelope": "false",
-		"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:36 GMT+0000",
 		"jcr:created": "Mon Jan 25 2021 14:29:26 GMT+0530",
-		"cq:lastReplicated": "Tue Dec 08 2020 13:30:26 GMT+0000",
-		"cq:lastModified": "Tue Jan 05 2021 07:03:18 GMT+0000",
-		"jcr:baseVersion": "577e48cb-9d19-454b-a79f-a51e6fbc91a6",
+		"cq:lastReplicated": "Mon Oct 12 2020 06:06:18 GMT+0000",
+		"cq:lastModified": "Sat May 30 2020 08:04:26 GMT+0000",
+		"jcr:baseVersion": "c642df55-4cf3-4341-87d1-774e8a9aa57d",
 		"jcr:isCheckedOut": true,
-		"jcr:uuid": "f169bbe7-4a26-4238-9ae7-8884f00676fd",
-		"sling:resourceType": "publicweb/components/structure/pages/languagepage",
-		"cq:allowedTemplates": [
-			"/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-			"/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
-			"/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page",
-			"/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page",
-			"/conf/publicweb/settings/wcm/templates/public-web-package-type-page",
-			"/conf/publicweb/settings/wcm/templates/case-article",
-			"/conf/publicweb/settings/wcm/templates/news-article",
-			"/conf/publicweb/settings/wcm/templates/press-release",
-			"/conf/publicweb/settings/wcm/templates/event",
-			"/conf/publicweb/settings/wcm/templates/awareness-campaign",
-			"/conf/publicweb/settings/wcm/templates/product-campaign",
-			"/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+		"jcr:uuid": "2d82e3c3-0c14-4941-849e-4e78df4d53c8",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:allowedTemplates": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+		"cq:lastModifiedBy": "reference-adjustment-service"
+	},
+	"en": {
+		"jcr:primaryType": "cq:Page",
+		"jcr:mixinTypes": [
+			"rep:AccessControllable"
 		],
-		"errorPages": "/content/tetrapak/publicweb/lang-masters/en/error",
-		"cq:lastModifiedBy": "innagavekarb",
-		"root": {
-			"jcr:primaryType": "nt:unstructured",
-			"sling:resourceType": "wcm/foundation/components/responsivegrid",
-			"responsivegrid": {
+		"jcr:createdBy": "admin",
+		"jcr:created": "Mon Jan 25 2021 14:29:26 GMT+0530",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:mixinTypes": [
+				"mix:versionable"
+			],
+			"jcr:createdBy": "admin",
+			"socialMedia": [
+				"facebook",
+				"pinterest"
+			],
+			"jcr:title": "English",
+			"cq:lastReplicationAction": "Activate",
+			"jcr:versionHistory": "ef2ed2bc-192e-4386-8be7-2f211af34399",
+			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+			"cq:lastReplicatedBy": "sapient-suraksha",
+			"jcr:language": "en",
+			"jcr:predecessors": [
+				"577e48cb-9d19-454b-a79f-a51e6fbc91a6"
+			],
+			"disableEnvelope": "false",
+			"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:36 GMT+0000",
+			"jcr:created": "Mon Jan 25 2021 14:29:26 GMT+0530",
+			"cq:lastReplicated": "Tue Dec 08 2020 13:30:26 GMT+0000",
+			"cq:lastModified": "Tue Jan 05 2021 07:03:18 GMT+0000",
+			"jcr:baseVersion": "577e48cb-9d19-454b-a79f-a51e6fbc91a6",
+			"jcr:isCheckedOut": true,
+			"jcr:uuid": "f169bbe7-4a26-4238-9ae7-8884f00676fd",
+			"sling:resourceType": "publicweb/components/structure/pages/languagepage",
+			"cq:allowedTemplates": [
+				"/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+				"/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
+				"/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page",
+				"/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page",
+				"/conf/publicweb/settings/wcm/templates/public-web-package-type-page",
+				"/conf/publicweb/settings/wcm/templates/case-article",
+				"/conf/publicweb/settings/wcm/templates/news-article",
+				"/conf/publicweb/settings/wcm/templates/press-release",
+				"/conf/publicweb/settings/wcm/templates/event",
+				"/conf/publicweb/settings/wcm/templates/awareness-campaign",
+				"/conf/publicweb/settings/wcm/templates/product-campaign",
+				"/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+			],
+			"errorPages": "/content/tetrapak/publicweb/lang-masters/en/error",
+			"cq:lastModifiedBy": "innagavekarb",
+			"root": {
 				"jcr:primaryType": "nt:unstructured",
-				"jcr:mixinTypes": [
-					"cq:ReplicationStatus"
-				],
 				"sling:resourceType": "wcm/foundation/components/responsivegrid",
-				"headerconfiguration": {
+				"responsivegrid": {
 					"jcr:primaryType": "nt:unstructured",
 					"jcr:mixinTypes": [
 						"cq:ReplicationStatus"
 					],
-					"jcr:createdBy": "admin",
-					"loginLabel": "My Tetra Pak test",
-					"loginLink": "https://mypages.tetrapak.com/dashboard.html",
-					"marketSelectorDisabled": "false",
-					"jcr:lastModifiedBy": "sapient-bimmi",
-					"searchPage": "/content/tetrapak/publicweb/lang-masters/en/search",
-					"jcr:created": "Wed Mar 25 2020 13:22:51 GMT+0000",
-					"contactLink": "/content/tetrapak/publicweb/lang-masters/en/contact-us",
-					"contactText": "Contact Us",
-					"logoLinkTarget": "_self",
-					"logoImagePath": "/content/dam/tetrapak/publicweb/gb/tetra-pak-two-liner.png",
-					"marketTitle": "Choose Your Market",
-					"logoAlt": "Tetra Pak",
-					"jcr:lastModified": "Mon Dec 14 2020 07:38:42 GMT+0000",
-					"sling:resourceType": "publicweb/components/structure/headerconfiguration",
-					"solutionPage": "/content/tetrapak/publicweb/lang-masters/en/solutions",
-					"contactLinkTarget": "_self",
-					"logoLink": "/content/tetrapak/publicweb/lang-masters/en/home"
-				},
-				"footerconfiguration": {
-					"jcr:primaryType": "nt:unstructured",
-					"jcr:createdBy": "admin",
-					"jcr:lastModifiedBy": "sapient-bimmi",
-					"goToTopLabel": "Go to Top",
-					"jcr:created": "Tue Mar 31 2020 06:42:21 GMT+0000",
-					"logoLinkTarget": "_blank",
-					"logoImagePath": "/content/dam/tetrapak/publicweb/gb/tetra-pak-two-liner.png",
-					"logoAlt": "Tetra Pak Logo1 test",
-					"jcr:lastModified": "Mon Dec 14 2020 07:32:15 GMT+0000",
-					"sling:resourceType": "publicweb/components/structure/footerconfiguration",
-					"logoLink": "/content/tetrapak/publicweb/lang-masters/en/home"
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"headerconfiguration": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:mixinTypes": [
+							"cq:ReplicationStatus"
+						],
+						"jcr:createdBy": "admin",
+						"loginLabel": "My Tetra Pak test",
+						"loginLink": "https://mypages.tetrapak.com/dashboard.html",
+						"marketSelectorDisabled": "false",
+						"jcr:lastModifiedBy": "sapient-bimmi",
+						"searchPage": "/content/tetrapak/publicweb/lang-masters/en/search",
+						"jcr:created": "Wed Mar 25 2020 13:22:51 GMT+0000",
+						"contactLink": "/content/tetrapak/publicweb/lang-masters/en/contact-us",
+						"contactText": "Contact Us",
+						"logoLinkTarget": "_self",
+						"logoImagePath": "/content/dam/tetrapak/publicweb/gb/tetra-pak-two-liner.png",
+						"marketTitle": "Choose Your Market",
+						"logoAlt": "Tetra Pak",
+						"jcr:lastModified": "Mon Dec 14 2020 07:38:42 GMT+0000",
+						"sling:resourceType": "publicweb/components/structure/headerconfiguration",
+						"solutionPage": "/content/tetrapak/publicweb/lang-masters/en/solutions",
+						"contactLinkTarget": "_self",
+						"logoLink": "/content/tetrapak/publicweb/lang-masters/en/home"
+					},
+					"footerconfiguration": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "sapient-bimmi",
+						"goToTopLabel": "Go to Top",
+						"jcr:created": "Tue Mar 31 2020 06:42:21 GMT+0000",
+						"logoLinkTarget": "_blank",
+						"logoImagePath": "/content/dam/tetrapak/publicweb/gb/tetra-pak-two-liner.png",
+						"logoAlt": "Tetra Pak Logo1 test",
+						"jcr:lastModified": "Mon Dec 14 2020 07:32:15 GMT+0000",
+						"sling:resourceType": "publicweb/components/structure/footerconfiguration",
+						"logoLink": "/content/tetrapak/publicweb/lang-masters/en/home"
+					},
+					"subscriptionformconf": {
+						"jcr:primaryType": "nt:unstructured",
+						"thankyouDescriptionText": "<p>You are now subscribed to our latest news and press releases.</p>\r\n",
+						"jcr:createdBy": "sapient-madhupriya",
+						"jcr:lastModifiedBy": "admin",
+						"legalInfoLink": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/legal-information",
+						"pressroomLink": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/news-room",
+						"jcr:created": "Wed Jul 15 2020 11:33:09 GMT+0000",
+						"heading": "Sign up to recieve our latest news",
+						"thankyouHeading": "Thank you for signing up",
+						"jcr:lastModified": "Thu Feb 04 2021 11:35:01 GMT+0530",
+						"descriptionText": "<p>We bring you the latest technology news and research insights, to give you inspiration within food processing. Sign up now with your email address.</p>\r\n",
+						"sling:resourceType": "publicweb/components/structure/formconfig/subscriptionformconfig",
+						"textIsRich": [
+							"true",
+							"true"
+						]
+					}
 				}
 			}
 		}
 	}
-}
 }
