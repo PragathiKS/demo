@@ -191,8 +191,8 @@ public class ManagePreferencesModel {
 	 */
 	public void setEmail() {
 		String idValue = request.getQueryString();
-		idValue = idValue.substring(idValue.indexOf('=') + 1);
 		if (Objects.nonNull(idValue) && StringUtils.isNotBlank(idValue)) {
+			idValue = idValue.substring(idValue.indexOf('=') + 1);
 			emailToCheck = encryptionService.decryptText(idValue);
 			if (emailToCheck.contains(PWConstants.AT_THE_RATE) && !PWConstants.STATUS_ERROR.equalsIgnoreCase(emailToCheck)) {
 				fetchData = true;
