@@ -1,10 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -21,17 +17,14 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.day.cq.dam.api.Asset;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
 import com.tetrapak.publicweb.core.constants.FormConstants;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.ManagePrefContentFragService;
+import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
@@ -39,9 +32,7 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
  * The Class ManagePreferencesModel.
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class ManagePreferencesModel extends FormModel {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ManagePreferencesModel.class);
+public class ManagePreferencesModel {
 
 	/** The resource. */
 	@Self
@@ -51,6 +42,9 @@ public class ManagePreferencesModel extends FormModel {
 	/** The cf service. */
 	@OSGiService
 	private ManagePrefContentFragService cfService;
+	
+	@OSGiService
+	private PardotService pardotService;
 
 	/** The request. */
 	@Self
@@ -86,6 +80,8 @@ public class ManagePreferencesModel extends FormModel {
 
 	/** The email to check. */
 	private String emailToCheck;
+	
+	private Boolean fetchData = false;
 
 	/**
 	 * @return the selectedCountry
@@ -190,10 +186,9 @@ public class ManagePreferencesModel extends FormModel {
 	public void setEmail() {
 		if (Objects.nonNull(request.getRequestParameter(FormConstants.EMAIL))
 				&& StringUtils.isNotBlank(request.getRequestParameter(FormConstants.EMAIL).getString())) {
+			fetchData = true;
 			emailToCheck = request.getRequestParameter(FormConstants.EMAIL).getString();
 			this.email = maskEmailAddress(request.getRequestParameter(FormConstants.EMAIL).getString(), '*');
-		} else {
-			this.email = maskEmailAddress("ojaswa.swarnkar@publicissapient.com", '*');
 		}
 	}
 
@@ -202,33 +197,56 @@ public class ManagePreferencesModel extends FormModel {
 	 */
 	@PostConstruct
 	protected void init() {
-		String countryFromJson = StringUtils.EMPTY;
-		String languageFromJson = StringUtils.EMPTY;
-		JsonObject aoi = new JsonObject();
-		JsonObject ct = new JsonObject();
-		setCountryOptions();
-		setLanguageOptions();
-		setConfigItems();
 		setEmail();
-		JsonObject myJson = readJsonFromDam();
-		for (Map.Entry<String, JsonElement> entry : myJson.entrySet()) {
-			if (entry.getKey().equalsIgnoreCase(emailToCheck)) {
-				JsonObject jsonData = entry.getValue().getAsJsonObject();
-				countryFromJson = jsonData.get("country").getAsString();
-				languageFromJson = jsonData.get("language").getAsString();
-				aoi = jsonData.get("areaofinterest").getAsJsonObject();
-				ct = jsonData.get("communicationtype").getAsJsonObject();
-				break;
+		if (fetchData) {
+			String countryFromJson = StringUtils.EMPTY;
+			String languageFromJson = StringUtils.EMPTY;
+			JsonObject aoi = null;
+			JsonObject ct = null;
+			setCountryOptions();
+			setLanguageOptions();
+			setConfigItems();
+			JsonObject myJson = pardotService.getManagePrefJson(emailToCheck);
+			if (Objects.nonNull(myJson)) {
+				if (myJson.has("country")) {
+					countryFromJson = myJson.get("country").getAsString();
+				}
+				if (myJson.has("language")) {
+					languageFromJson = myJson.get("language").getAsString();
+				}
+				if (myJson.has("areaofinterest")) {
+					aoi = myJson.get("areaofinterest").getAsJsonObject();
+				}
+				if (myJson.has("communicationtype")) {
+					ct = myJson.get("communicationtype").getAsJsonObject();
+				}
+				setSelectedCountry(getSpecificData(countryOptions, countryFromJson));
+				setSelectedLanguage(getSpecificData(languageOptions, languageFromJson));
+				setAreaOfInterest(getAoiCtData(aoi));
+				setTypesOfCommunication(getAoiCtData(ct));
 			}
 		}
-		List<DropdownOption> cfCountryData = cfService.getSpecificData(PWConstants.COUNTRY_CF,
-				resource.getResourceResolver(), countryFromJson);
-		setSelectedCountry(cfCountryData);
-		List<DropdownOption> cfLanguageData = cfService.getSpecificData(PWConstants.LANGUAGE_CF,
-				resource.getResourceResolver(), languageFromJson);
-		setSelectedLanguage(cfLanguageData);
-		setAreaOfInterest(getAoiCtData(aoi));
-		setTypesOfCommunication(getAoiCtData(ct));
+	}
+
+	/**
+	 * Gets the specific data.
+	 *
+	 * @param dataList the data list
+	 * @param toSearch the to search
+	 * @return the specific data
+	 */
+	private List<DropdownOption> getSpecificData(List<DropdownOption> dataList, String toSearch) {
+		List<DropdownOption> specList = new ArrayList<>();
+		for (DropdownOption options : dataList) {
+			if (options.getKey().equals(toSearch)) {
+				final DropdownOption optionList = new DropdownOption();
+		        optionList.setKey(options.getKey());
+		        optionList.setValue(options.getValue());
+		        specList.add(optionList);
+		        break;
+			}
+		}
+		return specList;
 	}
 
 	/**
@@ -278,7 +296,6 @@ public class ManagePreferencesModel extends FormModel {
 	 * @return the string
 	 */
 	private static String maskEmailAddress(String strEmail, char maskChar) {
-
 		String[] parts = strEmail.split("@");
 
 		String firstPartMask;
@@ -335,29 +352,5 @@ public class ManagePreferencesModel extends FormModel {
 		}
 
 		return strText.substring(0, start) + sbMaskString.toString() + strText.substring(start + maskLength);
-	}
-
-	/**
-	 * Read json from dam.
-	 *
-	 * @return the json object
-	 */
-	private JsonObject readJsonFromDam() {
-		Resource jsonRresource = resolver.getResource("/content/dam/tetrapak/publicweb/16147_Content.json");
-		Asset asset = jsonRresource.adaptTo(Asset.class);
-		Resource original = asset.getOriginal();
-		InputStream is = original.adaptTo(InputStream.class);
-
-		StringBuilder sb = new StringBuilder();
-		String line;
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-			while ((line = br.readLine()) != null) {
-				sb.append(line);
-			}
-		} catch (IOException e) {
-			LOGGER.error(e.getMessage());
-		}
-		return new JsonParser().parse(sb.toString()).getAsJsonObject();
 	}
 }

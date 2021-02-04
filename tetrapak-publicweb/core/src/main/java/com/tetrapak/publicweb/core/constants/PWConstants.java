@@ -254,10 +254,6 @@ public final class PWConstants {
     public static final int NUMBER_FOUR = 4;
     
     public static final int NUMBER_TWO = 2;
-    
-    public static final String LANGUAGE_CF = "languageCf";
-    
-    public static final String COUNTRY_CF = "countryCf";
 
     /** list exceptionCountriesList contains all countries which are exceptions for country code . **/
     public static final List<String> exceptionCountriesList = Collections.unmodifiableList(

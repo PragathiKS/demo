@@ -1,6 +1,12 @@
 package com.tetrapak.publicweb.core.services.impl;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -9,6 +15,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
@@ -19,6 +26,9 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.services.config.PardotServiceConfig;
 
@@ -117,4 +127,45 @@ public class PardotServiceImpl implements PardotService {
         return config.pardotSubscriptionFormURL();
     }
 
+	@Override
+	public String getManagePrefApiUrl() {
+		return config.pardotManagePrefApiURL();
+	}
+
+	@Override
+	public String getManagePrefApiCredentials() {
+		return config.pardotManagePrefApiCredentials();
+	}
+
+	@Override
+	public JsonObject getManagePrefJson(String emailToCheck) {
+		JsonObject jsonData = null;
+		LOGGER.debug("Inside Get getManagePrefJson method");
+        try {
+            final HttpClient httpClient = HttpClientBuilder.create().build();
+            HttpGet request = new HttpGet();
+            request.addHeader("Authorization", "Basic " + getManagePrefApiCredentials());
+            request.setURI(new URI(getManagePrefApiUrl()));
+            HttpResponse response = httpClient.execute(request);
+            InputStream ips = response.getEntity().getContent();
+            StringBuilder sb = new StringBuilder();
+            String line;
+            BufferedReader br = new BufferedReader(new InputStreamReader(ips, StandardCharsets.UTF_8));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            JsonObject data = new JsonParser().parse(sb.toString()).getAsJsonObject();
+            String jsonStr = data.get("jsonData").getAsString();
+            JsonObject exactJsonData = new JsonParser().parse(jsonStr).getAsJsonObject();
+            for (Map.Entry<String, JsonElement> entry : exactJsonData.entrySet()) {
+    			if (entry.getKey().equalsIgnoreCase(emailToCheck)) {
+    				jsonData = entry.getValue().getAsJsonObject();
+    				break;
+    			}
+            }
+        } catch (URISyntaxException | IOException e) {
+        	LOGGER.error("Error while fetching manage preference json data: {}", e.getMessage());
+        }
+        return jsonData;
+	}
 }
