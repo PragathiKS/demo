@@ -87,7 +87,7 @@ public class ManagePreferencesModel {
 	private String emailToCheck;
 	
 	/** The fetch data. */
-	private Boolean fetchData = false;
+	private Boolean fetchJsonData = false;
 
 	/**
 	 * @return the selectedCountry
@@ -195,7 +195,7 @@ public class ManagePreferencesModel {
 			idValue = idValue.substring(idValue.indexOf('=') + 1);
 			emailToCheck = encryptionService.decryptText(idValue);
 			if (emailToCheck.contains(PWConstants.AT_THE_RATE) && !PWConstants.STATUS_ERROR.equalsIgnoreCase(emailToCheck)) {
-				fetchData = true;
+				fetchJsonData = true;
 				this.email = maskEmailAddress(emailToCheck, '*');
 			}
 		}
@@ -206,15 +206,15 @@ public class ManagePreferencesModel {
 	 */
 	@PostConstruct
 	protected void init() {
+		setConfigItems();
 		setEmail();
-		if (fetchData) {
+		setCountryOptions();
+		setLanguageOptions();
+		if (Boolean.TRUE.equals(fetchJsonData)) {
 			String countryFromJson = StringUtils.EMPTY;
 			String languageFromJson = StringUtils.EMPTY;
 			JsonObject aoi = null;
 			JsonObject ct = null;
-			setCountryOptions();
-			setLanguageOptions();
-			setConfigItems();
 			JsonObject myJson = pardotService.getManagePrefJson(emailToCheck);
 			if (Objects.nonNull(myJson)) {
 				if (myJson.has("country")) {
