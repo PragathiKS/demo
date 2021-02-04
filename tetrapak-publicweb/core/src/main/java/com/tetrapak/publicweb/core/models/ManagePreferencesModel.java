@@ -193,7 +193,7 @@ public class ManagePreferencesModel {
 		if (Objects.nonNull(request.getRequestParameter(PWConstants.ID))
 				&& StringUtils.isNotBlank(request.getRequestParameter(PWConstants.ID).getString())) {
 			emailToCheck = encryptionService.decryptText(request.getRequestParameter(PWConstants.ID).getString());
-			if (emailToCheck.contains(PWConstants.AT_THE_RATE) && !"error".equalsIgnoreCase(emailToCheck)) {
+			if (emailToCheck.contains(PWConstants.AT_THE_RATE) && !PWConstants.STATUS_ERROR.equalsIgnoreCase(emailToCheck)) {
 				fetchData = true;
 				this.email = maskEmailAddress(emailToCheck, '*');
 			}
