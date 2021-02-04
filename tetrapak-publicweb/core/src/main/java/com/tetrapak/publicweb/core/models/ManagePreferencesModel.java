@@ -86,6 +86,7 @@ public class ManagePreferencesModel {
 	/** The email to check. */
 	private String emailToCheck;
 	
+	/** The fetch data. */
 	private Boolean fetchData = false;
 
 	/**
@@ -192,7 +193,7 @@ public class ManagePreferencesModel {
 		if (Objects.nonNull(request.getRequestParameter(PWConstants.ID))
 				&& StringUtils.isNotBlank(request.getRequestParameter(PWConstants.ID).getString())) {
 			emailToCheck = encryptionService.decryptText(request.getRequestParameter(PWConstants.ID).getString());
-			if (emailToCheck.contains(PWConstants.AT_THE_RATE) && !PWConstants.STATUS_ERROR.equalsIgnoreCase(emailToCheck)) {
+			if (emailToCheck.contains(PWConstants.AT_THE_RATE) && !"error".equalsIgnoreCase(emailToCheck)) {
 				fetchData = true;
 				this.email = maskEmailAddress(emailToCheck, '*');
 			}
@@ -264,9 +265,11 @@ public class ManagePreferencesModel {
 	 */
 	private String getAoiCtData(JsonObject obj) {
 		String finalData = StringUtils.EMPTY;
-		for (Map.Entry<String, JsonElement> entry : obj.entrySet()) {
-			if ("Y".equalsIgnoreCase(entry.getValue().getAsString())) {
-				finalData = finalData.concat(entry.getKey()) + ",";
+		if (Objects.nonNull(obj)) {
+			for (Map.Entry<String, JsonElement> entry : obj.entrySet()) {
+				if ("Y".equalsIgnoreCase(entry.getValue().getAsString())) {
+					finalData = finalData.concat(entry.getKey()) + ",";
+				}
 			}
 		}
 		if (finalData.endsWith(",")) {
