@@ -8,8 +8,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -19,6 +22,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -29,6 +36,7 @@ import org.slf4j.LoggerFactory;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.tetrapak.publicweb.core.beans.NewsEventBean;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.services.config.PardotServiceConfig;
 
@@ -168,4 +176,78 @@ public class PardotServiceImpl implements PardotService {
         }
         return jsonData;
 	}
+	
+    /**
+     * Gets the subscriber mail addresses.
+     *
+     * @param bean
+     *            the bean
+     * @return the subscriber mail addresses
+     */
+    public List<String> getSubscriberMailAddresses(NewsEventBean bean) {
+        LOGGER.debug("Inside Get SubscriberMailAddresses method");
+        List<String> mailAddresses = new ArrayList<>();
+        try {
+            final HttpClient httpClient = HttpClientBuilder.create().build();
+            HttpGet request = new HttpGet();
+            request.addHeader("Authorization", "Basic " + getPardotSubscriberDataApiCredentials());
+            request.setURI(new URI(getPardotSubscriberDataApiUrl()));
+            HttpResponse response = httpClient.execute(request);
+            InputStream ips = response.getEntity().getContent();
+            StringBuilder sb = new StringBuilder();
+            String line;
+            BufferedReader br = new BufferedReader(new InputStreamReader(ips, StandardCharsets.UTF_8));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            JSONObject json = new JSONObject(sb.toString());
+            JSONArray jsonArray = new JSONArray(json.getString("jsonData"));
+            JSONObject[] data = new JSONObject[jsonArray.length()];
+            for (int i = 0; i < jsonArray.length(); i++) {
+                data[i] = jsonArray.getJSONObject(i);
+                if (data[i].getString("locale").contains(bean.getLocale())
+                        && data[i].getString("mediaCommunication").equalsIgnoreCase("Y")) {
+                    if (!StringUtils.isBlank(data[i].getString("tags"))) {
+                        if (Objects.nonNull(bean.getPageTags())) {
+                            String[] preferences = data[i].getString("tags").split(",");
+                            for (String preference : preferences) {
+                                for (String tag : bean.getPageTags()) {
+                                    if (tag.toLowerCase().contains(preference)) {
+                                        mailAddresses.add(data[i].getString("emailId"));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        mailAddresses.add(data[i].getString("emailId"));
+                    }
+                }
+            }
+
+        } catch (URISyntaxException | IOException | JSONException | NullPointerException e) {
+            LOGGER.error("Error while fetching Subscriber data {}", e.getMessage());
+        }
+        return mailAddresses;
+    }
+
+    /**
+     * Gets the pardot subscriber data api url.
+     *
+     * @return the pardot subscriber data api url
+     */
+    @Override
+    public String getPardotSubscriberDataApiUrl() {
+        return config.pardotSubscribersDataApiURL();
+    }
+
+    /**
+     * To be removed later Gets the pardot subscriber data api credentials.
+     *
+     * @return the pardot subscriber data api credentials
+     */
+    @Override
+    public String getPardotSubscriberDataApiCredentials() {
+        return config.pardotSubscribersDataApiCredentials();
+    }
 }

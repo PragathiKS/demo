@@ -305,6 +305,15 @@ public final class PWConstants {
 
     /** The Constant LB_TRNSLATED_PAGES. */
     public static final String LB_TRNSLATED_PAGES = "lbtranslatedpages";
+    
+    /** The Constant SUBSCRIPTION_MAIL_TEMPLATE_PATH. */
+    public static final String SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH = "/etc/notification/email/publicweb/subscription";
+    
+    /** The Constant STATUS_SUCCESS. */
+    public static final String STATUS_SUCCESS = "success";
+    
+    /** The Constant STATUS_ERROR. */
+    public static final String STATUS_ERROR = "error";
 
     /**
      * Instantiates a new PW constants.
