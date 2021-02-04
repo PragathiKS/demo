@@ -1,6 +1,6 @@
 import ManagePreferences from './ManagePreferences';
 import $ from 'jquery';
-import managePreferencesTemplate from '../../../test-templates-hbs/managePreferences.hbs';
+import managePreferencesTemplate from '../../../test-templates-hbs/managepreferences.hbs';
 
 describe('ManagePreferences', function () {
   beforeEach(function () {
