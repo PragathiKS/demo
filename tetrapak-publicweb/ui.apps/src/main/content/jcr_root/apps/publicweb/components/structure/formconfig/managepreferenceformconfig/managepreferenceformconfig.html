@@ -1,0 +1,9 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+	<sly data-sly-use.model="com.tetrapak.publicweb.core.models.ManagePreferencesConfigModel">
+		Headline : ${model.headline}<br/>
+		Privacy policy : ${model.privacyPolicy @context='html'}<br/>
+		Intro text : ${model.introText @context='html'}<br/>
+		Unsubscribe intro text : ${model.unsubscribeIntroText @context='html'}<br/>
+	</sly>
+</sly>
