@@ -27,11 +27,11 @@ pipeline {
     environment {
         sonar_url = "https://sonarcloud.io"
         login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
-        author_url = "https://author-tetrapak-dev64a.adobecqms.net"
-        test_url_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/financials.html"
-        test_url_pw = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/home.html https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/solutions https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/insights https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/sustainability https://tetrapak-dev64a.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak"
-        test_url_pally_zap_cuhu = "https://tetrapak-dev64a.adobecqms.net/content/tetrapak/customerhubtools/global/en/dashboard.html"
-        test_url_pally_zap_pw = "https://tetrapak-dev64a.adobecqms.net/"
+        author_url = "https://author1westeurope.dev65.tetrapak.adobecqms.net"
+        test_url_cuhu = "https://mypages-dev.tetrapak.com/dashboard.html"
+        test_url_pw = "https://www-dev.tetrapak.com"
+        test_url_pally_zap_cuhu = "https://mypages-dev.tetrapak.com/dashboard.html"
+        test_url_pally_zap_pw = "https://www-dev.tetrapak.com"
         karmapath_cuhu = "${env.WORKSPACE}@2/tetrapak-customerhub/ui.dev/src/coverage"
         karmapath_pw = "${env.WORKSPACE}@2/tetrapak-publicweb/ui.dev/src/coverage"
         build_id_number = ""
@@ -98,8 +98,8 @@ pipeline {
             }
             steps {
                 script {
-                author_url = "https://author1.dev.tetrapak.adobecqms.net"
-                publish_url = "https://publish1.dev.tetrapak.adobecqms.net"                        
+                author_url = "https://author1westeurope.dev65.tetrapak.adobecqms.net"
+                publish_url = "https://publish1westeurope.dev65.tetrapak.adobecqms.net"                        
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username', passwordVariable: 'password']])
              {
                  devdeployment()
@@ -325,7 +325,7 @@ pipeline {
     def zaptest() {
                 echo "Starting Zap Test Run- ${appname}"
                 sh 'docker ps -a'
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+                sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
                 sleep 30
                 echo "Starting ZAP test Run on ${appname} Urls"
                 sh 'docker exec  zap zap-cli spider ${test_url_pally_zap_pw}'
@@ -339,29 +339,29 @@ pipeline {
 
     def sitespeedcuhu() {
                 echo "Starting Sitespeed-Desktop Test Run for ${appname}"
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_cuhu}" -b firefox --outputFolder sitespeed_desktop'
+                sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_cuhu}" -b firefox --outputFolder sitespeed_desktop'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-Desktop', reportTitles: ''])
 
                 echo "Starting Sitespeed-Mobile Test Run for ${appname}"
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_cuhu}" -b firefox --outputFolder sitespeed_mobile'
+                sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_cuhu}" -b firefox --outputFolder sitespeed_mobile'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-Mobile', reportTitles: ''])
 
                 echo "Starting Sitespeed-IPAD Test Run for ${appname}"
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" "${test_url_cuhu}" -b firefox --outputFolder sitespeed_ipad'
+                sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" "${test_url_cuhu}" -b firefox --outputFolder sitespeed_ipad'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-IPad', reportTitles: ''])
                         }
 
     def sitespeedpw() {
                 echo "Starting Sitespeed-Desktop Test Run for ${appname}"
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_pw}" -b firefox --outputFolder sitespeed_desktop'
+                sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_pw}" -b firefox --outputFolder sitespeed_desktop'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
 
                 echo "Starting Sitespeed-Mobile Test Run for ${appname}"
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_pw}" -b firefox --outputFolder sitespeed_mobile'
+                sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_pw}" -b firefox --outputFolder sitespeed_mobile'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Mobile', reportTitles: ''])
 
                 echo "Starting Sitespeed-IPAD Test Run for ${appname}"
-                sh 'docker run --add-host tetrapak-dev64a.dev.adobecqms.net:104.46.45.30 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" "${test_url_pw}" -b firefox --outputFolder sitespeed_ipad'
+                sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" "${test_url_pw}" -b firefox --outputFolder sitespeed_ipad'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-IPad', reportTitles: ''])
                         }                        
 
