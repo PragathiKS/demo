@@ -19,19 +19,19 @@
       "value": "French"
     }
   ],
-
+  "anchorId":"",
   "configItems":{
     "headline": "Manage Your Preferences",
     "introText": "rich text",
     "unsubscribeIntroText": "rich text",
     "privacyPolicy": "rich text"
   },
-  "email": "email",
-  "selectedCountry": { "key": "australia", "value": "Australia" },
-  "selectedLanguage": {
+  "email": "testing@gmail.com",
+  "selectedCountry": [{ "key": "australia", "value": "Australia" }],
+  "selectedLanguage": [{
     "key": "french",
     "value": "French"
-  },
-  "typesOfCommunication": "Marketing Communication,Press and Media Communication",
+  }],
+  "typesOfCommunication": "Marketing Communication, Press and Media Communication",
   "areaOfInterest": "Services, Packaging"
 }

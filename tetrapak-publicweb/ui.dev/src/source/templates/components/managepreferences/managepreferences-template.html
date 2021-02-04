@@ -1,24 +1,24 @@
 <sly data-sly-template.managepreferences_template="${@data, flag}">
-  <div class="pw-container" data-locator="ManagePreferencesForm" data-module="ManagePreferences">
+  <div id="${data.anchorId}" class="pw-container" data-locator="ManagePreferencesForm" data-module="ManagePreferences">
     <div class="pw-padding--regular pw-theme--grayscale-white pw-margin--regular"
-      auto_locator="subscriptionFormRightContainerStep1">
+    auto-locator="manageFormContainer">
       <form data-selected-communication="${data.typesOfCommunication}" data-selected-interest="${data.areaOfInterest}"
         class="pw-form pw-form-managePreferences" accept-charset="UTF-8" data-sf-api-servlet="${data.apiUrl}"
         data-sf-countryCode="${data.siteCountry}" data-sf-langCode="${data.siteLanguage}" autocomplete="off">
         <div class="tab-content-steps">
           <div class="row">
-            <div class="col-sm-12" auto_locator="subscriptionFormListContainerStep1">
+            <div class="col-sm-12">
               <div class="row no-gutters">
                 <div class="col-sm-12 main-heading">
                   ${data.configItems.headline}
                 </div>
                 <div class="col-md-12 col-lg-6 email">
                   <div class="heading-label">${'pw.form.managepreferences.isthisyou' @i18n}</div>
-                  <div class="email-input-box"><span>${data.email}</span></div>
+                  <div class="email-input-box"  auto-locator="manageFormEmail"><span>${data.email}</span></div>
                 </div>
                 <div class="col-sm-12 setting-update">
                   <div class="heading-label">${'pw.form.managepreferences.yoursettings' @i18n}</div>
-                  <div class="setting-update-input">
+                  <div auto-locator="manageFormSettingDescription" class="setting-update-input">
                     ${data.configItems.introText @ context='html'}
 
                   </div>
@@ -30,19 +30,20 @@
                   <div class="section-wrapper col-md-12 col-lg-3">
                     <div class="section-box padding-16">
                       <div class="selection-box-title">${'pw.form.managepreferences.countrylang' @i18n}</div>
-                      <div class="input-field-wrapper country-field-wrapper option-selection">
+                      <div auto-locator="manageFormCountrySelector" class="input-field-wrapper country-field-wrapper option-selection">
                         <div class="formfield country-field country"
                           data-country-name-label="${'pw.form.country' @i18n}">
                           <label class="country-value" for="country">${'pw.form.country' @
                             i18n}</label>
                           <div class="pw-form__dropdown dropdown text-left">
                             <button
+                              auto-locator="manageFormSelectButtonCountry"
                               class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                               type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <sly data-sly-test.countryValue="${data.selectedCountry.value}">
-                                <span class="js-pw-form__dropdown__country-text">${data.selectedCountry.value}</span>
+                              <sly data-sly-list.selectedCountryValue="${data.selectedCountry}">
+                                <span class="js-pw-form__dropdown__country-text">${selectedCountryValue.value}</span>
                               </sly>
-                              <sly data-sly-test.countryValue="${!data.selectedCountry.value}">
+                              <sly data-sly-test.selectedCountryValue="${!data.selectedCountry}">
                                 <span class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
                                   @ i18n}</span>
                               </sly>
@@ -62,17 +63,18 @@
 
                         </div>
                       </div>
-                      <div class="input-field-wrapper language-field-wrapper">
+                      <div auto-locator="manageFormLanguageSelector" class="input-field-wrapper language-field-wrapper">
                         <div class="formfield">
                           <label for="language">${'pw.form.managepreferences.prefferedlang' @i18n}</label>
                           <div class="pw-form__dropdown dropdown text-left">
                             <button
+                              auto-locator="manageFormSelectButtonLanguage"
                               class="btn dropdown-toggle js-pw-form__dropdown__toggle pw-form__dropdown__toggle text-left"
                               type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <sly data-sly-test.countryValue="${data.selectedLanguage.value}">
-                                <span class="js-pw-form__dropdown__language-text">${data.selectedLanguage.value}</span>
+                              <sly data-sly-list.selectedLanguageValue="${data.selectedLanguage}">
+                                <span class="js-pw-form__dropdown__language-text">${selectedLanguageValue.value}</span>
                               </sly>
-                              <sly data-sly-test.countryValue="${!data.selectedLanguage.value}">
+                              <sly data-sly-test.selectedLanguageValue="${!data.selectedLanguage}">
                                 <span class="js-pw-form__dropdown__language-text">${'pw.form.managepreferences.selectlang' @i18n}</span>
                               </sly>
                               <i class="icon icon-Arrow_Right_pw"></i></button>
@@ -101,10 +103,10 @@
                       <div name='communication-type-input' class="formfield input-group" data-input-value="false">
                         <div class='row no-gutters'>
                           <div class="input-field-wrapper col-lg-12 option-selection">
-                            <div class="checboxField">
-                              <label auto-locator="managePreferenceFormMarketingCommunicationText"
-                                class="checkbox-label typeOfCommunicationLabel" for="marketing-communication">
-                                <input auto-locator="managePreferenceFormMarketingCommunicationInput"
+                            <div class="checkbox-field">
+                              <label auto-locator="preferenceFormMarkCommText"
+                                class="checkbox-label" for="marketing-communication">
+                                <input auto-locator="preferenceFormMarkCommInput"
                                   id="marketing-communication"
                                   class="form-control tpatom-checkbox__input float-left  communication-type"
                                   type="checkbox" name="marketing-communication"
@@ -115,10 +117,10 @@
                           </div>
                           <div class="input-field-wrapper col-lg-12 option-selection">
 
-                            <div class="checboxField">
-                              <label auto-locator="managePreferenceFormPressMediaText"
-                                class="checkbox-label typeOfCommunicationLabel" for="pres-and-media-communication">
-                                <input auto-locator="managePreferenceFormPressMediaCommunicationTnput"
+                            <div class="checkbox-field">
+                              <label auto-locator="preferenceFormPressMediaText"
+                                class="checkbox-label" for="pres-and-media-communication">
+                                <input auto-locator="preferenceFormPressMediaInput"
                                   id="pres-and-media-communication"
                                   class="form-control tpatom-checkbox__input float-left  communication-type"
                                   type="checkbox" name="pres-and-media-communication"
@@ -130,10 +132,10 @@
 
                           <div class="input-field-wrapper col-lg-12 option-selection">
 
-                            <div class="checboxField">
-                              <label auto-locator="managePreferenceFormEventInvitationText"
-                                class="checkbox-label typeOfCommunicationLabel" for="event-invitation">
-                                <input auto-locator="managePreferenceFormEventInvitationInput" id="event-invitation"
+                            <div class="checkbox-field">
+                              <label auto-locator="preferenceFormEventInviteText"
+                                class="checkbox-label" for="event-invitation">
+                                <input auto-locator="preferenceFormEventInviteInput" id="event-invitation"
                                   class="form-control tpatom-checkbox__input float-left  communication-type"
                                   type="checkbox" name="event-invitation"
                                   value="${'pw.form.managepreferences.eventinvitation' @i18n, locale = 'en'}">
@@ -144,10 +146,10 @@
 
                           <div class="col-lg-12">
 
-                            <div class="checboxField">
-                              <label class="checkbox-label" auto-locator="managePreferenceFormUnsubscribeText"
+                            <div class="checkbox-field">
+                              <label class="checkbox-label" auto-locator="preferenceFormUnsubscribeText"
                                 for="unsubscribe-all">
-                                <input auto-locator="managePreferenceFormUnsubscribeInput" id="unsubscribe-all"
+                                <input auto-locator="preferenceFormUnsubscribeInput" id="unsubscribe-all"
                                   class="form-control tpatom-checkbox__input float-left communication-type"
                                   type="checkbox" name="unsubscribe"
                                   value="${'pw.form.managepreferences.unsubscribeall' @i18n, locale = 'en'}">
@@ -174,10 +176,10 @@
                       <div class="input-field-wrapper row no-gutters">
                         <div class='col-md-12 col-lg-6'>
                           <div class="option-selection">
-                            <div class="checboxField">
-                              <label class="checkbox-label" auto-locator="managePreferenceFormServicesText"
+                            <div class="checkbox-field">
+                              <label class="checkbox-label" auto-locator="preferenceFormServicesText"
                                 for="services">
-                                <input auto-locator="managePreferenceFormServicesInput" id="services"
+                                <input auto-locator="preferenceFormServicesInput" id="services"
                                   class="form-control tpatom-checkbox__input float-left interest-type"
                                   type="checkbox" name="services"
                                   value="${'pw.form.businessenq.services' @i18n, locale = 'en'}">
@@ -187,10 +189,10 @@
                           </div>
                           <div class="option-selection">
 
-                            <div class="checboxField">
-                              <label auto-locator="managePreferenceFormPackagingText"
-                                class="checkbox-label typeOfCommunicationLabel" for="packaging">
-                                <input auto-locator="managePreferenceFormPackagingTnput" id="packaging"
+                            <div class="checkbox-field">
+                              <label auto-locator="preferenceFormPackagingText"
+                                class="checkbox-label" for="packaging">
+                                <input auto-locator="preferenceFormPackagingInput" id="packaging"
                                   class="form-control tpatom-checkbox__input float-left interest-type"
                                   type="checkbox" name="packaging"
                                   value="${'pw.form.businessenq.packaging' @i18n, locale = 'en'}">
@@ -201,10 +203,10 @@
 
                           <div class="option-selection">
 
-                            <div class="checboxField">
-                              <label auto-locator="managePreferenceFormProcessingText"
-                                class="checkbox-label typeOfCommunicationLabel" for="processing">
-                                <input auto-locator="managePreferenceFormProcessingInput" id="processing"
+                            <div class="checkbox-field">
+                              <label auto-locator="preferenceFormProcessingText"
+                                class="checkbox-label" for="processing">
+                                <input auto-locator="preferenceFormProcessingInput" id="processing"
                                   class="form-control tpatom-checkbox__input float-left interest-type"
                                   type="checkbox" name="processing"
                                   value="${'pw.form.businessenq.processing' @i18n, locale = 'en'}">
@@ -216,10 +218,10 @@
                         </div>
                         <div class='col-md-12 col-lg-6'>
                           <div class="option-selection">
-                            <div class="checboxField">
-                              <label class="checkbox-label" auto-locator="managePreferenceFormInnovationText"
+                            <div class="checkbox-field">
+                              <label class="checkbox-label" auto-locator="preferenceFormInnovationText"
                                 for="innovation">
-                                <input auto-locator="managePreferenceFormInnovationInput" id="innovation"
+                                <input auto-locator="preferenceFormInnovationInput" id="innovation"
                                   class="form-control tpatom-checkbox__input float-left interest-type"
                                   type="checkbox" name="innovation"
                                   value="${'pw.form.managepreferences.innovation' @i18n, locale = 'en'}">
@@ -229,10 +231,10 @@
                           </div>
                           <div class="option-selection">
 
-                            <div class="checboxField">
-                              <label auto-locator="managePreferenceFormSustainabilityText"
-                                class="checkbox-label typeOfCommunicationLabel" for="sustainability">
-                                <input auto-locator="managePreferenceFormSustainabilityTnput" id="sustainability"
+                            <div class="checkbox-field">
+                              <label auto-locator="preferenceFormSustainabilityText"
+                                class="checkbox-label" for="sustainability">
+                                <input auto-locator="preferenceFormSustainabilityInput" id="sustainability"
                                   class="form-control tpatom-checkbox__input float-left interest-type"
                                   type="checkbox" name="sustainability"
                                   value="${'pw.form.contactus.sustainability' @i18n, locale = 'en'}">
@@ -243,10 +245,10 @@
 
                           <div class="option-selection">
 
-                            <div class="checboxField">
-                              <label auto-locator="managePreferenceFormEndtoEndSolutionText"
-                                class="checkbox-label typeOfCommunicationLabel" for="end-to-end-solutions">
-                                <input auto-locator="managePreferenceFormEndtoEndSolutionInput"
+                            <div class="checkbox-field">
+                              <label auto-locator="preferenceFormEndtoEndSolText"
+                                class="checkbox-label" for="end-to-end-solutions">
+                                <input auto-locator="preferenceFormEndtoEndSolInput"
                                   id="end-to-end-solutions"
                                   class="form-control tpatom-checkbox__input float-left interest-type"
                                   type="checkbox" name="end-to-end-solutions"
@@ -274,12 +276,12 @@
                   <div class="unsubscribe-header heading-label">
                     ${'pw.form.managepreferences.unsubscribeintrotext' @i18n}
                   </div>
-                  <div class="unsubscribe-description">
+                  <div auto-locator="preferenceFormUnSubscribeDescription" class="unsubscribe-description">
                     ${data.configItems.unsubscribeIntroText @ context='html'}
                   </div>
                   <div name="consent-checkbox" class="consent-checkbox formfield input-group" data-input-value="false">
 
-                    <div class="checboxField">
+                    <div class="checkbox-field">
                       <label class="checkbox-label consentlabel" for="consentcheckbox">
                         <input id="consentcheckbox" class="form-control tpatom-checkbox__input float-left"
                           type="checkbox" name="consent" required>
@@ -291,7 +293,7 @@
                 </div>
               </div>
               <!-- privacy policy -->
-              <div class="privacy-policy" auto_locator="managePreferencesPolicyText">
+              <div class="privacy-policy" auto-locator="managePreferencesPolicyText">
                 ${data.configItems.privacyPolicy @ context='html'}
               </div>
 
@@ -299,14 +301,14 @@
             </div>
           </div>
           <!-- save preferences button -->
-          <div class="row no-gutters savePreferenceButton button-group">
+          <div class="row no-gutters save-preference-button button-group">
             <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-              data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.managepreferences.save', btnTarget='#sf-step-final', btnType='button', autoLocator='managePreferenceFormSavePreferenceStep'}" />
+              data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.managepreferences.save', btnTarget='#sf-step-final', btnType='button', autoLocator='preferenceFormSavePreferenceStep'}" />
           </div>
           <!-- unsubscribe button -->
-          <div class="row no-gutters unsubscribeButton button-group">
+          <div class="row no-gutters unsubscribe-button button-group">
             <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-              data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.managepreferences.unsubscribebtn', btnTarget='#sf-step-final', btnType='button', customClasses='previewLinkBtn', autoLocator='managePreferenceFormUnsubscribeStep'}" />
+              data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.managepreferences.unsubscribebtn', btnTarget='#sf-step-final', btnType='button', customClasses='previewLinkBtn', autoLocator='preferenceFormUnsubscribeStep'}" />
           </div>
         </div>
       </form>

@@ -8,10 +8,15 @@ class ManagePreferences {
   cache = {};
   initCache() {
     // change to submit type
-    this.cache.$submitBtn = $('form.pw-form-managePreferences .savePreferenceButton button[type="button"]', this.root);
+    this.cache.$submitBtn = $('form.pw-form-managePreferences .save-preference-button button[type="button"]', this.root);
     // change to submit type
-    this.cache.$unsubscribeBtn = $('form.pw-form-managePreferences .unsubscribeButton button[type="button"]', this.root);
+    this.cache.$unsubscribeBtn = $('form.pw-form-managePreferences .unsubscribe-button button[type="button"]', this.root);
     this.cache.$unsubscribeCheckbox = $('#unsubscribe-all', this.root);
+    this.cache.$inputFieldWrapper = $('.input-field-wrapper',this.root);
+    this.cache.$dropdownToggle = $('.dropdown-toggle',this.root);
+    this.cache.$unsubscribeBox = $('.unsubscribe-box',this.root);
+    this.cache.$savePreferenceButton = $('.save-preference-button',this.root);
+    this.cache.$unsubscribeButton = $('.unsubscribe-button',this.root);
     this.cache.communicationTypes = this.root.find('.communication-type');
     this.cache.interestType = this.root.find('.interest-type');
     this.cache.$dropItem = $('.country-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
@@ -25,6 +30,9 @@ class ManagePreferences {
     };
   }
 
+  /**
+   * Select area of interest
+  */
   selectAreaOfInterestHandler = () => {
     const {requestPayload,interestType} = this.cache;
     requestPayload['area-of-interest'] = [];
@@ -35,6 +43,9 @@ class ManagePreferences {
     });
   }
 
+  /**
+   * Select type of communication
+  */
   selectCommunicationHandler = () => {
     const {requestPayload,communicationTypes} = this.cache;
     requestPayload['types-communication'] = [];
@@ -45,6 +56,10 @@ class ManagePreferences {
     });
   }
 
+  /**
+   * check form values
+   * @param {domObject} inputGroup input
+  */
   checkValues = (inputGroup) => {
     const { requestPayload } = this.cache;
     if(inputGroup.attr('name') === 'communication-type-input' && requestPayload['types-communication'].length > 0){
@@ -55,6 +70,9 @@ class ManagePreferences {
     }
   }
 
+  /**
+   * set default checkbox values
+  */
   setDefaultCheckboxValue = () => {
     const selectedFormData = $('form.pw-form-managePreferences', this.root);
     let selectedCommunication = selectedFormData.data('selected-communication');
@@ -78,8 +96,12 @@ class ManagePreferences {
 
   }
 
+  /**
+   * function to handle unsubscribe button
+   * @param {domObject} params params
+  */
   unsubscribeHandler = (params) => {
-    const self = this;
+    const { $inputFieldWrapper,$dropdownToggle,$unsubscribeBox,$savePreferenceButton,$unsubscribeButton } = this.cache;
     $('.form-group, .formfield',this.root).removeClass('field-error');
     if(params.prop('checked')){
       $('form.pw-form-managePreferences input[type="checkbox"]', this.root).not('#consentcheckbox,#unsubscribe-all').each(function(){
@@ -89,22 +111,22 @@ class ManagePreferences {
         $this.attr('disabled',true);
         $this.closest('label').find('.tpatom-checkbox__icon').addClass('disable-checkbox');
       });
-      $('.input-field-wrapper',this.root).addClass('disable-input');
-      $('.dropdown-toggle',self.root).addClass('disabled button-disabled');
-      $('.unsubscribe-box',self.root).addClass('show');
-      $('.savePreferenceButton',self.root).addClass('hide');
-      $('.unsubscribeButton',self.root).addClass('show');
+      $inputFieldWrapper.addClass('disable-input');
+      $dropdownToggle.addClass('disabled button-disabled');
+      $unsubscribeBox.addClass('show');
+      $savePreferenceButton.addClass('hide');
+      $unsubscribeButton.addClass('show');
     } else {
       $('form.pw-form-managePreferences input[type="checkbox"]', this.root).not('#consentcheckbox,#unsubscribe-all').each(function(){
         const $this = $(this);
         $this.removeAttr('disabled');
         $this.closest('label').find('.tpatom-checkbox__icon').removeClass('disable-checkbox');
       });
-      $('.input-field-wrapper',this.root).removeClass('disable-input');
-      $('.dropdown-toggle',self.root).removeClass('disabled button-disabled');
-      $('.unsubscribe-box',self.root).removeClass('show');
-      $('.savePreferenceButton',self.root).removeClass('hide');
-      $('.unsubscribeButton',self.root).removeClass('show');
+      $inputFieldWrapper.removeClass('disable-input');
+      $dropdownToggle.removeClass('disabled button-disabled');
+      $unsubscribeBox.removeClass('show');
+      $savePreferenceButton.removeClass('hide');
+      $unsubscribeButton.removeClass('show');
     }
   }
 
@@ -138,9 +160,7 @@ class ManagePreferences {
         }
       });
 
-      if (isvalid) {
-        // submit form
-      }
+      return isvalid;
     });
 
     $unsubscribeBtn.click(function(e){
@@ -158,10 +178,7 @@ class ManagePreferences {
           $(this).closest('.form-group, .formfield').removeClass('field-error');
         }
       });
-
-      if (isvalid) {
-        // submit form
-      }
+      return isvalid;
     });
 
     $dropItem.click(function (e) {
@@ -171,7 +188,6 @@ class ManagePreferences {
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
       requestPayload['country'] = country;
-      // self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload['country'];
       requestPayload['countryTitle'] = countryTitle;
     });
 
@@ -182,7 +198,6 @@ class ManagePreferences {
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(languageTitle);
       requestPayload['language'] = languageKey;
-      // self.restObj2[self.cache.$positionField.data('position-name-label')] = positionTitle;
     });
 
   }
