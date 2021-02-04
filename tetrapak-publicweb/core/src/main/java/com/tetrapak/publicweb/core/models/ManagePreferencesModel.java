@@ -21,8 +21,8 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
-import com.tetrapak.publicweb.core.constants.FormConstants;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.DataEncryptionService;
 import com.tetrapak.publicweb.core.services.ManagePrefContentFragService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
@@ -45,6 +45,10 @@ public class ManagePreferencesModel {
 	
 	@OSGiService
 	private PardotService pardotService;
+	
+	/** The encryption service. */
+	@OSGiService
+	private DataEncryptionService encryptionService;
 
 	/** The request. */
 	@Self
@@ -184,11 +188,13 @@ public class ManagePreferencesModel {
 	 * Sets the email.
 	 */
 	public void setEmail() {
-		if (Objects.nonNull(request.getRequestParameter(FormConstants.EMAIL))
-				&& StringUtils.isNotBlank(request.getRequestParameter(FormConstants.EMAIL).getString())) {
-			fetchData = true;
-			emailToCheck = request.getRequestParameter(FormConstants.EMAIL).getString();
-			this.email = maskEmailAddress(request.getRequestParameter(FormConstants.EMAIL).getString(), '*');
+		if (Objects.nonNull(request.getRequestParameter(PWConstants.ID))
+				&& StringUtils.isNotBlank(request.getRequestParameter(PWConstants.ID).getString())) {
+			emailToCheck = encryptionService.decryptText(request.getRequestParameter(PWConstants.ID).getString());
+			if (emailToCheck.contains(PWConstants.AT_THE_RATE) && !PWConstants.STATUS_ERROR.equalsIgnoreCase(emailToCheck)) {
+				fetchData = true;
+				this.email = maskEmailAddress(emailToCheck, '*');
+			}
 		}
 	}
 
@@ -296,7 +302,7 @@ public class ManagePreferencesModel {
 	 * @return the string
 	 */
 	private static String maskEmailAddress(String strEmail, char maskChar) {
-		String[] parts = strEmail.split("@");
+		String[] parts = strEmail.split(PWConstants.AT_THE_RATE);
 
 		String firstPartMask;
 
@@ -314,7 +320,7 @@ public class ManagePreferencesModel {
 		}
 		secondPartMask = secondPartMask + "." + parts[1].split("\\.")[1];
 
-		return firstPartMask + "@" + secondPartMask;
+		return firstPartMask + PWConstants.AT_THE_RATE + secondPartMask;
 	}
 
 	/**
