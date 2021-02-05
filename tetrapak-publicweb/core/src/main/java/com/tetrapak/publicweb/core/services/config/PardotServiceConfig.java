@@ -32,4 +32,47 @@ public @interface PardotServiceConfig {
             type = AttributeType.STRING)
     String pardotSubscriptionFormURL();
 
+    /**
+     * Pardot manage pref api URL.
+     *
+     * @return the string
+     */
+    @AttributeDefinition(
+            name = "Pardot Manage Preference API URL",
+            description = "Pardot Manage Preference API URL",
+            type = AttributeType.STRING)
+    String pardotManagePrefApiURL();
+    
+    /**
+     * Pardot manage pref api api credentials.
+     *
+     * @return the string
+     */
+    @AttributeDefinition(
+            name = "Pardot Manage Preference API credentials",
+            description = "Pardot Manage Preference API credentials",
+            type = AttributeType.STRING)
+    String pardotManagePrefApiCredentials();
+	
+	/**
+    * Pardot subscribers data api URL.
+    *
+    * @return the string
+    */
+    @AttributeDefinition(
+    		name = "Pardot Subscribers Data API URL",
+    		description = "Pardot Subscribers Data API URL",
+    		type = AttributeType.STRING)
+    String pardotSubscribersDataApiURL();
+
+    /**
+    * Pardot subscribers data api credentials.
+    *
+    * @return the string
+    */
+    @AttributeDefinition(
+    		name = "Pardot Subscribers Data API credentials",
+    		description = "Pardot Subscribers Data API credentials",
+    		type = AttributeType.STRING)
+    String pardotSubscribersDataApiCredentials();
 }

@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
-    jcr:title="Subscription form configuration"
+    jcr:title="Manage Preference form configuration"
     sling:resourceType="cq/gui/components/authoring/dialog">
     <content
         jcr:primaryType="nt:unstructured"
         sling:resourceType="granite/ui/components/coral/foundation/tabs">
         <items jcr:primaryType="nt:unstructured">
-            <subscriptionform
+            <managepreference
                 jcr:primaryType="nt:unstructured"
-                jcr:title="Subscription form"
+                jcr:title="Manage Preference"
                 sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                 <items jcr:primaryType="nt:unstructured">
                     <column
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <heading
+                            <headline
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="Suggested to use characters less than recommended Limit: 37 chars considering translations"
-                                fieldLabel="Heading"
-                                name="./heading"
-                                value="Sign up to recieve our latest news"/>
-                            <summarytext
+                                fieldLabel="Headline"
+                                name="./headline"/>
+                            <introtext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                 fieldDescription="Suggested to use characters less than recommended Limit: 260 chars considering translations"
-                                fieldLabel="Body Text"
-                                name="./descriptionText"
+                                fieldLabel="Your Settings Intro Text"
+                                name="./introText"
                                 useFixedInlineToolbar="{Boolean}true">
                                 <rtePlugins jcr:primaryType="nt:unstructured">
                                     <format
@@ -51,53 +50,13 @@
                                             toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
                                     </cui>
                                 </uiSettings>
-                            </summarytext>
-                            <pressroomLink
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Press room page path"
-                                fieldLabel="Press Room Link"
-                                name="./pressroomLink"
-                                rootPath="/content/tetrapak/publicweb"/>
-                            <legalInfoLink
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Legal information page path"
-                                fieldLabel="Legal Information Link"
-                                name="./legalInfoLink"
-                                rootPath="/content/tetrapak/publicweb"/>
-                            <managePreferenceLink
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Manage preference page path"
-                                fieldLabel="Manage Preference Link"
-                                name="./managePreferenceLink"
-                                rootPath="/content/tetrapak/publicweb"/>
-                        </items>
-                    </column>
-                </items>
-            </subscriptionform>
-            <thankyou
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Thank you"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <heading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Suggested to use characters less than recommended Limit: 37 chars considering translations"
-                                fieldLabel="Heading"
-                                name="./thankyouHeading"/>
-                            <summarytext
+                            </introtext>
+                            <privacypolicy
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                 fieldDescription="Suggested to use characters less than recommended Limit: 260 chars considering translations"
-                                fieldLabel="Body Text"
-                                name="./thankyouDescriptionText"
+                                fieldLabel="Privacy Policy"
+                                name="./privacyPolicy"
                                 useFixedInlineToolbar="{Boolean}true">
                                 <rtePlugins jcr:primaryType="nt:unstructured">
                                     <format
@@ -120,11 +79,40 @@
                                             toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
                                     </cui>
                                 </uiSettings>
-                            </summarytext>
+                            </privacypolicy>
+                            <unsubscribeintrotext
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                fieldDescription="Suggested to use characters less than recommended Limit: 260 chars considering translations"
+                                fieldLabel="Unsubscribe Intro Text"
+                                name="./unsubscribeIntroText"
+                                useFixedInlineToolbar="{Boolean}true">
+                                <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <links
+                                        jcr:primaryType="nt:unstructured"
+                                        features="modifylink,unlink"/>
+                                    <justify
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-"/>
+                                </rtePlugins>
+                                <uiSettings jcr:primaryType="nt:unstructured">
+                                    <cui jcr:primaryType="nt:unstructured">
+                                        <dialogFullScreen
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
+                                    </cui>
+                                </uiSettings>
+                            </unsubscribeintrotext>
                         </items>
                     </column>
                 </items>
-            </thankyou>
+            </managepreference>
         </items>
     </content>
 </jcr:root>

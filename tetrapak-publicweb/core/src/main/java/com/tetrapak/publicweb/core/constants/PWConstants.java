@@ -262,7 +262,16 @@ public final class PWConstants {
 
     /** The Constant SE_COUNTRY_CODE for Sweden. */
     public static final String SE_COUNTRY_CODE = "se";
+    
+    /** The Constant NUMBER_FOUR. */
+    public static final int NUMBER_FOUR = 4;
+    
+    /** The Constant NUMBER_TWO. */
+    public static final int NUMBER_TWO = 2;
 
+    /** The Constant AT_THE_RATE. */
+    public static final String AT_THE_RATE = "@";
+    
     /** list exceptionCountriesList contains all countries which are exceptions for country code . **/
     public static final List<String> exceptionCountriesList = Collections.unmodifiableList(
             Arrays.asList(MAGHREB_COUNTRY_CODE, CAC_COUNTRY_CODE, DE_COUNTRY_CODE, RU_COUNTRY_CODE, SE_COUNTRY_CODE));
@@ -296,6 +305,15 @@ public final class PWConstants {
 
     /** The Constant LB_TRNSLATED_PAGES. */
     public static final String LB_TRNSLATED_PAGES = "lbtranslatedpages";
+    
+    /** The Constant SUBSCRIPTION_MAIL_TEMPLATE_PATH. */
+    public static final String SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH = "/etc/notification/email/publicweb/subscription";
+    
+    /** The Constant STATUS_SUCCESS. */
+    public static final String STATUS_SUCCESS = "success";
+    
+    /** The Constant STATUS_ERROR. */
+    public static final String STATUS_ERROR = "error";
 
     /**
      * Instantiates a new PW constants.

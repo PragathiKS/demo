@@ -1,0 +1,37 @@
+{
+  "countryOptions": [
+    {
+      "key": "denmark",
+      "value": "Denmark"
+    },
+    {
+      "key": "australia",
+      "value": "Australia"
+    }
+  ],
+  "languageOptions": [
+    {
+      "key": "english",
+      "value": "English"
+    },
+    {
+      "key": "french",
+      "value": "French"
+    }
+  ],
+  "anchorId":"",
+  "configItems":{
+    "headline": "Manage Your Preferences",
+    "introText": "rich text",
+    "unsubscribeIntroText": "rich text",
+    "privacyPolicy": "rich text"
+  },
+  "email": "testing@gmail.com",
+  "selectedCountry": [{ "key": "australia", "value": "Australia" }],
+  "selectedLanguage": [{
+    "key": "french",
+    "value": "French"
+  }],
+  "typesOfCommunication": "Marketing Communication, Press and Media Communication",
+  "areaOfInterest": "Services, Packaging"
+}

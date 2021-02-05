@@ -1,0 +1,169 @@
+From: noreply@communications.tetrapak.com
+Subject: ${title}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Email Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        .email-logo,.footer-logo {
+            text-align: left;
+            width: 100%;
+            padding-bottom: 24px;
+        }
+        .footer-logo {
+            padding-bottom: 0;
+        }
+
+        .mail-wrapper {
+            padding: 0 24px;
+        }
+
+        .logo-size {
+            width: 138px;
+            height: 21px;
+        }
+        .banner-image {
+            width: 100%;
+        }
+        .hover-class {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .footer-wrapper {
+             display:none;
+         }
+         .test{
+            display:inline !important;
+         }
+
+        .header-wrapper {
+            text-align:center;
+         }
+
+        @media screen and (min-width: 1024px) {
+            .field {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .mail-wrapper {
+                padding: 48px;
+            }
+
+            .email-logo {
+                padding-bottom: 48px;
+            }
+
+            .logo-size {
+                width: 158px;
+                height: 24px;
+            }
+
+            .footer-wrapper {
+                display:block;
+            }
+
+
+            .header-wrapper {
+                text-align:left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+   <table class="mainTable" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff"
+            style="color:#4A4A4A; min-width:360px">
+        <tbody>
+            <tr>
+                <td>
+                    <table class="header-wrapper" width="331px" style="margin-bottom:24px;" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td>
+                                <img src="${headerLogo}?wid=156&fmt=jpg&resMode=sharp2&qlt=85,0"
+                                            style="outline:none; border:none;" alt=" Tetrapak logo" />
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="100%" style="margin:0 auto;" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td>
+                                <img src="${bannerImage}?wid=920" style="width:100%!important;padding-bottom:24px;" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table style="margin:0 24px;">
+                        <tr>
+                            <td style="margin:0;">
+                                <h5 style="font-size: 18px;font-weight: 700;line-height: 24px;margin-bottom: 16px;margin:0px!important;">${title}</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="margin:0 0 16px 0">${description}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;margin-bottom:16px;">
+                             <a href="${pageLink}"><span style="display:inline-block;color:#023f88;text-decoration:none;">Lesen Sie hier die vollständige Version </span></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="600px" cellpadding="0" cellspacing="0" border="0" style="margin: 0 24px;">
+                            <tr>
+                                <td>
+                                    <p style="margin-bottom:24px;">Alle Nachrichten und Pressemitteilungen werden hier veröffentlicht ${newsRoomLink}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p style="margin-bottom:24px;">Mit freundlichen Grüßen Tetra Pak</p>
+                                </td>
+                            </tr>
+                        </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="footer-wrapper" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#023F88;padding:24px;color:#ffffff;overflow:hidden;">
+                            <tr>
+                                <td width="20%">
+                                    <img class="logo-size" src="${footerLogo}?wid=156&fmt=jpg&resMode=sharp2&qlt=85,0" />
+                                </td>
+                                <td width="80%">
+                                    <table style="width:100%;text-align:center;margin:0 auto;" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td>
+                                                <a href="${managePreferenceLink}" class="hover-class" style="display:inline;">Einstellungen verwalten</a>&nbsp;&nbsp;
+                                                <a href="${legalInformationLink}" class="hover-class" style="display:inline;">Rechtsinformation</a>
+                                                </td>
+
+
+
+                                        </tr>
+                                    </table>
+                                </td>
+                             </tr>
+                        </table>
+    
+</body>
+
+</html>

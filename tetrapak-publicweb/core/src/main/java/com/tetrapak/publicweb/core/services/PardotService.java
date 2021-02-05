@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.services;
 
+import java.util.List;
 import java.util.Map;
+import com.google.gson.JsonObject;
+import com.tetrapak.publicweb.core.beans.NewsEventBean;
 
 /**
  * API GEE Service class.
@@ -38,5 +41,49 @@ public interface PardotService {
      *            the parameter map
      */
     void submitPardotPostRespose(Map<String, String[]> parameterMap);
-
+  
+    /**
+     * Gets the manage pref api url.
+     *
+     * @return the manage pref api url
+     */
+    String getManagePrefApiUrl();
+   
+    /**
+     * Gets the manage pref api credentials.
+     *
+     * @return the manage pref api credentials
+     */
+    String getManagePrefApiCredentials();
+    
+    /**
+     * Gets the manage pref json.
+     *
+     * @return the manage pref json
+     */
+	JsonObject getManagePrefJson(String emailToCheck);
+    
+    /**
+     * Gets the pardot subscriber data api url.
+     *
+     * @return the pardot subscriber data api url
+     */
+    String getPardotSubscriberDataApiUrl();
+    
+    /**
+     * Gets the pardot subscriber data api credentials.
+     *
+     * @return the pardot subscriber data api credentials
+     */
+    String getPardotSubscriberDataApiCredentials();
+    
+    
+    /**
+     * Gets the subscriber mail addresses.
+     *
+     * @param bean
+     *            the bean
+     * @return the subscriber mail addresses
+     */
+    List<String> getSubscriberMailAddresses(NewsEventBean bean);
 }
