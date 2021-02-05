@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.event.jobs.JobManager;
 import org.osgi.service.component.annotations.Component;
@@ -71,8 +72,14 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                     Map<String, String> emailParams = new HashMap<>();
                     emailParams.put("title", newsEventbean.getTitle());
                     emailParams.put("description", newsEventbean.getDescription());
-                    emailParams.put("bannerImage",
-                            GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeroImage(), mediaService));
+                    if (StringUtils.isEmpty(newsEventbean.getHeroImage())) {
+                        emailParams.put("bannerClass", "banner-hide");
+                        emailParams.put("bannerImage", "#");
+                    } else {
+                        emailParams.put("bannerClass", "banner-show");
+                        emailParams.put("bannerImage",
+                                GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeroImage(), mediaService));
+                    }
                     emailParams.put("headerLogo",
                             GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
                     emailParams.put("footerLogo",
