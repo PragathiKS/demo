@@ -1,0 +1,22 @@
+{
+   "jcr:primaryType":"cq:Page",
+   "jcr:content":{
+      "jcr:primaryType":"cq:PageContent",
+      "root":{
+         "jcr:primaryType":"nt:unstructured",
+         "sling:resourceType":"wcm/foundation/components/responsivegrid",
+         "responsivegrid":{
+            "jcr:primaryType":"nt:unstructured",
+            "sling:resourceType":"wcm/foundation/components/responsivegrid",
+            "managepreferenceform":{
+               "jcr:primaryType":"nt:unstructured",
+               "headline":"Headline Test",
+               "unsubscribeIntroText":"<p>Unsubscribe intro text test</p>\r\n",
+               "introText":"<p>Your Settings Intro Text Test</p>\r\n",
+               "sling:resourceType":"publicweb/components/structure/formconfig/managepreferenceformconfig",
+               "privacyPolicy":"<p>Privacy Policy test</p>\r\n"
+            }
+         }
+      }
+   }
+}
