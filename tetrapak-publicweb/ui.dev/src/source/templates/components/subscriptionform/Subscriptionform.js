@@ -17,6 +17,7 @@ class Subscriptionform {
     this.cache.$inputEmail = $('form.pw-form-subscriptionForm  input[type="email"]', this.root);
     this.cache.communicationTypes = this.root.find('.communication-type');
     this.cache.communicationError = this.root.find('.communication-error');
+    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
 
     this.cache.requestPayload = {
       'emailSubscription': '',
@@ -84,7 +85,7 @@ class Subscriptionform {
 
 
   bindEvents() {
-    const { requestPayload, $submitBtn } = this.cache;
+    const { requestPayload, $submitBtn, $dropItem } = this.cache;
     const self = this;
     $submitBtn.click(function (e) {
       e.preventDefault();
@@ -113,7 +114,7 @@ class Subscriptionform {
           if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
             requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
           }
-          if (($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent' && !$(this).is(':checked')) || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
+          if (($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent' && !$(this).is(':checked')) || ($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
             const erLbl = $(`#sf-step-1 label`)[0].textContent;
@@ -143,6 +144,18 @@ class Subscriptionform {
       }
     });
 
+    $dropItem.click(function (e) {
+      e.preventDefault();
+      const countryTitle = $(this).data('countrytitle');
+      const country = $(this).data('country');
+      const parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle span', parentDrop).text(countryTitle);
+      $('input', parentDrop).val(countryTitle);
+      requestPayload['country'] = country;
+      requestPayload['countryTitle'] = countryTitle;
+      $dropItem.removeClass('active');
+      $(this).addClass('active');
+    });
 
   }
   init() {
