@@ -132,8 +132,8 @@ public class SectionMenuModel {
         final Iterator<Page> pages = page.listChildren();
         while (pages.hasNext()) {
             final Page nextPage = pages.next();
-            if (!nextPage.isHideInNav()) {
-                final SectionMenuBean sectionMenuBean = new SectionMenuBean();
+            final SectionMenuBean sectionMenuBean = new SectionMenuBean();
+            if (nextPage.getContentResource() != null  && !nextPage.isHideInNav()) {               
                 sectionMenuBean.setLinkText(NavigationUtil.getNavigationTitle(nextPage));
                 if(request.getPathInfo().equalsIgnoreCase(nextPage.getPath()+PWConstants.HTML) 
                         || request.getPathInfo().equalsIgnoreCase(nextPage.getPath())
