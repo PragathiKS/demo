@@ -39,5 +39,9 @@ describe('Subscriptionform', function () {
     done();
   });
 
+  it('Should update payload with dropItem changes', function() {
+    document.getElementById('ddtest').click();
+    expect(this.subscription.cache.requestPayload['country']).to.equal('Albania');
+  });
 
 });

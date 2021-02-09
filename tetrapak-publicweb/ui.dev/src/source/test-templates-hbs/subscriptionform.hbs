@@ -32,6 +32,30 @@
                       <div class="errorMsg">Please enter your email in this format: example@example.com</div>
                     </div>
                   </div>
+                  <div class="row no-gutter">
+                          <div class="col-md-12 col-lg-6">
+                            <div class="formfield country-field country" data-country-name-label="Country">
+                                <label for="country" auto_locator="subsFormCountryHelpText">Country/Location</label>
+                                <div class="pw-form__dropdown dropdown text-left">
+                                    <button class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" auto_locator="subsFormCountrySelectDropdown" aria-expanded="false">
+                                        <span class="js-pw-form__dropdown__country-text">Select Country/Location</span>
+                                        <i class="icon icon-Arrow_Right_pw"></i></button>
+
+                                    <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select">
+                                        <a href="#" class="dropdown-item " id='ddtest' data-country="albania" data-countrytitle="Albania">
+                                            Albania
+                                        </a>
+
+                                        <a href="#" class="dropdown-item " data-country="algeria" data-countrytitle="Algeria">
+                                            Algeria
+                                        </a>
+                                    </div>
+                                    <input type="hidden" name="countryTitle" class="form-control validateForTags" id="country">
+                                </div>
+                                <div data-country-error-msg="Please select country" class="errorMsg">Please select country</div>
+                            </div>
+                        </div>
+                        </div>
                   <div class="formfield">
                     <div class="form-group formfield">
                       <div class="checboxField">
