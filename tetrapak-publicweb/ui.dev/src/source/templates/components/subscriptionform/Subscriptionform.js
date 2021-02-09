@@ -23,7 +23,8 @@ class Subscriptionform {
       'emailSubscription': '',
       'consent' :'',
       'types-communication':[],
-      'interestArea':['Processing','End To End - Solutions','Services','Sustainability','Packaging','Innovation']
+      'interestArea':['Processing','End To End - Solutions','Services','Sustainability','Packaging','Innovation'],
+      'country':''
     };
 
   }
@@ -58,6 +59,7 @@ class Subscriptionform {
     dataObj['site'] = countryCode;
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
     dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
+    dataObj['country'] = this.cache.requestPayload['country'];
 
     subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
@@ -147,14 +149,10 @@ class Subscriptionform {
     $dropItem.click(function (e) {
       e.preventDefault();
       const countryTitle = $(this).data('countrytitle');
-      const country = $(this).data('country');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(countryTitle);
       $('input', parentDrop).val(countryTitle);
-      requestPayload['country'] = country;
-      requestPayload['countryTitle'] = countryTitle;
-      $dropItem.removeClass('active');
-      $(this).addClass('active');
+      requestPayload['country'] = countryTitle;
     });
 
   }
