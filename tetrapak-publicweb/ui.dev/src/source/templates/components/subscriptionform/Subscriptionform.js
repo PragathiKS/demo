@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
@@ -18,6 +19,8 @@ class Subscriptionform {
     this.cache.communicationTypes = this.root.find('.communication-type');
     this.cache.communicationError = this.root.find('.communication-error');
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$dropdownButton = $('.dropdown-menu, .dropdown-toggle', this.root);
+    this.cache.countryList = [];
 
     this.cache.requestPayload = {
       'emailSubscription': '',
@@ -41,6 +44,31 @@ class Subscriptionform {
         requestPayload['types-communication'].push($(this).val());
       }
     });
+  }
+
+  /**
+   * key down search in case of country field
+   * @param {object} event event
+   * @param {Array} options options
+  */
+  onKeydown = (event, options) => {
+    const { $dropdownButton } = this.cache;
+    if ($dropdownButton.hasClass('show')) {
+      keyDownSearch.call(this, event, options);
+    }
+  };
+
+  /**
+   * function to enable auto suggest
+  */
+  getCountryList() {
+    const { $dropItem,$dropdownButton } = this.cache;
+    const self = this;
+    $dropItem.map(function () {
+      const datael = $(this)[0];
+      self.cache.countryList.push($(datael).data('countrytitle'));
+    });
+    $dropdownButton.keydown(e => this.onKeydown(e, this.cache.countryList));
   }
 
   submitForm = () => {
@@ -164,6 +192,7 @@ class Subscriptionform {
     this.mainHead = $($('#sf-step-1 .main-heading').find('h2')[0]).text().trim();
     $('#sf-step-1 label').slice(0,1).each((i, v) => this.restObj[$(v).text()] = 'NA');
     subscriptionAnalytics(this.mainHead, {}, 'formstart', 'formload', '', '', []);
+    this.getCountryList();
   }
 }
 

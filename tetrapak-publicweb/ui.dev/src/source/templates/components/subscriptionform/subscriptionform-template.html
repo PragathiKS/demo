@@ -30,7 +30,7 @@
                     <div class="row">
                       <div class="col-sm-12 formfield" auto_locator="subscriptionFormListContainerStep1">
                         <div class="formfield emailDiv">
-                          <div class="subscription-email-label">
+                          <div class="pw-subscriptionForm-form__subscription-email-label">
                             <p auto-locator="subscriptionFormEmailHeader">${'pw.form.subscription.heading' @i18n}</p>
                           </div>
                           <sly
@@ -46,18 +46,16 @@
                                     i18n}</label>
                                 <div class="pw-form__dropdown dropdown text-left">
                                     <button
-                                        class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                        class="btn dropdown-toggle pw-form__dropdown__toggle text-left"
                                         type="button" data-toggle="dropdown" aria-haspopup="true"
                                         auto_locator="subsFormCountrySelectDropdown" aria-expanded="false">
-                                        <span
-                                            class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
-                                            @ i18n}</span>
+                                        <span>${'pw.form.label.countryPlaceholder' @ i18n}</span>
                                         <i class="icon icon-Arrow_Right_pw"></i></button>
                                     </button>
-                                    <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
+                                    <div class="dropdown-menu pw-form__dropdown__menu"
                                         data-sly-list.country="${data.countryOptions}">
                                         <a href="#"
-                                            class="dropdown-item ${country.first? 'active' : ''}"
+                                            class="dropdown-item"
                                             data-country="${country.key}"
                                             data-countrytitle="${country.value}">
                                             ${country.value}

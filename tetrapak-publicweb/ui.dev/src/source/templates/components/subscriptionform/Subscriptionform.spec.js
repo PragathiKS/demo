@@ -10,12 +10,14 @@ describe('Subscriptionform', function () {
     });
     this.initSpy = sinon.spy(this.subscription, 'init');
     this.submitFormSpy = sinon.spy(this.subscription, 'submitForm');
+    this.getCountryListSpy = sinon.spy(this.subscription, 'getCountryList');
     this.subscription.init();
   });
   afterEach(function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.submitFormSpy.restore();
+    this.getCountryListSpy.restore();
   });
 
   it('should initialize', function (done) {
@@ -42,6 +44,12 @@ describe('Subscriptionform', function () {
   it('Should update payload with dropItem changes', function() {
     document.getElementById('ddtest').click();
     expect(this.subscription.cache.requestPayload['country']).to.equal('Albania');
+  });
+
+  it('should get country list and it should be equal to 2', function () {
+    expect(this.subscription.getCountryList.called).to.be.true;
+    expect(this.subscription.cache.countryList.length).to.equal(2);
+    $('.dropdown-menu, .dropdown-toggle').keydown();
   });
 
 });

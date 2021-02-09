@@ -35,11 +35,6 @@
         label {
             @include margin-bottom(0);
         }
-        .subscription-email-label {
-            @include margin-bottom(20px);
-            font-size: $font-md;
-            font-weight: 700;
-        }
         &.field-error {
             .errorMsg {
                 display: block;
@@ -51,6 +46,12 @@
         &.active {
             display: block;
         }
+    }
+
+    &__subscription-email-label {
+        @include margin-bottom(20px);
+        font-size: $font-md;
+        font-weight: 700;
     }
 
     .separator {
