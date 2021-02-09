@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
@@ -17,12 +18,16 @@ class Subscriptionform {
     this.cache.$inputEmail = $('form.pw-form-subscriptionForm  input[type="email"]', this.root);
     this.cache.communicationTypes = this.root.find('.communication-type');
     this.cache.communicationError = this.root.find('.communication-error');
+    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$dropdownButton = $('.dropdown-menu, .dropdown-toggle', this.root);
+    this.cache.countryList = [];
 
     this.cache.requestPayload = {
       'emailSubscription': '',
       'consent' :'',
       'types-communication':[],
-      'interestArea':['Processing','End To End - Solutions','Services','Sustainability','Packaging','Innovation']
+      'interestArea':['Processing','End To End - Solutions','Services','Sustainability','Packaging','Innovation'],
+      'country':''
     };
 
   }
@@ -41,6 +46,31 @@ class Subscriptionform {
     });
   }
 
+  /**
+   * key down search in case of country field
+   * @param {object} event event
+   * @param {Array} options options
+  */
+  onKeydown = (event, options) => {
+    const { $dropdownButton } = this.cache;
+    if ($dropdownButton.hasClass('show')) {
+      keyDownSearch.call(this, event, options);
+    }
+  };
+
+  /**
+   * function to enable auto suggest
+  */
+  getCountryList() {
+    const { $dropItem,$dropdownButton } = this.cache;
+    const self = this;
+    $dropItem.map(function () {
+      const datael = $(this)[0];
+      self.cache.countryList.push($(datael).data('countrytitle'));
+    });
+    $dropdownButton.keydown(e => this.onKeydown(e, this.cache.countryList));
+  }
+
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
@@ -57,6 +87,7 @@ class Subscriptionform {
     dataObj['site'] = countryCode;
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
     dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
+    dataObj['country'] = this.cache.requestPayload['country'];
 
     subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
@@ -84,7 +115,7 @@ class Subscriptionform {
 
 
   bindEvents() {
-    const { requestPayload, $submitBtn } = this.cache;
+    const { requestPayload, $submitBtn, $dropItem } = this.cache;
     const self = this;
     $submitBtn.click(function (e) {
       e.preventDefault();
@@ -113,7 +144,7 @@ class Subscriptionform {
           if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
             requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
           }
-          if (($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent' && !$(this).is(':checked')) || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
+          if (($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent' && !$(this).is(':checked')) || ($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
             const erLbl = $(`#sf-step-1 label`)[0].textContent;
@@ -143,6 +174,14 @@ class Subscriptionform {
       }
     });
 
+    $dropItem.click(function (e) {
+      e.preventDefault();
+      const countryTitle = $(this).data('countrytitle');
+      const parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle span', parentDrop).text(countryTitle);
+      $('input', parentDrop).val(countryTitle);
+      requestPayload['country'] = countryTitle;
+    });
 
   }
   init() {
@@ -153,6 +192,7 @@ class Subscriptionform {
     this.mainHead = $($('#sf-step-1 .main-heading').find('h2')[0]).text().trim();
     $('#sf-step-1 label').slice(0,1).each((i, v) => this.restObj[$(v).text()] = 'NA');
     subscriptionAnalytics(this.mainHead, {}, 'formstart', 'formload', '', '', []);
+    this.getCountryList();
   }
 }
 

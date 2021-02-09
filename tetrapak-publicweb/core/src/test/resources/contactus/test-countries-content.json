@@ -1,79 +1,17 @@
 {
-  "jcr:primaryType": "sling:Folder",
-  "jcr:createdBy": "admin",
-  "jcr:created": "Mon May 18 2020 23:55:28 GMT+0530",
-  "albania" : {
-  "jcr:primaryType": "dam:Asset",
-  "jcr:createdBy": "admin",
-  "jcr:created": "Mon May 18 2020 23:55:29 GMT+0530",
-  "jcr:content": {
-    "jcr:primaryType": "dam:AssetContent",
-    "jcr:title": "Albania",
-    "jcr:lastModifiedBy": "admin",
-    "jcr:description": "",
-    "contentFragment": true,
-    "cq:name": "albania",
-    "jcr:lastModified": "Wed Apr 22 2020 18:22:22 GMT+0530",
-    "data": {
-      "jcr:primaryType": "nt:unstructured",
-      "cq:model": "/conf/publicweb/settings/dam/cfm/models/country",
-      "master": {
-        "jcr:primaryType": "nt:unstructured",
-        "jcr:mixinTypes": [
-          "cq:Taggable"
-        ],
-        "otheremails": [
-          "xyz@tetrapak.com"
-        ],        
-        "careeremails": [
-          "xyz2@tetrapak.com"
-        ],
-        "sustainabilityemails": [
-          "xyz3@tetrapak.com"
-        ]
-      },
-      "jcr:content": {
-        "jcr:primaryType": "nt:unstructured",
-        "cq:model": "/conf/publicweb/settings/dam/cfm/models/country"
+   "jcr:primaryType":"sling:Folder",
+   "albania":{
+      "jcr:primaryType":"dam:Asset",
+      "jcr:content":{
+         "jcr:primaryType":"dam:AssetContent",
+         "jcr:title":"Albania"
       }
-    }
-  }
-},
-  "bulgaria" : {
-  "jcr:primaryType": "dam:Asset",
-  "jcr:createdBy": "admin",
-  "jcr:created": "Mon May 18 2020 23:55:29 GMT+0530",
-  "jcr:content": {
-    "jcr:primaryType": "dam:AssetContent",
-    "jcr:title": "Albania",
-    "jcr:lastModifiedBy": "admin",
-    "jcr:description": "",
-    "contentFragment": true,
-    "cq:name": "albania",
-    "jcr:lastModified": "Wed Apr 22 2020 18:22:22 GMT+0530",
-    "data": {
-      "jcr:primaryType": "nt:unstructured",
-      "cq:model": "/conf/publicweb/settings/dam/cfm/models/country",
-      "master": {
-        "jcr:primaryType": "nt:unstructured",
-        "jcr:mixinTypes": [
-          "cq:Taggable"
-        ],
-        "otheremails": [
-          "xyz@tetrapak.com"
-        ],        
-        "careeremails": [
-          "xyz2@tetrapak.com"
-        ],
-        "sustainabilityemails": [
-          "xyz3@tetrapak.com"
-        ]
-      },
-      "jcr:content": {
-        "jcr:primaryType": "nt:unstructured",
-        "cq:model": "/conf/publicweb/settings/dam/cfm/models/country"
+   },
+   "bulgaria":{
+      "jcr:primaryType":"dam:Asset",
+      "jcr:content":{
+         "jcr:primaryType":"dam:AssetContent",
+         "jcr:title":"Albania"
       }
-    }
-  }
-}
+   }
 }

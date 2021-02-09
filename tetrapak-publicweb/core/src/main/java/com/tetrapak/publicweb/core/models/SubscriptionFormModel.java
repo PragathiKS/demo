@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -10,17 +11,17 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
+import com.tetrapak.publicweb.core.beans.DropdownOption;
+import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
- * The Class BusinessInquiryModel.
- *
+ * The Class SubscriptionFormModel.
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SubscriptionFormModel extends FormModel {
-
 
     /** The resource. */
     @Self
@@ -29,10 +30,19 @@ public class SubscriptionFormModel extends FormModel {
     /** The pardot service. */
     @OSGiService
     private PardotService pardotService;
+    
+    /** The country service. */
+    @OSGiService
+    private CountryDetailService countryService;
 
+    /** The form config. */
     private FormConfigModel formConfig;
 
+    /** The consent config. */
     private FormConsentConfigModel consentConfig;
+    
+    /** The country list. */
+    private List<DropdownOption> countryOptions; 
 
     /**
      * The init method.
@@ -40,24 +50,23 @@ public class SubscriptionFormModel extends FormModel {
     @PostConstruct
     protected void init() {
         setFormConfig();
+        setCountryOptions();
     }
 
     /**
-     * Sets the form configs.
+     * Sets the form config.
      */
     public void setFormConfig() {
-
         final Resource formConfigResource = GlobalUtil.fetchConfigResource(resource,
                 "/jcr:content/root/responsivegrid/subscriptionformconf");
         if (Objects.nonNull(formConfigResource))
             this.formConfig = formConfigResource.adaptTo(FormConfigModel.class);
 
-        final Resource consentConfigResource = GlobalUtil.fetchConfigResource(resource,
+    	final Resource consentConfigResource = GlobalUtil.fetchConfigResource(resource,
                 "/jcr:content/root/responsivegrid/formconsenttextsconf");
         if (Objects.nonNull(consentConfigResource))
             this.consentConfig = consentConfigResource.adaptTo(FormConsentConfigModel.class);
     }
-
 
     /**
      * Gets the api url.
@@ -86,22 +95,37 @@ public class SubscriptionFormModel extends FormModel {
         return PageUtil.getCountryCodeFromResource(resource);
     }
 
-    /**
-     * Gets the form config.
-     *
-     * @return the form config
-     */
-    public FormConfigModel getFormConfig() {
-        return formConfig;
-    }
+	/**
+	 * Sets the country options.
+	 */
+	public void setCountryOptions() {
+		this.countryOptions = countryService.fetchCountryList(resource.getResourceResolver());
+	}
 
-    /**
-     * Gets the consent config.
-     *
-     * @return the consent config
-     */
-    public FormConsentConfigModel getConsentConfig() {
-        return consentConfig;
-    }
+	/**
+	 * Gets the consent config.
+	 *
+	 * @return the consentConfig
+	 */
+	public FormConsentConfigModel getConsentConfig() {
+		return consentConfig;
+	}
 
+	/**
+	 * Gets the form config.
+	 *
+	 * @return the formConfig
+	 */
+	public FormConfigModel getFormConfig() {
+		return formConfig;
+	}
+
+	/**
+	 * Gets the country options.
+	 *
+	 * @return the countryOptions
+	 */
+	public List<DropdownOption> getCountryOptions() {
+		return countryOptions;
+	}
 }

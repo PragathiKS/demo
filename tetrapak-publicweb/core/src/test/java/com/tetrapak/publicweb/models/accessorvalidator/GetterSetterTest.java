@@ -9,6 +9,7 @@ import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
 import com.tetrapak.publicweb.core.models.ManagePreferencesConfigModel;
 import com.tetrapak.publicweb.core.models.ManagePreferencesModel;
+import com.tetrapak.publicweb.core.models.SubscriptionFormModelTest;
 
 /**
  * @author ojaswarn
@@ -27,6 +28,7 @@ public class GetterSetterTest {
     public void testAccesors() {
     	validateAccessors(ManagePreferencesConfigModel.class);
     	validateAccessors(ManagePreferencesModel.class);
+    	validateAccessors(SubscriptionFormModelTest.class);
     }
 
     /**
