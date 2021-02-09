@@ -143,6 +143,14 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.companyinformation"
         sling:message="Company information"/>
+	<pw.form.subscription.heading
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.subscription.heading"
+        sling:message="Your subscription email address and country"/>
+	<pw.form.email.placeholder
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.email.placeholder"
+        sling:message="Your email"/>
     <pw.form.heading.contactinformation
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.contactinformation"
