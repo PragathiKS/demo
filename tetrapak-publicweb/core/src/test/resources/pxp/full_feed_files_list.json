@@ -1,0 +1,16 @@
+{
+    "files": [
+        {
+            "name": "delta/fillingmachines/fillingmachines_en.json",
+            "lastModified": "Tue, 19 Jan 2021 13:17:06 GMT"
+        },       
+        {
+            "name": "delta/packagetypes/packagetypes_en.json",
+            "lastModified": "Tue, 19 Jan 2021 13:19:52 GMT"
+        },
+        {
+            "name": "delta/processingequipments/processingequipments_en.json",
+            "lastModified": "Tue, 19 Jan 2021 13:27:49 GMT"
+        }
+    ]
+}
