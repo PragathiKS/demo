@@ -84,8 +84,7 @@ public class NewsEventPageActivationListener implements EventHandler {
             if (Objects.nonNull(paths) && Objects.nonNull(resourceResolver)) {
                 for (String path : paths) {
                     Resource resource = resourceResolver.getResource(path + "/jcr:content");
-                    ValueMap valueMap = resource.getValueMap();
-                    processData(resourceResolver, path, resource, valueMap);
+                    processData(resourceResolver, path, resource);
                 }
             }
         } catch (Exception ex) {
@@ -108,8 +107,9 @@ public class NewsEventPageActivationListener implements EventHandler {
      * @throws PersistenceException
      *             the persistence exception
      */
-    private void processData(final ResourceResolver resourceResolver, String path, Resource resource, ValueMap valueMap)
+    private void processData(final ResourceResolver resourceResolver, String path, Resource resource)
             throws PersistenceException {
+        ValueMap valueMap = resource.getValueMap();
         if (Objects.isNull(valueMap.get(PWConstants.EVENT_PUBLISHED_PROPERTY))
                 && PWConstants.PRESS_TEMPLATES.contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
             NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
