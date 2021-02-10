@@ -1,32 +1,111 @@
 {
-		"jcr:primaryType": "cq:PageContent",
-		"jcr:mixinTypes": ["mix:versionable"],
-		"jcr:createdBy": "admin",
-		"mobileOverviewLabel": "Overview",
-		"jcr:title": "Gulfood 2018",
-		"cq:lastReplicationAction": "Activate",
-		"jcr:versionHistory": "727a3111-7517-4ff2-9f96-933e31c920ac",
-		"cq:template": "/conf/publicweb/settings/wcm/templates/event",
-		"cq:lastReplicatedBy": "admin",
-		"altText": "Connect Lounge at Tetra Pak at Gulfood 2018",
-		"imagePath": "/content/dam/tetrapak/publicweb/gb/en/to-be-reviewed-images/connect-lounge.jpg",
-		"jcr:predecessors": ["d32cf7d7-bb13-49c7-a98f-bc86e8ba4992"],
-		"disableEnvelope": "false",
-		"pwButtonTheme": "link",
-		"jcr:created": "Mon Jan 25 2021 14:30:17 GMT+0530",
-		"cq:lastReplicated": "Mon Oct 12 2020 06:09:57 GMT+0000",
-		"cq:lastModified": "Mon Aug 10 2020 12:24:04 GMT+0000",
-		"jcr:description": "Come and meet us at Gulfood 2018, the world's largest annual food trade show. It is the 23rd edition taking place in Dubai, 18-22 February 2018.",
-		"titleSuffix": "Tetra Pak",
-		"jcr:baseVersion": "d32cf7d7-bb13-49c7-a98f-bc86e8ba4992",
-		"jcr:isCheckedOut": true,
-		"hideInSearch@Delete": "true",
-		"articleDate": "Sun Feb 18 2018 00:00:00 GMT+0100",
-		"jcr:uuid": "1b944b39-d88a-4124-8231-6c708fd49821",
-		"linkPath": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/events/gulfood-2018",
-		"linkText": "Read more about Gulfood 2018",
-		"sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
-		"cq:lastModifiedBy": "manon.bodel",
-		"navTitle": "Gulfood 2018"
-
+  "jcr:primaryType": "cq:PageContent",
+  "jcr:mixinTypes": [
+    "mix:versionable"
+  ],
+  "jcr:createdBy": "admin",
+  "mobileOverviewLabel": "Overview",
+  "jcr:title": "Subscribe Email Scenario 21",
+  "cq:lastReplicationAction": "Activate",
+  "jcr:versionHistory": "8884d97e-334a-48c4-a18b-77990172e85e",
+  "cq:template": "/conf/publicweb/settings/wcm/templates/news-article",
+  "cq:lastReplicatedBy": "admin",
+  "jcr:predecessors": [
+    "86f06c4e-d7fa-4305-94f4-db1281867592"
+  ],
+  "disableEnvelope": "false",
+  "pwButtonTheme": "link",
+  "jcr:created": "Wed Feb 10 2021 11:17:16 GMT+0530",
+  "cq:lastReplicated": "Wed Feb 10 2021 12:42:45 GMT+0530",
+  "cq:lastModified": "Wed Feb 10 2021 03:39:27 GMT+0000",
+  "jcr:description": "This page is to test banner image issue after copying from another page",
+  "titleSuffix": "Tetra Pak",
+  "jcr:baseVersion": "86f06c4e-d7fa-4305-94f4-db1281867592",
+  "jcr:isCheckedOut": true,
+  "hideInSearch@Delete": "true",
+  "jcr:uuid": "8a6eccfc-e405-41fd-b4d9-0abd7d45fd6f",
+  "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
+  "cq:lastModifiedBy": "sapient-suraksha",
+  "root": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "wcm/foundation/components/responsivegrid",
+    "responsivegrid": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "breadcrumb": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Thu Jun 18 2020 10:35:56 GMT+0000",
+        "jcr:lastModified": "Thu Jun 18 2020 10:35:56 GMT+0000",
+        "sling:resourceType": "publicweb/components/content/breadcrumb"
+      },
+      "richtext": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "sapient-suraksha",
+        "jcr:created": "Thu Jun 18 2020 10:36:06 GMT+0000",
+        "pwTheme": "grayscale-white",
+        "text": "<h1 style=\"text-align: center;\">This page is to test banner image issue after copying from another page</h1>\r\n",
+        "jcr:lastModified": "Wed Feb 10 2021 03:33:43 GMT+0000",
+        "sling:resourceType": "publicweb/components/content/richtext",
+        "topSpacing": "topmargin",
+        "pwPadding": "zero",
+        "textIsRich": "true"
+      },
+      "banner": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "cq:ReplicationStatus"
+        ],
+        "subtitle": "Insights",
+        "jcr:createdBy": "jonathan-ferdinand",
+        "cq:lastReplicationAction": "Activate",
+        "fileReference": "/content/dam/tetrapak/publicweb/gb/en/about/light-head-upscaled.jpg",
+        "cq:lastReplicatedBy": "workflow-process-service",
+        "jcr:lastModifiedBy": "gustav-boberg",
+        "bannerType": "hero",
+        "pwButtonTheme": "link",
+        "jcr:created": "Thu Aug 06 2020 11:21:04 GMT+0000",
+        "pwDisplay": "display-row",
+        "cq:lastReplicated": "Fri Dec 18 2020 01:24:36 GMT+0000",
+        "pwTheme": "grayscale-white",
+        "alt": "Insights trends report head illuminated",
+        "text": "At Tetra Pak, we strive to help food and beverage manufacturers make informed business decisions. We do this through our continuous research and analysis of market and consumer trends and insights. Find the latest here.",
+        "title": "Trends, research and insights",
+        "jcr:lastModified": "Wed Sep 30 2020 11:44:35 GMT+0000",
+        "sling:resourceType": "publicweb/components/content/banner",
+        "textIsRich": "true",
+        "moreButtonLabel": "More white papers",
+        "headingTag": "h1"
+      },
+      "image": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Thu Jun 18 2020 10:36:20 GMT+0000",
+        "jcr:lastModified": "Thu Jun 18 2020 10:36:20 GMT+0000",
+        "sling:resourceType": "publicweb/components/content/image",
+        "pwPadding": "zero"
+      },
+      "richtext_1678161039": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Thu Jun 18 2020 10:36:26 GMT+0000",
+        "jcr:lastModified": "Thu Jun 18 2020 10:36:26 GMT+0000",
+        "sling:resourceType": "publicweb/components/content/richtext",
+        "topSpacing": "nomargin",
+        "pwPadding": "zero"
+      },
+      "medialink": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Thu Jun 18 2020 10:36:29 GMT+0000",
+        "jcr:lastModified": "Thu Jun 18 2020 10:36:29 GMT+0000",
+        "sling:resourceType": "publicweb/components/content/mediaLink"
+      }
+    }
+  }
 }

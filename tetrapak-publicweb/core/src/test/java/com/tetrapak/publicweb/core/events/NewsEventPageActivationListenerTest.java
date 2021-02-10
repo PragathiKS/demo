@@ -121,6 +121,7 @@ public class NewsEventPageActivationListenerTest {
         Page languagePage = languagePageResource.adaptTo(Page.class);
         context.load().json(PAYLOAD_RESOURCE_PATH, PAYLOAD_PATH);
         resource = context.currentResource(PAYLOAD_PATH);
+        Resource responsiveGrid = context.currentResource(PAYLOAD_PATH + "/root/responsivegrid");
         resolver = resource.getResourceResolver();
         pageManager = resolver.adaptTo(PageManager.class);
         Map<String, Object> paramMap = new HashMap<>();
@@ -129,6 +130,7 @@ public class NewsEventPageActivationListenerTest {
         paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
         Mockito.when(resolverFactory.getServiceResourceResolver(paramMap)).thenReturn(resolver);
         Mockito.when(resolver.getResource(PAYLOAD_PATH)).thenReturn(resource);
+        Mockito.when(resolver.getResource(PAYLOAD_PATH + "/root/responsivegrid")).thenReturn(responsiveGrid);
         Mockito.when(resolver.getResource(LANGUAGE_PAGE_PATH + "/jcr:content/root/responsivegrid/headerconfiguration"))
                 .thenReturn(headerConfigResource);
         Mockito.when(resolver.getResource(LANGUAGE_PAGE_PATH + "/jcr:content/root/responsivegrid/footerconfiguration"))

@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.events;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,7 +81,8 @@ public class NewsEventPageActivationListener implements EventHandler {
                 for (String path : paths) {
                     Resource resource = resourceResolver.getResource(path + "/jcr:content");
                     ValueMap valueMap = resource.getValueMap();
-                    if (Objects.isNull(valueMap.get("eventPublished"))) {
+                    if (Objects.isNull(valueMap.get("eventPublished")) && PWConstants.PRESS_TEMPLATES
+                            .contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
                         NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
                         bean = addPageLinks(bean, path, resourceResolver);
                         List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
@@ -193,31 +195,35 @@ public class NewsEventPageActivationListener implements EventHandler {
      * @return the banner image
      */
     private String getBannerImage(String pagePath, ResourceResolver resolver) {
-        String path = pagePath + "/jcr:content/root/responsivegrid/banner";
-        Resource bannerResource = resolver.getResource(path);
-        if (Objects.nonNull(bannerResource)) {
-            ValueMap valueMap = bannerResource.getValueMap();
-            if (Objects.nonNull(valueMap.get("fileReference", String.class))) {
-                return valueMap.get("fileReference", String.class);
+        String path = pagePath + "/jcr:content/root/responsivegrid";
+        Resource resource = resolver.getResource(path);
+        Iterator<Resource> children = resource.listChildren();
+        while (children.hasNext()) {
+            Resource child = children.next();
+            if (child.getName().startsWith("banner") && child.isResourceType("publicweb/components/content/banner")) {
+                ValueMap valueMap = child.getValueMap();
+                if (Objects.nonNull(valueMap.get(PWConstants.FILE_REFERENCE, String.class))) {
+                    return valueMap.get(PWConstants.FILE_REFERENCE, String.class);
+                }
             }
         }
         return StringUtils.EMPTY;
     }
-    
-    private NewsEventBean addPageLinks(NewsEventBean bean , String pagePath, ResourceResolver resolver) {
+
+    private NewsEventBean addPageLinks(NewsEventBean bean, String pagePath, ResourceResolver resolver) {
         String rootPath = LinkUtils.getRootPath(pagePath);
         final String path = rootPath + "/jcr:content/root/responsivegrid/subscriptionformconf";
         Resource subcriptionFormConfigResource = resolver.getResource(path);
-        if(Objects.nonNull(subcriptionFormConfigResource)) {
+        if (Objects.nonNull(subcriptionFormConfigResource)) {
             ValueMap valueMap = subcriptionFormConfigResource.getValueMap();
-            if(Objects.nonNull(valueMap.get("pressroomLink",String.class))) {
-                bean.setNewsroomLink(resolver.map(valueMap.get("pressroomLink",String.class)));
+            if (Objects.nonNull(valueMap.get("pressroomLink", String.class))) {
+                bean.setNewsroomLink(resolver.map(valueMap.get("pressroomLink", String.class)));
             }
-            if(Objects.nonNull(valueMap.get("legalInfoLink",String.class))) {
-                bean.setLegalInformationLink(resolver.map(valueMap.get("legalInfoLink",String.class)));
+            if (Objects.nonNull(valueMap.get("legalInfoLink", String.class))) {
+                bean.setLegalInformationLink(resolver.map(valueMap.get("legalInfoLink", String.class)));
             }
-            if(Objects.nonNull(valueMap.get("managePreferenceLink",String.class))) {
-                bean.setManagePreferenceLink(resolver.map(valueMap.get("managePreferenceLink",String.class)));
+            if (Objects.nonNull(valueMap.get("managePreferenceLink", String.class))) {
+                bean.setManagePreferenceLink(resolver.map(valueMap.get("managePreferenceLink", String.class)));
             }
         }
         return bean;
