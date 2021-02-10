@@ -153,10 +153,12 @@ public final class DeltaFeedUtil {
                 RangeIterator rangeIterator;
                 try {
                     rangeIterator = liveRelManager.getLiveRelationships(res, "", null);
-                    while (rangeIterator.hasNext()) {
-                        final LiveRelationship liveCopy = (LiveRelationship) rangeIterator.next();
-                        LOGGER.debug("Live copies for - {}  are  {}", path, liveCopy.getTargetPath());
-                        replicator.replicate(session, ReplicationActionType.ACTIVATE, liveCopy.getTargetPath());
+                    if(rangeIterator != null) {
+                        while (rangeIterator.hasNext()) {
+                            final LiveRelationship liveCopy = (LiveRelationship) rangeIterator.next();
+                            LOGGER.debug("Live copies for - {}  are  {}", path, liveCopy.getTargetPath());
+                            replicator.replicate(session, ReplicationActionType.ACTIVATE, liveCopy.getTargetPath());
+                        }
                     }
                 } catch (final WCMException | ReplicationException e) {
                     LOGGER.error("Error while finding live copies {} {}", e.getMessage(), e);
