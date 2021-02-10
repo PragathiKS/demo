@@ -79,6 +79,7 @@ public class BusinessInquiryModelTest {
 		pardotService = new PardotServiceImpl();
 		context.load().json(TEST_RESOURCE_CONTENT, TEST_CONTENT_ROOT);
 		context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
+		context.load().json("/businessinquiryform/tags.json", "/content/cq:tags/tetrapak");
 
 		context.addModelsForClasses(modelClass);
 		context.registerService(PardotService.class, pardotService);
@@ -126,6 +127,11 @@ public class BusinessInquiryModelTest {
 				model.getApiUrl());
 		assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
 		assertEquals("Form", "tetrapak:job-title", model.getFormConfig().getProfileTags());
+	}
+	
+	@Test
+	public void testTagTitles() {
+	    assertEquals("Form", true, model.getTagTitles().containsValue("Sustainability"));
 	}
 
 	/**
