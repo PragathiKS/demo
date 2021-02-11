@@ -92,7 +92,7 @@ class Subscriptionform {
     dataObj['site'] = countryCode;
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
     dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
-    dataObj['country'] = 'Sweden';
+    dataObj['country'] = this.cache.requestPayload['country'];
 
     subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
