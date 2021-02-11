@@ -37,12 +37,17 @@ class Subscriptionform {
   }
 
   selectCommunicationHandler = () => {
+    const self= this;
+    const communicationObj={};
     const {requestPayload,communicationTypes} = this.cache;
     requestPayload['types-communication'] = [];
     communicationTypes.each(function(){
       if($(this).is(':checked')){
+        const val=$(this).val();
         requestPayload['types-communication'].push($(this).val());
+        communicationObj[val]= 'Checked';
       }
+      self.restObj =Object.assign(self.restObj,communicationObj);
     });
   }
 
@@ -87,9 +92,9 @@ class Subscriptionform {
     dataObj['site'] = countryCode;
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
     dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
-    dataObj['country'] = this.cache.requestPayload['country'];
+    dataObj['country'] = 'Sweden';
 
-    subscriptionAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
+    subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
 
     ajaxWrapper.getXhrObj({
