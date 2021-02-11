@@ -48,6 +48,10 @@ public class SubscriptionFormPardotServletTest {
         final Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("firstName", "firstName");
         parameterMap.put("lastName", "lastName");
+        parameterMap.put("types-communication", "Press and Media Communication");
+        parameterMap.put("types-communication", "Event Invitations");
+        parameterMap.put("interestArea", "Packaging");
+        parameterMap.put("interestArea", "Services");
 
         context.request().setParameterMap(parameterMap);
 
