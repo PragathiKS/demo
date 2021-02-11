@@ -82,5 +82,5 @@ public interface PardotService {
      *            the bean
      * @return the subscriber mail addresses
      */
-    List<String> getSubscriberMailAddresses(NewsEventBean bean);
+    List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas);
 }

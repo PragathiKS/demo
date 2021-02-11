@@ -35,7 +35,6 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving newsEventPageActivation events. The class that is interested in processing a
  * newsEventPageActivation event implements this interface, and the object created with that class is registered with a
@@ -114,7 +113,7 @@ public class NewsEventPageActivationListener implements EventHandler {
                 && PWConstants.PRESS_TEMPLATES.contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
             NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
             addPageLinks(bean, path, resourceResolver);
-            List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
+            List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean.getLocale(),bean.getInterestAreas());
             if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
                 String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
                 if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {

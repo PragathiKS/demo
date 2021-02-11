@@ -146,7 +146,11 @@ public class NewsEventPageActivationListenerTest {
         List<String> mailaddresses = new ArrayList<>();
         mailaddresses.add("testnewsemail1@yopmail.com");
         mailaddresses.add("testnewsemail2@yopmail.com");
-        Mockito.when(pardotService.getSubscriberMailAddresses(bean)).thenReturn(mailaddresses);
+        List<String> interestAreas = new ArrayList<>();
+        interestAreas.add("End-To-End");
+        interestAreas.add("Sustainability");
+        interestAreas.add("Processing");
+        Mockito.when(pardotService.getSubscriberMailAddresses("en-lang-masters",interestAreas)).thenReturn(mailaddresses);
         Mockito.when(mailService.sendSubscriptionEmail(bean, mailaddresses, resolver))
                 .thenReturn(PWConstants.STATUS_SUCCESS);
     }
