@@ -33,6 +33,7 @@ public class AssetImportServiceImplTest {
 	@Before
 	public void setup() {
         MockitoAnnotations.initMocks(this);
+        assetImportServiceImpl.activate(null);
 	}
 
 	@Test
