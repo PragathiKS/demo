@@ -95,7 +95,15 @@ public class PardotServiceImpl implements PardotService {
 
         for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
             if (!"pardotUrl".equalsIgnoreCase(entry.getKey())) {
-                postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
+                if("types-communication".equalsIgnoreCase(entry.getKey()) 
+                        || "interestArea".equalsIgnoreCase(entry.getKey())){
+                   for(String value :entry.getValue()) {
+                       postParameters.add(new BasicNameValuePair(entry.getKey(), value));
+                   }
+                }
+                else {
+                    postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
+                }
             }
         }
 
