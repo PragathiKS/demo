@@ -1,0 +1,2388 @@
+[
+    {
+        "benefits": "<ul><li>State-of-the-art hygienic design, with automatic cleaning, integrated cap application and advanced clean air system all enhancing protection</li><li>Maintains product quality, including Vitamin C, while making it safe for ambient distribution</li><li>Smooth and easy to operate - automatic cleaning and sterilisation can be pre-scheduled</li></ul>",
+        "features": [
+            {
+                "name": "Operator interface",
+                "header": "Helps operators work more productively",
+                "body": "<p>Several factors make the Tetra Pak® TR/27 HAAD easy to operate: a Tetra Pak Operator Panel with its intuitive touch screen interface, ground level access to essential working parts and large windows for observing operations first hand.</p><p>High-velocity spinning nozzles apply cleaning fluid at pre-set temperature and concentration levels to ensure consistent and thorough cleaning inside and out, every time.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr28operatorpanel_1.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Clean Room Design",
+                "header": "Prevents product contamination",
+                "body": "<p>This filling machine is built according to clean room design principles. For example, an advancedclean air system include both HEPA filtered air for carton sterilization and two HEPA filtration systems in the hygiene zone. The fill tank is offset to ensure optimized air distribution. The glands on tables are welded and rounded to prevent dirt building up and allow for thorough cleaning. In addition, welded barriers separate the hygiene zone, carton sterilization zone and the service zones.</p>",
+                "image": null,
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Integrated cap applicator",
+                "header": "For a tight, hygienic closure",
+                "body": "<p>The caps are sealed by induction heating. This gives a tight and accurate seal which helps protect the filled product. Pre-treatment of caps with peroxide before application increases safety, standard on Mid machines.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr27_haad_cap_applicator.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Carton disinfection",
+                "header": "Safe and effecient package disinfection for long shelf life of high acid products",
+                "body": "<p>To ensure consistent cleaning and sterilisation, a hot vapour of low concentration peroxide (H202) is applied inside the carton. A nozzle reaches deep inside the package to ensure thorough coverage. The cartons are then passed through three UV lights stations which activate the peroxide. This innovative two-step process enables the use of a low chemical concentration. Lastly, a dryer reduces residual H202 to an undetectable level.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr27_haad_carton_sterilisation.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Fill system",
+                "header": "Ensures accurate filling; minimises product waste",
+                "body": "<p>With a filling accuracy of ± 1 gr per 1000 ml volume (actual standard deviation 0.5 gr), the double diaphragm system allows you to fill accurately and consistently, minimising over-filling.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr27_haad_filling_system.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Cleaning box",
+                "header": "Maintains sterility during short stops",
+                "body": "<p>This feature ensures a controlled, sterile environment at all times. The cleaning box has an automatically closing lid -which shuts during cleaning and intermediate stops –thus making the fill system both safe and efficient.</p>",
+                "image": null,
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Nitrogen flush",
+                "header": "Maintains product quality, including Vitamin C",
+                "body": "<p>In the hygiene/fill chamber, nitrogen is blown into the carton to force out the air (containing oxygen) and keep it out until the package top is sealed. This reduces the amount of oxygen in the package headspace to below 4% and thus ensures that the Vitamin C content in the product is retained.</p>",
+                "image": null,
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Integrated Cleaning System",
+                "header": "Reduces the need for manpower",
+                "body": "<p>Compared to manual cleaning, this efficient, automated cleaning system gives a better result, yet consumes less energy, utilities and chemicals. Over-pressure keeps the machine sterile inside. Sloped tables make for efficient draining; high-velocity spinning nozzles apply pre-set temperature and concentration levels to ensure consistent and thorough cleaning inside and out, every time.</p>",
+                "image": null,
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® TR/27 HAAD",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tr27_haad_benefits_0.png",
+        "header": "Single line, optimised for ambient juice production",
+        "id": "equipment19976",
+        "packagetypes": [
+            {
+                "id": "packagetype6336",
+                "name": "Tetra Rex® HAAD",
+                "shapes": [
+                    {
+                        "name": "Base 70x70 MiniPlus",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_750_bmp_twistcaposobarrier34_np_above_overview_images.png",
+                        "volumes": [
+                            "750 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mid",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_1750_mid_twistcaposobarrier34_np_above_overview_images_0.png",
+                        "volumes": [
+                            "1500 ml",
+                            "1750 ml",
+                            "2000 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>First chilled filling machine for family packages equipped with eBeam sterilisation technology</li><li>Producing the new Tetra Brik® 900 Ultra Edge package</li><li>Equipped with a DIMC module for LightCap™ 30 and WingCap™ 30 pre-laminated hole (PLH) at a selectable machine capacity of 6000 and 7000 p/h​</li><li>Suitable for production of extended shelf life products</li></ul>",
+        "features": [
+            {
+                "name": "Peroxide free machine",
+                "header": "Using eBeam technology for packaging material disinfection",
+                "body": "<ul><li>The Tetra Pak® E3/Flex is a filling machine for chilled products and does not require packaging material sterilisation. Hydrogen peroxide will only be required to sterilise the machine in a very small quantity.</li><li>The Tetra Pak® E3/Flex filling machine is suitable for the production of Extended Shelf Life products and utilises one eBeam lamp to disinfect the inner part of the packaging material.</li></ul>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/40279_2017-05-08_4_e3_cf_peroxide_free_machine_original.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "New servo toolbox for DIMC",
+                "header": "Controlled moulding movements",
+                "body": "<p>The Direct Injection Moulding Concept (DIMC) station on Tetra Pak® E3 is now activated by a motor driven tool box instead of a pneumatic cylinder. The Servo Toolbox guarantees a controlled movement in terms of moulding position and moulding closing torque.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tetrapak_e3_flex_dimcstation_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Web Position Active Control",
+                "header": "Enhanced sealing quality and reduced dust",
+                "body": "<p>This new feature improves two important aspects of the filling machine functionality:</p><ul><li>Sealing quality because the web position accuracy is improved through a dynamic correction of the position</li><li>Reduced dust because the device is not in contact with the edges of the packaging material</li></ul>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/40279_2017-05-08_7_web_position_active_control_v2_original.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Tube Position Active Control",
+                "header": "Automatic adjustment in packaging material positioning",
+                "body": "<p>This new feature reads the rotations of the packaging material during transient phases and corrects the creases alignment of the package. It enables the Web Position Active Control to make adjustments automatic.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/40279_2017-05-08_7_web_position_active_control_v2_original_1.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "New operator interface",
+                "header": "Wide screen",
+                "body": "<p>The operator panel has a new look and feel and a wider screen – in 16:9. More intuitive icons are available with added functionality and improved usability. The time required to perform the different operations has been reduced.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/e3_flex_operatorpanel.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® E3/Flex",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/e3_flex_benefits_0.png",
+        "header": "Designed based on operational flexibility",
+        "id": "equipment20015",
+        "packagetypes": [
+            {
+                "id": "packagetype1650",
+                "name": "Tetra Brik®",
+                "shapes": [
+                    {
+                        "name": "Ultra Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TB_900_UE_WingCap30_NP_Above_overview_images.png",
+                        "volumes": [
+                            "900 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>The first aseptic filling machine for family packages equipped with eBeam sterilisation technology</li><li>Featuring a new DIMC module for LightCap® 30 pre-laminated hole (PLH) to match the machine capacity of 15,000 packages per hour</li><li>It is the first machine to produce Tetra Brik® Aseptic 1000 Edge packages at 15,000 p/h</li></ul><p> </p>",
+        "features": [
+            {
+                "name": "Peroxide free machine",
+                "header": "Using eBeam technology to sterilise packaging material",
+                "body": "<p>The Tetra Pak® E3/Speed is a filling machine for aseptic packaging of liquid food, which utilises two eBeam lamps to sterilise the inner and outer part of the packaging material through the production process.</p><p>Electron emission guarantees an equivalent sterilisation performance as that of hydrogen peroxide systems.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-78327_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/20150616130752_mp4_1494574801.mp4"
+                }
+            },
+            {
+                "name": "New servo toolbox for DIMC",
+                "header": "Controlled moulding movements",
+                "body": "<p>The Direct Injection Moulding Concept (DIMC) station on Tetra Pak® E3 is now activated by a motor driven tool box instead of a pneumatic cylinder. The Servo Toolbox guarantees a controlled movement in terms of moulding position and moulding closing torque.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/e3_dimc.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Web Position Active Control",
+                "header": "Enhanced sealing quality and reduced dust",
+                "body": "<p>This new feature improves two important aspects of the filling machine functionality:</p><ul><li>Sealing quality because the web position accuracy is improved through a dynamic correction of the position</li><li>Reduced dust because the device is not in contact with the edges of the packaging material</li></ul>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/40279_2017-05-08_7_web_position_active_control_v2_original_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Tube Position Active Control",
+                "header": "Automatic adjustment in packaging material positioning",
+                "body": "<p>This new feature reads the rotations of the packaging material during transient phases and corrects the creases alignment of the package. It enables the Web Position Active Control to make adjustments automatic.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tubepositioningactivecontrol_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "New operator interface",
+                "header": "Wide screen",
+                "body": "<p>The operator panel has a new look and feel and a wider screen – in 16:9. More intuitive icons are available with added functionality and improved usability. The time required to perform the different operations has been reduced.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/operator_panel_tetra_pak_a3speed.png",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® E3/Speed",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/e3_speed_benefits_0.png",
+        "header": "Capacity booster for Tetra Brik® Aseptic Edge",
+        "id": "equipment21979",
+        "packagetypes": [
+            {
+                "id": "packagetype1695",
+                "name": "Tetra Brik® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_1000_e_wingcap30_np_above_overview_images.png",
+                        "volumes": [
+                            "1000 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Fills 9000 packages per hour from two lines and produces 500 ml Midi packages optimized for water</li><li>AD technology gives product a shelf life of 12 months in ambient distribution</li><li>CAU (Cap Application Unit) with HEPA air to ensure that a high hygienic level is kept</li><li>The packaging material is pre-treated with peroxide</li></ul>",
+        "features": [
+            {
+                "name": "Two-line production ",
+                "header": "Optimise your machine's capacity",
+                "body": "<p>Based on a two line architecture, which enables running packages independently on both lines with no need to stop production when cleaning one line.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/two-line_production.png",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Injection moulding ",
+                "header": "Adding a convenient opening to a carton sleeve",
+                "body": "<p>This is the world's fastest injection moulding unit. Polythene is injected at high pressure and compressed onto both sides of the carton sleeve. The unit is sealed and water-cooled to provide a sturdy, leak-proof joint that produces lids of consistent quality. The result is a convenient opening. The lid forming unit for the Tetra Pak® TT/3 AD IC filling machine, is supplied with HEPA air to avoid contamination.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/injection_moulding_0.png",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Operator interface ",
+                "header": "Extremely operator friendly",
+                "body": "<p>Operator time and complexity is reduced thanks to several smart features. Package Line Monitoring Service (PLMS) enables remote supervision and monitoring of all vital production data. Automatic recipe handling adjusts up to 10 recipe parameters. One operator can easily control features and options via the two Tetra Pak Operator Panels (TPOP).</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/operator_interface_3.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Hygiene Chamber ",
+                "header": "Supports up to 12 months’ shelf-life",
+                "body": "<p>A vapour consisting of 3% hydrogen peroxide (H2O2) is sprayed in to the package, followed by high energy UV-light. The combination of the peroxide pre-treatment, UV-light and the hydrogen peroxide vapour spray ensures a MIBI failure rate of 0,1%.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/hygiene_chamber_3.png",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Material Pre-treatment",
+                "header": "Supports up to 12 months shelf life",
+                "body": "<p>In the Automatic Splicing Unit, packaging material is pre-treated with 3% hydrogen peroxide vapour (H202).</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4275_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tt3haadpretreat_mp4_1350226443.mp4"
+                }
+            },
+            {
+                "name": "Integrated Capping Unit",
+                "header": "One Step Opening for extra consumer convenience",
+                "body": "<p>The Integrated Capping Unit applies a tamper evident cap onto the injection moulded neck inside the machine. This reduces space and maintenance costs while increasing line efficiency and control of cap application.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4301_0001.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tt3xhicintegratedcappingunit_mp4_1350226569.mp4"
+                }
+            }
+        ],
+        "name": "Tetra Pak® TT/3 AD IC",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tt3_xh_ic_benefits.png",
+        "header": "The filling machine for water",
+        "id": "equipment19647",
+        "packagetypes": [
+            {
+                "id": "packagetype1647",
+                "name": "Tetra Top® AD",
+                "shapes": [
+                    {
+                        "name": "Midi",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_500_midi_katlah38_haad_np-em_above_overview_images.png",
+                        "volumes": [
+                            "500 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>The next generation chilled portion pack machine based on Tetra Pak® A3/CompactFlex architecture.</li><li><p>World first carton filling machine available in pasteurised version or XH version, equipped with eBeam sterilisation system.</p></li><li>First machine to run Tetra Brik® portion packs at 9,000 p/h.</li></ul>",
+        "features": [
+            {
+                "name": "Peroxide Free Machine",
+                "header": "Tetra Pak® E3/CompactFlex Pasteurised Version",
+                "body": "<p> </p><p>This version of Tetra Pak® E3/CompactFlex is for chilled products and does not require packaging material sterilisation. Hydrogen peroxide will only be required to sterilise the machine in a very small quantity.</p><p><strong>Tetra Pak® E3/CompactFlex XH Version</strong></p><p>This version of Tetra Pak® E3/CompactFlex is for Extended Shelf Life products and utilises one eBeam lamp to disinfect the inner part of the packaging material. Hydrogen peroxide will only be required to sterilise the machine in a very small quantity.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/e3_cf_peroxide_free_machine.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Mini Single Head Sealing",
+                "header": "More homogeneous sealing quality",
+                "body": "<p>The transversal sealing of the packages is done by ultrasonic technology enabled by Mini Single Head Compact Transducer. It is a new component using single head instead of a twin head. This assures a more homogeneous sealing quality and enables machine capacity increase to 9'000 packs/hour.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-62449_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/e3_cf_singe_head_sealing_jawsystem_mp4_1398777602.mp4"
+                }
+            },
+            {
+                "name": "New Operator Interface",
+                "header": "Wide screen",
+                "body": "<p>The operator panel will have a new look and feel and a wider screen – in 16:9. More intuitive icons are available with added functionality and improved usability. The time required to perform the different operations has been reduced.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/e3_cf_tpop.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Two Optional Cleaning systems",
+                "header": "Choose from full automatic or eco friendly cleaning",
+                "body": "<p>The customer will have the possibility to select between two external cleaning options with a chance to customise his own cleaning cycle! The two available pre-defined options are:</p><ul><li>A full automatic procedure ensuring a higher cleaning efficiency covering also the hygienic chamber.</li><li>A more eco friendly option with a lower water consumption</li></ul><p>The cleaning parameters are visualised at the operator panel and will be enabled for customisation so that the customer can tailor make it to better fit specific needs.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/e3_cf_feature_external_full_cleaning_system.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Web Position Active Control",
+                "header": "Enhanced sealing quality and reduced dust",
+                "body": "<p>This new feature improves two important aspects of the filling machine functionality:</p><ul><li>Sealing quality because the web position accuracy is improved through a dynamic correction of the position</li><li>Reduced dust because the device is not in contact with the edges of the packaging material</li></ul>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/e3_cf_web_position_active_control_v2.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® E3/CompactFlex",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/c3cf_benefits.png",
+        "options": [
+            {
+                "name": "QuickChange™",
+                "header": "Available for TB 200 B and TB 250 B",
+                "body": "<p>QuickChange technology makes it possible to switch production between two packages with the same bottom cross section, whilst maintaining the filling machine's sterile conditions.</p><p>The kit consists of few parts that need to be changed by the filling machine operator. After this has been done, the machine automatically adjusts by applying the servo motor programme for the new volume chosen. Within 20 minutes, the machine can be ready to start production again.</p><p><strong>eBeam kit</strong><br />For already installed Tetra Pak® E3/CompactFlex pausterised machines an eBeam kit is available to render them Extended Hygiene (XH) for production of Extended Shelf Life products.</p>",
+                "image": null,
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "header": "The cool choice for Tetra Brik®",
+        "id": "equipment7002",
+        "packagetypes": [
+            {
+                "id": "packagetype1650",
+                "name": "Tetra Brik®",
+                "shapes": [
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TB_200_B_PPH_NP_Above.png",
+                        "volumes": [
+                            "200 ml",
+                            "250 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mid",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tb_200_m_pph_np_above_overview_images_0.png",
+                        "volumes": [
+                            "200 ml"
+                        ]
+                    },
+                    {
+                        "name": "Slim",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tb_200_s_pph_np_above_overview_images.png",
+                        "volumes": [
+                            "200 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>A low complexity filling machine that offers very reliable production (95% MME)</li><li>Tetra Pak® TR/G7 carries the Tetra Pak quality stamp</li><li>Available at a lower initial investment than other Tetra Pak® gable top machines<br /><br /></li></ul>",
+        "features": [
+            {
+                "name": "Magazine with horizontal tables",
+                "header": "Boosts productivity and prevents injuries",
+                "body": "<p>The blanks are loaded in the magazine at an ergonomic height, so operators do not have to lift heavy loads over their heads. This enables fast and easy loading, thereby improving productivity. At the same time, it prevents operators from suffering back injuries. Magazine capacity: 1,400 packages. Production time: 13 minutes.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65090_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/trg7_magazine_with_horisontal_tabels_mp4_1431529802.mp4"
+                }
+            },
+            {
+                "name": "Package forming",
+                "header": "Easy to adjust and maintain",
+                "body": "<p>The package is formed in a single step. When developing this forming mechanism, the objective was to achieve a simple and economical design, which would be easy for technicians to handle. Its simplicity and the reduction in moving parts, lead to a reduction in maintenance needs, and an overall improvement in reliability.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65091_0001.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr_g7_package_forming_mp4_1431529802.mp4"
+                }
+            },
+            {
+                "name": "Bottom folding and sealing",
+                "header": "Reliable bottom sealing enhances food safety",
+                "body": "<p>Temperature-controlled double heaters and mandrel tops, combined with an extended cooling period (long enough to cool down the bottom seal properly) result in reliable bottom sealing and enhances product safety.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65187_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/trg7_bottom_sealing_mp4_1435068602.mp4"
+                }
+            },
+            {
+                "name": "Package transfer",
+                "header": "Maintains package integrity",
+                "body": "<p>Once the bottom seal has been made, the package is transferred from the mandrels to the package chain. This is done gently in order to prevent the package from being damaged.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65092_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/trg7_package_transfer_mp4_1431529803.mp4"
+                }
+            },
+            {
+                "name": "Top pre-folding",
+                "header": "Increases folding accuracy",
+                "body": "<p>Before entering the next production step (package disinfection) the package is pre-folded. This preparatory folding helps to prevent errors in the final top folding and sealing.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65093_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/trg7_top_prefolding_mp4_1431529804.mp4"
+                }
+            },
+            {
+                "name": "Package disinfection",
+                "header": "Ensures consistent disinfection",
+                "body": "<p>3.0% hydrogen peroxide (H202) in the form of hot vapour is applied to the inside of the carton. A nozzle reaches deep inside the package to ensure thorough coverage. The hydrogen peroxide is then activated by passing the cartons through three UV light stations. Lastly, hot air removes any H202 residues to an undetectable level. The result is a reliable and consistent level of disinfection.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65094_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/trg7_package_disinfection_mp4_1431529804.mp4"
+                }
+            },
+            {
+                "name": "Filling system",
+                "header": "Increases accuracy and lowers costs",
+                "body": "<p>A double diaphragm system allows you to fill accurately and consistently. Filling accuracy is at most ± 1 gr per 1000 ml (actual standard deviation is 0.5 gr). This reduces the need for compensatory over-filling, and thereby helps keep costs in check.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65095_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/trg7_filling_system_mp4_1431529805.mp4"
+                }
+            },
+            {
+                "name": "Top sealing",
+                "header": "High performance with tight seals",
+                "body": "<p>Mechanically driven stainless steel top sealers are engineered for consistent performance. The pressure and temperature of the seal are always the same, which ensures strong, reliable seals that do not leak.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65096_0001.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/trg7_top_sealing_mp4_1431529805.mp4"
+                }
+            },
+            {
+                "name": "Cap applicator ",
+                "header": "Consumer convenience",
+                "body": "<p>An optional integrated applicator can be used for TwistCap™ OSO 34 and TwistCap™ OSO 30 closures. The caps are applied using ultrasonic (US) heating, which gives a quick, tight and accurate seal, thus ensuring good product protection.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-65097_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/trg7_cap_applicator_mp4_1431529806.mp4"
+                }
+            }
+        ],
+        "name": "Tetra Pak® TR/G7",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/Tetra-Rex-G7-H300_Benefits.png",
+        "header": "A low investment with high performance and low operational cost.",
+        "id": "equipment12116",
+        "packagetypes": [
+            {
+                "id": "packagetype1651",
+                "name": "Tetra Rex®",
+                "shapes": [
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_250_B_EasyOpening_NP_Above.png",
+                        "volumes": [
+                            "250 ml",
+                            "300 ml",
+                            "375 ml",
+                            "473 ml",
+                            "500 ml",
+                            "750 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "High",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_500_high_pph_np_above_overview_images.png",
+                        "volumes": [
+                            "500 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Best-in-class hygiene maintains food safety</li><li>Engineered to reduce waste and cut costs</li><li>Resource efficient – recycling of water in cooling system, low energy and chemical consumption</li></ul>",
+        "features": [
+            {
+                "name": "Operator interface",
+                "header": "Easy to learn and easy to use",
+                "body": "<p>Using this large, touch-sensitive panel with its straightforward graphic symbols and help text in the local language, helps operators work more efficiently. Any necessary adjustments can be made directly from the panel in real time. Cleaning and sterilisation can be scheduled to run at pre-set times from the operator panel.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr27operatorpanel.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Magazine",
+                "header": "Horizontal tables for fast and easy loading",
+                "body": "<p>Loading the machine is easy thanks to the ergonomic design of the tables, which follows NIOSH standards. Placed at a convenient height, operators don't have to lift heavy loads over their heads - boosting productivity and preventing injuries.<br /><strong>Preparation Table:</strong> TR/27 XH * <strong>Feeding Table:</strong> 750 Blanks * <strong>Loading Intervals:</strong> 6 minutes</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4249_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27magazine_mp4_1350226131.mp4"
+                }
+            },
+            {
+                "name": "Bottom folding and sealing",
+                "header": "Strong, stable and tightly sealed",
+                "body": "<p>The temperature-controlled heaters and mandrel tops, combined with a longer cooling period, result in strong bottom seals and very low risk of pinholes. All of which raises product safety.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4212_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27bottomfoldingandsealing_mp4_1350225409.mp4"
+                }
+            },
+            {
+                "name": "Carton disinfection",
+                "header": "Safe and efficient package disinfection",
+                "body": "<p><span>To ensure consistent cleaning and disinfection, 3.0 % hydrogen peroxide (H202) in the form of hot vapour is applied inside the carton (a nozzle reaches deep inside the package to ensure thorough coverage). The H202 coverage is activated by passing the cartons through three UV lights stations with patented parabolic reflectors. Lastly, hot air removes residual H202 to an undetectable level.</span></p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4244_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27cartonsterilisation_mp4_1350226061.mp4"
+                }
+            },
+            {
+                "name": "Fill system",
+                "header": "Greater safety, lower costs",
+                "body": "<p><span>With a fill accuracy up to ± 1 gr per 1000 ml volume (actual standard deviation 0.5 gr), the double diaphragm system allows you to fill accurately and consistently, minimising over-filling. A controlled, sterile environment and an automatically closing lid -which shuts during cleaning and intermediate stops - makes the system both safe and efficient.</span></p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4392_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27fillingsystem_mp4_1350228492.mp4"
+                }
+            },
+            {
+                "name": "Top sealing",
+                "header": "High performance with tight seals",
+                "body": "<p><span>The mechanically driven top sealers in stainless steel are engineered for consistent performance with strong, reliable seals that don’t leak.</span></p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4258_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27topsealer_mp4_1350226203.mp4"
+                }
+            },
+            {
+                "name": "Integrated Cleaning System",
+                "header": "Best-in-class food hygiene",
+                "body": "<p><span>Compared to manual cleaning, this efficient, automated cleaning system gives a better result, yet consumes less energy, utilities and chemicals. Over-pressure keeps the machine sterile inside. Sloped tables make for efficient draining; high-velocity spinning nozzles apply pre-set temperature and concentration levels to ensure consistent and thorough cleaning inside and out, every time.</span></p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr27icssystem.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Cap applicator (optional)",
+                "header": "Low noise and high performance",
+                "body": "<p><span>The integrated applicator is suitable for both the TwistCap and TwistCap Barrier closures. Since the caps are sealed ultrasonically, you can count on a tight, accurate seal at high speed, which helps protect the filled product.</span></p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr27capaplicator.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak®  TR/27 XH",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tr27-xh-hd1-copy.png",
+        "header": "The clean, lean, green filling machine",
+        "id": "equipment1304",
+        "packagetypes": [
+            {
+                "id": "packagetype1651",
+                "name": "Tetra Rex®",
+                "shapes": [
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_237_B_EasyOpening_NP_Above.png",
+                        "volumes": [
+                            "237 ml",
+                            "250 ml",
+                            "300 ml",
+                            "375 ml",
+                            "500 ml",
+                            "600 ml",
+                            "750 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Base Plus",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_500_B_Plus_TwistCap_OSO34_NP_Above.png",
+                        "volumes": [
+                            "500 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mid",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_1500_mid_twistcap_oso34_np2_above_overview_images.png",
+                        "volumes": [
+                            "1500 ml",
+                            "1750 ml",
+                            "2000 ml"
+                        ]
+                    },
+                    {
+                        "name": "High",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_500_high_pph_np_above_overview_images.png",
+                        "volumes": [
+                            "500 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Compact design, just 4,3 m high with a 20 m² footprint</li><li>Quick Change available for a wide range of packages</li><li>High food safety (unique aseptic process FDA filed)</li></ul>",
+        "features": [
+            {
+                "name": "Automatic material supply",
+                "header": "Uninterrupted production",
+                "body": "<p>There's no need to halt production in order to refill with packaging material or strips since both are replaced automatically. Automation also ensures that splices between packaging material reels and strip applications are of consistent, repeatable quality.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3888_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3speedautomaticmaterialsupply_mp4_1350219070.mp4"
+                }
+            },
+            {
+                "name": "Aseptic zone",
+                "header": "Ensures aseptic conditions in an economical way",
+                "body": "<p>The flow of sterile air needed to maintain aseptic conditions is fully controlled in a closed loop, and designed to auto-correct if deviations occur. The smallness of the aseptic zone leads to savings in the consumption of both power and peroxide.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3867_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3cfasepticzone_mp4_1350217170.mp4"
+                }
+            },
+            {
+                "name": "Deep peroxide bath",
+                "header": "For safer packaging material sterilisation",
+                "body": "<p>A peroxide bath, as opposed to a spray system, sterilises the packaging material inside and out. A special thermal carpet keeps the peroxide bath at the optimum sterilisation temperature.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3910_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3cfdeepperoxidebath_mp4_1350219843.mp4"
+                }
+            },
+            {
+                "name": "Servo driven jaw system",
+                "header": "Adding flexibility and reducing waste",
+                "body": "<p>Using servo-motors, the jaw system profile is created in a software model rather than mechanically. This facilitates rapid conversion between different kinds of package production. Profiles are optimised to give better looking packages; printed package designs are synchronised to reduce waste.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3960_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3cfservomotorinjawsystem_mp4_1350220857.mp4"
+                }
+            },
+            {
+                "name": "Improved final folder design",
+                "header": "Turning out better looking packages, faster",
+                "body": "<p>Packages are released from the machine in an upright position, which simplifies the production process and increases reliability. Servo-motors accelerate the final folding process to give a good package shape and high capacity. They also enable the production flexibility offered by QuickChange and Volume Conversion functions.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4413_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3cfservomotorinfinalfolder_mp4_1350228683.mp4"
+                }
+            },
+            {
+                "name": "iLine automation platform",
+                "header": "More reliable production",
+                "body": "<p>As the filling machine is an integrated part of the line it communicates with all the other line equipment. Sterilisation, filling and sealing processes are continuously controlled, increasing the output of 'on-target' packages. This feature also enables selectable capacity for compatibility with existing processing or downstream equipment.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a3cfilineautomationsystem.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Operator interface",
+                "header": "Enabling operators to work swiftly and efficiently",
+                "body": "<p>Several factors contribute to the easy operation of this filling machine: the Tetra Pak Operator Panel with its intuitive touch screen interface; large windows through which operators can observe production at first hand, and ground level access to essential working parts.</p><p> </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a3cfoperatorinterface.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "PLMS centre",
+                "header": "Operational control and performance analysis",
+                "body": "<p>The PLMS centre automatically collects production data from the automation platform. To this, the operator can add his own observations. Improvements in production efficiency can then be made on the basis of the two.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3918_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3flexplmscenter_mp4_1350220156.mp4"
+                }
+            }
+        ],
+        "name": "Tetra Pak® A3/CompactFlex",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/a3-cf-hd1-copy.png",
+        "options": [
+            {
+                "name": "QuickChange",
+                "header": "QuickChange technology makes it possible to switch production between two packages with the same bottom cross section, whilst maintaining the filling machine’s sterile conditions",
+                "body": "<p>The module consists of four parts that need to be changed by the filling machine operator. After this has been done, the machine automatically adjusts by applying the servo motor programme for the new volume chosen. Within 20 minutes, the machine can be ready to start production again.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3941_0001.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3cfquickchangetpa_mp4_1350220497.mp4"
+                }
+            },
+            {
+                "name": "Integrated PullTab Unit",
+                "header": "Integrated between the ASU and the main body of the filling machine, this unit enables production of packages with a PullTab opening.",
+                "body": "<p>The PullTab Unit punches a hole in the packaging material then applies an Inner PE-Strip and an outer Aluminium Tab (which is later used for opening the package). The opening is hermetically sealed before the packaging material proceeds to forming and filling.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3853_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3_compactflex_integrated_pulltab_mp4_1350216680.mp4"
+                }
+            },
+            {
+                "name": "Headspace by Injection",
+                "header": "Headspace is necessary for products that need to be shaken before consumption. It also makes it easier to open and pour from the package.",
+                "body": "<p>The unit consists of a control cabinet, a heating element to sterilize air (or an inert gas) and a nozzle which injects the sterile air (or inert gas) to the product to create froth. When the froth settles down, it leaves a residual headspace which enables the content to be shaken and mixed. Using this method, products can be filled by weight so the choice of volumes is wider</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4322_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3_option_headspace_for_injection_mp4_1350227217.mp4"
+                }
+            },
+            {
+                "name": "High Viscosity Aseptic (HVA) Kit",
+                "header": "The HVA kit makes it possible to fill viscous products such as tomato paste.",
+                "body": "<p>This is made possible by a synchronous aseptic positive pump which is controlled by the double loop filling control system of the Tetra Pak A3/Compact Flex filling machine. The unit can be connected or disconnected as needed, so producers can alternate easily between viscous and other kinds of products.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4128_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/hv_660x360_mp4_1350224205.mp4"
+                }
+            }
+        ],
+        "header": "Maximum flexibility - minimum space!",
+        "id": "equipment1308",
+        "packagetypes": [
+            {
+                "id": "packagetype1695",
+                "name": "Tetra Brik® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_B_PPH_NP_Above.png",
+                        "volumes": [
+                            "100 ml",
+                            "200 ml",
+                            "250 ml"
+                        ]
+                    },
+                    {
+                        "name": "Slim",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_S_PPH_NP_Above.png",
+                        "volumes": [
+                            "80 ml",
+                            "125 ml",
+                            "160 ml",
+                            "180 ml",
+                            "200 ml",
+                            "250 ml",
+                            "300 ml",
+                            "330 ml",
+                            "375 ml"
+                        ]
+                    },
+                    {
+                        "name": "Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_E_PPH_NP_Above.png",
+                        "volumes": [
+                            "200 ml",
+                            "250 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mid",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_M_PPH_NP_Above.png",
+                        "volumes": [
+                            "200 ml"
+                        ]
+                    },
+                    {
+                        "name": "Slim Leaf",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_200_slimleaf_pph_above_overview_images.png",
+                        "volumes": [
+                            "200 ml"
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "packagetype1698",
+                "name": "Tetra Prisma® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Square",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/tpa_200_sq_pulltab_np_above_1.png",
+                        "volumes": [
+                            "125 ml",
+                            "200 ml",
+                            "250 ml",
+                            "330 ml"
+                        ]
+                    },
+                    {
+                        "name": "Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tpa_200_e_dreamcap26_np_above_overview_images.png",
+                        "volumes": [
+                            "200 ml",
+                            "250 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Highest package output in the industry</li><li>Lowest possible operational cost</li><li>High food safety (unique aseptic process FDA filed)</li></ul>",
+        "features": [
+            {
+                "name": "Automatic material supply",
+                "header": "Uninterrupted production",
+                "body": "<p>There's no need to halt production in order to refill with packaging material or strips since both are replaced automatically. Automation also ensures that splices between packaging material reels and strip applications are of consistent, repeatable quality.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3888_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3speedautomaticmaterialsupply_mp4_1350219070.mp4"
+                }
+            },
+            {
+                "name": "Aseptic system",
+                "header": "Ensures aseptic conditions",
+                "body": "<p>The flow of sterile air and the peroxide concentration needed to maintain aseptic conditions is fully controlled in a closed loop, and designed to auto-correct if deviations occur. Packaging material is sterilised both inside and out in a peroxide bath and a UV lamp completes the sterilisation process.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3967_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3speedasepticzone_mp4_1350221222.mp4"
+                }
+            },
+            {
+                "name": "Chain - based jaw system",
+                "header": "Enabling machine’s high output",
+                "body": "<p>A unique chain-driven jaw system means that the machine's roll-fed packaging material is formed into packages in continuous motion, making this the fastest carton package filling in the world. An induction-based power transfer means there is no need for connected parts, which greatly reduces wear and tear.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3969_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3speedchainbasedjawsystem_mp4_1350221257.mp4"
+                }
+            },
+            {
+                "name": "Integrated cleaning unit",
+                "header": "Higher overall equipment effectiveness",
+                "body": "<p>The integrated cleaning unit cleans and disinfects the equipment at pre-set time intervals. As it is integrated, it has several advantages over a Central CIP: fewer delays; a shorter cleaning cycle; better controlled cleaning and a lower consumption of chemicals</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3976_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3speedicu_mp4_1350221309.mp4"
+                }
+            },
+            {
+                "name": "Operator interface",
+                "header": "Enabling operators to work swiftly and efficiently",
+                "body": "<p>Several factors contribute to the easy operation of this filling machine: the Tetra Pak Operator Panel with its intuitive touch screen interface; large windows through which operators can observe production at first hand, and ground level access to essential working parts.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a3_speed_operator_interface.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "PLMS centre",
+                "header": "Operational control and performance analysis",
+                "body": "<p>The PLMS centre automatically collects production data from the automation platform. To this, the operator can add his own observations. Improvements in production efficiency can then be made on the basis of the two.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3918_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3flexplmscenter_mp4_1350220156.mp4"
+                }
+            },
+            {
+                "name": "iLine automation platform",
+                "header": "More reliable production",
+                "body": "<p>As the filling machine is an integrated part of the line it communicates with all the other line equipment. Sterilisation, filling and sealing processes are continuously controlled, increasing the output of 'on-target' packages. This feature also enables selectable capacity for compatibility with existing processing or downstream equipment.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a3cfilineautomationsystem.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® A3/Speed",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/a3-speed-hd1-copy.png",
+        "options": [
+            {
+                "name": "Optional kit - Volume Rebuilding Kit",
+                "header": "With a Volume Rebuilding Kit you can now change your package production from any to any Tetra Brik® Aseptic portion package released on Tetra Pak® A3/Speed.",
+                "body": "<p>Not only does this give you investment protection but it also means that you can have a new package on the shelves 12 weeks earlier compared to ordering a new line, with 85% reduced installation time and with an 80% lower investment.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-68074_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/20150416092846_mp4_1445931601.mp4"
+                }
+            },
+            {
+                "name": "Headspace by Injection",
+                "header": "Headspace is necessary for products that need to be shaken before consumption. It also makes it easier to open and pour from the package.",
+                "body": "<p>The unit consists of a control cabinet, a heating element to sterilize air (or an inert gas) and a nozzle which injects the sterile air (or inert gas) to the product to create froth. When the froth settles down, it leaves a residual headspace which enables the content to be shaken and mixed. Using this method, products can be filled by weight so the choice of volumes is wider</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4322_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3_option_headspace_for_injection_mp4_1350227217.mp4"
+                }
+            },
+            {
+                "name": "Integrated PullTab Unit",
+                "header": "Integrated between the ASU and the main body of the filling machine, this unit enables production of packages with a PullTab opening.",
+                "body": "<p>The PullTab Unit punches a hole in the packaging material then applies an Inner PE-Strip and an outer Aluminium Tab (which is later used for opening the package). The opening is hermetically sealed before the packaging material proceeds to forming and filling.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3853_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3_compactflex_integrated_pulltab_mp4_1350216680.mp4"
+                }
+            }
+        ],
+        "header": "Not just fast",
+        "id": "equipment1299",
+        "packagetypes": [
+            {
+                "id": "packagetype1695",
+                "name": "Tetra Brik® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_B_PPH_NP_Above.png",
+                        "volumes": [
+                            "100 ml",
+                            "200 ml",
+                            "250 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mid",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_M_PPH_NP_Above.png",
+                        "volumes": [
+                            "200 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Slim",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_S_PPH_NP_Above.png",
+                        "volumes": [
+                            "125 ml",
+                            "180 ml",
+                            "200 ml",
+                            "250 ml",
+                            "300 ml",
+                            "500 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Square",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_1000_Sq_HeliCap27_NP2_Above.png",
+                        "volumes": [
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Slim Leaf",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_200_slimleaf_pph_above_overview_images.png",
+                        "volumes": [
+                            "125 ml",
+                            "200 ml",
+                            "250 ml"
+                        ]
+                    },
+                    {
+                        "name": "Ultra",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_180_u_pph_np_above_overview_images_0.png",
+                        "volumes": [
+                            "180 ml"
+                        ]
+                    },
+                    {
+                        "name": "Base Crystal",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_200_basecrystal_pph_np_above_overview_images.png",
+                        "volumes": [
+                            "200 ml",
+                            "250 ml"
+                        ]
+                    },
+                    {
+                        "name": "Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_E_PPH_NP_Above.png",
+                        "volumes": [
+                            "200 ml"
+                        ]
+                    },
+                    {
+                        "name": "Base Leaf",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_250_baseleaf_pph_above_overview_images.png",
+                        "volumes": [
+                            "250 ml"
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "packagetype1698",
+                "name": "Tetra Prisma® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Square",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/tpa_200_sq_pulltab_np_above_1.png",
+                        "volumes": [
+                            "200 ml",
+                            "250 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Best-in-class hygiene maintains food safety</li><li>Engineered to reduce waste and cut costs</li><li>Resource efficient – recycling of water in cooling system, low energy and chemical consumption</li></ul>",
+        "features": [
+            {
+                "name": "Operator Interface",
+                "header": "Easy to learn and easy to use",
+                "body": "<p>Using this large, touch-sensitive panel with its straightforward graphic symbols and helptext in the local language, helps operators work more efficiently. Any necessary adjustments can be made directly from the panel in real time. Cleaning and sterilisation can be scheduled to run at pre-set times from the operator panel.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr28operatorpanel.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Magazine",
+                "header": "Horizontal tables for fast and easy loading",
+                "body": "<p>Loading the machine is easy thanks to the ergonomic design of the tables, which follows NIOSH standards. Placed at a convenient height, operators don't have to lift heavy loads over their heads - boosting productivity and preventing injuries.<br /><strong>Preparation Table:</strong> TR/27 XH * <strong>Feeding Table:</strong> 2 X 750 Blanks * <strong>Loading Intervals:</strong> 6 minutes</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4266_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr28magazine_mp4_1350226379.mp4"
+                }
+            },
+            {
+                "name": "Bottom folding and sealing",
+                "header": "Strong, stable and tightly sealed",
+                "body": "<p>The temperature-controlled heaters and mandrel tops, combined with a longer cooling period, result in strong bottom seals and very low risk of pinholes. All of which raises product safety.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4212_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27bottomfoldingandsealing_mp4_1350225409.mp4"
+                }
+            },
+            {
+                "name": "Carton disinfection",
+                "header": "Safe and efficient package disinfection",
+                "body": "<p><span>To ensure consistent cleaning and disinfection, 3.0 % hydrogen peroxide (H202) in the form of hot vapour is applied inside the carton (a nozzle reaches deep inside the package to ensure thorough coverage). The H202 coverage is activated by passing the cartons through three UV lights stations with patented parabolic reflectors. Lastly, hot air removes residual H202 to an undetectable level.</span></p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4244_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27cartonsterilisation_mp4_1350226061.mp4"
+                }
+            },
+            {
+                "name": "Fill system",
+                "header": "Greater safety, lower costs",
+                "body": "<p><span>With a fill accuracy up to ± 1 gr per 1000 ml volume (actual standard deviation 0.5 gr), the double diaphragm system allows you to fill accurately and consistently, minimising over-filling. A controlled, sterile environment and an automatically closing lid -which shuts during cleaning and intermediate stops - makes the system both safe and efficient.</span></p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4392_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27fillingsystem_mp4_1350228492.mp4"
+                }
+            },
+            {
+                "name": "Top sealing",
+                "header": "High performance with tight seals",
+                "body": "<p><span>The mechanically driven top sealers in stainless steel are engineered for consistent performance with strong, reliable seals that don’t leak.</span></p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4258_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tr27topsealer_mp4_1350226203.mp4"
+                }
+            },
+            {
+                "name": "Integrated Cleaning System",
+                "header": "Best-in-class food hygiene",
+                "body": "<p><span>Compared to manual cleaning, this efficient, automated cleaning system gives a better result, yet consumes less energy, utilities and chemicals. Over-pressure keeps the machine sterile inside. Sloped tables make for efficient draining; high-velocity spinning nozzles apply pre-set temperature and concentration levels to ensure consistent and thorough cleaning inside and out, every time.</span></p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr27icssystem.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Cap applicator (optional)",
+                "header": "Low noise and high performance",
+                "body": "<p>The integrated applicator is suitable for both the TwistCap and TwistCap Barrier closures. Since the caps are sealed ultrasonically, you can count on a tight, accurate seal at high speed, which helps protect the filled product.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tr28capapplicator.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® TR/28 XH",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tr28-xh-hd1-copy.png",
+        "header": "The clean, lean, green filling machine",
+        "id": "equipment1296",
+        "packagetypes": [
+            {
+                "id": "packagetype1651",
+                "name": "Tetra Rex®",
+                "shapes": [
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_237_B_EasyOpening_NP_Above.png",
+                        "volumes": [
+                            "237 ml",
+                            "250 ml",
+                            "300 ml",
+                            "375 ml",
+                            "473 ml",
+                            "500 ml",
+                            "600 ml",
+                            "750 ml",
+                            "946 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Base Plus",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_500_B_Plus_TwistCap_OSO34_NP_Above.png",
+                        "volumes": [
+                            "500 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "High",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_500_high_pph_np_above_overview_images.png",
+                        "volumes": [
+                            "500 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>The Tetra Pak® R2 can produce 5 package volumes and offers quick conversion between different volumes with the same bottom format (30 minutes) and 5 hours for different formats (Mini and Midi).</li><li>Space-efficient machine (only 60 m²) containing forming, filling, sealing and work space</li><li>High level of automation reduces the need for manual operation (one person only)</li></ul>",
+        "features": [
+            {
+                "name": "Integrated equipment",
+                "header": "Space-efficiency",
+                "body": "<p>The three functions – forming, filling and sealing – are all integrated into this compact machine which saves space on your factory floor. All critical functions are accessible from floor level.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tpr_2_flexible-all_critical_functions_accessible_from_floor_level.__0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Easy volume change",
+                "header": "Get the most from your investment!",
+                "body": "<p>The entire Tetra Recart packaging portfolio can be produced on the Tetra Pak R2 machine. A trained operator can switch between volumes in approximately 30 minutes.To change between different formats, 5 hours are needed. This means you can produce a series of products, or a multi-size product family, with just one machine.</p><p> </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tpr2_flexible-get_most_from_your_investment_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Operator interface",
+                "header": "Operators work swiftly, efficiently",
+                "body": "<p>Several factors make this filling machine easy to operate: the Tetra Pak Operator Panel with its intuitive touch-screen interface; large windows enabling operators to watch production directly; and ground-level access to essential working parts.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tpr_2_flexible-tpop__0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Encased working parts",
+                "header": "Low noise levels",
+                "body": "<p>All the moving parts are positioned on the inside of the machine, which is enclosed in a metal casing and sealed with tight-fitting doors. The result is a plant environment with relatively low noise levels (75 dB) compared with industry norms.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tp_r2_flexible-_low_noise_level_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Carton blanks",
+                "header": "Space-efficient and lightweight",
+                "body": "<p>This machine is fed with carton blanks from cardboard boxes with a minimum of manual handling. The blanks are flat-packed to save space. You can fit 32 000 empty Tetra Recart cartons on a 1150 x 800 mm. pallet, compared with 3120 cans, leading to savings in distribution and storage costs.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-61107_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/load_magazine_mp4_1381412404.mp4"
+                }
+            },
+            {
+                "name": "Induction sealing",
+                "header": "Controlled, continuous sealing",
+                "body": "<p>The aluminium foil is heated under tight control, melting the plastic in the packaging material. The package is then sealed by pressure. The machine monitors the temperature and pressure, and stops automatically if incorrect parameters are detected.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4397_0001.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tp_r2_feature_6-induction_sealing_mp4_1350228559.mp4"
+                }
+            },
+            {
+                "name": "PLMS data",
+                "header": "Control and analysis",
+                "body": "<p>PLMS data is collected based on the FM production code, and can be extracted either during or after production. The full line information can be shared with operators and engineers to ensure optimum performance and production efficiency.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tp_r2_flexible-plms_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® R2",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tpr2_flexible_benefits.png",
+        "header": "Compact, integrated, flexible machine",
+        "id": "equipment1283",
+        "packagetypes": [
+            {
+                "id": "packagetype1697",
+                "name": "Tetra Recart®",
+                "shapes": [
+                    {
+                        "name": "Mini",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_trc_200_mini_np3_above_overview_images.png",
+                        "volumes": [
+                            "200 ml"
+                        ]
+                    },
+                    {
+                        "name": "Midi",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_trc_340_midi_np3_above_overview_images.png",
+                        "volumes": [
+                            "340 ml",
+                            "390 ml",
+                            "440 ml",
+                            "500 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Reliable machine, simple for one person to operate</li><li>Production capacity up to 17,500 p/h gives low unit cost</li><li>Easy conversion between 5 sizes</li><li>Highly efficient use of utilities enables a low operating cost and a good environmental performance</li></ul>",
+        "features": [
+            {
+                "name": "Automatic Strip Splicing",
+                "header": "Quality splicing",
+                "body": "<p>Enables correct, repeatable splicing of longitudinal strip reels, and at the same time makes the operation less labour intensive. The reels are exchanged approximately every 1.45 hours.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaautomaticstripsplicing.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Operator panel",
+                "header": "It’s never been easier to operate",
+                "body": "<p>The production is easily managed through a Tetra Pak Operator Panel (TPOP) system on the ground level. All major functions can be initiated and supervised - from production preparation to the Cleaning in Place (CIP) function.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaoperatorpanel.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "PLMS Centre",
+                "header": "Operational control and performance analysis",
+                "body": "<p>The packaging line monitoring system (PLMS) enables tracking of production performance, such as possible stop reasons, efficiencies, waste levels.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaplms.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Packaging material in-feed",
+                "header": "Long production runs raise efficiency",
+                "body": "<p>Each Tetra Pak A1 unit holds a jumbo reel of packaging material with sufficient supply for almost two hours of production at the higher speed, and about three hours at the lower speed. A jumbo reel holds sufficient material for up to 36,000 packages.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcamaterialinfeed.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Fully automatic splicing unit",
+                "header": "Neat seal between reels",
+                "body": "<p>The splicing unit heats and pressurises the packaging material to automatically make a neat seal between one reel and the next, so package production can continue uninterrupted.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcamaterialinfeed_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Aseptic system",
+                "header": "For reliable sterilisation of packaging material",
+                "body": "<p>Consists of a shallow hydrogen peroxide bath, squeegee rollers and a heating chamber. Rollers distribute the hydrogen peroxide evenly; controlled heating and evaporation give effective sterilisation. Control of aseptic parameters ensures product protection and minimises the risk of operator errors.</p><p> </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaasepticsystemcontrolledheating.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® A1 for Tetra Classic® Aseptic",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/a1_tca_benefits_new.png",
+        "options": [
+            {
+                "name": "HIGH VISCOSITY ASEPTIC (HVA) KIT (Tetra Pak A1)",
+                "header": "The HVA kit makes it possible to fill viscous products such as tomato paste.",
+                "body": "<p>This is made possible by a synchronous aseptic positive pump which is controlled by the double loop filling control system of the Tetra Pak A1 filling machine. The unit can be connected or disconnected as needed, so producers can alternate easily between viscous and other kinds of products.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/Thumbnail_HVA-kit-A1.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/Tetra-Pak_A1_TFA_70_HVA_module_small.mp4"
+                }
+            }
+        ],
+        "header": "Get more from less",
+        "id": "equipment1287",
+        "packagetypes": [
+            {
+                "id": "packagetype1648",
+                "name": "Tetra Classic® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Slim",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TCA_65_S_PPH_NP_Front.png",
+                        "volumes": [
+                            "65 ml",
+                            "100 ml",
+                            "150 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mid",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tca_125_m_pph_np_above_overview_images.png",
+                        "volumes": [
+                            "125 ml"
+                        ]
+                    },
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TCA_200_B_PPH_NP_Front.png",
+                        "volumes": [
+                            "200 ml"
+                        ]
+                    },
+                    {
+                        "name": "Cube",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TCA_65_C_NoOpening_NP_Above_overview_images.png",
+                        "volumes": [
+                            "65 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Run two different packages, openings and products at the same time</li><li>Producing carton packages that are high on functionality</li><li>Extended hygiene technology support products freshness throughout their shelf-life</li></ul>",
+        "features": [
+            {
+                "name": "Two-line production",
+                "header": "Optimise your machine's capacity",
+                "body": "<p>Fill two different products simultaneously in different packages with different openings. Change package volumes automatically in just 4 minutes, and switch openings in just a few hours. Clean one line without stopping production on the other.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3xhtwoline.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Extended hygiene (XH)",
+                "header": "Ensuring extended shelf life for chilled products",
+                "body": "<p>Tetra Pak® TT/3 XH uses the best disinfection solutions available to ensure extended shelf life for chilled products. Using proven H₂O₂, UV light (Ultra Violet) and HEPA (clean-air system) technology, this machine offers you top-class hygiene for a stable and robust filling process.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/hygiene_chamber_1.png",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Injection moulding",
+                "header": "Adding a convenient opening to a carton sleeve",
+                "body": "<p>This is the world's fastest injection moulding for the Lid Forming Unit. Polythene is injected at high pressure onto both sides of the carton sleeve. The unit is sealed and water-cooled to provide a sturdy, leak-proof joint that produces lids of consistent quality. The result is a convenient opening.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4144_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tt3xhinjectionmoulding_mp4_1350224406.mp4"
+                }
+            },
+            {
+                "name": "Operator interface",
+                "header": "Extremely operator friendly",
+                "body": "<p>Operator time and complexity is reduced thanks to several smart features. Package Line Monitoring Service (PLMS) enables remote supervision and monitoring of all vital production data. Automatic recipe handling adjusts up to 10 recipe parameters. One operator can easily control features and options via the two Tetra Pak Operator Panels (TPOP).</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3xhextremelyoperatorfriendly.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Tetra Top Cleaning Unit (TTCU)",
+                "header": "One external unit can clean two machines",
+                "body": "<p>The external Tetra Top® Cleaning Unit offers excellent cleaning and disinfection of your hygiene chamber. One unit is able to clean up to two Tetra Pak® TT/3 filling machines.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3xhtetratopcleaningunit.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® TT/3 XH",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tt3-xh-hd1-copy.png",
+        "header": "Flexible, hygienic two-line filling",
+        "id": "equipment1288",
+        "packagetypes": [
+            {
+                "id": "packagetype1649",
+                "name": "Tetra Top®",
+                "shapes": [
+                    {
+                        "name": "Micro",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_100_micro_lokka_chilled_np-em_above_overview_images.png",
+                        "volumes": [
+                            "100 ml"
+                        ]
+                    },
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_500_base_eifelo38_chilled_np-em_above_overview_images.png",
+                        "volumes": [
+                            "500 ml",
+                            "750 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mini",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_200_mini_grandtab_chilled_np-em_above_overview_images.png",
+                        "volumes": [
+                            "150 ml",
+                            "200 ml",
+                            "250 ml"
+                        ]
+                    },
+                    {
+                        "name": "Midi",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_200_midi_katlas38_chilled_np-em_above_overview_images.png",
+                        "volumes": [
+                            "200 ml",
+                            "250 ml",
+                            "330 ml",
+                            "400 ml",
+                            "500 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>A productive, reliable system thanks to good uptime ( MTBF) and low average repair times (10 minutes)</li><li>Highly efficient use of utilities enables a low operating cost and a good environmental performance</li><li>Can produce Tetra Wedge® Aseptic 125ml and 200ml Slim packages or underfill options of 110ml and 180ml with a change over time of just 4 hours</li></ul>",
+        "features": [
+            {
+                "name": "Operator panel",
+                "header": "It’s never been easier to operate",
+                "body": "<p>The production is easily managed through a Tetra Pak Operator Panel (TPOP) system on the ground level. All major functions can be initiated and supervised - from production preparation to the Cleaning in Place (CIP) function.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaoperatorpanel.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Small footprint",
+                "header": "Reduces customer system costs",
+                "body": "<p>This machine has a small space requirement in relation to the number of packages produced (11,300 packages for 200ml or 15,000 packages for 125ml, per hour on a footprint of 2892 x 8135 mm). Space efficiency enhances operational efficiency and helps bring down the overall customer system cost.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1twagoodfootprint.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Packaging material infeed",
+                "header": "Longer production runs raise efficiency",
+                "body": null,
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1twapackagingandmaterialinfeed.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Aseptic system",
+                "header": "For reliable sterilisation of packaging material",
+                "body": "<p>Consists of a shallow hydrogen peroxide bath, squeegee rollers and a heating chamber. Rollers distribute the hydrogen peroxide evenly; controlled heating and evaporation give effective sterilisation. Control of aseptic parameters ensures product protection and minimises the risk of operator errors.</p><p> </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaasepticsystemcontrolledheating.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "PLMS Centre",
+                "header": "Operational control and performance analysis",
+                "body": "<p>The packaging line monitoring system (PLMS) enables tracking of production performance, such as possible stop reasons, efficiencies, waste levels.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaplms.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® A1 for Tetra Wedge® Aseptic",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/a1_twa_benefits_new.png",
+        "header": "Get more from less",
+        "id": "equipment1279",
+        "packagetypes": [
+            {
+                "id": "packagetype2351",
+                "name": "Tetra Wedge® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Slim",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TWA_200_S_PPH_NP2_Above.png",
+                        "volumes": [
+                            "125 ml",
+                            "200 ml"
+                        ]
+                    },
+                    {
+                        "name": "Ultra",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TWA_150_U_PPH_NP_Above_overview_images.png",
+                        "volumes": [
+                            "150 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Easy conversion between different family package shapes and sizes</li><li>Easy adaptation to many different closures</li><li>High food safety (unique aseptic process FDA filed)</li></ul>",
+        "features": [
+            {
+                "name": "Automatic material supply",
+                "header": "Uninterrupted production",
+                "body": "<p>There's no need to halt production in order to refill with packaging material or strips since both are replaced automatically. Automation also ensures that splices between packaging material reels and strip applications are of consistent, repeatable quality.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3881_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3flexautomaticmaterialsupply_mp4_1350217513.mp4"
+                }
+            },
+            {
+                "name": "Aseptic zone",
+                "header": "Ensures aseptic conditions in an economical way",
+                "body": "<p>The flow of sterile air needed to maintain aseptic conditions is fully controlled in a closed loop, and designed to auto-correct if deviations occur. The smallness of the aseptic zone leads to savings in the consumption of both power and peroxide.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3867_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3cfasepticzone_mp4_1350217170.mp4"
+                }
+            },
+            {
+                "name": "Deep peroxide bath",
+                "header": "For safer packaging material sterilisation",
+                "body": "<p>A peroxide bath, as opposed to a spray system, sterilises the packaging material inside and out. A special thermal carpet keeps the peroxide bath at the optimum sterilisation temperature.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3910_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3cfdeepperoxidebath_mp4_1350219843.mp4"
+                }
+            },
+            {
+                "name": "Servo driven jaw system",
+                "header": "Adding flexibility and reducing waste",
+                "body": "<p>Using servo-motors, the jaw system profile is created in a software model rather than mechanically. This facilitates rapid conversion between different kinds of package production. Profiles are optimised to give better looking packages; printed package designs are synchronised to reduce waste.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3960_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3cfservomotorinjawsystem_mp4_1350220857.mp4"
+                }
+            },
+            {
+                "name": "Operator interface",
+                "header": "Enabling operators to work swiftly and efficiently",
+                "body": "<p>Several factors contribute to the easy operation of this filling machine: the Tetra Pak Operator Panel with its intuitive touch screen interface; large windows through which operators can observe production at first hand, and ground level access to essential working parts.</p><p> </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a3cfoperatorinterface.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "PLMS centre",
+                "header": "Operational control and performance analysis",
+                "body": "<p>The PLMS centre automatically collects production data from the automation platform. To this, the operator can add his own observations. Improvements in production efficiency can then be made on the basis of the two.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3918_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3flexplmscenter_mp4_1350220156.mp4"
+                }
+            },
+            {
+                "name": "iLine automation platform",
+                "header": "More reliable production",
+                "body": "<p>As the filling machine is an integrated part of the line it communicates with all the other line equipment. Sterilisation, filling and sealing processes are continuously controlled, increasing the output of 'on-target' packages. This feature also enables selectable capacity for compatibility with existing processing or downstream equipment.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a3cfilineautomationsystem.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Improved final folder design",
+                "header": "Turning out better looking packages, faster",
+                "body": "<p>Packages are released from the machine in an upright position, which simplifies the production process and increases reliability. Servo-motors accelerate the final folding process to give a good package shape and high capacity. They also enable the production flexibility offered by QuickChange and Volume Conversion functions.</p><p> </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a3refiendfinalfolder.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® A3/Flex",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/A3-Flex-no-DIMC-Benefits.png",
+        "options": [
+            {
+                "name": "Headspace by Injection",
+                "header": "Headspace is necessary for products that need to be shaken before consumption. It also makes it easier to open and pour from the package.",
+                "body": "<p>The unit consists of a control cabinet, a heating element to sterilize air (or an inert gas) and a nozzle which injects the sterile air (or inert gas) to the product to create froth. When the froth settles down, it leaves a residual headspace which enables the content to be shaken and mixed. Using this method, products can be filled by weight so the choice of volumes is wider</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4322_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3_option_headspace_for_injection_mp4_1350227217.mp4"
+                }
+            },
+            {
+                "name": "DIMC on Pre-Laminate Hole (PLH)",
+                "header": "Direct Injection Moulding Concept for a low-cost, highly functional opening",
+                "body": "<p>The flat packaging material with a PLH is fed into the DIMC unit and therein the neck of the screw-cap opening is injected over the PLH using the direct injection moulding technology.<br />The actual lid is screwed on to the neck downstream by the Capper.<br />The DIMC unit is placed at floor level for easy operator access. </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3953_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/dimc_animation_external_mp4_1350220660.mp4"
+                }
+            },
+            {
+                "name": "Integrated PullTab Unit",
+                "header": "Integrated between the ASU and the main body of the filling machine, this unit enables production of packages with a PullTab opening.",
+                "body": "<p>The PullTab Unit punches a hole in the packaging material then applies an Inner PE-Strip and an outer Aluminium Tab (which is later used for opening the package). The opening is hermetically sealed before the packaging material proceeds to forming and filling.</p><p> </p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3853_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3_compactflex_integrated_pulltab_mp4_1350216680.mp4"
+                }
+            },
+            {
+                "name": "QuickChange",
+                "header": "QuickChange technology makes it possible to switch production between two packages with the same bottom cross section, whilst maintaining the filling machine’s sterile conditions.",
+                "body": "<p>The module consists of six parts that need to be changed by the filling machine operator. After this has been done, the machine automatically adjusts by applying the servo motor programme for the new volume chosen. Within 15 minutes, the machine can be ready to start production again.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-3860_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/a3_flex_quick_change_tga_mp4_1350216879.mp4"
+                }
+            },
+            {
+                "name": "DIMC QuickChange™ ",
+                "header": "Allows switching from Tetra Brik® Aseptic 1000 Edge LightCap™ 30 to Tetra Brik® Aseptic 500 Edge LightCap™ 30 in a quick and simple way",
+                "body": "<p>For the first time we can offer a DIMC QuickChange™ on Tetra Pak® A3/Flex which allows switching from Tetra Brik® Aseptic 1000 Edge LightCap™ 30 to Tetra Brik® Aseptic 500 Edge LightCap™ 30 in a quick and simple way. Using the Volume Conversion Kit QuickChange™ it is possible to change production between two packages with the same bottom cross section in only 15 minutes.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-62866_0004.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/linea_dimc_final_short_mp4_1410334802.mp4"
+                }
+            }
+        ],
+        "header": "Versatility of shapes, sizes and closures",
+        "id": "equipment1272",
+        "packagetypes": [
+            {
+                "id": "packagetype1695",
+                "name": "Tetra Brik® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_500_B_Perforation_NP_Above.png",
+                        "volumes": [
+                            "500 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_500_e_wingcap30_np_above_overview_images.png",
+                        "volumes": [
+                            "500 ml",
+                            "1000 ml",
+                            "1500 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mid",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_1000_M_FlexiCap_NP_Front.png",
+                        "volumes": [
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Slim",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_500_S_ReCap2_NP_Above.png",
+                        "volumes": [
+                            "500 ml",
+                            "1000 ml",
+                            "1500 ml",
+                            "2000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Square",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_500_Sq_HeliCap27_NP2_Above.png",
+                        "volumes": [
+                            "500 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Ultra Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_1000_ue_wingcap30_np_above_overview_images.png",
+                        "volumes": [
+                            "1000 ml"
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "packagetype1652",
+                "name": "Tetra Gemina® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Crystal",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TGA_1000_Sq_Crystal_HeliCap27_NP3_Above.png",
+                        "volumes": [
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Leaf",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/tga_1000_sq_leaf_helicap27_np3_above.png",
+                        "volumes": [
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Square",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TGA_500_Sq_HeliCap27_NP3_Above.png",
+                        "volumes": [
+                            "500 ml",
+                            "750 ml",
+                            "1000 ml",
+                            "1500 ml"
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "packagetype1698",
+                "name": "Tetra Prisma® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Square",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TPA_750_Sq_HeliCap27__NP2_Tilt.png",
+                        "volumes": [
+                            "750 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tpa_500_edge_dreamcap26_np_above_overview_images.png",
+                        "volumes": [
+                            "500 ml"
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "pxp3_tetra_stelo_aseptic",
+                "name": "Tetra Stelo® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Edge",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TSA_500_E_WingCap30_NP_Above_overview_images.png",
+                        "volumes": [
+                            "500 ml",
+                            "1000 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Low operational cost due to high level of automation which reduces the need for manual operation (one person only)</li><li>Smart design for safe and easy operation with high production performance</li><li>Wide range of products to be filled</li></ul>",
+        "features": [
+            {
+                "name": "Carrier system",
+                "header": "Enables use of external fillers",
+                "body": "<p>A unique transport system moves Tetra Recart® packages safely along the line, including the fill-and-seal machine and fillers. This mean external fillers can be combined with the Tetra Pak® R1 form-and-seal machine, increasing the range of possible filled products.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-76958_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/carrier_system_750x410_mp4_1490968801.mp4"
+                }
+            },
+            {
+                "name": "Multiple speed operation",
+                "header": "Widens the range of food categories",
+                "body": "<p>The speed of the machine can be set at 9 000, 12 000, 16 000, 20 000 or 24 000 packs per hour. Since the required process time for different food categories varies, this feature makes it possible to adapt production speed to suit wide variety of foods.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/multi-speed_operation.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Encased working parts",
+                "header": "Low noise levels",
+                "body": "<p>All the moving parts are positioned on the side of the machine, which is enclosed in a metal casing and sealed with tight-fitting doors. The result is a plant environment with relatively low noise levels (71.5 dB) compared to industry norms.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/encased_equipment.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Automatic carton loader (ACL)",
+                "header": "Frees up the operators’ time",
+                "body": "<p>An operator is required to supervise the production start-up, but after that, carton blanks are fed into the form-and-seal machine automatically by the carton loader. This leaves the operator free to perform other tasks.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-76321_0000.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/automatic_carton_loading_mp4_1486380002.mp4"
+                }
+            },
+            {
+                "name": "Induction sealing",
+                "header": "Controlled, continuous sealing",
+                "body": "<p>The aluminium foil is heated under tight control, melting the plastic in the packaging material. The package is then sealed by pressure. The machine monitors the temperature and pressure, and stops automatically if incorrect parameters are detected.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-76322_0001.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/transversal_sealing_pt1_mp4_1486380002.mp4"
+                }
+            },
+            {
+                "name": "PLMS data",
+                "header": "Control and analysis",
+                "body": "<p>Packaging line monitoring system (PLMS) is a software tool used to automatically monitor and log the performance of Tetra Recart® packaging lines. The data can be used to analyze detailed production data and find ways for corrective actions and continuous improvement.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tp_r1_feature_7-plms_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Operators interface ",
+                "header": "Operators work swiftly and efficiently",
+                "body": "<p>Several factors make this filling machine easy to operate: the Tetra Pak® Operator Panel with its intuitive touch-screen interface; large window enabling operators to watch production directly; and ground-level access to essential working parts.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tpr1_operatorspanel.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® R1",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tpr1_benefits.png",
+        "options": [
+            {
+                "name": "Nitrogen Gas Injection",
+                "header": "An injection of nitrogen gas minimises the amount of oxygen in the package before final sealing. This is useful for vegetable products, for example, as it prevents product discoloration.",
+                "body": "<p>An injection of nitrogen gas minimises the amount of oxygen in the package before final sealing. This is useful for vegetable products, for example, as it prevents product discoloration.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tpr1_image_kit_front_2_low.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "header": "A flexible, high speed and highly automated form and seal machine",
+        "id": "equipment1255",
+        "packagetypes": [
+            {
+                "id": "packagetype1697",
+                "name": "Tetra Recart®",
+                "shapes": [
+                    {
+                        "name": "Midi",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_trc_340_midi_np3_above_overview_images.png",
+                        "volumes": [
+                            "340 ml",
+                            "390 ml",
+                            "440 ml",
+                            "500 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>For production of high acid still drinks, ambient drinking yoghurt with particles and sweetened condensed milk.</li><li>Ambient distribution technology gives products a shelf life of 2 to 9 months depending of product characteristics. </li><li>Non-refrigerated storage and transport reducing both energy consumption and costs.</li><li>Can simultaneously produce two different packages, openings and filled products – optimising your machine capacity.</li></ul>",
+        "features": [
+            {
+                "name": "Two-line production",
+                "header": "Optimise your machine's capacity",
+                "body": "<p>Fill two different products simultaneously in different packages with different openings. Change package volumes automatically in just 4 minutes, and switch openings in just a few hours. Clean one line without stopping production on the other.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3haadtwoline.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Nitrogen dosing",
+                "header": "Reduces oxygen content in the packages",
+                "body": "<p>Reducing the oxygen content in the head space from 21% to 10%, nitrogen dosing helps retain qualities like flavour, taste and visual appearance and prolongs shelf life.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3haadnitrogendosing.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Injection moulding",
+                "header": "Adding a convenient opening to a carton sleeve",
+                "body": "<p>This is the world's fastest injection moulding Unit. Polythene is injected at high pressure and compressed onto both sides of the carton sleeve. The unit is sealed and water-cooled to provide a sturdy, leak-proof joint that produces lids of consistent quality. The result is a convenient opening. The lid forming unit for the Tetra Pak® TT/3 AD filling machine, is supplied with HEPA air to avoid contamination.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/injection_moulding.png",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Operator interface",
+                "header": "Extremely operator friendly",
+                "body": "<p>Operator time and complexity is reduced thanks to several smart features. Package Line Monitoring Service (PLMS) enables remote supervision and monitoring of all vital production data. Automatic recipe handling adjusts up to 10 recipe parameters. One operator can easily control features and options via the two Tetra Pak Operator Panels (TPOP).</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3haadextremelyoperatorfriendly.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Tetra Top® Cleaning Unit (TTCU)",
+                "header": "Excellent hygiene chamber cleaning and disinfection",
+                "body": "<p>The external Tetra Top Cleaning Unit offers excellent cleaning and disinfection of your hygiene chamber. One unit is able to clean up to two Tetra Pak® TT/3 filling machines.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3xhictetratopcleaningunit_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Hygiene Chamber",
+                "header": "Supports up to 9 months shelf-life",
+                "body": "<p>A vapour consisting of 3% hydrogen peroxide (H2O2) is sprayed in to the package, followed by high energy UV-light. The combination of the peroxide pre-treatment, UV-light and the hydrogen peroxide vapour spray ensures a MIBI failure rate of 0,1%.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/hygiene_chamber.png",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Material Pre-treatment",
+                "header": "Supports up to 9 months shelf life",
+                "body": "<p>In the Automatic Splicing Unit, packaging material is pre-treated with 3% hydrogen peroxide vapour (H202).</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4275_0002.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tt3haadpretreat_mp4_1350226443.mp4"
+                }
+            }
+        ],
+        "name": "Tetra Pak® TT/3 AD",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tt3-haad-hd1-copy.png",
+        "header": "Flexible two-line filling machine goes ambient",
+        "id": "equipment1260",
+        "packagetypes": [
+            {
+                "id": "packagetype1647",
+                "name": "Tetra Top® AD",
+                "shapes": [
+                    {
+                        "name": "Mini",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TT_200_Mini_TaiA38_HAAD_NP_Above_overview_images.png",
+                        "volumes": [
+                            "200 ml"
+                        ]
+                    },
+                    {
+                        "name": "Midi",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_300_midi_huron_haad_np-em_above_overview_images.png",
+                        "volumes": [
+                            "300 ml",
+                            "500 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Highly cost efficient production</li><li>Easy conversion between the different sizes.</li><li>Aseptic carton packages for safe, hygienic production</li></ul>",
+        "features": [
+            {
+                "name": "Automatic Strip Splicing",
+                "header": "Quality splicing",
+                "body": "<p>Enables correct, repeatable splicing of longitudinal strip reels, and at the same time makes the operation less labour intensive. The reels are exchanged approximately every 1.45 hours.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaautomaticstripsplicing.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Operator panel",
+                "header": "It’s never been easier to operate",
+                "body": "<p>The production is easily managed through a Tetra Pak Operator Panel (TPOP) system on the ground level. All major functions can be initiated and supervised - from production preparation to the Cleaning in Place (CIP) function.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaoperatorpanel.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "PLMS Centre",
+                "header": "Operational control and performance analysis",
+                "body": "<p>The packaging line monitoring system (PLMS) enables tracking of production performance, such as possible stop reasons, efficiencies, waste levels.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaplms.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Packaging material in-feed",
+                "header": "Long production runs raise efficiency",
+                "body": "<p>Each unit holds a jumbo reel of packaging material with sufﬁcient supply for just above three hours of production when running at the higher speed, and four hours of production at the lower speed. A jumbo reel holds sufﬁcient material for up to 44,000 packages (Tetra Fino® Aseptic 200 ml).</p><p> </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tfamaterialinfeed.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Fully automatic splicing unit",
+                "header": "Neat seal between reels",
+                "body": "<p>The splicing unit heats and pressurises the packaging material to automatically make a neat seal between one reel and the next, so package production can continue uninterrupted.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcamaterialinfeed_0.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Aseptic system",
+                "header": "For reliable sterilisation of packaging material",
+                "body": "<p>Consists of a shallow hydrogen peroxide bath, squeegee rollers and a heating chamber. Rollers distribute the hydrogen peroxide evenly; controlled heating and evaporation give effective sterilisation. Control of aseptic parameters ensures product protection and minimises the risk of operator errors.</p><p> </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/a1tcaasepticsystemcontrolledheating.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® A1 for Tetra Fino® Aseptic",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/a1_tfa_benefits_new.png",
+        "options": [
+            {
+                "name": " Micro Injection Moulding concept for a functional opening",
+                "header": "Injection Moulding Unit (IMU) on pre-laminate hole (PLH) for Micro Injection Moulding (MiM) opening on Tetra Fino® Aseptic 100 Ultra",
+                "body": "<p>The Tetra Pak® A1 for Tetra Fino® Aseptic with IMU is a robust solution, based on proven technologies of Injection Moulding and A1 platform. The flat packaging material with a pre-laminated hole is fed into the IMU and therein the MiM opening is injected through the PLH using the injection moulding technology. The filling machine has a capacity of 9,800 packages/hour.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-90099_0003.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tetra_pak_a1_for_tetra_fino_aseptic_100_ml_ultra_750x410_pxp_v2_mp4_1508416201.mp4"
+                }
+            },
+            {
+                "name": "HIGH VISCOSITY ASEPTIC (HVA) KIT (Tetra Pak A1)",
+                "header": "The HVA kit makes it possible to fill viscous products such as tomato paste.",
+                "body": "<p>This is made possible by a synchronous aseptic positive pump which is controlled by the double loop filling control system of the Tetra Pak A1 filling machine. The unit can be connected or disconnected as needed, so producers can alternate easily between viscous and other kinds of products.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/Thumbnail_HVA-kit-A1.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/Tetra-Pak_A1_TFA_70_HVA_module_small.mp4"
+                }
+            }
+        ],
+        "header": "Get more from less",
+        "id": "equipment1251",
+        "packagetypes": [
+            {
+                "id": "packagetype1646",
+                "name": "Tetra Fino® Aseptic",
+                "shapes": [
+                    {
+                        "name": "Pillow-shape",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TFA_200_AD_PPH_NP2_Tilt.png",
+                        "volumes": [
+                            "70 ml",
+                            "100 ml",
+                            "125 ml",
+                            "150 ml",
+                            "200 ml",
+                            "220 ml",
+                            "250 ml",
+                            "500 ml",
+                            "900 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Ultra",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tfa_100_u_mim_np_above_overview_images.png",
+                        "volumes": [
+                            "100 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "benefits": "<ul><li>Integrated capping unit saves up to 20% floor space and ensures caps are positioned correctly</li><li>Simplified moulding operation reduces maintenance costs and leads to more reliable production</li><li>Can simultaneously produce two different packages, openings and filled products – optimising your machine capacity</li><li>New benefit added</li></ul>",
+        "features": [
+            {
+                "name": "Two-line production",
+                "header": "Optimise your machine's capacity",
+                "body": "<p>Fill two different products simultaneously in different packages with different openings. Change package volumes automatically in just 4 minutes, and switch openings in just a few hours. Clean one line without stopping production on the other.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3xhictwoline.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Extended hygiene (XH)",
+                "header": "Ensuring extended shelf life for chilled products",
+                "body": "<p>Tetra Pak® TT/3 XH uses the best disinfection solutions available to ensure extended shelf life for chilled products. Using proven H₂O₂, UV light (Ultra Violet) and HEPA (clean-air system) technology, this machine offers you top-class hygiene for a stable and robust filling process.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/hygiene_chamber_0.png",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Injection moulding",
+                "header": "Adding a convenient opening to a carton sleeve",
+                "body": "<p>This is the world's fastest injection moulding for the Lid Forming Unit. Polythene is injected at high pressure onto both sides of the carton sleeve. The unit is sealed and water-cooled to provide a sturdy, leak-proof joint that produces lids of consistent quality. The result is a convenient opening.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4142_0001.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tt3xhicinjectionmoulding_mp4_1350224357.mp4"
+                }
+            },
+            {
+                "name": "Operator interface",
+                "header": "Extremely operator friendly",
+                "body": "<p>Operator time and complexity is reduced thanks to several smart features. Package Line Monitoring Service (PLMS) enables remote supervision and monitoring of all vital production data. Automatic recipe handling adjusts up to 10 recipe parameters. One operator can easily control features and options via the two Tetra Pak® Operator Panels (TPOP).</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3xhicextremelyoperatorfriendly.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Tetra Top® Cleaning Unit (TTCU)",
+                "header": "Excellent hygiene chamber cleaning and disinfection",
+                "body": "<p>The external Tetra Top® Cleaning Unit offers excellent cleaning and disinfection of your hygiene chamber. One unit is able to clean up to two Tetra Pak® TT/3 filling machines.</p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/tt3xhictetratopcleaningunit.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            },
+            {
+                "name": "Integrated Capping Unit",
+                "header": "One Step Opening for extra consumer convenience",
+                "body": "<p>The Integrated Capping Unit applies a tamper evident cap onto the injection moulded neck inside the machine. This reduces space and maintenance costs while increasing line efficiency and control of cap application.</p>",
+                "image": null,
+                "video": {
+                    "poster": "https://media.productxplorer.tetrapak.com/staging/global/features/videoposterimages/thumbnail-4301_0001.jpg",
+                    "src": "https://media.productxplorer.tetrapak.com/staging/global/features/videos/tt3xhicintegratedcappingunit_mp4_1350226569.mp4"
+                }
+            },
+            {
+                "name": "Efficient discharges",
+                "header": "Easy cleaning of nozzles",
+                "body": "<p>The discharge function enables the nozzles to be cleared of product without dismantling the machine. Such self-cleaning machines are less sensitive to product variations and the discharging feature ensures efficient cleaning in place (CIP). </p>",
+                "image": "https://media.productxplorer.tetrapak.com/staging/global/features/images/productflow.jpg",
+                "video": {
+                    "poster": null,
+                    "src": null
+                }
+            }
+        ],
+        "name": "Tetra Pak® TT/3 XH IC",
+        "benefitsimage": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/benefitsimages/tt3-xh-ic-hd1-copy.png",
+        "header": "Dual filling machine for Tetra Top® with One Step Opening",
+        "id": "equipment1252",
+        "packagetypes": [
+            {
+                "id": "packagetype1649",
+                "name": "Tetra Top®",
+                "shapes": [
+                    {
+                        "name": "Base",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_500_base_eifelo38_chilled_np-em_above_overview_images.png",
+                        "volumes": [
+                            "500 ml",
+                            "600 ml",
+                            "750 ml",
+                            "1000 ml"
+                        ]
+                    },
+                    {
+                        "name": "Mini",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_200_mini_grandtab_chilled_np-em_above_overview_images.png",
+                        "volumes": [
+                            "150 ml",
+                            "200 ml",
+                            "250 ml",
+                            "330 ml"
+                        ]
+                    },
+                    {
+                        "name": "Midi",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_200_midi_katlas38_chilled_np-em_above_overview_images.png",
+                        "volumes": [
+                            "200 ml",
+                            "250 ml",
+                            "330 ml",
+                            "400 ml",
+                            "500 ml"
+                        ]
+                    },
+                    {
+                        "name": "MiniV",
+                        "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_200_miniv_nalloc38_np_above_overview_images.png",
+                        "volumes": [
+                            "200 ml",
+                            "250 ml",
+                            "330 ml"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

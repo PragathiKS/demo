@@ -1,0 +1,1476 @@
+[
+    {
+        "name": "Tetra Stelo® Aseptic",
+        "id": "pxp3_tetra_stelo_aseptic",
+        "shapes": [
+            {
+                "name": "Edge",
+                "volumes": [
+                    "500 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TSA_500_E_WingCap30_NP_Above_overview_images.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure19646",
+                "name": "WingCap™ 30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/WingCap30_TSA_E_Closed.png",
+                "type": "One step screwcap with PLH membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Latest generation of one step openings both for ambient and chilled packages​",
+                    "High functionality at low cost",
+                    "Two-step safety: 1) clear tamper evidence 2) PLH membrane that provides extra product safety until the package is opened",
+                    "Larger gripping area thanks to the wings",
+                    "Bio-based option"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment1272",
+                "name": "Tetra Pak® A3/Flex",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/A3-Flex-No-DIMC-Thumbnail.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Fino® Aseptic",
+        "id": "packagetype1646",
+        "shapes": [
+            {
+                "name": "Pillow-shape",
+                "volumes": [
+                    "200 ml",
+                    "70 ml",
+                    "100 ml",
+                    "125 ml",
+                    "150 ml",
+                    "220 ml",
+                    "250 ml",
+                    "500 ml",
+                    "900 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TFA_200_AD_PPH_NP2_Tilt.png"
+            },
+            {
+                "name": "Ultra",
+                "volumes": [
+                    "100 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tfa_100_u_mim_np_above_overview_images.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1470",
+                "name": "Strawhole",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pph_tfa_closed.png",
+                "type": "Pre-punched straw hole in packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Easy way to open a Tetra Pak portion package",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material",
+                    "Combine with a selection of low-cost, functional and fun straws"
+                ]
+            },
+            {
+                "id": "openingclosure1477",
+                "name": "No opening",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/noopening_tfa_closed.png",
+                "type": "The package comes just as it is!",
+                "principle": "Single-use",
+                "benefits": [
+                    "Simple and lowest cost solution (open with scissors)",
+                    "Particularly suitable for single-use packages",
+                    "Easy to stack"
+                ]
+            },
+            {
+                "id": "openingclosure22563",
+                "name": "MiM",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/pxp_mim_tfa_100_u_openingsthumbnail.png",
+                "type": "Pre-punched straw hole in packaging material",
+                "principle": "Single use",
+                "benefits": [
+                    "Easy to detach tab and fold down top",
+                    "Easy to open for kids",
+                    "The Injection Moulding Unit (IMU) works by moulding the Micro Injection Moulding opening (MiM) directly onto the flat packaging material before package forming"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment1251",
+                "name": "Tetra Pak® A1 for Tetra Fino® Aseptic",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/a1_tfa_packagefilling-machines.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Top® AD",
+        "id": "packagetype1647",
+        "shapes": [
+            {
+                "name": "Mini",
+                "volumes": [
+                    "200 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TT_200_Mini_TaiA38_HAAD_NP_Above_overview_images.png"
+            },
+            {
+                "name": "Midi",
+                "volumes": [
+                    "300 ml",
+                    "500 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_300_midi_huron_haad_np-em_above_overview_images.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1464",
+                "name": "Katla™ H38",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/katla_h38_base_tt_closed_1.png",
+                "type": "Two-step screw cap with membrane",
+                "principle": "Recloseable",
+                "benefits": [
+                    "High neck, smooth and controlled pouring",
+                    "Easy to reclose"
+                ]
+            },
+            {
+                "id": "openingclosure1456",
+                "name": "Huron™",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pxp_huron_tt_openingsthumb.png",
+                "type": "Peel back lid",
+                "principle": "Single-use",
+                "benefits": [
+                    "Easy to open",
+                    "Lid covers whole package top",
+                    "Wide opening - can use a spoon"
+                ]
+            },
+            {
+                "id": "openingclosure19645",
+                "name": "Eifel™ C38",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/eifel_o38_base_tt_closed_2.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Quick to open",
+                    "Resealable",
+                    "Suitable for on-the-go consumption "
+                ]
+            },
+            {
+                "id": "pxp3_300542",
+                "name": "Taishan A38",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/PXP_TaiA38_OpeningsThumbnail.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Quick to open",
+                    "Easy to reseal",
+                    "Suitable for on-the-go consumption"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment19647",
+                "name": "Tetra Pak® TT/3 AD IC",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tt3_xh_ic_benefits.png",
+                "header": "The filling machine for water"
+            },
+            {
+                "id": "equipment1260",
+                "name": "Tetra Pak® TT/3 AD",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tt3_haad_hd1_copy.png",
+                "header": "<p>Filling machine for production of high acid ambient still drinks, ambient drinking yoghurt with particles and sweetened condensed milk.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Classic® Aseptic",
+        "id": "packagetype1648",
+        "shapes": [
+            {
+                "name": "Cube",
+                "volumes": [
+                    "65 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TCA_65_C_NoOpening_NP_Above_overview_images.png"
+            },
+            {
+                "name": "Mid",
+                "volumes": [
+                    "125 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tca_125_m_pph_np_above_overview_images.png"
+            },
+            {
+                "name": "Slim",
+                "volumes": [
+                    "65 ml",
+                    "100 ml",
+                    "150 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TCA_65_S_PPH_NP_Front.png"
+            },
+            {
+                "name": "Base",
+                "volumes": [
+                    "200 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TCA_200_B_PPH_NP_Front.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1477",
+                "name": "No opening",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/pxp_noopening_tca_openingsthumb.png",
+                "type": "The package comes just as it is!",
+                "principle": "Single-use",
+                "benefits": [
+                    "Simple and lowest cost solution (open with scissors)",
+                    "Particularly suitable for single-use packages",
+                    "Easy to stack"
+                ]
+            },
+            {
+                "id": "openingclosure1452",
+                "name": "Perforation",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/perforation_tca_closed.png",
+                "type": "Perforated line on packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Simple, low cost opening",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material"
+                ]
+            },
+            {
+                "id": "openingclosure1470",
+                "name": "Strawhole",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pph_tca_closed.png",
+                "type": "Pre-punched straw hole in packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Easy way to open a Tetra Pak portion package",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material",
+                    "Combine with a selection of low-cost, functional and fun straws"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment1287",
+                "name": "Tetra Pak® A1 for Tetra Classic® Aseptic",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/a1_tca_packagefilling-machines.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Top®",
+        "id": "packagetype1649",
+        "shapes": [
+            {
+                "name": "MiniV",
+                "volumes": [
+                    "200 ml",
+                    "250 ml",
+                    "330 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_200_miniv_nalloc38_np_above_overview_images.png"
+            },
+            {
+                "name": "Mini",
+                "volumes": [
+                    "200 ml",
+                    "150 ml",
+                    "250 ml",
+                    "330 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_200_mini_grandtab_chilled_np-em_above_overview_images.png"
+            },
+            {
+                "name": "Base",
+                "volumes": [
+                    "500 ml",
+                    "600 ml",
+                    "750 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_500_base_eifelo38_chilled_np-em_above_overview_images.png"
+            },
+            {
+                "name": "Midi",
+                "volumes": [
+                    "200 ml",
+                    "250 ml",
+                    "330 ml",
+                    "400 ml",
+                    "500 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_200_midi_katlas38_chilled_np-em_above_overview_images.png"
+            },
+            {
+                "name": "Micro",
+                "volumes": [
+                    "100 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tt_100_micro_lokka_chilled_np-em_above_overview_images.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1464",
+                "name": "Katla™ H38",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/katla_h38_base_tt_closed.png",
+                "type": "Two-step screw cap with membrane",
+                "principle": "Recloseable",
+                "benefits": [
+                    "High neck, smooth and controlled pouring",
+                    "Easy to reclose"
+                ]
+            },
+            {
+                "id": "openingclosure1476",
+                "name": "Eifel™ O38",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/eifel_o38_midi_tt_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Quick to open",
+                    "Easy to reseal",
+                    "Suitable for on-the-go consumption"
+                ]
+            },
+            {
+                "id": "openingclosure1456",
+                "name": "Huron™",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/huron_midi_tt_closed.png",
+                "type": "Peel back lid",
+                "principle": "Single-use",
+                "benefits": [
+                    "Easy to open",
+                    "Lid covers whole package top",
+                    "Wide opening - can use a spoon"
+                ]
+            },
+            {
+                "id": "openingclosure1469",
+                "name": "Bothnia™ S30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/bothnia_s30_micro_tt_closed_0.png",
+                "type": "Two-step screw cap membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Easy to open and reclose",
+                    "Suitable for on-the-go consumption",
+                    "Branding possibilities (cap colors)"
+                ]
+            },
+            {
+                "id": "openingclosure1771",
+                "name": "Lokka",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/lokka_t30_micro_tt_closed.png",
+                "type": "Peel back lid",
+                "principle": "Single use",
+                "benefits": [
+                    "“Anti splash” opening",
+                    "Easy to use",
+                    "Convenient to drink directly from the package"
+                ]
+            },
+            {
+                "id": "openingclosure1442",
+                "name": "Katla™ S30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/katla_s30_mini_tt_closed.png",
+                "type": "Two step screw cap with membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Easy to open and reseal"
+                ]
+            },
+            {
+                "id": "openingclosure7042",
+                "name": "Saroma",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pxp_360_saroma_closed_altangle.png",
+                "type": "Saroma",
+                "principle": "Saroma",
+                "benefits": [
+                    "Intuitive opening",
+                    "Modern and unique design",
+                    "Drink from straw or package",
+                    "Good environmental profile",
+                    "Separable top"
+                ]
+            },
+            {
+                "id": "openingclosure19645",
+                "name": "Eifel™ C38",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/eifel_o38_base_tt_closed_1.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Quick to open",
+                    "Resealable",
+                    "Suitable for on-the-go consumption "
+                ]
+            },
+            {
+                "id": "openingclosure20017",
+                "name": "Nallo™ O38",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pxp_nalloo38_miniv_openingsthumb.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Quick to open",
+                    "Easy to reseal",
+                    "Suitable for on-the-go consumption"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment1288",
+                "name": "Tetra Pak® TT/3 XH",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tt3_xh_hd1_copy.png",
+                "header": "<p>Filling machine for chilled production of liquid dairy and juices.</p>"
+            },
+            {
+                "id": "equipment1252",
+                "name": "Tetra Pak® TT/3 XH IC",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tt3_xh_ic_hd1_copy.png",
+                "header": "<p>Filling machine for One Step Opening packages for production of chilled liquid dairy and juices. - Testing.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Brik®",
+        "id": "packagetype1650",
+        "shapes": [
+            {
+                "name": "Slim",
+                "volumes": [
+                    "200 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tb_200_s_pph_np_above_overview_images.png"
+            },
+            {
+                "name": "Mid",
+                "volumes": [
+                    "200 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tb_200_m_pph_np_above_overview_images_0.png"
+            },
+            {
+                "name": "Ultra Edge",
+                "volumes": [
+                    "900 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TB_900_UE_WingCap30_NP_Above_overview_images.png"
+            },
+            {
+                "name": "Square",
+                "volumes": [
+                    "500 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TB_500_Sq_SimplyTwist_NP_Above.png"
+            },
+            {
+                "name": "Base",
+                "volumes": [
+                    "200 ml",
+                    "250 ml",
+                    "500 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TB_200_B_PPH_NP_Above.png"
+            },
+            {
+                "name": "Edge",
+                "volumes": [
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TB_1000_E_SimplyTwistS34_NP_Above.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1452",
+                "name": "Perforation",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/perforation_tb_1000_sq_closed.png",
+                "type": "Perforated line on packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Simple, low cost opening",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material"
+                ]
+            },
+            {
+                "id": "openingclosure1470",
+                "name": "Strawhole",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pph_tb_250_b_closed.png",
+                "type": "Pre-punched straw hole in packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Easy way to open a Tetra Pak portion package",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material",
+                    "Combine with a selection of low-cost, functional and fun straws"
+                ]
+            },
+            {
+                "id": "openingclosure1460",
+                "name": "SimplyTwist™ 34",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/simplytwist_34_tb_closed.png",
+                "type": "Two step screw cap with membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Low cost solution for dairy with largest-size pouring diameter",
+                    "Easy to pour from, open and reclose.",
+                    "Approved by the Swedish Rheumatism Association as suitable for people with reduced hand strength i.e. children, the elderly and those affected by rheumatics",
+                    "Membrane acts as tamper evidence",
+                    "DIMC technology, neck made in filling machine, lid applied downstream"
+                ]
+            },
+            {
+                "id": "openingclosure1466",
+                "name": "SimplyTwist™ 28",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/simplytwist_28_tb_closed.png",
+                "type": "Two step screw cap with membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Low cost solution for dairy",
+                    "Easy to pour from, open and reclose.",
+                    "Membrane acts as a tamper evidence",
+                    "DIMC technology, neck made in filling machine, lid applied downstream"
+                ]
+            },
+            {
+                "id": "openingclosure1443",
+                "name": "SimplyTwist™ 30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/simplytwist_30_tb_closed.png",
+                "type": "Two step screw cap with membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Low cost solution for dairy with medium-size pouring diameter",
+                    "Easy to pour from, open and reclose.",
+                    "Membrane acts as tamper evidence",
+                    "DIMC technology, neck made in filling machine, lid applied downstream"
+                ]
+            },
+            {
+                "id": "openingclosure1474",
+                "name": "LightCap™ 30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/lightcap_30_tba_closed2.png",
+                "type": "Two-step screwcap with membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Low cost opening for ambient and chilled milk",
+                    "Also for juices, nectars, still drinks etc. with ambient distribution",
+                    "Large and easy to use for hands big and small",
+                    "Strong, controlled product flow",
+                    "Membrane acts as tamper evidence",
+                    "Bio-based option"
+                ]
+            },
+            {
+                "id": "openingclosure19646",
+                "name": "WingCap™ 30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pxp_wingcap30_openingsthumb_capclosed2.png",
+                "type": "One step screwcap with PLH membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Latest generation of one step openings both for ambient and chilled packages​",
+                    "High functionality at low cost",
+                    "Two-step safety: 1) clear tamper evidence 2) PLH membrane that provides extra product safety until the package is opened",
+                    "Larger gripping area thanks to the wings",
+                    "Bio-based option"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment20015",
+                "name": "Tetra Pak® E3/Flex",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/e3_flex_menu_thumbnail.jpg",
+                "header": "<p>Filling Machine for chilled dairy production.</p>"
+            },
+            {
+                "id": "equipment7002",
+                "name": "Tetra Pak® E3/CompactFlex",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/e3cf_packagefilling-machines.png",
+                "header": "<p>Filling Machine for chilled dairy production.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Rex®",
+        "id": "packagetype1651",
+        "shapes": [
+            {
+                "name": "Mid",
+                "volumes": [
+                    "1500 ml",
+                    "1750 ml",
+                    "2000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_1500_mid_twistcap_oso34_np2_above_overview_images.png"
+            },
+            {
+                "name": "High",
+                "volumes": [
+                    "500 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_500_high_pph_np_above_overview_images.png"
+            },
+            {
+                "name": "Base",
+                "volumes": [
+                    "237 ml",
+                    "250 ml",
+                    "300 ml",
+                    "315 ml",
+                    "375 ml",
+                    "473 ml",
+                    "500 ml",
+                    "600 ml",
+                    "750 ml",
+                    "946 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_237_B_EasyOpening_NP_Above.png"
+            },
+            {
+                "name": "Base Plus",
+                "volumes": [
+                    "500 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_500_B_Plus_TwistCap_OSO34_NP_Above.png"
+            },
+            {
+                "name": "Max",
+                "volumes": [
+                    "1893 ml",
+                    "2000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_1893_Max_TwistCapBarrier36_NP_Above.png"
+            },
+            {
+                "name": "Slim",
+                "volumes": [
+                    "1500 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TR_1500_S_EasyOpening_NP_Above.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1475",
+                "name": "Easy Opening™",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/easyopening_tr_closed.png",
+                "type": "No extra materials",
+                "principle": "Reclosable",
+                "benefits": [
+                    "Created by unfolding the carton",
+                    "Low cost",
+                    "Well-accepted by consumers",
+                    "To open, bend back the flaps and fold out the corner of the package."
+                ]
+            },
+            {
+                "id": "openingclosure1449",
+                "name": "TwistCap™ Barrier 30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/twistcap_barrier_30_1000_bp_tr_closed.png",
+                "type": "Resealable",
+                "principle": "Good image",
+                "benefits": [
+                    "High functionality",
+                    "Easy to open, pour from and reseal",
+                    "Pre applied before package sterilisation"
+                ]
+            },
+            {
+                "id": "openingclosure1454",
+                "name": "TwistCap™ OSO 30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/twistcap_oso_30_1000_bp_tr_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Prominent grooves on cap give good grip",
+                    "Good image",
+                    "High functionality",
+                    "Easy to open, pour from and reseal",
+                    "Pre-applied before package sterilisation"
+                ]
+            },
+            {
+                "id": "openingclosure1465",
+                "name": "TwistCap™ OSO 34",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/twistcap_oso_34_1000_bp_tr_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Good image",
+                    "Prominent grooves on cap give good grip",
+                    "High functionality",
+                    "Easy to open, pour from and reseal",
+                    "Pre-applied before package sterilisation"
+                ]
+            },
+            {
+                "id": "openingclosure6358",
+                "name": "TwistCap™ OSO Barrier 34",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pxp_twistcap_oso_barrier_34_openingsthumbnail.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Good image ",
+                    "Prominent grooves on cap give good grip",
+                    "High functionality",
+                    "Easy to open, pour from and reseal",
+                    "Pre-applied before package sterilisation"
+                ]
+            },
+            {
+                "id": "openingclosure13332",
+                "name": "Precut Strawhole 12mm",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pxp_pph_tr_openingsthumb_01.png",
+                "type": "Precut Strawhole 12mm",
+                "principle": "Single-use solution",
+                "benefits": [
+                    "Low cost solution",
+                    "Well-accepted by consumers",
+                    "Ready prepared on packaging material"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment12116",
+                "name": "Tetra Pak® TR/G7",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/Tetra-Rex-G7-H300-Menu-Thumbnail.jpg",
+                "header": "<p>Machine for packaging chilled products</p>"
+            },
+            {
+                "id": "equipment1304",
+                "name": "Tetra Pak®  TR/27 XH",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tr27_xh_hd1_copy.png",
+                "header": "<p>For packaging chilled liquid food.</p>"
+            },
+            {
+                "id": "equipment1296",
+                "name": "Tetra Pak® TR/28 XH",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tr28_xh_hd1_copy.png",
+                "header": "<p>For production of chilled liquid food.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Gemina® Aseptic",
+        "id": "packagetype1652",
+        "shapes": [
+            {
+                "name": "Square",
+                "volumes": [
+                    "500 ml",
+                    "750 ml",
+                    "1000 ml",
+                    "1500 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TGA_500_Sq_HeliCap27_NP3_Above.png"
+            },
+            {
+                "name": "Crystal",
+                "volumes": [
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TGA_1000_Sq_Crystal_HeliCap27_NP3_Above.png"
+            },
+            {
+                "name": "Leaf",
+                "volumes": [
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/tga_1000_sq_leaf_helicap27_np3_above.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1445",
+                "name": "HeliCap™ 27",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/helicap_27_tga_closed.png",
+                "type": "One-step screwcap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Very easy, comfortable opening",
+                    "Large size facilitates a strong, smooth product flow",
+                    "Visible tamper evidence ring",
+                    "In a range of colours",
+                    "Green HDPE option"
+                ]
+            },
+            {
+                "id": "openingclosure1446",
+                "name": "StreamCap™ 1000",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/streamcap_1000_tga_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Neat, attractive opening - good image",
+                    "Visible tamper evidence ring",
+                    "Engraved message or logo",
+                    "Up to 16 colours available"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment1272",
+                "name": "Tetra Pak® A3/Flex",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/A3-Flex-No-DIMC-Thumbnail.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Brik® Aseptic",
+        "id": "packagetype1695",
+        "shapes": [
+            {
+                "name": "Slim Leaf",
+                "volumes": [
+                    "200 ml",
+                    "125 ml",
+                    "250 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_200_slimleaf_pph_above_overview_images.png"
+            },
+            {
+                "name": "Edge",
+                "volumes": [
+                    "200 ml",
+                    "250 ml",
+                    "500 ml",
+                    "1000 ml",
+                    "1500 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_E_PPH_NP_Above.png"
+            },
+            {
+                "name": "Ultra Edge",
+                "volumes": [
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_1000_ue_wingcap30_np_above_overview_images.png"
+            },
+            {
+                "name": "Base Crystal",
+                "volumes": [
+                    "200 ml",
+                    "250 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_200_basecrystal_pph_np_above_overview_images.png"
+            },
+            {
+                "name": "Base Leaf",
+                "volumes": [
+                    "250 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_250_baseleaf_pph_above_overview_images.png"
+            },
+            {
+                "name": "Ultra",
+                "volumes": [
+                    "180 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tba_180_u_pph_np_above_overview_images_0.png"
+            },
+            {
+                "name": "Slim",
+                "volumes": [
+                    "200 ml",
+                    "80 ml",
+                    "125 ml",
+                    "160 ml",
+                    "180 ml",
+                    "250 ml",
+                    "300 ml",
+                    "330 ml",
+                    "375 ml",
+                    "500 ml",
+                    "1000 ml",
+                    "1500 ml",
+                    "2000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_S_PPH_NP_Above.png"
+            },
+            {
+                "name": "Base",
+                "volumes": [
+                    "200 ml",
+                    "100 ml",
+                    "250 ml",
+                    "500 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_B_PPH_NP_Above.png"
+            },
+            {
+                "name": "Square",
+                "volumes": [
+                    "200 ml",
+                    "250 ml",
+                    "500 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_Sq_StreamCap_NP_Above.png"
+            },
+            {
+                "name": "Mid",
+                "volumes": [
+                    "200 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TBA_200_M_PPH_NP_Above.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1477",
+                "name": "No opening",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/noopening_tba_closed_1.png",
+                "type": "The package comes just as it is!",
+                "principle": "Single-use",
+                "benefits": [
+                    "Simple and lowest cost solution (open with scissors)",
+                    "Particularly suitable for single-use packages",
+                    "Easy to stack"
+                ]
+            },
+            {
+                "id": "openingclosure1452",
+                "name": "Perforation",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/perforation_tba_closed_1.png",
+                "type": "Perforated line on packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Simple, low cost opening",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material"
+                ]
+            },
+            {
+                "id": "openingclosure1455",
+                "name": "PullTab™",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pulltab_tba_250_b_closed_1.png",
+                "type": "Peel back foil tab",
+                "principle": "Single-use",
+                "benefits": [
+                    "Simple, low cost, opening",
+                    "Ideal for single-use packages",
+                    "Easy to stack",
+                    "Promotional colours available"
+                ]
+            },
+            {
+                "id": "openingclosure1457",
+                "name": "ReCap™3",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/recap3_tba_closed_1.png",
+                "type": "Two-step flip cap with PullTab™",
+                "principle": "Recloseable",
+                "benefits": [
+                    "Simple to open with easy-grip “tab lifter”",
+                    "Smooth to pour from",
+                    "Easy to re-close",
+                    "PullTab™ acts as tamper evidence",
+                    "Available in 11 colours"
+                ]
+            },
+            {
+                "id": "openingclosure1470",
+                "name": "Strawhole",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pph_tba_250_b_closed_1.png",
+                "type": "Pre-punched straw hole in packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Easy way to open a Tetra Pak portion package",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material",
+                    "Combine with a selection of low-cost, functional and fun straws"
+                ]
+            },
+            {
+                "id": "openingclosure1472",
+                "name": "HeliCap™ 23",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/helicap_23_tba_200_e_closed_0.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Easy to open",
+                    "Very good functionality",
+                    "Strong product flow",
+                    "Very visible tamper evidence ring"
+                ]
+            },
+            {
+                "id": "openingclosure1474",
+                "name": "LightCap™ 30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/lightcap_30_tba_closed_1.png",
+                "type": "Two-step screwcap with membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Low cost opening for ambient and chilled milk",
+                    "Also for juices, nectars, still drinks etc. with ambient distribution",
+                    "Large and easy to use for hands big and small",
+                    "Strong, controlled product flow",
+                    "Membrane acts as tamper evidence",
+                    "Bio-based option"
+                ]
+            },
+            {
+                "id": "openingclosure1440",
+                "name": "FlexiCap™ Aseptic",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/flexicap_tba_closed_1.png",
+                "type": "One-step flip cap",
+                "principle": "Reclosable",
+                "benefits": [
+                    "Very low cost solution for dairy",
+                    "Good opening, pouring and reclosing",
+                    "Includes tamper evidence tab"
+                ]
+            },
+            {
+                "id": "openingclosure1453",
+                "name": "LightCap™ 24",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/lightcap_24_1000_m_tba_closed_0.png",
+                "type": "Two step screw cap with membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Very low-cost solution for dairy",
+                    "Good functionality",
+                    "Strong product flow",
+                    "Membrane acts as a tamper evidence"
+                ]
+            },
+            {
+                "id": "openingclosure1468",
+                "name": "ReCap™2",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/recap2_tba_closed_0.png",
+                "type": "Two-step flip cap with PullTab™",
+                "principle": "Re-closeable",
+                "benefits": [
+                    "Simple to open with easy-grip “tab lifter”",
+                    "Smaller size apt for smaller family package",
+                    "Smooth to pour from",
+                    "Easy to re-close",
+                    "PullTab™ acts as tamper evidence"
+                ]
+            },
+            {
+                "id": "openingclosure1471",
+                "name": "SlimCap™ 1000",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/slimcap_1000_tba_1000_s_closed.png",
+                "type": "Two step screw cap with PullTab™",
+                "principle": "Resealable",
+                "benefits": [
+                    "Good functionality for Tetra Brik® Aseptic Slim family packages",
+                    "Low height provides good stacking",
+                    "Easy to upgrade from existing ReCap™ lines",
+                    "Available in up to 8 colours (depending on size variant)"
+                ]
+            },
+            {
+                "id": "openingclosure1463",
+                "name": "SlimCap™ 2000",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/slimcap_2000_tba_closed.png",
+                "type": "Two step screw cap with PullTab™",
+                "principle": "Resealable",
+                "benefits": [
+                    "Good functionality for Tetra Brik® Aseptic Slim family packages",
+                    "Low height provides good stacking",
+                    "Easy to upgrade from existing ReCap™ lines",
+                    "Available in up to 7 colours"
+                ]
+            },
+            {
+                "id": "openingclosure1445",
+                "name": "HeliCap™ 27",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/helicap_27_tba_closed.png",
+                "type": "One-step screwcap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Very easy, comfortable opening",
+                    "Large size facilitates a strong, smooth product flow",
+                    "Visible tamper evidence ring",
+                    "In a range of colours",
+                    "Green HDPE option"
+                ]
+            },
+            {
+                "id": "openingclosure1446",
+                "name": "StreamCap™ 1000",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/streamcap_1000_tba_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Neat, attractive opening - good image",
+                    "Visible tamper evidence ring",
+                    "Engraved message or logo",
+                    "Up to 16 colours available"
+                ]
+            },
+            {
+                "id": "openingclosure1450",
+                "name": "StreamCap™ 200",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/streamcap_250_tba_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Neat, attractive opening - good image",
+                    "Visible tamper evidence ring or tamper bridges",
+                    "Up to 12 colours available"
+                ]
+            },
+            {
+                "id": "openingclosure19646",
+                "name": "WingCap™ 30",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/pxp_wingcap30_openingsthumb_capclosed.png",
+                "type": "One step screwcap with PLH membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "Latest generation of one step openings both for ambient and chilled packages​",
+                    "High functionality at low cost",
+                    "Two-step safety: 1) clear tamper evidence 2) PLH membrane that provides extra product safety until the package is opened",
+                    "Larger gripping area thanks to the wings",
+                    "Bio-based option"
+                ]
+            },
+            {
+                "id": "openingclosure22568",
+                "name": "LightCap™ 30 Air",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pxp_lightcap30air_openingsthumbnail.png",
+                "type": "Two step screwcap with membrane",
+                "principle": "Resealable",
+                "benefits": [
+                    "For ambient distribution",
+                    "Has the same functionality as LightCap 30 ",
+                    "Contains less plastic: lighter cost, lighter environmental impact",
+                    "Better gripping"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment21979",
+                "name": "Tetra Pak® E3/Speed",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/e3_speed_menu_thumbnail.jpg",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            },
+            {
+                "id": "equipment1308",
+                "name": "Tetra Pak® A3/CompactFlex",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/a3_cf_hd1_copy_0.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            },
+            {
+                "id": "equipment1299",
+                "name": "Tetra Pak® A3/Speed",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/a3_speed_hd1_copy_0.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            },
+            {
+                "id": "equipment1272",
+                "name": "Tetra Pak® A3/Flex",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/A3-Flex-No-DIMC-Thumbnail.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Recart®",
+        "id": "packagetype1697",
+        "shapes": [
+            {
+                "name": "Midi",
+                "volumes": [
+                    "340 ml",
+                    "390 ml",
+                    "440 ml",
+                    "500 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_trc_340_midi_np3_above_overview_images.png"
+            },
+            {
+                "name": "Mini",
+                "volumes": [
+                    "200 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_trc_200_mini_np3_above_overview_images.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1444",
+                "name": "Full Top Perforation",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/perforation_trc_closed.png",
+                "type": "Perforated line on packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material",
+                    "Opens the entire top for easy access and emptying",
+                    "Easy to open without tools"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment1283",
+                "name": "Tetra Pak® R2",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tpr_flexible_preview_thumbnail.jpg",
+                "header": "<p>Form-fill-seal machine packages food in Tetra Recart.</p>"
+            },
+            {
+                "id": "equipment1255",
+                "name": "Tetra Pak® R1",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tpr1_nas_menu_thumbnail.jpg",
+                "header": "<p>Machine for forming and sealing Tetra Recart® packages.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Prisma® Aseptic",
+        "id": "packagetype1698",
+        "shapes": [
+            {
+                "name": "Edge",
+                "volumes": [
+                    "200 ml",
+                    "250 ml",
+                    "500 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tpa_200_e_dreamcap26_np_above_overview_images.png"
+            },
+            {
+                "name": "Square",
+                "volumes": [
+                    "200 ml",
+                    "125 ml",
+                    "250 ml",
+                    "330 ml",
+                    "500 ml",
+                    "750 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/tpa_200_sq_pulltab_np_above_1.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1458",
+                "name": "DreamCap™ 26",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/dreamcap_26_tpa_closed.png",
+                "type": "One -step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Total portability for on-the-go consumption",
+                    "Easy to pour from, open and close",
+                    "Good product flow enhances drinking experience",
+                    "Available in several colours"
+                ]
+            },
+            {
+                "id": "openingclosure1445",
+                "name": "HeliCap™ 27",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/helicap_27_tpa_closed.png",
+                "type": "One-step screwcap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Very easy, comfortable opening",
+                    "Large size facilitates a strong, smooth product flow",
+                    "Visible tamper evidence ring",
+                    "In a range of colours",
+                    "Green HDPE option"
+                ]
+            },
+            {
+                "id": "openingclosure1470",
+                "name": "Strawhole",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pph_tpa_closed.png",
+                "type": "Pre-punched straw hole in packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Easy way to open a Tetra Pak portion package",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material",
+                    "Combine with a selection of low-cost, functional and fun straws"
+                ]
+            },
+            {
+                "id": "openingclosure1455",
+                "name": "PullTab™",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pulltab_tpa_closed.png",
+                "type": "Peel back foil tab",
+                "principle": "Single-use",
+                "benefits": [
+                    "Simple, low cost, opening",
+                    "Ideal for single-use packages",
+                    "Easy to stack",
+                    "Promotional colours available"
+                ]
+            },
+            {
+                "id": "openingclosure1462",
+                "name": "StreamCap™ 500",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/streamcap_500_tpa_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Neat, attractive opening - good image",
+                    "Visible tamper evidence ring",
+                    "Up to 16 colours available"
+                ]
+            },
+            {
+                "id": "openingclosure1446",
+                "name": "StreamCap™ 1000",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/openingclosures/thumbnails/streamcap_1000_tpa_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Neat, attractive opening - good image",
+                    "Visible tamper evidence ring",
+                    "Engraved message or logo",
+                    "Up to 16 colours available"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment1308",
+                "name": "Tetra Pak® A3/CompactFlex",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/a3_cf_hd1_copy_0.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            },
+            {
+                "id": "equipment1299",
+                "name": "Tetra Pak® A3/Speed",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/a3_speed_hd1_copy_0.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            },
+            {
+                "id": "equipment1272",
+                "name": "Tetra Pak® A3/Flex",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/A3-Flex-No-DIMC-Thumbnail.png",
+                "header": "<p>Filling machine for aseptic packaging of liquid food.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Wedge® Aseptic",
+        "id": "packagetype2351",
+        "shapes": [
+            {
+                "name": "Ultra",
+                "volumes": [
+                    "150 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/PXP_TWA_150_U_PPH_NP_Above_overview_images.png"
+            },
+            {
+                "name": "Slim",
+                "volumes": [
+                    "200 ml",
+                    "125 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/TWA_200_S_PPH_NP2_Above.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure1470",
+                "name": "Strawhole",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/pph_twa_closed.png",
+                "type": "Pre-punched straw hole in packaging material",
+                "principle": "Single-use",
+                "benefits": [
+                    "Easy way to open a Tetra Pak portion package",
+                    "Well-accepted by consumers",
+                    "Comes ready prepared on packaging material",
+                    "Combine with a selection of low-cost, functional and fun straws"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment1279",
+                "name": "Tetra Pak® A1 for Tetra Wedge® Aseptic",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/a1_twa_hd1_lowres.jpg",
+                "header": "<p>Filling machine for packaging of high acid liquid food products.</p>"
+            }
+        ]
+    },
+    {
+        "name": "Tetra Rex® HAAD",
+        "id": "packagetype6336",
+        "shapes": [
+            {
+                "name": "Base 70x70 MiniPlus",
+                "volumes": [
+                    "750 ml",
+                    "1000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_750_bmp_twistcaposobarrier34_np_above_overview_images.png"
+            },
+            {
+                "name": "Mid",
+                "volumes": [
+                    "1500 ml",
+                    "1750 ml",
+                    "2000 ml"
+                ],
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packages/overviewimages/pxp_tr_1750_mid_twistcaposobarrier34_np_above_overview_images_0.png"
+            }
+        ],
+        "openingclosures": [
+            {
+                "id": "openingclosure6358",
+                "name": "TwistCap™ OSO Barrier 34",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/packagetypes/openingclosures/thumbnails/twistcap_oso_barrier34_closed.png",
+                "type": "One-step screw cap",
+                "principle": "Resealable",
+                "benefits": [
+                    "Good image ",
+                    "Prominent grooves on cap give good grip",
+                    "High functionality",
+                    "Easy to open, pour from and reseal",
+                    "Pre-applied before package sterilisation"
+                ]
+            }
+        ],
+        "fillingmachines": [
+            {
+                "id": "equipment19976",
+                "name": "Tetra Pak® TR/27 HAAD",
+                "thumbnail": "https://media.productxplorer.tetrapak.com/staging/packaging/equipment/thumbnails/tr27_haad_thumbnail.png",
+                "header": "<p>Beyond ESL hygiene level for ambient juice-based products</p>"
+            }
+        ]
+    }
+]

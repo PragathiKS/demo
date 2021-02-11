@@ -35,6 +35,7 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
+// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving newsEventPageActivation events. The class that is interested in processing a
  * newsEventPageActivation event implements this interface, and the object created with that class is registered with a

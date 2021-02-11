@@ -16,11 +16,11 @@ import org.osgi.service.component.annotations.Reference;
 
 import com.day.cq.replication.Replicator;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.mock.MockAPIGEEServiceImpl;
 import com.tetrapak.publicweb.core.mock.MockReplicatorImpl;
 import com.tetrapak.publicweb.core.mock.MockScheduler;
 import com.tetrapak.publicweb.core.services.APIGEEService;
 import com.tetrapak.publicweb.core.services.ProductService;
-import com.tetrapak.publicweb.core.services.impl.APIGEEServiceImpl;
 import com.tetrapak.publicweb.core.services.impl.ProductServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
@@ -58,13 +58,8 @@ public class FullFeedScheduledTaskTest {
         scheduler = new MockScheduler(fullFeedTask);
         context.registerService(Scheduler.class, scheduler);
         
-        final Map<String, Object> apiGeeConfig = new HashMap<String, Object>();
-        apiGeeConfig.put("apigeeServiceUrl", "https://api-mig.tetrapak.com");
-        apiGeeConfig.put("apigeeClientID", "Cg3webHGK4jCbK5Gvw3C1nG26OtGHvoJ");
-        apiGeeConfig.put("apigeeClientSecret", "9dR6zLA1LoKt9hXC");
-        apiGEEService = new APIGEEServiceImpl();
-        context.registerService(APIGEEService.class, apiGEEService);
-        MockOsgi.activate(apiGEEService, context.bundleContext(),apiGeeConfig);
+        apiGEEService = new MockAPIGEEServiceImpl();
+        context.registerService(APIGEEService.class, apiGEEService); 
         
         final Map<String, Object> config = new HashMap<String, Object>();
         config.put("damRootPath", "/content/dam/tetrapak/publicweb/pxp");
