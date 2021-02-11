@@ -318,6 +318,9 @@ public final class PWConstants {
     /** The Constant FILE_REFERENCE. */
     public static final String FILE_REFERENCE = "fileReference";
     
+    /** The Constant EVENT_PUBLISHED_PROPERTY. */
+    public static final String EVENT_PUBLISHED_PROPERTY = "eventPublished";
+    
     /** The Constant PRESS_TEMPLATES. */
     public static final List<String> PRESS_TEMPLATES = Arrays.asList(
             "/conf/publicweb/settings/wcm/templates/press-release",

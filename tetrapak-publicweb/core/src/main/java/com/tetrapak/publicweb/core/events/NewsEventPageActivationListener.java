@@ -1,11 +1,13 @@
 package com.tetrapak.publicweb.core.events;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ModifiableValueMap;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -33,6 +35,7 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
+// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving newsEventPageActivation events. The class that is interested in processing a
  * newsEventPageActivation event implements this interface, and the object created with that class is registered with a
@@ -63,6 +66,7 @@ public class NewsEventPageActivationListener implements EventHandler {
     @Reference
     private SubscriptionMailService mailService;
 
+    /** The pardot service. */
     @Reference
     private PardotService pardotService;
 
@@ -80,27 +84,67 @@ public class NewsEventPageActivationListener implements EventHandler {
             if (Objects.nonNull(paths) && Objects.nonNull(resourceResolver)) {
                 for (String path : paths) {
                     Resource resource = resourceResolver.getResource(path + "/jcr:content");
-                    ValueMap valueMap = resource.getValueMap();
-                    if (Objects.isNull(valueMap.get("eventPublished")) && PWConstants.PRESS_TEMPLATES
-                            .contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
-                        NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
-                        bean = addPageLinks(bean, path, resourceResolver);
-                        List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
-                        if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
-                            String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
-                            if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
-                                ModifiableValueMap modifiableMap = resource.adaptTo(ModifiableValueMap.class);
-                                modifiableMap.put("eventPublished", "true");
-                                resource.getResourceResolver().commit();
-                            }
-                        }
-                    }
+                    processData(resourceResolver, path, resource);
                 }
             }
         } catch (Exception ex) {
             LOGGER.error("Error in NewsEventPageActivationListener {}", ex.getMessage());
         }
 
+    }
+
+    /**
+     * Process data.
+     *
+     * @param resourceResolver
+     *            the resource resolver
+     * @param path
+     *            the path
+     * @param resource
+     *            the resource
+     * @param valueMap
+     *            the value map
+     * @throws PersistenceException
+     *             the persistence exception
+     */
+    private void processData(final ResourceResolver resourceResolver, String path, Resource resource)
+            throws PersistenceException {
+        ValueMap valueMap = resource.getValueMap();
+        if (Objects.isNull(valueMap.get(PWConstants.EVENT_PUBLISHED_PROPERTY))
+                && PWConstants.PRESS_TEMPLATES.contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
+            NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
+            addPageLinks(bean, path, resourceResolver);
+            List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
+            if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
+                String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
+                if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
+                    updatePageActivationProperty(resource);
+                }
+            }
+        }
+    }
+
+    /**
+     * Update first time page activation property.
+     *
+     * @param resource
+     *            the resource
+     * @throws PersistenceException
+     *             the persistence exception
+     */
+    private void updatePageActivationProperty(Resource resource) throws PersistenceException {
+        ModifiableValueMap modifiableMap = resource.adaptTo(ModifiableValueMap.class);
+        List<String> propertyInheritanceCancelled = new ArrayList<>();
+        String[] propertyValues = modifiableMap.get("cq:propertyInheritanceCancelled", String[].class);
+        if (Objects.nonNull(propertyValues)) {
+            for (String property : propertyValues) {
+                propertyInheritanceCancelled.add(property);
+            }
+        }
+        propertyInheritanceCancelled.add(PWConstants.EVENT_PUBLISHED_PROPERTY);
+        modifiableMap.put(PWConstants.EVENT_PUBLISHED_PROPERTY, "true");
+        modifiableMap.put("cq:propertyInheritanceCancelled", propertyInheritanceCancelled.toArray());
+        resource.getResourceResolver().commit();
     }
 
     /**
@@ -210,6 +254,17 @@ public class NewsEventPageActivationListener implements EventHandler {
         return StringUtils.EMPTY;
     }
 
+    /**
+     * Adds the page links.
+     *
+     * @param bean
+     *            the bean
+     * @param pagePath
+     *            the page path
+     * @param resolver
+     *            the resolver
+     * @return the news event bean
+     */
     private NewsEventBean addPageLinks(NewsEventBean bean, String pagePath, ResourceResolver resolver) {
         String rootPath = LinkUtils.getRootPath(pagePath);
         final String path = rootPath + "/jcr:content/root/responsivegrid/subscriptionformconf";
