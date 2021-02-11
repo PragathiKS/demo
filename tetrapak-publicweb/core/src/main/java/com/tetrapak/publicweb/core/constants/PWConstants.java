@@ -314,6 +314,31 @@ public final class PWConstants {
     
     /** The Constant STATUS_ERROR. */
     public static final String STATUS_ERROR = "error";
+    
+    /** The Constant FILE_REFERENCE. */
+    public static final String FILE_REFERENCE = "fileReference";
+    
+    /** The Constant EVENT_PUBLISHED_PROPERTY. */
+    public static final String EVENT_PUBLISHED_PROPERTY = "eventPublished";
+    
+    /** The Constant PRESS_TEMPLATES. */
+    public static final List<String> PRESS_TEMPLATES = Arrays.asList(
+            "/conf/publicweb/settings/wcm/templates/press-release",
+            "/conf/publicweb/settings/wcm/templates/news-article");
+    
+    public static final String CQ_TAGS_PROPERTY = "cq:tags";
+    
+    public static final String PW_TAG_SUSTAINIBILITY = "tetrapak:sustainability";
+    
+    public static final String PW_TAG_PACKAGING = "tetrapak:packaging";
+    
+    public static final String PW_TAG_PROCESSING = "tetrapak:processing";
+    
+    public static final String PW_TAG_SERVICES = "tetrapak:services";
+    
+    public static final String PW_TAG_INNOVATION = "tetrapak:innovation";
+    
+    public static final String PW_TAG_END_TO_END_SOLUTIONS = "tetrapak:end-to-end-solutions";
 
     /**
      * Instantiates a new PW constants.

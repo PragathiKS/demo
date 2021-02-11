@@ -1,10 +1,13 @@
 package com.tetrapak.publicweb.core.events;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ModifiableValueMap;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -62,6 +65,7 @@ public class NewsEventPageActivationListener implements EventHandler {
     @Reference
     private SubscriptionMailService mailService;
 
+    /** The pardot service. */
     @Reference
     private PardotService pardotService;
 
@@ -79,26 +83,67 @@ public class NewsEventPageActivationListener implements EventHandler {
             if (Objects.nonNull(paths) && Objects.nonNull(resourceResolver)) {
                 for (String path : paths) {
                     Resource resource = resourceResolver.getResource(path + "/jcr:content");
-                    ValueMap valueMap = resource.getValueMap();
-                    if (Objects.isNull(valueMap.get("eventPublished"))) {
-                        NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
-                        bean = addPageLinks(bean, path, resourceResolver);
-                        List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
-                        if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
-                            String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
-                            if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
-                                ModifiableValueMap modifiableMap = resource.adaptTo(ModifiableValueMap.class);
-                                modifiableMap.put("eventPublished", "true");
-                                resource.getResourceResolver().commit();
-                            }
-                        }
-                    }
+                    processData(resourceResolver, path, resource);
                 }
             }
         } catch (Exception ex) {
             LOGGER.error("Error in NewsEventPageActivationListener {}", ex.getMessage());
         }
 
+    }
+
+    /**
+     * Process data.
+     *
+     * @param resourceResolver
+     *            the resource resolver
+     * @param path
+     *            the path
+     * @param resource
+     *            the resource
+     * @param valueMap
+     *            the value map
+     * @throws PersistenceException
+     *             the persistence exception
+     */
+    private void processData(final ResourceResolver resourceResolver, String path, Resource resource)
+            throws PersistenceException {
+        ValueMap valueMap = resource.getValueMap();
+        if (Objects.isNull(valueMap.get(PWConstants.EVENT_PUBLISHED_PROPERTY))
+                && PWConstants.PRESS_TEMPLATES.contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
+            NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
+            addPageLinks(bean, path, resourceResolver);
+            List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
+            if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
+                String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
+                if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
+                    updatePageActivationProperty(resource);
+                }
+            }
+        }
+    }
+
+    /**
+     * Update first time page activation property.
+     *
+     * @param resource
+     *            the resource
+     * @throws PersistenceException
+     *             the persistence exception
+     */
+    private void updatePageActivationProperty(Resource resource) throws PersistenceException {
+        ModifiableValueMap modifiableMap = resource.adaptTo(ModifiableValueMap.class);
+        List<String> propertyInheritanceCancelled = new ArrayList<>();
+        String[] propertyValues = modifiableMap.get("cq:propertyInheritanceCancelled", String[].class);
+        if (Objects.nonNull(propertyValues)) {
+            for (String property : propertyValues) {
+                propertyInheritanceCancelled.add(property);
+            }
+        }
+        propertyInheritanceCancelled.add(PWConstants.EVENT_PUBLISHED_PROPERTY);
+        modifiableMap.put(PWConstants.EVENT_PUBLISHED_PROPERTY, "true");
+        modifiableMap.put("cq:propertyInheritanceCancelled", propertyInheritanceCancelled.toArray());
+        resource.getResourceResolver().commit();
     }
 
     /**
@@ -115,6 +160,7 @@ public class NewsEventPageActivationListener implements EventHandler {
     public NewsEventBean getNewsEventBean(ValueMap valueMap, String pagePath, ResourceResolver resolver) {
         NewsEventBean bean = new NewsEventBean();
         PageManager pageManager = resolver.adaptTo(PageManager.class);
+        List<String> interestAreas = null;
         String rootPath = LinkUtils.getRootPath(pagePath);
         Page page = pageManager.getPage(LinkUtils.getRootPath(rootPath));
         bean.setLanguage(PageUtil.getLanguageCode(page));
@@ -124,8 +170,11 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setDescription(Objects.nonNull(valueMap.get("jcr:description", String.class))
                 ? valueMap.get("jcr:description", String.class)
                 : StringUtils.EMPTY);
-        if (Objects.nonNull(valueMap.get("cq:tags", String[].class))) {
-            bean.setPageTags(valueMap.get("cq:tags", String[].class));
+        if (Objects.nonNull(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class))) {
+            interestAreas = getInterestAreas(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class));
+            if (Objects.nonNull(interestAreas)) {
+                bean.setInterestAreas(interestAreas);
+            }
         }
         bean.setPageLink(resolver.map(pagePath));
         bean.setNewsroomLink("#");
@@ -193,34 +242,85 @@ public class NewsEventPageActivationListener implements EventHandler {
      * @return the banner image
      */
     private String getBannerImage(String pagePath, ResourceResolver resolver) {
-        String path = pagePath + "/jcr:content/root/responsivegrid/banner";
-        Resource bannerResource = resolver.getResource(path);
-        if (Objects.nonNull(bannerResource)) {
-            ValueMap valueMap = bannerResource.getValueMap();
-            if (Objects.nonNull(valueMap.get("fileReference", String.class))) {
-                return valueMap.get("fileReference", String.class);
+        String path = pagePath + "/jcr:content/root/responsivegrid";
+        Resource resource = resolver.getResource(path);
+        Iterator<Resource> children = resource.listChildren();
+        while (children.hasNext()) {
+            Resource child = children.next();
+            if (child.getName().startsWith("banner") && child.isResourceType("publicweb/components/content/banner")) {
+                ValueMap valueMap = child.getValueMap();
+                if (Objects.nonNull(valueMap.get(PWConstants.FILE_REFERENCE, String.class))) {
+                    return valueMap.get(PWConstants.FILE_REFERENCE, String.class);
+                }
             }
         }
         return StringUtils.EMPTY;
     }
-    
-    private NewsEventBean addPageLinks(NewsEventBean bean , String pagePath, ResourceResolver resolver) {
+
+    /**
+     * Adds the page links.
+     *
+     * @param bean
+     *            the bean
+     * @param pagePath
+     *            the page path
+     * @param resolver
+     *            the resolver
+     * @return the news event bean
+     */
+    private NewsEventBean addPageLinks(NewsEventBean bean, String pagePath, ResourceResolver resolver) {
         String rootPath = LinkUtils.getRootPath(pagePath);
         final String path = rootPath + "/jcr:content/root/responsivegrid/subscriptionformconf";
         Resource subcriptionFormConfigResource = resolver.getResource(path);
-        if(Objects.nonNull(subcriptionFormConfigResource)) {
+        if (Objects.nonNull(subcriptionFormConfigResource)) {
             ValueMap valueMap = subcriptionFormConfigResource.getValueMap();
-            if(Objects.nonNull(valueMap.get("pressroomLink",String.class))) {
-                bean.setNewsroomLink(resolver.map(valueMap.get("pressroomLink",String.class)));
+            if (Objects.nonNull(valueMap.get("pressroomLink", String.class))) {
+                bean.setNewsroomLink(resolver.map(valueMap.get("pressroomLink", String.class)));
             }
-            if(Objects.nonNull(valueMap.get("legalInfoLink",String.class))) {
-                bean.setLegalInformationLink(resolver.map(valueMap.get("legalInfoLink",String.class)));
+            if (Objects.nonNull(valueMap.get("legalInfoLink", String.class))) {
+                bean.setLegalInformationLink(resolver.map(valueMap.get("legalInfoLink", String.class)));
             }
-            if(Objects.nonNull(valueMap.get("managePreferenceLink",String.class))) {
-                bean.setManagePreferenceLink(resolver.map(valueMap.get("managePreferenceLink",String.class)));
+            if (Objects.nonNull(valueMap.get("managePreferenceLink", String.class))) {
+                bean.setManagePreferenceLink(resolver.map(valueMap.get("managePreferenceLink", String.class)));
             }
         }
         return bean;
+    }
+
+    /**
+     * Gets the interest areas.
+     *
+     * @param tags
+     *            the tags
+     * @return the interest areas
+     */
+    private List<String> getInterestAreas(String[] tags) {
+        List<String> interestAreas = new ArrayList<>();
+        for (String tagId : tags) {
+            switch (tagId) {
+                case PWConstants.PW_TAG_SERVICES:
+                    interestAreas.add("Services");
+                    break;
+                case PWConstants.PW_TAG_SUSTAINIBILITY:
+                    interestAreas.add("Sustainability");
+                    break;
+                case PWConstants.PW_TAG_PACKAGING:
+                    interestAreas.add("Packaging");
+                    break;
+                case PWConstants.PW_TAG_INNOVATION:
+                    interestAreas.add("Innovation");
+                    break;
+                case PWConstants.PW_TAG_PROCESSING:
+                    interestAreas.add("Processing");
+                    break;
+                case PWConstants.PW_TAG_END_TO_END_SOLUTIONS:
+                    interestAreas.add("End-To-End");
+                    break;
+                default:
+                    break;
+            }
+        }
+        return interestAreas;
     }
 
 }
