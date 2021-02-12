@@ -52,7 +52,7 @@ public class PardotServiceImpl implements PardotService {
 
     /** The bearer. */
     private static final String BEARER = "Bearer";
-    
+
     /** The Constant DATA_FIELD. */
     private static final String DATA_FIELD = "data";
 
@@ -228,9 +228,9 @@ public class PardotServiceImpl implements PardotService {
      */
     private List<String> getMailAddresses(JSONObject json) throws JSONException {
         List<String> mailAddresses = null;
-        if (!json.isNull("data") && json.getJSONArray(DATA_FIELD).length() > 0) {
+        if (!json.isNull(DATA_FIELD) && json.getJSONArray(DATA_FIELD).length() > 0) {
             mailAddresses = new ArrayList<>();
-            JSONArray jsonArray = new JSONArray(json.getString(DATA_FIELD));
+            JSONArray jsonArray = json.getJSONArray(DATA_FIELD);
             JSONObject[] data = new JSONObject[jsonArray.length()];
 
             for (int i = 0; i < jsonArray.length(); i++) {

@@ -91,7 +91,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                     if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)
                             && newsEventbean.getManagePreferenceLink().startsWith(PWConstants.HTTPS_PROTOCOL)) {
                         emailParams.put("managePreferenceLink", newsEventbean.getManagePreferenceLink() + "?id="
-                                + encryptionService.encryptText(mailAddress));
+                                + encryptedMailAddress);
                     } else {
                         emailParams.put("managePreferenceLink", "#");
                     }
