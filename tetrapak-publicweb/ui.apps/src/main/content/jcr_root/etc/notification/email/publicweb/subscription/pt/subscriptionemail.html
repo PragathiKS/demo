@@ -8,23 +8,30 @@ Subject: ${title}
       <title>${title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <style>
+          body {
+            font-family: Verdana, Tahoma, sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            font-style: normal;
+            position: relative;
+          }
          .email-logo,.footer-logo {
-        	 text-align: left;
-        	 width: 100%;
-        	 padding-bottom: 24px;
+           text-align: left;
+           width: 100%;
+           padding-bottom: 24px;
          }
          .footer-logo {
-         	padding-bottom: 0;
+          padding-bottom: 0;
          }
          .mail-wrapper {
-        	 padding: 0 24px;
+           padding: 0 24px;
          }
          .logo-size {
-        	 width: 138px;
-        	 height: 21px;
+           width: 138px;
+           height: 21px;
          }
          .banner-image {
-        	 width: 100%;
+           width: 100%;
          }
          .banner-show{
              display:block;
@@ -33,48 +40,48 @@ Subject: ${title}
              display:none;
          }
          .hover-class {
-        	 text-decoration: none;
-        	 color: #ffffff;
+           text-decoration: none;
+           color: #ffffff;
          }
          .footer-wrapper {
-        	 display:none;
+           display:none;
          }
          .header-wrapper {
-         	text-align:center;
+          text-align:center;
          }
          .footer-mobile{
-         	display:block;
+          display:block;
          }
          @media screen and (min-width: 1024px) {
-         	.field {
-         		display: flex;
-         		flex-direction: row;
-        	 }
-        	 .mail-wrapper {
-        		 padding: 48px;
-        		 }
-         	.email-logo {
-         		padding-bottom: 48px;
-        	 }
-         	.logo-size {
-        		 width: 158px;
-         		height: 24px;
-         	}
-         	.footer-wrapper {
-         		display:block;
-         	}
-        	 .header-wrapper {
-         		text-align:left;
-         	}
-         	.footer-mobile{
-         		display:none;
-         	}
+          .field {
+            display: flex;
+            flex-direction: row;
+           }
+           .mail-wrapper {
+             padding: 48px;
+             }
+          .email-logo {
+            padding-bottom: 48px;
+           }
+          .logo-size {
+             width: 158px;
+            height: 24px;
+          }
+          .footer-wrapper {
+            display:block;
+          }
+           .header-wrapper {
+            text-align:left;
+          }
+          .footer-mobile{
+            display:none;
+          }
          }
       </style>
    </head>
    <body>
       <table class="mainTable" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff"
-         style="color:#4A4A4A; min-width:360px">
+         style="color:#4A4A4A; max-width:920px">
          <tbody>
             <tr>
                <td>
@@ -90,10 +97,10 @@ Subject: ${title}
             </tr>
             <tr>
                <td>
-                  <table class="${bannerClass}" width="100%" style="margin:0 auto 24px auto;" cellpadding="0" cellspacing="0" border="0">
+                  <table class="${bannerClass}" width="100%" style="margin:0 auto 48px auto;" cellpadding="0" cellspacing="0" border="0">
                      <tr>
                         <td>
-                           <img src="${bannerImage}?wid=920" style="width:100%!important;padding-bottom:24px;" />
+                           <img src="${bannerImage}?wid=920" style="width:100%!important;padding-bottom:0px;" />
                         </td>
                      </tr>
                   </table>
@@ -104,17 +111,17 @@ Subject: ${title}
                   <table style="margin:0 24px;">
                      <tr>
                         <td style="margin:0;">
-                           <h5 style="font-size: 18px;font-weight: 700;line-height: 24px;margin-bottom: 16px;margin:0px!important;">${title}</h5>
+                           <h5 style="font-size: 18px;font-weight: 700;line-height: 24px;margin-bottom:0px 0px 16px 0px;">${title}</h5>
                         </td>
                      </tr>
                      <tr>
                         <td>
-                           <p style="margin:0 0 16px 0;line-height:24px;">${description}</p>
+                           <p style="margin:0 0 20px 0;line-height:24px;">${description}</p>
                         </td>
                      </tr>
                      <tr>
-                        <td style="text-align:left;margin-bottom:16px;">
-                           <a href="${pageLink}"><span style="display:inline-block;color:#023f88;text-decoration:underline;font-weight:900;">Leia o lançamento completo aqui</span></a>
+                        <td style="text-align:left;margin-bottom:0px;">
+                           <a href="${pageLink}"><span style="display:inline-block;color:#023f88;text-decoration:underline;font-weight:900;margin-bottom:24px;">Leia o lançamento completo aqui</span></a>
                         </td>
                      </tr>
                   </table>
@@ -122,7 +129,7 @@ Subject: ${title}
             </tr>
             <tr>
                <td>
-                  <table width="600px" cellpadding="0" cellspacing="0" border="0" style="margin: 0 24px;">
+                  <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px 24px 48px 24px;">
                      <tr>
                         <td>
                            <p style="margin-bottom:24px;">Todas as notícias e comunicados de imprensa são publicados aqui ${newsRoomLink}</p>
@@ -130,7 +137,7 @@ Subject: ${title}
                      </tr>
                      <tr>
                         <td>
-                           <p style="margin-bottom:24px;">Atenciosamente, Tetra Pak</p>
+                           <p style="margin-bottom:0px;">Atenciosamente, Tetra Pak</p>
                         </td>
                      </tr>
                   </table>
@@ -138,16 +145,16 @@ Subject: ${title}
             </tr>
          </tbody>
       </table>
-      <table class="footer-wrapper" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#023F88;padding:24px;color:#ffffff;overflow:hidden;">
+      <table class="footer-wrapper" width="880" cellpadding="0" cellspacing="0" border="0" style="background-color:#023F88;padding:24px;color:#ffffff;overflow:hidden;">
          <tr>
             <td width="20%">
                <img class="logo-size" src="${footerLogo}?wid=156&fmt=jpg&resMode=sharp2&qlt=85,0" />
             </td>
-            <td width="80%">
-               <table style="width:100%;text-align:center;margin:0 auto;" cellpadding="0" cellspacing="0" border="0">
+            <td width="80%" style="text-align:right;">
+               <table style="width:100%;text-align:right;margin:0 auto;" cellpadding="0" cellspacing="0" border="0">
                   <tr>
                      <td>
-                        <a href="${managePreferenceLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Gerenciar preferência</a>&nbsp;&nbsp;
+                        <a href="${managePreferenceLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Gerenciar preferência</a>&nbsp;&nbsp;&nbsp;
                         <a href="${legalInformationLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Informação legal</a>
                      </td>
                   </tr>
