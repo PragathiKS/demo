@@ -209,6 +209,9 @@ public final class PWConstants {
 
     /** The Constant SPACE. */
     public static final String SPACE = " ";
+    
+    /** The Constant COMMA. */
+    public static final String COMMA = ",";
 
     /** The Constant NEWS. */
     public static final String NEWS = "news";

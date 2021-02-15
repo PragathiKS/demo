@@ -5,13 +5,13 @@ import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 /**
- * OSGi configuration for Pardot Service.
+ * The Interface PardotServiceConfig.
  */
 @ObjectClassDefinition(name = "Public Web Pardot Service Configuration", description = "Pardot Service Configuration")
 public @interface PardotServiceConfig {
 
     /**
-     * Pardot BusinessInquiry Service Url.
+     * Pardot business inquiry service url.
      *
      * @return Pardot BusinessInquiry Service Url
      */
@@ -32,18 +32,17 @@ public @interface PardotServiceConfig {
             type = AttributeType.STRING)
     String pardotSubscriptionFormURL();
 
-	/**
-    * Pardot subscribers data api URL.
-    *
-    * @return the string
-    */
+    /**
+     * Pardot subscribers api URL.
+     *
+     * @return the string
+     */
     @AttributeDefinition(
     		name = "Pardot Subscribers API URL",
     		description = "Pardot Subscribers API URL",
     		type = AttributeType.STRING)
     String pardotSubscribersApiURL();
 
-    
     /**
      * Pardot token generation api client id.
      *

@@ -3,13 +3,16 @@ package com.tetrapak.publicweb.core.models;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.tetrapak.publicweb.core.services.DataEncryptionService;
@@ -20,6 +23,7 @@ import com.tetrapak.publicweb.core.services.impl.ManagePrefContentFragServiceImp
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class ManagePreferencesModelTest.
  *
@@ -91,8 +95,6 @@ public class ManagePreferencesModelTest {
 		resource = context.currentResource(TEST_COUNTRY_CFROOT);
 		resource = context.currentResource(TEST_LANGUAGE_CFROOT);
 		resource = context.currentResource(RESOURCE_PATH);
-        context.request().setQueryString("id=BFS7CThuKGMpRtSNIpXrEOCaOAmWbViidmy8jJI1lrs=");
-		model = context.request().adaptTo(ManagePreferencesModel.class);
 	}
 
 	/**
@@ -115,10 +117,31 @@ public class ManagePreferencesModelTest {
 	}
 
 	/**
-	 * Test model not null.
+	 * Test model not null case one.
 	 */
 	@Test
-	public void testModelNotNull() {
+	public void testModelNotNullCaseOne() {
+		context.request().setQueryString("id=BFS7CThuKGMpRtSNIpXrEOCaOAmWbViidmy8jJI1lrs=");
+		model = context.request().adaptTo(ManagePreferencesModel.class);
+		assertNotNull("Model Not Null: ",model);
+	}
+	
+	/**
+	 * Test model not null case two.
+	 */
+	@Test
+	public void testModelNotNullCaseTwo() {
+		model = context.request().adaptTo(ManagePreferencesModel.class);
+		assertNotNull("Model Not Null: ",model);
+	}
+	
+	/**
+	 * Test model not null case three.
+	 */
+	@Test
+	public void testModelNotNullCaseThree() {
+		context.request().setQueryString("id=fBCkjr1w+CJL2gZ5XlFTEA==");
+		model = context.request().adaptTo(ManagePreferencesModel.class);
 		assertNotNull("Model Not Null: ",model);
 	}
 	
@@ -129,23 +152,25 @@ public class ManagePreferencesModelTest {
 	 */
 	private JsonObject sampleJson() {
 		String jsonStr = "{\r\n" + 
-				"   \"email\":\"testpreference4@yopmail.com\",\r\n" + 
-				"   \"country\":\"india\",\r\n" + 
-				"   \"language\":\"english\",\r\n" + 
-				"   \"areaofinterest\":{\r\n" + 
-				"      \"Services\":\"Y\",\r\n" + 
-				"      \"Packaging\":\"N\",\r\n" + 
-				"      \"Processing\":\"N\",\r\n" + 
-				"      \"Innovation\":\"N\",\r\n" + 
-				"      \"Sustainability\":\"N\",\r\n" + 
-				"      \"End-to-End solutions\":\"N\"\r\n" + 
-				"   },\r\n" + 
-				"   \"communicationtype\":{\r\n" + 
-				"      \"Marketing Communication\":\"N\",\r\n" + 
-				"      \"Press and Media Communication\":\"Y\",\r\n" + 
-				"      \"Event Invitations\":\"Y\"\r\n" + 
-				"   }\r\n" + 
-				"}";
+				"            \"id\": 18694486,\r\n" + 
+				"            \"firstName\": \"Mathias\",\r\n" + 
+				"            \"lastName\": \"Hornstrup\",\r\n" + 
+				"            \"email\": \"testpreference4@yopmail.com\",\r\n" + 
+				"            \"country\": \"India\",\r\n" + 
+				"            \"interestAreas\": [\r\n" + 
+				"                \"Sustainability\",\r\n" + 
+				"                \"Processing\",\r\n" + 
+				"                \"Services\",\r\n" + 
+				"                \"End To End - Solutions\",\r\n" + 
+				"                \"Packaging\",\r\n" + 
+				"                \"Innovation\"\r\n" + 
+				"            ],\r\n" + 
+				"            \"language\": \"English\",\r\n" + 
+				"            \"subscriptionCommunicationType\": [\r\n" + 
+				"                \"Event Invitation\",\r\n" + 
+				"                \"Press and Media communication\"\r\n" + 
+				"            ]\r\n" + 
+				"        }";
 		return new JsonParser().parse(jsonStr).getAsJsonObject();
 	}
 }

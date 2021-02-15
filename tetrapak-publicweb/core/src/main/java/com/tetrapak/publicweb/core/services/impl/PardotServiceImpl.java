@@ -7,7 +7,6 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -28,9 +27,10 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.services.config.PardotServiceConfig;
 
@@ -52,19 +52,23 @@ public class PardotServiceImpl implements PardotService {
 
     /** The bearer. */
     private static final String BEARER = "Bearer";
-
+    
     /** The Constant DATA_FIELD. */
     private static final String DATA_FIELD = "data";
+    
+    /** The Constant ACCEPT. */
+    private static final String ACCEPT = "Accept";
+    
+    /** The Constant APPLICATION_JSON. */
+    private static final String APPLICATION_JSON = "application/json";
 
     /**
-     * activate method.
+     * Activate.
      *
-     * @param config
-     *            Pardot Service configuration
+     * @param config the config
      */
     @Activate
     public void activate(final PardotServiceConfig config) {
-
         this.config = config;
     }
 
@@ -81,19 +85,15 @@ public class PardotServiceImpl implements PardotService {
     /**
      * Submit pardot post respose.
      *
-     * @param parameters
-     *            the parameters
-     * @param url
-     *            the url
-     * @return api gee post response
+     * @param parameters the parameters
+     * @param url the url
      */
     @Override
     public void submitPardotPostRespose(final Map<String, String[]> parameters, final String url) {
-
         LOGGER.info("Inside service response");
         final HttpPost postRequest = new HttpPost(url);
         postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        postRequest.addHeader("Accept", "application/json");
+        postRequest.addHeader(ACCEPT, APPLICATION_JSON);
         final ArrayList<NameValuePair> postParameters = new ArrayList<>();
 
         for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
@@ -117,8 +117,7 @@ public class PardotServiceImpl implements PardotService {
     /**
      * Submit pardot post respose.
      *
-     * @param parameterMap
-     *            the parameter map
+     * @param parameterMap the parameter map
      */
     @Override
     public void submitPardotPostRespose(final Map<String, String[]> parameterMap) {
@@ -141,49 +140,28 @@ public class PardotServiceImpl implements PardotService {
     /**
      * Gets the manage pref json.
      *
-     * @param emailToCheck
-     *            the email to check
+     * @param emailToCheck the email to check
      * @return the manage pref json
      */
     @Override
     public JsonObject getManagePrefJson(String emailToCheck) {
-        JsonObject jsonData = null;
-        // LOGGER.debug("Inside Get getManagePrefJson method");
-        // try {
-        // final HttpClient httpClient = HttpClientBuilder.create().build();
-        // HttpGet request = new HttpGet();
-        // request.addHeader("Authorization", "Basic " + getManagePrefApiCredentials());
-        // request.setURI(new URI(getManagePrefApiUrl()));
-        // HttpResponse response = httpClient.execute(request);
-        // InputStream ips = response.getEntity().getContent();
-        // StringBuilder sb = new StringBuilder();
-        // String line;
-        // BufferedReader br = new BufferedReader(new InputStreamReader(ips, StandardCharsets.UTF_8));
-        // while ((line = br.readLine()) != null) {
-        // sb.append(line);
-        // }
-        // JsonObject data = new JsonParser().parse(sb.toString()).getAsJsonObject();
-        // String jsonStr = data.get("jsonData").getAsString();
-        // JsonObject exactJsonData = new JsonParser().parse(jsonStr).getAsJsonObject();
-        // for (Map.Entry<String, JsonElement> entry : exactJsonData.entrySet()) {
-        // if (entry.getKey().equalsIgnoreCase(emailToCheck)) {
-        // jsonData = entry.getValue().getAsJsonObject();
-        // break;
-        // }
-        // }
-        // } catch (URISyntaxException | IOException e) {
-        // LOGGER.error("Error while fetching manage preference json data: {}", e.getMessage());
-        // }
+    	JsonObject jsonData = null;
+        LOGGER.debug("Inside getManagePrefJson method");
+        String apiUrl = config.pardotSubscribersApiURL() + "/subscriberpreferences/" + emailToCheck;
+        BearerToken token = getBearerToken();
+        String jsonResponse = getPardotApiGetRespose(BEARER, apiUrl, token.getAccessToken());
+        if (StringUtils.isNotBlank(jsonResponse)) {
+        	jsonData = new JsonParser().parse(jsonResponse).getAsJsonObject();
+    		return jsonData.get("data").getAsJsonArray().get(0).getAsJsonObject();
+        }
         return jsonData;
     }
 
     /**
      * Gets the subscriber mail addresses.
      *
-     * @param locale
-     *            the locale
-     * @param interestAreas
-     *            the interest areas
+     * @param locale the locale
+     * @param interestAreas the interest areas
      * @return the subscriber mail addresses
      */
     public List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas) {
@@ -195,12 +173,12 @@ public class PardotServiceImpl implements PardotService {
             String areas = StringUtils.EMPTY;
             if (Objects.nonNull(interestAreas) && !interestAreas.isEmpty()) {
                 for (String interest : interestAreas) {
-                    areas = areas.concat(interest) + ",";
+                    areas = areas.concat(interest) + PWConstants.COMMA;
                 }
-                if (areas.endsWith(",")) {
+                if (areas.endsWith(PWConstants.COMMA)) {
                     areas = areas.substring(0, areas.length() - 1);
                 }
-                String marketCode = locale.split("-")[1];
+                String marketCode = locale.split(PWConstants.HYPHEN)[1];
                 apiUrl = apiUrl + "market=" + marketCode;
                 if (!interestAreas.isEmpty()) {
                     apiUrl = apiUrl + "&areas=" + areas;
@@ -220,11 +198,9 @@ public class PardotServiceImpl implements PardotService {
     /**
      * Gets the mail addresses.
      *
-     * @param json
-     *            the json
+     * @param json the json
      * @return the mail addresses
-     * @throws JSONException
-     *             the JSON exception
+     * @throws JSONException the JSON exception
      */
     private List<String> getMailAddresses(JSONObject json) throws JSONException {
         List<String> mailAddresses = null;
@@ -269,7 +245,7 @@ public class PardotServiceImpl implements PardotService {
     @Override
     public BearerToken getBearerToken() {
         BearerToken bearerToken = new BearerToken();
-        String jsonResponse = StringUtils.EMPTY;
+        String jsonResponse = null;
         final String authString = config.pardotTokenGenerationApiClientId() + ":"
                 + config.pardotTokenGenerationApiClientSecret();
         final String encodedAuthString = Base64.getEncoder()
@@ -292,21 +268,18 @@ public class PardotServiceImpl implements PardotService {
     /**
      * Gets the pardot api post respose.
      *
-     * @param authType
-     *            the auth type
-     * @param apiURL
-     *            the api URL
-     * @param encodedAuthString
-     *            the encoded auth string
+     * @param authType the auth type
+     * @param apiURL the api URL
+     * @param encodedAuthString the encoded auth string
      * @return the pardot api post respose
      */
     private String getPardotApiPostRespose(final String authType, final String apiURL, final String encodedAuthString) {
         String jsonResponse = StringUtils.EMPTY;
         LOGGER.debug("Http Post request URL : {}", apiURL);
         final HttpPost postRequest = new HttpPost(apiURL);
-        postRequest.addHeader("Authorization", authType + " " + encodedAuthString);
+        postRequest.addHeader("Authorization", authType + PWConstants.SPACE + encodedAuthString);
         postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        postRequest.addHeader("Accept", "application/json");
+        postRequest.addHeader(ACCEPT, APPLICATION_JSON);
         final ArrayList<NameValuePair> postParameters = new ArrayList<>();
         postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
 
@@ -322,7 +295,7 @@ public class PardotServiceImpl implements PardotService {
             LOGGER.debug("Http Post request status code: {}", statusCode);
             LOGGER.debug("HTTP Post request Jsonresponse {}", jsonResponse);
         } catch (final IOException e) {
-            LOGGER.error("Unable to connect to the url {}", apiURL, e);
+            LOGGER.error("Unable to connect to the url {}", e.getMessage());
         }
         return jsonResponse;
     }
@@ -330,20 +303,17 @@ public class PardotServiceImpl implements PardotService {
     /**
      * Gets the pardot api get respose.
      *
-     * @param authType
-     *            the auth type
-     * @param apiURL
-     *            the api URL
-     * @param encodedAuthString
-     *            the encoded auth string
+     * @param authType the auth type
+     * @param apiURL the api URL
+     * @param encodedAuthString the encoded auth string
      * @return the pardot api get respose
      */
     private String getPardotApiGetRespose(final String authType, final String apiURL, final String encodedAuthString) {
         String jsonResponse = StringUtils.EMPTY;
         LOGGER.debug("Http Get request URL : {}", apiURL);
         final HttpGet getRequest = new HttpGet(apiURL);
-        getRequest.addHeader("Authorization", authType + " " + encodedAuthString);
-        getRequest.addHeader("Accept", "application/json");
+        getRequest.addHeader("Authorization", authType + PWConstants.SPACE + encodedAuthString);
+        getRequest.addHeader(ACCEPT, APPLICATION_JSON);
 
         final HttpClient httpClient = HttpClientBuilder.create().build();
         int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
@@ -356,9 +326,8 @@ public class PardotServiceImpl implements PardotService {
             LOGGER.debug("Http Get request status code: {}", statusCode);
             LOGGER.debug("HTTP GET request Jsonresponse {}", jsonResponse);
         } catch (final IOException e) {
-            LOGGER.error("Unable to connect to the url {}", apiURL, e);
+            LOGGER.error("Unable to connect to the url {}", e.getMessage());
         }
         return jsonResponse;
     }
-
 }
