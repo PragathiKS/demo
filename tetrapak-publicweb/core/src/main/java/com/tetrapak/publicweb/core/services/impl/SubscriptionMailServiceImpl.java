@@ -48,6 +48,9 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
     @Reference
     private DataEncryptionService encryptionService;
 
+    /** The Constant DEFAULT LOGO BACKGROUND RGB value . */
+    private static final String DEFAULT_LOGO_BGC = "2,63,136";
+
     /**
      * Send subscription email.
      *
@@ -69,33 +72,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                 status = PWConstants.STATUS_SUCCESS;
                 for (String mailAddress : mailAddresses) {
                     String[] receipientArray = { mailAddress };
-                    Map<String, String> emailParams = new HashMap<>();
-                    emailParams.put("title", newsEventbean.getTitle());
-                    emailParams.put("description", newsEventbean.getDescription());
-                    if (StringUtils.isEmpty(newsEventbean.getHeroImage())) {
-                        emailParams.put("bannerClass", "banner-hide");
-                        emailParams.put("bannerImage", "#");
-                    } else {
-                        emailParams.put("bannerClass", "banner-show");
-                        emailParams.put("bannerImage",
-                                GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeroImage(), mediaService));
-                    }
-                    emailParams.put("headerLogo",
-                            GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
-                    emailParams.put("footerLogo",
-                            GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getFooterLogo(), mediaService));
-                    emailParams.put("pageLink", newsEventbean.getPageLink());
-                    emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
-                    emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
-                    String encryptedMailAddress = encryptionService.encryptText(mailAddress);
-                    if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)
-                            && newsEventbean.getManagePreferenceLink().startsWith(PWConstants.HTTPS_PROTOCOL)) {
-                        emailParams.put("managePreferenceLink", newsEventbean.getManagePreferenceLink() + "?id="
-                                + encryptionService.encryptText(mailAddress));
-                    } else {
-                        emailParams.put("managePreferenceLink", "#");
-                    }
-                    emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
+                    Map<String, String> emailParams = setEmailParams(newsEventbean, resolver, mailAddress);
                     Map<String, Object> properties = new HashMap<>();
                     properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage()));
                     properties.put("emailParams", emailParams);
@@ -107,7 +84,6 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                         LOGGER.error("JobManager Reference null");
                     }
                 }
-
             }
         } catch (Exception e) {
             LOGGER.error("Error in SubscriptionMailService {}", e.getMessage());
@@ -115,6 +91,54 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         }
         return status;
 
+    }
+
+    /**
+     * Sets the email params.
+     *
+     * @param newsEventbean
+     *            the news eventbean
+     * @param resolver
+     *            the resolver
+     * @param mailAddress
+     *            the mail address
+     * @return the map
+     */
+    private Map<String, String> setEmailParams(NewsEventBean newsEventbean, ResourceResolver resolver,
+            String mailAddress) {
+        Map<String, String> emailParams = new HashMap<>();
+        emailParams.put("title", newsEventbean.getTitle());
+        emailParams.put("description", newsEventbean.getDescription());
+        if (StringUtils.isEmpty(newsEventbean.getHeroImage())) {
+            emailParams.put("bannerClass", "banner-hide");
+            emailParams.put("bannerImage", "#");
+        } else {
+            emailParams.put("bannerClass", "banner-show");
+            emailParams.put("bannerImage",
+                    GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeroImage(), mediaService));
+        }
+        emailParams.put("headerLogo",
+                GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
+        emailParams.put("footerLogo",
+                GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getFooterLogo(), mediaService));
+        if (!newsEventbean.getFooterLogoBackground().isEmpty()) {
+            emailParams.put("footerLogoBGC", newsEventbean.getFooterLogoBackground());
+        } else {
+            emailParams.put("footerLogoBGC", DEFAULT_LOGO_BGC);
+        }
+        emailParams.put("pageLink", newsEventbean.getPageLink());
+        emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
+        emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
+        String encryptedMailAddress = encryptionService.encryptText(mailAddress);
+        if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)
+                && newsEventbean.getManagePreferenceLink().startsWith(PWConstants.HTTPS_PROTOCOL)) {
+            emailParams.put("managePreferenceLink", newsEventbean.getManagePreferenceLink() + "?id="
+                    + encryptionService.encryptText(mailAddress));
+        } else {
+            emailParams.put("managePreferenceLink", "#");
+        }
+        emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
+        return emailParams;
     }
 
     /**
