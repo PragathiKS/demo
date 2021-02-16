@@ -15,6 +15,8 @@ class ManagePreferences {
     this.cache.$inputFieldWrapper = $('.input-field-wrapper',this.root);
     this.cache.$dropdownToggle = $('.dropdown-toggle',this.root);
     this.cache.$unsubscribeBox = $('.unsubscribe-box',this.root);
+    this.cache.$pressMediaCheckBox = $('#pres-and-media-communication',this.root);
+    this.cache.$selectedFormData = $('form.pw-form-managePreferences', this.root);
     this.cache.$savePreferenceButton = $('.save-preference-button',this.root);
     this.cache.$unsubscribeButton = $('.unsubscribe-button',this.root);
     this.cache.communicationTypes = this.root.find('.communication-type');
@@ -61,11 +63,11 @@ class ManagePreferences {
    * @param {domObject} inputGroup input
   */
   checkValues = (inputGroup) => {
-    const { requestPayload } = this.cache;
+    const { requestPayload, $pressMediaCheckBox } = this.cache;
     if(inputGroup.attr('name') === 'communication-type-input' && requestPayload['types-communication'].length > 0){
       inputGroup.data('input-value',true);
     }
-    if(inputGroup.attr('name') === 'area-of-interest' && requestPayload['area-of-interest'].length > 0){
+    if(!$pressMediaCheckBox.is(':checked') || ($pressMediaCheckBox.is(':checked') && inputGroup.attr('name') === 'area-of-interest' && requestPayload['area-of-interest'].length > 0)){
       inputGroup.data('input-value',true);
     }
   }
@@ -74,10 +76,10 @@ class ManagePreferences {
    * set default checkbox values
   */
   setDefaultCheckboxValue = () => {
-    const selectedFormData = $('form.pw-form-managePreferences', this.root);
-    let selectedCommunication = selectedFormData.data('selected-communication');
+    const { $selectedFormData, $pressMediaCheckBox } = this.cache;
+    let selectedCommunication = $selectedFormData.data('selected-communication');
     selectedCommunication = selectedCommunication && selectedCommunication.split(',').map((val) => val.trim()) || [];
-    let selectedInterest = selectedFormData.data('selected-interest');
+    let selectedInterest = $selectedFormData.data('selected-interest');
     selectedInterest = selectedInterest && selectedInterest.split(',').map((val) => val.trim()) || [];
     $('.communication-type',this.root).each(function(){
       const $this = $(this);
@@ -92,8 +94,9 @@ class ManagePreferences {
         $this.prop('checked', true);
       }
     });
-
-
+    if(!$pressMediaCheckBox.is(':checked')){
+      this.setAreaDisabled();
+    }
   }
 
   /**
@@ -127,17 +130,57 @@ class ManagePreferences {
       $unsubscribeBox.removeClass('show');
       $savePreferenceButton.removeClass('hide');
       $unsubscribeButton.removeClass('show');
+      this.setAreaDisabled();
     }
   }
 
+  /**
+   * function to handle press and media checkbox
+   * @param {domObject} params params
+  */
+  pressMediaHandler = (params) => {
+    this.root.find('div[name="area-of-interest"].formfield').removeClass('field-error');
+    if(params.prop('checked')){
+      $('div[name="area-of-interest"] input[type="checkbox"]', this.root).each(function(){
+        const $this = $(this);
+        $this.removeClass('visible-false');
+        $this.prop({checked:false});
+        $this.attr('disabled',false);
+        $this.closest('label').find('.tpatom-checkbox__icon').removeClass('disable-checkbox');
+      });
+      this.root.find('div[name="area-of-interest"] .input-field-wrapper').removeClass('disable-input');
+    } else {
+      this.setAreaDisabled();
+    }
+  }
+
+  /**
+   * function to disable area of interest
+  */
+  setAreaDisabled = () => {
+    this.root.find('div[name="area-of-interest"].formfield').removeClass('field-error');
+    $('div[name="area-of-interest"] input[type="checkbox"]', this.root).each(function(){
+      const $this = $(this);
+      $this.addClass('visible-false');
+      $this.prop({checked:false});
+      $this.attr('disabled',true);
+      $this.closest('label').find('.tpatom-checkbox__icon').addClass('disable-checkbox');
+    });
+    this.root.find('div[name="area-of-interest"] .input-field-wrapper').addClass('disable-input');
+  }
+
   bindEvents() {
-    const { requestPayload, $submitBtn, $dropItem, $languageDropItem,$unsubscribeBtn, $unsubscribeCheckbox } = this.cache;
+    const { requestPayload, $submitBtn, $dropItem, $languageDropItem,$unsubscribeBtn, $unsubscribeCheckbox, $pressMediaCheckBox } = this.cache;
     const self = this;
     this.setDefaultCheckboxValue();
     $unsubscribeCheckbox.change(function(e){
       e.preventDefault();
       e.stopPropagation();
       self.unsubscribeHandler($(this));
+    });
+    $pressMediaCheckBox.change(function(e){
+      e.stopPropagation();
+      self.pressMediaHandler($(this));
     });
     $submitBtn.click(function (e) {
       e.preventDefault();
