@@ -25,6 +25,9 @@ public class NewsEventBean {
     /** The footer logo. */
     private String footerLogo;
 
+    /** The footer logo background. */
+    private String footerLogoBackground;
+
     /** The newsroom link. */
     private String newsroomLink;
     
@@ -155,6 +158,25 @@ public class NewsEventBean {
      */
     public void setFooterLogo(String footerLogo) {
         this.footerLogo = footerLogo;
+    }
+
+    /**
+     * Gets the footer logo background.
+     *
+     * @return the footer logo background
+     */
+    public String getFooterLogoBackground() {
+        return footerLogoBackground;
+    }
+
+    /**
+     * Sets the footer logo background.
+     *
+     * @param footerLogoBackground
+     *            the new footer logo background
+     */
+    public void setFooterLogoBackground(String footerLogoBackground) {
+        this.footerLogoBackground = footerLogoBackground;
     }
 
     /**
