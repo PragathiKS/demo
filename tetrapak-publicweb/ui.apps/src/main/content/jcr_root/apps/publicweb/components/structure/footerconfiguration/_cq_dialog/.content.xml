@@ -78,6 +78,12 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="To Top Anchor Label"
                                 name="./goToTopLabel"/>
+							<logobackground
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Footer logo Background (RGB value)"
+                                fieldLabel="Footer Logo Background (RGB value)"
+                                name="./logoBackground"/>
                         </items>
                     </general>
                 </items>
