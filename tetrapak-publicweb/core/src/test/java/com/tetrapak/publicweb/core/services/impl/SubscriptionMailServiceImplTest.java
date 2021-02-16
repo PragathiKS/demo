@@ -76,6 +76,7 @@ public class SubscriptionMailServiceImplTest {
         Mockito.when(bean.getHeroImage()).thenReturn(heroImagePath);
         Mockito.when(bean.getHeaderLogo()).thenReturn(logoImagePath);
         Mockito.when(bean.getFooterLogo()).thenReturn(logoImagePath);
+        Mockito.when(bean.getFooterLogoBackground()).thenReturn("2,63,136");
         Mockito.when(bean.getNewsroomLink())
                 .thenReturn("https://www-qa.tetrapak.com/en-za/about-tetra-pak/news-and-events/news-room");
         Mockito.when(bean.getLegalInformationLink())
