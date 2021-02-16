@@ -181,8 +181,8 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setLegalInformationLink("#");
         bean.setManagePreferenceLink("#");
         bean.setHeaderLogo(getHeaderLogo(pagePath, resolver));
-        bean.setFooterLogo(getFooterLogo(pagePath, resolver));
         bean.setHeroImage(getBannerImage(pagePath, resolver));
+        setFooterLogo(bean, pagePath, resolver);
         return bean;
     }
 
@@ -218,7 +218,7 @@ public class NewsEventPageActivationListener implements EventHandler {
      *            the resolver
      * @return the footer logo
      */
-    private String getFooterLogo(String pagePath, ResourceResolver resolver) {
+    private NewsEventBean setFooterLogo(NewsEventBean bean, String pagePath, ResourceResolver resolver) {
         String rootPath = LinkUtils.getRootPath(pagePath);
         final String path = rootPath + "/jcr:content/root/responsivegrid/footerconfiguration";
         final Resource footerConfigurationResource = resolver.getResource(path);
@@ -226,10 +226,13 @@ public class NewsEventPageActivationListener implements EventHandler {
             final FooterConfigurationModel configurationModel = footerConfigurationResource
                     .adaptTo(FooterConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
-                return configurationModel.getLogoImagePath();
+                bean.setFooterLogo(configurationModel.getLogoImagePath());
+                bean.setFooterLogoBackground(
+                        Objects.nonNull(configurationModel.getLogoBackground()) ? configurationModel.getLogoBackground()
+                                : StringUtils.EMPTY);
             }
         }
-        return StringUtils.EMPTY;
+        return bean;
     }
 
     /**

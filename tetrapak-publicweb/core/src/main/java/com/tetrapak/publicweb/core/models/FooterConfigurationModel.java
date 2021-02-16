@@ -34,6 +34,10 @@ public class FooterConfigurationModel {
     @ValueMapValue
     private String logoAlt;
 
+    /** The logo background. */
+    @ValueMapValue
+    private String logoBackground;
+
     /** The social links. */
     @Inject
     private List<SocialLinkModel> socialLinks;
@@ -71,6 +75,15 @@ public class FooterConfigurationModel {
      */
     public String getLogoAlt() {
         return logoAlt;
+    }
+
+    /**
+     * Gets the logo background.
+     *
+     * @return the logo background
+     */
+    public String getLogoBackground() {
+        return logoBackground;
     }
 
     /**
