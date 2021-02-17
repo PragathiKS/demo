@@ -103,7 +103,7 @@ class Subscriptionform {
       data: $.param(dataObj,true)
     }).done(
       (response) => {
-        if (response['status.code'] === 200) {
+        if (response.statusCode === 200 || response === 'Success') {
           $('.sf-tab-pane', this.root).removeClass('active');
           $('#sf-step-final', this.root).addClass('active');
           $('.serviceError').removeClass('d-block');
