@@ -22,7 +22,7 @@
     <pw.form.businessenq.endtoendsolution
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.endtoendsolution"
-        sling:message="End-to-End solutions"/>
+        sling:message="End To End - Solutions"/>
     <pw.form.businessenq.packaging
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.packaging"
@@ -270,7 +270,7 @@
     <pw.form.managepreferences.pressmediacomm
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.pressmediacomm"
-        sling:message="Press and Media Communication"/>
+        sling:message="Press and Media communication"/>
     <pw.form.managepreferences.receive
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.receive"

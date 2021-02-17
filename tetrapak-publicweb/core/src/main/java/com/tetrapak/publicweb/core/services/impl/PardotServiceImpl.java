@@ -186,8 +186,8 @@ public class PardotServiceImpl implements PardotService {
                 if (areas.endsWith(PWConstants.COMMA)) {
                     areas = areas.substring(0, areas.length() - 1);
                 }
-                String marketCode = locale.split(PWConstants.HYPHEN)[1];
-                apiUrl = apiUrl + "market=" + marketCode;
+                //String marketCode = locale.split(PWConstants.HYPHEN)[1];
+                apiUrl = apiUrl + "markets=en";
                 if (!interestAreas.isEmpty()) {
                     apiUrl = apiUrl + "&areas=" + areas;
                 }
