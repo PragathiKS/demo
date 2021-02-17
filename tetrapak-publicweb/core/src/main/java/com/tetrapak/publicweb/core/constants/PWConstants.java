@@ -209,6 +209,9 @@ public final class PWConstants {
 
     /** The Constant SPACE. */
     public static final String SPACE = " ";
+    
+    /** The Constant COMMA. */
+    public static final String COMMA = ",";
 
     /** The Constant NEWS. */
     public static final String NEWS = "news";
@@ -325,6 +328,21 @@ public final class PWConstants {
     public static final List<String> PRESS_TEMPLATES = Arrays.asList(
             "/conf/publicweb/settings/wcm/templates/press-release",
             "/conf/publicweb/settings/wcm/templates/news-article");
+    
+    public static final String CQ_TAGS_PROPERTY = "cq:tags";
+    
+    public static final String PW_TAG_SUSTAINIBILITY = "tetrapak:sustainability";
+    
+    public static final String PW_TAG_PACKAGING = "tetrapak:packaging";
+    
+    public static final String PW_TAG_PROCESSING = "tetrapak:processing";
+    
+    public static final String PW_TAG_SERVICES = "tetrapak:services";
+    
+    public static final String PW_TAG_INNOVATION = "tetrapak:innovation";
+    
+    public static final String PW_TAG_END_TO_END_SOLUTIONS = "tetrapak:end-to-end-solutions";
+
     /**
      * Instantiates a new PW constants.
      */

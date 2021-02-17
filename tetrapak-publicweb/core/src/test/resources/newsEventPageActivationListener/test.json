@@ -18,6 +18,7 @@
   "jcr:created": "Wed Feb 10 2021 11:17:16 GMT+0530",
   "cq:lastReplicated": "Wed Feb 10 2021 12:42:45 GMT+0530",
   "cq:lastModified": "Wed Feb 10 2021 03:39:27 GMT+0000",
+  "cq:tags":["tetrapak:end-to-end-solutions","tetrapak:sustainability","tetrapak:processing"],
   "jcr:description": "This page is to test banner image issue after copying from another page",
   "titleSuffix": "Tetra Pak",
   "jcr:baseVersion": "86f06c4e-d7fa-4305-94f4-db1281867592",
