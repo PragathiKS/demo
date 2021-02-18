@@ -2,7 +2,6 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -17,8 +16,10 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
 import com.tetrapak.publicweb.core.constants.PWConstants;
@@ -33,6 +34,8 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ManagePreferencesModel {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ManagePreferencesModel.class);
 
 	/** The resource. */
 	@Self
@@ -198,6 +201,8 @@ public class ManagePreferencesModel {
 				fetchJsonData = true;
 				this.email = maskEmailAddress(emailToCheck, '*');
 			}
+		} else {
+			LOGGER.info("Inavlid or null query string");
 		}
 	}
 
@@ -213,8 +218,8 @@ public class ManagePreferencesModel {
 		if (Boolean.TRUE.equals(fetchJsonData)) {
 			String countryFromJson = StringUtils.EMPTY;
 			String languageFromJson = StringUtils.EMPTY;
-			JsonObject aoi = null;
-			JsonObject ct = null;
+			JsonArray aoi = null;
+			JsonArray ct = null;
 			JsonObject myJson = pardotService.getManagePrefJson(emailToCheck);
 			if (Objects.nonNull(myJson)) {
 				if (myJson.has("country")) {
@@ -223,17 +228,19 @@ public class ManagePreferencesModel {
 				if (myJson.has("language")) {
 					languageFromJson = myJson.get("language").getAsString();
 				}
-				if (myJson.has("areaofinterest")) {
-					aoi = myJson.get("areaofinterest").getAsJsonObject();
+				if (myJson.has("interestAreas")) {
+					aoi = myJson.get("interestAreas").getAsJsonArray();
 				}
-				if (myJson.has("communicationtype")) {
-					ct = myJson.get("communicationtype").getAsJsonObject();
+				if (myJson.has("subscriptionCommunicationType")) {
+					ct = myJson.get("subscriptionCommunicationType").getAsJsonArray();
 				}
 				setSelectedCountry(getSpecificData(countryOptions, countryFromJson));
 				setSelectedLanguage(getSpecificData(languageOptions, languageFromJson));
 				setAreaOfInterest(getAoiCtData(aoi));
 				setTypesOfCommunication(getAoiCtData(ct));
 			}
+		} else {
+			LOGGER.info("Unable to fetch Json data");
 		}
 	}
 
@@ -247,7 +254,7 @@ public class ManagePreferencesModel {
 	private List<DropdownOption> getSpecificData(List<DropdownOption> dataList, String toSearch) {
 		List<DropdownOption> specList = new ArrayList<>();
 		for (DropdownOption options : dataList) {
-			if (options.getKey().equals(toSearch)) {
+			if (options.getKey().equalsIgnoreCase(toSearch)) {
 				final DropdownOption optionList = new DropdownOption();
 		        optionList.setKey(options.getKey());
 		        optionList.setValue(options.getValue());
@@ -261,20 +268,19 @@ public class ManagePreferencesModel {
 	/**
 	 * Gets the aoi ct data.
 	 *
-	 * @param obj the obj
+	 * @param arr the arr
 	 * @return the aoi ct data
 	 */
-	private String getAoiCtData(JsonObject obj) {
+	private String getAoiCtData(JsonArray arr) {
 		String finalData = StringUtils.EMPTY;
-		if (Objects.nonNull(obj)) {
-			for (Map.Entry<String, JsonElement> entry : obj.entrySet()) {
-				if ("Y".equalsIgnoreCase(entry.getValue().getAsString())) {
-					finalData = finalData.concat(entry.getKey()) + ",";
-				}
+		if (Objects.nonNull(arr) && arr.size() > 0) {
+			for (int i = 0; i < arr.size(); i++) {
+				finalData = finalData.concat(arr.get(i).getAsString()) + ",";
 			}
-		}
-		if (finalData.endsWith(",")) {
-			finalData = finalData.substring(0, finalData.length() - 1);
+			
+			if (finalData.endsWith(",")) {
+				finalData = finalData.substring(0, finalData.length() - 1);
+			}
 		}
 		return finalData;
 	}
@@ -296,6 +302,8 @@ public class ManagePreferencesModel {
 				"/jcr:content/root/responsivegrid/managepreferenceform");
 		if (Objects.nonNull(formConfigResource)) {
 			this.configItems = formConfigResource.adaptTo(ManagePreferencesConfigModel.class);
+		} else {
+			LOGGER.info("Unable to set manage preference config items");
 		}
 	}
 
@@ -338,30 +346,11 @@ public class ManagePreferencesModel {
 	 * @return the string
 	 */
 	private static String maskString(String strText, int start, int end, char maskChar) {
-
-		if (strText == null || strText.equals(StringUtils.EMPTY)) {
-			return StringUtils.EMPTY;
-		}
-		if (start < 0) {
-			start = 0;
-		}
-		if (end > strText.length()) {
-			end = strText.length();
-		}
-		if (start > end) {
-			throw new IllegalArgumentException("End index cannot be greater than start index");
-		}
 		int maskLength = end - start;
-
-		if (maskLength == 0) {
-			return strText;
-		}
 		StringBuilder sbMaskString = new StringBuilder(maskLength);
-
 		for (int i = 0; i < maskLength; i++) {
 			sbMaskString.append(maskChar);
 		}
-
 		return strText.substring(0, start) + sbMaskString.toString() + strText.substring(start + maskLength);
 	}
 }
