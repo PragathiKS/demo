@@ -100,7 +100,8 @@ class Subscriptionform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: $.param(dataObj,true)
+      data: $.param(dataObj,true),
+      dataType: 'html'
     }).done(
       () => {
         $('.sf-tab-pane', this.root).removeClass('active');
