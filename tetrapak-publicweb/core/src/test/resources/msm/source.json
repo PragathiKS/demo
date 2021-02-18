@@ -1,1 +1,400 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Log in to Jira, Confluence, and all other Atlassian Cloud products here. Not an Atlassian user? Sign up for free."><meta name="google-site-verification" content="HNNnCkeVQ-w56fqPpX2TTEMRmta5QJ-bDunwoaUep-o"><meta name="" content=""><meta name="" content=""><link rel="shortcut icon" href="https://cpfs-cdn.atlassian.com/assets/shared/id-summit/id-summit-aa-favicon.ico"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://t.castle.io"><link rel="preconnect" href="https://api.segment.io" crossorigin><link rel="preconnect" href="https://accounts.google.com"><link rel="preconnect" href="https://sentry.io" crossorigin><title>Log in with Atlassian account</title><style>.grecaptcha-badge{visibility:hidden}.scriptLoadError{display:flex;align-content:center;background-color:#0747a6;position:absolute;top:0;left:0;width:100%;height:100%;font-size:14px;font-style:normal;font-weight:400;line-height:1.42857142857143;letter-spacing:-.005em;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Fira Sans,Droid Sans,Helvetica Neue,sans-serif}.scriptLoadError .container{color:#fff;margin:0 auto;align-items:center;display:flex;flex-direction:column}.scriptLoadError .content{background:#fff;border-radius:3px;box-shadow:0 10px 10px rgba(0,0,0,.1);box-sizing:border-box;color:#172b4d;padding:48px;width:400px}.scriptLoadError .content{margin-top:48px}.scriptLoadError .content p:first-child{margin-top:0}.scriptLoadError .content a{text-decoration:none;color:#0052cc}.scriptLoadError .logo{margin-top:48px;margin-bottom:0;font-size:40px;line-height:48px}.scriptLoadError .heading{color:#deebff;font-size:24px;font-weight:500;line-height:28px;margin-top:48px}</style><link href="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.209/static/css/40.508e9338.chunk.css" rel="stylesheet"></head><body data-app-state="{&quot;appConfig&quot;:{&quot;contextPath&quot;:&quot;&quot;,&quot;recaptchaEnterpriseInvisibleKeySite&quot;:&quot;6LcTpeAZAAAAACEXJuZmTp5YVTOUVXnN3TYR_fLM&quot;,&quot;auth0Config&quot;:{&quot;clientId&quot;:&quot;tDP5by46cc3gEck7d2vbHZsqsfrDK6t9&quot;,&quot;tenant&quot;:&quot;atlassian-account-prod&quot;,&quot;domain&quot;:&quot;auth.atlassian.com&quot;,&quot;tokenIssuer&quot;:&quot;https://atlassian-account-prod.pus2.auth0.com&quot;,&quot;callbackUrl&quot;:&quot;https://id.atlassian.com/login/callback&quot;},&quot;recaptchaEnterpriseCheckboxKeySite&quot;:&quot;6LfnteAZAAAAAH3vsGy_TA6P6wBH6jtbMqAeVI8k&quot;,&quot;recaptchaKeySite&quot;:&quot;6LewHQcTAAAAAJgaYVKlQOahz4gnQME8wqUA0z0J&quot;,&quot;segmentIoKey&quot;:&quot;cb2egpwag7&quot;,&quot;recaptchaInvisibleKeySite&quot;:&quot;6LcqAHAUAAAAAKcO583Ymvnq-uRBDPq4njcoW-jK&quot;,&quot;castleAppId&quot;:&quot;337683121243755&quot;,&quot;bitbucketSignupUrlOverrideEnabled&quot;:false,&quot;sentryUrl&quot;:&quot;https://71e54c28be0d49f0bcd732ab30f35faa@sentry.io/275199&quot;,&quot;recaptchaEnable&quot;:true,&quot;bitbucketSignupUrl&quot;:&quot;https://bitbucket.org/account/signup&quot;,&quot;marketingConsentApiUrl&quot;:&quot;https://preferences.atlassian.com/rest&quot;,&quot;googleAuthClientId&quot;:&quot;596149463257-9oquqfivs9on8t8erq23c8qso6vk3cp1.apps.googleusercontent.com&quot;},&quot;featureFlags&quot;:{&quot;aid_signup.skip.email.restricted.domain.validation.on.welcome.route&quot;:true,&quot;aid_signup.microsoft.auth.enabled&quot;:true,&quot;aid_signup.authenticate.via.id.authentication&quot;:false,&quot;aid_signup.google.auth.block.token.response&quot;:true,&quot;aid_signup.use.new.manage.session.link&quot;:true,&quot;aid_signup.disallow.bitbucket.username.login&quot;:true,&quot;aid_signup.apple.auth.enabled&quot;:true,&quot;id-authentication.IDZERO-382-login-attempts-limit.enabled&quot;:true,&quot;aid_signup.email_reverification.social_login.enabled&quot;:false,&quot;aid_signup.domain.claim.data.signup.analytics&quot;:true,&quot;aid_signup.use.new.authorize.link&quot;:true,&quot;aid_signup.make.debug.dcs.call.for.google.auth&quot;:true,&quot;aid_signup.remove.continue.mobile.verify.email.action&quot;:true,&quot;sign-in-with-slack.enabled&quot;:false,&quot;aid_signup.google.safari.vulnerability.patch.enabled&quot;:false,&quot;aid_signup.experiment.user_segmentation&quot;:&quot;variation&quot;,&quot;aid_signup.email_reverification.existing_flows.enabled&quot;:false,&quot;aid_signup.google.auth.pkce.enabled&quot;:true,&quot;aid_signup.passwordless.signup&quot;:false,&quot;aid_signup.logout.adg3&quot;:true,&quot;aid_signup.disallow.passwordless.login.for.google.users&quot;:true,&quot;aid_signup.apple.show.hidden.email.warning.enabled&quot;:true,&quot;aid_signup.google.auth.call.get.user.info&quot;:true,&quot;aid_signup.sev.enabled&quot;:true,&quot;aid_signup.default.continue.skip.profile.action&quot;:true,&quot;aid_signup.domain.claim.data.login.analytics&quot;:true,&quot;aid_signup.forced.redirect.session.distribution.enabled&quot;:false,&quot;aid_signup.recaptcha.threshold&quot;:true,&quot;aid_signup.csrf.refresh.align.with.sis&quot;:true,&quot;aid_signup.bans.validate.authentication&quot;:true,&quot;aid_signup.trello.new.logo&quot;:true,&quot;aid_signup.shadow.call.to.id.authentication&quot;:true},&quot;hashedCsrfToken&quot;:&quot;64a0677d7edd348e9e53d405ef666a57302ccb03cb6080c1d08b3c1239f5ed3d&quot;,&quot;csrfToken&quot;:&quot;c5df84d0451331126f052c514d9aaba3b50b898c&quot;,&quot;microbranding&quot;:{&quot;application&quot;:&quot;bitbucket&quot;,&quot;applicationNameShort&quot;:&quot;Bitbucket&quot;,&quot;applicationLogoClass&quot;:&quot;bitbucket&quot;,&quot;isEmbedded&quot;:&quot;false&quot;,&quot;applicationName&quot;:&quot;Bitbucket&quot;,&quot;applicationBaseURI&quot;:&quot;https://bitbucket.org&quot;}}"><div id="root"><noscript><div class="scriptLoadError"><div class="container"><h1 class="logo">Atlassian</h1><div class="heading">JavaScript is disabled</div><div class="content"><p>You should enable JavaScript to work with this page.</p></div></div></div></noscript><div id="javaScriptLoadError" style="display:none"><div class="scriptLoadError"><div class="container"><h1 class="logo">Atlassian</h1><div class="heading">JavaScript load error</div><div class="content"><p>We tried to load scripts but something went wrong.</p><p>Please make sure that your network settings allow you to download scripts from the following domain:</p><p><b>https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.209</b></p></div></div></div></div></div><script>var mfaServerUrl="",ticket="",requestToken="",postActionURL="",userData={userId:"",email:"",friendlyUserId:"",tenant:"",tenantFriendlyName:""},globalTrackingId="";window.onload=function(){document.getElementById("javaScriptLoadError")&&(document.getElementById("javaScriptLoadError").style.display="block")}</script><script>!function(e){function t(t){for(var n,c,f=t[0],i=t[1],u=t[2],l=0,s=[];l<f.length;l++)c=f[l],Object.prototype.hasOwnProperty.call(o,c)&&o[c]&&s.push(o[c][0]),o[c]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(d&&d(t);s.length;)s.shift()();return a.push.apply(a,u||[]),r()}function r(){for(var e,t=0;t<a.length;t++){for(var r=a[t],n=!0,f=1;f<r.length;f++){var i=r[f];0!==o[i]&&(n=!1)}n&&(a.splice(t--,1),e=c(c.s=r[0]))}return e}var n={},o={39:0},a=[];function c(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,c),r.l=!0,r.exports}c.e=function(e){var t=[],r=o[e];if(0!==r)if(r)t.push(r[2]);else{var n=new Promise((function(t,n){r=o[e]=[t,n]}));t.push(r[2]=n);var a,f=document.createElement("script");f.charset="utf-8",f.timeout=120,c.nc&&f.setAttribute("nonce",c.nc),f.src=function(e){return c.p+"static/js/"+({28:"cancel.account.delete",29:"delete.request.confirmation",30:"expired.password",31:"inactive.account",32:"login",34:"mfa",35:"mfa.apps",36:"mfa.enrollment",37:"multi.factor",38:"pending.deletion"}[e]||e)+"."+{0:"74c393a0",1:"d0750f12",2:"890f72cc",3:"137ca280",4:"ab921d99",5:"71e3a383",6:"b802e150",7:"ca585897",8:"7c331e25",9:"6ee12d96",10:"7d433024",11:"12f5f3fa",12:"5af930d1",13:"efd9e42f",14:"fa4794f0",15:"c734bc40",16:"30a1be55",17:"6e513fbc",18:"d585fb81",19:"19753a9c",20:"b50c5871",21:"99d9661f",22:"670d1d05",23:"d8c60124",24:"38c40fdd",25:"bebc1743",26:"865dcb7c",27:"c33822e1",28:"9596e7df",29:"5f3e961b",30:"bb3d8f7f",31:"5d7c060a",32:"16c18252",34:"50a15f05",35:"7b3553fc",36:"2bcad47d",37:"531261d6",38:"14d45957",41:"1132fbaa",42:"9d14bfe1",43:"9b69bfb4",44:"64ac95e8"}[e]+".chunk.js"}(e);var i=new Error;a=function(t){f.onerror=f.onload=null,clearTimeout(u);var r=o[e];if(0!==r){if(r){var n=t&&("load"===t.type?"missing":t.type),a=t&&t.target&&t.target.src;i.message="Loading chunk "+e+" failed.\n("+n+": "+a+")",i.name="ChunkLoadError",i.type=n,i.request=a,r[1](i)}o[e]=void 0}};var u=setTimeout((function(){a({type:"timeout",target:f})}),12e4);f.onerror=f.onload=a,document.head.appendChild(f)}return Promise.all(t)},c.m=e,c.c=n,c.d=function(e,t,r){c.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},c.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},c.t=function(e,t){if(1&t&&(e=c(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(c.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var n in e)c.d(r,n,function(t){return e[t]}.bind(null,n));return r},c.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return c.d(t,"a",t),t},c.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},c.p="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.209/",c.oe=function(e){throw console.error(e),e};var f=this["webpackJsonpaid-frontend"]=this["webpackJsonpaid-frontend"]||[],i=f.push.bind(f);f.push=t,f=f.slice();for(var u=0;u<f.length;u++)t(f[u]);var d=i;r()}([])</script><script src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.209/static/js/40.afc53c7d.chunk.js"></script><script src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.209/static/js/main.2c43d86f.chunk.js"></script></body></html>
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Tue Jun 23 2020 15:38:07 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:mixinTypes": [
+"mix:versionable"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "Tetra Pak processing and packaging solutions for food and beverages3",
+"cq:lastReplicationAction": "Activate",
+"jcr:versionHistory": "f437d28f-da0f-4fa9-945e-a16cf661e829",
+"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+"cq:lastReplicatedBy": "sapient-user",
+"previewSalt": "8c7379fc735184351be862ddee5bf8745315430349645ee584d3f3016563a4005e83cb2df1ffa6aba4e262188f84272e824c91d00c0ad474d1ef1a0ad668fda0",
+"pwLinkTheme": "hyperlink",
+"altText": "Family in sunset",
+"imagePath": "/content/dam/tetrapak/media-box/global/en/images/family-field-sunset-16-9.jpg",
+"jcr:predecessors": [
+"3192066f-d73b-4229-baea-8397c71f58b5"
+],
+"disableEnvelope": "false",
+"pwButtonTheme": "link",
+"cq:lastTranslationUpdate": "Wed May 20 2020 12:22:36 GMT+0000",
+"jcr:created": "Tue Jun 23 2020 15:38:07 GMT+0530",
+"cq:lastReplicated": "Tue Oct 20 2020 09:57:28 GMT+0000",
+"cq:lastModified": "Thu Feb 18 2021 20:26:42 GMT+0530",
+"cq:translationSourcePath": "/content/tetrapak/publicweb/lang-masters/en/home",
+"jcr:description": "Tetra Pak is the world's leading food processing and packaging solutions company working closely with our customers and suppliers to provide safe food.",
+"jcr:baseVersion": "3192066f-d73b-4229-baea-8397c71f58b5",
+"jcr:isCheckedOut": true,
+"hideInNav": "true",
+"linkTarget": "_self",
+"cq:tags": [
+"tetrapak:material-type/advertisments",
+"tetrapak:material-type/3d-models"
+],
+"jcr:uuid": "40a9ce98-3d87-4bd4-abb5-d617799416d0",
+"linkPath": "/content/tetrapak/publicweb/lang-masters/en/home",
+"linkText": "Tetra Pak Home",
+"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+"cq:lastModifiedBy": "admin",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"responsivegrid": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"imagetextbutton": {
+"jcr:primaryType": "nt:unstructured",
+"subtitle": "COMPLETE SOLUTIONS",
+"jcr:createdBy": "admin",
+"ctaLinkTexti18n": "Discover our range of solutions",
+"description": "From idea to launch - and beyond. Let us help you integrate and manage the whole value chain of processing and packaging through our complete solutions for food and beverages, expertise and innovations. We are ready to increase efficiency, optimise performance and secure food quality - in a sustainable way. With us as your trusted partner, business will become easier",
+"jcr:lastModifiedBy": "roomahaj",
+"imagePath": "/content/dam/publicweb/articles/shopping.png",
+"pwButtonTheme": "secondary",
+"jcr:created": "Fri Mar 22 2019 18:01:43 GMT+0000",
+"imageAltI18n": "Discover our range of solutions",
+"pwTheme": "grayscale-white",
+"title": "Ensure efficiency and quality",
+"jcr:lastModified": "Wed Dec 04 2019 14:34:35 GMT+0000",
+"sling:resourceType": "publicweb/components/content/imageTextButton",
+"ctaLinkURL": "/content/tetrapak/publicweb/lang-masters/en/solutions"
+},
+"imagetextbanner": {
+"jcr:primaryType": "nt:unstructured",
+"titleI18n": "How well do you know the millenials?",
+"jcr:createdBy": "admin",
+"bannerCtaPath": "/content/dam/publicweb/articles/Children.png",
+"mobileImage": "/content/dam/publicweb/banners/Yogurt1416.png",
+"bannerDescriptionI18n": "Young, aspirational and demanding. They spend approximately $600 billion anually. But who are the millenials? How can you optimise your products and packages to meet their needs?",
+"targetSoftConversion": "on",
+"jcr:lastModifiedBy": "admin",
+"contentAlignment": "pw-banner--right",
+"jcr:created": "Fri Mar 22 2019 18:42:20 GMT+0000",
+"bannerCtaTextI18n": "Get to know the millenials",
+"jcr:lastModified": "Mon Apr 22 2019 10:05:19 GMT-0300",
+"desktopImage": "/content/dam/publicweb/banners/Yogurt1416.png",
+"mobileImageAltI18n": "How well do you know the millenials?",
+"bannerSubtitleI18n": "RECOMMENDED WHITEPAPER",
+"sling:resourceType": "publicweb/components/content/imageTextBanner",
+"desktopImageAltI18n": "How well do you know the millenials?",
+"bannerCtaTooltipI18n": "Get to know the millenials"
+},
+"banner": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "elisabet.jonsdottir",
+"linkLabel": "Start exploring",
+"fileReference": "/content/dam/tetrapak/publicweb/gb/en/sustainability/family-field-sunset.jpg",
+"jcr:lastModifiedBy": "sapient-user",
+"bannerType": "hero",
+"pwButtonTheme": "secondary",
+"jcr:created": "Thu Jul 16 2020 12:02:19 GMT+0000",
+"pwDisplay": "display-row-reversed",
+"pwTheme": "grayscale-white",
+"alt": "Family field sunset",
+"title": "TRANSFORM YOUR BUSINESS SUSTAINABLY",
+"jcr:lastModified": "Tue Oct 20 2020 08:39:00 GMT+0000",
+"linkPath": "/content/tetrapak/publicweb/lang-masters/en/sustainability/our-approach/sustainable-offering",
+"sling:resourceType": "publicweb/components/content/banner",
+"textIsRich": "true",
+"moreButtonLabel": "More white papers",
+"headingTag": "h2"
+},
+"textimage": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "joanna-hildebrand",
+"description": "The COVID-19 outbreak is an unprecedented event, affecting communities worldwide. None of us have previously experienced a situation like the one we are currently going through . Our thoughts are with those most affected. In this context, extraordinary measures are needed to ensure we can continue to deliver on our promise to protect what's good. ",
+"jcr:lastModifiedBy": "jonathan-ferdinand",
+"imagePath": "/content/dam/tetrapak/media-box/global/en/images/adolfo-orive.jpg",
+"pwButtonTheme": "link",
+"jcr:created": "Thu Jul 30 2020 06:20:34 GMT+0000",
+"imageAltText": "Adolfo Orive",
+"pwDisplay": "display-row-reversed",
+"pwTheme": "grayscale-white",
+"title": "Making food safe and available everywhere",
+"linkURL": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/tetra-pak-actions-covid-19",
+"jcr:lastModified": "Mon Aug 10 2020 09:28:44 GMT+0000",
+"linkText": "Read more",
+"sling:resourceType": "publicweb/components/content/textImage",
+"textIsRich": "true",
+"moreButtonLabel": "More white papers",
+"headingTag": "h3"
+},
+"banner_231940160": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "joanna-hildebrand",
+"linkLabel": "Read more about our end-to-end solutions",
+"fileReference": "/content/dam/tetrapak/publicweb/gb/en/processing/end-to-end-solutions.jpg",
+"jcr:lastModifiedBy": "joanna-hildebrand",
+"bannerType": "textImage",
+"pwButtonTheme": "link",
+"jcr:created": "Thu Jul 30 2020 06:20:40 GMT+0000",
+"pwDisplay": "display-row-reversed",
+"pwTheme": "grayscale-white",
+"alt": "End to end solutions",
+"text": "Processing, packaging and service solutions, maintaining the highest standards of food safety, operational performance and sustainability.  ",
+"title": "End to end solutions",
+"jcr:lastModified": "Fri Aug 07 2020 09:28:54 GMT+0000",
+"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions",
+"sling:resourceType": "publicweb/components/content/banner",
+"textIsRich": "true",
+"moreButtonLabel": "More white papers",
+"headingTag": "h3"
+},
+"teaser": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "joanna-hildebrand",
+"logicalOperator": "and",
+"jcr:lastModifiedBy": "tetrapak-user",
+"contentType": "manual",
+"jcr:created": "Thu Jul 30 2020 06:20:45 GMT+0000",
+"pwTheme": "grayscale-lighter",
+"jcr:lastModified": "Wed Aug 05 2020 10:25:25 GMT+0000",
+"sling:resourceType": "publicweb/components/content/teaser",
+"semiAutomaticList": {
+"jcr:primaryType": "nt:unstructured"
+},
+"manualList": {
+"jcr:primaryType": "nt:unstructured"
+}
+},
+"teaser_802694532": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "joanna-hildebrand",
+"logicalOperator": "and",
+"linkLabel": "Go to News room",
+"jcr:lastModifiedBy": "tetrapak-user",
+"contentType": "semi-automatic",
+"jcr:created": "Thu Jul 30 2020 06:20:49 GMT+0000",
+"maxTeasers": "3",
+"pwTheme": "grayscale-white",
+"tags": [
+"news"
+],
+"heading": "News",
+"jcr:lastModified": "Thu Aug 06 2020 10:10:44 GMT+0000",
+"linkPath": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/news-room",
+"sling:resourceType": "publicweb/components/content/teaser",
+"semiAutomaticList": {
+"jcr:primaryType": "nt:unstructured"
+},
+"manualList": {
+"jcr:primaryType": "nt:unstructured"
+}
+},
+"richtext": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "joanna-hildebrand",
+"jcr:lastModifiedBy": "sapient-user",
+"imageURL": [
+"<h2 style=\"text-align: center;\">LATEST CASES &amp; ARTICLES</h2>\n<h2 style=\"text-align: center;\">thi is having <a href=\"/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/newsarchive/100-renewable-energy-by-2030\">PDF</a></h2>\n",
+"<h2 style=\"text-align: center;\">LATEST CASES &amp; ARTICLES</h2>\n<h2 style=\"text-align: center;\">thi is having <a href=\"/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/newsarchive/100-renewable-energy-by-2030\">PDF</a></h2>\n"
+],
+"jcr:created": "Thu Jul 30 2020 06:21:01 GMT+0000",
+"pwTheme": "grayscale-lighter",
+"text": "<h2 style=\"text-align: center;\">LATEST CASES &amp; ARTICLES</h2>\n<h2 style=\"text-align: center;\">thi is having <a href=\"/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/newsarchive/100-renewable-energy-by-2030\">PDF</a></h2>\n",
+"jcr:lastModified": "Wed Oct 21 2020 10:19:06 GMT+0000",
+"sling:resourceType": "publicweb/components/content/richtext",
+"topSpacing": "topmargin",
+"pwPadding": "zero",
+"textIsRich": "true"
+},
+"textimage_114442302": {
+"jcr:primaryType": "nt:unstructured",
+"subTitle": "CASE PAGE JULY 20 2020",
+"jcr:createdBy": "joanna-hildebrand",
+"description": "Should I wash food cartons after bringing them home from shopping? The pandemic has radically changed our world. Find out more about food safety and COVID-19",
+"jcr:lastModifiedBy": "tetrapak-user",
+"imagePath": "/content/dam/tetrapak/publicweb/gb/en/to-be-reviewed-images/martin-lappann-tetra-pak.jpg",
+"pwButtonTheme": "link",
+"jcr:created": "Thu Jul 30 2020 06:21:11 GMT+0000",
+"imageAltText": "Martin Lappann",
+"pwDisplay": "display-row-reversed",
+"pwTheme": "grayscale-lighter",
+"title": "COVID-19 and food safety",
+"linkURL": "/content/tetrapak/publicweb/lang-masters/en/insights/cases-articles/covid-19-and-food-safety",
+"jcr:lastModified": "Mon Aug 10 2020 12:29:47 GMT+0000",
+"linkText": "Read more",
+"sling:resourceType": "publicweb/components/content/textImage",
+"textIsRich": "true",
+"moreButtonLabel": "More white papers",
+"headingTag": "h3"
+},
+"textimage_1957626217": {
+"jcr:primaryType": "nt:unstructured",
+"subTitle": "CASE PAGE JULY 16 2020",
+"jcr:createdBy": "joanna-hildebrand",
+"description": "Make Juice, Nectars and Still drinks using 50% less water and nearly 70% less energy. Tetra Pak's new JNSD line is a first-of-its-kind for the industry.",
+"jcr:lastModifiedBy": "tetrapak-user",
+"imagePath": "/content/dam/tetrapak/publicweb/gb/en/food/images/orange-juice-in-glass.jpg",
+"pwButtonTheme": "link",
+"jcr:created": "Thu Jul 30 2020 06:21:05 GMT+0000",
+"imageAltText": "Orange juice",
+"pwDisplay": "display-row",
+"pwTheme": "grayscale-white",
+"title": "Juice, Nectars and Still drinks using less water and energy",
+"linkURL": "/content/tetrapak/publicweb/lang-masters/en/insights/cases-articles/low-energy-less-water-juice-processing-line",
+"jcr:lastModified": "Mon Aug 10 2020 12:30:42 GMT+0000",
+"linkText": "Read more",
+"sling:resourceType": "publicweb/components/content/textImage",
+"textIsRich": "true",
+"moreButtonLabel": "More white papers",
+"headingTag": "h3"
+},
+"textimage_139932615": {
+"jcr:primaryType": "nt:unstructured",
+"subTitle": "CASE PAGE JULY 13 2020",
+"jcr:createdBy": "joanna-hildebrand",
+"description": "Shakarganj<sup>®</sup> launches all-purpose UHT milk in \"Easy Pack\" – Tetra Brik<sup>®</sup> Aseptic Base Leaf with the innovative Micro Injection Moulding (MiM) opening",
+"jcr:lastModifiedBy": "tetrapak-user",
+"imagePath": "/content/dam/tetrapak/publicweb/gb/en/to-be-reviewed-images/easy-pack-good-milk.jpg",
+"pwButtonTheme": "link",
+"jcr:created": "Thu Jul 30 2020 06:21:07 GMT+0000",
+"imageAltText": "Easy Pack Good Milk",
+"pwDisplay": "display-row-reversed",
+"pwTheme": "grayscale-lighter",
+"title": "Shakarganj<sup>®</sup> launches all-purpose UHT milk in Tetra Brik<sup>®</sup> Aseptic",
+"linkURL": "/content/tetrapak/publicweb/lang-masters/en/insights/cases-articles/innovation-tetra-brik-aseptic-mim",
+"jcr:lastModified": "Mon Aug 10 2020 12:30:48 GMT+0000",
+"linkText": "Read more",
+"sling:resourceType": "publicweb/components/content/textImage",
+"textIsRich": "true",
+"moreButtonLabel": "More white papers",
+"headingTag": "h3"
+}
+}
+},
+"header": {
+"jcr:primaryType": "nt:unstructured",
+"loginTextI18n": "My Tetra Pak",
+"megamenuLinks": [
+"{\"linkTextI18n\":\"Solutions\",\"linkTooltipI18n\":\"Solutions\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/solutions\"}",
+"{\"linkTextI18n\":\"Insights\",\"linkTooltipI18n\":\"Insights\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/innovations\"}",
+"{\"linkTextI18n\":\"Sustainability\",\"linkTooltipI18n\":\"Sustainability\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/sustainability\"}",
+"{\"linkTextI18n\":\"Careers\",\"linkTooltipI18n\":\"Carrers\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/careers\"}",
+"{\"linkTextI18n\":\"About us\",\"linkTooltipI18n\":\"About us\",\"linkPath\":\"/content/tetrapak/publicweb/lang-masters/en/about-us\"}"
+],
+"jcr:lastModifiedBy": "sapient-user",
+"enableHeroImage": "true",
+"jcr:lastModified": "Fri Apr 05 2019 07:41:07 GMT+0000",
+"sling:resourceType": "publicweb/components/structure/header",
+"searchRootPath": "/content/tetrapak/publicweb/lang-masters/en",
+"searchResultsPath": "/content/tetrapak/publicweb/lang-masters/en/search",
+"logo": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:lastModifiedBy": "admin",
+"imageLink": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/newsarchive/100-renewable-energy-by-2030",
+"imagePath": "/content/dam/publicweb/logo_tetra_pak_white.png",
+"imageAltI18n": "Tetra Pak Logo",
+"jcr:lastModified": "Fri Mar 22 2019 03:11:47 GMT+0000",
+"sling:resourceType": "publicweb/components/content/logo"
+},
+"imageTextBanner": {
+"jcr:primaryType": "nt:unstructured",
+"titleI18n": "SAVE ENERGY WITH OPTIMIZED HOMOGENIZATION",
+"targetBlank": "true",
+"bannerCtaPath": "/content/tetrapak/publicweb/lang-masters/en",
+"mobileImage": "/content/dam/publicweb/Teaser1.png",
+"bannerDescriptionI18n": "Make your dairy operations more cost-effective and sustainable – shift focus from homogenization pressure to the actual effects of homogenization when measuring homogenization efficiency.",
+"targetSoftConversion": "true",
+"mobileCroppingOption": "none",
+"jcr:lastModifiedBy": "roomahaj",
+"softConversionDescription": "Soft conversion form",
+"softConversionTitle": "Show Soft conversion",
+"contentAlignment": "pw-banner--right",
+"bannerCtaTextI18n": "Learn more ",
+"contrastLayer": "gradient-to-right",
+"jcr:lastModified": "Wed Jan 29 2020 09:13:54 GMT+0000",
+"desktopImage": "/content/dam/publicweb/banners/hero_newdrink.jpg",
+"mobileImageAltI18n": "Where everything comes together",
+"sling:resourceType": "publicweb/components/content/imageTextBanner",
+"softConversionLastStep": "This is last step.",
+"desktopImageAltI18n": "Where everything comes together",
+"softConversionHeadline": "Soft conversion form"
+}
+},
+"footer": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:lastModifiedBy": "admin",
+"jcr:lastModified": "Thu Feb 27 2020 13:28:04 GMT+0000",
+"sling:resourceType": "publicweb/components/structure/footer",
+"ctaLabelI18n": "To top",
+"footer": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:lastModifiedBy": "admin",
+"imageLink": "/content/tetrapak/publicweb/lang-masters/en",
+"imagePath": "/content/dam/publicweb/logo_tetra_pak_white.png",
+"imageAltI18n": "Tetra Pak Logo",
+"jcr:lastModified": "Mon Mar 11 2019 07:36:48 GMT-0300",
+"sling:resourceType": "publicweb/components/content/logo"
+},
+"footerNavigationLinks": {
+"jcr:primaryType": "nt:unstructured",
+"item0": {
+"jcr:primaryType": "nt:unstructured",
+"linkTooltipI18n": "test",
+"linkTextI18n": "test",
+"linkPath": "/content/asset-share-commons"
+}
+},
+"footerSocialLinks": {
+"jcr:primaryType": "nt:unstructured",
+"item0": {
+"jcr:primaryType": "nt:unstructured",
+"socialMedia": "Linkedin",
+"socialMediaLinkPath": "adadad"
+},
+"item1": {
+"jcr:primaryType": "nt:unstructured",
+"socialMedia": "Facebook",
+"socialMediaLinkPath": "adfadfadf"
+}
+}
+},
+"contactfooterform": {
+"jcr:primaryType": "nt:unstructured",
+"titleI18n": "Contact Footer Form",
+"jcr:createdBy": "admin",
+"previousButtonLabel": "Previous",
+"firstNameLabel": "First Name",
+"description": "Contact Footer Form",
+"thankYouMessage": "Thank You for submission",
+"messageLabel": "Message",
+"jcr:lastModifiedBy": "admin",
+"helpText": "Privacy Policy",
+"contactUsLabel": "Where do you want to contact us?",
+"lastNameLabel": "Last Name",
+"jcr:created": "Mon Apr 08 2019 14:52:02 GMT-0300",
+"nextButtonLabel": "Next",
+"image": "/content/dam/publicweb/ContentImage5.png",
+"linkTextI18n": "Link",
+"submitButtonLabel": "Submit",
+"phoneNumberLabel": "Phone Number",
+"thankYouHeadline": "Thank You",
+"jcr:lastModified": "Tue Jan 28 2020 09:35:08 GMT+0000",
+"positionLabel": "Position",
+"privacyPolicyText": "Headline",
+"emailAddressLabel": "Email Address",
+"linkPath": "/content/tetrapak/publicweb/lang-masters/en/about-us",
+"sling:resourceType": "publicweb/components/content/contactFooterForm",
+"companyLabel": "Company",
+"textIsRich": [
+"true",
+"true"
+]
+},
+"cq:BlueprintSyncConfig": {
+"jcr:primaryType": "cq:BlueprintSyncConfig",
+"cq:rolloutConfigs": [
+"/libs/msm/wcm/rolloutconfigs/activate"
+]
+}
+}
+}
