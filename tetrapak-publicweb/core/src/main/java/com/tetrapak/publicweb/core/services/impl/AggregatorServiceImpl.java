@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import org.apache.sling.api.resource.Resource;
@@ -38,14 +40,17 @@ public class AggregatorServiceImpl implements AggregatorService {
 	@Override
 	public List<AggregatorModel> getAggregatorList(Resource resource, String[] tags, int maxTabs, String logicalOperator) {
 		List<AggregatorModel> aggregatorList = new ArrayList<>();
+		List<AggregatorModel> publishedDateList= new ArrayList<>();
 		ResourceResolver resolver = resource.getResourceResolver();
 		PageManager pageManager = resolver.adaptTo(PageManager.class);
 		SearchResult searchResults = executeAggregatorQuery(resource, tags, maxTabs,logicalOperator);
 		for (Hit hit : searchResults.getHits()) {
 			try {
 				AggregatorModel aggregator = getAggregator(pageManager.getPage(hit.getPath()));
-				if (aggregator != null) {
+				if (null != aggregator && Objects.nonNull(hit.getProperties().get("articleDate", String.class))) {
 					aggregatorList.add(aggregator);
+				} else if (null != aggregator && Objects.nonNull(hit.getProperties().get("cq:lastModified", String.class))) {
+					publishedDateList.add(aggregator);
 				}
 			} catch (RepositoryException e) {
 				LOGGER.info("RepositoryException in getAggregatorList", e.getMessage(), e);
@@ -117,8 +122,10 @@ public class AggregatorServiceImpl implements AggregatorService {
 				map.put("1_group." + (i + 1) + "_group.property.value", tags[i]);
 			}
 		}
-		map.put("orderby", "@jcr:content/cq:lastModified");
-		map.put("orderby.sort", "desc");
+		map.put("104_orderby", "@jcr:content/articleDate");
+		map.put("105_orderby", "@jcr:content/cq:lastModified");
+		map.put("104_orderby.sort", "desc");
+		map.put("105_orderby.sort", "desc");
 		map.put("p.limit", String.valueOf(maxTabs));
 
 		LOGGER.info("Here is the query PredicateGroup : {} ", PredicateGroup.create(map));
