@@ -165,7 +165,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                         syncNode.setProperty("cq:isDeep", true);
                         syncNode.setProperty("cq:master", blueprintPage.getPath());
                         syncNode.setProperty("cq:rolloutConfigs",
-                                new String[] { "/libs/msm/wcm/rolloutconfigs/default" });
+                                new String[] { "/apps/msm/wcm/rolloutconfigs/default" });
                     }
                     resolver.commit();
                 }
