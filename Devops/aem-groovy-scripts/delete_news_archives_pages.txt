@@ -2,8 +2,13 @@ def deleteNewsArchive(path){
     def pageMgr = slingRequest.getResourceResolver().adaptTo(com.day.cq.wcm.api.PageManager)
     getPage(path).recurse { page ->
       if(!page.path.endsWith("about-tetra-pak/news-and-events/newsarchive")){
-          deactivate page.path
-          pageMgr.delete(page,false,true)
+          def langPath = "/content/tetrapak/publicweb/lang-masters" + page.path.replace(page.getAbsoluteParent(3).path,"")
+          if(slingRequest.getResourceResolver().getResource(langPath) != null){
+              println page.path
+              deactivate page.path
+              pageMgr.delete(page,false,true)
+          }
+          
       }
     }
 }
