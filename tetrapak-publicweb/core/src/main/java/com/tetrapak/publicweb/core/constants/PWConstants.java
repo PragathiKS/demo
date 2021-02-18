@@ -325,6 +325,13 @@ public final class PWConstants {
     public static final List<String> PRESS_TEMPLATES = Arrays.asList(
             "/conf/publicweb/settings/wcm/templates/press-release",
             "/conf/publicweb/settings/wcm/templates/news-article");
+    
+    /** The Constant NEW_ARCHIVE_GLOBAL_PATH. */
+    public static final String NEW_ARCHIVE_GLOBAL_PATH = "/content/tetrapak/publicweb/global/en/about-tetra-pak/news-and-events/newsarchive";
+    
+    /** The Constant NEW_ARCHIVE_REL_PATH. */
+    public static final String NEW_ARCHIVE_REL_PATH = "/about-tetra-pak/news-and-events/newsarchive";
+    
     /**
      * Instantiates a new PW constants.
      */
