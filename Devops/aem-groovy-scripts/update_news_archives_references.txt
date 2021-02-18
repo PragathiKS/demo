@@ -45,7 +45,7 @@ result.hits.each { hit ->
     }
   }
 }
-//save()
+save()
 
 for(String path:pathsToActivate){
     activate path
