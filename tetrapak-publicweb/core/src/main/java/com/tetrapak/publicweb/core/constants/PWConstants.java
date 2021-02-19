@@ -343,6 +343,11 @@ public final class PWConstants {
     
     public static final String PW_TAG_END_TO_END_SOLUTIONS = "tetrapak:end-to-end-solutions";
 
+    /** The Constant NEW_ARCHIVE_GLOBAL_PATH. */
+    public static final String NEW_ARCHIVE_GLOBAL_PATH = "/content/tetrapak/publicweb/global/en/about-tetra-pak/news-and-events/newsarchive";
+    
+    /** The Constant NEW_ARCHIVE_REL_PATH. */
+    public static final String NEW_ARCHIVE_REL_PATH = "/about-tetra-pak/news-and-events/newsarchive";
     /**
      * Instantiates a new PW constants.
      */

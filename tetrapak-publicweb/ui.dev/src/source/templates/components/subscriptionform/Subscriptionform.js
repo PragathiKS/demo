@@ -100,22 +100,21 @@ class Subscriptionform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: $.param(dataObj,true)
+      data: $.param(dataObj,true),
+      dataType: 'html'
     }).done(
-      (response) => {
-        if (response.statusCode === '200' || response === 'Success') {
-          $('.sf-tab-pane', this.root).removeClass('active');
-          $('#sf-step-final', this.root).addClass('active');
-          $('.serviceError').removeClass('d-block');
-          $('#sf-step-final', this.root)[0].scrollIntoView({block:'center'});
-          $('html, body').animate({
-            scrollTop: $('#sf-step-final').offset().top - 150
-          });
-        } else {
-          $('.serviceError').addClass('d-block');
-        }
+      () => {
+        $('.sf-tab-pane', this.root).removeClass('active');
+        $('#sf-step-final', this.root).addClass('active');
+        $('.serviceError').removeClass('d-block');
+        $('#sf-step-final', this.root)[0].scrollIntoView({block:'center'});
+        $('html, body').animate({
+          scrollTop: $('#sf-step-final').offset().top - 150
+        });
       }
-    );
+    ).fail(() => {
+      $('.serviceError').addClass('d-block');
+    });
   }
 
 
@@ -128,7 +127,6 @@ class Subscriptionform {
       self.selectCommunicationHandler();
       let isvalid = true;
       const errObj = [];
-      const target = $(this).data('target');
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
       if(requestPayload['types-communication'].length === 0){
@@ -167,14 +165,8 @@ class Subscriptionform {
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
-        if (target) {
-          $('.sf-tab-pane').removeClass('active');
-          $(target).addClass('active');
-        }
-      }
-      if (isvalid) {
         self.submitForm();
-      }else{
+      }else {
         subscriptionAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', 'Subscribe', errObj);
       }
     });
