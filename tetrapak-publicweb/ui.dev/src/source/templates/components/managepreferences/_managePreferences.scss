@@ -28,6 +28,9 @@
         .form-control {
             line-height: 24px;
         }
+        .pw-form__dropdown__toggle i {
+            transform: rotate(90deg);
+        }
         label {
             @include margin-bottom(0);
             padding-top: 2px;
@@ -186,8 +189,9 @@
         .section-wrapper {
             display: flex;
         }
-        .section-box {
+        &__section-box {
             flex: 1;
+            overflow: hidden;
         }
         .padding-24 {
             @include padding-left($padding-l);

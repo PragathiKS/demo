@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import keyDownSearch from '../../../scripts/utils/searchDropDown';
 
 class ManagePreferences {
   constructor({ el }) {
@@ -30,6 +31,10 @@ class ManagePreferences {
       'countryTitle':'',
       'language':''
     };
+    this.cache.$languageDropdownButton = $('.language-field-wrapper .dropdown-menu, .language-field-wrapper .dropdown-toggle', this.root);
+    this.cache.$countryDropdownButton = $('.country-field-wrapper .dropdown-menu, .country-field-wrapper .dropdown-toggle', this.root);
+    this.cache.countryList = [];
+    this.cache.languageList = [];
   }
 
   /**
@@ -169,6 +174,44 @@ class ManagePreferences {
     this.root.find('div[name="area-of-interest"] .input-field-wrapper').addClass('disable-input');
   }
 
+  /**
+   * key down search in case of country field
+   * @param {object} event event
+   * @param {Array} options options
+   * @param {domObject} button button
+  */
+  onKeydown = (event, options, button) => {
+    if (button.hasClass('show')) {
+      keyDownSearch.call(this, event, options);
+    }
+  };
+
+  /**
+  * function to enable auto suggest for country
+  */
+  getCountryList() {
+    const { $dropItem,$countryDropdownButton } = this.cache;
+    const self = this;
+    $dropItem.map(function () {
+      const datael = $(this)[0];
+      self.cache.countryList.push($(datael).data('countrytitle'));
+    });
+    $countryDropdownButton.keydown(e => this.onKeydown(e, this.cache.countryList,$countryDropdownButton));
+  }
+
+  /**
+  * function to enable auto suggest for language
+  */
+  getLanguageList() {
+    const { $languageDropItem,$languageDropdownButton } = this.cache;
+    const self = this;
+    $languageDropItem.map(function () {
+      const datael = $(this)[0];
+      self.cache.languageList.push($(datael).data('languagetitle'));
+    });
+    $languageDropdownButton.keydown(e => this.onKeydown(e, this.cache.languageList,$languageDropdownButton));
+  }
+
   bindEvents() {
     const { requestPayload, $submitBtn, $dropItem, $languageDropItem,$unsubscribeBtn, $unsubscribeCheckbox, $pressMediaCheckBox } = this.cache;
     const self = this;
@@ -248,6 +291,8 @@ class ManagePreferences {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
+    this.getCountryList();
+    this.getLanguageList();
   }
 }
 
