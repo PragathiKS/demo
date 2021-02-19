@@ -297,6 +297,12 @@ public final class PWConstants {
     /** The Constant LB_TRNSLATED_PAGES. */
     public static final String LB_TRNSLATED_PAGES = "lbtranslatedpages";
 
+/** The Constant NEW_ARCHIVE_GLOBAL_PATH. */
+    public static final String NEW_ARCHIVE_GLOBAL_PATH = "/content/tetrapak/publicweb/global/en/about-tetra-pak/news-and-events/newsarchive";
+    
+    /** The Constant NEW_ARCHIVE_REL_PATH. */
+    public static final String NEW_ARCHIVE_REL_PATH = "/about-tetra-pak/news-and-events/newsarchive";
+    
     /**
      * Instantiates a new PW constants.
      */

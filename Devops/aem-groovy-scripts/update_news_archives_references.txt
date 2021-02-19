@@ -1,0 +1,115 @@
+
+
+def findReferences(path1,path2) {
+
+def predicates = [
+    "path": path1,
+    "fulltext": path2
+]
+
+def query = createQuery(predicates)
+
+query.hitsPerPage = 4000
+
+def result = query.result
+
+
+def listPages = new java.util.HashSet<String>();
+def listComps = new java.util.HashSet<String>();
+int i= 0;
+def pathsToActivate = []
+
+result.hits.each { hit ->
+   def node = hit.node;
+    
+  if(!node.path.contains("/news-and-events/newsarchive/")){
+    def props =  node.properties
+    while(props.hasNext()){
+        def prop = props.nextProperty();
+        if(prop.type == javax.jcr.PropertyType.STRING){
+            if(prop.multiple && String.join(",",(String[])prop.values).contains("/news-and-events/newsarchive/")){
+                def values = String.join(",",(String[])prop.values)
+                values = values.replaceAll(path1+"/about-tetra-pak/news-and-events/newsarchive/","/content/tetrapak/publicweb/global/en/about-tetra-pak/news-and-events/newsarchive/")
+                node.setProperty(prop.name,values.split(","))
+                pathsToActivate.add(node.path)
+                println node.path
+            }
+            else{
+                if(prop.value.toString().contains("/news-and-events/newsarchive/")){
+                    println node.path
+                    pathsToActivate.add(node.path)
+                    node.setProperty(prop.name,prop.value.toString().replaceAll(path1+"/about-tetra-pak/news-and-events/newsarchive/","/content/tetrapak/publicweb/global/en/about-tetra-pak/news-and-events/newsarchive/"))
+                }
+            }
+        }
+    }
+  }
+}
+save()
+
+for(String path:pathsToActivate){
+    activate path
+}
+
+println "${path1} ${result.totalMatches} ${listComps.size()} ${listPages.size()}"
+
+}
+
+
+findReferences("/content/tetrapak/publicweb/za/en","/content/tetrapak/publicweb/za/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ru/ru","/content/tetrapak/publicweb/ru/ru/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/cn/zh","/content/tetrapak/publicweb/cn/zh/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/tr/tr","/content/tetrapak/publicweb/tr/tr/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/se/sv_se","/content/tetrapak/publicweb/se/sv_se/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/jp/ja","/content/tetrapak/publicweb/jp/ja/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ch/fr","/content/tetrapak/publicweb/ch/fr/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ca/en","/content/tetrapak/publicweb/ca/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ca/fr","/content/tetrapak/publicweb/ca/fr/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/maghreb/fr","/content/tetrapak/publicweb/maghreb/fr/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/fr/fr","/content/tetrapak/publicweb/fr/fr/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/be/fr","/content/tetrapak/publicweb/be/fr/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/cac/es","/content/tetrapak/publicweb/cac/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ar/es","/content/tetrapak/publicweb/ar/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ve/es","/content/tetrapak/publicweb/ve/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/es/es","/content/tetrapak/publicweb/es/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/pe/es","/content/tetrapak/publicweb/pe/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/pa/es","/content/tetrapak/publicweb/pa/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/py/es","/content/tetrapak/publicweb/py/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/mx/es","/content/tetrapak/publicweb/mx/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ec/es","/content/tetrapak/publicweb/ec/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/co/es","/content/tetrapak/publicweb/co/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/cl/es","/content/tetrapak/publicweb/cl/es/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/de/de","/content/tetrapak/publicweb/de/de/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/it/it","/content/tetrapak/publicweb/it/it/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/br/pt","/content/tetrapak/publicweb/br/pt/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/pt/pt","/content/tetrapak/publicweb/pt/pt/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/vn/en","/content/tetrapak/publicweb/vn/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/us/en","/content/tetrapak/publicweb/us/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/th/en","/content/tetrapak/publicweb/th/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/tw/en","/content/tetrapak/publicweb/tw/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/kr/en","/content/tetrapak/publicweb/kr/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/sk/en","/content/tetrapak/publicweb/sk/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/sg/en","/content/tetrapak/publicweb/sg/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/rs/en","/content/tetrapak/publicweb/rs/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/sa/en","/content/tetrapak/publicweb/sa/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ro/en","/content/tetrapak/publicweb/ro/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/pl/en","/content/tetrapak/publicweb/pl/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ph/en","/content/tetrapak/publicweb/ph/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/pk/en","/content/tetrapak/publicweb/pk/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/no/en","/content/tetrapak/publicweb/no/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/nl/en","/content/tetrapak/publicweb/nl/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/my/en","/content/tetrapak/publicweb/my/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/lv/en","/content/tetrapak/publicweb/lv/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ie/en","/content/tetrapak/publicweb/ie/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/ir/en","/content/tetrapak/publicweb/ir/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/id/en","/content/tetrapak/publicweb/id/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/in/en","/content/tetrapak/publicweb/in/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/hu/en","/content/tetrapak/publicweb/hu/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/gr/en","/content/tetrapak/publicweb/gr/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/fi/en","/content/tetrapak/publicweb/fi/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/cz/en","/content/tetrapak/publicweb/cz/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/hr/en","/content/tetrapak/publicweb/hr/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/au/en","/content/tetrapak/publicweb/au/en/about-tetra-pak/news-and-events/newsarchive/")
+findReferences("/content/tetrapak/publicweb/gb/en","/content/tetrapak/publicweb/gb/en/about-tetra-pak/news-and-events/newsarchive/")
+
+
