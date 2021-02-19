@@ -64,10 +64,9 @@ class ManagePreferences {
   */
   checkValues = (inputGroup) => {
     const { requestPayload, $pressMediaCheckBox } = this.cache;
-    if(inputGroup.attr('name') === 'communication-type-input' && requestPayload['types-communication'].length > 0){
-      inputGroup.data('input-value',true);
-    }
-    if(!$pressMediaCheckBox.is(':checked') || ($pressMediaCheckBox.is(':checked') && inputGroup.attr('name') === 'area-of-interest' && requestPayload['area-of-interest'].length > 0)){
+    const isAreaOfInterestedSelected = inputGroup.attr('name') === 'area-of-interest' && (requestPayload['area-of-interest'].length > 0 || !$pressMediaCheckBox.is(':checked'));
+    const isCommunicationSelected = inputGroup.attr('name') === 'communication-type-input' && requestPayload['types-communication'].length > 0;
+    if(isCommunicationSelected || isAreaOfInterestedSelected){
       inputGroup.data('input-value',true);
     }
   }
