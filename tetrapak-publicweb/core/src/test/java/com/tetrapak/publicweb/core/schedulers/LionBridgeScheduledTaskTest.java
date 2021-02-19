@@ -57,7 +57,7 @@ public class LionBridgeScheduledTaskTest {
     private String[] englishLiveCopyBasePaths = { "/content/tetrapak/publicweb/us/en" };
 
     /** The rollout configs. */
-    private String[] rolloutConfigs = { "/libs/msm/wcm/rolloutconfigs/default" };
+    private String[] rolloutConfigs = { "/apps/msm/wcm/rolloutconfigs/default" };
 
     /** The scheduler. */
     @Reference
