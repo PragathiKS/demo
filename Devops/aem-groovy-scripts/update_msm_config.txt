@@ -1,0 +1,36 @@
+def rootRes = resourceResolver.getResource("/content/tetrapak/publicweb")
+def rootItr = rootRes.getChildren().iterator()
+while(rootItr.hasNext()){
+    def marketRes = rootItr.next()
+    if(!marketRes.name.equals("jcr:content") && !marketRes.name.equals("rep:policy") && !marketRes.name.contains("lang-master")){
+    def marketResItr = marketRes.getChildren().iterator()
+    try{
+    while(marketResItr.hasNext()){
+        def langaugeRes = marketResItr.next()
+        if(!langaugeRes.name.equals("jcr:content") && !langaugeRes.name.equals("rep:policy") && !langaugeRes.name.contains("lang-master")){
+            def langaugeResItr = langaugeRes.getChildren().iterator()
+            while(langaugeResItr.hasNext()){
+                def chapterRes = langaugeResItr.next()
+                if(chapterRes.getChild("cq:LiveSyncConfig") != null){
+                    def syncResLang = chapterRes.getChild("cq:LiveSyncConfig");
+                    def modificableMap = syncResLang.adaptTo(org.apache.sling.api.resource.ModifiableValueMap.class)
+                    def values = String.join(",",(String[])modificableMap.get("cq:rolloutConfigs"))
+                     values = values.replaceAll("/libs/msm/wcm/rolloutconfigs/default","/apps/msm/wcm/rolloutconfigs/default")
+                    modificableMap.put("cq:rolloutConfigs",values.split(","))
+                }
+                if(chapterRes.getChild("jcr:content/cq:LiveSyncConfig") != null){
+                     def syncResLang = chapterRes.getChild("cq:LiveSyncConfig");
+                    def modificableMap = syncResLang.adaptTo(org.apache.sling.api.resource.ModifiableValueMap.class)
+                    def values = String.join(",",(String[])modificableMap.get("cq:rolloutConfigs"))
+                     values = values.replaceAll("/libs/msm/wcm/rolloutconfigs/default","/apps/msm/wcm/rolloutconfigs/default")
+                    modificableMap.put("cq:rolloutConfigs",values.split(","))
+                }
+            }
+            
+        
+        }
+    }
+    }catch(Exception e){}
+    }
+    save()
+}
