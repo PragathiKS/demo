@@ -57,7 +57,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
     private Replicator replicator;
 
     /** The path to replicate. */
-    List<String> pathToReplicate = new ArrayList<>();
+    List<String> pathToReplicate;
 
     /**
      * activate method.
@@ -92,6 +92,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
             LiveRelationshipManager liveRelManager, String language, boolean isDeep) {
         try {
             if (config.enableConfig()) {
+                pathToReplicate = new ArrayList<>();
                 LOGGER.info("payload : {}", payload);
                 PageManager pageManager = resolver.adaptTo(PageManager.class);
                 final Page blueprintPage = pageManager.getPage(payload);
@@ -165,7 +166,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                         syncNode.setProperty("cq:isDeep", true);
                         syncNode.setProperty("cq:master", blueprintPage.getPath());
                         syncNode.setProperty("cq:rolloutConfigs",
-                                new String[] { "/apps/msm/wcm/rolloutconfigs/default" });
+                                new String[] { "/libs/msm/wcm/rolloutconfigs/default" });
                     }
                     resolver.commit();
                 }
