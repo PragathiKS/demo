@@ -1,0 +1,51 @@
+import groovy.transform.Field
+
+/**
+This groovy script is to be used for removing reference of component that does not exist. 
+This will deactivate the node from publisher and delete it from author
+**/
+
+/**
+set DRY_RUN = false to actually make and save changes in crx.
+**/
+@Field final DRY_RUN = true
+
+/**
+Change PATH_TO_CONSIDERED path as per requirement without '/' at the end
+**/
+@Field final PATHS = [
+PATH_TO_CONSIDERED: "/content/tetrapak/publicweb", ]
+
+/**
+Change the resource type component value in the below field
+**/
+@Field final PROPS = [
+NAME: [
+RESOURCE_TYPE: "publicweb/components/content/imageTextButton"
+]]
+
+def buildQuery(page, term) {
+  def queryManager = session.workspace.queryManager;
+  def statement = 'select * from nt:base where jcr:path like \'' + page.path + '/%\' and sling:resourceType = \'' + term + '\'';
+  queryManager.createQuery(statement, 'sql');
+}
+
+/*Defined Content Hierarchy */
+final def page = getPage(PATHS.PATH_TO_CONSIDERED)
+/*Component ResourceType which is searched in the content hierarchy */
+final def query = buildQuery(page, PROPS.NAME.RESOURCE_TYPE);
+final def result = query.execute()
+
+count = 0;
+result.nodes.each {
+  node ->String nodePath = node.path;
+  if (!DRY_RUN) {
+    deactivate(nodePath)
+    node.remove()
+  }
+  count++println nodePath
+}
+if (!DRY_RUN) {
+  save()
+}
+println 'No Of Nodes found :' + count
