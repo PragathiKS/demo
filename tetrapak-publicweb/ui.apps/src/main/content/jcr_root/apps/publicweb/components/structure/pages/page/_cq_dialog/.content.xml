@@ -144,8 +144,9 @@
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                                fieldDescription="Character recommendation is 160"
+                                                fieldDescription="Maximum character limit is 160"
                                                 fieldLabel="Description"
+                                                maxlength="{Long}160"
                                                 name="./jcr:description"
                                                 renderReadOnly="{Boolean}true">
                                                 <granite:data
