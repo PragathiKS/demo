@@ -308,7 +308,7 @@ public final class PWConstants {
 
     /** The Constant LB_TRNSLATED_PAGES. */
     public static final String LB_TRNSLATED_PAGES = "lbtranslatedpages";
-    
+
     /** The Constant SUBSCRIPTION_MAIL_TEMPLATE_PATH. */
     public static final String SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH = "/etc/notification/email/publicweb/subscription";
     
@@ -348,6 +348,7 @@ public final class PWConstants {
     
     /** The Constant NEW_ARCHIVE_REL_PATH. */
     public static final String NEW_ARCHIVE_REL_PATH = "/about-tetra-pak/news-and-events/newsarchive";
+
     /**
      * Instantiates a new PW constants.
      */
