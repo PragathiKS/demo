@@ -3,7 +3,7 @@
 	<filter root="/apps/cq/gui" mode="update"/>
     <filter root="/apps/publicweb" mode="update"/>
     <filter root="/apps/msm/tetra-pak-pw-market-site-blueprint" mode="update"/>
-	<filter root="/apps/msm/wcm/rolloutconfigs/default" mode="update"/>
+	<filter root="/apps/msm/wcm" mode="update"/>
 	<filter root="/apps/publicweb/ac-config" mode="update"/>
 	<filter root="/apps/wcm/foundation" mode="update"/>
     <filter root="/etc/acs-commons/lists/countries" mode="update"/>
