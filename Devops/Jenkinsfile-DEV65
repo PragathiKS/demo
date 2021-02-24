@@ -387,7 +387,7 @@ pipeline {
                 echo "Starting Dev Dispatcher Cache Clear"
                 withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
                 {
-                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 52.149.68.17 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
                 }        
     }
 	
