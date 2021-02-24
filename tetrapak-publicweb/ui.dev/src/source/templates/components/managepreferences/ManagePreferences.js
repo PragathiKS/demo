@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
+import { managePreferencesAnalytics } from './managepreferences.analytics';
 
 class ManagePreferences {
   constructor({ el }) {
@@ -33,6 +34,10 @@ class ManagePreferences {
     };
     this.cache.$languageDropdownButton = $('.language-field-wrapper .dropdown-menu, .language-field-wrapper .dropdown-toggle', this.root);
     this.cache.$countryDropdownButton = $('.country-field-wrapper .dropdown-menu, .country-field-wrapper .dropdown-toggle', this.root);
+    this.cache.$communicationTitle = $('.selection-box-title.communication-title',this.root);
+    this.cache.$interestTitle = $('.selection-box-title.area-of-interest-title',this.root);
+    this.cache.$defaultCountry = $('#default-country',this.root);
+    this.cache.$defaultLanguage = $('#default-language',this.root);
     this.cache.countryList = [];
     this.cache.languageList = [];
   }
@@ -41,26 +46,36 @@ class ManagePreferences {
    * Select area of interest
   */
   selectAreaOfInterestHandler = () => {
-    const {requestPayload,interestType} = this.cache;
+    const {requestPayload,interestType, $interestTitle} = this.cache;
+    const self = this;
+    const interestObj = [];
+    const interestKey = $interestTitle.data('interest-title');
     requestPayload['area-of-interest'] = [];
     interestType.each(function(){
       if($(this).is(':checked')){
         requestPayload['area-of-interest'].push($(this).val());
+        interestObj.push({[interestKey]:$(this).val()});
       }
     });
+    self.restObj = {...self.restObj,'area-of-interest':interestObj};
   }
 
   /**
    * Select type of communication
   */
   selectCommunicationHandler = () => {
-    const {requestPayload,communicationTypes} = this.cache;
+    const {requestPayload,communicationTypes, $communicationTitle} = this.cache;
+    const self = this;
+    const communicationObj = [];
+    const communicationKey = $communicationTitle.data('comm-title');
     requestPayload['types-communication'] = [];
     communicationTypes.each(function(){
       if($(this).is(':checked')){
         requestPayload['types-communication'].push($(this).val());
+        communicationObj.push({[communicationKey]:$(this).val()});
       }
     });
+    self.restObj = {...self.restObj,'types-communication':communicationObj};
   }
 
   /**
@@ -77,10 +92,10 @@ class ManagePreferences {
   }
 
   /**
-   * set default checkbox values
+   * set default values
   */
-  setDefaultCheckboxValue = () => {
-    const { $selectedFormData, $pressMediaCheckBox } = this.cache;
+  setDefaultValue = () => {
+    const { $selectedFormData, $pressMediaCheckBox, $defaultCountry, $defaultLanguage, requestPayload } = this.cache;
     let selectedCommunication = $selectedFormData.data('selected-communication');
     selectedCommunication = selectedCommunication && selectedCommunication.split(',').map((val) => val.trim()) || [];
     let selectedInterest = $selectedFormData.data('selected-interest');
@@ -101,6 +116,13 @@ class ManagePreferences {
     if(!$pressMediaCheckBox.is(':checked')){
       this.setAreaDisabled();
     }
+    if($defaultCountry.data('country-title')) {
+      requestPayload['countryTitle'] = $defaultCountry.data('country-title');
+    }
+    if($defaultLanguage.data('language-title')) {
+      requestPayload['languageTitle'] = $defaultLanguage.data('language-title');
+    }
+
   }
 
   /**
@@ -211,10 +233,25 @@ class ManagePreferences {
     $languageDropdownButton.keydown(e => this.onKeydown(e, this.cache.languageList,$languageDropdownButton));
   }
 
+  /**
+  * function for submit
+  * TODO
+  */
+  submitForm = () => {
+    const dataObj = {};
+    if($('input[name="consent"]').is(':checked')) {
+      dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
+    }
+    dataObj['language'] = this.cache.requestPayload['languageTitle'];
+    dataObj['country'] = this.cache.requestPayload['countryTitle'];
+    this.restObj = {...this.restObj,'country': dataObj.country,'language':dataObj.language};
+    managePreferencesAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
+  }
+
   bindEvents() {
     const { requestPayload, $submitBtn, $dropItem, $languageDropItem,$unsubscribeBtn, $unsubscribeCheckbox, $pressMediaCheckBox } = this.cache;
     const self = this;
-    this.setDefaultCheckboxValue();
+    this.setDefaultValue();
     $unsubscribeCheckbox.change(function(e){
       e.preventDefault();
       e.stopPropagation();
@@ -245,6 +282,9 @@ class ManagePreferences {
         }
       });
 
+      if(isvalid){
+        self.submitForm();
+      }
       return isvalid;
     });
 
@@ -283,6 +323,7 @@ class ManagePreferences {
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(languageTitle);
       requestPayload['language'] = languageKey;
+      requestPayload['languageTitle'] = languageTitle;
     });
 
   }
@@ -292,6 +333,9 @@ class ManagePreferences {
     this.bindEvents();
     this.getCountryList();
     this.getLanguageList();
+    this.restObj = {};
+    this.mainHead = $($('#sf-step-1 .main-heading').find('h2')[0]).text().trim();
+    managePreferencesAnalytics(this.mainHead, {}, 'formstart', 'formload', '', '', []);
   }
 }
 
