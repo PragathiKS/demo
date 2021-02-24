@@ -1,0 +1,13 @@
+import javax.jcr.Node
+
+def buildQuery(pagepath) {
+    def queryManager = session.workspace.queryManager;
+    def statement = "SELECT  p.* FROM [cq:Page] AS p WHERE ISDESCENDANTNODE(p,'"+ pagepath +"') AND  LENGTH(p.[jcr:content/jcr:description]) > 160";
+    queryManager.createQuery(statement, 'sql');
+}
+basepagepath = "/content/tetrapak/publicweb";
+final def query = buildQuery(basepagepath);
+final def result = query.execute();
+result.nodes.each { node ->
+    println node.path
+}
