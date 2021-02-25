@@ -21,8 +21,8 @@ class ManagePreferences {
     this.cache.$selectedFormData = $('form.pw-form-managePreferences', this.root);
     this.cache.$savePreferenceButton = $('.save-preference-button',this.root);
     this.cache.$unsubscribeButton = $('.unsubscribe-button',this.root);
-    this.cache.communicationTypes = this.root.find('.communication-type');
-    this.cache.interestType = this.root.find('.interest-type');
+    this.cache.$communicationTypes = this.root.find('.communication-type');
+    this.cache.$interestType = this.root.find('.interest-type');
     this.cache.$dropItem = $('.country-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$languageDropItem = $('.language-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.requestPayload = {
@@ -46,12 +46,12 @@ class ManagePreferences {
    * Select area of interest
   */
   selectAreaOfInterestHandler = () => {
-    const {requestPayload,interestType, $interestTitle} = this.cache;
+    const {requestPayload,$interestType, $interestTitle} = this.cache;
     const self = this;
     const interestObj = [];
-    const interestKey = $interestTitle.data('interest-title');
+    const interestKey = $interestTitle.data('title');
     requestPayload['area-of-interest'] = [];
-    interestType.each(function(){
+    $interestType.each(function(){
       if($(this).is(':checked')){
         requestPayload['area-of-interest'].push($(this).val());
         interestObj.push({[interestKey]:$(this).val()});
@@ -64,12 +64,12 @@ class ManagePreferences {
    * Select type of communication
   */
   selectCommunicationHandler = () => {
-    const {requestPayload,communicationTypes, $communicationTitle} = this.cache;
+    const {requestPayload, $communicationTypes, $communicationTitle} = this.cache;
     const self = this;
     const communicationObj = [];
-    const communicationKey = $communicationTitle.data('comm-title');
+    const communicationKey = $communicationTitle.data('title');
     requestPayload['types-communication'] = [];
-    communicationTypes.each(function(){
+    $communicationTypes.each(function(){
       if($(this).is(':checked')){
         requestPayload['types-communication'].push($(this).val());
         communicationObj.push({[communicationKey]:$(this).val()});
@@ -95,19 +95,19 @@ class ManagePreferences {
    * set default values
   */
   setDefaultValue = () => {
-    const { $selectedFormData, $pressMediaCheckBox, $defaultCountry, $defaultLanguage, requestPayload } = this.cache;
+    const { $selectedFormData, $pressMediaCheckBox, $defaultCountry, $defaultLanguage, requestPayload, $communicationTypes, $interestType } = this.cache;
     let selectedCommunication = $selectedFormData.data('selected-communication');
     selectedCommunication = selectedCommunication && selectedCommunication.split(',').map((val) => val.trim()) || [];
     let selectedInterest = $selectedFormData.data('selected-interest');
     selectedInterest = selectedInterest && selectedInterest.split(',').map((val) => val.trim()) || [];
-    $('.communication-type',this.root).each(function(){
+    $communicationTypes.each(function(){
       const $this = $(this);
       if(selectedCommunication.indexOf($this.val()) !== -1) {
         $this.prop('checked', true);
       }
     });
 
-    $('.interest-type',this.root).each(function(){
+    $interestType.each(function(){
       const $this = $(this);
       if(selectedInterest.indexOf($this.val()) !== -1) {
         $this.prop('checked', true);
@@ -235,17 +235,27 @@ class ManagePreferences {
 
   /**
   * function for submit
+  * @param {string} buttonLabel buttonLabel
+  * @param {string} unsubscribeBtn unsubscribeBtn
   * TODO
   */
-  submitForm = () => {
+  submitForm = (buttonLabel,unsubscribeBtn) => {
+    const { $unsubscribeCheckbox, $communicationTitle } = this.cache;
     const dataObj = {};
-    if($('input[name="consent"]').is(':checked')) {
-      dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
-    }
     dataObj['language'] = this.cache.requestPayload['languageTitle'];
     dataObj['country'] = this.cache.requestPayload['countryTitle'];
     this.restObj = {...this.restObj,'country': dataObj.country,'language':dataObj.language};
-    managePreferencesAnalytics(this.mainHead, { ...this.restObj, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
+    if(unsubscribeBtn){
+      if($('input[name="consent"]').is(':checked')) {
+        dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
+      }
+      this.restObj = {
+        'Marketing Consent':dataObj.marketingConsent ? 'Checked':'Unchecked',
+        [$communicationTitle.data('title')] : $unsubscribeCheckbox.val()
+      };
+    }
+    managePreferencesAnalytics(this.mainHead, { ...this.restObj }, 'formcomplete', 'formload', 'Step 1', buttonLabel, []);
+    this.restObj = {};
   }
 
   bindEvents() {
@@ -267,8 +277,9 @@ class ManagePreferences {
       self.selectCommunicationHandler();
       self.selectAreaOfInterestHandler();
       let isvalid = true;
+      const errObj = [];
       const tab = $(this).closest('.tab-content-steps');
-
+      const buttonLabel = $(this).closest('.button-group').data('label');
       $('.input-group', tab).each(function () {
         $(this).data('input-value',false);
         self.checkValues($(this));
@@ -276,6 +287,12 @@ class ManagePreferences {
           isvalid = false;
           e.preventDefault();
           e.stopPropagation();
+          const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
+          const erLbl = $(this).siblings('.selection-box-title').data('title');
+          errObj.push({
+            formErrorMessage: errmsg,
+            formErrorField: erLbl
+          });
           $(this).closest('.form-group, .formfield').addClass('field-error');
         } else {
           $(this).closest('.form-group, .formfield').removeClass('field-error');
@@ -283,27 +300,39 @@ class ManagePreferences {
       });
 
       if(isvalid){
-        self.submitForm();
+        self.submitForm(buttonLabel);
+      } else {
+        managePreferencesAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', buttonLabel, errObj);
       }
-      return isvalid;
     });
 
     $unsubscribeBtn.click(function(e){
       e.preventDefault();
       e.stopPropagation();
+      const errObj = [];
       let isvalid = true;
       const tab = $(this).closest('.tab-content-steps');
+      const buttonLabel = $(this).closest('.button-group').data('label');
       $('.consent-checkbox', tab).each(function () {
         if ($('input[name="consent"]:checked').length === 0) {
           isvalid = false;
           e.preventDefault();
           e.stopPropagation();
+          const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
+          errObj.push({
+            formErrorMessage: errmsg,
+            formErrorField: 'Marketing Consent'
+          });
           $(this).closest('.form-group, .formfield').addClass('field-error');
         } else {
           $(this).closest('.form-group, .formfield').removeClass('field-error');
         }
       });
-      return isvalid;
+      if(isvalid){
+        self.submitForm(buttonLabel,'unsubscribeBtn');
+      } else {
+        managePreferencesAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', buttonLabel, errObj);
+      }
     });
 
     $dropItem.click(function (e) {
@@ -334,7 +363,7 @@ class ManagePreferences {
     this.getCountryList();
     this.getLanguageList();
     this.restObj = {};
-    this.mainHead = $($('#sf-step-1 .main-heading').find('h2')[0]).text().trim();
+    this.mainHead = $('.main-heading', this.root).text().trim();
     managePreferencesAnalytics(this.mainHead, {}, 'formstart', 'formload', '', '', []);
   }
 }
