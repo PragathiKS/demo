@@ -3,9 +3,7 @@ def rootItr = rootRes.getChildren().iterator()
 while(rootItr.hasNext()){
     def marketRes = rootItr.next()
     if(!marketRes.name.equals("jcr:content") && !marketRes.name.equals("rep:policy") && !marketRes.name.contains("lang-master")){
-        println marketRes.path
         if(marketRes.getChild("jcr:content/cq:LiveSyncConfig") != null){
-            println "sandip"
             def syncResLang1 = marketRes.getChild("jcr:content/cq:LiveSyncConfig");
             def modificableMap1 = syncResLang1.adaptTo(org.apache.sling.api.resource.ModifiableValueMap.class)
             def values = String.join(",",(String[])modificableMap1.get("cq:rolloutConfigs"))
