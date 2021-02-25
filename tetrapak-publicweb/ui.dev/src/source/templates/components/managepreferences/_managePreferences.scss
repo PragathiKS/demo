@@ -190,8 +190,8 @@
             display: flex;
         }
         &__section-box {
+            max-width: calc(100% - #{$padding-l});
             flex: 1;
-            overflow: hidden;
         }
         .padding-24 {
             @include padding-left($padding-l);
