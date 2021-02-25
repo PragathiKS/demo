@@ -3,6 +3,16 @@ def rootItr = rootRes.getChildren().iterator()
 while(rootItr.hasNext()){
     def marketRes = rootItr.next()
     if(!marketRes.name.equals("jcr:content") && !marketRes.name.equals("rep:policy") && !marketRes.name.contains("lang-master")){
+        println marketRes.path
+        if(marketRes.getChild("jcr:content/cq:LiveSyncConfig") != null){
+            println "sandip"
+            def syncResLang1 = marketRes.getChild("jcr:content/cq:LiveSyncConfig");
+            def modificableMap1 = syncResLang1.adaptTo(org.apache.sling.api.resource.ModifiableValueMap.class)
+            def values = String.join(",",(String[])modificableMap1.get("cq:rolloutConfigs"))
+            values = values.replaceAll("/libs/msm/wcm/rolloutconfigs/default","/apps/msm/wcm/rolloutconfigs/default")
+            modificableMap1.put("cq:rolloutConfigs",values.split(","))
+            save() 
+        }
     def marketResItr = marketRes.getChildren().iterator()
     try{
     while(marketResItr.hasNext()){
@@ -17,20 +27,21 @@ while(rootItr.hasNext()){
                     def values = String.join(",",(String[])modificableMap.get("cq:rolloutConfigs"))
                      values = values.replaceAll("/libs/msm/wcm/rolloutconfigs/default","/apps/msm/wcm/rolloutconfigs/default")
                     modificableMap.put("cq:rolloutConfigs",values.split(","))
+                    save() 
                 }
                 if(chapterRes.getChild("jcr:content/cq:LiveSyncConfig") != null){
-                     def syncResLang = chapterRes.getChild("cq:LiveSyncConfig");
+                     def syncResLang = chapterRes.getChild("jcr:content/cq:LiveSyncConfig");
                     def modificableMap = syncResLang.adaptTo(org.apache.sling.api.resource.ModifiableValueMap.class)
                     def values = String.join(",",(String[])modificableMap.get("cq:rolloutConfigs"))
                      values = values.replaceAll("/libs/msm/wcm/rolloutconfigs/default","/apps/msm/wcm/rolloutconfigs/default")
                     modificableMap.put("cq:rolloutConfigs",values.split(","))
                 }
             }
-            
+           save() 
         
         }
     }
     }catch(Exception e){}
     }
-    save()
+    //save()
 }
