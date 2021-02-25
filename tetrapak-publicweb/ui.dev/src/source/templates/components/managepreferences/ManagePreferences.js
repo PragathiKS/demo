@@ -235,11 +235,10 @@ class ManagePreferences {
 
   /**
   * function for submit
-  * @param {string} buttonLabel buttonLabel
   * @param {string} unsubscribeBtn unsubscribeBtn
   * TODO
   */
-  submitForm = (buttonLabel,unsubscribeBtn) => {
+  submitForm = (unsubscribeBtn) => {
     const { $unsubscribeCheckbox, $communicationTitle } = this.cache;
     const dataObj = {};
     dataObj['language'] = this.cache.requestPayload['languageTitle'];
@@ -254,7 +253,7 @@ class ManagePreferences {
         [$communicationTitle.data('title')] : $unsubscribeCheckbox.val()
       };
     }
-    managePreferencesAnalytics(this.mainHead, { ...this.restObj }, 'formcomplete', 'formload', 'Step 1', buttonLabel, []);
+    managePreferencesAnalytics(this.mainHead, { ...this.restObj }, 'formcomplete', 'formload', 'Step 1', this.mainHead, []);
     this.restObj = {};
   }
 
@@ -279,7 +278,6 @@ class ManagePreferences {
       let isvalid = true;
       const errObj = [];
       const tab = $(this).closest('.tab-content-steps');
-      const buttonLabel = $(this).closest('.button-group').data('label');
       $('.input-group', tab).each(function () {
         $(this).data('input-value',false);
         self.checkValues($(this));
@@ -300,9 +298,9 @@ class ManagePreferences {
       });
 
       if(isvalid){
-        self.submitForm(buttonLabel);
+        self.submitForm();
       } else {
-        managePreferencesAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', buttonLabel, errObj);
+        managePreferencesAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', self.mainHead, errObj);
       }
     });
 
@@ -312,7 +310,6 @@ class ManagePreferences {
       const errObj = [];
       let isvalid = true;
       const tab = $(this).closest('.tab-content-steps');
-      const buttonLabel = $(this).closest('.button-group').data('label');
       $('.consent-checkbox', tab).each(function () {
         if ($('input[name="consent"]:checked').length === 0) {
           isvalid = false;
@@ -329,9 +326,9 @@ class ManagePreferences {
         }
       });
       if(isvalid){
-        self.submitForm(buttonLabel,'unsubscribeBtn');
+        self.submitForm('unsubscribeBtn');
       } else {
-        managePreferencesAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', buttonLabel, errObj);
+        managePreferencesAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', self.mainHead, errObj);
       }
     });
 
