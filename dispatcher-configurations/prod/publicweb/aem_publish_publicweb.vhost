@@ -2,13 +2,13 @@
 ## Collect the dispatchers number
 PassEnv DISP_ID
 
-# Defining Virtual host for tetrapak-prod64.adobecqms.net
+# Defining Virtual host for www.tetrapak.com
 <VirtualHost *:80>
-        ServerName      tetrapak-prod64.adobecqms.net
+        ServerName      www.tetrapak.com
         ## Put names of which domains are used for your published site/content here
-        #ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} tetrapak-prod64.adobecqms.net
-                ServerAlias     tetrapak-prod64.adobecqms.net www.tetrapak.com tetrapak.com
-
+        #ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} tetrapak-prod65.adobecqms.net
+                #ServerAlias     tetrapak-prod65.adobecqms.net www.tetrapak.com tetrapak.com
+                ServerAlias     www.tetrapak.com tetrapak.com
         ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
         DocumentRoot    ${PUBLISH_DOCROOT}/publicweb
         ## Add header breadcrumbs for help in troubleshooting
@@ -109,7 +109,7 @@ PassEnv DISP_ID
                 ## Updated Content-Disposition to inline for opening the media links in new Tab
                 <IfModule mod_headers.c>
                         #<FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV|pdf|PDF|xls|XLS|xlsx|XLSX|doc|DOC|docx|DOCX)$">
-                        <FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV)$">
+                        <FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV|pdf|PDF|xls|XLS|xlsx|XLSX|doc|DOC|docx|DOCX)$">
                                 Header set Content-Disposition "inline"
                         </FilesMatch>
 
