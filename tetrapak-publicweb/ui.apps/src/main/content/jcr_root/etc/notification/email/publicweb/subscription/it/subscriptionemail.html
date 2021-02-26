@@ -43,14 +43,8 @@ Subject: ${title}
            text-decoration: none;
            color: #ffffff;
          }
-         .footer-wrapper {
-           display:none;
-         }
          .header-wrapper {
           text-align:center;
-         }
-         .footer-mobile{
-          display:block;
          }
          @media screen and (min-width: 1024px) {
           .field {
@@ -69,9 +63,6 @@ Subject: ${title}
           }
            .header-wrapper {
             text-align:left;
-          }
-          .footer-mobile{
-            display:none;
           }
          }
       </style>
@@ -129,7 +120,7 @@ Subject: ${title}
                   <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px 24px 48px 24px;">
                      <tr>
                         <td>
-                           <p style="margin-bottom:24px;margin-top:0px;">Tutte le notizie e i comunicati stampa sono pubblicati qui ${newsRoomLink}</p>
+                           <p style="margin-bottom:24px;margin-top:0px;">Tutte le notizie e i comunicati stampa sono pubblicati qui <a href="${newsRoomLink}">${newsRoomLink}</a></p>
                         </td>
                      </tr>
                      <tr>
@@ -141,23 +132,6 @@ Subject: ${title}
                </td>
             </tr>
          </tbody>
-      </table>
-      <table class="footer-wrapper" width="880" cellpadding="0" cellspacing="0" border="0" style="background-color:#023F88;padding:24px;color:#ffffff;overflow:hidden;">
-         <tr>
-            <td width="20%">
-               <img class="logo-size" src="${footerLogo}?bgc=${footerLogoBGC}&wid=156&fmt=jpg&resMode=sharp2&qlt=85,0" />
-            </td>
-            <td width="80%" style="text-align:right;">
-               <table style="width:100%;text-align:right;margin:0 auto;" cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                     <td>
-                        <a href="${managePreferenceLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Gestisci preferenze</a>&nbsp;&nbsp;&nbsp;
-                        <a href="${legalInformationLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Informazione legale</a>
-                     </td>
-                  </tr>
-               </table>
-            </td>
-         </tr>
       </table>
       <table class="footer-mobile" width="100%" cellpadding="5px" cellspacing="0" border="0" style="background-color:#023F88;padding:24px;color:#ffffff;overflow:hidden;">
          <tr>
