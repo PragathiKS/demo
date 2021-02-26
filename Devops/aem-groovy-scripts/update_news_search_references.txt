@@ -1,0 +1,38 @@
+def update() {
+
+def predicates = [
+    "path": "/content/tetrapak/publicweb",
+    "1_property": "@jcr:content/cq:redirectTarget",
+    "1_property.operation": "exists",
+    "type": "cq:Page",
+    "p.limit":-1
+]
+def query = createQuery(predicates)
+query.hitsPerPage = 4000
+def result = query.result
+
+
+result.hits.each { hit ->
+   def node = hit.node;
+   //println hit.path
+   def redirect = node.getNode("jcr:content").getProperty("cq:redirectTarget").getString();
+   if(redirect.contains("?contentType=news&page=1") || redirect.contains("?contentType=news&amp;page=1")){
+       println node.path
+       redirect = redirect.replace("?contentType=news&page=1","")
+       redirect = redirect.replace("?contentType=news&amp;page=1","")
+       node.getNode("jcr:content").setProperty("cq:redirectTarget",redirect)
+   }
+   else{
+      //println node.path + "#" + redirect 
+   }
+}
+
+save()
+println "${result.totalMatches}"
+
+}
+
+update()
+
+
+
