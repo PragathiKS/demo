@@ -418,5 +418,25 @@
      <pw.form.businessenq.selectPosition
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.selectPosition"
-        sling:message="Select your position"/>        
+        sling:message="Select your position"/>
+    <pw.subscriptionMail.label.cta
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.subscriptionMail.label.cta"
+        sling:message="Read the full release here"/>
+    <pw.subscriptionMail.label.legalInfo
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.subscriptionMail.label.legalInfo"
+        sling:message="Legal information"/>
+    <pw.subscriptionMail.label.managePreference
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.subscriptionMail.label.managePreference"
+        sling:message="Manage Preference"/>
+    <pw.subscriptionMail.message.gratitude
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.subscriptionMail.message.gratitude"
+        sling:message="Kind Regards Tetra Pak"/>
+    <pw.subscriptionMail.message.newsroom
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.subscriptionMail.message.newsroom"
+        sling:message="All news and press releases are published here"/>           
 </jcr:root>
