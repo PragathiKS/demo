@@ -8,7 +8,7 @@
         ## hostname globbing for farm selection (virtual domain addressing)
         /virtualhosts {
                 #$include "/etc/httpd/conf.dispatcher.d/vhosts/ams_publish_vhosts.any"
-                                 "tetrapak-stage64a.adobecqms.net"
+                                 "www-stage.tetrapak.com"
         }
 
         ## the load will be balanced among these render instances
@@ -76,7 +76,7 @@
                         ## By default block all IP from allowing to initiate the invalidation commands
                         /0000 {
                                 /glob "*.*.*.*"
-                                /type "deny"
+                                /type "allow"
                         }
                         ## Allow certain IP's like publishers to invalidate cache
                         $include "/etc/httpd/conf.dispatcher.d/cache/ams_publish_invalidate_allowed.any"
