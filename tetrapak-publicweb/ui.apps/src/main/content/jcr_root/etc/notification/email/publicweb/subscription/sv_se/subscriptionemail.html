@@ -27,8 +27,8 @@ Subject: ${title}
            padding: 0 24px;
          }
          .logo-size {
-           width: 138px;
-           height: 21px;
+           width: 156px;
+           height: 41px;
          }
          .banner-image {
            width: 100%;
@@ -43,15 +43,10 @@ Subject: ${title}
            text-decoration: none;
            color: #ffffff;
          }
-         .footer-wrapper {
-           display:none;
-         }
          .header-wrapper {
           text-align:center;
          }
-         .footer-mobile{
-          display:block;
-         }
+
          @media screen and (min-width: 1024px) {
           .field {
             display: flex;
@@ -63,18 +58,12 @@ Subject: ${title}
           .email-logo {
             padding-bottom: 48px;
            }
-          .logo-size {
-             width: 158px;
-            height: 24px;
-          }
+          
           .footer-wrapper {
             display:block;
           }
            .header-wrapper {
             text-align:left;
-          }
-          .footer-mobile{
-            display:none;
           }
          }
       </style>
@@ -111,12 +100,12 @@ Subject: ${title}
                   <table style="margin:0 24px;">
                      <tr>
                         <td style="margin:0;">
-                           <h5 style="font-size: 18px;font-weight: 700;line-height: 24px;margin-bottom:0px 0px 16px 0px;">${title}</h5>
+                           <h5 style="font-size: 18px;font-weight: 700;line-height: 24px;margin:0px 0px 16px 0px;">${title}</h5>
                         </td>
                      </tr>
                      <tr>
                         <td>
-                           <p style="margin:0 0 20px 0;line-height:24px;">${description}</p>
+                           <p style="margin:0 0 24px 0;line-height:24px;">${description}</p>
                         </td>
                      </tr>
                      <tr>
@@ -132,35 +121,18 @@ Subject: ${title}
                   <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px 24px 48px 24px;">
                      <tr>
                         <td>
-                           <p style="margin-bottom:24px;">Alla nyheter och pressmeddelanden publiceras härs ${newsRoomLink}</p>
+                           <p style="margin-bottom:24px;margin-top:0px;">Alla nyheter och pressmeddelanden publiceras härs <a href="${newsRoomLink}">${newsRoomLink}</a></p>
                         </td>
                      </tr>
                      <tr>
                         <td>
-                           <p style="margin-bottom:0px;">Vänliga hälsningar Tetra Pak</p>
+                           <p style="margin-bottom:0px;margin-top:0px;">Vänliga hälsningar Tetra Pak</p>
                         </td>
                      </tr>
                   </table>
                </td>
             </tr>
          </tbody>
-      </table>
-      <table class="footer-wrapper" width="880" cellpadding="0" cellspacing="0" border="0" style="background-color:#023F88;padding:24px;color:#ffffff;overflow:hidden;">
-         <tr>
-            <td width="20%">
-               <img class="logo-size" src="${footerLogo}?bgc=${footerLogoBGC}&wid=156&fmt=jpg&resMode=sharp2&qlt=85,0" />
-            </td>
-            <td width="80%" style="text-align:right;">
-               <table style="width:100%;text-align:right;margin:0 auto;" cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                     <td>
-                        <a href="${managePreferenceLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Hantera företräde</a>&nbsp;&nbsp;&nbsp;
-                        <a href="${legalInformationLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Juridisk information</a>
-                     </td>
-                  </tr>
-               </table>
-            </td>
-         </tr>
       </table>
       <table class="footer-mobile" width="100%" cellpadding="5px" cellspacing="0" border="0" style="background-color:#023F88;padding:24px;color:#ffffff;overflow:hidden;">
          <tr>

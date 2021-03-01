@@ -201,19 +201,19 @@
                   <div class="tab-content tab-content-steps">
                     <div class="row">
                       <div class="col-sm-12 right-heading form-field-heading"
-                        data-step-heading="${'pw.form.businessenq.howCanHelpText' @i18n}"
+                        data-step-heading="${'pw.form.heading.howcanihelp' @i18n}"
                         auto_locator="businessEnquiryContainerHeadingTextStep3">
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.howCanHelpText', variant='small'}" />
+                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.howcanihelp', variant='small'}" />
                       </div>
                       <div class="col-sm-12">
                         <div class="formfield">
-                          <label class="text-area-label" data-text-area-label="${'pw.form.businessenq.message' @i18n}"
-                            for="messageText">${'pw.form.businessenq.message' @i18n}</label>
+                          <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
+                            for="messageText">${'pw.form.label.message' @i18n}</label>
                           <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
                             id="businessEnquiryMessageText" rows="12" name="message" required></textarea>
-                          <div data-error-msg="${'pw.form.businessenq.errorMessage' @i18n}" class="errorMsg">
-                            ${'pw.form.businessenq.errorMessage' @i18n}</div>
+                          <div data-error-msg="${'pw.form.errormsg.messagebox' @i18n}" class="errorMsg">
+                            ${'pw.form.errormsg.messagebox' @i18n}</div>
                         </div>
                       </div>
                     </div>
@@ -270,7 +270,7 @@
                       <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
                     </div>
                     <div class="row no-gutters summary">
-                      <div class="col-lg-5">${'pw.form.businessenq.message' @i18n}</div>
+                      <div class="col-lg-5">${'pw.form.label.message' @i18n}</div>
                       <div class="col-lg-7 message"></div>
                     </div>
                   </div>
@@ -393,7 +393,7 @@
                       <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
                     </div>
                     <div class="row no-gutters summary">
-                      <div class="col-lg-5">${'pw.form.businessenq.message' @i18n}</div>
+                      <div class="col-lg-5">${'pw.form.label.message' @i18n}</div>
                       <div class="col-lg-7 message"></div>
                     </div>
                     <div class="row no-gutters summary">

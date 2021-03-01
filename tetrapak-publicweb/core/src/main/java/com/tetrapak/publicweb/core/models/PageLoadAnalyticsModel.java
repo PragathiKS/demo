@@ -113,6 +113,9 @@ public class PageLoadAnalyticsModel {
 
     /** The site section 4. */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
+    
+    /** The site section 4. */
+    private final StringBuilder siteSection5 = new StringBuilder(StringUtils.EMPTY);
 
     /** The Constant COUNTRY_LEVEL. */
     private static final int COUNTRY_LEVEL = 4;
@@ -206,6 +209,22 @@ public class PageLoadAnalyticsModel {
         if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection3)) {
             siteSectionIndex++;
             updateSectionName(siteSectionIndex, currentPageIndex, siteSection4);
+            updateSection5(siteSectionIndex, currentPageIndex);
+        }
+    }
+    
+    /**
+     * Update section 5.
+     *
+     * @param siteSectionIndex
+     *            the site section index
+     * @param currentPageIndex
+     *            the current page index
+     */
+    private void updateSection5(int siteSectionIndex, final int currentPageIndex) {
+        if (updateSectionName(siteSectionIndex, currentPageIndex, siteSection4)) {
+            siteSectionIndex++;
+            updateSectionName(siteSectionIndex, currentPageIndex, siteSection5);
         }
     }
 
@@ -236,6 +255,9 @@ public class PageLoadAnalyticsModel {
                 pageName += ":" + siteSection3.toString();
                 if (StringUtils.isNotEmpty(siteSection4.toString())) {
                     pageName += ":" + siteSection4.toString();
+                    if (StringUtils.isNotEmpty(siteSection5.toString())) {
+                        pageName += ":" + siteSection5.toString();
+                    }
                 }
             }
         }
@@ -439,6 +461,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection2", siteSection2.toString());
         pageInfo.addProperty("siteSection3", siteSection3.toString());
         pageInfo.addProperty("siteSection4", siteSection4.toString());
+        pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
         pageInfo.addProperty("siteName", SITE_NAME);

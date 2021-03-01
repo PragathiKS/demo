@@ -5,13 +5,13 @@ import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 /**
- * OSGi configuration for Pardot Service.
+ * The Interface PardotServiceConfig.
  */
 @ObjectClassDefinition(name = "Public Web Pardot Service Configuration", description = "Pardot Service Configuration")
 public @interface PardotServiceConfig {
 
     /**
-     * Pardot BusinessInquiry Service Url.
+     * Pardot business inquiry service url.
      *
      * @return Pardot BusinessInquiry Service Url
      */
@@ -33,46 +33,46 @@ public @interface PardotServiceConfig {
     String pardotSubscriptionFormURL();
 
     /**
-     * Pardot manage pref api URL.
+     * Pardot subscribers api URL.
      *
      * @return the string
      */
     @AttributeDefinition(
-            name = "Pardot Manage Preference API URL",
-            description = "Pardot Manage Preference API URL",
-            type = AttributeType.STRING)
-    String pardotManagePrefApiURL();
-    
-    /**
-     * Pardot manage pref api api credentials.
-     *
-     * @return the string
-     */
-    @AttributeDefinition(
-            name = "Pardot Manage Preference API credentials",
-            description = "Pardot Manage Preference API credentials",
-            type = AttributeType.STRING)
-    String pardotManagePrefApiCredentials();
-	
-	/**
-    * Pardot subscribers data api URL.
-    *
-    * @return the string
-    */
-    @AttributeDefinition(
-    		name = "Pardot Subscribers Data API URL",
-    		description = "Pardot Subscribers Data API URL",
+    		name = "Pardot Subscribers API URL",
+    		description = "Pardot Subscribers API URL",
     		type = AttributeType.STRING)
-    String pardotSubscribersDataApiURL();
+    String pardotSubscribersApiURL();
 
     /**
-    * Pardot subscribers data api credentials.
-    *
-    * @return the string
-    */
+     * Pardot token generation api client id.
+     *
+     * @return the string
+     */
     @AttributeDefinition(
-    		name = "Pardot Subscribers Data API credentials",
-    		description = "Pardot Subscribers Data API credentials",
+    		name = "Pardot Token Generation API Client Id",
+    		description = "Pardot Token Generation API Client Id",
     		type = AttributeType.STRING)
-    String pardotSubscribersDataApiCredentials();
+    String pardotTokenGenerationApiClientId();
+    
+    /**
+     * Pardot token generation api client secret.
+     *
+     * @return the string
+     */
+    @AttributeDefinition(
+            name = "Pardot Token Generation API Client Secret",
+            description = "Pardot Token Generation API Client Secret",
+            type = AttributeType.STRING)
+    String pardotTokenGenerationApiClientSecret();
+    
+    /**
+     * Pardot token generation url.
+     *
+     * @return the string
+     */
+    @AttributeDefinition(
+            name = "Pardot Token Generation API URL",
+            description = "Pardot Token Generation API URL",
+            type = AttributeType.STRING)
+    String pardotTokenGenerationUrl();
 }

@@ -1,0 +1,259 @@
+import groovy.transform.Field
+import javax.jcr.Node
+import org.apache.commons.lang3.StringUtils
+
+/**
+This groovy script is to be used for fixing incorrect url for cq:redirectTarget , linkURL,linkUrl,linPath,link and richtext 
+and publishing the specific changed nodes only from live copies
+Note : This script will not modify any link reference which is related to newarchive page
+**/
+
+/**
+set DRY_RUN = false to actually make and save changes in crx.
+**/
+@Field final DRY_RUN = true
+
+/**
+Change PATH_TO_CONSIDERED path as per requirement without '/' at the end
+**/
+@Field final PATHS = [
+  PATH_TO_CONSIDERED: "/content/tetrapak/publicweb",
+  LANG_MASTERS_PATH: "/content/tetrapak/publicweb/lang-masters",
+  LANG_MASTERS_PATH_WITH_SLASH: "/content/tetrapak/publicweb/lang-masters/",
+  LANG_MASTERS_EN: "/content/tetrapak/publicweb/lang-masters/en", 
+  PUBLICWEB_SITE_PATH: "/content/tetrapak/publicweb/",
+  NEWS_ARCHIVE_PATH_REF : "/newsarchive/"
+
+]
+
+@Field final PROPS = [
+  NAME: [
+    CQ_REDIRECT_TARGET: "cq:redirectTarget",
+	RICH_TEXT: "text",
+	LINK_URL: "linkURL",
+	LINK_URL1: "linkUrl",
+	LINK_PATH: "linkPath",
+	LINK: "link"
+		
+  ]
+]
+
+@Field final NODE = [
+  NAME: [
+    JCR_CONTENT: "jcr:content"
+  ]
+]
+
+/*Flag to count the number of pages*/
+data = []
+noOfNodesWith404LinkIssue = 0
+pagesToBePublished = []
+pagesWithIncorrectLink = []
+pagesWithIncorrectHrefInRichText = []
+pagesWithIncorrectCqRedirectTarget = []
+pagesWithExceptionalLinks = []
+newsArchivePagesThatsNotChanged = []
+
+findAllPages()
+
+/*This method is used to Iterate all the pages under a hierarchy
+ *and get their page title ,path and the overall number of
+ *pages.*/
+
+def findAllPages() {
+  getPage(PATHS.PATH_TO_CONSIDERED).recurse {
+    page ->
+    if (!page.path.startsWith(PATHS.LANG_MASTERS_EN)) {
+      if (page.getAbsoluteParent(4)) {
+        pageChangedFlag = false
+        currentCountryPath = page.getAbsoluteParent(3).path
+        currentLanguagePath = page.getAbsoluteParent(4).path
+        countryNode = page.getAbsoluteParent(3).path.substring(page.getAbsoluteParent(2).path.length() + 1, page.getAbsoluteParent(3).path.length())
+        langNode = page.getAbsoluteParent(4).path.substring(page.getAbsoluteParent(3).path.length() + 1, page.getAbsoluteParent(4).path.length())
+
+        expectedNodePath = PATHS.PUBLICWEB_SITE_PATH.concat(countryNode).concat("/").concat(langNode)
+        presentCountryLangCode = countryNode + "/" + langNode
+
+        /** issue fix for cq:redirectTarget starts**/
+        if (page.node.hasProperty(PROPS.NAME.CQ_REDIRECT_TARGET) && page.node.get(PROPS.NAME.CQ_REDIRECT_TARGET).startsWith(PATHS.PUBLICWEB_SITE_PATH) && !page.node.get(PROPS.NAME.CQ_REDIRECT_TARGET).startsWith(expectedNodePath)) {
+          correctCqTargetPath = getCorrectUrlAsPerCurrentPageLocale(page.path, page.node.get(PROPS.NAME.CQ_REDIRECT_TARGET), presentCountryLangCode)
+          pagesWithIncorrectCqRedirectTarget.add([page.path, page.node.get(PROPS.NAME.CQ_REDIRECT_TARGET), correctCqTargetPath])
+          page.node.setProperty(PROPS.NAME.CQ_REDIRECT_TARGET, correctCqTargetPath)
+          pageChangedFlag = true
+          noOfNodesWith404LinkIssue++
+        }
+
+        jcrPagePath = page.path + "/" + NODE.NAME.JCR_CONTENT
+
+        /** issue fix for cq:redirectTarget Ends **/
+        getNode(jcrPagePath).recurse {
+          node ->NodeIterator it = node.getNodes()
+          while (it.hasNext()) {
+            nodetemp = it.nextNode()
+
+            /**handling issue with richtext **/
+            if (nodetemp.hasProperty(PROPS.NAME.RICH_TEXT)) {
+              if (nodetemp.path.startsWith(PATHS.LANG_MASTERS_PATH) && !nodetemp.path.startsWith(PATHS.LANG_MASTERS_EN)) {
+                if (nodetemp.get(PROPS.NAME.RICH_TEXT).contains(PATHS.LANG_MASTERS_EN)) {
+                  correctedText = nodetemp.get(PROPS.NAME.RICH_TEXT).replaceAll(PATHS.LANG_MASTERS_EN, currentLanguagePath).toString()
+                  pagesWithIncorrectHrefInRichText.add([nodetemp.path, "richtext large value", "richtext large value"])
+                  nodetemp.setProperty(PROPS.NAME.RICH_TEXT, correctedText)
+                  pageChangedFlag = true
+                  noOfNodesWith404LinkIssue++
+                }
+
+              } else {
+                hrefLangWithEn = currentCountryPath + "/en/"
+                if (!nodetemp.path.startsWith(hrefLangWithEn)) {
+                  if (nodetemp.get(PROPS.NAME.RICH_TEXT).contains(PATHS.LANG_MASTERS_PATH)) {
+                    correctedText = nodetemp.get(PROPS.NAME.RICH_TEXT).replaceAll(PATHS.LANG_MASTERS_PATH_WITH_SLASH, currentCountryPath + "/")
+                    nodetemp.setProperty(PROPS.NAME.RICH_TEXT, correctedText)
+                    pagesWithIncorrectHrefInRichText.add([nodetemp.path, "richtext large value", "richtext large value"])
+                    noOfNodesWith404LinkIssue++
+                    pageChangedFlag = true
+                  } else if (nodetemp.get(PROPS.NAME.RICH_TEXT).contains(hrefLangWithEn)) {
+                    correctedText = nodetemp.get(PROPS.NAME.RICH_TEXT).replaceAll(hrefLangWithEn, currentLanguagePath + "/")
+                    pagesWithIncorrectHrefInRichText.add([nodetemp.path, "richtext large value", "richtext large value"])
+                    nodetemp.setProperty(PROPS.NAME.RICH_TEXT, correctedText)
+                    noOfNodesWith404LinkIssue++
+                    pageChangedFlag = true
+                  }
+                }
+
+              }
+            }
+
+            /**----------- handling issue with richtext Ends -----------**/
+
+            /**handling issue with linkURL,linkUrl,linkPath,link starts**/
+
+            if (nodetemp.hasProperty(PROPS.NAME.LINK_URL) && nodetemp.get(PROPS.NAME.LINK_URL).toString().startsWith(PATHS.PUBLICWEB_SITE_PATH) && !nodetemp.get(PROPS.NAME.LINK_URL).toString().startsWith(expectedNodePath)) {
+              correctlinkURL = getCorrectUrlAsPerCurrentPageLocale(nodetemp.path, nodetemp.get(PROPS.NAME.LINK_URL).toString(), presentCountryLangCode)
+              if (correctlinkURL.contains(PATHS.NEWS_ARCHIVE_PATH_REF)) {
+                newsArchivePagesThatsNotChanged.add([nodetemp.path.toString(), nodetemp.get(PROPS.NAME.LINK_URL).toString()])
+              } else {
+                pagesWithIncorrectLink.add([nodetemp.path, nodetemp.get(PROPS.NAME.LINK_URL).toString(), correctlinkURL])
+                if (!correctlinkURL.contains("?") && !resourceResolver.getResource(correctlinkURL)) {
+                  pagesWithExceptionalLinks.add([nodetemp.path.toString(), nodetemp.get(PROPS.NAME.LINK_URL).toString(), correctlinkURL])
+                }
+                nodetemp.setProperty(PROPS.NAME.LINK_URL, correctlinkURL)
+                noOfNodesWith404LinkIssue++
+                pageChangedFlag = true
+              }
+            }
+            else if (nodetemp.hasProperty(PROPS.NAME.LINK_URL1) && nodetemp.get(PROPS.NAME.LINK_URL1).toString().startsWith(PATHS.PUBLICWEB_SITE_PATH) && !nodetemp.get(PROPS.NAME.LINK_URL1).toString().startsWith(expectedNodePath)) {
+              correctlinkUrl = getCorrectUrlAsPerCurrentPageLocale(nodetemp.path, nodetemp.get(PROPS.NAME.LINK_URL1).toString(), presentCountryLangCode)
+              if (correctlinkUrl.contains(PATHS.NEWS_ARCHIVE_PATH_REF)) {
+                newsArchivePagesThatsNotChanged.add([nodetemp.path.toString(), nodetemp.get(PROPS.NAME.LINK_URL).toString()])
+              } else {
+                pagesWithIncorrectLink.add([nodetemp.path, nodetemp.get(PROPS.NAME.LINK_URL1).toString(), correctlinkUrl])
+                if (!correctlinkUrl.contains("?") && !resourceResolver.getResource(correctlinkUrl)) {
+                  pagesWithExceptionalLinks.add([nodetemp.path.toString(), nodetemp.get(PROPS.NAME.LINK_URL1).toString(), correctlinkUrl])
+                }
+                nodetemp.setProperty(PROPS.NAME.LINK_URL1, correctlinkUrl)
+                noOfNodesWith404LinkIssue++
+                pageChangedFlag = true
+              }
+            } else if (nodetemp.hasProperty(PROPS.NAME.LINK_PATH) && nodetemp.get(PROPS.NAME.LINK_PATH).toString().startsWith(PATHS.PUBLICWEB_SITE_PATH) && !nodetemp.get(PROPS.NAME.LINK_PATH).toString().startsWith(expectedNodePath)) {
+              correctlinkPath = getCorrectUrlAsPerCurrentPageLocale(nodetemp.path, nodetemp.get(PROPS.NAME.LINK_PATH).toString(), presentCountryLangCode)
+              if (correctlinkPath.contains(PATHS.NEWS_ARCHIVE_PATH_REF)) {
+                newsArchivePagesThatsNotChanged.add([nodetemp.path.toString(), nodetemp.get(PROPS.NAME.LINK_URL).toString()])
+              } else {
+                pagesWithIncorrectLink.add([nodetemp.path, nodetemp.get(PROPS.NAME.LINK_PATH).toString(), correctlinkPath])
+                if (!correctlinkPath.contains("?") && !resourceResolver.getResource(correctlinkPath)) {
+                  pagesWithExceptionalLinks.add([nodetemp.path.toString(), nodetemp.get(PROPS.NAME.LINK_PATH).toString(), correctlinkPath])
+                }
+                nodetemp.setProperty(PROPS.NAME.LINK_PATH, correctlinkPath)
+                noOfNodesWith404LinkIssue++
+                pageChangedFlag = true
+              }
+            } else if (nodetemp.hasProperty(PROPS.NAME.LINK) && nodetemp.get(PROPS.NAME.LINK).toString().startsWith(PATHS.PUBLICWEB_SITE_PATH) && !nodetemp.get(PROPS.NAME.LINK).toString().startsWith(expectedNodePath)) {
+              correctlink = getCorrectUrlAsPerCurrentPageLocale(nodetemp.path, nodetemp.get(PROPS.NAME.LINK).toString(), presentCountryLangCode)
+              if (correctlink.contains(PATHS.NEWS_ARCHIVE_PATH_REF)) {
+                newsArchivePagesThatsNotChanged.add([nodetemp.path.toString(), nodetemp.get(PROPS.NAME.LINK_URL).toString()])
+              } else {
+                pagesWithIncorrectLink.add([nodetemp.path, nodetemp.get(PROPS.NAME.LINK).toString(), correctlink])
+                if (!correctlink.contains("?") && !resourceResolver.getResource(correctlink)) {
+                  pagesWithExceptionalLinks.add([nodetemp.path.toString(), nodetemp.get(PROPS.NAME.LINK).toString(), correctlink])
+                }
+                nodetemp.setProperty(PROPS.NAME.LINK, correctlink)
+                noOfNodesWith404LinkIssue++
+                pageChangedFlag = true
+              }
+            }
+            /**handling issue with linkURL,linkUrl,linkPath,link ends**/
+
+          }
+        }
+        if (pageChangedFlag && !page.path.startsWith(PATHS.LANG_MASTERS_PATH_WITH_SLASH)) {
+          pagesToBePublished.add([page.path])
+        }
+      }
+    }
+  }
+}
+
+def getCorrectUrlAsPerCurrentPageLocale(nodepath, internalUrl, currentCountryLangCode) {
+  if (StringUtils.ordinalIndexOf(internalUrl, "/", 6) == -1) {
+    println "Strange References of link at " + nodepath + "with link " + internalUrl
+    return internalUrl
+  }
+  return internalUrl.replace(internalUrl.substring(StringUtils.ordinalIndexOf(internalUrl, "/", 4) + 1, StringUtils.ordinalIndexOf(internalUrl, "/", 6)), currentCountryLangCode)
+}
+/*
+if DRY_RUN is false, it will save the session value in crx
+*/
+if (!DRY_RUN) {
+  save()
+}
+println "TOTAL NUMBER OF NODES CHANGED DUE TO INCORRECT LINK :: " + noOfNodesWith404LinkIssue
+println "---------------------------------------------------------------------------------------------------------"
+println "Pages/Nodes Published (if DRY_RUN flag is false)"
+pagesToBePublished.each {
+  index ->println index[0]
+  if (!DRY_RUN) {
+    activate(index[0])
+  }
+}
+println "---------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------Pages with incorrect cq target path ------------------------------------------------------------------"
+println "1st Column is page Path,  2nd Column is the existing incorrect cq target link and 3rd column is the corrected value that is set"
+pagesWithIncorrectCqRedirectTarget.each {
+  index ->println index[0] + " " + index[1] + " " + index[2]
+
+}
+println "---------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------Pages with incorrect link------------------------------------------------------------------"
+println "1st Column is page Path 2nd Column is the existing incorrect link and 3rd column is the corrected value that is set"
+pagesWithIncorrectLink.each {
+  index ->println index[0] + " " + index[1] + " " + index[2]
+
+}
+
+println "---------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------Exceptional Cases(MOST important) Following pages has links which are not current locales ------------"
+println "1st Column is page Path 2nd Column is the existing incorrect link and 3rd column is the corrected value that is set"
+pagesWithExceptionalLinks.each {
+  index ->println index[0] + " " + index[1] + " " + index[2]
+
+}
+
+println "---------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------Pages with incorrect link in richtext------------------------------------------------------------------"
+pagesWithIncorrectHrefInRichText.each {
+  index ->println index[0] + " " + index[1] + " " + index[2]
+
+}
+
+println "---------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------------------------------------------------------------------------------------------------------------- "
+println "----------------------------------------Pages with newsarchive reference which was not changed------------------------------------------------------------------"
+println "1st Column is page Path 2nd Column is the existing reference of news archive page"
+newsArchivePagesThatsNotChanged.each {
+  index ->println index[0] + " " + index[1]
+
+}

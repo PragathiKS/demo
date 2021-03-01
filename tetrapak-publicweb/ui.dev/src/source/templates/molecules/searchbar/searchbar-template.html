@@ -1,7 +1,7 @@
 <sly data-sly-template.searchbar_template="${@ id, inputType, placeholder, inputClass}">
     <div class="pw-search-bar">
         <div class="pw-search-bar__input">
-            <label for="${id}" class="search-label">${'pw.searchResults.searchplaceholder' @i18n}</label>
+            <label for="${id}" class="search-label">${'pw.search.searchbarplaceholder' @i18n}</label>
             <sly data-sly-use.searchInput="/apps/publicweb/components/atoms/input/input-template.html"
                 data-sly-call="${searchInput.input_template @ id=id, inputType=inputType, placeholder=placeholder, inputClass=inputClass}" />
         </div>

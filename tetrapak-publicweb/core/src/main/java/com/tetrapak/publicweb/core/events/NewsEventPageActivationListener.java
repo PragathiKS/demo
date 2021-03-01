@@ -113,7 +113,7 @@ public class NewsEventPageActivationListener implements EventHandler {
                 && PWConstants.PRESS_TEMPLATES.contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
             NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
             addPageLinks(bean, path, resourceResolver);
-            List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean);
+            List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean.getLocale(),bean.getInterestAreas());
             if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
                 String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
                 if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
@@ -160,6 +160,7 @@ public class NewsEventPageActivationListener implements EventHandler {
     public NewsEventBean getNewsEventBean(ValueMap valueMap, String pagePath, ResourceResolver resolver) {
         NewsEventBean bean = new NewsEventBean();
         PageManager pageManager = resolver.adaptTo(PageManager.class);
+        List<String> interestAreas = null;
         String rootPath = LinkUtils.getRootPath(pagePath);
         Page page = pageManager.getPage(LinkUtils.getRootPath(rootPath));
         bean.setLanguage(PageUtil.getLanguageCode(page));
@@ -169,8 +170,11 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setDescription(Objects.nonNull(valueMap.get("jcr:description", String.class))
                 ? valueMap.get("jcr:description", String.class)
                 : StringUtils.EMPTY);
-        if (Objects.nonNull(valueMap.get("cq:tags", String[].class))) {
-            bean.setPageTags(valueMap.get("cq:tags", String[].class));
+        if (Objects.nonNull(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class))) {
+            interestAreas = getInterestAreas(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class));
+            if (Objects.nonNull(interestAreas)) {
+                bean.setInterestAreas(interestAreas);
+            }
         }
         bean.setPageLink(resolver.map(pagePath));
         bean.setNewsroomLink("#");
@@ -284,6 +288,42 @@ public class NewsEventPageActivationListener implements EventHandler {
             }
         }
         return bean;
+    }
+
+    /**
+     * Gets the interest areas.
+     *
+     * @param tags
+     *            the tags
+     * @return the interest areas
+     */
+    private List<String> getInterestAreas(String[] tags) {
+        List<String> interestAreas = new ArrayList<>();
+        for (String tagId : tags) {
+            switch (tagId) {
+                case PWConstants.PW_TAG_SERVICES:
+                    interestAreas.add("Services");
+                    break;
+                case PWConstants.PW_TAG_SUSTAINIBILITY:
+                    interestAreas.add("Sustainability");
+                    break;
+                case PWConstants.PW_TAG_PACKAGING:
+                    interestAreas.add("Packaging");
+                    break;
+                case PWConstants.PW_TAG_INNOVATION:
+                    interestAreas.add("Innovation");
+                    break;
+                case PWConstants.PW_TAG_PROCESSING:
+                    interestAreas.add("Processing");
+                    break;
+                case PWConstants.PW_TAG_END_TO_END_SOLUTIONS:
+                    interestAreas.add("End-To-End");
+                    break;
+                default:
+                    break;
+            }
+        }
+        return interestAreas;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.beans;
 
-// TODO: Auto-generated Javadoc
+import java.util.List;
+
 /**
  * The Class NewsEventBean.
  */
@@ -29,9 +30,9 @@ public class NewsEventBean {
 
     /** The newsroom link. */
     private String newsroomLink;
-
-    /** The page tags. */
-    private String[] pageTags;
+    
+    /** The interest areas. */
+    private List<String> interestAreas;
 
     /** The legal information link. */
     private String legalInformationLink;
@@ -196,24 +197,24 @@ public class NewsEventBean {
     public void setNewsroomLink(String newsroomLink) {
         this.newsroomLink = newsroomLink;
     }
-
+  
     /**
-     * Gets the page tags.
+     * Gets the interest areas.
      *
-     * @return the page tags
+     * @return the interest areas
      */
-    public String[] getPageTags() {
-        return pageTags;
+    public List<String> getInterestAreas() {
+        return interestAreas;
     }
 
     /**
-     * Sets the page tags.
+     * Sets the interest areas.
      *
-     * @param pageTags
-     *            the new page tags
+     * @param interestAreas
+     *            the new interest areas
      */
-    public void setPageTags(String[] pageTags) {
-        this.pageTags = pageTags;
+    public void setInterestAreas(List<String> interestAreas) {
+        this.interestAreas = interestAreas;
     }
 
     /**

@@ -28,7 +28,7 @@
                 <div class="row no-gutters">
                   <!-- Country Language Selection -->
                   <div class="section-wrapper col-md-12 col-lg-3">
-                    <div class="section-box padding-16">
+                    <div class="pw-form-managePreferences__section-box padding-16">
                       <div class="selection-box-title">${'pw.form.managepreferences.countrylang' @i18n}</div>
                       <div auto-locator="manageFormCountrySelector" class="input-field-wrapper country-field-wrapper option-selection">
                         <div class="formfield country-field country"
@@ -98,7 +98,7 @@
                   <!-- Types of communication -->
                   <div class="js-types-of-communication section-wrapper padding-24 col-md-12 col-lg-3">
 
-                    <div class="section-box padding-16">
+                    <div class="pw-form-managePreferences__section-box padding-16">
                       <div class="selection-box-title">${'pw.form.managepreferences.receive' @i18n}</div>
                       <div name='communication-type-input' class="formfield input-group" data-input-value="false">
                         <div class='row no-gutters'>
@@ -110,9 +110,9 @@
                                   id="marketing-communication"
                                   class="form-control tpatom-checkbox__input float-left  communication-type"
                                   type="checkbox" name="marketing-communication"
-                                  value="${'pw.form.managepreferences.marketingcomm' @i18n, locale = 'en'}">
+                                  value="${'pw.form.subscriptionFormMarketingComm' @i18n, locale = 'en'}">
                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-                                ${'pw.form.managepreferences.marketingcomm' @i18n}</label>
+                                ${'pw.form.subscriptionFormMarketingComm' @i18n}</label>
                             </div>
                           </div>
                           <div class="input-field-wrapper col-lg-12 option-selection">
@@ -124,9 +124,9 @@
                                   id="pres-and-media-communication"
                                   class="form-control tpatom-checkbox__input float-left  communication-type"
                                   type="checkbox" name="pres-and-media-communication"
-                                  value="${'pw.form.managepreferences.pressmediacomm' @i18n, locale = 'en'}">
+                                  value="${'pw.form.subscriptionFormPressMediaComm' @i18n, locale = 'en'}">
                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-                                ${'pw.form.managepreferences.pressmediacomm' @i18n}</label>
+                                ${'pw.form.subscriptionFormPressMediaComm' @i18n}</label>
                             </div>
                           </div>
 
@@ -138,9 +138,9 @@
                                 <input auto-locator="preferenceFormEventInviteInput" id="event-invitation"
                                   class="form-control tpatom-checkbox__input float-left  communication-type"
                                   type="checkbox" name="event-invitation"
-                                  value="${'pw.form.managepreferences.eventinvitation' @i18n, locale = 'en'}">
+                                  value="${'pw.form.subscriptionFormEventInvitation' @i18n, locale = 'en'}">
                                 <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-                                ${'pw.form.managepreferences.eventinvitation' @i18n}</label>
+                                ${'pw.form.subscriptionFormEventInvitation' @i18n}</label>
                             </div>
                           </div>
 
@@ -279,7 +279,7 @@
                   <div auto-locator="preferenceFormUnSubscribeDescription" class="unsubscribe-description">
                     ${data.configItems.unsubscribeIntroText @ context='html'}
                   </div>
-                  <div name="consent-checkbox" class="consent-checkbox formfield input-group" data-input-value="false">
+                  <div name="consent-checkbox" class="consent-checkbox formfield" data-input-value="false">
 
                     <div class="checkbox-field">
                       <label class="checkbox-label consentlabel" for="consentcheckbox">
@@ -288,7 +288,7 @@
                         <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                         ${'pw.form.managepreferences.nocommmessage' @i18n}</label>
                     </div>
-                    <div class="errorMsg error-msg">${'pw.form.managepreferences.errormsg1' @i18n}</div>
+                    <div class="errorMsg error-msg">${'pw.form.errormsg.subscriptionFormSelectComm' @i18n}</div>
                   </div>
                 </div>
               </div>

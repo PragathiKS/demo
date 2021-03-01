@@ -76,6 +76,10 @@ public class RedirectFilter implements Filter {
             Resource pageContentRes = PageUtil.getCurrentPage(slingRequest.getResource()).getContentResource();
             if (Objects.nonNull(pageContentRes) && pageContentRes.getValueMap().containsKey("cq:redirectTarget")) {
                 redirect = (String) pageContentRes.getValueMap().get("cq:redirectTarget");
+                if (redirect.endsWith("/search") && (pageContentRes.getPath().contains("/news-and-events/news-room")
+                        || pageContentRes.getPath().contains("/news-and-events/newsarchive"))) {
+                    redirect = redirect + "?contentType=news&page=1";
+                }
             }
         }
         return redirect;
