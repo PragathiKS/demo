@@ -8,7 +8,7 @@
         ## hostname globbing for farm selection (virtual domain addressing)
         /virtualhosts {
                 #$include "/etc/httpd/conf.dispatcher.d/vhosts/ams_publish_vhosts.any" 
-     "https://anytimelearning-dev.tetrapak.com"
+     "https://anytimelearning-stage.tetrapak.com"
         }
         /sessionmanagement
        {
@@ -129,6 +129,7 @@
 		/auth_checker
                   {
                   # request is sent to this URL with '?uri=<page>' appended
+				  #TODO: Change to TRS specific auth checker
                   /url "/bin/trs/permissioncheck"
 
                   # only the requested pages matching the filter section below are checked,
