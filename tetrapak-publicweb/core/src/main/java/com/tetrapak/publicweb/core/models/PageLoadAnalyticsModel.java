@@ -279,7 +279,9 @@ public class PageLoadAnalyticsModel {
         if (siteSectionIndex < currentPageIndex) {
             final Page siteSectionPage = currentPage.getAbsoluteParent(siteSectionIndex);
             if (siteSectionPage != null) {
-                siteSection.append(siteSectionPage.getName());
+                if(!siteSection.toString().contains(siteSectionPage.getName())) {
+                    siteSection.append(siteSectionPage.getName());
+                }  
                 return true;
             }
         }
