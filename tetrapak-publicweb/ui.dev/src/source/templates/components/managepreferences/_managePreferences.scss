@@ -190,7 +190,7 @@
             display: flex;
         }
         &__section-box {
-            max-width: calc(100% - #{$padding-l});
+            max-width: calc(100% - 26px); // max-width calculation - 24px padding + 2px border
             flex: 1;
         }
         .padding-24 {
