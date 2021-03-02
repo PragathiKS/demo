@@ -266,6 +266,9 @@ public final class PWConstants {
     /** The Constant SE_COUNTRY_CODE for Sweden. */
     public static final String SE_COUNTRY_CODE = "se";
     
+    /** The Constant SE_MARKET_LOCALE for Sweden. */
+    public static final String SE_MARKET_LOCALE = "sv-se";
+    
     /** The Constant NUMBER_FOUR. */
     public static final int NUMBER_FOUR = 4;
     
@@ -329,18 +332,25 @@ public final class PWConstants {
             "/conf/publicweb/settings/wcm/templates/press-release",
             "/conf/publicweb/settings/wcm/templates/news-article");
     
+    /** The Constant CQ_TAGS_PROPERTY. */
     public static final String CQ_TAGS_PROPERTY = "cq:tags";
     
+    /** The Constant PW_TAG_SUSTAINIBILITY. */
     public static final String PW_TAG_SUSTAINIBILITY = "tetrapak:sustainability";
     
+    /** The Constant PW_TAG_PACKAGING. */
     public static final String PW_TAG_PACKAGING = "tetrapak:packaging";
     
+    /** The Constant PW_TAG_PROCESSING. */
     public static final String PW_TAG_PROCESSING = "tetrapak:processing";
     
+    /** The Constant PW_TAG_SERVICES. */
     public static final String PW_TAG_SERVICES = "tetrapak:services";
     
+    /** The Constant PW_TAG_INNOVATION. */
     public static final String PW_TAG_INNOVATION = "tetrapak:innovation";
     
+    /** The Constant PW_TAG_END_TO_END_SOLUTIONS. */
     public static final String PW_TAG_END_TO_END_SOLUTIONS = "tetrapak:end-to-end-solutions";
 
     /** The Constant NEW_ARCHIVE_GLOBAL_PATH. */

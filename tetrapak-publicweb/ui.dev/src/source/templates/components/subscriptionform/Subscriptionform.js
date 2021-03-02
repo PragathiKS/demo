@@ -79,6 +79,7 @@ class Subscriptionform {
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
+    const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
     const langCode = this.cache.businessformapi.data('sf-langcode');
     const pardot_extra_field = $('#pardot_extra_field_sf').val();
 
@@ -90,6 +91,7 @@ class Subscriptionform {
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
+    dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
     dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
     dataObj['country'] = this.cache.requestPayload['country'];
