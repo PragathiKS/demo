@@ -50,7 +50,7 @@ class Teaser {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
     const linkTitle = $this.data('link-title');
-    const teaserTitle= linkTitle + ':' + mainHeading;
+    const teaserTitle= mainHeading + ':' + linkTitle;
     let extension = '';
     if(downloadtype === 'download'){
       extension = $this.attr('href').split('.').pop();
