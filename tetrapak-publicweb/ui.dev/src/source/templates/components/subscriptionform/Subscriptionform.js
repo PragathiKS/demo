@@ -149,7 +149,7 @@ class Subscriptionform {
           if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
             requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
           }
-          if (($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent' && !$(this).is(':checked')) || ($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
             const erLbl = $(`#sf-step-1 label`)[0].textContent;
