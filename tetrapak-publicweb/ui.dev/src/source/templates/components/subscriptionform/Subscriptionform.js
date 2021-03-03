@@ -27,7 +27,8 @@ class Subscriptionform {
       'consent' :'',
       'types-communication':[],
       'interestArea':['Processing','End To End - Solutions','Services','Sustainability','Packaging','Innovation'],
-      'country':''
+      'country':'',
+      'pageurl': window.location.href
     };
 
   }
@@ -95,6 +96,7 @@ class Subscriptionform {
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
     dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
     dataObj['country'] = this.cache.requestPayload['country'];
+    dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
 
     subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
