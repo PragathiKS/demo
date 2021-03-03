@@ -37,7 +37,7 @@ class Teaser {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-teaser-analytics');
-    const mainHeading= $('.tp-teaser__heading .tpatom-heading').text().trim();
+    const mainHeading= $this.data('paren-link-title');
     let linkParentTitle = '';
     let trackingObj = {};
     let eventObj = {};
@@ -50,6 +50,7 @@ class Teaser {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
     const linkTitle = $this.data('link-title');
+    const teaserTitle= linkTitle + ':' + mainHeading;
     let extension = '';
     if(downloadtype === 'download'){
       extension = $this.attr('href').split('.').pop();
@@ -72,7 +73,7 @@ class Teaser {
       linkParentTitle = `Text hyperlink_${linkTitle}`;
     }
     if(linkSection === 'Teaser_imageClick') {
-      linkParentTitle = '' || mainHeading;
+      linkParentTitle = '' || teaserTitle;
     }
 
     if (downloadtype === 'download') {

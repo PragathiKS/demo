@@ -21,6 +21,7 @@
             data-asset-name="${child.assetName}"
             data-download-type=""
             data-button-link-type="${child.pwButtonTheme}"
+            data-paren-link-title="${data.heading}"
           >
 
           <sly data-sly-test = "${!wcmmode.edit}">
@@ -54,6 +55,7 @@
                 data-asset-name="${child.assetName}"
                 data-download-type=""
                 data-button-link-type="${child.pwButtonTheme}"
+                data-paren-link-title="${data.heading}"
                 >
                 <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${child.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
             </a>
