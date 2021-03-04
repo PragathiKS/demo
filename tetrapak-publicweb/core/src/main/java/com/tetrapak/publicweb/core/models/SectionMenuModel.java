@@ -142,24 +142,30 @@ public class SectionMenuModel {
                 }
                 // Set external page url
                 final ExternalTemplateBean externalTemplate = checkExternalTemplate(nextPage);
-                if (externalTemplate.isExternal()) {
-                    sectionMenuBean.setExternal(true);
-                    sectionMenuBean.setLinkPath(externalTemplate.getExternalUrl());
-                } else if (!nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
-                    sectionMenuBean.setExternal(false);
-                    sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), request));
-                    final ValueMap valueMap = nextPage.getProperties();
-                    if (Objects.nonNull(valueMap)
-                            && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
-                        sectionMenuBean.setMobileOverviewLabel(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY));
-                    }
-                }
+                processExternalTemplateData(request, nextPage, sectionMenuBean, externalTemplate);
                 sectionMenuBean.setSubSectionMenu(
                         populateSubSectionMenu(megaMenuConfigurationModel, nextPage, path, request));
                 sectionMenu.add(sectionMenuBean);
             }
         }
     }
+
+    private void processExternalTemplateData(final SlingHttpServletRequest request, final Page nextPage,
+            final SectionMenuBean sectionMenuBean, final ExternalTemplateBean externalTemplate) {
+        if (externalTemplate.isExternal()) {
+            sectionMenuBean.setExternal(true);
+            sectionMenuBean.setLinkPath(externalTemplate.getExternalUrl());
+        } else if (!nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
+            sectionMenuBean.setExternal(false);
+            sectionMenuBean.setLinkPath(LinkUtils.sanitizeLink(nextPage.getPath(), request));
+            final ValueMap valueMap = nextPage.getProperties();
+            if (Objects.nonNull(valueMap)
+                    && StringUtils.isNotBlank(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY))) {
+                sectionMenuBean.setMobileOverviewLabel(valueMap.get(MOBILE_OVERVIEW_LABEL, StringUtils.EMPTY));
+            }
+        }
+    }
+    
 
     /**
      * Check external template.
