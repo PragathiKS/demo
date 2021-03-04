@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.events;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -68,6 +69,11 @@ public class NewsEventPageActivationListener implements EventHandler {
     /** The pardot service. */
     @Reference
     private PardotService pardotService;
+    
+    /** The Constant PRESS_TEMPLATES. */
+    private static final List<String> PRESS_TEMPLATES = Arrays.asList(
+            "/conf/publicweb/settings/wcm/templates/press-release",
+            "/conf/publicweb/settings/wcm/templates/news-article");
 
     /**
      * Handle event.
@@ -110,7 +116,7 @@ public class NewsEventPageActivationListener implements EventHandler {
             throws PersistenceException {
         ValueMap valueMap = resource.getValueMap();
         if (Objects.isNull(valueMap.get(PWConstants.EVENT_PUBLISHED_PROPERTY))
-                && PWConstants.PRESS_TEMPLATES.contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
+                && PRESS_TEMPLATES.contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
             NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
             addPageLinks(bean, path, resourceResolver);
             List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean.getLocale(),bean.getInterestAreas());

@@ -37,6 +37,9 @@ public class PreviewFilter implements Filter {
     
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PreviewFilter.class);
+    
+    /** The Constant PREVIEW. */
+    private static final String PREVIEW = "preview";
 
     /** The is skip. */
     private Boolean isSkip = true;
@@ -60,12 +63,12 @@ public class PreviewFilter implements Filter {
             throws IOException, ServletException {
         final SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
         final SlingHttpServletResponse slingResponse = (SlingHttpServletResponse) response;
-        final String previewParam = slingRequest.getParameter("preview");
+        final String previewParam = slingRequest.getParameter(PREVIEW);
         LOGGER.info("previewParam : {} , header :{}, salt: {}, pathinfo: {}", previewParam,
-                slingRequest.getHeader("preview"), isSaltInValid(slingRequest, previewParam),
+                slingRequest.getHeader(PREVIEW), isSaltInValid(slingRequest, previewParam),
                 slingRequest.getPathInfo());
         if (Boolean.FALSE.equals(isSkip) && slingRequest.getPathInfo().startsWith("/content/tetrapak/publicweb")
-                && "true".equalsIgnoreCase(slingRequest.getHeader("preview"))
+                && "true".equalsIgnoreCase(slingRequest.getHeader(PREVIEW))
                 && Boolean.TRUE.equals(isSaltInValid(slingRequest, previewParam))) {
             slingResponse.sendRedirect("/system/sling/logout.html?resource=" + slingRequest.getPathInfo());
         }

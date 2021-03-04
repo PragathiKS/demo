@@ -327,11 +327,6 @@ public final class PWConstants {
     /** The Constant EVENT_PUBLISHED_PROPERTY. */
     public static final String EVENT_PUBLISHED_PROPERTY = "eventPublished";
     
-    /** The Constant PRESS_TEMPLATES. */
-    public static final List<String> PRESS_TEMPLATES = Arrays.asList(
-            "/conf/publicweb/settings/wcm/templates/press-release",
-            "/conf/publicweb/settings/wcm/templates/news-article");
-    
     /** The Constant CQ_TAGS_PROPERTY. */
     public static final String CQ_TAGS_PROPERTY = "cq:tags";
     
