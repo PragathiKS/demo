@@ -21,12 +21,14 @@ class Subscriptionform {
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$dropdownButton = $('.dropdown-menu, .dropdown-toggle', this.root);
     this.cache.countryList = [];
-
+    this.cache.areaOfInterest = $('.i18n-keys',this.root).data('i18n').split(',').map(function(item) {
+      return item.trim();
+    });
     this.cache.requestPayload = {
       'emailSubscription': '',
       'consent' :'',
       'types-communication':[],
-      'interestArea':['Processing','End To End - Solutions','Services','Sustainability','Packaging','Innovation'],
+      'interestArea':this.cache.areaOfInterest,
       'country':'',
       'pageurl': window.location.href
     };
