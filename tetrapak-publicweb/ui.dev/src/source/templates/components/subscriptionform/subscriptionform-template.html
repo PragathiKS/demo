@@ -4,6 +4,7 @@
       <div class="pw-subscriptionForm-form pw-theme--${data.pwTheme} pw-padding--regular pw-margin--regular"
         id="pw-sfUs" auto_locator="SubscriptionFormStepsWrapper">
         <div class="tab-content">
+          <div class="i18n-keys d-none" data-i18n="${'pw.form.businessenq.services' @i18n, locale = 'en'}, ${'pw.form.businessenq.packaging' @i18n, locale = 'en'}, ${'pw.form.businessenq.processing' @i18n, locale = 'en'}, ${'pw.form.managepreferences.innovation' @i18n, locale = 'en'},${'pw.form.contactus.sustainability' @i18n, locale = 'en'},${'pw.form.businessenq.endtoendsolution' @i18n, locale = 'en'}"></div>
           <form class="pw-form pw-form-subscriptionForm" accept-charset="UTF-8" data-sf-api-servlet="${data.apiUrl}"
             data-sf-countryCode="${data.siteCountry}" data-sf-langCode="${data.siteLanguage}" data-sf-marketSiteSubscribed="${data.marketSiteSubscribed}" autocomplete="off">
             <input type="text" name="pardot_extra_field" id="pardot_extra_field_sf" class="d-none" tabindex="-1" title="pardot input filed for subscription" />
