@@ -50,7 +50,7 @@ class Teaser {
     const downloadtype = $this.data('download-type');
     const dwnDocName = $this.data('asset-name');
     const linkTitle = $this.data('link-title');
-    const teaserTitle= mainHeading + ':' + linkTitle;
+    const teaserTitle= mainHeading+':'+linkTitle;
     let extension = '';
     if(downloadtype === 'download'){
       extension = $this.attr('href').split('.').pop();
@@ -58,19 +58,19 @@ class Teaser {
 
 
     if (buttonLinkType === 'secondary' && downloadtype === 'download') {
-      linkParentTitle = `CTA_Download_${extension}_${linkTitle}`;
+      linkParentTitle = `CTA_Download_${extension}_${teaserTitle}`;
     }
 
     if (buttonLinkType === 'link' && downloadtype === 'download') {
-      linkParentTitle = `Text hyperlink_Download_${extension}_${linkTitle}`;
+      linkParentTitle = `Text hyperlink_Download_${extension}_${teaserTitle}`;
     }
 
     if (buttonLinkType === 'secondary' && downloadtype !== 'download') {
-      linkParentTitle = `CTA_${linkTitle}`;
+      linkParentTitle = `CTA_${teaserTitle}`;
     }
 
     if (buttonLinkType === 'link' && downloadtype !== 'download') {
-      linkParentTitle = `Text hyperlink_${linkTitle}`;
+      linkParentTitle = `Text hyperlink_${teaserTitle}`;
     }
     if(linkSection === 'Teaser_imageClick') {
       linkParentTitle = '' || teaserTitle;
