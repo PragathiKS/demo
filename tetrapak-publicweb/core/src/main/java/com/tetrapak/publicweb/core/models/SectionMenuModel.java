@@ -150,6 +150,18 @@ public class SectionMenuModel {
         }
     }
 
+    /**
+     * Process external template data.
+     *
+     * @param request
+     *            the request
+     * @param nextPage
+     *            the next page
+     * @param sectionMenuBean
+     *            the section menu bean
+     * @param externalTemplate
+     *            the external template
+     */
     private void processExternalTemplateData(final SlingHttpServletRequest request, final Page nextPage,
             final SectionMenuBean sectionMenuBean, final ExternalTemplateBean externalTemplate) {
         if (externalTemplate.isExternal()) {
