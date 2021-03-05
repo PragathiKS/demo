@@ -14,10 +14,10 @@
 
 ## This rule allows content to be access
 #/0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv)' /path "/content/*" }  ## disable this rule to allow mapped content only
-/006 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv|txt)' /path "/content/dam/tetrapak/*" }
-/007 { /type "allow" /extension "html" /path "/content/tetrapak/publicweb/*" }
-/008 { /type "allow" /extension "html" /path "/content/online-help/publicweb/*" }
-/009 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv|txt)' /path "/content/dam/online-help/*" }
+/007 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv|txt)' /path "/content/dam/tetrapak/*" }
+/008 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|xls|xlsx|doc|docx|mp4|wmv|txt)' /path "/content/dam/design-system/*" }
+/009 { /type "allow" /extension "html" /path "/content/tetrapak/publicweb/*" }
+/0010 { /type "allow" /extension "html" /path "/content/design-system/*" }
 #/0010 { /type "allow" /path  "/content/*"}
 
 ## Enable specific mime types in non-public content directories
