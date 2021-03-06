@@ -325,8 +325,7 @@ pipeline {
     def zaptest() {
                 echo "Starting Zap Test Run- ${appname}"
                 sh 'sudo docker ps -a'
-				sh 'sudo docker stop zap'
-                sh 'sudo docker rm zap'
+				sh 'if docker ps | grep zap; then echo "ZAP is running, initiating stop and remove" && docker stop zap && docker rm zap ; else echo && docker rm zap ; else echo "stopped"; fi'
                 sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
                 sleep 30
                 echo "Starting ZAP test Run on ${appname} Urls"
