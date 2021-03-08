@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import javax.inject.Inject;
@@ -9,6 +10,8 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.FooterLinkModel;
 import com.tetrapak.publicweb.core.models.multifield.SocialLinkModel;
 
@@ -93,12 +96,39 @@ public class FooterConfigurationModel {
      */
     public List<SocialLinkModel> getSocialLinks() {
         final List<SocialLinkModel> lists = new ArrayList<>();
+        String countryCode = resource.getPath().split(PWConstants.SLASH)[5];
         if (Objects.nonNull(socialLinks)) {
-            lists.addAll(socialLinks);
+        	String [] valueArray = {"Xing","Vkontake"};
+        	lists.addAll(socialLinks);
+        	if (countryCode.equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)) {
+        		modifyList(lists,valueArray[0]);
+            } else if (countryCode.equalsIgnoreCase(PWConstants.DE_COUNTRY_CODE)) {
+            	modifyList(lists,valueArray[1]);
+            } else {
+            	for (String value : valueArray) {
+            		modifyList(lists, value);
+            	}
+            }
         }
         return lists;
-
     }
+    
+    /**
+     * Modify list.
+     *
+     * @param lists the lists
+     * @param socialName the social name
+     */
+    private void modifyList(final List<SocialLinkModel> lists, String socialName) {
+		Iterator<SocialLinkModel> itr = lists.iterator();
+		while(itr.hasNext()) {
+			SocialLinkModel modelEntry = itr.next();
+			if (modelEntry.getSocialMedia().equalsIgnoreCase(socialName)) {
+				lists.remove(modelEntry);
+				break;
+			}
+		}
+	}
 
     /**
      * Gets the footer link.
