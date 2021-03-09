@@ -153,6 +153,14 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Weibo"
                                                             value="Weibo"/>
+														<vkontake
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Vkontake"
+                                                            value="Vkontake"/>
+														<xing
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Xing"
+                                                            value="Xing"/>
                                                     </items>
                                                 </socialmedia>
                                                 <sociallinkpath
