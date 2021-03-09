@@ -5,10 +5,10 @@
 
 @font-face {
 	font-family:"pw-icons";
-	src:url("../../../assets/fonts/pw-icons.eot?b89f67dd96bdb44efe76acf2d6b6ce7e");
-	src:url("../../../assets/fonts/pw-icons.eot?b89f67dd96bdb44efe76acf2d6b6ce7e#iefix") format("embedded-opentype"),
-		url("../../../assets/fonts/pw-icons.woff?b89f67dd96bdb44efe76acf2d6b6ce7e") format("woff"),
-		url("../../../assets/fonts/pw-icons.ttf?b89f67dd96bdb44efe76acf2d6b6ce7e") format("truetype");
+	src:url("../../../assets/fonts/pw-icons.eot?3a3508eeec51ae17c1c39d49c06928ba");
+	src:url("../../../assets/fonts/pw-icons.eot?3a3508eeec51ae17c1c39d49c06928ba#iefix") format("embedded-opentype"),
+		url("../../../assets/fonts/pw-icons.woff?3a3508eeec51ae17c1c39d49c06928ba") format("woff"),
+		url("../../../assets/fonts/pw-icons.ttf?3a3508eeec51ae17c1c39d49c06928ba") format("truetype");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -257,19 +257,31 @@
 
 
 
-.icon-WeChat_pw:before {
+.icon-Vkontakte_pw:before {
 	content:"\f126";
 }
 
 
 
-.icon-Weibo_pw:before {
+.icon-WeChat_pw:before {
 	content:"\f127";
 }
 
 
 
-.icon-Youtube_pw:before {
+.icon-Weibo_pw:before {
 	content:"\f128";
+}
+
+
+
+.icon-Xing_pw:before {
+	content:"\f129";
+}
+
+
+
+.icon-Youtube_pw:before {
+	content:"\f12a";
 }
 
