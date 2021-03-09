@@ -153,10 +153,10 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Weibo"
                                                             value="Weibo"/>
-														<vkontake
+														<vkontakte
                                                             jcr:primaryType="nt:unstructured"
-                                                            text="Vkontake"
-                                                            value="Vkontake"/>
+                                                            text="Vkontakte"
+                                                            value="Vkontakte"/>
 														<xing
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Xing"

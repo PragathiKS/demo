@@ -98,7 +98,7 @@ public class FooterConfigurationModel {
         final List<SocialLinkModel> lists = new ArrayList<>();
         String countryCode = resource.getPath().split(PWConstants.SLASH)[5];
         if (Objects.nonNull(socialLinks)) {
-        	final String [] valueArray = {"Xing","Vkontake"};
+        	final String [] valueArray = {"Xing","Vkontakte"};
         	lists.addAll(socialLinks);
         	if (countryCode.equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)) {
         		modifyList(lists,valueArray[0]);
