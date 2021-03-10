@@ -1,4 +1,5 @@
 <sly data-sly-template.teaser_template="${@data, flag}">
+<sly data-sly-test="${data.teaserList}">
   <div class="pw-container" data-module="teaser">
     <section class="tp-teaser pw-theme--${data.pwTheme}"  id="${data.anchorId}" title="${data.anchorTitle}" >
       <div data-sly-test="${data.heading}" class="tp-teaser__heading">
@@ -69,4 +70,5 @@
       </div>
     </section>
   </div>
+</sly>
 </sly>

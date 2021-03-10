@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +13,9 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
@@ -37,6 +40,8 @@ public class PXPFillingMachinesModel {
     private SlingHttpServletRequest request;
     
     /** The resource. */
+    @Self
+    @Via("resource")
     private Resource resource;
 
     /** The heading. */
@@ -63,9 +68,6 @@ public class PXPFillingMachinesModel {
     @ValueMapValue
     private String anchorTitle;
 
-    /** The filling machine list. */
-    private List<FillingMachine> fillingMachineList;
-
     /** The teaser list. */
     private final List<ManualModel> teaserList = new ArrayList<>();
 
@@ -77,10 +79,11 @@ public class PXPFillingMachinesModel {
      */
     @PostConstruct
     protected void init() {
-        resource = request.getResource();
+    	LOGGER.debug("Inside init of {}", this.getClass().getName());
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        fillingMachineList = product.getFillingMachineReferences();
-        setTeaserList(fillingMachineList);
+        if (Objects.nonNull(product)) {
+        	setTeaserList(product.getFillingMachineReferences());
+        }
     }
 
     /**
@@ -98,7 +101,7 @@ public class PXPFillingMachinesModel {
      * @param list the new teaser list
      */
     private void setTeaserList(final List<FillingMachine> list) {
-        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(request, getIdList(), resource,
+        final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(request, getIdList(list), resource,
                 queryBuilder);
         for (final FillingMachine fillingMachine : list) {
             final ManualModel teaser = new ManualModel();
@@ -120,7 +123,7 @@ public class PXPFillingMachinesModel {
      *
      * @return the id list
      */
-    private List<String> getIdList() {
+    private List<String> getIdList(List<FillingMachine> fillingMachineList) {
         return fillingMachineList.stream().filter(list -> list.getId() != null).map(FillingMachine::getId)
                 .collect(Collectors.toList());
     }

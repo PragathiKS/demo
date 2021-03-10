@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
@@ -58,9 +59,12 @@ public class PXPShapesVolumesModel {
      * Inits the.
      */
     @PostConstruct
-    protected void init() {
+    protected void init() { 
+        LOGGER.debug("Inside init of {}", this.getClass().getName());
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        setShapesList(product.getShapes());
+        if (Objects.nonNull(product)) {
+        	setShapesList(product.getShapes());
+        }
     }
 
     /**
