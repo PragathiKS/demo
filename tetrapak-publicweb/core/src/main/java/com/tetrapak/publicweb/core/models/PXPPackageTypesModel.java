@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.search.QueryBuilder;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.Shape;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 
@@ -95,7 +96,7 @@ public class PXPPackageTypesModel {
         for (final Packagetype packageType : list) {
             for (final Shape shape : packageType.getShapes()) {
                 final ManualModel teaser = new ManualModel();
-                final String title = packageType.getName().concat(" ").concat(shape.getName());
+                final String title = packageType.getName().concat(PWConstants.SPACE).concat(shape.getName());
                 teaser.setTitle(title);
                 if (null != shape.getVolumes()) {
                     teaser.setDescription(getDescription(shape.getVolumes()));
