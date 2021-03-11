@@ -439,6 +439,10 @@ public class PageLoadAnalyticsModel {
             for (String seLocale : PWConstants.seLocaleValues) {
                 setHrefLangValues(resourceResolver, seLocale, currentPagePathInLoop);
             }
+        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.AU_COUNTRY_CODE)) {
+            for (String auLocale : PWConstants.auLocaleValues) {
+                setHrefLangValues(resourceResolver, auLocale, currentPagePathInLoop);
+            }
         } else {
             for (String esLocale : PWConstants.esLocaleValues) {
                 setHrefLangValues(resourceResolver, esLocale, currentPagePathInLoop);
