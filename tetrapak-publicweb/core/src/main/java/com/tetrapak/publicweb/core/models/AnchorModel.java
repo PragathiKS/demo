@@ -56,7 +56,7 @@ public class AnchorModel {
                     final ValueMap vMap = childResource.getValueMap();
                     final String anchorId = vMap.get("anchorId", StringUtils.EMPTY);
                     final String anchorTitle = vMap.get("anchorTitle", StringUtils.EMPTY);
-                    setAnchorBean(bean, anchorId, anchorTitle, childResource.getPath());
+                    setAnchorBean(bean, anchorId, anchorTitle, childResource.getResourceType());
                 }
             }
         }
