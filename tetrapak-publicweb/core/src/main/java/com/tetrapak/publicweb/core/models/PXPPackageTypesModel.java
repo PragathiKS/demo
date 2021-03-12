@@ -3,24 +3,24 @@ package com.tetrapak.publicweb.core.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
-
 import javax.annotation.PostConstruct;
-
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.day.cq.search.QueryBuilder;
 import com.tetrapak.publicweb.core.beans.pxp.Packagetype;
 import com.tetrapak.publicweb.core.beans.pxp.Shape;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.utils.ProductPageUtil;
 
@@ -38,6 +38,8 @@ public class PXPPackageTypesModel {
     @Self
     private SlingHttpServletRequest request;
     
+    @Self
+    @Via("resource")
     private Resource resource;
 
     /** The heading. */
@@ -75,9 +77,11 @@ public class PXPPackageTypesModel {
      */
     @PostConstruct
     protected void init() {
-        resource = request.getResource();
+    	LOGGER.debug("Inside init of {}", this.getClass().getName());
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        setPackageTypeList(product.getPackageTypeReferences());
+        if (Objects.nonNull(product)) {
+        	setPackageTypeList(product.getPackageTypeReferences());
+        }	
     }
 
     /**
@@ -92,7 +96,7 @@ public class PXPPackageTypesModel {
         for (final Packagetype packageType : list) {
             for (final Shape shape : packageType.getShapes()) {
                 final ManualModel teaser = new ManualModel();
-                final String title = packageType.getName().concat(" ").concat(shape.getName());
+                final String title = packageType.getName().concat(PWConstants.SPACE).concat(shape.getName());
                 teaser.setTitle(title);
                 if (null != shape.getVolumes()) {
                     teaser.setDescription(getDescription(shape.getVolumes()));

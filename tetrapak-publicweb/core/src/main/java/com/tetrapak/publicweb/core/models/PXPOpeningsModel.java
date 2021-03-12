@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
@@ -103,9 +104,12 @@ public class PXPOpeningsModel {
      */
     @PostConstruct
     protected void init() {
+    	LOGGER.debug("Inside init of {}", this.getClass().getName());
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        setI18n();
-        setTeaserList(product.getOpeningClousers());
+        if (Objects.nonNull(product)) {
+        	setI18n();
+            setTeaserList(product.getOpeningClousers());
+        }
     }
 
     /**
