@@ -1,6 +1,5 @@
 <sly data-sly-template.tabslist_template="${@data, componentName, flag}">
   <sly data-sly-test.parentHeading="${data.heading}" />
-  <sly data-sly-test="${data.tabs}">
   <div auto-locator="${componentName}" id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-module="TabsList">
     <div
       class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
@@ -161,5 +160,4 @@
       </div>
     </div>
   </div>
-</sly>
 </sly>

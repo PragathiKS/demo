@@ -3,5 +3,7 @@
 </sly>
 
 <sly data-sly-use.model="com.tetrapak.publicweb.core.models.PXPPackageTypesModel"
-     data-sly-use.lib="/apps/publicweb/components/content/teaser/teaser-template.html"
-     data-sly-call="${lib.teaser_template @ data=model, componentName='pxppackagetypes'}" />
+     data-sly-use.lib="/apps/publicweb/components/content/teaser/teaser-template.html"/>
+<sly data-sly-test=${model.teaserList}>
+	<sly data-sly-call="${lib.teaser_template @ data=model, componentName='pxppackagetypes'}" />
+</sly>
