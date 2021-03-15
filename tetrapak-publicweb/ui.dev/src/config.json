@@ -159,7 +159,16 @@
         "source/templates/components/subscriptionform/",
         "source/templates/components/searchbar/",
         "source/templates/components/searchresults/",
-        "source/templates/components/managepreferences/"
+        "source/templates/components/managepreferences/",
+        "source/templates/components/header/",
+        "source/templates/components/footer/",
+        "source/templates/components/cookieconsent/",
+        "source/templates/components/errorpage/",
+        "source/templates/components/breadcrumb/",
+        "source/templates/components/textVideo/",
+        "source/templates/components/video/",
+        "source/templates/components/errorPage/",
+        "source/templates/components/pagination/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
