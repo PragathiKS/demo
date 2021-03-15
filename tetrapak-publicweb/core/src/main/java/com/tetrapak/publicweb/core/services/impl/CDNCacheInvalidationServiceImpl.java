@@ -348,23 +348,23 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
 
     /**
      * method to find difference between two dates in minutes
-     * @param start_date
-     * @param end_date
+     * @param startDate
+     * @param endDate
      * @return
      */
-    private long findDateDifferenceInMinutes (final String start_date, final String end_date) {
+    private long findDateDifferenceInMinutes (final String startDate, final String endDate) {
         final SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
-        long difference_In_Minutes = 0;
+        long differenceInTime = 0;
         try {
-            long difference_In_Time
-                    = sdf.parse(end_date).getTime() - sdf.parse(start_date).getTime();
-            difference_In_Minutes = TimeUnit
+            differenceInTime
+                    = sdf.parse(endDate).getTime() - sdf.parse(startDate).getTime();
+            differenceInTime = TimeUnit
                     .MILLISECONDS
-                    .toMinutes(difference_In_Time)
+                    .toMinutes(differenceInTime)
                     % 60;
         } catch (java.text.ParseException e) {
             e.printStackTrace();
         }
-        return difference_In_Minutes;
+        return differenceInTime;
     }
 }
