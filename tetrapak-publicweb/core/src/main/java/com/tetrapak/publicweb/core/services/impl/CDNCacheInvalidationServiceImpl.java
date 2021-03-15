@@ -5,11 +5,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.SimpleTimeZone;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -87,6 +84,12 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      */
     private static final String SI_PROTOCOL = "cdn-serviceinsight://";
 
+    /** path of directory to be purged in cdn **/
+    private String directoryToBePurged = StringUtils.EMPTY;
+
+    /** Static variable to host cdn request directory path along with their timestamp **/
+    private static Map<String, String> cdnRequestTimeStampRecord= new HashMap<>();
+
     /**
      * activate method.
      *
@@ -121,7 +124,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
         final HttpGet request = new HttpGet(fullHttpUrl);
         tx.getLog().info("------ Triggering TEST RUN ------");
         tx.getLog().info("URL :: " + fullHttpUrl);
-        return getResult(sendRequest(request, ctx, tx), tx);
+        return getResult(sendRequest(request, ctx, tx, directoryToBePurged), tx);
     }
 
     /**
@@ -141,7 +144,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
         final HttpPost request = new HttpPost(cfEndPoint);
         if (createPostBody(request, tx)) {
             tx.getLog().info("--------- Triggering CDN Cache Flush ------------------");
-            return getResult(sendRequest(request, ctx, tx), tx);
+            return getResult(sendRequest(request, ctx, tx, directoryToBePurged), tx);
         }
         return ReplicationResult.OK;
     }
@@ -190,7 +193,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      * @return HttpResponse - The HTTP response from ServiceInsight
      */
     private <T extends HttpRequestBase> HttpResponse sendRequest(final T request, final TransportContext ctx,
-            final ReplicationTransaction tx) {
+            final ReplicationTransaction tx, final String directoryToBePurged) {
         HttpResponse response = null;
         try {
             request.setHeader(HttpHeaders.ACCEPT, ContentType.APPLICATION_JSON.getMimeType());
@@ -202,6 +205,9 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
             tx.getLog().error("Could not send replication request {}", e.getMessage());
             LOGGER.error("Could not send replication request {}", e.getMessage());
 
+        }
+       if(response != null && response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            cdnRequestTimeStampRecord.put(directoryToBePurged, getDate(new Date()));
         }
         return response;
     }
@@ -304,7 +310,16 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                 final String contentPath = config.domainForCDN() + findUrlMapping(
                         LinkUtils.getRootPath(path).replace(config.contentPathForCDNCacheInvalidation(), ""));
                 purgeDirs.add(contentPath);
+                directoryToBePurged = contentPath;
             }
+        }
+        /**
+         * Below condition checks if cache purge request for same directory is
+         * made within 5 minutes, then don't send request to cdn
+         */
+        if(cdnRequestTimeStampRecord.containsKey(directoryToBePurged) &&
+                findDateDifferenceInMinutes(cdnRequestTimeStampRecord.get(directoryToBePurged), getDate(new Date())) < 6){
+                return false;
         }
 
         if (purgeDirs.size() > 0) {
@@ -329,5 +344,27 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     private String findUrlMapping(final String path) {
         return Arrays.stream(config.urlMapping()).filter(e -> e.contains(path)).findAny().orElse(StringUtils.EMPTY)
                 .split("=")[0] + PWConstants.SLASH;
+    }
+
+    /**
+     * method to find difference between two dates in minutes
+     * @param start_date
+     * @param end_date
+     * @return
+     */
+    private long findDateDifferenceInMinutes (final String start_date, final String end_date) {
+        final SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+        long difference_In_Minutes = 0;
+        try {
+            long difference_In_Time
+                    = sdf.parse(end_date).getTime() - sdf.parse(start_date).getTime();
+            difference_In_Minutes = TimeUnit
+                    .MILLISECONDS
+                    .toMinutes(difference_In_Time)
+                    % 60;
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        return difference_In_Minutes;
     }
 }
