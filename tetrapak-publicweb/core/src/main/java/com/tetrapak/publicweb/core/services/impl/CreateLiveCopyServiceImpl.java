@@ -2,8 +2,10 @@ package com.tetrapak.publicweb.core.services.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -14,6 +16,7 @@ import javax.jcr.version.VersionException;
 import javax.servlet.ServletException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -167,6 +170,10 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                         syncNode.setProperty("cq:master", blueprintPage.getPath());
                         syncNode.setProperty("cq:rolloutConfigs",
                                 new String[] { "/apps/msm/wcm/rolloutconfigs/default" });
+                    }
+                    if(Objects.nonNull(resolver.getResource(blueprintPage.getPath()+"/jcr:content"))) {
+                     ModifiableValueMap map = resolver.getResource(blueprintPage.getPath()+"/jcr:content").adaptTo(ModifiableValueMap.class);
+                     map.put("cq:lastModified",Calendar.getInstance());
                     }
                     resolver.commit();
                 }
