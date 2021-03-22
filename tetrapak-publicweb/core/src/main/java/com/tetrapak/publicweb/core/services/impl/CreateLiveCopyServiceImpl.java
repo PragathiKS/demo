@@ -99,10 +99,9 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                 String rootPath = LinkUtils.getRootPath(payload);
                 LOGGER.debug("rootPath : {}", rootPath);
                 String page = payload.replace(rootPath, StringUtils.EMPTY);
-                Boolean isLiveCopyExists = checkAndCreateLiveCopies(resolver, payload, language, page, isDeep);
-                if (Boolean.TRUE.equals(isLiveCopyExists)) {
-                    CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
-                }
+                checkAndCreateLiveCopies(resolver, payload, language, page, isDeep);
+                CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
+
                 CreateLiveCopyServiceUtil.replicatePaths(resolver, pathToReplicate, replicator);
             }
         } catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
@@ -149,8 +148,9 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
         final Page blueprintPage = pageManager.getPage(payload);
         for (String path : CreateLiveCopyServiceUtil.getLiveCopyBasePaths(language, config)) {
             String pagePath = path + page;
+            String parentPagePath = pagePath.substring(0, pagePath.lastIndexOf("/"));
             LOGGER.debug("pagepath : {}", pagePath);
-            if (resolver.getResource(pagePath) == null) {
+            if (resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) != null) {
                 isLiveCopyExists = false;
                 pageManager.copy(blueprintPage, pagePath, getNextPage(blueprintPage), !isDeep, false, true);
                 if (resolver.getResource(pagePath + "/jcr:content") != null) {

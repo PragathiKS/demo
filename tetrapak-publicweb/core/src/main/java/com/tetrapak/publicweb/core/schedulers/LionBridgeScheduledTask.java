@@ -135,7 +135,7 @@ public class LionBridgeScheduledTask implements Runnable {
      */
     public void createRolloutAndActivate(final ResourceResolver resolver, final Set<String> translatedPages) {
         for (String translatedPage : translatedPages) {
-            String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(translatedPage));
+            String language = PageUtil.getLanguagePage(resolver.getResource(translatedPage)).getName();
             LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate on page {}", translatedPage);
             createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager, liveRelManager, language,
                     false);
