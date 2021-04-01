@@ -20,6 +20,14 @@ public interface CountryDetailService {
      * @return the list
      */
     List<DropdownOption> fetchCountryList(ResourceResolver resourceResolver);
+    
+    /**
+     * Fetch pardot country list.
+     *
+     * @param resourceResolver the resource resolver
+     * @return the list
+     */
+    List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver);
 
     /**
      * Fetch contact email addresses.
@@ -38,5 +46,12 @@ public interface CountryDetailService {
      * @return the country cf root path
      */
     String getCountryCfRootPath();
+    
+    /**
+     * Gets the pardot country cf root path.
+     *
+     * @return the pardot country cf root path
+     */
+    String getPardotCountryCfRootPath();
 
 }

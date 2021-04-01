@@ -109,7 +109,7 @@ public class SubscriptionFormModel extends FormModel {
 	 * Sets the country options.
 	 */
 	public void setCountryOptions() {
-		this.countryOptions = countryService.fetchCountryList(resource.getResourceResolver());
+		this.countryOptions = countryService.fetchPardotCountryList(resource.getResourceResolver());
 	}
 
 	/**

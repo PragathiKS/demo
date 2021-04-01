@@ -179,7 +179,6 @@ public class SoftConversionModel extends FormModel {
      *
      */
     private void setCountryOptions() {
-        this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
+        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
     }
-
 }
