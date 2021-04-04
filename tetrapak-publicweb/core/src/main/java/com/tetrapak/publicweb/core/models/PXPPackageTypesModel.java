@@ -94,6 +94,7 @@ public class PXPPackageTypesModel {
         final Map<String, String> productPageMap = ProductPageUtil.getProductPageMap(request, getIdList(list), resource,
                 queryBuilder);
         for (final Packagetype packageType : list) {
+
             for (final Shape shape : packageType.getShapes()) {
                 final ManualModel teaser = new ManualModel();
                 final String title = packageType.getName().concat(PWConstants.SPACE).concat(shape.getName());

@@ -99,6 +99,10 @@ public class PXPOpeningsModel {
     /** The Constant LI_END. */
     private static final String LI_END = "</li>";
 
+    /** The Weburl. */
+    private String webUrl;
+
+
     /**
      * The init method.
      */
@@ -108,6 +112,9 @@ public class PXPOpeningsModel {
         final ProductModel product = resource.adaptTo(ProductModel.class);
         if (Objects.nonNull(product)) {
         	setI18n();
+            if(product.getWebUrl()!=null) {
+                webUrl = product.getWebUrl();
+            }
             setTeaserList(product.getOpeningClousers());
         }
     }
@@ -213,5 +220,14 @@ public class PXPOpeningsModel {
      */
     public List<ManualModel> getTeaserList() {
         return teaserList;
+    }
+
+    /**
+     * Gets the Weburl.
+     *
+     * @return the Weburl
+     */
+    public String getWebUrl() {
+        return webUrl;
     }
 }
