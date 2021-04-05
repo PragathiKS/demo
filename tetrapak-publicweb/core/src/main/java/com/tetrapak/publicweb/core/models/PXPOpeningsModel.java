@@ -100,6 +100,7 @@ public class PXPOpeningsModel {
     private static final String LI_END = "</li>";
 
     /** The Weburl. */
+    @ValueMapValue
     private String webUrl;
 
 
