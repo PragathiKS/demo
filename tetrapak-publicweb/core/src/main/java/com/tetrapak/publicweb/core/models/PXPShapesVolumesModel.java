@@ -69,7 +69,7 @@ public class PXPShapesVolumesModel {
         LOGGER.debug("Inside init of {}", this.getClass().getName());
         final ProductModel product = resource.adaptTo(ProductModel.class);
         if (Objects.nonNull(product)) {
-           if(product.getWebUrl()!=null) {
+           if(Objects.nonNull(product.getWebUrl())) {
                 packageName = product.getName();
                 webUrl = product.getWebUrl();
             }

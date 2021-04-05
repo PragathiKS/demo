@@ -117,7 +117,7 @@ public class PXPOpeningsModel {
         final ProductModel product = resource.adaptTo(ProductModel.class);
         if (Objects.nonNull(product)) {
         	setI18n();
-            if(product.getWebUrl()!=null) {
+            if(Objects.nonNull(product.getWebUrl())) {
                 packageName = product.getName();
                 webUrl = product.getWebUrl();
             }

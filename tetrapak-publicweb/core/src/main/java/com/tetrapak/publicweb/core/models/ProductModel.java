@@ -437,9 +437,9 @@ public class ProductModel {
     }
 
     /**
-     * Gets the name.
+     * Gets the weburl.
      *
-     * @return the name
+     * @return the weburl
      */
     public String getWebUrl() {
         if (languageResource != null && languageResource.getValueMap().containsKey(PWConstants.WEBURL)) {
