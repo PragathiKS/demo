@@ -58,6 +58,8 @@ public class PXPShapesVolumesModel {
     /** The Weburl. */
     private String webUrl;
 
+    /** The package Name. */
+    private String packageName;
 
     /**
      * Inits the.
@@ -67,7 +69,8 @@ public class PXPShapesVolumesModel {
         LOGGER.debug("Inside init of {}", this.getClass().getName());
         final ProductModel product = resource.adaptTo(ProductModel.class);
         if (Objects.nonNull(product)) {
-            if(product.getWebUrl()!=null) {
+           if(product.getWebUrl()!=null) {
+                packageName = product.getName();
                 webUrl = product.getWebUrl();
             }
         	setShapesList(product.getShapes());
@@ -166,5 +169,14 @@ public class PXPShapesVolumesModel {
      */
     public String getWebUrl() {
         return webUrl;
+    }
+
+    /**
+     * Gets the packageName.
+     *
+     * @return the packageName
+     */
+    public String getPackageName() {
+        return packageName;
     }
 }

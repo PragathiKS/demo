@@ -5,6 +5,11 @@
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
             data-sly-call="${heading.heading_h3_template @ headingText=data.heading}"/>
       </div>
+
+      <sly data-sly-test.webUrl="${data.webUrl}">
+      <label class="text-area-label" data-text-area-label="${'pw.pxp.learnMoreAbout' @i18n}">${'pw.pxp.learnMoreAbout' @i18n}:</label> <a href="${data.webUrl}">${data.packageName}</a>
+      </sly>
+
       <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
       <div class="tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
         <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>

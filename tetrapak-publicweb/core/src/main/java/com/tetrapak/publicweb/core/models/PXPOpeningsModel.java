@@ -100,8 +100,12 @@ public class PXPOpeningsModel {
     private static final String LI_END = "</li>";
 
     /** The Weburl. */
-    @ValueMapValue
     private String webUrl;
+
+    /** The package Name. */
+    private String packageName;
+
+    /** learnMore */
 
 
     /**
@@ -114,6 +118,7 @@ public class PXPOpeningsModel {
         if (Objects.nonNull(product)) {
         	setI18n();
             if(product.getWebUrl()!=null) {
+                packageName = product.getName();
                 webUrl = product.getWebUrl();
             }
             setTeaserList(product.getOpeningClousers());
@@ -230,5 +235,14 @@ public class PXPOpeningsModel {
      */
     public String getWebUrl() {
         return webUrl;
+    }
+
+    /**
+     * Gets the packageName.
+     *
+     * @return the packageName
+     */
+    public String getPackageName() {
+        return packageName;
     }
 }
