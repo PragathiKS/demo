@@ -7,7 +7,9 @@
       </div>
 
       <sly data-sly-test.webUrl="${data.webUrl}">
-      <label class="text-area-label" data-text-area-label="${'pw.pxp.learnMoreAbout' @i18n}">${'pw.pxp.learnMoreAbout' @i18n}:</label> <a href="${data.webUrl}">${data.packageName}</a>
+         <a class="tp-teaser__link js-teaser-analytics" href="${data.webUrl}">
+              <span class="tpatom-link__text sly-text">${'pw.pxp.learnMoreAbout' @i18n} ${data.packageName}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
+         </a>
       </sly>
 
       <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
