@@ -11,7 +11,3 @@
   <sly data-sly-resource="${'footer' @ resourceType='publicweb/components/structure/footer'}"/>
 </div>
 <sly data-sly-include="siteimprove.html"></sly>
-<sly data-sly-use.cookiemodel="com.tetrapak.publicweb.core.models.CookieConsentModel"/>
-<sly data-sly-test="${!cookiemodel.isCookieConsentDisabled}">
-	<sly data-sly-resource="${'cookieconsent' @ resourceType='/apps/publicweb/components/content/cookieconsent'}"/>
-</sly>
