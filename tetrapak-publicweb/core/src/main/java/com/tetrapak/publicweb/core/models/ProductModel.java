@@ -435,4 +435,16 @@ public class ProductModel {
         }
         return technology;
     }
+
+    /**
+     * Gets the weburl.
+     *
+     * @return the weburl
+     */
+    public String getWebUrl() {
+        if (languageResource != null && languageResource.getValueMap().containsKey(PWConstants.WEBURL)) {
+            return languageResource.getValueMap().get(PWConstants.WEBURL).toString();
+        }
+        return StringUtils.EMPTY;
+    }
 }

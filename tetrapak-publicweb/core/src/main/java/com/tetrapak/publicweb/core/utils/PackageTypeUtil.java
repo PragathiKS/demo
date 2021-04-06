@@ -40,6 +40,7 @@ public class PackageTypeUtil extends ProductUtil {
             final Map<String, Object> langProperties = new HashMap<>();
             langProperties.put(PWConstants.JCR_PRIMARY_TYPE, PWConstants.NT_UNSTRUCTURED);
             langProperties.put(PWConstants.NAME, packageType.getName());
+            langProperties.put(PWConstants.WEBURL, packageType.getWeburl());
             Resource langRes = ResourceUtil.createOrUpdateResource(resolver, productPath, language, langProperties);
             if (langRes != null) {
                 createOrUpdatePackageTypeProps(resolver, productType, productID, langRes, packageType, damRootPath,

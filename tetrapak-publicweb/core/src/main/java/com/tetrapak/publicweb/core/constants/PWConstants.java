@@ -361,6 +361,9 @@ public final class PWConstants {
     /** The Constant NEW_ARCHIVE_REL_PATH. */
     public static final String NEW_ARCHIVE_REL_PATH = "/about-tetra-pak/news-and-events/newsarchive";
 
+    /** Constant WEBURL */
+    public static final String WEBURL = "weburl";
+
     /**
      * Instantiates a new PW constants.
      */

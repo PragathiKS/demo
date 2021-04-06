@@ -55,6 +55,12 @@ public class PXPShapesVolumesModel {
     /** The teaser list. */
     private final List<ManualModel> teaserList = new ArrayList<>();
 
+    /** The Weburl. */
+    private String webUrl;
+
+    /** The package Name. */
+    private String packageName;
+
     /**
      * Inits the.
      */
@@ -63,6 +69,10 @@ public class PXPShapesVolumesModel {
         LOGGER.debug("Inside init of {}", this.getClass().getName());
         final ProductModel product = resource.adaptTo(ProductModel.class);
         if (Objects.nonNull(product)) {
+           if(Objects.nonNull(product.getWebUrl())) {
+                packageName = product.getName();
+                webUrl = product.getWebUrl();
+            }
         	setShapesList(product.getShapes());
         }
     }
@@ -150,5 +160,23 @@ public class PXPShapesVolumesModel {
      */
     public List<ManualModel> getTeaserList() {
         return new ArrayList<>(teaserList);
+    }
+
+    /**
+     * Gets the Weburl.
+     *
+     * @return the Weburl
+     */
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    /**
+     * Gets the packageName.
+     *
+     * @return the packageName
+     */
+    public String getPackageName() {
+        return packageName;
     }
 }

@@ -323,6 +323,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.pxp.openingtype"
         sling:message="Type:"/>
+    <pw.pxp.learnMoreAbout
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.pxp.learnMoreAbout"
+        sling:message="Learn more about"/>
     <pw.search.searchbarplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.search.searchbarplaceholder"
