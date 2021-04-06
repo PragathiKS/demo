@@ -105,9 +105,6 @@ public class PXPOpeningsModel {
     /** The package Name. */
     private String packageName;
 
-    /** learnMore */
-
-
     /**
      * The init method.
      */
