@@ -341,6 +341,19 @@ class Header {
       };
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     }
+    else {
+      const trackingObj = {
+        linkType,
+        linkSection: 'Hyperlink click',
+        linkParentTitle: '',
+        linkName: 'My TetraPak'
+      };
+      const eventObj = {
+        eventType: 'linkClick',
+        event: 'Header'
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    }
 
     if(url && targetLink){
       if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
