@@ -52,13 +52,16 @@ class Footer {
       eventObj['event'] = 'Footer';
     }
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    if(url && targetLink ){
-      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+    if(url && targetLink && !$this.hasClass('tp-pw-footer__social-media-items__link')){
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224) {
         window.open(url,'_blank');
       }
       else {
         window.open(url,'_self');
       }
+    }
+    if($this.hasClass('tp-pw-footer__social-media-items__link')){
+      window.open(url,'_blank');
     }
   }
   goToTop(e) {
