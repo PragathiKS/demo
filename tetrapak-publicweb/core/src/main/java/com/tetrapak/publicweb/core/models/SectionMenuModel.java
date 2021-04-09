@@ -597,7 +597,7 @@ public class SectionMenuModel {
         } else {
             subSectionBean.setExternal(false);
             subSectionBean.setLinkPath(LinkUtils.sanitizeLink(page.getPath(), request));
-            if(request.getPathInfo().contains(page.getPath())) {
+            if(request.getPathInfo().contains(page.getPath()+PWConstants.HTML)) {
                 subSectionBean.setHighlighted(true); 
             }
             final ValueMap valueMap = page.getProperties();
