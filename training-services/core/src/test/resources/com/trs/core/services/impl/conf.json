@@ -1,0 +1,1402 @@
+{
+	"jcr:primaryType": "sling:Folder",
+	"jcr:mixinTypes": [
+		"rep:AccessControllable"
+	],
+	"jcr:createdBy": "admin",
+	"jcr:title": "trs",
+	"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+	"settings": {
+		"jcr:primaryType": "sling:Folder",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+		"wcm": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+			"templates": {
+				"jcr:primaryType": "cq:Page",
+				"jcr:mixinTypes": [
+					"rep:AccessControllable"
+				],
+				"jcr:createdBy": "admin",
+				"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+				"video-page": {
+					"jcr:primaryType": "cq:Template",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"thumbnail.png": {
+						"jcr:primaryType": "nt:file",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:resource",
+							"jcr:mixinTypes": [
+								"dam:Thumbnails"
+							],
+							"jcr:lastModifiedBy": "admin",
+							"jcr:mimeType": "image/png",
+							"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							":jcr:data": 2160,
+							"jcr:uuid": "7178c6b0-4990-450c-a6d6-9a32331802cf",
+							"dam:thumbnails": {
+								"jcr:primaryType": "nt:folder",
+								"jcr:createdBy": "admin",
+								"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+								"dam:thumbnail_300.png": {
+									"jcr:primaryType": "nt:file",
+									"jcr:createdBy": "admin",
+									"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+									"jcr:content": {
+										"jcr:primaryType": "nt:resource",
+										"jcr:lastModifiedBy": "admin",
+										"jcr:mimeType": "image/png",
+										"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+										":jcr:data": 1199,
+										"jcr:uuid": "8b0aa8c1-4ed9-4aad-911b-992a8fac5448"
+									}
+								},
+								"dam:thumbnail_48.png": {
+									"jcr:primaryType": "nt:file",
+									"jcr:createdBy": "admin",
+									"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+									"jcr:content": {
+										"jcr:primaryType": "nt:resource",
+										"jcr:lastModifiedBy": "admin",
+										"jcr:mimeType": "image/png",
+										"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+										":jcr:data": 238,
+										"jcr:uuid": "106a0380-104e-4d69-a0c9-71a39ecb7304"
+									}
+								}
+							}
+						}
+					},
+					"initial": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"cq:template": "/conf/trs/settings/wcm/templates/video-page",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:lastModified": "Fri Feb 12 2021 15:55:16 GMT+0100",
+							"sling:resourceType": "trs/components/structure/empty-page",
+							"cq:lastModifiedBy": "admin",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "wcm/foundation/components/responsivegrid",
+									"video": {
+										"jcr:primaryType": "nt:unstructured",
+										"jcr:createdBy": "admin",
+										"jcr:lastModifiedBy": "admin",
+										"jcr:created": "Fri Feb 12 2021 15:55:16 GMT+0100",
+										"jcr:lastModified": "Fri Feb 12 2021 15:55:16 GMT+0100",
+										"sling:resourceType": "trs/components/content/video"
+									}
+								}
+							}
+						}
+					},
+					"jcr:content": {
+						"jcr:primaryType": "cq:PageContent",
+						"jcr:createdBy": "admin",
+						"jcr:title": "TrS Video Page Editable template",
+						"cq:lastReplicationAction": "Activate",
+						"cq:lastReplicatedBy": "admin",
+						"status": "enabled",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"cq:lastReplicated": "Fri Feb 12 2021 19:04:33 GMT+0100",
+						"cq:lastModified": "Fri Feb 12 2021 16:19:27 GMT+0100",
+						"jcr:description": "TrS Video Page Editable template",
+						"cq:templateType": "/conf/trs/settings/wcm/template-types/empty-page",
+						"cq:lastModifiedBy": "admin"
+					},
+					"structure": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:mixinTypes": [
+								"mix:versionable"
+							],
+							"jcr:createdBy": "admin",
+							"cq:lastReplicationAction": "Activate",
+							"jcr:versionHistory": "d7efcdc9-9c2b-419e-b353-8a1e323dfc55",
+							"cq:template": "/conf/trs/settings/wcm/templates/video-page",
+							"cq:lastReplicatedBy": "admin",
+							"jcr:predecessors": [
+								"9792f9ec-7862-4681-91bd-7117ddf1d088"
+							],
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:lastReplicated": "Fri Feb 12 2021 19:04:33 GMT+0100",
+							"jcr:baseVersion": "9792f9ec-7862-4681-91bd-7117ddf1d088",
+							"jcr:isCheckedOut": true,
+							"cq:deviceGroups": [
+								"/etc/mobile/groups/responsive"
+							],
+							"jcr:uuid": "75d99246-4fc4-47b4-9374-0453c1bd61f4",
+							"sling:resourceType": "trs/components/structure/empty-page",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "wcm/foundation/components/responsivegrid",
+									"editable": true
+								}
+							},
+							"cq:responsive": {
+								"jcr:primaryType": "nt:unstructured",
+								"breakpoints": {
+									"jcr:primaryType": "nt:unstructured",
+									"phone": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Smaller Screen",
+										"width": 768
+									},
+									"tablet": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Tablet",
+										"width": 1200
+									}
+								}
+							}
+						}
+					},
+					"policies": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+								"cq:ReplicationStatus",
+								"mix:versionable"
+							],
+							"cq:lastReplicationAction": "Activate",
+							"jcr:versionHistory": "5120bf24-f902-4886-aef7-ead2bb51b977",
+							"cq:lastReplicatedBy": "admin",
+							"jcr:predecessors": [
+								"a4d8d64a-10f7-49a5-ad62-1aad55c8b0fa"
+							],
+							"cq:lastReplicated": "Fri Feb 12 2021 19:04:33 GMT+0100",
+							"cq:lastModified": "Fri Feb 12 2021 16:19:27 GMT+0100",
+							"cq:policy": "trs/components/structure/page/policy_content_page",
+							"jcr:baseVersion": "a4d8d64a-10f7-49a5-ad62-1aad55c8b0fa",
+							"jcr:isCheckedOut": true,
+							"jcr:uuid": "c35a8983-0d31-4457-aea0-561432c0744d",
+							"sling:resourceType": "wcm/core/components/policies/mappings",
+							"cq:lastModifiedBy": "admin",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"cq:policy": "wcm/foundation/components/responsivegrid/content-default",
+								"sling:resourceType": "wcm/core/components/policies/mapping",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"cq:policy": "wcm/foundation/components/responsivegrid/policy_1613141580921",
+									"sling:resourceType": "wcm/core/components/policies/mapping"
+								}
+							}
+						}
+					}
+				},
+				"experience-fragment-web-variation-template": {
+					"jcr:primaryType": "cq:Template",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"thumbnail.png": {
+						"jcr:primaryType": "nt:file",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:resource",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:mimeType": "image/png",
+							"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							":jcr:data": 2160,
+							"jcr:uuid": "6a244710-0f3c-4f75-a130-8d1183ef0d7e"
+						}
+					},
+					"initial": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"cq:template": "/conf/trs/settings/wcm/templates/experience-fragment-web-variation-template",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:xfVariantType": "web",
+							"cq:tags": [
+								"experience-fragments:variation/web"
+							],
+							"sling:resourceType": "trs/components/structure/xfpage",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "wcm/foundation/components/responsivegrid"
+								}
+							}
+						}
+					},
+					"jcr:content": {
+						"jcr:primaryType": "cq:PageContent",
+						"jcr:createdBy": "admin",
+						"jcr:title": "Experience Fragment Web Variation Template",
+						"status": "enabled",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"cq:templateType": "/conf/trs/settings/wcm/template-types/empty-experience-fragment"
+					},
+					"structure": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"cq:template": "/conf/trs/settings/wcm/templates/experience-fragment-web-variation-template",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:deviceGroups": [
+								"mobile/groups/responsive"
+							],
+							"sling:resourceType": "trs/components/structure/page",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "wcm/foundation/components/responsivegrid",
+									"editable": true,
+									"cq:responsive": {
+										"jcr:primaryType": "nt:unstructured"
+									}
+								}
+							},
+							"cq:responsive": {
+								"jcr:primaryType": "nt:unstructured",
+								"breakpoints": {
+									"jcr:primaryType": "nt:unstructured",
+									"phone": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Smaller Screen",
+										"width": 768
+									},
+									"tablet": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Tablet",
+										"width": 1200
+									}
+								}
+							}
+						}
+					},
+					"policies": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:unstructured",
+							"cq:policy": "trs/components/structure/page/policy_xfm",
+							"sling:resourceType": "wcm/core/components/policies/mappings",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"cq:policy": "wcm/foundation/components/responsivegrid/content-default",
+								"sling:resourceType": "wcm/core/components/policies/mapping",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"cq:policy": "wcm/foundation/components/responsivegrid/policy_xfm",
+									"sling:resourceType": "wcm/core/components/policies/mapping",
+									"trs": {
+										"jcr:primaryType": "nt:unstructured",
+										"components": {
+											"jcr:primaryType": "nt:unstructured",
+											"content": {
+												"jcr:primaryType": "nt:unstructured",
+												"button": {
+													"jcr:primaryType": "nt:unstructured",
+													"cq:policy": "trs/components/content/button/policy_xfm",
+													"sling:resourceType": "wcm/core/components/policies/mapping"
+												},
+												"languagenavigation": {
+													"jcr:primaryType": "nt:unstructured",
+													"cq:policy": "trs/components/content/languagenavigation/policy_xfm",
+													"sling:resourceType": "wcm/core/components/policies/mapping"
+												},
+												"image": {
+													"jcr:primaryType": "nt:unstructured",
+													"cq:policy": "trs/components/content/image/policy_xfm",
+													"sling:resourceType": "wcm/core/components/policies/mapping"
+												},
+												"navigation": {
+													"jcr:primaryType": "nt:unstructured",
+													"cq:policy": "trs/components/structure/navigation/policy_xfm",
+													"sling:resourceType": "wcm/core/components/policies/mapping"
+												},
+												"search": {
+													"jcr:primaryType": "nt:unstructured",
+													"cq:policy": "trs/components/structure/search/policy_xfm",
+													"sling:resourceType": "wcm/core/components/policies/mapping"
+												},
+												"text": {
+													"jcr:primaryType": "nt:unstructured",
+													"cq:policy": "trs/components/content/text/policy_xfm",
+													"sling:resourceType": "wcm/core/components/policies/mapping"
+												},
+												"title": {
+													"jcr:primaryType": "nt:unstructured",
+													"cq:policy": "trs/components/content/title/policy_xfm",
+													"sling:resourceType": "wcm/core/components/policies/mapping"
+												}
+											}
+										}
+									},
+									"wcm": {
+										"jcr:primaryType": "nt:unstructured",
+										"foundation": {
+											"jcr:primaryType": "nt:unstructured",
+											"components": {
+												"jcr:primaryType": "nt:unstructured",
+												"responsivegrid": {
+													"jcr:primaryType": "nt:unstructured",
+													"cq:policy": "wcm/foundation/components/responsivegrid/policy_xfm",
+													"sling:resourceType": "wcm/core/components/policies/mapping"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"rep:policy": {
+					"jcr:primaryType": "rep:ACL",
+					"allow": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "everyone",
+						"rep:privileges": [
+							"jcr:read"
+						]
+					},
+					"allow1": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "content-authors",
+						"rep:privileges": [
+							"crx:replicate"
+						]
+					},
+					"allow2": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "template-authors",
+						"rep:privileges": [
+							"jcr:versionManagement",
+							"rep:write",
+							"crx:replicate",
+							"jcr:lockManagement"
+						]
+					},
+					"allow3": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "version-manager-service",
+						"rep:privileges": [
+							"jcr:versionManagement",
+							"rep:write"
+						]
+					}
+				},
+				"empty-page": {
+					"jcr:primaryType": "cq:Template",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"thumbnail.png": {
+						"jcr:primaryType": "nt:file",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:resource",
+							"jcr:mixinTypes": [
+								"dam:Thumbnails"
+							],
+							"jcr:lastModifiedBy": "admin",
+							"jcr:mimeType": "image/png",
+							"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							":jcr:data": 2160,
+							"jcr:uuid": "e6874998-5c9f-4084-9713-b7b3054863f2",
+							"dam:thumbnails": {
+								"jcr:primaryType": "nt:folder",
+								"jcr:createdBy": "admin",
+								"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+								"dam:thumbnail_300.png": {
+									"jcr:primaryType": "nt:file",
+									"jcr:createdBy": "admin",
+									"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+									"jcr:content": {
+										"jcr:primaryType": "nt:resource",
+										"jcr:lastModifiedBy": "admin",
+										"jcr:mimeType": "image/png",
+										"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+										":jcr:data": 1199,
+										"jcr:uuid": "eeb9a980-4e12-4279-9bf4-909a20281a57"
+									}
+								},
+								"dam:thumbnail_48.png": {
+									"jcr:primaryType": "nt:file",
+									"jcr:createdBy": "admin",
+									"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+									"jcr:content": {
+										"jcr:primaryType": "nt:resource",
+										"jcr:lastModifiedBy": "admin",
+										"jcr:mimeType": "image/png",
+										"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+										":jcr:data": 238,
+										"jcr:uuid": "5c2bca9f-e9f5-43fa-abd2-f55de89c219c"
+									}
+								}
+							}
+						}
+					},
+					"initial": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"cq:template": "/conf/trs/settings/wcm/templates/empty-page",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"sling:resourceType": "trs/components/structure/empty-page",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "wcm/foundation/components/responsivegrid"
+								}
+							}
+						}
+					},
+					"jcr:content": {
+						"jcr:primaryType": "cq:PageContent",
+						"jcr:createdBy": "admin",
+						"jcr:title": "TrS Empty page editable template",
+						"cq:lastReplicationAction": "Activate",
+						"cq:lastReplicatedBy": "admin",
+						"status": "enabled",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"cq:lastReplicated": "Wed Mar 10 2021 23:05:21 GMT+0100",
+						"cq:lastModified": "Tue Mar 09 2021 16:11:43 GMT+0100",
+						"jcr:description": "TrS Empty page editable template",
+						"cq:templateType": "/conf/trs/settings/wcm/template-types/empty-page",
+						"cq:lastModifiedBy": "admin"
+					},
+					"structure": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:mixinTypes": [
+								"mix:versionable"
+							],
+							"jcr:createdBy": "admin",
+							"cq:lastReplicationAction": "Activate",
+							"jcr:versionHistory": "16bc832c-852d-44f6-9f8c-d447e8b62e15",
+							"cq:template": "/conf/trs/settings/wcm/templates/empty-page",
+							"cq:lastReplicatedBy": "admin",
+							"jcr:predecessors": [
+								"3690585c-c755-4580-93b1-8e83febbdadd"
+							],
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:lastReplicated": "Wed Mar 10 2021 23:05:21 GMT+0100",
+							"jcr:baseVersion": "3690585c-c755-4580-93b1-8e83febbdadd",
+							"jcr:isCheckedOut": true,
+							"cq:deviceGroups": [
+								"/etc/mobile/groups/responsive"
+							],
+							"jcr:uuid": "1802c09d-4b89-48d4-a4c6-6f1f29115196",
+							"sling:resourceType": "trs/components/structure/empty-page",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "wcm/foundation/components/responsivegrid",
+									"editable": true
+								}
+							},
+							"cq:responsive": {
+								"jcr:primaryType": "nt:unstructured",
+								"breakpoints": {
+									"jcr:primaryType": "nt:unstructured",
+									"phone": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Smaller Screen",
+										"width": 768
+									},
+									"tablet": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Tablet",
+										"width": 1200
+									}
+								}
+							}
+						}
+					},
+					"policies": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+								"mix:versionable",
+								"cq:ReplicationStatus"
+							],
+							"cq:lastReplicationAction": "Activate",
+							"jcr:versionHistory": "9fc0a33e-b850-42e6-bc6c-937eaef3eea6",
+							"cq:lastReplicatedBy": "admin",
+							"jcr:predecessors": [
+								"ac302d2b-cfe0-43b6-a2ae-a41f9e48373c"
+							],
+							"cq:lastReplicated": "Wed Mar 10 2021 23:05:21 GMT+0100",
+							"cq:lastModified": "Tue Mar 09 2021 16:11:43 GMT+0100",
+							"cq:policy": "trs/components/structure/page/policy_content_page",
+							"jcr:baseVersion": "ac302d2b-cfe0-43b6-a2ae-a41f9e48373c",
+							"jcr:isCheckedOut": true,
+							"jcr:uuid": "3a8400e1-3578-4406-96ff-60e309eb3495",
+							"sling:resourceType": "wcm/core/components/policies/mappings",
+							"cq:lastModifiedBy": "admin",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"cq:policy": "wcm/foundation/components/responsivegrid/content-default",
+								"sling:resourceType": "wcm/core/components/policies/mapping",
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"cq:policy": "wcm/foundation/components/responsivegrid/policy_365985160531400",
+									"sling:resourceType": "wcm/core/components/policies/mapping"
+								}
+							}
+						}
+					}
+				},
+				"trs-empty-page": {
+					"jcr:primaryType": "cq:Template",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"initial": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"cq:template": "/conf/trs/settings/wcm/templates/trs-empty-page",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"sling:resourceType": "trs/components/structure/page"
+						}
+					},
+					"jcr:content": {
+						"jcr:primaryType": "cq:PageContent",
+						"jcr:createdBy": "admin",
+						"jcr:title": "TrS Empty Page",
+						"cq:lastReplicationAction": "Activate",
+						"cq:lastReplicatedBy": "admin",
+						"status": "enabled",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"cq:lastReplicated": "Fri Feb 12 2021 19:04:25 GMT+0100",
+						"cq:lastModified": "Fri Feb 12 2021 15:51:04 GMT+0100",
+						"cq:templateType": "/conf/trs/settings/wcm/template-types/empty-page",
+						"cq:lastModifiedBy": "admin"
+					},
+					"structure": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:mixinTypes": [
+								"mix:versionable"
+							],
+							"jcr:createdBy": "admin",
+							"cq:lastReplicationAction": "Activate",
+							"jcr:versionHistory": "9e34cf69-256a-4af5-aa54-9f548f30310f",
+							"cq:template": "/conf/trs/settings/wcm/templates/trs-empty-page",
+							"cq:lastReplicatedBy": "admin",
+							"jcr:predecessors": [
+								"b9b20612-feb0-4a19-b0db-d1944cf85d23"
+							],
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:lastReplicated": "Fri Feb 12 2021 19:04:25 GMT+0100",
+							"jcr:baseVersion": "b9b20612-feb0-4a19-b0db-d1944cf85d23",
+							"jcr:isCheckedOut": true,
+							"cq:deviceGroups": [
+								"/etc/mobile/groups/responsive"
+							],
+							"jcr:uuid": "4113a0a1-6911-4951-84f1-908e42f21427",
+							"sling:resourceType": "trs/components/structure/page",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid",
+								"experiencefragment-header": {
+									"jcr:primaryType": "nt:unstructured",
+									"fragmentVariationPath": "/content/experience-fragments/trs/language-masters/${language_country.split('_').get(0)}/site/header/master",
+									"sling:resourceType": "trs/components/content/experiencefragment"
+								},
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "wcm/foundation/components/responsivegrid"
+								},
+								"experiencefragment-footer": {
+									"jcr:primaryType": "nt:unstructured",
+									"fragmentVariationPath": "/content/experience-fragments/trs/language-masters/${language_country.split('_').get(0)}/site/footer/master",
+									"sling:resourceType": "trs/components/content/experiencefragment"
+								}
+							},
+							"cq:responsive": {
+								"jcr:primaryType": "nt:unstructured",
+								"breakpoints": {
+									"jcr:primaryType": "nt:unstructured",
+									"phone": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Smaller Screen",
+										"width": 768
+									},
+									"tablet": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Tablet",
+										"width": 1200
+									}
+								}
+							}
+						}
+					},
+					"policies": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+								"cq:ReplicationStatus",
+								"mix:versionable"
+							],
+							"cq:lastReplicationAction": "Activate",
+							"jcr:versionHistory": "7871b5b1-2ff6-47b8-a959-1837dc5d49a2",
+							"cq:lastReplicatedBy": "admin",
+							"jcr:predecessors": [
+								"f6076e6f-0e0b-4043-b145-bbff2ee4ee78"
+							],
+							"cq:lastReplicated": "Fri Feb 12 2021 19:04:25 GMT+0100",
+							"cq:policy": "trs/components/structure/page/policy_content_page",
+							"jcr:baseVersion": "f6076e6f-0e0b-4043-b145-bbff2ee4ee78",
+							"jcr:isCheckedOut": true,
+							"jcr:uuid": "4479771a-41b5-4142-b7d9-26db5ff17229",
+							"sling:resourceType": "wcm/core/components/policies/mappings",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"cq:policy": "wcm/foundation/components/responsivegrid/content-default",
+								"sling:resourceType": "wcm/core/components/policies/mapping",
+								"experiencefragment-header": {
+									"jcr:primaryType": "nt:unstructured",
+									"cq:policy": "trs/components/content/experiencefragment/policy_header",
+									"sling:resourceType": "wcm/core/components/policies/mapping"
+								},
+								"experiencefragment-footer": {
+									"jcr:primaryType": "nt:unstructured",
+									"cq:policy": "trs/components/content/experiencefragment/policy_footer",
+									"sling:resourceType": "wcm/core/components/policies/mapping"
+								}
+							}
+						}
+					}
+				}
+			},
+			"policies": {
+				"jcr:primaryType": "cq:Page",
+				"jcr:mixinTypes": [
+					"rep:AccessControllable"
+				],
+				"jcr:createdBy": "admin",
+				"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+				"rep:policy": {
+					"jcr:primaryType": "rep:ACL",
+					"allow": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "everyone",
+						"rep:privileges": [
+							"jcr:read"
+						]
+					},
+					"allow1": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "content-authors",
+						"rep:privileges": [
+							"crx:replicate"
+						]
+					},
+					"allow2": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "template-authors",
+						"rep:privileges": [
+							"jcr:versionManagement",
+							"rep:write",
+							"crx:replicate",
+							"jcr:lockManagement"
+						]
+					},
+					"allow3": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "version-manager-service",
+						"rep:privileges": [
+							"jcr:versionManagement",
+							"rep:write"
+						]
+					}
+				},
+				"wcm": {
+					"jcr:primaryType": "nt:unstructured",
+					"foundation": {
+						"jcr:primaryType": "nt:unstructured",
+						"components": {
+							"jcr:primaryType": "nt:unstructured",
+							"responsivegrid": {
+								"jcr:primaryType": "nt:unstructured",
+								"policy_1613141580921": {
+									"jcr:primaryType": "nt:unstructured",
+									"jcr:title": "TrS Video Page",
+									"jcr:lastModifiedBy": "admin",
+									"components": [
+										"/libs/dam/components/scene7/dynamicmedia",
+										"/apps/trs/components/content/video"
+									],
+									"jcr:lastModified": "Fri Feb 12 2021 16:19:27 GMT+0100",
+									"sling:resourceType": "wcm/core/components/policy/policy",
+									"jcr:content": {
+										"jcr:primaryType": "nt:unstructured",
+										"jcr:mixinTypes": [
+											"cq:ReplicationStatus"
+										],
+										"cq:lastReplicationAction": "Activate",
+										"cq:lastReplicatedBy": "admin",
+										"cq:lastReplicated": "Fri Feb 12 2021 19:04:33 GMT+0100"
+									}
+								},
+								"policy_365985160531400": {
+									"jcr:primaryType": "nt:unstructured",
+									"jcr:title": "Empty Page",
+									"jcr:lastModifiedBy": "admin",
+									"components": "group:TRS",
+									"jcr:lastModified": "Tue Mar 09 2021 16:11:43 GMT+0100",
+									"sling:resourceType": "wcm/core/components/policy/policy",
+									"jcr:content": {
+										"jcr:primaryType": "nt:unstructured",
+										"jcr:mixinTypes": [
+											"cq:ReplicationStatus"
+										],
+										"cq:lastReplicationAction": "Activate",
+										"cq:lastReplicatedBy": "admin",
+										"cq:lastReplicated": "Wed Mar 10 2021 23:05:21 GMT+0100"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"segments": {
+				"jcr:primaryType": "cq:Page",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+				"jcr:content": {
+					"jcr:primaryType": "cq:PageContent",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"sling:resourceType": "cq/contexthub/components/segments-listing-page"
+				},
+				"winter": {
+					"jcr:primaryType": "cq:Page",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"jcr:content": {
+						"jcr:primaryType": "cq:PageContent",
+						"jcr:createdBy": "admin",
+						"jcr:title": "Winter",
+						"segmentName": "Season Winter",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"cq:lastModified": "Thu Jan 08 2015 11:13:48 GMT+0100",
+						"segmentBoost": 0,
+						"sling:resourceType": "cq/contexthub/components/segment-page",
+						"cq:lastModifiedBy": "admin",
+						"traits": {
+							"jcr:primaryType": "nt:unstructured",
+							"sling:resourceType": "cq/contexthub/components/traits/logic/operator-or",
+							"orpar": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "foundation/components/parsys",
+								"one": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "cq/contexthub/components/traits/logic/operator-and",
+									"andpar": {
+										"jcr:primaryType": "nt:unstructured",
+										"sling:resourceType": "foundation/components/parsys",
+										"location": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "greater-than",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "geolocation/latitude",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "40",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										},
+										"dates": {
+											"jcr:primaryType": "nt:unstructured",
+											"sling:resourceType": "cq/contexthub/components/traits/logic/operator-or",
+											"orpar": {
+												"jcr:primaryType": "nt:unstructured",
+												"sling:resourceType": "foundation/components/parsys",
+												"afterMonth": {
+													"jcr:primaryType": "nt:unstructured",
+													"operator": "greater-than-or-equal",
+													"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+													"dataType": "number",
+													"left": {
+														"jcr:primaryType": "nt:unstructured",
+														"property": "surferinfo/month",
+														"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+													},
+													"right": {
+														"jcr:primaryType": "nt:unstructured",
+														"value": "9",
+														"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+													}
+												},
+												"beforeMonth": {
+													"jcr:primaryType": "nt:unstructured",
+													"operator": "less-than",
+													"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+													"dataType": "number",
+													"left": {
+														"jcr:primaryType": "nt:unstructured",
+														"property": "surferinfo/month",
+														"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+													},
+													"right": {
+														"jcr:primaryType": "nt:unstructured",
+														"value": "4",
+														"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+													}
+												}
+											}
+										}
+									}
+								},
+								"two": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "cq/contexthub/components/traits/logic/operator-and",
+									"andpar": {
+										"jcr:primaryType": "nt:unstructured",
+										"sling:resourceType": "foundation/components/parsys",
+										"location": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "less-than",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "geolocation/latitude",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "-38",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										},
+										"fromMonth": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "greater-than-or-equal",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "surferinfo/month",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "4",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										},
+										"toMonth": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "less-than",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "surferinfo/month",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "9",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										}
+									}
+								},
+								"three": {
+									"jcr:primaryType": "nt:unstructured",
+									"operator": "greater-than",
+									"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+									"dataType": "number",
+									"left": {
+										"jcr:primaryType": "nt:unstructured",
+										"property": "geolocation/latitude",
+										"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+									},
+									"right": {
+										"jcr:primaryType": "nt:unstructured",
+										"value": "70",
+										"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+									}
+								},
+								"four": {
+									"jcr:primaryType": "nt:unstructured",
+									"operator": "less-than",
+									"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+									"dataType": "number",
+									"left": {
+										"jcr:primaryType": "nt:unstructured",
+										"property": "geolocation/latitude",
+										"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+									},
+									"right": {
+										"jcr:primaryType": "nt:unstructured",
+										"value": "-50",
+										"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+									}
+								}
+							}
+						}
+					}
+				},
+				"summer": {
+					"jcr:primaryType": "cq:Page",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"jcr:content": {
+						"jcr:primaryType": "cq:PageContent",
+						"jcr:createdBy": "admin",
+						"jcr:title": "Summer",
+						"segmentName": "Season Summer",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"cq:lastModified": "Thu Jan 08 2015 11:13:48 GMT+0100",
+						"segmentBoost": 0,
+						"sling:resourceType": "cq/contexthub/components/segment-page",
+						"cq:lastModifiedBy": "admin",
+						"traits": {
+							"jcr:primaryType": "nt:unstructured",
+							"sling:resourceType": "cq/contexthub/components/traits/logic/operator-or",
+							"orpar": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "foundation/components/parsys",
+								"one": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "cq/contexthub/components/traits/logic/operator-and",
+									"andpar": {
+										"jcr:primaryType": "nt:unstructured",
+										"sling:resourceType": "foundation/components/parsys",
+										"location": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "greater-than",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "geolocation/latitude",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "40",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										},
+										"fromMonth": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "greater-than-or-equal",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "surferinfo/month",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "4",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										},
+										"toMonth": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "less-than",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "surferinfo/month",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "9",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										}
+									}
+								},
+								"two": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "cq/contexthub/components/traits/logic/operator-and",
+									"andpar": {
+										"jcr:primaryType": "nt:unstructured",
+										"sling:resourceType": "foundation/components/parsys",
+										"location": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "less-than",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "geolocation/latitude",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "-38",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										},
+										"dates": {
+											"jcr:primaryType": "nt:unstructured",
+											"sling:resourceType": "cq/contexthub/components/traits/logic/operator-or",
+											"orpar": {
+												"jcr:primaryType": "nt:unstructured",
+												"sling:resourceType": "foundation/components/parsys",
+												"beforeMonth": {
+													"jcr:primaryType": "nt:unstructured",
+													"operator": "less-than",
+													"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+													"dataType": "number",
+													"left": {
+														"jcr:primaryType": "nt:unstructured",
+														"property": "surferinfo/month",
+														"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+													},
+													"right": {
+														"jcr:primaryType": "nt:unstructured",
+														"value": "4",
+														"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+													}
+												},
+												"afterMonth": {
+													"jcr:primaryType": "nt:unstructured",
+													"operator": "greater-than-or-equal",
+													"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+													"dataType": "number",
+													"left": {
+														"jcr:primaryType": "nt:unstructured",
+														"property": "surferinfo/month",
+														"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+													},
+													"right": {
+														"jcr:primaryType": "nt:unstructured",
+														"value": "9",
+														"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+													}
+												}
+											}
+										}
+									}
+								},
+								"three": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "cq/contexthub/components/traits/logic/operator-and",
+									"andpar": {
+										"jcr:primaryType": "nt:unstructured",
+										"sling:resourceType": "foundation/components/parsys",
+										"fromLocation": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "greater-than",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "geolocation/latitude",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "-38",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										},
+										"toLocation": {
+											"jcr:primaryType": "nt:unstructured",
+											"operator": "less-than",
+											"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/variants/property-value",
+											"dataType": "number",
+											"left": {
+												"jcr:primaryType": "nt:unstructured",
+												"property": "geolocation/latitude",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/property"
+											},
+											"right": {
+												"jcr:primaryType": "nt:unstructured",
+												"value": "40",
+												"sling:resourceType": "cq/contexthub/components/traits/generic-comparison/type/value"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"template-types": {
+				"jcr:primaryType": "cq:Page",
+				"jcr:mixinTypes": [
+					"rep:AccessControllable"
+				],
+				"jcr:createdBy": "admin",
+				"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+				"empty-experience-fragment": {
+					"jcr:primaryType": "cq:Template",
+					"jcr:mixinTypes": [
+						"mix:lockable"
+					],
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"ranking": 1,
+					"thumbnail.png": {
+						"jcr:primaryType": "nt:file",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:resource",
+							"jcr:lastModifiedBy": "admin",
+							"jcr:mimeType": "image/png",
+							"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							":jcr:data": 123779,
+							"jcr:uuid": "ad30e9ec-d586-43d4-ba3f-483605d0bada"
+						}
+					},
+					"initial": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"cq:template": "/conf/trs/settings/wcm/templates/empty-experience-fragment",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:xfVariantType": "web",
+							"cq:tags": [
+								"experience-fragments:variation/web"
+							],
+							"sling:resourceType": "trs/components/structure/xfpage"
+						}
+					},
+					"jcr:content": {
+						"jcr:primaryType": "cq:PageContent",
+						"jcr:createdBy": "admin",
+						"jcr:title": "trs Empty Experience Fragment",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:description": "Generic template for empty experience fragments variations"
+					},
+					"structure": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"cq:template": "/conf/trs/settings/wcm/templates/empty-experience-fragment",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:deviceGroups": [
+								"mobile/groups/responsive"
+							],
+							"sling:resourceType": "trs/components/structure/page",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid"
+							},
+							"cq:responsive": {
+								"jcr:primaryType": "nt:unstructured",
+								"breakpoints": {
+									"jcr:primaryType": "nt:unstructured",
+									"phone": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Smaller Screen",
+										"width": 768
+									},
+									"tablet": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Tablet",
+										"width": 1200
+									}
+								}
+							}
+						}
+					},
+					"policies": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:unstructured",
+							"sling:resourceType": "wcm/core/components/policies/mappings",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"cq:policy": "wcm/foundation/components/responsivegrid/content-default",
+								"sling:resourceType": "wcm/core/components/policies/mapping"
+							}
+						}
+					}
+				},
+				"empty-page": {
+					"jcr:primaryType": "cq:Template",
+					"jcr:mixinTypes": [
+						"mix:lockable"
+					],
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					"ranking": 1,
+					"initial": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"sling:resourceType": "trs/components/structure/page"
+						}
+					},
+					"jcr:content": {
+						"jcr:primaryType": "cq:PageContent",
+						"jcr:createdBy": "admin",
+						"jcr:title": "trs Empty Page",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:description": "Generic template for web pages"
+					},
+					"structure": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "cq:PageContent",
+							"jcr:createdBy": "admin",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"cq:deviceGroups": [
+								"/etc/mobile/groups/responsive"
+							],
+							"sling:resourceType": "trs/components/structure/page",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"sling:resourceType": "wcm/foundation/components/responsivegrid",
+								"experiencefragment-header": {
+									"jcr:primaryType": "nt:unstructured",
+									"fragmentVariationPath": "/content/experience-fragments/trs/language-masters/${language_country.split('_').get(0)}/site/header/master",
+									"sling:resourceType": "trs/components/content/experiencefragment"
+								},
+								"responsivegrid": {
+									"jcr:primaryType": "nt:unstructured",
+									"sling:resourceType": "wcm/foundation/components/responsivegrid"
+								},
+								"experiencefragment-footer": {
+									"jcr:primaryType": "nt:unstructured",
+									"fragmentVariationPath": "/content/experience-fragments/trs/language-masters/${language_country.split('_').get(0)}/site/footer/master",
+									"sling:resourceType": "trs/components/content/experiencefragment"
+								}
+							},
+							"cq:responsive": {
+								"jcr:primaryType": "nt:unstructured",
+								"breakpoints": {
+									"jcr:primaryType": "nt:unstructured",
+									"phone": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Smaller Screen",
+										"width": 768
+									},
+									"tablet": {
+										"jcr:primaryType": "nt:unstructured",
+										"title": "Tablet",
+										"width": 1200
+									}
+								}
+							}
+						}
+					},
+					"policies": {
+						"jcr:primaryType": "cq:Page",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"jcr:content": {
+							"jcr:primaryType": "nt:unstructured",
+							"cq:policy": "trs/components/structure/page/policy_content_page",
+							"sling:resourceType": "wcm/core/components/policies/mappings",
+							"root": {
+								"jcr:primaryType": "nt:unstructured",
+								"cq:policy": "wcm/foundation/components/responsivegrid/content-default",
+								"sling:resourceType": "wcm/core/components/policies/mapping",
+								"experiencefragment-header": {
+									"jcr:primaryType": "nt:unstructured",
+									"cq:policy": "trs/components/content/experiencefragment/policy_header",
+									"sling:resourceType": "wcm/core/components/policies/mapping"
+								},
+								"experiencefragment-footer": {
+									"jcr:primaryType": "nt:unstructured",
+									"cq:policy": "trs/components/content/experiencefragment/policy_footer",
+									"sling:resourceType": "wcm/core/components/policies/mapping"
+								}
+							}
+						}
+					}
+				},
+				"rep:policy": {
+					"jcr:primaryType": "rep:ACL",
+					"allow": {
+						"jcr:primaryType": "rep:GrantACE",
+						"rep:principalName": "template-authors",
+						"rep:privileges": [
+							"jcr:read"
+						]
+					}
+				}
+			}
+		}
+	},
+	"rep:policy": {
+		"jcr:primaryType": "rep:ACL"
+	}
+}

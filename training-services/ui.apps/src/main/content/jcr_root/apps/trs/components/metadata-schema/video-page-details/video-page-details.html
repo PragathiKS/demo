@@ -1,0 +1,17 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.all @ categories='trs.asset.metadataschema.page.details'}"/>
+<sly data-sly-use.assetMetadataHelperModel="com.trs.core.models.AssetMetadataHelperModel"/>
+
+<div class="coral-Form-fieldwrapper">
+	<label class="coral-Form-fieldlabel" for="publicUrltextfield">Published Page URL</label>
+	<input id="publicUrltextfield" class="coral-Form-field" is="coral-textfield" placeholder="Video page not present" name="field" value="${assetMetadataHelperModel.videoPagePublicURL}" disabled>
+</div>
+<div class="button-wrapper" data-sly-test="${assetMetadataHelperModel.videoPagePublicURL}">
+     <button id="copyPublicUrl" is="coral-button" icon="copy" iconsize="S"> Copy Published Page URL</button>
+</div>
+<div class="button-wrapper" data-sly-test="${assetMetadataHelperModel.videoPagePublicURL}">
+   <a id="publicUrl" is="coral-anchorbutton" variant="primary" icon="" iconsize="XS" href="${assetMetadataHelperModel.videoPagePublicURL}">Go to Published Page</a>
+</div>
+<div class="button-wrapper" data-sly-test="${assetMetadataHelperModel.videoPageAuthoringURL}">
+   <a is="coral-anchorbutton" variant="primary" icon="" iconsize="XS" href="${assetMetadataHelperModel.videoPageAuthoringURL}">Go to Authoring Page</a>
+</div>

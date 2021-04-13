@@ -1,0 +1,12 @@
+<script type="text/javascript" src="https://s7g10.scene7.com/s7viewers/html5/js/VideoViewer.js"></script>
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.all @ categories='trs.video'}"/>
+<sly data-sly-use.videoPageModel="com.trs.core.models.VideoPageModel"/>
+<sly data-sly-test="${wcmmode.edit}">
+     <h4>Edit Video component</h4>
+</sly>
+<div class="holder">
+	<div id="s7viewer" style="position: relative"></div>
+</div>
+<input id="dmdomain" type="hidden" value="${videoPageModel.dmDomain}" />
+<input id="s7assetFile" type="hidden" value="${videoPageModel.s7assetFile}" />

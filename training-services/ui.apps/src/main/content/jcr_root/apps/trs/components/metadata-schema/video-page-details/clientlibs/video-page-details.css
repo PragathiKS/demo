@@ -1,0 +1,3 @@
+.button-wrapper {
+    white-space: pre-line; /* collapse WS, preserve LB */
+}

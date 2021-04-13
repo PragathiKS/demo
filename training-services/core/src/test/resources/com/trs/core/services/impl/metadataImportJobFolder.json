@@ -1,0 +1,18 @@
+{
+	"jcr:primaryType": "nt:folder",
+	"jcr:createdBy": "granite-async-jobs-service",
+	"jcr:created": "Fri Mar 19 2021 12:50:09 GMT+0100",
+	"trs-metadata-1.csv": {
+		"jcr:primaryType": "nt:file",
+		"jcr:createdBy": "granite-async-jobs-service",
+		"jcr:created": "Fri Mar 19 2021 12:50:09 GMT+0100",
+		"jcr:content": {
+			"jcr:primaryType": "nt:resource",
+			"jcr:lastModifiedBy": "granite-async-jobs-service",
+			"jcr:mimeType": "application/vnd.ms-excel",
+			"jcr:lastModified": "Fri Mar 19 2021 12:50:09 GMT+0100",
+			":jcr:data": 605,
+			"jcr:uuid": "e6cb10a4-34bb-4cf3-8dcd-547a4fef936f"
+		}
+	}
+}
