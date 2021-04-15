@@ -18,12 +18,21 @@
     </script>
         <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
     </sly>
-    <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher || digitalDataModel.staging && digitalDataModel.isPublisher}">
+
+    <sly data-sly-test="${digitalDataModel.staging && digitalDataModel.isPublisher}">
+      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="de6c9e2a-2d5c-4380-a916-db664d5b6fc9-test" ></script>
+      <script type="text/javascript">
+         function OptanonWrapper() { }
+      </script>
+        <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+    </sly>
+   <!--/* script for DEV and QA */-->
+    <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
       <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="c6ff7482-d5cb-4770-aa13-bedfa8504fd1-test" ></script>
       <script type="text/javascript">
         function OptanonWrapper() { }
       </script>
-        <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+      <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
     </sly>
     <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
     <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description @ context='scriptComment'}"/>
