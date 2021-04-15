@@ -27,7 +27,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.trs.core.services.TagImporterService;
 import com.trs.core.services.TrsConfigurationService;
 import com.trs.core.services.impl.TagImporterServiceImpl;
 import com.trs.core.utils.TestUtils;
@@ -47,7 +46,6 @@ class TagImporterTest {
     public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
     private TagImporter tagImporter;
-    private TagImporterService tagImporterService;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -77,17 +75,12 @@ class TagImporterTest {
         // Load resource being uploaded
         byte[] fileContent = Files.readAllBytes((new File(TagRenameUtilityServletTest.class
                 .getResource("/com/trs/core/services/impl/TrSTaxonomyAdobeDAM.xlsx").toURI())).toPath());
-        // Create part & entity from resource
         Part[] parts = new Part[] { new FilePart("file",
                 new ByteArrayPartSource("/com/trs/core/services/impl/TrSTaxonomyAdobeDAM.xlsx", fileContent)) };
         MultipartRequestEntity multipartRequestEntity = new MultipartRequestEntity(parts, new PostMethod().getParams());
-        // Serialize request body
         ByteArrayOutputStream requestContent = new ByteArrayOutputStream();
         multipartRequestEntity.writeRequest(requestContent);
-        // Set request body to HTTP servlet request
         request.setContent(requestContent.toByteArray());
-        // Set content type to HTTP servlet request (important, includes Mime boundary
-        // string)
         request.setContentType(multipartRequestEntity.getContentType());
         request.setMethod("POST");
         tagImporter.doPost(request, response);
