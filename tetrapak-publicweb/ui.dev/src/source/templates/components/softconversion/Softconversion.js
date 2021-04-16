@@ -47,6 +47,7 @@ class Softconversion {
     this.cache.requestPayload['country']='';
     this.cache.countryList = [];
     this.cache.inputFields = this.root.find('.tab-content .formfield input');
+    this.cache.requestPayload['pageurl'] = window.location.href;
 
   }
 
@@ -190,6 +191,7 @@ class Softconversion {
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     apiPayload.pardotUrl = pardotUrl;
+    apiPayload.pageurl = this.cache.requestPayload['pageurl'];
     if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
       apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
     }
@@ -365,10 +367,11 @@ class Softconversion {
 
         if (fieldName in self.cache.requestPayload) {
           requestPayload[fieldName] = newSafeValues;
-
-
         }
-        if ($(this).prop('required') && $(this).val() === '' && requestPayload['typeOfVisitor']===`customer-${$componentName}`) {
+        if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'market-consent'){
+          requestPayload[fieldName] = $('input[name="market-consent"]:checked').length > 0;
+        }
+        if ($(this).prop('required') && (((fieldName !== 'market-consent') && requestPayload['typeOfVisitor'] === `customer-${$componentName}` && $(this).val() === '')  || ((fieldName === 'market-consent') && !$(this).prop('checked')))) {
           isvalid = false;
           const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
           let erLbl = '';

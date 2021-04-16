@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
 	<filter root="/apps/cq/gui" mode="update"/>
-    <filter root="/apps/publicweb" mode="update"/>
+    <filter root="/apps/publicweb" mode="update">
+	    <exclude pattern="/apps/publicweb/i18n(/.*)?"/>
+	</filter>
     <filter root="/apps/msm/tetra-pak-pw-market-site-blueprint" mode="update"/>
 	<filter root="/apps/msm/wcm" mode="update"/>
 	<filter root="/apps/publicweb/ac-config" mode="update"/>

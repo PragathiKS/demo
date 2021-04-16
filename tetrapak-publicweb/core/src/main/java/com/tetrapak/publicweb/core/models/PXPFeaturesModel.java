@@ -3,16 +3,14 @@ package com.tetrapak.publicweb.core.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import javax.annotation.PostConstruct;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
-import com.tetrapak.publicweb.core.beans.pxp.FeatureOption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.tetrapak.publicweb.core.models.multifield.TabModel;
 
 /**
@@ -21,6 +19,9 @@ import com.tetrapak.publicweb.core.models.multifield.TabModel;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PXPFeaturesModel extends PXPFeatureOptionsModel {
 
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(PXPFeaturesModel.class);
+	
     /** The resource. */
     @Self
     private Resource resource;
@@ -37,10 +38,10 @@ public class PXPFeaturesModel extends PXPFeatureOptionsModel {
      */
     @PostConstruct
     protected void init() {
+    	LOGGER.debug("Inside init of {}", this.getClass().getName());
         ProductModel productModel = resource.adaptTo(ProductModel.class);
         if (Objects.nonNull(productModel)) {
-            List<FeatureOption> feature = productModel.getFeatures();
-            tabs = setTabList(feature);
+            tabs = setTabList(productModel.getFeatures());
         }
     }
 

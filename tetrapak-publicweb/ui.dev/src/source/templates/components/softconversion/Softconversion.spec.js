@@ -4,7 +4,7 @@ import softConversionTemplate from '../../../test-templates-hbs/softConversion.h
 
 describe('Softconversion', function () {
   beforeEach(function () {
-  	$(document.body).empty().html(softConversionTemplate());
+    $(document.body).empty().html(softConversionTemplate());
     this.softconversion = new Softconversion({el: document.body});
     this.initSpy = sinon.spy(this.softconversion, 'init');
     this.submitFormSpy = sinon.spy(this.softconversion, 'submitForm');
@@ -69,6 +69,7 @@ describe('Softconversion', function () {
     document.getElementById('company-textimage').value = 'mockmessage';
     document.getElementById('position-textimage').value = 'mockmessage';
     document.getElementById('typeOfVisitor').value = 'Customer';
+    document.getElementById('market-consent-textimage').value='checked';
 
     this.softconversion.cache.$submitBtn.click();
     expect(this.softconversion.submitForm.called).to.be.true;

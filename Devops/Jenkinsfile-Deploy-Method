@@ -6,7 +6,7 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'Environment', choices: ['DEV', 'QA', 'STAGE', 'SUP', 'DEV65', 'QA65'], description: 'Select the environment')
+        choice(name: 'Environment', choices: ['QA65', 'STAGE65', 'SUP65', 'DEV65'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetraPak Module', name: 'DeployMyTetrapak'
         booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
@@ -26,46 +26,11 @@ pipeline {
     stages {
         stage('Author and Publisher Deployment') {
             steps {
-                script {
-                    if (params.Environment == "QA") {
+                script {                
+                    if (params.Environment == "SUP65") {
 
-                        author_url = "https://author1.test.tetrapak.adobecqms.net"
-                        publish_url = "https://publish1.test.tetrapak.adobecqms.net"
-                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredqa', usernameVariable: 'username', passwordVariable: 'password']])
-                        {
-                            devdeployment()
-                        }
-
-                    }
-
-                    if (params.Environment == "DEV") {
-
-                        author_url = "https://author1.dev.tetrapak.adobecqms.net"
-                        publish_url = "https://publish1.dev.tetrapak.adobecqms.net"                        
-                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username', passwordVariable: 'password']])
-                        {
-                            devdeployment()
-                            echo "$username"
-                            echo "$password"
-                            
-                        }
-                    }
-
-                    if (params.Environment == "STAGE") {
-                        
-                                author_url = "https://author1.stage.tetrapak.adobecqms.net"
-                                username = "sapient-user"
-                                password = "*?qbpgyd+hNKR6E%mQmle[XK"                                 
-                        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username', passwordVariable: 'password']])
-                        //{                           
-                                stagedeployment()
-                            
-                        //}
-                    }                 
-                    if (params.Environment == "SUP") {
-
-                        author_url = "https://author1westeurope.sup.tetrapak.adobecqms.net"
-                        publish_url = "https://publish1westeurope.sup.tetrapak.adobecqms.net" 
+                        author_url = "https://author1westeurope.sup65.tetrapak.adobecqms.net"
+                        publish_url = "https://publish1westeurope.sup65.tetrapak.adobecqms.net" 
                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredsup', usernameVariable: 'username', passwordVariable: 'password']])
                         {
                             supdeployment()
@@ -97,6 +62,17 @@ pipeline {
                             echo "$password"
                             
                         }
+                    }
+                    if (params.Environment == "STAGE65") {
+                        
+                                author_url = "https://author1westeurope.stage65.tetrapak.adobecqms.net"
+                                username = "sapient-user"
+                                password = "*?qbpgyd+hNKR6E%mQmle[XK"                                 
+                        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username', passwordVariable: 'password']])
+                        //{                           
+                                stagedeployment65()
+                            
+                        //}
                     }					
                 }
             }
@@ -174,7 +150,7 @@ pipeline {
 
         }
     
-    def stagedeployment() {
+    def stagedeployment65() {
 
         if (params.DeployCommons)    {
                 packageName = "tetrapak-commons.complete"
@@ -187,11 +163,11 @@ pipeline {
                 authordeploy()
                     },
                     "Publisher Commons" : {                  
-                publish_url = "https://publish1.stage.tetrapak.adobecqms.net"
+                publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
                 publishdeploy()
                     //},
                     //"Publisher 2 Commons" : {                
-                publish_url = "https://publish2.stage.tetrapak.adobecqms.net"
+                publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
                 publishdeploy()
                     }
                 )
@@ -208,11 +184,11 @@ pipeline {
                 authordeploy()
                     },
                     "Publisher MyTetrapak" : {                      
-                publish_url = "https://publish1.stage.tetrapak.adobecqms.net"
+                publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
                 publishdeploy()
                     //},
                     //"Publisher 2 MyTetrapak" : {                      
-                publish_url = "https://publish2.stage.tetrapak.adobecqms.net"
+                publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
                 publishdeploy()                           
                     }
                 )
@@ -228,17 +204,17 @@ pipeline {
                 authordeploy()
                     },
                     "Publisher PublicWeb" : {                  
-                publish_url = "https://publish1.stage.tetrapak.adobecqms.net"
+                publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
                 publishdeploy()
                     //},
                     //"Publisher 2 PublicWeb" : {                  
-                publish_url = "https://publish2.stage.tetrapak.adobecqms.net"
+                publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
                 publishdeploy()
                     }
                 )                
             } 
     }
-
+	
     def supdeployment() {
                 
         if (params.DeployCommons)    {

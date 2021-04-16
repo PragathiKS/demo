@@ -21,13 +21,16 @@ class Subscriptionform {
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$dropdownButton = $('.dropdown-menu, .dropdown-toggle', this.root);
     this.cache.countryList = [];
-
+    this.cache.areaOfInterest = $('.i18n-keys',this.root).data('i18n').split(',').map(function(item) {
+      return item.trim();
+    });
     this.cache.requestPayload = {
       'emailSubscription': '',
       'consent' :'',
       'types-communication':[],
-      'interestArea':['Processing','End To End - Solutions','Services','Sustainability','Packaging','Innovation'],
-      'country':''
+      'interestArea':this.cache.areaOfInterest,
+      'country':'',
+      'pageurl': window.location.href
     };
 
   }
@@ -79,6 +82,7 @@ class Subscriptionform {
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
+    const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
     const langCode = this.cache.businessformapi.data('sf-langcode');
     const pardot_extra_field = $('#pardot_extra_field_sf').val();
 
@@ -90,9 +94,11 @@ class Subscriptionform {
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
+    dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
     dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
     dataObj['country'] = this.cache.requestPayload['country'];
+    dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
 
     subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
@@ -147,7 +153,7 @@ class Subscriptionform {
           if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
             requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
           }
-          if (($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent' && !$(this).is(':checked')) || ($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
             const erLbl = $(`#sf-step-1 label`)[0].textContent;

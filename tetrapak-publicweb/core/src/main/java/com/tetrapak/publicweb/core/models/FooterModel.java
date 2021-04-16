@@ -22,7 +22,6 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
  * The Class FooterModel.
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-
 public class FooterModel {
 
     /** The Constant LOGGER. */
@@ -43,9 +42,6 @@ public class FooterModel {
 
     /** The social links. */
     private List<SocialLinkModel> socialLinks;
-
-    /** The footer links. */
-    private List<FooterLinkModel> footerLinks;
     
     /** The footer links. */
     private List<FooterLinkModel> footerLinksSanitized = new ArrayList<>();
@@ -58,6 +54,7 @@ public class FooterModel {
      */
     @PostConstruct
     protected void init() {
+        final List<FooterLinkModel> footerLinks;
         LOGGER.debug("inside init method");
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
         final String path = rootPath + "/jcr:content/root/responsivegrid/footerconfiguration";

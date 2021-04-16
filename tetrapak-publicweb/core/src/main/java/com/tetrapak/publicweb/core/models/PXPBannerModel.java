@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
@@ -7,12 +8,17 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class PXPBannerModel.
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PXPBannerModel {
+	
+	/** The Constant LOGGER. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(PXPBannerModel.class);
 
     /** The resource. */
     @Self
@@ -61,12 +67,15 @@ public class PXPBannerModel {
      */
     @PostConstruct
     protected void init() {
-        ProductModel product = resource.adaptTo(ProductModel.class);
-        title = product.getHeader();
-        description = product.getBenifits();
-        imagePath = product.getBenefitsimage();
-        subTitle = product.getName();
-        imageAltText = product.getName();
+    	LOGGER.debug("Inside init of {}", this.getClass().getName());
+        final ProductModel product = resource.adaptTo(ProductModel.class);
+        if (Objects.nonNull(product)) {
+        	title = product.getHeader();
+            description = product.getBenifits();
+            imagePath = product.getBenefitsimage();
+            subTitle = product.getName();
+            imageAltText = product.getName();
+        }
     }
 
     /**

@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
@@ -54,13 +55,26 @@ public class PXPShapesVolumesModel {
     /** The teaser list. */
     private final List<ManualModel> teaserList = new ArrayList<>();
 
+    /** The Weburl. */
+    private String webUrl;
+
+    /** The package Name. */
+    private String packageName;
+
     /**
      * Inits the.
      */
     @PostConstruct
-    protected void init() {
+    protected void init() { 
+        LOGGER.debug("Inside init of {}", this.getClass().getName());
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        setShapesList(product.getShapes());
+        if (Objects.nonNull(product)) {
+           if(Objects.nonNull(product.getWebUrl())) {
+                packageName = product.getName();
+                webUrl = product.getWebUrl();
+            }
+        	setShapesList(product.getShapes());
+        }
     }
 
     /**
@@ -146,5 +160,23 @@ public class PXPShapesVolumesModel {
      */
     public List<ManualModel> getTeaserList() {
         return new ArrayList<>(teaserList);
+    }
+
+    /**
+     * Gets the Weburl.
+     *
+     * @return the Weburl
+     */
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    /**
+     * Gets the packageName.
+     *
+     * @return the packageName
+     */
+    public String getPackageName() {
+        return packageName;
     }
 }

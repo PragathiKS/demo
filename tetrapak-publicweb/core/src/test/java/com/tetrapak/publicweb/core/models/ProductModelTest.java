@@ -137,14 +137,14 @@ public class ProductModelTest {
         assertEquals("FillingMachine",
                 "<p>O material de embalagem plano com um PLH é alimentado na unidade DIMC e o gargalo da abertura da tampa de rosca é injetado no PLH usando a tecnologia de moldagem por injeção direta.<br />A tampa real é rosqueada no gargalo pelo aplicador de tampas.<br />A unidade DIMC é colocada no nível do chão para acesso fácil do operador. </p>",
                 model.getOptions().get(1).getBody());
-        assertEquals("FillingMachine", "Tetra Gemina® Aseptic", model.getPackageTypeReferences().get(1).getName());
-        assertEquals("FillingMachine", "packagetype1652", model.getPackageTypeReferences().get(1).getId());
-        assertEquals("FillingMachine", "Square", model.getPackageTypeReferences().get(1).getShapes().get(2).getName());
+        assertEquals("FillingMachine", "Tetra Gemina® Aseptic", model.getPackageTypeReferences().get(0).getName());
+        assertEquals("FillingMachine", "packagetype1652", model.getPackageTypeReferences().get(0).getId());
+        assertEquals("FillingMachine", "Square", model.getPackageTypeReferences().get(0).getShapes().get(2).getName());
         assertEquals("FillingMachine",
                 "/content/dam/tetrapak/publicweb/pxp/packagetypes/packagetype1652/image/tga_1500_sq_helicap27_np3_relative.png",
-                model.getPackageTypeReferences().get(1).getShapes().get(2).getThumbnail());
+                model.getPackageTypeReferences().get(0).getShapes().get(2).getThumbnail());
         assertEquals("FillingMachine", "1000 ml",
-                model.getPackageTypeReferences().get(1).getShapes().get(2).getVolumes().get(2));
+                model.getPackageTypeReferences().get(0).getShapes().get(2).getVolumes().get(2));
 
     }
 

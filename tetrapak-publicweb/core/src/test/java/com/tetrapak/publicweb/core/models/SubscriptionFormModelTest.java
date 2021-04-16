@@ -74,7 +74,7 @@ public class SubscriptionFormModelTest {
         
         context.registerService(CountryDetailService.class, countryService);
         final Map<String, Object> countryConfig = new HashMap<>();
-        initializeConfig(countryConfig, "getCountriesContentFragmentRootPath", "/content/dam/tetrapak/publicweb/cfm/countries", CountryDetailService.class);
+        initializeConfig(countryConfig, "getPardotCountriesCFRootPath", "/content/dam/tetrapak/publicweb/cfm/countries", CountryDetailService.class);
 
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);

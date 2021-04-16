@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * The Class Packagetype.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id", "name", "shapes", "openingclosures", "fillingmachines" })
+@JsonPropertyOrder({ "id", "name", "shapes", "openingclosures", "fillingmachines", "weburl" })
 public class Packagetype {
 
     /** The id. */
@@ -32,6 +32,10 @@ public class Packagetype {
     /** The fillingmachines. */
     @JsonProperty("fillingmachines")
     private List<FillingMachine> fillingmachines = null;
+
+    /** weburl */
+    @JsonProperty("weburl")
+    private String weburl;
 
     /**
      * Gets the id.
@@ -138,4 +142,21 @@ public class Packagetype {
         this.fillingmachines = fillingmachines;
     }
 
+    /**
+     * Gets the weburl.
+     *
+     * @return the weburl
+     */
+    public String getWeburl() {
+        return weburl;
+    }
+    /**
+     * Sets the weburl.
+     *
+     * @param weburl
+     *            the new weburl
+     */
+    public void setWeburl(String weburl) {
+        this.weburl = weburl;
+    }
 }

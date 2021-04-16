@@ -1,15 +1,10 @@
-/*
- * 
- */
 package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -17,7 +12,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.beans.pxp.Category;
 import com.tetrapak.publicweb.core.beans.pxp.FeatureOption;
@@ -30,7 +24,6 @@ import com.tetrapak.publicweb.core.beans.pxp.TechnologyType;
 import com.tetrapak.publicweb.core.beans.pxp.Video;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.PageUtil;
-import com.tetrapak.publicweb.core.utils.SearchMapHelper;
 
 /**
  * The Class ProductModel.
@@ -53,6 +46,7 @@ public class ProductModel {
      */
     @PostConstruct
     protected void init() {
+    	LOGGER.debug("Inside init of {}", this.getClass().getName());
         Page currentPage = PageUtil.getCurrentPage(resource);
         if (currentPage != null) {
             Resource pageContentRes = currentPage.getContentResource();
@@ -214,7 +208,7 @@ public class ProductModel {
     public List<FeatureOption> getFeatures() {
         List<FeatureOption> featuresList = new ArrayList<>();
         if (languageResource != null && languageResource.getChild(PWConstants.FEATURES) != null) {
-            return getFeatuesOrOptionsList(featuresList, PWConstants.FEATURES);
+            return getFeaturesOrOptionsList(featuresList, PWConstants.FEATURES);
         }
         return featuresList;
     }
@@ -227,7 +221,7 @@ public class ProductModel {
     public List<FeatureOption> getOptions() {
         List<FeatureOption> optionsList = new ArrayList<>();
         if (languageResource != null && languageResource.getChild(PWConstants.OPTIONS) != null) {
-            return getFeatuesOrOptionsList(optionsList, PWConstants.OPTIONS);
+            return getFeaturesOrOptionsList(optionsList, PWConstants.OPTIONS);
         }
         return optionsList;
     }
@@ -239,9 +233,9 @@ public class ProductModel {
      *            the list
      * @param type
      *            the type
-     * @return the featues or options list
+     * @return the features or options list
      */
-    private List<FeatureOption> getFeatuesOrOptionsList(List<FeatureOption> list, String type) {
+    private List<FeatureOption> getFeaturesOrOptionsList(List<FeatureOption> list, String type) {
         Iterator<Resource> childResources = languageResource.getChild(type).listChildren();
         while (childResources.hasNext()) {
             FeatureOption featuresBean = new FeatureOption();
@@ -283,30 +277,40 @@ public class ProductModel {
             while (openingClouserResource.hasNext()) {
                 Openingclosure openingClouserBean = new Openingclosure();
                 Resource openingClouser = openingClouserResource.next();
-                if (openingClouser.getValueMap().containsKey(PWConstants.NAME)) {
-                    openingClouserBean.setName(openingClouser.getValueMap().get(PWConstants.NAME).toString());
-                }
-                if (openingClouser.getValueMap().containsKey(PWConstants.THUMBNAIL)) {
-                    openingClouserBean.setThumbnail(openingClouser.getValueMap().get(PWConstants.THUMBNAIL).toString());
-                }
-                if (openingClouser.getValueMap().containsKey(PWConstants.ID)) {
-                    openingClouserBean.setId(openingClouser.getValueMap().get(PWConstants.ID).toString());
-                }
-                if (openingClouser.getValueMap().containsKey("principle")) {
-                    openingClouserBean.setPrinciple(openingClouser.getValueMap().get("principle").toString());
-                }
-                if (openingClouser.getValueMap().containsKey("type")) {
-                    openingClouserBean.setType(openingClouser.getValueMap().get("type").toString());
-                }
-                if (openingClouser.getValueMap().containsKey(PWConstants.BENEFITS)) {
-                    String[] benefits = (String[]) openingClouser.getValueMap().get(PWConstants.BENEFITS);
-                    openingClouserBean.setBenefits(Arrays.asList(benefits));
-                }
+                populateClouserBean(openingClouserBean, openingClouser);
                 openingClousersList.add(openingClouserBean);
             }
         }
         return openingClousersList;
     }
+
+	/**
+	 * Populate clouser bean.
+	 *
+	 * @param openingClouserBean the opening clouser bean
+	 * @param openingClouser the opening clouser
+	 */
+	private void populateClouserBean(Openingclosure openingClouserBean, Resource openingClouser) {
+		if (openingClouser.getValueMap().containsKey(PWConstants.NAME)) {
+		    openingClouserBean.setName(openingClouser.getValueMap().get(PWConstants.NAME).toString());
+		}
+		if (openingClouser.getValueMap().containsKey(PWConstants.THUMBNAIL)) {
+		    openingClouserBean.setThumbnail(openingClouser.getValueMap().get(PWConstants.THUMBNAIL).toString());
+		}
+		if (openingClouser.getValueMap().containsKey(PWConstants.ID)) {
+		    openingClouserBean.setId(openingClouser.getValueMap().get(PWConstants.ID).toString());
+		}
+		if (openingClouser.getValueMap().containsKey("principle")) {
+		    openingClouserBean.setPrinciple(openingClouser.getValueMap().get("principle").toString());
+		}
+		if (openingClouser.getValueMap().containsKey("type")) {
+		    openingClouserBean.setType(openingClouser.getValueMap().get("type").toString());
+		}
+		if (openingClouser.getValueMap().containsKey(PWConstants.BENEFITS)) {
+		    String[] benefits = (String[]) openingClouser.getValueMap().get(PWConstants.BENEFITS);
+		    openingClouserBean.setBenefits(Arrays.asList(benefits));
+		}
+	}
 
     /**
      * Gets the filling machine references.
@@ -315,28 +319,38 @@ public class ProductModel {
      */
     public List<FillingMachine> getFillingMachineReferences() {
         List<FillingMachine> fillingMachineList = new ArrayList<>();
-        if (languageResource != null && languageResource.getChild("fillingmachines") != null) {
-            Iterator<Resource> fillingmachines = languageResource.getChild("fillingmachines").listChildren();
+        if (languageResource != null && languageResource.getChild(PWConstants.FILLING_MACHINE) != null) {
+            Iterator<Resource> fillingmachines = languageResource.getChild(PWConstants.FILLING_MACHINE).listChildren();
             while (fillingmachines.hasNext()) {
                 Resource fillingMachine = fillingmachines.next();
                 FillingMachine fillingMachineBean = new FillingMachine();
-                if (fillingMachine.getValueMap().containsKey(PWConstants.HEADER)) {
-                    fillingMachineBean.setHeader(fillingMachine.getValueMap().get(PWConstants.HEADER).toString());
-                }
-                if (fillingMachine.getValueMap().containsKey(PWConstants.ID)) {
-                    fillingMachineBean.setId(fillingMachine.getValueMap().get(PWConstants.ID).toString());
-                }
-                if (fillingMachine.getValueMap().containsKey(PWConstants.NAME)) {
-                    fillingMachineBean.setName(fillingMachine.getValueMap().get(PWConstants.NAME).toString());
-                }
-                if (fillingMachine.getValueMap().containsKey(PWConstants.THUMBNAIL)) {
-                    fillingMachineBean.setThumbnail(fillingMachine.getValueMap().get(PWConstants.THUMBNAIL).toString());
-                }
+                populateFillingMachineBean(fillingMachine, fillingMachineBean);
                 fillingMachineList.add(fillingMachineBean);
             }
         }
         return fillingMachineList;
     }
+
+	/**
+	 * Populate filling machine bean.
+	 *
+	 * @param fillingMachine the filling machine
+	 * @param fillingMachineBean the filling machine bean
+	 */
+	private void populateFillingMachineBean(Resource fillingMachine, FillingMachine fillingMachineBean) {
+		if (fillingMachine.getValueMap().containsKey(PWConstants.HEADER)) {
+		    fillingMachineBean.setHeader(fillingMachine.getValueMap().get(PWConstants.HEADER).toString());
+		}
+		if (fillingMachine.getValueMap().containsKey(PWConstants.ID)) {
+		    fillingMachineBean.setId(fillingMachine.getValueMap().get(PWConstants.ID).toString());
+		}
+		if (fillingMachine.getValueMap().containsKey(PWConstants.NAME)) {
+		    fillingMachineBean.setName(fillingMachine.getValueMap().get(PWConstants.NAME).toString());
+		}
+		if (fillingMachine.getValueMap().containsKey(PWConstants.THUMBNAIL)) {
+		    fillingMachineBean.setThumbnail(fillingMachine.getValueMap().get(PWConstants.THUMBNAIL).toString());
+		}
+	}
 
     /**
      * Gets the package type references.
@@ -345,8 +359,8 @@ public class ProductModel {
      */
     public List<Packagetype> getPackageTypeReferences() {
         List<Packagetype> packageTypeList = new ArrayList<>();
-        if (languageResource != null && languageResource.getChild("packagetypes") != null) {
-            Iterator<Resource> packageTypes = languageResource.getChild("packagetypes").listChildren();
+        if (languageResource != null && languageResource.getChild(PWConstants.PACKAGE_TYPE) != null) {
+            Iterator<Resource> packageTypes = languageResource.getChild(PWConstants.PACKAGE_TYPE).listChildren();
             while (packageTypes.hasNext()) {
                 Resource packageType = packageTypes.next();
                 Packagetype packageTypeBean = new Packagetype();
@@ -356,8 +370,11 @@ public class ProductModel {
                 if (packageType.getValueMap().containsKey(PWConstants.NAME)) {
                     packageTypeBean.setName(packageType.getValueMap().get(PWConstants.NAME).toString());
                 }
-                packageTypeBean.setShapes(getShapes(packageType));
-                packageTypeList.add(packageTypeBean);
+                List<Shape> shapeList = getShapes(packageType);
+                if (!shapeList.isEmpty()) {
+                	packageTypeBean.setShapes(shapeList);
+                    packageTypeList.add(packageTypeBean);
+                }
             }
         }
         return packageTypeList;
@@ -419,4 +436,15 @@ public class ProductModel {
         return technology;
     }
 
+    /**
+     * Gets the weburl.
+     *
+     * @return the weburl
+     */
+    public String getWebUrl() {
+        if (languageResource != null && languageResource.getValueMap().containsKey(PWConstants.WEBURL)) {
+            return languageResource.getValueMap().get(PWConstants.WEBURL).toString();
+        }
+        return StringUtils.EMPTY;
+    }
 }

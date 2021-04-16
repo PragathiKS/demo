@@ -2,5 +2,7 @@
     <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
 </sly>
 <sly data-sly-use.model="com.tetrapak.publicweb.core.models.PXPOptionsModel"
-     data-sly-use.lib="/apps/publicweb/components/content/tabslist/tabslist-template.html"
-     data-sly-call="${lib.tabslist_template @ data=model, componentName='pxpoptions'}" />
+     data-sly-use.lib="/apps/publicweb/components/content/tabslist/tabslist-template.html"/>
+<sly data-sly-test=${model.tabs}>
+	<sly data-sly-call="${lib.tabslist_template @ data=model, componentName='pxpoptions'}" />
+</sly>

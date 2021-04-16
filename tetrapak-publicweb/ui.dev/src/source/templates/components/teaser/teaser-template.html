@@ -5,6 +5,13 @@
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
             data-sly-call="${heading.heading_h3_template @ headingText=data.heading}"/>
       </div>
+
+      <sly data-sly-test.webUrl="${data.webUrl}">
+         <a class="tp-teaser__link js-teaser-analytics" href="${data.webUrl}">
+              <span class="tpatom-link__text sly-text">${'pw.pxp.learnMoreAbout' @i18n} ${data.packageName}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
+         </a>
+      </sly>
+
       <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
       <div class="tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
         <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>
@@ -21,6 +28,7 @@
             data-asset-name="${child.assetName}"
             data-download-type=""
             data-button-link-type="${child.pwButtonTheme}"
+            data-paren-link-title="${data.heading}"
           >
 
           <sly data-sly-test = "${!wcmmode.edit}">
@@ -54,6 +62,7 @@
                 data-asset-name="${child.assetName}"
                 data-download-type=""
                 data-button-link-type="${child.pwButtonTheme}"
+                data-paren-link-title="${data.heading}"
                 >
                 <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${child.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
             </a>

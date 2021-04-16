@@ -262,9 +262,15 @@ public final class PWConstants {
 
     /** The Constant RU_COUNTRY_CODE for Russia, Kazakhstan, Ukraine. */
     public static final String RU_COUNTRY_CODE = "ru";
+    
+    /** The Constant AU_COUNTRY_CODE for Australia, New Zealand */
+    public static final String AU_COUNTRY_CODE = "au";
 
     /** The Constant SE_COUNTRY_CODE for Sweden. */
     public static final String SE_COUNTRY_CODE = "se";
+    
+    /** The Constant SE_MARKET_LOCALE for Sweden. */
+    public static final String SE_MARKET_LOCALE = "sv-se";
     
     /** The Constant NUMBER_FOUR. */
     public static final int NUMBER_FOUR = 4;
@@ -277,7 +283,7 @@ public final class PWConstants {
     
     /** list exceptionCountriesList contains all countries which are exceptions for country code . **/
     public static final List<String> exceptionCountriesList = Collections.unmodifiableList(
-            Arrays.asList(MAGHREB_COUNTRY_CODE, CAC_COUNTRY_CODE, DE_COUNTRY_CODE, RU_COUNTRY_CODE, SE_COUNTRY_CODE));
+            Arrays.asList(MAGHREB_COUNTRY_CODE, CAC_COUNTRY_CODE, DE_COUNTRY_CODE, RU_COUNTRY_CODE, SE_COUNTRY_CODE, AU_COUNTRY_CODE));
 
     /** list maghrebLocaleValues contains all locales for maghreb. **/
     public static final List<String> maghrebLocaleValues = Collections
@@ -289,6 +295,10 @@ public final class PWConstants {
     /** list deLocaleValues contains all locales for Germany, Austria, Switzerland . **/
     public static final List<String> deLocaleValues = Collections
             .unmodifiableList(Arrays.asList("de-de", "de-at", "de-ch"));
+    
+    /** list auLocaleValues contains locales for Australia and New Zealand. **/
+    public static final List<String> auLocaleValues = Collections
+            .unmodifiableList(Arrays.asList("en-au", "en-nz"));
 
     /** list ruLocaleValues contains all locales for Russia, Kazakhstan, Ukraine. **/
     public static final List<String> ruLocaleValues = Collections
@@ -324,23 +334,25 @@ public final class PWConstants {
     /** The Constant EVENT_PUBLISHED_PROPERTY. */
     public static final String EVENT_PUBLISHED_PROPERTY = "eventPublished";
     
-    /** The Constant PRESS_TEMPLATES. */
-    public static final List<String> PRESS_TEMPLATES = Arrays.asList(
-            "/conf/publicweb/settings/wcm/templates/press-release",
-            "/conf/publicweb/settings/wcm/templates/news-article");
-    
+    /** The Constant CQ_TAGS_PROPERTY. */
     public static final String CQ_TAGS_PROPERTY = "cq:tags";
     
+    /** The Constant PW_TAG_SUSTAINIBILITY. */
     public static final String PW_TAG_SUSTAINIBILITY = "tetrapak:sustainability";
     
+    /** The Constant PW_TAG_PACKAGING. */
     public static final String PW_TAG_PACKAGING = "tetrapak:packaging";
     
+    /** The Constant PW_TAG_PROCESSING. */
     public static final String PW_TAG_PROCESSING = "tetrapak:processing";
     
+    /** The Constant PW_TAG_SERVICES. */
     public static final String PW_TAG_SERVICES = "tetrapak:services";
     
+    /** The Constant PW_TAG_INNOVATION. */
     public static final String PW_TAG_INNOVATION = "tetrapak:innovation";
     
+    /** The Constant PW_TAG_END_TO_END_SOLUTIONS. */
     public static final String PW_TAG_END_TO_END_SOLUTIONS = "tetrapak:end-to-end-solutions";
 
     /** The Constant NEW_ARCHIVE_GLOBAL_PATH. */
@@ -348,6 +360,9 @@ public final class PWConstants {
     
     /** The Constant NEW_ARCHIVE_REL_PATH. */
     public static final String NEW_ARCHIVE_REL_PATH = "/about-tetra-pak/news-and-events/newsarchive";
+
+    /** Constant WEBURL */
+    public static final String WEBURL = "weburl";
 
     /**
      * Instantiates a new PW constants.

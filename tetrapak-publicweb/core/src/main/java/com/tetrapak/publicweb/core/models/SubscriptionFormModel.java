@@ -12,6 +12,7 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import com.tetrapak.publicweb.core.beans.DropdownOption;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
@@ -42,7 +43,10 @@ public class SubscriptionFormModel extends FormModel {
     private FormConsentConfigModel consentConfig;
     
     /** The country list. */
-    private List<DropdownOption> countryOptions; 
+    private List<DropdownOption> countryOptions;
+    
+    /** The market site subscribed. */
+    private String marketSiteSubscribed;
 
     /**
      * The init method.
@@ -51,6 +55,12 @@ public class SubscriptionFormModel extends FormModel {
     protected void init() {
         setFormConfig();
         setCountryOptions();
+        if (PageUtil.getCountryCodeFromResource(resource).equalsIgnoreCase(PWConstants.SE_COUNTRY_CODE)) {
+            marketSiteSubscribed = PWConstants.SE_MARKET_LOCALE;
+        } else {
+            marketSiteSubscribed = PageUtil.getLanguageCodeFromResource(resource) + PWConstants.HYPHEN
+                    + PageUtil.getCountryCodeFromResource(resource);
+        }
     }
 
     /**
@@ -99,7 +109,7 @@ public class SubscriptionFormModel extends FormModel {
 	 * Sets the country options.
 	 */
 	public void setCountryOptions() {
-		this.countryOptions = countryService.fetchCountryList(resource.getResourceResolver());
+		this.countryOptions = countryService.fetchPardotCountryList(resource.getResourceResolver());
 	}
 
 	/**
@@ -128,4 +138,14 @@ public class SubscriptionFormModel extends FormModel {
 	public List<DropdownOption> getCountryOptions() {
 		return countryOptions;
 	}
+
+    /**
+     * Gets the market site subscribed.
+     *
+     * @return the market site subscribed
+     */
+    public String getMarketSiteSubscribed() {
+        return marketSiteSubscribed;
+    }
+
 }

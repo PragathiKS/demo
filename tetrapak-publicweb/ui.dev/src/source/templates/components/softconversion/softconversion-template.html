@@ -219,13 +219,13 @@
 											<div class="row form-group no-gutters">
                                            <div class="col-sm-1">
         									<label class="tpatom-checkbox__label clearfix">
-											<input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="market-consent-${componentName}" name="market-consent" auto_locator="positionInput">
+											<input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" required="true" id="market-consent-${componentName}" name="market-consent" auto_locator="positionInput">
                                             <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                                             </label>
         								</div>
 
     									<div class="col-sm-11 marketingConsentText">${data.consentConfig.marketingConsent @ context="html"} </div>
-											<div class="errorMsg">${'pw.form.errormsg.marketingconsent' @i18n}</div>
+											<div class="errorMsg consent-error">${'pw.form.errormsg.marketingconsent' @i18n}</div>
 										</div>
     									</div>
                                          <input type="text" name="pardot_extra_field_${componentName}" id="pardot_extra_field_${componentName}"

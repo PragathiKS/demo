@@ -6,21 +6,42 @@ RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ $1 [L,R=301]
 
+# Rewrite rules
+RewriteMap map.legacy dbm:/etc/httpd/conf.d/rewrites/rewritemap.dbm
+RewriteCond ${map.legacy:$1} !=""
+RewriteRule ^(.*)$              ${map.legacy:$1|/} [L,R=301]
+
+
+RewriteCond   %{HTTP_HOST}  'www-dev.tetrapak.com/(.*)/error/404'
+ErrorDocument 404 "/en-gb/error/404"
+
+
+#### design-system ####
+RewriteCond   %{HTTP_HOST}  'tetrapak-dev65.adobecqms.net'
+RewriteCond   %{REQUEST_URI} ^/
+RewriteRule   "^/design-system/(.*).html$" "/content/tetrapak/publicweb/global/en/error/404.html" [PT,L]
+RewriteRule   "^/design-system$" "/content/design-system/global/en/home.html" [PT,L]
+RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
+RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
+RewriteRule   "^/design-system/(.*)$" "/content/design-system/global/en/$1.html" [PT,L]
+
 ## This ruleset is use for lang-masters based dispatcher URL redirection
-RewriteCond   %{HTTP_HOST}  'tetrapak-dev64a.adobecqms.net'
+RewriteCond   %{HTTP_HOST}  'tetrapak-dev65.adobecqms.net'
 RewriteCond   %{REQUEST_URI} ^/
 RewriteRule   "^/$"  "/content/tetrapak/publicweb/global/en/home.html" [PT,L]
 RewriteRule   "^/robots.txt"  "/content/dam/tetrapak/publicweb/robots.txt" [PT]
+#RewriteRule   "^/robots.txt"  "https://www.tetrapak.com" [R=301]
 
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
-RewriteCond   %{HTTP_HOST}  'tetrapak-dev64a.adobecqms.net'
+RewriteCond   %{HTTP_HOST}  'tetrapak-dev65.adobecqms.net'
 RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
-RewriteCond   %{HTTP_HOST}  'tetrapak-dev64a.adobecqms.net'
+RewriteCond   %{HTTP_HOST}  'tetrapak-dev65.adobecqms.net'
 RewriteCond   %{REQUEST_URI} ^/
 #ErrorDocument 404 /content/tetrapak/publicweb/global/en/error/404
 #ErrorDocument 500 /error/500
+
 
 ## This ruleset is use for Country  based  URL redirection
 
@@ -428,14 +449,6 @@ RewriteCond   %{HTTP_HOST}  'www-dev.tetrapak.com'
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
 RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
-RewriteCond   %{HTTP_HOST}  'tetrapak-dev64a.adobecqms.net'
-RewriteCond   %{REQUEST_URI} ^/
-RewriteRule   "^/online-help/(.*).html$" "/content/tetrapak/publicweb/global/en/error/404.html" [PT,L]
-RewriteRule   "^/online-help$" "/content/online-help/publicweb/gb/en/home.html" [PT,L]
-RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
-RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
-RewriteRule   "^/online-help/(.*)$" "/content/online-help/publicweb/gb/en/$1.html" [PT,L]
-
 
 ########################## ERROR PAGE REDIRECTION #################################################
 #<LocationMatch "/content/tetrapak/publicweb/global/en*">
@@ -805,5 +818,11 @@ ErrorDocument 403 "/error/403"
 <LocationMatch "/content/tetrapak/publicweb/gb/en*">
 ErrorDocument 404 "/en-gb/error/404"
 ErrorDocument 500 "/en-gb/error/500"
+ErrorDocument 403 "/en-gb/error/403"
+</LocationMatch>
+
+<LocationMatch "/content/design-system/global/en*">
+ErrorDocument 404 "/design-system/error/404"
+ErrorDocument 500 "/design-system/error/500"
 ErrorDocument 403 "/en-gb/error/403"
 </LocationMatch>

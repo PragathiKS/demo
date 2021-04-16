@@ -279,7 +279,9 @@ public class PageLoadAnalyticsModel {
         if (siteSectionIndex < currentPageIndex) {
             final Page siteSectionPage = currentPage.getAbsoluteParent(siteSectionIndex);
             if (siteSectionPage != null) {
-                siteSection.append(siteSectionPage.getName());
+                if(!siteSection.toString().contains(siteSectionPage.getName())) {
+                    siteSection.append(siteSectionPage.getName());
+                }  
                 return true;
             }
         }
@@ -436,6 +438,10 @@ public class PageLoadAnalyticsModel {
         } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.SE_COUNTRY_CODE)) {
             for (String seLocale : PWConstants.seLocaleValues) {
                 setHrefLangValues(resourceResolver, seLocale, currentPagePathInLoop);
+            }
+        } else if (PageUtil.getCountryCode(currentLanguagePage).equalsIgnoreCase(PWConstants.AU_COUNTRY_CODE)) {
+            for (String auLocale : PWConstants.auLocaleValues) {
+                setHrefLangValues(resourceResolver, auLocale, currentPagePathInLoop);
             }
         } else {
             for (String esLocale : PWConstants.esLocaleValues) {

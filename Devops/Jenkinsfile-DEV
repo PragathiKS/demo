@@ -15,7 +15,8 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
         booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
-        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Tools_Execution'
+        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Pa11y_Execution'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'ZAP_Run'
 
     }
 
@@ -31,7 +32,7 @@ pipeline {
         test_url_cuhu = "https://mypages-dev.tetrapak.com/dashboard.html"
         test_url_pw = "https://www-dev.tetrapak.com"
         test_url_pally_zap_cuhu = "https://mypages-dev.tetrapak.com/dashboard.html"
-        test_url_pally_zap_pw = "https://www-dev.tetrapak.com"
+        test_url_pally_zap_pw = "https://www-dev.tetrapak.com/contact-us"
         karmapath_cuhu = "${env.WORKSPACE}@2/tetrapak-customerhub/ui.dev/src/coverage"
         karmapath_pw = "${env.WORKSPACE}@2/tetrapak-publicweb/ui.dev/src/coverage"
         build_id_number = ""
@@ -133,7 +134,7 @@ pipeline {
             }            
             steps {
                 script {
-                if (!params.Tools_Execution) {
+                if (!params.Pa11y_Execution) {
                         echo "Skipping Tools Execution"
                 }
                 else {
@@ -143,8 +144,8 @@ pipeline {
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-MyTetraPak', reportTitles: ''])
                     pallycuhuscript()
                     //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerhub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReport- MyTetraPak', reportTitles: ''])
-                    zaptest()
-                	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerhub', reportFiles: 'zap.html', reportName: 'ZAPReport-MyTetraPak', reportTitles: ''])            
+                    //zaptest()
+                	//publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-customerhub', reportFiles: 'zap.html', reportName: 'ZAPReport-MyTetraPak', reportTitles: ''])            
 
                 }
 
@@ -154,8 +155,8 @@ pipeline {
 					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
                     pallypwscript()
 					//publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicweb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
-                    zaptest()
-					publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicweb', reportFiles: 'zap.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
+                    //zaptest()
+					//publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicweb', reportFiles: 'zap.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])   
 
                 }
                 }
@@ -163,6 +164,10 @@ pipeline {
 				if (params.Sonar_Analysis) {
                     sonarreport()
                 }
+				if (params.ZAP_Run) {
+                    zaptest()
+                	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'zap-publicweb', reportFiles: 'zap.html', reportName: 'ZAPReport-PublicWeb', reportTitles: ''])            					
+                }				
 				
                 }
         }
@@ -175,7 +180,7 @@ pipeline {
             }            
             steps {
                 script {
-            if (!params.Tools_Execution) {
+            if (!params.Pa11y_Execution) {
                 echo "Skipping Sitespeed Execution for Desktop"                
             }
             else {
@@ -324,7 +329,8 @@ pipeline {
 
     def zaptest() {
                 echo "Starting Zap Test Run- ${appname}"
-                sh 'docker ps -a'
+                sh 'sudo docker ps -a'
+				sh 'if docker ps | grep zap; then echo "ZAP is running, initiating stop and remove" && docker stop zap && docker rm zap ; else echo "stopped"; fi'
                 sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
                 sleep 30
                 echo "Starting ZAP test Run on ${appname} Urls"
@@ -332,8 +338,8 @@ pipeline {
                 sh 'docker exec  zap zap-cli report -f html -o zap.html'
                 sh "mkdir -p zap-${appname}"
                 sh "docker cp zap:zap/zap.html zap-${appname}"
-                sh 'docker stop zap'
-                sh 'docker rm zap'
+                sh 'sudo docker stop zap'
+                sh 'sudo docker rm zap'
         }
 
 
@@ -390,7 +396,7 @@ pipeline {
                 echo "Starting Dev Dispatcher Cache Clear"
                 withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
                 {
-                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 52.149.68.17 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
                 }        
     }
 	
