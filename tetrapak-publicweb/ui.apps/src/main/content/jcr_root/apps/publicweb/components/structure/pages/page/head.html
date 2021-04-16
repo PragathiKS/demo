@@ -2,7 +2,7 @@
           data-sly-use.headlibRenderer="headlibs.html"
           data-sly-use.headResources="head.resources.html">
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>
         ${page.title @ context='scriptComment'} | ${inheritedPageProperties.titleSuffix ? inheritedPageProperties.titleSuffix : 'Tetra Pak'}
     </title>
@@ -12,10 +12,27 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
      <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
+      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="268df474-520d-4ad7-8453-cd5ddcd602b9" ></script>
+    <script type="text/javascript">
+      function OptanonWrapper() { }
+    </script>
         <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
     </sly>
-    <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher || digitalDataModel.staging && digitalDataModel.isPublisher}">
+
+    <sly data-sly-test="${digitalDataModel.staging && digitalDataModel.isPublisher}">
+      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="de6c9e2a-2d5c-4380-a916-db664d5b6fc9-test" ></script>
+      <script type="text/javascript">
+         function OptanonWrapper() { }
+      </script>
         <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+    </sly>
+   <!--/* script for DEV and QA */-->
+    <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
+      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="c6ff7482-d5cb-4770-aa13-bedfa8504fd1-test" ></script>
+      <script type="text/javascript">
+        function OptanonWrapper() { }
+      </script>
+      <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
     </sly>
     <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
     <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description @ context='scriptComment'}"/>
@@ -27,24 +44,24 @@
     <sly data-sly-test="${digitalDataModel.canonicalURL}">
         <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
     </sly>
-	<sly data-sly-test="${digitalDataModel.hreflangValues}">
+  <sly data-sly-test="${digitalDataModel.hreflangValues}">
     <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues}">
         <link rel="alternate" hreflang="${hreflangData.locale}" href="${hreflangData.pageUrl}" />
     </sly>
-	</sly>
+  </sly>
     </sly>
      <!--/* End of SEO canonical and href functionality */-->
-	
-	<meta data-sly-test="${properties['jcr:title']}" property="og:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
-	<meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>                                                
-	<meta property="og:type" content="website"/>                                                                                           
-	<meta property="og:url" content="${digitalDataModel.currentPageURL}"/>
+  
+  <meta data-sly-test="${properties['jcr:title']}" property="og:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
+  <meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>                                                
+  <meta property="og:type" content="website"/>                                                                                           
+  <meta property="og:url" content="${digitalDataModel.currentPageURL}"/>
 
-	<meta data-sly-test="${properties['jcr:description']}" name="twitter:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>
-  	<meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
-  	<meta name="twitter:site" content="@tetrapak" />
+  <meta data-sly-test="${properties['jcr:description']}" name="twitter:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>
+    <meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
+    <meta name="twitter:site" content="@tetrapak" />
     <meta name="twitter:card" content="summary" />
-	
+  
     <sly data-sly-include="customheaderlibs.html"></sly>
      <sly data-sly-call="${headlibRenderer.headlibs @
                                 designPath         = page.designPath,
