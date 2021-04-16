@@ -142,7 +142,7 @@
                           }
                         /0001
                           {
-                          /glob "/content/trs/en/*.html" /type "allow"
+                          /glob "/content/trs/training-videos/*.html" /type "allow"
                           }
                         }
                   # any header line returned from the auth_checker's HEAD request matching

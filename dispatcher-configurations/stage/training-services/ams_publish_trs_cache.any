@@ -18,7 +18,7 @@
 
 ## cache /content/tetrapak/customerhub
 /0002 {
-        /glob "/content/trs/en[./]*"
+        /glob "/content/trs[./]*"
         /type "allow"
       }
 
