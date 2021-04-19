@@ -5,7 +5,7 @@
     assertionConsumerServiceURL=""
     clockTolerance="60"
     createUser="{Boolean}true"
-    defaultGroups=""
+    defaultGroups="[cuhu_training_edcast]"
     defaultRedirectUrl="/"
     digestMethod="http://www.w3.org/2001/04/xmlenc#sha256"
     groupMembershipAttribute="group"

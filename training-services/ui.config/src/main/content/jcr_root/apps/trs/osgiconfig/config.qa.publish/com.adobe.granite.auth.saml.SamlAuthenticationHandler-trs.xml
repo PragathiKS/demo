@@ -11,7 +11,7 @@
     groupMembershipAttribute="group"
     handleLogout="{Boolean}false"
     identitySyncType="default"
-    idpCertAlias="admin#1614941117040"
+    idpCertAlias="admin#1617472847154"
     idpHttpRedirect="{Boolean}true"
     idpIdentifier=""
     idpUrl="https://ssodev.tetrapak.com/idp/startSSO.ping?PartnerSpId=AnyTimeLearningDev"
