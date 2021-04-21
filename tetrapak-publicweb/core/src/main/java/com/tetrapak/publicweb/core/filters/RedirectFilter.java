@@ -58,6 +58,7 @@ public class RedirectFilter implements Filter {
         if (Boolean.FALSE.equals(WCMMode.fromRequest(slingRequest) == WCMMode.EDIT
                 || WCMMode.fromRequest(slingRequest) == WCMMode.PREVIEW) && StringUtils.isNotBlank(redirect)) {
             slingResponse.sendRedirect(LinkUtils.sanitizeLink(redirect, slingRequest));
+            return;
         }
         chain.doFilter(request, response);
     }
