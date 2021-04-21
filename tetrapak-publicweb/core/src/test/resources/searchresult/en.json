@@ -133,18 +133,6 @@
 }
 }
 },
-"cookieconfiguration": {
-"jcr:primaryType": "nt:unstructured",
-"jcr:createdBy": "sapient-sandip",
-"cookieConsentButtonText": "Ok, I understand!",
-"jcr:lastModifiedBy": "sapient-suraksha",
-"jcr:created": "Wed Apr 01 2020 05:32:18 GMT+0000",
-"cookieConsentDisabled": "false",
-"cookieConsentText": "<p>We are using cookies. By continuing to use our website without changing the settings, you're agreeing to our use of cookies. <a href=\"/content/tetrapak/public-web/lang-masters/en/about-us.html\">Learn more about our cookie policy</a></p>\r\n",
-"jcr:lastModified": "Mon Apr 06 2020 09:56:40 GMT+0000",
-"sling:resourceType": "publicweb/components/structure/cookieconfiguration",
-"textIsRich": "true"
-},
 "siteimproveconfig": {
 "jcr:primaryType": "nt:unstructured",
 "jcr:createdBy": "sapient-jyoti",

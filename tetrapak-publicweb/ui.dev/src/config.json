@@ -162,7 +162,6 @@
         "source/templates/components/managepreferences/",
         "source/templates/components/header/",
         "source/templates/components/footer/",
-        "source/templates/components/cookieconsent/",
         "source/templates/components/errorpage/",
         "source/templates/components/breadcrumb/",
         "source/templates/components/textVideo/",
