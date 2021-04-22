@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/conf/global/settings/dam/adminui-extension/metadataschema/training-services" mode="update"/>
-	 <filter root="/conf/trs" mode="update"/>
-<!--	<filter root="/conf/global/settings/workflow" mode="merge"/> -->
-	<filter root="/var/workflow/models/trs-authors" mode="merge"/>
-    <filter root="/content/trs" mode="update">
-  	 <!-- <include pattern="/content/trs/en" />-->
+	<filter
+		root="/conf/global/settings/dam/adminui-extension/metadataschema/training-services"
+		mode="update" />
+	<filter root="/conf/trs" mode="update" />
+	<filter root="/conf/global/settings/workflow/models"
+		mode="update" />
+	<!-- <filter root="/conf/global/settings/workflow" mode="merge"/> -->
+	<filter root="/var/workflow/models/trs-authors" mode="merge" />
+	<filter root="/content/trs" mode="update">
+		<!-- <include pattern="/content/trs/en" /> -->
 		<include pattern="/content/trs(/.*)" />
-	<!-- 	<exclude  pattern="/content/trs/en/micro-learning-training" />
-		<exclude  pattern="/content/trs/xyleme-tag-mapping" />
-		<exclude  pattern="/content/trs/errors" />-->
-    </filter>
-    <filter root="/content/dam/training-services" mode="update">
-		<exclude pattern="/content/dam/training-services//content/dam/training-services/micro-learning-training/.*" />
-    </filter>
+		<!-- <exclude pattern="/content/trs/en/micro-learning-training" /> <exclude 
+			pattern="/content/trs/xyleme-tag-mapping" /> <exclude pattern="/content/trs/errors" 
+			/> -->
+	</filter>
+	<filter root="/content/dam/training-services" mode="update">
+		<exclude
+			pattern="/content/dam/training-services//content/dam/training-services/micro-learning-training/.*" />
+	</filter>
 </workspaceFilter>
