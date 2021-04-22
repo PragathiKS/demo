@@ -8,6 +8,5 @@
                 }
             });
         }
-        $(".current-Image-Path").attr('title', 'Above image path');
     });
 })($, $(document));
