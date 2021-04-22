@@ -183,5 +183,10 @@
             <artifactId>core.wcm.components.config</artifactId>
             <type>zip</type>
         </dependency>
+        <dependency>
+		  <groupId>biz.netcentric.cq.tools.accesscontroltool</groupId>
+		  <artifactId>accesscontroltool-package</artifactId>
+		  <type>content-package</type>
+		</dependency>
     </dependencies>
 </project>

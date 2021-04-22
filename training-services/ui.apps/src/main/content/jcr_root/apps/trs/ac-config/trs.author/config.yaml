@@ -1,0 +1,119 @@
+
+# Trs users and groups
+
+- group_config:
+
+    - trs-dam-authors:
+
+        - name: TRS DAM Authors
+          memberOf: everyone
+          path: /home/groups/trs
+          
+    - trs-dam-admin:
+
+        - name: TRS DAM Admin Authors
+          memberOf: everyone
+          path: /home/groups/trs
+
+
+- ace_config:
+
+    - trs-dam-authors:
+    
+        - path: /
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+          
+        - path: /libs
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+    
+        - path: /content
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+    
+        - path: /content
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+          
+        - path: /conf
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          
+        - path: /content/dam
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+    
+        - path: /content/dam
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/trs
+          permission: allow
+          actions: read,modify,create
+          
+        - path: /content/dam/training-services
+          permission: allow
+          actions: read,modify,create,acl_read,acl_edit
+          
+    - trs-dam-admin:
+    
+        - path: /
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+          
+        - path: /libs
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+    
+        - path: /content
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+    
+        - path: /content
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+          
+        - path: /conf
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          
+        - path: /content/dam
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+    
+        - path: /content/dam
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/trs
+          permission: allow
+          actions: read,modify,create,delete
+          
+        - path: /content/dam/training-services
+          permission: allow
+          actions: read,modify,create,delete,acl_read,acl_edit
