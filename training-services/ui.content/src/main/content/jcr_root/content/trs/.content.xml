@@ -4,9 +4,7 @@
     jcr:primaryType="cq:Page">
     <errors/>
     <xyleme-tag-mapping/>
-    <rep:policy/>
-    
-    
+    <rep:policy/>    
     <jcr:content
         cq:allowedTemplates="[/apps/trs/templates/.*,/conf/trs/settings/wcm/templates/.*]"
         cq:contextHubPath="/etc/cloudsettings/default/contexthub"

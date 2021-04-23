@@ -6,7 +6,7 @@
         cq:lastModifiedBy="trs-taxonomy-system-user"
         cq:template="/conf/trs/settings/wcm/templates/empty-page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="en"
+        jcr:title="Training Videos"
         sling:resourceType="trs/components/structure/empty-page">
         <root
             jcr:primaryType="nt:unstructured"
