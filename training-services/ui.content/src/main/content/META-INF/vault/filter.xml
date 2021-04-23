@@ -9,14 +9,13 @@
 	<!-- <filter root="/conf/global/settings/workflow" mode="merge"/> -->
 	<filter root="/var/workflow/models/trs-authors" mode="merge" />
 	<filter root="/content/trs" mode="update">
-		<!-- <include pattern="/content/trs/en" /> -->
-		<include pattern="/content/trs(/.*)" />
-		<!-- <exclude pattern="/content/trs/en/micro-learning-training" /> <exclude 
-			pattern="/content/trs/xyleme-tag-mapping" /> <exclude pattern="/content/trs/errors" 
-			/> -->
+		<exclude pattern=".*"/>
+        <include pattern=".*/jcr:content.*"/>
+        <include pattern=".*/training-videos"/>
+        <include pattern=".*/training-videos/jcr:content.*"/>
 	</filter>
 	<filter root="/content/dam/training-services" mode="update">
-		<exclude
-			pattern="/content/dam/training-services//content/dam/training-services/micro-learning-training/.*" />
+        <exclude pattern=".*"/>
+        <include pattern=".*/jcr:content.*"/>
 	</filter>
 </workspaceFilter>

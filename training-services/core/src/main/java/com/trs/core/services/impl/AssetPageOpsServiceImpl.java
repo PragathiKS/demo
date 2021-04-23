@@ -97,7 +97,7 @@ public class AssetPageOpsServiceImpl implements AssetPageOpsService {
                         trsConfig.getTrsVideoPageTemplatePath(),
                         StringUtils.isNotBlank(asset.getMetadataValue(TrsConstants.ASSET_TITLE_PROPERTY))
                                 ? asset.getMetadataValue(TrsConstants.ASSET_TITLE_PROPERTY)
-                                : StringUtils.EMPTY);
+                                : assetNameWithoutExtension);
                 LOG.info("Created Page for the asset {} at the path {}", path, pageResourcePath);
 
             }
