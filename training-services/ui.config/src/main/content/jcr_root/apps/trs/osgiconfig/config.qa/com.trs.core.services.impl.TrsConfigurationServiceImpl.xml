@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="sling:OsgiConfig"
-    dm.domain="https://s7g10.scene7.com"
+    dm.domain="http://s7e5a.scene7.com"
     page.creation.log.file.path="/content/dam/training-services/system/page-creation-author-log.xlsx"
     taxonomy.transformation.log.file.path="/content/dam/training-services/system/xyleme-tag-transformation-log.xlsx"
     trs.assets.root.name="training-services"
