@@ -125,7 +125,7 @@ public class AssetPageOpsServiceImpl implements AssetPageOpsService {
 
         String mod = path.replace(TrsConstants.FORWARD_SLASH + TrsConstants.DAM, StringUtils.EMPTY)
                 .replace(TrsConstants.FORWARD_SLASH + trsConfig.getTrsAssetsRootFolderName(), TrsConstants.FORWARD_SLASH
-                        + trsConfig.getTrsSitesRootFolderName() + TrsConstants.FORWARD_SLASH + "en")
+                        + trsConfig.getTrsSitesRootFolderName())
                 .replace("/videos", StringUtils.EMPTY);
 
         String pageParentPath = FilenameUtils.getFullPath(mod);

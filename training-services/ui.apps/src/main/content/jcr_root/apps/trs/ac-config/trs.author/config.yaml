@@ -139,8 +139,8 @@
 
         - path: /content/trs
           permission: allow
-          actions: read,modify,create,delete
+          actions: read,modify,create,delete,acl_read,acl_edit,replicate
           
         - path: /content/dam/training-services
           permission: allow
-          actions: read,modify,create,delete,acl_read,acl_edit
+          actions: read,modify,create,delete,acl_read,acl_edit,replicate
