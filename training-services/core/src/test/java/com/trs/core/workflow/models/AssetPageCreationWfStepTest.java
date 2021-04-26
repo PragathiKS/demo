@@ -81,7 +81,7 @@ class AssetPageCreationWfStepTest {
 	@Test
 	final void testExecute() throws WorkflowException {
 		 workflowProcess.execute(workItem, workflowSession, paramMetaDataMap);
-		 assertNotNull(context.resourceResolver().getResource("/content/trs/en/test/video2"),"Resource should not be null");
+		 assertNotNull(context.resourceResolver().getResource("/content/trs/test/video2"),"Resource should not be null");
 	}
 
 }

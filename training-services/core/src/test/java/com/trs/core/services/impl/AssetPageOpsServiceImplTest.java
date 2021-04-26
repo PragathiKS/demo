@@ -68,7 +68,7 @@ public class AssetPageOpsServiceImplTest {
 
         Map<String, String> responseMap = assetPageOpsServiceImpl.createTrsPage(context.resourceResolver(),
                 "/content/dam/training-services/test/video2.mp4");
-        assertEquals("/content/trs/en/test/video2", responseMap.get("pagePath"),
+        assertEquals("/content/trs/test/video2", responseMap.get("pagePath"),
                 "Page path should have been /content/trs/en/test/video2");
 
     }
