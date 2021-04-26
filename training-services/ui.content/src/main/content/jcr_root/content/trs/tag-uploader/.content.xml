@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2020-05-25T12:24:23.782+02:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/apps/trs/templates/utility-page-template"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Tag Uploader Utility"
+        jcr:uuid="655dd8a6-c25b-4225-90d0-e66c986f2520"
+        sling:resourceType="trs/components/structure/utility-page">
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/parsys">
+            <upload_form
+                jcr:created="{Date}2020-05-13T17:24:07.557+02:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2020-05-25T12:24:23.770+02:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="trs/components/content/upload-form"
+                formSubmitUrl="/bin/tagimporter"
+                header="Tag Uploader Utility"
+                typeOfFileLabel="Please select an excel file"/>
+        </par>
+    </jcr:content>
+    <csv/>
+</jcr:root>

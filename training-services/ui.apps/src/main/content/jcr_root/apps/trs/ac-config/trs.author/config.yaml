@@ -30,6 +30,33 @@
           permission: allow
           actions:
           privileges: jcr:read,jcr:readAccessControl
+          
+        - path: /etc
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          
+        - path: /var
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+          
+        - path: /var/workflow
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+          
+        - path: /var/workflow/models
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+          
+        - path: /var/workflow/models/trs-authors
+          permission: allow
+          actions: read,modify,create
     
         - path: /content
           permission: allow
@@ -66,7 +93,7 @@
           
         - path: /content/dam/training-services
           permission: allow
-          actions: read,modify,create,acl_read,acl_edit
+          actions: read,create,acl_read,acl_edit,modify
           
     - trs-dam-admin:
     
