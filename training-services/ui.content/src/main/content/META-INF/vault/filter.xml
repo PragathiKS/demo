@@ -7,12 +7,12 @@
 		mode="update" />
 	<!-- <filter root="/conf/global/settings/workflow" mode="merge"/> -->
 	<filter root="/var/workflow/models/trs-authors" mode="merge" />
-	<filter root="/content/trs" mode="update">
+	<filter root="/content/trs" mode="merge">
 		<exclude pattern=".*" />
 		<include pattern=".*/jcr:content.*" />
 		<include pattern=".*/training-videos" />
 		<include pattern=".*/training-videos/jcr:content.*" />
-		<include pattern=".*/errors/.*" />
+		<include pattern=".*/errors" />
 		<include pattern=".*/tag-uploader/*" />
 		<include pattern=".*/tag-conversion-utility/*" />
 	</filter>
