@@ -52,18 +52,6 @@
           "sling:resourceType": "publicweb/components/structure/headerconfiguration",
           "contactLinkTarget": "_blank",
           "logoLink": "https://www.tetrapak.com"
-        },
-        "cookieconfiguration": {
-          "jcr:primaryType": "nt:unstructured",
-          "jcr:createdBy": "admin",
-          "cookieConsentButtonText": "Ok! I understand.",
-          "jcr:lastModifiedBy": "admin",
-          "jcr:created": "Mon Mar 30 2020 14:33:09 GMT+0530",
-          "cookieConsentDisabled": "true",
-          "cookieConsentText": "Cookie consent text with RTE",
-          "jcr:lastModified": "Mon Mar 30 2020 14:33:32 GMT+0530",
-          "sling:resourceType": "publicweb/components/structure/cookieconfiguration",
-          "textIsRich": "true"
         }
       }
     }
