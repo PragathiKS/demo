@@ -3,4 +3,4 @@
     jcr:description="Subscription Form Configuration Component"
     jcr:primaryType="cq:Component"
     jcr:title="Subscription Form Configuration"
-    componentGroup="tetrapak-publicweb-configuration"/>
+    componentGroup=".hidden"/>
