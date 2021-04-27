@@ -16,8 +16,11 @@
         <include pattern=".*/tag-uploader(/.*)?" />
         <include pattern=".*/tag-conversion-utility(/.*)?" />
     </filter>
-    <filter root="/content/dam/training-services" mode="update">
-        <exclude pattern=".*" />
-        <include pattern=".*/jcr:content.*" />
+    <filter root="/content/dam/training-services">
+        <exclude pattern=".*/system" />    
+        <exclude pattern=".*/mapping" />
+        <exclude pattern=".*/en" />
+        <exclude pattern=".*/micro-learning-training" />   
+        <exclude pattern=".*/test*" />     
     </filter>
 </workspaceFilter>
