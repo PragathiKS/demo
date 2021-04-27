@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[granite:AuthenticationRequired,rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <errors/>
+    <xyleme-tag-mapping/>
+    <rep:policy/>    
+    <jcr:content
+        cq:allowedTemplates="[/apps/trs/templates/.*,/conf/trs/settings/wcm/templates/.*]"
+        cq:contextHubPath="/etc/cloudsettings/default/contexthub"
+        cq:contextHubSegmentsPath="/etc/segmentation/contexthub"
+        cq:deviceGroups="[/etc/mobile/groups/responsive]"
+        cq:lastModified="{Date}2021-03-11T15:29:08.312+01:00"
+        cq:lastModifiedBy="admin"
+        cq:lastReplicated="{Date}2021-03-05T15:25:27.242+01:00"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:template="/conf/trs/settings/wcm/templates/empty-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Training Services"
+        jcr:uuid="f0f8eabd-69fe-4eb6-a175-b4f9332d340f"
+        sling:resourceType="trs/components/structure/empty-page"
+        errorPages="/content/trs/errors">
+        <image jcr:primaryType="nt:unstructured">
+            <file/>
+        </image>
+    </jcr:content>
+    <en/>
+</jcr:root>

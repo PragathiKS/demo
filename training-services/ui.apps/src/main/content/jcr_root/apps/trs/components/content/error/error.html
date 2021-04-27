@@ -1,0 +1,10 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.all @ categories='trs.error'}"/>
+<sly data-sly-test="${wcmmode.edit}">
+     <h4>Edit Error component</h4>
+</sly>
+<div class="container">
+<h1>${properties.errorCode}</h1>
+<h2>${properties.errorHeading}</h2>
+<p>${properties.errorDescription}</p>
+</div>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <rep:policy/>
+    <wcm jcr:primaryType="nt:unstructured">
+        <foundation jcr:primaryType="nt:unstructured">
+            <components jcr:primaryType="nt:unstructured">
+                <responsivegrid jcr:primaryType="nt:unstructured">
+                    <policy_1613141580921
+                        jcr:lastModified="{Date}2021-02-12T16:19:27.114+01:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="TrS Video Page"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/libs/dam/components/scene7/dynamicmedia,/apps/trs/components/content/video]">
+                        <jcr:content
+                            cq:lastReplicated="{Date}2021-02-12T19:04:33.798+01:00"
+                            cq:lastReplicatedBy="admin"
+                            cq:lastReplicationAction="Activate"
+                            jcr:mixinTypes="[cq:ReplicationStatus]"
+                            jcr:primaryType="nt:unstructured"/>
+                    </policy_1613141580921>
+                    <policy_365985160531400
+                        jcr:lastModified="{Date}2021-03-09T16:11:43.156+01:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Empty Page"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="group:TRS">
+                        <jcr:content
+                            cq:lastReplicated="{Date}2021-03-10T23:05:21.411+01:00"
+                            cq:lastReplicatedBy="admin"
+                            cq:lastReplicationAction="Activate"
+                            jcr:mixinTypes="[cq:ReplicationStatus]"
+                            jcr:primaryType="nt:unstructured"/>
+                    </policy_365985160531400>
+                </responsivegrid>
+            </components>
+        </foundation>
+    </wcm>
+</jcr:root>

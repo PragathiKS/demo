@@ -1,0 +1,94 @@
+{
+	"jcr:primaryType": "dam:Asset",
+	"jcr:mixinTypes": [
+		"mix:referenceable"
+	],
+	"jcr:createdBy": "trs-taxonomy-system-user",
+	"jcr:created": "Wed Feb 24 2021 10:56:39 GMT+0100",
+	"jcr:uuid": "f533cb2e-7907-40aa-89b9-dc4c9c350dfe",
+	"jcr:content": {
+		"jcr:primaryType": "dam:AssetContent",
+		"jcr:lastModifiedBy": "trs-taxonomy-system-user",
+		"dam:assetState": "processed",
+		"jcr:lastModified": "Wed Mar 17 2021 12:06:00 GMT+0100",
+		"renditions": {
+			"jcr:primaryType": "nt:folder",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Wed Mar 17 2021 12:05:42 GMT+0100",
+			"cq5dam.thumbnail.48.48.png": {
+				"jcr:primaryType": "nt:file",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Wed Mar 17 2021 12:05:42 GMT+0100",
+				"jcr:content": {
+					"jcr:primaryType": "oak:Resource",
+					"jcr:lastModifiedBy": "workflow-process-service",
+					"jcr:mimeType": "image/png",
+					"jcr:lastModified": "Wed Mar 17 2021 12:05:59 GMT+0100",
+					":jcr:data": 2385
+				}
+			},
+			"cq5dam.thumbnail.140.100.png": {
+				"jcr:primaryType": "nt:file",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Wed Mar 17 2021 12:05:42 GMT+0100",
+				"jcr:content": {
+					"jcr:primaryType": "oak:Resource",
+					"jcr:lastModifiedBy": "workflow-process-service",
+					"jcr:mimeType": "image/png",
+					"jcr:lastModified": "Wed Mar 17 2021 12:05:59 GMT+0100",
+					":jcr:data": 7126
+				}
+			},
+			"cq5dam.web.1280.1280.jpeg": {
+				"jcr:primaryType": "nt:file",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Wed Mar 17 2021 12:05:42 GMT+0100",
+				"jcr:content": {
+					"jcr:primaryType": "oak:Resource",
+					"jcr:lastModifiedBy": "workflow-process-service",
+					"jcr:mimeType": "image/jpeg",
+					"jcr:lastModified": "Wed Mar 17 2021 12:06:00 GMT+0100",
+					":jcr:data": 160614
+				}
+			},
+			"original": {
+				"jcr:primaryType": "nt:file",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Wed Mar 17 2021 12:05:42 GMT+0100",
+				"jcr:content": {
+					"jcr:primaryType": "oak:Resource",
+					"jcr:encoding": "ISO-8859-1",
+					"jcr:lastModifiedBy": "trs-taxonomy-system-user",
+					"jcr:mimeType": "text/plain",
+					"jcr:lastModified": "Wed Mar 17 2021 12:05:42 GMT+0100",
+					":jcr:data": 23001
+				}
+			},
+			"cq5dam.thumbnail.319.319.png": {
+				"jcr:primaryType": "nt:file",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Wed Mar 17 2021 12:05:42 GMT+0100",
+				"jcr:content": {
+					"jcr:primaryType": "oak:Resource",
+					"jcr:lastModifiedBy": "workflow-process-service",
+					"jcr:mimeType": "image/png",
+					"jcr:lastModified": "Wed Mar 17 2021 12:05:59 GMT+0100",
+					":jcr:data": 36500
+				}
+			}
+		},
+		"related": {
+			"jcr:primaryType": "nt:unstructured"
+		},
+		"metadata": {
+			"jcr:primaryType": "nt:unstructured",
+			"jcr:mixinTypes": [
+				"cq:Taggable"
+			],
+			"dam:extracted": "Wed Mar 17 2021 12:05:47 GMT+0100",
+			"dc:format": "application/json",
+			"dam:sha1": "80de64da51d0e166165667161ef1ca8030e53a95",
+			"dam:size": 23001
+		}
+	}
+}

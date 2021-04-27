@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2021-03-09T16:30:22.862+01:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/trs/settings/wcm/templates/empty-page"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="500"
+        sling:resourceType="trs/components/structure/empty-page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <error
+                    jcr:created="{Date}2021-03-09T16:28:51.945+01:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2021-03-09T16:30:22.859+01:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="trs/components/content/error"
+                    errorCode="500"
+                    errorDescription="Please try again later"
+                    errorHeading="Internal Server Error"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

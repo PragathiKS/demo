@@ -1,0 +1,84 @@
+{
+	"jcr:primaryType": "sling:Folder",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Tue Feb 23 2021 13:40:54 GMT+0100",
+	"jcr:content": {
+		"jcr:primaryType": "nt:unstructured",
+		"jcr:title": "test"
+	},
+	"video2.mp4": {
+		"jcr:primaryType": "dam:Asset",
+		"jcr:mixinTypes": [
+			"mix:referenceable"
+		],
+		"jcr:createdBy": "admin",
+		"jcr:created": "Tue Feb 23 2021 13:41:13 GMT+0100",
+		"jcr:uuid": "4ebb1f65-4a6f-4ea2-8409-e8f0532fac2c",
+		"jcr:content": {
+			"jcr:primaryType": "dam:AssetContent",
+			"jcr:mixinTypes": [
+				"cq:ReplicationStatus"
+			],
+			"cq:lastReplicationAction": "Activate",
+			"cq:lastReplicatedBy": "trs-taxonomy-system-user",
+			"jcr:lastModifiedBy": "trs-taxonomy-system-user",
+			"cq:lastReplicated": "Mon Mar 15 2021 16:43:20 GMT+0100",
+			"dam:assetState": "processed",
+			"jcr:lastModified": "Mon Mar 15 2021 16:43:25 GMT+0100",
+			"renditions": {
+				"jcr:primaryType": "nt:folder",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Tue Feb 23 2021 13:41:13 GMT+0100",
+				"original": {
+					"jcr:primaryType": "nt:file",
+					"jcr:createdBy": "admin",
+					"jcr:created": "Tue Feb 23 2021 13:41:13 GMT+0100",
+					"jcr:content": {
+						"jcr:primaryType": "oak:Resource",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:mimeType": "video/mp4",
+						"jcr:lastModified": "Tue Feb 23 2021 13:41:13 GMT+0100",
+						":jcr:data": 41016573
+					}
+				}
+			},
+			"related": {
+				"jcr:primaryType": "nt:unstructured"
+			},
+			"metadata": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:mixinTypes": [
+					"cq:Taggable"
+				],
+				"dam:xylemeTags": [
+					"a35e374d-f142-4742-919f-beba650f8845",
+					"46de5d5e-ae5d-4eab-8538-935394b98d75"
+				],
+				"dam:pagePublishUrl": "http://anytimelearning.tetrapak.com/content/trs/en/test/video2.html",
+				"jcr:lastModifiedBy": "trs-taxonomy-system-user",
+				"dam:extracted": "Tue Feb 23 2021 13:41:15 GMT+0100",
+				"dam:pageAuthorUrl": "/editor.html/content/trs/en/test/video2.html",
+				"dc:format": "video/mp4",
+				"dc:xylemeTags": [
+					"a35e374d-f142-4742-919f-beba650f8845",
+					"85155c19-8297-4d34-9365-e1b172d586",
+					"46de5d5e-ae5d-4eab-8538-935394b98d75"
+				],
+				"dc:modified": "Tue Feb 23 2021 14:46:19 GMT+0100",
+				"dam:scene7File": "tetrapakdev/MLV00298 - A3 Speed - Preparing Packaging Material Splice",
+				"jcr:lastModified": "Mon Mar 15 2021 16:43:25 GMT+0100",
+				"xmp:ModifyDate": "Fri Jul 26 2019 04:52:56 GMT+0000",
+				"xmp:CreateDate": "Fri Jul 26 2019 04:52:56 GMT+0000",
+				"dam:sha1": "c90407fa5bccb34ec29cbb848aea25f055eaa1ce",
+				"dam:size": 41016573,
+				"dc:title": "title for video 2",
+				"xmpDM:duration": {
+					"jcr:primaryType": "nt:unstructured",
+					"xmpDM:scale": "1/600",
+					"xmpDM:value": 9203,
+					"xmpNodeType": "xmpStruct"
+				}
+			}
+		}
+	}
+}

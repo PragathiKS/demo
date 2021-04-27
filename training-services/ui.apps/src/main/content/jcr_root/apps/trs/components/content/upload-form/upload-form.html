@@ -1,0 +1,13 @@
+<h1>${properties.header}</h1>
+<div id="success-message" class="success-message"
+	style="visibility: hidden">Success!</div>
+<div id="failure-message" class="failure-message"
+	style="visibility: hidden">Operation failed!</div>
+<form method="POST" enctype="multipart/form-data">
+	<input id="file-upload-input" accept="*/*" type="file" name="csv"
+		required="required" placeholder="Select a CSV file">
+	<p>${properties.typeOfFileLabel}</p>
+	<button id="upload-button" type="submit">Upload</button>
+</form>
+<input type="hidden" id="formSubmitUrl" name="formSubmitUrl"
+	value="${properties.formSubmitUrl}">

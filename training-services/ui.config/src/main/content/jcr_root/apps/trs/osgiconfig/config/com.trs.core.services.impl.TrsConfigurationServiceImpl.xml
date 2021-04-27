@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:OsgiConfig"
+    dm.domain="https://s7g10.scene7.com"
+    page.creation.log.file.path="/content/dam/training-services/system/page-creation-author-log.xlsx"
+    taxonomy.transformation.log.file.path="/content/dam/training-services/system/xyleme-tag-transformation-log.xlsx"
+    trs.assets.root.name="training-services"
+    trs.author.dns="https://author-tetrapak-prod65.adobecqms.net/editor.html"
+    trs.dns="https://anytimelearning.tetrapak.com"
+    trs.empty.page.template.path="/conf/trs/settings/wcm/templates/empty-page"
+    trs.sites.root.name="trs/training-videos"
+    trs.video.page.template.path="/conf/trs/settings/wcm/templates/video-page"
+    trs.xyleme.mappings.path="/content/trs/xyleme-tag-mapping"
+    xyleme.aem.tag.mapping.file.path="/content/dam/training-services/system/mapping.json"
+    xyleme.tags.asset.metadata.property="dam:xylemeTags"/>

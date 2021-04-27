@@ -1,0 +1,164 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:mixinTypes": [
+		"rep:AccessControllable",
+		"granite:AuthenticationRequired"
+	],
+	"jcr:createdBy": "admin",
+	"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": [
+			"mix:versionable"
+		],
+		"jcr:createdBy": "admin",
+		"jcr:title": "Training Services",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "d10fafdf-3737-46a4-a83e-81add1b7a502",
+		"cq:template": "/conf/trs/settings/wcm/templates/empty-page",
+		"cq:lastReplicatedBy": "admin",
+		"jcr:predecessors": [
+			"388df494-ceb1-4f3e-a7cc-8adf4b891a48"
+		],
+		"cq:contextHubSegmentsPath": "/etc/segmentation/contexthub",
+		"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+		"cq:lastReplicated": "Fri Mar 05 2021 15:25:27 GMT+0100",
+		"cq:lastModified": "Thu Mar 11 2021 15:29:08 GMT+0100",
+		"jcr:baseVersion": "388df494-ceb1-4f3e-a7cc-8adf4b891a48",
+		"jcr:isCheckedOut": true,
+		"cq:deviceGroups": [
+			"/etc/mobile/groups/responsive"
+		],
+		"jcr:uuid": "f0f8eabd-69fe-4eb6-a175-b4f9332d340f",
+		"sling:resourceType": "trs/components/structure/empty-page",
+		"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
+		"cq:allowedTemplates": [
+			"/apps/trs/templates/.*",
+			"/conf/trs/settings/wcm/templates/.*"
+		],
+		"errorPages": "/content/trs/errors",
+		"cq:lastModifiedBy": "admin",
+		"image": {
+			"jcr:primaryType": "nt:unstructured",
+			"file": {
+				"jcr:primaryType": "nt:file",
+				"jcr:createdBy": "admin",
+				"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+				"jcr:content": {
+					"jcr:primaryType": "nt:resource",
+					"jcr:mixinTypes": [
+						"dam:Thumbnails"
+					],
+					"jcr:lastModifiedBy": "admin",
+					"jcr:mimeType": "image/png",
+					"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+					":jcr:data": 2160,
+					"jcr:uuid": "5a31be9f-daf4-4575-9767-0aa3a3a8c5ef",
+					"dam:thumbnails": {
+						"jcr:primaryType": "nt:folder",
+						"jcr:createdBy": "admin",
+						"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+						"dam:thumbnail_480.png": {
+							"jcr:primaryType": "nt:file",
+							"jcr:createdBy": "admin",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"jcr:content": {
+								"jcr:primaryType": "nt:resource",
+								"jcr:lastModifiedBy": "admin",
+								"jcr:mimeType": "image/png",
+								"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+								":jcr:data": 1818,
+								"jcr:uuid": "551105eb-0ff1-4345-b80c-c653fbda0ea7"
+							}
+						},
+						"dam:thumbnail_319.png": {
+							"jcr:primaryType": "nt:file",
+							"jcr:createdBy": "admin",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"jcr:content": {
+								"jcr:primaryType": "nt:resource",
+								"jcr:lastModifiedBy": "admin",
+								"jcr:mimeType": "image/png",
+								"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+								":jcr:data": 1344,
+								"jcr:uuid": "6a6acd73-bd54-4b28-a2e5-6c18f2aab70e"
+							}
+						},
+						"dam:thumbnail_300.png": {
+							"jcr:primaryType": "nt:file",
+							"jcr:createdBy": "admin",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"jcr:content": {
+								"jcr:primaryType": "nt:resource",
+								"jcr:lastModifiedBy": "admin",
+								"jcr:mimeType": "image/png",
+								"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+								":jcr:data": 1199,
+								"jcr:uuid": "49947b83-e924-4546-b668-5757cb639534"
+							}
+						},
+						"dam:thumbnail_48.png": {
+							"jcr:primaryType": "nt:file",
+							"jcr:createdBy": "admin",
+							"jcr:created": "Tue Feb 23 2021 13:42:18 GMT+0100",
+							"jcr:content": {
+								"jcr:primaryType": "nt:resource",
+								"jcr:lastModifiedBy": "admin",
+								"jcr:mimeType": "image/png",
+								"jcr:lastModified": "Tue Feb 23 2021 13:42:18 GMT+0100",
+								":jcr:data": 238,
+								"jcr:uuid": "8075faa5-f694-4aea-bc0e-164c7f21b826"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"en": {
+		"jcr:primaryType": "cq:Page",
+		"jcr:createdBy": "trs-taxonomy-system-user",
+		"jcr:created": "Thu Mar 11 2021 14:32:29 GMT+0100",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:createdBy": "trs-taxonomy-system-user",
+			"jcr:title": "en",
+			"cq:template": "/conf/trs/settings/wcm/templates/empty-page",
+			"jcr:created": "Thu Mar 11 2021 14:32:29 GMT+0100",
+			"cq:lastModified": "Thu Mar 11 2021 14:32:29 GMT+0100",
+			"sling:resourceType": "trs/components/structure/empty-page",
+			"cq:lastModifiedBy": "trs-taxonomy-system-user",
+			"root": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"responsivegrid": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid"
+				}
+			}
+		},
+		"micro-learning-training": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Thu Mar 11 2021 15:22:45 GMT+0100",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:createdBy": "admin",
+				"jcr:title": "micro-learning-training",
+				"cq:template": "/conf/trs/settings/wcm/templates/empty-page",
+				"jcr:created": "Thu Mar 11 2021 15:22:45 GMT+0100",
+				"cq:lastModified": "Thu Mar 11 2021 15:22:45 GMT+0100",
+				"sling:resourceType": "trs/components/structure/empty-page",
+				"cq:lastModifiedBy": "admin",
+				"root": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"responsivegrid": {
+						"jcr:primaryType": "nt:unstructured",
+						"sling:resourceType": "wcm/foundation/components/responsivegrid"
+					}
+				}
+			}
+		}
+	}
+}

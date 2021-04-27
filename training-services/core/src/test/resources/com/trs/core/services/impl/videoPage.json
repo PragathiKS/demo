@@ -1,0 +1,46 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "trs-taxonomy-system-user",
+	"jcr:created": "Wed Mar 17 2021 12:08:24 GMT+0100",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": [
+			"mix:versionable"
+		],
+		"jcr:createdBy": "trs-taxonomy-system-user",
+		"jcr:title": "title for video 2",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "e39e6df5-0f24-4fdf-a668-7fad1e531f8a",
+		"cq:template": "/conf/trs/settings/wcm/templates/video-page",
+		"cq:lastReplicatedBy": "trs-taxonomy-system-user",
+		"jcr:predecessors": [
+			"4a89f2c3-2ded-4bbd-a522-8c9e5b7b6b2f"
+		],
+		"jcr:created": "Wed Mar 17 2021 12:08:24 GMT+0100",
+		"cq:lastReplicated": "Fri Mar 19 2021 12:50:15 GMT+0100",
+		"cq:lastModified": "Wed Mar 17 2021 12:08:24 GMT+0100",
+		"jcr:baseVersion": "4a89f2c3-2ded-4bbd-a522-8c9e5b7b6b2f",
+		"jcr:isCheckedOut": true,
+		"jcr:uuid": "52b64870-04e3-4598-8c81-5e397ca0483b",
+		"sling:resourceType": "trs/components/structure/empty-page",
+		"cq:lastModifiedBy": "trs-taxonomy-system-user",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"video": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"s7assetFile": "tetrapakdev/MLV00298 - A3 Speed - Preparing Packaging Material Splice",
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Fri Feb 12 2021 15:55:16 GMT+0100",
+					"jcr:lastModified": "Fri Feb 12 2021 15:55:16 GMT+0100",
+					"sling:resourceType": "trs/components/content/video",
+					"sourceAssetPath": "/content/dam/training-services/test/video2.mp4"
+				}
+			}
+		}
+	}
+}

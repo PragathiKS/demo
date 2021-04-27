@@ -1,0 +1,31 @@
+
+# Trs users and groups
+
+- group_config:
+
+    - cuhu_training_edcast:
+
+        - name: Edcast users
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+          
+    - cuhu_training_anytimelearning:
+
+        - name: Edcast Internal Users
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
+
+- ace_config:
+
+    - cuhu_training_edcast:
+
+        - path: /content/trs
+          permission: allow
+          actions: read
+          
+    - cuhu_training_anytimelearning:
+
+        - path: /content/trs
+          permission: allow
+          actions: read
