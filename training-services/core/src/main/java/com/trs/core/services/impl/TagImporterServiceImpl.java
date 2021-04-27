@@ -133,10 +133,13 @@ public class TagImporterServiceImpl implements TagImporterService {
     private void createMappingNode(ResourceResolver resourceResolver, StringBuilder tagName, String name) {
         Session session = resourceResolver.adaptTo(Session.class);
         try {
+            LOGGER.info("Create mapping node for : "+name);
             Node mappingParentNode = JcrUtils.getOrCreateByPath(
                     trsConfig.getTrsXylemeMappingsPath(), "nt:unstructured", session);
+            LOGGER.info("Parent node : "+mappingParentNode.getName());
             if (JcrUtils.getNodeIfExists(mappingParentNode, name) == null) {
                 Node mappingNode = JcrUtils.getOrAddNode(mappingParentNode, name);
+                LOGGER.info("Created tag node : "+mappingNode.getName());
                 mappingNode.setProperty(TrsConstants.XYLEME_TAG_MAPPING_NODE_PROPERTY,
                         tagName.toString());
                 session.save();
