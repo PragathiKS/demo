@@ -100,7 +100,7 @@ public class TagImporterServiceImpl implements TagImporterService {
             if (!tagMappings.containsKey(name)) {
                 tagMappings.put(name, tagName.toString());
             }
-
+            LOGGER.info("Mapping node for : "+name);
             createMappingNode(resourceResolver, tagName, name);
 
             TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
@@ -118,7 +118,7 @@ public class TagImporterServiceImpl implements TagImporterService {
                     LOGGER.error("Error while creating tag :", e);
                 }
             } else {
-                LOGGER.info("The following tag already exists : " + tagName.toString());
+              //  LOGGER.info("The following tag already exists : " + tagName.toString());
             }
             if (cellCounter == 0) {
                 tagName.append(TAG_NAMESPACE_SEPARATOR);
@@ -131,6 +131,7 @@ public class TagImporterServiceImpl implements TagImporterService {
     }
 
     private void createMappingNode(ResourceResolver resourceResolver, StringBuilder tagName, String name) {
+        LOGGER.info("Entering method createMappingNode");
         Session session = resourceResolver.adaptTo(Session.class);
         try {
             LOGGER.info("Create mapping node for : "+name);
