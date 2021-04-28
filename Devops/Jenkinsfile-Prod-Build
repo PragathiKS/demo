@@ -87,7 +87,7 @@ pipeline {
                 script {
                     author_url = "https://author1westeurope.stage65.tetrapak.adobecqms.net"
                     username = "sapient-user"
-                    password = "*?qbpgyd+hNKR6E%mQmle[XK"   
+                    password = "*?qbpgyd+hNKR6E%mQmle[XK"
                     stagedeployment()
                     echo "$username"
                 }
@@ -124,7 +124,7 @@ pipeline {
 
     def stagedeployment() {
 
-        if (params.DeployCommons)    {
+        if (params.Build_Commons)    {
                 packageName = "tetrapak-commons.complete"
                 repoName = "tetrapak"
                 fileName = "1.0.0-${build_id_number}"
@@ -144,7 +144,7 @@ pipeline {
                 )
 
             }
-        if (params.DeployMyTetrapak) {
+        if (params.Build_MyTetraPak) {
                 packageName = "tetrapak-customerhub.complete"
                 repoName = "tetrapak-customerhub"                
                 fileName = "1.0.0-${build_id_number}"                  
@@ -163,7 +163,7 @@ pipeline {
                     }
                 )
         }
-        if (params.DeployPublicWeb) {
+        if (params.Build_Publicweb) {
                 packageName = "tetrapak-publicweb.complete"
                 repoName = "tetrapak-publicweb"
                 fileName = "1.0.0-${build_id_number}"
