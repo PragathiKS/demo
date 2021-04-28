@@ -8,13 +8,7 @@
     <!-- <filter root="/conf/global/settings/workflow" mode="merge"/> -->
     <filter root="/var/workflow/models/trs-authors" mode="merge" />
     <filter root="/content/trs">
-        <exclude pattern=".*" />
-        <include pattern=".*/_jcr_content" />
-        <include pattern=".*/training-videos" />
-        <include pattern=".*/training-videos/_jcr_content" />
-        <include pattern=".*/errors(/.*)?" />
-        <include pattern=".*/tag-uploader(/.*)?" />
-        <include pattern=".*/tag-conversion-utility(/.*)?" />
+        <exclude pattern=".*/training-videos/.*" />
     </filter>
     <filter root="/content/dam/training-services">
         <exclude pattern=".*/system" />    
