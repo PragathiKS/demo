@@ -126,7 +126,7 @@ pipeline {
     }
 
 
-    def stagedeployment65() {
+    def stagedeployment() {
 
         if (params.DeployCommons)    {
                 packageName = "tetrapak-commons.complete"
