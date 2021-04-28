@@ -1,0 +1,19 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog">
+    <div class="modal-content tp-modal-content">data comes
+        <ul class="tp-equipment-filter-options">
+            <button type="button"
+                class="tp-close-btn icon-Close tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                <span class="sr-only">Close</span>
+            </button>
+            {{#each this}}
+            {{> atoms/checkbox/checkbox value=this.option text=this.option check=this.isChecked uniqueKey=this.option
+            jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+            {{/each}}
+        </ul>
+        <div class="modal-footer tpmol-modal-footer">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button">
+                <span class="tpatom-btn__text sly-text">Apply</span>
+            </button>
+        </div>
+    </div>
+</div>
