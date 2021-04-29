@@ -163,7 +163,7 @@ public class AssetPageOpsServiceImpl implements AssetPageOpsService {
     public void validateAndSetPageProperties(Page page, Asset asset, Map<String, String> responseMap) {
 
         boolean isMissingProperty = false;
-        ModifiableValueMap pageProperties = page.adaptTo(ModifiableValueMap.class);
+        ModifiableValueMap pageProperties = page.getContentResource().adaptTo(ModifiableValueMap.class);
         Resource videoComponentResource = page.getContentResource("root/responsivegrid/video");
         ModifiableValueMap videoProperties = videoComponentResource.adaptTo(ModifiableValueMap.class);
         videoProperties.put(TrsConstants.SOURCE_ASSET_PATH, asset.getPath());
