@@ -101,6 +101,8 @@ export const SOA_DOCUMENT_FIELDS = [
 ];
 // API URLs
 export const API_TOKEN = 'token-generator';
+export const MY_EQUIPMENT_COUNTRY = 'my-equipments-country-list';
+export const MY_EQUIPMENT_TOKEN = 'my-equipments-token';
 export const API_SEARCH = 'ordersearch';
 export const API_ORDER_HISTORY = 'orderingcard';
 export const API_FINANCIAL_SUMMARY = 'financialstatement-filter';
