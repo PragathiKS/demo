@@ -12,6 +12,7 @@ import videoAnalytics from './videoAnalytics';
 import { $body } from './commonSelectors';
 import $ from 'jquery';
 import { responsive } from './responsive';
+import { campaignTrack } from './campaignTracking';
 
 export default {
   init() {
@@ -20,6 +21,7 @@ export default {
     responsive.init();
     // Video analytics
     videoAnalytics.init();
+    campaignTrack.init();
     updateLink();
     movehash();
     previewLinkUpdate();
