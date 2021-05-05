@@ -14,7 +14,11 @@
                     <i class="icon icon-Chevron_Down"></i>
                 </button>
                 {{else}}
-                {{i18n key=i18nKey}}
+                {{#if myEquipment}}
+                    {{i18nKey}}
+                {{else}}
+                    {{i18n key=i18nKey}}
+                {{/if}}
                  {{#if iconClassName}}
                     <i class="icon {{iconClassName}}"></i>
                  {{/if}}

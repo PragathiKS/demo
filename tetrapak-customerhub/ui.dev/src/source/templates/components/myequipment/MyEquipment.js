@@ -39,23 +39,83 @@ function _renderCountryFilters() {
           contentType: 'application/json',
           dataType: 'json'
         }).then(response => {
-          console.log('response>>>',response);
           this.cache.tableData = response.data;
+          this.cache.filteredTableData = [...this.cache.tableData];
+          this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
+          this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Country' });
+          this.applyFilter();
           this.renderTableData();
+          this.renderSearchCount();
         });
     });
 }
 
 function _processKeys(keys, ob) {
-  return keys.length === 0 ? Object.keys(ob) : keys;
+  // return keys.length === 0 ? Object.keys(ob) : keys;
+  if(keys.length){
+    return keys;
+  }else {
+    let country, description,site,line,serialNumber;
+    for(const i in ob){
+      if(i === 'countryCode'){
+        country = i;
+      }else if(i === 'siteName'){
+        site = i;
+      }else if(i === 'lineName'){
+        line = i;
+      }
+      else if(i === 'equipmentDescription'){
+        description = i;
+      }
+      else if(i === 'serialNumber'){
+        serialNumber = i;
+      }
+    }
+    return [country, site,line, description,serialNumber];
+  }
+
 }
 
-function _mapHeadings(keys) {
+function getKeyMap(key,i18nKeys){
+  let keyLabel;
+  switch (key) {
+    case 'countryCode': {
+      keyLabel = i18nKeys['country'];
+      break;
+    }
+    case 'siteName': {
+      keyLabel = i18nKeys['site'];
+      break;
+    }
+    case 'lineName': {
+      keyLabel = i18nKeys['line'];
+      break;
+    }
+    case 'equipmentDescription': {
+      keyLabel = i18nKeys['equipmentDescription'];
+      break;
+    }
+    case 'serialNumber': {
+      keyLabel = i18nKeys['serialNumber'];
+      break;
+    }
+    default: {
+      keyLabel = '';
+      break;
+    }
+  }
+  return keyLabel;
+}
+
+function _mapHeadings(keys,i18nKeys) {
   return keys.map(key => ({
     key,
-    i18nKey: `${key}` // TODO : add i18n keys
+    myEquipment:true,
+    i18nKey: getKeyMap(key,i18nKeys) // TODO : add i18n keys
   }));
 }
+
+
 
 function _processTableData(data){
   let keys = [];
@@ -64,7 +124,7 @@ function _processTableData(data){
       keys = _processKeys(keys, summary);
       return tableSort.call(this, summary, keys);
     });
-    data.summaryHeadings = _mapHeadings(keys);
+    data.summaryHeadings = _mapHeadings(keys,data.i18nKeys);
   }
   return data;
 }
@@ -76,17 +136,22 @@ class MyEquipment {
   cache = {};
   initCache() {
     this.cache.$modal = this.root.parent().find('.js-filter-modal');
-    this.cache.$countryFilterLabel = this.root.find('.tp-my-equipment-country-button-filter');
-    this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment-site-button-filter');
+    this.cache.$countryFilterLabel = this.root.find('.tp-my-equipment__country-button-filter');
+    this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment__site-button-filter');
+    this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
+    this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.countryData = [];
     this.cache.siteData = [{option:'site 1',isChecked:true},{option:'site 2',isChecked:false},{option:'site 3',isChecked:true},{option:'site 4',isChecked:true}];
     this.cache.activeFilterForm = 'country';
     this.cache.tableData = [];
+    this.cache.filteredTableData = [];
+    this.cache.i18nKeys = JSON.parse(this.cache.configJson);
   }
   bindEvents() {
     const { $modal, siteData } = this.cache;
+    console.log('this.cache.i18nKeys>>>>>',this.cache.i18nKeys);
     this.cache.$countryFilterLabel.on('click', () => {
-      this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Countries' });
+      this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Country' });
       $modal.modal();
     });
     this.cache.$siteFilterLabel.on('click', () => {
@@ -103,10 +168,14 @@ class MyEquipment {
     });
   }
 
+  renderSearchCount = () => {
+    this.cache.$searchResults.text(`${this.cache.filteredTableData.length} search results`);
+  }
+
   renderTableData = () => {
     render.fn({
       template: 'myEquipmentTable',
-      data: _processTableData.call(this, {summary:this.cache.tableData}),
+      data: _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys}),
       target: '.tp-my-equipment__table_wrapper',
       hidden: false
     });
@@ -146,12 +215,19 @@ class MyEquipment {
         filterData[index].isChecked = false;
       }
     });
+    if(filterCount){
+      htmlUpdate.addClass('active');
+    }
     this.updateFilterCountValue(label,filterCount,htmlUpdate);
   }
 
   updateFilterCountValue = (label,filterCount,htmlUpdate) => {
     const { $modal } = this.cache;
-    htmlUpdate.text(`${label}: ${filterCount}`);
+    if(!filterCount){
+      htmlUpdate.text(`${label} +`);
+    }else {
+      htmlUpdate.text(`${label}: ${filterCount}`);
+    }
     $modal.modal('hide');
   }
 
@@ -171,7 +247,7 @@ class MyEquipment {
   }
 
   updateModalHeader = (header) => {
-    const $ModalHeaderSelector = this.root.find('.js-my-equipment-filter');
+    const $ModalHeaderSelector = this.root.find('.js-my-equipment__modal-header');
     $ModalHeaderSelector.text(`${header}`);
   }
 

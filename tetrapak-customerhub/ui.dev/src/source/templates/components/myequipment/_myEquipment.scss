@@ -3,6 +3,38 @@
         max-height: 500px;
         overflow: scroll;
     }
+    &__filter-button {
+        border: 1px solid $color-congress-blue;
+        color: $color-congress-blue;
+        box-sizing: border-box;
+        border-radius: 22px;
+        padding: 16px;
+        margin-right: 8px;
+
+        &.active {
+            border-width: 2px;
+            font-weight: 700;
+        }
+    }
+
+    &__search-count {
+        color: $color-congress-blue;
+        border-top: 1px solid $color-congress-blue;
+        border-bottom: 1px solid $color-congress-blue;
+        padding: 16px 0;
+        margin: 16px 0;
+        font-size: 24px;
+    }
+
+    &__filter-wrapper {
+        display: flex;
+    }
+
+    &__modal-body {
+        padding: 24px;
+        padding-top: 0;
+    }
+
     &__table {
         overflow: scroll;
         max-height: 500px;
@@ -13,6 +45,27 @@
         th {
             position: sticky;
             top: 0; /* Don't forget this, required for the stickiness */
+            background: $color-white;
+            border-bottom-color: $color-mercury;
         }
+    }
+    input[type="checkbox"]:checked ~ .tpatom-checkbox__icon {
+        border: 1px solid $color-congress-blue;
+        &::before {
+            color: $color-congress-blue;
+        }
+    }
+
+    &__remove-button {
+        color: $color-congress-blue;
+    }
+
+    .modal-footer > :not(:first-child) {
+        margin-left: 16px;
+    }
+
+    &__modal-header {
+        font-size: 24px;
+        line-height: 32px;
     }
 }

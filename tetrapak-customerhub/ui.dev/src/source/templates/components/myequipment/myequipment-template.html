@@ -1,10 +1,18 @@
 <sly data-sly-template.myequipment_template="${@data, flag}">
-  <div data-module="MyEquipment">
-    <div class="tp-my-equipment-country-button-filter">
-      <button>Country</button>
+  <div class="tp-card tp-my-equipment" data-module="MyEquipment">
+    <code class="d-none js-my-equipment__config">
+      ${data.i18nKeys}
+    </code>
+    <div class="tp-my-equipment__filter-wrapper">
+      <button class="tp-my-equipment__country-button-filter tp-my-equipment__filter-button">
+        Country +
+      </button>
+      <button class="tp-my-equipment__site-button-filter tp-my-equipment__filter-button">
+        Site +
+      </button>
     </div>
-    <div class="tp-my-equipment-site-button-filter">
-      <button>Site</button>
+
+    <div class="tp-my-equipment__search-count">
     </div>
 
 
