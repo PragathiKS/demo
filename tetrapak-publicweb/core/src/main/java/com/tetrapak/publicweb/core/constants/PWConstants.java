@@ -363,6 +363,12 @@ public final class PWConstants {
 
     /** Constant WEBURL */
     public static final String WEBURL = "weburl";
+    
+    /** Constant DS_CONTENT_PATH */
+    public static final String DS_CONTENT_PATH = "/content/design-system";
+    
+    /** Constant DS_CONTENT_DAM_PATH */
+    public static final String DS_CONTENT_DAM_PATH = "/content/dam/design-system";
 
     /**
      * Instantiates a new PW constants.
