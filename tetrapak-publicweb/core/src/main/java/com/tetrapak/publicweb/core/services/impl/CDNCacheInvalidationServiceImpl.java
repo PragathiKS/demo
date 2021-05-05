@@ -94,7 +94,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     private String directoryToBePurged = StringUtils.EMPTY;
 
     /** Static variable to host cdn request directory path along with their timestamp **/
-    private static Map<String, String> cdnRequestTimeStampRecord= new HashMap<>();
+    private static Map<String, String> cdnRequestTimeStampRecord = new HashMap<>();
 
     /**
      * activate method.
@@ -196,6 +196,8 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      *            - The TransportContext containing the username and password
      * @param tx
      *            - Replication Transaction
+     * @param directoryToBePurged
+     *            the directory to be purged
      * @return HttpResponse - The HTTP response from ServiceInsight
      */
     private <T extends HttpRequestBase> HttpResponse sendRequest(final T request, final TransportContext ctx,
@@ -212,7 +214,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
             LOGGER.error("Could not send replication request {}", e.getMessage());
 
         }
-       if(response != null && response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+        if (response != null && response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             cdnRequestTimeStampRecord.put(directoryToBePurged, getDate(new Date()));
         }
         return response;
@@ -312,20 +314,22 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
         final JsonArray purgeDirs = new JsonArray();
         for (final String path : tx.getAction().getPaths()) {
             if (StringUtils.isNotBlank(path) && (path.startsWith(config.contentPathForCDNCacheInvalidation())
-                    || path.startsWith(config.damPathForCDNCacheInvalidation()))) {
+                    || path.startsWith(config.damPathForCDNCacheInvalidation()))) {                
                 final String contentPath = config.domainForCDN() + findUrlMapping(
                         LinkUtils.getRootPath(path).replace(config.contentPathForCDNCacheInvalidation(), ""));
                 purgeDirs.add(contentPath);
                 directoryToBePurged = contentPath;
             }
+            purgeDesignSystemCache(purgeDirs, path);
         }
         /**
-         * Below condition checks if cache purge request for same directory is
-         * made within 5 minutes, then don't send request to cdn
+         * Below condition checks if cache purge request for same directory is made within 5 minutes, then don't send
+         * request to cdn
          */
-        if(cdnRequestTimeStampRecord.containsKey(directoryToBePurged) &&
-                findDateDifferenceInMinutes(cdnRequestTimeStampRecord.get(directoryToBePurged), getDate(new Date())) < 6){
-                return false;
+        if (cdnRequestTimeStampRecord.containsKey(directoryToBePurged)
+                && findDateDifferenceInMinutes(cdnRequestTimeStampRecord.get(directoryToBePurged),
+                        getDate(new Date())) < 6) {
+            return false;
         }
 
         if (purgeDirs.size() > 0) {
@@ -341,6 +345,24 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     }
 
     /**
+     * Purge design system cache.
+     *
+     * @param purgeDirs
+     *            the purge dirs
+     * @param path
+     *            the path
+     */
+    private void purgeDesignSystemCache(final JsonArray purgeDirs, final String path) {
+        if (StringUtils.isNotBlank(path)
+                && (path.startsWith(PWConstants.DS_CONTENT_PATH) || path.startsWith(PWConstants.DS_CONTENT_DAM_PATH))) {
+            final String contentPath = config.dsDomainForCDN() + PWConstants.SLASH;
+            LOGGER.debug("DS content path {}", contentPath);
+            purgeDirs.add(contentPath);
+            directoryToBePurged = contentPath;
+        }
+    }
+
+    /**
      * Find url mapping.
      *
      * @param path
@@ -353,23 +375,22 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     }
 
     /**
-     * method to find difference between two dates in minutes
+     * method to find difference between two dates in minutes.
+     *
      * @param startDate
+     *            the start date
      * @param endDate
-     * @return
+     *            the end date
+     * @return the long
      */
-    private long findDateDifferenceInMinutes (final String startDate, final String endDate) {
+    private long findDateDifferenceInMinutes(final String startDate, final String endDate) {
         final SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
         long differenceInTime = 0;
         try {
-            differenceInTime
-                    = sdf.parse(endDate).getTime() - sdf.parse(startDate).getTime();
-            differenceInTime = TimeUnit
-                    .MILLISECONDS
-                    .toMinutes(differenceInTime)
-                    % 60;
+            differenceInTime = sdf.parse(endDate).getTime() - sdf.parse(startDate).getTime();
+            differenceInTime = TimeUnit.MILLISECONDS.toMinutes(differenceInTime) % 60;
         } catch (java.text.ParseException e) {
-            e.printStackTrace();
+            LOGGER.error("Error occurred in findDateDifferenceInMinutes {}", e.getMessage());
         }
         return differenceInTime;
     }
