@@ -11,11 +11,30 @@ function getFormattedData(array){
   array.forEach((item,index) => {
     array[index] = {
       option: item.countryName,
+      countryCode:item.countryCode,
       isChecked: index === 0 || item.isChecked ? true: false
     };
   });
   return array;
 }
+
+function getFormattedSiteData(array){
+  const sitesFlatArray = [];
+  array.forEach((row) => {
+    if(sitesFlatArray.indexOf(row.siteName) === -1){
+      sitesFlatArray.push(row.siteName);
+    }
+  });
+  sitesFlatArray.forEach((item,index) => {
+    sitesFlatArray[index] = {
+      option: item,
+      isChecked: false
+    };
+  });
+  return sitesFlatArray;
+}
+
+
 
 function _renderCountryFilters() {
   ajaxWrapper
@@ -51,7 +70,6 @@ function _renderCountryFilters() {
 }
 
 function _processKeys(keys, ob) {
-  // return keys.length === 0 ? Object.keys(ob) : keys;
   if(keys.length){
     return keys;
   }else {
@@ -139,23 +157,27 @@ class MyEquipment {
     this.cache.$countryFilterLabel = this.root.find('.tp-my-equipment__country-button-filter');
     this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment__site-button-filter');
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
+    this.cache.$myEquipmentHeading = this.root.find('.js-my-equipment__heading');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.countryData = [];
-    this.cache.siteData = [{option:'site 1',isChecked:true},{option:'site 2',isChecked:false},{option:'site 3',isChecked:true},{option:'site 4',isChecked:true}];
+    this.cache.siteData = [];
     this.cache.activeFilterForm = 'country';
     this.cache.tableData = [];
     this.cache.filteredTableData = [];
     this.cache.i18nKeys = JSON.parse(this.cache.configJson);
   }
   bindEvents() {
-    const { $modal, siteData } = this.cache;
-    console.log('this.cache.i18nKeys>>>>>',this.cache.i18nKeys);
+    const { $modal, $countryFilterLabel,i18nKeys,$siteFilterLabel,$myEquipmentHeading } = this.cache;
+    $countryFilterLabel.text(`${i18nKeys['country']} +`);
+    $siteFilterLabel.text(`${i18nKeys['site']} +`);
+    $myEquipmentHeading.text(`${i18nKeys['myEquipment']}`);
     this.cache.$countryFilterLabel.on('click', () => {
-      this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Country' });
+      this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:i18nKeys['country'] });
       $modal.modal();
     });
     this.cache.$siteFilterLabel.on('click', () => {
-      this.renderFilterForm(siteData, { activeFrom:'site',header:'Sites' });
+      this.cache.siteData = getFormattedSiteData([...this.cache.filteredTableData]);
+      this.renderFilterForm(this.cache.siteData, { activeFrom:'site',header:i18nKeys['site'] });
       $modal.modal();
     });
 
@@ -166,23 +188,63 @@ class MyEquipment {
     this.root.on('click', '.js-apply-filter-button',  () => {
       this.applyFilter();
     });
+
+    this.root.on('click', '.js-tp-my-equipment__remove-button',  () => {
+      this.applyFilter({removeFilter:true});
+    });
   }
 
   renderSearchCount = () => {
-    this.cache.$searchResults.text(`${this.cache.filteredTableData.length} search results`);
+    this.cache.$searchResults.text(`${this.cache.filteredTableData.length} ${this.cache.i18nKeys['searchResults']}`);
   }
 
-  renderTableData = () => {
+  renderTableData = (label,filterValues) => {
+    this.updateTable(label,filterValues);
     render.fn({
       template: 'myEquipmentTable',
-      data: _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys}),
+      data: _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
       target: '.tp-my-equipment__table_wrapper',
       hidden: false
     });
   }
 
+  updateTable = (label,filterValues) => {
+    const { filteredTableData } = this.cache;
+    const { tableData } = this.cache;
+    if(label === 'Country' && filterValues.length === 0){
+      this.cache.filteredTableData = tableData;
+      return;
+    }
+    switch (label) {
+      case 'Country':{
+        this.cache.filteredTableData = tableData.filter((row) => {
+          for(const i in filterValues){
+            if(filterValues[i].countryCode === row.countryCode){
+              return row;
+            }
+          }
+        });
+        break;
+      }
+      case 'Site':{
+        this.cache.filteredTableData = filteredTableData.filter((row) => {
+          for(const i in filterValues){
+            if(filterValues[i].option === row.siteName){
+              return row;
+            }
+          }
+        });
+        break;
+      }
+      default: {
+        this.cache.filteredTableData= filteredTableData;
+        break;
+      }
+    }
+  }
 
-  applyFilter =() => {
+
+  applyFilter =(options) => {
     const { activeFilterForm,$countryFilterLabel,$siteFilterLabel } = this.cache;
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox');
     let filterCount = 0;
@@ -207,17 +269,36 @@ class MyEquipment {
         break;
       }
     }
-    $filtersCheckbox.each(function(index){
-      if($(this).is(':checked')){
-        filterCount++;
-        filterData[index].isChecked = true;
-      }else {
+    if(options && options.removeFilter){
+      $filtersCheckbox.each(function(index){
+        $(this).prop('checked',false);
         filterData[index].isChecked = false;
-      }
-    });
+      });
+    }else {
+      $filtersCheckbox.each(function(index){
+        if($(this).is(':checked')){
+          filterCount++;
+          filterData[index].isChecked = true;
+        }else {
+          filterData[index].isChecked = false;
+        }
+      });
+    }
+
     if(filterCount){
       htmlUpdate.addClass('active');
+    }else{
+      htmlUpdate.removeClass('active');
     }
+
+    const filterValues = filterData.filter((option) => {
+      if(option.isChecked){
+        return option;
+      }
+    });
+
+    this.renderTableData(label,filterValues);
+    this.renderSearchCount();
     this.updateFilterCountValue(label,filterCount,htmlUpdate);
   }
 
@@ -232,9 +313,10 @@ class MyEquipment {
   }
 
   renderFilterForm(data,formDetail) {
+    const { i18nKeys } = this.cache;
     render.fn({
       template: 'filterForm',
-      data: data,
+      data: {countryData:data,...i18nKeys},
       target: '.tp-equipment__filter-form',
       hidden: false
     });

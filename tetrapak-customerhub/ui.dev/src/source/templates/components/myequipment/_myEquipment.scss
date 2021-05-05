@@ -4,26 +4,34 @@
         overflow: scroll;
     }
     &__filter-button {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-md);
+        @include margin-right($margin-sm);
         border: 1px solid $color-congress-blue;
         color: $color-congress-blue;
         box-sizing: border-box;
         border-radius: 22px;
-        padding: 16px;
-        margin-right: 8px;
-
         &.active {
             border-width: 2px;
             font-weight: 700;
         }
     }
 
+    &__heading {
+        @include font-size($font-xl);
+        @include line-height(40px, $font-xl);
+        @include margin-bottom($margin-l);
+    }
+
     &__search-count {
+        @include padding($padding-md $padding-zero);
+        @include margin($margin-md $margin-zero);
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
         color: $color-congress-blue;
         border-top: 1px solid $color-congress-blue;
         border-bottom: 1px solid $color-congress-blue;
-        padding: 16px 0;
-        margin: 16px 0;
-        font-size: 24px;
     }
 
     &__filter-wrapper {
@@ -31,8 +39,7 @@
     }
 
     &__modal-body {
-        padding: 24px;
-        padding-top: 0;
+        @include padding($padding-zero $padding-l);
     }
 
     &__table {
@@ -48,6 +55,10 @@
             background: $color-white;
             border-bottom-color: $color-mercury;
         }
+        td {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+        }
     }
     input[type="checkbox"]:checked ~ .tpatom-checkbox__icon {
         border: 1px solid $color-congress-blue;
@@ -61,11 +72,20 @@
     }
 
     .modal-footer > :not(:first-child) {
-        margin-left: 16px;
+        @include margin-left($margin-l);
+    }
+
+    .tpatom-checkbox__label {
+        @include margin-bottom($margin-md);
+    }
+
+    .tpatom-checkbox__text {
+        color: $color-black;
     }
 
     &__modal-header {
-        font-size: 24px;
-        line-height: 32px;
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        color: $color-black;
     }
 }

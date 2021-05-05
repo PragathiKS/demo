@@ -11,20 +11,20 @@
         </div>
         <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
             <ul class="tp-my-equipment-filter-options">
-                {{#each this}}
-                {{> atoms/checkbox/checkbox value=this.option text=this.option check=this.isChecked
-                uniqueKey=this.option
+                {{#each countryData}}
+                {{> atoms/checkbox/checkbox value=option text=option check=isChecked
+                uniqueKey=option
                 jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
                 {{/each}}
             </ul>
         </div>
         <div class="modal-footer tpmol-modal-footer">
             <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button">
-                <span class="tpatom-btn__text sly-text">Apply</span>
+                <span class="tpatom-btn__text sly-text">{{applyFilter}}</span>
             </button>
             <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-button">
                 <i class="icon icon-My_Euipment_Bin_X"></i>
-                <span class="tpatom-btn__text sly-text">Remove all</span>
+                <span class="tpatom-btn__text sly-text">{{removeAll}}</span>
             </button>
         </div>
     </div>
