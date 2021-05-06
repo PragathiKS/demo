@@ -1,11 +1,10 @@
-/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
-// import { getURL } from '../../../scripts/utils/uri';
-// import { ajaxMethods,MY_EQUIPMENT_COUNTRY } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { tableSort } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
+import auth from '../../../scripts/utils/auth';
+import { ajaxMethods } from '../../../scripts/utils/constants';
 
 function getFormattedData(array){
   array.forEach((item,index) => {
@@ -37,36 +36,45 @@ function getFormattedSiteData(array){
 
 
 function _renderCountryFilters() {
-  ajaxWrapper
-    .getXhrObj({
-      // url: getURL(MY_EQUIPMENT_COUNTRY),
-      // method: ajaxMethods.GET,
-      // cache: true,
-      // dataType: 'json',
-      // contentType: 'application/json'
-      // url: 'https://api.jsonbin.io/b/6079719c0ed6f819bead5f16',
-      url: 'https://api.jsonbin.io/b/608a94a9acc8d11948f4f028',
-      method: 'GET',
-      contentType: 'application/json',
-      dataType: 'json'
-    }).then(res => {
-      this.cache.countryData = getFormattedData(res.data);
-      ajaxWrapper
-        .getXhrObj({
-          url: 'https://api.jsonbin.io/b/6079719c0ed6f819bead5f16',
-          method: 'GET',
-          contentType: 'application/json',
-          dataType: 'json'
-        }).then(response => {
-          this.cache.tableData = response.data;
-          this.cache.filteredTableData = [...this.cache.tableData];
-          this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
-          this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Country' });
-          this.applyFilter();
-          this.renderTableData();
-          this.renderSearchCount();
-        });
-    });
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper
+      .getXhrObj({
+        url: 'https://api-dev.tetrapak.com/mock/installbase/equipments/countries',
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+
+      }).then(res => {
+        this.cache.countryData = getFormattedData(res.data);
+        ajaxWrapper
+          .getXhrObj({
+            url: 'https://api-dev.tetrapak.com/mock/installbase/equipments?count=1000',
+            method: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend(jqXHR) {
+              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            },
+            showLoader: true
+          }).then(response => {
+            this.cache.tableData = response.data;
+            this.cache.filteredTableData = [...this.cache.tableData];
+            this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
+            this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Country' });
+            this.applyFilter();
+            this.renderTableData();
+            this.renderSearchCount();
+          });
+      });
+  });
+
 }
 
 function _processKeys(keys, ob) {
