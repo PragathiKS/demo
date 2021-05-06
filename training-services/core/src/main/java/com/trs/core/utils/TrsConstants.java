@@ -7,7 +7,7 @@ public final class TrsConstants {
     public static final String ASSET_TITLE_PROPERTY = "dc:title";
     public static final String ASSET_DESCRIPTION_PROPERTY = "dc:description";
     public static final String PAGE_SCENE7_FILENAME_PROPERTY = "s7assetFile";
-    public static final String ASSET_SCENE7_FILENAME_PROPERTY = "dam:scene7File";
+    public static final String ASSET_SCENE7_FILENAME_PROPERTY = "dam:scene7FileAvs";
     public static final String ASSET_ACTIVATE_PAGE_PROPERTY = "dc:activatePage";
     public static final String ASSET_SYNC_PROPS = "dc:syncProperties";
     public static final String ASSET_METADATA_RELATIVE_PATH = "/jcr:content/metadata";
