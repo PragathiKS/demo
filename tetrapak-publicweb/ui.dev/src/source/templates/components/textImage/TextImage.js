@@ -21,7 +21,9 @@ class TextImage {
 
   trackAnalytics = e => {
     e.preventDefault();
-    getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics');
+    setTimeout(function() {
+      getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics');
+    }, 500);
   };
 
 
