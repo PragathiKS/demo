@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/hirparma1/.nvm/versions/node/v6.9.5/bin/node',
+1 verbose cli   '/Users/hirparma1/.nvm/versions/node/v6.9.5/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'buildStart' ]
+2 info using npm@3.10.10
+3 info using node@v6.9.5
+4 verbose run-script [ 'prebuildStart', 'buildStart', 'postbuildStart' ]
+5 info lifecycle publicweb@0.0.1~prebuildStart: publicweb@0.0.1
+6 silly lifecycle publicweb@0.0.1~prebuildStart: no script for prebuildStart, continuing
+7 info lifecycle publicweb@0.0.1~buildStart: publicweb@0.0.1
+8 verbose lifecycle publicweb@0.0.1~buildStart: unsafe-perm in lifecycle true
+9 verbose lifecycle publicweb@0.0.1~buildStart: PATH: /Users/hirparma1/.nvm/versions/node/v6.9.5/lib/node_modules/npm/bin/node-gyp-bin:/Users/hirparma1/Documents/Development/Tetrapak/cfe-tetrapak/tetrapak-publicweb/ui.dev/src/node_modules/.bin:/Users/hirparma1/.rvm/gems/ruby-2.3.7/bin:/Users/hirparma1/.rvm/gems/ruby-2.3.7@global/bin:/Users/hirparma1/.rvm/rubies/ruby-2.3.7/bin:/Users/hirparma1/.nvm/versions/node/v6.9.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/hirparma1/.rvm/bin
+10 verbose lifecycle publicweb@0.0.1~buildStart: CWD: /Users/hirparma1/Documents/Development/Tetrapak/cfe-tetrapak/tetrapak-publicweb/ui.dev/src
+11 silly lifecycle publicweb@0.0.1~buildStart: Args: [ '-c', 'grunt aemStart' ]
+12 silly lifecycle publicweb@0.0.1~buildStart: Returned: code: 1  signal: null
+13 info lifecycle publicweb@0.0.1~buildStart: Failed to exec buildStart script
+14 verbose stack Error: publicweb@0.0.1 buildStart: `grunt aemStart`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/Users/hirparma1/.nvm/versions/node/v6.9.5/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (/Users/hirparma1/.nvm/versions/node/v6.9.5/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:877:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid publicweb@0.0.1
+16 verbose cwd /Users/hirparma1/Documents/Development/Tetrapak/cfe-tetrapak/tetrapak-publicweb/ui.dev/src
+17 error Darwin 19.6.0
+18 error argv "/Users/hirparma1/.nvm/versions/node/v6.9.5/bin/node" "/Users/hirparma1/.nvm/versions/node/v6.9.5/bin/npm" "run" "buildStart"
+19 error node v6.9.5
+20 error npm  v3.10.10
+21 error code ELIFECYCLE
+22 error publicweb@0.0.1 buildStart: `grunt aemStart`
+22 error Exit status 1
+23 error Failed at the publicweb@0.0.1 buildStart script 'grunt aemStart'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the publicweb package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     grunt aemStart
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs publicweb
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls publicweb
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
