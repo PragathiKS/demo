@@ -97,10 +97,15 @@
         - path: /content/trs
           permission: allow
           actions: read,modify,create
+          privileges: jcr:modifyProperties
           
         - path: /content/dam/training-services
           permission: allow
           actions: read,create,acl_read,acl_edit,modify
+          
+        - path: /content/dam/training-services-pre-production
+          permission: allow
+          actions: read,modify,create,delete,acl_read,acl_edit
           
     - trs-dam-admin:
     
@@ -181,5 +186,9 @@
           actions: read,modify,create,delete,acl_read,acl_edit,replicate
           
         - path: /content/dam/training-services
+          permission: allow
+          actions: read,modify,create,delete,acl_read,acl_edit,replicate
+          
+        - path: /content/dam/training-services-pre-production
           permission: allow
           actions: read,modify,create,delete,acl_read,acl_edit,replicate
