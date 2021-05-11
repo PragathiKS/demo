@@ -3,7 +3,7 @@ import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { tableSort } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
-import auth from '../../../scripts/utils/auth';
+// import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 
 function getFormattedData(array){
@@ -36,44 +36,46 @@ function getFormattedSiteData(array){
 
 
 function _renderCountryFilters() {
-  auth.getToken(({ data: authData }) => {
-    ajaxWrapper
-      .getXhrObj({
-        url: 'https://api-dev.tetrapak.com/mock/installbase/equipments/countries',
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        },
-        showLoader: true
+  // auth.getToken(({ data: authData }) => {
+  ajaxWrapper
+    .getXhrObj({
+      // url: 'https://api-dev.tetrapak.com/mock/installbase/equipments/countries',
+      url: 'https://api.jsonbin.io/b/608a94a9acc8d11948f4f028',
+      method: ajaxMethods.GET,
+      cache: true,
+      dataType: 'json',
+      contentType: 'application/json',
+      // beforeSend(jqXHR) {
+      //   jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+      //   jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      // },
+      showLoader: true
 
-      }).then(res => {
-        this.cache.countryData = getFormattedData(res.data);
-        ajaxWrapper
-          .getXhrObj({
-            url: 'https://api-dev.tetrapak.com/mock/installbase/equipments?count=1000',
-            method: 'GET',
-            contentType: 'application/json',
-            dataType: 'json',
-            beforeSend(jqXHR) {
-              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            },
-            showLoader: true
-          }).then(response => {
-            this.cache.tableData = response.data;
-            this.cache.filteredTableData = [...this.cache.tableData];
-            this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
-            this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Country' });
-            this.applyFilter();
-            this.renderTableData();
-            this.renderSearchCount();
-          });
-      });
-  });
+    }).then(res => {
+      this.cache.countryData = getFormattedData(res.data);
+      ajaxWrapper
+        .getXhrObj({
+          // url: 'https://api-dev.tetrapak.com/mock/installbase/equipments?count=1000',
+          url: 'https://api.jsonbin.io/b/6079719c0ed6f819bead5f16',
+          method: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          // beforeSend(jqXHR) {
+          //   jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          //   jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          // },
+          showLoader: true
+        }).then(response => {
+          this.cache.tableData = response.data;
+          this.cache.filteredTableData = [...this.cache.tableData];
+          this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
+          this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Country' });
+          this.applyFilter();
+          this.renderTableData();
+          this.renderSearchCount();
+        });
+    });
+  // });
 
 }
 
@@ -155,6 +157,25 @@ function _processTableData(data){
   return data;
 }
 
+function renderPaginationTableData(list) {
+  $('#pagination-container').pagination({
+    dataSource: list.summary,
+    showFirst:true,
+    showLast:true,
+    firstText:'first',
+    lastText:'last',
+    className: 'paginationjs-theme-blue'
+    // callback: function(data) {
+    //   render.fn({
+    //     template: 'myEquipmentTable',
+    //     data: data,
+    //     target: '.tp-my-equipment__table_wrapper',
+    //     hidden: false
+    //   });
+    // }
+  });
+}
+
 class MyEquipment {
   constructor({ el }) {
     this.root = $(el);
@@ -173,6 +194,7 @@ class MyEquipment {
     this.cache.tableData = [];
     this.cache.filteredTableData = [];
     this.cache.i18nKeys = JSON.parse(this.cache.configJson);
+    // this.initializedPagination();
   }
   bindEvents() {
     const { $modal, $countryFilterLabel,i18nKeys,$siteFilterLabel,$myEquipmentHeading } = this.cache;
@@ -208,12 +230,8 @@ class MyEquipment {
 
   renderTableData = (label,filterValues) => {
     this.updateTable(label,filterValues);
-    render.fn({
-      template: 'myEquipmentTable',
-      data: _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
-      target: '.tp-my-equipment__table_wrapper',
-      hidden: false
-    });
+    renderPaginationTableData.call(this,_processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}));
+
   }
 
   updateTable = (label,filterValues) => {
@@ -340,6 +358,14 @@ class MyEquipment {
     const $ModalHeaderSelector = this.root.find('.js-my-equipment__modal-header');
     $ModalHeaderSelector.text(`${header}`);
   }
+
+  // initializedPagination = () => {
+  //   var script = document.createElement('script');
+  //   script.src = 'https://cdn.jsdelivr.net/gh/ashwanipahal/paginationjs/pagination.js';
+  //   script.type = 'text/javascript';
+  //   script.defer = true;
+  //   document.getElementsByTagName('body')[0].appendChild(script);
+  // }
 
   init() {
     /* Mandatory method */
