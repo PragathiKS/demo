@@ -11,9 +11,7 @@ class TextImage {
     this.cache.componentName = this.root.find('.componentNameTextImage').val();
   }
   bindEvents() {
-    setTimeout(function() {
-      this.cache.$textImageLink.on('click', this.trackAnalytics);
-    }, 500);
+    this.cache.$textImageLink.on('click', this.trackAnalytics);
 
     this.root.find('.js-softconversion-pw').on('click', (e) => {
       getLinkClickAnalytics(e,'image-title','Text & Image','.js-softconversion-pw', false);
