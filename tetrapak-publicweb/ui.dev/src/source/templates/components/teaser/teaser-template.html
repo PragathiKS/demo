@@ -8,6 +8,13 @@
 
       <sly data-sly-test.webUrl="${data.webUrl}">
          <a class="tp-teaser__link js-teaser-analytics" href="${data.webUrl}">
+        <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
+         <a data-link-section="Teaser_${dataLinkSectionCTAText}"
+            data-paren-link-title="${data.heading}"
+            data-link-name="${'pw.pxp.learnMoreAbout'  @i18n, locale = 'en'} ${data.packageName}"
+            class="tp-teaser__link js-teaser-analytics"
+            href="${data.webUrl}"
+         >
               <span class="tpatom-link__text sly-text">${'pw.pxp.learnMoreAbout' @i18n} ${data.packageName}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
          </a>
       </sly>
@@ -15,7 +22,7 @@
       <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
       <div class="tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
         <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>
-        <sly data-sly-test.buttonLinkType="${child.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}"/>
+        <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
         <div class="col-md-12 ${teaserSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${((teaserSize==2 && childList.index==1) || (teaserSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11  ) ? '' : 'rightbar' } ${child.linkText ? 'teaserMargin' : 'teaserMarginL'  } ">
 
           <a data-sly-test="${child.linkPath && child.linkPath!='#' && child.fileReference}"
@@ -24,19 +31,19 @@
             title="${child.linkText}"
             data-link-section="Teaser_imageClick"
             data-link-name="${child.linkText || child.title || data.heading}"
-            data-link-title="${child.title || data.heading}"
             data-asset-name="${child.assetName}"
             data-download-type=""
             data-button-link-type="${child.pwButtonTheme}"
-            data-paren-link-title="${data.heading}"
+            data-paren-link-title="${data.heading}:${child.title}"
+            data-anchor-type="${dataLinkSectionCTAText}"
           >
 
-          <sly data-sly-test = "${!wcmmode.edit}">
-            <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=teaserType, className='tp-teaser__image image',imgBackground=data.pwImgBackground}" />
-          </sly>
-          <sly data-sly-test = "${wcmmode.edit}">
-            <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
-          </sly>
+            <sly data-sly-test = "${!wcmmode.edit}">
+              <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=teaserType, className='tp-teaser__image image',imgBackground=data.pwImgBackground}" />
+            </sly>
+            <sly data-sly-test = "${wcmmode.edit}">
+              <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
+            </sly>
           </a>
           <span  data-sly-test="${!child.linkPath  || child.linkPath=='#'}">
             <sly data-sly-test = "${!wcmmode.edit}">
@@ -51,18 +58,16 @@
           <p  data-sly-test = "${child.description}" class="description">${child.description @ context='html'}</p>
 
           <div class="link" data-sly-test="${child.linkText}">
-
+            <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
             <a data-sly-test="${child.linkText}"
                 href="${child.linkPath}"
                 class="tpatom-link tpatom-link--${child.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-teaser-analytics"
                 title="${child.linkText}"
-                data-link-section="Teaser${buttonLinkType}"
+                data-link-section="Teaser_${dataLinkSectionCTAText}"
                 data-link-name="${child.linkText}"
-                data-link-title="${child.title || data.heading}"
                 data-asset-name="${child.assetName}"
-                data-download-type=""
-                data-button-link-type="${child.pwButtonTheme}"
-                data-paren-link-title="${data.heading}"
+                data-paren-link-title="${data.heading}:${child.title}"
+                data-anchor-type="${dataLinkSectionCTAText}"
                 >
                 <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${child.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
             </a>
