@@ -21,7 +21,7 @@
       <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
       <div class="tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
         <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>
-        <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
+        <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'secondary' ? 'CTA' : 'Text Hyperlink'}" />
         <div class="col-md-12 ${teaserSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${((teaserSize==2 && childList.index==1) || (teaserSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11  ) ? '' : 'rightbar' } ${child.linkText ? 'teaserMargin' : 'teaserMarginL'  } ">
 
           <a data-sly-test="${child.linkPath && child.linkPath!='#' && child.fileReference}"
@@ -57,7 +57,7 @@
           <p  data-sly-test = "${child.description}" class="description">${child.description @ context='html'}</p>
 
           <div class="link" data-sly-test="${child.linkText}">
-            <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
+            <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'secondary' ? 'CTA' : 'Text Hyperlink'}" />
             <a data-sly-test="${child.linkText}"
                 href="${child.linkPath}"
                 class="tpatom-link tpatom-link--${child.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-teaser-analytics"
