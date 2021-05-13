@@ -12,90 +12,120 @@
                 sling:resourceType="granite/ui/components/coral/foundation/tabs"
                 size="L">
                 <items jcr:primaryType="nt:unstructured">
-                    <content
+                    <column1
                         jcr:primaryType="nt:unstructured"
                         jcr:title="My equipment i18n Keys Configuration"
-                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <column
+                            <country
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container"
-                                maximized="{Boolean}true">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <country
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Country Label"
-                                        fieldLabel="Country Label"
-                                        name="./country"
-                                        required="true"/>
-                                    <line
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Line Label"
-                                        fieldLabel="Line Label"
-                                        name="./line"
-                                        required="true"/>
-                                    <searchResults
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Search Results Label"
-                                        fieldLabel="Search Results Label"
-                                        name="./searchResults"
-                                        required="true"/>
-                                    <site
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Site Label"
-                                        fieldLabel="Site Label"
-                                        name="./site"
-                                        required="true"/>
-                                    <equipmentDescription
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Equipment Description Label"
-                                        fieldLabel="Equipment Description Label"
-                                        name="./equipmentDescription"
-                                        required="true"/>
-                                    <serialNumber
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Serial Number Label"
-                                        fieldLabel="Serial Number Label"
-                                        name="./serialNumber"
-                                        required="true"/>
-                                    <equipmentStatus
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Equipment Status Label"
-                                        fieldLabel="Equipment Status Label"
-                                        name="./equipmentStatus"
-                                        required="true"/>
-                                    <myEquipment
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter My Equipment Label"
-                                        fieldLabel="My Equipment Label"
-                                        name="./myEquipment"
-                                        required="true"/>
-                                    <applyFilter
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Apply Filter Label"
-                                        fieldLabel="Apply Filter Label"
-                                        name="./applyFilter"
-                                        required="true"/>
-                                    <removeAll
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldDescription="Enter Remove all Label"
-                                        fieldLabel="Remove all Label"
-                                        name="./removeAll"
-                                        required="true"/>
-                                </items>
-                            </column>
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Country Label"
+                                fieldLabel="Country Label"
+                                name="./country"
+                                required="true"/>
+                            <line
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Line Label"
+                                fieldLabel="Line Label"
+                                name="./line"
+                                required="true"/>
+                            <searchResults
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Search Results Label"
+                                fieldLabel="Search Results Label"
+                                name="./searchResults"
+                                required="true"/>
+                            <site
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Site Label"
+                                fieldLabel="Site Label"
+                                name="./site"
+                                required="true"/>
+                            <equipmentDescription
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Equipment Description Label"
+                                fieldLabel="Equipment Description Label"
+                                name="./equipmentDescription"
+                                required="true"/>
+                            <serialNumber
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Serial Number Label"
+                                fieldLabel="Serial Number Label"
+                                name="./serialNumber"
+                                required="true"/>
+                            <equipmentStatus
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Equipment Status Label"
+                                fieldLabel="Equipment Status Label"
+                                name="./equipmentStatus"
+                                required="true"/>
+                            <myEquipment
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter My Equipment Label"
+                                fieldLabel="My Equipment Label"
+                                name="./myEquipment"
+                                required="true"/>
+                            <applyFilter
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Apply Filter Label"
+                                fieldLabel="Apply Filter Label"
+                                name="./applyFilter"
+                                required="true"/>
+                            <removeAll
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Remove all Label"
+                                fieldLabel="Remove all Label"
+                                name="./removeAll"
+                                required="true"/>
+                            <first
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter First Label"
+                                fieldLabel="First Label"
+                                name="./first"
+                                required="true"/>
+                            <last
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Last Label"
+                                fieldLabel="Last Label"
+                                name="./last"
+                                required="true"/>
+                            <customizeTable
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Customize Table Label"
+                                fieldLabel="Customize Table Label"
+                                name="./customizeTable"
+                                required="true"/>
                         </items>
-                    </content>
+                    </column1>
+                    <column2
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Tool tips Configuration"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <equipStatToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Equipment Tool Tip Text"
+                                fieldLabel="Equipment Tool Tip Text"
+                                name="./equipStatToolTip"
+                                required="true"/>
+                        </items>
+                    </column2>
                 </items>
             </tabs>
         </items>
