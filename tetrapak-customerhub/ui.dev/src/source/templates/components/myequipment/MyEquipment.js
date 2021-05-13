@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
+import '@ashwanipahal/paginationjs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { tableSort } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
@@ -164,15 +165,15 @@ function renderPaginationTableData(list) {
     showLast:true,
     firstText:'first',
     lastText:'last',
-    className: 'paginationjs-theme-blue'
-    // callback: function(data) {
-    //   render.fn({
-    //     template: 'myEquipmentTable',
-    //     data: data,
-    //     target: '.tp-my-equipment__table_wrapper',
-    //     hidden: false
-    //   });
-    // }
+    className: 'paginationjs-theme-blue',
+    callback: function(data) {
+      render.fn({
+        template: 'myEquipmentTable',
+        data: {...list,summary:data},
+        target: '.tp-my-equipment__table_wrapper',
+        hidden: false
+      });
+    }
   });
 }
 
@@ -194,7 +195,6 @@ class MyEquipment {
     this.cache.tableData = [];
     this.cache.filteredTableData = [];
     this.cache.i18nKeys = JSON.parse(this.cache.configJson);
-    // this.initializedPagination();
   }
   bindEvents() {
     const { $modal, $countryFilterLabel,i18nKeys,$siteFilterLabel,$myEquipmentHeading } = this.cache;
@@ -358,14 +358,6 @@ class MyEquipment {
     const $ModalHeaderSelector = this.root.find('.js-my-equipment__modal-header');
     $ModalHeaderSelector.text(`${header}`);
   }
-
-  // initializedPagination = () => {
-  //   var script = document.createElement('script');
-  //   script.src = 'https://cdn.jsdelivr.net/gh/ashwanipahal/paginationjs/pagination.js';
-  //   script.type = 'text/javascript';
-  //   script.defer = true;
-  //   document.getElementsByTagName('body')[0].appendChild(script);
-  // }
 
   init() {
     /* Mandatory method */
