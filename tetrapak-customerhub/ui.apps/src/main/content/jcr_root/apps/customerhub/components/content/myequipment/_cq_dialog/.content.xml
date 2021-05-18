@@ -117,13 +117,42 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <equipStatToolTip
+                            <countryToolTip
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Enter Equipment Tool Tip Text"
-                                fieldLabel="Equipment Tool Tip Text"
-                                name="./equipStatToolTip"
-                                required="true"/>
+                                fieldDescription="Enter Country Tool Tip Text"
+                                fieldLabel="Country Tool Tip Text"
+                                name="./countryToolTip"/>
+							<siteToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Site Tool Tip Text"
+                                fieldLabel="Site Tool Tip Text"
+                                name="./siteToolTip"/>
+							<lineToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Line Tool Tip Text"
+                                fieldLabel="Line Tool Tip Text"
+                                name="./lineToolTip"/>
+							<equipDescToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Equipment Description Tool Tip Text"
+                                fieldLabel="Equipment Description Tool Tip Text"
+                                name="./equipDescToolTip"/>
+							<serialNumToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Serial Number Tool Tip Text"
+                                fieldLabel="Serial Number Tool Tip Text"
+                                name="./serialNumToolTip"/>
+							<equipStatToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Enter Equipment Status Tool Tip Text"
+                                fieldLabel="Equipment Status Tool Tip Text"
+                                name="./equipStatToolTip"/>						
                         </items>
                     </column2>
                 </items>
