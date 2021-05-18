@@ -82,10 +82,16 @@
                 </a>
                 <input type="hidden" class="componentName-banner" name="componentName" value="${resource.name}" />
                 <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-banner text-left"
-                            data-link-section="button click"
-                            data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
-                            data-anchor-type="CTA" title="${'pw.form.button.download' @ i18n}">
-                            <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
+                    data-link-section="button click"
+                    data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
+                    data-anchor-type="CTA" title="${'pw.form.button.download' @ i18n}">
+                    <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
+                </button>
+                <button data-sly-test="${data.enableSubscription}" class="tpatom-link tpatom-link--primary js-subscription-pw-banner text-left"
+                    data-link-section="button click"
+                    data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
+                    data-anchor-type="CTA" title="${'pw.form.button.download' @ i18n}">
+                    <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
                 </button>
             </div>
     </div>

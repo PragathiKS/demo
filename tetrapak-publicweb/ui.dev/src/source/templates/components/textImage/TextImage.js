@@ -17,6 +17,11 @@ class TextImage {
       getLinkClickAnalytics(e,'image-title','Text & Image','.js-softconversion-pw', false);
       $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
     });
+
+    this.root.find('.js-subscription-pw').on('click', (e) => {
+      getLinkClickAnalytics(e,'image-title','Text & Image','.js-subscription-pw', false);
+      $('body').find('.'+this.cache.componentName).trigger('showSubscription-pw');
+    });
   }
 
   trackAnalytics = e => {

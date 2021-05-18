@@ -36,7 +36,7 @@
                 <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
               </a>
               <input type="hidden" class="componentNameTextImage" name="componentName" value="${resource.name}">
-             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw text-left"
+              <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw text-left"
                 data-link-section="button click"
                 data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
                 data-asset-name="${data.assetName}"
@@ -44,7 +44,16 @@
                 data-anchor-type="CTA"
                 title="${'pw.form.button.download' @ i18n}">
                   <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
-                </button>
+              </button>
+              <button data-sly-test="${data.enableSubscription}" class="tpatom-link tpatom-link--primary js-subscription-pw text-left"
+                data-link-section="button click"
+                data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
+                data-asset-name="${data.assetName}"
+                data-image-title="${data.title}"
+                data-anchor-type="CTA"
+                title="${'pw.form.button.download' @ i18n}">
+                  <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
+              </button>
             </div>
           </div>
           <div class="col-md-12 col-lg-6 rightPad">

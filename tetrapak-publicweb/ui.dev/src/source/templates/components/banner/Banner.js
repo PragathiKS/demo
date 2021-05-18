@@ -65,9 +65,16 @@ class Banner {
     }
     $itbLink.off().on('click', this.trackAnalytics);
 
+    // Open SoftConversion Form
     this.root.find('.js-softconversion-pw-banner').on('click', (e) => {
       getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.js-softconversion-pw-banner', false);
       $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
+    });
+
+    // Open Subscription Form
+    this.root.find('.js-subscription-pw-banner').on('click', (e) => {
+      getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.js-subscription-pw-banner', false);
+      $('body').find('.'+this.cache.componentName).trigger('showSubscription-pw');
     });
 
   }

@@ -5,10 +5,9 @@
     <sly data-sly-test.emailid="${'{0}{1}' @ format=['email-', componentName, ')']}" />
 
   <!-- Modal -->
-  <div class="pw-subscriptionForm modal tp-modal js-subscription-modal subscription fade" data-module="Subscriptionform"
-    tabindex="-1" role="dialog">
-    <input type="hidden" class="ComponentSubscribe" name="ComponentSubscribe" value="ComponentSubscribe">
-    <input type="hidden" class="parentComponent" name="parentComponent" value="${parentComponent}">
+  <div class="pw-subscriptionForm modal tp-modal js-subscription-modal subscription fade" data-module="Subscriptionform" tabindex="-1" role="dialog">
+    <input type="hidden" class="ComponentNameSubscribe" name="ComponentNameSubscribe" value="${componentName}">
+    <input type="hidden" class="parentComponentSubscribe" name="parentComponentSubscribe" value="${parentComponent}">
     <div class="modal-dialog modal-dialog-centered tp-modal-dialog modal-xl">
       <div class="modal-content tp-modal-content pw-padding--regular pw-margin--regular">
 
@@ -48,7 +47,7 @@
                               <div class="col-md-12 col-lg-6 formfield" auto_locator="subscriptionFormListContainerStep1">
                                 <sly
                                   data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                  data-sly-call="${inputField.inputfield_template @ inputType='email', id='emailSubscription', label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags' }">
+                                  data-sly-call="${inputField.inputfield_template @ inputType='email', id='email', label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags' }">
                                 </sly>
                               </div>
                             </div>

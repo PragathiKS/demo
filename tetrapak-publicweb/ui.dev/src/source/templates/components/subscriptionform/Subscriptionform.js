@@ -16,6 +16,8 @@ class Subscriptionform {
     /* Initialize selector cache here */
     this.cache.$openSubscribeModal = $('.pw-open-subscription');
     this.cache.$modal = this.root.parent().find('.js-subscription-modal');
+    this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSubscribe"]').val();
+    this.cache.$parentComponent = this.root.find('input[type="hidden"][name="parentComponentSubscribe"]').val();
     this.cache.businessformapi = this.root.find('form.pw-form-subscriptionForm');
     this.cache.$submitBtn = $('form.pw-form-subscriptionForm button[type="submit"]', this.root);
     this.cache.$inputEmail = $('form.pw-form-subscriptionForm  input[type="email"]', this.root);
@@ -28,15 +30,15 @@ class Subscriptionform {
     //   return item.trim();
     // });
     this.cache.requestPayload = {
-      'emailSubscription': '',
-      'firstName': '',
-      'lastName': '',
       'consent' :'',
       'types-communication':[],
       // 'interestArea':this.cache.areaOfInterest,
       'country':'',
       'pageurl': window.location.href
     };
+    this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
 
   }
 
@@ -95,7 +97,7 @@ class Subscriptionform {
     if($('input[name="consent"]').is(':checked')) {
       dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
     }
-    dataObj['email'] = this.cache.requestPayload.emailSubscription;
+    dataObj['email'] = this.cache.requestPayload.email;
     dataObj['firstName'] = this.cache.requestPayload.firstName;
     dataObj['lastName'] = this.cache.requestPayload.lastName;
     dataObj['pardot_extra_field'] = pardot_extra_field;
@@ -133,14 +135,9 @@ class Subscriptionform {
 
   bindEvents() {
     const { requestPayload, $submitBtn, $dropItem } = this.cache;
-
-    // Open / Close Modal Popup
-    this.cache.$openSubscribeModal.on('click', (e) => {
-      e.preventDefault();
-      $('body').find('.ComponentSubscribe').trigger('subscription-pw');
-    });
     
-    this.root.on('click', '.js-close-btn', this.hidePopUp).on('subscription-pw', this.showPopup);
+    // Open / Close Modal Popup
+    this.root.on('click', '.js-close-btn', this.hidePopUp).on('showSubscription-pw', this.showPopup);
     
     const self = this;
     $submitBtn.click(function (e) {
@@ -169,7 +166,7 @@ class Subscriptionform {
           if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
             requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'email' && !self.validEmail($(this).val()))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
             const erLbl = $(`#sf-step-1 label`)[0].textContent;
