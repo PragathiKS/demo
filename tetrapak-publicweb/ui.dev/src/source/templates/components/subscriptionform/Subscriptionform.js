@@ -6,6 +6,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import { validateFieldsForTags } from '../../../scripts/common/common';
 
+/* eslint-disable no-console */
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -13,6 +14,8 @@ class Subscriptionform {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
+    this.cache.$openSubscribeModal = $('.pw-open-subscription');
+    this.cache.$modal = this.root.parent().find('.js-subscription-modal');
     this.cache.businessformapi = this.root.find('form.pw-form-subscriptionForm');
     this.cache.$submitBtn = $('form.pw-form-subscriptionForm button[type="submit"]', this.root);
     this.cache.$inputEmail = $('form.pw-form-subscriptionForm  input[type="email"]', this.root);
@@ -21,14 +24,16 @@ class Subscriptionform {
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$dropdownButton = $('.dropdown-menu, .dropdown-toggle', this.root);
     this.cache.countryList = [];
-    this.cache.areaOfInterest = $('.i18n-keys',this.root).data('i18n').split(',').map(function(item) {
-      return item.trim();
-    });
+    // this.cache.areaOfInterest = $('.i18n-keys',this.root).data('i18n').split(',').map(function(item) {
+    //   return item.trim();
+    // });
     this.cache.requestPayload = {
       'emailSubscription': '',
+      'firstName': '',
+      'lastName': '',
       'consent' :'',
       'types-communication':[],
-      'interestArea':this.cache.areaOfInterest,
+      // 'interestArea':this.cache.areaOfInterest,
       'country':'',
       'pageurl': window.location.href
     };
@@ -38,7 +43,7 @@ class Subscriptionform {
   validEmail(email) {
     return REG_EMAIL.test(email);
   }
-
+  
   selectCommunicationHandler = () => {
     const self= this;
     const communicationObj={};
@@ -91,12 +96,14 @@ class Subscriptionform {
       dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
     }
     dataObj['email'] = this.cache.requestPayload.emailSubscription;
+    dataObj['firstName'] = this.cache.requestPayload.firstName;
+    dataObj['lastName'] = this.cache.requestPayload.lastName;
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
     dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
     dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
-    dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
+    // dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
     dataObj['country'] = this.cache.requestPayload['country'];
     dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
 
@@ -126,6 +133,15 @@ class Subscriptionform {
 
   bindEvents() {
     const { requestPayload, $submitBtn, $dropItem } = this.cache;
+
+    // Open / Close Modal Popup
+    this.cache.$openSubscribeModal.on('click', (e) => {
+      e.preventDefault();
+      $('body').find('.ComponentSubscribe').trigger('subscription-pw');
+    });
+    
+    this.root.on('click', '.js-close-btn', this.hidePopUp).on('subscription-pw', this.showPopup);
+    
     const self = this;
     $submitBtn.click(function (e) {
       e.preventDefault();
@@ -146,7 +162,7 @@ class Subscriptionform {
         $('input:not(.communication-type), textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
-          $('div.' + fieldName).text($(this).val());
+          $('div.'+fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
@@ -186,6 +202,17 @@ class Subscriptionform {
       requestPayload['country'] = countryTitle;
     });
 
+  }
+
+  showPopup = () => {
+    const $this = this;
+    const { $modal } = $this.cache;
+    $modal.modal();
+  }
+
+  hidePopUp = () => {
+    const $this = this;
+    $this.root.modal('hide');
   }
   init() {
     /* Mandatory method */
