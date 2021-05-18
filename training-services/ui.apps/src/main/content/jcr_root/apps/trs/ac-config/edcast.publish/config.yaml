@@ -56,6 +56,3 @@
         - path: /content/trs
           permission: allow
           actions: read
-          initialContent: |
-                            <jcr:root jcr:primaryType="cq:Page">
-                            </jcr:root> 
