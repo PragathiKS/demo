@@ -77,6 +77,10 @@ public class TextImageModel {
     @ValueMapValue
     private String enableSoftcoversion;
 
+    /** The enable subscription. */
+    @ValueMapValue
+    private String enableSubscription;
+
     /**
      * The init method.
      */
@@ -229,6 +233,24 @@ public class TextImageModel {
      */
     public SoftConversionModel getSoftConversionData() {
         return request.adaptTo(SoftConversionModel.class);
+    }
+
+    /**
+     * Gets the enable subscription.
+     *
+     * @return the enable subscription
+     */
+    public String getEnableSubscription() {
+        return enableSubscription;
+    }
+
+    /**
+     * Gets the subscription form data.
+     *
+     * @return the subscription form data
+     */
+    public SubscriptionFormModel getSubscriptionData() {
+        return request.adaptTo(SubscriptionFormModel.class);
     }
 
 }

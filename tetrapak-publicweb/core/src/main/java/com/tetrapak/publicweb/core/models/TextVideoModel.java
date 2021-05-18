@@ -109,6 +109,10 @@ public class TextVideoModel {
     @ValueMapValue
     private String enableSoftcoversion;
 
+    /** The enable subscription. */
+    @ValueMapValue
+    private String enableSubscription;
+
     /** The Constant YOUTUBE_URL_PREFIX. */
     private static final String YOUTUBE_URL_PREFIX = "https://www.youtube.com/embed/";
 
@@ -332,6 +336,24 @@ public class TextVideoModel {
      */
     public SoftConversionModel getSoftConversionData() {
         return request.adaptTo(SoftConversionModel.class);
+    }
+
+    /**
+     * Gets the enable subscription.
+     *
+     * @return the enable subscription
+     */
+    public String getEnableSubscription() {
+        return enableSubscription;
+    }
+
+    /**
+     * Gets the subscription form data.
+     *
+     * @return the subscription form data
+     */
+    public SubscriptionFormModel getSubscriptionData() {
+        return request.adaptTo(SubscriptionFormModel.class);
     }
 
 }

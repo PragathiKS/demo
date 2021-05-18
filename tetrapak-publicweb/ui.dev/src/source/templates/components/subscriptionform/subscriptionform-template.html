@@ -1,21 +1,20 @@
-<sly data-sly-template.subscriptionform_template="${@data, flag}">
-  <!-- <sly data-sly-template.subscriptionform_template="${@data, flag}"> -->
-  <div class="tp-container no-gutters">
-    <div class="row">
-      <a href="#" class="pw-open-subscription tpatom-btn tpatom-btn--primary">Open Subscription</a>
-    </div>
-  </div>
+<sly data-sly-template.subscriptionform_template="${@data, componentName, downloadPath, assetName, parentComponent}">
+
+    <sly data-sly-test.firstnameid="${'{0}{1}' @ format=['firstName-', componentName, ')']}" />
+    <sly data-sly-test.lastnameid="${'{0}{1}' @ format=['lastName-', componentName, ')']}" />
+    <sly data-sly-test.emailid="${'{0}{1}' @ format=['email-', componentName, ')']}" />
+
   <!-- Modal -->
   <div class="pw-subscriptionForm modal tp-modal js-subscription-modal subscription fade" data-module="Subscriptionform"
     tabindex="-1" role="dialog">
     <input type="hidden" class="ComponentSubscribe" name="ComponentSubscribe" value="ComponentSubscribe">
-    <!-- <input type="hidden" class="parentComponent" name="parentComponent" value="${parentComponent}"> -->
+    <input type="hidden" class="parentComponent" name="parentComponent" value="${parentComponent}">
     <div class="modal-dialog modal-dialog-centered tp-modal-dialog modal-xl">
       <div class="modal-content tp-modal-content pw-padding--regular pw-margin--regular">
 
         <div class="modal-header pw-subscription__header" auto_locator="subscriptionSectionHeader">
           <h2 role="heading" class="pw-subscription__header__heading heading_${componentName}"
-            auto_locator="headingFontStep1">Subscribe to Marketing Communication
+            auto_locator="headingFontStep1">${data.heading}
           </h2>
           <input type="hidden" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
           <button type="button" class="tp-close-btn icon-Close_pw pw-subscription__header__close js-close-btn"

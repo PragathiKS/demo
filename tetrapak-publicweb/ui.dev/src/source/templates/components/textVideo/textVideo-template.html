@@ -39,7 +39,8 @@
              >
                 <span class="tpatom-link__text sly-text"> ${data.linkTexti18n @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
               </button>
-            </div>
+
+        </div>
       </div>
       <div class="col-md-12 ${data.pwDisplay == 'display-row' || data.pwDisplay == 'display-row-reversed' ? 'col-lg-8 right-pad': ''}">
         <sly data-sly-test="${data.videoSource == 'damVideo'}">
@@ -87,8 +88,7 @@
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
              </a>
 
-
-             <button data-sly-test="${data.enableSoftcoversion}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo text-left"
+             <button data-sly-test="${data.enableSoftcoversion}" class="pw-open-subscription tpatom-btn tpatom-btn--primary"
                 data-link-section="button click"
                 data-link-name="${data.linkTexti18n}"
                 data-video-title="${data.title}"
@@ -104,6 +104,8 @@
   </div>
   <sly data-sly-test="${data.enableSoftcoversion}" data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
       data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkURL, assetName=data.assetName, parentComponent='Text & Video'}" />
+      <sly data-sly-test="${data.enableSubscription}" data-sly-use.subscriptionform="/apps/publicweb/components/content/subscriptionform/subscriptionform-template.html"
+           data-sly-call="${subscriptionform.subscriptionform_template @ data=data.subscriptionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Text & Video'}" />
   </div>
   <sly data-sly-test="${!data.damVideoPath && !data.youtubeEmbedURL}" data-sly-call="${templates.placeholder @ isEmpty = (!data.damVideoPath && !data.youtubeEmbedURL)}"></sly>
 </sly>

@@ -87,6 +87,10 @@ public class BannerModel {
     @ValueMapValue
     private String enableSoftcoversion;
 
+    /** The enable subscription. */
+    @ValueMapValue
+    private String enableSubscription;
+
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
 
@@ -274,4 +278,21 @@ public class BannerModel {
         return request.adaptTo(SoftConversionModel.class);
     }
 
+    /**
+     * Gets the enable subscription.
+     *
+     * @return the enable subscription
+     */
+    public String getEnableSubscription() {
+        return enableSubscription;
+    }
+
+    /**
+     * Gets the subscription form data.
+     *
+     * @return the subscription form data
+     */
+    public SubscriptionFormModel getSubscriptionData() {
+        return request.adaptTo(SubscriptionFormModel.class);
+    }
 }
