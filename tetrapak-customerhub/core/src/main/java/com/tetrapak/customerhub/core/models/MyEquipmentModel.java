@@ -67,20 +67,72 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String removeAll;
 	
+	/** The first. */
+	@ValueMapValue
+	private String first;
+	
+	/** The last. */
+	@ValueMapValue
+	private String last;
+	
+	/** The customize table. */
+	@ValueMapValue
+	private String customizeTable;
+	
+	/** The equip stat tool tip. */
+	@ValueMapValue
+	private String equipStatToolTip;
+	
 	/** The sling settings service. */
 	@OSGiService
     private SlingSettingsService slingSettingsService;
 	
 	/** The is publish environment. */
 	private boolean isPublishEnvironment= Boolean.FALSE;
-	
-	/** The i 18 n keys. */
+
+	/** The i18n keys. */
 	private String i18nKeys;
 	
 	/**
-	 * Gets the i 18 n keys.
+	 * Gets the first.
 	 *
-	 * @return the i 18 n keys
+	 * @return the first
+	 */
+	public String getFirst() {
+		return first;
+	}
+
+	/**
+	 * Gets the last.
+	 *
+	 * @return the last
+	 */
+	public String getLast() {
+		return last;
+	}
+
+	/**
+	 * Gets the customize table.
+	 *
+	 * @return the customize table
+	 */
+	public String getCustomizeTable() {
+		return customizeTable;
+	}
+
+	/**
+	 * Gets the equip stat tool tip.
+	 *
+	 * @return the equip stat tool tip
+	 */
+	public String getEquipStatToolTip() {
+		return equipStatToolTip;
+	}
+	
+	/**
+	 * Gets the i18n keys.
+	 *
+	 * @return the i18n keys
 	 */
 	public String getI18nKeys() {
         return i18nKeys;
@@ -210,6 +262,10 @@ public class MyEquipmentModel {
         i18KeyMap.put("searchResults", getSearchResults());
         i18KeyMap.put("line", getLine());
         i18KeyMap.put("country", getCountry());
+        i18KeyMap.put("first", getFirst());
+        i18KeyMap.put("last", getCountry());
+        i18KeyMap.put("customizeTable", getCustomizeTable());
+        i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
   
         if (slingSettingsService.getRunModes().contains("publish")) {
