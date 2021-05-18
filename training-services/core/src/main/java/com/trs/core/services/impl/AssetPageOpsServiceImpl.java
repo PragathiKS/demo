@@ -187,7 +187,10 @@ public class AssetPageOpsServiceImpl implements AssetPageOpsService {
         if (StringUtils.isNotBlank(asset.getMetadataValue(TrsConstants.ASSET_SCENE7_FILENAME_PROPERTY))) {
             videoProperties.put(TrsConstants.PAGE_SCENE7_FILENAME_PROPERTY,
                     asset.getMetadataValue(TrsConstants.ASSET_SCENE7_FILENAME_PROPERTY));
-        } else {
+        }else if(StringUtils.isNotBlank(asset.getMetadataValue(TrsConstants.ASSET_SCENE7_FILENAME_FALLBACK_PROPERTY))) {
+            videoProperties.put(TrsConstants.PAGE_SCENE7_FILENAME_PROPERTY,
+                    asset.getMetadataValue(TrsConstants.ASSET_SCENE7_FILENAME_FALLBACK_PROPERTY));
+        }else {
             responseMap.put(STATUS, "Error");
             missingProps.add("Video not uploaded to Dynamic Media!");
             isMissingProperty = true;
