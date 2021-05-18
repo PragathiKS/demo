@@ -54,13 +54,19 @@
             top: 0; /* Don't forget this, required for the stickiness */
             background: $color-white;
             border-bottom-color: $color-mercury;
+            &.hide {
+                display: none;
+            }
         }
         td {
             @include font-size($font-baseline);
             @include line-height($font-l, $font-baseline);
+            &.hide {
+                display: none;
+            }
         }
     }
-    input[type="checkbox"]:checked ~ .tpatom-checkbox__icon {
+    input[type='checkbox']:checked ~ .tpatom-checkbox__icon {
         border: 1px solid $color-congress-blue;
         &::before {
             color: $color-congress-blue;

@@ -34,8 +34,6 @@ function getFormattedSiteData(array){
   return sitesFlatArray;
 }
 
-
-
 function _renderCountryFilters() {
   // auth.getToken(({ data: authData }) => {
   ajaxWrapper
@@ -74,6 +72,7 @@ function _renderCountryFilters() {
           this.applyFilter();
           this.renderTableData();
           this.renderSearchCount();
+          this.mapTableColumn();
         });
     });
   // });
@@ -83,7 +82,7 @@ function _renderCountryFilters() {
 function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
-  }else {
+  } else {
     let country, description,site,line,serialNumber;
     for(const i in ob){
       if(i === 'countryCode'){
@@ -102,7 +101,6 @@ function _processKeys(keys, ob) {
     }
     return [country, site,line, description,serialNumber];
   }
-
 }
 
 function getKeyMap(key,i18nKeys){
@@ -140,10 +138,9 @@ function _mapHeadings(keys,i18nKeys) {
   return keys.map(key => ({
     key,
     myEquipment:true,
-    i18nKey: getKeyMap(key,i18nKeys) // TODO : add i18n keys
+    i18nKey: getKeyMap(key,i18nKeys)
   }));
 }
-
 
 
 function _processTableData(data){
@@ -151,20 +148,24 @@ function _processTableData(data){
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = _processKeys(keys, summary);
+      this.cache.tableHeaders = keys;
       return tableSort.call(this, summary, keys);
     });
-    data.summaryHeadings = _mapHeadings(keys,data.i18nKeys);
+    data.summaryHeadings = _mapHeadings.call(this,keys,data.i18nKeys);
   }
   return data;
 }
 
-function renderPaginationTableData(list) {
-  $('#pagination-container').pagination({
+function renderPaginationTableData(list,options) {
+  const that = this;
+  const container = $('#pagination-container');
+  container.pagination({
     dataSource: list.summary,
     showFirst:true,
     showLast:true,
     firstText:'first',
     lastText:'last',
+    pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
     className: 'paginationjs-theme-blue',
     callback: function(data) {
       render.fn({
@@ -172,7 +173,10 @@ function renderPaginationTableData(list) {
         data: {...list,summary:data},
         target: '.tp-my-equipment__table_wrapper',
         hidden: false
+      },() => {
+        that.hideShowColums();
       });
+
     }
   });
 }
@@ -188,19 +192,29 @@ class MyEquipment {
     this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment__site-button-filter');
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
     this.cache.$myEquipmentHeading = this.root.find('.js-my-equipment__heading');
+    this.cache.$myEquipmentCustomizeTable = this.root.find('.js-my-equipment__customise-table');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.countryData = [];
     this.cache.siteData = [];
     this.cache.activeFilterForm = 'country';
     this.cache.tableData = [];
+    this.cache.customisableTableHeaders = [];
+    this.cache.tableHeaders = [];
     this.cache.filteredTableData = [];
+    this.cache.hideColumns = []; // column index;
     this.cache.i18nKeys = JSON.parse(this.cache.configJson);
+    this.cache.currentPageNumber = 1;
+
   }
   bindEvents() {
-    const { $modal, $countryFilterLabel,i18nKeys,$siteFilterLabel,$myEquipmentHeading } = this.cache;
+    const { $modal, $countryFilterLabel,i18nKeys,$siteFilterLabel,$myEquipmentHeading,$myEquipmentCustomizeTable } = this.cache;
     $countryFilterLabel.text(`${i18nKeys['country']} +`);
     $siteFilterLabel.text(`${i18nKeys['site']} +`);
     $myEquipmentHeading.text(`${i18nKeys['myEquipment']}`);
+    this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true},
+      {key:'siteName',option:i18nKeys['site'],isChecked:true},
+      {key:'equipmentDescription',option:i18nKeys['equipmentDescription'],isChecked:true},
+      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true}];
     this.cache.$countryFilterLabel.on('click', () => {
       this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:i18nKeys['country'] });
       $modal.modal();
@@ -208,6 +222,10 @@ class MyEquipment {
     this.cache.$siteFilterLabel.on('click', () => {
       this.cache.siteData = getFormattedSiteData([...this.cache.filteredTableData]);
       this.renderFilterForm(this.cache.siteData, { activeFrom:'site',header:i18nKeys['site'] });
+      $modal.modal();
+    });
+    $myEquipmentCustomizeTable.on('click', () => {
+      this.renderFilterForm(this.cache.customisableTableHeaders, { activeFrom:'customise-table',header:'Customise Table',singleButton:false });
       $modal.modal();
     });
 
@@ -224,14 +242,41 @@ class MyEquipment {
     });
   }
 
+  mapTableColumn = () => {
+    const { tableHeaders,customisableTableHeaders } = this.cache;
+    for(let i=0;i<tableHeaders.length;i++) {
+      if(customisableTableHeaders[i]){
+        customisableTableHeaders[i] = {
+          ...customisableTableHeaders[i],
+          colIndex:i
+        };
+      }
+    }
+  }
+
   renderSearchCount = () => {
     this.cache.$searchResults.text(`${this.cache.filteredTableData.length} ${this.cache.i18nKeys['searchResults']}`);
   }
 
   renderTableData = (label,filterValues) => {
     this.updateTable(label,filterValues);
-    renderPaginationTableData.call(this,_processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}));
+    renderPaginationTableData.call(
+      this,
+      _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
+      {isCustomiseTableFilter :label === 'customise-table' ? true : false });
+  }
 
+  hideShowColums = () => {
+    const { customisableTableHeaders } = this.cache;
+    for(const i in customisableTableHeaders){
+      if(!customisableTableHeaders[i].isChecked){
+        $(`.js-my-equipment__table-summary__cellheading--${i}`).addClass('hide');
+        $(`.js-my-equipment__table-summary__cell--${i}`).addClass('hide');
+      } else {
+        $(`.js-my-equipment__table-summary__cellheading--${i}`).removeClass('hide');
+        $(`.js-my-equipment__table-summary__cell--${i}`).removeClass('hide');
+      }
+    }
   }
 
   updateTable = (label,filterValues) => {
@@ -290,8 +335,12 @@ class MyEquipment {
         htmlUpdate= $siteFilterLabel;
         break;
       }
+      case 'customise-table':{
+        filterData = this.cache.customisableTableHeaders;
+        label = 'customise-table';
+        break;
+      }
       default: {
-        filterData = [];
         break;
       }
     }
@@ -311,10 +360,12 @@ class MyEquipment {
       });
     }
 
-    if(filterCount){
-      htmlUpdate.addClass('active');
-    }else{
-      htmlUpdate.removeClass('active');
+    if(htmlUpdate){
+      if(filterCount){
+        htmlUpdate.addClass('active');
+      }else{
+        htmlUpdate.removeClass('active');
+      }
     }
 
     const filterValues = filterData.filter((option) => {
@@ -330,10 +381,12 @@ class MyEquipment {
 
   updateFilterCountValue = (label,filterCount,htmlUpdate) => {
     const { $modal } = this.cache;
-    if(!filterCount){
-      htmlUpdate.text(`${label} +`);
-    }else {
-      htmlUpdate.text(`${label}: ${filterCount}`);
+    if(htmlUpdate){
+      if(!filterCount){
+        htmlUpdate.text(`${label} +`);
+      }else {
+        htmlUpdate.text(`${label}: ${filterCount}`);
+      }
     }
     $modal.modal('hide');
   }
@@ -342,7 +395,7 @@ class MyEquipment {
     const { i18nKeys } = this.cache;
     render.fn({
       template: 'filterForm',
-      data: {countryData:data,...i18nKeys},
+      data: {formData: data,...i18nKeys,singleButton:formDetail.singleButton === false ? false : true},
       target: '.tp-equipment__filter-form',
       hidden: false
     });
