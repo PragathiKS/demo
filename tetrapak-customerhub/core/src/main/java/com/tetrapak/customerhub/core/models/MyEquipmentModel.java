@@ -2,9 +2,9 @@ package com.tetrapak.customerhub.core.models;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -12,7 +12,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
-
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
@@ -83,6 +82,26 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String equipStatToolTip;
 	
+	/** The country tool tip. */
+	@ValueMapValue
+	private String countryToolTip;
+
+	/** The site tool tip. */
+	@ValueMapValue
+	private String siteToolTip;
+	
+	/** The line tool tip. */
+	@ValueMapValue
+	private String lineToolTip;
+	
+	/** The equip desc tool tip. */
+	@ValueMapValue
+	private String equipDescToolTip;
+	
+	/** The serial num tool tip. */
+	@ValueMapValue
+	private String serialNumToolTip;
+
 	/** The sling settings service. */
 	@OSGiService
     private SlingSettingsService slingSettingsService;
@@ -92,6 +111,9 @@ public class MyEquipmentModel {
 
 	/** The i18n keys. */
 	private String i18nKeys;
+	
+	/** The tool tip class. */
+	private String toolTipClass;
 	
 	/**
 	 * Gets the first.
@@ -126,7 +148,52 @@ public class MyEquipmentModel {
 	 * @return the equip stat tool tip
 	 */
 	public String getEquipStatToolTip() {
-		return equipStatToolTip;
+		return evaluateToolTip(equipStatToolTip);
+	}
+	
+	/**
+	 * Gets the country tool tip.
+	 *
+	 * @return the country tool tip
+	 */
+	public String getCountryToolTip() {
+		return evaluateToolTip(countryToolTip);
+	}
+
+	/**
+	 * Gets the site tool tip.
+	 *
+	 * @return the site tool tip
+	 */
+	public String getSiteToolTip() {
+		return evaluateToolTip(siteToolTip);
+	}
+
+	/**
+	 * Gets the line tool tip.
+	 *
+	 * @return the line tool tip
+	 */
+	public String getLineToolTip() {
+		return evaluateToolTip(lineToolTip);
+	}
+
+	/**
+	 * Gets the equip desc tool tip.
+	 *
+	 * @return the equip desc tool tip
+	 */
+	public String getEquipDescToolTip() {
+		return evaluateToolTip(equipDescToolTip);
+	}
+
+	/**
+	 * Gets the serial num tool tip.
+	 *
+	 * @return the serial num tool tip
+	 */
+	public String getSerialNumToolTip() {
+		return evaluateToolTip(serialNumToolTip);
 	}
 	
 	/**
@@ -246,6 +313,25 @@ public class MyEquipmentModel {
 		return isPublishEnvironment;
 	}
 	
+
+	/**
+	 * Gets the tool tip class.
+	 *
+	 * @return the tool tip class
+	 */
+	public String getToolTipClass() {
+		return toolTipClass;
+	}
+
+	/**
+	 * Sets the tool tip class.
+	 *
+	 * @param toolTipClass the new tool tip class
+	 */
+	public void setToolTipClass(String toolTipClass) {
+		this.toolTipClass = toolTipClass;
+	}
+	
 	/**
 	 * Inits the.
 	 */
@@ -265,13 +351,31 @@ public class MyEquipmentModel {
         i18KeyMap.put("first", getFirst());
         i18KeyMap.put("last", getCountry());
         i18KeyMap.put("customizeTable", getCustomizeTable());
+        i18KeyMap.put("serialNumToolTip", getSerialNumToolTip());
+        i18KeyMap.put("lineToolTip", getLineToolTip());
+        i18KeyMap.put("siteToolTip", getSiteToolTip());
+        i18KeyMap.put("countryToolTip", getCountryToolTip());
+        i18KeyMap.put("equipDescToolTip", getEquipDescToolTip());
         i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
-  
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+	}
+	
+	/**
+	 * Evaluate tool tip.
+	 *
+	 * @param toolTipText the tool tip text
+	 * @return the string
+	 */
+	private String evaluateToolTip(String toolTipText) {
+		if (StringUtils.isNotBlank(toolTipText) && toolTipText.length() > 0) {
+			setToolTipClass("showToolTip");
+			return toolTipText;
+		}
+		return StringUtils.EMPTY;
 	}
 }
