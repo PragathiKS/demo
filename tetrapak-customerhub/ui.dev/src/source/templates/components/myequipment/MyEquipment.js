@@ -192,7 +192,8 @@ class MyEquipment {
     this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment__site-button-filter');
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
     this.cache.$myEquipmentHeading = this.root.find('.js-my-equipment__heading');
-    this.cache.$myEquipmentCustomizeTable = this.root.find('.js-my-equipment__customise-table');
+    this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
+    this.cache.$mobileHeadersActions = this.root.find('.js-mobile-header-actions');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.countryData = [];
     this.cache.siteData = [];
@@ -207,7 +208,7 @@ class MyEquipment {
 
   }
   bindEvents() {
-    const { $modal, $countryFilterLabel,i18nKeys,$siteFilterLabel,$myEquipmentHeading,$myEquipmentCustomizeTable } = this.cache;
+    const { $mobileHeadersActions, $modal, $countryFilterLabel,i18nKeys,$siteFilterLabel,$myEquipmentHeading,$myEquipmentCustomizeTableAction } = this.cache;
     $countryFilterLabel.text(`${i18nKeys['country']} +`);
     $siteFilterLabel.text(`${i18nKeys['site']} +`);
     $myEquipmentHeading.text(`${i18nKeys['myEquipment']}`);
@@ -224,9 +225,19 @@ class MyEquipment {
       this.renderFilterForm(this.cache.siteData, { activeFrom:'site',header:i18nKeys['site'] });
       $modal.modal();
     });
-    $myEquipmentCustomizeTable.on('click', () => {
+    $myEquipmentCustomizeTableAction.on('click', () => {
       this.renderFilterForm(this.cache.customisableTableHeaders, { activeFrom:'customise-table',header:'Customise Table',singleButton:false });
+      $('.tp-my-equipment__header-actions').removeClass('show');
       $modal.modal();
+    });
+
+    $mobileHeadersActions.on('click', () => {
+      if($('.tp-my-equipment__header-actions').hasClass('show')){
+        $('.tp-my-equipment__header-actions').removeClass('show');
+      } else {
+        $('.tp-my-equipment__header-actions').addClass('show');
+      }
+
     });
 
     this.root.on('click', '.js-close-btn',  () => {

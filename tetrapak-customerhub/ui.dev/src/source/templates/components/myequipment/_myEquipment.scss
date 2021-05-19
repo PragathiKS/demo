@@ -3,6 +3,11 @@
         max-height: 500px;
         overflow: scroll;
     }
+    &__header-wrapper {
+        @include margin-bottom($margin-l);
+        display: flex;
+        justify-content: space-between;
+    }
     &__filter-button {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
@@ -21,7 +26,6 @@
     &__heading {
         @include font-size($font-xl);
         @include line-height(40px, $font-xl);
-        @include margin-bottom($margin-l);
     }
 
     &__search-count {
@@ -66,7 +70,7 @@
             }
         }
     }
-    input[type='checkbox']:checked ~ .tpatom-checkbox__icon {
+    input[type="checkbox"]:checked ~ .tpatom-checkbox__icon {
         border: 1px solid $color-congress-blue;
         &::before {
             color: $color-congress-blue;
@@ -93,5 +97,65 @@
         @include font-size($font-l);
         @include line-height($font-xl, $font-l);
         color: $color-black;
+    }
+
+    .header-action-text {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        color: $color-congress-blue;
+    }
+    &__header-action-wrapper {
+        position: relative;
+    }
+
+    &__header-mobile {
+        display: flex;
+    }
+
+    &__header-actions {
+        display: none;
+        &.show {
+            display: flex;
+            position: absolute;
+            right: 0;
+            background: $color-wild-sand;
+            padding: 24px;
+            border-radius: 4px;
+            min-width: 256px;
+            span {
+                color: $color-tundora;
+            }
+        }
+    }
+
+    .icon {
+        color: $color-congress-blue;
+    }
+    .icon-Hide {
+        display: none;
+    }
+
+    &__customise-table-action {
+        display: flex;
+    }
+
+    @media #{$desktop} {
+        &__header-mobile {
+            display: none;
+        }
+        &__header-actions {
+            display: flex;
+        }
+        .icon-Hide {
+            display: flex;
+        }
+        .icon {
+            @include padding-right($padding-sm);
+        }
+        &__customise-table-action {
+            display: flex;
+            line-height: 40px;
+            align-items: center;
+        }
     }
 }
