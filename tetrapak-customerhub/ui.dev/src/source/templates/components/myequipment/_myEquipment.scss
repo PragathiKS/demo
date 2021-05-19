@@ -55,7 +55,7 @@
         }
         th {
             position: sticky;
-            top: 0; /* Don't forget this, required for the stickiness */
+            top: 0;
             background: $color-white;
             border-bottom-color: $color-mercury;
             &.hide {
@@ -67,6 +67,11 @@
             @include line-height($font-l, $font-baseline);
             &.hide {
                 display: none;
+            }
+        }
+        tr:last-child {
+            td {
+                border-bottom: 0;
             }
         }
     }
@@ -130,6 +135,14 @@
 
     .icon {
         color: $color-congress-blue;
+        &.left {
+            transform: rotate(-180deg);
+        }
+        &.icon-pagination {
+            &::before {
+                width: 8px;
+            }
+        }
     }
     .icon-Hide {
         display: none;
@@ -137,6 +150,100 @@
 
     &__customise-table-action {
         display: flex;
+    }
+
+    &__pagination-container {
+        @include padding-top($padding-md);
+    }
+
+    .pagination-icon-wrapper {
+        display: flex;
+        &.icon-left {
+            span {
+                @include margin-left($margin-sm);
+            }
+        }
+        &.icon-right {
+            span {
+                @include margin-left($margin-sm);
+            }
+        }
+    }
+
+    .paginationjs-first,
+    .paginationjs-last {
+        display: flex;
+        align-items: center;
+    }
+
+    .paginationjs.paginationjs-theme-tetrapak {
+        .paginationjs-pages {
+            ul {
+                display: flex;
+                align-items: center;
+            }
+
+            li.paginationjs-ellipsis {
+                a {
+                    min-width: 24px;
+                }
+            }
+
+            li.paginationjs-prev,
+            li.paginationjs-next {
+                width: 24px;
+                text-align: center;
+                a {
+                    min-width: 24px;
+                    cursor: pointer;
+                }
+            }
+
+            li.paginationjs-prev {
+                @include margin-left($margin-l);
+                i {
+                    &::before {
+                        transform: rotate(-180deg);
+                    }
+                }
+            }
+            li.paginationjs-next {
+                @include margin-right($margin-l);
+            }
+
+            li.paginationjs-next,
+            li:last-child {
+                border-right: 0;
+            }
+            li {
+                border: 0;
+                a {
+                    color: $color-congress-blue;
+                    height: 24px;
+                    line-height: 24px;
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
+            li.paginationjs-page {
+                a {
+                    color: $color-congress-blue;
+                    height: 24px;
+                    width: 24px;
+                    border-radius: 4px;
+                    min-width: 24px;
+                    line-height: 24px;
+                }
+
+                &.active {
+                    a {
+                        color: $color-white;
+                        background: $color-congress-blue;
+                    }
+                }
+            }
+        }
     }
 
     @media #{$desktop} {
@@ -147,10 +254,8 @@
             display: flex;
         }
         .icon-Hide {
-            display: flex;
-        }
-        .icon {
             @include padding-right($padding-sm);
+            display: flex;
         }
         &__customise-table-action {
             display: flex;

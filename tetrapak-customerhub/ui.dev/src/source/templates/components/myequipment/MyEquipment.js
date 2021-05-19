@@ -163,10 +163,13 @@ function renderPaginationTableData(list,options) {
     dataSource: list.summary,
     showFirst:true,
     showLast:true,
-    firstText:'first',
-    lastText:'last',
+    showFirstOnEllipsisShow: false,
+    showLastOnEllipsisShow:false,
+    firstText:'',
+    lastText:'',
+    pageRange:1,
     pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
-    className: 'paginationjs-theme-blue',
+    className: 'paginationjs-theme-tetrapak',
     callback: function(data) {
       render.fn({
         template: 'myEquipmentTable',
@@ -175,6 +178,7 @@ function renderPaginationTableData(list,options) {
         hidden: false
       },() => {
         that.hideShowColums();
+        that.insertFirstAndLastElement();
       });
 
     }
@@ -263,6 +267,13 @@ class MyEquipment {
         };
       }
     }
+  }
+
+  insertFirstAndLastElement = () => {
+    $('.paginationjs-first > a').not('.paginationjs-page > a').prepend('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>First</span</div>');
+    $('.paginationjs-last > a').not('.paginationjs-page > a').prepend('<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>Last</span</div>');
+    $('.paginationjs-next > a').replaceWith('<a><i class="icon icon-pagination left icon-Right_new"></i></a>');
+    $('.paginationjs-prev > a').replaceWith('<a><i class="icon icon-pagination icon-Right_new"></i></a>');
   }
 
   renderSearchCount = () => {
