@@ -70,4 +70,14 @@
                               clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
                                hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
     <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
+
+    <!-- Global site tag (gtag.js) - Google Marketing Platform -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=DC-10776368"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'DC-10776368');
+    </script>
+    <!-- End of global snippet: Please do not remove -->
 </template>
