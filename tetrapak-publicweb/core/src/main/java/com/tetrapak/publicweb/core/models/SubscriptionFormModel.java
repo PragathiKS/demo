@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -17,12 +20,18 @@ import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  * The Class SubscriptionFormModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SubscriptionFormModel extends FormModel {
+
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
 
     /** The resource. */
     @Self
@@ -44,23 +53,30 @@ public class SubscriptionFormModel extends FormModel {
     
     /** The country list. */
     private List<DropdownOption> countryOptions;
-    
-    /** The market site subscribed. */
-    private String marketSiteSubscribed;
+
+    /** The more link action. */
+    @ValueMapValue
+    private String moreButtonAction;
+
+    /** The more link label. */
+    @ValueMapValue
+    private String moreButtonLabel;
+
+    /** The pardot url. */
+    @ValueMapValue
+    private String pardotUrl;
 
     /**
      * The init method.
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
+        if (StringUtils.isNotEmpty(moreButtonAction)) {
+            moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction, request);
+        }
         setFormConfig();
         setCountryOptions();
-        if (PageUtil.getCountryCodeFromResource(resource).equalsIgnoreCase(PWConstants.SE_COUNTRY_CODE)) {
-            marketSiteSubscribed = PWConstants.SE_MARKET_LOCALE;
-        } else {
-            marketSiteSubscribed = PageUtil.getLanguageCodeFromResource(resource) + PWConstants.HYPHEN
-                    + PageUtil.getCountryCodeFromResource(resource);
-        }
     }
 
     /**
@@ -140,12 +156,31 @@ public class SubscriptionFormModel extends FormModel {
 	}
 
     /**
-     * Gets the market site subscribed.
+     * Gets the pardot url.
      *
-     * @return the market site subscribed
+     * @return the pardot url
      */
-    public String getMarketSiteSubscribed() {
-        return marketSiteSubscribed;
+    public String getPardotUrl() {
+        return pardotUrl;
     }
+
+    /**
+     * Gets the more link action.
+     *
+     * @return the more link action
+     */
+    public String getMoreButtonAction() {
+        return moreButtonAction;
+    }
+
+    /**
+     * Gets the more button label.
+     *
+     * @return the more button label
+     */
+    public String getMoreButtonLabel() {
+        return moreButtonLabel;
+    }
+
 
 }

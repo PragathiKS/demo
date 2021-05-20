@@ -73,9 +73,9 @@ public class TextImageModel {
     @ValueMapValue
     private String pwDisplay;
 
-    /** The pw display. */
+    /** The enable forms. */
     @ValueMapValue
-    private String enableSoftcoversion;
+    private String formType;
 
     /**
      * The init method.
@@ -214,12 +214,12 @@ public class TextImageModel {
     }
 
     /**
-     * Gets the enable softcoversion.
+     * Gets the enable form.
      *
-     * @return the enable softcoversion
+     * @return the enable form
      */
-    public String getEnableSoftcoversion() {
-        return enableSoftcoversion;
+    public String getFormType() {
+        return formType;
     }
 
     /**
@@ -229,6 +229,16 @@ public class TextImageModel {
      */
     public SoftConversionModel getSoftConversionData() {
         return request.adaptTo(SoftConversionModel.class);
+    }
+
+
+    /**
+     * Gets the subscription form data.
+     *
+     * @return the subscription form data
+     */
+    public SubscriptionFormModel getSubscriptionData() {
+        return request.adaptTo(SubscriptionFormModel.class);
     }
 
 }

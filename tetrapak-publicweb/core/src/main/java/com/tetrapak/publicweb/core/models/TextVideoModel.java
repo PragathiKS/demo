@@ -105,9 +105,9 @@ public class TextVideoModel {
     private String pwDisplay;
 
 
-    /** The enable softcoversion. */
+    /** The enable forms. */
     @ValueMapValue
-    private String enableSoftcoversion;
+    private String formType;
 
     /** The Constant YOUTUBE_URL_PREFIX. */
     private static final String YOUTUBE_URL_PREFIX = "https://www.youtube.com/embed/";
@@ -316,14 +316,6 @@ public class TextVideoModel {
         return LinkUtils.getAssetName(damVideoPath);
     }
 
-    /**
-     * Gets the enable softcoversion.
-     *
-     * @return the enable softcoversion
-     */
-    public String getEnableSoftcoversion() {
-        return enableSoftcoversion;
-    }
 
     /**
      * Gets the soft conversion data.
@@ -334,4 +326,17 @@ public class TextVideoModel {
         return request.adaptTo(SoftConversionModel.class);
     }
 
+
+    /**
+     * Gets the subscription form data.
+     *
+     * @return the subscription form data
+     */
+    public SubscriptionFormModel getSubscriptionData() {
+        return request.adaptTo(SubscriptionFormModel.class);
+    }
+
+    public String getFormType() {
+        return formType;
+    }
 }

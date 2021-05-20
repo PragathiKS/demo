@@ -1,180 +1,197 @@
-.pw-subscriptionForm-form {
-    .form-group {
-        @include margin-bottom($margin-md);
-        &.field-error {
-            @include margin-bottom(0);
+.pw-subscriptionForm {
+    &-form {
+        .form-group {
+            @include margin-bottom($margin-md);
+            &.field-error {
+                @include margin-bottom(0);
+            }
         }
-    }
-    .tpatom-checkbox__icon {
-        @include min-width(20px);
-        @include min-height(20px);
-        border: 1px solid $color-tundora;
-        color: $color-congress-blue;
-    }
-    .emailDiv {
-        @include margin-bottom($margin-md);
-    }
+        .tpatom-checkbox__icon {
+            @include min-width(20px);
+            @include min-height(20px);
+            border: 1px solid $color-tundora;
+            color: $color-congress-blue;
+        }
+        .errorMsg {
+            display: none;
+            color: $color-alert;
+            font-size: 12px;
+            &.purposeOfBusinessContactError {
+                @include margin-top($margin-sm);
+            }
+            &.purposeOfBusinessIntersetError {
+                @include margin-top($margin-sm);
+            }
+        }
 
-    .errorMsg {
-        display: none;
-        color: $color-alert;
-        font-size: 12px;
-        &.purposeOfBusinessContactError {
-            @include margin-top($margin-sm);
+        .formfield,
+        .form-group {
+            .form-control {
+                line-height: 24px;
+            }
+            .pw-form__dropdown__toggle i {
+                transform: rotate(90deg);
+            }
+            label {
+                @include margin-bottom(0);
+            }
+            &.field-error {
+                .errorMsg {
+                    display: block;
+                }
+            }
         }
-        &.purposeOfBusinessIntersetError {
-            @include margin-top($margin-sm);
-        }
-    }
-
-    .formfield,
-    .form-group {
-        .form-control {
-            line-height: 24px;
-        }
-        .pw-form__dropdown__toggle i {
-            transform: rotate(90deg);
-        }
-        label {
-            @include margin-bottom(0);
-        }
-        &.field-error {
-            .errorMsg {
+        .sf-tab-pane {
+            display: none;
+            &.active {
                 display: block;
             }
         }
-    }
-    .sf-tab-pane {
-        display: none;
-        &.active {
-            display: block;
-        }
-    }
 
-    &__subscription-email-label {
-        @include margin-bottom(20px);
-        font-size: $font-md;
-        font-weight: 700;
-    }
-
-    .separator {
-        @include padding-bottom($padding-md);
-        @include margin-bottom($margin-l);
-        border-bottom: 1px solid $color-mercury;
-        @media #{$desktop} {
-            @include margin-bottom(0);
-            @include padding-bottom(0);
-            border-bottom: 0;
-            border-right: 1px solid $color-mercury;
-            padding-right: $margin-xxxl;
-            & + div {
-                @include padding-left($padding-xxxl);
-            }
-            h4 {
-                @include margin-bottom($margin-l);
-            }
+        &__subscription-email-label {
+            @include margin-bottom(20px);
+            font-size: $font-md;
+            font-weight: 700;
         }
-    }
-    .main-heading {
-        @include margin-bottom($margin-md);
-        overflow-wrap: break-word;
-        @media #{$desktop} {
+
+        .separator {
+            @include padding-bottom($padding-md);
             @include margin-bottom($margin-l);
-        }
-        h2 {
-            font-weight: 400;
-        }
-    }
-    ul.pw-progressbar_wrapper .step-box {
-        &::before {
-            flex: 0;
-        }
-        &::after {
-            flex: 1;
-        }
-        &:last-child {
-            flex: 0;
-        }
-    }
-
-    .consentCheckbox {
-        position: relative;
-        top: 4px;
-        height: 20px;
-        margin-right: 8px;
-        width: 20px;
-        min-width: 20px;
-    }
-
-    .consentlabel p {
-        display: inline;
-    }
-    .typeOfCommunicationLabel p {
-        display: inline;
-    }
-
-    .descriptionTextThankyou {
-        @include margin-top($margin-l);
-    }
-
-    .checboxField {
-        display: flex;
-    }
-
-    .subscribeButton {
-        margin-top: $margin-l;
-    }
-    .communication-title {
-        @include margin-top($margin-l);
-        font-size: $font-md;
-        font-weight: 700;
-    }
-    .communication-subtitle {
-        @include margin-top($margin-md);
-    }
-    .hr {
-        @include margin-top($margin-l);
-        @include margin-bottom($margin-l);
-        border: 1px solid $color-mercury;
-        height: 0;
-    }
-    .padding-top {
-        @include padding-top(14px);
-    }
-    .field-error-communication {
-        display: block;
-    }
-    .press-media-type {
-        @include margin-top(14px);
-    }
-    .subscription-checkbox-label {
-        display: flex;
-    }
-    .consent-error {
-        @include margin-bottom(10px);
-    }
-    .communication-error {
-        @include margin-top(6px);
-    }
-
-    @media #{$desktop} {
-        .communication-title {
-            @include margin-top($margin-xl);
-        }
-        .padding-top {
-            @include padding-top($padding-md);
+            border-bottom: 1px solid $color-mercury;
+            @media #{$desktop} {
+                @include margin-bottom(0);
+                @include padding-bottom(0);
+                border-bottom: 0;
+                border-right: 1px solid $color-mercury;
+                padding-right: $margin-xxxl;
+                & + div {
+                    @include padding-left($padding-xxxl);
+                }
+                h4 {
+                    @include margin-bottom($margin-l);
+                }
+            }
         }
         .main-heading {
+            @include margin-bottom($margin-md);
+            overflow-wrap: break-word;
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+            }
             h2 {
-                font-weight: 700;
+                font-weight: 400;
             }
         }
+        ul.pw-progressbar_wrapper .step-box {
+            &::before {
+                flex: 0;
+            }
+            &::after {
+                flex: 1;
+            }
+            &:last-child {
+                flex: 0;
+            }
+        }
+
+        .consentCheckbox {
+            position: relative;
+            top: 4px;
+            height: 20px;
+            margin-right: 8px;
+            width: 20px;
+            min-width: 20px;
+        }
+
+        .consentlabel p {
+            display: inline;
+        }
+        .typeOfCommunicationLabel p {
+            display: inline;
+        }
+
+        .descriptionTextThankyou {
+            @include margin-top($margin-l);
+            @include margin-bottom($margin-l);
+        }
+
+        .checboxField {
+            display: flex;
+        }
+
+        .subscribeButton {
+            margin-top: $margin-l;
+        }
+        .communication-title {
+            @include margin-top($margin-l);
+            font-size: $font-md;
+            font-weight: 700;
+        }
+        .communication-subtitle {
+            @include margin-top($margin-md);
+        }
+        .hr {
+            @include margin-top($margin-l);
+            @include margin-bottom($margin-l);
+            border: 1px solid $color-mercury;
+            height: 0;
+        }
+        .padding-top {
+            @include padding-top(14px);
+        }
+        .field-error-communication {
+            display: block;
+        }
         .press-media-type {
-            @include margin-top(0);
+            @include margin-top(14px);
+        }
+        .subscription-checkbox-label {
+            display: flex;
         }
         .consent-error {
-            @include margin-bottom(14px);
+            @include margin-bottom(10px);
+        }
+        .communication-error {
             @include margin-top(6px);
+        }
+
+        @media #{$desktop} {
+            .communication-title {
+                @include margin-top($margin-xl);
+            }
+            .padding-top {
+                @include padding-top($padding-md);
+            }
+            .main-heading {
+                h2 {
+                    font-weight: 700;
+                }
+            }
+            .press-media-type {
+                @include margin-top(0);
+            }
+            .consent-error {
+                @include margin-bottom(14px);
+                @include margin-top(6px);
+            }
+        }
+    }
+
+    &.modal {
+        .modal {
+            &-header {
+                border: 0;
+                padding: 0;
+            }
+            &-body {
+                padding: 0;
+                .formfield {
+                    &.consentDiv {
+                        margin-top: 18px;
+                    }
+                }
+            }
         }
     }
 }
+

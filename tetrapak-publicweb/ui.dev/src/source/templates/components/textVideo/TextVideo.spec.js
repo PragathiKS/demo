@@ -36,5 +36,9 @@ describe('TextVideo', function () {
     $('.js-softconversion-pw-textvideo').trigger('click');
     done();
   });
+  it('trigger subscription form on click', function (done) {
+    $('.js-subscription-pw-textvideo').trigger('click');
+    done();
+  });
 
 });
