@@ -14,22 +14,18 @@
                     <i class="icon icon-Chevron_Down"></i>
                 </button>
                 {{else}}
-                {{#if myEquipment}}
-                    {{#if showTooltip}}
-                        <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
-                            title="<span class='tooltip-header'>{{i18nKey}}</span>
-                                        <span>{{tooltipText}}</span>">
-                            {{i18nKey}}
-                        </button>
-                    {{else}}
-                        <span>{{i18nKey}}</span>
-                    {{/if}}
+                {{#if showTooltip}}
+                    <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                        title="<span class='tooltip-header'>{{i18n key=i18nKey}}</span>
+                                    <span>{{tooltipText}}</span>">
+                        {{i18n key=i18nKey}}
+                    </button>
                 {{else}}
                     {{i18n key=i18nKey}}
                 {{/if}}
-                 {{#if iconClassName}}
-                    <i class="icon {{iconClassName}}"></i>
-                 {{/if}}
+                {{#if iconClassName}}
+                <i class="icon {{iconClassName}}"></i>
+                {{/if}}
                 {{/if}}
 
             </th>

@@ -4,7 +4,7 @@ import '@ashwanipahal/paginationjs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { tableSort,isMobile } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
-// import auth from '../../../scripts/utils/auth';
+import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 
 function getFormattedData(array){
@@ -35,47 +35,45 @@ function getFormattedSiteData(array){
 }
 
 function _renderCountryFilters() {
-  // auth.getToken(({ data: authData }) => {
-  ajaxWrapper
-    .getXhrObj({
-      // url: 'https://api-dev.tetrapak.com/mock/installbase/equipments/countries',
-      url: 'https://api.jsonbin.io/b/608a94a9acc8d11948f4f028',
-      method: ajaxMethods.GET,
-      cache: true,
-      dataType: 'json',
-      contentType: 'application/json',
-      // beforeSend(jqXHR) {
-      //   jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-      //   jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      // },
-      showLoader: true
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper
+      .getXhrObj({
+        url: 'https://api-mig.tetrapak.com/mock/installbase/equipments/countries',
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
 
-    }).then(res => {
-      this.cache.countryData = getFormattedData(res.data);
-      ajaxWrapper
-        .getXhrObj({
-          // url: 'https://api-dev.tetrapak.com/mock/installbase/equipments?count=1000',
-          url: 'https://api.jsonbin.io/b/6079719c0ed6f819bead5f16',
-          method: 'GET',
-          contentType: 'application/json',
-          dataType: 'json',
-          // beforeSend(jqXHR) {
-          //   jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          //   jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-          // },
-          showLoader: true
-        }).then(response => {
-          this.cache.tableData = response.data;
-          this.cache.filteredTableData = [...this.cache.tableData];
-          this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
-          this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:'Country' });
-          this.applyFilter();
-          this.renderTableData();
-          this.renderSearchCount();
-          this.mapTableColumn();
-        });
-    });
-  // });
+      }).then(res => {
+        this.cache.countryData = getFormattedData(res.data);
+        ajaxWrapper
+          .getXhrObj({
+            url: 'https://api-mig.tetrapak.com/mock/installbase/equipments',
+            method: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend(jqXHR) {
+              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            },
+            showLoader: true
+          }).then(response => {
+            this.cache.tableData = response.data;
+            this.cache.filteredTableData = [...this.cache.tableData];
+            this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
+            this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:this.cache.i18nKeys['country'] });
+            this.applyFilter();
+            this.renderTableData();
+            this.renderSearchCount();
+            this.mapTableColumn();
+          });
+      });
+  });
 
 }
 
@@ -114,8 +112,8 @@ function getKeyMap(key,i18nKeys){
     }
     case 'siteName': {
       headerObj['keyLabel'] = i18nKeys['site'];
-      headerObj['showTooltip'] = i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
+      headerObj['showTooltip'] = i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['siteToolTip'];
       break;
     }
     case 'lineName': {
@@ -209,7 +207,6 @@ class MyEquipment {
     this.cache.$countryFilterLabel = this.root.find('.tp-my-equipment__country-button-filter');
     this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment__site-button-filter');
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
-    this.cache.$myEquipmentHeading = this.root.find('.js-my-equipment__heading');
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
     this.cache.$mobileHeadersActions = this.root.find('.js-mobile-header-actions');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
@@ -226,10 +223,8 @@ class MyEquipment {
 
   }
   bindEvents() {
-    const { $mobileHeadersActions, $modal, $countryFilterLabel,i18nKeys,$siteFilterLabel,$myEquipmentHeading,$myEquipmentCustomizeTableAction } = this.cache;
-    $countryFilterLabel.text(`${i18nKeys['country']} +`);
+    const {$mobileHeadersActions, $modal,i18nKeys,$siteFilterLabel,$myEquipmentCustomizeTableAction } = this.cache;
     $siteFilterLabel.text(`${i18nKeys['site']} +`);
-    $myEquipmentHeading.text(`${i18nKeys['myEquipment']}`);
     this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true},
       {key:'siteName',option:i18nKeys['site'],isChecked:true},
       {key:'equipmentDescription',option:i18nKeys['equipmentDescription'],isChecked:true},
@@ -244,7 +239,7 @@ class MyEquipment {
       $modal.modal();
     });
     $myEquipmentCustomizeTableAction.on('click', () => {
-      this.renderFilterForm(this.cache.customisableTableHeaders, { activeFrom:'customise-table',header:'Customise Table',singleButton:false });
+      this.renderFilterForm(this.cache.customisableTableHeaders, { activeFrom:'customise-table',header:i18nKeys['customizeTable'],singleButton:false });
       $('.tp-my-equipment__header-actions').removeClass('show');
       $modal.modal();
     });
@@ -284,8 +279,9 @@ class MyEquipment {
   }
 
   insertFirstAndLastElement = () => {
-    let gotToFirstButton = '<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>First</span></div>';
-    let gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>Last</span></div>';
+    const { i18nKeys } = this.cache;
+    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>${i18nKeys['first']}</span></div>`;
+    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>${i18nKeys['last']}</span></div>`;
     if(isMobile()){
       gotToFirstButton = ('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i></div>');
       gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i></div>';
@@ -359,7 +355,7 @@ class MyEquipment {
 
 
   applyFilter =(options) => {
-    const { activeFilterForm,$countryFilterLabel,$siteFilterLabel } = this.cache;
+    const { activeFilterForm,$countryFilterLabel,$siteFilterLabel,i18nKeys } = this.cache;
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox');
     let filterCount = 0;
     let filterData = [];
@@ -368,7 +364,7 @@ class MyEquipment {
     switch (activeFilterForm) {
       case 'country':{
         filterData = this.cache.countryData;
-        label = 'Country';
+        label = i18nKeys['country'];
         htmlUpdate= $countryFilterLabel;
         break;
       }
@@ -438,21 +434,15 @@ class MyEquipment {
     const { i18nKeys } = this.cache;
     render.fn({
       template: 'filterForm',
-      data: {formData: data,...i18nKeys,singleButton:formDetail.singleButton === false ? false : true},
+      data: {header:formDetail.header, formData: data,...i18nKeys,singleButton:formDetail.singleButton === false ? false : true},
       target: '.tp-equipment__filter-form',
       hidden: false
     });
     this.cache.activeFilterForm = formDetail.activeFrom;
-    this.updateModalHeader(formDetail.header);
   }
 
   renderCountryFilters(){
     return _renderCountryFilters.apply(this, arguments);
-  }
-
-  updateModalHeader = (header) => {
-    const $ModalHeaderSelector = this.root.find('.js-my-equipment__modal-header');
-    $ModalHeaderSelector.text(`${header}`);
   }
 
   init() {

@@ -112,7 +112,7 @@
         color: $color-black;
     }
 
-    .header-action-text {
+    &__header-action-text {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
         color: $color-congress-blue;
@@ -158,6 +158,7 @@
 
     &__customise-table-action {
         display: flex;
+        cursor: pointer;
     }
 
     &__pagination-container {
