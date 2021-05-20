@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import '@ashwanipahal/paginationjs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { tableSort } from '../../../scripts/common/common';
+import { tableSort,isMobile } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 // import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -284,8 +284,15 @@ class MyEquipment {
   }
 
   insertFirstAndLastElement = () => {
-    $('.paginationjs-first > a').not('.paginationjs-page > a').prepend('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>First</span</div>');
-    $('.paginationjs-last > a').not('.paginationjs-page > a').prepend('<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>Last</span</div>');
+    let gotToFirstButton = '<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>First</span></div>';
+    let gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>Last</span></div>';
+    if(isMobile()){
+      gotToFirstButton = ('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i></div>');
+      gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i></div>';
+    }
+
+    $('.paginationjs-first > a').not('.paginationjs-page > a').prepend(gotToFirstButton);
+    $('.paginationjs-last > a').not('.paginationjs-page > a').prepend(gotToLastButton);
     $('.paginationjs-next > a').replaceWith('<a><i class="icon icon-pagination left icon-Right_new"></i></a>');
     $('.paginationjs-prev > a').replaceWith('<a><i class="icon icon-pagination icon-Right_new"></i></a>');
   }
