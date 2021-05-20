@@ -42,7 +42,7 @@
     <pw.form.businessenq.services
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.services"
-        sling:message="Hizmetler"/>
+        sling:message="Servisler"/>
     <pw.form.button.download
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.download"
@@ -130,7 +130,7 @@
     <pw.form.errormsg.purposeofcontact
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.purposeofcontact"
-        sling:message="Lütfen iletişimin amacını seçin"/>
+        sling:message="Lütfen iletişim kurma amacını seçin"/>
     <pw.form.errormsg.serviceerror
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.serviceerror"
@@ -174,7 +174,7 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.typeofvisitor"
-        sling:message="Bugünkü ziyaretin nedeni"/>
+        sling:message="Bugünkü ziyaretin nedenleri"/>
     <pw.form.label.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
@@ -182,11 +182,11 @@
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
-        sling:message="Ülke"/>
+        sling:message="Ülke/Konum"/>
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
-        sling:message="Ülke Seçin"/>
+        sling:message="Ülke/Konum Seçin"/>
     <pw.form.label.email
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.email"
@@ -194,7 +194,7 @@
     <pw.form.label.emailPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.emailPlaceholder"
-        sling:message="örnek@örnek.com"/>
+        sling:message="ornek@ornek.com"/>
     <pw.form.label.firstName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.firstName"
