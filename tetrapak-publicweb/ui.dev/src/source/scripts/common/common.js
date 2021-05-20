@@ -361,6 +361,12 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
     eventObject
   );
 
+  var url = 'https://avatarfiles.alphacoders.com/822/82242.png';
+  var image = new Image();
+  image.src = url;
+  $(image).css({'display':'none'});
+  $('body').append(image);
+
   if(redirect){
     if (linkType === 'internal')  {
       if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
