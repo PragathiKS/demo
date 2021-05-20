@@ -104,41 +104,52 @@ function _processKeys(keys, ob) {
 }
 
 function getKeyMap(key,i18nKeys){
-  let keyLabel;
+  const headerObj = {};
   switch (key) {
     case 'countryCode': {
-      keyLabel = i18nKeys['country'];
+      headerObj['keyLabel'] = i18nKeys['country'];
+      headerObj['showTooltip'] = i18nKeys['countryToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['countryToolTip'];
       break;
     }
     case 'siteName': {
-      keyLabel = i18nKeys['site'];
+      headerObj['keyLabel'] = i18nKeys['site'];
+      headerObj['showTooltip'] = i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
       break;
     }
     case 'lineName': {
-      keyLabel = i18nKeys['line'];
+      headerObj['keyLabel'] = i18nKeys['line'];
+      headerObj['showTooltip'] = i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['lineToolTip'];
       break;
     }
     case 'equipmentDescription': {
-      keyLabel = i18nKeys['equipmentDescription'];
+      headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
+      headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
       break;
     }
     case 'serialNumber': {
-      keyLabel = i18nKeys['serialNumber'];
+      headerObj['keyLabel'] = i18nKeys['serialNumber'];
+      headerObj['showTooltip'] = i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
       break;
     }
     default: {
-      keyLabel = '';
       break;
     }
   }
-  return keyLabel;
+  return headerObj;
 }
 
 function _mapHeadings(keys,i18nKeys) {
   return keys.map(key => ({
     key,
     myEquipment:true,
-    i18nKey: getKeyMap(key,i18nKeys)
+    i18nKey: getKeyMap(key,i18nKeys).keyLabel,
+    showTooltip:getKeyMap(key,i18nKeys).showTooltip,
+    tooltipText:getKeyMap(key,i18nKeys).tooltipText
   }));
 }
 
@@ -179,6 +190,9 @@ function renderPaginationTableData(list,options) {
       },() => {
         that.hideShowColums();
         that.insertFirstAndLastElement();
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
       });
 
     }

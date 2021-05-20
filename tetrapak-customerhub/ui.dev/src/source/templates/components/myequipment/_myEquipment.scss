@@ -69,16 +69,24 @@
                 display: none;
             }
         }
-        tr:last-child {
-            td {
-                border-bottom: 0;
+        tr {
+            &:last-child {
+                td {
+                    border-bottom: 0;
+                }
             }
         }
+        .dashed-border {
+            text-decoration: underline;
+            text-decoration-style: dashed;
+        }
     }
-    input[type="checkbox"]:checked ~ .tpatom-checkbox__icon {
-        border: 1px solid $color-congress-blue;
-        &::before {
-            color: $color-congress-blue;
+    input[type='checkbox'] {
+        &:checked ~ .tpatom-checkbox__icon {
+            border: 1px solid $color-congress-blue;
+            &::before {
+                color: $color-congress-blue;
+            }
         }
     }
 
@@ -120,11 +128,11 @@
     &__header-actions {
         display: none;
         &.show {
+            @include padding($padding-l);
             display: flex;
             position: absolute;
             right: 0;
             background: $color-wild-sand;
-            padding: 24px;
             border-radius: 4px;
             min-width: 256px;
             span {
@@ -207,14 +215,7 @@
                     }
                 }
             }
-            li.paginationjs-next {
-                @include margin-right($margin-l);
-            }
 
-            li.paginationjs-next,
-            li:last-child {
-                border-right: 0;
-            }
             li {
                 border: 0;
                 a {
@@ -225,7 +226,15 @@
                         background-color: transparent;
                     }
                 }
+                &.paginationjs-next {
+                    @include margin-right($margin-l);
+                    border-right: 0;
+                }
+                &:last-child {
+                    border-right: 0;
+                }
             }
+
             li.paginationjs-page {
                 a {
                     color: $color-congress-blue;
@@ -263,4 +272,51 @@
             align-items: center;
         }
     }
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+.bs-tooltip-bottom {
+    @include padding($padding-sm $padding-zero);
+    .arrow {
+        &::before {
+            border-width: 0 8px 8px;
+            border-bottom-color: $color-wild-sand;
+        }
+    }
+}
+
+.tooltip {
+    .arrow {
+        width: 16px;
+        height: 16px;
+        border-top: 1px solid $color-mercury;
+        border-left: 1px solid $color-mercury;
+        background: $color-wild-sand;
+        transform: rotate(45deg);
+        &::before {
+            display: none;
+        }
+    }
+
+}
+.tooltip-inner {
+    @include font-size($font-sm);
+    @include line-height($font-m-md, $font-sm);
+    @include padding($padding-l);
+    border: 1px solid $color-mercury;
+    color: $color-tundora;
+    font-size: $font-sm;
+    max-width: 246px;
+    text-align: center;
+    background-color: $color-wild-sand;
+    border-radius: 4px;
+}
+
+.tooltip-header {
+    @include margin-bottom($margin-sm);
+    @include font-size($font-baseline);
+    @include line-height($font-l, $font-baseline);
+    display: block;
 }

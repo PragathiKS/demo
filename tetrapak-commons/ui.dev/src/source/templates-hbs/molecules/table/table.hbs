@@ -15,7 +15,15 @@
                 </button>
                 {{else}}
                 {{#if myEquipment}}
-                    {{i18nKey}}
+                    {{#if showTooltip}}
+                        <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                            title="<span class='tooltip-header'>{{i18nKey}}</span>
+                                        <span>{{tooltipText}}</span>">
+                            {{i18nKey}}
+                        </button>
+                    {{else}}
+                        <span>{{i18nKey}}</span>
+                    {{/if}}
                 {{else}}
                     {{i18n key=i18nKey}}
                 {{/if}}
@@ -23,7 +31,9 @@
                     <i class="icon {{iconClassName}}"></i>
                  {{/if}}
                 {{/if}}
+
             </th>
+
             {{/each}}
         </tr>
     </thead>
