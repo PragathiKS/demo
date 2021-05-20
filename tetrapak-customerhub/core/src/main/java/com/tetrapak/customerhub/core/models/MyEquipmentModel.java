@@ -349,7 +349,7 @@ public class MyEquipmentModel {
         i18KeyMap.put("line", getLine());
         i18KeyMap.put("country", getCountry());
         i18KeyMap.put("first", getFirst());
-        i18KeyMap.put("last", getCountry());
+        i18KeyMap.put("last", getLast());
         i18KeyMap.put("customizeTable", getCustomizeTable());
         i18KeyMap.put("serialNumToolTip", getSerialNumToolTip());
         i18KeyMap.put("lineToolTip", getLineToolTip());
