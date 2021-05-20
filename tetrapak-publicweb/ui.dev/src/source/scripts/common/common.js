@@ -361,11 +361,18 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
     eventObject
   );
 
-  var url = 'https://avatarfiles.alphacoders.com/822/82242.png';
-  var image = new Image();
-  image.src = url;
-  $(image).css({'display':'none'});
-  $('body').append(image);
+  const url = 'https://avatarfiles.alphacoders.com/822/82242.png';
+  const checkImg = $('body').find('.dummyImage');
+  if(checkImg.length > 0) {
+    $('.dummyImage').attr('src', url);
+  } else {
+    const image = new Image();
+    image.src = url;
+    $(image).addClass('dummyImage');
+    $(image).css({'display':'none'});
+    $('body').append(image);
+  }
+  
 
   if(redirect){
     if (linkType === 'internal')  {
