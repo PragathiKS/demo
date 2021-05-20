@@ -5,14 +5,12 @@ import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import { validateFieldsForTags } from '../../../scripts/common/common';
-/* eslint-disable no-console */
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
   initCache() {
-    console.log('Hello Subscription');
     /* Initialize selector cache here */
     this.cache.$modal = this.root.parent().find('.js-subscription-modal');
     this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSubscribe"]').val();
@@ -65,7 +63,6 @@ class Subscriptionform {
   }
 
   submitForm = () => {
-    console.log('Hiren Parmar - Form Submit Event');
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
     const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
@@ -85,7 +82,6 @@ class Subscriptionform {
     dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
     dataObj['country'] = this.cache.requestPayload['country'];
     dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
-    console.log('Hiren Parmar - Data Object', dataObj);
     subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
     ajaxWrapper.getXhrObj({
@@ -98,10 +94,6 @@ class Subscriptionform {
         $('.sf-tab-pane', this.root).removeClass('active');
         $('#sf-step-final', this.root).addClass('active');
         $('.serviceError').removeClass('d-block');
-        // $('#sf-step-final', this.root)[0].scrollIntoView({block:'center'});
-        $('html, body').animate({
-          scrollTop: $('#sf-step-final').offset().top - 150
-        });
       }
     ).fail(() => {
       $('.serviceError').addClass('d-block');
@@ -111,14 +103,13 @@ class Subscriptionform {
 
   bindEvents() {
     const { requestPayload, $submitBtn, $dropItem } = this.cache;
-    
-    // Open / Close Modal Popup
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('showSubscription-pw', this.showPopup);
     
     const self = this;
     $submitBtn.click(function (e) {
       e.preventDefault();
+      e.stopPropagation();
       let isvalid = true;
       const errObj = [];
       const tab = $(this).closest('.tab-content-steps');

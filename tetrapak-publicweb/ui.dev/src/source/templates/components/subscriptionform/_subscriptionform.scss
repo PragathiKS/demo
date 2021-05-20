@@ -112,6 +112,7 @@
 
         .descriptionTextThankyou {
             @include margin-top($margin-l);
+            @include margin-bottom($margin-l);
         }
 
         .checboxField {
