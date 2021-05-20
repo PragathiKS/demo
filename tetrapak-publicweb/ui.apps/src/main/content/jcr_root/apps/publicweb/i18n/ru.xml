@@ -26,7 +26,7 @@
     <pw.form.businessenq.packaging
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.packaging"
-        sling:message="Упаковка"/>
+        sling:message="упаковка"/>
     <pw.form.businessenq.processing
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.processing"
@@ -42,7 +42,7 @@
     <pw.form.businessenq.services
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.services"
-        sling:message="Услуги"/>
+        sling:message="Сервисные услуги"/>
     <pw.form.button.download
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.download"
@@ -174,7 +174,7 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.typeofvisitor"
-        sling:message="Причина, чтобы посетить сегодня"/>
+        sling:message="Причины, чтобы посетить сегодня"/>
     <pw.form.label.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
@@ -182,7 +182,7 @@
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
-        sling:message="Страна"/>
+        sling:message="Страна/местоположение"/>
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
