@@ -61,7 +61,7 @@ describe('Subscriptionform', function () {
     $('.dropdown-menu, .dropdown-toggle').keydown();
   });
 
-  it('should call showPopup', function (done) {
+  it('should open modal', function (done) {
     $(document.body).trigger('showSubscription-pw');
     expect(this.subscription.showPopup.called).to.be.true;
     done();

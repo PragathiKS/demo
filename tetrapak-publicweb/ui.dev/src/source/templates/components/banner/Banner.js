@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import { isDesktopMode,getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
 import { isExternal, isDownloable  } from '../../../scripts/utils/updateLink';
-
 class Banner {
   constructor({ el }) {
     this.root = $(el);
