@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import '@ashwanipahal/paginationjs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { tableSort,isMobile } from '../../../scripts/common/common';
+import { tableSort,isMobile, getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -280,8 +280,8 @@ class MyEquipment {
 
   insertFirstAndLastElement = () => {
     const { i18nKeys } = this.cache;
-    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>${i18nKeys['first']}</span></div>`;
-    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>${i18nKeys['last']}</span></div>`;
+    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>${getI18n(i18nKeys['first'])}</span></div>`;
+    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>${getI18n(i18nKeys['last'])}</span></div>`;
     if(isMobile()){
       gotToFirstButton = ('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i></div>');
       gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i></div>';
@@ -294,7 +294,7 @@ class MyEquipment {
   }
 
   renderSearchCount = () => {
-    this.cache.$searchResults.text(`${this.cache.filteredTableData.length} ${this.cache.i18nKeys['searchResults']}`);
+    this.cache.$searchResults.text(`${this.cache.filteredTableData.length} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
   }
 
   renderTableData = (label,filterValues) => {
@@ -319,14 +319,14 @@ class MyEquipment {
   }
 
   updateTable = (label,filterValues) => {
-    const { filteredTableData } = this.cache;
+    const { filteredTableData, i18nKeys } = this.cache;
     const { tableData } = this.cache;
-    if(label === 'Country' && filterValues.length === 0){
+    if(label === i18nKeys['country'] && filterValues.length === 0){
       this.cache.filteredTableData = tableData;
       return;
     }
     switch (label) {
-      case 'Country':{
+      case i18nKeys['country']:{
         this.cache.filteredTableData = tableData.filter((row) => {
           for(const i in filterValues){
             if(filterValues[i].countryCode === row.countryCode){
@@ -336,7 +336,7 @@ class MyEquipment {
         });
         break;
       }
-      case 'Site':{
+      case i18nKeys['site']:{
         this.cache.filteredTableData = filteredTableData.filter((row) => {
           for(const i in filterValues){
             if(filterValues[i].option === row.siteName){
@@ -422,9 +422,9 @@ class MyEquipment {
     const { $modal } = this.cache;
     if(htmlUpdate){
       if(!filterCount){
-        htmlUpdate.text(`${label} +`);
+        htmlUpdate.text(`${getI18n(label)} +`);
       }else {
-        htmlUpdate.text(`${label}: ${filterCount}`);
+        htmlUpdate.text(`${getI18n(label)}: ${filterCount}`);
       }
     }
     $modal.modal('hide');
