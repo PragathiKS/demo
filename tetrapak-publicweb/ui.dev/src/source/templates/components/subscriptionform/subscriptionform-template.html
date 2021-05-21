@@ -10,10 +10,9 @@
     <input type="hidden" class="parentComponentSubscribe" name="parentComponentSubscribe" value="${parentComponent}">
     <div class="modal-dialog modal-dialog-centered tp-modal-dialog modal-lg">
       <div class="modal-content tp-modal-content pw-padding--regular pw-margin--regular">
-
         <div class="modal-header pw-subscription__header" auto_locator="subscriptionSectionHeader">
           <h2 role="heading" class="pw-subscription__header__heading heading_${componentName}"
-            auto_locator="headingFontStep1">${data.heading}
+            auto_locator="headingFontStep1">${data.headingSubscription}
           </h2>
           <input type="hidden" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
           <button type="button" class="tp-close-btn icon-Close_pw pw-subscription__header__close js-close-btn"
@@ -126,11 +125,13 @@
                           <div class="descriptionTextThankyou" auto_locator="sfUsThankYouPageDescription">
                             ${data.formConfig.thankyouDescriptionText @ context='html'}
                           </div>
+                          <sly data-sly-test="${data.moreButtonActionSubscription && data.moreButtonLabelSubscription}">
                           <div class="thankyouCTA">
                             <a href="#" class="tpatom-link tpatom-link--primary thankyouTarget text-left" target="_self">
                               <span class="tpatom-link__text sly-text text-left">Download</span><span class="nowrap-text">&NoBreak;<i class="icon icon-Arrow_Right_pw"></i></span>
                               </a>
                           </div>
+                          </sly>
                         </div>
                       </div>
                     </div>

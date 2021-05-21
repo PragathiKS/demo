@@ -75,7 +75,7 @@
                 <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
               </sly>
             </a>
-            <span data-sly-test="${!data.linkURL  || data.linkURL=='#' || data.enableSoftcoversion}">
+            <span data-sly-test="${!data.linkURL  || data.linkURL=='#' || data.formType}">
               <sly data-sly-test="${!wcmmode.edit}">
                 <sly
                   data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"

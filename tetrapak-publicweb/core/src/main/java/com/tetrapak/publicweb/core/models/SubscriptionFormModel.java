@@ -22,6 +22,7 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The Class SubscriptionFormModel.
@@ -34,13 +35,13 @@ public class SubscriptionFormModel extends FormModel {
     private SlingHttpServletRequest request;
 
     /** The resource. */
-    @Self
+    @Reference
     private Resource resource;
 
     /** The pardot service. */
     @OSGiService
     private PardotService pardotService;
-    
+
     /** The country service. */
     @OSGiService
     private CountryDetailService countryService;
@@ -50,21 +51,25 @@ public class SubscriptionFormModel extends FormModel {
 
     /** The consent config. */
     private FormConsentConfigModel consentConfig;
-    
+
     /** The country list. */
     private List<DropdownOption> countryOptions;
 
     /** The more link action. */
     @ValueMapValue
-    private String moreButtonAction;
+    private String moreButtonActionSubscription;
 
     /** The more link label. */
     @ValueMapValue
-    private String moreButtonLabel;
+    private String moreButtonLabelSubscription;
 
     /** The pardot url. */
     @ValueMapValue
-    private String pardotUrl;
+    private String pardotUrlSubscription;
+
+    /** The heading. */
+    @ValueMapValue
+    private String headingSubscription;
 
     /**
      * The init method.
@@ -72,8 +77,8 @@ public class SubscriptionFormModel extends FormModel {
     @PostConstruct
     protected void init() {
         resource = request.getResource();
-        if (StringUtils.isNotEmpty(moreButtonAction)) {
-            moreButtonAction = LinkUtils.sanitizeLink(moreButtonAction, request);
+        if (StringUtils.isNotEmpty(moreButtonActionSubscription)) {
+            moreButtonActionSubscription = LinkUtils.sanitizeLink(moreButtonActionSubscription, request);
         }
         setFormConfig();
         setCountryOptions();
@@ -160,8 +165,8 @@ public class SubscriptionFormModel extends FormModel {
      *
      * @return the pardot url
      */
-    public String getPardotUrl() {
-        return pardotUrl;
+    public String getPardotUrlSubscription() {
+        return pardotUrlSubscription;
     }
 
     /**
@@ -169,8 +174,8 @@ public class SubscriptionFormModel extends FormModel {
      *
      * @return the more link action
      */
-    public String getMoreButtonAction() {
-        return moreButtonAction;
+    public String getMoreButtonActionSubscription() {
+        return moreButtonActionSubscription;
     }
 
     /**
@@ -178,9 +183,17 @@ public class SubscriptionFormModel extends FormModel {
      *
      * @return the more button label
      */
-    public String getMoreButtonLabel() {
-        return moreButtonLabel;
+    public String getMoreButtonLabelSubscription() {
+        return moreButtonLabelSubscription;
     }
 
+    /**
+     * Gets the heading.
+     *
+     * @return the heading
+     */
 
+    public String getHeadingSubscription() {
+        return headingSubscription;
+    }
 }
