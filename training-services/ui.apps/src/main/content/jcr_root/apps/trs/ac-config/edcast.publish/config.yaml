@@ -3,22 +3,27 @@
 
 - group_config:
 
+    - cuhu_training_default:
+
+        - name: TRS users
+          memberOf: everyone
+          path: /home/groups/cuhugroups  
+
     - cuhu_training_edcast:
 
         - name: Edcast users
-          memberOf: everyone
+          memberOf: cuhu_training_default
           path: /home/groups/cuhugroups
           
     - cuhu_training_anytimelearning:
 
         - name: Edcast Internal Users
-          memberOf: everyone
+          memberOf: cuhu_training_default
           path: /home/groups/cuhugroups
-
-
+          
 - ace_config:
 
-    - cuhu_training_edcast:
+    - cuhu_training_default:
     
         - path: /
           permission: allow
@@ -34,24 +39,28 @@
 
         - path: /content/trs
           permission: allow
-          actions: read
+          actions:
+          privileges: jcr:read
+          repGlob: ""
           initialContent: |
                             <jcr:root jcr:primaryType="cq:Page">
                             </jcr:root> 
+
+        - path: /content/trs/errors
+          permission: allow
+          actions:
+          privileges: jcr:read
+          initialContent: |
+                            <jcr:root jcr:primaryType="cq:Page">
+                            </jcr:root> 
+
+    - cuhu_training_edcast:
+    
+        - path: /content/trs
+          permission: allow
+          actions: read
           
     - cuhu_training_anytimelearning:
-
-        - path: /
-          permission: allow
-          actions:
-          privileges: jcr:read
-          repGlob: ""
-
-        - path: /content
-          permission: allow
-          actions:
-          privileges: jcr:read
-          repGlob: ""
 
         - path: /content/trs
           permission: allow
