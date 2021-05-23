@@ -226,10 +226,10 @@ class MyEquipment {
   bindEvents() {
     const {$mobileHeadersActions, $modal,i18nKeys,$siteFilterLabel,$myEquipmentCustomizeTableAction } = this.cache;
     $siteFilterLabel.text(`${i18nKeys['site']} +`);
-    this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true},
-      {key:'siteName',option:i18nKeys['site'],isChecked:true},
-      {key:'equipmentDescription',option:i18nKeys['equipmentDescription'],isChecked:true},
-      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true}];
+    this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
+      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
+      {key:'equipmentDescription',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
+      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4}];
     this.cache.$countryFilterLabel.on('click', () => {
       this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:i18nKeys['country'] });
       $modal.modal();
@@ -310,11 +310,11 @@ class MyEquipment {
     const { customisableTableHeaders } = this.cache;
     for(const i in customisableTableHeaders){
       if(!customisableTableHeaders[i].isChecked){
-        $(`.js-my-equipment__table-summary__cellheading--${i}`).addClass('hide');
-        $(`.js-my-equipment__table-summary__cell--${i}`).addClass('hide');
+        $(`.js-my-equipment__table-summary__cellheading--${customisableTableHeaders[i].index}`).addClass('hide');
+        $(`.js-my-equipment__table-summary__cell--${customisableTableHeaders[i].index}`).addClass('hide');
       } else {
-        $(`.js-my-equipment__table-summary__cellheading--${i}`).removeClass('hide');
-        $(`.js-my-equipment__table-summary__cell--${i}`).removeClass('hide');
+        $(`.js-my-equipment__table-summary__cellheading--${customisableTableHeaders[i].index}`).removeClass('hide');
+        $(`.js-my-equipment__table-summary__cell--${customisableTableHeaders[i].index}`).removeClass('hide');
       }
     }
   }
