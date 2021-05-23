@@ -177,6 +177,7 @@ function renderPaginationTableData(list,options) {
     firstText:'',
     lastText:'',
     pageRange:1,
+    pageSize: 25,
     pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
     className: 'paginationjs-theme-tetrapak',
     callback: function(data) {
