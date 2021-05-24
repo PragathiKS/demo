@@ -1,0 +1,37 @@
+{
+   "jcr:primaryType":"cq:Page",
+   "jcr:content":{
+      "jcr:primaryType":"cq:PageContent",
+      "root":{
+         "jcr:primaryType":"nt:unstructured",
+         "sling:resourceType":"wcm/foundation/components/responsivegrid",
+         "responsivegrid":{
+            "jcr:primaryType":"nt:unstructured",
+            "sling:resourceType":"wcm/foundation/components/responsivegrid",
+            "myequipment":{
+               "jcr:primaryType":"nt:unstructured",
+               "searchResults":"cuhu.equipment.searchresults",
+               "myEquipment":"cuhu.equipment.myequipment",
+               "customizeTable":"cuhu.equipment.customizetable",
+               "equipDescToolTip":"cuhu.equipment.equipdesctooltip",
+               "last":"cuhu.equipment.last",
+               "line":"cuhu.equipment.line",
+               "site":"cuhu.equipment.site",
+               "serialNumber":"cuhu.equipment.serialnumber",
+               "first":"cuhu.equipment.first",
+               "equipmentDescription":"cuhu.equipment.equipmentdescription",
+               "equipmentStatus":"cuhu.equipment.equipmentstatus",
+               "countryToolTip":"cuhu.equipment.countrytooltip",
+               "country":"cuhu.equipment.country",
+               "sling:resourceType":"customerhub/components/content/myequipment",
+               "removeAll":"cuhu.equipment.removeall",
+               "applyFilter":"cuhu.equipment.applyfilter",
+               "equipStatToolTip":"cuhu.equipment.equipstattooltip",
+               "siteToolTip":"cuhu.equipment.sitetooltip",
+               "lineToolTip":"cuhu.equipment.linetooltip",
+               "serialNumToolTip":"cuhu.equipment.serialnumtooltip"
+            }
+         }
+      }
+   }
+}
