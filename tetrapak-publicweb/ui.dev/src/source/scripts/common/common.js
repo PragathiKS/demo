@@ -360,8 +360,9 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
     false,
     eventObject
   );
-
-  const url = 'https://www.learningcontainer.com/wp-content/uploads/2020/07/Large-Sample-Image-download-for-Testing.jpg';
+  
+  const anyNumber = Math.floor(1000 + Math.random() * 9000);
+  const url = 'https://s7g10.scene7.com/is/image/tetrapak/gngc-delivering-the-food-package-of-the-future-banner?wid=1920&hei=640&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0&q='+anyNumber;
   const image = new Image();
   image.src = url;
   $(image).addClass('dummyImage');
