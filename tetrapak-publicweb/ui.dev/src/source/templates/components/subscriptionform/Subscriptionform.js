@@ -81,7 +81,7 @@ class Subscriptionform {
     dataObj['site'] = countryCode;
     dataObj['country'] = this.cache.requestPayload['country'];
     dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
-    dataObj['pardoturl'] = pardotURL;
+    dataObj['pardotUrl'] = pardotURL;
     subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
     ajaxWrapper.getXhrObj({
