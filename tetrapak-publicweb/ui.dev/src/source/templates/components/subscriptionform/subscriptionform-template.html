@@ -29,7 +29,7 @@
                   <div class="i18n-keys d-none"
                     data-i18n="${'pw.form.businessenq.services' @i18n, locale = 'en'}, ${'pw.form.businessenq.packaging' @i18n, locale = 'en'}, ${'pw.form.businessenq.processing' @i18n, locale = 'en'}, ${'pw.form.managepreferences.innovation' @i18n, locale = 'en'},${'pw.form.contactus.sustainability' @i18n, locale = 'en'},${'pw.form.businessenq.endtoendsolution' @i18n, locale = 'en'}">
                   </div>
-                  <form class="pw-form pw-form-subscriptionForm-${componentName}" accept-charset="UTF-8" data-sf-api-servlet="${data.apiUrl}" data-sf-countryCode="${data.siteCountry}" data-sf-langCode="${data.siteLanguage}" data-sf-marketSiteSubscribed="${data.marketSiteSubscribed}" autocomplete="off">
+                  <form class="pw-form pw-form-subscriptionForm-${componentName}" accept-charset="UTF-8" data-sf-api-servlet="{data.pardotUrlSubscription}" data-sf-countryCode="${data.siteCountry}" data-sf-langCode="${data.siteLanguage}" data-sf-marketSiteSubscribed="${data.marketSiteSubscribed}" autocomplete="off">
                   <input type="text" name="pardot_extra_field" id="pardot_extra_field_sf" class="d-none" tabindex="-1" title="pardot input filed for subscription" />
                     <!--step start-->
                     <div class="sf-tab-pane active" role="tabpanel" id="sf-step-1">
@@ -128,7 +128,7 @@
                           <sly data-sly-test="${data.moreButtonActionSubscription && data.moreButtonLabelSubscription}">
                           <div class="thankyouCTA">
                             <a href="#" class="tpatom-link tpatom-link--primary thankyouTarget text-left" target="_self">
-                              <span class="tpatom-link__text sly-text text-left">Download</span><span class="nowrap-text">&NoBreak;<i class="icon icon-Arrow_Right_pw"></i></span>
+                              <span class="tpatom-link__text sly-text text-left">${data.moreButtonLabelSubscription}</span><span class="nowrap-text">&NoBreak;<i class="icon icon-Arrow_Right_pw"></i></span>
                               </a>
                           </div>
                           </sly>
