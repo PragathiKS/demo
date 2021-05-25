@@ -360,6 +360,17 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
     false,
     eventObject
   );
+
+  const url = 'https://www.learningcontainer.com/wp-content/uploads/2020/07/Large-Sample-Image-download-for-Testing.jpg';
+  const image = new Image();
+  image.src = url;
+  $(image).addClass('dummyImage');
+  $(image).css({'display':'none'});
+  $('body').append(image);
+
+  setTimeout(function() {
+    $('body').find('dummyImage').remove();
+  }, 500);
   
   if(redirect){
     if (linkType === 'internal')  {

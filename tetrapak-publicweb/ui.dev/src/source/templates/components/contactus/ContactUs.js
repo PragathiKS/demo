@@ -159,7 +159,6 @@ class ContactUs {
       if (isvalid && !honeyPotFieldValue) {
         onSubmitClickAnalytics(tab);
         self.submitForm();
-
       }
     });
 
@@ -175,13 +174,12 @@ class ContactUs {
       $dropItem.removeClass('active');
       $(this).addClass('active');
     });
-
-    onLoadTrackAnalytics();
   }
 
   init() {
     /* Mandatory method */
     this.initCache();
+    onLoadTrackAnalytics();
     this.bindEvents();
     this.getCountryList();
   }
