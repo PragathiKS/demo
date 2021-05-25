@@ -64,8 +64,8 @@ class Subscriptionform {
 
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
+    const pardotURL = this.cache.businessformapi.data('sf-pardot-url');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
-    const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
     const langCode = this.cache.businessformapi.data('sf-langcode');
     const pardot_extra_field = $('#pardot_extra_field_sf').val();
 
@@ -79,9 +79,9 @@ class Subscriptionform {
     dataObj['pardot_extra_field'] = pardot_extra_field;
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
     dataObj['country'] = this.cache.requestPayload['country'];
     dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
+    dataObj['pardoturl'] = pardotURL;
     subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
 
     ajaxWrapper.getXhrObj({
@@ -99,8 +99,7 @@ class Subscriptionform {
       $('.serviceError').addClass('d-block');
     });
   }
-
-
+  
   bindEvents() {
     const { requestPayload, $submitBtn, $dropItem } = this.cache;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
