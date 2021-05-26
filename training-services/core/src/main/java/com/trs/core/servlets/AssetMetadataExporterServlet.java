@@ -87,17 +87,19 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
         ResourceResolver resourceResolver = null;
         final String DAMSCENE7ID = "dam:scene7ID";
         String value = "defaultValue";
+        LOGGER.info("Entered AssetMetadataExporterServlet servlet");
         LOGGER.info(" Query param :" + request.getParameter("id"));
         ResourceResolver configResolver = null;
         try {
-            configResolver = resolverFactory.getServiceResourceResolver(Collections
-                    .singletonMap(ResourceResolverFactory.SUBSERVICE, (Object) Scene7Constants.S7_CONFIG_SERVICE));
+//            configResolver = resolverFactory.getServiceResourceResolver(Collections
+//                    .singletonMap(ResourceResolverFactory.SUBSERVICE, (Object) Scene7Constants.S7_CONFIG_SERVICE));
+            resourceResolver = TrsUtils.getTrsResourceResolver(resolverFactory);
         } catch (LoginException e) {
             LOGGER.error("",e);
         }
         Asset asset = resourceResolver.getResource(request.getParameter("id"))
                 .adaptTo(Asset.class);
-        S7Config s7Config = resolveScene7Configuration(asset, configResolver, s7ConfigResolver, LOGGER);
+        S7Config s7Config = resolveScene7Configuration(asset, resourceResolver, s7ConfigResolver, LOGGER);
 
         if (null != s7Config) {
             String assetHandle = asset.getMetadataValue(DAMSCENE7ID);
