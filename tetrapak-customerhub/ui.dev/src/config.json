@@ -151,6 +151,12 @@
         "minSize": 0,
         "chunks": "all"
       },
+      "myequipment": {
+        "testMultiple": true,
+        "name": "myequipment",
+        "minSize": 0,
+        "chunks": "all"
+      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -181,6 +187,9 @@
       "financial": [
         "source/templates/components/financialstatement/",
         "source/templates/components/financialsstatementsummary/"
+      ],
+      "myequipment": [
+        "source/templates/components/myequipment/"
       ],
       "orders": [
         "source/templates/components/ordersearch/",

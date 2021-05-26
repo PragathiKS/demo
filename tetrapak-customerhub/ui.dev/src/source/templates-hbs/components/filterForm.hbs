@@ -1,0 +1,33 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog">
+    <div class="modal-content tp-my-equipment__modal-content tp-modal-content">
+        <div class="modal-header tpmol-modal-header">
+            <div class="js-my-equipment__modal-header tp-my-equipment__modal-header">
+                    {{i18n key=header}}
+            </div>
+            <button type="button"
+                class="tp-close-btn icon-Close tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+        <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
+            <ul class="tp-my-equipment-filter-options">
+                {{#each formData}}
+                {{> atoms/checkbox/checkbox value=option text=option check=isChecked
+                uniqueKey=option
+                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="modal-footer tpmol-modal-footer">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button">
+                <span class="tpatom-btn__text sly-text">{{i18n key=applyFilter}}</span>
+            </button>
+            {{#if singleButton}}
+            <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-button">
+                <i class="icon icon-My_Euipment_Bin_X"></i>
+                <span class="tpatom-btn__text sly-text">{{i18n key=removeAll}}</span>
+            </button>
+            {{/if}}
+        </div>
+    </div>
+</div>
