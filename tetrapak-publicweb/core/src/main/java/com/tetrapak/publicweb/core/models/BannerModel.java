@@ -96,6 +96,10 @@ public class BannerModel {
     /** The Constant SKY_BLUE. */
     private static final String SKY_BLUE = "sky-blue";
 
+    /** The enable softcoversion. */
+    @ValueMapValue
+    private String enableSoftconversion;
+
     /**
      * Gets the banner type.
      *
@@ -243,6 +247,7 @@ public class BannerModel {
         return imageCrop;
     }
 
+
     /**
      * Gets the asset name.
      *
@@ -281,5 +286,14 @@ public class BannerModel {
      */
     public SubscriptionFormModel getSubscriptionData() {
         return request.adaptTo(SubscriptionFormModel.class);
+    }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftconversion() {
+        return enableSoftconversion;
     }
 }

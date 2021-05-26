@@ -112,10 +112,10 @@
                                             jcr:primaryType="nt:unstructured"
                                             text="Default"
                                             value=""/>
-                                    <enablesoftcoversion
+                                    <enableSoftconversion
                                             jcr:primaryType="nt:unstructured"
                                             text="Enable Softcoversion"
-                                            value="enablesoftcoversion"/>
+                                            value="enableSoftconversion"/>
                                     <enableSubscription
                                             jcr:primaryType="nt:unstructured"
                                             text="Enable Subscription"
@@ -129,7 +129,7 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/well">
                                 <granite:data jcr:primaryType="nt:unstructured"
-                                              showhidetargetvalue="enablesoftcoversion"/>
+                                              showhidetargetvalue="enableSoftconversion"/>
                                 <items jcr:primaryType="nt:unstructured">
                                     <form
                                             jcr:primaryType="nt:unstructured"
