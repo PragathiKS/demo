@@ -138,6 +138,7 @@ public class TextVideoModelTest {
         assertEquals("grayscale-white", model.getPwTheme());
         assertEquals("regular", model.getPwPadding());
         assertEquals("display-row", model.getPwDisplay());
+        assertEquals("true",model.getEnableSoftcoversion());
     }
 
     /**

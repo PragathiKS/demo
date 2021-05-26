@@ -36,7 +36,8 @@
 			"linkType": "link",
 			"sling:resourceType": "publicweb/components/content/textVideo",
 			"thumbnailPath": "/content/dam/publicweb/asset.jpg",
-			"thumbnailAltText": "/content/dam/publicweb/asset.jpg"
+			"thumbnailAltText": "/content/dam/publicweb/asset.jpg",
+			"enableSoftcoversion":"true"
 			}
 		}
 	}

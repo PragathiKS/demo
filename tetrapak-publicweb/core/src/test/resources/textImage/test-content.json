@@ -33,7 +33,8 @@
 			"jcr:lastModified": "Wed Feb 26 2020 12:31:41 GMT+0530",
 			"sling:resourceType": "publicweb/components/content/imageTextButton",
 			"linkText": "Test",
-			"linkURL": "/content/dam/publicweb/Petrol.pdf"
+			"linkURL": "/content/dam/publicweb/Petrol.pdf",
+			"enableSoftcoversion":"true"
 			}
 		}
 	}
