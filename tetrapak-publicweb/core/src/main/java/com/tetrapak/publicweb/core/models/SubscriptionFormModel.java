@@ -71,6 +71,9 @@ public class SubscriptionFormModel extends FormModel {
     @ValueMapValue
     private String headingSubscription;
 
+    /** The market site subscribed. */
+    private String marketSiteSubscribed;
+
     /**
      * The init method.
      */
@@ -82,6 +85,12 @@ public class SubscriptionFormModel extends FormModel {
         }
         setFormConfig();
         setCountryOptions();
+        if (PageUtil.getCountryCodeFromResource(resource).equalsIgnoreCase(PWConstants.SE_COUNTRY_CODE)) {
+            marketSiteSubscribed = PWConstants.SE_MARKET_LOCALE;
+        } else {
+            marketSiteSubscribed = PageUtil.getLanguageCodeFromResource(resource) + PWConstants.HYPHEN
+                    + PageUtil.getCountryCodeFromResource(resource);
+        }
     }
 
     /**
@@ -196,4 +205,14 @@ public class SubscriptionFormModel extends FormModel {
     public String getHeadingSubscription() {
         return headingSubscription;
     }
+
+    /**
+     * Gets the market site subscribed.
+     *
+     * @return the market site subscribed
+     */
+    public String getMarketSiteSubscribed() {
+        return marketSiteSubscribed;
+    }
+
 }
