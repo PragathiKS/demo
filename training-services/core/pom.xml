@@ -122,6 +122,10 @@
 			<groupId>org.apache.sling</groupId>
 			<artifactId>org.apache.sling.models.api</artifactId>
 		</dependency>
+        <dependency>
+                <artifactId>cq-scene7-api</artifactId>
+                <groupId>com.day.cq.dam</groupId>
+        </dependency>
 
 
 		<!-- Testing -->

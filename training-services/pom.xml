@@ -698,6 +698,12 @@ Bundle-DocURL:
                 <classifier>apis</classifier>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <artifactId>cq-scene7-api</artifactId>
+                <version>5.12.36</version>
+                <groupId>com.day.cq.dam</groupId>
+                <scope>provided</scope>
+            </dependency>
             <!-- Apache Sling Dependencies -->
             <dependency>
                 <groupId>org.apache.sling</groupId>
