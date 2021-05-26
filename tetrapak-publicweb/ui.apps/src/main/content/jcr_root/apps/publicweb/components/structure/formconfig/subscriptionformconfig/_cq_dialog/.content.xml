@@ -10,7 +10,8 @@
             <subscriptionform
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Subscription form"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                sling:hideResource="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
                     <column
                         jcr:primaryType="nt:unstructured"
