@@ -5,7 +5,7 @@
 
     - cuhu_training_default:
 
-        - name: TRS users
+        - name: TRS default group
           memberOf: everyone
           path: /home/groups/cuhugroups  
 
