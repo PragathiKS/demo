@@ -27,6 +27,19 @@ class TextImage {
 
   trackAnalytics = e => {
     e.preventDefault();
+
+    // Add Dummy Image for delay
+    const anyNumber = Math.floor(1000 + Math.random() * 9000);
+    const url = 'https://s7g10.scene7.com/is/image/tetrapak/cow-from-left?wid=1920&hei=640&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0&q='+anyNumber;
+    const image = new Image();
+    image.src = url;
+    $(image).addClass('dummyImage');
+    $(image).css({'display':'none'});
+    $('body').append(image);
+
+    setTimeout(function() {
+      $('body').find('dummyImage').remove();
+    }, 500);
     getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics');
   };
 

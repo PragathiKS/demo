@@ -7,19 +7,29 @@
     <thead class="tpmol-table__head{{#if baseClass}} {{baseClass}}__head{{/if}}{{#if jsClass}} {{jsClass}}__head{{/if}}">
         <tr class="tpmol-table__rowheading{{#if baseClass}} {{baseClass}}__row {{baseClass}}__rowheading{{/if}}{{#if jsClass}} {{jsClass}}__rowheading{{/if}}">
             {{#each headings}}
-            <th data-key="{{key}}" class="tpmol-table__cellheading {{#if isSortable}}sortable {{/if}}{{#if ../baseClass}} {{../baseClass}}__cell {{../baseClass}}__cellheading{{/if}}{{#if jsClass}}  {{../jsClass}}__cellheading {{../jsClass}}__cellheading--{{@index}}{{/if}}">
+            <th data-key="{{key}}" class="tpmol-table__cellheading {{#if isSortable}}sortable {{/if}}{{#if ../baseClass}} {{../baseClass}}__cell {{../baseClass}}__cellheading{{/if}}{{#if ../jsClass}}  {{../jsClass}}__cellheading {{../jsClass}}__cellheading--{{@index}}{{/if}}">
                 {{#if isSortable}}
                 <button type="button" class="tpmol-table__sort clearfix{{#if isSortable}} {{sortOrder}}{{/if}}{{#if ../baseClass}} {{../baseClass}}__sort{{/if}}{{#if ../jsClass}} {{../jsClass}}__sort{{/if}}" data-key="{{key}}">
                     <span>{{i18n key=i18nKey}}</span>
                     <i class="icon icon-Chevron_Down"></i>
                 </button>
                 {{else}}
-                {{i18n key=i18nKey}}
-                 {{#if iconClassName}}
-                    <i class="icon {{iconClassName}}"></i>
-                 {{/if}}
+                {{#if showTooltip}}
+                    <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                        title="<span class='tooltip-header'>{{i18n key=i18nKey}}</span>
+                                    <span>{{i18n key=tooltipText}}</span>">
+                        {{i18n key=i18nKey}}
+                    </button>
+                {{else}}
+                    {{i18n key=i18nKey}}
                 {{/if}}
+                {{#if iconClassName}}
+                <i class="icon {{iconClassName}}"></i>
+                {{/if}}
+                {{/if}}
+
             </th>
+
             {{/each}}
         </tr>
     </thead>

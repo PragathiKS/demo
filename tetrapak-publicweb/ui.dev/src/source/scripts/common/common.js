@@ -360,8 +360,9 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
     false,
     eventObject
   );
-
-  const url = 'https://www.learningcontainer.com/wp-content/uploads/2020/07/Large-Sample-Image-download-for-Testing.jpg';
+  
+  const anyNumber = Math.floor(1000 + Math.random() * 9000);
+  const url = 'https://s7g10.scene7.com/is/image/tetrapak/gngc-delivering-the-food-package-of-the-future-banner?wid=1920&hei=640&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0&q='+anyNumber;
   const image = new Image();
   image.src = url;
   $(image).addClass('dummyImage');
@@ -373,7 +374,14 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
   }, 500);
   
   if(redirect){
-    if (linkType === 'internal')  {
+    if (linkType === 'internal' && $this.attr('data-link-href') && $this.attr('data-link-href') !== '') {
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+        window.open($this.attr('data-link-href'), '_blank');
+      }
+      else {
+        window.open($this.attr('data-link-href'), '_self');
+      }
+    } else if(linkType === 'internal') {
       if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
         window.open($this.attr('href'), '_blank');
       }
@@ -381,7 +389,9 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
         window.open($this.attr('href'), '_self');
       }
     }
-    else {
+    else if($this.attr('data-link-href') && $this.attr('data-link-href') !== '') {
+      window.open($this.attr('data-link-href'), $this.attr('target'));
+    } else {
       window.open($this.attr('href'), $this.attr('target'));
     }
   }
