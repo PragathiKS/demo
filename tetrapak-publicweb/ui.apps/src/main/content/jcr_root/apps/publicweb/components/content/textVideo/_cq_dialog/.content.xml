@@ -114,7 +114,7 @@
                                             value=""/>
                                     <enableSoftconversion
                                             jcr:primaryType="nt:unstructured"
-                                            text="Enable Softcoversion"
+                                            text="Enable Softconversion"
                                             value="enableSoftconversion"/>
                                     <enableSubscription
                                             jcr:primaryType="nt:unstructured"

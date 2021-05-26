@@ -79,7 +79,7 @@ public class TextImageModel {
 
     /** The enable softcovnersion. */
     @ValueMapValue
-    private String enableSoftconversion;
+    private String enableSoftcoversion;
 
     /**
      * The init method.
@@ -250,8 +250,8 @@ public class TextImageModel {
      *
      * @return the enable softcoversion
      */
-    public String getEnableSoftconversion() {
-        return enableSoftconversion;
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
     }
 
 }

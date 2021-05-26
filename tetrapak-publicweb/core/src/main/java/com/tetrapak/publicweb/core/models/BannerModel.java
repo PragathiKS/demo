@@ -98,7 +98,7 @@ public class BannerModel {
 
     /** The enable softcoversion. */
     @ValueMapValue
-    private String enableSoftconversion;
+    private String enableSoftcoversion;
 
     /**
      * Gets the banner type.
@@ -293,7 +293,7 @@ public class BannerModel {
      *
      * @return the enable softcoversion
      */
-    public String getEnableSoftconversion() {
-        return enableSoftconversion;
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
     }
 }
