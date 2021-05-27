@@ -27,6 +27,7 @@ class Subscriptionform {
       'country':'',
       'pageurl': window.location.href
     };
+    this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`]='';
     this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
@@ -67,7 +68,6 @@ class Subscriptionform {
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
     const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
     const langCode = this.cache.businessformapi.data('sf-langcode');
-    const pardot_extra_field = $('#pardot_extra_field_sf').val();
 
     const dataObj = {};
     if($('input[name="consent"]').is(':checked')) {
@@ -76,7 +76,7 @@ class Subscriptionform {
     dataObj['email'] = this.cache.requestPayload[`email-${this.cache.$componentName}`];
     dataObj['firstName'] = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
     dataObj['lastName'] = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
-    dataObj['pardot_extra_field'] = pardot_extra_field;
+    dataObj['pardot_extra_field'] = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
     dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
@@ -88,8 +88,7 @@ class Subscriptionform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: $.param(dataObj,true),
-      dataType: 'html'
+      data: dataObj
     }).done(
       () => {
         $('.pw-subscription__modalTitle').hide();
