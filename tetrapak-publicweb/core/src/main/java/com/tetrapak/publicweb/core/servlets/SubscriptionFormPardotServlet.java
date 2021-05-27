@@ -21,7 +21,9 @@ import com.tetrapak.publicweb.core.services.PardotService;
         property = { Constants.SERVICE_DESCRIPTION + "=Subscription form Submit Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_POST,
                 "sling.servlet.selectors=" + "pardotsubscription", "sling.servlet.extensions=" + "json",
-                "sling.servlet.resourceTypes=" + "publicweb/components/content/subscriptionform" })
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/textImage",
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/textVideo",
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/banner" })
 public class SubscriptionFormPardotServlet extends SlingAllMethodsServlet {
 
     /** The Constant serialVersionUID. */
