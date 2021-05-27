@@ -136,7 +136,8 @@
             .left__info-title {
                 float: left;
                 width: 50%;
-                font-family: $font-bold;
+                font-family: $font-monsterrat;
+                font-weight: 700;
             }
 
             .left__info-text {
@@ -168,7 +169,8 @@
 
             .right__info-title {
                 width: 100%;
-                font-family: $font-bold;
+                font-family: $font-monsterrat;
+                font-weight: 700;
 
                 @media #{$desktop} {
                     float: left;
