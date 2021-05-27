@@ -15,7 +15,7 @@
         </div>
         <div class="pw-text-video__description d-none d-lg-block">${data.description @ context='html'}</div>
         <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
-                <a data-sly-test="${data.linkTexti18n && !data.formType || data.enableSoftcoversion}"
+                <a data-sly-test="${data.linkTexti18n && (!data.formType || data.enableSoftcoversion)}"
                 href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textVideo-analytics"
                 title="${data.linkTexti18n}"
@@ -84,7 +84,7 @@
         </div>
         <div class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n,context='html'}</div>
         <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
-          <a data-sly-test="${data.linkTexti18n && !data.formType || !data.enableSoftcoversion}"
+          <a data-sly-test="${data.linkTexti18n && (!data.formType || !data.enableSoftcoversion)}"
                 href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textVideo-analytics"
                 title="${data.linkTexti18n}"
