@@ -361,39 +361,22 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
     eventObject
   );
   
-  const anyNumber = Math.floor(1000 + Math.random() * 9000);
-  const url = 'https://s7g10.scene7.com/is/image/tetrapak/gngc-delivering-the-food-package-of-the-future-banner?wid=1920&hei=640&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0&q='+anyNumber;
-  const image = new Image();
-  image.src = url;
-  $(image).addClass('dummyImage');
-  $(image).css({'display':'none'});
-  $('body').append(image);
+  if(redirect) {
+    const linkRedirect = ($this.attr('data-link-href') && $this.attr('data-link-href') !== '') ? $this.attr('data-link-href'): $this.attr('href');
 
-  setTimeout(function() {
-    $('body').find('dummyImage').remove();
-  }, 500);
-  
-  if(redirect){
-    if (linkType === 'internal' && $this.attr('data-link-href') && $this.attr('data-link-href') !== '') {
-      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
-        window.open($this.attr('data-link-href'), '_blank');
+    setTimeout(function() {
+      if (linkType === 'internal')  {
+        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224) {
+          window.open(linkRedirect, '_blank');
+        }
+        else {
+          window.open(linkRedirect, '_self');
+        }
       }
       else {
-        window.open($this.attr('data-link-href'), '_self');
+        window.open(linkRedirect, $this.attr('target'));
       }
-    } else if(linkType === 'internal') {
-      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
-        window.open($this.attr('href'), '_blank');
-      }
-      else {
-        window.open($this.attr('href'), '_self');
-      }
-    }
-    else if($this.attr('data-link-href') && $this.attr('data-link-href') !== '') {
-      window.open($this.attr('data-link-href'), $this.attr('target'));
-    } else {
-      window.open($this.attr('href'), $this.attr('target'));
-    }
+    }, 500);
   }
 };
 
