@@ -41,7 +41,7 @@
           permission: allow
           actions:
           privileges: jcr:read
-          repGlob: ""
+          repGlob: /jcr:content*
           initialContent: |
                             <jcr:root jcr:primaryType="cq:Page">
                             </jcr:root> 
