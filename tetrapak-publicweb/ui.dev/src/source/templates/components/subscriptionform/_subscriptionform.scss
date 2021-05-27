@@ -182,6 +182,10 @@
             &-header {
                 border: 0;
                 padding: 0;
+
+                h2.pw-subscription__header__heading {
+                    text-align: center;
+                }
             }
             &-body {
                 padding: 0;
