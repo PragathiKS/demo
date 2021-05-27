@@ -76,6 +76,7 @@ public class TextImageModelTest {
         assertEquals("secondary", model.getPwButtonTheme());
         assertEquals("display-row", model.getPwDisplay());
         assertEquals("Petrol.pdf", model.getAssetName());
+        assertEquals("true", model.getEnableSoftcoversion());
         
     }
 

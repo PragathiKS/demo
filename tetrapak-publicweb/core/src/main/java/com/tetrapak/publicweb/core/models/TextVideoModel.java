@@ -115,6 +115,10 @@ public class TextVideoModel {
     /** The Constant AUTHOR. */
     private static final String AUTHOR = "author";
 
+    /** The enable softconversion. */
+    @ValueMapValue
+    private String enableSoftcoversion;
+
     /**
      * The init method.
      */
@@ -316,7 +320,6 @@ public class TextVideoModel {
         return LinkUtils.getAssetName(damVideoPath);
     }
 
-
     /**
      * Gets the soft conversion data.
      *
@@ -336,7 +339,24 @@ public class TextVideoModel {
         return request.adaptTo(SubscriptionFormModel.class);
     }
 
+    /**
+     * Gets the enable Form Type.
+     *
+     * @return the enable formType
+     */
+
     public String getFormType() {
         return formType;
     }
+
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
+    }
+
 }

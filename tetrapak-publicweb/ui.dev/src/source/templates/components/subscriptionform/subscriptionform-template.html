@@ -9,10 +9,12 @@
     <input type="hidden" class="ComponentNameSubscribe" name="ComponentNameSubscribe" value="${componentName}">
     <input type="hidden" class="parentComponentSubscribe" name="parentComponentSubscribe" value="${parentComponent}">
     <div class="modal-dialog modal-dialog-centered tp-modal-dialog modal-lg">
-      <div class="modal-content tp-modal-content pw-padding--regular pw-margin--regular">
+      <div class="modal-content tp-modal-content pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme}">
         <div class="modal-header pw-subscription__header" auto_locator="subscriptionSectionHeader">
           <h2 role="heading" class="pw-subscription__header__heading heading_${componentName}"
-            auto_locator="headingFontStep1">${data.headingSubscription}
+            auto_locator="headingFontStep1">
+            <span class="pw-subscription__modalTitle">${data.headingSubscription}</span>
+            <span class="pw-subscription__thankYouTitle">${data.formConfig.thankyouHeading @ context='html'}</span>
           </h2>
           <input type="hidden" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
           <button type="button" class="tp-close-btn icon-Close_pw pw-subscription__header__close js-close-btn"
@@ -23,7 +25,7 @@
           auto_locator="subscriptionSectionBody">
           <div id="${data.anchorId}" title="${data.anchorTitle}">
             <div id="sfUs" class="pw-container" data-locator="Subscriptionform">
-              <div class="pw-subscriptionForm-form pw-theme--${data.pwTheme}" id="pw-sfUs"
+              <div class="pw-subscriptionForm-form" id="pw-sfUs"
                 auto_locator="SubscriptionFormStepsWrapper">
                 <div class="tab-content">
                   <div class="i18n-keys d-none"
@@ -118,10 +120,6 @@
                     <div class="sf-tab-pane" role="tabpanel" id="sf-step-final" auto_locator="subscriptionFormListContainerStepFinal">
                       <div class="row no-gutters thankyou">
                         <div class="col-md-12 text-center" auto_locator="sfUsThankYouMessage">
-                          <div auto_locator="sfUsThankYouPageMessage">
-                            <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                              data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.thankyouHeading}" />
-                          </div>
                           <div class="descriptionTextThankyou" auto_locator="sfUsThankYouPageDescription">
                             ${data.formConfig.thankyouDescriptionText @ context='html'}
                           </div>

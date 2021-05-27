@@ -26,6 +26,7 @@
 			"pwLinkTheme": "download",
 			"pwPadding": "regular",
 			"pwDisplay": "display-row",
+			"enableSoftcoversion":"true",
 			"title": "text video",
 			"linkTexti18n": "Test",
 			"youtubeVideoID": "1X7zhVCIUtg",

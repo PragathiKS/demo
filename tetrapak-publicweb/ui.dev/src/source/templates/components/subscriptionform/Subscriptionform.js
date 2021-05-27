@@ -30,7 +30,6 @@ class Subscriptionform {
     this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
-
   }
 
   validEmail(email) {
@@ -93,6 +92,8 @@ class Subscriptionform {
       dataType: 'html'
     }).done(
       () => {
+        $('.pw-subscription__modalTitle').hide();
+        $('.pw-subscription__thankYouTitle').show();
         $('.sf-tab-pane', this.root).removeClass('active');
         $('#sf-step-final', this.root).addClass('active');
         $('.serviceError').removeClass('d-block');
@@ -112,6 +113,7 @@ class Subscriptionform {
     $submitBtn.click(function (e) {
       e.preventDefault();
       e.stopPropagation();
+
       let isvalid = true;
       const errObj = [];
       const tab = $(this).closest('.tab-content-steps');
@@ -166,13 +168,24 @@ class Subscriptionform {
   showPopup = () => {
     const $this = this;
     const { $modal } = $this.cache;
+    this.resetModal();
     $modal.modal();
   }
 
   hidePopUp = () => {
     const $this = this;
     $this.root.modal('hide');
+    this.resetModal();
   }
+
+  resetModal = () => {
+    /* Reset modal */
+    $('.pw-subscription__modalTitle').show();
+    $('.pw-subscription__thankYouTitle').hide();
+    $('.sf-tab-pane', this.root).addClass('active');
+    $('#sf-step-final', this.root).removeClass('active');
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();

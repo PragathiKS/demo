@@ -77,6 +77,10 @@ public class TextImageModel {
     @ValueMapValue
     private String formType;
 
+    /** The enable softcovnersion. */
+    @ValueMapValue
+    private String enableSoftcoversion;
+
     /**
      * The init method.
      */
@@ -239,6 +243,15 @@ public class TextImageModel {
      */
     public SubscriptionFormModel getSubscriptionData() {
         return request.adaptTo(SubscriptionFormModel.class);
+    }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
     }
 
 }
