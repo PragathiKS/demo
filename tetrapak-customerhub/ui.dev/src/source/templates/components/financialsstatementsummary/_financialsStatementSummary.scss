@@ -6,7 +6,8 @@
     h3 {
         @include padding-top($padding-l);
         @include padding-bottom($padding-sm);
-        font-family: $font-light;
+        font-family: $font-monsterrat;
+        font-weight: 400;
 
         @media #{$desktop} {
             @include padding-top($padding-xl);
@@ -29,7 +30,8 @@
             &,
             &:first-child {
                 @include font-size($font-baseline);
-                font-family: $font-bold;
+                font-family: $font-monsterrat;
+                font-weight: 700;
             }
         }
     }
@@ -38,7 +40,8 @@
         &__cell {
             &:last-child {
                 @include font-size($font-baseline);
-                font-family: $font-bold;
+                font-family: $font-monsterrat;
+                font-weight: 700;
                 padding-right: 0;
                 text-align: right;
             }
