@@ -88,17 +88,18 @@ class Subscriptionform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: $.param(dataObj,true)
-    }).done(
-      () => {
+      data: $.param(dataObj,true),
+      datatype: 'json',
+      success: function () {
         $('.pw-subscription__modalTitle').hide();
         $('.pw-subscription__thankYouTitle').show();
         $('.sf-tab-pane', this.root).removeClass('active');
         $('#sf-step-final', this.root).addClass('active');
         $('.serviceError').removeClass('d-block');
+      },
+      error: function () {
+        $('.serviceError').addClass('d-block');
       }
-    ).fail(() => {
-      $('.serviceError').addClass('d-block');
     });
   }
 
