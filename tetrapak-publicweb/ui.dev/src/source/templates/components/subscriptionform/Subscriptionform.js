@@ -88,7 +88,8 @@ class Subscriptionform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: JSON.stringify(dataObj)
+      data: $.param(dataObj,true),
+      dataType: 'html'
     }).done(
       () => {
         $('.pw-subscription__modalTitle').hide();
