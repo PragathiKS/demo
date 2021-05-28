@@ -107,6 +107,9 @@
                                 <p>${data.consentConfig.privacyPolicy @ context='html'}</p>
                               </div>
                             </div>
+                            <div class="row no-gutters">
+                              <div class="serviceError">${'pw.form.errormsg.serviceerror' @i18n}</div>
+                            </div>
                             <div class="row no-gutters subscribeButton button-group">
                               <sly
                                 data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
