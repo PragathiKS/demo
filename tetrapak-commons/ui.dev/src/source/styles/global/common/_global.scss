@@ -50,6 +50,7 @@ a {
     transition: all $anim-speed-quick $anim-ease;
 
     &:hover {
+        color: $color-sky-blue;
         text-decoration: none;
     }
 }
