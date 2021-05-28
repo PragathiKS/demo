@@ -5,4 +5,8 @@ body {
 a {
     font-family: $font-monsterrat;
     font-weight: 400;
+    
+    &:hover {
+        color: $color-sky-blue;
+    }
 }
