@@ -37,6 +37,9 @@
                 padding-right: 0;
             }
         }
+        &:hover {
+            color: $color-sky-blue;
+        }
     }
 
     .icon-Close {
