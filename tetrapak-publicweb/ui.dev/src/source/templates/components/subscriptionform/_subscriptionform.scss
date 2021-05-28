@@ -182,7 +182,7 @@
             &-header {
                 border: 0;
                 padding: 0;
-                
+
                 .pw-subscription__thankYouTitle {
                     text-align: center;
                 }
@@ -193,6 +193,9 @@
                     &.consentDiv {
                         margin-top: 18px;
                     }
+                }
+                .serviceError {
+                    color: $color-alert;
                 }
             }
         }

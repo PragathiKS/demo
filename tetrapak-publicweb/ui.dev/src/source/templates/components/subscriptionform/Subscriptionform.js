@@ -95,10 +95,10 @@ class Subscriptionform {
         $('.pw-subscription__thankYouTitle').show();
         $('.sf-tab-pane', this.root).removeClass('active');
         $('#sf-step-final', this.root).addClass('active');
-        $('.serviceError').removeClass('d-block');
+        $('.serviceError').hide();
       },
       error: function () {
-        $('.serviceError').addClass('d-block');
+        $('.serviceError').show();
       }
     });
   }
@@ -184,6 +184,7 @@ class Subscriptionform {
     $('.pw-subscription__thankYouTitle').hide();
     $('.sf-tab-pane', this.root).addClass('active');
     $('#sf-step-final', this.root).removeClass('active');
+    $('.serviceError').hide();
   }
 
   init() {
