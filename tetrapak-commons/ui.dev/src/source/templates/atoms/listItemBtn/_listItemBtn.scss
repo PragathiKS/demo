@@ -69,14 +69,12 @@
         @include font-size($font-sm);
         @include line-height(20px, $font-sm);
         @include letter-spacing($letter-spacing-sm);
-        font-family: $font-light;
         display: inline-block;
         position: relative;
         width: 100%;
 
         .tpmol-list-item__sublist & {
             @include padding(0 $padding-md 0 $padding-sm);
-            font-family: $font-light;
         }
     }
 
