@@ -88,19 +88,18 @@ class Subscriptionform {
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
-      data: dataObj
+      data: JSON.stringify(dataObj)
     }).done(
-      (response) => {
-        if (response.statusCode === '200') {
-          $('.pw-subscription__modalTitle').hide();
-          $('.pw-subscription__thankYouTitle').show();
-          $('.sf-tab-pane', this.root).removeClass('active');
-          $('#sf-step-final', this.root).addClass('active');
-          $('.serviceError').hide();
-        } else {
-          $('.serviceError').show();
-        }
-      });
+      () => {
+        $('.pw-subscription__modalTitle').hide();
+        $('.pw-subscription__thankYouTitle').show();
+        $('.sf-tab-pane', this.root).removeClass('active');
+        $('#sf-step-final', this.root).addClass('active');
+        $('.serviceError').hide();
+      }
+    ).fail(() => {
+      $('.serviceError').show();
+    });
   }
 
 
