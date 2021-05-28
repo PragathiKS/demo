@@ -183,8 +183,13 @@
                 border: 0;
                 padding: 0;
 
+                h2 {
+                    width: 100%;
+                }
                 .pw-subscription__thankYouTitle {
+                    display: block;
                     text-align: center;
+                    width: 100%;
                 }
             }
             &-body {
@@ -196,6 +201,9 @@
                 }
                 .serviceError {
                     color: $color-alert;
+                }
+                .descriptionTextThankyou {
+                    margin-top: 0;
                 }
             }
         }
