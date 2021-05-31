@@ -226,28 +226,6 @@ Import-Package: javax.annotation;version=0.0.0,*
 					</archive>
 				</configuration>
 			</plugin>
-			<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-install-plugin</artifactId>
-			    <executions>
-			        <execution>
-			            <id>install-external</id>
-			            <phase>clean</phase>
-			            <configuration>
-			                <file>${basedir}/src/resources/cq-scene7-api-5.12.36.jar</file>
-			                <repositoryLayout>default</repositoryLayout>
-			                <groupId>com.day.cq.dam</groupId>
-			                <artifactId>cq-scene7-api</artifactId>
-			                <version>5.12.36</version>
-			                <packaging>bundle</packaging>
-			                <generatePom>true</generatePom>
-			            </configuration>
-			            <goals>
-			                <goal>install-file</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			</plugin>
 		</plugins>
 	</build>
 </project>
