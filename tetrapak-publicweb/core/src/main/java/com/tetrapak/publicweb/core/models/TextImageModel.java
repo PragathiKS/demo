@@ -1,15 +1,17 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.annotation.PostConstruct;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class TextImageModel.
@@ -20,6 +22,9 @@ public class TextImageModel {
     /** The request */
     @SlingObject
     private SlingHttpServletRequest request;
+    
+    /** The resource. */
+    private Resource resource;
 
     /** The anchor id. */
     @ValueMapValue
@@ -86,6 +91,10 @@ public class TextImageModel {
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
+        final ValueMap vMap = resource.getValueMap();
+        enableSoftcoversion = vMap.get("enableSoftcoversion", StringUtils.EMPTY);
+        formType = vMap.get("formType", StringUtils.EMPTY);
         if (StringUtils.isNotEmpty(linkURL)) {
             linkURL = LinkUtils.sanitizeLink(linkURL, request);
         }
