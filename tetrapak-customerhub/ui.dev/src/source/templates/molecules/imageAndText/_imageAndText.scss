@@ -40,7 +40,8 @@
     &__text {
         @include padding($padding-md);
         @include word-spacing($word-spacing-sm);
-        font-family: $font-light;
+        font-family: $font-monsterrat;
+        font-weight: 400;
         word-break: break-word;
 
         @media #{$desktop} {
@@ -70,7 +71,8 @@
     &__link {
         @include word-spacing($word-spacing-sm);
         @include font-size($font-normal);
-        font-family: $font-light;
+        font-family: $font-monsterrat;
+        font-weight: 400;
         color: $color-congress-blue;
 
         .tp-next-btn {

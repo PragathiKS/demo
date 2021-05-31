@@ -24,7 +24,7 @@
             <div class="pw-text-image__link" data-sly-test="${data.linkURL}">
               <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
               <sly data-sly-test.dataLinkSectionDownloadHyper="${data.pwLinkTheme == 'download' ? '_Download' : ''}" />
-              <a data-sly-test="${data.linkText && !data.formType && !data.enableSoftcoversion}" data-link-href="${data.linkURL}" href="#"
+              <a data-sly-test="${data.linkText && !data.formType && !data.enableSoftconversion}" data-link-href="${data.linkURL}" href="#"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
                 title="${data.linkText}" target="${data.targetBlank}"
                 data-link-section="Text & Image_${dataLinkSectionCTAText}"
@@ -36,7 +36,7 @@
                 <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
               </a>
               <input type="hidden" class="componentNameTextImage" name="componentName" value="${resource.name}">
-              <button data-sly-test="${data.formType == 'enablesoftcoversion'}" class="tpatom-link tpatom-link--primary js-softconversion-pw text-left"
+              <button data-sly-test="${data.formType == 'enableSoftconversion'}" class="tpatom-link tpatom-link--primary js-softconversion-pw text-left"
                 data-link-section="button click"
                 data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
                 data-asset-name="${data.assetName}"
@@ -91,7 +91,7 @@
       </div>
     </div>
 
-    <sly data-sly-test="${data.formType == 'enablesoftcoversion'}" data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
+    <sly data-sly-test="${data.formType == 'enableSoftconversion'}" data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
       data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkURL, assetName=data.assetName, parentComponent='Text & Image'}" />
     <sly data-sly-test="${data.formType == 'enableSubscription'}" data-sly-use.subscriptionform="/apps/publicweb/components/content/subscriptionform/subscriptionform-template.html"
          data-sly-call="${subscriptionform.subscriptionform_template @ data=data.subscriptionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Text & Image'}" />

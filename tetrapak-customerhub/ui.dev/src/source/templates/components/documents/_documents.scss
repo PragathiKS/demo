@@ -40,8 +40,9 @@
     }
 
     &__accordion {
-        font-family: $font-bold;
+        font-family: $font-monsterrat;
         transition: background-color $anim-speed-quick $anim-ease;
+        font-weight: 700;
 
         &.collapsed {
             background-color: $color-white;
