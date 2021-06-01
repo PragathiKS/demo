@@ -53,10 +53,13 @@ public class AnchorModel {
                 final AnchorBean bean = new AnchorBean();
                 final Resource childResource = rootIterator.next();
                 if (Objects.nonNull(childResource)) {
-                    final ValueMap vMap = childResource.getValueMap();
-                    final String anchorId = vMap.get("anchorId", StringUtils.EMPTY);
-                    final String anchorTitle = vMap.get("anchorTitle", StringUtils.EMPTY);
-                    setAnchorBean(bean, anchorId, anchorTitle, childResource.getResourceType());
+					Resource resposiveGridChild = childResource.getChild("cq:responsive/default");
+					if(Objects.isNull(resposiveGridChild)){
+						final ValueMap vMap = childResource.getValueMap();
+						final String anchorId = vMap.get("anchorId", StringUtils.EMPTY);
+						final String anchorTitle = vMap.get("anchorTitle", StringUtils.EMPTY);
+						setAnchorBean(bean, anchorId, anchorTitle, childResource.getResourceType());
+					}
                 }
             }
         }
