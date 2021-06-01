@@ -1,7 +1,11 @@
 package com.tetrapak.publicweb.core.models;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
@@ -15,9 +19,12 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BannerModel {
 
-    /** The resource. */
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+    
+    /** The resource. */
+    private Resource resource;
 
     /** The banner type. */
     @ValueMapValue
@@ -99,6 +106,17 @@ public class BannerModel {
     /** The enable softcoversion. */
     @ValueMapValue
     private String enableSoftcoversion;
+    
+    /**
+     * The init method.
+     */
+    @PostConstruct
+    protected void init() {
+        resource = request.getResource();
+        final ValueMap vMap = resource.getValueMap();
+        enableSoftcoversion = vMap.get("enableSoftcoversion", StringUtils.EMPTY);
+        formType = vMap.get("formType", StringUtils.EMPTY);
+    }
 
     /**
      * Gets the banner type.
