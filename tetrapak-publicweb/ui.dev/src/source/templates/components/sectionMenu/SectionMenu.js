@@ -42,7 +42,7 @@ class SectionMenu {
       else {
         window.open($this.data('url-link'), '_self');
       }
-    }, 500);
+    }, 800);
   }
 
   handleSubSectionMenuClick =(e) => {
@@ -60,7 +60,7 @@ class SectionMenu {
         else {
           window.open($this.attr('href'),'_self');
         }
-      }, 500);
+      }, 800);
     }
   }
 
