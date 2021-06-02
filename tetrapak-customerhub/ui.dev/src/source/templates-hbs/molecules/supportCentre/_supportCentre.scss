@@ -21,7 +21,6 @@
         &-heading {
             @include font-size($font-baseline);
             @include line-height(24px, $font-baseline);
-            font-family: $font-bold;
         }
 
         &-contact {
