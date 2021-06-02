@@ -59,7 +59,6 @@
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldDescription="Suggested to use characters less than recommended Limit: 40 chars considering translations"
                                             fieldLabel="More button label"
-                                            value="More Insights"
                                             name="./moreButtonLabelSubscription"/>
                                     <morebuttonaction
                                             jcr:primaryType="nt:unstructured"
