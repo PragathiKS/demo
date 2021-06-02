@@ -362,19 +362,17 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
   );
   
   if(redirect) {
-    const linkRedirect = ($this.attr('data-link-href') && $this.attr('data-link-href') !== '') ? $this.attr('data-link-href'): $this.attr('href');
-
     setTimeout(function() {
       if (linkType === 'internal')  {
         if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224) {
-          window.open(linkRedirect, '_blank');
+          window.open($this.attr('href'), '_blank');
         }
         else {
-          window.open(linkRedirect, '_self');
+          window.open($this.attr('href'), '_self');
         }
       }
       else {
-        window.open(linkRedirect, $this.attr('target'));
+        window.open($this.attr('href'), $this.attr('target'));
       }
     }, 500);
   }
