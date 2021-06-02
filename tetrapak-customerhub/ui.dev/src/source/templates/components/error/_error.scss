@@ -9,7 +9,8 @@
     &__code {
         @include margin-bottom($margin-l);
         color: $color-text;
-        font-family: $font-bold;
+        font-family: $font-monsterrat;
+        font-weight: 700;
     }
 
     &__description {

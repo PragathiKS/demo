@@ -57,7 +57,8 @@
         @include padding($padding-sm);
         @include line-height(24px, $font-baseline);
         border-bottom: 1px solid $color-tundora;
-        font-family: $font-bold;
+        font-family: $font-monsterrat;
+        font-weight: 700;
     }
 
     &__documents-list {
@@ -65,7 +66,7 @@
 
         .tpmol-accordian-title {
             @include line-height(21px, $font-sm);
-            font-family: $font-light;
+            font-family:  $font-monsterrat;
             border-color: $color-mercury;
         }
     }

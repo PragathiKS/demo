@@ -95,6 +95,12 @@
             @include padding-right($padding-md);
             display: inline-block;
         }
+        &:hover {
+                color: $color-sky-blue;
+            &::before {
+                color: $color-sky-blue;   
+            }
+        }
 
         &::before {
             @include font-size($font-normal);
@@ -131,7 +137,14 @@
         @include padding-right($padding-sm);
         color: $color-congress-blue;
         position: relative;
-
+        &:hover {
+            color: $color-sky-blue;
+            .icon-Chevron_Down {
+                &::before {
+                    color: $color-sky-blue;
+                }
+            }
+        }
         &-label {
             @include padding-right($padding-xs);
         }
