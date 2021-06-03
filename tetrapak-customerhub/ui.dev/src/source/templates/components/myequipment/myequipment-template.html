@@ -1,5 +1,5 @@
 <sly data-sly-template.myequipment_template="${@data, flag}">
-  <div class="tp-card tp-my-equipment" data-module="MyEquipment">
+  <div class="tp-card tp-my-equipment" data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}" data-module="MyEquipment">
     <code class="d-none js-my-equipment__config">
       ${data.i18nKeys}
     </code>
