@@ -75,8 +75,8 @@ public class CDNCachePurgeCustomTransportHandlerTest {
         MockOsgi.activate(context.getService(CDNCacheInvalidationService.class), context.bundleContext(), config);
 
         this.config = new MockAgentConfig("cdn-serviceinsight://api.cdnetworks.com/ccm/purge/ItemIdReceiver");
-        this.config.setTransportPassword("TetraPak@123");
-        this.config.setTransportUser("akash.bansal@publicissapient.com");
+        this.config.setTransportPassword("8Dq_k*R7T4+f{Wi");
+        this.config.setTransportUser("tppwcdnuser");
     }
 
     @Test
