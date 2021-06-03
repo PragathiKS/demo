@@ -35,6 +35,7 @@ function getFormattedSiteData(array){
 }
 
 function _renderCountryFilters() {
+  this.cache.$spinner.removeClass('d-none');
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
@@ -63,6 +64,8 @@ function _renderCountryFilters() {
             },
             showLoader: true
           }).then(response => {
+            this.cache.$spinner.addClass('d-none');
+            this.cache.$content.removeClass('d-none');
             this.cache.tableData = response.data;
             this.cache.filteredTableData = [...this.cache.tableData];
             this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
@@ -71,6 +74,9 @@ function _renderCountryFilters() {
             this.renderTableData();
             this.renderSearchCount();
             this.mapTableColumn();
+          }).fail(() => {
+            this.cache.$content.removeClass('d-none');
+            this.cache.$spinner.addClass('d-none');
           });
       });
   });
@@ -211,6 +217,8 @@ class MyEquipment {
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
     this.cache.$mobileHeadersActions = this.root.find('.js-mobile-header-actions');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
+    this.cache.$spinner = this.root.find('.tp-spinner');
+    this.cache.$content = this.root.find('.tp-equipment-content');
     this.cache.countryData = [];
     this.cache.siteData = [];
     this.cache.activeFilterForm = 'country';
