@@ -56,7 +56,6 @@
 
     &__table {
         overflow: scroll;
-        max-height: 500px;
         table {
             position: relative;
             border-collapse: separate;
@@ -333,4 +332,5 @@
     @include font-size($font-baseline);
     @include line-height($font-l, $font-baseline);
     display: block;
+    font-weight: 700;
 }
