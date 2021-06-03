@@ -17,6 +17,14 @@
         color: $color-congress-blue;
         box-sizing: border-box;
         border-radius: 22px;
+        &:hover {
+            border: 2px solid $color-congress-blue;
+            font-weight: 500;
+            &.active {
+                border-width: 2px;
+                font-weight: 700;
+            }
+        }
         &.active {
             border-width: 2px;
             font-weight: 700;
@@ -48,7 +56,6 @@
 
     &__table {
         overflow: scroll;
-        max-height: 500px;
         table {
             position: relative;
             border-collapse: separate;
@@ -161,6 +168,9 @@
     &__customise-table-action {
         display: flex;
         cursor: pointer;
+        &:hover * {
+            color: $color-sky-blue;
+        }
     }
 
     &__pagination-container {
@@ -322,4 +332,5 @@
     @include font-size($font-baseline);
     @include line-height($font-l, $font-baseline);
     display: block;
+    font-weight: 700;
 }
