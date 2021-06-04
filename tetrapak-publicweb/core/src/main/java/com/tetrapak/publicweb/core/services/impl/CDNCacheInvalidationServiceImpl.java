@@ -314,13 +314,14 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
         final JsonArray purgeDirs = new JsonArray();
         for (final String path : tx.getAction().getPaths()) {
             if (StringUtils.isNotBlank(path) && (path.startsWith(config.contentPathForCDNCacheInvalidation())
-                    || path.startsWith(config.damPathForCDNCacheInvalidation()))) {                
+                    || path.startsWith(config.damPathForCDNCacheInvalidation()))) {
                 final String contentPath = config.domainForCDN() + findUrlMapping(
                         LinkUtils.getRootPath(path).replace(config.contentPathForCDNCacheInvalidation(), ""));
                 purgeDirs.add(contentPath);
                 directoryToBePurged = contentPath;
             }
             purgeDesignSystemCache(purgeDirs, path);
+            purgeOnlineHelpCache(purgeDirs, path);
         }
         /**
          * Below condition checks if cache purge request for same directory is made within 5 minutes, then don't send
@@ -357,6 +358,23 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                 && (path.startsWith(PWConstants.DS_CONTENT_PATH) || path.startsWith(PWConstants.DS_CONTENT_DAM_PATH))) {
             final String contentPath = config.dsDomainForCDN() + PWConstants.SLASH;
             LOGGER.debug("DS content path {}", contentPath);
+            purgeDirs.add(contentPath);
+            directoryToBePurged = contentPath;
+        }
+    }
+
+    /**
+     * Purge online help cache.
+     *
+     * @param purgeDirs
+     *            the purge dirs
+     * @param path
+     *            the path
+     */
+    private void purgeOnlineHelpCache(final JsonArray purgeDirs, final String path) {
+        if (StringUtils.isNotBlank(path) && (path.startsWith(PWConstants.ONLINE_HELP_CONTENT_PATH))) {
+            final String contentPath = config.onlineHelpDomainForCDN() + PWConstants.SLASH;
+            LOGGER.debug("Online Help content path {}", contentPath);
             purgeDirs.add(contentPath);
             directoryToBePurged = contentPath;
         }
