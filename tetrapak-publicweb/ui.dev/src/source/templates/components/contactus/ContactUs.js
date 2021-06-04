@@ -6,7 +6,6 @@ import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { validateFieldsForTags } from '../../../scripts/common/common';
 import { onErrorAnalytics, newRequestButtonAnalytics, onNextClickAnalytics, onPreviousClickAnalytics, onLoadTrackAnalytics, onSubmitClickAnalytics } from './contactUs.analytics';
-
 class ContactUs {
   constructor({ el }) {
     this.root = $(el);
@@ -20,6 +19,8 @@ class ContactUs {
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
     this.cache.$radio = this.root.find('input[type=radio][name="purposeOfContactOptions"]');
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$formList = $('body').find('form');
+    this.cache.formType = {};
     this.cache.countryList = [];
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -176,12 +177,29 @@ class ContactUs {
     });
   }
 
+  pageFormsLoad() {
+    const self = this;
+    this.cache.$formList.each(function (index, form) {
+      var formInfo = $(form).attr('data-form-type');
+      self.cache.formType[`${formInfo}`] = false;
+      var formElements = $(form).find('input, button, select, textarea');
+      formElements.each(function(i,val) {
+        $(val).on('click', function () {
+          if (!self.cache.formType[`${formInfo}`]) {
+            self.cache.formType[`${formInfo}`] = true;
+            onLoadTrackAnalytics();
+          }
+        });
+      });
+    });
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
-    onLoadTrackAnalytics();
     this.bindEvents();
     this.getCountryList();
+    this.pageFormsLoad();
   }
 }
 
