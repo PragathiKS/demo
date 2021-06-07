@@ -11,6 +11,7 @@ import './corescss';
 import routing from '../utils/routing';
 import { logger } from '../utils/logger';
 import { INIT_FAILED } from '../utils/constants';
+window.$ = window.jQuery = $;
 
 $(function () {
   const $componentReference = $('[data-module]');

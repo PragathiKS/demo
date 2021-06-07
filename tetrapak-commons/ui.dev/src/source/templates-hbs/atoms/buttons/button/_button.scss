@@ -2,7 +2,6 @@
     @include font-size($font-baseline);
     @include padding(13px 12px);
     @include letter-spacing($letter-spacing-sm);
-    font-family: $font-light;
     line-height: 1;
 
     .icon {
@@ -42,8 +41,7 @@
 }
 
 %btn-colors-hover {
-    background-color: $color-jordy-blue;
-    color: $color-congress-blue;
+    background-color: $color-sky-blue;
 }
 
 %btn-secondary-colors-hover {

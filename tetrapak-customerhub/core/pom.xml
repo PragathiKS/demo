@@ -223,5 +223,9 @@
         	<groupId>org.apache.poi</groupId>
 	        <artifactId>poi-ooxml-schemas</artifactId>
     	</dependency>
+		<dependency>
+			<groupId>com.openpojo</groupId>
+			<artifactId>openpojo</artifactId>
+		</dependency>	
     </dependencies>
 </project>

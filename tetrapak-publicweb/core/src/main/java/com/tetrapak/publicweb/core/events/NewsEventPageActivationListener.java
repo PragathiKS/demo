@@ -45,7 +45,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
  * @see NewsEventPageActivationEvent
  */
 @Component(
-        immediate = true,
+        enabled = false,
         configurationPolicy = ConfigurationPolicy.REQUIRE,
         service = EventHandler.class,
         property = {

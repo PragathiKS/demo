@@ -1,7 +1,11 @@
 package com.tetrapak.publicweb.core.models;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
@@ -15,9 +19,12 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BannerModel {
 
-    /** The resource. */
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+    
+    /** The resource. */
+    private Resource resource;
 
     /** The banner type. */
     @ValueMapValue
@@ -83,9 +90,9 @@ public class BannerModel {
     @ValueMapValue
     private String imageCrop;
 
-    /** The enable softcoversion. */
+    /** The enable forms. */
     @ValueMapValue
-    private String enableSoftcoversion;
+    private String formType;
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
@@ -95,6 +102,21 @@ public class BannerModel {
 
     /** The Constant SKY_BLUE. */
     private static final String SKY_BLUE = "sky-blue";
+
+    /** The enable softcoversion. */
+    @ValueMapValue
+    private String enableSoftcoversion;
+    
+    /**
+     * The init method.
+     */
+    @PostConstruct
+    protected void init() {
+        resource = request.getResource();
+        final ValueMap vMap = resource.getValueMap();
+        enableSoftcoversion = vMap.get("enableSoftcoversion", StringUtils.EMPTY);
+        formType = vMap.get("formType", StringUtils.EMPTY);
+    }
 
     /**
      * Gets the banner type.
@@ -243,6 +265,7 @@ public class BannerModel {
         return imageCrop;
     }
 
+
     /**
      * Gets the asset name.
      *
@@ -255,14 +278,13 @@ public class BannerModel {
         }
         return assetName;
     }
-
     /**
-     * Gets the enable softcoversion.
+     * Gets the enable form.
      *
-     * @return the enable softcoversion
+     * @return the enable form
      */
-    public String getEnableSoftcoversion() {
-        return enableSoftcoversion;
+    public String getFormType() {
+        return formType;
     }
 
     /**
@@ -274,4 +296,22 @@ public class BannerModel {
         return request.adaptTo(SoftConversionModel.class);
     }
 
+
+    /**
+     * Gets the subscription form data.
+     *
+     * @return the subscription form data
+     */
+    public SubscriptionFormModel getSubscriptionData() {
+        return request.adaptTo(SubscriptionFormModel.class);
+    }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
+    }
 }

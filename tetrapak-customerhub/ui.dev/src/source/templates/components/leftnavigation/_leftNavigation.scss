@@ -92,7 +92,7 @@
     &__main-heading-title {
         @include font-size($font-md);
         @include line-height($spacing-big, $font-md);
-        font-weight: 300;
+        font-weight: 400;
     }
 
     &__close-btn {

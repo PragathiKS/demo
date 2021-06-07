@@ -35,12 +35,14 @@ class SectionMenu {
       return;
     }
     this.getSectionMenuAnalyticsValue(e);
-    if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
-      window.open($this.data('url-link'),'_blank');
-    }
-    else {
-      window.open($this.data('url-link'), '_self');
-    }
+    setTimeout(function() {
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
+        window.open($this.data('url-link'),'_blank');
+      }
+      else {
+        window.open($this.data('url-link'), '_self');
+      }
+    }, 800);
   }
 
   handleSubSectionMenuClick =(e) => {
@@ -51,12 +53,14 @@ class SectionMenu {
     const parentLink = $this.closest('.js-section-menu-navigation-Link');
     this.getSubSectionAnalyticsValue(e,parentLink);
     if(url) {
-      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
-        window.open($this.attr('href'),'_blank');
-      }
-      else {
-        window.open($this.attr('href'),'_self');
-      }
+      setTimeout(function() {
+        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
+          window.open($this.attr('href'),'_blank');
+        }
+        else {
+          window.open($this.attr('href'),'_self');
+        }
+      }, 800);
     }
   }
 

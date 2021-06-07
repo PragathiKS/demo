@@ -45,4 +45,8 @@ describe('Banner', function () {
     $('.js-softconversion-pw-banner').trigger('click');
     done();
   });
+  it('trigger subscription form on click', function (done) {
+    $('.js-subscription-pw-banner').trigger('click');
+    done();
+  });
 });

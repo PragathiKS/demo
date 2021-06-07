@@ -22,11 +22,11 @@
     <pw.form.businessenq.endtoendsolution
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.endtoendsolution"
-        sling:message="エンドツーエンドのソリューション"/>
+        sling:message="トータルシステムのソリューション"/>
     <pw.form.businessenq.packaging
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.packaging"
-        sling:message="パッケージング"/>
+        sling:message="容器包装"/>
     <pw.form.businessenq.processing
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.processing"
@@ -182,11 +182,11 @@
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
-        sling:message="国"/>
+        sling:message="国/場所"/>
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
-        sling:message="国を選択"/>
+        sling:message="国/場所を選択"/>
     <pw.form.label.email
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.email"
@@ -198,11 +198,11 @@
     <pw.form.label.firstName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.firstName"
-        sling:message="名"/>
+        sling:message="名前"/>
     <pw.form.label.lastName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.lastName"
-        sling:message="姓"/>
+        sling:message="苗字"/>
     <pw.form.label.message
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.message"
@@ -254,7 +254,7 @@
     <pw.search.searchbarplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.search.searchbarplaceholder"
-        sling:message="お客様がお探しのものは何でしょうか？"/>
+        sling:message="何を探していらっしゃいますか？"/>
     <pw.searchResults.contentPage
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.contentPage"

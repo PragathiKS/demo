@@ -35,6 +35,10 @@ describe('TextImage', function () {
     $('.js-softconversion-pw').trigger('click');
     done();
   });
+  it('trigger subscription form on click', function (done) {
+    $('.js-subscription-pw').trigger('click');
+    done();
+  });
   it('check for h2 tag', function (done) {
     $('h1').remove();
     this.textImage.init();

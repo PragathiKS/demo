@@ -38,7 +38,8 @@
 
     &__info-title {
         @include padding-right($margin-l);
-        font-family: $font-bold;
+        font-family: $font-monsterrat;
+        font-weight: 700;
         vertical-align: top;
 
         @media #{$desktop} {
@@ -147,7 +148,8 @@
         }
 
         &-desc {
-            font-family: $font-bold;
+            font-family: $font-monsterrat;
+            font-weight: 700;
         }
 
     }

@@ -62,7 +62,7 @@ public class BreadcrumbModel {
 
         breadcrumbPages.put(title, currentPage.getPath());
         for (int i = 0; i <= length; i++) {
-            if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav()) {
+            if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav() && parent.getContentResource()!=null) {
 
                 if (parent.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
                     breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent), null);

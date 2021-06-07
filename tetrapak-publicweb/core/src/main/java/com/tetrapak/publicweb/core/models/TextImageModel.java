@@ -1,15 +1,17 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
+import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.annotation.PostConstruct;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class TextImageModel.
@@ -20,6 +22,9 @@ public class TextImageModel {
     /** The request */
     @SlingObject
     private SlingHttpServletRequest request;
+    
+    /** The resource. */
+    private Resource resource;
 
     /** The anchor id. */
     @ValueMapValue
@@ -73,7 +78,11 @@ public class TextImageModel {
     @ValueMapValue
     private String pwDisplay;
 
-    /** The pw display. */
+    /** The enable forms. */
+    @ValueMapValue
+    private String formType;
+
+    /** The enable softcovnersion. */
     @ValueMapValue
     private String enableSoftcoversion;
 
@@ -82,6 +91,10 @@ public class TextImageModel {
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
+        final ValueMap vMap = resource.getValueMap();
+        enableSoftcoversion = vMap.get("enableSoftcoversion", StringUtils.EMPTY);
+        formType = vMap.get("formType", StringUtils.EMPTY);
         if (StringUtils.isNotEmpty(linkURL)) {
             linkURL = LinkUtils.sanitizeLink(linkURL, request);
         }
@@ -214,12 +227,12 @@ public class TextImageModel {
     }
 
     /**
-     * Gets the enable softcoversion.
+     * Gets the enable form.
      *
-     * @return the enable softcoversion
+     * @return the enable form
      */
-    public String getEnableSoftcoversion() {
-        return enableSoftcoversion;
+    public String getFormType() {
+        return formType;
     }
 
     /**
@@ -229,6 +242,25 @@ public class TextImageModel {
      */
     public SoftConversionModel getSoftConversionData() {
         return request.adaptTo(SoftConversionModel.class);
+    }
+
+
+    /**
+     * Gets the subscription form data.
+     *
+     * @return the subscription form data
+     */
+    public SubscriptionFormModel getSubscriptionData() {
+        return request.adaptTo(SubscriptionFormModel.class);
+    }
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
     }
 
 }

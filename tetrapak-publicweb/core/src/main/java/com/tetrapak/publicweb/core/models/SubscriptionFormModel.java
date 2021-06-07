@@ -5,33 +5,42 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.osgi.service.component.annotations.Reference;
 
 import com.tetrapak.publicweb.core.beans.DropdownOption;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 
 /**
  * The Class SubscriptionFormModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SubscriptionFormModel extends FormModel {
 
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
+
     /** The resource. */
-    @Self
+    @Reference
     private Resource resource;
 
     /** The pardot service. */
     @OSGiService
     private PardotService pardotService;
-    
+
     /** The country service. */
     @OSGiService
     private CountryDetailService countryService;
@@ -41,10 +50,26 @@ public class SubscriptionFormModel extends FormModel {
 
     /** The consent config. */
     private FormConsentConfigModel consentConfig;
-    
+
     /** The country list. */
     private List<DropdownOption> countryOptions;
-    
+
+    /** The more link action. */
+    @ValueMapValue
+    private String moreButtonActionSubscription;
+
+    /** The more link label. */
+    @ValueMapValue
+    private String moreButtonLabelSubscription;
+
+    /** The pardot url. */
+    @ValueMapValue
+    private String pardotUrlSubscription;
+
+    /** The heading. */
+    @ValueMapValue
+    private String headingSubscription;
+
     /** The market site subscribed. */
     private String marketSiteSubscribed;
 
@@ -53,6 +78,10 @@ public class SubscriptionFormModel extends FormModel {
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
+        if (StringUtils.isNotEmpty(moreButtonActionSubscription)) {
+            moreButtonActionSubscription = LinkUtils.sanitizeLink(moreButtonActionSubscription, request);
+        }
         setFormConfig();
         setCountryOptions();
         if (PageUtil.getCountryCodeFromResource(resource).equalsIgnoreCase(PWConstants.SE_COUNTRY_CODE)) {
@@ -138,6 +167,43 @@ public class SubscriptionFormModel extends FormModel {
 	public List<DropdownOption> getCountryOptions() {
 		return countryOptions;
 	}
+
+    /**
+     * Gets the pardot url.
+     *
+     * @return the pardot url
+     */
+    public String getPardotUrlSubscription() {
+        return pardotUrlSubscription;
+    }
+
+    /**
+     * Gets the more link action.
+     *
+     * @return the more link action
+     */
+    public String getMoreButtonActionSubscription() {
+        return moreButtonActionSubscription;
+    }
+
+    /**
+     * Gets the more button label.
+     *
+     * @return the more button label
+     */
+    public String getMoreButtonLabelSubscription() {
+        return moreButtonLabelSubscription;
+    }
+
+    /**
+     * Gets the heading.
+     *
+     * @return the heading
+     */
+
+    public String getHeadingSubscription() {
+        return headingSubscription;
+    }
 
     /**
      * Gets the market site subscribed.
