@@ -46,6 +46,9 @@ public class NewsEventBean {
     /** The language. */
     private String language;
 
+    /** Image Path */
+    private String imagePath;
+
     /**
      * Gets the title.
      *
@@ -293,4 +296,23 @@ public class NewsEventBean {
         this.language = language;
     }
 
+    /**
+     * Gets the Aggregator Image.
+     *
+     * @return the Aggregator Image
+     */
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * Sets the Aggregator Image.
+     *
+     * @param Aggregator Image
+     *
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 }

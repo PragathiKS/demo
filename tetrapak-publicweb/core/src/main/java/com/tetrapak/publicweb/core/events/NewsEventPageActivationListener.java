@@ -45,7 +45,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
  * @see NewsEventPageActivationEvent
  */
 @Component(
-        enabled = false,
+        immediate = true,
         configurationPolicy = ConfigurationPolicy.REQUIRE,
         service = EventHandler.class,
         property = {
@@ -176,6 +176,9 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setDescription(Objects.nonNull(valueMap.get("jcr:description", String.class))
                 ? valueMap.get("jcr:description", String.class)
                 : StringUtils.EMPTY);
+        bean.setImagePath(Objects.nonNull(valueMap.get("imagePath", String.class))
+                ? valueMap.get("imagePath", String.class)
+                : StringUtils.EMPTY);
         if (Objects.nonNull(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class))) {
             interestAreas = getInterestAreas(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class));
             if (Objects.nonNull(interestAreas)) {
@@ -185,9 +188,7 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setPageLink(resolver.map(pagePath));
         bean.setNewsroomLink("#");
         bean.setLegalInformationLink("#");
-        bean.setManagePreferenceLink("#");
         bean.setHeaderLogo(getHeaderLogo(pagePath, resolver));
-        bean.setHeroImage(getBannerImage(pagePath, resolver));
         setFooterLogo(bean, pagePath, resolver);
         return bean;
     }
@@ -288,9 +289,6 @@ public class NewsEventPageActivationListener implements EventHandler {
             }
             if (Objects.nonNull(valueMap.get("legalInfoLink", String.class))) {
                 bean.setLegalInformationLink(resolver.map(valueMap.get("legalInfoLink", String.class)));
-            }
-            if (Objects.nonNull(valueMap.get("managePreferenceLink", String.class))) {
-                bean.setManagePreferenceLink(resolver.map(valueMap.get("managePreferenceLink", String.class)));
             }
         }
         return bean;

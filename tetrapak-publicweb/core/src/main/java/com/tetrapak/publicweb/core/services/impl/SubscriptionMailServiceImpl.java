@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import com.adobe.acs.commons.email.EmailServiceConstants;
 import com.tetrapak.publicweb.core.beans.NewsEventBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.DataEncryptionService;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.SubscriptionMailService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
@@ -44,9 +43,6 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
     @Reference
     private DynamicMediaService mediaService;
 
-    /** The encryption service. */
-    @Reference
-    private DataEncryptionService encryptionService;
 
     /** The Constant DEFAULT LOGO BACKGROUND RGB value . */
     private static final String DEFAULT_LOGO_BGC = "2,63,136";
@@ -72,7 +68,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                 status = PWConstants.STATUS_SUCCESS;
                 for (String mailAddress : mailAddresses) {
                     String[] receipientArray = { mailAddress };
-                    Map<String, String> emailParams = setEmailParams(newsEventbean, resolver, mailAddress);
+                    Map<String, String> emailParams = setEmailParams(newsEventbean, resolver);
                     Map<String, Object> properties = new HashMap<>();
                     properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage()));
                     properties.put("emailParams", emailParams);
@@ -104,18 +100,16 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      *            the mail address
      * @return the map
      */
-    private Map<String, String> setEmailParams(NewsEventBean newsEventbean, ResourceResolver resolver,
-            String mailAddress) {
+    private Map<String, String> setEmailParams(NewsEventBean newsEventbean, ResourceResolver resolver) {
         Map<String, String> emailParams = new HashMap<>();
         emailParams.put("title", newsEventbean.getTitle());
         emailParams.put("description", newsEventbean.getDescription());
-        if (StringUtils.isEmpty(newsEventbean.getHeroImage())) {
-            emailParams.put("bannerClass", "banner-hide");
-            emailParams.put("bannerImage", "#");
-        } else {
-            emailParams.put("bannerClass", "banner-show");
-            emailParams.put("bannerImage",
-                    GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeroImage(), mediaService));
+        if (StringUtils.isNotEmpty(newsEventbean.getImagePath())) {
+        emailParams.put("imagePath",
+                    GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getImagePath(), mediaService));
+        }
+        else {
+            emailParams.put("imagePath","");
         }
         emailParams.put("headerLogo",
                 GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
@@ -129,14 +123,6 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         emailParams.put("pageLink", newsEventbean.getPageLink());
         emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
         emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
-        String encryptedMailAddress = encryptionService.encryptText(mailAddress);
-        if (!encryptedMailAddress.equalsIgnoreCase(PWConstants.STATUS_ERROR)
-                && newsEventbean.getManagePreferenceLink().startsWith(PWConstants.HTTPS_PROTOCOL)) {
-            emailParams.put("managePreferenceLink", newsEventbean.getManagePreferenceLink() + "?id="
-                    + encryptionService.encryptText(mailAddress));
-        } else {
-            emailParams.put("managePreferenceLink", "#");
-        }
         emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
         return emailParams;
     }
@@ -149,8 +135,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      * @return the template path
      */
     private String getTemplatePath(String language) {
-        return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH
-                + "subscriptionemail.html";
+        return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH + "subscriptionemail.html";
     }
 
 }

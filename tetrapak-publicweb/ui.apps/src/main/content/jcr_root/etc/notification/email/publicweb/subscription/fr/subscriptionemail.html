@@ -2,147 +2,435 @@ From: SRVSECFE@TETRAPAK.COM
 Subject: ${title}
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>${title}</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <style>
-          body {
-            font-family: Verdana, Tahoma, sans-serif;
-            font-weight: 400;
-            font-size: 14px;
-            font-style: normal;
-            position: relative;
-          }
-         .email-logo,.footer-logo {
-           text-align: left;
-           width: 100%;
-           padding-bottom: 24px;
-         }
-         .footer-logo {
-          padding-bottom: 0;
-         }
-         .mail-wrapper {
-           padding: 0 24px;
-         }
-         .logo-size {
-           width: 156px;
-           height: 41px;
-         }
-         .banner-image {
-           width: 100%;
-         }
-         .banner-show{
-             display:block;
-         }
-         .banner-hide{
-             display:none;
-         }
-         .hover-class {
-           text-decoration: none;
-           color: #ffffff;
-         }
-         .header-wrapper {
-          text-align:center;
-         }
-         @media screen and (min-width: 1024px) {
-          .field {
-            display: flex;
-            flex-direction: row;
-           }
-           .mail-wrapper {
-             padding: 48px;
-             }
-          .email-logo {
-            padding-bottom: 48px;
-           }
-          
-          .footer-wrapper {
-            display:block;
-          }
-           .header-wrapper {
-            text-align:left;
-          }
-         }
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
+   <!--[if gte mso 9]><xml>
+   <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+   </o:OfficeDocumentSettings>
+</xml><![endif]-->
+
+   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+   <meta content="telephone=no" name="format-detection">
+   <meta content="width=device-width" name="viewport">
+   <meta name="x-apple-disable-message-reformatting">
+   <title>${title}</title>
+   <style type="text/css">
+        /* FONTS */
+
+
+        #outlook a {
+            padding: 0;
+        }
+
+        /* Force Outlook to display view in browser link */
+
+        span.MsoHyperlink {
+            mso-style-priority: 99;
+            color: inherit;
+        }
+
+        span.MsoHyperlinkFollowed {
+            mso-style-priority: 99;
+            color: inherit;
+        }
+
+        /* Force Outlook to display clicked links in correct colors */
+
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0;
+        }
+
+
+        /* Stop Wekbit and Windows Phone changing the font size */
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        /* Force hotmail/outlook.com to display at full width (outer div) */
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        /* Force hotmail/outlook.com to display at full width (inner div) */
+
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+            line-height: 100%;
+        }
+
+        /* Force Hotmail to display normal line spacing */
+
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        /* Prevent WebKit and Windows mobile changing default text sizes */
+
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* Remove spacing between tables in Outlook 2007 and up */
+
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+
+        /* Allow smoother rendering of resized image in Internet Explorer */
+        /* RESET STYLES */
+
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse !important;
+        }
+
+        a[x-apple-data-detectors] {
+            /* Fix for unwanted styling of links in ios */
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* Force Samsung mail to show email 100% of viewport */
+        MessageViewBody,
+        #MessageWebViewDiv {
+            width: 100% !important;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        table.button-bg:hover {
+            background-color: #00BDF2 !important;
+            cursor: pointer;
+        }
+
+        td.button-lines:hover {
+            color: #00BDF2 !important;
+            border-color: #00BDF2 !important;
+            cursor: pointer;
+        }
+
+        td.button-lines a:hover {
+            color: #00BDF2 !important;
+        }
+
+        /* a.button-txt:hover {
+            color: #00BDF2 !important;
+        } */
+
+        .preheader {
+            display: none !important;
+            visibility: hidden;
+            opacity: 0;
+            color: transparent;
+            height: 0;
+            width: 0;
+        }
+
+        @media only screen and (max-width: 500px) {
+
+            .autoh {
+                height: auto !important;
+            }
+
+            .break {
+                display: block !important;
+                clear: both !important;
+            }
+
+            .hide {
+                display: none !important;
+            }
+
+            .show {
+                overflow: visible !important;
+                float: none !important;
+                line-height: 100% !important;
+                display: block !important;
+            }
+
+            .h24-500 {
+                height: 24px !important;
+            }
+
+            .w436-500 {
+                width: 436px !important;
+            }
+
+            .w500-500 {
+                width: 500px !important;
+            }
+
+            /* PADDING */
+
+            .padding-bottom-24 {
+                padding-bottom: 24px !important;
+            }
+
+            .padding-top-24 {
+                padding-top: 24px !important;
+            }
+
+            .padding-hori-16 {
+                padding-right: 16px !important;
+                padding-left: 16px !important;
+            }
+
+            .padding-vert-24 {
+                padding-top: 24px !important;
+                padding-bottom: 24px !important;
+            }
+
+            .padding-32 {
+                padding: 32px !important;
+            }
+        }
+
+        @media only screen and (max-width: 414px) {
+
+            .w382-414 {
+                width: 382px !important;
+            }
+
+            .w414-414 {
+                width: 414px !important;
+            }
+
+        }
+
+        @media only screen and (max-width: 375px) {
+
+            .w343-375 {
+                width: 343px !important;
+            }
+
+            .w375-375 {
+                width: 375px !important;
+            }
+        }
+
+        /* Ekstra media queries for nogle Samsung telefoner */
+        @media screen and (device-width: 360px) and (-webkit-device-pixel-ratio: 4) {
+
+            .w328-360 {
+                width: 328px !important;
+            }
+
+            .w360-360 {
+                width: 360px !important;
+            }
+        }
+
+        @media (prefers-color-scheme:dark) {
+            .lightblue-bg {
+                background-color: #4dd8ff !important;
+                color: #ffffff !important;
+            }
+
+            .darkblue-bg {
+                background-color: #0368e2 !important;
+                color: #ffffff !important;
+            }
+        }
+    </style>
+   <!--[if mso]>
+   <style>
+
+    .mso-headline {
+        font-weight: bold !important;
+    }
+      td, th, span {
+      font-family: Verdana, sans-serif !important;
+      line-height: 115% !important;
+      }
       </style>
-   </head>
-   <body>
-      <table class="mainTable" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff"
-         style="color:#4A4A4A; max-width:920px">
-         <tbody>
+   <![endif]-->
+
+   <!--[if (gte mso 9)|(IE)]>
+   <style type="text/css">
+body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
+.mso-headline {
+        font-weight: bold !important;
+    }
+</style>
+   <![endif]-->
+</head>
+
+<body style="margin: 0px; padding: 0px; background-color: #ffffff;" data-new-gr-c-s-check-loaded="14.1005.0" data-gr-ext-installed="">
+<!-- START PREHEADER --><!-- END PREHEADER --><!-- START HEADER -->
+<table border="0" cellpadding="0" cellspacing="0" id="backgroundTable" role="presentation" style="mso-cellspacing: 0px;" width="100%">
+   <tbody>
+   <tr>
+      <td>
+         <table bgcolor="#F6F6F6" border="0" cellpadding="0" cellspacing="0" class="w500-500 w414-414 w375-375 w360-360" id="templateContainer" role="presentation" style="width: 920px; mso-cellspacing: 0px;" width="920">
+            <tbody>
             <tr>
-               <td>
-                  <table class="header-wrapper" style="margin-bottom:24px;margin-left:24px;" cellpadding="0" cellspacing="0" border="0">
+               <td align="center" bgcolor="#ffffff">
+                  <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="w436-500 w382-414 w343-375 w328-360" role="presentation" style="width: 874px; mso-cellspacing: 0px;" width="874">
+                     <tbody>
                      <tr>
-                        <td>
-                           <img src="${headerLogo}?wid=156&fmt=jpg&resMode=sharp2&qlt=85,0"
-                              style="outline:none; border:none;" alt=" Tetrapak logo" />
-                        </td>
+                        <td align="left" style="padding: 16px;"><a href="https://go.tetrapak.com/e/857883/2021-03-29/4jrxd/131226263?h=hM4gMHdzWi1FVNJlfV3N-LYpsRrpOb1rwc0onQVJ1ig" target="_blank"><img border="0" src="${headerLogo}?wid=156&fmt=jpg&resMode=sharp2&qlt=85,0" style="width: 158px; display: block;" width="158"></a></td>
+                        <td align="right" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #023F88; padding:16px 0;" valign="middle"><a class="button-txt" href="https://go.tetrapak.com/webmail/857883/131226263/726edf3a1f1b8b14eaf9be50935a873591939894f499a9de72cbdf37e2c07b2e" style="color: #023F88; text-decoration: none;">View in browser</a></td>
+                        <td align="right" style="width: 10px;padding: 16px 16px 16px 7px;" valign="middle" width="10"><img border="0" src="https://storage.pardot.com/857883/12957/right.png" style="width: 6px;display: block;" width="6"></td>
                      </tr>
+                     </tbody>
                   </table>
                </td>
             </tr>
-            <tr>
+            <!-- END HEADER --><!-- START MOUDL 1 -->
+            <tr pardot-removable="" style="">
                <td>
-                  <table class="${bannerClass}" width="100%" style="margin:0 auto 48px auto;" cellpadding="0" cellspacing="0" border="0">
+                  <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="w500-500 w414-414 w375-375 w360-360" role="presentation" style="width: 920px; mso-cellspacing: 0px;" width="920">
+                     <tbody>
                      <tr>
-                        <td>
-                           <img src="${bannerImage}?wid=920" style="width:100%!important;padding-bottom:0px;" />
+                        <td align="center" bgcolor="#00BDF2" class="lightblue-bg autoh" height="155" style="height: 155px;font-size: 0px; line-height: 0px; padding: 0px;">
+                           <!--This shoulld be shown when there is image-->
+                           <table align="right" class="break w500-500 w414-414 w375-375 w360-360 autoh" style="font-size: 0px; line-height: 0px; padding: 0px;width: 460px; mso-mso-cellspacing: 0px;" width="460">
+                              <tbody>
+                              <tr style="">
+                                 <td align="center" pardot-region="modul1-image" style="font-size: 0px; line-height: 0px; padding: 0px; border: 0px;"><img class="w500-500 w414-414 w375-375 w360-360 autoh" src="${imagePath}" style="display: block;"></td>
+                              </tr>
+                              </tbody>
+                           </table>
+                           <!--This shoulld be shown when there is image-->
+                           <% if (${imagePath} != null || ${imagePath} != "" ) { %>
+                           <table align="left" class="break w500-500 w414-414 w375-375 w360-360 autoh" style="font-size: 0px; line-height: 0px;  mso-padding-alt: 0px; width: 460px; mso-mso-cellspacing: 0px;" width="460">
+                              <tbody>
+                              <tr>
+                                 <td align="center" class="padding-32" style="padding: 0 50px;" valign="middle">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-cellspacing: 0px;" width="100%">
+                                       <tbody>
+                                       <tr>
+                                          <td align="left" class="autoh" height="230" pardot-region="modul1-headline" style="font-family: Arial, Verdana, sans-serif;font-weight: normal; font-size: 24px; line-height: 125%; color: #ffffff;height: 230px;" valign="middle">Press release</td>
+                                       </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                              </tbody>
+                           </table>
+                           <% } %>
+                           <!--This should be shown when there is no image-->
+                           <% else { %>
+                           <table align="left" class="break w500-500 w414-414 w375-375 w360-360 autoh" style="font-size: 0px; line-height: 0px;  mso-padding-alt: 0px; width: 920px; mso-mso-cellspacing: 0px;" width="920">
+                              <tbody>
+                              <tr>
+                                 <td align="center" class="padding-32" style="padding: 0 50px;" valign="middle">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-cellspacing: 0px;" width="100%">
+                                       <tbody>
+                                       <tr>
+                                          <td align="left" class="autoh" height="230" pardot-region="modul1-headline" style="font-family: Arial, Verdana, sans-serif;font-weight: normal; font-size: 24px; line-height: 125%; color: #ffffff;height: 230px;" valign="middle">Press release</td>
+                                       </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                              </tbody>
+                           </table>
+                           <% } %>
                         </td>
                      </tr>
+                     <tr>
+                        <td align="center" class="padding-32" style="padding: 32px 50px;">
+                           <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-cellspacing: 0px;" width="100%">
+                              <tbody>
+                              <tr pardot-repeatable="" style="">
+                                 <td align="left" pardot-region="modul1-headline" style="font-family: Arial, Verdana, sans-serif;font-weight: normal; font-size: 24px; line-height: 125%; color: #4A4A4A; padding-bottom: 20px;">${title}</td>
+                              </tr>
+                              <tr pardot-repeatable="" style="">
+                                 <td align="left" pardot-region="modul1-paragraph" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #4A4A4A;">${description}</td>
+                              </tr>
+                              <tr pardot-repeatable="" style="">
+                                 <td align="left" style="padding-top: 35px;">
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="button-bg darkblue-bg" role="presentation" style="border-radius: 5px; mso-cellspacing: 0px; background-color: #023F88;" valign="top">
+                                       <tbody>
+                                       <tr>
+                                          <td align="center" style="padding: 8px 16px 7px; font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #ffffff !important;text-decoration: none !important;"><a href="${pageLink}" pardot-region="modul5-cta-right" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #ffffff;text-decoration: none;" target="_blank" vlink="#FFFFFF">Read the full release here&gt;</a></td>
+                                       </tr>
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                              <tr pardot-repeatable="" style="">
+                                 <td align="left" pardot-region="modul1-paragraph" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #4A4A4A;padding-top:35px;">All news and releases are published here </td>
+                              </tr>
+                              <tr>
+                                 <td align="right" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #023F88; padding:16px 0;text-align:left;" valign="middle"><a class="button-txt" href="${newsRoomLink};">${newsRoomLink}</a></td>
+                              </tr>
+                              <tr pardot-repeatable="" style="">
+                                 <td align="left" pardot-region="modul1-paragraph" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #4A4A4A;">Kind Regards Tetra Pak</td>
+                              </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                     </tr>
+                     </tbody>
                   </table>
                </td>
             </tr>
+            <!-- END MODUL 1 --><!-- START MOUDL 1 VERSION 2 --><!-- END MODUL 1 VERSION 2--><!-- START MOUDL 2 --><!-- END MODUL 2 --><!-- START MOUDL 3 --><!-- END MODUL 3 --><!-- START HEADLINE MODUL --><!-- END HEADLINE MODUL --><!-- START MOUDL 4 --><!-- END MODUL 4 --><!-- START MOUDL 5 --><!-- END MODUL 5 --><!-- START MOUDL 6 --><!-- END MODUL 6 --><!-- START MODUL 7 --><!-- END MODUL 7 --><!-- START FOOTER -->
             <tr>
-               <td>
-                  <table style="margin:0 24px;">
+               <td align="center">
+                  <table bgcolor="#023F88" border="0" cellpadding="0" cellspacing="0" class="w500-500 w414-414 w375-375 w360-360" role="presentation" style="width: 920px; mso-cellspacing: 0px;" width="920">
+                     <tbody>
                      <tr>
-                        <td style="margin:0;">
-                           <h5 style="font-size: 18px;font-weight: 700;line-height: 24px;margin:0px 0px 16px 0px;">${title}</h5>
-                           <p style="margin:0 0 24px 0;line-height:24px;">${description}</p>
-                        </td>
+                        <td align="left" style="padding: 32px;"><img border="0" src="${footerLogo}?bgc=${footerLogoBGC}&wid=156&fmt=jpg&resMode=sharp2&qlt=85,0" style="width: 158px; display: block;" width="158"></td>
                      </tr>
                      <tr>
-                        <td style="text-align:left;margin-bottom:0px;">
-                           <a href="${pageLink}"><span style="display:inline-block;color:#023f88;text-decoration:underline;font-weight:900;margin-bottom:24px;">Lisez la version complète ici</span></a>
+                        <td align="left" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #ffffff; padding: 0 32px 16px;"><a href="" style="color: #ffffff;font-weight:normal;text-decoration: none;">Contact</a>
+                        </td>
+                     <tr>
+                        |<td align="left" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #ffffff; padding: 0 32px 16px;"> <a href="https://go.tetrapak.com/unsubscribe/u/857883/726edf3a1f1b8b14eaf9be50935a873591939894f499a9de72cbdf37e2c07b2e/131226263" style="color: #ffffff;font-weight: normal;text-decoration: none;">Unsubscribe</a></td>
+                     </tr>
+                     <tr>
+                        <td align="left" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #ffffff; padding: 0 32px 16px;"> <a href="${legalInformationLink}" style="color: #ffffff;font-weight: normal;text-decoration: none;">Privacy policy</a>
                         </td>
                      </tr>
+                     </tbody>
                   </table>
                </td>
             </tr>
-            <tr>
-               <td>
-                  <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px 24px 48px 24px;">
-                     <tr>
-                        <td>
-                           <p style="margin-bottom:24px;margin-top:0px;">Toutes les actualités et communiqués de presse sont publiés ici <a href="${newsRoomLink}">${newsRoomLink}</a></p>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           <p style="margin-bottom:0px;margin-top:0px;">Cordialement Tetra Pak</p>
-                        </td>
-                     </tr>
-                  </table>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-      <table class="footer-mobile" width="920" cellpadding="5px" cellspacing="0" border="0" style="background-color:#023F88;padding:24px;color:#ffffff;overflow:hidden;">
-         <tr>
-            <td>
-               <img class="logo-size" src="${footerLogo}?bgc=${footerLogoBGC}&wid=156&fmt=jpg&resMode=sharp2&qlt=85,0" />
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <a href="${managePreferenceLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Gérer les préférences</a>
-            </td>
-         </tr>
-         <tr>
-            <td><a href="${legalInformationLink}" class="hover-class" style="display:inline;color:#ffffff;text-decoration:none;">Information légale</a></td>
-         </tr>
-      </table>
-   </body>
-</html>
+            <!-- END FOOTER -->
+            </tbody>
+         </table>
+      </td>
+   </tr>
+   </tbody>
+</table>
+
+
+</body></html>
