@@ -327,7 +327,7 @@ body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
                               </tbody>
                            </table>
                            <!--This shoulld be shown when there is image-->
-                           <sly data-sly-test="${imagePath != null || imagePath != ''}">
+                           <% if (${imagePath} != "#" ) { %>
                            <table align="left" class="break w500-500 w414-414 w375-375 w360-360 autoh" style="font-size: 0px; line-height: 0px;  mso-padding-alt: 0px; width: 460px; mso-mso-cellspacing: 0px;" width="460">
                               <tbody>
                               <tr>
@@ -343,9 +343,9 @@ body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
                               </tr>
                               </tbody>
                            </table>
-                           </sly>
+                          </sly>
                            <!--This should be shown when there is no image-->
-                           <sly data-sly-test="${imagePath == ''}">
+                           <sly data-sly-test="${!imagePath}">
                            <table align="left" class="break w500-500 w414-414 w375-375 w360-360 autoh" style="font-size: 0px; line-height: 0px;  mso-padding-alt: 0px; width: 920px; mso-mso-cellspacing: 0px;" width="920">
                               <tbody>
                               <tr>

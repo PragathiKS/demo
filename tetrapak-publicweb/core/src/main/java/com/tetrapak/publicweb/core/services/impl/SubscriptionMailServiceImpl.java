@@ -108,9 +108,6 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         emailParams.put("imagePath",
                     GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getImagePath(), mediaService));
         }
-        else {
-            emailParams.put("imagePath","");
-        }
         emailParams.put("headerLogo",
                 GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
         emailParams.put("footerLogo",

@@ -322,12 +322,12 @@ body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
                            <table align="right" class="break w500-500 w414-414 w375-375 w360-360 autoh" style="font-size: 0px; line-height: 0px; padding: 0px;width: 460px; mso-mso-cellspacing: 0px;" width="460">
                               <tbody>
                               <tr style="">
-                                 <td align="center" pardot-region="modul1-image" style="font-size: 0px; line-height: 0px; padding: 0px; border: 0px;"><img class="w500-500 w414-414 w375-375 w360-360 autoh" src="https://s7g10.scene7.com/is/image/tetrapak/Hummus-bowl?wid=460&hei=259&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0" style="display: block;"></td>
+                                 <td align="center" pardot-region="modul1-image" style="font-size: 0px; line-height: 0px; padding: 0px; border: 0px;"><img class="w500-500 w414-414 w375-375 w360-360 autoh" src="${imagePath}" style="display: block;"></td>
                               </tr>
                               </tbody>
                            </table>
                            <!--This shoulld be shown when there is image-->
-                           <sly data-sly-test="${imagePath != null || imagePath != ''}">
+                           <% if (${imagePath} != "#" ) { %>
                            <table align="left" class="break w500-500 w414-414 w375-375 w360-360 autoh" style="font-size: 0px; line-height: 0px;  mso-padding-alt: 0px; width: 460px; mso-mso-cellspacing: 0px;" width="460">
                               <tbody>
                               <tr>
@@ -343,10 +343,9 @@ body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
                               </tr>
                               </tbody>
                            </table>
-                           </sly>
-
+                          </sly>
                            <!--This should be shown when there is no image-->
-                           <sly data-sly-test="${imagePath == ''}">
+                           <sly data-sly-test="${!imagePath}">
                            <table align="left" class="break w500-500 w414-414 w375-375 w360-360 autoh" style="font-size: 0px; line-height: 0px;  mso-padding-alt: 0px; width: 920px; mso-mso-cellspacing: 0px;" width="920">
                               <tbody>
                               <tr>
@@ -362,7 +361,7 @@ body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
                               </tr>
                               </tbody>
                            </table>
-                           </sly>
+                          </sly>
                         </td>
                      </tr>
                      <tr>
@@ -373,7 +372,7 @@ body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
                                  <td align="left" pardot-region="modul1-headline" style="font-family: Arial, Verdana, sans-serif;font-weight: normal; font-size: 24px; line-height: 125%; color: #4A4A4A; padding-bottom: 20px;">${title}</td>
                               </tr>
                               <tr pardot-repeatable="" style="">
-                                 <td align="left" pardot-region="modul1-paragraph" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #4A4A4A;">${description}</td>
+                                 <td align="left" pardot-region="modul1-paragraph" style="font-family: Arial, Verdana, sans-serif; font-weight: normal; font-size: 14px; line-height: 171%; color: #4A4A4A;">${description}${image}</td>
                               </tr>
                               <tr pardot-repeatable="" style="">
                                  <td align="left" style="padding-top: 35px;">
