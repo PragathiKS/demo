@@ -22,9 +22,11 @@ import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.trs.core.services.AssetMetadataService;
 import com.trs.core.services.TrsConfigurationService;
 import com.trs.core.utils.TrsUtils;
@@ -37,11 +39,11 @@ import com.trs.core.utils.TrsUtils;
 @Component(service = Servlet.class,
         property = { "sling.servlet.methods=" + HttpConstants.METHOD_GET,
                 "sling.servlet.resourceTypes=" + "trs/components/structure/empty-page",
-                "sling.servlet.selectors=assetdata", "sling.servlet.extensions=html" })
-@ServiceDescription("Asset Metadata Exporter Servlet")
-public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
+                "sling.servlet.selectors=assetpath", "sling.servlet.extensions=html" })
+@ServiceDescription("Asset Path Exporter Servlet")
+public class AssetPathExporterServlet extends SlingSafeMethodsServlet {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AssetMetadataExporterServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AssetPathExporterServlet.class);
     private static final long serialVersionUID = 1L;
 
     @Reference
@@ -49,29 +51,29 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
 
     @Reference
     private TrsConfigurationService trsConfig;
-
+    
     @Reference
     private AssetMetadataService assetMetadataService;
-    
-    
+
+    @Reference
+    private QueryBuilder builder;
+
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse resp)
             throws ServletException, IOException {
 
         ResourceResolver resourceResolver = null;
-        final String assetMlvId = request.getParameter("id");
-        String assetPath;
+        final String assetName = request.getParameter("name");
         LOGGER.info("Entered AssetMetadataExporterServlet servlet");
         LOGGER.info(" Query param :" + request.getParameter("id"));
         try {
             resourceResolver = TrsUtils.getTrsResourceResolver(resolverFactory);
         } catch (LoginException e) {
-            LOGGER.error("",e);
+            LOGGER.error("", e);
         }
-        
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode arrayNode = mapper.createArrayNode();
-        
+
         /**
          * Map for the predicates
          */
@@ -81,26 +83,25 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
          * Configuring the Map for the predicate
          */
         predicate.put("path", "/content/dam/training-services");
-        predicate.put("nodename", "metadata");
-        predicate.put("property", "mlvId");
-        predicate.put("property.value", assetMlvId);
-        
+        predicate.put("nodename", assetName);
+
         List<Hit> resultHits = assetMetadataService.executeQuery(resourceResolver, predicate);
-        
-        for(Hit hit : resultHits) {
-            
+
+        for (Hit hit : resultHits) {
+
             try {
-                assetPath = hit.getPath();
-                LOGGER.info(" hit : "+hit.getPath());
-                arrayNode.add(assetMetadataService.getAssetMetadataJsonNode(resourceResolver, mapper, assetPath, LOGGER));
+                ObjectNode assetNode = mapper.createObjectNode();
+
+                assetNode.put("path", hit.getPath());
+                arrayNode.add(assetNode);
             } catch (RepositoryException e) {
-                LOGGER.error("",e);
+                LOGGER.error("", e);
             }
-            
+
         }
         String assetPropertiesJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(arrayNode);
         LOGGER.info(assetPropertiesJson);
-        
+
         resourceResolver.close();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
