@@ -13,6 +13,8 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
@@ -114,6 +116,50 @@ public class MyEquipmentModel {
 	
 	/** The tool tip class. */
 	private String toolTipClass;
+	
+	/** The country api. */
+	private String countryApi;
+	
+	/** The equipment list api. */
+	private String equipmentListApi;
+
+	/** The service. */
+	@OSGiService
+	private APIGEEService service;
+	
+	/**
+	 * Gets the country api.
+	 *
+	 * @return the country api
+	 */
+	public String getCountryApi() {
+		return countryApi;
+	}
+
+	/**
+	 * Sets the country api.
+	 */
+	public void setCountryApi() {
+		this.countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-countrylist");
+	}
+
+	/**
+	 * Gets the list api.
+	 *
+	 * @return the list api
+	 */
+	public String getListApi() {
+		return equipmentListApi;
+	}
+
+	/**
+	 * Sets the list api.
+	 */
+	public void setListApi() {
+		this.equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-equipmentlist");
+	}
 	
 	/**
 	 * Gets the first.
