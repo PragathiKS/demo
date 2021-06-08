@@ -135,7 +135,8 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      * @return the template path
      */
     private String getTemplatePath(String language) {
-        return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH + "subscriptionemail.html";
+        return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH
+                + "subscriptionemail.html";
     }
 
 }
