@@ -36,10 +36,12 @@ function getFormattedSiteData(array){
 
 function _renderCountryFilters() {
   this.cache.$spinner.removeClass('d-none');
+  const countryApi = this.cache.equipmentApi.data('country-api');
+  const equipmentApi = this.cache.equipmentApi.data('list-api');
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: 'https://api-mig.tetrapak.com/mock/installbase/equipments/countries',
+        url: countryApi,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -54,7 +56,7 @@ function _renderCountryFilters() {
         this.cache.countryData = getFormattedData(res.data);
         ajaxWrapper
           .getXhrObj({
-            url: 'https://api-mig.tetrapak.com/mock/installbase/equipments',
+            url: equipmentApi,
             method: 'GET',
             contentType: 'application/json',
             dataType: 'json',
@@ -219,6 +221,7 @@ class MyEquipment {
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$content = this.root.find('.tp-equipment-content');
+    this.cache.equipmentApi = this.root.find('.js-equipment-api');
     this.cache.countryData = [];
     this.cache.siteData = [];
     this.cache.activeFilterForm = 'country';
