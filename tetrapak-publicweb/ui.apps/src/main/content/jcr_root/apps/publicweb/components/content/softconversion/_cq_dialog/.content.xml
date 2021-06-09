@@ -181,9 +181,14 @@
                             <apiurl
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Provide pardot form handler URL"
+                                fieldDescription="Provide pardot form handler URL. Valid URL starts with 'https://go.tetrapak.com/'"
                                 fieldLabel="Pardot form handler URL"
-                                name="./pardotUrl"/>
+								validation="txt-validate"
+                                name="./pardotUrl">
+								<granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        pattern="pardotFormHandlerUrl"/>
+							</apiurl>
                             <summarytext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
