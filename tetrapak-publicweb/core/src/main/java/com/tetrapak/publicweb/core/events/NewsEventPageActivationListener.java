@@ -285,7 +285,6 @@ public class NewsEventPageActivationListener implements EventHandler {
      * @return the news event bean
      */
     private NewsEventBean addPageLinks(NewsEventBean bean, String pagePath, ResourceResolver resolver) {
-       // LOGGER.error("Request object in news event bean",request);
         String rootPath = LinkUtils.getRootPath(pagePath);
         final String path = rootPath + "/jcr:content/root/responsivegrid/subscriptionformconf";
         Resource subcriptionFormConfigResource = resolver.getResource(path);
