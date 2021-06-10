@@ -2,7 +2,7 @@
     <label class="tpatom-checkbox__label clearfix" for="tpatomCheck{{uniqueKey}}">
         <input
             type="checkbox"
-            class="tpatom-checkbox__input float-left{{#if jsMyEquipmentFilter}} {{jsMyEquipmentFilter}}{{/if}}"
+            class="tpatom-checkbox__input float-left{{#if jsMyEquipmentFilter}} {{jsMyEquipmentFilter}}{{/if}}{{#if isCountry}} country-equipment-list{{/if}}"
             id="tpatomCheck{{uniqueKey}}"
             value="{{value}}"
             {{#if isChecked}}
