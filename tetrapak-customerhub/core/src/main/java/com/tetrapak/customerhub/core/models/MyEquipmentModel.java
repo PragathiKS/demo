@@ -118,10 +118,12 @@ public class MyEquipmentModel {
 	private String toolTipClass;
 	
 	/** The country api. */
+	@ValueMapValue
 	private String countryApi;
 	
-	/** The equipment list api. */
-	private String equipmentListApi;
+    /** The equipment list api. */
+    @ValueMapValue
+    private String equipmentListApi;
 
 	/** The service. */
 	@OSGiService
@@ -137,28 +139,12 @@ public class MyEquipmentModel {
 	}
 
 	/**
-	 * Sets the country api.
-	 */
-	public void setCountryApi() {
-		this.countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, "myequipment-countrylist");
-	}
-
-	/**
 	 * Gets the list api.
 	 *
 	 * @return the list api
 	 */
 	public String getListApi() {
 		return equipmentListApi;
-	}
-
-	/**
-	 * Sets the list api.
-	 */
-	public void setListApi() {
-		this.equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, "myequipment-equipmentlist");
 	}
 	
 	/**
@@ -409,6 +395,12 @@ public class MyEquipmentModel {
         }
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+        
+        countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-countrylist");
+        
+        equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-equipmentlist");
 	}
 	
 	/**
