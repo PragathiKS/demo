@@ -64,16 +64,13 @@ public class SubscriptionMailServiceImplTest {
     @Before
     public void setUp() throws Exception {
         mediaService = new MockDynamicMediaServiceImpl();
-        encryptionService = new DataEncryptionServiceImpl();
         context.registerService(DynamicMediaService.class, mediaService);
-        context.registerService(DataEncryptionService.class, encryptionService);
-        initializeDataEncryptionConfig();
         MockitoAnnotations.initMocks(this);
         Mockito.when(bean.getTitle()).thenReturn("Test Title");
         Mockito.when(bean.getDescription()).thenReturn("Test Desription");
-        String heroImagePath = "/content/dam/tetrapak/publicweb/gb/en/about/light-head-upscaled.jpg";
+        Mockito.when(bean.getImagePath()).thenReturn("/content/dam/tetrapak/publicweb/gb/en/about/light-head-upscaled.jpg");
+        Mockito.when(bean.getTemplateType()).thenReturn("Press Release");
         String logoImagePath = "/content/dam/tetrapak/publicweb/gb/tetra-pak-two-liner.png";
-        Mockito.when(bean.getHeroImage()).thenReturn(heroImagePath);
         Mockito.when(bean.getHeaderLogo()).thenReturn(logoImagePath);
         Mockito.when(bean.getFooterLogo()).thenReturn(logoImagePath);
         Mockito.when(bean.getFooterLogoBackground()).thenReturn("2,63,136");
@@ -81,15 +78,11 @@ public class SubscriptionMailServiceImplTest {
                 .thenReturn("https://www-qa.tetrapak.com/en-za/about-tetra-pak/news-and-events/news-room");
         Mockito.when(bean.getLegalInformationLink())
                 .thenReturn("https://www-qa.tetrapak.com/en-za/about-tetra-pak/legal-information");
-        Mockito.when(bean.getManagePreferenceLink())
-                .thenReturn("https://www-qa.tetrapak.com/en-za/about-tetra-pak/manage-preference");
         Mockito.when(bean.getLanguage()).thenReturn("en");
         resolver = context.resourceResolver();
         Mockito.when(bean.getPageLink()).thenReturn(
                 "https://www-qa.tetrapak.com/en-za/about-tetra-pak/news-and-events/subscribe-email-scenario-11/susbcriber-email-test-101");
         context.registerService(SubscriptionMailService.class, mailService);
-        PrivateAccessor.setField(context.getService(SubscriptionMailService.class), "encryptionService",
-                context.getService(DataEncryptionService.class));
         PrivateAccessor.setField(context.getService(SubscriptionMailService.class), "mediaService",
                 context.getService(DynamicMediaService.class));
         PrivateAccessor.setField(context.getService(SubscriptionMailService.class), "jobMgr", jobManager);
@@ -107,13 +100,5 @@ public class SubscriptionMailServiceImplTest {
                 PWConstants.STATUS_SUCCESS);
     }
 
-    /**
-     * Initialize data encryption config.
-     */
-    private void initializeDataEncryptionConfig() {
-        final Map<String, Object> config = new HashMap<>();
-        config.put("aesEncryptionkey", "publicwebEncryptionkey");
-        MockOsgi.activate(context.getService(DataEncryptionService.class), context.bundleContext(), config);
-    }
 
 }
