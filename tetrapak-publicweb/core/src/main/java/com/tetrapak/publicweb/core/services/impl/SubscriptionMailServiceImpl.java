@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.event.jobs.JobManager;
@@ -71,7 +70,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                     String[] receipientArray = { mailAddress };
                     Map<String, String> emailParams = setEmailParams(newsEventbean, resolver);
                     Map<String, Object> properties = new HashMap<>();
-                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage(),newsEventbean));
+                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage(),newsEventbean.getImagePath()));
                     properties.put("emailParams", emailParams);
                     properties.put("receipientsArray", receipientArray);
                     if (jobMgr != null) {
@@ -112,7 +111,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         else{
             emailParams.put("imagePath","#");
         }
-        if(StringUtils.contains(newsEventbean.getTemplateType(), "/press-release")){
+        if(StringUtils.contains(newsEventbean.getTemplateType(), "press-release")){
             emailParams.put("templateType","Press Release");
         }
         else {
@@ -128,6 +127,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
             emailParams.put("footerLogoBGC", DEFAULT_LOGO_BGC);
         }
         emailParams.put("pageLink", newsEventbean.getPageLink());
+        emailParams.put("rootPageLink",newsEventbean.getRootPageLink());
         emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
         emailParams.put("contactUsLink", newsEventbean.getContactUsLink());
         emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
@@ -142,9 +142,9 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      *            the language
      * @return the template path
      */
-    private String getTemplatePath(String language, NewsEventBean newsEventbean) {
+    private String getTemplatePath(String language, String imagePath) {
         String emailTemplate = null;
-        if (StringUtils.isNotEmpty(newsEventbean.getImagePath())){
+        if (StringUtils.isNotEmpty(imagePath)){
             emailTemplate = "subscriptionemail.html";
         }
         else {

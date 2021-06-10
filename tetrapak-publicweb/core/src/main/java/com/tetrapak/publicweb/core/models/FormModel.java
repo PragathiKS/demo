@@ -61,10 +61,6 @@ public class FormModel {
     @ValueMapValue
     private String legalInfoLink;
 
-    /** The manage preference link. */
-    @ValueMapValue
-    private String managePreferenceLink;
-
     /** Contact us **/
     @ValueMapValue
     private String contactUsLink;
@@ -179,15 +175,6 @@ public class FormModel {
      */
     public String getLegalInfoLink() {
         return legalInfoLink;
-    }
-
-    /**
-     * Gets the manage preference link.
-     *
-     * @return the manage preference link
-     */
-    public String getManagePreferenceLink() {
-        return managePreferenceLink;
     }
 
     /**

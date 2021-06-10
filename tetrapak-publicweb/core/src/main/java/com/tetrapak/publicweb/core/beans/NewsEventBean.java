@@ -49,12 +49,14 @@ public class NewsEventBean {
     /** Image Path */
     private String imagePath;
 
-
     /** Contact us */
     private String contactUsLink;
 
     /** Template type */
     private String templateType;
+
+    /** Root Page link **/
+    private String rootPageLink;
 
     /**
      * Gets the title.
@@ -361,5 +363,24 @@ public class NewsEventBean {
 
     public void setTemplateType(String templateType) {
         this.templateType = templateType;
+    }
+
+    /**
+     * Gets the Root Page Link.
+     *
+     * @return the Root Page Link
+     */
+    public String getRootPageLink() {
+        return rootPageLink;
+    }
+
+    /**
+     * Set the Root Page Link.
+     *
+     * @param Root Page Link
+     */
+
+    public void setRootPageLink(String rootPageLink) {
+        this.rootPageLink = rootPageLink;
     }
 }

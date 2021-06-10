@@ -6,9 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-import com.day.cq.search.QueryBuilder;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
@@ -190,10 +188,8 @@ public class NewsEventPageActivationListener implements EventHandler {
                 bean.setInterestAreas(interestAreas);
             }
         }
-        bean.setPageLink(resolver.map(rootPath));
-        bean.setNewsroomLink("#");
-        bean.setLegalInformationLink("#");
-        bean.setContactUsLink("#");
+        bean.setPageLink(resolver.map(pagePath));
+        bean.setRootPageLink(resolver.map(rootPath));
         bean.setHeaderLogo(getHeaderLogo(pagePath, resolver));
         setFooterLogo(bean, pagePath, resolver);
         return bean;
@@ -246,31 +242,6 @@ public class NewsEventPageActivationListener implements EventHandler {
             }
         }
         return bean;
-    }
-
-    /**
-     * Gets the banner image.
-     *
-     * @param pagePath
-     *            the page path
-     * @param resolver
-     *            the resolver
-     * @return the banner image
-     */
-    private String getBannerImage(String pagePath, ResourceResolver resolver) {
-        String path = pagePath + "/jcr:content/root/responsivegrid";
-        Resource resource = resolver.getResource(path);
-        Iterator<Resource> children = resource.listChildren();
-        while (children.hasNext()) {
-            Resource child = children.next();
-            if (child.getName().startsWith("banner") && child.isResourceType("publicweb/components/content/banner")) {
-                ValueMap valueMap = child.getValueMap();
-                if (Objects.nonNull(valueMap.get(PWConstants.FILE_REFERENCE, String.class))) {
-                    return valueMap.get(PWConstants.FILE_REFERENCE, String.class);
-                }
-            }
-        }
-        return StringUtils.EMPTY;
     }
 
     /**
