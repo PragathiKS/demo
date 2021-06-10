@@ -36,10 +36,12 @@ function getFormattedSiteData(array){
 
 function _renderCountryFilters() {
   this.cache.$spinner.removeClass('d-none');
+  const countryApi = this.cache.equipmentApi.data('country-api');
+  const equipmentApi = this.cache.equipmentApi.data('list-api');
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: 'https://api-mig.tetrapak.com/mock/installbase/equipments/countries',
+        url: countryApi,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -52,9 +54,10 @@ function _renderCountryFilters() {
 
       }).then(res => {
         this.cache.countryData = getFormattedData(res.data);
+        const { countryCode } = this.cache.countryData && this.cache.countryData[0];
         ajaxWrapper
           .getXhrObj({
-            url: 'https://api-mig.tetrapak.com/mock/installbase/equipments',
+            url: `${equipmentApi}?countrycode=${countryCode}`,
             method: 'GET',
             contentType: 'application/json',
             dataType: 'json',
@@ -219,6 +222,7 @@ class MyEquipment {
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$content = this.root.find('.tp-equipment-content');
+    this.cache.equipmentApi = this.root.find('.js-equipment-api');
     this.cache.countryData = [];
     this.cache.siteData = [];
     this.cache.activeFilterForm = 'country';
@@ -262,6 +266,9 @@ class MyEquipment {
 
     });
 
+    this.root.on('change', '.country-equipment-list',  function() {
+      $('input[type="checkbox"]').not(this).prop('checked', false);
+    });
     this.root.on('click', '.js-close-btn',  () => {
       $modal.modal('hide');
     });
@@ -308,10 +315,12 @@ class MyEquipment {
 
   renderTableData = (label,filterValues) => {
     this.updateTable(label,filterValues);
-    renderPaginationTableData.call(
-      this,
-      _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
-      {isCustomiseTableFilter :label === 'customise-table' ? true : false });
+    if(!label || label !== this.cache.i18nKeys['country']){
+      renderPaginationTableData.call(
+        this,
+        _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
+        {isCustomiseTableFilter :label === 'customise-table' ? true : false });
+    }
   }
 
   hideShowColums = () => {
@@ -328,7 +337,7 @@ class MyEquipment {
   }
 
   updateTable = (label,filterValues) => {
-    const { filteredTableData, i18nKeys } = this.cache;
+    const { filteredTableData, i18nKeys,$countryFilterLabel } = this.cache;
     const { tableData } = this.cache;
     if(label === i18nKeys['country'] && filterValues.length === 0){
       this.cache.filteredTableData = tableData;
@@ -336,21 +345,42 @@ class MyEquipment {
     }
     switch (label) {
       case i18nKeys['country']:{
-        this.cache.filteredTableData = tableData.filter((row) => {
-          for(const i in filterValues){
-            if(filterValues[i].countryCode === row.countryCode){
-              return row;
-            }
-          }
+        const equipmentApi = this.cache.equipmentApi.data('list-api');
+        this.cache.$spinner.removeClass('d-none');
+        this.cache.$content.addClass('d-none');
+        auth.getToken(({ data: authData }) => {
+          ajaxWrapper
+            .getXhrObj({
+              url: `${equipmentApi}?countrycode=${filterValues[0].countryCode}`,
+              method: 'GET',
+              contentType: 'application/json',
+              dataType: 'json',
+              beforeSend(jqXHR) {
+                jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+                jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+              },
+              showLoader: true
+            }).then(response => {
+              this.cache.$spinner.addClass('d-none');
+              this.cache.$content.removeClass('d-none');
+              this.cache.filteredTableData = response.data;
+              renderPaginationTableData.call(
+                this,
+                _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
+                {isCustomiseTableFilter :label === 'customise-table' ? true : false });
+              this.renderSearchCount();
+              this.updateFilterCountValue(label,1,$countryFilterLabel);
+            }).fail(() => {
+              this.cache.$spinner.addClass('d-none');
+              this.cache.$content.removeClass('d-none');
+            });
         });
         break;
       }
       case i18nKeys['site']:{
         this.cache.filteredTableData = filteredTableData.filter((row) => {
-          for(const i in filterValues){
-            if(filterValues[i].option === row.siteName){
-              return row;
-            }
+          for(const i of filterValues){
+            return i.option === row.siteName;
           }
         });
         break;
@@ -423,8 +453,11 @@ class MyEquipment {
     });
 
     this.renderTableData(label,filterValues);
-    this.renderSearchCount();
-    this.updateFilterCountValue(label,filterCount,htmlUpdate);
+    if(label !== i18nKeys['country']){
+      this.renderSearchCount();
+      this.updateFilterCountValue(label,filterCount,htmlUpdate);
+    }
+
   }
 
   updateFilterCountValue = (label,filterCount,htmlUpdate) => {
@@ -441,9 +474,21 @@ class MyEquipment {
 
   renderFilterForm(data,formDetail) {
     const { i18nKeys } = this.cache;
+    if(formDetail.header === i18nKeys['country']){
+      data.forEach((item,index) => {
+        data[index]= {
+          ...item,
+          isCountry:true
+        };
+      });
+    }
     render.fn({
       template: 'filterForm',
-      data: {header:formDetail.header, formData: data,...i18nKeys,singleButton:formDetail.singleButton === false ? false : true},
+      data: {
+        header:formDetail.header,
+        formData: data,...i18nKeys,
+        singleButton:formDetail.singleButton === false ? false : true
+      },
       target: '.tp-equipment__filter-form',
       hidden: false
     });
