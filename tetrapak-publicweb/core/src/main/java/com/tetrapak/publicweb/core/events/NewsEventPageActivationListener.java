@@ -181,7 +181,9 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setImagePath(Objects.nonNull(valueMap.get("imagePath", String.class))
                 ? valueMap.get("imagePath", String.class)
                 : StringUtils.EMPTY);
-        bean.setTemplateType(valueMap.get("cq:template", String.class));
+        bean.setTemplateType(Objects.nonNull(valueMap.get("cq:template", String.class))
+                ? valueMap.get("cq:template", String.class)
+                : StringUtils.EMPTY);
         if (Objects.nonNull(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class))) {
             interestAreas = getInterestAreas(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class));
             if (Objects.nonNull(interestAreas)) {
