@@ -17,9 +17,7 @@ public interface AssetMetadataService {
 
     List<Hit> executeQuery(ResourceResolver resourceResolver, Map<String, String> predicate);
 
-    ObjectNode getAssetMetadataJsonNode(ResourceResolver resourceResolver, ObjectMapper mapper, String assetPath,
-            Logger logger);
+    ObjectNode getAssetMetadataJsonNode(ResourceResolver resourceResolver, ObjectMapper mapper, String assetPath);
 
-    S7Config resolveScene7Configuration(Asset asset, ResourceResolver rr, S7ConfigResolver s7ConfigResolver,
-            Logger log);
+    S7Config resolveScene7Configuration(Asset asset, ResourceResolver rr, S7ConfigResolver s7ConfigResolver);
 }

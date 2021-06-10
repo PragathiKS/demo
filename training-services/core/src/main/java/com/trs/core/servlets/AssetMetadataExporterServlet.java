@@ -80,9 +80,10 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
         /**
          * Configuring the Map for the predicate
          */
+        LOGGER.info("This comment is only applicable for DEV. Please make sure dam:mlvId property is present");
         predicate.put("path", "/content/dam/training-services");
         predicate.put("nodename", "metadata");
-        predicate.put("property", "mlvId");
+        predicate.put("property", "dam:mlvId");
         predicate.put("property.value", assetMlvId);
         
         List<Hit> resultHits = assetMetadataService.executeQuery(resourceResolver, predicate);
@@ -92,7 +93,7 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
             try {
                 assetPath = hit.getPath();
                 LOGGER.info(" hit : "+hit.getPath());
-                arrayNode.add(assetMetadataService.getAssetMetadataJsonNode(resourceResolver, mapper, assetPath, LOGGER));
+                arrayNode.add(assetMetadataService.getAssetMetadataJsonNode(resourceResolver, mapper, assetPath));
             } catch (RepositoryException e) {
                 LOGGER.error("",e);
             }

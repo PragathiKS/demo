@@ -14,6 +14,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.scene7.api.S7Config;
@@ -32,6 +33,7 @@ import com.trs.core.services.AssetMetadataService;
 public class AssetMetadataServiceImpl implements AssetMetadataService {
 
     public static final String DAMSCENE7ID = "dam:scene7ID";
+    private static final Logger LOG = LoggerFactory.getLogger(AssetMetadataServiceImpl.class);
 
     private Map<String, String> dmPropertyNameToAPIKeyMapping = Stream
             .of(new String[][] { { "Video Frame Rate", "video_frame_rate" }, { "Video Bit Rate", "video_bit_rate" },
@@ -62,15 +64,14 @@ public class AssetMetadataServiceImpl implements AssetMetadataService {
         return searchResult.getHits();
     }
 
-    public ObjectNode getAssetMetadataJsonNode(ResourceResolver resourceResolver, ObjectMapper mapper, String assetPath,
-            Logger LOGGER) {
+    public ObjectNode getAssetMetadataJsonNode(ResourceResolver resourceResolver, ObjectMapper mapper, String assetPath) {
 
         ObjectNode assetNode = mapper.createObjectNode();
         assetPath = assetPath.replace("/jcr:content/metadata", StringUtils.EMPTY);
-        LOGGER.info("assetPath" + assetPath);
+        LOG.info("assetPath" + assetPath);
         Asset asset = resourceResolver.getResource(assetPath).adaptTo(Asset.class);
-        LOGGER.info(String.valueOf(asset != null));
-        S7Config s7Config = resolveScene7Configuration(asset, resourceResolver, s7ConfigResolver, LOGGER);
+        LOG.info(String.valueOf(asset != null));
+        S7Config s7Config = resolveScene7Configuration(asset, resourceResolver, s7ConfigResolver);
 
         if (null != s7Config) {
             String assetHandle = asset.getMetadataValue(DAMSCENE7ID);
@@ -89,14 +90,13 @@ public class AssetMetadataServiceImpl implements AssetMetadataService {
         return assetNode;
     }
 
-    public S7Config resolveScene7Configuration(Asset asset, ResourceResolver rr, S7ConfigResolver s7ConfigResolver,
-            Logger log) {
+    public S7Config resolveScene7Configuration(Asset asset, ResourceResolver rr, S7ConfigResolver s7ConfigResolver) {
         Resource resource = asset.adaptTo(Resource.class);
 
         String s7ConfigPath = s7ConfigResolver.getS7ConfigPathForResource(rr, resource);
         S7Config config = s7ConfigResolver.getS7Config(rr, s7ConfigPath);
         if (config == null) {
-            log.error("Could not resolve a S7Config from resource {}",
+            LOG.error("Could not resolve a S7Config from resource {}",
                     (resource != null ? resource.getPath() : "null"));
         }
 
