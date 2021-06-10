@@ -37,9 +37,6 @@ public class NewsEventBean {
     /** The legal information link. */
     private String legalInformationLink;
 
-    /** The manage preference link. */
-    private String managePreferenceLink;
-
     /** The locale. */
     private String locale;
 
@@ -246,25 +243,6 @@ public class NewsEventBean {
      */
     public void setLegalInformationLink(String legalInformationLink) {
         this.legalInformationLink = legalInformationLink;
-    }
-
-    /**
-     * Gets the manage preference link.
-     *
-     * @return the manage preference link
-     */
-    public String getManagePreferenceLink() {
-        return managePreferenceLink;
-    }
-
-    /**
-     * Sets the manage preference link.
-     *
-     * @param managePreferenceLink
-     *            the new manage preference link
-     */
-    public void setManagePreferenceLink(String managePreferenceLink) {
-        this.managePreferenceLink = managePreferenceLink;
     }
 
     /**
