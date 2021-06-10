@@ -190,7 +190,7 @@ public class NewsEventPageActivationListener implements EventHandler {
                 bean.setInterestAreas(interestAreas);
             }
         }
-        bean.setPageLink(resolver.map(pagePath));
+        bean.setPageLink(resolver.map(rootPath));
         bean.setNewsroomLink("#");
         bean.setLegalInformationLink("#");
         bean.setContactUsLink("#");
