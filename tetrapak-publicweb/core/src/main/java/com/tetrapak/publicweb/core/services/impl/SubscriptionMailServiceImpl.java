@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.event.jobs.JobManager;
@@ -70,7 +71,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                     String[] receipientArray = { mailAddress };
                     Map<String, String> emailParams = setEmailParams(newsEventbean, resolver);
                     Map<String, Object> properties = new HashMap<>();
-                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage()));
+                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage(),newsEventbean));
                     properties.put("emailParams", emailParams);
                     properties.put("receipientsArray", receipientArray);
                     if (jobMgr != null) {
@@ -111,6 +112,12 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         else{
             emailParams.put("imagePath","#");
         }
+        if(StringUtils.contains(newsEventbean.getTemplateType(), "/press-release")){
+            emailParams.put("templateType","Press Release");
+        }
+        else {
+            emailParams.put("templateType","News Article");
+        }
         emailParams.put("headerLogo",
                 GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
         emailParams.put("footerLogo",
@@ -121,8 +128,9 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
             emailParams.put("footerLogoBGC", DEFAULT_LOGO_BGC);
         }
         emailParams.put("pageLink", newsEventbean.getPageLink());
-        emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
         emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
+        emailParams.put("contactUsLink", newsEventbean.getContactUsLink());
+        emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
         emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
         return emailParams;
     }
@@ -134,9 +142,15 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      *            the language
      * @return the template path
      */
-    private String getTemplatePath(String language) {
-        return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH
-                + "subscriptionemail.html";
-    }
-
+    private String getTemplatePath(String language, NewsEventBean newsEventbean) {
+        String emailTemplate = null;
+        if (StringUtils.isNotEmpty(newsEventbean.getImagePath())){
+            emailTemplate = "subscriptionemail.html";
+        }
+        else {
+            emailTemplate = "subscriptionemailnoimage.html";
+        }
+            return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH
+                    + emailTemplate;
+        }
 }

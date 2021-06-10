@@ -49,6 +49,13 @@ public class NewsEventBean {
     /** Image Path */
     private String imagePath;
 
+
+    /** Contact us */
+    private String contactUsLink;
+
+    /** Template type */
+    private String templateType;
+
     /**
      * Gets the title.
      *
@@ -314,5 +321,45 @@ public class NewsEventBean {
      */
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    /**
+     * Gets the Contact us.
+     *
+     * @return the Contact us
+     */
+
+    public String getContactUsLink() {
+        return contactUsLink;
+    }
+
+    /**
+     * Set the Contact us.
+     *
+     * @param Contact us
+     */
+
+    public void setContactUsLink(String contactUsLink) {
+        this.contactUsLink = contactUsLink;
+    }
+
+    /**
+     * Gets the template .
+     *
+     * @return the template
+     */
+
+    public String getTemplateType() {
+        return templateType;
+    }
+
+    /**
+     * Set the Contact us.
+     *
+     * @param Contact us
+     */
+
+    public void setTemplateType(String templateType) {
+        this.templateType = templateType;
     }
 }

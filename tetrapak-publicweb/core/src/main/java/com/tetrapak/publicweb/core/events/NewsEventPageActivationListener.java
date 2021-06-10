@@ -6,7 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+import com.day.cq.search.QueryBuilder;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
@@ -179,6 +181,7 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setImagePath(Objects.nonNull(valueMap.get("imagePath", String.class))
                 ? valueMap.get("imagePath", String.class)
                 : StringUtils.EMPTY);
+        bean.setTemplateType(valueMap.get("cq:template", String.class));
         if (Objects.nonNull(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class))) {
             interestAreas = getInterestAreas(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class));
             if (Objects.nonNull(interestAreas)) {
@@ -188,6 +191,7 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setPageLink(resolver.map(pagePath));
         bean.setNewsroomLink("#");
         bean.setLegalInformationLink("#");
+        bean.setContactUsLink("#");
         bean.setHeaderLogo(getHeaderLogo(pagePath, resolver));
         setFooterLogo(bean, pagePath, resolver);
         return bean;
@@ -279,16 +283,20 @@ public class NewsEventPageActivationListener implements EventHandler {
      * @return the news event bean
      */
     private NewsEventBean addPageLinks(NewsEventBean bean, String pagePath, ResourceResolver resolver) {
+       // LOGGER.error("Request object in news event bean",request);
         String rootPath = LinkUtils.getRootPath(pagePath);
         final String path = rootPath + "/jcr:content/root/responsivegrid/subscriptionformconf";
         Resource subcriptionFormConfigResource = resolver.getResource(path);
         if (Objects.nonNull(subcriptionFormConfigResource)) {
             ValueMap valueMap = subcriptionFormConfigResource.getValueMap();
-            if (Objects.nonNull(valueMap.get("pressroomLink", String.class))) {
-                bean.setNewsroomLink(resolver.map(valueMap.get("pressroomLink", String.class)));
-            }
             if (Objects.nonNull(valueMap.get("legalInfoLink", String.class))) {
                 bean.setLegalInformationLink(resolver.map(valueMap.get("legalInfoLink", String.class)));
+            }
+            if (Objects.nonNull(valueMap.get("contactUsLink", String.class))) {
+                bean.setContactUsLink(resolver.map(valueMap.get("contactUsLink", String.class)));
+            }
+            if (Objects.nonNull(valueMap.get("newsroomLink", String.class))) {
+                bean.setNewsroomLink(resolver.map(valueMap.get("newsroomLink", String.class)));
             }
         }
         return bean;

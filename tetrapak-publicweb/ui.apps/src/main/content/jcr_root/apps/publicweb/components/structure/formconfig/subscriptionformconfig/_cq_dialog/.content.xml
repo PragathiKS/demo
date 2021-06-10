@@ -9,58 +9,13 @@
         <items jcr:primaryType="nt:unstructured">
             <subscriptionform
                 jcr:primaryType="nt:unstructured"
-                jcr:title="Subscription form"
+                jcr:title="Links"
                 sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                 <items jcr:primaryType="nt:unstructured">
                     <column
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <heading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Suggested to use characters less than recommended Limit: 37 chars considering translations"
-                                fieldLabel="Heading"
-                                name="./heading"
-                                value="Sign up to recieve our latest news"
-                                sling:hideResource="{Boolean}true"/>
-                            <summarytext
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                fieldDescription="Suggested to use characters less than recommended Limit: 260 chars considering translations"
-                                fieldLabel="Body Text"
-                                name="./descriptionText"
-                                useFixedInlineToolbar="{Boolean}true"
-                                sling:hideResource="{Boolean}true">
-                                <rtePlugins jcr:primaryType="nt:unstructured">
-                                    <format
-                                        jcr:primaryType="nt:unstructured"
-                                        features="*"/>
-                                    <links
-                                        jcr:primaryType="nt:unstructured"
-                                        features="modifylink,unlink"/>
-                                    <justify
-                                        jcr:primaryType="nt:unstructured"
-                                        features="-"/>
-                                    <lists
-                                        jcr:primaryType="nt:unstructured"
-                                        features="-"/>
-                                </rtePlugins>
-                                <uiSettings jcr:primaryType="nt:unstructured">
-                                    <cui jcr:primaryType="nt:unstructured">
-                                        <dialogFullScreen
-                                            jcr:primaryType="nt:unstructured"
-                                            toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
-                                    </cui>
-                                </uiSettings>
-                            </summarytext>
-                            <pressroomLink
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Press room page path"
-                                fieldLabel="Press Room Link"
-                                name="./pressroomLink"
-                                rootPath="/content/tetrapak/publicweb"/>
                             <legalInfoLink
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
@@ -68,14 +23,20 @@
                                 fieldLabel="Legal Information Link"
                                 name="./legalInfoLink"
                                 rootPath="/content/tetrapak/publicweb"/>
-                            <managePreferenceLink
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Manage preference page path"
-                                fieldLabel="Manage Preference Link"
-                                name="./managePreferenceLink"
-                                rootPath="/content/tetrapak/publicweb"
-                                sling:hideResource="{Boolean}true"/>
+                            <contactUsLink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                    fieldDescription="Contact us page path"
+                                    fieldLabel="Contact us Link"
+                                    name="./contactUsLink"
+                                    rootPath="/content/tetrapak/publicweb"/>
+                            <newsroomLink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                    fieldDescription="Press room page path"
+                                    fieldLabel="News Room Link"
+                                    name="./newsroomLink"
+                                    rootPath="/content/tetrapak/publicweb"/>
                         </items>
                     </column>
                 </items>

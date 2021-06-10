@@ -69,6 +69,7 @@ public class SubscriptionMailServiceImplTest {
         Mockito.when(bean.getTitle()).thenReturn("Test Title");
         Mockito.when(bean.getDescription()).thenReturn("Test Desription");
         Mockito.when(bean.getImagePath()).thenReturn("/content/dam/tetrapak/publicweb/gb/en/about/light-head-upscaled.jpg");
+        Mockito.when(bean.getTemplateType()).thenReturn("Press Release");
         String logoImagePath = "/content/dam/tetrapak/publicweb/gb/tetra-pak-two-liner.png";
         Mockito.when(bean.getHeaderLogo()).thenReturn(logoImagePath);
         Mockito.when(bean.getFooterLogo()).thenReturn(logoImagePath);

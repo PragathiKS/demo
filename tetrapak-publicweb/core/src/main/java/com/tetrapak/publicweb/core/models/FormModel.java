@@ -57,10 +57,6 @@ public class FormModel {
     @ValueMapValue
     private String thankyouDescriptionText;
 
-    /** The pressroom link. */
-    @ValueMapValue
-    private String pressroomLink;
-
     /** The legal info link. */
     @ValueMapValue
     private String legalInfoLink;
@@ -68,6 +64,14 @@ public class FormModel {
     /** The manage preference link. */
     @ValueMapValue
     private String managePreferenceLink;
+
+    /** Contact us **/
+    @ValueMapValue
+    private String contactUsLink;
+
+    /** The newsroom link. */
+    @ValueMapValue
+    private String newsroomLink;
 
     /**
      * Gets the heading.
@@ -169,15 +173,6 @@ public class FormModel {
     }
 
     /**
-     * Gets the pressroom link.
-     *
-     * @return the pressroom link
-     */
-    public String getPressroomLink() {
-        return pressroomLink;
-    }
-
-    /**
      * Gets the legal info link.
      *
      * @return the legal info link
@@ -193,6 +188,25 @@ public class FormModel {
      */
     public String getManagePreferenceLink() {
         return managePreferenceLink;
+    }
+
+    /**
+     * Gets the contact us link.
+     *
+     * @return the contact us link
+     */
+
+    public String getContactUsLink() {
+        return contactUsLink;
+    }
+
+    /**
+     * Gets the news room link.
+     *
+     * @return the news room link
+     */
+    public String getNewsroomLink() {
+        return newsroomLink;
     }
 
 }
