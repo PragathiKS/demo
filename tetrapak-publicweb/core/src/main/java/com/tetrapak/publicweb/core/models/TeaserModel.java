@@ -32,10 +32,10 @@ public class TeaserModel {
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(TeaserModel.class);
 
-    /** The request */
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-    
+
     /** The resource. */
     private Resource resource;
 
@@ -78,6 +78,10 @@ public class TeaserModel {
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
+
+    /** The enable carousel. */
+    @ValueMapValue
+    private String enableCarousel;
 
     /** The manual list. */
     @Inject
@@ -138,8 +142,7 @@ public class TeaserModel {
      * @return the manual list
      */
     public void getManualList() {
-        manualList.stream().forEach(model -> model
-                .setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)));
+        manualList.stream().forEach(model -> model.setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)));
         teaserList.addAll(manualList);
     }
 
@@ -225,6 +228,15 @@ public class TeaserModel {
      */
     public String getPwTheme() {
         return pwTheme;
+    }
+
+    /**
+     * Gets the enable carousel.
+     *
+     * @return the enable carousel
+     */
+    public String getEnableCarousel() {
+        return enableCarousel;
     }
 
     /**

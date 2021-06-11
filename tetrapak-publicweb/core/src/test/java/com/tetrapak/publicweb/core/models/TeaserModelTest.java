@@ -158,6 +158,7 @@ public class TeaserModelTest {
         assertEquals("View All", model.getLinkLabel());
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/search.html", model.getLinkPath());
         assertEquals("grayscale-white", model.getPwTheme());
+        assertEquals("true", model.getEnableCarousel());
         assertEquals("anchorId", model.getAnchorId());
         assertEquals("Anchor title", model.getAnchorTitle());
 
