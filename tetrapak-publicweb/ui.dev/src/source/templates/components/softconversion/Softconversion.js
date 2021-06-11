@@ -371,7 +371,7 @@ class Softconversion {
         if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'market-consent'){
           requestPayload[fieldName] = $('input[name="market-consent"]:checked').length > 0;
         }
-        if ($(this).prop('required') && (((fieldName !== 'market-consent') && requestPayload['typeOfVisitor'] === `customer-${$componentName}` && $(this).val() === '')  || ((fieldName === 'market-consent') && !$(this).prop('checked')))) {
+        if ($(this).prop('required') && (( requestPayload['typeOfVisitor'] === `customer-${$componentName}` && $(this).val() === ''))) {
           isvalid = false;
           const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
           let erLbl = '';
