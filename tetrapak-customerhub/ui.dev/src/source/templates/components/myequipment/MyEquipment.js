@@ -70,6 +70,10 @@ function _renderCountryFilters() {
             this.cache.$spinner.addClass('d-none');
             this.cache.$content.removeClass('d-none');
             this.cache.tableData = response.data;
+            this.cache.tableData = this.cache.tableData.map((item) => ({
+              ...item,
+              equipmentStatus: item.equipmentStatus || ''
+            }));
             this.cache.filteredTableData = [...this.cache.tableData];
             this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
             this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:this.cache.i18nKeys['country'] });
@@ -90,7 +94,7 @@ function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country, description,site,line,serialNumber;
+    let country, description,site,line,serialNumber,equipmentStatus;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
@@ -105,8 +109,11 @@ function _processKeys(keys, ob) {
       else if(i === 'serialNumber'){
         serialNumber = i;
       }
+      else if(i === 'equipmentStatus'){
+        equipmentStatus = i;
+      }
     }
-    return [country, site,line, description,serialNumber];
+    return [country, site,line, description,serialNumber,equipmentStatus];
   }
 }
 
@@ -141,6 +148,12 @@ function getKeyMap(key,i18nKeys){
       headerObj['keyLabel'] = i18nKeys['serialNumber'];
       headerObj['showTooltip'] = i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
+      break;
+    }
+    case 'equipmentStatus': {
+      headerObj['keyLabel'] = i18nKeys['equipmentStatus'];
+      headerObj['showTooltip'] = i18nKeys['equipmentStatus'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['equipmentStatus'];
       break;
     }
     default: {
@@ -364,6 +377,10 @@ class MyEquipment {
               this.cache.$spinner.addClass('d-none');
               this.cache.$content.removeClass('d-none');
               this.cache.filteredTableData = response.data;
+              this.cache.filteredTableData = this.cache.filteredTableData.map((item) => ({
+                ...item,
+                equipmentStatus: item.equipmentStatus || ''
+              }));
               renderPaginationTableData.call(
                 this,
                 _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
