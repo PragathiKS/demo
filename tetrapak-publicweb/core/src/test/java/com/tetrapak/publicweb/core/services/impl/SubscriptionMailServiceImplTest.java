@@ -70,7 +70,7 @@ public class SubscriptionMailServiceImplTest {
         Mockito.when(bean.getDescription()).thenReturn("Test Desription");
         Mockito.when(bean.getImagePath()).thenReturn("/content/dam/tetrapak/publicweb/gb/en/about/light-head-upscaled.jpg");
         Mockito.when(bean.getTemplateType()).thenReturn("Press Release");
-        String logoImagePath = "/content/dam/tetrapak/publicweb/gb/tetra-pak-two-liner.png";
+        String logoImagePath = "/content/dam/tetrapak/publicweb/en-za/tetra-pak-two-liner.png";
         Mockito.when(bean.getHeaderLogo()).thenReturn(logoImagePath);
         Mockito.when(bean.getFooterLogo()).thenReturn(logoImagePath);
         Mockito.when(bean.getFooterLogoBackground()).thenReturn("2,63,136");
@@ -78,7 +78,9 @@ public class SubscriptionMailServiceImplTest {
                 .thenReturn("https://www-qa.tetrapak.com/en-za/about-tetra-pak/news-and-events/news-room");
         Mockito.when(bean.getLegalInformationLink())
                 .thenReturn("https://www-qa.tetrapak.com/en-za/about-tetra-pak/legal-information");
+        Mockito.when(bean.getContactUsLink()).thenReturn("https://www-qa.tetrapak.com/en-za/contact-us");
         Mockito.when(bean.getLanguage()).thenReturn("en");
+        Mockito.when(bean.getRootPageLink()).thenReturn("https://www-qa.tetrapak.com/en-za");
         resolver = context.resourceResolver();
         Mockito.when(bean.getPageLink()).thenReturn(
                 "https://www-qa.tetrapak.com/en-za/about-tetra-pak/news-and-events/subscribe-email-scenario-11/susbcriber-email-test-101");
