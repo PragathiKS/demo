@@ -161,7 +161,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         else {
             emailTemplate = "subscriptionemailnoimage.html";
         }
-            return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH
+            return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH
                     + emailTemplate;
         }
 }
