@@ -373,6 +373,25 @@ public final class PWConstants {
     /** Constant ONLINE_HELP_CONTENT_PATH */
     public static final String ONLINE_HELP_CONTENT_PATH = "/content/online-help";
 
+    /** Constant SUBSCRIPTION_EMAIL_CTA_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_CTA_TEXT = "subscription.email.ctaText";
+
+    /** Constant SUBSCRIPTION_EMAIL_CONTACT_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_CONTACT_TEXT =  "subscription.email.contactText";
+
+    /** Constant SUBSCRIPTION_EMAIL_UNSUBSCRIBE_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_UNSUBSCRIBE_TEXT = "subscription.email.unsubscribeText";
+
+    /** Constant SUBSCRIPTION_EMAIL_PRIVILAGE_POLICY_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_PRIVILAGE_POLICY_TEXT = "subscription.email.privacyPolicyText";
+
+    /** Constant SUBSCRIPTION_EMAIL_KIND_REGARDS_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_KIND_REGARDS_TEXT = "subscription.email.kindRegardsText";
+
+    /** Constant SUBSCRIPTION_EMAIL_GENERIC_LINK_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_GENERIC_LINK_TEXT = "subscription.email.genericLinkText";
+
+
     /**
      * Instantiates a new PW constants.
      */

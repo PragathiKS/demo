@@ -70,7 +70,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                     String[] receipientArray = { mailAddress };
                     Map<String, String> emailParams = setEmailParams(newsEventbean, resolver);
                     Map<String, Object> properties = new HashMap<>();
-                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage(),newsEventbean.getImagePath()));
+                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage()));
                     properties.put("emailParams", emailParams);
                     properties.put("receipientsArray", receipientArray);
                     if (jobMgr != null) {
@@ -107,9 +107,12 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         if (StringUtils.isNotEmpty(newsEventbean.getImagePath())) {
         emailParams.put("imagePath",
                     GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getImagePath(), mediaService));
+        emailParams.put("imageTd","");
+        emailParams.put("noImageTd","hide");
         }
         else{
-            emailParams.put("imagePath","#");
+            emailParams.put("imageTd","hide");
+            emailParams.put("noImageTd","");
         }
         if(StringUtils.contains(newsEventbean.getTemplateType(), "press-release")){
             emailParams.put("templateType","Press Release");
@@ -131,6 +134,12 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
         emailParams.put("contactUsLink", newsEventbean.getContactUsLink());
         emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
+        emailParams.put("ctaText", newsEventbean.getCtaText());
+        emailParams.put("kindRegardsText",newsEventbean.getKindRegardsText());
+        emailParams.put("privacyPolicyText",newsEventbean.getPrivacyPolicyText());
+        emailParams.put("genericLinkText", newsEventbean.getGenericLinkText());
+        emailParams.put("unsubscribeText", newsEventbean.getUnsubscribeText());
+        emailParams.put("contactText", newsEventbean.getContactText());
         emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
         return emailParams;
     }
@@ -142,15 +151,9 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      *            the language
      * @return the template path
      */
-    private String getTemplatePath(String language, String imagePath) {
-        String emailTemplate = null;
-        if (StringUtils.isNotEmpty(imagePath)){
-            emailTemplate = "subscriptionemail.html";
-        }
-        else {
-            emailTemplate = "subscriptionemailnoimage.html";
-        }
+    private String getTemplatePath(String language) {
+
             return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH
-                    + emailTemplate;
+                    + "subscriptionemail.html";
         }
 }

@@ -1,11 +1,8 @@
 package com.tetrapak.publicweb.core.events;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
+import com.day.cq.i18n.I18n;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
@@ -13,10 +10,11 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.commons.osgi.Order;
+import org.apache.sling.commons.osgi.RankedServices;
+import org.apache.sling.i18n.ResourceBundleProvider;
 import org.osgi.framework.Constants;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
-import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
 import org.osgi.service.event.EventHandler;
@@ -52,7 +50,18 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                 Constants.SERVICE_DESCRIPTION
                         + "=This event handler listens the event on news and events page activation",
                 EventConstants.EVENT_TOPIC + "=" + ReplicationAction.EVENT_TOPIC, EventConstants.EVENT_FILTER
-                        + "=(paths=/content/tetrapak/publicweb/**/about-tetra-pak/news-and-events/**)" })
+                        + "=(paths=/content/tetrapak/publicweb/**/about-tetra-pak/news-and-events/**)" },
+        reference = {
+                @Reference(
+                        name="resourceBundleProviders",
+                        service = ResourceBundleProvider.class,
+                        cardinality = ReferenceCardinality.AT_LEAST_ONE,
+                        policy = ReferencePolicy.DYNAMIC,
+                        bind="bindResourceBundleProvider",
+                        unbind="unbindResourceBundleProvider"
+                )
+        })
+
 public class NewsEventPageActivationListener implements EventHandler {
 
     /** The Constant LOGGER. */
@@ -69,11 +78,27 @@ public class NewsEventPageActivationListener implements EventHandler {
     /** The pardot service. */
     @Reference
     private PardotService pardotService;
+
+    /** The i18n. */
+    private I18n i18n;
     
     /** The Constant PRESS_TEMPLATES. */
     private static final List<String> PRESS_TEMPLATES = Arrays.asList(
             "/conf/publicweb/settings/wcm/templates/press-release",
             "/conf/publicweb/settings/wcm/templates/news-article");
+
+    /** Resource bundle provider */
+    private final RankedServices<ResourceBundleProvider> resourceBundleProviders = new RankedServices<>(Order.ASCENDING);
+
+    /** binding resource bundle provider */
+    protected void bindResourceBundleProvider(final ResourceBundleProvider resourceBundleProvider, final Map<String, Object> props) {
+        resourceBundleProviders.bind(resourceBundleProvider, props);
+    }
+
+    /** unbinding resource bundle provider */
+    protected void unbindResourceBundleProvider(final ResourceBundleProvider resourceBundleProvider, final Map<String, Object> props) {
+        resourceBundleProviders.unbind(resourceBundleProvider, props);
+    }
 
     /**
      * Handle event.
@@ -171,6 +196,7 @@ public class NewsEventPageActivationListener implements EventHandler {
         Page page = pageManager.getPage(LinkUtils.getRootPath(rootPath));
         bean.setLanguage(PageUtil.getLanguageCode(page));
         bean.setLocale(PageUtil.getLocaleFromURL(page));
+        final Locale locale = PageUtil.getPageLocale(page);
         bean.setTitle(Objects.nonNull(valueMap.get("jcr:title", String.class)) ? valueMap.get("jcr:title", String.class)
                 : StringUtils.EMPTY);
         bean.setDescription(Objects.nonNull(valueMap.get("jcr:description", String.class))
@@ -192,7 +218,29 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setRootPageLink(resolver.map(rootPath));
         bean.setHeaderLogo(getHeaderLogo(pagePath, resolver));
         setFooterLogo(bean, pagePath, resolver);
+        bean.setCtaText(translate(PWConstants.SUBSCRIPTION_EMAIL_CTA_TEXT, locale));
+        bean.setContactText(translate(PWConstants.SUBSCRIPTION_EMAIL_CONTACT_TEXT,locale));
+        bean.setKindRegardsText(translate(PWConstants.SUBSCRIPTION_EMAIL_KIND_REGARDS_TEXT, locale));
+        bean.setPrivacyPolicyText(translate(PWConstants.SUBSCRIPTION_EMAIL_PRIVILAGE_POLICY_TEXT,locale));
+        bean.setUnsubscribeText(translate(PWConstants.SUBSCRIPTION_EMAIL_UNSUBSCRIBE_TEXT,locale));
+        bean.setGenericLinkText(translate(PWConstants.SUBSCRIPTION_EMAIL_GENERIC_LINK_TEXT,locale));
         return bean;
+    }
+
+    /** fetches the i18n keys according to the locale */
+    private String translate(String key, Locale locale) {
+        return I18n.get(getResourceBundle(locale), key);
+    }
+
+    private ResourceBundle getResourceBundle(Locale locale) {
+        for (ResourceBundleProvider provider : resourceBundleProviders){
+            final ResourceBundle resourceBundle = provider.getResourceBundle(locale);
+            if (resourceBundle != null) {
+                return resourceBundle;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -309,5 +357,4 @@ public class NewsEventPageActivationListener implements EventHandler {
         }
         return interestAreas;
     }
-
 }

@@ -55,6 +55,24 @@ public class NewsEventBean {
     /** Root Page link **/
     private String rootPageLink;
 
+    /** CTA Text **/
+    private String ctaText;
+
+    /** Contact Text **/
+    private String contactText;
+
+    /** Unsubscribe Text **/
+    private String unsubscribeText;
+
+    /** Privacy Policy Text **/
+    private String privacyPolicyText;
+
+    /** Kind Regards Text **/
+    private String kindRegardsText;
+
+    /** Generic Link Text **/
+    private String genericLinkText;
+
     /**
      * Gets the title.
      *
@@ -361,4 +379,113 @@ public class NewsEventBean {
     public void setRootPageLink(String rootPageLink) {
         this.rootPageLink = rootPageLink;
     }
+
+    /**
+     * Gets the CTA Text.
+     *
+     * @return the CTA Text
+     */
+    public String getCtaText() {
+        return ctaText;
+    }
+
+    /**
+     * Set the CTA Text.
+     *
+     * @param CTA Text
+     */
+    public void setCtaText(String ctaText) {
+        this.ctaText = ctaText;
+    }
+
+    /**
+     * Gets the Contact Text.
+     *
+     * @return the Contact Text
+     */
+    public String getContactText() {
+        return contactText;
+    }
+
+    /**
+     * Set the Contact Text.
+     *
+     * @param Contact Text
+     */
+    public void setContactText(String contactText) {
+        this.contactText = contactText;
+    }
+
+    /**
+     * Gets the Unsubscribe Text.
+     *
+     * @return the Unsubscribe Text
+     */
+    public String getUnsubscribeText() {
+        return unsubscribeText;
+    }
+
+    /**
+     * Set the Unsubscribe Text.
+     *
+     * @param Unsubscribe Text
+     */
+    public void setUnsubscribeText(String unsubscribeText) {
+        this.unsubscribeText = unsubscribeText;
+    }
+
+    /**
+     * Gets the Privacy Policy Text.
+     *
+     * @return the Privacy Policy Text
+     */
+    public String getPrivacyPolicyText() {
+        return privacyPolicyText;
+    }
+
+    /**
+     * Set the Privacy Policy Text.
+     *
+     * @param Root Privacy Policy Text
+     */
+    public void setPrivacyPolicyText(String privacyPolicyText) {
+        this.privacyPolicyText = privacyPolicyText;
+    }
+
+    /**
+     * Gets the Kind Regards Text.
+     *
+     * @return the Kind Regards Text
+     */
+    public String getKindRegardsText() {
+        return kindRegardsText;
+    }
+
+    /**
+     * Set the Kind Regards Text.
+     *
+     * @param Kind Regards Text
+     */
+    public void setKindRegardsText(String kindRegardsText) {
+        this.kindRegardsText = kindRegardsText;
+    }
+
+    /**
+     * Gets the Generic Link Text.
+     *
+     * @return the Generic Link Text
+     */
+    public String getGenericLinkText() {
+        return genericLinkText;
+    }
+
+    /**
+     * Set the Generic Link Text.
+     *
+     * @param Generic Link Text
+     */
+    public void setGenericLinkText(String genericLinkText) {
+        this.genericLinkText = genericLinkText;
+    }
+
 }
