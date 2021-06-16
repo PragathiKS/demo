@@ -103,12 +103,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
     private Map<String, String> setEmailParams(NewsEventBean newsEventbean, ResourceResolver resolver) {
         Map<String, String> emailParams = new HashMap<>();
         emailParams.put("title", newsEventbean.getTitle());
-        if(StringUtils.isNotEmpty(newsEventbean.getDescription())) {
-            emailParams.put("description", newsEventbean.getDescription());
-        }
-        else {
-            emailParams.put("trClass", "hide");
-        }
+        emailParams.put("description", newsEventbean.getDescription());
         if (StringUtils.isNotEmpty(newsEventbean.getImagePath())) {
         emailParams.put("imagePath",
                     GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getImagePath(), mediaService));
