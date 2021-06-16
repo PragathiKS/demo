@@ -37,14 +37,23 @@ public class NewsEventBean {
     /** The legal information link. */
     private String legalInformationLink;
 
-    /** The manage preference link. */
-    private String managePreferenceLink;
-
     /** The locale. */
     private String locale;
 
     /** The language. */
     private String language;
+
+    /** Image Path */
+    private String imagePath;
+
+    /** Contact us */
+    private String contactUsLink;
+
+    /** Template type */
+    private String templateType;
+
+    /** Root Page link **/
+    private String rootPageLink;
 
     /**
      * Gets the title.
@@ -237,25 +246,6 @@ public class NewsEventBean {
     }
 
     /**
-     * Gets the manage preference link.
-     *
-     * @return the manage preference link
-     */
-    public String getManagePreferenceLink() {
-        return managePreferenceLink;
-    }
-
-    /**
-     * Sets the manage preference link.
-     *
-     * @param managePreferenceLink
-     *            the new manage preference link
-     */
-    public void setManagePreferenceLink(String managePreferenceLink) {
-        this.managePreferenceLink = managePreferenceLink;
-    }
-
-    /**
      * Gets the locale.
      *
      * @return the locale
@@ -293,4 +283,82 @@ public class NewsEventBean {
         this.language = language;
     }
 
+    /**
+     * Gets the Aggregator Image.
+     *
+     * @return the Aggregator Image
+     */
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * Sets the Aggregator Image.
+     *
+     * @param Aggregator Image
+     *
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    /**
+     * Gets the Contact us.
+     *
+     * @return the Contact us
+     */
+
+    public String getContactUsLink() {
+        return contactUsLink;
+    }
+
+    /**
+     * Set the Contact us.
+     *
+     * @param Contact us
+     */
+
+    public void setContactUsLink(String contactUsLink) {
+        this.contactUsLink = contactUsLink;
+    }
+
+    /**
+     * Gets the template .
+     *
+     * @return the template
+     */
+
+    public String getTemplateType() {
+        return templateType;
+    }
+
+    /**
+     * Set the Contact us.
+     *
+     * @param Contact us
+     */
+
+    public void setTemplateType(String templateType) {
+        this.templateType = templateType;
+    }
+
+    /**
+     * Gets the Root Page Link.
+     *
+     * @return the Root Page Link
+     */
+    public String getRootPageLink() {
+        return rootPageLink;
+    }
+
+    /**
+     * Set the Root Page Link.
+     *
+     * @param Root Page Link
+     */
+
+    public void setRootPageLink(String rootPageLink) {
+        this.rootPageLink = rootPageLink;
+    }
 }

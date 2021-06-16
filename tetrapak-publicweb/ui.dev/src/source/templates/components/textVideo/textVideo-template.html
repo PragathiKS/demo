@@ -16,8 +16,8 @@
                data-sly-call="${title.heading_h3_template @ headingText=data.title, variant='regular'}"/>
         </div>
         <div class="pw-text-video__description d-none d-lg-block">${data.description @ context='html'}</div>
-        <div class="pw-text-video__link d-none d-lg-block" data-sly-test="${data.linkURL}">
-                <a data-sly-test="${data.linkTexti18n && (!isFormTypeAuthored && !isSoftConvEnabled)}"
+        <div class="pw-text-video__link d-none d-lg-block">
+                <a data-sly-test="${(data.linkURL && data.linkTexti18n) && (!isFormTypeAuthored && !isSoftConvEnabled)}"
                 href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textVideo-analytics"
                 title="${data.linkTexti18n}"
@@ -31,7 +31,7 @@
                 <span class="tpatom-link__text sly-text">${data.linkTexti18n @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
              </a>
 
-             <button data-sly-test="${(isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled)}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo text-left"
+             <button data-sly-test="${data.linkURL && ((isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled))}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo text-left"
                 data-link-section="button click"
                 data-link-name="${data.linkTexti18n}"
                 data-video-title="${data.title}"
@@ -85,8 +85,8 @@
                data-sly-call="${title.heading_h3_template @ headingText=data.title, variant='regular'}"/>
         </div>
         <div class="pw-text-video__description d-md-block d-lg-none">${data.description @ i18n,context='html'}</div>
-        <div class="pw-text-video__link d-md-block d-lg-none" data-sly-test="${data.linkURL}">
-          <a data-sly-test="${data.linkTexti18n && (!isFormTypeAuthored && !isSoftConvEnabled)}"
+        <div class="pw-text-video__link d-md-block d-lg-none">
+          <a data-sly-test="${(data.linkURL && data.linkTexti18n) && (!isFormTypeAuthored && !isSoftConvEnabled)}"
                 href="${data.linkURL}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textVideo-analytics"
                 title="${data.linkTexti18n}"
@@ -101,7 +101,7 @@
              </a>
 
 
-             <button data-sly-test="${(isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled)}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo text-left"
+             <button data-sly-test="${data.linkURL && ((isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled))}" class="tpatom-link tpatom-link--primary js-softconversion-pw-textvideo text-left"
                 data-link-section="button click"
                 data-link-name="${data.linkTexti18n}"
                 data-video-title="${data.title}"

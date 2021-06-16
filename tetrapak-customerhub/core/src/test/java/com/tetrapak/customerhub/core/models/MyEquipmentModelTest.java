@@ -7,6 +7,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
+import com.tetrapak.customerhub.core.mock.MockAPIGEEServiceImpl;
+import com.tetrapak.customerhub.core.services.APIGEEService;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -32,11 +34,17 @@ public class MyEquipmentModelTest {
 	/** The model. */
 	private MyEquipmentModel model;
 	
+	/** The apigeeService. */
+	private APIGEEService apigeeService;
+	
 	/**
 	 * Sets the up.
 	 */
 	@Before
 	public void setUp () {
+	    
+	    apigeeService = new MockAPIGEEServiceImpl();
+        aemContext.registerService(APIGEEService.class, apigeeService);
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		model = resource.adaptTo(MyEquipmentModel.class);
 	}
