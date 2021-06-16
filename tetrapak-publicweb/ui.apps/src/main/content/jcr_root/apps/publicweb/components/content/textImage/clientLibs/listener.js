@@ -16,7 +16,7 @@
         async: false});
       })();
       var responseData = response.responseJSON;
-      if((responseData.enableSoftcoversion == 'true') && ($('coral-select[name="./formType"]').val()==="enableSoftconversion")){
+      if((responseData.enableSoftcoversion == 'true') || ($('coral-select[name="./formType"]').val()==="enableSoftconversion")){
           $('coral-select[name="./formType"]').val("enableSoftconversion").change();
           $("div").find("[data-showhidetargetvalue='enableSoftconversion']").removeClass('hide');
 	  }
