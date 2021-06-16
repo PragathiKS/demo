@@ -44,12 +44,11 @@
                                     fieldLabel="Heading"
                                     name="./headingSubscription"/>
                             <apiurl
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldDescription="Provide pardot form handler URL. Valid URL starts with - https://go.tetrapak.com/"
-                                    fieldLabel="Pardot form handler URL"
-									name="./pardotUrlSubscription">																		
-							</apiurl>
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Provide pardot form handler URL. Valid URL starts with - https://go.tetrapak.com/"
+                                fieldLabel="Pardot form handler URL"
+                                name="./pardotUrlSubscription"/>                                							
                             <thankyou
                                     jcr:primaryType="nt:unstructured"
                                     jcr:title="Thank you section"
