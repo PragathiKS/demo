@@ -37,7 +37,7 @@
         if(dropdownValue==="enableSoftconversion" && !patterns.pardotUrlRegex.test(pardotUrl)) {
             gAuthor.ui.helpers.prompt({
                 title: "Invalid Pardot URL - Softconversion Form",
-                message: "Pardot URL for softconversion form should start with <b>https://go.tetrapak.com</b>",
+                message: "Pardot URL for softconversion form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
                 actions: [{
                     id: "CANCEL",
                     text: "Ok",
@@ -51,7 +51,7 @@
         }else if(dropdownValue==="enableSubscription" && !patterns.pardotUrlRegex.test(pardotUrlSubscription)){
 			gAuthor.ui.helpers.prompt({
 				title: "Invalid Pardot URL - Subscription Form",
-				message: "Pardot URL for subscription form should start with <b>https://go.tetrapak.com</b>",
+				message: "Pardot URL for subscription form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
 				actions: [{
 					id: "CANCEL",
 					text: "Ok",
