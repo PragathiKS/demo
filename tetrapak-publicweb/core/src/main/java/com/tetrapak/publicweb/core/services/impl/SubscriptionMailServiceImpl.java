@@ -70,7 +70,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                     String[] receipientArray = { mailAddress };
                     Map<String, String> emailParams = setEmailParams(newsEventbean, resolver);
                     Map<String, Object> properties = new HashMap<>();
-                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage()));
+                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage(),newsEventbean.getImagePath()));
                     properties.put("emailParams", emailParams);
                     properties.put("receipientsArray", receipientArray);
                     if (jobMgr != null) {
@@ -103,16 +103,18 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
     private Map<String, String> setEmailParams(NewsEventBean newsEventbean, ResourceResolver resolver) {
         Map<String, String> emailParams = new HashMap<>();
         emailParams.put("title", newsEventbean.getTitle());
-        emailParams.put("description", newsEventbean.getDescription());
+        if(StringUtils.isNotEmpty(newsEventbean.getDescription())) {
+            emailParams.put("description", newsEventbean.getDescription());
+        }
+        else {
+            emailParams.put("trClass", "hide");
+        }
         if (StringUtils.isNotEmpty(newsEventbean.getImagePath())) {
         emailParams.put("imagePath",
                     GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getImagePath(), mediaService));
-        emailParams.put("imageTd","");
-        emailParams.put("noImageTd","hide");
         }
         else{
-            emailParams.put("imageTd","hide");
-            emailParams.put("noImageTd","");
+            emailParams.put("imagePath","#");
         }
         if(StringUtils.contains(newsEventbean.getTemplateType(), "press-release")){
             emailParams.put("templateType","Press Release");
@@ -151,9 +153,15 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      *            the language
      * @return the template path
      */
-    private String getTemplatePath(String language) {
-
+    private String getTemplatePath(String language, String imagePath) {
+        String emailTemplate = null;
+        if (StringUtils.isNotEmpty(imagePath)){
+            emailTemplate = "subscriptionemail.html";
+        }
+        else {
+            emailTemplate = "subscriptionemailnoimage.html";
+        }
             return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH
-                    + "subscriptionemail.html";
+                    + emailTemplate;
         }
 }
