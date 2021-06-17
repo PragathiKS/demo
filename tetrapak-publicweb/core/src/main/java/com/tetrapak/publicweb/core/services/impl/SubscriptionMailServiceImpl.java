@@ -111,12 +111,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         else{
             emailParams.put("imagePath","#");
         }
-        if(StringUtils.contains(newsEventbean.getTemplateType(), "press-release")){
-            emailParams.put("templateType","Press Release");
-        }
-        else {
-            emailParams.put("templateType","News Article");
-        }
+        emailParams.put("templateType",newsEventbean.getTemplateType());
         emailParams.put("headerLogo",
                 GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
         emailParams.put("footerLogo",

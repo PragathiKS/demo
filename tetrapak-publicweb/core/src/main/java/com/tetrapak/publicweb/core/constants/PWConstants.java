@@ -391,6 +391,12 @@ public final class PWConstants {
     /** Constant SUBSCRIPTION_EMAIL_GENERIC_LINK_TEXT */
     public static final String SUBSCRIPTION_EMAIL_GENERIC_LINK_TEXT = "subscription.email.genericLinkText";
 
+    /** Constant SUBSCRIPTION_PRESS_TEMPLATE */
+    public static final String SUBSCRIPTION_PRESS_TEMPLATE = "subscription.press.template";
+
+    /** Constant SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE */
+    public static final String SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE = "subscription.newsarticle.template";
+
 
     /**
      * Instantiates a new PW constants.
