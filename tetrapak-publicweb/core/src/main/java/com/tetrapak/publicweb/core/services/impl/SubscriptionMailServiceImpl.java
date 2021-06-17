@@ -50,7 +50,6 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
     @Reference
     private I18nProvider i18nProvider;
 
-
     /** The Constant DEFAULT LOGO BACKGROUND RGB value . */
     private static final String DEFAULT_LOGO_BGC = "2,63,136";
 

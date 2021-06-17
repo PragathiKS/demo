@@ -2,7 +2,6 @@ package com.tetrapak.publicweb.core.events;
 
 import java.util.*;
 
-import com.day.cq.i18n.I18n;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
@@ -10,9 +9,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.commons.osgi.Order;
-import org.apache.sling.commons.osgi.RankedServices;
-import org.apache.sling.i18n.ResourceBundleProvider;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.Event;
