@@ -382,8 +382,8 @@ public final class PWConstants {
     /** Constant SUBSCRIPTION_EMAIL_UNSUBSCRIBE_TEXT */
     public static final String SUBSCRIPTION_EMAIL_UNSUBSCRIBE_TEXT = "pw.subscription.email.unsubscribeText";
 
-    /** Constant SUBSCRIPTION_EMAIL_PRIVILAGE_POLICY_TEXT */
-    public static final String SUBSCRIPTION_EMAIL_PRIVILAGE_POLICY_TEXT = "pw.subscription.email.privacyPolicyText";
+    /** Constant SUBSCRIPTION_EMAIL_PRIVACY_POLICY_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_PRIVACY_POLICY_TEXT = "pw.subscription.email.privacyPolicyText";
 
     /** Constant SUBSCRIPTION_EMAIL_KIND_REGARDS_TEXT */
     public static final String SUBSCRIPTION_EMAIL_KIND_REGARDS_TEXT = "pw.subscription.email.kindRegardsText";
@@ -395,7 +395,7 @@ public final class PWConstants {
     public static final String SUBSCRIPTION_PRESS_TEMPLATE = "pw.subscription.press.template";
 
     /** Constant SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE */
-    public static final String SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE = "subscription.newsarticle.template";
+    public static final String SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE = "pw.subscription.newsarticle.template";
 
 
     /**
