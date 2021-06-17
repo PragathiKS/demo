@@ -148,14 +148,13 @@
                 right: 0;
             }
             .icon {
-                &::before{
+                &::before {
                     font-size: 24px;
                 }
             }
         }
         .teaserMargin,
-        .teaserMarginL
-        {
+        .teaserMarginL {
             @include margin-bottom($margin-zero);
             @include padding-bottom($padding-zero);
             max-width: 100%;
