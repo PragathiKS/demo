@@ -114,7 +114,7 @@ class Subscriptionform {
 
 
   bindEvents() {
-    const { requestPayload, $submitBtn, $dropItem, $thankYouCTA } = this.cache;
+    const { requestPayload, $submitBtn, $dropItem, $thankYouCTA, $componentName } = this.cache;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('showSubscription-pw', this.showPopup);
     
@@ -174,9 +174,10 @@ class Subscriptionform {
 
     $thankYouCTA.click(function(e) {
       e.preventDefault();
-      const $parentTitle = $(this).closest('.thankyou').find('.descriptionTextThankyou p').html();
+      const $parentTitle = $('.'+$componentName).find('.pw-subscription__thankYouTitle').html();
       $(this).attr('data-parent-title', $parentTitle);
       getLinkClickAnalytics(e, 'parent-title', 'newsletter subscription form', '.thankyouTarget', false);
+      self.hidePopUp();
     });
   }
 
