@@ -1,11 +1,13 @@
 package com.tetrapak.publicweb.core.services.impl;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Locale;
 
-import com.adobe.agl.util.ULocale;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
