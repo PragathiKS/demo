@@ -71,12 +71,10 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         String status = PWConstants.STATUS_ERROR;
         try {
             if (Objects.nonNull(mailAddresses)) {
-
                 status = PWConstants.STATUS_SUCCESS;
-
                 PageManager pageManager = resolver.adaptTo(PageManager.class);
                 String rootPath = newsEventbean.getRootPath();
-                Page page = pageManager.getPage(LinkUtils.getRootPath(rootPath));
+                Page page = pageManager.getPage(rootPath);
                 final Locale locale = PageUtil.getPageLocale(page);
                 for (String mailAddress : mailAddresses) {
                     String[] receipientArray = { mailAddress };

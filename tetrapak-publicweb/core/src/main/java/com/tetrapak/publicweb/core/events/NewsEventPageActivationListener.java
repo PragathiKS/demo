@@ -166,7 +166,6 @@ public class NewsEventPageActivationListener implements EventHandler {
         Page page = pageManager.getPage(LinkUtils.getRootPath(rootPath));
         bean.setLanguage(PageUtil.getLanguageCode(page));
         bean.setLocale(PageUtil.getLocaleFromURL(page));
-        final Locale locale = PageUtil.getPageLocale(page);
         bean.setTitle(Objects.nonNull(valueMap.get("jcr:title", String.class)) ? valueMap.get("jcr:title", String.class)
                 : StringUtils.EMPTY);
         bean.setDescription(Objects.nonNull(valueMap.get("jcr:description", String.class))
