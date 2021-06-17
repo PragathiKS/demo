@@ -2,7 +2,6 @@ package com.tetrapak.publicweb.core.events;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,6 +52,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                         + "=This event handler listens the event on news and events page activation",
                 EventConstants.EVENT_TOPIC + "=" + ReplicationAction.EVENT_TOPIC, EventConstants.EVENT_FILTER
                         + "=(paths=/content/tetrapak/publicweb/**/about-tetra-pak/news-and-events/**)" })
+
 public class NewsEventPageActivationListener implements EventHandler {
 
     /** The Constant LOGGER. */
@@ -188,6 +188,7 @@ public class NewsEventPageActivationListener implements EventHandler {
                 bean.setInterestAreas(interestAreas);
             }
         }
+        bean.setRootPath(rootPath);
         bean.setPageLink(resolver.map(pagePath));
         bean.setRootPageLink(resolver.map(rootPath));
         bean.setHeaderLogo(getHeaderLogo(pagePath, resolver));
@@ -309,5 +310,4 @@ public class NewsEventPageActivationListener implements EventHandler {
         }
         return interestAreas;
     }
-
 }

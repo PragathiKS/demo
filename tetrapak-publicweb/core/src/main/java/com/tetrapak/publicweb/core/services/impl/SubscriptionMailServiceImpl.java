@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Locale;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.event.jobs.JobManager;
@@ -20,6 +24,8 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.SubscriptionMailService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
+
+import com.adobe.acs.commons.i18n.I18nProvider;
 
 /**
  * The Class SubscriptionMailServiceImpl.
@@ -43,6 +49,8 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
     @Reference
     private DynamicMediaService mediaService;
 
+    @Reference
+    private I18nProvider i18nProvider;
 
     /** The Constant DEFAULT LOGO BACKGROUND RGB value . */
     private static final String DEFAULT_LOGO_BGC = "2,63,136";
@@ -66,11 +74,15 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         try {
             if (Objects.nonNull(mailAddresses)) {
                 status = PWConstants.STATUS_SUCCESS;
+                PageManager pageManager = resolver.adaptTo(PageManager.class);
+                String rootPath = newsEventbean.getRootPath();
+                Page page = pageManager.getPage(rootPath);
+                final Locale locale = PageUtil.getPageLocale(page);
                 for (String mailAddress : mailAddresses) {
                     String[] receipientArray = { mailAddress };
-                    Map<String, String> emailParams = setEmailParams(newsEventbean, resolver);
+                    Map<String, String> emailParams = setEmailParams(newsEventbean, resolver,locale);
                     Map<String, Object> properties = new HashMap<>();
-                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage(),newsEventbean.getImagePath()));
+                    properties.put("templatePath", getTemplatePath(newsEventbean.getImagePath()));
                     properties.put("emailParams", emailParams);
                     properties.put("receipientsArray", receipientArray);
                     if (jobMgr != null) {
@@ -100,7 +112,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      *            the mail address
      * @return the map
      */
-    private Map<String, String> setEmailParams(NewsEventBean newsEventbean, ResourceResolver resolver) {
+    private Map<String, String> setEmailParams(NewsEventBean newsEventbean, ResourceResolver resolver, Locale locale) {
         Map<String, String> emailParams = new HashMap<>();
         emailParams.put("title", newsEventbean.getTitle());
         emailParams.put("description", newsEventbean.getDescription());
@@ -112,10 +124,10 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
             emailParams.put("imagePath","#");
         }
         if(StringUtils.contains(newsEventbean.getTemplateType(), "press-release")){
-            emailParams.put("templateType","Press Release");
+            emailParams.put("templateType",i18nProvider.translate(PWConstants.SUBSCRIPTION_PRESS_TEMPLATE, locale));
         }
         else {
-            emailParams.put("templateType","News Article");
+            emailParams.put("templateType",i18nProvider.translate(PWConstants.SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE, locale));
         }
         emailParams.put("headerLogo",
                 GlobalUtil.getImageUrlFromScene7(resolver, newsEventbean.getHeaderLogo(), mediaService));
@@ -131,6 +143,12 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         emailParams.put("legalInformationLink", newsEventbean.getLegalInformationLink());
         emailParams.put("contactUsLink", newsEventbean.getContactUsLink());
         emailParams.put("newsRoomLink", newsEventbean.getNewsroomLink());
+        emailParams.put("ctaText", i18nProvider.translate(PWConstants.SUBSCRIPTION_EMAIL_CTA_TEXT, locale));
+        emailParams.put("kindRegardsText",i18nProvider.translate(PWConstants.SUBSCRIPTION_EMAIL_KIND_REGARDS_TEXT, locale));
+        emailParams.put("privacyPolicyText",i18nProvider.translate(PWConstants.SUBSCRIPTION_EMAIL_PRIVACY_POLICY_TEXT,locale));
+        emailParams.put("genericLinkText", i18nProvider.translate(PWConstants.SUBSCRIPTION_EMAIL_GENERIC_LINK_TEXT,locale));
+        emailParams.put("unsubscribeText", i18nProvider.translate(PWConstants.SUBSCRIPTION_EMAIL_UNSUBSCRIBE_TEXT,locale));
+        emailParams.put("contactText", i18nProvider.translate(PWConstants.SUBSCRIPTION_EMAIL_CONTACT_TEXT,locale));
         emailParams.put(EmailServiceConstants.SUBJECT, newsEventbean.getTitle());
         return emailParams;
     }
@@ -142,7 +160,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      *            the language
      * @return the template path
      */
-    private String getTemplatePath(String language, String imagePath) {
+    private String getTemplatePath(String imagePath) {
         String emailTemplate = null;
         if (StringUtils.isNotEmpty(imagePath)){
             emailTemplate = "subscriptionemail.html";
@@ -150,7 +168,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
         else {
             emailTemplate = "subscriptionemailnoimage.html";
         }
-            return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH + language + PWConstants.SLASH
+            return PWConstants.SUBSCRIPTION_MAIL_TEMPLATE_ROOT_PATH + PWConstants.SLASH
                     + emailTemplate;
         }
 }
