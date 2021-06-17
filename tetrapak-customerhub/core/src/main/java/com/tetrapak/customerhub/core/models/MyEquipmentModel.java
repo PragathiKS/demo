@@ -139,14 +139,14 @@ public class MyEquipmentModel {
 	}
 
 	/**
-	 * Gets the list api.
+	 * Gets the equipment list api.
 	 *
-	 * @return the list api
+	 * @return the equipment list api
 	 */
-	public String getListApi() {
+	public String getEquipmentListApi() {
 		return equipmentListApi;
 	}
-	
+
 	/**
 	 * Gets the first.
 	 *
