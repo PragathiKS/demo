@@ -70,7 +70,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
                     String[] receipientArray = { mailAddress };
                     Map<String, String> emailParams = setEmailParams(newsEventbean, resolver);
                     Map<String, Object> properties = new HashMap<>();
-                    properties.put("templatePath", getTemplatePath(newsEventbean.getLanguage(),newsEventbean.getImagePath()));
+                    properties.put("templatePath", getTemplatePath(newsEventbean.getImagePath()));
                     properties.put("emailParams", emailParams);
                     properties.put("receipientsArray", receipientArray);
                     if (jobMgr != null) {
@@ -148,7 +148,7 @@ public class SubscriptionMailServiceImpl implements SubscriptionMailService {
      *            the language
      * @return the template path
      */
-    private String getTemplatePath(String language, String imagePath) {
+    private String getTemplatePath(String imagePath) {
         String emailTemplate = null;
         if (StringUtils.isNotEmpty(imagePath)){
             emailTemplate = "subscriptionemail.html";
