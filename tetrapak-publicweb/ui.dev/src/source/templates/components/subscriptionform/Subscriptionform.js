@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-import { validateFieldsForTags } from '../../../scripts/common/common';
+import { getLinkClickAnalytics, validateFieldsForTags } from '../../../scripts/common/common';
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -31,6 +31,8 @@ class Subscriptionform {
     this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
+    this.cache.mainHead = $($('.'+this.cache.$componentName).find('.pw-subscription__modalTitle')).html();
+    this.cache.$thankYouCTA = this.root.find('.thankyouTarget');
   }
 
   validEmail(email) {
@@ -83,7 +85,14 @@ class Subscriptionform {
     dataObj['country'] = this.cache.requestPayload['country'];
     dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
     dataObj['pardotUrl'] = pardotURL;
-    subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
+    subscriptionAnalytics(
+      this.cache.mainHead, {
+        'firstName': 'NA',
+        'lastName': 'NA',
+        'email': 'NA',
+        'country':dataObj.country,
+        'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked'
+      }, 'formcomplete', 'formload', 'Subscribe', []);
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
@@ -105,7 +114,7 @@ class Subscriptionform {
 
 
   bindEvents() {
-    const { requestPayload, $submitBtn, $dropItem } = this.cache;
+    const { requestPayload, $submitBtn, $dropItem, $thankYouCTA } = this.cache;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('showSubscription-pw', this.showPopup);
     
@@ -133,7 +142,7 @@ class Subscriptionform {
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === `email-${self.cache.$componentName}` && !self.validEmail($(this).val())) || ((fieldName === 'consent') && !$(this).prop('checked'))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
-            const erLbl = $(`#sf-step-1 label`)[0].textContent;
+            const erLbl = fieldName;
             errObj.push({
               formErrorMessage: errmsg,
               formErrorField: erLbl
@@ -150,7 +159,7 @@ class Subscriptionform {
         tab.find('.form-group, .formfield').removeClass('field-error');
         self.submitForm();
       }else {
-        subscriptionAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', 'Subscribe', errObj);
+        subscriptionAnalytics(self.cache.mainHead, {}, 'formerror', 'formclick', 'Subscribe', errObj);
       }
     });
 
@@ -163,6 +172,12 @@ class Subscriptionform {
       requestPayload['country'] = countryTitle;
     });
 
+    $thankYouCTA.click(function(e) {
+      e.preventDefault();
+      const $parentTitle = $(this).closest('.thankyou').find('.descriptionTextThankyou p').html();
+      $(this).attr('data-parent-title', $parentTitle);
+      getLinkClickAnalytics(e, 'parent-title', 'newsletter subscription form', '.thankyouTarget', false);
+    });
   }
 
   showPopup = () => {
@@ -170,6 +185,7 @@ class Subscriptionform {
     const { $modal } = $this.cache;
     this.resetModal();
     $modal.modal();
+    subscriptionAnalytics(this.cache.mainHead, {}, 'formstart', 'formload', '', []);
   }
 
   hidePopUp = () => {
@@ -191,14 +207,8 @@ class Subscriptionform {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.restObj = {};
-    this.mainHead = $($('#sf-step-1 .main-heading').find('h2')[0]).text().trim();
-    $('#sf-step-1 label').slice(0,1).each((i, v) => this.restObj[$(v).text()] = 'NA');
-    subscriptionAnalytics(this.mainHead, {}, 'formstart', 'formload', '', '', []);
     this.getCountryList();
   }
 }
-
-
 
 export default Subscriptionform;
