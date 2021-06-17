@@ -87,12 +87,12 @@ class Subscriptionform {
     dataObj['pardotUrl'] = pardotURL;
     subscriptionAnalytics(
       this.cache.mainHead, {
-        'firstName': 'NA',
-        'lastName': 'NA',
-        'email': 'NA',
-        'country':dataObj.country,
+        'E-mail': 'NA',
+        'First Name': 'NA',
+        'Last Name': 'NA',
+        'Country/Location':dataObj.country,
         'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked'
-      }, 'formcomplete', 'formload', 'Subscribe', []);
+      }, 'formcomplete', 'formload', []);
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
@@ -142,7 +142,10 @@ class Subscriptionform {
           if (($(this).prop('required') && $(this).val() === '') || (fieldName === `email-${self.cache.$componentName}` && !self.validEmail($(this).val())) || ((fieldName === 'consent') && !$(this).prop('checked'))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
-            const erLbl = fieldName;
+            let erLbl = $(this).closest('.formfield').find('label').html();
+            if(fieldName === 'consent') {
+              erLbl = 'Marketing Consent';
+            }
             errObj.push({
               formErrorMessage: errmsg,
               formErrorField: erLbl
@@ -159,7 +162,7 @@ class Subscriptionform {
         tab.find('.form-group, .formfield').removeClass('field-error');
         self.submitForm();
       }else {
-        subscriptionAnalytics(self.cache.mainHead, {}, 'formerror', 'formclick', 'Subscribe', errObj);
+        subscriptionAnalytics(self.cache.mainHead, {}, 'formerror', 'formclick', errObj);
       }
     });
 
@@ -186,7 +189,7 @@ class Subscriptionform {
     const { $modal } = $this.cache;
     this.resetModal();
     $modal.modal();
-    subscriptionAnalytics(this.cache.mainHead, {}, 'formstart', 'formload', '', []);
+    subscriptionAnalytics(this.cache.mainHead, {}, 'formstart', 'formload', []);
   }
 
   hidePopUp = () => {
