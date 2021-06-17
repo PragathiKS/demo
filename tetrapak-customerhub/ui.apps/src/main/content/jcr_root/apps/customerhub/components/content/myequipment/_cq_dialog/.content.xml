@@ -90,6 +90,12 @@
                                 fieldLabel="Last Label (i18N key)"
                                 name="./last"
                                 required="true"/>
+							<selectionFilter
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Selection Filter Label (i18N key)"
+                                name="./selectionFilter"
+                                required="true"/>
                             <customizeTable
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
