@@ -98,12 +98,12 @@ function _processKeys(keys, ob) {
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
-      }else if(i === 'siteName'){
+      }else if(i === 'site'){
         site = i;
-      }else if(i === 'lineName'){
+      }else if(i === 'line'){
         line = i;
       }
-      else if(i === 'equipmentDescription'){
+      else if(i === 'equipmentDesc'){
         description = i;
       }
       else if(i === 'serialNumber'){
@@ -126,19 +126,19 @@ function getKeyMap(key,i18nKeys){
       headerObj['tooltipText'] = i18nKeys['countryToolTip'];
       break;
     }
-    case 'siteName': {
+    case 'site': {
       headerObj['keyLabel'] = i18nKeys['site'];
       headerObj['showTooltip'] = i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['siteToolTip'];
       break;
     }
-    case 'lineName': {
+    case 'line': {
       headerObj['keyLabel'] = i18nKeys['line'];
       headerObj['showTooltip'] = i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['lineToolTip'];
       break;
     }
-    case 'equipmentDescription': {
+    case 'equipmentDesc': {
       headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
       headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
