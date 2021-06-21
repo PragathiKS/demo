@@ -41,13 +41,14 @@ public class AssetMetadataServiceImplTest {
     @Mock
     private S7ConfigResolver s7ConfigResolver;
     
+    @Mock
+    private S7Config s7Config;
+    
     @InjectMocks
     private final AssetMetadataServiceImpl assetMetadataServiceImpl = new AssetMetadataServiceImpl();
     
     public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
     
-    @Mock
-    private S7Config s7Config;
     
     private Resource resource;
     

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.sling.api.resource.ModifiableValueMap;
@@ -68,7 +69,7 @@ public class TestUtils {
 		
 	}
 
-	public static Resource setupAssetMetadataService(AemContext context,QueryBuilder builder,Scene7Service scene7Service,S7ConfigResolver s7ConfigResolver,S7Config s7Config) {
+	public static Resource setupAssetMetadataService(AemContext context,QueryBuilder builder,Scene7Service scene7Service,S7ConfigResolver s7ConfigResolver,S7Config s7Config) throws RepositoryException {
 	    
         context.registerService(QueryBuilder.class, builder);
         context.registerService(Scene7Service.class, scene7Service);
@@ -97,6 +98,7 @@ public class TestUtils {
         });
         SearchResult result = Mockito.mock(SearchResult.class);
         Hit hit = Mockito.mock(Hit.class);
+        Mockito.when(hit.getPath()).thenReturn(TestUtils.TEST_ASSET_PATH +"/jcr:content/metadata");
         List<Hit> hits = new ArrayList<Hit>();
         hits.add(hit);
         Mockito.when(result.getNodes()).thenReturn(Arrays.asList(resultNode).iterator());

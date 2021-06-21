@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.sling.api.resource.ResourceResolver;
-import org.slf4j.Logger;
 
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.scene7.api.S7Config;

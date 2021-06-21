@@ -32,9 +32,8 @@ import com.trs.core.services.TrsConfigurationService;
 import com.trs.core.utils.TrsUtils;
 
 /**
- * This servlet is responsible for importing taxonomy generated from Xyleme
- * System into AEM. It expects file input in the same format as ACS Commons Tag
- * Importer utility
+ * This servlet is responsible for fetching the AEM path corresponding to the
+ * asset file name provided as input
  */
 @Component(service = Servlet.class,
         property = { "sling.servlet.methods=" + HttpConstants.METHOD_GET,
@@ -43,15 +42,17 @@ import com.trs.core.utils.TrsUtils;
 @ServiceDescription("Asset Path Exporter Servlet")
 public class AssetPathExporterServlet extends SlingSafeMethodsServlet {
 
+    private static final long serialVersionUID = 3916097813018666824L;
     private static final Logger LOGGER = LoggerFactory.getLogger(AssetPathExporterServlet.class);
-    private static final long serialVersionUID = 1L;
+    private static final String QUERY_PARAMETER_NAME = "name";
+    private static final String QUERYBUILDER_PREDICATE_PATH = "path";
 
     @Reference
     private ResourceResolverFactory resolverFactory;
 
     @Reference
     private TrsConfigurationService trsConfig;
-    
+
     @Reference
     private AssetMetadataService assetMetadataService;
 
@@ -62,14 +63,13 @@ public class AssetPathExporterServlet extends SlingSafeMethodsServlet {
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse resp)
             throws ServletException, IOException {
 
+        LOGGER.trace("Entered AssetPathExporterServlet servlet");
         ResourceResolver resourceResolver = null;
-        final String assetName = request.getParameter("name");
-        LOGGER.info("Entered AssetMetadataExporterServlet servlet");
-        LOGGER.info(" Query param :" + request.getParameter("id"));
+        final String assetName = request.getParameter(QUERY_PARAMETER_NAME);
         try {
             resourceResolver = TrsUtils.getTrsResourceResolver(resolverFactory);
         } catch (LoginException e) {
-            LOGGER.error("", e);
+            LOGGER.error("Error while getting resource resolver : ", e);
         }
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode arrayNode = mapper.createArrayNode();
@@ -82,7 +82,7 @@ public class AssetPathExporterServlet extends SlingSafeMethodsServlet {
         /**
          * Configuring the Map for the predicate
          */
-        predicate.put("path", "/content/dam/training-services");
+        predicate.put("path", trsConfig.getAssetMetadataAPIBasePath());
         predicate.put("nodename", assetName);
 
         List<Hit> resultHits = assetMetadataService.executeQuery(resourceResolver, predicate);
@@ -91,11 +91,10 @@ public class AssetPathExporterServlet extends SlingSafeMethodsServlet {
 
             try {
                 ObjectNode assetNode = mapper.createObjectNode();
-
-                assetNode.put("path", hit.getPath());
+                assetNode.put(QUERYBUILDER_PREDICATE_PATH, hit.getPath());
                 arrayNode.add(assetNode);
             } catch (RepositoryException e) {
-                LOGGER.error("", e);
+                LOGGER.error("Error while getting querybuilder hit's path :", e);
             }
 
         }
@@ -108,6 +107,7 @@ public class AssetPathExporterServlet extends SlingSafeMethodsServlet {
 //        resp.getWriter().write("{\"customresponse\":\"sucess" + " with param value as :" + request.getParameter("id")
 //                + "  & dm value " + value + "\"}");
         resp.getWriter().write(assetPropertiesJson);
+        LOGGER.trace("Exiting AssetPathExporterServlet servlet");
     }
 
 }

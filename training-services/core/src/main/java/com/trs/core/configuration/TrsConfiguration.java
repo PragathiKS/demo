@@ -53,4 +53,12 @@ public @interface TrsConfiguration {
     @AttributeDefinition(name = "Xyleme Tags to AEM Tags mapping file path",
             description = "Xyleme Tags to AEM Tags mapping file path", type = AttributeType.STRING)
     String taxonomy_transformation_log_file_path() default "/content/dam/training-services/system/xyleme-tag-transformation-log.xlsx";
+    
+    @AttributeDefinition(name = "MLV ID JCR Property name",
+            description = "MLV ID JCR Property name", type = AttributeType.STRING)
+    String mlvid_property() default "dam:mlvId";
+    
+    @AttributeDefinition(name = "Asset Metadata API Base path",
+            description = "Asset Metadata API Base path", type = AttributeType.STRING)
+    String asset_metadata_api_base_path() default "/content/dam/training-services";
 }

@@ -25,5 +25,9 @@ public interface TrsConfigurationService {
     String getPageCreationLogFilePath();
     
     String getTaxonomyTransformationLogFilePath();
+    
+    String getMlvIdJCRPropName();
+    
+    String getAssetMetadataAPIBasePath();
 
 }

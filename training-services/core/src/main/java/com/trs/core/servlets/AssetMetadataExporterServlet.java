@@ -1,6 +1,7 @@
 package com.trs.core.servlets;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import javax.jcr.RepositoryException;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
+import org.apache.http.entity.ContentType;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.LoginException;
@@ -30,9 +32,7 @@ import com.trs.core.services.TrsConfigurationService;
 import com.trs.core.utils.TrsUtils;
 
 /**
- * This servlet is responsible for importing taxonomy generated from Xyleme
- * System into AEM. It expects file input in the same format as ACS Commons Tag
- * Importer utility
+ * This servlet is responsible for fetching selected metadata of an Asset
  */
 @Component(service = Servlet.class,
         property = { "sling.servlet.methods=" + HttpConstants.METHOD_GET,
@@ -41,8 +41,9 @@ import com.trs.core.utils.TrsUtils;
 @ServiceDescription("Asset Metadata Exporter Servlet")
 public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
 
+    private static final long serialVersionUID = 5985429522998460184L;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AssetMetadataExporterServlet.class);
-    private static final long serialVersionUID = 1L;
 
     @Reference
     private ResourceResolverFactory resolverFactory;
@@ -52,8 +53,7 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
 
     @Reference
     private AssetMetadataService assetMetadataService;
-    
-    
+
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse resp)
             throws ServletException, IOException {
@@ -66,12 +66,12 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
         try {
             resourceResolver = TrsUtils.getTrsResourceResolver(resolverFactory);
         } catch (LoginException e) {
-            LOGGER.error("",e);
+            LOGGER.error("Error while getting resource resolver : ", e);
         }
-        
+
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode arrayNode = mapper.createArrayNode();
-        
+
         /**
          * Map for the predicates
          */
@@ -81,32 +81,30 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
          * Configuring the Map for the predicate
          */
         LOGGER.info("This comment is only applicable for DEV. Please make sure dam:mlvId property is present");
-        predicate.put("path", "/content/dam/training-services");
+        predicate.put("path", trsConfig.getAssetMetadataAPIBasePath());
         predicate.put("nodename", "metadata");
-        predicate.put("property", "dam:mlvId");
+        predicate.put("property", trsConfig.getMlvIdJCRPropName());
         predicate.put("property.value", assetMlvId);
-        
+
         List<Hit> resultHits = assetMetadataService.executeQuery(resourceResolver, predicate);
-        
-        for(Hit hit : resultHits) {
-            
+
+        for (Hit hit : resultHits) {
+
             try {
                 assetPath = hit.getPath();
-                LOGGER.info(" hit : "+hit.getPath());
+                LOGGER.info(" hit : " + hit.getPath());
                 arrayNode.add(assetMetadataService.getAssetMetadataJsonNode(resourceResolver, mapper, assetPath));
             } catch (RepositoryException e) {
-                LOGGER.error("",e);
+                LOGGER.error("Error while getting querybuilder hit's path :", e);
             }
-            
+
         }
         String assetPropertiesJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(arrayNode);
         LOGGER.info(assetPropertiesJson);
-        
+
         resourceResolver.close();
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-//        resp.getWriter().write("{\"customresponse\":\"sucess" + " with param value as :" + request.getParameter("id")
-//                + "  & dm value " + value + "\"}");
+        resp.setContentType(ContentType.APPLICATION_JSON.getMimeType());
+        resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
         resp.getWriter().write(assetPropertiesJson);
     }
 
