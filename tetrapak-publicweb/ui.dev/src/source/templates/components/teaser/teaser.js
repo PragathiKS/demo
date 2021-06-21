@@ -48,7 +48,7 @@ class Teaser {
 
   adjustNavArrow = () => {
     const { $owlPrev, $owlNext,$teaserImage } = this.cache;
-    const imageHeight = $teaserImage[0].height;
+    const imageHeight = $teaserImage[0] && $teaserImage[0].height;
     $owlPrev.css('top', imageHeight/2 - 14);
     $owlNext.css('top', imageHeight/2 - 14);
   }
