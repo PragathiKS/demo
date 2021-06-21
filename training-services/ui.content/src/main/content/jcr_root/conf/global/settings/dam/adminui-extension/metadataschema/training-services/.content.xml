@@ -43,6 +43,7 @@
                                     sling:resourceType="dam/gui/components/admin/schemafield"
                                     fieldLabel="Title"
                                     name="./jcr:content/metadata/dc:title"
+									required="{Boolean}true"
                                     resourceType="granite/ui/components/coral/foundation/form/textfield">
                                     <granite:data
                                         jcr:primaryType="nt:unstructured"
@@ -56,6 +57,7 @@
                                     sling:resourceType="dam/gui/components/admin/schemafield"
                                     fieldLabel="Description"
                                     name="./jcr:content/metadata/dc:description"
+									required="{Boolean}true"
                                     resourceType="granite/ui/components/coral/foundation/form/textfield">
                                     <granite:data
                                         jcr:primaryType="nt:unstructured"

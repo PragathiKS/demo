@@ -163,6 +163,7 @@ public class AssetPageOpsServiceImpl implements AssetPageOpsService {
     public void validateAndSetPageProperties(Page page, Asset asset, Map<String, String> responseMap) {
 
         boolean isMissingProperty = false;
+        ModifiableValueMap pageProperties = page.getContentResource().adaptTo(ModifiableValueMap.class);
         Resource videoComponentResource = page.getContentResource("root/responsivegrid/video");
         ModifiableValueMap videoProperties = videoComponentResource.adaptTo(ModifiableValueMap.class);
         videoProperties.put(TrsConstants.SOURCE_ASSET_PATH, asset.getPath());
@@ -173,16 +174,23 @@ public class AssetPageOpsServiceImpl implements AssetPageOpsService {
             responseMap.put(STATUS, "Warning");
             missingProps.add("Missing Title");
             isMissingProperty = true;
+        }else {
+            pageProperties.put("jcr:title",asset.getMetadataValue(TrsConstants.ASSET_TITLE_PROPERTY));
         }
         if (StringUtils.isBlank(asset.getMetadataValue(TrsConstants.ASSET_DESCRIPTION_PROPERTY))) {
             responseMap.put(STATUS, "Warning");
             missingProps.add("Missing Description");
             isMissingProperty = true;
+        }else {
+            pageProperties.put("jcr:description",asset.getMetadataValue(TrsConstants.ASSET_DESCRIPTION_PROPERTY));
         }
         if (StringUtils.isNotBlank(asset.getMetadataValue(TrsConstants.ASSET_SCENE7_FILENAME_PROPERTY))) {
             videoProperties.put(TrsConstants.PAGE_SCENE7_FILENAME_PROPERTY,
                     asset.getMetadataValue(TrsConstants.ASSET_SCENE7_FILENAME_PROPERTY));
-        } else {
+        }else if(StringUtils.isNotBlank(asset.getMetadataValue(TrsConstants.ASSET_SCENE7_FILENAME_FALLBACK_PROPERTY))) {
+            videoProperties.put(TrsConstants.PAGE_SCENE7_FILENAME_PROPERTY,
+                    asset.getMetadataValue(TrsConstants.ASSET_SCENE7_FILENAME_FALLBACK_PROPERTY));
+        }else {
             responseMap.put(STATUS, "Error");
             missingProps.add("Video not uploaded to Dynamic Media!");
             isMissingProperty = true;
