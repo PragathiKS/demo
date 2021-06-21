@@ -133,6 +133,11 @@ module.exports = {
         all: true,
         assets: true
       }
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     })
   ],
   node: {

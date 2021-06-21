@@ -55,6 +55,9 @@ public class NewsEventBean {
     /** Root Page link **/
     private String rootPageLink;
 
+    /** Root Path **/
+    private String rootPath;
+
     /**
      * Gets the title.
      *
@@ -360,5 +363,24 @@ public class NewsEventBean {
 
     public void setRootPageLink(String rootPageLink) {
         this.rootPageLink = rootPageLink;
+    }
+
+
+    /**
+     * Gets the rootpath as string.
+     *
+     * @return the rootpath as string
+     */
+    public String getRootPath() {
+        return rootPath;
+    }
+
+    /**
+     * Set the rootpath as string
+     *
+     * @param rootpath as string
+     */
+    public void setRootPath(String rootPath) {
+        this.rootPath = rootPath;
     }
 }
