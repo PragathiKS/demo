@@ -90,11 +90,11 @@
                                 fieldLabel="Last Label (i18N key)"
                                 name="./last"
                                 required="true"/>
-							<selectionFilter
+							<hideAndShowCta
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Selection Filter Label (i18N key)"
-                                name="./selectionFilter"
+                                fieldLabel="Hide And Show Cta Label (i18N key)"
+                                name="./hideAndShowCta"
                                 required="true"/>
                             <customizeTable
                                 jcr:primaryType="nt:unstructured"
