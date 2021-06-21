@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import 'bootstrap';
-
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
@@ -20,6 +19,8 @@ class ContactUs {
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
     this.cache.$radio = this.root.find('input[type=radio][name="purposeOfContactOptions"]');
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$formInfo = this.root.find('form');
+    this.cache.$isFormStart = false;
     this.cache.countryList = [];
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -159,7 +160,6 @@ class ContactUs {
       if (isvalid && !honeyPotFieldValue) {
         onSubmitClickAnalytics(tab);
         self.submitForm();
-
       }
     });
 
@@ -175,8 +175,19 @@ class ContactUs {
       $dropItem.removeClass('active');
       $(this).addClass('active');
     });
+  }
 
-    onLoadTrackAnalytics();
+  analyticsFormLoad() {
+    const self = this;
+    const formElements = $(this.cache.$formInfo).find('input, button, select, textarea');
+    formElements.each(function(i, val) {
+      $(val).on('click', function () {
+        if (!self.cache.$isFormStart) {
+          self.cache.$isFormStart = true;
+          onLoadTrackAnalytics();
+        }
+      });
+    });
   }
 
   init() {
@@ -184,6 +195,7 @@ class ContactUs {
     this.initCache();
     this.bindEvents();
     this.getCountryList();
+    this.analyticsFormLoad();
   }
 }
 

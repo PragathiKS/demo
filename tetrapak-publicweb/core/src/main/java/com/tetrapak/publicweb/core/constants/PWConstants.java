@@ -363,6 +363,40 @@ public final class PWConstants {
 
     /** Constant WEBURL */
     public static final String WEBURL = "weburl";
+    
+    /** Constant DS_CONTENT_PATH */
+    public static final String DS_CONTENT_PATH = "/content/design-system";
+    
+    /** Constant DS_CONTENT_DAM_PATH */
+    public static final String DS_CONTENT_DAM_PATH = "/content/dam/design-system";
+    
+    /** Constant ONLINE_HELP_CONTENT_PATH */
+    public static final String ONLINE_HELP_CONTENT_PATH = "/content/online-help";
+
+    /** Constant SUBSCRIPTION_EMAIL_CTA_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_CTA_TEXT = "pw.subscription.email.ctaText";
+
+    /** Constant SUBSCRIPTION_EMAIL_CONTACT_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_CONTACT_TEXT =  "pw.subscription.email.contactText";
+
+    /** Constant SUBSCRIPTION_EMAIL_UNSUBSCRIBE_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_UNSUBSCRIBE_TEXT = "pw.subscription.email.unsubscribeText";
+
+    /** Constant SUBSCRIPTION_EMAIL_PRIVACY_POLICY_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_PRIVACY_POLICY_TEXT = "pw.subscription.email.privacyPolicyText";
+
+    /** Constant SUBSCRIPTION_EMAIL_KIND_REGARDS_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_KIND_REGARDS_TEXT = "pw.subscription.email.kindRegardsText";
+
+    /** Constant SUBSCRIPTION_EMAIL_GENERIC_LINK_TEXT */
+    public static final String SUBSCRIPTION_EMAIL_GENERIC_LINK_TEXT = "pw.subscription.email.genericLinkText";
+
+    /** Constant SUBSCRIPTION_PRESS_TEMPLATE */
+    public static final String SUBSCRIPTION_PRESS_TEMPLATE = "pw.subscription.press.template";
+
+    /** Constant SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE */
+    public static final String SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE = "pw.subscription.newsarticle.template";
+
 
     /**
      * Instantiates a new PW constants.

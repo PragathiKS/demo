@@ -2,17 +2,22 @@ package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
 import com.tetrapak.publicweb.core.services.impl.PardotServiceImpl;
+
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 /**
@@ -72,12 +77,13 @@ public class SubscriptionFormModelTest {
         final Map<String, Object> pardotConfig = new HashMap<>();
         initializeConfig(pardotConfig, "pardotsubscriptionServiceUrl", "http://pardotURL", PardotService.class);
         
+        MockSlingHttpServletRequest request = context.request();
         context.registerService(CountryDetailService.class, countryService);
         final Map<String, Object> countryConfig = new HashMap<>();
         initializeConfig(countryConfig, "getPardotCountriesCFRootPath", "/content/dam/tetrapak/publicweb/cfm/countries", CountryDetailService.class);
 
         resource = context.currentResource(RESOURCE);
-        model = resource.adaptTo(modelClass);
+        model = request.adaptTo(modelClass);
     }
 
     /**

@@ -2,7 +2,6 @@ package com.tetrapak.publicweb.core.events;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,6 +52,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                         + "=This event handler listens the event on news and events page activation",
                 EventConstants.EVENT_TOPIC + "=" + ReplicationAction.EVENT_TOPIC, EventConstants.EVENT_FILTER
                         + "=(paths=/content/tetrapak/publicweb/**/about-tetra-pak/news-and-events/**)" })
+
 public class NewsEventPageActivationListener implements EventHandler {
 
     /** The Constant LOGGER. */
@@ -176,18 +176,22 @@ public class NewsEventPageActivationListener implements EventHandler {
         bean.setDescription(Objects.nonNull(valueMap.get("jcr:description", String.class))
                 ? valueMap.get("jcr:description", String.class)
                 : StringUtils.EMPTY);
+        bean.setImagePath(Objects.nonNull(valueMap.get("imagePath", String.class))
+                ? valueMap.get("imagePath", String.class)
+                : StringUtils.EMPTY);
+        bean.setTemplateType(Objects.nonNull(valueMap.get("cq:template", String.class))
+                ? valueMap.get("cq:template", String.class)
+                : StringUtils.EMPTY);
         if (Objects.nonNull(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class))) {
             interestAreas = getInterestAreas(valueMap.get(PWConstants.CQ_TAGS_PROPERTY, String[].class));
             if (Objects.nonNull(interestAreas)) {
                 bean.setInterestAreas(interestAreas);
             }
         }
+        bean.setRootPath(rootPath);
         bean.setPageLink(resolver.map(pagePath));
-        bean.setNewsroomLink("#");
-        bean.setLegalInformationLink("#");
-        bean.setManagePreferenceLink("#");
+        bean.setRootPageLink(resolver.map(rootPath));
         bean.setHeaderLogo(getHeaderLogo(pagePath, resolver));
-        bean.setHeroImage(getBannerImage(pagePath, resolver));
         setFooterLogo(bean, pagePath, resolver);
         return bean;
     }
@@ -242,31 +246,6 @@ public class NewsEventPageActivationListener implements EventHandler {
     }
 
     /**
-     * Gets the banner image.
-     *
-     * @param pagePath
-     *            the page path
-     * @param resolver
-     *            the resolver
-     * @return the banner image
-     */
-    private String getBannerImage(String pagePath, ResourceResolver resolver) {
-        String path = pagePath + "/jcr:content/root/responsivegrid";
-        Resource resource = resolver.getResource(path);
-        Iterator<Resource> children = resource.listChildren();
-        while (children.hasNext()) {
-            Resource child = children.next();
-            if (child.getName().startsWith("banner") && child.isResourceType("publicweb/components/content/banner")) {
-                ValueMap valueMap = child.getValueMap();
-                if (Objects.nonNull(valueMap.get(PWConstants.FILE_REFERENCE, String.class))) {
-                    return valueMap.get(PWConstants.FILE_REFERENCE, String.class);
-                }
-            }
-        }
-        return StringUtils.EMPTY;
-    }
-
-    /**
      * Adds the page links.
      *
      * @param bean
@@ -283,14 +262,14 @@ public class NewsEventPageActivationListener implements EventHandler {
         Resource subcriptionFormConfigResource = resolver.getResource(path);
         if (Objects.nonNull(subcriptionFormConfigResource)) {
             ValueMap valueMap = subcriptionFormConfigResource.getValueMap();
-            if (Objects.nonNull(valueMap.get("pressroomLink", String.class))) {
-                bean.setNewsroomLink(resolver.map(valueMap.get("pressroomLink", String.class)));
-            }
             if (Objects.nonNull(valueMap.get("legalInfoLink", String.class))) {
                 bean.setLegalInformationLink(resolver.map(valueMap.get("legalInfoLink", String.class)));
             }
-            if (Objects.nonNull(valueMap.get("managePreferenceLink", String.class))) {
-                bean.setManagePreferenceLink(resolver.map(valueMap.get("managePreferenceLink", String.class)));
+            if (Objects.nonNull(valueMap.get("contactUsLink", String.class))) {
+                bean.setContactUsLink(resolver.map(valueMap.get("contactUsLink", String.class)));
+            }
+            if (Objects.nonNull(valueMap.get("newsroomLink", String.class))) {
+                bean.setNewsroomLink(resolver.map(valueMap.get("newsroomLink", String.class)));
             }
         }
         return bean;
@@ -331,5 +310,4 @@ public class NewsEventPageActivationListener implements EventHandler {
         }
         return interestAreas;
     }
-
 }

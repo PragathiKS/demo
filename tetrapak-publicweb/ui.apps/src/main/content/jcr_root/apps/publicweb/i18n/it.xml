@@ -174,7 +174,7 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.typeofvisitor"
-        sling:message="Motivo della visita di oggi"/>
+        sling:message="Motivi della visita di oggi"/>
     <pw.form.label.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
@@ -182,11 +182,11 @@
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
-        sling:message="Paese"/>
+        sling:message="Paese/località"/>
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
-        sling:message="Selezionare il paese"/>
+        sling:message="Selezionare il paese/la località"/>
     <pw.form.label.email
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.email"
@@ -270,7 +270,7 @@
     <pw.searchResults.emptySearchText
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.emptySearchText"
-        sling:message="Provare di nuovo a inserire un testo di ricerca nel campo in alto"/>
+        sling:message="Provare a inserire di nuovo un testo di ricerca nel campo in alto"/>
     <pw.searchResults.image
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.searchResults.image"

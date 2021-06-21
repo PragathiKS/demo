@@ -33,6 +33,7 @@
 					"jcr:created": "Mon Apr 13 2020 10:49:59 GMT+0530",
 					"maxTeasers": "12",
 					"pwTheme": "grayscale-white",
+					"enableCarousel": "true",
 					"tags": [
 					"tetrapak:publicweb/product/type/product-a"
 					],

@@ -1,0 +1,339 @@
+.tp-my-equipment {
+    &__modal-content {
+        max-height: 500px;
+        overflow: scroll;
+    }
+    &__header-wrapper {
+        @include margin-bottom($margin-l);
+        display: flex;
+        justify-content: space-between;
+    }
+    &__filter-button {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-md);
+        @include margin-right($margin-sm);
+        border: 1px solid $color-congress-blue;
+        color: $color-congress-blue;
+        box-sizing: border-box;
+        border-radius: 22px;
+        &:hover {
+            border: 2px solid $color-congress-blue;
+            font-weight: 500;
+            &.active {
+                border-width: 2px;
+                font-weight: 700;
+            }
+        }
+        &.active {
+            border-width: 2px;
+            font-weight: 700;
+        }
+    }
+
+    &__heading {
+        @include font-size($font-xl);
+        @include line-height(40px, $font-xl);
+    }
+
+    &__search-count {
+        @include padding($padding-md $padding-zero);
+        @include margin($margin-md $margin-zero);
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        color: $color-congress-blue;
+        border-top: 1px solid $color-congress-blue;
+        border-bottom: 1px solid $color-congress-blue;
+    }
+
+    &__filter-wrapper {
+        display: flex;
+    }
+
+    &__modal-body {
+        @include padding($padding-zero $padding-l);
+    }
+
+    &__table {
+        overflow: scroll;
+        table {
+            position: relative;
+            border-collapse: separate;
+        }
+        th {
+            position: sticky;
+            top: 0;
+            padding: 16px;
+            background: $color-white;
+            border-bottom-color: $color-mercury;
+            &.hide {
+                display: none;
+            }
+            button {
+                font-weight: 500;
+            }
+        }
+        td {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            padding: 16px;
+            &.hide {
+                display: none;
+            }
+        }
+        tr {
+            &:last-child {
+                td {
+                    border-bottom: 0;
+                }
+            }
+        }
+        .dashed-border {
+            text-decoration: underline;
+            text-decoration-style: dashed;
+        }
+    }
+    input[type='checkbox'] {
+        &:checked ~ .tpatom-checkbox__icon {
+            border: 1px solid $color-congress-blue;
+            &::before {
+                color: $color-congress-blue;
+            }
+        }
+    }
+
+    &__remove-button {
+        color: $color-congress-blue;
+    }
+
+    .modal-footer > :not(:first-child) {
+        @include margin-left($margin-l);
+    }
+
+    .tpatom-checkbox__label {
+        @include margin-bottom($margin-md);
+    }
+
+    .tpatom-checkbox__text {
+        color: $color-black;
+    }
+
+    &__modal-header {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        color: $color-black;
+    }
+
+    &__header-action-text {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        color: $color-congress-blue;
+    }
+    &__header-action-wrapper {
+        position: relative;
+    }
+
+    &__header-mobile {
+        display: flex;
+    }
+
+    &__header-actions {
+        display: none;
+        &.show {
+            @include padding($padding-l);
+            display: flex;
+            position: absolute;
+            right: 0;
+            background: $color-wild-sand;
+            border-radius: 4px;
+            min-width: 256px;
+            span {
+                color: $color-tundora;
+            }
+        }
+    }
+
+    .icon {
+        color: $color-congress-blue;
+        &.left {
+            transform: rotate(-180deg);
+        }
+        &.icon-pagination {
+            &::before {
+                width: 8px;
+            }
+        }
+    }
+    .icon-Hide {
+        display: none;
+    }
+
+    &__customise-table-action {
+        display: flex;
+        cursor: pointer;
+        &:hover * {
+            color: $color-sky-blue;
+        }
+    }
+
+    &__pagination-container {
+        @include padding-top($padding-md);
+    }
+
+    .pagination-icon-wrapper {
+        display: flex;
+        &.icon-left {
+            span {
+                @include margin-left($margin-sm);
+            }
+        }
+        &.icon-right {
+            span {
+                @include margin-left($margin-sm);
+            }
+        }
+    }
+
+    .paginationjs-first,
+    .paginationjs-last {
+        display: flex;
+        align-items: center;
+    }
+
+    .paginationjs.paginationjs-theme-tetrapak {
+        .paginationjs-pages {
+            ul {
+                display: flex;
+                align-items: center;
+            }
+
+            li.paginationjs-ellipsis {
+                a {
+                    min-width: 24px;
+                }
+            }
+
+            li.paginationjs-prev,
+            li.paginationjs-next {
+                width: 24px;
+                text-align: center;
+                a {
+                    min-width: 24px;
+                    cursor: pointer;
+                }
+            }
+
+            li.paginationjs-prev {
+                @include margin-left($margin-l);
+                i {
+                    &::before {
+                        transform: rotate(-180deg);
+                    }
+                }
+            }
+
+            li {
+                border: 0;
+                a {
+                    color: $color-congress-blue;
+                    height: 24px;
+                    line-height: 24px;
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+                &.paginationjs-next {
+                    @include margin-right($margin-l);
+                    border-right: 0;
+                }
+                &:last-child {
+                    border-right: 0;
+                }
+            }
+
+            li.paginationjs-page {
+                a {
+                    color: $color-congress-blue;
+                    height: 24px;
+                    width: 24px;
+                    border-radius: 4px;
+                    min-width: 24px;
+                    line-height: 24px;
+                }
+
+                &.active {
+                    a {
+                        color: $color-white;
+                        background: $color-congress-blue;
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$desktop} {
+        &__header-mobile {
+            display: none;
+        }
+        &__header-actions {
+            display: flex;
+        }
+        .icon-Hide {
+            @include padding-right($padding-sm);
+            display: flex;
+        }
+        &__customise-table-action {
+            display: flex;
+            line-height: 40px;
+            align-items: center;
+        }
+    }
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+.bs-tooltip-bottom {
+    @include padding($padding-sm $padding-zero);
+    .arrow {
+        &::before {
+            border-width: 0 8px 8px;
+            border-bottom-color: $color-wild-sand;
+        }
+    }
+}
+
+.tooltip {
+    .arrow {
+        width: 16px;
+        height: 16px;
+        border-top: 1px solid $color-mercury;
+        border-left: 1px solid $color-mercury;
+        background: $color-wild-sand;
+        transform: rotate(45deg);
+        &::before {
+            display: none;
+        }
+    }
+
+}
+.tooltip-inner {
+    @include font-size($font-sm);
+    @include line-height($font-m-md, $font-sm);
+    @include padding($padding-l);
+    border: 1px solid $color-mercury;
+    color: $color-tundora;
+    font-size: $font-sm;
+    max-width: 246px;
+    text-align: left;
+    background-color: $color-wild-sand;
+    border-radius: 4px;
+}
+
+.tooltip-header {
+    @include margin-bottom($margin-sm);
+    @include font-size($font-baseline);
+    @include line-height($font-l, $font-baseline);
+    display: block;
+    font-weight: 700;
+}

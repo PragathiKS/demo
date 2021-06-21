@@ -6,6 +6,8 @@ import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -24,6 +26,9 @@ public class TextVideoModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+    
+    /** The resource. */
+    private Resource resource;
 
     /** The sling settings service. */
     @OSGiService
@@ -105,9 +110,9 @@ public class TextVideoModel {
     private String pwDisplay;
 
 
-    /** The enable softcoversion. */
+    /** The enable forms. */
     @ValueMapValue
-    private String enableSoftcoversion;
+    private String formType;
 
     /** The Constant YOUTUBE_URL_PREFIX. */
     private static final String YOUTUBE_URL_PREFIX = "https://www.youtube.com/embed/";
@@ -115,11 +120,19 @@ public class TextVideoModel {
     /** The Constant AUTHOR. */
     private static final String AUTHOR = "author";
 
+    /** The enable softconversion. */
+    @ValueMapValue
+    private String enableSoftcoversion;
+
     /**
      * The init method.
      */
     @PostConstruct
     protected void init() {
+        resource = request.getResource();
+        final ValueMap vMap = resource.getValueMap();
+        enableSoftcoversion = vMap.get("enableSoftcoversion", StringUtils.EMPTY);
+        formType = vMap.get("formType", StringUtils.EMPTY);
         if (StringUtils.isNotEmpty(linkURL)) {
             linkURL = LinkUtils.sanitizeLink(linkURL, request);
         }
@@ -317,21 +330,42 @@ public class TextVideoModel {
     }
 
     /**
-     * Gets the enable softcoversion.
-     *
-     * @return the enable softcoversion
-     */
-    public String getEnableSoftcoversion() {
-        return enableSoftcoversion;
-    }
-
-    /**
      * Gets the soft conversion data.
      *
      * @return the soft conversion data
      */
     public SoftConversionModel getSoftConversionData() {
         return request.adaptTo(SoftConversionModel.class);
+    }
+
+
+    /**
+     * Gets the subscription form data.
+     *
+     * @return the subscription form data
+     */
+    public SubscriptionFormModel getSubscriptionData() {
+        return request.adaptTo(SubscriptionFormModel.class);
+    }
+
+    /**
+     * Gets the enable Form Type.
+     *
+     * @return the enable formType
+     */
+
+    public String getFormType() {
+        return formType;
+    }
+
+
+    /**
+     * Gets the enable softcoversion.
+     *
+     * @return the enable softcoversion
+     */
+    public String getEnableSoftcoversion() {
+        return enableSoftcoversion;
     }
 
 }

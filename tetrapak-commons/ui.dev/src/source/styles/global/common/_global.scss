@@ -36,20 +36,21 @@ $text-tags: ('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'secti
 body {
     background: $color-mercury;
     color: $color-text;
-    font-family: $font-light;
+    font-family: $font-monsterrat;
     -webkit-text-size-adjust: 100%;
     min-height: 100vh;
 }
 
 a {
     color: $color-congress-blue;
-    font-family: $font-light;
+    font-family: $font-monsterrat;
     display: inline-block;
     text-decoration: none;
     outline: 0;
     transition: all $anim-speed-quick $anim-ease;
 
     &:hover {
+        color: $color-sky-blue;
         text-decoration: none;
     }
 }

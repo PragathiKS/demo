@@ -7,7 +7,8 @@
 
     &__select-customer-label {
         @include padding($padding-md 0);
-        font-family: $font-light;
+        font-family: $font-monsterrat;
+        font-weight: 400;
 
         @media #{$desktop} {
             @include padding($padding-l 0 $padding-sm);
@@ -33,7 +34,8 @@
 
     &__account,
     &__address-title {
-        font-family: $font-bold;
+        font-family: $font-monsterrat;
+        font-weight: 700;
     }
 
     &__filters {

@@ -38,7 +38,7 @@
     }
 
     &__cell {
-
+        font-weight: 500;
         &,
         &heading {
             @include padding($padding-sm);
@@ -52,8 +52,7 @@
             @include font-size($font-baseline);
             @include line-height(24px, $font-baseline);
             border-bottom: 1px solid $color-boulder;
-            font-family: $font-bold;
-            font-weight: normal;
+            font-weight: 500;
             position: relative;
         }
     }

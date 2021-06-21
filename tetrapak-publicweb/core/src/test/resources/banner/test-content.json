@@ -32,6 +32,7 @@
 			"pwLinkTheme":"download",
 			"headingTag":"h1",
 			"pwCardTheme":"gray",
+			"enableSoftcoversion":"true",
 			"anchorId":"test",
 			"anchorTitle":"title",
 			"imageCrop":"103,146,629,672"

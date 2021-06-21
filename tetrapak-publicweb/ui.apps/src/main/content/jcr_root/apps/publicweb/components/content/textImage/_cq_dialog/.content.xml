@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
     jcr:title="Text &amp; Image"
     sling:resourceType="cq/gui/components/authoring/dialog">
@@ -84,7 +84,7 @@
                             <linkUrl
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                fieldDescription="Link to destination path"
+                                fieldDescription="Link to destination path. Do not configure CTA in case subscription form needs to be enabled."
                                 fieldLabel="Link path"
                                 name="./linkURL"
                                 rootPath="/content"/>
@@ -121,10 +121,67 @@
                     </column>
                 </items>
             </design>
-            <form
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/coral/foundation/include"
-                path="/apps/publicweb/components/content/softconversion/cq:dialog/content/items/form"/>
+            <selectForms
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Select form"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <formType
+                                    granite:class="cq-dialog-dropdown-showhide"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Select Form"
+                                    name="./formType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Default"
+                                            value=""/>
+                                    <enableSoftconversion
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Enable Soft Conversion"
+                                            value="enableSoftconversion"/>
+                                    <enableSubscription
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Enable Subscription"
+                                            value="enableSubscription"/>
+                                </items>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-dialog-dropdown-showhide-target=".formType-showhide-target"/>
+                            </formType>
+                            <softConversion granite:class="hide formType-showhide-target"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <granite:data jcr:primaryType="nt:unstructured"
+                                              showhidetargetvalue="enableSoftconversion"/>
+                                <items jcr:primaryType="nt:unstructured">
+                                    <form
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                                            path="/apps/publicweb/components/content/softconversion/cq:dialog/content/items/form/items/column"/>
+                                </items>
+                            </softConversion>
+                            <subscriptionForm granite:class="hide formType-showhide-target"
+                                              jcr:primaryType="nt:unstructured"
+                                              sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <granite:data jcr:primaryType="nt:unstructured"
+                                              showhidetargetvalue="enableSubscription"/>
+                                <items jcr:primaryType="nt:unstructured">
+                                    <form
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                                            path="/apps/publicweb/components/content/subscriptionform/cq:dialog/content/items/form/items/column"/>
+                                </items>
+                            </subscriptionForm>
+                        </items>
+                    </column>
+                </items>
+            </selectForms>
         </items>
     </content>
 </jcr:root>

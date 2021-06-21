@@ -4,8 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-import { validateFieldsForTags } from '../../../scripts/common/common';
-
+import { getLinkClickAnalytics, validateFieldsForTags } from '../../../scripts/common/common';
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -13,47 +12,33 @@ class Subscriptionform {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
-    this.cache.businessformapi = this.root.find('form.pw-form-subscriptionForm');
-    this.cache.$submitBtn = $('form.pw-form-subscriptionForm button[type="submit"]', this.root);
-    this.cache.$inputEmail = $('form.pw-form-subscriptionForm  input[type="email"]', this.root);
+    this.cache.$modal = this.root.parent().find('.js-subscription-modal');
+    this.cache.$componentName = this.root.find('input[type="hidden"][name="ComponentNameSubscribe"]').val();
+    this.cache.$parentComponent = this.root.find('input[type="hidden"][name="parentComponentSubscribe"]').val();
+    this.cache.businessformapi = this.root.find(`form.pw-form-subscriptionForm-${this.cache.$componentName}`);
+    this.cache.$submitBtn = this.root.find('button[type="submit"]');
     this.cache.communicationTypes = this.root.find('.communication-type');
     this.cache.communicationError = this.root.find('.communication-error');
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$dropdownButton = $('.dropdown-menu, .dropdown-toggle', this.root);
     this.cache.countryList = [];
-    this.cache.areaOfInterest = $('.i18n-keys',this.root).data('i18n').split(',').map(function(item) {
-      return item.trim();
-    });
     this.cache.requestPayload = {
-      'emailSubscription': '',
       'consent' :'',
-      'types-communication':[],
-      'interestArea':this.cache.areaOfInterest,
       'country':'',
       'pageurl': window.location.href
     };
-
+    this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
+    this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
+    this.cache.mainHead = $($('.'+this.cache.$componentName).find('.pw-subscription__modalTitle')).html();
+    this.cache.$thankYouCTA = this.root.find('.thankyouTarget');
   }
 
   validEmail(email) {
     return REG_EMAIL.test(email);
   }
-
-  selectCommunicationHandler = () => {
-    const self= this;
-    const communicationObj={};
-    const {requestPayload,communicationTypes} = this.cache;
-    requestPayload['types-communication'] = [];
-    communicationTypes.each(function(){
-      if($(this).is(':checked')){
-        const val=$(this).val();
-        requestPayload['types-communication'].push($(this).val());
-        communicationObj[val]= 'Checked';
-      }
-      self.restObj =Object.assign(self.restObj,communicationObj);
-    });
-  }
-
+  
   /**
    * key down search in case of country field
    * @param {object} event event
@@ -81,27 +66,33 @@ class Subscriptionform {
 
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
+    const pardotURL = this.cache.businessformapi.data('sf-pardot-url');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
     const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
     const langCode = this.cache.businessformapi.data('sf-langcode');
-    const pardot_extra_field = $('#pardot_extra_field_sf').val();
 
     const dataObj = {};
     if($('input[name="consent"]').is(':checked')) {
       dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
     }
-    dataObj['email'] = this.cache.requestPayload.emailSubscription;
-    dataObj['pardot_extra_field'] = pardot_extra_field;
+    dataObj['email'] = this.cache.requestPayload[`email-${this.cache.$componentName}`];
+    dataObj['firstName'] = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
+    dataObj['lastName'] = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
+    dataObj['pardot_extra_field'] = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
     dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
-    dataObj['types-communication'] = this.cache.requestPayload['types-communication'];
-    dataObj['interestArea'] = this.cache.requestPayload['interestArea'];
     dataObj['country'] = this.cache.requestPayload['country'];
     dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
-
-    subscriptionAnalytics(this.mainHead, { ...this.restObj,'country':dataObj.country, 'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked' }, 'formcomplete', 'formload', 'Step 1', 'Subscribe', []);
-
+    dataObj['pardotUrl'] = pardotURL;
+    subscriptionAnalytics(
+      this.cache.mainHead, {
+        'E-mail': 'NA',
+        'First Name': 'NA',
+        'Last Name': 'NA',
+        'Country/Location':dataObj.country,
+        'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked'
+      }, 'formcomplete', 'formload', []);
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
@@ -110,53 +101,51 @@ class Subscriptionform {
       dataType: 'html'
     }).done(
       () => {
+        $('.pw-subscription__modalTitle').hide();
+        $('.pw-subscription__thankYouTitle').show();
         $('.sf-tab-pane', this.root).removeClass('active');
         $('#sf-step-final', this.root).addClass('active');
-        $('.serviceError').removeClass('d-block');
-        $('#sf-step-final', this.root)[0].scrollIntoView({block:'center'});
-        $('html, body').animate({
-          scrollTop: $('#sf-step-final').offset().top - 150
-        });
+        $('.serviceError').hide();
       }
     ).fail(() => {
-      $('.serviceError').addClass('d-block');
+      $('.serviceError').show();
     });
   }
 
 
   bindEvents() {
-    const { requestPayload, $submitBtn, $dropItem } = this.cache;
+    const { requestPayload, $submitBtn, $dropItem, $thankYouCTA, $componentName } = this.cache;
+    this.root.on('click', '.js-close-btn', this.hidePopUp)
+      .on('showSubscription-pw', this.showPopup);
+    
     const self = this;
     $submitBtn.click(function (e) {
       e.preventDefault();
       e.stopPropagation();
-      self.selectCommunicationHandler();
+
       let isvalid = true;
       const errObj = [];
       const tab = $(this).closest('.tab-content-steps');
       const input = tab.find('input');
-      if(requestPayload['types-communication'].length === 0){
-        isvalid = false;
-        self.cache.communicationError.addClass('field-error-communication');
-      } else {
-        isvalid = true;
-        self.cache.communicationError.removeClass('field-error-communication');
-      }
+      
       if (!$(this).hasClass('previousbtn') && (input.length > 0)) {
         $('input:not(.communication-type), textarea', tab).each(function () {
           const fieldName = $(this).attr('name');
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
-          $('div.' + fieldName).text($(this).val());
+          $('div.'+fieldName).text($(this).val());
           if (fieldName in self.cache.requestPayload) {
             requestPayload[fieldName] = newSafeValues;
           }
           if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
             requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailSubscription' && !self.validEmail($(this).val()))) {
+          if (($(this).prop('required') && $(this).val() === '') || (fieldName === `email-${self.cache.$componentName}` && !self.validEmail($(this).val())) || ((fieldName === 'consent') && !$(this).prop('checked'))) {
             isvalid = false;
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
-            const erLbl = $(`#sf-step-1 label`)[0].textContent;
+            let erLbl = $(this).closest('.formfield').find('label').html();
+            if(fieldName === 'consent') {
+              erLbl = 'Marketing Consent';
+            }
             errObj.push({
               formErrorMessage: errmsg,
               formErrorField: erLbl
@@ -173,7 +162,7 @@ class Subscriptionform {
         tab.find('.form-group, .formfield').removeClass('field-error');
         self.submitForm();
       }else {
-        subscriptionAnalytics(self.mainHead, {}, 'formerror', 'formclick', 'Step 1', 'Subscribe', errObj);
+        subscriptionAnalytics(self.cache.mainHead, {}, 'formerror', 'formclick', errObj);
       }
     });
 
@@ -186,19 +175,44 @@ class Subscriptionform {
       requestPayload['country'] = countryTitle;
     });
 
+    $thankYouCTA.click(function(e) {
+      e.preventDefault();
+      const $parentTitle = $('.'+$componentName).find('.pw-subscription__thankYouTitle').html();
+      $(this).attr('data-parent-title', $parentTitle);
+      getLinkClickAnalytics(e, 'parent-title', 'newsletter subscription form', '.thankyouTarget', false);
+      self.hidePopUp();
+    });
   }
+
+  showPopup = () => {
+    const $this = this;
+    const { $modal } = $this.cache;
+    this.resetModal();
+    $modal.modal();
+    subscriptionAnalytics(this.cache.mainHead, {}, 'formstart', 'formload', []);
+  }
+
+  hidePopUp = () => {
+    const $this = this;
+    $this.root.modal('hide');
+    this.resetModal();
+  }
+
+  resetModal = () => {
+    /* Reset modal */
+    $('.pw-subscription__modalTitle').show();
+    $('.pw-subscription__thankYouTitle').hide();
+    $('.sf-tab-pane', this.root).addClass('active');
+    $('#sf-step-final', this.root).removeClass('active');
+    $('.serviceError').hide();
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.restObj = {};
-    this.mainHead = $($('#sf-step-1 .main-heading').find('h2')[0]).text().trim();
-    $('#sf-step-1 label').slice(0,1).each((i, v) => this.restObj[$(v).text()] = 'NA');
-    subscriptionAnalytics(this.mainHead, {}, 'formstart', 'formload', '', '', []);
     this.getCountryList();
   }
 }
-
-
 
 export default Subscriptionform;

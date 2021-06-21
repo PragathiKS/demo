@@ -20,6 +20,11 @@ class TextVideo {
       getLinkClickAnalytics(e,'video-title','Text & Video','.js-softconversion-pw-textvideo', false);
       $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
     });
+
+    this.root.find('.js-subscription-pw-textvideo').on('click', (e) => {
+      getLinkClickAnalytics(e,'video-title','Text & Video','.js-subscription-pw-textvideo', false);
+      $('body').find('.'+this.cache.componentName).trigger('showSubscription-pw');
+    });
   }
 
 

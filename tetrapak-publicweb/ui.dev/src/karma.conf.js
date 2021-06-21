@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
 const argv = require('yargs').argv;
@@ -104,6 +105,13 @@ module.exports = function (config) {
       node: {
         fs: 'empty'
       },
+      plugins: [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery'
+        })
+      ],
       resolve: {
         mainFields: ['main', 'module'],
         alias: {
