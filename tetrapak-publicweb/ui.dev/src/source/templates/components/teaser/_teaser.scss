@@ -139,17 +139,15 @@
             .owl-prev {
                 transform: rotate(-180deg);
                 position: absolute;
-                top: calc(50% - 36px);
                 left: 0;
             }
             .owl-next {
                 position: absolute;
-                top: calc(50% - 36px);
                 right: 0;
             }
             .icon {
                 &::before {
-                    font-size: 24px;
+                    font-size: $font-l;
                 }
             }
         }
@@ -159,30 +157,50 @@
             @include padding-bottom($padding-zero);
             max-width: 100%;
         }
-        @media #{$desktop} {
-            @include padding($padding-zero $padding-l);
-            margin: 0 auto;
-            width: calc(100% - 48px);
-        }
         .owl-stage {
-            @include margin-bottom($margin-xxxl);
+            @include margin-bottom($margin-l);
             display: flex;
-            & > .active {
-                .carousal-wrapper {
-                    border: 0 solid $color-mercury;
-                }
-                & ~ .active {
-                    .carousal-wrapper {
-                        border-left-width: 1px;
-                    }
-                }
-            }
         }
         .carousal-wrapper {
             height: 100%;
         }
         .rightbar {
             border: 0;
+        }
+        @media #{$desktop} {
+            @include padding($padding-zero $padding-l);
+            margin: 0 auto;
+            width: calc(100% - 48px);
+            .owl-stage {
+                @include margin-bottom($margin-xxxl);
+                & > .active {
+                    .carousal-wrapper {
+                        border: 0 solid $color-mercury;
+                    }
+                    & ~ .active {
+                        .carousal-wrapper {
+                            border-left-width: 1px;
+                        }
+                    }
+                }
+            }
+        }
+        @media #{$mobile} {
+            .owl-nav {
+                display: none;
+            }
+            .carousal-wrapper {
+                border: 0 solid $color-mercury;
+                padding-right: 0;
+
+            }
+            .active {
+                .carousal-wrapper {
+                    border-right-width: 1px;
+                    padding-left: 0;
+                    padding-right: 15px;
+                }
+            }
         }
     }
 }
