@@ -12,35 +12,40 @@ class Teaser {
     this.cache.$teaserLink = this.root.find('.js-teaser-analytics');
     this.cache.$teaserImage = this.root.find('.js-teaser-analytics img');
     this.cache.$owl = this.root.find('.owl-carousel');
+    this.cache.option = {
+      loop: true,
+      nav: true,
+      onResize: this.onResize,
+      onInitialized: this.onInitialized,
+      navText:[
+        '<i class="icon icon-Navigation_Right_pw"></i>',
+        '<i class="icon icon-Navigation_Right_pw"></i>'],
+      responsive: {
+        0: {
+          items: 1
+        },
+        1024: {
+          items: 3
+        }
+      }
+    };
   }
   bindEvents() {
     this.cache.$teaserLink.on('click', this.trackAnalytics);
-    const that = this;
     // Initialize carousal for teaser
-    this.cache.$owl.each(function(){
-      $(this).owlCarousel({
-        stagePaddingRight: 62,
-        loop: true,
-        nav: true,
-        onInitialized: that.onInitialized,
-        navText:[
-          '<i class="icon icon-Navigation_Right_pw"></i>',
-          '<i class="icon icon-Navigation_Right_pw"></i>'],
-        responsive: {
-          0: {
-            items: 1
-          },
-          1024: {
-            items: 3
-          }
-        }
-      });
-    });
-
+    this.carousalInitialization();
   }
 
   /**
-   * Initialization of Teaser navigation
+   * carousalInitialization of Teaser
+  */
+   carousalInitialization = () => {
+     const widthOnResize = window.innerWidth;
+     this.cache.option['stagePaddingRight'] = widthOnResize > 1023 ? 0 : 62;
+     this.cache.$owl.owlCarousel(this.cache.option);
+   }
+  /**
+   * After Initialization of Teaser navigation
   */
   onInitialized = () => {
     this.cache.$owlPrev = this.root.find('.owl-prev');
@@ -51,6 +56,18 @@ class Teaser {
       this.adjustNavArrow();
     });
   }
+
+  /**
+   * ReInitialization of Teaser navigation on Resize
+  */
+   onResize = () => {
+     const widthOnResize = window.innerWidth;
+     this.cache.option['stagePaddingRight'] = widthOnResize > 1023 ? 0 : 62;
+     const { $owl } = this.cache;
+     $owl.trigger('destroy.owl.carousel');
+     $owl.html($owl.find('.owl-stage-outer').html()).removeClass('owl-loaded');
+     $owl.owlCarousel(this.cache.option);
+   }
 
   /**
    * Arrow analytics tracking

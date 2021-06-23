@@ -316,7 +316,7 @@ export const addLinkAttr = (linkClass) => {
   });
 };
 
-export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redirect=true,dataObj) => {
+export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redirect=true,dataObj={}) => {
   const $target = $(e.target);
   const $this = $target.closest(linkClass);
   const downloadtype = $this.data('download-type');
