@@ -316,17 +316,17 @@ export const addLinkAttr = (linkClass) => {
   });
 };
 
-export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redirect=true) => {
+export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redirect=true,dataObj) => {
   const $target = $(e.target);
   const $this = $target.closest(linkClass);
   const downloadtype = $this.data('download-type');
   let trackingKey = 'linkClick';
-  let linkParentTitle = `${$this.data('anchor-type')}_${$this.data(
+  let linkParentTitle = ('linkParentTitle' in dataObj) ? (dataObj.linkParentTitle || '') : `${$this.data('anchor-type')}_${$this.data(
     parentTitle
   )}`;
-  let linkSection = $this.data('link-section');
-  const linkName = $this.data('link-name');
-  const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
+  let linkSection = dataObj.linkSection || $this.data('link-section');
+  const linkName = dataObj.linkName || $this.data('link-name');
+  const linkType = dataObj.linkType || ($this.attr('target') === '_blank' ? 'external' : 'internal');
 
   const trackingObj = {};
   const eventObject = {};
