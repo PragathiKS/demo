@@ -10,7 +10,7 @@
     "lzstorage": "^1.0.8",
     "sanitize-html": "^1.21.1",
     "vanilla-lazyload": "^8.17.0",
-    "owlcarousel": "git+https://github.com/ashwanipahal/OwlCarousel2.git#v2.3.7"
+    "owlcarousel": "git+https://github.com/ashwanipahal/OwlCarousel2.git#v2.3.8"
   },
   "scripts": {
     "build": "grunt aem",
