@@ -44,11 +44,20 @@
             } else {
                 value = component.getValue();
             }
-            if(value == "hero") {
-              $(target +' .coral3-Select-label').text("Bright Blue");
-              $(target).first().attr("disabled","true");
+            if(value == "hero" || value == "hero1") {                   
+             	$(target +' .coral3-Select-label').text("Bright Blue");
+                $('.coral3-SelectList-item').each(function() {
+    				if ($(this).val() === "gray" ) {
+       					 $(this).hide();
+    				}
+				});
             } else {
-               $(target).first().removeAttr("disabled","true");
+              	$(target +' .coral3-Select-label').text("Grey");
+				 $('.coral3-SelectList-item').each(function() {
+    				if ($(this).val() === "gray" ) {
+       					 $(this).show();
+    				}
+				});              
             }
         }
     }
