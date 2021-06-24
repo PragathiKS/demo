@@ -140,10 +140,18 @@
                 transform: rotate(-180deg);
                 position: absolute;
                 left: 0;
+                cursor: pointer;
+                &:hover {
+                    color: $color-sky-blue;
+                }
             }
             .owl-next {
                 position: absolute;
                 right: 0;
+                cursor: pointer;
+                &:hover {
+                    color: $color-sky-blue;
+                }
             }
             .icon {
                 &::before {
