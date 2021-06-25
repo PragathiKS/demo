@@ -119,6 +119,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.tetralaval</groupId>
+            <artifactId>tetra-laval.ui.frontend</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
 
         <dependency>
             <groupId>com.tetralaval</groupId>
