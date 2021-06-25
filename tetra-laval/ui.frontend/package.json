@@ -14,6 +14,8 @@
     "prod": "webpack -p --config ./webpack.prod.js && clientlib --verbose",
     "start": "webpack-dev-server --open --config ./webpack.dev.js",
     "sync": "aemsync -d -p ../ui.apps/src/main/content",
+    "test": "karma start karma.conf.js --color",
+    "testProd": "karma start karma.conf.js --mode=production --color",
     "watch": "webpack-dev-server --config ./webpack.dev.js --env.writeToDisk & watch 'clientlib' ./dist & aemsync -w ../ui.apps/src/main/content"
   },
   "devDependencies": {
@@ -35,6 +37,9 @@
     "eslint-loader": "^3.0.3",
     "glob-import-loader": "^1.1.4",
     "html-webpack-plugin": "^3.2.0",
+    "karma": "^6.3.4",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^4.0.1",
     "mini-css-extract-plugin": "^0.4.4",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
