@@ -92,7 +92,7 @@ public class BusinessInquiryModelTest {
 		context.registerService(CountryDetailService.class, countryDetailService);
 		// context.registerInjectActivateService(countryDetailService);
 		final Map<String, Object> countryConfig = new HashMap<>();
-		countryConfig.put("getCountriesContentFragmentRootPath", "/content/dam/tetrapak/publicweb/cfm/countries");
+		countryConfig.put("getPardotCountriesCFRootPath", "/content/dam/tetrapak/publicweb/cfm/countries");
 		MockOsgi.activate(context.getService(CountryDetailService.class), context.bundleContext(), countryConfig);
 
 		resource = context.currentResource(RESOURCE);
@@ -159,8 +159,8 @@ public class BusinessInquiryModelTest {
 	@Test
 	public void testCountries() throws Exception {
 
-		assertEquals("ContactUs", 2, model.getCountryOptions().size());
-		assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
+	    assertEquals("ContactUs", 2, model.getCountryOptions().size());
+        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
 
 	}
 
