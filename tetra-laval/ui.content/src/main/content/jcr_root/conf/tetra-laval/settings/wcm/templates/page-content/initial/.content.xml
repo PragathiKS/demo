@@ -5,22 +5,5 @@
         cq:template="/conf/tetra-laval/settings/wcm/templates/page-content"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="tetra-laval/components/page">
-        <root
-            jcr:primaryType="nt:unstructured"
-            sling:resourceType="tetra-laval/components/container"
-            layout="responsiveGrid">
-            <container
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="tetra-laval/components/container"
-                layout="responsiveGrid">
-                <title
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="tetra-laval/components/title"/>
-                <container
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="tetra-laval/components/container"
-                    layout="responsiveGrid"/>
-            </container>
-        </root>
     </jcr:content>
 </jcr:root>

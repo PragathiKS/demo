@@ -58,41 +58,29 @@
                             <groupId>com.tetralaval</groupId>
                             <artifactId>tetra-laval.ui.apps</artifactId>
                             <type>zip</type>
-                            <target>/apps/tetra-laval-packages/application/install</target>
+                            <target>/apps/tetra-laval/install</target>
                         </embedded>
                         <embedded>
                             <groupId>com.tetralaval</groupId>
                             <artifactId>tetra-laval.core</artifactId>
-                            <target>/apps/tetra-laval-packages/application/install</target>
+                            <target>/apps/tetra-laval/install</target>
                         </embedded>
                         <embedded>
                             <groupId>com.tetralaval</groupId>
                             <artifactId>tetra-laval.ui.content</artifactId>
                             <type>zip</type>
-                            <target>/apps/tetra-laval-packages/content/install</target>
+                            <target>/apps/tetra-laval/content/install</target>
                         </embedded>
                         <embedded>
                             <groupId>com.tetralaval</groupId>
                             <artifactId>tetra-laval.ui.config</artifactId>
                             <type>zip</type>
-                            <target>/apps/tetra-laval-packages/application/install</target>
-                        </embedded>
-                        <embedded>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.content</artifactId>
-                            <type>zip</type>
-                            <target>/apps/tetra-laval-vendor-packages/application/install</target>
+                            <target>/apps/tetra-laval/install</target>
                         </embedded>
                         <embedded>
                             <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.core</artifactId>
-                            <target>/apps/tetra-laval-vendor-packages/application/install</target>
-                        </embedded>
-                        <embedded>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.config</artifactId>
-                            <type>zip</type>
-                            <target>/apps/tetra-laval-vendor-packages/application/install</target>
+                            <target>/apps/tetra-laval/install</target>
                         </embedded>
                     </embeddeds>
                 </configuration>
