@@ -79,7 +79,19 @@
                         </embedded>
                         <embedded>
                             <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.content</artifactId>
+                            <type>zip</type>
+                            <target>/apps/tetra-laval/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.cq</groupId>
                             <artifactId>core.wcm.components.core</artifactId>
+                            <target>/apps/tetra-laval/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.config</artifactId>
+                            <type>zip</type>
                             <target>/apps/tetra-laval/install</target>
                         </embedded>
                     </embeddeds>
