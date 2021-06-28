@@ -168,7 +168,9 @@ public class PageLoadAnalyticsModel {
      */
     private void updateProductName() {
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        productName = product.getName();
+        if(product != null) {
+            productName = product.getName();
+        }
     }
 
     /**
