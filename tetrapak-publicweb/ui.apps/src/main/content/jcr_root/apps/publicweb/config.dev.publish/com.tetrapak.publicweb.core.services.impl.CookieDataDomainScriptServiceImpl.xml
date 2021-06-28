@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="sling:OsgiConfig"
+		  siteNameConfMap="[publicweb:pw,online-help:oh]"
+		  dataDomainScriptConfMap="[publicweb:c6ff7482-d5cb-4770-aa13-bedfa8504fd1-test,online-help:66d41a0e-a6c4-4c30-80ac-2a98041cee9a-test]"/>

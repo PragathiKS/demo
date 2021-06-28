@@ -69,7 +69,7 @@ public class PageLoadAnalyticsModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        String[] methods = new String[]{"isProduction", "isStaging", "isDevelopment", "getDigitalData","getCurrentPageURL" , "getHreflangValues", "getCanonicalURL"};
+        String[] methods = new String[]{"isProduction", "isStaging", "isDevelopment", "getDigitalData","getCurrentPageURL" , "getHreflangValues", "getCanonicalURL" , "getDataDomainScript"};
         Util.testLoadAndGetters(methods, model, resource);
     }
 }

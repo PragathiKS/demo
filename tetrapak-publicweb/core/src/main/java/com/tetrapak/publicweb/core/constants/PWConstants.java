@@ -336,6 +336,9 @@ public final class PWConstants {
     
     /** The Constant CQ_TAGS_PROPERTY. */
     public static final String CQ_TAGS_PROPERTY = "cq:tags";
+
+    /** The Constant TETRAPAK. */
+    public static final String TETRAPAK = "tetrapak";
     
     /** The Constant PW_TAG_SUSTAINIBILITY. */
     public static final String PW_TAG_SUSTAINIBILITY = "tetrapak:sustainability";

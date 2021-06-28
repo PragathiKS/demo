@@ -4,6 +4,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.impl.CookieDataDomainScriptService;
+import com.tetrapak.publicweb.core.transformer.PWLinkTransformerFactory;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -23,12 +25,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.Iterator;
-import java.util.Collections;
+import java.util.*;
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -54,8 +51,9 @@ public class PageLoadAnalyticsModel {
     @OSGiService
     protected XSSAPI xssapi;
 
-    /** The Constant SITE_NAME. */
-    private static final String SITE_NAME = "publicweb";
+    /** The cookieDataDomainScriptService. */
+    @OSGiService
+    private CookieDataDomainScriptService cookieDataDomainScriptService;
 
     /** The Constant PAGE_LOAD_EVENT. */
     private static final String PAGE_LOAD_EVENT = "content-load";
@@ -83,6 +81,15 @@ public class PageLoadAnalyticsModel {
 
     /** The page type. */
     private String pageType = StringUtils.EMPTY;
+
+    /** The data domain script. */
+    private String dataDomainScript = StringUtils.EMPTY;
+
+    /** The application abbreviation. */
+    private String applicationAbbreviation = StringUtils.EMPTY;
+
+    /** The application name. */
+    private String applicationName = StringUtils.EMPTY;
 
     /** The digital data. */
     private String digitalData;
@@ -147,9 +154,12 @@ public class PageLoadAnalyticsModel {
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
+        updateHrefLang();
+        if(GlobalUtil.isPublish()){
+            updateCookieParameters();
+        }
         updatePageName();
         updateProductName();
-        updateHrefLang();
         digitalData = buildDigitalDataJson();
     }
 
@@ -176,6 +186,19 @@ public class PageLoadAnalyticsModel {
         if (languagePage != null) {
             siteLanguage = languagePage.getName();
         }
+    }
+
+    /**
+     * This method will update the cookie parameters
+     */
+    private void updateCookieParameters(){
+         if (currentPage.getAbsoluteParent(1).getName().equalsIgnoreCase(PWConstants.TETRAPAK)){
+              applicationName=currentPage.getAbsoluteParent(2).getName();
+          } else {
+             applicationName=currentPage.getAbsoluteParent(1).getName();
+         }
+        dataDomainScript = getValueFromStringArray(cookieDataDomainScriptService.getDataDomainScriptConfMap());
+        applicationAbbreviation = getValueFromStringArray(cookieDataDomainScriptService.getSiteNameConfMap());
     }
 
     /**
@@ -232,7 +255,7 @@ public class PageLoadAnalyticsModel {
      * Update page name.
      */
     private void updatePageName() {
-        pageName = "pw:" + siteLanguage;
+        pageName = applicationAbbreviation+":" + siteLanguage;
         if (StringUtils.isNotEmpty(siteSection0.toString())) {
             pageName += ":" + siteSection0.toString();
             if (StringUtils.isNotEmpty(siteSection1.toString())) {
@@ -470,7 +493,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("siteName", SITE_NAME);
+        pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
@@ -592,6 +615,10 @@ public class PageLoadAnalyticsModel {
         return GlobalUtil.isPublish();
     }
 
+    public String getDataDomainScript(){
+        return dataDomainScript;
+    }
+
     /**
      * Gets the hreflang values.
      *
@@ -606,5 +633,21 @@ public class PageLoadAnalyticsModel {
             return new ArrayList<>(hrefLangValues);
         }
         return Collections.emptyList();
+    }
+
+    /**
+     * This method accepts String array in format [key:value,key2:value2]
+     * @param stringArray
+     * @return the string value
+     */
+    private String getValueFromStringArray (String[] stringArray){
+        String[] cookieParamArray = Arrays.toString(stringArray).
+                replace("[","").replace("]","").split("[:,]");
+        for (int i = 0; i < cookieParamArray.length; i += 2) {
+            if(cookieParamArray[i].trim().equals(applicationName)){
+                return cookieParamArray[i+1].trim();
+            }
+        }
+        return StringUtils.EMPTY;
     }
 }
