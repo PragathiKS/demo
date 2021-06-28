@@ -19,6 +19,9 @@ import com.trs.core.reports.StatefulReport;
  */
 
 public interface AssetPageOpsService {
+    
+    String PAGE_PUBLIC_URL_JCR_PROPERTY="dam:pagePublishUrl";
+    String PAGE_AUTHOR_URL_JCR_PROPERTY="dam:pageAuthorUrl";
 
     Map<String, String> createTrsPage(ResourceResolver resolver, String path)
             throws PageNotCreatedException;

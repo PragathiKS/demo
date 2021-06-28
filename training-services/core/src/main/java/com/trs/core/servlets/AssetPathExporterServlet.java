@@ -104,8 +104,6 @@ public class AssetPathExporterServlet extends SlingSafeMethodsServlet {
         resourceResolver.close();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-//        resp.getWriter().write("{\"customresponse\":\"sucess" + " with param value as :" + request.getParameter("id")
-//                + "  & dm value " + value + "\"}");
         resp.getWriter().write(assetPropertiesJson);
         LOGGER.trace("Exiting AssetPathExporterServlet servlet");
     }

@@ -5,11 +5,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.jcr.RepositoryException;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.entity.ContentType;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -24,11 +26,16 @@ import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.dam.api.Asset;
 import com.day.cq.search.result.Hit;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.trs.core.services.AssetMetadataService;
+import com.trs.core.services.AssetPageOpsService;
 import com.trs.core.services.TrsConfigurationService;
+import com.trs.core.utils.TrsConstants;
 import com.trs.core.utils.TrsUtils;
 
 /**
@@ -45,6 +52,15 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AssetMetadataExporterServlet.class);
 
+    // API Output Keys for Non DM Asset Metadata
+    private static final String MLV_ID = "mlv_id";
+    private static final String ASSET_NAME = "asset_name";
+    private static final String ASSET_PATH = "asset_path";
+    private static final String ASSET_METADATA_LANGUAGE = "asset_property_language";
+    private static final String ASSET_FOLDER_HIERARCY_LANGUAGE = "content_hierarchy_language";
+    private static final String LAST_MODIFICATION_DATE = "last_modification_date";
+    private static final String PUBLIC_URL = "public_url";
+
     @Reference
     private ResourceResolverFactory resolverFactory;
 
@@ -60,7 +76,6 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
 
         ResourceResolver resourceResolver = null;
         final String assetMlvId = request.getParameter("id");
-        String assetPath;
         LOGGER.info("Entered AssetMetadataExporterServlet servlet");
         LOGGER.info(" Query param :" + request.getParameter("id"));
         try {
@@ -70,6 +85,7 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
         }
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         ArrayNode arrayNode = mapper.createArrayNode();
 
         /**
@@ -89,11 +105,28 @@ public class AssetMetadataExporterServlet extends SlingSafeMethodsServlet {
         List<Hit> resultHits = assetMetadataService.executeQuery(resourceResolver, predicate);
 
         for (Hit hit : resultHits) {
-
+            ObjectNode assetNode = mapper.createObjectNode();
             try {
-                assetPath = hit.getPath();
+                String assetPath = hit.getPath().replace(TrsConstants.ASSET_METADATA_RELATIVE_PATH, StringUtils.EMPTY);
                 LOGGER.info(" hit : " + hit.getPath());
-                arrayNode.add(assetMetadataService.getAssetMetadataJsonNode(resourceResolver, mapper, assetPath));
+                Asset asset = resourceResolver.getResource(assetPath).adaptTo(Asset.class);
+                Optional.ofNullable(asset.getMetadataValue(trsConfig.getMlvIdJCRPropName())).ifPresent(s -> {
+                    assetNode.put(MLV_ID, s);
+                });
+                assetNode.put(ASSET_NAME, asset.getName());
+                assetNode.put(ASSET_PATH, assetPath);
+                Optional.ofNullable(asset.getMetadataValue(TrsConstants.ASSET_DC_LANGUAGE)).ifPresent(s -> {
+                    assetNode.put(ASSET_METADATA_LANGUAGE, s);
+                });
+                assetNode.put(ASSET_FOLDER_HIERARCY_LANGUAGE,
+                        assetPath.split(TrsConstants.FORWARD_SLASH)[Math.toIntExact(trsConfig.getAssetMetadataAPILanguageFolderLevel())]);
+                assetNode.put(LAST_MODIFICATION_DATE, asset.getLastModified());
+                Optional.ofNullable(asset.getMetadataValue(AssetPageOpsService.PAGE_PUBLIC_URL_JCR_PROPERTY))
+                        .ifPresent(s -> {
+                            assetNode.put(PUBLIC_URL, s);
+                        });
+                assetMetadataService.getAssetMetadataJsonNode(resourceResolver, assetNode, assetPath);
+                arrayNode.add(assetNode);
             } catch (RepositoryException e) {
                 LOGGER.error("Error while getting querybuilder hit's path :", e);
             }

@@ -29,5 +29,7 @@ public interface TrsConfigurationService {
     String getMlvIdJCRPropName();
     
     String getAssetMetadataAPIBasePath();
+    
+    long getAssetMetadataAPILanguageFolderLevel();
 
 }

@@ -15,7 +15,6 @@ import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
 import org.mockito.Mockito;
 
-import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.scene7.api.S7Config;
 import com.day.cq.dam.scene7.api.S7ConfigResolver;
 import com.day.cq.dam.scene7.api.Scene7Service;
@@ -59,6 +58,7 @@ public class TestUtils {
 		Mockito.when(trsConfig.getDynamicMediaDomain()).thenReturn("https://s7g10.scene7.com");
 		Mockito.when(trsConfig.getPageCreationLogFilePath()).thenReturn("/content/dam/training-services/system/page-creation-author-log.xlsx");
 		Mockito.when(trsConfig.getTaxonomyTransformationLogFilePath()).thenReturn("/content/dam/training-services/system/xyleme-tag-transformation-log.xlsx");
+		Mockito.when(trsConfig.getMlvIdJCRPropName()).thenReturn("dam:mlvId");
 	}
 	
 	public static void setUpTaxonomyService(AemContext context) {
@@ -78,9 +78,11 @@ public class TestUtils {
         context.create().asset(TestUtils.TEST_ASSET_PATH,new ByteArrayInputStream("text".getBytes()),"video/mp4");
         context.create().resource(TestUtils.TEST_ASSET_PATH +"/jcr:content", ImmutableMap.<String, Object>builder()
                 .put("jcr:primaryType", "dam:AssetContent")
+                .put("jcr:lastModified","2021-04-15T17:35:46.535Z")
                 .build());
         context.create().resource(TestUtils.TEST_ASSET_PATH +"/jcr:content/metadata", ImmutableMap.<String, Object>builder()
                 .put("dam:mlvId", "MLV00121")
+                .put("dc:language","en")
                 .put(AssetMetadataServiceImpl.DAMSCENE7ID, AssetMetadataServiceImplTest.SCENE7_ID)
                 .build());
         Resource resource = context.resourceResolver().getResource(TestUtils.TEST_ASSET_PATH);

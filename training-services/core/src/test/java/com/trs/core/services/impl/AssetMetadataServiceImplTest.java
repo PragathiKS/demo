@@ -21,6 +21,7 @@ import com.day.cq.dam.scene7.api.S7ConfigResolver;
 import com.day.cq.dam.scene7.api.Scene7Service;
 import com.day.cq.search.QueryBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.trs.core.utils.TestUtils;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -77,7 +78,8 @@ public class AssetMetadataServiceImplTest {
     @Test
     final void testGetAssetMetadataJsonNode() {
         ObjectMapper mapper = new ObjectMapper();
-        assertNotNull(assetMetadataServiceImpl.getAssetMetadataJsonNode(context.resourceResolver(), mapper, TestUtils.TEST_ASSET_PATH),"Return value should not be null");
+        ObjectNode assetNode = mapper.createObjectNode();
+        assertNotNull(assetMetadataServiceImpl.getAssetMetadataJsonNode(context.resourceResolver(), assetNode, TestUtils.TEST_ASSET_PATH),"Return value should not be null");
     }
 
     @Test

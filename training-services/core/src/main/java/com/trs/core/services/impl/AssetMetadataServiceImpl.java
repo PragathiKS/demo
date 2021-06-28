@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 import javax.jcr.Session;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
@@ -25,7 +24,6 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.trs.core.services.AssetMetadataService;
 
@@ -64,10 +62,8 @@ public class AssetMetadataServiceImpl implements AssetMetadataService {
         return searchResult.getHits();
     }
 
-    public ObjectNode getAssetMetadataJsonNode(ResourceResolver resourceResolver, ObjectMapper mapper, String assetPath) {
-
-        ObjectNode assetNode = mapper.createObjectNode();
-        assetPath = assetPath.replace("/jcr:content/metadata", StringUtils.EMPTY);
+    public ObjectNode getAssetMetadataJsonNode(ResourceResolver resourceResolver, ObjectNode assetNode, String assetPath) {
+        
         LOG.info("assetPath" + assetPath);
         Asset asset = resourceResolver.getResource(assetPath).adaptTo(Asset.class);
         LOG.info(String.valueOf(asset != null));
@@ -79,10 +75,7 @@ public class AssetMetadataServiceImpl implements AssetMetadataService {
             if (null != scene7Service && null != assetHandle) {
                 Map<String, String> assetMetadata = scene7Service.getS7AssetMetadata(s7Config, assetHandle);
                 for (Map.Entry<String, String> entry : dmPropertyNameToAPIKeyMapping.entrySet()) {
-                    // LOGGER.info("for the key : " + entry.getKey() + " value is :" +
-                    // entry.getValue());
                     assetNode.put(entry.getValue(), assetMetadata.get(entry.getKey()));
-
                 }
             }
         }
