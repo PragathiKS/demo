@@ -30,7 +30,7 @@
                                     <textimage1
                                         jcr:primaryType="nt:unstructured"
                                         text="Text &amp; Image Banner (21:9)"
-                                        value="textImage1"/>
+                                        value="textImage-one"/>
                                     <hero
                                         jcr:primaryType="nt:unstructured"
                                         text="Top Banner (3:1)"
@@ -38,7 +38,7 @@
                                     <hero1
                                         jcr:primaryType="nt:unstructured"
                                         text="Top Banner (21:9)"
-                                        value="hero1"/>
+                                        value="hero-one"/>
                                 </items>
                                 <granite:data
                                         jcr:primaryType="nt:unstructured"

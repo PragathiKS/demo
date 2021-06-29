@@ -44,15 +44,13 @@
             } else {
                 value = component.getValue();
             }
-            if(value == "hero" || value == "hero1") {                   
-             	$(target +' .coral3-Select-label').text("Bright Blue");
+            if(value == "hero" || value == "hero-one") { 
                 $('.coral3-SelectList-item').each(function() {
     				if ($(this).val() === "gray" ) {
        					 $(this).hide();
     				}
 				});
             } else {
-              	$(target +' .coral3-Select-label').text("Grey");
 				 $('.coral3-SelectList-item').each(function() {
     				if ($(this).val() === "gray" ) {
        					 $(this).show();
