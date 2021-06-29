@@ -150,7 +150,7 @@
         }
     }
     &__content {
-        @include margin(-32px 0 0 0);
+        @include margin(-46px 0 0 0);
         @include padding-top($padding-zero);
         @include padding-left($padding-md);
         @include padding-bottom($padding-l);
@@ -369,9 +369,9 @@
 }
 .pw-banner__gradient-bg {
     background: linear-gradient(to top, $color-sky-blue 25.01%, rgba(0, 189, 242, 0.8) 98.8%);
-    height: 24px;
+    height: 34px;
     width: 100%;
-    top: -24px;
+    top: -32px;
     position: relative;
     @media #{$desktop} {
         display: none;
