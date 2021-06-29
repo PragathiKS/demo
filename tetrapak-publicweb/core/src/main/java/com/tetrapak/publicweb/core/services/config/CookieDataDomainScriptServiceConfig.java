@@ -9,18 +9,12 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
         description = "OneTrust Cookie Data Domain Script Service Configuration")
 public @interface CookieDataDomainScriptServiceConfig {
     /**
-     * Site Name
-     * @return Site Name
-     */
-    @AttributeDefinition(name = "Site Name",
-            description = "Site Name : Site Name Abbreviation", type = AttributeType.STRING)
-    String[] siteNameConfMap() default "publicweb:pw";
-
-    /**
-     * Data Domain Script Conf Map
-     * @return Data Domain Script Conf Map
+     * Cookie Domain Script Configuration
+     * @return Cookie Domain script config
      */ 
-    @AttributeDefinition(name = "Data Domain Script Service Configuration Map",
-            description = "Sitename:OneTrust script", type = AttributeType.STRING)
-    String[] dataDomainScriptConfMap();
+    @AttributeDefinition(name = "Cookie Domain and Script Configuration",
+            description = "Enter value in format of " +
+                    "sitename={\"siteAbbrevation\":\"abbreviation\",\"domainScript\":\"oneTrusdomainscript\"}",
+            type = AttributeType.STRING)
+    String[] cookieDomainScriptConfig();
 }

@@ -309,6 +309,12 @@ public final class PWConstants {
 
     /** The Constant JCR PREVIEW_SALT. */
     public static final String PREVIEW_SALT = "previewSalt";
+
+    /** The Constant DOMAINSCRIPT */
+    public static final String DOMAINSCRIPT ="domainScript";
+
+    /** The Constant SITE_ABBREVIATION */
+    public static final String SITE_ABBREVIATION ="siteAbbreviation";
     
     /** The Constant LB TRANSLATED PAGES NODE. */
     public static final String LB_TRANSLATED_PAGES_NODE = "/var/commerce/lbtranslatedpages";

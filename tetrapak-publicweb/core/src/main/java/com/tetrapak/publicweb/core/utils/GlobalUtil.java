@@ -11,6 +11,8 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -22,6 +24,8 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
+
+import javax.jcr.RepositoryException;
 
 /**
  * This is a global util class to access globally common utility methods
@@ -239,5 +243,22 @@ public final class GlobalUtil {
             return false;
         }
         return slingSettingsService.getRunModes().contains("publish");
+    }
+
+    /**
+     * This method is used to get the string value from string Array in format of
+     * {"objectkey"={"key":"value","key1":"value1"},"objectKey2"={"key2":"value2","key3":"value3"}}
+     * @param stringArray
+     * @param objectKey
+     * @param key
+     * @return String value
+     */
+    public static String getJSONObjectFromStringArray(final String stringArray, final String objectKey, final String key){
+        try {
+            return new JSONObject(stringArray).getJSONObject(objectKey).get(key).toString();
+        }catch (final JSONException e) {
+            LOG.error("JSONException while converting array string to json object: ", e);
+        }
+        return StringUtils.EMPTY;
     }
 }

@@ -4,8 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.impl.CookieDataDomainScriptService;
-import com.tetrapak.publicweb.core.transformer.PWLinkTransformerFactory;
+import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -25,7 +24,16 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import java.util.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.Iterator;
+import java.util.Collections;
+import java.util.Arrays;
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -199,9 +207,16 @@ public class PageLoadAnalyticsModel {
           } else {
              applicationName=currentPage.getAbsoluteParent(1).getName();
          }
-        dataDomainScript = getValueFromStringArray(cookieDataDomainScriptService.getDataDomainScriptConfMap());
-        applicationAbbreviation = getValueFromStringArray(cookieDataDomainScriptService.getSiteNameConfMap());
-    }
+         if(!applicationName.isEmpty()) {
+             final String cookieParamArrayString = Arrays.toString(
+                     cookieDataDomainScriptService.getCookieDomainScriptConfig()).replace("[", "{").replace("]",
+                     "}");
+             dataDomainScript = GlobalUtil.getJSONObjectFromStringArray(
+                     cookieParamArrayString, applicationName, PWConstants.DOMAINSCRIPT);
+             applicationAbbreviation = GlobalUtil.getJSONObjectFromStringArray(
+                     cookieParamArrayString, applicationName, PWConstants.SITE_ABBREVIATION);
+         }
+        }
 
     /**
      * Update site sections.
@@ -635,21 +650,5 @@ public class PageLoadAnalyticsModel {
             return new ArrayList<>(hrefLangValues);
         }
         return Collections.emptyList();
-    }
-
-    /**
-     * This method accepts String array in format [key:value,key2:value2]
-     * @param stringArray
-     * @return the string value
-     */
-    private String getValueFromStringArray (String[] stringArray){
-        String[] cookieParamArray = Arrays.toString(stringArray).
-                replace("[","").replace("]","").split("[:,]");
-        for (int i = 0; i < cookieParamArray.length; i += 2) {
-            if(cookieParamArray[i].trim().equals(applicationName)){
-                return cookieParamArray[i+1].trim();
-            }
-        }
-        return StringUtils.EMPTY;
     }
 }
