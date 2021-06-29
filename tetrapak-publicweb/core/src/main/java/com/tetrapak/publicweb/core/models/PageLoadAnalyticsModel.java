@@ -159,12 +159,12 @@ public class PageLoadAnalyticsModel {
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
-        updateHrefLang();
         if(GlobalUtil.isPublish()){
             updateCookieParameters();
         }
         updatePageName();
         updateProductName();
+        updateHrefLang();
         digitalData = buildDigitalDataJson();
     }
 
