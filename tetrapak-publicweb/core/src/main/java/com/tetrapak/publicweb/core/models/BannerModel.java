@@ -97,11 +97,6 @@ public class BannerModel {
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
 
-    /** The Constant HERO_TEST. */
-    private static final String HERO_TEST = "hero";
-
-    /** The Constant SKY_BLUE. */
-    private static final String SKY_BLUE = "sky-blue";
 
     /** The enable softcoversion. */
     @ValueMapValue
@@ -231,10 +226,7 @@ public class BannerModel {
      *
      * @return the pw card theme
      */
-    public String getPwCardTheme() {
-        if(bannerType.equalsIgnoreCase(HERO_TEST)){
-            return SKY_BLUE;
-        }
+    public String getPwCardTheme() {        
         return pwCardTheme;
     }
 
