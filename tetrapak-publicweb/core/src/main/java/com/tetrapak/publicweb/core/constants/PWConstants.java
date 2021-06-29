@@ -372,6 +372,21 @@ public final class PWConstants {
     
     /** Constant ONLINE_HELP_CONTENT_PATH */
     public static final String ONLINE_HELP_CONTENT_PATH = "/content/online-help";
+    
+    /** Constant DAM_ASSETS_PROPERTY */
+    public static final String DAM_ASSETS_PROPERTY = "dam:Asset";
+    
+    /** Constant APPLICATION_PDF */
+    public static final String APPLICATION_PDF = "application/pdf";
+    
+    /** Constant DC_TITLE_PROPERTY */
+    public static final String DC_TITLE_PROPERTY = "dc:title";
+    
+    /** Constant DC_FORMAT_PROPERTY */
+    public static final String DC_FORMAT_PROPERTY = "dc:format";
+    
+    /** Constant SLING_ORDERED_FOLDER */
+    public static final String CONSTANT_FOLDER = "folder";
 
     /**
      * Instantiates a new PW constants.
