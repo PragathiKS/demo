@@ -207,10 +207,7 @@
                     font-weight: 700;
                     line-height: 40px;
                 }
-            }
-            @media #{$desktop} {
-                max-height: convert-to-rem(140px);
-            }
+            }            
             &.hero-title {
                 h1,
                 h2,
