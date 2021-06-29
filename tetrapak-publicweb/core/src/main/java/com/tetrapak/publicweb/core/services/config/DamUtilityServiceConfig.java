@@ -4,6 +4,8 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
+
 /**
  * OSGi configuration for DAM Utility Service
  *
@@ -18,6 +20,6 @@ public @interface DamUtilityServiceConfig {
      * @return DAM Utility Service root path
      */
     @AttributeDefinition(name = "DAM Utility Service root path", description = "DAM Utility Service root path", type = AttributeType.STRING)
-    String DamUtilityRootPath() default "/content/dam/tetrapak/publicweb";
+    String DamUtilityRootPath() default PWConstants.PW_CONTENT_DAM_PATH;
 
 }

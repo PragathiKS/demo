@@ -387,6 +387,8 @@ public final class PWConstants {
     
     /** Constant SLING_ORDERED_FOLDER */
     public static final String CONSTANT_FOLDER = "folder";
+    
+    public static final String PW_CONTENT_DAM_PATH = "/content/dam/tetrapak/publicweb";
 
     /** Constant SUBSCRIPTION_EMAIL_CTA_TEXT */
     public static final String SUBSCRIPTION_EMAIL_CTA_TEXT = "pw.subscription.email.ctaText";
