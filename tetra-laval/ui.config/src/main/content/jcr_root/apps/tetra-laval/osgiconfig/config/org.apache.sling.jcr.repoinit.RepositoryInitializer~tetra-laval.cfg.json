@@ -1,0 +1,10 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/tetra-laval",
+        "create path (nt:unstructured) /content/dam/tetra-laval/jcr:content",
+        "set properties on /content/dam/tetra-laval/jcr:content",
+        "set cq:conf{String} to /conf/tetra-laval",
+        "set jcr:title{String} to \"Tetra Laval\"",
+        "end"
+    ]
+}

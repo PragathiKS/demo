@@ -155,6 +155,10 @@
                                         jcr:primaryType="nt:unstructured"
                                         text="Bright Blue"
                                         value="sky-blue"/>
+									<black
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Black Gradient"
+                                        value="black"/>
                                 </items>
                                 <granite:data
                                         jcr:primaryType="nt:unstructured"
