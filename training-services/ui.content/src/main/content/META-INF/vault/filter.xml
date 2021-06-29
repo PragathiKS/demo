@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-	<filter
-		root="/conf/global/settings/dam/adminui-extension/metadataschema/training-services" />
-	<filter root="/conf/trs" mode="replace"/>
-	<filter root="/conf/global/settings/workflow/models"
-		mode="update" />
-	<!-- <filter root="/conf/global/settings/workflow" mode="merge"/> -->
-	<filter root="/var/workflow/models/trs-authors" mode="merge" />
-	<filter root="/content/trs" mode="merge">
-		<exclude pattern=".*" />
-		<include pattern=".*/jcr:content.*" />
-		<include pattern=".*/training-videos" />
-		<include pattern=".*/training-videos/jcr:content.*" />
-		<include pattern=".*/errors" />
-		<include pattern=".*/tag-uploader/*" />
-		<include pattern=".*/tag-conversion-utility/*" />
-	</filter>
-	<filter root="/content/dam/training-services" mode="update">
-		<exclude pattern=".*" />
-		<include pattern=".*/jcr:content.*" />
-	</filter>
+    <filter
+        root="/conf/global/settings/dam/adminui-extension/metadataschema/training-services" />
+    <filter root="/conf/trs" mode="replace"/>
+    <filter root="/conf/global/settings/workflow/models"
+        mode="update" />
+    <!-- <filter root="/conf/global/settings/workflow" mode="merge"/> -->
+    <filter root="/var/workflow/models/trs-authors" mode="merge" />
+    <filter root="/content/trs">
+        <exclude pattern=".*/training-videos/(.*)" />
+    </filter>
+    <filter root="/content/dam/training-services">
+        <exclude pattern=".*/system" />    
+        <exclude pattern=".*/mapping" />
+        <exclude pattern=".*/en" />
+        <exclude pattern=".*/micro-learning-training" />   
+        <exclude pattern=".*/test*" />     
+    </filter>
 </workspaceFilter>

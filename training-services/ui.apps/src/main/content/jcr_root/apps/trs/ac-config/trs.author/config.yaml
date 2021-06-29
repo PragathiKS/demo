@@ -57,6 +57,13 @@
         - path: /var/workflow/models/trs-authors
           permission: allow
           actions: read,modify,create
+          initialContent: |
+                            <jcr:root jcr:primaryType="sling:Folder">
+                            </jcr:root>
+          
+        - path: /var/workflow/instances
+          permission: allow
+          actions: read,modify,create,acl_read,acl_edit
     
         - path: /content
           permission: allow
@@ -90,13 +97,19 @@
         - path: /content/trs
           permission: allow
           actions: read,modify,create
+          privileges: jcr:modifyProperties
           
         - path: /content/dam/training-services
           permission: allow
           actions: read,create,acl_read,acl_edit,modify
           
+        - path: /content/dam/training-services-pre-production
+          permission: allow
+          actions: read,modify,create,delete,acl_read,acl_edit
+          
     - trs-dam-admin:
     
+
         - path: /
           permission: allow
           actions:
@@ -107,6 +120,37 @@
           permission: allow
           actions:
           privileges: jcr:read,jcr:readAccessControl
+          
+        - path: /etc
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          
+        - path: /var
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+          
+        - path: /var/workflow
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+          
+        - path: /var/workflow/models
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+          
+        - path: /var/workflow/models/trs-authors
+          permission: allow
+          actions: read,modify,create
+          
+        - path: /var/workflow/instances
+          permission: allow
+          actions: read,modify,create,acl_read,acl_edit
     
         - path: /content
           permission: allow
@@ -142,5 +186,9 @@
           actions: read,modify,create,delete,acl_read,acl_edit,replicate
           
         - path: /content/dam/training-services
+          permission: allow
+          actions: read,modify,create,delete,acl_read,acl_edit,replicate
+          
+        - path: /content/dam/training-services-pre-production
           permission: allow
           actions: read,modify,create,delete,acl_read,acl_edit,replicate

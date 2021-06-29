@@ -13,6 +13,8 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
@@ -115,6 +117,36 @@ public class MyEquipmentModel {
 	/** The tool tip class. */
 	private String toolTipClass;
 	
+	/** The country api. */
+	@ValueMapValue
+	private String countryApi;
+	
+    /** The equipment list api. */
+    @ValueMapValue
+    private String equipmentListApi;
+
+	/** The service. */
+	@OSGiService
+	private APIGEEService service;
+	
+	/**
+	 * Gets the country api.
+	 *
+	 * @return the country api
+	 */
+	public String getCountryApi() {
+		return countryApi;
+	}
+
+	/**
+	 * Gets the equipment list api.
+	 *
+	 * @return the equipment list api
+	 */
+	public String getEquipmentListApi() {
+		return equipmentListApi;
+	}
+
 	/**
 	 * Gets the first.
 	 *
@@ -363,6 +395,12 @@ public class MyEquipmentModel {
         }
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+        
+        countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-countrylist");
+        
+        equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-equipmentlist");
 	}
 	
 	/**
