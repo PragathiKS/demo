@@ -1,5 +1,5 @@
 .tp-container-textImage,
-.tp-container-textImage1 {
+.tp-container-textImage-wide {
     @include padding(0);
     max-width: 100%;
     @media #{$desktop} {
@@ -347,8 +347,8 @@
 
 .tp-container-textImage .pw-banner__content.sky-blue.display-row-reversed,
 .tp-container-textImage .pw-banner__content.black.display-row-reversed,
-.tp-container-textImage1 .pw-banner__content.sky-blue.display-row-reversed,
-.tp-container-textImage1 .pw-banner__content.black.display-row-reversed {
+.tp-container-textImage-wide .pw-banner__content.sky-blue.display-row-reversed,
+.tp-container-textImage-wide .pw-banner__content.black.display-row-reversed {
     @media #{$desktop} {
         @include padding-right($padding-zero);
         @include padding-left($padding-xxxl);
@@ -356,8 +356,8 @@
 }
 .tp-container-textImage .pw-banner__content.sky-blue.display-row,
 .tp-container-textImage .pw-banner__content.black.display-row,
-.tp-container-textImage1 .pw-banner__content.sky-blue.display-row,
-.tp-container-textImage1 .pw-banner__content.black.display-row  {
+.tp-container-textImage-wide .pw-banner__content.sky-blue.display-row,
+.tp-container-textImage-wide .pw-banner__content.black.display-row  {
     @media #{$desktop} {
         @include padding-left($padding-xxxl);
     }

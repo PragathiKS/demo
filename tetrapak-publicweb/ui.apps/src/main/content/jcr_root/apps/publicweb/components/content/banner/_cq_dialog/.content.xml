@@ -27,18 +27,18 @@
                                         jcr:primaryType="nt:unstructured"
                                         text="Text &amp; Image Banner (3:1)"
                                         value="textImage"/>
-                                    <textimage1
+                                    <textimagewide
                                         jcr:primaryType="nt:unstructured"
                                         text="Text &amp; Image Banner (21:9)"
-                                        value="textImage-one"/>
+                                        value="textImage-wide"/>
                                     <hero
                                         jcr:primaryType="nt:unstructured"
                                         text="Top Banner (3:1)"
                                         value="hero"/>
-                                    <hero1
+                                    <herowide
                                         jcr:primaryType="nt:unstructured"
                                         text="Top Banner (21:9)"
-                                        value="hero-one"/>
+                                        value="hero-wide"/>
                                 </items>
                                 <granite:data
                                         jcr:primaryType="nt:unstructured"
