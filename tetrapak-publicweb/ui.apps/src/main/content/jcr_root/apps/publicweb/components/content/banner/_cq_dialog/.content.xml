@@ -81,22 +81,22 @@
                             <title
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Recommended to use characters less than set Limit: 50 chars considering translations"
-                                fieldLabel="Title (Max character : 50)"
+                                fieldDescription="For 21:9 banner, we recommend max characters of 30. Always preview the design in different responsive states, from wide desktop to narrow mobile."
+                                fieldLabel="Title (Max character : 35)"
                                 maxlength="{Long}50"
                                 name="./title"/>
                             <subtitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Recommended to use characters less than set Limit: 50 chars considering translations"
-                                fieldLabel="Subtitle (Max character : 50)"
+                                fieldDescription="For 21:9 banner, we recommend max characters of 35. Always preview the design in different responsive states, from wide desktop to narrow mobile."
+                                fieldLabel="Subtitle (Max character : 35)"
                                 maxlength="{Long}50"
                                 name="./subtitle"/>
                             <text
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                fieldDescription="Recommended to use characters less than set Limit: 300 chars considering translations"
-                                fieldLabel="Description (Max character : 300)"
+                                fieldDescription="For 21:9 banner, we recommend max characters of 180. Always preview the design in different responsive states, from wide desktop to narrow mobile."
+                                fieldLabel="Description (Max character : 180)"
                                 maxlength="{Long}300"
                                 name="./text"/>
                             <linkLabel
