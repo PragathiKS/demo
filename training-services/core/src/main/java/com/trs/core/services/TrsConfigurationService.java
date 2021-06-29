@@ -31,5 +31,7 @@ public interface TrsConfigurationService {
     String getAssetMetadataAPIBasePath();
     
     long getAssetMetadataAPILanguageFolderLevel();
+    
+    String getAssetMetadataAPIScopePath();
 
 }

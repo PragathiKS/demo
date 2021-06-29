@@ -95,4 +95,9 @@ public class TrsConfigurationServiceImpl implements TrsConfigurationService {
         return config.asset_metadata_api_language_folder_level();
     }
 
+    @Override
+    public String getAssetMetadataAPIScopePath() {
+        return config.asset_metadata_api_scope_path();
+    }
+
 }

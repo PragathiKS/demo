@@ -8,6 +8,7 @@
     <filter root="/var/workflow/models/trs-authors" mode="merge" />
     <filter root="/content/trs">
         <exclude pattern=".*/training-videos/(.*)" />
+        <exclude pattern=".*/api(.*)" />
     </filter>
     <filter root="/content/dam/training-services">
         <exclude pattern=".*/system" />    

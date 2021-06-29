@@ -62,7 +62,11 @@ public @interface TrsConfiguration {
             description = "Asset Metadata API Base path", type = AttributeType.STRING)
     String asset_metadata_api_base_path() default "/content/dam/training-services";
     
-    @AttributeDefinition(name = "Asset Metadata API Base path",
-            description = "Asset Metadata API Base path", type = AttributeType.STRING)
+    @AttributeDefinition(name = "Language Folder level in content hierarchy",
+            description = "Language Folder level in content hierarchy", type = AttributeType.STRING)
     long asset_metadata_api_language_folder_level() default 4;
+    
+    @AttributeDefinition(name = "Asset Metadata API Scope path",
+            description = "Asset Metadata API Scope path", type = AttributeType.STRING)
+    String asset_metadata_api_scope_path() default "/content/trs/api";
 }
