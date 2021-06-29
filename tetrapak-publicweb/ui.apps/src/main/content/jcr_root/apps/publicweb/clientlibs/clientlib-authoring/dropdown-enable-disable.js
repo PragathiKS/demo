@@ -44,7 +44,7 @@
             } else {
                 value = component.getValue();
             }
-            if(value == "hero" || value == "hero-one") { 
+            if(value == "hero" || value == "hero-wide") { 
                 $('.coral3-SelectList-item').each(function() {
     				if ($(this).val() === "gray" ) {
        					 $(this).hide();
