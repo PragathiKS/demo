@@ -4,4 +4,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Text &amp; Image"
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-publicweb"/>
+    componentGroup="tetra-laval"/>

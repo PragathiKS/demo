@@ -1,5 +1,6 @@
 package com.tetralaval.models;
 
+import com.tetralaval.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
