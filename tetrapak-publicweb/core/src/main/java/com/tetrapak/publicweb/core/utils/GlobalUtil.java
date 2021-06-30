@@ -71,7 +71,7 @@ public final class GlobalUtil {
      * @return video path from scene 7
      */
     public static String getVideoUrlFromScene7(final ResourceResolver resourceResolver, final String damVideoPath,
-                                               final DynamicMediaService dynamicMediaService) {
+            final DynamicMediaService dynamicMediaService) {
         String path = damVideoPath;
         if(StringUtils.isNotBlank(damVideoPath)) {
             path = dynamicMediaService.getVideoServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damVideoPath);
@@ -89,7 +89,7 @@ public final class GlobalUtil {
      * @return image path from scene 7
      */
     public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
-                                               final DynamicMediaService dynamicMediaService) {
+            final DynamicMediaService dynamicMediaService) {
         String path = damImagePath;
         if(StringUtils.isNotBlank(damImagePath)) {
             path = dynamicMediaService.getImageServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damImagePath);
@@ -145,7 +145,7 @@ public final class GlobalUtil {
      * @return
      */
     public static String getDAMPath(final String damRootPath, final String sourceurl, final String categoryId, final String productId,
-                                    final String videoTypes) {
+            final String videoTypes) {
         String finalDAMPath = null;
         final String assetType = getAssetType(sourceurl, videoTypes);
         final String fileName = getFileName(sourceurl);
