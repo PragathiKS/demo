@@ -30,7 +30,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.Collections;
-import java.util.Arrays;
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -205,13 +204,18 @@ public class PageLoadAnalyticsModel {
              applicationName=currentPage.getAbsoluteParent(1).getName();
          }
          if(!applicationName.isEmpty()) {
-             final String cookieParamArrayString = Arrays.toString(
-                     cookieDataDomainScriptService.getCookieDomainScriptConfig()).replace("[", "{").replace("]",
-                     "}");
-             dataDomainScript = GlobalUtil.getJSONObjectFromStringArray(
-                     cookieParamArrayString, applicationName, PWConstants.DOMAINSCRIPT);
-             applicationAbbreviation = GlobalUtil.getJSONObjectFromStringArray(
-                     cookieParamArrayString, applicationName, PWConstants.SITE_ABBREVIATION);
+             String[] str=cookieDataDomainScriptService.getCookieDomainScriptConfig();
+             for(String param :str){
+                 if(param.contains(applicationName)){
+                     if(param.contains(PWConstants.SITE_ABBREVIATION))
+                     applicationAbbreviation =
+                             StringUtils.substringBetween(param, "{", "}").split(",")[0].split(":")[1];
+                     if(param.contains(PWConstants.DOMAINSCRIPT))
+                     dataDomainScript =
+                             StringUtils.substringBetween(param, "{", "}").split(",")[1].split(":")[1];
+                     break;
+                 }
+             }
          }
         }
 

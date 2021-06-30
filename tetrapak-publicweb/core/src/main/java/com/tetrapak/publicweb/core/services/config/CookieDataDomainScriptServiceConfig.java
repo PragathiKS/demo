@@ -14,7 +14,7 @@ public @interface CookieDataDomainScriptServiceConfig {
      */ 
     @AttributeDefinition(name = "Cookie Domain and Script Configuration",
             description = "Enter value in format of " +
-                    "sitename={\"siteAbbrevation\":\"abbreviation\",\"domainScript\":\"oneTrusdomainscript\"}",
+                    "sitename={siteAbbrevation:abbreviation,domainScript:oneTrusdomainscript}",
             type = AttributeType.STRING)
     String[] cookieDomainScriptConfig();
 }
