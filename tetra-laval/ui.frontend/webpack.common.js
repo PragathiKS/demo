@@ -116,5 +116,12 @@ module.exports = {
         providedExports: false,
         source: false,
         warnings: true
+    },
+    resolve: {
+      mainFields: ['main', 'module'],
+      alias: {
+        bootstrap: path.resolve('../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
+        tpCommon: path.resolve('../../tetrapak-commons/ui.dev/src/source')
+      }
     }
 };
