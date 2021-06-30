@@ -22,6 +22,7 @@ public final class TrsConstants {
     public static final String PIPE = "|";
     public static final String XYLEME_TAG_MAPPING_NODE_PROPERTY = "aemTagPath";
     public static final String SOURCE_ASSET_PATH = "sourceAssetPath";
+    public static final String ASSET_DC_LANGUAGE = "dc:language";
     public static final int ZERO = 0;
     public static final int ONE = 1;
     public static final int TWO = 2;
