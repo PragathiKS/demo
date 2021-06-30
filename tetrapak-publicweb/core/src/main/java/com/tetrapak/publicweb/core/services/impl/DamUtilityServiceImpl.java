@@ -67,6 +67,9 @@ public class DamUtilityServiceImpl implements DamUtilityService {
     @Override
     public String getAssetsFromDam(ResourceResolver resolver) throws JsonProcessingException, ValueFormatException, PathNotFoundException, RepositoryException, JSONException {
     	Resource resource = resolver.getResource(config.DamUtilityRootPath());
+    	LOGGER.debug("In DamUtilityServiceImpl, value of resolver is "+resolver);
+    	LOGGER.debug("In DamUtilityServiceImpl, value of dam utility root path is "+config.DamUtilityRootPath());
+    	LOGGER.debug("In DamUtilityServiceImpl, value of resource is "+resource);
     	return getData(resource).toString();
     }
     
@@ -77,11 +80,11 @@ public class DamUtilityServiceImpl implements DamUtilityService {
         	jsonObject.put(node.getName(), getChildren(resource));
         }else {
         	Asset asset = DamUtil.getAssets(resource).next();
-        	float l = ((Long)asset.getMetadata().get("dam:size")).floatValue()/(1024*1024);
+        	float l = ((Long)asset.getMetadata().get(PWConstants.DAM_SIZE_PROPERTY)).floatValue()/(1024*1024);
         	Object[] obj = (Object[]) asset.getMetadata().get(PWConstants.DC_TITLE_PROPERTY);
-        	jsonObject.put("assetPath", node.getPath());
-        	jsonObject.put("assetSize", decimalFormat.format(l)+" MB");
-        	jsonObject.put("assetTitle", asset.getMetadata().get(PWConstants.DC_TITLE_PROPERTY) != null ? obj[0] : "");
+        	jsonObject.put(PWConstants.ASSET_PATH, node.getPath());
+        	jsonObject.put(PWConstants.ASSET_SIZE, decimalFormat.format(l) + PWConstants.SPACE + PWConstants.SIZE_MB);
+        	jsonObject.put(PWConstants.ASSET_TITLE, asset.getMetadata().get(PWConstants.DC_TITLE_PROPERTY) != null ? obj[0] : "");
         }
         return jsonObject;
     }
