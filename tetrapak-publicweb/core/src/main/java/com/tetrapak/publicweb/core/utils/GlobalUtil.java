@@ -11,6 +11,9 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -68,7 +71,7 @@ public final class GlobalUtil {
      * @return video path from scene 7
      */
     public static String getVideoUrlFromScene7(final ResourceResolver resourceResolver, final String damVideoPath,
-            final DynamicMediaService dynamicMediaService) {
+                                               final DynamicMediaService dynamicMediaService) {
         String path = damVideoPath;
         if(StringUtils.isNotBlank(damVideoPath)) {
             path = dynamicMediaService.getVideoServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damVideoPath);
@@ -86,7 +89,7 @@ public final class GlobalUtil {
      * @return image path from scene 7
      */
     public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
-            final DynamicMediaService dynamicMediaService) {
+                                               final DynamicMediaService dynamicMediaService) {
         String path = damImagePath;
         if(StringUtils.isNotBlank(damImagePath)) {
             path = dynamicMediaService.getImageServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damImagePath);
@@ -142,7 +145,7 @@ public final class GlobalUtil {
      * @return
      */
     public static String getDAMPath(final String damRootPath, final String sourceurl, final String categoryId, final String productId,
-            final String videoTypes) {
+                                    final String videoTypes) {
         String finalDAMPath = null;
         final String assetType = getAssetType(sourceurl, videoTypes);
         final String fileName = getFileName(sourceurl);
@@ -240,4 +243,19 @@ public final class GlobalUtil {
         return slingSettingsService.getRunModes().contains("publish");
     }
 
+    /**
+     * This method is used to get the string value from string Array in format of
+     * {"key":"value","key1":"value1"}
+     * @param stringArray
+     * @param key
+     * @return String value
+     */
+    public static String getKeyValueFromStringArray(final String stringArray, final String key){
+        try {
+            return new JSONObject(stringArray).get(key).toString();
+        }catch (final JSONException exception) {
+            LOG.error("JSONException while converting array string to json object: ", exception);
+        }
+        return StringUtils.EMPTY;
+    }
 }

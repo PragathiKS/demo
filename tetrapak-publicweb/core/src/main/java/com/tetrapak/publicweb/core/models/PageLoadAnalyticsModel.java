@@ -124,7 +124,7 @@ public class PageLoadAnalyticsModel {
 
     /** The site section 4. */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
-    
+
     /** The site section 4. */
     private final StringBuilder siteSection5 = new StringBuilder(StringUtils.EMPTY);
 
@@ -204,15 +204,12 @@ public class PageLoadAnalyticsModel {
              applicationName=currentPage.getAbsoluteParent(1).getName();
          }
          if(!applicationName.isEmpty()) {
-             String[] str=cookieDataDomainScriptService.getCookieDomainScriptConfig();
-             for(String param :str){
+             String[] cookieParamArray = cookieDataDomainScriptService.getCookieDomainScriptConfig();
+             for(String param :cookieParamArray){
                  if(param.contains(applicationName)){
-                     if(param.contains(PWConstants.SITE_ABBREVIATION))
-                     applicationAbbreviation =
-                             StringUtils.substringBetween(param, "{", "}").split(",")[0].split(":")[1];
-                     if(param.contains(PWConstants.DOMAINSCRIPT))
-                     dataDomainScript =
-                             StringUtils.substringBetween(param, "{", "}").split(",")[1].split(":")[1];
+                     final String domainAbbreviationJsonString = param.split("=")[1];
+                     applicationAbbreviation=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, PWConstants.SITE_ABBREVIATION);
+                     dataDomainScript=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, PWConstants.DOMAINSCRIPT);
                      break;
                  }
              }
