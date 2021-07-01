@@ -2,13 +2,15 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2021-06-27T13:08:32.308+02:00"
+        cq:lastModified="{Date}2021-06-28T22:21:54.993+02:00"
         cq:lastModifiedBy="admin"
-        cq:template="/conf/tetra-laval/settings/wcm/templates/global-page-template"
+        cq:template="/conf/tetra-laval/settings/wcm/templates/content-page-template"
         jcr:primaryType="cq:PageContent"
-        jcr:title="English"
-        sling:resourceType="tetra-laval/components/structure/page">
+        jcr:title="Contacts"
+        sling:resourceType="tetra-laval/components/structure/content-page">
         <root
+            jcr:lastModified="{Date}2021-06-28T21:58:10.985+02:00"
+            jcr:lastModifiedBy="admin"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid"/>
     </jcr:content>
