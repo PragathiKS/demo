@@ -150,7 +150,7 @@
         }
     }
     &__content {
-        @include margin(-46px 0 0 0);
+        @include margin(-35px 0 0 0);
         @include padding-top($padding-zero);
         @include padding-left($padding-md);
         @include padding-bottom($padding-l);
@@ -207,7 +207,7 @@
                     font-weight: 700;
                     line-height: 40px;
                 }
-            }  
+            }
             &.hero-title {
                 h1,
                 h2,
