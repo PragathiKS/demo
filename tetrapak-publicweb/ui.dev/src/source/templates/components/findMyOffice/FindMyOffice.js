@@ -17,7 +17,8 @@ class FindMyOffice {
   initCache() {
     this.cache.map = {};
     this.cache.baiduMap = {};
-    this.cache.isChinaLocale = $('html').attr('lang') === 'zh' ? true : false;
+    this.cache.baiduMapMarker = null;
+    this.cache.isChinaLocale = $('html').attr('lang') === 'zh-CN' ? true : false;
     this.cache.googleMaps = '';
     this.cache.officesList = [];
     this.cache.officesNameList = [];
@@ -71,11 +72,12 @@ class FindMyOffice {
     this.cache.baiduMap.centerAndZoom(point, 1);
     this.cache.baiduMap.enableDragging();
     this.cache.baiduMap.enableDoubleClickZoom();
+    this.cache.baiduMap.enableScrollWheelZoom();
     this.cache.baiduMap.enableKeyboard();
-    this.baiduMapMarker(this.cache.baiduMap);
   }
 
-  baiduMapMarker = (map, lat, lng) => {
+  baiduMapMarker = (map, lng, lat) => {
+    map.removeOverlay(this.cache.baiduMapMarker);
     const markerArr = [{
       icon: { w: 40, h: 55, l: 0, t: 0, x: 6, lb: 5 }
     }];
@@ -87,6 +89,7 @@ class FindMyOffice {
       const point = new window.BMap.Point(p0, p1);
       const iconImg = this.createBaiduMapMarkerIcon(json.icon);
       const marker = new window.BMap.Marker(point, { icon: iconImg });
+      this.cache.baiduMapMarker = marker;
       map.addOverlay(marker);
     }
   }
@@ -182,13 +185,12 @@ class FindMyOffice {
   renderMarkerPosition = (office, options) => {
     if (this.cache.isChinaLocale) {
       if (office.offices) {
-        console.log('Office Lat Lng >>>', office);
         const point = new window.BMap.Point(office.longitude, office.latitude);
         this.cache.baiduMap.centerAndZoom(point, 6);
-
       } else {
         const point = new window.BMap.Point(office.longitude, office.latitude);
         this.cache.baiduMap.centerAndZoom(point, 11);
+        this.baiduMapMarker(this.cache.baiduMap, office.longitude, office.latitude);
       }
     } else {
       const latLng = new this.cache.googleMaps.LatLng(
