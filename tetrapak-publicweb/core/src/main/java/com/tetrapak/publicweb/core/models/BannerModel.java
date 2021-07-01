@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.Objects;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
@@ -96,7 +98,15 @@ public class BannerModel {
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
+    
+    /** The Constant HERO_TEST. */
+    private static final String HERO = "hero";
+    
+    /** The Constant HERO_TEST. */
+    private static final String HERO_WIDE = "hero-wide";
 
+    /** The Constant SKY_BLUE. */
+    private static final String SKY_BLUE = "sky-blue";
 
     /** The enable softcoversion. */
     @ValueMapValue
@@ -226,7 +236,11 @@ public class BannerModel {
      *
      * @return the pw card theme
      */
-    public String getPwCardTheme() {        
+    public String getPwCardTheme() {
+        if ((Objects.isNull(pwCardTheme))
+                && (bannerType.equalsIgnoreCase(HERO) || bannerType.equalsIgnoreCase(HERO_WIDE))) {
+            pwCardTheme = SKY_BLUE;
+        }
         return pwCardTheme;
     }
 
