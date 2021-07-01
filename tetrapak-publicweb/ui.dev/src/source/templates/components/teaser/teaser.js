@@ -51,6 +51,8 @@ class Teaser {
     this.cache.$owlPrev = this.root.find('.owl-prev');
     this.cache.$owlNext = this.root.find('.owl-next');
     this.trackArrowAnalytics();
+    this.cache.$teaserLink = this.root.find('.js-teaser-analytics');
+    this.cache.$teaserLink.off().on('click', this.trackAnalytics);
     this.adjustNavArrow();
     $(window).on('resize orientationchange', () => {
       this.adjustNavArrow();
