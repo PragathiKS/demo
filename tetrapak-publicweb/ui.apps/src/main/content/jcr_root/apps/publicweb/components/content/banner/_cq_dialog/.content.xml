@@ -82,21 +82,21 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="For 21:9 banner, we recommend max characters of 30. Always preview the design in different responsive states, from wide desktop to narrow mobile."
-                                fieldLabel="Title (Max character : 35)"
+                                fieldLabel="Title (Max characters: 50 for more information see tooltip)"
                                 maxlength="{Long}50"
                                 name="./title"/>
                             <subtitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="For 21:9 banner, we recommend max characters of 35. Always preview the design in different responsive states, from wide desktop to narrow mobile."
-                                fieldLabel="Subtitle (Max character : 35)"
+                                fieldLabel="Subtitle (Max characters: 50 for more information see tooltip)"
                                 maxlength="{Long}50"
                                 name="./subtitle"/>
                             <text
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                 fieldDescription="For 21:9 banner, we recommend max characters of 180. Always preview the design in different responsive states, from wide desktop to narrow mobile."
-                                fieldLabel="Description (Max character : 180)"
+                                fieldLabel="Description (Max characters: 300 for more information see tooltip)"
                                 maxlength="{Long}300"
                                 name="./text"/>
                             <linkLabel
