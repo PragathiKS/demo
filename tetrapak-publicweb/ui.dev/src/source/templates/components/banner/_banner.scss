@@ -376,6 +376,7 @@
 }
 
 .black .pw-banner__gradient-bg {
-    background: linear-gradient(101.77deg, $color-white 8.01%, rgba(255, 255, 255, 0.8) 90.8%);
+    background: linear-gradient(0, $color-white-new 8.01%, $color-hls 90.8%);
     transform: rotate(-360deg);
 }
+
