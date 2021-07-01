@@ -1,16 +1,11 @@
 package com.tetrapak.publicweb.core.servlets;
 
-import java.io.IOException;
-import javax.jcr.PathNotFoundException;
-import javax.jcr.RepositoryException;
-import javax.jcr.ValueFormatException;
 import javax.servlet.Servlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
-import org.json.JSONException;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -50,20 +45,11 @@ public class DamMetaDataAssetInfoServlet extends SlingSafeMethodsServlet {
 		response.setContentType("application/json");
 		try {
 			//returns all the pdf assets from DAM in json format
-            response.getWriter().write(damUtilityService.getAssetsFromDam(resolver));        
-		} catch (IOException e) {
-			LOGGER.error("Error in DamMetaDataAssetInfoServlet - {}", e.getMessage());
-		} catch (ValueFormatException e) {
-			// TODO Auto-generated catch block
-			LOGGER.error("Error in DamMetaDataAssetInfoServlet - {}", e.getMessage());
-		} catch (PathNotFoundException e) {
-			// TODO Auto-generated catch block
-			LOGGER.error("Error in DamMetaDataAssetInfoServlet - {}", e.getMessage());
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			LOGGER.error("Error in DamMetaDataAssetInfoServlet - {}", e.getMessage());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			StringBuffer assets = new StringBuffer();
+			assets.append(damUtilityService.getAssetsFromDam(resolver));
+			LOGGER.info("In DamMetaDataAssetInfoServlet, response is "+assets);
+            response.getWriter().write(assets.toString());        
+		} catch (Exception e) {
 			LOGGER.error("Error in DamMetaDataAssetInfoServlet - {}", e.getMessage());
 		}
 	}       

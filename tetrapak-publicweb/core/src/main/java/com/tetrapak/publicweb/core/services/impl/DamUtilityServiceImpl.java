@@ -65,11 +65,8 @@ public class DamUtilityServiceImpl implements DamUtilityService {
      * @throws JSONException 
      */
     @Override
-    public String getAssetsFromDam(ResourceResolver resolver) throws JsonProcessingException, ValueFormatException, PathNotFoundException, RepositoryException, JSONException {
+    public String getAssetsFromDam(ResourceResolver resolver) throws JsonProcessingException, ValueFormatException, RepositoryException, JSONException {
     	Resource resource = resolver.getResource(config.DamUtilityRootPath());
-    	LOGGER.debug("In DamUtilityServiceImpl, value of resolver is "+resolver);
-    	LOGGER.debug("In DamUtilityServiceImpl, value of dam utility root path is "+config.DamUtilityRootPath());
-    	LOGGER.debug("In DamUtilityServiceImpl, value of resource is "+resource);
     	return getData(resource).toString();
     }
     
@@ -86,10 +83,11 @@ public class DamUtilityServiceImpl implements DamUtilityService {
         	jsonObject.put(PWConstants.ASSET_SIZE, decimalFormat.format(l) + PWConstants.SPACE + PWConstants.SIZE_MB);
         	jsonObject.put(PWConstants.ASSET_TITLE, asset.getMetadata().get(PWConstants.DC_TITLE_PROPERTY) != null ? obj[0] : "");
         }
+        LOGGER.info("In DamUtilityServiceImpl, response is "+jsonObject.toString());
         return jsonObject;
     }
     
-    public static JSONArray getChildren(Resource resource) throws ValueFormatException, PathNotFoundException, RepositoryException, JSONException {
+    public static JSONArray getChildren(Resource resource) throws ValueFormatException, PathNotFoundException, RepositoryException, JSONException{
     	JSONArray jsonArray = new JSONArray();
     	Iterator<Resource> itr = resource.listChildren();
     	while(itr.hasNext()) {

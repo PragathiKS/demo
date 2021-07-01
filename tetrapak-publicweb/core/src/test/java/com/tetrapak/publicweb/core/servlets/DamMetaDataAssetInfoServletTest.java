@@ -14,10 +14,7 @@ import org.junit.Test;
 
 import com.tetrapak.publicweb.core.mock.MockHelper;
 import com.tetrapak.publicweb.core.services.DamUtilityService;
-import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 import com.tetrapak.publicweb.core.services.impl.DamUtilityServiceImpl;
-import com.tetrapak.publicweb.core.services.impl.FindMyOfficeServiceImpl;
-
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 public class DamMetaDataAssetInfoServletTest {
@@ -43,7 +40,7 @@ public class DamMetaDataAssetInfoServletTest {
     public void setup() {
     	damUtilityService = new DamUtilityServiceImpl();
         Map<String, Object> config = new HashMap<>();
-        config.put("DamUtilityRootPath", "/content/dam/tetrapak/publicweb");
+        config.put("DamUtilityRootPath", TEST_DAM_ASSET_ROOT);
         context.registerService(DamUtilityService.class, damUtilityService);
         context.getService(DamUtilityService.class);
         MockOsgi.activate(context.getService(DamUtilityService.class), context.bundleContext(), config);
@@ -59,7 +56,7 @@ public class DamMetaDataAssetInfoServletTest {
      *             Signals that an I/O exception has occurred.
      */
     @Test
-    public void doGet() throws IOException {
+    public void doGet(){
     	damMetaDataAssetInfoServlet.doGet(context.request(), context.response());
         assertEquals(
                 "{\"publicweb\":[{\"assetSize\":\"0.88 MB\",\"assetPath\":\"/content/dam/tetrapak/publicweb/Cap_GCLP_English.pdf\",\"assetTitle\":\"Cap policy pdf\"}]}",
