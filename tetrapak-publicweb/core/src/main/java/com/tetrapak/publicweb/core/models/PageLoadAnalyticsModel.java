@@ -2,6 +2,9 @@ package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
+
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
@@ -12,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -24,12 +28,15 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.Iterator;
-import java.util.Collections;
+
+import java.util.*;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+
+
+
+
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -37,21 +44,31 @@ import java.util.Collections;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
-    /** The request. */
+    /**
+     * The request.
+     */
     @SlingObject
     private SlingHttpServletRequest request;
 
-    /** The resource. */
+    /**
+     * The resource.
+     */
     private Resource resource;
 
-    /** The current page. */
+    /**
+     * The current page.
+     */
     private Page currentPage;
 
-    /** The sling settings service. */
+    /**
+     * The sling settings service.
+     */
     @OSGiService
     private SlingSettingsService slingSettingsService;
 
-    /** The xssapi. */
+    /**
+     * The xssapi.
+     */
     @OSGiService
     protected XSSAPI xssapi;
 
@@ -59,31 +76,49 @@ public class PageLoadAnalyticsModel {
     @OSGiService
     private CookieDataDomainScriptService cookieDataDomainScriptService;
 
-    /** The Constant PAGE_LOAD_EVENT. */
+    /**
+     * The Constant PAGE_LOAD_EVENT.
+     */
     private static final String PAGE_LOAD_EVENT = "content-load";
 
-    /** The Constant TETRAPAK_TAGS_ROOT_PATH. */
+    /**
+     * The Constant TETRAPAK_TAGS_ROOT_PATH.
+     */
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
 
-    /** The Constant PW_ERROR_PAGE_TEMPLATE_NAME. */
+    /**
+     * The Constant PW_ERROR_PAGE_TEMPLATE_NAME.
+     */
     private static final String PW_ERROR_PAGE_TEMPLATE_NAME = "public-web-error-page";
 
-    /** The Constant X_DEFAULT. */
+    /**
+     * The Constant X_DEFAULT.
+     */
     private static final String X_DEFAULT = "x-default";
 
-    /** The channel. */
+    /**
+     * The channel.
+     */
     private String channel = StringUtils.EMPTY;
 
-    /** The page name. */
+    /**
+     * The page name.
+     */
     private String pageName = StringUtils.EMPTY;
 
-    /** The site language. */
+    /**
+     * The site language.
+     */
     private String siteLanguage = StringUtils.EMPTY;
 
-    /** The site country. */
+    /**
+     * The site country.
+     */
     private String siteCountry = StringUtils.EMPTY;
 
-    /** The page type. */
+    /**
+     * The page type.
+     */
     private String pageType = StringUtils.EMPTY;
 
     /** The data domain script. */
@@ -98,46 +133,81 @@ public class PageLoadAnalyticsModel {
     /** The digital data. */
     private String digitalData;
 
-    /** The production. */
+    /**
+     * The production.
+     */
     private boolean production;
 
-    /** The staging. */
+    /**
+     * The staging.
+     */
     private boolean staging;
 
-    /** The development. */
+    /**
+     * The pageCategories.
+     */
+    private String pageCategories;
+
+    /**
+     * The development.
+     */
     private boolean development;
 
-    /** The product name. */
+    /**
+     * The product name.
+     */
     private String productName;
 
-    /** The site section 0. */
+    /**
+     * The site section 0.
+     */
     private final StringBuilder siteSection0 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The site section 1. */
+    /**
+     * The site section 1.
+     */
     private StringBuilder siteSection1 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The site section 2. */
+    /**
+     * The site section 2.
+     */
     private final StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The site section 3. */
+    /**
+     * The site section 3.
+     */
     private final StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The site section 4. */
+    /**
+     * The site section 4.
+     */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
 
     /** The site section 4. */
     private final StringBuilder siteSection5 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The Constant COUNTRY_LEVEL. */
+    /**
+     * The Constant COUNTRY_LEVEL.
+     */
     private static final int COUNTRY_LEVEL = 4;
 
-    /** The Constant LANGUAGE_LEVEL. */
+    /**
+     * The Constant LANGUAGE_LEVEL.
+     */
     private static final int LANGUAGE_LEVEL = 5;
 
-    /** The Constant HREFLANG_LIST_MINIMUM_SIZE. */
+    /**
+     * The Constant HREFLANG_LIST_MINIMUM_SIZE.
+     */
     private static final int HREFLANG_LIST_MINIMUM_SIZE = 2;
 
-    /** The href lang values. */
+    private String[] pc;
+
+    private ResourceResolver resourceResolver;
+
+    /**
+     * The href lang values.
+     */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
     /**
@@ -155,6 +225,7 @@ public class PageLoadAnalyticsModel {
             }
         }
 
+        updatePageCategories();
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
@@ -166,6 +237,70 @@ public class PageLoadAnalyticsModel {
         updateHrefLang();
         digitalData = buildDigitalDataJson();
     }
+
+    /**
+     * Update Page Categories.
+     */
+    private void updatePageCategories() {
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
+        final List<String> list = new ArrayList<String>();
+        TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+        if (Objects.nonNull(tagValue)) {
+            for (String tags : tagValue) {
+                Tag tag = tagManager.resolve(tags);
+                String tagTitle = tag.getTitle();
+                list.add(tagTitle);
+            }
+        }
+        pageCategories = list.toString().replace("[", "").replace("]", "");
+    }
+
+/*
+    private void updateTagName(){
+        final String[] pc = currentPage.getProperties().get("cq:tags",String[].class);
+        if(Objects.nonNull(pc)) {
+        for(String temp : pc){
+            String pc1 = temp.toString();
+        }
+        }
+        }
+*/
+/*
+    private void updateTagName(){
+        List<String> tags = new ArrayList<>();
+        for (String tag1 : tags) {
+            final Tag[] tag2 = currentPage.getTags();
+            Tag tag = 
+        }
+    }
+*/
+
+/*
+   public List<String> getTagIds() {
+        final TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+        final List<String> tagIds = new ArrayList<String>();
+        if(tagManager!=null) {
+            for (Tag tag : tagManager.getTags(resource)) {
+                tagIds.add(tag.getTagID());
+            }
+        }
+            return tagIds;
+    }
+*/
+
+   /*
+    public List<String> getTagIds() {
+        final TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+        if (tagManager != null) {
+            final List<String> tagIds = new ArrayList<String>();
+            for (Tag tag : tagManager.getNamespaces()) {
+                tagIds.add(tag.getTitle());
+            }
+        }
+        return tagIds;
+    }
+*/
 
     /**
      * Update product name.
@@ -509,6 +644,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
         pageInfo.addProperty("siteName", applicationName);
+        pageInfo.addProperty("pageCategories", pageCategories);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
