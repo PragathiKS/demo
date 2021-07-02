@@ -14,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -27,15 +26,12 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-
-import java.util.*;
-
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-
-
-
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.Iterator;
+import java.util.Collections;
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -220,7 +216,7 @@ public class PageLoadAnalyticsModel {
             }
         }
 
-        updatePageCategories();
+        updatePageCategories(resource);
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
@@ -233,7 +229,7 @@ public class PageLoadAnalyticsModel {
     /**
      * Update Page Categories.
      */
-    private void updatePageCategories() {
+    private void updatePageCategories(Resource resource) {
         ResourceResolver resourceResolver = resource.getResourceResolver();
         final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
         final List<String> list = new ArrayList<String>();
@@ -247,52 +243,6 @@ public class PageLoadAnalyticsModel {
         }
         pageCategories = list.toString().replace("[", "").replace("]", "");
     }
-
-/*
-    private void updateTagName(){
-        final String[] pc = currentPage.getProperties().get("cq:tags",String[].class);
-        if(Objects.nonNull(pc)) {
-        for(String temp : pc){
-            String pc1 = temp.toString();
-        }
-        }
-        }
-*/
-/*
-    private void updateTagName(){
-        List<String> tags = new ArrayList<>();
-        for (String tag1 : tags) {
-            final Tag[] tag2 = currentPage.getTags();
-            Tag tag = 
-        }
-    }
-*/
-
-/*
-   public List<String> getTagIds() {
-        final TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-        final List<String> tagIds = new ArrayList<String>();
-        if(tagManager!=null) {
-            for (Tag tag : tagManager.getTags(resource)) {
-                tagIds.add(tag.getTagID());
-            }
-        }
-            return tagIds;
-    }
-*/
-
-   /*
-    public List<String> getTagIds() {
-        final TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-        if (tagManager != null) {
-            final List<String> tagIds = new ArrayList<String>();
-            for (Tag tag : tagManager.getNamespaces()) {
-                tagIds.add(tag.getTitle());
-            }
-        }
-        return tagIds;
-    }
-*/
 
     /**
      * Update product name.
