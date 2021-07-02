@@ -62,6 +62,10 @@
         justify-content: flex-end;
 
         @media #{$mobile} {
+            justify-content: flex-start;
+        }
+
+        @media #{$mobile} {
             @include margin-top($margin-xxxl);
             @include margin-bottom($margin-xxxl);
         }
@@ -77,6 +81,11 @@
                 margin-right: 0;
             }
 
+            &.iconWeChat {
+                display: inline-block;
+                width: 30px;
+            }
+
             &.iconWeChatCode {
                 display: inline-block;
                 height: 115px;
@@ -86,6 +95,7 @@
 
         &__china {
             display: flex;
+            margin-left: 1.14286rem;
         }
     }
 
