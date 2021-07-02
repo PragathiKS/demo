@@ -16,7 +16,7 @@ class FindMyOffice {
 
   initCache() {
     this.cache.map = {};
-    this.cache.baiduMap = {};
+    this.cache.baiduMap = null;
     this.cache.baiduMapMarker = null;
     this.cache.isChinaLocale = $('html').attr('lang') === 'zh-CN' ? true : false;
     this.cache.googleMaps = '';
