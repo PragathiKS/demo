@@ -372,38 +372,6 @@ public final class PWConstants {
     
     /** Constant ONLINE_HELP_CONTENT_PATH */
     public static final String ONLINE_HELP_CONTENT_PATH = "/content/online-help";
-    
-    /** Constant DAM_ASSETS_PROPERTY */
-    public static final String DAM_ASSETS_PROPERTY = "dam:Asset";
-    
-    /** Constant APPLICATION_PDF */
-    public static final String APPLICATION_PDF = "application/pdf";
-    
-    /** Constant DC_TITLE_PROPERTY */
-    public static final String DC_TITLE_PROPERTY = "dc:title";
-    
-    /** Constant DC_FORMAT_PROPERTY */
-    public static final String DC_FORMAT_PROPERTY = "dc:format";
-    
-    /** Constant DAM_SIZE_PROPERTY */
-    public static final String DAM_SIZE_PROPERTY = "dam:size";
-    
-    /** Constant ASSET_PATH */
-    public static final String ASSET_PATH = "assetPath";
-    
-    /** Constant ASSET_SIZE */
-    public static final String ASSET_SIZE = "assetSize";
-    
-    /** Constant ASSET_TITLE */
-    public static final String ASSET_TITLE = "assetTitle";
-    
-    /** Constant SIZE_MB */
-    public static final String SIZE_MB = "MB";
-    
-    /** Constant SLING_ORDERED_FOLDER */
-    public static final String CONSTANT_FOLDER = "folder";
-    
-    public static final String PW_CONTENT_DAM_PATH = "/content/dam/tetrapak/publicweb";
 
     /** Constant SUBSCRIPTION_EMAIL_CTA_TEXT */
     public static final String SUBSCRIPTION_EMAIL_CTA_TEXT = "pw.subscription.email.ctaText";

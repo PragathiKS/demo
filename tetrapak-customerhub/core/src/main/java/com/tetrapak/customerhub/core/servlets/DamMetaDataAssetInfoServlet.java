@@ -1,4 +1,4 @@
-package com.tetrapak.publicweb.core.servlets;
+package com.tetrapak.customerhub.core.servlets;
 
 import javax.servlet.Servlet;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -11,7 +11,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.tetrapak.publicweb.core.services.DamUtilityService;
+import com.tetrapak.customerhub.core.services.DamUtilityService;
 
 /**
  * @author Aalekh Mathur 
@@ -19,7 +19,7 @@ import com.tetrapak.publicweb.core.services.DamUtilityService;
  */
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Dam Asset Metadata information",
 		"sling.servlet.methods=" + HttpConstants.METHOD_GET,
-		"sling.servlet.paths=" + "/bin/publicweb/fetchDamAssets" })
+		"sling.servlet.paths=" + "/bin/customerhub/fetchDamAssets" })
 public class DamMetaDataAssetInfoServlet extends SlingSafeMethodsServlet {
 
 	/** The Constant serialVersionUID. */

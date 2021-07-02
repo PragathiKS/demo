@@ -1,4 +1,4 @@
-package com.tetrapak.publicweb.core.services;
+package com.tetrapak.customerhub.core.services;
 
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;

@@ -30,7 +30,7 @@
 						"dam:assetState": "processed",
 						"cq:name": "Capgemini_GCLP_English.pdf",
 						"jcr:lastModified": "Wed Jun 23 2021 09:56:50 GMT+0200",
-						"cq:parentPath": "/content/dam/tetrapak/publicweb",
+						"cq:parentPath": "/content/dam/tetrapak/customerhub",
 						"metadata":
 						{
 							"jcr:primaryType": "nt:unstructured",

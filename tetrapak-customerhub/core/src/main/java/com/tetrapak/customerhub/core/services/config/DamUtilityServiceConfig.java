@@ -1,17 +1,17 @@
-package com.tetrapak.publicweb.core.services.config;
+package com.tetrapak.customerhub.core.services.config;
 
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
-import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
 /**
  * OSGi configuration for DAM Utility Service
  *
  * @author Aalekh Mathur
  */
-@ObjectClassDefinition(name = "Public Web DAM Utility Service Configuration", description = "DAM Utility Service Configuration")
+@ObjectClassDefinition(name = "Customer Hub DAM Utility Service Configuration", description = "DAM Utility Service Configuration")
 public @interface DamUtilityServiceConfig {
 
     /**
@@ -20,6 +20,6 @@ public @interface DamUtilityServiceConfig {
      * @return DAM Utility Service root path
      */
     @AttributeDefinition(name = "DAM Utility Service root path", description = "DAM Utility Service root path", type = AttributeType.STRING)
-    String DamUtilityRootPath() default PWConstants.PW_CONTENT_DAM_PATH;
+    String DamUtilityRootPath() default CustomerHubConstants.PW_CONTENT_DAM_PATH;
 
 }

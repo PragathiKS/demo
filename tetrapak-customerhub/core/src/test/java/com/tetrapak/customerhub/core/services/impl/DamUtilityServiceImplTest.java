@@ -1,4 +1,4 @@
-package com.tetrapak.publicweb.core.services.impl;
+package com.tetrapak.customerhub.core.services.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +20,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.DamUtilityService;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.DamUtilityService;
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 /**
@@ -46,7 +46,7 @@ public class DamUtilityServiceImplTest {
     /** The mail service. */
     private final DamUtilityService damUtilityService = new DamUtilityServiceImpl();
     
-    private static final String PAYLOAD_ASSET_PATH = "/damUtility/assets_pdf.json";
+    private static final String PAYLOAD_ASSET_PATH = "/assets_pdf.json";
     
     @Mock
     private Node node;
@@ -61,12 +61,12 @@ public class DamUtilityServiceImplTest {
     public void setUp() throws Exception {
     	
     	Map<String, Object> config = new HashMap<>();
-        config.put("DamUtilityRootPath", PWConstants.PW_CONTENT_DAM_PATH);
+        config.put("DamUtilityRootPath", CustomerHubConstants.PW_CONTENT_DAM_PATH);
         context.registerService(DamUtilityService.class, damUtilityService);
         context.getService(DamUtilityService.class);
         MockOsgi.activate(context.getService(DamUtilityService.class), context.bundleContext(), config);
-        context.load().json(PAYLOAD_ASSET_PATH, PWConstants.PW_CONTENT_DAM_PATH);
-        resource = context.currentResource(PWConstants.PW_CONTENT_DAM_PATH);
+        context.load().json(PAYLOAD_ASSET_PATH, CustomerHubConstants.PW_CONTENT_DAM_PATH);
+        resource = context.currentResource(CustomerHubConstants.PW_CONTENT_DAM_PATH);
         resolver = context.resourceResolver();
     }
 
@@ -82,7 +82,7 @@ public class DamUtilityServiceImplTest {
     public void testGetAssetsFromDam() throws JsonProcessingException, ValueFormatException, PathNotFoundException, RepositoryException, JSONException {
         Assert.assertEquals(
                 context.getService(DamUtilityService.class).getAssetsFromDam(resolver),
-                "{\"publicweb\":[{\"assetSize\":\"0.88 MB\",\"assetPath\":\"/content/dam/tetrapak/publicweb/Cap_GCLP_English.pdf\",\"assetTitle\":\"Cap policy pdf\"}]}");
+                "{\"customerhub\":[{\"assetSize\":\"0.88 MB\",\"assetPath\":\"/content/dam/tetrapak/customerhub/Cap_GCLP_English.pdf\",\"assetTitle\":\"Cap policy pdf\"}]}");
     }
 
 
