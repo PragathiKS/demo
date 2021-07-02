@@ -10,7 +10,7 @@ class Teaser {
   cache = {};
   initCache() {
     this.cache.$teaserLink = this.root.find('.js-teaser-analytics');
-    this.cache.$teaserImage = this.root.find('.js-teaser-analytics img');
+    this.cache.$teaserImage = this.root.find('.carousal-wrapper img');
     this.cache.$owl = this.root.find('.owl-carousel');
     this.cache.option = {
       loop: true,
