@@ -98,9 +98,9 @@ function _processKeys(keys, ob) {
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
-      }else if(i === 'site'){
+      }else if(i === 'siteName'){
         site = i;
-      }else if(i === 'line'){
+      }else if(i === 'lineName'){
         line = i;
       }
       else if(i === 'equipmentDesc'){
@@ -126,13 +126,13 @@ function getKeyMap(key,i18nKeys){
       headerObj['tooltipText'] = i18nKeys['countryToolTip'];
       break;
     }
-    case 'site': {
+    case 'siteName': {
       headerObj['keyLabel'] = i18nKeys['site'];
       headerObj['showTooltip'] = i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['siteToolTip'];
       break;
     }
-    case 'line': {
+    case 'lineName': {
       headerObj['keyLabel'] = i18nKeys['line'];
       headerObj['showTooltip'] = i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['lineToolTip'];
