@@ -207,24 +207,16 @@
                 align-items: center;
             }
 
-            li.paginationjs-ellipsis {
-                a {
-                    min-width: 24px;
-                }
-            }
-
             li.paginationjs-prev,
             li.paginationjs-next {
                 width: 24px;
                 text-align: center;
                 a {
-                    min-width: 24px;
                     cursor: pointer;
                 }
             }
 
             li.paginationjs-prev {
-                @include margin-left($margin-l);
                 i {
                     &::before {
                         transform: rotate(-180deg);
@@ -235,16 +227,29 @@
             li {
                 border: 0;
                 a {
+                    @include padding($padding-zero 9px);
                     color: $color-congress-blue;
                     height: 24px;
+                    min-width: auto;
                     line-height: 24px;
                     &:hover {
                         background-color: transparent;
                     }
                 }
                 &.paginationjs-next {
-                    @include margin-right($margin-l);
+                    @include margin-right($margin-xs);
+                    @media #{$desktop} {
+                        @include margin-right($margin-l);
+                    }
+
                     border-right: 0;
+                }
+                &.paginationjs-prev {
+                    @include margin-left($margin-xs);
+                    @media #{$desktop} {
+                        @include margin-left($margin-l);
+                    }
+
                 }
                 &:last-child {
                     border-right: 0;
@@ -255,9 +260,7 @@
                 a {
                     color: $color-congress-blue;
                     height: 24px;
-                    width: 24px;
                     border-radius: 4px;
-                    min-width: 24px;
                     line-height: 24px;
                 }
 
@@ -267,6 +270,12 @@
                         background: $color-congress-blue;
                     }
                 }
+            }
+        }
+        @media #{$mobile} {
+            .first,
+            .last {
+                display: none;
             }
         }
     }
