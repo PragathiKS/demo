@@ -61,10 +61,14 @@ stages {
                         appname = "commons"
                         buildandsonar()
                     }
+                    else {
+					    dir('tetrapak-commons') {
+					        sh "npm install --prefix ui.dev/src"
+						}
+					}
+                }
+
             }
-
-            }            
-
             steps {
                 script {
                     if (params.Build_Tetralaval) {
