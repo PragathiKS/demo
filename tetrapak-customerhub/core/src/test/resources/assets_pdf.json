@@ -1,0 +1,66 @@
+{
+	"jcr:primaryType": "sling:OrderedFolder",
+	"jcr:mixinTypes": [
+	"rep:AccessControllable"
+	],
+	"jcr:createdBy": "admin",
+	"jcr:lastModifiedBy": "admin",
+	"jcr:created": "Wed May 19 2021 12:24:36 GMT+0200",
+	"jcr:lastModified": "Thu Jun 25 2020 05:50:15 GMT+0000",
+	"Cap_GCLP_English.pdf" : 
+	{
+			"jcr:primaryType": "dam:Asset",
+			"jcr:mixinTypes": [
+									"mix:referenceable",
+									"mix:versionable"
+			],
+			"jcr:createdBy": "admin",
+			"jcr:versionHistory": "34a5d3f4-ad65-46d7-a126-436a7e5dc029",
+			"jcr:predecessors": [
+				"8e916cd7-bdc7-46cb-9fbf-33859bfb583c"
+			],
+			"jcr:created": "Tue Jun 22 2021 15:55:45 GMT+0200",
+			"jcr:baseVersion": "8e916cd7-bdc7-46cb-9fbf-33859bfb583c",
+			"jcr:isCheckedOut": true,
+			"jcr:uuid": "225df449-cddd-4d03-a202-fe36bc123a5c",
+			"jcr:content":
+			{
+						"jcr:primaryType": "dam:AssetContent",
+						"jcr:lastModifiedBy": "admin",
+						"dam:assetState": "processed",
+						"cq:name": "Capgemini_GCLP_English.pdf",
+						"jcr:lastModified": "Wed Jun 23 2021 09:56:50 GMT+0200",
+						"cq:parentPath": "/content/dam/tetrapak/customerhub",
+						"metadata":
+						{
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+							"cq:Taggable"
+							],
+							"dam:Trapped": "False",
+							"dam:Physicalheightininches": "11.692916666666667",
+							"dam:Physicalwidthininches": "8.267722222222222",
+							"dam:numPages": 32,
+							"jcr:lastModifiedBy": "admin",
+							"xmp:CreatorTool": "Adobe InDesign CC 2015 (Macintosh)",
+							"dam:extracted": "Tue Jun 22 2021 15:55:46 GMT+0200",
+							"dc:format": "application/pdf",
+							"dam:Producer": "Adobe PDF Library 15.0",
+							"xmpMM:DocumentID": "xmp.id:95d81704-99b4-46a1-a8cf-fd4a307e6f8e",
+							"xmpMM:OriginalDocumentID": "adobe:docid:indd:bbec9a6d-9296-11df-af5a-94c71f679832",
+							"dc:modified": "Wed Jun 23 2021 09:56:48 GMT+0200",
+							"xmp:MetadataDate": "Fri Jan 22 2016 00:23:03 GMT+0100",
+							"xmpMM:RenditionClass": "proof:pdf",
+							"jcr:lastModified": "Wed Jun 23 2021 09:56:48 GMT+0200",
+							"pdf:Producer": "Adobe PDF Library 15.0",
+							"xmpMM:InstanceID": "uuid:c7226612-bfec-8040-92c2-52b252f8968d",
+							"xmp:ModifyDate": "Fri Jan 22 2016 00:23:03 GMT+0100",
+							"xmp:CreateDate": "Fri Jan 22 2016 00:22:55 GMT+0100",
+							"pdf:Trapped": false,
+							"dam:sha1": "68ddf1be38fb3e6600701b4ed707e2de205f233f",
+							"dam:size": 920512,
+							"dc:title": ["Cap policy pdf"]
+						}
+			}
+	}
+}

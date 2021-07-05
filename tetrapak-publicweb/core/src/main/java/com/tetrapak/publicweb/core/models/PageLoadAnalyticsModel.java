@@ -7,6 +7,7 @@ import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -39,97 +40,75 @@ import java.util.Collections;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
-    /**
-     * The request.
-     */
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
 
-    /**
-     * The resource.
-     */
+    /** The resource. */
     private Resource resource;
 
-    /**
-     * The current page.
-     */
+    /** The current page. */
     private Page currentPage;
 
-    /**
-     * The sling settings service.
-     */
+    /** The sling settings service. */
     @OSGiService
     private SlingSettingsService slingSettingsService;
 
-    /**
-     * The xssapi.
-     */
+    /** The xssapi. */
     @OSGiService
     protected XSSAPI xssapi;
 
+    /** The cookieDataDomainScriptService. */
+    @OSGiService
+    private CookieDataDomainScriptService cookieDataDomainScriptService;
     /**
      * The Constant SITE_NAME.
      */
     private static final String SITE_NAME = "publicweb";
 
-    /**
-     * The Constant PAGE_LOAD_EVENT.
-     */
+    /** The Constant PAGE_LOAD_EVENT. */
     private static final String PAGE_LOAD_EVENT = "content-load";
 
-    /**
-     * The Constant TETRAPAK_TAGS_ROOT_PATH.
-     */
+    /** The Constant TETRAPAK_TAGS_ROOT_PATH. */
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
 
-    /**
-     * The Constant PW_ERROR_PAGE_TEMPLATE_NAME.
-     */
+    /** The Constant PW_ERROR_PAGE_TEMPLATE_NAME. */
     private static final String PW_ERROR_PAGE_TEMPLATE_NAME = "public-web-error-page";
 
-    /**
-     * The Constant X_DEFAULT.
-     */
+    /** The Constant X_DEFAULT. */
     private static final String X_DEFAULT = "x-default";
 
-    /**
-     * The channel.
-     */
+    /** The channel. */
     private String channel = StringUtils.EMPTY;
 
-    /**
-     * The page name.
-     */
+    /** The page name. */
     private String pageName = StringUtils.EMPTY;
 
-    /**
-     * The site language.
-     */
+    /** The site language. */
     private String siteLanguage = StringUtils.EMPTY;
 
-    /**
-     * The site country.
-     */
+    /** The site country. */
     private String siteCountry = StringUtils.EMPTY;
 
-    /**
-     * The page type.
-     */
+    /** The page type. */
     private String pageType = StringUtils.EMPTY;
 
-    /**
-     * The digital data.
-     */
+    /** The data domain script. */
+    private String dataDomainScript = StringUtils.EMPTY;
+
+    /** The application abbreviation. */
+    private String applicationAbbreviation = StringUtils.EMPTY;
+
+    /** The application name. */
+    private String applicationName = StringUtils.EMPTY;
+
+    /** The digital data. */
     private String digitalData;
 
-    /**
-     * The production.
-     */
+    /** The production. */
     private boolean production;
 
-    /**
-     * The staging.
-     */
+    /** The staging. */
     private boolean staging;
 
     /**
@@ -142,63 +121,37 @@ public class PageLoadAnalyticsModel {
      */
     private boolean development;
 
-    /**
-     * The product name.
-     */
+    /** The product name. */
     private String productName;
 
-    /**
-     * The site section 0.
-     */
+    /** The site section 0. */
     private final StringBuilder siteSection0 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The site section 1.
-     */
+    /** The site section 1. */
     private StringBuilder siteSection1 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The site section 2.
-     */
+    /** The site section 2. */
     private final StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The site section 3.
-     */
+    /** The site section 3. */
     private final StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The site section 4.
-     */
+    /** The site section 4. */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
-
-    /**
-     * The site section 4.
-     */
+    
+    /** The site section 4. */
     private final StringBuilder siteSection5 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The Constant COUNTRY_LEVEL.
-     */
+    /** The Constant COUNTRY_LEVEL. */
     private static final int COUNTRY_LEVEL = 4;
 
-    /**
-     * The Constant LANGUAGE_LEVEL.
-     */
+    /** The Constant LANGUAGE_LEVEL. */
     private static final int LANGUAGE_LEVEL = 5;
 
-    /**
-     * The Constant HREFLANG_LIST_MINIMUM_SIZE.
-     */
+    /** The Constant HREFLANG_LIST_MINIMUM_SIZE. */
     private static final int HREFLANG_LIST_MINIMUM_SIZE = 2;
 
-    private String[] pc;
-
-    private ResourceResolver resourceResolver;
-
-    /**
-     * The href lang values.
-     */
+    /** The href lang values. */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
     /**
@@ -220,6 +173,9 @@ public class PageLoadAnalyticsModel {
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
+        if(GlobalUtil.isPublish()){
+            updateCookieParameters();
+        }
         updatePageName();
         updateProductName();
         updateHrefLang();
@@ -249,7 +205,9 @@ public class PageLoadAnalyticsModel {
      */
     private void updateProductName() {
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        productName = product.getName();
+        if(product != null) {
+            productName = product.getName();
+        }
     }
 
     /**
@@ -268,6 +226,28 @@ public class PageLoadAnalyticsModel {
             siteLanguage = languagePage.getName();
         }
     }
+
+    /**
+     * This method will update the cookie parameters
+     */
+    private void updateCookieParameters(){
+         if (currentPage.getAbsoluteParent(1).getName().equalsIgnoreCase(PWConstants.TETRAPAK)){
+              applicationName=currentPage.getAbsoluteParent(2).getName();
+          } else {
+             applicationName=currentPage.getAbsoluteParent(1).getName();
+         }
+         if(!applicationName.isEmpty()) {
+             String[] cookieParamArray = cookieDataDomainScriptService.getCookieDomainScriptConfig();
+             for(String param :cookieParamArray){
+                 if(param.contains(applicationName)){
+                     final String domainAbbreviationJsonString = param.split("=")[1];
+                     applicationAbbreviation=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, PWConstants.SITE_ABBREVIATION);
+                     dataDomainScript=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, PWConstants.DOMAINSCRIPT);
+                     break;
+                 }
+             }
+         }
+        }
 
     /**
      * Update site sections.
@@ -323,7 +303,7 @@ public class PageLoadAnalyticsModel {
      * Update page name.
      */
     private void updatePageName() {
-        pageName = "pw:" + siteLanguage;
+        pageName = applicationAbbreviation+":" + siteLanguage;
         if (StringUtils.isNotEmpty(siteSection0.toString())) {
             pageName += ":" + siteSection0.toString();
             if (StringUtils.isNotEmpty(siteSection1.toString())) {
@@ -561,8 +541,8 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("siteName", SITE_NAME);
         pageInfo.addProperty("pageCategories", pageCategories);
+        pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
@@ -682,6 +662,10 @@ public class PageLoadAnalyticsModel {
      */
     public Boolean isPublisher() {
         return GlobalUtil.isPublish();
+    }
+
+    public String getDataDomainScript(){
+        return dataDomainScript;
     }
 
     /**
