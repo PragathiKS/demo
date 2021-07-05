@@ -246,7 +246,7 @@ pipeline {
     def devdeployment() {
 	
 	    if (params.Build_Tetralaval)  {
-                packageName = "tetrapak-tetralaval"
+                packageName = "tetrapak-tetralaval.all"
                 repoName = "tetrapak-tetralaval"
                 fileName = "1.0.0-DEV${build_id_number}-SNAPSHOT"
                 devartifactdownload()
