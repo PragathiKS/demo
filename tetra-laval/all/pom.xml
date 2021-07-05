@@ -22,16 +22,16 @@
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
     <!-- ====================================================================== -->
     <parent>
-        <groupId>com.tetralaval</groupId>
-        <artifactId>tetra-laval</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>tetrapak-tetralaval</groupId>
+        <artifactId>tetrapak-tetralaval</artifactId>
+        <version>${buildVersion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <!-- ====================================================================== -->
     <!-- P R O J E C T  D E S C R I P T I O N                                   -->
     <!-- ====================================================================== -->
-    <artifactId>tetra-laval.all</artifactId>
+    <artifactId>tetrapak-tetralaval.all</artifactId>
     <packaging>content-package</packaging>
     <name>Tetra Laval - All</name>
     <description>All content package for Tetra Laval</description>
@@ -49,31 +49,31 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <group>com.tetralaval</group>
+                    <group>tetrapak</group>
                     <packageType>container</packageType>
                     <!-- skip sub package validation for now as some vendor packages like CIF apps will not pass -->
                     <skipSubPackageValidation>true</skipSubPackageValidation>
                     <embeddeds>
                         <embedded>
-                            <groupId>com.tetralaval</groupId>
-                            <artifactId>tetra-laval.ui.apps</artifactId>
+                            <groupId>tetrapak-tetralaval</groupId>
+                            <artifactId>tetrapak-tetralaval.ui.apps</artifactId>
                             <type>zip</type>
                             <target>/apps/tetra-laval/install</target>
                         </embedded>
                         <embedded>
-                            <groupId>com.tetralaval</groupId>
-                            <artifactId>tetra-laval.core</artifactId>
+                            <groupId>tetrapak-tetralaval</groupId>
+                            <artifactId>tetrapak-tetralaval.core</artifactId>
                             <target>/apps/tetra-laval/install</target>
                         </embedded>
                         <embedded>
-                            <groupId>com.tetralaval</groupId>
-                            <artifactId>tetra-laval.ui.content</artifactId>
+                            <groupId>tetrapak-tetralaval</groupId>
+                            <artifactId>tetrapak-tetralaval.ui.content</artifactId>
                             <type>zip</type>
                             <target>/apps/tetra-laval/content/install</target>
                         </embedded>
                         <embedded>
-                            <groupId>com.tetralaval</groupId>
-                            <artifactId>tetra-laval.ui.config</artifactId>
+                            <groupId>tetrapak-tetralaval</groupId>
+                            <artifactId>tetrapak-tetralaval.ui.config</artifactId>
                             <type>zip</type>
                             <target>/apps/tetra-laval/install</target>
                         </embedded>
@@ -184,20 +184,20 @@
     <!-- ====================================================================== -->
     <dependencies>
         <dependency>
-            <groupId>com.tetralaval</groupId>
-            <artifactId>tetra-laval.ui.apps</artifactId>
+            <groupId>tetrapak-tetralaval</groupId>
+            <artifactId>tetrapak-tetralaval.ui.apps</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
         <dependency>
-            <groupId>com.tetralaval</groupId>
-            <artifactId>tetra-laval.ui.content</artifactId>
+            <groupId>tetrapak-tetralaval</groupId>
+            <artifactId>tetrapak-tetralaval.ui.content</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
         <dependency>
-            <groupId>com.tetralaval</groupId>
-            <artifactId>tetra-laval.ui.config</artifactId>
+            <groupId>tetrapak-tetralaval</groupId>
+            <artifactId>tetrapak-tetralaval.ui.config</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>

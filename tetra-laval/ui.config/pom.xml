@@ -21,16 +21,16 @@
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
     <!-- ====================================================================== -->
     <parent>
-        <groupId>com.tetralaval</groupId>
-        <artifactId>tetra-laval</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>tetrapak-tetralaval</groupId>
+        <artifactId>tetrapak-tetralaval</artifactId>
+        <version>${buildVersion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <!-- ====================================================================== -->
     <!-- P R O J E C T  D E S C R I P T I O N                                   -->
     <!-- ====================================================================== -->
-    <artifactId>tetra-laval.ui.config</artifactId>
+    <artifactId>tetrapak-tetralaval.ui.config</artifactId>
     <packaging>content-package</packaging>
     <name>Tetra Laval - UI config</name>
     <description>UI config package for Tetra Laval</description>
@@ -53,8 +53,8 @@
                     <showImportPackageReport>false</showImportPackageReport>
                     <repositoryStructurePackages>
                         <repositoryStructurePackage>
-                            <groupId>com.tetralaval</groupId>
-                            <artifactId>tetra-laval.ui.apps.structure</artifactId>
+                            <groupId>tetrapak-tetralaval</groupId>
+                            <artifactId>tetrapak-tetralaval.ui.apps.structure</artifactId>
                         </repositoryStructurePackage>
                     </repositoryStructurePackages>
                 </configuration>
@@ -68,8 +68,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.tetralaval</groupId>
-            <artifactId>tetra-laval.ui.apps.structure</artifactId>
+            <groupId>tetrapak-tetralaval</groupId>
+            <artifactId>tetrapak-tetralaval.ui.apps.structure</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
