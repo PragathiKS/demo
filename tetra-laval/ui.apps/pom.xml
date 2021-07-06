@@ -51,7 +51,7 @@
                     <properties>
                         <cloudManagerTarget>none</cloudManagerTarget>
                     </properties>
-                    <group>tetrapak</group>
+                    <group>tetrapak-tetralaval</group>
                     <name>tetrapak-tetralaval.ui.apps</name>
                     <packageType>application</packageType>
                     <repositoryStructurePackages>

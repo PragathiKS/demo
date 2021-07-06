@@ -50,7 +50,7 @@
                     <properties>
                         <cloudManagerTarget>none</cloudManagerTarget>
                     </properties>
-                    <group>tetrapak</group>
+                    <group>tetrapak-tetralaval</group>
                     <name>tetrapak-tetralaval.ui.content</name>
                     <packageType>content</packageType>
                     <accessControlHandling>merge</accessControlHandling>
