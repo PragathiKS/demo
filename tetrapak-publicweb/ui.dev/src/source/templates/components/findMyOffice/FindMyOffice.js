@@ -74,6 +74,12 @@ class FindMyOffice {
     this.cache.baiduMap.enableDoubleClickZoom();
     this.cache.baiduMap.enableScrollWheelZoom();
     this.cache.baiduMap.enableKeyboard();
+
+    const zoomCtrl = new window.BMap.NavigationControl({
+      anchor: 'BMAP_ANCHOR_TOP_RIGHT',
+      type: 'BMAP_NAVIGATION_CONTROL_ZOOM'
+    });
+    this.cache.baiduMap.addControl(zoomCtrl);
   }
 
   baiduMapMarker = (map, lng, lat) => {
