@@ -114,7 +114,7 @@ public class PageLoadAnalyticsModel {
     /**
      * The pageCategories.
      */
-    private String pageCategories;
+    private StringBuilder pageCategories;
 
     /**
      * The development.
@@ -169,7 +169,7 @@ public class PageLoadAnalyticsModel {
             }
         }
 
-        updatePageCategories(resource);
+        //updatePageCategories();
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
@@ -185,19 +185,18 @@ public class PageLoadAnalyticsModel {
     /**
      * Update Page Categories.
      */
-    private void updatePageCategories(Resource resource) {
+    private void updatePageCategories() {
         ResourceResolver resourceResolver = resource.getResourceResolver();
         final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
-        final List<String> list = new ArrayList<String>();
+        StringBuilder stringBuilder = new StringBuilder();
         TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
         if (Objects.nonNull(tagValue)) {
             for (String tags : tagValue) {
                 Tag tag = tagManager.resolve(tags);
-                String tagTitle = tag.getTitle();
-                list.add(tagTitle);
+                stringBuilder.append(tag.getTitle() + ",");
             }
         }
-        pageCategories = list.toString().replace("[", "").replace("]", "");
+        pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "" );
     }
 
     /**
@@ -541,7 +540,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("pageCategories", pageCategories);
+        pageInfo.addProperty("pageCategories", pageCategories.toString());
         pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
