@@ -6,19 +6,23 @@ pipeline {
         label 'cfe-deploy'
         }
     }
-    triggers {
+         triggers {
          cron('H 1 * * 1-5')
      }
-     parameters {
-        booleanParam defaultValue: true, description: 'Please check in case you want to build TetraLaval Module', name: 'Build_Tetralaval'
-		booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
+    
+    parameters {
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Tetralaval'
+		booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
+        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
         
     }
+
     options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentBuilds()
     }
- environment {
+
+    environment {
         sonar_url = "https://sonarcloud.io"
         login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
         author_url = "https://author1westeurope.dev65.tetrapak.adobecqms.net"
@@ -30,7 +34,8 @@ pipeline {
         karmapath_pw = "${env.WORKSPACE}@2/tetrapak-publicweb/ui.dev/src/coverage"
         build_id_number = ""
     }
-stages {
+
+    stages {
 
         stage('init-build-Number') {
             steps {
@@ -44,6 +49,7 @@ stages {
 		}
             }
         }
+
         stage('Build and Sonar analysis') {
 
             agent {
@@ -54,17 +60,32 @@ stages {
                 }
                 
             }
+
             steps {
+			
+                script {
+                    if (params.Build_Commons) {
+                        appname = "commons"
+                        buildandsonar()
+                    }
+                    else {
+					    dir('tetrapak-commons') {
+					        sh "npm install --prefix ui.dev/src"
+						}
+					}
+                }
+                          
                 script {
                     if (params.Build_Tetralaval) {
                         appname = "tetra-laval"
                         buildandsonar()
                     }
-                }
-
+                }				
             }
-        }	
+        }
+
         stage('Author and Publisher Deployment') {
+
             steps {
                 script {
                 author_url = "https://author1westeurope.dev65.tetrapak.adobecqms.net"
@@ -78,27 +99,23 @@ stages {
              }
                 }
             }
+
         }
+        
         stage('Dev Cache Clear') {
-            agent {
-                node {
-                label 'cfe-deploy'
-            }
-            }
+            
             steps {
                 script {
                     cacheflush()
                 }
             }
         }
+      
 
 }
-}
 
 
-
-//////////
-def buildandsonar() {
+    def buildandsonar() {
                 echo "Build ${appname}"
                 dir("${appname}") {
                 sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
@@ -106,8 +123,7 @@ def buildandsonar() {
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {                       
                // sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
-                 sh "mvn -X -s settings.xml clean -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
-                // sh "mvn -s settings.xml clean -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -PautoInstallSinglePackagePublish -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+                  sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
                 if (!params.Sonar_Analysis) {
                         echo "Skipping Sonar execution for customerhub module"
                     } else {
@@ -117,11 +133,10 @@ def buildandsonar() {
                     }
     }
 
-
     def devdeployment() {
 	
 	    if (params.Build_Tetralaval)  {
-                packageName = "tetrapak-tetra-laval.all"
+                packageName = "tetrapak-tetralaval.all"
                 repoName = "tetrapak-tetralaval"
                 fileName = "1.0.0-DEV${build_id_number}-SNAPSHOT"
                 devartifactdownload()
@@ -135,13 +150,13 @@ def buildandsonar() {
                 )
 
             }
-}
-
-            def devartifactdownload() {
+	    
+                
+            
+    def devartifactdownload() {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
         {
-               sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
-                //sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/com/tetralaval/tetra-laval.all/1.0.0-SNAPSHOT/tetra-laval.all-1.0.0-SNAPSHOT.zip"
+                sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
                 echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
 
         }
@@ -181,4 +196,8 @@ def buildandsonar() {
                 sleep 60
 
     }
+    }
+}
 
+
+    
