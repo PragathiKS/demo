@@ -151,7 +151,7 @@ pipeline {
 
             }
 	    
-                
+    }               
             
     def devartifactdownload() {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
@@ -196,7 +196,7 @@ pipeline {
                 sleep 60
 
     }
-    }
+    
 
 
 
