@@ -18,11 +18,20 @@
             </li>
           </ul>
         </div>
-        <div class="col-lg-3 text-lg-right">
+        <div class="col-lg-3 text-lg-right d-flex">
           <div class="tp-pw-footer__social-media-items footer-analytics" data-sly-list.socialLink="${data.socialLinks}">
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics"
               href="${socialLink.socialMediaLink}" target="_blank" data-sly-test="${socialLink.socialMediaLink}"
-              data-link-name="${socialLink.socialMedia}"><i class="icon-${socialLink.socialMedia}_pw"></i></a>
+              data-link-name="${socialLink.socialMedia}">
+              <i data-sly-test="${socialLink.socialMedia}" class="icon-${socialLink.socialMedia}_pw"></i>
+              <img data-sly-test="${socialLink.img}" src="${socialLink.img}" alt="">
+            </a>
+          </div>
+          <!-- IF Additional Image with Social Media -->
+          <div class="tp-pw-footer__social-media-items__china">
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics iconWeChatCode" href="#" target="_blank" data-sly-test="#" data-link-name="WeChatQRCode">
+              <img src="/content/dam/tetrapak/publicweb/wechatQRCode.png" alt="WeChatIcon">
+            </a>
           </div>
         </div>
       </div>
