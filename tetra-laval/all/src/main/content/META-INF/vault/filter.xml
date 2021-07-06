@@ -15,5 +15,6 @@
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <workspaceFilter version="1.0">
-    <filter root="/apps/tetra-laval"/>
+    <filter root="/apps/tetra-laval-packages"/>
+	<filter root="/apps/tetra-laval-vendor-packages"/>
 </workspaceFilter>
