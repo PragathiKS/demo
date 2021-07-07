@@ -57,6 +57,12 @@
         }
     }
 
+    &__socialMedia {
+        @media #{$desktop} {
+            display: flex;
+        }
+    }
+
     &__social-media-items {
         display: flex;
         justify-content: flex-start;
@@ -88,6 +94,14 @@
                     cursor: pointer;
                     pointer-events: auto;
                 }
+            }
+        }
+
+        &__weChatCode {
+            margin-left: 4px;
+
+            @media #{$mobile} {
+                margin-top: 10px;
             }
         }
     }
