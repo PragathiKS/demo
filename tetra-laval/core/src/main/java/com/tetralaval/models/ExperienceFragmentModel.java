@@ -12,8 +12,6 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * The Class FooterConfigurationModel.
