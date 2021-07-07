@@ -23,16 +23,17 @@
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics"
               href="${socialLink.socialMediaLink}" target="_blank" data-sly-test="${socialLink.socialMediaLink}"
               data-link-name="${socialLink.socialMedia}">
-              <i data-sly-test="${socialLink.socialMedia}" class="icon-${socialLink.socialMedia}_pw"></i>
-              <img data-sly-test="${socialLink.img}" src="${socialLink.img}" alt="">
+              <i class="icon-${socialLink.socialMedia}_pw"></i>
             </a>
           </div>
           <!-- IF Additional Image with Social Media -->
+          <sly data-sly-test="${data.wechatQrCodeReference != null}">
           <div class="tp-pw-footer__social-media-items__china">
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics iconWeChatCode" href="#" target="_blank" data-sly-test="#" data-link-name="WeChatQRCode">
-              <img src="/content/dam/tetrapak/publicweb/wechatQRCode.png" alt="WeChatIcon">
+              <img src="${data.wechatQrCodeReference}" alt="${data.qrAltText}">
             </a>
           </div>
+          </sly>
         </div>
       </div>
       <div class="col tp_goTopBtn">
