@@ -13,7 +13,7 @@
     "sanitize-html": "^1.21.1",
     "slick-carousel": "^1.8.1",
     "vanilla-lazyload": "^8.17.0",
-    "@ashwanipahal/paginationjs": "^2.0.9"
+    "@ashwanipahal/paginationjs": "^2.3.0"
   },
   "scripts": {
     "build": "grunt aem",
