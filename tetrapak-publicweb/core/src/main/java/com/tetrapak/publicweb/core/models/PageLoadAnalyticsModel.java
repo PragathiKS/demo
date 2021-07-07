@@ -169,7 +169,7 @@ public class PageLoadAnalyticsModel {
             }
         }
 
-        //updatePageCategories();
+        updatePageCategories();
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
@@ -187,10 +187,10 @@ public class PageLoadAnalyticsModel {
      */
     private void updatePageCategories() {
         ResourceResolver resourceResolver = resource.getResourceResolver();
-        final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
         StringBuilder stringBuilder = new StringBuilder();
         TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-        if (Objects.nonNull(tagValue)) {
+        if (Objects.nonNull(currentPage.getProperties().get("cq:tags", String[].class))) {
+            final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
             for (String tags : tagValue) {
                 Tag tag = tagManager.resolve(tags);
                 stringBuilder.append(tag.getTitle() + ",");
@@ -385,6 +385,7 @@ public class PageLoadAnalyticsModel {
             countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE, request));
             hrefLangValues.add(countryLanguageCodeBean);
         }
+
         final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
         Resource marketRootResource = currentPage.getContentResource().getResourceResolver()
                 .getResource(marketRootPath);
@@ -670,7 +671,7 @@ public class PageLoadAnalyticsModel {
     /**
      * Gets the hreflang values.
      *
-     * @return the hreflang values
+     * @return the hreflang valu
      */
     public List<CountryLanguageCodeBean> getHreflangValues() {
         /*

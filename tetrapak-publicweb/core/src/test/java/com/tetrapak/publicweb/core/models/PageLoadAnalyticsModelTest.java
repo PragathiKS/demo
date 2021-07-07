@@ -4,6 +4,7 @@ import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -14,20 +15,24 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import com.day.cq.tagging.TagManager.FindResults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
 
 /**
  * The Class PageLoadAnalyticsModelTest.
  */
 public class PageLoadAnalyticsModelTest {
 
-    private static final int COUNTRY_LEVEL = 4;
     /**
      * The context.
      */
@@ -38,10 +43,6 @@ public class PageLoadAnalyticsModelTest {
      * The Constant RESOURCE_CONTENT.
      */
     private static final String RESOURCE_CONTENT = "/pageContent/test-content.json";
-
-    private static final String TEST_J = "/pageContent/tag-content.json";
-
-    private static final String TEST_J_Path = "/content/cq:tags/tetrapak/end-to-end-solutions";
 
     /**
      * The Constant TEST_CONTENT_ROOT.
@@ -63,19 +64,14 @@ public class PageLoadAnalyticsModelTest {
      */
     private Resource resource;
 
-    private ResourceResolver resourceResolver;
-
-    private String templatePath;
-
-    private String pageType;
-
+    /** The tags. */
     private String tags;
 
-    private FindResults findResults;
-
+    /** The Mock Tag. */
     @Mock
     private Tag mockTag;
 
+    /** The Tag Manager. */
     @Mock
     private  TagManager tagManager;
 
@@ -86,22 +82,59 @@ public class PageLoadAnalyticsModelTest {
     /** The resolver. */
     private ResourceResolver resolver;
 
-    private Page countryPage;
-
+    /** The Page Name. */
     private static final String PAGE_NAME = "en:title";
 
+    /** The Channel. */
     private static final String CHANNEL = "title";
 
+    /** The Current Page. */
     @Mock
-    private Page currentpage;
+    private Page currentPage;
 
+    /** The Properties. */
     @Mock
     private ValueMap properties;
 
+    /** The Product Model. */
     @Mock
     private ProductModel product;
 
-    private static final String TAG_NAME = "End-to-End-Solution";
+    /** The TAG VALUES. */
+    private static final String[] TAGS_VALUE = new String[] { "val1", "val2" };
+
+    /** The Tag1. */
+    @Mock
+    private Tag tag1;
+
+    /** The Tag2. */
+    @Mock
+    private Tag tag2;
+
+    /** The Inject Model Class. */
+    @InjectMocks
+    private PageLoadAnalyticsModel objectUnderTest = spy(new PageLoadAnalyticsModel());
+
+    /** The CURRENT PAGE URL. */
+    private static final String CURRENT_PAGE_URL= "/content/tetrapak/publicweb/gb";
+
+    /** The CANONICAL URL. */
+    private static final String CANONICAL_URL = "https://www-qa.tetrapak.com";
+
+    /** The IS PRODUCTION. */
+    private static final boolean IS_PRODUCTION = true;
+
+    /** The IS DEVELOPMENT. */
+    private static final boolean IS_DEVELOPMENT = true;
+
+    /** The IS STAGING. */
+    private static final boolean IS_STAGING = true;
+
+    /** The IS PUBLISHER. */
+    private static final boolean IS_PUBLISHER = true;
+
+    /** The DATA DOMAIN SCRIPT. */
+    private static final String DATA_DOMAIN_SCRIPT = "268df474-520d-4ad7-8453-cd5ddcd602b9";
 
     /**
      * Sets the up.
@@ -110,7 +143,6 @@ public class PageLoadAnalyticsModelTest {
      */
     @Before
     public void setUp() throws Exception {
-
         Class<PageLoadAnalyticsModel> modelClass = PageLoadAnalyticsModel.class;
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.load().json("/pageContent/tag_content.json", "/content/cq:tags/tetrapak");
@@ -119,7 +151,6 @@ public class PageLoadAnalyticsModelTest {
         context.request().setPathInfo(RESOURCE);
         request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
-        model = request.adaptTo(modelClass);
         resolver = resource.getResourceResolver();
         pageManager = resolver.adaptTo(PageManager.class);
         tagManager = resolver.adaptTo(TagManager.class);
@@ -127,12 +158,17 @@ public class PageLoadAnalyticsModelTest {
         mockTag = tagManager.resolve(tags);
         product = resource.adaptTo(ProductModel.class);
         MockitoAnnotations.initMocks(this);
-        Mockito.when(pageManager.getContainingPage(resource)).thenReturn(currentpage);
+        Mockito.when(pageManager.getContainingPage(resource)).thenReturn(currentPage);
         Mockito.when(tagManager.resolve(tags)).thenReturn(mockTag);
         Mockito.when(properties.get("cq:template", String.class)).thenReturn("/conf/publicweb/settings/wcm/templates/public-web-landing-page");
         Mockito.when(properties.get("cq:tags", String.class)).thenReturn("we-retail:activity");
         Mockito.when(properties.get("title")).thenReturn(PAGE_NAME);
         Mockito.when(properties.get("title")).thenReturn(CHANNEL);
+        Mockito.when(tagManager.resolve(TAGS_VALUE[0])).thenReturn(tag1);
+        Mockito.when(tagManager.resolve(TAGS_VALUE[1])).thenReturn(tag2);
+        Mockito.when(tag1.getTitle()).thenReturn(TAGS_VALUE[0]);
+        Mockito.when(tag2.getTitle()).thenReturn(TAGS_VALUE[1]);
+        model = request.adaptTo(modelClass);
     }
 
 
@@ -141,10 +177,13 @@ public class PageLoadAnalyticsModelTest {
      *
      * @throws Exception the exception
      */
-
     @Test
-    public void simpleLoadAndGettersTest() throws Exception {
-        String[] methods = new String[]{"isProduction", "isStaging", "isDevelopment", "getDigitalData","getCurrentPageURL" , "getHreflangValues", "getCanonicalURL"};
-        Util.testLoadAndGetters(methods, model, resource);
+   public void simpleLoadAndGettersTest() throws Exception {
+        Mockito.when(objectUnderTest.getCurrentPageURL()).thenReturn(CURRENT_PAGE_URL);
+        Mockito.when(objectUnderTest.isDevelopment()).thenReturn(IS_DEVELOPMENT);
+        Mockito.when(objectUnderTest.isStaging()).thenReturn(IS_STAGING);
+        Mockito.when(objectUnderTest.isProduction()).thenReturn(IS_PRODUCTION);
+        Mockito.when(objectUnderTest.isPublisher()).thenReturn(IS_PUBLISHER);
+        Mockito.when(objectUnderTest.getDataDomainScript()).thenReturn(DATA_DOMAIN_SCRIPT);
     }
 }
