@@ -108,9 +108,9 @@ class Teaser {
     // calculate height using 16:9 formula
     imageHeight = imageHeight/16;
     imageHeight = Math.floor(imageHeight*9);
-    // 14px as half height of arrow
-    $owlPrev.css('top', imageHeight/2 - 14);
-    $owlNext.css('top', imageHeight/2 - 14);
+    // 12px as half height of arrow
+    $owlPrev.css('top', imageHeight/2 - 12);
+    $owlNext.css('top', imageHeight/2 - 12);
   }
 
   trackAnalytics = (e) => {
