@@ -1,4 +1,5 @@
-.tp-container-textImage {
+.tp-container-textImage,
+.tp-container-textImage-wide {
     @include padding(0);
     max-width: 100%;
     @media #{$desktop} {
@@ -93,7 +94,6 @@
         display: none;
         @media #{$desktop} {
             display: block;
-            background-color: $color-sky-blue;
             position: absolute;
             top: 0;
             left: 0;
@@ -105,16 +105,29 @@
                 left: auto;
             }
         }
+        &.sky-blue {
+            background-color: $color-sky-blue;
+        }
+        &.black {
+            background-color: $color-black;
+            opacity: $opacity-banner;
+        }
     }
     .pw-banner__bgcolor {
         @media #{$desktop} {
             @include padding-top($padding-l);
             @include padding-bottom($padding-l);
-            background: linear-gradient(to right, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
             height: 100%;
             position: absolute;
             top: 0;
             width: 540px;
+            &.black {
+                background: linear-gradient(90deg, rgba($color-black, 0.7), rgba(0, 0, 0, 0) 99.61%);
+                width: 70%;
+            }
+            &.sky-blue {
+                background: linear-gradient(to right, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
+            }
         }
         &.no-subtitle {
             @media #{$desktop} {
@@ -128,11 +141,16 @@
                 width: 588px;
                 right: 0;
             }
-
+            &.black {
+                @media #{$desktop} {
+                    background: linear-gradient(270deg, rgba($color-black, 0.7), rgba(0, 0, 0, 0) 99.61%);
+                    width: 70%;
+                }
+            }
         }
     }
     &__content {
-        @include margin(-32px 0 0 0);
+        @include margin(-35px 0 0 0);
         @include padding-top($padding-zero);
         @include padding-left($padding-md);
         @include padding-bottom($padding-l);
@@ -167,8 +185,13 @@
             &.sky-blue {
                 color: $color-white;
             }
+            &.black {
+                color: $color-boulder;
+                @media #{$desktop} {
+                    color: $color-white;
+                }
+            }
         }
-
         &__title {
             @include margin-bottom($margin-md);
             @include margin-top($margin-sm);
@@ -185,8 +208,21 @@
                     line-height: 40px;
                 }
             }
-            @media #{$desktop} {
-                max-height: convert-to-rem(140px);
+            &.hero-title {
+                h1,
+                h2,
+                h3 {
+                    @include font-size($font-xl);
+                    line-height: 40px;
+                    @media #{$mobile-large} {
+                        @include font-size($font-xxl);
+                        line-height: 48px;
+                    }
+                    @media #{$desktop} {
+                        @include font-size($font-xxxl);
+                        line-height: 60px;
+                    }
+                }
             }
         }
         &__description {
@@ -212,7 +248,8 @@
             @include margin-top($margin-md);
             font-family: $font-monsterrat;
         }
-        &.sky-blue {
+        &.sky-blue,
+        &.black {
             color: $color-white;
             background: $color-sky-blue;
             @media #{$desktop} {
@@ -248,6 +285,14 @@
                 }
             }
         }
+        &.black {
+            color: $color-tundora;
+            background: $color-white;
+            @media #{$desktop} {
+                color: $color-white;
+                background: transparent;
+            }
+        }
     }
     .banner-sibling {
         display: none;
@@ -257,7 +302,8 @@
             position: absolute;
             opacity: 0.9;
         }
-        &.sky-blue {
+        &.sky-blue,
+        &.black {
             background-color: $color-sky-blue;
             @media #{$desktop} {
                 background: unset;
@@ -296,13 +342,19 @@
     }
 }
 
-.tp-container-textImage .pw-banner__content.sky-blue.display-row-reversed {
+.tp-container-textImage .pw-banner__content.sky-blue.display-row-reversed,
+.tp-container-textImage .pw-banner__content.black.display-row-reversed,
+.tp-container-textImage-wide .pw-banner__content.sky-blue.display-row-reversed,
+.tp-container-textImage-wide .pw-banner__content.black.display-row-reversed {
     @media #{$desktop} {
         @include padding-right($padding-zero);
         @include padding-left($padding-xxxl);
     }
 }
-.tp-container-textImage .pw-banner__content.sky-blue.display-row {
+.tp-container-textImage .pw-banner__content.sky-blue.display-row,
+.tp-container-textImage .pw-banner__content.black.display-row,
+.tp-container-textImage-wide .pw-banner__content.sky-blue.display-row,
+.tp-container-textImage-wide .pw-banner__content.black.display-row  {
     @media #{$desktop} {
         @include padding-left($padding-xxxl);
     }
@@ -314,11 +366,17 @@
 }
 .pw-banner__gradient-bg {
     background: linear-gradient(to top, $color-sky-blue 25.01%, rgba(0, 189, 242, 0.8) 98.8%);
-    height: 24px;
+    height: 34px;
     width: 100%;
-    top: -24px;
+    top: -32px;
     position: relative;
     @media #{$desktop} {
         display: none;
     }
 }
+
+.black .pw-banner__gradient-bg {
+    background: linear-gradient(0, $color-white-new 8.01%, $color-hls 90.8%);
+    transform: rotate(-360deg);
+}
+

@@ -8,7 +8,7 @@
     <parent>
         <groupId>tetrapak-tetralaval</groupId>
         <artifactId>tetrapak-tetralaval</artifactId>
-        <version>${buildVersion}</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

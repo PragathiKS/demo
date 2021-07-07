@@ -6,5 +6,6 @@
     <global-page-template/>
     <content-page-template/>
     <feed-page-template/>
+    <campaign-page-template/>
     <global-xfpage-template/>
 </jcr:root>

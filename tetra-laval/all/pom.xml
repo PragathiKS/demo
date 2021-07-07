@@ -24,7 +24,7 @@
     <parent>
         <groupId>tetrapak-tetralaval</groupId>
         <artifactId>tetrapak-tetralaval</artifactId>
-        <version>${buildVersion}</version>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -49,7 +49,7 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <group>tetrapak</group>
+                    <group>tetrapak-tetralaval</group>
                     <packageType>container</packageType>
                     <!-- skip sub package validation for now as some vendor packages like CIF apps will not pass -->
                     <skipSubPackageValidation>true</skipSubPackageValidation>
@@ -58,42 +58,25 @@
                             <groupId>tetrapak-tetralaval</groupId>
                             <artifactId>tetrapak-tetralaval.ui.apps</artifactId>
                             <type>zip</type>
-                            <target>/apps/tetra-laval/install</target>
+                            <target>/apps/tetra-laval-packages/application/install</target>
                         </embedded>
                         <embedded>
                             <groupId>tetrapak-tetralaval</groupId>
                             <artifactId>tetrapak-tetralaval.core</artifactId>
-                            <target>/apps/tetra-laval/install</target>
+                            <target>/apps/tetra-laval-packages/application/install</target>
                         </embedded>
                         <embedded>
                             <groupId>tetrapak-tetralaval</groupId>
                             <artifactId>tetrapak-tetralaval.ui.content</artifactId>
                             <type>zip</type>
-                            <target>/apps/tetra-laval/content/install</target>
+                            <target>/apps/tetra-laval-packages/content/install</target>
                         </embedded>
                         <embedded>
                             <groupId>tetrapak-tetralaval</groupId>
                             <artifactId>tetrapak-tetralaval.ui.config</artifactId>
                             <type>zip</type>
-                            <target>/apps/tetra-laval/install</target>
-                        </embedded>
-                        <embedded>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.content</artifactId>
-                            <type>zip</type>
-                            <target>/apps/tetra-laval/install</target>
-                        </embedded>
-                        <embedded>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.core</artifactId>
-                            <target>/apps/tetra-laval/install</target>
-                        </embedded>
-                        <embedded>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.config</artifactId>
-                            <type>zip</type>
-                            <target>/apps/tetra-laval/install</target>
-                        </embedded>
+                            <target>/apps/tetra-laval-packages/application/install</target>
+                        </embedded>                        
                     </embeddeds>
                 </configuration>
             </plugin>

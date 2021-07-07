@@ -309,6 +309,12 @@ public final class PWConstants {
 
     /** The Constant JCR PREVIEW_SALT. */
     public static final String PREVIEW_SALT = "previewSalt";
+
+    /** The Constant DOMAINSCRIPT */
+    public static final String DOMAINSCRIPT ="domainScript";
+
+    /** The Constant SITE_ABBREVIATION */
+    public static final String SITE_ABBREVIATION ="siteAbbreviation";
     
     /** The Constant LB TRANSLATED PAGES NODE. */
     public static final String LB_TRANSLATED_PAGES_NODE = "/var/commerce/lbtranslatedpages";
@@ -336,6 +342,9 @@ public final class PWConstants {
     
     /** The Constant CQ_TAGS_PROPERTY. */
     public static final String CQ_TAGS_PROPERTY = "cq:tags";
+
+    /** The Constant TETRAPAK. */
+    public static final String TETRAPAK = "tetrapak";
     
     /** The Constant PW_TAG_SUSTAINIBILITY. */
     public static final String PW_TAG_SUSTAINIBILITY = "tetrapak:sustainability";
