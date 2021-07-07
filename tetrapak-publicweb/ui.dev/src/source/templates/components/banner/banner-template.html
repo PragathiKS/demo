@@ -1,22 +1,28 @@
 <sly data-sly-template.banner_template="${@data, flag}">
     <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
+         <sly data-sly-test.isFormTypeAuthored="${data.formType != ''}"/>
+            <sly data-sly-test.isSoftConvEnabled="${data.enableSoftcoversion != ''}"/>
+            <sly data-sly-test.heroBanner="${data.bannerType == 'hero' || data.bannerType == 'hero-wide'}" />
+            <sly data-sly-test.textImageBanner="${data.bannerType == 'textImage' || data.bannerType == 'textImage-wide'}" />			
+            <sly data-sly-test.cardTheme="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row-reversed')}" />
+            <sly data-sly-test.cardThemeReverse="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row')}" />
     <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner">
-        <div class="pw-banner ${data.bannerType == 'hero' ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
+        <div class="pw-banner ${heroBanner ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
             data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}"
             data-link-section="Hero Image_imageClick" data-link-name="${data.linkLabel}"
             data-asset-name="${data.assetName}" data-href="${data.formType ? '': data.linkPath}">
-			<sly data-sly-test.isFormTypeAuthored="${data.formType != ''}"/>
-			<sly data-sly-test.isSoftConvEnabled="${data.enableSoftcoversion != ''}"/>
+
             <sly data-sly-test="${!wcmmode.edit}">
                 <div class="pw-banner__image-wrapper">
-                    <sly data-sly-test="${data.bannerType == 'hero'}">
+                    <sly data-sly-test="${heroBanner}">
                         <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                            data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive', isBanner=true}">
+                            data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive', isBanner=true, imageRatio='0 0 3 1'}">
                         </sly>
                     </sly>
-                    <sly data-sly-test="${data.bannerType == 'textImage'}">
+                    <sly data-sly-test="${textImageBanner}">
+					<sly data-sly-test.textImageBannerType="${data.bannerType == 'textImage' ? 'banner' : 'banner-wide'}" />
                         <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                            data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, className='img-responsive', isBanner=true}">
+                            data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=textImageBannerType, className='img-responsive', isBanner=true, imageRatio='0 0 21 9'}">
                         </sly>
                     </sly>
                 </div>
@@ -26,37 +32,36 @@
                     <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
                 </div>
             </sly>
-            <sly data-sly-test="${data.bannerType == 'hero'}">
+            <sly data-sly-test="${heroBanner}">
                 <div class="pw-banner-herowrapper">
             </sly>
-            <sly data-sly-test="${data.bannerType == 'hero'}">
+            <sly data-sly-test="${heroBanner}">
                 <sly data-sly-test="${data.pwDisplay =='display-row'}">
-                    <div class="pw-banner__sideSection left"></div>
+                    <div class="pw-banner__sideSection left ${data.pwCardTheme}"></div>
                 </sly>
                 <sly data-sly-test="${data.pwDisplay =='display-row-reversed'}">
-                    <div class="pw-banner__sideSection right"></div>
+                    <div class="pw-banner__sideSection right ${data.pwCardTheme}"></div>
                 </sly>
                 <section class="pw-banner__contentwrapper">
             </sly>
-            <sly data-sly-test="${data.bannerType == 'textImage'}">
-                <sly data-sly-test="${data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed'}">
-                    <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} display-row-reversed-wrapper">
+            <sly data-sly-test="${textImageBanner}">
+                <sly data-sly-test="${cardTheme}">
+                    <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} display-row-reversed-wrapper">
                 </sly>
-                <sly data-sly-test="${data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row'}">
-                    <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'}">
+                <sly data-sly-test="${cardThemeReverse}">
+                    <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'}">
                 </sly>
                 <sly data-sly-test="${data.pwCardTheme =='gray'}">
                     <div class="${data.subtitle ? '' : 'no-subtitle'}">
                 </sly>
             </sly>
-            <sly data-sly-test="${data.bannerType == 'hero'}">
+            <sly data-sly-test="${heroBanner}">
                 <sly data-sly-test="${data.pwDisplay =='display-row-reversed'}">
-                    <div
-                        class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} display-row-reversed-wrapper">
+                    <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} display-row-reversed-wrapper ${data.pwCardTheme}">
                         <div class="pw-banner__gradient-bg"></div>
                 </sly>
                 <sly data-sly-test="${data.pwDisplay =='display-row'}">
-                    <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay}">
+                    <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay}">
                         <div class="pw-banner__gradient-bg"></div>
                 </sly>
             </sly>
@@ -66,7 +71,7 @@
                 <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle ${data.pwCardTheme}">
                     ${data.subtitle @ context='html'}
                 </div>
-                <div data-sly-test="${data.title}" class="pw-banner__content__title">
+               	<div data-sly-test="${data.title}" class="pw-banner__content__title ${data.pwCardTheme} ${data.bannerType == 'hero-wide' ?  'hero-title' : ''}">
                     <sly data-sly-test="${data.headingTag == 'h1'}"
                         data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
                         data-sly-call="${title.heading_h1_template @ headingText=data.title, variant='regular'}" />
@@ -114,10 +119,13 @@
         <sly data-sly-test="${isFormTypeAuthored && data.formType == 'enableSubscription'}" data-sly-use.subscriptionform="/apps/publicweb/components/content/subscriptionform/subscriptionform-template.html"
              data-sly-call="${subscriptionform.subscriptionform_template @ data=data.subscriptionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Banner'}" />
 
-        <sly data-sly-test="${data.bannerType == 'hero'}">
+        <sly data-sly-test="${heroBanner}">
             </section>
          </sly>
+         <sly data-sly-test="${heroBanner}">
         </div>
+		</sly>
+    </div>
 	</div>
 </sly>
 

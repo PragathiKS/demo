@@ -103,7 +103,7 @@ function _processKeys(keys, ob) {
       }else if(i === 'lineName'){
         line = i;
       }
-      else if(i === 'equipmentDescription'){
+      else if(i === 'equipmentDesc'){
         description = i;
       }
       else if(i === 'serialNumber'){
@@ -138,7 +138,7 @@ function getKeyMap(key,i18nKeys){
       headerObj['tooltipText'] = i18nKeys['lineToolTip'];
       break;
     }
-    case 'equipmentDescription': {
+    case 'equipmentDesc': {
       headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
       headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
@@ -309,8 +309,8 @@ class MyEquipment {
 
   insertFirstAndLastElement = () => {
     const { i18nKeys } = this.cache;
-    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>${getI18n(i18nKeys['first'])}</span></div>`;
-    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>${getI18n(i18nKeys['last'])}</span></div>`;
+    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span class="first">${getI18n(i18nKeys['first'])}</span></div>`;
+    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span class="last">${getI18n(i18nKeys['last'])}</span></div>`;
     if(isMobile()){
       gotToFirstButton = ('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i></div>');
       gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i></div>';

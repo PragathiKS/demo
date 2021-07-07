@@ -100,7 +100,6 @@ public class TagImporterServiceImpl implements TagImporterService {
             if (!tagMappings.containsKey(name)) {
                 tagMappings.put(name, tagName.toString());
             }
-
             createMappingNode(resourceResolver, tagName, name);
 
             TagManager tagManager = resourceResolver.adaptTo(TagManager.class);

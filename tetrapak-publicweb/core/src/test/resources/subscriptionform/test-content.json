@@ -1,31 +1,74 @@
 {
-   "jcr:primaryType":"cq:Page",
-   "en":{
-      "jcr:primaryType":"cq:Page",
-      "jcr:content":{
-         "jcr:primaryType":"cq:PageContent",
-         "root":{
-            "responsivegrid":{
-               "subscriptionformconf":{
-              	  "jcr:primaryType":"nt:unstructured",
-                  "sling:resourceType":"publicweb/components/structure/formconfig/businessinquiryformconfig",
-                  "heading":"Business Enquiry"
+   "jcr:primaryType": "cq:Page",
+   "jcr:createdBy": "admin",
+   "jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+   "jcr:content": {
+      "jcr:primaryType": "cq:PageContent",
+      "jcr:createdBy": "admin",
+      "jcr:title": "country page"
+   },
+   "en": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+      "jcr:content": {
+         "jcr:primaryType": "cq:PageContent",
+         "jcr:createdBy": "admin",
+         "jcr:title": "English",
+         "root" : {
+            "responsivegrid" : {
+               "subscriptionformconf" : {
+                  "jcr:primaryType": "nt:unstructured",
+                  "jcr:createdBy": "admin",
+                  "jcr:lastModifiedBy": "admin",
+                  "jcr:created": "Tue Jun 23 2020 16:16:41 GMT+0530",
+                  "thankyouHeading": "Thank you for your request",
+                  "thankyouDescriptionText": "We will get back to you as soon as possible",
+                  "welcomeBackHeading":"welcome back",
+                  "welcomeBackDescriptionText":"Welcome back to our portal",
+                  "downloadReadyHeading":"Download Ready",
+                  "downloadReadyDescriptionText":"your download is ready",
+                  "yesButtonLabel":"Yes, I am",
+                  "noButtonLabel":"No, I am not",
+                  "jcr:lastModified": "Tue Jun 23 2020 16:35:21 GMT+0530",
+                  "sling:resourceType": "publicweb/components/structure/formconfig/businessinquiryformconfig"
                },
-               "formconsenttextsconf":{
-                  "jcr:primaryType":"nt:unstructured",
+               "formconsenttextsconf" : {
+                  "jcr:primaryType": "nt:unstructured",
+                  "jcr:createdBy": "admin",
+                  "jcr:lastModifiedBy": "admin",
+                  "jcr:created": "Tue Jun 23 2020 16:16:41 GMT+0530",
                   "marketingConsent":"Marketing Consent",
-                  "sling:resourceType":"publicweb/components/structure/formconfig/formconsenttextsconfig"
+                  "privacyPolicy": "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
+                  "jcr:lastModified": "Tue Jun 23 2020 16:35:21 GMT+0530",
+                  "sling:resourceType": "publicweb/components/structure/formconfig/formconsenttextsconfig"
                }
             }
          }
       },
-      "subscriptionform":{
-         "jcr:primaryType":"cq:Page",
-         "jcr:content":{
-            "jcr:primaryType":"cq:PageContent",
-            "sling:resourceType":"publicweb/components/structure/pages/landingpage",
-            "subscriptionform":{
-               "sling:resourceType":"publicweb/components/content/businessinquiryform"
+      "textimage":{
+         "jcr:primaryType": "cq:Page",
+         "jcr:createdBy": "admin",
+         "jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+         "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:createdBy": "admin",
+            "jcr:title": "Homepage",
+            "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+            "jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+            "cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+            "sling:resourceType": "publicweb/components/structure/pages/landingpage",
+            "cq:lastModifiedBy": "admin",
+            "textimage": {
+               "jcr:primaryType": "nt:unstructured",
+               "jcr:createdBy": "admin",
+               "jcr:created": "Wed Feb 26 2020 12:14:10 GMT+0530",
+               "jcr:lastModified": "Wed Feb 26 2020 12:15:50 GMT+0530",
+               "sling:resourceType": "publicweb/components/content/businessinquiryform",
+               "headingSubscription": "Business Enquiry",
+               "pardotUrlSubscription": "http://pardotURL",
+               "moreButtonActionSubscription":"/content/search",
+               "moreButtonLabelSubscription":"More Insights"
             }
          }
       }
