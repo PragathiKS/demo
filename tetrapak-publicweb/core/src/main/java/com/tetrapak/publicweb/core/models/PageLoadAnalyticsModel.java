@@ -671,7 +671,7 @@ public class PageLoadAnalyticsModel {
     /**
      * Gets the hreflang values.
      *
-     * @return the hreflang valu
+     * @return the hreflang values
      */
     public List<CountryLanguageCodeBean> getHreflangValues() {
         /*
