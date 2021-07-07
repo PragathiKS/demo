@@ -103,7 +103,7 @@ function _processKeys(keys, ob) {
       }else if(i === 'lineName'){
         line = i;
       }
-      else if(i === 'equipmentTypeDesc'){
+      else if(i === 'equipmentDesc'){
         description = i;
       }
       else if(i === 'serialNumber'){
@@ -138,7 +138,7 @@ function getKeyMap(key,i18nKeys){
       headerObj['tooltipText'] = i18nKeys['lineToolTip'];
       break;
     }
-    case 'equipmentTypeDesc': {
+    case 'equipmentDesc': {
       headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
       headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
@@ -190,34 +190,45 @@ function _processTableData(data){
 function renderPaginationTableData(list,options) {
   const that = this;
   const container = $('#pagination-container');
-  container.pagination({
-    dataSource: list.summary,
-    showFirst:true,
-    showLast:true,
-    showFirstOnEllipsisShow: false,
-    showLastOnEllipsisShow:false,
-    firstText:'',
-    lastText:'',
-    pageRange:1,
-    pageSize: 25,
-    pageNumber: (options.isCustomiseTableFilter && container.pagination('getSelectedPageNum')) ? container.pagination('getSelectedPageNum') : 1,
-    className: 'paginationjs-theme-tetrapak',
-    callback: function(data) {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: {...list,summary:data},
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      },() => {
-        that.hideShowColums();
-        that.insertFirstAndLastElement();
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip();
+  if(list.summary.length === 0) {
+    render.fn({
+      template: 'myEquipmentTable',
+      data: { noDataMessage:true },
+      target: '.tp-my-equipment__table_wrapper',
+      hidden: false
+    });
+    container.pagination('destroy');
+  }
+  else {
+    container.pagination({
+      dataSource: list.summary,
+      showFirst:true,
+      showLast:true,
+      showFirstOnEllipsisShow: false,
+      showLastOnEllipsisShow:false,
+      firstText:'',
+      lastText:'',
+      pageRange:1,
+      pageSize: 25,
+      pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
+      className: 'paginationjs-theme-tetrapak',
+      callback: function(data) {
+        render.fn({
+          template: 'myEquipmentTable',
+          data: {...list,summary:data},
+          target: '.tp-my-equipment__table_wrapper',
+          hidden: false
+        },() => {
+          that.hideShowColums();
+          that.insertFirstAndLastElement();
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+          });
         });
-      });
 
-    }
-  });
+      }
+    });
+  }
 }
 
 class MyEquipment {
@@ -253,7 +264,7 @@ class MyEquipment {
     $siteFilterLabel.text(`${i18nKeys['site']} +`);
     this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
       {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
-      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
+      {key:'equipmentDescription',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
       {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4}];
     this.cache.$countryFilterLabel.on('click', () => {
       this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:i18nKeys['country'] });
@@ -474,7 +485,6 @@ class MyEquipment {
       this.renderSearchCount();
       this.updateFilterCountValue(label,filterCount,htmlUpdate);
     }
-    this.cache.$modal.modal('hide');
 
   }
 
@@ -505,8 +515,7 @@ class MyEquipment {
       data: {
         header:formDetail.header,
         formData: data,...i18nKeys,
-        singleButton:formDetail.singleButton === false ? false : true,
-        customiseTable:formDetail.activeFrom === 'customise-table' ? true : false
+        singleButton:formDetail.singleButton === false ? false : true
       },
       target: '.tp-equipment__filter-form',
       hidden: false
