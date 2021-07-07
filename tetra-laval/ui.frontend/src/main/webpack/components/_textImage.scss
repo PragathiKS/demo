@@ -1,0 +1,150 @@
+.pw-text-image {
+    @include border-radius($border-radius);
+    @include padding($padding-l $padding-md);
+    @include margin(0 $margin-md);
+    @media #{$desktop} {
+        @include padding($padding-xxxl);
+        @include margin(0 $margin-xxxl);
+    }
+
+    &--display-row {
+        > .row {
+            flex-direction: row;
+        }
+        .leftPad {
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @include margin-top($margin-zero);
+            @media #{$desktop} {
+                @include padding-left($padding-zero);
+                @include padding-right($padding-l);
+                @include margin-top($margin-zero);
+            }
+        }
+        .rightPad {
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @include margin-top($margin-md);
+            @media #{$desktop} {
+                @include padding-right($padding-zero);
+                @include padding-left($padding-l);
+                @include margin-top($margin-zero);
+            }
+        }
+    }
+
+    &--display-row-reversed {
+        > .row {
+            flex-direction: row-reverse;
+        }
+        .rightPad {
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @include margin-top($margin-md);
+            @media #{$desktop} {
+                @include padding-left($padding-zero);
+                @include padding-right($padding-l);
+                @include margin-top($margin-zero);
+            }
+        }
+        .leftPad {
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @include margin-top($margin-zero);
+            @media #{$desktop} {
+                @include padding-right($padding-zero);
+                @include padding-left($padding-l);
+                @include margin-top($margin-zero);
+            }
+        }
+    }
+
+    &__innerpadding {
+        @include margin-top(0);
+        @include margin-bottom(0);
+
+        @media #{$desktop} {
+            @include margin-top(0);
+            @include margin-bottom(0);
+        }
+    }
+
+    &__subTitle {
+        @include font-size($font-sm);
+        @include margin-top($margin-zero);
+        @include margin-bottom($margin-sm);
+        @include line-height($font-normal, $font-sm);
+        color: $color-boulder;
+        font-weight: 500;
+        text-transform: $uppercase;
+        letter-spacing: normal;
+        @media #{$desktop} {
+            @include margin-top($margin-zero);
+            @include margin-bottom($margin-sm);
+            text-transform: $uppercase;
+        }
+        span.tpatom-subheading {
+            @include font-size($font-sm);
+            @include line-height($font-normal, $font-sm);
+            font-family: $font-monsterrat;
+            font-weight: 500;
+        }
+    }
+
+    &__title {
+        @include margin-bottom($margin-md);
+    }
+
+    &__description {
+        @include font-size(16px);
+        @include line-height(28px, 16px);
+        ul {
+            li {
+                display: flex;
+                &::before {
+                    @include margin-right($margin-sm);
+                    display: inline-block;
+                    color: $color-tundora;
+                    content: '\2022';
+                }
+            }
+        }
+        @media #{$desktop} {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+        }
+        a {
+            &:hover {
+                color: $color-sky-blue;
+            }
+        }
+    }
+
+    &__link {
+        @include margin-bottom(0);
+        @include margin-top($margin-md);
+        @include padding($padding-zero);
+        @include line-height(28px, 16px);
+        background-color: none;
+        @media #{$desktop} {
+            @include margin-bottom($margin-zero);
+            @include padding($padding-zero);
+            @include line-height(24px, 14px);
+            background-color: none;
+        }
+    }
+
+    &__image {
+        width: 100%;
+    }
+}
+.tpatom-heading {
+    &--regular {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            line-height: 40px;
+        }
+    }
+}
