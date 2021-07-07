@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="sling:OsgiConfig"
+    asset.metadata.api.base.path="/content/dam/training-services"
+    asset.metadata.api.language.folder.level="{Long}4"
+    asset.metadata.api.scope.path="/content/trs/api"
     dm.domain="https://s7g10.scene7.com"
+    mlvid.property="dam:mlvId"
     page.creation.log.file.path="/content/dam/training-services/system/page-creation-author-log.xlsx"
     taxonomy.transformation.log.file.path="/content/dam/training-services/system/xyleme-tag-transformation-log.xlsx"
     trs.assets.root.name="training-services"
