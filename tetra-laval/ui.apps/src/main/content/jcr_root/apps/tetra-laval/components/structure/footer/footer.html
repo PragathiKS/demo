@@ -1,4 +1,3 @@
-<sly data-sly-use.footerModel="com.tetralaval.models.FooterModel"/>
 <sly data-sly-use.footerConfig="com.tetralaval.models.FooterConfigurationModel"/>
 
 <p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
@@ -9,10 +8,11 @@ Logo Alt: ${footerConfig.logoAlt}</br>
 Goto Top Label: ${footerConfig.goToTopLabel}</br>
 
 <sly data-sly-list.footLinks="${footerConfig.footerLinks}">
-    Footer Link Label${footLinks.linkLabel}</br>
+    Footer Link Label: ${footLinks.linkLabel}</br>
     Footer Link Path: ${footLinks.linkPath}</br>
 </sly>
+Description: ${properties.description}</br>
 <sly data-sly-list.Links="${footerConfig.socialLinks}">
-    Social Media : ${Links.socialMedia}</br>
-    Social Media Link :${Links.socialMediaLink}</br>
+    Social Media: ${Links.socialMedia}</br>
+    Social Media Link: ${Links.socialMediaLink}</br>
 </sly>
