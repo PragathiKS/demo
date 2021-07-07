@@ -136,26 +136,26 @@
     .owl-carousel {
         .owl-nav {
             color: $color-congress-blue;
-            .owl-prev {
-                transform: rotate(-180deg);
+            .owl-prev,
+            .owl-next {
                 position: absolute;
-                left: 0;
                 cursor: pointer;
+
                 &:hover {
                     color: $color-sky-blue;
                 }
             }
+            .owl-prev {
+                transform: rotate(-180deg);
+                left: 0;
+            }
             .owl-next {
-                position: absolute;
                 right: 0;
-                cursor: pointer;
-                &:hover {
-                    color: $color-sky-blue;
-                }
             }
             .icon {
                 &::before {
                     font-size: $font-l;
+                    vertical-align: top;
                 }
             }
         }

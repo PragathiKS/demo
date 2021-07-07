@@ -4,4 +4,6 @@
     jcr:primaryType="cq:Page">
     <rep:policy/>
     <global-page-template/>
+    <content-page-template/>
+    <feed-page-template/>
 </jcr:root>
