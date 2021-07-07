@@ -11,6 +11,7 @@ import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -188,15 +189,18 @@ public class PageLoadAnalyticsModel {
     private void updatePageCategories() {
         ResourceResolver resourceResolver = resource.getResourceResolver();
         StringBuilder stringBuilder = new StringBuilder();
+        pageCategories = new StringBuilder();
         TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-        if (Objects.nonNull(currentPage.getProperties().get("cq:tags", String[].class))) {
-            final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
+        final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
+        if (ArrayUtils.isNotEmpty(tagValue)) {
             for (String tags : tagValue) {
                 Tag tag = tagManager.resolve(tags);
                 stringBuilder.append(tag.getTitle() + ",");
             }
+            pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "");
+        }else{
+            pageCategories.toString();
         }
-        pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "" );
     }
 
     /**
