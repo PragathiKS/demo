@@ -27,11 +27,13 @@
             </a>
           </div>
           <!-- IF Additional Image with Social Media -->
+          <sly data-sly-test="${data.wechatQrCodeReference != null}">
           <div class="tp-pw-footer__social-media-items__china">
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics iconWeChatCode" href="#" target="_blank" data-sly-test="#" data-link-name="WeChatQRCode">
-              <img src="/content/dam/tetrapak/publicweb/wechatQRCode.png" alt="WeChatIcon">
+              <img src="${data.wechatQrCodeReference}" alt="${data.qrAltText}">
             </a>
           </div>
+          </sly>
         </div>
       </div>
       <div class="col tp_goTopBtn">
