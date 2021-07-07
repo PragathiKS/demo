@@ -190,34 +190,45 @@ function _processTableData(data){
 function renderPaginationTableData(list,options) {
   const that = this;
   const container = $('#pagination-container');
-  container.pagination({
-    dataSource: list.summary,
-    showFirst:true,
-    showLast:true,
-    showFirstOnEllipsisShow: false,
-    showLastOnEllipsisShow:false,
-    firstText:'',
-    lastText:'',
-    pageRange:1,
-    pageSize: 25,
-    pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
-    className: 'paginationjs-theme-tetrapak',
-    callback: function(data) {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: {...list,summary:data},
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      },() => {
-        that.hideShowColums();
-        that.insertFirstAndLastElement();
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip();
+  if(list.summary.length === 0) {
+    render.fn({
+      template: 'myEquipmentTable',
+      data: { noDataMessage:true },
+      target: '.tp-my-equipment__table_wrapper',
+      hidden: false
+    });
+    container.pagination('destroy');
+  }
+  else {
+    container.pagination({
+      dataSource: list.summary,
+      showFirst:true,
+      showLast:true,
+      showFirstOnEllipsisShow: false,
+      showLastOnEllipsisShow:false,
+      firstText:'',
+      lastText:'',
+      pageRange:1,
+      pageSize: 25,
+      pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
+      className: 'paginationjs-theme-tetrapak',
+      callback: function(data) {
+        render.fn({
+          template: 'myEquipmentTable',
+          data: {...list,summary:data},
+          target: '.tp-my-equipment__table_wrapper',
+          hidden: false
+        },() => {
+          that.hideShowColums();
+          that.insertFirstAndLastElement();
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+          });
         });
-      });
 
-    }
-  });
+      }
+    });
+  }
 }
 
 class MyEquipment {
