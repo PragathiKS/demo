@@ -34,7 +34,7 @@ services:
     volumes:
       - ./target/reports:/tmp/reports
       - 'shared:/tmp/shared'
-    image: 'com.tetralaval-tetra-laval.ui.tests/ui.tests:latest'
+    image: 'tetrapak-tetralaval.ui.tests/ui.tests:latest'
   selenium-firefox:
     image: 'selenium/standalone-firefox-debug'
     ports:

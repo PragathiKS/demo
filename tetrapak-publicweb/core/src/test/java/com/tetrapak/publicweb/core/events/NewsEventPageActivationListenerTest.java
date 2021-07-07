@@ -1,9 +1,10 @@
 /**
- * 
+ *
  */
 package com.tetrapak.publicweb.core.events;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Map;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.api.resource.ValueMap;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -102,6 +104,10 @@ public class NewsEventPageActivationListenerTest {
     @InjectMocks
     private NewsEventPageActivationListener listener = new NewsEventPageActivationListener();
 
+    @Mock
+    private ValueMap properties;
+
+
     /**
      * Sets the up.
      *
@@ -137,6 +143,9 @@ public class NewsEventPageActivationListenerTest {
                 .thenReturn(footerConfigResource);
         Mockito.when(resolver.getResource(LANGUAGE_PAGE_PATH + "/jcr:content/root/responsivegrid/subscriptionformconf"))
                 .thenReturn(subscriptionformconfResource);
+        doReturn("/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/legal-information").when(bean).getLegalInformationLink();
+        doReturn("/content/tetrapak/publicweb/lang-masters/en/contact-us").when(bean).getContactUsLink();
+        doReturn("/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/news-room").when(bean).getNewsroomLink();
         Mockito.when(resolver.adaptTo(PageManager.class)).thenReturn(pageManager);
         Mockito.when(pageManager.getPage(LinkUtils.getRootPath(PAGE_EVENT_PATH))).thenReturn(languagePage);
         String[] paths = { PAGE_EVENT_PATH };
@@ -155,6 +164,17 @@ public class NewsEventPageActivationListenerTest {
                 .thenReturn(PWConstants.STATUS_SUCCESS);
     }
 
+    @Test
+    public void testGetNewsEventBean() throws Exception{
+        Mockito.when(properties.get("jcr:title",String.class)).thenReturn("Subscribe Email Scenario 21");
+        Mockito.when(properties.get("jcr:description",String.class)).thenReturn("This page is to test banner image issue after copying from another page");
+        Mockito.when(properties.get("imagePath",String.class)).thenReturn("/content/dam/tetrapak/publicweb/qa/logo/re100-2016.jpeg");
+        Mockito.when(properties.get("cq:template",String.class)).thenReturn("/conf/publicweb/settings/wcm/templates/news-article");
+        doReturn(ROOT_PAGE_PATH).when(bean).getRootPath();
+        doReturn(PAGE_EVENT_PATH).when(bean).getPageLink();
+        doReturn(ROOT_PAGE_PATH).when(bean).getRootPageLink();
+    }
+
     /**
      * Test method for
      * {@link com.tetrapak.publicweb.core.events.NewsEventPageActivationListener#handleEvent(org.osgi.service.event.Event)}.
@@ -165,6 +185,7 @@ public class NewsEventPageActivationListenerTest {
     @Test
     public void testHandleEvent() throws Exception {
         listener.handleEvent(event);
+
         assertEquals("NewsEventPageActivationListener", "NewsEventPageActivationListener");
     }
 

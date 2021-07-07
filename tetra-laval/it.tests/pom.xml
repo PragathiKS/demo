@@ -18,13 +18,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.tetralaval</groupId>
-        <artifactId>tetra-laval</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>tetrapak-tetralaval</groupId>
+        <artifactId>tetrapak-tetralaval</artifactId>
+        <version>${buildversion}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>tetra-laval.it.tests</artifactId>
+    <artifactId>tetrapak-tetralaval.it.tests</artifactId>
     <name>Tetra Laval - Integration Tests</name>
     <description>Integration Tests for Tetra Laval</description>
 
