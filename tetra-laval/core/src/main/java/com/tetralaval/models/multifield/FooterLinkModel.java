@@ -26,6 +26,8 @@ public class FooterLinkModel {
     @ValueMapValue
     private String linkPath;
 
+    private boolean internal;
+
     /**
      * Gets the link label.
      *
@@ -53,4 +55,11 @@ public class FooterLinkModel {
         this.linkPath=linkPath;
     }
 
+    public boolean isInternal() {
+        return internal;
+    }
+
+    public void setInternal(boolean internal) {
+        this.internal = internal;
+    }
 }

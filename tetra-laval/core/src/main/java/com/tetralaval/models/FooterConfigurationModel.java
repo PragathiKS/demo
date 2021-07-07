@@ -4,16 +4,19 @@ import com.tetralaval.constants.PWConstants;
 import com.tetralaval.models.multifield.FooterLinkModel;
 import com.tetralaval.models.multifield.SocialLinkModel;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.inject.Inject;
+import javax.jcr.Node;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * The Class FooterConfigurationModel.
@@ -48,10 +51,6 @@ public class FooterConfigurationModel {
     /** The footer links. */
     @Inject
     private List<FooterLinkModel> footerLinks;
-
-    /** The go to top label. */
-    @ValueMapValue
-    private String goToTopLabel;
 
     /**
      * Gets the logo image path.
@@ -136,21 +135,20 @@ public class FooterConfigurationModel {
      * @return the footer link
      */
     public List<FooterLinkModel> getFooterLinks() {
-        final List<FooterLinkModel> lists = new ArrayList<>();
+        List<FooterLinkModel> lists = new ArrayList<>();
         if (Objects.nonNull(footerLinks)) {
             lists.addAll(footerLinks);
+
+            lists = lists.stream().map(item -> setFooterLinkModel(item)).collect(Collectors.toList());
         }
         return lists;
-
     }
 
-    /**
-     * Gets the go to top label.
-     *
-     * @return the go to top label
-     */
-    public String getGoToTopLabel() {
-        return goToTopLabel;
+    private FooterLinkModel setFooterLinkModel(FooterLinkModel footerLinkModel) {
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+        Resource resource = resourceResolver.resolve(footerLinkModel.getLinkPath());
+        footerLinkModel.setInternal(resource.adaptTo(Node.class) != null);
+        return footerLinkModel;
     }
 
 }

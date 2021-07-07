@@ -41,8 +41,8 @@
         li {
             @media #{$desktop} {
                 display: inline-block;
-                &:not(:first-child) {
-                    @include margin-left($margin-l);
+                &:not(:last-child) {
+                    @include margin-right($margin-l);
                 }
             }
             

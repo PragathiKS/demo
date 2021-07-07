@@ -36,9 +36,9 @@ public class ExperienceFragmentModel {
 
     private ResourceResolver resourceResolver;
 
-    private Map<String, String> headerMap;
+    private String headerPath;
 
-    private Map<String, String> footerMap;
+    private String footerPath;
 
     @PostConstruct
     protected void init() {
@@ -49,8 +49,8 @@ public class ExperienceFragmentModel {
             Node headerNode = getExperienceFragmentNode(contentRootNode, HEADER_EXPERIENCE_FRAGMENT_NODENAME);
             Node footerNode = getExperienceFragmentNode(contentRootNode, FOOTER_EXPERIENCE_FRAGMENT_NODENAME);
 
-            headerMap = getExperienceFragmentMap(headerNode);
-            footerMap = getExperienceFragmentMap(footerNode);
+            headerPath = getFragmentPath(headerNode);
+            footerPath = getFragmentPath(footerNode);
         }
     }
 
@@ -82,22 +82,21 @@ public class ExperienceFragmentModel {
         return xfNode;
     }
 
-    private Map<String, String> getExperienceFragmentMap(Node node) {
-        Map<String, String> map = new HashMap<>();
+    private String getFragmentPath(Node node) {
+        String fragmentPath = null;
         try {
-            map.put(FRAGMENT_PATH_PROPERTY, node.getProperty(FRAGMENT_PATH_PROPERTY).getString());
+            fragmentPath = String.format("%s/%s/root.content.html", node.getProperty(FRAGMENT_PATH_PROPERTY).getString(), JcrConstants.JCR_CONTENT);
         } catch (RepositoryException re) {
             LOGGER.error("Property {} does not exist", FRAGMENT_PATH_PROPERTY);
-            return null;
         }
-        return map;
+        return fragmentPath;
     }
 
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
+    public String getHeaderPath() {
+        return headerPath;
     }
 
-    public Map<String, String> getFooterMap() {
-        return footerMap;
+    public String getFooterPath() {
+        return footerPath;
     }
 }
