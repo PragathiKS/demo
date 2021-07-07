@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="sling:OsgiConfig"
+		  smtp.password="MnVmdWhoc2h4cXUw"
+		  debug.email="false"
+	 	  smtp.port="2525"
+		  smtp.user="harmonicaflowerriver"
+		  smtp.ssl="false"
+		  smtp.starttls="true"
+		  from.address="noreply@communications.tetrapak.com"
+		  smtp.host="mail.smtp2go.com"/>
