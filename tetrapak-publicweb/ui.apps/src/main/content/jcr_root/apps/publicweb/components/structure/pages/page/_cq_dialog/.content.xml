@@ -154,6 +154,17 @@
                                                     allowBulkEdit="{Boolean}true"
                                                     cq-msm-lockable="jcr:description"/>
                                             </description>
+											<countryname
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldDescription="Country name in local language. To be authored only on market level."
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Country Name"
+                                                name="./countryName">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="countryName"/>
+                                            </countryname>
                                         </items>
                                     </moretitles>
                                     <onofftime

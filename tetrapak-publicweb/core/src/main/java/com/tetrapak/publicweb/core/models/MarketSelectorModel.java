@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -35,6 +36,10 @@ public class MarketSelectorModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+    
+    /** The current page. */
+    @Inject
+    private Page currentPage;
 
     /** The markets. */
     private List<MarketBean> markets = new ArrayList<>();
@@ -89,6 +94,10 @@ public class MarketSelectorModel {
         globalLanguages.add(globalLanguageBean);
         globalMarketBean.setLanguages(globalLanguages);
         globalMarketBean.setMarketName(getGlobalMarketTitle());
+        if (getGlobalMarketTitle().equalsIgnoreCase(
+                (String) PageUtil.getCountryPage(currentPage).getContentResource().getValueMap().get("jcr:title"))) {
+            globalMarketBean.setActive(Boolean.TRUE);
+        }
         return globalMarketBean;
     }
 
@@ -110,6 +119,13 @@ public class MarketSelectorModel {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 MarketBean marketBean = new MarketBean();
                 marketBean.setMarketName(marketPage.getTitle());
+                if (marketPage.getContentResource().getValueMap().containsKey("countryName")){
+                    marketBean.setCountryName((String)marketPage.getContentResource().getValueMap().get("countryName"));
+                }
+                if (marketPage.getTitle().equalsIgnoreCase(
+                        (String) PageUtil.getCountryPage(currentPage).getContentResource().getValueMap().get("jcr:title"))) {
+                    marketBean.setActive(Boolean.TRUE);
+                }
                 List<LanguageBean> languages = new ArrayList<>();
                 while (languagePages.hasNext()) {
                     languageCount++;
