@@ -158,7 +158,7 @@ public class PageLoadAnalyticsModel {
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
     /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(HeaderModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageLoadAnalyticsModel.class);
 
     /**
      * Inits the model.
@@ -205,7 +205,7 @@ public class PageLoadAnalyticsModel {
                     pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "");
             }
         }catch (Exception exception){
-            LOGGER.error(" There is an exception while executing updatePageCategories ", exception);
+            LOGGER.error(" There is an exception while executing updatePageCategories ");
         }
     }
 
