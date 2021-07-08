@@ -4,28 +4,19 @@ import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 import io.wcm.testing.mock.aem.junit.AemContext;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import com.day.cq.tagging.TagManager.FindResults;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
 /**
@@ -170,7 +161,6 @@ public class PageLoadAnalyticsModelTest {
         Mockito.when(tag2.getTitle()).thenReturn(TAGS_VALUE[1]);
         model = request.adaptTo(modelClass);
     }
-
 
     /**
      * Test model, resource and all getters of the PageLoadAnalytics model.

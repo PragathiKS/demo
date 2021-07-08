@@ -34,6 +34,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.Collections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -115,7 +117,7 @@ public class PageLoadAnalyticsModel {
     /**
      * The pageCategories.
      */
-    private StringBuilder pageCategories;
+    private StringBuilder pageCategories = new StringBuilder();
 
     /**
      * The development.
@@ -155,6 +157,9 @@ public class PageLoadAnalyticsModel {
     /** The href lang values. */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(HeaderModel.class);
+
     /**
      * Inits the model.
      */
@@ -187,19 +192,20 @@ public class PageLoadAnalyticsModel {
      * Update Page Categories.
      */
     private void updatePageCategories() {
-        ResourceResolver resourceResolver = resource.getResourceResolver();
-        StringBuilder stringBuilder = new StringBuilder();
-        pageCategories = new StringBuilder();
-        TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-        final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
-        if (ArrayUtils.isNotEmpty(tagValue)) {
-            for (String tags : tagValue) {
-                Tag tag = tagManager.resolve(tags);
-                stringBuilder.append(tag.getTitle() + ",");
+        try {
+            ResourceResolver resourceResolver = resource.getResourceResolver();
+            StringBuilder stringBuilder = new StringBuilder();
+            TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+            final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
+            if (ArrayUtils.isNotEmpty(tagValue)) {
+                for (String tags : tagValue) {
+                    Tag tag = tagManager.resolve(tags);
+                        stringBuilder.append((tag.getTitle()) + ",");
+                    }
+                    pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "");
             }
-            pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "");
-        }else{
-            pageCategories.toString();
+        }catch (Exception exception){
+            LOGGER.error(" There is an exception while executing updatePageCategories ", exception);
         }
     }
 
