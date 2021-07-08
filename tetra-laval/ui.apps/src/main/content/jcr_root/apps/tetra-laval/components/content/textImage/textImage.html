@@ -71,15 +71,13 @@
                        data-anchor-type="imageClick"
                     >
 
-                        <sly data-sly-test="${wcmmode.edit}">
-                            <img alt="${model.imageAltText}" src="${model.imagePath}" class="pw-text-image__image" />
-                        </sly>
+                        <img alt="${model.imageAltText}" src="${model.imagePath}" class="pw-text-image__image" />
+
                     </a>
                     <span data-sly-test="${!model.linkURL  || model.linkURL=='#' || (isFormTypeAuthored || isSoftConvEnabled)}">
 
-          <sly data-sly-test="${wcmmode.edit}">
             <img alt="${model.imageAltText}" src="${model.imagePath}" class="pw-text-image__image" />
-          </sly>
+
         </span>
 
                 </div>
