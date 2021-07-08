@@ -57,7 +57,7 @@
         }
     }
 
-    &__socialMedia {
+    &__social-media {
         @media #{$desktop} {
             display: flex;
         }
@@ -86,10 +86,9 @@
                 margin-right: 0;
             }
 
-            &.iconWeChatCode {
+            &.icon-wechat-code {
                 display: inline-block;
-                height: 115px;
-                width: 115px;
+                max-width: 115px;
                 cursor: default;
                 pointer-events: none;
 
@@ -100,10 +99,10 @@
             }
         }
 
-        &__weChatCode {
-            margin-left: 4px;
+        &__wechat-code {
+            margin-left: $margin-xs;
             @media #{$mobile} {
-                margin-left: 0;
+                margin-left: $margin-zero;
             }
         }
     }

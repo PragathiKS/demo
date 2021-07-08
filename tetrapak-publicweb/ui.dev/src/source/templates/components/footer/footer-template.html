@@ -18,7 +18,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-lg-3 text-lg-right tp-pw-footer__socialMedia">
+        <div class="col-lg-3 text-lg-right tp-pw-footer__social-media">
           <div class="tp-pw-footer__social-media-items footer-analytics" data-sly-list.socialLink="${data.socialLinks}">
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics"
               href="${socialLink.socialMediaLink}" target="_blank" data-sly-test="${socialLink.socialMediaLink}"
@@ -29,8 +29,8 @@
 
           <!-- IF Additional Social Media Image -->
           <sly data-sly-test="${data.wechatQrCodeReference != null}">
-            <div class="tp-pw-footer__social-media-items__weChatCode">
-              <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics iconWeChatCode" href="javascript:;" target="_blank" data-link-name="${data.qrAltText}">
+            <div class="tp-pw-footer__social-media-items__wechat-code">
+              <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics icon-wechat-code" href="javascript:;" target="_blank" data-link-name="${data.qrAltText}">
                 <img src="${data.wechatQrCodeReference}" alt="${data.qrAltText}">
               </a>
             </div>
