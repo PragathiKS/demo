@@ -60,6 +60,7 @@
     &__social-media {
         @media #{$desktop} {
             display: flex;
+            justify-content: flex-end;
         }
         @media #{$small-desktop} {
             display: block;
