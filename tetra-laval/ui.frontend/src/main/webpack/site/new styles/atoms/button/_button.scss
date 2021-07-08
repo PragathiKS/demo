@@ -1,26 +1,47 @@
 %default-btn {
+    // font-family: $font-monsterrat;
+    font-weight: 400;
     @include font-size($font-baseline);
     @include padding(8px 16px);
-    @include letter-spacing($letter-spacing-sm);
-    line-height: 1;
+    @include line-height($font-baseline, $spacing-big);
 
     .icon {
-        @include font-size($font-baseline);
-        @include line-height(12px, $font-baseline);
+        @include margin-left($margin-sm);
+        @include font-size(12px);
+        line-height: 12px;
         display: inline-block;
         vertical-align: top;
+        margin-top: 7px;
+        margin-left: 8px;
 
         &::before {
             @include font-size(12px);
             @include height(12px);
-            @include margin-top(2px);
+            @include margin-top(0);
+            display: inline-block;
+        }
+    }
+    
+    .icon.icon-Circle_Arrow_Right_pw {
+        @include margin-left($margin-sm);
+        @include font-size(16px);
+        line-height:$font-baseline;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 0;
+
+        &::before {
+            @include font-size(16px);
+            @include height(16px);
+            @include margin-top(4px);
             display: inline-block;
         }
     }
 
     span {
         @include margin-right($margin-xs);
-        line-height: 1;
+        @include line-height(24px, $font-baseline);
+        @include padding-right(0);
         vertical-align: top;
         display: inline-block;
 
@@ -28,25 +49,6 @@
             margin-right: 0;
         }
     }
-}
-
-%btn-colors {
-    background-color: $color-congress-blue;
-    color: $color-white;
-}
-
-%btn-secondary-colors {
-    background-color: $color-wild-sand;
-    color: $color-congress-blue;
-}
-
-%btn-colors-hover {
-    background-color: $color-sky-blue;
-}
-
-%btn-secondary-colors-hover {
-    background-color: $color-mercury;
-    color: $color-congress-blue;
 }
 
 %hiddentext-btn {
@@ -57,30 +59,31 @@
 
 .tpatom-btn,
 .tpatom-link {
+    @include line-height($font-l,$font-baseline);
     cursor: pointer;
-
-    &[disabled] {
-        cursor: not-allowed;
-        opacity: $opacity-disabled;
-    }
 
     &--primary {
         @extend %default-btn;
+        color: $color-white;
+        background-color: $color-congress-blue;
         border-radius: $border-radius;
         transition: background-color $anim-speed-quick ease;
 
-        &,
-        &[disabled]:hover {
-            @extend %btn-colors;
+        &[disabled] {
+            cursor: not-allowed;
+            background-color: $color-mercury;
+            color: rgba($color-boulder, .5);
         }
 
-        &:hover {
-            @extend %btn-colors-hover;
+        &:hover:not([disabled]) {
+            background-color: $color-dark-blue;
+            color: $color-white;
         }
 
         .is-touch & {
             &:hover {
-                @extend %btn-colors;
+                background-color: $color-congress-blue;
+                color: $color-white;
             }
         }
     }
@@ -88,20 +91,26 @@
     &--secondary {
         @extend %default-btn;
         border-radius: $border-radius;
+        border: 1px solid $color-congress-blue;
+        color: $color-congress-blue;
         transition: background-color $anim-speed-quick ease;
 
-        &,
-        &[disabled]:hover {
-            @extend %btn-secondary-colors;
+
+        &[disabled] {
+            cursor: not-allowed;
+            border-color: $color-mercury;
+            color: rgba($color-boulder, .5);
         }
 
-        &:hover {
-            @extend %btn-secondary-colors-hover;
+        &:hover:not([disabled]) {
+            border-color: $color-dark-blue;
+            color: $color-dark-blue;
         }
 
         .is-touch & {
             &:hover {
-                @extend %btn-secondary-colors;
+                border-color: $color-dark-blue;
+                color: $color-dark-blue;
             }
         }
     }
@@ -113,6 +122,17 @@
         border: 0;
         padding: 0;
         color: $color-text-link;
+
+
+        &:hover {
+            color: $color-dark-blue;
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
+            border-color: $color-mercury;
+            color: rgba($color-boulder, .5);
+        }
     }
 
     &--datepicker {
@@ -200,4 +220,26 @@
             margin: auto;
         }
     }
+
+    &--inline-text-link {
+        color: $color-congress-blue;
+
+        &[disabled] {
+            cursor: not-allowed;
+            text-decoration: underline;
+            color: rgba($color-boulder, .5);
+        }
+
+        &:hover:not([disabled]) {
+            text-decoration: underline;
+            color: $color-dark-blue;
+        }
+    }
+}
+.tpatom-link {
+     &--transparent {
+        span {
+            @include padding-right(0);
+        }
+     }
 }
