@@ -3,13 +3,18 @@ package com.tetralaval.models;
 import com.tetralaval.constants.PWConstants;
 import com.tetralaval.models.multifield.FooterLinkModel;
 import com.tetralaval.models.multifield.SocialLinkModel;
+import com.tetralaval.utils.LinkUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.Node;
 import java.util.ArrayList;
@@ -21,11 +26,15 @@ import java.util.stream.Collectors;
 /**
  * The Class FooterConfigurationModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterConfigurationModel {
 
-    /** The request. */
-    @Self
+    /** The resource. */
+    @SlingObject
+    private SlingHttpServletRequest request;
+
+    /** The resource. */
+    @Inject
     private Resource resource;
 
     /** The logo image path. */
@@ -46,10 +55,12 @@ public class FooterConfigurationModel {
 
     /** The social links. */
     @Inject
+    @Via("resource")
     private List<SocialLinkModel> socialLinks;
 
     /** The footer links. */
     @Inject
+    @Via("resource")
     private List<FooterLinkModel> footerLinks;
 
     /**
@@ -145,9 +156,12 @@ public class FooterConfigurationModel {
     }
 
     private FooterLinkModel setFooterLinkModel(FooterLinkModel footerLinkModel) {
+        String linkPath = footerLinkModel.getLinkPath();
+
         ResourceResolver resourceResolver = resource.getResourceResolver();
-        Resource resource = resourceResolver.resolve(footerLinkModel.getLinkPath());
+        Resource resource = resourceResolver.resolve(linkPath);
         footerLinkModel.setInternal(resource.adaptTo(Node.class) != null);
+        footerLinkModel.setLinkPath(LinkUtils.sanitizeLink(linkPath, request));
         return footerLinkModel;
     }
 
