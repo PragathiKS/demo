@@ -20,7 +20,13 @@
         </div>
         <div class="modal-footer tpmol-modal-footer">
             <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button">
-                <span class="tpatom-btn__text sly-text">{{i18n key=applyFilter}}</span>
+                <span class="tpatom-btn__text sly-text">
+                    {{#if customiseTable}}
+                    {{i18n key=hideAndShowCta}}
+                    {{else}}
+                    {{i18n key=applyFilter}}
+                    {{/if}}
+                </span>
             </button>
             {{#if singleButton}}
             <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-button">

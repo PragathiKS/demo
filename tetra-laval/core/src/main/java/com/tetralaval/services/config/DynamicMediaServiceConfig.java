@@ -5,8 +5,8 @@ import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 
-@ObjectClassDefinition(name = "Public Web Dynamic Media Service Configuration",
-        description = "Public Web Dynamic Media Service Configuration")
+@ObjectClassDefinition(name = "Tetra Laval Dynamic Media Service Configuration",
+        description = "Tetra Laval Dynamic Media Service Configuration")
 public @interface DynamicMediaServiceConfig {
 
     /**

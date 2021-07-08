@@ -181,7 +181,7 @@ public final class PWConstants {
     public static final String DELTA_FEED = "delta";
 
     /** The default bearer token refresh time. */
-//    public static final int FIFTY_MIN_IN_MILLI_SECONDS = 3_000_000;
+    public static final int FIFTY_MIN_IN_MILLI_SECONDS = 3_000_000;
 
     /** The Constant REPLICATION_PXP. */
     public static final String REPLICATION_PXP = "replicationpxp";

@@ -63,12 +63,8 @@
 }
 
 %btn-colors-hover {
-    background-color: $color-congress-blue;
+    background-color: $color-dark-blue;
     color: $color-white;
-    @media #{$desktop} {
-        background-color: $color-sky-blue;
-        color: $color-white;
-    }
 }
 
 %btn-secondary-colors-hover {
