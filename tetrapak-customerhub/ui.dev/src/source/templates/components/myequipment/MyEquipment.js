@@ -200,7 +200,7 @@ function renderPaginationTableData(list,options) {
     lastText:'',
     pageRange:1,
     pageSize: 25,
-    pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
+    pageNumber: (options.isCustomiseTableFilter && container.pagination('getSelectedPageNum')) ? container.pagination('getSelectedPageNum') : 1,
     className: 'paginationjs-theme-tetrapak',
     callback: function(data) {
       render.fn({
@@ -474,6 +474,7 @@ class MyEquipment {
       this.renderSearchCount();
       this.updateFilterCountValue(label,filterCount,htmlUpdate);
     }
+    this.cache.$modal.modal('hide');
 
   }
 
@@ -504,7 +505,8 @@ class MyEquipment {
       data: {
         header:formDetail.header,
         formData: data,...i18nKeys,
-        singleButton:formDetail.singleButton === false ? false : true
+        singleButton:formDetail.singleButton === false ? false : true,
+        customiseTable:formDetail.activeFrom === 'customise-table' ? true : false
       },
       target: '.tp-equipment__filter-form',
       hidden: false
