@@ -5,6 +5,9 @@
     a {
         font-family: $font-monsterrat;
         font-weight: 400;
+        &.selected {
+            font-weight: 700;
+        }
     }
 
     &__header {
@@ -60,6 +63,14 @@
                 border-right: 0;
             }
         }
+        i.icon-ver-line {
+            @include padding-left(8px);
+            @include margin-left(8px);
+            border-left: 1px solid $color-congress-blue;
+            &:hover {
+                border-left: 1px solid $color-sky-blue;
+            }
+        }
     }
 
     &__btn {
@@ -69,6 +80,9 @@
         &:hover {
             a {
                 color: $color-sky-blue;
+                i.icon-ver-line {
+                    border-left: 1px solid $color-sky-blue;
+                }
             }
         }
         @media #{$desktop} {
