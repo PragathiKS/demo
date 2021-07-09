@@ -10,10 +10,6 @@
         display: block;
     }
 
-    @media #{$i-pad} {
-        display: none;
-    }
-
     &__link {
         @include font-size($font-sm);
         @include line-height($font-m-md);
@@ -25,12 +21,14 @@
         }
     }
 
-    .icon-Arrow_Right_pw.tp_icon {
-        @include margin(0 6px);
-        @include font-size($font-xxs);
-        @include line-height($font-xxs, $font-xxs);
-        display: inline;
-        vertical-align: middle;
+    .icon-Arrow_Right_pw {
+        &.tp_icon {
+            @include margin(0 6px);
+            @include font-size($font-xxs);
+            @include line-height($font-xxs, $font-xxs);
+            display: inline;
+            vertical-align: middle;
+        }
     }
 
     span {
