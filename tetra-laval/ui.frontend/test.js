@@ -1,0 +1,1 @@
+console.log('YARGS_MIN_NODE_VERSION', process.env.YARGS_MIN_NODE_VERSION);
