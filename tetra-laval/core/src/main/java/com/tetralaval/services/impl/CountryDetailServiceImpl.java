@@ -36,8 +36,8 @@ public class CountryDetailServiceImpl implements CountryDetailService {
      * The Interface CountryDetailServiceConfig.
      */
     @ObjectClassDefinition(
-            name = "Public Web Country Detail Service Configuration",
-            description = "Public Web Country Detail Service Configuration")
+            name = "Tetra Laval Country Detail Service Configuration",
+            description = "Tetra Laval Country Detail Service Configuration")
     @interface CountryDetailServiceConfig {
 
         /**
