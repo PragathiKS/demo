@@ -16,6 +16,9 @@ public class LanguageBean implements Comparable<LanguageBean>{
     /** The language index. */
     private int languageIndex;
 
+    /** The country title. */
+    private String countryTitle;
+
     /**
      * Gets the language name.
      *
@@ -68,6 +71,25 @@ public class LanguageBean implements Comparable<LanguageBean>{
      */
     public void setLanguageIndex(int languageIndex) {
         this.languageIndex = languageIndex;
+    }
+
+    /**
+     * Gets the country title.
+     *
+     * @return the country title
+     */
+    public String getCountryTitle() {
+        return countryTitle;
+    }
+
+    /**
+     * Sets the country title.
+     *
+     * @param countryTitle
+     *            the new country title
+     */
+    public void setCountryTitle(String countryTitle) {
+        this.countryTitle = countryTitle;
     }
 
     /**
