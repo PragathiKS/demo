@@ -21,7 +21,8 @@
                   <li class='pw-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}" aria-label="${marketLanguage.languageName}" auto_locator="countryTiles">
                     <a data-sly-test="${marketLanguage.linkPath!='#' || marketLanguage.linkPath!=''}" href="${marketLanguage.linkPath}" target="_self" auto_locator="countryName" class="${marketList.isActive ? 'selected' : 'blank'}">						
                         <sly data-sly-test="${languageSize >=2}">
-                        	<span>${marketList.marketName} ${languageSize >=2 ? concatenatedLanguage : ''}</span>
+                        	<span>${marketList.marketName}</span>
+							<sly data-sly-test="${marketLanguage.countryTitle}"><span><i class="icon-ver-line"></i></span><span>${marketLanguage.countryTitle} ${languageSize >=2 ? concatenatedLanguage : ''}</span></sly>
                         </sly>
 						<sly data-sly-test="${languageSize<2}"><span>${marketList.marketName}</span></sly>
 						<sly data-sly-test="${marketList.countryName}"><span><i class="icon-ver-line"></i></span><span>${marketList.countryName}</span></sly>						
