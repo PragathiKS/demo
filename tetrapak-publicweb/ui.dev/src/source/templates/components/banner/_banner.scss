@@ -247,9 +247,11 @@
         .tpatom-link {
             @include margin-top($margin-md);
             font-family: $font-monsterrat;
+            &.no-desc {
+                @include margin-top($margin-zero);
+            }
         }
-        &.sky-blue,
-        &.black {
+        &.sky-blue {
             color: $color-white;
             background: $color-sky-blue;
             @media #{$desktop} {
@@ -291,6 +293,44 @@
             @media #{$desktop} {
                 color: $color-white;
                 background: transparent;
+            }
+            .tpatom-link {
+                &--primary {
+                    color: $color-white;
+                    background-color: $color-congress-blue;
+                    @media #{$desktop} {
+                        color: $color-congress-blue;
+                        background-color: $color-white;
+                    }
+                    &:hover {
+                        color: $color-white;
+                    }
+                }
+                &--transparent {
+                    color: $color-congress-blue;
+                    @media #{$desktop} {
+                        color: $color-white;
+                        background-color: transparent;
+                    }
+                    &:hover {
+                        color: $color-sky-blue;
+                        @media #{$desktop} {
+                            color: $color-congress-blue;
+                        }
+                    }
+                }
+            }
+            &.display-row {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    left: 0;
+                }
+            }
+            &.display-row-reversed {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    right: 48px;
+                }
             }
         }
     }
