@@ -247,9 +247,11 @@
         .tpatom-link {
             @include margin-top($margin-md);
             font-family: $font-monsterrat;
+            &.no-desc {
+                @include margin-top($margin-zero);
+            }
         }
-        &.sky-blue,
-        &.black {
+        &.sky-blue {
             color: $color-white;
             background: $color-sky-blue;
             @media #{$desktop} {
@@ -292,6 +294,49 @@
                 color: $color-white;
                 background: transparent;
             }
+            .tpatom-link {
+                &--primary {
+                    color: $color-white;
+                    background-color: $color-congress-blue;
+                    @media #{$desktop} {
+                        color: $color-congress-blue;
+                        background-color: $color-white;
+                    }
+                    &:hover {
+                        color: $color-white;
+                        background-color: $color-sky-blue;
+                        @media #{$desktop} {
+                            color: $color-sky-blue;
+                            background-color: $color-white;
+                        }
+                    }
+                }
+                &--transparent {
+                    color: $color-congress-blue;
+                    @media #{$desktop} {
+                        color: $color-white;
+                        background-color: transparent;
+                    }
+                    &:hover {
+                        color: $color-sky-blue;
+                        @media #{$desktop} {
+                            color: $color-congress-blue;
+                        }
+                    }
+                }
+            }
+            &.display-row {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    left: 0;
+                }
+            }
+            &.display-row-reversed {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    right: 48px;
+                }
+            }
         }
     }
     .banner-sibling {
@@ -331,8 +376,10 @@
 
 .no-subtitle {
     .pw-banner__content {
+        @include margin-top(-41px);
         @media #{$desktop} {
             @include padding-bottom($padding-xl);
+            margin-top: unset;
         }
         &.sky-blue {
             @media #{$desktop} {
@@ -376,7 +423,11 @@
 }
 
 .black .pw-banner__gradient-bg {
-    background: linear-gradient(0, $color-white-new 8.01%, $color-hls 90.8%);
+    background: linear-gradient(0, $color-white-new 8.01%, rgba(255, 255, 255, 0.8) 98.8%);
     transform: rotate(-360deg);
+}
+
+.gray .pw-banner__gradient-bg {
+    background: $color-white;
 }
 
