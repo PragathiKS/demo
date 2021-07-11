@@ -160,9 +160,6 @@
                                         text="Black Gradient"
                                         value="black"/>
                                 </items>
-                                <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        disableenabletargetvalue="hero"/>
                             </pwCardTheme>
                         </items>
                     </column>

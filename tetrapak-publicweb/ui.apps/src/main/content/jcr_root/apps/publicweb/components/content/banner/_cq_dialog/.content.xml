@@ -40,9 +40,6 @@
                                         text="Top Banner (21:9)"
                                         value="hero-wide"/>
                                 </items>
-                                <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        cq-dialog-dropdown-disable-enable-target=".bannerType-disable-enable-target"/>
                             </bannertype>
                         </items>
                     </column>
