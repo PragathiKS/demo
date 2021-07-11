@@ -6,7 +6,6 @@
     <sly data-sly-test.textImageBanner="${data.bannerType == 'textImage' || data.bannerType == 'textImage-wide'}" />            
     <sly data-sly-test.cardTheme="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row-reversed')}" />
     <sly data-sly-test.cardThemeReverse="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row')}" />
-    <sly data-sly-attribute.textImageBannerTheme="${cardTheme ? 'display-row-reversed-wrapper' : ''}" />
 
     <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner">
         <div class="pw-banner ${heroBanner ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
@@ -39,20 +38,20 @@
                         <section class="pw-banner__contentwrapper">
                                 <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} ${data.pwDisplay =='display-row-reversed' ? 'display-row-reversed-wrapper' : ''}">
                                     <div class="pw-banner__gradient-bg"></div>
-                                    <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse, textImageBannerTheme=textImageBannerTheme}"/>
+                                    <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                                 </div>
                         </section>
                     </div>
                 </sly>
                 <sly data-sly-test="${textImageBanner}">
                     <sly data-sly-test="${cardTheme || cardThemeReverse}">
-                        <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${textImageBannerTheme}">
-                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse, textImageBannerTheme=textImageBannerTheme}"/>
+                        <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${cardTheme ? 'display-row-reversed-wrapper' : ''}">
+                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                         </div>
                     </sly>
                     <sly data-sly-test="${data.pwCardTheme =='gray'}">
                         <div class="${data.subtitle ? '' : 'no-subtitle'}">
-                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse, textImageBannerTheme=textImageBannerTheme}"/>
+                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                         </div>
                     </sly>
                 </sly>
@@ -67,7 +66,7 @@
 </sly>
 
 
-<sly data-sly-template.bannerCommon="${@bannerData, dataLinkSectionCTAText, isFormTypeAuthored, isSoftConvEnabled, heroBanner, textImageBanner, cardTheme, cardThemeReverse, textImageBannerTheme}">
+<sly data-sly-template.bannerCommon="${@bannerData, dataLinkSectionCTAText, isFormTypeAuthored, isSoftConvEnabled, heroBanner, textImageBanner, cardTheme, cardThemeReverse}">
     <div class="pw-banner__content banner-sibling ${bannerData.pwDisplay} ${bannerData.pwCardTheme}"></div>
     <div data-sly-test="${bannerData.title}" class="pw-banner__content banner-parent ${bannerData.pwDisplay}
         ${bannerData.pwCardTheme}">
