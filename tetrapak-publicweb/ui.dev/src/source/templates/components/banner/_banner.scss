@@ -304,6 +304,11 @@
                     }
                     &:hover {
                         color: $color-white;
+                        background-color: $color-sky-blue;
+                        @media #{$desktop} {
+                            color: $color-sky-blue;
+                            background-color: $color-white;
+                        }
                     }
                 }
                 &--transparent {
@@ -371,8 +376,10 @@
 
 .no-subtitle {
     .pw-banner__content {
+        @include margin-top(-41px);
         @media #{$desktop} {
             @include padding-bottom($padding-xl);
+            margin-top: unset;
         }
         &.sky-blue {
             @media #{$desktop} {
@@ -418,5 +425,9 @@
 .black .pw-banner__gradient-bg {
     background: linear-gradient(0, $color-white-new 8.01%, rgba(255, 255, 255, 0.8) 98.8%);
     transform: rotate(-360deg);
+}
+
+.gray .pw-banner__gradient-bg {
+    background: $color-white;
 }
 
