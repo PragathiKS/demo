@@ -122,10 +122,11 @@ public class MarketSelectorModel {
                 if (marketPage.getContentResource().getValueMap().containsKey("countryName")){
                     marketBean.setCountryName((String)marketPage.getContentResource().getValueMap().get("countryName"));
                 }
-                if (marketPage.getTitle().equalsIgnoreCase(
-                        (String) PageUtil.getCountryPage(currentPage).getTitle())) {
-                    marketBean.setActive(Boolean.TRUE);
-                }
+                final Page countryPage = PageUtil.getCountryPage(currentPage);
+                if(Objects.nonNull(countryPage) && marketPage.getTitle().equalsIgnoreCase(
+                        (String) countryPage.getTitle())) {
+                        marketBean.setActive(Boolean.TRUE);                
+                }              
                 List<LanguageBean> languages = new ArrayList<>();
                 while (languagePages.hasNext()) {
                     languageCount++;
