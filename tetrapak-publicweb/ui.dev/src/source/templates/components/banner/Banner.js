@@ -85,7 +85,8 @@ class Banner {
 
   trackBannerImageClick = (e) => {
     const $target = $(e.target);
-    if($target.parents().hasClass('js-dynamic-media')){
+
+    if($target.parents('.pw-banner').find('img.js-dynamic-media')){
       const $this = $target.closest('.pw-banner');
       const $anchor = $this.data('href');
       if (!($anchor && $anchor !== '#')) {
