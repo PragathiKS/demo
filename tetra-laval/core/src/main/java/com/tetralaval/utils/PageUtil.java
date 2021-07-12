@@ -8,8 +8,6 @@ import org.apache.sling.api.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Locale;
-
 /**
  * The Class PageUtil.
  *
@@ -47,36 +45,6 @@ public final class PageUtil {
     }
 
     /**
-     * This method returns page locale default is en-US.
-     *
-     * @param currentPage
-     *            current page
-     * @return local current locale
-     */
-    public static Locale getPageLocale(final Page currentPage) {
-        if (currentPage != null) {
-            return currentPage.getLanguage(false);
-        }
-
-        return new Locale.Builder().setLanguage(PWConstants.ENGLISH_LANGUAGE_ISO_CODE)
-                .setRegion(PWConstants.GLOBAL_ISO_CODE).build();
-    }
-
-    /**
-     * Gets the language page.
-     *
-     * @param currentPage
-     *            the current page
-     * @return language
-     */
-    public static Page getLanguagePage(final Page currentPage) {
-        if (currentPage != null) {
-            return currentPage.getAbsoluteParent(PWConstants.LANGUAGE_PAGE_LEVEL);
-        }
-        return null;
-    }
-
-    /**
      * Gets the language page.
      *
      * @param resource
@@ -89,17 +57,6 @@ public final class PageUtil {
             return currentPage.getAbsoluteParent(PWConstants.LANGUAGE_PAGE_LEVEL);
         }
         return null;
-    }
-
-    /**
-     * Gets the country page.
-     *
-     * @param currentPage
-     *            the current page
-     * @return country page
-     */
-    public static Page getCountryPage(final Page currentPage) {
-        return currentPage.getAbsoluteParent(PWConstants.COUNTRY_PAGE_LEVEL);
     }
 
     /**
@@ -158,17 +115,6 @@ public final class PageUtil {
     }
 
     /**
-     * This method is used for getting locale in form of language-country say en-gb.
-     *
-     * @param page
-     *            page
-     * @return String locale in form of language-country
-     */
-    public static String getLocaleFromURL(final Page page) {
-        return getLanguageCode(page).concat(PWConstants.HYPHEN).concat(getCountryCode(page));
-    }
-
-    /**
      * Gets the market code.
      *
      * @param resource
@@ -190,9 +136,5 @@ public final class PageUtil {
             }
         }
         return marketCode;
-    }
-
-    public static Boolean isHomePage(final String currentPagePath){
-        return currentPagePath.endsWith(PWConstants.HOME_PAGE_REL_PATH);
     }
 }
