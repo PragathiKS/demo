@@ -136,15 +136,18 @@
             }
         }
         &.display-row-reversed-wrapper {
-            @media #{$desktop} {
-                background: linear-gradient(to left, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
-                width: 588px;
-                right: 0;
+            &.sky-blue {
+                @media #{$desktop} {
+                    background: linear-gradient(to left, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
+                    width: 588px;
+                    right: 0;
+                }
             }
             &.black {
                 @media #{$desktop} {
                     background: linear-gradient(270deg, rgba($color-black, 0.7), rgba(0, 0, 0, 0) 99.61%);
                     width: 70%;
+                    right: 0;
                 }
             }
         }
@@ -263,7 +266,8 @@
                     color: $color-congress-blue;
                     background-color: $color-white;
                     &:hover {
-                        color: $color-sky-blue;
+                        color: $color-white;
+                        background-color: $color-congress-blue;
                     }
                 }
                 &--transparent {
@@ -306,8 +310,8 @@
                         color: $color-white;
                         background-color: $color-sky-blue;
                         @media #{$desktop} {
-                            color: $color-sky-blue;
-                            background-color: $color-white;
+                            color: $color-white;
+                            background-color: $color-sky-blue;
                         }
                     }
                 }
@@ -431,3 +435,7 @@
     background: $color-white;
 }
 
+.tp-container-textImage .pw-banner .pw-banner__bgcolor.display-row-reversed-wrapper,
+.tp-container-textImage-wide .pw-banner .pw-banner__bgcolor.display-row-reversed-wrapper {
+    width:540px;
+}
