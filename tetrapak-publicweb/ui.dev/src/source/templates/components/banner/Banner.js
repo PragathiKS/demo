@@ -84,6 +84,7 @@ class Banner {
   }
 
   trackBannerImageClick = (e) => {
+    e.preventDefault();
     const $target = $(e.target);
 
     if($target.parents('.pw-banner').find('img.js-dynamic-media')){
@@ -126,7 +127,7 @@ class Banner {
     });
 
 
-    $bEl.on('click', this.trackBannerImageClick);
+    $bEl.off().on('click', this.trackBannerImageClick);
 
   }
 
