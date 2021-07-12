@@ -437,6 +437,8 @@
 
 .tp-container-textImage .pw-banner .pw-banner__bgcolor.display-row-reversed-wrapper,
 .tp-container-textImage-wide .pw-banner .pw-banner__bgcolor.display-row-reversed-wrapper {
-    width:540px;
+    @media #{$desktop} {
+        width:540px;
+    }
 }
 
