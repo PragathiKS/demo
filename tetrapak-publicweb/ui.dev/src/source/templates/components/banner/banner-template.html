@@ -49,7 +49,7 @@
                             <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                         </div>
                     </sly>
-                    <sly data-sly-test="${data.pwCardTheme =='gray'}">
+                     <sly data-sly-test="${data.pwCardTheme == null || data.pwCardTheme =='gray'}">
                         <div class="${data.subtitle ? '' : 'no-subtitle'}">
                             <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                         </div>
