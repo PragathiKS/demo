@@ -98,7 +98,7 @@ class Banner {
       }
 
       if (isDownloable($anchor)) {
-        $this.data('download-type', 'download');
+        $this.attr('target', '_blank');
       }
 
       if (isExternal($anchor)) {
