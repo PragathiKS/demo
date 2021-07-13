@@ -5,7 +5,7 @@ import $ from 'jquery';
 export const trackAnalytics = (
   objectData,
   objectName,
-  // trackingKey,
+  trackingKey,
   objectKey,
   transformCase = true,
   eventObject = undefined,
@@ -33,7 +33,7 @@ export const trackAnalytics = (
       window.digitalData[objectName] = objectData;
     }
     if (window._satellite) {
-      // window._satellite.track(trackingKey);
+      window._satellite.track(trackingKey);
     }
   }
 };
@@ -44,12 +44,12 @@ export const trackAnalytics = (
  * @param {string} obKey Analytics object key
  * @param {string} trackingKey Tracking key
  */
-export const trackParams = (ob, obKey) => {
+export const trackParams = (ob, obKey, trackingKey) => {
   window.digitalData = $.extend(window.digitalData, {});
   if (!$.isEmptyObject(ob) && typeof obKey === 'string') {
     window.digitalData[obKey] = $.extend(window.digitalData[obKey], ob);
     if (window._satellite) {
-      // window._satellite.track(trackingKey);
+      window._satellite.track(trackingKey);
     }
   }
 };
