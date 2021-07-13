@@ -103,7 +103,7 @@ function _processKeys(keys, ob) {
       }else if(i === 'lineName'){
         line = i;
       }
-      else if(i === 'equipmentDesc'){
+      else if(i === 'equipmentTypeDesc'){
         description = i;
       }
       else if(i === 'serialNumber'){
@@ -138,7 +138,7 @@ function getKeyMap(key,i18nKeys){
       headerObj['tooltipText'] = i18nKeys['lineToolTip'];
       break;
     }
-    case 'equipmentDesc': {
+    case 'equipmentTypeDesc': {
       headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
       headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
@@ -253,7 +253,7 @@ class MyEquipment {
     $siteFilterLabel.text(`${i18nKeys['site']} +`);
     this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
       {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
-      {key:'equipmentDescription',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
+      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
       {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4}];
     this.cache.$countryFilterLabel.on('click', () => {
       this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:i18nKeys['country'] });
