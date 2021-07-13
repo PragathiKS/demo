@@ -78,7 +78,7 @@ export default () => {
         $(iconEl).removeClass('icon-Circle_Arrow_Right_pw');
         if (isDownloable(thisHref)) {
           $(iconEl).addClass('icon-Download');
-          $(this).attr('target', '_self');
+          $(this).attr('target', '_blank');
         } else if (isExternal(thisHref) || iconExternal) {
           $(iconEl).addClass('icon-Union');
           $(this).attr('target', '_blank');

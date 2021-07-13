@@ -1,4 +1,3 @@
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const commonConfig = require('./webpack.common');
 const config = require('./config').webpack;
@@ -17,8 +16,7 @@ if (prod === dev) {
           comments: false
         }
       }
-    }),
-    new OptimizeCSSAssetsPlugin({})
+    })
   ];
 }
 commonConfig.stats = {
