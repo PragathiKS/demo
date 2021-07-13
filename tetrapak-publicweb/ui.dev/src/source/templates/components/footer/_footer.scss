@@ -68,9 +68,6 @@
     }
 
     &__social-media-items {
-        display: flex;
-        justify-content: flex-end;
-
         @media #{$mobile} {
             @include margin-top($margin-xxxl);
             @include margin-bottom($margin-xxxl);
