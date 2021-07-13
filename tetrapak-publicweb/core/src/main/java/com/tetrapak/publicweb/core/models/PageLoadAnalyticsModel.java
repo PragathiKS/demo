@@ -547,7 +547,8 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("pageCategories", pageCategories.toString());        pageInfo.addProperty("siteName", applicationName);
+        pageInfo.addProperty("pageCategories", pageCategories.toString());        
+		pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
