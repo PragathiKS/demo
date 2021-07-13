@@ -1,22 +1,20 @@
 <sly data-sly-use.model="com.tetralaval.models.BreadcrumbModel"/>
 
-<p>rendering test</p>
+<sly data-sly-test="${model.breadcrumbSubpages}">
+    <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
+        <div class="tp_pw-breadcrumb__wrapper">
+            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${model.homePagePath}">${'pw.breadcrumb.home' @ i18n}</a>
+            <sly data-sly-list.subpages="${model.breadcrumbSubpages}">
+                <sly data-sly-test="${!subpagesList.last}">
+                    <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${model.breadcrumbSubpages[subpages]}"><i class="icon-Arrow_Right_pw tp_icon"></i>${subpages}</a>
+                </sly>
+                <sly data-sly-test="${subpagesList.last}">
+                    <i class="icon-Arrow_Right_pw tp_icon"></i> <span>${subpages}</span>
+                </sly>
+            </sly>
+        </div>
+    </div>
+</sly>
 
-<!--<sly data-sly-test="${model.breadcrumbSubpages}">-->
-<!--    <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">-->
-<!--        <div class="tp_pw-breadcrumb__wrapper">-->
-<!--            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${model.homePagePath}">${'pw.breadcrumb.home' @ i18n}</a>-->
-<!--            <sly data-sly-list.subpages="${model.breadcrumbSubpages}">-->
-<!--                <sly data-sly-test="${!subpagesList.last}">-->
-<!--                    <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${model.breadcrumbSubpages[subpages]}"><i class="icon-Arrow_Right_pw tp_icon"></i>${subpages}</a>-->
-<!--                </sly>-->
-<!--                <sly data-sly-test="${subpagesList.last}">-->
-<!--                    <i class="icon-Arrow_Right_pw tp_icon"></i> <span>${subpages}</span>-->
-<!--                </sly>-->
-<!--            </sly>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</sly>-->
-
-<!--<sly data-sly-test="${!model.breadcrumbSubpages}"-->
-<!--     data-sly-call="${templates.placeholder @ isEmpty = !model.breadcrumbSubpages}"></sly>-->
+<sly data-sly-test="${!model.breadcrumbSubpages}"
+     data-sly-call="${templates.placeholder @ isEmpty = !model.breadcrumbSubpages}"></sly>
