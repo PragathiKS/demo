@@ -1,7 +1,15 @@
 // Import any vendor specific scss file here
 // Bootstrap grid system overrides
 
-@import 'vendor/variables';
+// custom breakpoints desktop > 1023px < tablet/mobile
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1366px
+);
+
 
 // Bootstrap imports
 @import "~bootstrap/scss/functions";
@@ -22,12 +30,3 @@
 @import "~bootstrap/scss/close";
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/utilities";
-// @import "owlcarousel/src/scss/owl.carousel";
-// @import "owlcarousel/src/scss/owl.theme.default";
-
-
-
-
-.test-secondary-vendor {
-    color: #999;
-}

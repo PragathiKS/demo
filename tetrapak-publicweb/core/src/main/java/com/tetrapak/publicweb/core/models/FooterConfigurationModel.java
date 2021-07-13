@@ -53,6 +53,14 @@ public class FooterConfigurationModel {
     @ValueMapValue
     private String goToTopLabel;
 
+    /** QR code */
+    @ValueMapValue
+    private String wechatQrCodeReference;
+
+    /** Alt Text*/
+    @ValueMapValue
+    private String qrAltText;
+
     /**
      * Gets the logo image path.
      *
@@ -153,4 +161,21 @@ public class FooterConfigurationModel {
         return goToTopLabel;
     }
 
+    /**
+     * Gets the We chat QR code.
+     *
+     * @return the We chat QR code
+     */
+    public String getWechatQrCodeReference() {
+        return wechatQrCodeReference;
+    }
+
+    /**
+     * Gets the Image Alt text.
+     *
+     * @return the Image Alt text
+     */
+    public String getQrAltText() {
+        return qrAltText;
+    }
 }

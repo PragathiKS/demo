@@ -7,7 +7,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 /**
  * The Interface PardotServiceConfig.
  */
-@ObjectClassDefinition(name = "Public Web Pardot Service Configuration", description = "Pardot Service Configuration")
+@ObjectClassDefinition(name = "Tatra Laval Pardot Service Configuration", description = "Pardot Service Configuration")
 public @interface PardotServiceConfig {
 
     /**

@@ -32,8 +32,8 @@ public class SubscriptionFormModelTest {
     /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/subscriptionform/test-content.json";
     
-    /** The Constant CONTACT_US_CONTENT_ROOT. */
-    private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
+    /** The Constant SUBSCRIPTION_FORM_CONTENT_ROOT. */
+    private static final String SUBSCRIPTION_FORM_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
     
     /** The Constant TEST_RESOURCE_CFM. */
     private static final String TEST_RESOURCE_CFM = "/contactus/test-countries-content.json";
@@ -51,8 +51,7 @@ public class SubscriptionFormModelTest {
     private PardotService pardotService;
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE = CONTACT_US_CONTENT_ROOT
-            + "/en/subscriptionform/jcr:content/subscriptionform";
+    private static final String RESOURCE = "/content/tetrapak/publicweb/gb/en/textimage/jcr:content/textimage";
 
     /** The resource. */
     private Resource resource;
@@ -67,36 +66,21 @@ public class SubscriptionFormModelTest {
      */
     @Before
     public void setUp() throws Exception {
-        pardotService = new PardotServiceImpl();
-        countryService = new CountryDetailServiceImpl();
-        context.load().json(TEST_RESOURCE_CONTENT, CONTACT_US_CONTENT_ROOT);
+        context.load().json(TEST_RESOURCE_CONTENT, SUBSCRIPTION_FORM_CONTENT_ROOT);
         context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
         context.addModelsForClasses(modelClass);
-       
-        context.registerService(PardotService.class, pardotService);
-        final Map<String, Object> pardotConfig = new HashMap<>();
-        initializeConfig(pardotConfig, "pardotsubscriptionServiceUrl", "http://pardotURL", PardotService.class);
-        
-        MockSlingHttpServletRequest request = context.request();
+
+        countryService = new CountryDetailServiceImpl();
         context.registerService(CountryDetailService.class, countryService);
         final Map<String, Object> countryConfig = new HashMap<>();
-        initializeConfig(countryConfig, "getPardotCountriesCFRootPath", "/content/dam/tetrapak/publicweb/cfm/countries", CountryDetailService.class);
+        countryConfig.put("getPardotCountriesCFRootPath", "/content/dam/tetrapak/publicweb/cfm/countries");
+        MockOsgi.activate(context.getService(CountryDetailService.class), context.bundleContext(), countryConfig);
 
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
-    }
-
-    /**
-     * Initialize config.
-     *
-     * @param config the config
-     * @param configKey the config key
-     * @param configValue the config value
-     * @param injectClass the inject class
-     */
-    private void initializeConfig(Map<String, Object> config, String configKey, String configValue, Class<?> injectClass) {
-        config.put(configKey, configValue);
-        MockOsgi.activate(context.getService(injectClass), context.bundleContext(), config);
     }
  
     /**
@@ -128,9 +112,27 @@ public class SubscriptionFormModelTest {
      */
     @Test
     public void testOtherGetters() {
-    	assertEquals("/content/tetrapak/publicweb/gb/en/subscriptionform/jcr:content/subscriptionform.pardotsubscription.json", model.getApiUrl());
-    	assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
-    	assertEquals("Form", "albania",model.getCountryOptions().get(0).getKey());
-    	assertEquals("Form", "Business Enquiry", model.getFormConfig().getHeading());
+        assertEquals("Form", "Business Enquiry", model.getHeadingSubscription());
+        assertEquals("Form", "Thank you for your request", model.getFormConfig().getThankyouHeading());
+        assertEquals("Form", "We will get back to you as soon as possible",
+                model.getFormConfig().getThankyouDescriptionText());
+        assertEquals("Form",
+                "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
+                model.getConsentConfig().getPrivacyPolicy());
+        assertEquals("Form",
+                "/content/tetrapak/publicweb/gb/en/textimage/jcr:content/textimage.pardotsubscription.json",
+                model.getApiUrl());
+        assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
+        assertEquals("Form", "/content/search.html", model.getMoreButtonActionSubscription());
+        assertEquals("Form", "More Insights", model.getMoreButtonLabelSubscription());
+        assertEquals("form", "http://pardotURL", model.getPardotUrlSubscription());
+
+    }
+
+    @Test
+    public void testCountries() throws Exception {
+        assertEquals("ContactUs", 2, model.getCountryOptions().size());
+        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
+
     }
 }

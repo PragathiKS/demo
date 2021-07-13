@@ -2,11 +2,16 @@ package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
+
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -29,6 +34,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.Collections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -54,8 +61,9 @@ public class PageLoadAnalyticsModel {
     @OSGiService
     protected XSSAPI xssapi;
 
-    /** The Constant SITE_NAME. */
-    private static final String SITE_NAME = "publicweb";
+    /** The cookieDataDomainScriptService. */
+    @OSGiService
+    private CookieDataDomainScriptService cookieDataDomainScriptService;
 
     /** The Constant PAGE_LOAD_EVENT. */
     private static final String PAGE_LOAD_EVENT = "content-load";
@@ -84,6 +92,15 @@ public class PageLoadAnalyticsModel {
     /** The page type. */
     private String pageType = StringUtils.EMPTY;
 
+    /** The data domain script. */
+    private String dataDomainScript = StringUtils.EMPTY;
+
+    /** The application abbreviation. */
+    private String applicationAbbreviation = StringUtils.EMPTY;
+
+    /** The application name. */
+    private String applicationName = StringUtils.EMPTY;
+
     /** The digital data. */
     private String digitalData;
 
@@ -93,7 +110,14 @@ public class PageLoadAnalyticsModel {
     /** The staging. */
     private boolean staging;
 
-    /** The development. */
+    /**
+     * The pageCategories.
+     */
+    private StringBuilder pageCategories = new StringBuilder();
+
+    /**
+     * The development.
+     */
     private boolean development;
 
     /** The product name. */
@@ -129,6 +153,9 @@ public class PageLoadAnalyticsModel {
     /** The href lang values. */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageLoadAnalyticsModel.class);
+
     /**
      * Inits the model.
      */
@@ -144,9 +171,13 @@ public class PageLoadAnalyticsModel {
             }
         }
 
+        updatePageCategories();
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
+        if(GlobalUtil.isPublish()){
+            updateCookieParameters();
+        }
         updatePageName();
         updateProductName();
         updateHrefLang();
@@ -154,11 +185,34 @@ public class PageLoadAnalyticsModel {
     }
 
     /**
+     * Update Page Categories.
+     */
+    private void updatePageCategories() {
+        try {
+            ResourceResolver resourceResolver = resource.getResourceResolver();
+            StringBuilder stringBuilder = new StringBuilder();
+            TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+            final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
+            if (ArrayUtils.isNotEmpty(tagValue)) {
+                for (String tags : tagValue) {
+                    Tag tag = tagManager.resolve(tags);
+                        stringBuilder.append((tag.getTitle()) + ",");
+                    }
+                    pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "");
+            }
+        }catch (Exception exception){
+            LOGGER.error(" There is an exception while executing updatePageCategories ");
+        }
+    }
+
+    /**
      * Update product name.
      */
     private void updateProductName() {
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        productName = product.getName();
+        if(product != null) {
+            productName = product.getName();
+        }
     }
 
     /**
@@ -177,6 +231,28 @@ public class PageLoadAnalyticsModel {
             siteLanguage = languagePage.getName();
         }
     }
+
+    /**
+     * This method will update the cookie parameters
+     */
+    private void updateCookieParameters(){
+         if (currentPage.getAbsoluteParent(1).getName().equalsIgnoreCase(PWConstants.TETRAPAK)){
+              applicationName=currentPage.getAbsoluteParent(2).getName();
+          } else {
+             applicationName=currentPage.getAbsoluteParent(1).getName();
+         }
+         if(!applicationName.isEmpty()) {
+             String[] cookieParamArray = cookieDataDomainScriptService.getCookieDomainScriptConfig();
+             for(String param :cookieParamArray){
+                 if(param.contains(applicationName)){
+                     final String domainAbbreviationJsonString = param.split("=")[1];
+                     applicationAbbreviation=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, PWConstants.SITE_ABBREVIATION);
+                     dataDomainScript=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, PWConstants.DOMAINSCRIPT);
+                     break;
+                 }
+             }
+         }
+        }
 
     /**
      * Update site sections.
@@ -232,7 +308,7 @@ public class PageLoadAnalyticsModel {
      * Update page name.
      */
     private void updatePageName() {
-        pageName = "pw:" + siteLanguage;
+        pageName = applicationAbbreviation+":" + siteLanguage;
         if (StringUtils.isNotEmpty(siteSection0.toString())) {
             pageName += ":" + siteSection0.toString();
             if (StringUtils.isNotEmpty(siteSection1.toString())) {
@@ -315,6 +391,7 @@ public class PageLoadAnalyticsModel {
             countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE, request));
             hrefLangValues.add(countryLanguageCodeBean);
         }
+
         final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
         Resource marketRootResource = currentPage.getContentResource().getResourceResolver()
                 .getResource(marketRootPath);
@@ -470,7 +547,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("siteName", SITE_NAME);
+        pageInfo.addProperty("pageCategories", pageCategories.toString());        pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
@@ -590,6 +667,10 @@ public class PageLoadAnalyticsModel {
      */
     public Boolean isPublisher() {
         return GlobalUtil.isPublish();
+    }
+
+    public String getDataDomainScript(){
+        return dataDomainScript;
     }
 
     /**

@@ -49,7 +49,7 @@ class Banner {
         }
         if ($sideSectionright.length) {
           if(zoomLevel === 100) {
-            const finalWidth = windowWidth - bannerOffset.left -  bannerWidth;
+            const finalWidth = windowWidth - bannerOffset.left -  bannerWidth - 48;
             $sideSectionright.css('width', finalWidth +'px');
           } else {
             const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
