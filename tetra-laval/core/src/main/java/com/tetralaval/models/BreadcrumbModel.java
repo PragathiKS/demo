@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
+import com.day.cq.wcm.api.WCMMode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -44,6 +45,8 @@ public class BreadcrumbModel {
 
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
+
+    private boolean exist;
 
     /**
      * Inits the.
@@ -99,4 +102,9 @@ public class BreadcrumbModel {
         return LinkUtils.sanitizeLink(homePagePath, request);
     }
 
+    public boolean isExist() {
+        WCMMode currentMode = WCMMode.fromRequest(request);
+        return breadcrumbSubpages != null && (WCMMode.EDIT == currentMode ||
+                (WCMMode.EDIT != currentMode && breadcrumbSubpages.size() > 1));
+    }
 }

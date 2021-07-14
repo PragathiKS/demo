@@ -6,7 +6,7 @@ package com.tetralaval.constants;
 public final class PWConstants {
 
     /** The Constant LANGUAGE_LEVEL. */
-    public static final int LANGUAGE_PAGE_LEVEL = 4;
+    public static final int LANGUAGE_PAGE_LEVEL = 1;
 
     /** The Constant MARKET_ROOT_PAGE_LEVEL. */
     public static final int MARKET_ROOT_PAGE_LEVEL = 2;
@@ -19,6 +19,9 @@ public final class PWConstants {
 
     /** The Constant IMAGE. */
     public static final String IMAGE = "image";
+
+    /** The Constant ENABLE_JS_API. */
+    public static final String ENABLE_JS_API = "enablejsapi=1";
 
     /** The Constant VIDEO. */
     public static final String VIDEO = "video";
