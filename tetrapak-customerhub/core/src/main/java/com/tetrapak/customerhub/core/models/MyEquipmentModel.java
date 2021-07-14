@@ -132,7 +132,20 @@ public class MyEquipmentModel {
 	/** The hide And Show Cta.*/
 	@ValueMapValue
 	private String hideAndShowCta;
-	
+
+	/** The no Data Found.*/
+	@ValueMapValue
+	private String noDataFound;
+
+	/**
+	 * Gets the noDataFound.
+	 *
+	 * @return the noDataFound
+	 */
+	public String getNoDataFound() {
+		return noDataFound;
+	}
+
 	/**
 	 * Gets the hideAndShowCta.
 	 *
@@ -141,7 +154,7 @@ public class MyEquipmentModel {
 	public String gethideAndShowCta() {
 		return hideAndShowCta;
 	}
-	
+
 	/**
 	 * Gets the country api.
 	 *
@@ -195,7 +208,7 @@ public class MyEquipmentModel {
 	public String getEquipStatToolTip() {
 		return evaluateToolTip(equipStatToolTip);
 	}
-	
+
 	/**
 	 * Gets the country tool tip.
 	 *
@@ -240,7 +253,7 @@ public class MyEquipmentModel {
 	public String getSerialNumToolTip() {
 		return evaluateToolTip(serialNumToolTip);
 	}
-	
+
 	/**
 	 * Gets the i18n keys.
 	 *
@@ -357,7 +370,7 @@ public class MyEquipmentModel {
 	public boolean isPublishEnvironment() {
 		return isPublishEnvironment;
 	}
-	
+
 
 	/**
 	 * Gets the tool tip class.
@@ -376,7 +389,7 @@ public class MyEquipmentModel {
 	public void setToolTipClass(String toolTipClass) {
 		this.toolTipClass = toolTipClass;
 	}
-	
+
 	/**
 	 * Inits the.
 	 */
@@ -404,6 +417,7 @@ public class MyEquipmentModel {
         i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
 		i18KeyMap.put("hideAndShowCta", gethideAndShowCta());
+		i18KeyMap.put("noDataFound", getNoDataFound());
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
