@@ -53,7 +53,7 @@ public class BreadcrumbModel {
         LOGGER.debug("Inside init method");
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        homePagePath = LinkUtils.sanitizeLink(rootPath + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH, request);
+        homePagePath = LinkUtils.sanitizeLink(rootPath, request);
         final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
         final String[] pages = path.split("/");
         final int length = pages.length - 1;
