@@ -84,8 +84,10 @@ class Banner {
   }
 
   trackBannerImageClick = (e) => {
+    e.preventDefault();
     const $target = $(e.target);
-    if($target.parents().hasClass('js-dynamic-media')){
+
+    if($target.parents('.pw-banner').find('img.js-dynamic-media')){
       const $this = $target.closest('.pw-banner');
       const $anchor = $this.data('href');
       if (!($anchor && $anchor !== '#')) {
@@ -96,7 +98,7 @@ class Banner {
       }
 
       if (isDownloable($anchor)) {
-        $this.data('download-type', 'download');
+        $this.attr('target', '_blank');
       }
 
       if (isExternal($anchor)) {
@@ -105,7 +107,7 @@ class Banner {
 
       getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);
 
-      if (isExternal($anchor) || (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224)) {
+      if (isExternal($anchor) || isDownloable || (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224)) {
         window.open($anchor, '_blank');
       } else {
         window.location.href = $anchor;
@@ -125,7 +127,7 @@ class Banner {
     });
 
 
-    $bEl.on('click', this.trackBannerImageClick);
+    $bEl.off().on('click', this.trackBannerImageClick);
 
   }
 
