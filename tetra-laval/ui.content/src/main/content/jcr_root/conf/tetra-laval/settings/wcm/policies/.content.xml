@@ -17,6 +17,15 @@
                         components="group:Tetra Laval : Experience Fragment">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_846806143914600>
+                    <policy_166890880922100
+                        jcr:lastModified="{Date}2021-07-14T14:05:10.254+02:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Global Page Template"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="group:Tetra Laval : Commons">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_166890880922100>
                 </responsivegrid>
             </components>
         </foundation>
