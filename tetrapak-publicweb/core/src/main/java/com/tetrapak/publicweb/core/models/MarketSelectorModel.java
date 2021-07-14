@@ -81,7 +81,7 @@ public class MarketSelectorModel {
     /**
      * @return global market
      */
-    private MarketBean getGlobalMarket() {
+    public MarketBean getGlobalMarket() {
         MarketBean globalMarketBean = new MarketBean();
         LanguageBean globalLanguageBean = new LanguageBean();
         globalLanguageBean.setLanguageIndex(1);
@@ -94,8 +94,9 @@ public class MarketSelectorModel {
         globalLanguages.add(globalLanguageBean);
         globalMarketBean.setLanguages(globalLanguages);
         globalMarketBean.setMarketName(getGlobalMarketTitle());
-        if (getGlobalMarketTitle().equalsIgnoreCase(
-                (String) PageUtil.getCountryPage(currentPage).getTitle())) {
+        final Page countryPage = PageUtil.getCountryPage(currentPage);
+        if (Objects.nonNull(countryPage) && getGlobalMarketTitle().equalsIgnoreCase(
+                (String) countryPage.getTitle())) {
             globalMarketBean.setActive(Boolean.TRUE);
         }
         return globalMarketBean;
@@ -193,7 +194,7 @@ public class MarketSelectorModel {
      *
      * @return the global market title
      */
-    private String getGlobalMarketTitle() {
+    public String getGlobalMarketTitle() {
         if (Objects.nonNull(request.getResourceResolver().getResource(PWConstants.GLOBLA_MARKET_PATH))) {
             return PageUtil.getCurrentPage(request.getResourceResolver().getResource(PWConstants.GLOBLA_MARKET_PATH))
                     .getTitle();
