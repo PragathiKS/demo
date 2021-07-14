@@ -4,7 +4,6 @@ import com.tetralaval.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
@@ -37,10 +36,6 @@ public class TextImageModel {
     @ValueMapValue
     private String subTitle;
 
-    /** The heading tag. */
-    @ValueMapValue
-    private String headingTag;
-
     /** The title. */
     @ValueMapValue
     private String title;
@@ -65,6 +60,10 @@ public class TextImageModel {
     @ValueMapValue
     private String linkURL;
 
+    /** The target blank. */
+    @ValueMapValue
+    private String targetBlank;
+
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
@@ -77,23 +76,12 @@ public class TextImageModel {
     @ValueMapValue
     private String pwDisplay;
 
-    /** The enable forms. */
-    @ValueMapValue
-    private String formType;
-
-    /** The enable softcovnersion. */
-    @ValueMapValue
-    private String enableSoftcoversion;
-
     /**
      * The init method.
      */
     @PostConstruct
     protected void init() {
         resource = request.getResource();
-        final ValueMap vMap = resource.getValueMap();
-        enableSoftcoversion = vMap.get("enableSoftcoversion", StringUtils.EMPTY);
-        formType = vMap.get("formType", StringUtils.EMPTY);
         if (StringUtils.isNotEmpty(linkURL)) {
             linkURL = LinkUtils.sanitizeLink(linkURL, request);
         }
@@ -124,15 +112,6 @@ public class TextImageModel {
      */
     public String getSubTitle() {
         return subTitle;
-    }
-
-    /**
-     * Gets the heading tag.
-     *
-     * @return the heading tag
-     */
-    public String getHeadingTag() {
-        return headingTag;
     }
 
     /**
@@ -190,6 +169,15 @@ public class TextImageModel {
     }
 
     /**
+     * Gets the target blank.
+     *
+     * @return the target blank
+     */
+    public String getTargetBlank() {
+        return targetBlank;
+    }
+
+    /**
      * Gets the pw theme.
      *
      * @return the pw theme
@@ -223,43 +211,6 @@ public class TextImageModel {
      */
     public String getAssetName() {
         return LinkUtils.getAssetName(linkURL);
-    }
-
-    /**
-     * Gets the enable form.
-     *
-     * @return the enable form
-     */
-    public String getFormType() {
-        return formType;
-    }
-
-    /**
-     * Gets the soft conversion data.
-     *
-     * @return the soft conversion data
-     */
-    public SoftConversionModel getSoftConversionData() {
-        return request.adaptTo(SoftConversionModel.class);
-    }
-
-
-    /**
-     * Gets the subscription form data.
-     *
-     * @return the subscription form data
-     */
-    public SubscriptionFormModel getSubscriptionData() {
-        return request.adaptTo(SubscriptionFormModel.class);
-    }
-
-    /**
-     * Gets the enable softcoversion.
-     *
-     * @return the enable softcoversion
-     */
-    public String getEnableSoftcoversion() {
-        return enableSoftcoversion;
     }
 
 }

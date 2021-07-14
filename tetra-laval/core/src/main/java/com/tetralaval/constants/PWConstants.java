@@ -26,6 +26,9 @@ public final class PWConstants {
     /** The Constant IMAGE. */
     public static final String IMAGE = "image";
 
+    /** The Constant ENABLE_JS_API. */
+    public static final String ENABLE_JS_API = "enablejsapi=1";
+
     /** The Constant VIDEO. */
     public static final String VIDEO = "video";
 
