@@ -132,7 +132,20 @@ public class MyEquipmentModel {
 	/** The hide And Show Cta.*/
 	@ValueMapValue
 	private String hideAndShowCta;
-	
+
+	/** The no Data Found.*/
+	@ValueMapValue
+	private String permanentVolumeonversion;
+
+	/**
+	 * Gets the Permanent Volume Conversion.
+	 *
+	 * @return the hideAndShowCta
+	 */
+	public String getPermanentVolumeConversion() {
+		return permanentVolumeonversion;
+	}
+
 	/**
 	 * Gets the hideAndShowCta.
 	 *
@@ -404,6 +417,7 @@ public class MyEquipmentModel {
         i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
 		i18KeyMap.put("hideAndShowCta", gethideAndShowCta());
+		i18KeyMap.put("permanentVolumeConversion", getPermanentVolumeConversion());
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
