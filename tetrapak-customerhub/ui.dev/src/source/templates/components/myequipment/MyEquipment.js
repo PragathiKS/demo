@@ -51,7 +51,6 @@ function _renderCountryFilters() {
           jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         showLoader: true
-
       }).then(res => {
         this.cache.countryData = getFormattedData(res.data);
         const { countryCode } = this.cache.countryData && this.cache.countryData[0];
