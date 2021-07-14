@@ -302,6 +302,10 @@ $progress-units: (
 .tpatom-link {
     &__text.sly-text {
         display: inline;
+
+        &.text-white {
+            color: $color-white;
+        }
     }
     .nowrap-text {
         display: inline;
