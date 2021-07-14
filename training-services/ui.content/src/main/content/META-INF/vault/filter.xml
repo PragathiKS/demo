@@ -5,10 +5,10 @@
     <filter root="/conf/trs" mode="replace"/>
     <filter root="/conf/global/settings/workflow/models"
         mode="update" />
-    <!-- <filter root="/conf/global/settings/workflow" mode="merge"/> -->
     <filter root="/var/workflow/models/trs-authors" mode="merge" />
     <filter root="/content/trs">
         <exclude pattern=".*/training-videos/(.*)" />
+        <exclude pattern=".*/api(.*)" />
     </filter>
     <filter root="/content/dam/training-services">
         <exclude pattern=".*/system" />    
@@ -17,4 +17,5 @@
         <exclude pattern=".*/micro-learning-training" />   
         <exclude pattern=".*/test*" />     
     </filter>
+	<filter root="/oak:index/mlvId"/>
 </workspaceFilter>

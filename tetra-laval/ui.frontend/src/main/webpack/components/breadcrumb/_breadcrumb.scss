@@ -1,0 +1,40 @@
+.tp_pw-breadcrumb {
+    @include max-width($body-max-width);
+    @include padding($padding-l $padding-xxxl);
+    display: none;
+    color: $color-tundora;
+    position: relative;
+    width: 100%;
+
+    @media #{$desktop} {
+        display: block;
+    }
+
+    &__link {
+        @include font-size($font-sm);
+        @include line-height($font-m-md, $font-m-md);
+        font-style: normal;
+        font-weight: 500;
+        color: $color-boulder;
+        &:hover {
+            color: $color-dark-blue;
+        }
+    }
+
+    .icon-Arrow_Right_pw {
+        &.tp_icon {
+            @include margin(0 6px);
+            @include font-size($font-xxs);
+            @include line-height($font-xxs, $font-xxs);
+            display: inline;
+            vertical-align: middle;
+        }
+    }
+
+    span {
+        @include font-size($font-sm);
+        @include line-height($font-m-md, $font-m-md);
+        color: $color-tundora;
+        font-weight: 500;
+    }
+}

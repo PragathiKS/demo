@@ -80,4 +80,24 @@ public class TrsConfigurationServiceImpl implements TrsConfigurationService {
         return config.taxonomy_transformation_log_file_path();
     }
 
+    @Override
+    public String getMlvIdJCRPropName() {
+        return config.mlvid_property();
+    }
+
+    @Override
+    public String getAssetMetadataAPIBasePath() {
+        return config.asset_metadata_api_base_path();
+    }
+
+    @Override
+    public long getAssetMetadataAPILanguageFolderLevel() {
+        return config.asset_metadata_api_language_folder_level();
+    }
+
+    @Override
+    public String getAssetMetadataAPIScopePath() {
+        return config.asset_metadata_api_scope_path();
+    }
+
 }

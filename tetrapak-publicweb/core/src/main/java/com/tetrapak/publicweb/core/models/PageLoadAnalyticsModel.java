@@ -64,10 +64,6 @@ public class PageLoadAnalyticsModel {
     /** The cookieDataDomainScriptService. */
     @OSGiService
     private CookieDataDomainScriptService cookieDataDomainScriptService;
-    /**
-     * The Constant SITE_NAME.
-     */
-    private static final String SITE_NAME = "publicweb";
 
     /** The Constant PAGE_LOAD_EVENT. */
     private static final String PAGE_LOAD_EVENT = "content-load";
@@ -551,8 +547,8 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("pageCategories", pageCategories.toString());
-        pageInfo.addProperty("siteName", applicationName);
+        pageInfo.addProperty("pageCategories", pageCategories.toString());        
+		pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 

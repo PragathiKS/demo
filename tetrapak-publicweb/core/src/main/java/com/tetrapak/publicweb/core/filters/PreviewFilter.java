@@ -27,7 +27,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
  */
 @Component(
         immediate = true,
-        property = { "sling.filter.pattern=/content/tetrapak/publicweb.*", "sling.filter.scope=REQUEST",
+        property = { "sling.filter.pattern=/content/tetrapak/publicweb.*|/content/online-help.*", "sling.filter.scope=REQUEST",
                 "service.ranking=-1" })
 public class PreviewFilter implements Filter {
 
@@ -67,7 +67,7 @@ public class PreviewFilter implements Filter {
         LOGGER.info("previewParam : {} , header :{}, salt: {}, pathinfo: {}", previewParam,
                 slingRequest.getHeader(PREVIEW), isSaltInValid(slingRequest, previewParam),
                 slingRequest.getPathInfo());
-        if (Boolean.FALSE.equals(isSkip) && slingRequest.getPathInfo().startsWith("/content/tetrapak/publicweb")
+        if (Boolean.FALSE.equals(isSkip) && (slingRequest.getPathInfo().startsWith("/content/tetrapak/publicweb") || slingRequest.getPathInfo().startsWith("/content/online-help"))
                 && "true".equalsIgnoreCase(slingRequest.getHeader(PREVIEW))
                 && Boolean.TRUE.equals(isSaltInValid(slingRequest, previewParam))) {
             slingResponse.sendRedirect("/system/sling/logout.html?resource=" + slingRequest.getPathInfo());
