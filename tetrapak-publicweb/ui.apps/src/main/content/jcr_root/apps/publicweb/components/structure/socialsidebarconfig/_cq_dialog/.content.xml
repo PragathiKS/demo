@@ -23,8 +23,7 @@
                                     fieldLabel="Social Media Icon"
                                     name="./socialMedia"
                                     required="true"
-                                    value="WeChat"
-                                    disabled="{Boolean}true">
+                                    value="WeChat">
                                 </socialmedia>
                                 <socialMediaLink
                                     jcr:primaryType="nt:unstructured"
