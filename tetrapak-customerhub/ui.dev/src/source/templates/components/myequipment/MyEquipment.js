@@ -193,7 +193,7 @@ function renderPaginationTableData(list,options) {
   if(list.summary.length === 0) {
     render.fn({
       template: 'myEquipmentTable',
-      data: { noDataMessage:true },
+      data: { noDataMessage:true, noDataFound :that.cache.i18nKeys['noDataFound']  },
       target: '.tp-my-equipment__table_wrapper',
       hidden: false
     });
