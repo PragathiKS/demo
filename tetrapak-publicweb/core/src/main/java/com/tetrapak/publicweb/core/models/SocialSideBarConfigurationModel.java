@@ -41,6 +41,9 @@ public class SocialSideBarConfigurationModel {
     @ValueMapValue
     private String qrAltText;
 
+    /** title */
+    @ValueMapValue
+    private String qrCodeTitle;
 
     /**
      * Gets the social links.
@@ -67,5 +70,14 @@ public class SocialSideBarConfigurationModel {
      */
     public String getQrAltText() {
         return qrAltText;
+    }
+
+    /**
+     * Gets the Title.
+     *
+     * @return the Title
+     */
+    public String getQrCodeTitle() {
+        return qrCodeTitle;
     }
 }

@@ -59,5 +59,6 @@ public class SocialSidebarConfigurationModelTest {
         assertEquals("http://www.google.com", model.getSocialLinks().get(0).getSocialMediaLink());
         assertEquals("/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png", model.getWechatQrCodeReference());
         assertEquals("Alt Text",model.getQrAltText());
+        assertEquals("title", model.getQrCodeTitle());
     }
 }

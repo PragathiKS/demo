@@ -29,6 +29,7 @@
 					"sling:resourceType": "publicweb/components/structure/socialsidebarconfig",
 					"wechatQrCodeReference": "/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png",
                     "qrAltText": "Alt Text",
+					"qrCodeTitle": "title",
 					"socialLinks": {
 						"jcr:primaryType": "nt:unstructured",
 						"item0": {
