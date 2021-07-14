@@ -1,0 +1,12 @@
+.tp-pw-image {
+    max-width: 100%;
+    margin-bottom: $margin-md;
+
+    @media #{$desktop} {
+        margin-bottom: $margin-l;
+    }
+
+    img {
+        width: 100%;
+    }
+}
