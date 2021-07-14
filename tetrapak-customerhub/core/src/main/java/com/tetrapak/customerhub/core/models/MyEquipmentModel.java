@@ -133,9 +133,9 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String hideAndShowCta;
 
-	/** The no Data Found.*/
+	/** The permanent volume conversion.*/
 	@ValueMapValue
-	private String permanentVolumeonversion;
+	private String permanentVolumeConversion;
 
 	/**
 	 * Gets the Permanent Volume Conversion.
@@ -143,7 +143,7 @@ public class MyEquipmentModel {
 	 * @return the hideAndShowCta
 	 */
 	public String getPermanentVolumeConversion() {
-		return permanentVolumeonversion;
+		return permanentVolumeConversion;
 	}
 
 	/**
