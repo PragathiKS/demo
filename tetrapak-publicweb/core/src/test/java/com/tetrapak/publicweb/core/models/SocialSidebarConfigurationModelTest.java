@@ -55,8 +55,8 @@ public class SocialSidebarConfigurationModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Linkedin", model.getSocialLinks().get(0).getSocialMedia());
-        assertEquals("http://www.google.com", model.getSocialLinks().get(0).getSocialMediaLink());
+        assertEquals("Linkedin", model.getSocialMedia());
+        assertEquals("http://www.google.com", model.getSocialMediaLink());
         assertEquals("/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png", model.getWechatQrCodeReference());
         assertEquals("Alt Text",model.getQrAltText());
         assertEquals("title", model.getQrCodeTitle());

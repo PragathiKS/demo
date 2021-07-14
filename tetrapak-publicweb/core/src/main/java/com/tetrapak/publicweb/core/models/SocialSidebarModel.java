@@ -29,8 +29,11 @@ public class SocialSidebarModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
-    /** The social links. */
-    private List<SocialLinkModel> socialLinks;
+    /** The social media. */
+    private String socialMedia;
+
+    /** The social media link. */
+    private String socialMediaLink;
 
     /** QR code */
     private String wechatQrCodeReference;
@@ -53,7 +56,8 @@ public class SocialSidebarModel {
         if (Objects.nonNull(resource)) {
             final SocialSideBarConfigurationModel configurationModel = resource.adaptTo(SocialSideBarConfigurationModel.class);
             if (Objects.nonNull(configurationModel)) {
-                socialLinks = configurationModel.getSocialLinks();
+                socialMedia = configurationModel.getSocialMedia();
+                socialMediaLink = configurationModel.getSocialMediaLink();
                 wechatQrCodeReference = configurationModel.getWechatQrCodeReference();
                 qrAltText = configurationModel.getQrAltText();
                 qrCodeTitle =configurationModel.getQrCodeTitle();
@@ -62,12 +66,21 @@ public class SocialSidebarModel {
     }
 
     /**
-     * Gets the social links.
+     * Gets the social media.
      *
-     * @return the social links
+     * @return the social media
      */
-    public List<SocialLinkModel> getSocialLinks() {
-        return socialLinks;
+    public String getSocialMedia() {
+        return socialMedia;
+    }
+
+    /**
+     * Gets the social media link.
+     *
+     * @return the social media
+     */
+    public String getSocialMediaLink() {
+        return socialMediaLink;
     }
 
     /**

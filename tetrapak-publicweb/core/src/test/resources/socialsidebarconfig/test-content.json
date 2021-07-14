@@ -30,15 +30,8 @@
 					"wechatQrCodeReference": "/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png",
                     "qrAltText": "Alt Text",
 					"qrCodeTitle": "title",
-					"socialLinks": {
-						"jcr:primaryType": "nt:unstructured",
-						"item0": {
-							"jcr:primaryType": "nt:unstructured",
-							"socialMedia": "Linkedin",
-							"socialMediaLink": "http://www.google.com"
-						}
-					}
-					
+					"socialMedia": "Linkedin",
+					"socialMediaLink": "http://www.google.com"
 				}
 			}
 		}

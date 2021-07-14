@@ -1,13 +1,11 @@
 <sly data-sly-template.socialsidebar_template="${@data, flag}" data-module="SocialSidebar">
     <div class="tp-pw-sidebar" data-module="SocialSidebar">
         <ul>
-            <li data-sly-list.socialLink="${data.socialLinks}">
-                <a class="tp-pw-sidebar__social-media-items__link tp-pw-sidebar__link tp-pw-sidebar-data-analytics"
-                  href="${socialLink.socialMediaLink}" data-sly-test="${socialLink.socialMediaLink}"
-                  data-link-name="${socialLink.socialMedia}">
-                  <i class="icon-${socialLink.socialMedia}_pw"></i>
-                </a>
-            </li>
+            <a class="tp-pw-sidebar__social-media-items__link tp-pw-sidebar__link tp-pw-sidebar-data-analytics"
+              href="${data.socialMediaLink}" data-sly-test="${data.socialMediaLink}"
+              data-link-name="${data.socialMedia}">
+              <i class="icon-${data.socialMedia}_pw"></i>
+            </a>
         </ul>
         <sly data-sly-test="${data.wechatQrCodeReference != null}">
             <div class="tp-pw-sidebar__modal modal tp-modal js-qrCode-modal fade"tabindex="-1" role="dialog">
