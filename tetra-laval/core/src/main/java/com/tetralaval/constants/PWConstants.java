@@ -11,9 +11,6 @@ public final class PWConstants {
     /** The Constant MARKET_ROOT_PAGE_LEVEL. */
     public static final int MARKET_ROOT_PAGE_LEVEL = 2;
 
-    /** The Constant HOME_PAGE_REL_PATH. */
-    public static final String HOME_PAGE_REL_PATH = "home";
-
     /** The Constant SLASH. */
     public static final String SLASH = "/";
 
