@@ -103,7 +103,7 @@ function _processKeys(keys, ob) {
       }else if(i === 'lineName'){
         line = i;
       }
-      else if(i === 'equipmentDesc'){
+      else if(i === 'equipmentTypeDesc'){
         description = i;
       }
       else if(i === 'serialNumber'){
@@ -138,7 +138,7 @@ function getKeyMap(key,i18nKeys){
       headerObj['tooltipText'] = i18nKeys['lineToolTip'];
       break;
     }
-    case 'equipmentDesc': {
+    case 'equipmentTypeDesc': {
       headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
       headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
@@ -210,7 +210,7 @@ function renderPaginationTableData(list,options) {
       lastText:'',
       pageRange:1,
       pageSize: 25,
-      pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
+      pageNumber: (options.isCustomiseTableFilter && container.pagination('getSelectedPageNum')) ? container.pagination('getSelectedPageNum') : 1,
       className: 'paginationjs-theme-tetrapak',
       callback: function(data) {
         render.fn({
@@ -264,7 +264,7 @@ class MyEquipment {
     $siteFilterLabel.text(`${i18nKeys['site']} +`);
     this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
       {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
-      {key:'equipmentDescription',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
+      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
       {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4}];
     this.cache.$countryFilterLabel.on('click', () => {
       this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:i18nKeys['country'] });
@@ -320,8 +320,8 @@ class MyEquipment {
 
   insertFirstAndLastElement = () => {
     const { i18nKeys } = this.cache;
-    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>${getI18n(i18nKeys['first'])}</span></div>`;
-    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>${getI18n(i18nKeys['last'])}</span></div>`;
+    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span class="first">${getI18n(i18nKeys['first'])}</span></div>`;
+    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span class="last">${getI18n(i18nKeys['last'])}</span></div>`;
     if(isMobile()){
       gotToFirstButton = ('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i></div>');
       gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i></div>';
@@ -485,6 +485,7 @@ class MyEquipment {
       this.renderSearchCount();
       this.updateFilterCountValue(label,filterCount,htmlUpdate);
     }
+    this.cache.$modal.modal('hide');
 
   }
 
@@ -515,7 +516,8 @@ class MyEquipment {
       data: {
         header:formDetail.header,
         formData: data,...i18nKeys,
-        singleButton:formDetail.singleButton === false ? false : true
+        singleButton:formDetail.singleButton === false ? false : true,
+        customiseTable:formDetail.activeFrom === 'customise-table' ? true : false
       },
       target: '.tp-equipment__filter-form',
       hidden: false

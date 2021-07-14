@@ -1,129 +1,418 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Static Frontend file</title>
-    <meta name="template" content="page-content"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="/etc.clientlibs/tetra-laval/clientlibs/clientlib-base.css" type="text/css">
-    <script type="text/javascript" src="/etc.clientlibs/tetra-laval/clientlibs/clientlib-dependencies.js"></script>
-    <link rel="stylesheet" href="/etc.clientlibs/tetra-laval/clientlibs/clientlib-dependencies.css" type="text/css">
-</head>
-<body class="page basicpage">
-<div class="root container responsivegrid">
-    <div class="cmp-container">
-        <header class="experiencefragment">
-            <div class="cmp-experiencefragment">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Static Frontend file</title>
+        <meta name="template" content="page-content"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="/etc.clientlibs/tetra-laval/clientlibs/clientlib-base.css" type="text/css">
+        <script type="text/javascript" src="/etc.clientlibs/tetra-laval/clientlibs/clientlib-dependencies.js"></script>
+        <link rel="stylesheet" href="/etc.clientlibs/tetra-laval/clientlibs/clientlib-dependencies.css" type="text/css">
+    </head>
+    <body>
+        <div class="page basicpage">
+            <!-- <div class="root container responsivegrid">
                 <div class="cmp-container">
-                    <div class="navigation">
-                        <nav class="cmp-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-                            <ul class="cmp-navigation__group">
-                                <li class="cmp-navigation__item cmp-navigation__item--level-0 cmp-navigation__item--active">
-                                    <a href="/content/tetra-laval/us/en.html" title="Tetra Laval" aria-current="page" class="cmp-navigation__item-link">Tetra Laval</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="languagenavigation">
-                        <nav class="cmp-languagenavigation">
-                            <ul class="cmp-languagenavigation__group">
-                                <li class="cmp-languagenavigation__item cmp-languagenavigation__item--langcode-en cmp-languagenavigation__item--level-0">
-                                    <span class="cmp-languagenavigation__item-title" lang="en">United States</span>
-                                    <ul class="cmp-languagenavigation__group">
-                                        <li class="cmp-languagenavigation__item cmp-languagenavigation__item--langcode-en cmp-languagenavigation__item--level-1">
-                                            <a class="cmp-languagenavigation__item-link" href="/content/tetra-laval/us/en.html" hreflang="en" lang="en" rel="alternate" title="English">English</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="search">
-                        <section class="cmp-search" role="search" data-cmp-is="search" data-cmp-min-length="3" data-cmp-results-size="10">
-                            <form class="cmp-search__form" data-cmp-hook-search="form" method="get" action="/content/tetra-laval/us/en.searchresults.json/_jcr_content/root/search" autocomplete="off">
-                                <div class="cmp-search__field">
-                                    <i class="cmp-search__icon" data-cmp-hook-search="icon"></i>
-                                    <span class="cmp-search__loading-indicator" data-cmp-hook-search="loadingIndicator"></span>
-                                    <input class="cmp-search__input" data-cmp-hook-search="input" type="text" name="fulltext" placeholder="Search" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-invalid="false"/>
-                                    <button class="cmp-search__clear" data-cmp-hook-search="clear">
-                                        <i class="cmp-search__clear-icon"></i>
-                                    </button>
+                    <header class="experiencefragment">
+                        <div class="cmp-experiencefragment">
+                            <div class="cmp-container">
+                                <div class="navigation">
+                                    <nav class="cmp-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                                        <ul class="cmp-navigation__group">
+                                            <li class="cmp-navigation__item cmp-navigation__item--level-0 cmp-navigation__item--active">
+                                                <a href="/content/tetra-laval/us/en.html" title="Tetra Laval" aria-current="page" class="cmp-navigation__item-link">Tetra Laval</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
-                            </form>
-                            <div class="cmp-search__results" data-cmp-hook-search="results" role="listbox" aria-multiselectable="false"></div>
-                            <script data-cmp-hook-search="itemTemplate" type="x-template">
-                                <a class="cmp-search__item" data-cmp-hook-search="item">
-                                    <span class="cmp-search__item-title" data-cmp-hook-search="itemTitle"></span>
-                                </a>
-                            </script>
-                        </section></div>
-                </div>
-            </div>
-        </header>
-        <main class="container responsivegrid">
-            <div class="cmp-container">
-                <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
-                    <div class="title aem-GridColumn aem-GridColumn--default--12">
-                        <div class="cmp-title">
-                            <h1 class="cmp-title__text">Welcome to Tetra Laval!</h1>
+                                <div class="languagenavigation">
+                                    <nav class="cmp-languagenavigation">
+                                        <ul class="cmp-languagenavigation__group">
+                                            <li class="cmp-languagenavigation__item cmp-languagenavigation__item--langcode-en cmp-languagenavigation__item--level-0">
+                                                <span class="cmp-languagenavigation__item-title" lang="en">United States</span>
+                                                <ul class="cmp-languagenavigation__group">
+                                                    <li class="cmp-languagenavigation__item cmp-languagenavigation__item--langcode-en cmp-languagenavigation__item--level-1">
+                                                        <a class="cmp-languagenavigation__item-link" href="/content/tetra-laval/us/en.html" hreflang="en" lang="en" rel="alternate" title="English">English</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="search">
+                                    <section class="cmp-search" role="search" data-cmp-is="search" data-cmp-min-length="3" data-cmp-results-size="10">
+                                        <form class="cmp-search__form" data-cmp-hook-search="form" method="get" action="/content/tetra-laval/us/en.searchresults.json/_jcr_content/root/search" autocomplete="off">
+                                            <div class="cmp-search__field">
+                                                <i class="cmp-search__icon" data-cmp-hook-search="icon"></i>
+                                                <span class="cmp-search__loading-indicator" data-cmp-hook-search="loadingIndicator"></span>
+                                                <input class="cmp-search__input" data-cmp-hook-search="input" type="text" name="fulltext" placeholder="Search" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-invalid="false"/>
+                                                <button class="cmp-search__clear" data-cmp-hook-search="clear">
+                                                    <i class="cmp-search__clear-icon"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="cmp-search__results" data-cmp-hook-search="results" role="listbox" aria-multiselectable="false"></div>
+                                        <script data-cmp-hook-search="itemTemplate" type="x-template">
+                                            <a class="cmp-search__item" data-cmp-hook-search="item">
+                                                <span class="cmp-search__item-title" data-cmp-hook-search="itemTitle"></span>
+                                            </a>
+                                        </script>
+                                    </section></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="container responsivegrid aem-GridColumn aem-GridColumn--default--12">
+                    </header>
+                    <main class="container responsivegrid">
                         <div class="cmp-container">
                             <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
-                                <div class="text aem-GridColumn aem-GridColumn--default--12">
-                                    <div class="cmp-text">
-                                        <p>This is the main welcome page of your web site. A few notes about this site:</p>
-                                        <ul>
-                                            <li>It is built entirely with the Core Components - see the <a href="https://www.adobe.com/go/aem_cmp_library">Component Library</a> to view the components in all their shapes and forms.</li>
-                                            <li>Only the Hello World component has been built custom to illustrate how further components can be built (which also shows how JavaScript is best initialized for components, so that it also works well with the Page Editor).</li>
-                                            <li>The page header and footer are assembled as Experience Fragments, which <a href="https://docs.adobe.com/content/help/en/experience-manager-core-components/using/components/experience-fragment.html#localized-site-structure">can also be localized if needed</a>.<br />
-                                            </li>
-                                            <li>The Style System is used to insert a sematic &lt;header&gt; and &lt;footer&gt; element to the corresponding Experience Fragment components, as well as a &lt;main&gt; element to the container of the page content. This allows to apply some CSS specifically to these sections of the page.</li>
-                                        </ul>
+                                <div class="title aem-GridColumn aem-GridColumn--default--12">
+                                    <div class="cmp-title">
+                                        <h1 class="cmp-title__text">Welcome to Tetra Laval!</h1>
                                     </div>
                                 </div>
-                                <div class="helloworld aem-GridColumn aem-GridColumn--default--12"><div class="cmp-helloworld" data-cmp-is="helloworld">
-                                    <h2 class="cmp-helloworld__title">Hello World Component</h2>
-                                    <div class="cmp-helloworld__item">
-                                        <p class="cmp-helloworld__item-label">Model message:</p>
-                                        <pre class="cmp-helloworld__item-output" data-cmp-hook-helloworld="model">Hello World!
-Resource type is: tetra-laval/components/helloworld
-Current page is:  /content/tetra-laval/us/en
-This is instance: 78f60b4a-a52a-4021-82d5-fb17f5fb95cf
-</pre>
+                                <div class="container responsivegrid aem-GridColumn aem-GridColumn--default--12">
+                                    <div class="cmp-container">
+                                        <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+                                            <div class="text aem-GridColumn aem-GridColumn--default--12">
+                                                <div class="cmp-text">
+                                                    <p>This is the main welcome page of your web site. A few notes about this site:</p>
+                                                    <ul>
+                                                        <li>It is built entirely with the Core Components - see the <a href="https://www.adobe.com/go/aem_cmp_library">Component Library</a> to view the components in all their shapes and forms.</li>
+                                                        <li>Only the Hello World component has been built custom to illustrate how further components can be built (which also shows how JavaScript is best initialized for components, so that it also works well with the Page Editor).</li>
+                                                        <li>The page header and footer are assembled as Experience Fragments, which <a href="https://docs.adobe.com/content/help/en/experience-manager-core-components/using/components/experience-fragment.html#localized-site-structure">can also be localized if needed</a>.<br />
+                                                        </li>
+                                                        <li>The Style System is used to insert a sematic &lt;header&gt; and &lt;footer&gt; element to the corresponding Experience Fragment components, as well as a &lt;main&gt; element to the container of the page content. This allows to apply some CSS specifically to these sections of the page.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="helloworld aem-GridColumn aem-GridColumn--default--12"><div class="cmp-helloworld" data-cmp-is="helloworld">
+                                                <h2 class="cmp-helloworld__title">Hello World Component</h2>
+                                                <div class="cmp-helloworld__item">
+                                                    <p class="cmp-helloworld__item-label">Model message:</p>
+                                                </div>
+                                            </div></div>
+                                        </div>
                                     </div>
-                                </div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <footer class="experiencefragment">
+                        <div class="cmp-experiencefragment">
+                            <div class="cmp-container">
+                                <div class="separator">
+                                    <div class="cmp-separator">
+                                        <hr class="cmp-separator__horizontal-rule"/>
+                                    </div></div>
+                                <div class="text">
+                                    <div class="cmp-text">
+                                        <p>Copyright 2019, Tetra Laval. All rights reserved.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div> -->
+         
+
+            <!-- BREADCRUMB START -->
+            <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
+                <div class="tp_pw-breadcrumb__wrapper">
+                    <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="">Home - Link 1</a>
+                    <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href=""><i class="icon-Arrow_Right_pw tp_icon"></i>Link 2</a>
+                    <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href=""><i class="icon-Arrow_Right_pw tp_icon"></i>Link 3</a>
+                    <i class="icon-Arrow_Right_pw tp_icon"></i><span>Text 1</span>
+                </div>
+            </div>
+            <!-- BREADCRUMB STOP -->
+
+
+            <!-- TEXT IMAGE START -->
+            <div class="pw-container" id="" title="">
+                <div class="pw-text-image pw-theme" data-locator="text-image" data-module="TextImage" data-textImage-contentName="" data-textImage-title="" data-textImage-linkName="" data-textImage-linkType="">
+                    <div class="pw-text-image__innerpadding pw-text-image--display-row">
+                        <div class="row no-gutters">
+                            <div class="col-md-12 col-lg-6 rightPad order-2">
+                                <div data-sly-test="" class="pw-text-image__subTitle font-fixing">
+                                    <span class="tpatom-subheading tpatom-heading--">CASE PAGE JAN 2021</span>
+                                </div>
+                                <div data-sly-test="" class="pw-text-image__title">
+                                    <h3>Driving innovation through virtual product development</h3>
+                                </div>
+                                <div class="pw-text-image__description">
+                                    Innovation often thrives in periods of adversity. It’s a lesson from history, and during the past few months it has been proven to be right yet again. When Covid-19 was spreading globally, so was innovation; germinating where it was needed most and proving that humanity can respond smartly and swiftly to even the most elusive of challengers.
+                                </div>
+                                <div class="pw-text-image__link">
+                                    <a data-sly-test="" href="" class="tpatom-link tpatom-link--primary js-textImage-analytics" title="" target="" data-link-section="Text & Image_" data-link-name="" data-button-link-type="" data-asset-name="" data-image-title="" data-anchor-type="">
+                                        <span class="tpatom-link__text sly-text">Link primary</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
+                                    </a>
+                                    <a data-sly-test="" href="" class="tpatom-link tpatom-link--secondary js-textImage-analytics" title="" target="" data-link-section="Text & Image_" data-link-name="" data-button-link-type="" data-asset-name="" data-image-title="" data-anchor-type="">
+                                        <span class="tpatom-link__text sly-text">link secondary</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
+                                    </a>
+                                    <input type="hidden" class="componentNameTextImage" name="componentName" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6 leftPad text-center order-1">
+                                <a data-sly-test="" href="" class="img-link js-textImage-analytics" target="" data-link-section="Text & Image_imageClick" data-link-name="" data-button-link-type="" data-asset-name="" data-image-title="" data-anchor-type="imageClick" >
+                                    <img alt="" src="https://s7g10.scene7.com/is/image/tetrapak/live-streaming-camera?wid=600&hei=337&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0" class="pw-text-image__image" />
+                                </a>
+                                <span data-sly-test="">
+                                    <img alt="" src="" class="pw-text-image__image" />
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-        <footer class="experiencefragment">
-            <div class="cmp-experiencefragment">
-                <div class="cmp-container">
-                    <div class="separator">
-                        <div class="cmp-separator">
-                            <hr class="cmp-separator__horizontal-rule"/>
-                        </div></div>
-                    <div class="text">
-                        <div class="cmp-text">
-                            <p>Copyright 2019, Tetra Laval. All rights reserved.</p>
+            <!-- TEXT IMAGE STOP -->
+
+
+
+            <!-- IMAGE START -->
+            <div id="data.anchorId" title="data.anchorTitle" class="tp-pw-image" data-module="Image">
+                <div class="pw-margin--regular">
+                    <!--    <sly data-sly-test = "data.linkURL && data.linkURL!='#'">-->
+                    <a class="js-tp-pw-image" href="data.linkURL" data-link-name="Image text banner not present">
+                    <!--    </sly>-->
+                        <img src="https://img.android.com.pl/images/user-images/2020/12/20-gb-orange.jpg"
+                             data-src="https://img.android.com.pl/images/user-images/2020/12/20-gb-orange.jpg"
+                             itemprop="image"
+                             alt="dynamicImageModel.altText"
+                             data-src_desktop="dynamicImageModel.desktopUrl"
+                             data-src_desktopL="dynamicImageModel.desktopLargeUrl"
+                             data-src_mobileP="dynamicImageModel.mobilePortraitUrl"
+                             data-src_mobileL="dynamicImageModel.mobileLandscapeUrl"/>
+                    <!--    <sly data-sly-test = "data.linkURL && data.linkURL!='#'">-->
+                    </a>
+                    <!--    </sly>-->
+                </div>
+            </div>
+            <!-- IMAGE STOP -->
+
+
+
+            <!-- ANCHOR START -->
+                <div class="pw-anchor tp-container" data-module="Anchor">
+                    <div class="pw-anchor__regular">
+                        <ul class="pw-anchor-list">
+<!--                            <sly data-sly-list.anchorItem="data.anchorDetailList">-->
+                            <li class="pw-anchor-content">
+                                <a data-link-section='anchorItem.anchorId' data-link-name="anchorItem.anchorTitle" href="#anchorItem.anchorId">
+                                    Some title
+                                </a>
+                            </li>
+
+                            <li class="pw-anchor-content">
+                                <a data-link-section='anchorItem.anchorId' data-link-name="anchorItem.anchorTitle" href="#anchorItem.anchorId">
+                                    Some title
+                                </a>
+                            </li>
+<!--                            </sly>-->
+                        </ul>
+                    </div>
+                </div>
+
+            <!-- ANCHOR END -->
+
+            <!-- TEXTANDVIDEO START -->
+            <div
+                    id="placeholder"
+                    title="placeholder"
+                    class="pw-container"
+                    data-locator="text-video" data-module="TextVideo">
+                <input type="hidden" class="componentName-textvideo" name="componentName" value="placeholder">
+                <div class="pw-text-video pw-text-video--display-row-reversed pw-theme-- pw-padding--regular pw-margin--regular">
+                    <div class="row no-gutters">
+                        <div class="col-md-12 col-lg-4 left-pad">
+                            <p class="pw-text-video__subTitle font-fixing d-lg-block">Subtitle</p>
+                            <div class="pw-text-video__title d-lg-block">
+                                This is a Header (H2) Lorem ipsum
+                            </div>
+                            <div class="pw-text-video__description d-lg-block">
+                                <p>Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking. We help you turning ideas into products that your customers love. Food, beverages or cosmetics? No matter what product, we provide you with the processing and packaging solutions that suit your needs. We collaborate with you to develop recipes and design production processes with smart environmental thinking.</p>
+
+<!--                                <p>We help you turning ideas into smart environmental thinking.  fsalkjösldjf söaldkfj saödlfkj saödlkfj asödlkfj asöldkfj asöldkfjasöldkfjasödlk jfasödlkfj saöldkfj asöldkfj asöldkfj asdölkfj asdölkfj asdölkfj asödlkfj ösa asdf.lksaädfkasäfkaäsdklaäsklfdaäsklaäsfkl äasdfkl äka fjasäl fäalsk jasd flaskdfj aslökf jasöldfj asdf alsöf jasölfk jasdöfl jasödlfk jasödlfkj asdföl dasf asdfa</p>-->
+                            </div>
+                            <div class="pw-text-video__link d-lg-block">
+                                <a
+                                        href="placeholder"
+                                        class="tpatom-link tpatom-link--secondary js-textVideo-analytics"
+                                        title="placeholder"
+                                        data-link-section="Text & Video_cta"
+                                        data-link-name="placeholder"
+                                        data-video-title="placeholder"
+                                        data-asset-name="placeholder"
+                                        data-button-link-type="placeholder"
+                                        data-anchor-type="placeholder"
+                                >
+                                    <span class="tpatom-link__text sly-text">Read more</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-8 right-pad">
+<!-- <sly data-sly-test="data.videoSource == 'damVideo'">  -->
+
+                            <div class="pw-text-video__video js-video-props" data-link-parent-title="placeholder"
+                                 data-video-type="placeholder"
+                                 data-video-name="placeholder">
+                                <video class="js-dam-player" controls poster="placeholder">
+                                    <source src="https://www.youtube.com/watch?v=XrQMtoC1J6k" type="video/mp4">
+                                </video>
+                            </div>
+<!--                            </sly>-->
+
+<!--                            <sly data-sly-test="data.videoSource == 'youtube'">-->
+
+<!--                            <div class="pw-text-video__video js-video-props" data-link-parent-title="data.youtubeEmbedURL"-->
+<!--                                 data-video-type="" data-video-name="data.youtubeEmbedURL">-->
+<!--                                <iframe  class='js-yt-player' src="data.youtubeEmbedURL" frameborder="0"-->
+<!--                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                                         allowfullscreen></iframe>-->
+<!--                            </div>-->
+<!--                            </sly>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- TEXTANDVIDEO STOP -->
+
+
+
+        <!-- HERO BANNER START -->
+        <div class="tp-container-textImage mt-lg-24 pw-container" id="" title="" data-module="Banner">
+            <!-- here should be inline style with url to background image, see file with styles-->
+            <div class="pw-banner js-pw-banner"
+                data-link-banner-title="" data-anchor-type=""
+                data-link-section="Hero Image_imageClick" data-link-name=""
+                data-asset-name="" data-href="">
+                <!-- desktop version of banner description, hide on mobile -->
+                <div class="row m-0">
+                    <div class="col-12 p-0">
+                        <picture>
+                            <!-- srcset and src should be set by sly -->
+                            <source srcset="https://s7g10.scene7.com/is/image/tetrapak/FSQ-I40-Computer-Data-Managment-banner?wid=1920&hei=640&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0"
+                                    media="(min-width: 800px)">
+                            <!-- img should have also set alt and title attributes ! -->
+                            <img class="pw-banner__image" alt="name of pic" title="name of pic" src="https://s7g10.scene7.com/is/image/tetrapak/FSQ-I40-Computer-Data-Managment-banner?wid=1920&hei=640&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0" alt="" />
+                        </picture>
+                    </div>
+                </div>
+                <div class="row m-0 pw-banner__content_wrapper">
+                    <!-- if statement for offset -> add class offset-lg-5 and offset-xl-6 for right side content -->
+                    <div data-sly-test="" class="col-lg-7 col-xl-6 p-0">
+                        <div class="pw-banner__content">
+                            <h1 data-sly-test="" class="pw-banner__content__title hero-title">TITLE</h1>
+                            <!-- if statement for showing and hidding description class: d-none -->
+                            <div class="pw-banner__content__description">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate assumenda maiores culpa molestias minima, tempora earum. Accusamus nulla, ducimus totam omnis, quisquam mollitia nostrum soluta nesciunt debitis saepe, sequi obcaecati?
+                            </div>
+                            <!-- if statement for showing and hidding content media buttons class: d-none -->
+                            <div class="pw-banner__content__media">
+                                <input type="hidden" class="componentName-banner" name="componentName" value="" />
+                                <!-- another if statement link/button type primary secondary also href attr should be set by www link  -->
+                                <a data-sly-test="" href="" class="tpatom-link tpatom-link--secondary js-banner-analytics"
+                                title="" data-asset-name="" data-link-section="Hero Image" data-link-type="internal"
+                                data-link-banner-title="" data-link-name="" data-anchor-type="">
+                                <span class="nowrap-text">&#8288;Button</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- HERO BANNER STOP -->
+
+
+
+        </div>
+
+        <!-- FOOTER START -->
+        <footer class="tp-pw-footer js-tp-pw-footer" data-module="Footer" id="footer">
+            <div class="tp-pw-footer__container tp-container">
+                <div class="row">
+                    <div class="col-lg-5 col-xs-12 text-lg-left">
+                        <div class="row">
+                            <div class="col-12 tp-pw-footer__logo footer-logo footer-analytics">
+                                <a class="tp-pw-footer-data-analytics tp-pw-footer-data-logo" href="" target="">
+                                    <img src="" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-12 tp-pw-footer__text">
+                                The Tetra Laval Group consists of three industry groups, Tetra Pak, Sidel and DeLaval, all focused on technologies for the efficient production, packaging and distribution of food.
+                            </div>
+                            <div class="col-12">
+                                <ul class="tp-pw-footer__links-list">
+                                    <li class="footer-analytics">
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">&#x24B8; Tetra Laval International S.A.</a>
+                                    </li>
+                                    <li class="footer-analytics">
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">Cookie Policy</a>
+                                    </li>
+                                    <li class="footer-analytics">
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">Link C</a>
+                                    </li>
+                                    <li class="footer-analytics">
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">Link D</a>
+                                    </li>
+                                    <li class="footer-analytics">
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">Link E</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-xs-12 text-lg-right">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="tp-pw-footer__navigation-list">
+                                    <li class="tp-pw-footer__social-media-items footer-analytics">
+                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">
+                                            <i class="icon-Linkedin_pw"></i>
+                                        </a>
+                                    </li>
+                                    <li class="tp-pw-footer__social-media-items footer-analytics">
+                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">
+                                            <i class="icon-Facebook_pw"></i>
+                                        </a>
+                                    </li>
+                                    <li class="tp-pw-footer__social-media-items footer-analytics">
+                                        <a class="tp-pw-footer__social-media-items  tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">
+                                            <i class="icon-instagram_pw"></i>
+                                        </a>
+                                    </li>
+                                    <li class="tp-pw-footer__social-media-items footer-analytics">
+                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics"
+                                        href="" target="_blank"
+                                        data-link-name="">
+                                            <i class="icon-Twitter_pw"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
-    </div>
-    <button data-target="#cf-step-downloadReady-textimage" type="button" class="tpatom-btn tpatom-btn--primary yesmebtn-textimage" auto_locator="softConversionSubmitButtonStep3">
-        <span class="tp-next-btn__text">Yes, that is me</span>
-        <i class="tpatom-button__icon"></i>
-    </button>
-    <button class="icon-Arrow_Right_pw">pwicons</button>
-    <button class="icon-Avatar">tpicons</button>
-</div>
-<script type="text/javascript" src="/etc.clientlibs/tetra-laval/clientlibs/clientlib-site.js"></script>
-<script type="text/javascript" src="/etc.clientlibs/tetra-laval/clientlibs/clientlib-base.js"></script>
-</body>
+        <!-- FOOTER STOP -->
+        <script type="text/javascript" src="/etc.clientlibs/tetra-laval/clientlibs/clientlib-site.js"></script>
+        <script type="text/javascript" src="/etc.clientlibs/tetra-laval/clientlibs/clientlib-base.js"></script>
+    </body>
 </html>

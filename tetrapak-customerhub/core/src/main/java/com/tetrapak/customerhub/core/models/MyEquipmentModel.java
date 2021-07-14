@@ -129,6 +129,19 @@ public class MyEquipmentModel {
 	@OSGiService
 	private APIGEEService service;
 	
+	/** The hide And Show Cta.*/
+	@ValueMapValue
+	private String hideAndShowCta;
+	
+	/**
+	 * Gets the hideAndShowCta.
+	 *
+	 * @return the hideAndShowCta
+	 */
+	public String gethideAndShowCta() {
+		return hideAndShowCta;
+	}
+	
 	/**
 	 * Gets the country api.
 	 *
@@ -390,6 +403,7 @@ public class MyEquipmentModel {
         i18KeyMap.put("equipDescToolTip", getEquipDescToolTip());
         i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
+		i18KeyMap.put("hideAndShowCta", gethideAndShowCta());
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }

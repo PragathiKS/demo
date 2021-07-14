@@ -107,8 +107,8 @@ public class AssetPageOpsServiceImpl implements AssetPageOpsService {
             // Setting asset replication flags as false
             ModifiableValueMap assetProperties = resolver.getResource(path + TrsConstants.ASSET_METADATA_RELATIVE_PATH)
                     .adaptTo(ModifiableValueMap.class);
-            assetProperties.put("dam:pagePublishUrl", trsConfig.getTrsDNS() + pageResourcePath + ".html");
-            assetProperties.put("dam:pageAuthorUrl", "/editor.html" + pageResourcePath + ".html");
+            assetProperties.put(PAGE_PUBLIC_URL_JCR_PROPERTY, trsConfig.getTrsDNS() + pageResourcePath + ".html");
+            assetProperties.put(PAGE_AUTHOR_URL_JCR_PROPERTY, "/editor.html" + pageResourcePath + ".html");
             resolver.commit();
         } catch (WCMException e) {
             throw new PageNotCreatedException("Unable to create page", e);
