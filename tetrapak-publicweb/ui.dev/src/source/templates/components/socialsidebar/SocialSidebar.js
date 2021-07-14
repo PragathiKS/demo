@@ -1,25 +1,28 @@
 import $ from 'jquery';
-
 class SocialSidebar {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
   initCache() {
-    /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
+    this.cache.$socialLink = this.root.find('.tp-pw-sidebar__link');
+    this.cache.$imageModal = this.root.find('.js-qrCode-modal');
+    this.cache.$closeModal = this.root.find('.js-close-btn');
   }
   bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    const $this = this;
+    this.cache.$socialLink.on('click', function (e) {
+      e.preventDefault();
+      $this.showPopup();
+    });
+    // PopUp Close Button
+    this.cache.$closeModal.on('click', function (e) {
+      e.preventDefault();
+      $this.cache.$imageModal.modal('hide');
+    });
+  }
+  showPopup = () => {
+    this.cache.$imageModal.modal();
   }
   init() {
     /* Mandatory method */
