@@ -2,11 +2,8 @@
 <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
 	<br
 		data-sly-use.socialSidebarConfig="com.tetrapak.publicweb.core.models.SocialSideBarConfigurationModel">
+		Social Media : ${socialSidebarConfig.socialMedia}</br>
+		Social Media Link :${socialSidebarConfig.socialMediaLink}</br>
 		WeChat Image: ${socialSidebarConfig.wechatQrCodeReference}</br>
 		WeChat AltText: ${socialSidebarConfig.qrAltText}</br>
-		<sly data-sly-list.Links="${socialSidebarConfig.socialLinks}">
-			Social Media : ${Links.socialMedia}</br>
-		   Social Media Link :${Links.socialMediaLink}</br>
-		</sly>
-	</sly>
 </sly>

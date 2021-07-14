@@ -29,9 +29,13 @@ public class SocialSideBarConfigurationModel {
     @Self
     private Resource resource;
 
-    /** The social links. */
-    @Inject
-    private List<SocialLinkModel> socialLinks;
+    /** The social media. */
+    @ValueMapValue
+    private String socialMedia;
+
+    /** The social media. */
+    @ValueMapValue
+    private String socialMediaLink;
 
     /** QR code */
     @ValueMapValue
@@ -46,12 +50,21 @@ public class SocialSideBarConfigurationModel {
     private String qrCodeTitle;
 
     /**
-     * Gets the social links.
+     * Gets the social media links.
      *
-     * @return the social links
+     * @return the social media links
      */
-    public List<SocialLinkModel> getSocialLinks() {
-        return socialLinks;
+    public String getSocialMediaLink() {
+        return socialMediaLink;
+    }
+
+    /**
+     * Gets the social media .
+     *
+     * @return the social media
+     */
+    public String getSocialMedia() {
+        return socialMedia;
     }
 
     /**
