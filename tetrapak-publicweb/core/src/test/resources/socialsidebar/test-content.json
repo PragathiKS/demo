@@ -83,6 +83,7 @@
 					"jcr:lastModified": "Fri Mar 27 2020 18:55:38 GMT+0530",
 					"wechatQrCodeReference": "/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png",
 					"qrAltText": "Alt Text",
+					"qrCodeTitle": "title",
 					"socialLinks": {
 						"jcr:primaryType": "nt:unstructured",
 						"item0": {

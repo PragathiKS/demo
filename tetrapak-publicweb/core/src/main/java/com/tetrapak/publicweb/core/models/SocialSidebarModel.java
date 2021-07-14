@@ -38,6 +38,9 @@ public class SocialSidebarModel {
     /** Alt Text*/
     private String qrAltText;
 
+    /** Title*/
+    private String qrCodeTitle;
+
     /**
      * Inits the.
      */
@@ -53,19 +56,44 @@ public class SocialSidebarModel {
                 socialLinks = configurationModel.getSocialLinks();
                 wechatQrCodeReference = configurationModel.getWechatQrCodeReference();
                 qrAltText = configurationModel.getQrAltText();
+                qrCodeTitle =configurationModel.getQrCodeTitle();
             }
         }
     }
 
+    /**
+     * Gets the social links.
+     *
+     * @return the social links
+     */
     public List<SocialLinkModel> getSocialLinks() {
         return socialLinks;
     }
 
+    /**
+     * Gets the We chat QR code.
+     *
+     * @return the We chat QR code
+     */
     public String getWechatQrCodeReference() {
         return wechatQrCodeReference;
     }
 
+    /**
+     * Gets the Image Alt text.
+     *
+     * @return the Image Alt text
+     */
     public String getQrAltText() {
         return qrAltText;
+    }
+
+    /**
+     * Gets the Title.
+     *
+     * @return the Title
+     */
+    public String getQrCodeTitle() {
+        return qrCodeTitle;
     }
 }

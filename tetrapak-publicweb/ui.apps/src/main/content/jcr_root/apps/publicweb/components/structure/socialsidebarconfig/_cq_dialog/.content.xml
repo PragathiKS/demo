@@ -67,7 +67,8 @@
                                                         <wechat
                                                             jcr:primaryType="nt:unstructured"
                                                             text="WeChat"
-                                                            value="WeChat"/>
+                                                            value="WeChat"
+                                                            defaultValue="{Boolean}true"/>
                                                         <weibo
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Weibo"
@@ -107,6 +108,12 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
+                            <qrCodeTitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Title"
+                                    name="./qrCodeTitle"
+                                    required="true"/>
                             <wechatQrCode
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/fileupload"
