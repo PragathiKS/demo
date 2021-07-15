@@ -19,6 +19,9 @@ public class LanguageBean implements Comparable<LanguageBean>{
     /** The country title. */
     private String countryTitle;
 
+    /** The is current language. */
+    private boolean isCurrentLanguage;
+
     /**
      * Gets the language name.
      *
@@ -67,7 +70,8 @@ public class LanguageBean implements Comparable<LanguageBean>{
     /**
      * Sets the language index.
      *
-     * @param languageIndex the new language index
+     * @param languageIndex
+     *            the new language index
      */
     public void setLanguageIndex(int languageIndex) {
         this.languageIndex = languageIndex;
@@ -90,6 +94,25 @@ public class LanguageBean implements Comparable<LanguageBean>{
      */
     public void setCountryTitle(String countryTitle) {
         this.countryTitle = countryTitle;
+    }
+
+    /**
+     * Checks if is current language.
+     *
+     * @return true, if is current language
+     */
+    public boolean isCurrentLanguage() {
+        return isCurrentLanguage;
+    }
+
+    /**
+     * Sets the current language.
+     *
+     * @param isCurrentLanguage
+     *            the new current language
+     */
+    public void setCurrentLanguage(boolean isCurrentLanguage) {
+        this.isCurrentLanguage = isCurrentLanguage;
     }
 
     /**

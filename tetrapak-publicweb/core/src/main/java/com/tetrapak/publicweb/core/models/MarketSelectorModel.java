@@ -162,6 +162,9 @@ public class MarketSelectorModel {
                 languageBean
                         .setCountryTitle((String) languagePage.getContentResource().getValueMap().get("countryTitle"));
             }
+            if(PageUtil.getLanguagePage(currentPage).getPath().equalsIgnoreCase(languagePage.getPath())) {
+                languageBean.setCurrentLanguage(Boolean.TRUE);
+            }
             languages.add(languageBean);
         }
         return languages;
