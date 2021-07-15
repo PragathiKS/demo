@@ -17,7 +17,7 @@ class SocialSidebar {
       $this.showPopup();
       
       const trackingObj = {
-        linkType: $(this).attr('target') === '_blank' ? 'external' : 'internal',
+        linkType: 'external',
         linkSection: 'hyperlink click',
         linkParentTitle: 'SocialSidebar',
         linkName: $(this).data('link-name')
