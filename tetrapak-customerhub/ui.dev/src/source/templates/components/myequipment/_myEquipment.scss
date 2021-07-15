@@ -176,8 +176,18 @@
         }
     }
 
-    &__pagination-container {
+    &__flex-container {
         @include padding-top($padding-md);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__serial-desc {
+        @include margin-top($margin-md);
+    }
+
+    &__astrick {
+        color: $color-secondary-orange;
     }
 
     .pagination-icon-wrapper {
@@ -295,6 +305,14 @@
             display: flex;
             line-height: 40px;
             align-items: center;
+        }
+        &__flex-container {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &__serial-desc {
+            @include margin-top($margin-zero);
         }
     }
 }

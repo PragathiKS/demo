@@ -108,6 +108,12 @@
                                     fieldLabel="No Data Found Label (i18N key)"
                                     name="./noDataFound"
                                     required="true"/>
+                            <permanentVolumeConversion
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Permanent Volume Conversion Label (i18N key)"
+                                    name="./permanentVolumeConversion"
+                                    required="true"/>
                         </items>
                     </column1>
                     <column2
