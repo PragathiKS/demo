@@ -53,7 +53,7 @@ class Banner {
             $sideSectionright.css('width', finalWidth +'px');
           } else {
             const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
-            const bannerRightOffset = bannerOffset.left + bannerWidth;
+            const bannerRightOffset = bannerOffset.left + bannerWidth - 48;
             $sideSectionright.css('width', `${(pwContainerRightOffset - bannerRightOffset)}px`);
           }
           if($('.pw-banner-herowrapper').length) {
