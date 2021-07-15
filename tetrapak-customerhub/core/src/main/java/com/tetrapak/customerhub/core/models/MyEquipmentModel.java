@@ -133,10 +133,13 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String hideAndShowCta;
 
-
 	/** The no Data Found.*/
 	@ValueMapValue
 	private String noDataFound;
+
+	/** The permanent volume conversion.*/
+	@ValueMapValue
+	private String permanentVolumeConversion;
 
 	/**
 	 * Gets the noDataFound.
@@ -145,20 +148,15 @@ public class MyEquipmentModel {
 	 */
 	public String getNoDataFound() {
 		return noDataFound;
-	}	
-
-	/** The permanent volume conversion.*/
-	@ValueMapValue
-	private String permanentVolumeConversion;
+	}
 
 	/**
 	 * Gets the Permanent Volume Conversion.
 	 *
-	 * @return the hideAndShowCta
+	 * @return the permanentVolumeConversion
 	 */
 	public String getPermanentVolumeConversion() {
 		return permanentVolumeConversion;
-
 	}
 
 	/**
@@ -166,7 +164,7 @@ public class MyEquipmentModel {
 	 *
 	 * @return the hideAndShowCta
 	 */
-	public String gethideAndShowCta() {
+	public String getHideAndShowCta() {
 		return hideAndShowCta;
 	}
 
@@ -431,7 +429,7 @@ public class MyEquipmentModel {
         i18KeyMap.put("equipDescToolTip", getEquipDescToolTip());
         i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
-		i18KeyMap.put("hideAndShowCta", gethideAndShowCta());
+		i18KeyMap.put("hideAndShowCta", getHideAndShowCta());
 		i18KeyMap.put("noDataFound", getNoDataFound());
 		i18KeyMap.put("permanentVolumeConversion", getPermanentVolumeConversion());
         if (slingSettingsService.getRunModes().contains("publish")) {
