@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 class SocialSidebar {
   constructor({ el }) {
     this.root = $(el);
@@ -14,7 +15,20 @@ class SocialSidebar {
     this.cache.$socialLink.on('click', function (e) {
       e.preventDefault();
       $this.showPopup();
+      
+      const trackingObj = {
+        linkType: $(this).attr('target') === '_blank' ? 'external' : 'internal',
+        linkSection: 'hyperlink click',
+        linkParentTitle: 'SocialSidebar',
+        linkName: $(this).data('link-name')
+      };
+      const eventObj = {
+        eventType: 'linkClick',
+        event: 'Sidebar - Social Share'
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     });
+
     // PopUp Close Button
     this.cache.$closeModal.on('click', function (e) {
       e.preventDefault();
