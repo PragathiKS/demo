@@ -3,10 +3,8 @@
     jcr:primaryType="sling:OrderedFolder">
     <jcr:content
         cq:conf="/conf/tetra-laval"
-        dam:noThumbnail="{Boolean}true"
         jcr:primaryType="nt:unstructured"
         jcr:title="Tetra Laval">
-        <folderThumbnail/>
     </jcr:content>
     <tetra-laval/>
     <tetra-pak/>
