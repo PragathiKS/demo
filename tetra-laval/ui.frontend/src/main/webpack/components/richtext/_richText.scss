@@ -1,0 +1,295 @@
+.pw-container.reference-class {
+    @include margin-top(0);
+}
+
+.pw-container.pw-margin--regular.reference-class {
+    @include margin-top(16px);
+}
+
+.pw-container.pw-margin--zero.reference-class {
+    @include margin-bottom(0);
+    .tp-pw-richText.tp-pw-richText-container {
+        @include padding-bottom($padding-l);
+    }
+}
+
+.pw-container.pw-margin--zero.topmargin {
+    @include margin-top($margin-l);
+}
+
+@media #{$desktop} {
+    .pw-container.pw-margin--regular.reference-class {
+        @include margin-top($margin-l);
+    }
+}
+
+.tp-pw-richText {
+    &.tp-pw-richText-container {
+        @include margin-top(0);
+        @include margin-left(16px);
+        @include margin-right(16px);
+        @include padding(24px 16px);
+        width: auto;
+    }
+
+    li {
+        display: block;
+    }
+
+    .tp-pw-richText-wrapper a {
+        @include padding(0);
+        border: 0;
+        color: $color-congress-blue;
+        background: none;
+        cursor: pointer;
+
+        &:hover {
+            color: $color-sky-blue;
+            background-color: transparent;
+        }
+        & > .icon {
+            @include padding-left(6px);
+        }
+    }
+
+    .fullBleed {
+        @include padding-left(0);
+        @include padding-right(0);
+    }
+
+    h1 {
+        @include font-size($font-xl);
+        @include line-height($line-height-header-m, $font-xl);
+        @include margin-bottom($margin-md);
+    }
+
+    h2 {
+        @include font-size($font-xl);
+        @include line-height($line-height-header-m, $font-xl);
+        @include margin-bottom($margin-md);
+    }
+
+    h3 {
+        @include font-size($font-l);
+        @include line-height($line-height-header-s, $font-l);
+        @include margin-bottom($margin-md);
+    }
+
+    h4 {
+        @include font-size($font-md);
+        @include margin-bottom($margin-md);
+        @include line-height($line-height-body, $font-md);
+    }
+
+    p {
+        @include font-size(16px);
+        @include line-height(28px, 16px);
+        @include margin-bottom(24px);
+    }
+
+    small {
+        @include font-size(14px);
+        @include line-height(24px, 14px);
+        @include margin-bottom(16px);
+    }
+
+    ol,
+    ul {
+        @include margin-bottom(8px);
+    }
+
+    ul {
+        li {
+            @include font-size($font-baseline);
+
+            &::before {
+                @include margin-right($margin-sm);
+                @include font-size($bullet-size);
+                display: inline-block;
+                color: $color-tundora;
+                content: '\2022';
+            }
+        }
+    }
+
+    ol {
+        counter-reset: section;
+        list-style-type: none;
+        li {
+            &::before {
+                @include margin-right($margin-sm);
+                @include font-size(14px);
+                content: counters(section, '.') ' ';
+                counter-increment: section;
+            }
+        }
+    }
+
+    ol ol,
+    ul ul {
+        @include padding(0 0 0 20px);
+    }
+
+    ul > li > ul,
+    ol > li > ol {
+        @include margin-bottom(0);
+        :last-child {
+            @include padding-bottom(0);
+        }
+    }
+
+    ul li,
+    ol li {
+        @include font-size(14px);
+        @include padding-bottom(16px);
+        &::before {
+            color: $color-tundora;
+        }
+        &:last-child {
+            @include padding-bottom(0);
+        }
+        li {
+            @include padding-bottom(8px);
+        }
+    }
+
+    ol li ol,
+    ul li ul {
+        @include padding-top(16px);
+    }
+
+    ul ul ul {
+        li {
+            @include font-size(12px);
+            @include padding-bottom(8px);
+            &::before {
+                content: '\2012';
+                font-weight: 400;
+            }
+        }
+    }
+
+    ol ol ol {
+        @include padding-left(28px);
+        li {
+            @include font-size(12px);
+            @include padding-bottom(8px);
+        }
+    }
+
+    table {
+        @media #{$mobile} {
+            @include margin-bottom($margin-l);
+        }
+        @include margin-bottom($margin-xxxl);
+        display: block;
+        border-collapse: collapse;
+        overflow-x: auto;
+        width: 100%;
+
+        // sass-lint:disable no-vendor-prefixes
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            &:horizontal {
+                height: 11px;
+            }
+        }
+
+        // sass-lint:disable no-vendor-prefixes
+        &::-webkit-scrollbar-thumb {
+            border: 2px solid $color-white;
+            border-radius: 8px;
+            background-color: $color-light-gray;
+        }
+
+        // sass-lint:disable no-vendor-prefixes
+        &::-webkit-scrollbar-track {
+            background-color: $color-white;
+            border-radius: 8px;
+        }
+
+        tbody {
+            display: table;
+            width: 100%;
+
+            @media #{$mobile} {
+                width: $table-max-width;
+            }
+        }
+
+        tr {
+            &:first-child {
+                @include line-height($line-height-body, $font-m-sm);
+                @include font-size($font-m-sm);
+                border-bottom: solid 1px rgba($color-black, $alpha-s);
+            }
+
+            &:not(:first-child) {
+                @include line-height($line-height-medium, $font-sm);
+                @include font-size($font-sm);
+                border-bottom: 1px solid;
+                border-bottom-color: rgba($color-black, $alpha-p);
+            }
+        }
+
+        th {
+            @include padding-bottom(7px);
+            font-weight: 500;
+        }
+
+        td {
+            @include padding-bottom(10px);
+        }
+
+        td,
+        th {
+            @include padding-left(8px);
+            @include padding-top(9px);
+            white-space: pre-wrap;
+        }
+    }
+
+    @media #{$desktop} {
+        &.tp-pw-richText-container {
+            @include margin-top(0);
+            @include margin-left(48px);
+            @include margin-right(48px);
+            @include padding(48px);
+        }
+        h1 {
+            @include font-size($font-xxl);
+            @include line-height($line-height-header-l, $font-xxl);
+        }
+        h2 {
+            @include font-size($font-xl);
+            @include line-height($line-height-header-m, $font-xl);
+        }
+        h3 {
+            @include font-size($font-l);
+            @include line-height($line-height-header-s, $font-l);
+        }
+        h4 {
+            @include font-size($font-md);
+            @include line-height($line-height-body, $font-md);
+        }
+        p {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+        }
+
+        small {
+            @include font-size(12px);
+            @include line-height(20px, 12px);
+            @include margin-bottom(24px);
+        }
+
+        ol,
+        ul {
+            @include margin-bottom($margin-l);
+        }
+
+        p {
+            @include margin-bottom($margin-l);
+        }
+    }    
+}
