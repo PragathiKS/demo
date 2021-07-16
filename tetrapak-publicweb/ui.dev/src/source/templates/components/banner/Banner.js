@@ -49,7 +49,7 @@ class Banner {
         }
         if ($sideSectionright.length) {
           if(zoomLevel === 100) {
-            const finalWidth = windowWidth - bannerOffset.left -  bannerWidth;
+            const finalWidth = windowWidth - bannerOffset.left -  bannerWidth - 48;
             $sideSectionright.css('width', finalWidth +'px');
           } else {
             const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
@@ -84,8 +84,10 @@ class Banner {
   }
 
   trackBannerImageClick = (e) => {
+    e.preventDefault();
     const $target = $(e.target);
-    if($target.hasClass('js-dynamic-media')){
+
+    if($target.parents('.pw-banner').find('img.js-dynamic-media')){
       const $this = $target.closest('.pw-banner');
       const $anchor = $this.data('href');
       if (!($anchor && $anchor !== '#')) {
@@ -96,7 +98,7 @@ class Banner {
       }
 
       if (isDownloable($anchor)) {
-        $this.data('download-type', 'download');
+        $this.attr('target', '_blank');
       }
 
       if (isExternal($anchor)) {
@@ -125,25 +127,15 @@ class Banner {
     });
 
 
-    $bEl.on('click', this.trackBannerImageClick);
+    $bEl.off().on('click', this.trackBannerImageClick);
 
   }
 
-  seoChanges() {
-    const titleDiv = this.root.find('.pw-banner__content__title');
-    const h1tag = titleDiv.find('h1') ;
-    if( h1tag.length) {
-      $(h1tag).attr('class','tpatom-heading tpatom-heading--regular');
-      const h2Tag = titleDiv.find('h2')[0];
-      h2Tag && h2Tag.parentNode.removeChild(h2Tag);
-    }
-  }
 
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.seoChanges();
     addLinkAttr('.js-banner-analytics');
     this.addBannerLink();
   }
