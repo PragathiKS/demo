@@ -1,4 +1,5 @@
 @import "media";
+// fonts
 $font-xxs: 8px;
 $font-xs: 10px;
 $font-sm: 12px;
@@ -17,8 +18,21 @@ $font-xxl: 42px;
 $font-m-xxl: $font-xl;
 $font-xxxl: 60px;
 $font-m-xxxl: 36px;
+
+//font-line-height
+$line-height-small: 16px;
+$line-height-medium: 20px;
+$line-height-body: 24px;
+$line-height-header-s: 32px;
+$line-height-header-m: 40px;
+$line-height-header-l: 48px;
+$line-height-header-xl: 64px;
+
+
 // Body width
 $body-max-width: 1440px;
+// Table width
+$table-max-width: 925px;
 // Variables for z-index
 $zindex-default: 0;
 // Maximum 3 levels allowed in z-index
@@ -56,6 +70,7 @@ $color-text-link: $color-congress-blue;
 $color-text-link-hover: $color-tundora;
 $color-text-link-visited: $color-congress-blue;
 $color-text-link-active: $color-congress-blue;
+
 
 /*
  * Border Colors
@@ -125,7 +140,12 @@ $header-height-mobile: 62;
 $section-menu-height-mobile: 56;
 
 // sticky-view-height
-$sticky-view-height: $header-height-mobile + $section-menu-height-mobile
+$sticky-view-height: $header-height-mobile + $section-menu-height-mobile;
 
+//alpha
+$alpha-p: 0.2;
+$alpha-s: 0.4;
 
+//list bulet size
+$bullet-size: 15px; 
 
