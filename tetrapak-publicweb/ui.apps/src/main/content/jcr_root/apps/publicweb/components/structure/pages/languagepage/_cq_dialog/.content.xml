@@ -158,7 +158,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 allowBulkEdit="{Boolean}true"
-                                                fieldDescription="Country name in local language. To be authored for markets have more than one language."
+                                                fieldDescription="Country name in local language. To be authored for markets which have two or more than two languages."
                                                 fieldLabel="Country Title"
                                                 name="./countryTitle"/>
                                         </items>
