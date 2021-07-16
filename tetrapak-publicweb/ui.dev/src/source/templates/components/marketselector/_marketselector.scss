@@ -4,9 +4,11 @@
 
     a {
         font-family: $font-monsterrat;
-        font-weight: 400;
-        &.selected {
-            font-weight: 700;
+        span {
+            font-weight: 400;
+            &.selected {
+                font-weight: 700;
+            }
         }
     }
 
