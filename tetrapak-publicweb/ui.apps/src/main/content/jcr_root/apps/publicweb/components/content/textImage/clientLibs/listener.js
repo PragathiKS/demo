@@ -3,7 +3,7 @@
 	$document.on("click", ".cq-dialog-submit", validatePardotURL);
  
     function showSoftConversionForm(){
-        var dialog = gAuthor.DialogFrame.currentDialog,
+        var dialog = (gAuthor != null) ? gAuthor.DialogFrame.currentDialog : null,
             componentPath = (dialog != null) ? dialog.editable : null;
 
         if(!componentPath){
