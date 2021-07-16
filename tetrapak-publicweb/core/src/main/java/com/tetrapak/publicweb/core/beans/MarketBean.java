@@ -13,7 +13,13 @@ public class MarketBean implements Comparable<MarketBean>{
 
     /** The market name. */
     private String marketName;
-    
+
+    /** The country name. */
+    private String countryName;
+
+    /** The is active. */
+    private boolean isActive;
+
     /** The languages. */
     private List<LanguageBean> languages;
     
@@ -33,6 +39,44 @@ public class MarketBean implements Comparable<MarketBean>{
      */
     public void setMarketName(String marketName) {
         this.marketName = marketName;
+    }
+
+    /**
+     * Gets the country name.
+     *
+     * @return the country name
+     */
+    public String getCountryName() {
+        return countryName;
+    }
+
+    /**
+     * Sets the country name.
+     *
+     * @param countryName
+     *            the new country name
+     */
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    /**
+     * Checks if is active.
+     *
+     * @return true, if is active
+     */
+    public boolean isActive() {
+        return isActive;
+    }
+
+    /**
+     * Sets the active.
+     *
+     * @param isActive
+     *            the new active
+     */
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     /**
