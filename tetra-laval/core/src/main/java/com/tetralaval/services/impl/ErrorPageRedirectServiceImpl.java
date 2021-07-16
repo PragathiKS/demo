@@ -21,6 +21,6 @@ public class ErrorPageRedirectServiceImpl implements ErrorPageRedirectService {
 
     @Override
     public String getErrorPagePath() {
-        return config.getErrorPagePath();
+        return config.errorPagePath();
     }
 }

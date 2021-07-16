@@ -9,6 +9,6 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface ErrorPageRedirectConfig {
 
     @AttributeDefinition(name = "Error Page path", description = "Error Page path", type = AttributeType.STRING)
-    String getErrorPagePath() default "/content/tetra-laval/home/404";
+    String errorPagePath();
 
 }
