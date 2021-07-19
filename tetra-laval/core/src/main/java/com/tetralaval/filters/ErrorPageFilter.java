@@ -6,7 +6,6 @@ import com.tetralaval.utils.LinkUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -51,10 +50,9 @@ public class ErrorPageFilter implements Filter {
             final SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
             final SlingHttpServletResponse slingResponse = (SlingHttpServletResponse) response;
             final Resource resource = slingRequest.getResource();
-            final ResourceResolver resourceResolver = resource.getResourceResolver();
 
-            Resource currentResource = resourceResolver.resolve(resource.getPath());
-            if (currentResource == null || (currentResource != null && currentResource.adaptTo(Page.class) == null)) {
+            if (resource == null || (resource != null && (resource.getResourceType() == null ||
+                    resource.getResourceType().equals("sling:nonexisting")))) {
                 slingResponse.sendRedirect(LinkUtils.sanitizeLink(errorPageRedirectService.getErrorPagePath(), slingRequest));
                 return;
             }
