@@ -2,7 +2,7 @@
     $document.on("foundation-contentloaded", bannerDialogChanges);
 
     function bannerDialogChanges(){
-        var dialog = gAuthor.DialogFrame.currentDialog;
+        var dialog = (gAuthor != null) ? gAuthor.DialogFrame.currentDialog : null;
         var componentPath = (dialog != null) ? dialog.editable : null;
 		if(!componentPath){
             return;
