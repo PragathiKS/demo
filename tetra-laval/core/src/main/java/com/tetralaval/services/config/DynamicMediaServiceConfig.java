@@ -15,7 +15,7 @@ public @interface DynamicMediaServiceConfig {
      */
     @AttributeDefinition(name = "Dynamic Media Image Service Url",
             description = "Dynamic Media Image Service Url", type = AttributeType.STRING)
-    String imageServiceUrl() default "https://s7g10.scene7.com/is/image";
+    String imageServiceUrl();
 
     /**
      * Video Service Url
@@ -23,7 +23,7 @@ public @interface DynamicMediaServiceConfig {
      */
     @AttributeDefinition(name = "Dynamic Media Video Service Url",
             description = "Dynamic Media Video Service Url", type = AttributeType.STRING)
-    String videoServiceUrl() default "https://s7g10.scene7.com/is/content";
+    String videoServiceUrl();
 
     /**
      * Dynamic Media Conf Map
@@ -31,5 +31,5 @@ public @interface DynamicMediaServiceConfig {
      */ 
     @AttributeDefinition(name = "Dynamic Media Service Configuration Map",
             description = "Dynamic Media Service Configuration Map", type = AttributeType.STRING)
-    String[] dynamicMediaConfMap() default {"header-desktop=158,24", "header-mobileL=138,31", "header-mobileP=138,31"};
+    String[] dynamicMediaConfMap();
 }
