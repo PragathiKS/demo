@@ -5,14 +5,21 @@ package com.tetralaval.constants;
  */
 public final class PWConstants {
 
-    /** The Constant LANGUAGE_LEVEL. */
-    public static final int LANGUAGE_PAGE_LEVEL = 1;
+    public static final String APPLICATION_NAME = "tetralaval";
+
+    /** The Constant ROOT_LEVEL. */
+    public static final int ROOT_LEVEL = 1;
 
     /** The Constant MARKET_ROOT_PAGE_LEVEL. */
     public static final int MARKET_ROOT_PAGE_LEVEL = 2;
 
+    /** The Constant SECTION_LEVEL. */
+    public static final int SECTION_LEVEL = 3;
+
     /** The Constant SLASH. */
     public static final String SLASH = "/";
+
+    public static final String COLON = ":";
 
     /** The Constant IMAGE. */
     public static final String IMAGE = "image";
@@ -31,6 +38,10 @@ public final class PWConstants {
 
     /** The Constant RU_COUNTRY_CODE for Russia, Kazakhstan, Ukraine. */
     public static final String RU_COUNTRY_CODE = "ru";
+
+    public static final String EN_COUNTRY_CODE = "en-US";
+
+    public static final String SITE_LANGUAGE_COUNTRY_CODE = "en";
 
     /**
      * Instantiates a new PW constants.

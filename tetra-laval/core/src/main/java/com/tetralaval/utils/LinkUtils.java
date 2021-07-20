@@ -42,7 +42,7 @@ public class LinkUtils extends WCMUsePojo {
      * @return the root path
      */
     public static String getRootPath(final String pagePath) {
-        return Text.getAbsoluteParent(pagePath, PWConstants.LANGUAGE_PAGE_LEVEL);
+        return Text.getAbsoluteParent(pagePath, PWConstants.ROOT_LEVEL);
     }
 
     public static Boolean isPreviewURL(SlingHttpServletRequest request) {

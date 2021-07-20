@@ -8,4 +8,5 @@
     <feed-page-template/>
     <campaign-page-template/>
     <global-xfpage-template/>
+    <error-page-template/>
 </jcr:root>
