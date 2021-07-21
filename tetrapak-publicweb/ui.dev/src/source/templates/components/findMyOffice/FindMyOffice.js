@@ -67,12 +67,13 @@ class FindMyOffice {
   }
 
   initBaiduMap = () => {
+    const $this = this;
     this.cache.baiduMap = new window.BMap.Map('pw-find-my-office__map');
     const point = new window.BMap.Point(this.cache.defaultLongitude, this.cache.defaultLatitude);
     this.cache.baiduMap.centerAndZoom(point, 1);
     this.cache.baiduMap.enableDragging();
     this.cache.baiduMap.enableDoubleClickZoom();
-    this.cache.baiduMap.enableScrollWheelZoom();
+    this.cache.baiduMap.enablePinchToZoom();
     this.cache.baiduMap.enableKeyboard();
 
     const zoomCtrl = new window.BMap.NavigationControl({
@@ -80,6 +81,32 @@ class FindMyOffice {
       type: 'BMAP_NAVIGATION_CONTROL_ZOOM'
     });
     this.cache.baiduMap.addControl(zoomCtrl);
+    setTimeout(function() {
+      $this.customizeBaiduMap();
+    }, 1500);
+  }
+
+  customizeBaiduMap = () => {
+    const mapCtrl = $('.BMap_stdMpCtrl');
+    const mapZoomOut = $('.BMap_stdMpZoomOut');
+    
+    $(mapCtrl).css({
+      'height': '55px',
+      'inset': 'auto -10px 20px auto', 
+      'width': '50px'
+    });
+    $(mapZoomOut).css({
+      'top':'25px'
+    });
+    
+    // Generate View Full Map button
+    const viewMapURL = 'http://api.map.baidu.com/marker?location='+this.cache.defaultLongitude+','+this.cache.defaultLatitude+'&output=html';
+    const newlink = document.createElement('a');
+    newlink.classList.add('BMap_stdMpViewMap');
+    newlink.textContent = '查看全屏';
+    newlink.setAttribute('href', viewMapURL);
+    newlink.setAttribute('target', '_blank');
+    $('.pw-find-my-office__map').prepend(newlink);
   }
 
   baiduMapMarker = (map, lng, lat) => {
@@ -198,6 +225,8 @@ class FindMyOffice {
         this.cache.baiduMap.centerAndZoom(point, 11);
         this.baiduMapMarker(this.cache.baiduMap, office.longitude, office.latitude);
       }
+      const mapURL = 'http://api.map.baidu.com/marker?location='+office.longitude+','+office.latitude+'&output=html';
+      document.querySelector('.BMap_stdMpViewMap').setAttribute('href', mapURL);
     } else {
       const latLng = new this.cache.googleMaps.LatLng(
         office.latitude,
