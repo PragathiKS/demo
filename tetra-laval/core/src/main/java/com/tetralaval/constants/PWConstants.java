@@ -7,6 +7,9 @@ public final class PWConstants {
 
     public static final String APPLICATION_NAME = "tetralaval";
 
+    /** The Constant GLOBAL_ISO_CODE. */
+    public static final String GLOBAL_ISO_CODE = "global";
+
     /** The Constant ROOT_LEVEL. */
     public static final int ROOT_LEVEL = 1;
 
@@ -20,6 +23,9 @@ public final class PWConstants {
     public static final String SLASH = "/";
 
     public static final String COLON = ":";
+
+    /** The Constant HYPHEN. */
+    public static final String HYPHEN = "-";
 
     /** The Constant IMAGE. */
     public static final String IMAGE = "image";
