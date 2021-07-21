@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { updateQueryStringParameter } from '../../../scripts/common/common';
+import { trackAnalytics } from 'tpPublicScripts/utils/analytics';
+import { updateQueryStringParameter } from 'tpPublicScripts/common/common';
 class Searchbar {
   constructor({ el }) {
     this.root = $(el);

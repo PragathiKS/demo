@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { scrollToElement } from '../../../scripts/common/common';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { scrollToElement } from 'tpPublicScripts/common/common';
+import { trackAnalytics } from 'tpPublicScripts/utils/analytics';
 
 class Anchor {
   constructor({ el }) {

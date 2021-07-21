@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { isExternal } from '../../../scripts/utils/updateLink';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { isExternal } from 'tpPublicScripts/utils/updateLink';
+import { trackAnalytics } from 'tpPublicScripts/utils/analytics';
 
 class Image {
   constructor({ el }) {

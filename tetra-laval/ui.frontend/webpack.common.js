@@ -51,9 +51,14 @@ module.exports = {
                 ]
             },
             {
-                test: /\.js$/,
+                test: /\.m?js$/,
                 exclude: /node_modules/,
-                loader: 'eslint-loader',
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ['@babel/preset-env']
+                    }
+                  }
             },
             {
                 test: /\.scss$/,
@@ -100,6 +105,11 @@ module.exports = {
                     },
                 },
             },
+            {
+              test: /\.hbs$/,
+              exclude: /node_modules/,
+              loader: "handlebars-loader"
+            }
         ]
     },
     plugins: [
@@ -110,7 +120,17 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             { from: path.resolve(__dirname, SOURCE_ROOT + '/resources'), to: './clientlib-site/' }
-        ])
+        ]),
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery'
+        }),
+        new webpack.LoaderOptionsPlugin({
+          options: {
+            handlebarsLoader: {}
+          }
+        })
     ],
     stats: {
         assetsSort: 'chunks',
@@ -131,7 +151,9 @@ module.exports = {
     resolve: {
       mainFields: ['main', 'module'],
       alias: {
+        jquery: path.resolve('../../tetrapak-commons/ui.dev/src/node_modules/jquery'),
         bootstrap: path.resolve('../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
+        tpPublicScripts: path.resolve('../../tetrapak-publicweb/ui.dev/src/source/scripts'),
         tpCommon: path.resolve('../../tetrapak-commons/ui.dev/src/source')
       }
     }

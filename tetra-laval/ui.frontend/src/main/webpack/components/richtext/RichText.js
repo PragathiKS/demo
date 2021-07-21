@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { isExternal } from '../../../scripts/utils/updateLink';
+import { trackAnalytics } from 'tpPublicScripts/utils/analytics';
+import { isExternal } from 'tpPublicScripts/utils/updateLink';
 class RichText {
   constructor({ el }) {
     this.root = $(el);

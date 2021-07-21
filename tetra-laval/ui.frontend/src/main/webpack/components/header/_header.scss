@@ -1,0 +1,259 @@
+.tp_pw-header {
+  $self: &;
+
+  @extend .d-flex ;
+  @extend .justify-content-between;
+  @extend .align-items-center;
+
+  padding: 0 $padding-xxxl;
+
+  @media #{$mobile} {
+    padding: $padding-md;
+  }
+
+  li {
+    @include font-size($font-baseline);
+    @include line-height($line-height-body, $font-baseline);
+
+    @media #{$desktop} {
+      &:not(:first-child) {
+        padding-left: $padding-xxl;
+      }
+    } 
+  }
+
+  &__mobile-nav {
+    @extend .d-lg-none;
+    
+    @media #{$mobile} {
+      @include font-size($font-m-md);
+      @include line-height($line-height-medium, $font-m-md);
+    }
+
+    &-btn {
+      display: none;
+    }
+
+    &-menu {
+      @include margin-top($margin-xl);
+
+      position: absolute;
+      max-width: unset;
+      max-height: 0;
+      height: 100vh;
+      width: 100%;
+      display: block;
+      left: 50%;
+
+      transition: max-height .2s ease-out;
+      transform: translate(-50%);
+      overflow: hidden;
+
+      background-color: $color-white;
+      z-index: $zindex-header;
+
+      &-item {
+        padding: $padding-md;
+        border-bottom: 1px solid $color-mercury;
+        color: $color-congress-blue;
+
+        span {
+          padding: $padding-md;
+        }
+
+        a {
+          display: block;
+          padding: $padding-xs 0;
+        }
+
+        h4::after {
+          border-bottom: 1px solid black;
+        }
+
+        &:first-child {
+          padding: 0;
+        }
+      }
+
+      &-next-lvl-menu {
+        position: absolute;
+        left: 100%;
+        visibility: hidden;
+        height: 0;
+        overflow-y: auto;
+
+        label {
+          width: 100%;
+          margin-bottom: 0;
+        }
+      }
+
+      @media #{$mobile} {
+        &-mega {
+          display: flex;
+          justify-content: space-between;
+
+          input[type="checkbox"] {
+            display: none;
+          }
+
+          label {
+            width: 100%;
+            margin-bottom: 0;
+          }
+      
+          .mega-menu-btn:checked ~ .tp_pw-header__mobile-nav-menu-next-lvl-menu {
+            height: auto;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+
+            visibility: unset;
+            transition: all 0.2s linear;
+      
+            background-color: $color-white;
+          }
+        }
+      }
+    }
+
+    @media #{$mobile} {
+      &-label {
+        display: unset;
+        margin: 0;
+      }
+  
+      &-navicon {
+        background: $color-tundora;
+        display: block;
+        height: 2px;
+        width: 18px;
+        position: relative;
+      }
+    
+      &-navicon:before {
+        top: 5px;
+      }
+    
+      &-navicon:after {
+        top: -5px;
+      }
+    
+      &-navicon:before, &-navicon:after {
+        background: $color-tundora;
+        display: block;
+        width: 100%;
+        height: 100%;
+        content: '';
+        position: absolute;
+        transition: all .2s ease-out;
+      }
+  
+      &-btn:checked ~.tp_pw-header__mobile-nav-menu {
+        max-height: calc(100vh - 65px);
+      }
+    
+      &-btn:checked ~ &-label &-navicon {
+        background: transparent;
+      }
+    
+      &-btn:checked ~ &-label &-navicon:before {
+        transform: rotate(-45deg);
+      }
+    
+      &-btn:checked ~ &-label &-navicon:after {
+        transform: rotate(45deg);
+      }
+    
+      &-btn:checked ~ &-label &-navicon:before,
+      &-btn:checked ~ &-label &-navicon:after {
+        top: 0;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+
+    @media #{$mobile} {
+      display: none;
+    }
+
+    &-logo {
+      width: 172px;
+    }
+
+    &-item {
+      padding: 32px 0;
+    }
+
+    &-options {
+      @extend .d-flex ;
+      @extend .align-items-center;
+
+      i:hover {
+        cursor: pointer;
+      }
+  
+      i:last-child {
+        margin-left: $padding-sm;
+      }
+  
+      @media #{$mobile} {
+        @include font-size($font-m-md);
+        @include line-height($line-height-medium, $font-m-md);
+      } 
+    }
+  }
+
+  &__mega-menu {
+    &:hover #{ $self }__mega-menu-content {
+        display: block;
+    }
+  
+    &-header {
+      @include margin-bottom($margin-md);
+    }
+
+    &-link {
+      color: $color-congress-blue;
+      display: block;
+      font-weight: 500;
+
+      &:hover {
+        color: unset;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__mega-menu-content {
+    display: flex;
+    position: absolute;
+
+    width: 100%;
+    background-color: $color-white;
+    display: none;
+
+    left: 50%;
+    transform: translate(-50%, 10%);
+
+    z-index: $zindex-header;
+
+    &__wrapper {
+      margin: 0 auto;
+      padding: $padding-xxxl;
+      max-width: $body-max-width;
+    }
+  }
+
+  .tp_pw-header-arrow {
+    padding: $padding-md;
+    background-color: $color-wild-sand;
+
+    &--left {
+      transform: rotate(180deg);
+    }
+  }
+}

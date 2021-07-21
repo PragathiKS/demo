@@ -1,7 +1,7 @@
 import $ from 'jquery';
-import { $global } from '../../../scripts/utils/commonSelectors';
-import { isExternal } from '../../../scripts/utils/updateLink';
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { $global } from 'tpPublicScripts/utils/commonSelectors';
+import { isExternal } from 'tpPublicScripts/utils/updateLink';
+import { trackAnalytics } from 'tpPublicScripts/utils/analytics';
 
 // to do move files utils form tetrapak ui.dev
 

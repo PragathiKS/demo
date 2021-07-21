@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { getLinkClickAnalytics, addLinkAttr } from '../../../scripts/common/common';
-import { isExternal, isDownloable  } from '../../../scripts/utils/updateLink';
+import { getLinkClickAnalytics, addLinkAttr } from 'tpPublicScripts/common/common';
+import { isExternal, isDownloable  } from 'tpPublicScripts/utils/updateLink';
 class Banner {
   constructor({ el }) {
     this.root = $(el);

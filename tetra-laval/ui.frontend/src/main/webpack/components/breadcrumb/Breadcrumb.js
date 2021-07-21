@@ -1,6 +1,5 @@
 import $ from 'jquery';
-
-import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { trackAnalytics } from 'tpPublicScripts/utils/analytics';
 
 class Breadcrumb {
   constructor({ el }) {

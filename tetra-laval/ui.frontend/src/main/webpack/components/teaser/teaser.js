@@ -1,6 +1,6 @@
 import $ from 'jquery';
 // import 'owlcarousel';
-import { addLinkAttr,getLinkClickAnalytics } from '../../../scripts/common/common';
+import { addLinkAttr,getLinkClickAnalytics } from 'tpPublicScripts/common/common';
 
 
 class Teaser {

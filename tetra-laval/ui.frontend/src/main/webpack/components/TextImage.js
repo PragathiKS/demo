@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
+import { getLinkClickAnalytics,addLinkAttr } from 'tpPublicScripts/common/common';
 class TextImage {
   constructor({ el }) {
     this.root = $(el);
