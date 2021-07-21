@@ -19,7 +19,7 @@
                    data-anchor-type="${dataLinkSectionCTAText}" target="_self">
                     <sly data-sly-test="${!wcmmode.edit && teaserItem.imagePath}"
                          data-sly-use.dynamicImageModel="${'com.tetralaval.models.DynamicImageModel'
-                            @ imagePath=teaserImage.imagePath, altText=teaserItem.imageAltText}">
+                            @ imagePath=teaserItem.imagePath, altText=teaserItem.imageAltText}">
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E"
                              class="img-responsive js-dynamic-media tp-teaser__image"
                              itemprop="image" alt="${dynamicImageModel.altText}"
