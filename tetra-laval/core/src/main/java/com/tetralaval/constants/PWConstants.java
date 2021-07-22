@@ -10,6 +10,8 @@ public final class PWConstants {
     /** The Constant GLOBAL_ISO_CODE. */
     public static final String GLOBAL_ISO_CODE = "global";
 
+    public static final String ROOT_PATH = "/content/tetra-laval/home";
+
     /** The Constant ROOT_LEVEL. */
     public static final int ROOT_LEVEL = 1;
 
@@ -18,6 +20,8 @@ public final class PWConstants {
 
     /** The Constant SECTION_LEVEL. */
     public static final int SECTION_LEVEL = 3;
+
+    public static final int SUBMENU_LAST_LEVEL = 5;
 
     /** The Constant SLASH. */
     public static final String SLASH = "/";
