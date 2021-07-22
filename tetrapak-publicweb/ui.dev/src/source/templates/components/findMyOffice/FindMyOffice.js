@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
@@ -18,7 +17,8 @@ class FindMyOffice {
     this.cache.map = {};
     this.cache.baiduMap = null;
     this.cache.baiduMapMarker = null;
-    this.cache.isChinaLocale = $('html').attr('lang') === 'zh-CN' ? true : false;
+    // this.cache.isChinaLocale = $('html').attr('lang') === 'zh-CN' ? true : false;
+    this.cache.isChinaLocale = window.location.href.indexOf('zh-cn') === -1 ? false:true;
     this.cache.googleMaps = '';
     this.cache.officesList = [];
     this.cache.officesNameList = [];
@@ -100,11 +100,11 @@ class FindMyOffice {
     });
     
     // Generate View Full Map button
-    const viewMapURL = 'http://api.map.baidu.com/marker?location='+this.cache.defaultLongitude+','+this.cache.defaultLatitude+'&output=html';
+    const mapURI = 'https://map.baidu.com/?latlng='+ this.cache.defaultLongitude+','+this.cache.defaultLatitude +'&autoOpen=true&l';
     const newlink = document.createElement('a');
     newlink.classList.add('BMap_stdMpViewMap');
     newlink.textContent = '查看全屏';
-    newlink.setAttribute('href', viewMapURL);
+    newlink.setAttribute('href', mapURI);
     newlink.setAttribute('target', '_blank');
     $('.pw-find-my-office__map').prepend(newlink);
   }
@@ -225,7 +225,7 @@ class FindMyOffice {
         this.cache.baiduMap.centerAndZoom(point, 11);
         this.baiduMapMarker(this.cache.baiduMap, office.longitude, office.latitude);
       }
-      const mapURL = 'http://api.map.baidu.com/marker?location='+office.longitude+','+office.latitude+'&output=html';
+      const mapURL = 'https://map.baidu.com/?latlng='+ office.latitude + ',' + office.longitude +'&autoOpen=true&l';
       document.querySelector('.BMap_stdMpViewMap').setAttribute('href', mapURL);
     } else {
       const latLng = new this.cache.googleMaps.LatLng(
