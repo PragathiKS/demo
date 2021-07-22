@@ -250,7 +250,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                                 fieldDescription="Select to enable carousel on this component"
                                 name="./enableCarousel"
-                                value="true"
+								value="true"
                                 text="Enable Carousel"/>
                         </items>
                     </column>

@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -54,8 +55,9 @@ public class PageLoadAnalyticsModel {
     @OSGiService
     protected XSSAPI xssapi;
 
-    /** The Constant SITE_NAME. */
-    private static final String SITE_NAME = "publicweb";
+    /** The cookieDataDomainScriptService. */
+    @OSGiService
+    private CookieDataDomainScriptService cookieDataDomainScriptService;
 
     /** The Constant PAGE_LOAD_EVENT. */
     private static final String PAGE_LOAD_EVENT = "content-load";
@@ -83,6 +85,15 @@ public class PageLoadAnalyticsModel {
 
     /** The page type. */
     private String pageType = StringUtils.EMPTY;
+
+    /** The data domain script. */
+    private String dataDomainScript = StringUtils.EMPTY;
+
+    /** The application abbreviation. */
+    private String applicationAbbreviation = StringUtils.EMPTY;
+
+    /** The application name. */
+    private String applicationName = StringUtils.EMPTY;
 
     /** The digital data. */
     private String digitalData;
@@ -113,7 +124,7 @@ public class PageLoadAnalyticsModel {
 
     /** The site section 4. */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
-    
+
     /** The site section 4. */
     private final StringBuilder siteSection5 = new StringBuilder(StringUtils.EMPTY);
 
@@ -147,6 +158,9 @@ public class PageLoadAnalyticsModel {
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
+        if(GlobalUtil.isPublish()){
+            updateCookieParameters();
+        }
         updatePageName();
         updateProductName();
         updateHrefLang();
@@ -158,7 +172,9 @@ public class PageLoadAnalyticsModel {
      */
     private void updateProductName() {
         final ProductModel product = resource.adaptTo(ProductModel.class);
-        productName = product.getName();
+        if(product != null) {
+            productName = product.getName();
+        }
     }
 
     /**
@@ -177,6 +193,28 @@ public class PageLoadAnalyticsModel {
             siteLanguage = languagePage.getName();
         }
     }
+
+    /**
+     * This method will update the cookie parameters
+     */
+    private void updateCookieParameters(){
+         if (currentPage.getAbsoluteParent(1).getName().equalsIgnoreCase(PWConstants.TETRAPAK)){
+              applicationName=currentPage.getAbsoluteParent(2).getName();
+          } else {
+             applicationName=currentPage.getAbsoluteParent(1).getName();
+         }
+         if(!applicationName.isEmpty()) {
+             String[] cookieParamArray = cookieDataDomainScriptService.getCookieDomainScriptConfig();
+             for(String param :cookieParamArray){
+                 if(param.contains(applicationName)){
+                     final String domainAbbreviationJsonString = param.split("=")[1];
+                     applicationAbbreviation=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, PWConstants.SITE_ABBREVIATION);
+                     dataDomainScript=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, PWConstants.DOMAINSCRIPT);
+                     break;
+                 }
+             }
+         }
+        }
 
     /**
      * Update site sections.
@@ -232,7 +270,7 @@ public class PageLoadAnalyticsModel {
      * Update page name.
      */
     private void updatePageName() {
-        pageName = "pw:" + siteLanguage;
+        pageName = applicationAbbreviation+":" + siteLanguage;
         if (StringUtils.isNotEmpty(siteSection0.toString())) {
             pageName += ":" + siteSection0.toString();
             if (StringUtils.isNotEmpty(siteSection1.toString())) {
@@ -470,7 +508,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("siteName", SITE_NAME);
+        pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
@@ -590,6 +628,10 @@ public class PageLoadAnalyticsModel {
      */
     public Boolean isPublisher() {
         return GlobalUtil.isPublish();
+    }
+
+    public String getDataDomainScript(){
+        return dataDomainScript;
     }
 
     /**

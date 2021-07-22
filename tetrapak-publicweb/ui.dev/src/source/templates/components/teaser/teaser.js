@@ -10,7 +10,7 @@ class Teaser {
   cache = {};
   initCache() {
     this.cache.$teaserLink = this.root.find('.js-teaser-analytics');
-    this.cache.$teaserImage = this.root.find('.js-teaser-analytics img');
+    this.cache.$teaserImage = this.root.find('.carousal-wrapper img');
     this.cache.$owl = this.root.find('.owl-carousel');
     this.cache.option = {
       loop: true,
@@ -51,6 +51,8 @@ class Teaser {
     this.cache.$owlPrev = this.root.find('.owl-prev');
     this.cache.$owlNext = this.root.find('.owl-next');
     this.trackArrowAnalytics();
+    this.cache.$teaserLink = this.root.find('.js-teaser-analytics');
+    this.cache.$teaserLink.off().on('click', this.trackAnalytics);
     this.adjustNavArrow();
     $(window).on('resize orientationchange', () => {
       this.adjustNavArrow();
@@ -106,9 +108,9 @@ class Teaser {
     // calculate height using 16:9 formula
     imageHeight = imageHeight/16;
     imageHeight = Math.floor(imageHeight*9);
-    // 14px as half height of arrow
-    $owlPrev.css('top', imageHeight/2 - 14);
-    $owlNext.css('top', imageHeight/2 - 14);
+    // 12px as half height of arrow
+    $owlPrev.css('top', imageHeight/2 - 12);
+    $owlNext.css('top', imageHeight/2 - 12);
   }
 
   trackAnalytics = (e) => {
