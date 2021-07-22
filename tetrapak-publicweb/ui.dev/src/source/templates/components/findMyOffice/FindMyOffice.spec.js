@@ -47,6 +47,7 @@ describe('FindMyOffice', function() {
       this.findMyOffice,
       'renderMarkerPosition'
     );
+    this.initBaiduMapSpy = sinon.spy(this.findMyOffice, 'initBaiduMap');
 
     this.findMyOffice.init();
     const googleMap = {
@@ -77,6 +78,7 @@ describe('FindMyOffice', function() {
     this.renderMarkerPositionSpy.restore();
     this.openStub.restore();
     this.onKeydownSpy.restore();
+    this.initBaiduMapSpy.restore();
   });
 
   it('should initialize', function(done) {
@@ -85,6 +87,10 @@ describe('FindMyOffice', function() {
   });
   it('should call handleGoogleMapApi', function(done) {
     expect(this.findMyOffice.handleGoogleMapApi.called).to.be.true;
+    done();
+  });
+  it('should call init baidu map', function(done) {
+    expect(this.findMyOffice.init.called).to.be.true;
     done();
   });
   it('should call getOfficeList', function(done) {

@@ -106,6 +106,7 @@ class FindMyOffice {
     newlink.textContent = '查看全屏';
     newlink.setAttribute('href', mapURI);
     newlink.setAttribute('target', '_blank');
+    newlink.setAttribute('auto_locator', 'viewLargeMapCTA');
     $('.pw-find-my-office__map').prepend(newlink);
   }
 
@@ -121,7 +122,7 @@ class FindMyOffice {
       const p1 = lat;
       const point = new window.BMap.Point(p0, p1);
       const iconImg = this.createBaiduMapMarkerIcon(json.icon);
-      const marker = new window.BMap.Marker(point, { icon: iconImg });
+      const marker = new window.BMap.Marker(point, { icon: iconImg, auto_locator: 'mapPin' });
       this.cache.baiduMapMarker = marker;
       map.addOverlay(marker);
     }
@@ -236,7 +237,8 @@ class FindMyOffice {
       this.cache.marker = new this.cache.googleMaps.Marker({
         position: latLng,
         title: office.name,
-        icon: '/content/dam/tetrapak/publicweb/Pin.png'
+        icon: '/content/dam/tetrapak/publicweb/Pin.png',
+        auto_locator: 'mapPin'
       });
 
       // To add the marker to the map, call setMap();
@@ -355,12 +357,8 @@ class FindMyOffice {
         if (data) {
           this.cache.normalizedData = data;
           this.renderCountries();
-          this.cache.selectedCountry = this.root.find(
-            '.js-dropdown-item-country'
-          );
-          $(
-            '.js-pw-form__dropdown__country,.js-pw-form__dropdown__country-select'
-          ).keydown(e =>
+          this.cache.selectedCountry = this.root.find('.js-dropdown-item-country');
+          $('.js-pw-form__dropdown__country,.js-pw-form__dropdown__country-select').keydown(e =>
             this.onKeydown(e, Object.keys(this.cache.normalizedData))
           );
           this.cache.selectedCountry.on('click', this.onClickCountryItem);
@@ -416,6 +414,7 @@ class FindMyOffice {
     );
     const gotoMapButton = document.createElement('div');
     $(gotoMapButton).addClass('view-larger-map');
+    $(gotoMapButton).attr('auto_locator', 'viewLargeMapCTA');
     gotoMapButton.innerHTML = $(this.cache.hiddenElement).text();
     this.cache.map.controls[
       this.cache.googleMaps.ControlPosition.TOP_RIGHT

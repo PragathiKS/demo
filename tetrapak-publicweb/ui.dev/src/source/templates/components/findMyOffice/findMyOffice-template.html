@@ -1,5 +1,5 @@
 <sly data-sly-template.findMyOffice_template="${@data, flag}">
-  <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice">
+  <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice" auto_locator="fmoOrganism">
     <div class="hidden-element js-google-api js-i18-value" data-google-api-key="${data.googleApiKey}"
       data-google-api-servlet="${data.servletPath}">${"pw.findMyOffice.goToLocalSite" @i18n}</div>
     <div class="hidden-element js-hidden-element">${"pw.findMyOffice.viewLargerMap" @i18n}</div>
@@ -7,12 +7,14 @@
       <div data-link-section='Find my office' data-link-name=''
         class='pw-find-my-office__wrapper js-pw-find-my-office__wrapper'>
 
-        <div class="pw-find-my-office__form-group">
-          <sly data-sly-test="${data.heading}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
+        <div class="pw-find-my-office__form-group" auto_locator="locateCard">
+          <div auto_locator="headlineCard">
+            <sly data-sly-test="${data.heading}" data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
             data-sly-call="${title.heading_h1_template @ headingText=data.heading, variant='regular'}" />
+          </div>
           <div class="pw-find-my-office__form-group__field country-field"><label
-              class="pw-find-my-office__form-group__label" for="country">${"pw.form.label.country" @i18n}</label>
-            <div class="pw-form__dropdown dropdown text-left">
+              class="pw-find-my-office__form-group__label" for="country" auto_locator="countryLabelCard">${"pw.form.label.country" @i18n}</label>
+            <div class="pw-form__dropdown dropdown text-left" auto_locator="countryValueCard">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__country js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                 type="button" title='' aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><span
@@ -25,8 +27,8 @@
           <div
             class="pw-find-my-office__form-group__field pw-find-my-office__form-group__city-field js-pw-find-my-office__form-group__city-field">
             <label class="pw-find-my-office__form-group__label js-pw-find-my-office__form-group__label"
-              for="country">${"pw.form.label.office" @i18n}</label>
-            <div class="pw-form__dropdown dropdown text-left">
+              for="country" auto_locator="officeLabelCard">${"pw.form.label.office" @i18n}</label>
+            <div class="pw-form__dropdown dropdown text-left" auto_locator="officeValueCard">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__city js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                 type="button" title='' aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><span
@@ -40,7 +42,7 @@
             <div class="js-pw-find-my-office-office-details"></div>
           </div>
         </div>
-        <div class="pw-find-my-office__map js-pw-find-my-office__map" id="pw-find-my-office__map"></div>
+        <div class="pw-find-my-office__map js-pw-find-my-office__map" id="pw-find-my-office__map" auto_locator="fmoMap"></div>
       </div>
     </div>
   </div>
