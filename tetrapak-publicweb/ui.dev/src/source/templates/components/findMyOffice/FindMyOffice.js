@@ -17,7 +17,6 @@ class FindMyOffice {
     this.cache.map = {};
     this.cache.baiduMap = null;
     this.cache.baiduMapMarker = null;
-    // this.cache.isChinaLocale = $('html').attr('lang') === 'zh-CN' ? true : false;
     this.cache.isChinaLocale = window.location.href.indexOf('zh-cn') === -1 ? false:true;
     this.cache.googleMaps = '';
     this.cache.officesList = [];
@@ -53,7 +52,6 @@ class FindMyOffice {
 
   bindEvents() {
     const googleApiKey = this.cache.googleApi.data('google-api-key');
-    // const isChina = window.location.href.indexOf('zh-cn');
     if (!this.cache.isChinaLocale) {
       loadGoogleMapsApi({
         key: googleApiKey,
