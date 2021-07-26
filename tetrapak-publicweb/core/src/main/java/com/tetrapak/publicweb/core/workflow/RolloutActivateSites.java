@@ -2,6 +2,9 @@ package com.tetrapak.publicweb.core.workflow;
 
 import java.util.Objects;
 
+import javax.jcr.RepositoryException;
+
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.framework.Constants;
@@ -15,6 +18,7 @@ import com.adobe.granite.workflow.exec.WorkItem;
 import com.adobe.granite.workflow.exec.WorkflowData;
 import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
+import com.day.cq.wcm.api.WCMException;
 import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.day.cq.wcm.msm.api.RolloutManager;
 import com.tetrapak.publicweb.core.services.CreateLiveCopyService;
@@ -62,15 +66,18 @@ public class RolloutActivateSites implements WorkflowProcess {
      */
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap paramMetaDataMap) {
         LOGGER.debug("inside execute method");
-        ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
-        // get the payload page from the workflow data
-        WorkflowData workflowData = workItem.getWorkflowData();
-        String payload = workflowData.getPayload().toString();
-        if (Objects.nonNull(resolver)) {
-            String language = PageUtil.getLanguagePage(resolver.getResource(payload)).getName();
-            LOGGER.info("language : {}",language);
-            createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, language,false);
+        try {
+	        ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
+	        // get the payload page from the workflow data
+	        WorkflowData workflowData = workItem.getWorkflowData();
+	        String payload = workflowData.getPayload().toString();
+	        if (Objects.nonNull(resolver)) {
+	            String language = PageUtil.getLanguagePage(resolver.getResource(payload)).getName();
+	            LOGGER.info("language : {}",language);
+	            createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, language,false, false);
+	        }
+        }catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
+            LOGGER.error("An error occurred while creating live copy", e);
         }
-
     }
 }

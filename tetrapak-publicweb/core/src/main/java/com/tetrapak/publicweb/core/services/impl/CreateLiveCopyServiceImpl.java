@@ -89,11 +89,13 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      *            the language
      * @param isDeep
      *            the is deep
+     * @throws RepositoryException 
+     * @throws WCMException 
+     * @throws PersistenceException 
      */
     @Override
     public void createLiveCopy(ResourceResolver resolver, String payload, RolloutManager rolloutManager,
-            LiveRelationshipManager liveRelManager, String language, boolean isDeep) {
-        try {
+            LiveRelationshipManager liveRelManager, String language, boolean isDeep, boolean flowComingFromLBScheduler) throws PersistenceException, WCMException, RepositoryException {
             if (config.enableConfig()) {
                 pathToReplicate = new ArrayList<>();
                 LOGGER.info("payload : {}", payload);
@@ -102,14 +104,11 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                 String rootPath = LinkUtils.getRootPath(payload);
                 LOGGER.debug("rootPath : {}", rootPath);
                 String page = payload.replace(rootPath, StringUtils.EMPTY);
-                checkAndCreateLiveCopies(resolver, payload, language, page, isDeep);
+                checkAndCreateLiveCopies(resolver, payload, language, page, isDeep, flowComingFromLBScheduler);
                 CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
 
                 CreateLiveCopyServiceUtil.replicatePaths(resolver, pathToReplicate, replicator);
             }
-        } catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
-            LOGGER.error("An error occurred while creating live copy", e);
-        }
     }
 
     /**
@@ -144,7 +143,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      * @throws NoSuchNodeTypeException
      */
     private Boolean checkAndCreateLiveCopies(ResourceResolver resolver, String payload, String language,
-            String page, Boolean isDeep)
+            String page, Boolean isDeep, Boolean flowComingFromLBScheduler)
             throws WCMException, RepositoryException, PersistenceException {
         Boolean isLiveCopyExists = true;
         PageManager pageManager = resolver.adaptTo(PageManager.class);
@@ -153,6 +152,9 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
             String pagePath = path + page;
             String parentPagePath = pagePath.substring(0, pagePath.lastIndexOf("/"));
             LOGGER.debug("pagepath : {}", pagePath);
+            if(resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) == null && flowComingFromLBScheduler) {
+            	throw new WCMException("Unable to perform rollout operation for "+page+" as parent page not present.");
+            }
             if (resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) != null) {
                 isLiveCopyExists = false;
                 pageManager.copy(blueprintPage, pagePath, getNextPage(blueprintPage), !isDeep, false, true);
