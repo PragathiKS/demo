@@ -1,11 +1,11 @@
 <sly data-sly-use.headerConfig="com.tetralaval.models.HeaderConfigurationModel"/>
 
 <p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
-<header>
-    <nav class="pw-container">
-        <div class="tp_pw-header">
+<header class="tp_pw-header-wrapper" data-module="Header">
+    <div class="tp_pw-header-content">
+        <nav class="tp_pw-header">
             <div class="tp_pw-header__mobile-nav">
-                <input class="tp_pw-header__mobile-nav-btn" type="checkbox" id="menu-btn" />
+                <input class="tp_pw-header__mobile-nav-btn" type="checkbox" id="menu-btn" aria-label="Mobile menu" />
                 <label class="tp_pw-header__mobile-nav-label" for="menu-btn">
                     <i class="tp_pw-header__mobile-nav-navicon"></i>
                 </label>
@@ -15,14 +15,14 @@
                         <a href="${navigationItem.link}" data-sly-test="${!hasFirstLevel}"
                            class="tp_pw-header__link">${navigationItem.label}</a>
                         <sly data-sly-test="${hasFirstLevel}">
-                            <input class="mega-menu-btn" type="checkbox" id="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}"/>
+                            <input class="mega-menu-btn" type="checkbox" id="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" aria-label="second menu"/>
                             <label for="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" class="d-flex justify-content-between">
                                 <span class="tp_pw-header__link">${navigationItem.label}</span>
                                 <i class="tp_pw-header-arrow icon-Arrow_Right_pw"></i>
                             </label>
                             <ul class="tp_pw-header__mobile-nav-menu-next-lvl-menu">
                                 <li class="tp_pw-header__mobile-nav-menu-item">
-                                    <label for="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" class="d-flex justify-content-between text-center">
+                                    <label for="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" class="d-flex justify-content-between text-center" aria-label="main menu">
                                         <i class="tp_pw-header-arrow tp_pw-header-arrow--left icon-Arrow_Right_pw"></i>
                                         <span class="text-center flex-grow-1">${navigationItem.label}</span>
                                     </label>
@@ -46,7 +46,7 @@
                     </li>
                 </ul>
             </div>
-            <a class="js-tp-pw-header-logo-digital-data pw-header-logo" href="${headerConfig.logoLink}"
+            <a class="js-tp_pw-header__nav-logo" href="${headerConfig.logoLink}"
                 data-sly-test="${headerConfig.logoLink && headerConfig.logoLink != '#'}">
                 <img class="tp_pw-header__nav-logo" src="${headerConfig.logoImagePath}" alt="${headerConfig.logoAlt}" title="Tetralaval">
             </a>
@@ -77,14 +77,19 @@
                 </li>
             </ul>
             <div class="tp_pw-header__nav-options">
-                <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data"
-                   data-link-section="Header Navigation" data-link-name="contact us envelope"
-                   target="_self" title="Contact Us" href="${headerConfig.contactLink}"
+                <button class="js-tp_pw-header__nav-options-search" aria-label="Find on page"
+                        type="button" title="Find on page"
+                        data-sly-test="${headerConfig.searchLink && headerConfig.searchLink != '#'}">
+                    <i class="icon-Search_blue_pw d-none d-lg-block"></i>
+                </button>
+                <a class="js-tp_pw-header__nav-options-envelope" aria-label="Contact us"
+                   type="button" title="Contact us" target="_self" href="${headerConfig.contactLink}"
                    data-sly-test="${headerConfig.contactLink && headerConfig.contactLink != '#'}">
                     <i class="icon-Envelope_Outlined_Blue_pw"></i>
                 </a>
-                <i class="icon-Search_blue_pw d-none d-lg-block"></i>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
+    <sly data-sly-use.lib="/apps/publicweb/components/content/searchbar/searchbar-template.html"
+        data-sly-call="${lib.searchbar_template @ searchPage=headerConfig.searchLink}"/>
 </header>

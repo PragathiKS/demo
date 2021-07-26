@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderConfigurationModel {
     private final static String HIDE_IN_NAV_PROPERTY = "hideInNav";
+    private final static String ROOT_PATH = "/content/tetrapak/tetralaval/global/en";
 
     /** The resource. */
     @SlingObject
@@ -54,6 +55,10 @@ public class HeaderConfigurationModel {
     @ValueMapValue
     private String contactLink;
 
+    /** The search link. */
+    @ValueMapValue
+    private String searchLink;
+
     private ResourceResolver resourceResolver;
     private List<NavigationModel> navigationModelList;
 
@@ -61,7 +66,7 @@ public class HeaderConfigurationModel {
     protected void init() {
         resource = request.getResource();
         resourceResolver = resource.getResourceResolver();
-        navigationModelList = generateNavigation(PWConstants.ROOT_PATH);
+        navigationModelList = generateNavigation(ROOT_PATH);
     }
 
     public String getLogoImagePath() {
@@ -80,6 +85,10 @@ public class HeaderConfigurationModel {
         return LinkUtils.sanitizeLink(contactLink, request);
     }
 
+    public String getSearchLink() {
+        return LinkUtils.sanitizeLink(searchLink, request);
+    }
+
     public List<NavigationModel> getNavigationModelList() {
         return navigationModelList;
     }
@@ -89,7 +98,7 @@ public class HeaderConfigurationModel {
         List<String> paths = Arrays.stream(path.split(PWConstants.SLASH))
                 .filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList());
         int currentLevel = paths.size();
-        if (currentLevel <= (PWConstants.SUBMENU_LAST_LEVEL + 1)) {
+        if (currentLevel <= (PWConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL + 1)) {
             Resource currentResource = resourceResolver.resolve(path);
             if (currentResource != null && currentResource.adaptTo(Node.class) != null) {
                 Page currentPage = currentResource.adaptTo(Page.class);
