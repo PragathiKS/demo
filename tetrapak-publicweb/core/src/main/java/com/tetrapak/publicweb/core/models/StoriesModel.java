@@ -1,0 +1,256 @@
+package com.tetrapak.publicweb.core.models;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Exporter;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.adobe.cq.export.json.ExporterConstants;
+import com.tetrapak.publicweb.core.models.multifield.ManualModel;
+import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
+import com.tetrapak.publicweb.core.services.AggregatorService;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+
+/**
+ * The Class StoriesModel.
+ */
+@Model(
+        adaptables = SlingHttpServletRequest.class,
+        resourceType = "publicweb/components/content/stories",
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+public class StoriesModel {
+
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(StoriesModel.class);
+
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
+
+    /** The resource. */
+    private Resource resource;
+
+    /** The heading. */
+    @ValueMapValue
+    private String heading;
+
+    /** The content type. */
+    @ValueMapValue
+    private String contentType;
+
+    /** The tags. */
+    @ValueMapValue
+    private String[] tags;
+
+    /** The max tabs. */
+    @ValueMapValue
+    private int maxTeasers;
+
+    /** The logical operator. */
+    @ValueMapValue
+    private String logicalOperator;
+
+    /** The link label. */
+    @ValueMapValue
+    private String linkLabel;
+
+    /** The link path. */
+    @ValueMapValue
+    private String linkPath;
+
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
+
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+
+    /** The pw theme. */
+    @ValueMapValue
+    private String pwTheme;
+
+    /** The enable carousel. */
+    @ValueMapValue
+    private String enableCarousel;
+
+    /** The manual list. */
+    @Inject
+    @Via("resource")
+    private List<ManualModel> manualList;
+
+    /** The semi automatic list. */
+    @Inject
+    @Via("resource")
+    private List<SemiAutomaticModel> semiAutomaticList;
+
+    /** The teaser list. */
+    private List<ManualModel> teaserList = new ArrayList<>();
+
+    /** The aggregator service. */
+    @OSGiService
+    private AggregatorService aggregatorService;
+
+    /**
+     * Inits the.
+     */
+    @PostConstruct
+    protected void init() {
+        resource = request.getResource();
+        if (StringUtils.isNotBlank(contentType)) {
+            switch (contentType) {
+                case "automatic":
+                    generateListAutomaticWay();
+                    break;
+                case "semi-automatic":
+                    generateListSemiAutomatically();
+                    break;
+                case "manual":
+                    getManualList();
+                    break;
+                default:
+                    LOGGER.info("Not a valid content-type");
+            }
+        }
+    }
+
+    /**
+     * Generate list automatic way.
+     */
+    private void generateListAutomaticWay() {
+        if (tags != null && tags.length > 0) {
+            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, maxTeasers,
+                    logicalOperator);
+            if (!aggregatorList.isEmpty()) {
+                setTabListfromAggregator(aggregatorList);
+            }
+        }
+    }
+
+    /**
+     * Gets the manual list.
+     *
+     * @return the manual list
+     */
+    public void getManualList() {
+        manualList.stream().forEach(model -> model.setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)));
+        teaserList.addAll(manualList);
+    }
+
+    /**
+     * Generate list semi automatically.
+     */
+    private void generateListSemiAutomatically() {
+        List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, semiAutomaticList);
+        if (!aggregatorList.isEmpty()) {
+            setTabListfromAggregator(aggregatorList);
+        }
+    }
+
+    /**
+     * Sets the tab list from aggregator.
+     *
+     * @param aggregatorList
+     *            the new tab list from aggregator
+     */
+    private void setTabListfromAggregator(List<AggregatorModel> aggregatorList) {
+        for (AggregatorModel aggregator : aggregatorList) {
+            ManualModel teaser = new ManualModel();
+            teaser.setTitle(aggregator.getTitle());
+            teaser.setDescription(aggregator.getDescription());
+            teaser.setFileReference(aggregator.getImagePath());
+            teaser.setAlt(aggregator.getAltText());
+            teaser.setLinkText(aggregator.getLinkText());
+            teaser.setLinkPath(LinkUtils.sanitizeLink(aggregator.getLinkPath(), request));
+            teaser.setPwButtonTheme(aggregator.getPwButtonTheme());
+            teaserList.add(teaser);
+        }
+    }
+
+    /**
+     * Gets the heading.
+     *
+     * @return the heading
+     */
+    public String getHeading() {
+        return heading;
+    }
+
+    /**
+     * Gets the link label.
+     *
+     * @return the link label
+     */
+    public String getLinkLabel() {
+        return linkLabel;
+    }
+
+    /**
+     * Gets the link path.
+     *
+     * @return the link path
+     */
+    public String getLinkPath() {
+        return LinkUtils.sanitizeLink(linkPath, request);
+    }
+
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
+    }
+
+    /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
+    public String getPwTheme() {
+        return pwTheme;
+    }
+
+    /**
+     * Gets the enable carousel.
+     *
+     * @return the enable carousel
+     */
+    public String getEnableCarousel() {
+        return enableCarousel;
+    }
+
+    /**
+     * Gets the teaser list.
+     *
+     * @return the teaser list
+     */
+    public List<ManualModel> getTeaserList() {
+        return new ArrayList<>(teaserList);
+    }
+}
