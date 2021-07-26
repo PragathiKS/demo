@@ -1,0 +1,241 @@
+body {
+    @include line-height($font-l, $font-baseline);
+    font-family: $font-monsterrat;
+    background: $color-wild-sand;
+    font-weight: 400;
+    font-size: $font-baseline;
+    font-style: normal;
+    position: relative;
+}
+
+.aem-GridColumn--default--hide {
+    display: none;
+}
+
+a {
+    @include line-height($font-l, $font-baseline);
+    font-family: $font-monsterrat;
+    font-weight: 400;
+    font-size: $font-baseline;
+}
+
+.font-fixing {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+img {
+    border-radius: 4px;
+}
+h1,
+h2 {
+    font-family: $font-monsterrat;
+    font-weight: 700;
+}
+h3 {
+    font-family: $font-monsterrat;
+    font-weight: 400;
+}
+h4 {
+    font-family: $font-monsterrat;
+    font-weight: 500;
+}
+
+.pw-theme {
+    $self: &;
+    &--grayscale-white {
+        background-color: $color-white;
+    }
+    &--grayscale-lighter {
+        background-color: $color-wild-sand;
+    }
+}
+
+.pw-margin {
+    &--zero {
+        margin: 0;
+    }
+
+    &--regular {
+        margin: 0 $margin-md 0 $margin-md;
+        @media #{$desktop} {
+            margin: 0 $margin-xxxl 0 $margin-xxxl;
+        }
+    }
+}
+
+.pw-padding {
+    &--zero {
+        @include padding($padding-zero);
+    }
+
+    &--regular {
+        @include padding($padding-l $padding-md);
+        @media #{$desktop} {
+            @include padding($padding-xxxl);
+        }
+    }
+}
+
+.icon-Youtube_pw:before {
+    vertical-align: -3px;
+}
+
+.icon-Circle_Arrow_Right_pw {
+    position: relative;
+    &::before {
+        position: absolute;
+        top: 1px;
+    }
+}
+
+.pw-container {
+    @include padding(0);
+    max-width: 100%;
+    margin: 16px auto 0 auto;
+    height: auto;
+
+    @media #{$desktop} {
+        @include max-width($body-max-width);
+        margin: 24px auto 0 auto;
+    }
+}
+.pw-overlay {
+    background-color: $color-black;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 90px;
+    z-index: $zindex-s;
+    @media #{$desktop} {
+        top: 80px;
+    }
+}
+.pw-position-relative {
+    position: relative;
+}
+.pw-position-static {
+    position: static;
+}
+.sticky-section-menu {
+    display: block;
+}
+
+.tpatom-btn--primary,
+.tpatom-link--primary,
+.tpatom-btn--secondary,
+.tpatom-link--secondary,
+.tpatom-btn--transparent,
+.tpatom-btn--datepicker,
+.tpatom-link--transparent,
+.tpatom-link--datepicker {
+    span {
+        font-family: $font-monsterrat;
+    }
+}
+
+@media #{$mobile} {
+    .body-content {
+        @include padding-top(
+            $header-height-mobile * 1px
+        ); // with reference to Sticky Mobile Header navigation
+        &.body-top-padding {
+            @include padding-top(
+                $sticky-view-height * 1px
+            ); // with reference to Sticky Mobile Header + section menu
+        }
+    }
+}
+@media #{$desktop} {
+    .body-content {
+        &.body-top-padding {
+            @include padding-top(
+                62px
+            ); // with reference to desktop section menu height
+        }
+    }
+}
+@media #{$i-pad} {
+    .body-content {
+        @include padding-top(
+            $header-height-mobile * 1px
+        ); // with reference to Sticky Mobile Header navigation
+        &.body-top-padding {
+            @include padding-top(
+                $sticky-view-height * 1px
+            ); // with reference to Sticky Mobile Header + section menu
+        }
+    }
+}
+.tpatom-subheading {
+    letter-spacing: 0;
+}
+.tpatom-heading {
+    font-family: $font-monsterrat;
+    &--regular {
+        font-weight: 400;
+        @media #{$desktop} {
+            font-weight: 700;
+        }
+    }
+}
+
+@media #{$i-pad} {
+    .ipad-logo {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .pw-header-icons {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .ipad-logo {
+        justify-content: center !important;
+    }
+    .mega-menu-hr {
+        display: none !important;
+    }
+    .ipad-mega-menu-des {
+        display: none !important;
+    }
+    .heading-cta {
+        display: block !important;
+    }
+    .ipad-collapse-button {
+        display: flex !important;
+    }
+    .collapse.ipad-collapse.show {
+        display: block !important;
+    }
+    .collapse.ipad-collapse:not(.show) {
+        display: none !important;
+    }
+    a {
+        font-weight: 500;
+        @include font-size(14px);
+        @include line-height(24px, 14px);
+    }
+    .pw-megamenu__top {
+        img {
+            display: none !important;
+        }
+    }
+    .ipad-icon-arrow-right {
+        display: block !important;
+    }
+    .ipad-icon-arrow-left {
+        display: inline !important;
+    }
+    .ipad-food-category-d-md {
+        display: list-item !important;
+    }
+}

@@ -53,7 +53,7 @@ class Banner {
             $sideSectionright.css('width', finalWidth +'px');
           } else {
             const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
-            const bannerRightOffset = bannerOffset.left + bannerWidth;
+            const bannerRightOffset = bannerOffset.left + bannerWidth - 48;
             $sideSectionright.css('width', `${(pwContainerRightOffset - bannerRightOffset)}px`);
           }
           if($('.pw-banner-herowrapper').length) {
@@ -107,7 +107,7 @@ class Banner {
 
       getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);
 
-      if (isExternal($anchor) || (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224)) {
+      if (isExternal($anchor) || isDownloable || (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224)) {
         window.open($anchor, '_blank');
       } else {
         window.location.href = $anchor;

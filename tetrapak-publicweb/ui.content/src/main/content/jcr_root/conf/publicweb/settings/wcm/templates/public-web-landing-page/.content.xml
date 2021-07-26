@@ -5,8 +5,8 @@
         cq:lastModified="{Date}2020-01-20T12:57:59.639+05:30"
         cq:lastModifiedBy="admin"
         cq:templateType="/conf/publicweb/settings/wcm/template-types/landing-page"
-        jcr:description="Content Page without Section Menu"
+        jcr:description="Landing Page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Global only Content Page"
+        jcr:title="Landing Page Template"
         status="enabled"/>
 </jcr:root>

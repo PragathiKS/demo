@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -35,6 +36,10 @@ public class MarketSelectorModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+    
+    /** The current page. */
+    @Inject
+    private Page currentPage;
 
     /** The markets. */
     private List<MarketBean> markets = new ArrayList<>();
@@ -74,9 +79,11 @@ public class MarketSelectorModel {
     }
 
     /**
+     * Gets the global market.
+     *
      * @return global market
      */
-    private MarketBean getGlobalMarket() {
+    public MarketBean getGlobalMarket() {
         MarketBean globalMarketBean = new MarketBean();
         LanguageBean globalLanguageBean = new LanguageBean();
         globalLanguageBean.setLanguageIndex(1);
@@ -89,6 +96,10 @@ public class MarketSelectorModel {
         globalLanguages.add(globalLanguageBean);
         globalMarketBean.setLanguages(globalLanguages);
         globalMarketBean.setMarketName(getGlobalMarketTitle());
+        final Page countryPage = PageUtil.getCountryPage(currentPage);
+        if (Objects.nonNull(countryPage) && getGlobalMarketTitle().equalsIgnoreCase((String) countryPage.getTitle())) {
+            globalMarketBean.setActive(Boolean.TRUE);
+        }
         return globalMarketBean;
     }
 
@@ -110,17 +121,16 @@ public class MarketSelectorModel {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 MarketBean marketBean = new MarketBean();
                 marketBean.setMarketName(marketPage.getTitle());
-                List<LanguageBean> languages = new ArrayList<>();
-                while (languagePages.hasNext()) {
-                    languageCount++;
-                    Page languagePage = languagePages.next();
-                    LanguageBean languageBean = new LanguageBean();
-                    languageBean.setLanguageName(languagePage.getTitle());
-                    languageBean.setLinkPath(LinkUtils
-                            .sanitizeLink(languagePage.getPath() + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH,
-                                    request));
-                    languages.add(languageBean);
+                if (marketPage.getContentResource().getValueMap().containsKey("countryName")) {
+                    marketBean
+                            .setCountryName((String) marketPage.getContentResource().getValueMap().get("countryName"));
                 }
+                final Page countryPage = PageUtil.getCountryPage(currentPage);
+                if (Objects.nonNull(countryPage)
+                        && marketPage.getTitle().equalsIgnoreCase((String) countryPage.getTitle())) {
+                    marketBean.setActive(Boolean.TRUE);
+                }
+                List<LanguageBean> languages = getMarketLanguages(languagePages);
                 marketBean.setLanguages(languages);
                 markets.add(marketBean);
             }
@@ -130,6 +140,34 @@ public class MarketSelectorModel {
         } else {
             marketRows = languageCount / TOTAL_COLUMNS + 1;
         }
+    }
+
+    /**
+     * Gets the market languages.
+     *
+     * @param languagePages
+     *            the language pages
+     * @return the market languages
+     */
+    private List<LanguageBean> getMarketLanguages(Iterator<Page> languagePages) {
+        List<LanguageBean> languages = new ArrayList<>();
+        while (languagePages.hasNext()) {
+            languageCount++;
+            Page languagePage = languagePages.next();
+            LanguageBean languageBean = new LanguageBean();
+            languageBean.setLanguageName(languagePage.getTitle());
+            languageBean.setLinkPath(LinkUtils.sanitizeLink(
+                    languagePage.getPath() + PWConstants.SLASH + PWConstants.HOME_PAGE_REL_PATH, request));
+            if (languagePage.getContentResource().getValueMap().containsKey("countryTitle")) {
+                languageBean
+                        .setCountryTitle((String) languagePage.getContentResource().getValueMap().get("countryTitle"));
+            }
+            if(PageUtil.getLanguagePage(currentPage).getPath().equalsIgnoreCase(languagePage.getPath())) {
+                languageBean.setCurrentLanguage(Boolean.TRUE);
+            }
+            languages.add(languageBean);
+        }
+        return languages;
     }
 
     /**
@@ -173,7 +211,7 @@ public class MarketSelectorModel {
      *
      * @return the global market title
      */
-    private String getGlobalMarketTitle() {
+    public String getGlobalMarketTitle() {
         if (Objects.nonNull(request.getResourceResolver().getResource(PWConstants.GLOBLA_MARKET_PATH))) {
             return PageUtil.getCurrentPage(request.getResourceResolver().getResource(PWConstants.GLOBLA_MARKET_PATH))
                     .getTitle();

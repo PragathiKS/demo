@@ -4,4 +4,4 @@
     jcr:description="My Equipment Component"
     jcr:primaryType="cq:Component"
     jcr:title="My Equipment"
-    componentGroup=".hidden"/>
+    componentGroup="tetrapak-global-components"/>

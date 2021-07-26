@@ -1,0 +1,15 @@
+<sly data-sly-use.model="com.tetralaval.models.BreadcrumbModel"/>
+
+<p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+<sly data-sly-test="${model.exist}">
+    <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
+        <div class="tp_pw-breadcrumb__wrapper">
+            <sly data-sly-list.subpageItem="${model.breadcrumbSubpages}">
+                <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${model.breadcrumbSubpages[subpageItem]}"
+                   data-sly-test="${!subpageItemList.last}">${subpageItem}</a>
+                <span data-sly-test="${subpageItemList.last}">${subpageItem}</span>
+                <i class="icon-Arrow_Right_pw tp_icon" data-sly-test="${!subpageItemList.last}"></i>
+            </sly>
+        </div>
+    </div>
+</sly>

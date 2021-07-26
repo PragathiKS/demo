@@ -1,0 +1,151 @@
+@import "media";
+// fonts
+$font-xxs: 8px;
+$font-xs: 10px;
+$font-sm: 12px;
+$font-m-xs: $font-sm;
+$font-baseline: 14px;
+$font-m-sm: $font-baseline;
+$font-normal: 16px;
+$font-m-baseline: $font-normal;
+$font-md: 18px;
+$font-m-md: 20px;
+$font-l: 24px;
+$font-m-l: $font-l;
+$font-xl: 32px;
+$font-m-xl: 28px;
+$font-xxl: 42px;
+$font-m-xxl: $font-xl;
+$font-xxxl: 60px;
+$font-m-xxxl: 36px;
+
+//font-line-height
+$line-height-small: 16px;
+$line-height-medium: 20px;
+$line-height-body: 24px;
+$line-height-header-s: 32px;
+$line-height-header-m: 40px;
+$line-height-header-l: 48px;
+$line-height-header-xl: 64px;
+
+
+// Body width
+$body-max-width: 1440px;
+// Table width
+$table-max-width: 925px;
+// Variables for z-index
+$zindex-default: 0;
+// Maximum 3 levels allowed in z-index
+$zindex-p: 1; // primary
+$zindex-s: 2; // secondary
+$zindex-t: 3; // tertiary
+// To move element to the background
+$zindex-hide: -1;
+//z-index header to be greater than others except modal
+$zindex-header: 100;
+$zindex-nav: $zindex-header+1;
+$z-index-section-menu: 90;
+$z-index-search-bar: 99;
+$zindex-top: 9999;
+$zindex-pw-logo: 999;
+// Patternlab variables
+$spacing-big: 24px;
+$spacing-small: 16px;
+$spacing-baseline: 14px;
+$spacing-big-half: 12px;
+$spacing-small-half: 8px;
+$font-monsterrat: 'Montserrat';
+/* Border Radius */
+
+$border-radius: 4px;
+$color-text: $color-tundora;
+$color-heading: $color-congress-blue;
+/*
+ * Text Link Colors
+ * 1) These are for linked text, such as a link found within an article,
+ *    navigation link, footer link, etc.
+ */
+
+$color-text-link: $color-congress-blue;
+$color-text-link-hover: $color-tundora;
+$color-text-link-visited: $color-congress-blue;
+$color-text-link-active: $color-congress-blue;
+
+
+/*
+ * Border Colors
+ * 1) Border colors are used as decoration or dividers, such as as a seperator
+ *    for navigation items, block borders, etc.
+ */
+
+$color-border: $color-boulder;
+/**
+ * Animation Duration
+ */
+
+$anim-speed-quickest: 0.1s;
+$anim-speed-quick: 250ms;
+$anim-speed-normal: 0.3s;
+/**
+  * Animation Easing
+  */
+
+$anim-ease: ease;
+$anim-ease-out: cubic-bezier(.40, 0, .20, 1);
+$anim-linear: linear;
+
+// Padding variables
+$padding-zero:0px;
+$padding-xxs: 2px;
+$padding-xs: 4px;
+$padding-sm: 8px;
+$padding-md: 16px;
+$padding-l: 24px;
+$padding-xl: 32px;
+$padding-xxl: 40px;
+$padding-xxxl: 48px;
+// Margin variables
+$margin-zero:0px;
+$margin-xss: 2px;
+$margin-xs: 4px;
+$margin-sm: 8px;
+$margin-md: 16px;
+$margin-l: 24px;
+$margin-xl: 32px;
+$margin-xxl: 40px;
+$margin-xxxl: 48px;
+// opacity varriables
+$opacity-mid:0.5;
+$opacity-disabled: 0.4;
+$opacity-null: 0;
+$opacity-visible: 1;
+$opacity-banner: 0.7;
+//icon boxing
+$min-accessible-dimension:46px;
+// letter spacing
+$letter-spacing-sm: 1px;
+// word spacing
+$word-spacing-sm: 1px;
+
+// text transforms
+$uppercase : uppercase ;
+
+// box - shadow
+$shadow: rgba(0, 0, 0, 0.1);
+
+// mobile sticky header hight
+$header-height-mobile: 62;
+
+// mobile sticky section hight
+$section-menu-height-mobile: 56;
+
+// sticky-view-height
+$sticky-view-height: $header-height-mobile + $section-menu-height-mobile;
+
+//alpha
+$alpha-p: 0.2;
+$alpha-s: 0.4;
+
+//list bulet size
+$bullet-size: 15px; 
+

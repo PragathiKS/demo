@@ -1,0 +1,39 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "English",
+		"cq:lastReplicationAction": "Activate",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-base-page",
+		"cq:lastReplicatedBy": "admin",
+		"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+		"cq:lastReplicated": "Wed Dec 04 2019 14:34:58 GMT+0000",
+		"cq:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
+		"sling:resourceType": "publicweb/components/structure/pages/page",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"socialsidebarconfig": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Fri Mar 27 2020 13:57:46 GMT+0530",
+					"jcr:lastModified": "Fri Mar 27 2020 18:55:38 GMT+0530",
+					"sling:resourceType": "publicweb/components/structure/socialsidebarconfig",
+					"wechatQrCodeReference": "/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png",
+                    "qrAltText": "Alt Text",
+					"qrCodeTitle": "title",
+					"socialMedia": "Linkedin",
+					"socialMediaLink": "http://www.google.com"
+				}
+			}
+		}
+	}
+}
