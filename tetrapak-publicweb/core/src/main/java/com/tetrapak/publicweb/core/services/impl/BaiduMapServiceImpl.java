@@ -21,7 +21,7 @@ public class BaiduMapServiceImpl implements BaiduMapService{
     private BaiduMapServiceConfig config;
 
     /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(PardotServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaiduMapServiceImpl.class);
 
     /**
      * Activate.
