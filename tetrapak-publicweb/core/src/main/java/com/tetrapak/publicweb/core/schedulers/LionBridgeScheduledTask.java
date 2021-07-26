@@ -106,7 +106,6 @@ public class LionBridgeScheduledTask implements Runnable {
                         LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate started on {}",
                                 lbChildResource.getName());
                         pagesToRolloutAndActivate(resolver, lbChildResource);
-                        //deleteResourcesList.add(lbChildResource.getPath());
                     }
 
                 }
