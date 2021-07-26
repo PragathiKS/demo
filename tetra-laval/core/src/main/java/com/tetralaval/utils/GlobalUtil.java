@@ -3,10 +3,11 @@ package com.tetralaval.utils;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetralaval.constants.PWConstants;
-import com.tetralaval.services.DynamicMediaService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.*;
 import org.apache.sling.settings.SlingSettingsService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -49,44 +50,6 @@ public final class GlobalUtil {
             return null;
         }
         return (T) bundleContext.getService(serviceReference);
-    }
-
-
-
-    /**
-     * get scene 7 video url
-     *
-     * @param damVideoPath
-     *            video path
-     * @param dynamicMediaService
-     *            dynamic media service
-     * @return video path from scene 7
-     */
-    public static String getVideoUrlFromScene7(final ResourceResolver resourceResolver, final String damVideoPath,
-            final DynamicMediaService dynamicMediaService) {
-        String path = damVideoPath;
-        if(StringUtils.isNotBlank(damVideoPath)) {
-            path = dynamicMediaService.getVideoServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damVideoPath);
-        }
-        return path;
-    }
-
-    /**
-     * get scene 7 image url
-     *
-     * @param damImagePath
-     *            image path
-     * @param dynamicMediaService
-     *            dynamic media service
-     * @return image path from scene 7
-     */
-    public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
-            final DynamicMediaService dynamicMediaService) {
-        String path = damImagePath;
-        if(StringUtils.isNotBlank(damImagePath)) {
-            path = dynamicMediaService.getImageServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damImagePath);
-        }
-        return path;
     }
 
     /**
@@ -233,5 +196,21 @@ public final class GlobalUtil {
             return false;
         }
         return slingSettingsService.getRunModes().contains("publish");
+    }
+
+    /**
+     * This method is used to get the string value from string Array in format of
+     * {"key":"value","key1":"value1"}
+     * @param stringArray
+     * @param key
+     * @return String value
+     */
+    public static String getKeyValueFromStringArray(final String stringArray, final String key){
+        try {
+            return new JSONObject(stringArray).get(key).toString();
+        }catch (final JSONException exception) {
+            LOG.error("JSONException while converting array string to json object: ", exception);
+        }
+        return StringUtils.EMPTY;
     }
 }
