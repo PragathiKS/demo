@@ -171,6 +171,7 @@ public class StoriesModelTest {
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/solutions.html",
                 model.getTeaserList().get(1).getLinkPath());
         assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/test40/jcr:content/root/responsivegrid/teaser", model.getComponentResourcePath());
     }
 
     /**
