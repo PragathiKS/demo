@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.BaiduMapService;
 import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -140,6 +141,13 @@ public class PageLoadAnalyticsModel {
     /** The href lang values. */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
+    /** The BaiduMapService. */
+    @OSGiService
+    private BaiduMapService baiduMapService;
+
+    /** The Baidu Map Key. */
+    private String baiduMapkey;
+
     /**
      * Inits the model.
      */
@@ -158,13 +166,22 @@ public class PageLoadAnalyticsModel {
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
-        if(GlobalUtil.isPublish()){
+       if(GlobalUtil.isPublish()){
             updateCookieParameters();
         }
         updatePageName();
         updateProductName();
         updateHrefLang();
+        updateBaiduKey();
         digitalData = buildDigitalDataJson();
+    }
+
+    /**
+     * Update Baidu Map key.
+     */
+    private void updateBaiduKey() {
+        if (baiduMapService.getBaiduMapKey()!= null && siteCountry.equalsIgnoreCase("cn")){
+        baiduMapkey = baiduMapService.getBaiduMapKey();}
     }
 
     /**
@@ -648,5 +665,14 @@ public class PageLoadAnalyticsModel {
             return new ArrayList<>(hrefLangValues);
         }
         return Collections.emptyList();
+    }
+
+    /**
+     * Gets the Baidu Map key values.
+     *
+     * @return the Baidu Map key values
+     */
+    public String getBaiduMapkey() {
+        return baiduMapkey;
     }
 }
