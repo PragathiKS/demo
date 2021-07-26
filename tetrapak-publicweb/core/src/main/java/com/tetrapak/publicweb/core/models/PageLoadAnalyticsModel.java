@@ -7,7 +7,6 @@ import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.BaiduMapService;
 import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
@@ -154,13 +153,6 @@ public class PageLoadAnalyticsModel {
     /** The href lang values. */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
-    /** The BaiduMapService. */
-    @OSGiService
-    private BaiduMapService baiduMapService;
-
-    /** The Baidu Map Key. */
-    private String baiduMapkey;
-
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PageLoadAnalyticsModel.class);
 
@@ -189,16 +181,7 @@ public class PageLoadAnalyticsModel {
         updatePageName();
         updateProductName();
         updateHrefLang();
-        updateBaiduKey();
         digitalData = buildDigitalDataJson();
-    }
-
-    /**
-     * Update Baidu Map key.
-     */
-    private void updateBaiduKey() {
-        if (baiduMapService.getBaiduMapKey()!= null && siteCountry.equalsIgnoreCase("cn")){
-        baiduMapkey = baiduMapService.getBaiduMapKey();}
     }
 
     /**
@@ -704,14 +687,5 @@ public class PageLoadAnalyticsModel {
             return new ArrayList<>(hrefLangValues);
         }
         return Collections.emptyList();
-    }
-
-    /**
-     * Gets the Baidu Map key values.
-     *
-     * @return the Baidu Map key values
-     */
-    public String getBaiduMapkey() {
-        return baiduMapkey;
     }
 }

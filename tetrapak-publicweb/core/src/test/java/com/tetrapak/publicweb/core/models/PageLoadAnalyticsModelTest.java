@@ -127,9 +127,6 @@ public class PageLoadAnalyticsModelTest {
     /** The DATA DOMAIN SCRIPT. */
     private static final String DATA_DOMAIN_SCRIPT = "268df474-520d-4ad7-8453-cd5ddcd602b9";
 
-    /** The Baidu Map Key. */
-    private static final String BAIDU_MAP_KEY = "abcd1234utrx";
-
     /**
      * Sets the up.
      *
@@ -178,6 +175,5 @@ public class PageLoadAnalyticsModelTest {
         Mockito.when(objectUnderTest.isProduction()).thenReturn(IS_PRODUCTION);
         Mockito.when(objectUnderTest.isPublisher()).thenReturn(IS_PUBLISHER);
         Mockito.when(objectUnderTest.getDataDomainScript()).thenReturn(DATA_DOMAIN_SCRIPT);
-        Mockito.when(objectUnderTest.getBaiduMapkey()).thenReturn(BAIDU_MAP_KEY);
     }
 }

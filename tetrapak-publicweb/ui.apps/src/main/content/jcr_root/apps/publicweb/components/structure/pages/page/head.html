@@ -1,4 +1,4 @@
-<template data-sly-template.head="${ @ page, digitalDataModel }"
+<template data-sly-template.head="${ @ page, digitalDataModel,pageHeadModel}"
           data-sly-use.headlibRenderer="headlibs.html"
           data-sly-use.headResources="head.resources.html">
 
@@ -10,9 +10,11 @@
     <script>
         var digitalData = ${digitalDataModel.digitalData @ context="unsafe"};
     </script>
-    <sly data-sly-test="${digitalDataModel.baiduMapkey}">
-      <script src="https://api.map.baidu.com/api?v=3.0&ak=${digitalDataModel.baiduMapkey}"></script>
+
+    <sly data-sly-test="${pageHeadModel.baiduMapkey}">
+      <script src="https://api.map.baidu.com/api?v=3.0&ak=${pageHeadModel.baiduMapkey}"></script>
     </sly>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
       <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${digitalDataModel.dataDomainScript}" ></script>
