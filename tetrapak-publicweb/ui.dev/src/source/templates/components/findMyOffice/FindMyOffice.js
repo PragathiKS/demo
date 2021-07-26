@@ -120,7 +120,7 @@ class FindMyOffice {
       const p1 = lat;
       const point = new window.BMap.Point(p0, p1);
       const iconImg = this.createBaiduMapMarkerIcon(json.icon);
-      const marker = new window.BMap.Marker(point, { icon: iconImg, auto_locator: 'mapPin' });
+      const marker = new window.BMap.Marker(point, { icon: iconImg });
       this.cache.baiduMapMarker = marker;
       map.addOverlay(marker);
     }
@@ -235,8 +235,7 @@ class FindMyOffice {
       this.cache.marker = new this.cache.googleMaps.Marker({
         position: latLng,
         title: office.name,
-        icon: '/content/dam/tetrapak/publicweb/Pin.png',
-        auto_locator: 'mapPin'
+        icon: '/content/dam/tetrapak/publicweb/Pin.png'
       });
 
       // To add the marker to the map, call setMap();
