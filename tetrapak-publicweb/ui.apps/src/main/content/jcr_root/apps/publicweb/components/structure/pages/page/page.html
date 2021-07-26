@@ -3,7 +3,8 @@
       data-sly-use.head="head.html"
       data-sly-use.footer="footer.html">
     <sly data-sly-use.digitalDataModel="com.tetrapak.publicweb.core.models.PageLoadAnalyticsModel"></sly>
-    <head data-sly-call="${head.head @ page = page, digitalDataModel = digitalDataModel }"></head>
+    <sly data-sly-use.pageHeadModel="com.tetrapak.publicweb.core.models.PageHeadModel"></sly>
+    <head data-sly-call="${head.head @ page = page, digitalDataModel = digitalDataModel, pageHeadModel = pageHeadModel }"></head>
     <body>
         <sly data-sly-include="body.html"></sly>
         <sly data-sly-call="${footer.footer @ page = page, digitalDataModel = digitalDataModel }"></sly>
