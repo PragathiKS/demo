@@ -22,7 +22,7 @@ public class StoriesManualModel {
 
     /** The title. */
     @ValueMapValue
-    private String title;
+    private String heading;
 
     /** The file reference. */
     @ValueMapValue
@@ -40,22 +40,22 @@ public class StoriesManualModel {
     private List<DeviceTypeBean> dynamicMediaUrlList;
 
     /**
-     * Gets the title.
+     * Gets the heading.
      *
-     * @return the title
+     * @return the heading
      */
-    public String getTitle() {
-        return title;
+    public String getHeading() {
+        return heading;
     }
 
     /**
-     * Sets the title.
+     * Sets the heading.
      *
-     * @param title
-     *            the new title
+     * @param heading
+     *            the new heading
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setHeading(String heading) {
+        this.heading = heading;
     }
 
     /**

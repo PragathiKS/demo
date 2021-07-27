@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
@@ -27,6 +29,7 @@ import com.tetrapak.publicweb.core.beans.DeviceTypeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.StoriesManualModel;
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
+import com.tetrapak.publicweb.core.models.multifield.StoriesManualModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
@@ -67,6 +70,7 @@ public class StoriesModel {
     /** The logical operator. */
     @ValueMapValue
     private String logicalOperator;
+
     
     /** The link label. */
     @ValueMapValue
@@ -98,6 +102,7 @@ public class StoriesModel {
     @Via("resource")
     private List<SemiAutomaticModel> semiAutomaticList;
 
+    /** The story list. */
     /** The teaser list. */
     private List<StoriesManualModel> storyList = new ArrayList<>();
 
@@ -105,6 +110,7 @@ public class StoriesModel {
     @OSGiService
     private AggregatorService aggregatorService;
 
+    /** The dynamic media service. */
     /**
      * The dynamic media service.
      */
@@ -189,10 +195,18 @@ public class StoriesModel {
         }
 
         if (null != dynamicMediaUrl) {
+            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PWConstants.PATH_SEPARATOR) + finalPath;
             dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PATH_SEPARATOR) + finalPath;
         }
         final DeviceTypeBean deviceTypeBean = new DeviceTypeBean();
         if (StringUtils.isNotBlank(dynamicMediaUrl)) {
+            deviceTypeBean.setDesktop(dynamicImageModel.createDynamicMediaUrl(PWConstants.DESKTOP, dynamicMediaUrl));
+            deviceTypeBean.setDesktopLarge(
+                    dynamicImageModel.createDynamicMediaUrl(PWConstants.DESKTOP_LARGE, dynamicMediaUrl));
+            deviceTypeBean.setMobilePortrait(
+                    dynamicImageModel.createDynamicMediaUrl(PWConstants.MOBILEPORTRAIT, dynamicMediaUrl));
+            deviceTypeBean.setMobileLandscape(
+                    dynamicImageModel.createDynamicMediaUrl(PWConstants.MOBILELANDSCAPE, dynamicMediaUrl));
             deviceTypeBean.setDesktop(dynamicImageModel.createDynamicMediaUrl(DESKTOP, dynamicMediaUrl));
             deviceTypeBean.setDesktopLarge(dynamicImageModel.createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
             deviceTypeBean.setMobilePortrait(dynamicImageModel.createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl));
@@ -221,6 +235,28 @@ public class StoriesModel {
      * @return the stories manual list
      */
     public void getStoriesManualList() {
+        final ResourceResolver resourceResolver = request.getResourceResolver();
+        final Resource manualStoriesResource = resourceResolver
+                .getResource(componentResourcePath.concat("/manualList"));
+        if (Objects.nonNull(manualStoriesResource)) {
+            final Iterator<Resource> rootIterator = manualStoriesResource.listChildren();
+            while (rootIterator.hasNext()) {
+                final Resource storyResource = rootIterator.next();
+                StoriesManualModel stories = new StoriesManualModel();
+                final List<DeviceTypeBean> dynamicMediaParameters = new ArrayList<>();
+                storyResource.getValueMap().get("title", StringUtils.EMPTY);
+                stories.setTitle(storyResource.getValueMap().get("title", StringUtils.EMPTY));
+                stories.setFileReference(
+                        storyResource.getValueMap().get(PWConstants.FILE_REFERENCE, StringUtils.EMPTY));
+                if (Objects.nonNull(storyResource.getValueMap().get(PWConstants.FILE_REFERENCE))) {
+                    dynamicMediaParameters.add(getDynamicMediaParams(
+                            storyResource.getValueMap().get(PWConstants.FILE_REFERENCE).toString()));
+                    stories.setDynamicMediaUrlList(dynamicMediaParameters);
+                }
+                stories.setAlt(storyResource.getValueMap().get("alt", StringUtils.EMPTY));
+                stories.setLinkPath(LinkUtils
+                        .sanitizeLink(storyResource.getValueMap().get("linkPath", StringUtils.EMPTY), request));
+                storyList.add(stories);
         for (StoriesManualModel storiesManualModel : storiesManualList) {
             StoriesManualModel stories = new StoriesManualModel();
             final List<DeviceTypeBean> dynamicMediaParameters = new ArrayList<>();
@@ -229,6 +265,20 @@ public class StoriesModel {
             if (Objects.nonNull(storiesManualModel.getFileReference())) {
                 dynamicMediaParameters.add(getDynamicMediaParams(storiesManualModel.getFileReference()));
                 stories.setDynamicMediaUrlList(dynamicMediaParameters);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
             stories.setAlt(storiesManualModel.getAlt());
             storiesManualList.add(stories);
@@ -326,4 +376,5 @@ public class StoriesModel {
     public List<StoriesManualModel> getStoryList() {
         return new ArrayList<>(storyList);
     }
+}
 }

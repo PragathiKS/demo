@@ -1,9 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.Session;
 
@@ -11,6 +15,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,7 +32,9 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.AggregatorService;
+import com.tetrapak.publicweb.core.services.DynamicMediaService;
 import com.tetrapak.publicweb.core.services.impl.AggregatorServiceImpl;
+import com.tetrapak.publicweb.core.services.impl.DynamicMediaServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -41,19 +48,19 @@ public class StoriesModelTest {
   
 
     /** The Constant RESOURCE_CONTENT_MANUAL. */
-    private static final String RESOURCE_CONTENT_MANUAL = "/teaser/test-content-manual.json";
+    private static final String RESOURCE_CONTENT_MANUAL = "/stories/test-content-manual.json";
 
     /** The Constant RESOURCE_CONTENT_SEMI. */
-    private static final String RESOURCE_CONTENT_SEMI = "/teaser/test-content-semi.json";
+    private static final String RESOURCE_CONTENT_SEMI = "/stories/test-content-semi.json";
 
     /** The Constant RESOURCE_HOME. */
-    private static final String RESOURCE_HOME = "/teaser/home.json";
+    private static final String RESOURCE_HOME = "/stories/home.json";
 
     /** The Constant RESOURCE_LANG. */
-    private static final String RESOURCE_LANG = "/teaser/en.json";
+    private static final String RESOURCE_LANG = "/stories/en.json";
 
     /** The Constant RESOURCE_SOLUTIONS. */
-    private static final String RESOURCE_SOLUTIONS = "/teaser/solutions.json";
+    private static final String RESOURCE_SOLUTIONS = "/stories/solutions.json";
 
     /** The Constant HOME_PAGE. */
     private static final String HOME_PAGE = "/content/tetrapak/publicweb/lang-masters/en/home";
@@ -68,10 +75,29 @@ public class StoriesModelTest {
     private static final String LANG_PAGE = "/content/tetrapak/publicweb/lang-masters/en";
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/teaser";
+    private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/stories";
 
     /** The Constant RESOURCE_TWO. */
-    private static final String RESOURCE_TWO = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/teaser_1";
+    private static final String RESOURCE_TWO = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/stories_1";
+    
+    /** The Constant RESOURCE_CONTENT. */
+    private static final String RESOURCE_CONTENT = "/carousel/test-content.json";
+    
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String TEST_CONTENT_ROOT_TWO = "/content/publicweb/en";
+    
+    /** The Constant RESOURCE_CONTENT. */
+    private static final String RESOURCE_IMAGE = "/assets/logo_tetra_pak_white.json";
+
+    /** The Constant DAM_IMAGE. */
+    private static final String DAM_IMAGE = "/content/dam/tetrapak/p2.png";
+
+    /** The Constant RESOURCE. */
+    private static final String RESOURCE_THREE = TEST_CONTENT_ROOT_TWO + "/jcr:content/carousel";
+    
+    /** THE DYNAMIC MEDIA CONF. */
+    String[] dynamicMediaConfMap = {
+            "getstarted-desktop=1440\\,300,getstarted-mobileL=414\\,259\\,0.333\\,0\\,0.333\\,1,getstarted-mobileP=414\\,259\\,0.333\\,0\\,0.333\\,1" };
 
     /** The model. */
     private StoriesModel model;
@@ -118,6 +144,11 @@ public class StoriesModelTest {
     
     @Mock
     private ValueMap properties;
+    
+    /** The model. */
+    private DynamicImageModel dynamicImageModel;
+
+    private DynamicMediaService dynamicMediaService;
 
     /**
      * Sets the up.
@@ -140,44 +171,55 @@ public class StoriesModelTest {
         context.addModelsForClasses(modelClass);
 
         MockitoAnnotations.initMocks(this);
+        
+        context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT_TWO);
+        context.load().json(RESOURCE_IMAGE, DAM_IMAGE);
+        dynamicMediaService = new DynamicMediaServiceImpl();
+        final Map<String, Object> configuraionServiceConfig = new HashMap<String, Object>();
+        configuraionServiceConfig.put("rootPath", "/tetrapak");
+        configuraionServiceConfig.put("dynamicMediaConfMap", dynamicMediaConfMap);
+        configuraionServiceConfig.put("imageServiceUrl", "https://s7g10.scene7.com/is/image");
+        configuraionServiceConfig.put("videoServiceUrl", "https://s7g10.scene7.com/is/content");
+        context.registerInjectActivateService(dynamicMediaService, configuraionServiceConfig);
+        context.registerService(DynamicMediaService.class, dynamicMediaService);
+        context.request().setPathInfo(RESOURCE_THREE);
+        context.request().setAttribute("imagePath", "/content/dam/tetrapak/p2.png");
+        context.request().setAttribute("altText", "Image1 alt");
+        context.request().setAttribute("imageCrop", "390,57,947,473");
+        context.request().setAttribute("dwidth", "500");
+        context.request().setAttribute("dheight", "600");
+        context.request().setAttribute("mwidthl", "100");
+        context.request().setAttribute("mheightl", "150");
+        context.request().setAttribute("mwidthp", "250");
+        context.request().setAttribute("mheightp", "100");
+        context.request().setResource(context.resourceResolver().getResource(RESOURCE_THREE));
+        dynamicImageModel = context.request().adaptTo(DynamicImageModel.class);
 
     }
 
     @Test
     public void testMethodsManual() throws Exception {
 
-        context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);
-        
+        context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);       
         MockSlingHttpServletRequest request = context.request();
         context.request().setPathInfo(RESOURCE);
         request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
-
+        
+        assertEquals("Load More", model.getLinkLabel());
         assertEquals("grayscale-white", model.getPwTheme());
         assertEquals("true", model.getEnableCarousel());
         assertEquals("anchorId", model.getAnchorId());
         assertEquals("Anchor title", model.getAnchorTitle());
-        assertEquals("Title", model.getStoryList().get(1).getTitle());
+        assertEquals("Title", model.getStoryList().get(1).getHeading());
         assertEquals("/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
                 model.getStoryList().get(1).getFileReference());
         assertEquals("Alt", model.getStoryList().get(1).getAlt());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/test40/jcr:content/root/responsivegrid/teaser", model.getComponentResourcePath());
-    }
-
-    /**
-     * Test asset name.
-     *
-     * @throws Exception the exception
-     */
-    @Test
-    public void testAssetName() throws Exception {
-        context.load().json(RESOURCE_CONTENT_MANUAL, TEST_CONTENT_ROOT);
-        MockSlingHttpServletRequest request = context.request();
-        context.request().setPathInfo(RESOURCE_TWO);
-        request.setResource(context.resourceResolver().getResource(RESOURCE_TWO));
-        resource = context.currentResource(RESOURCE_TWO);
-        model = request.adaptTo(modelClass);
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/solutions.html",
+                model.getStoryList().get(1).getLinkPath());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/test40/jcr:content/root/responsivegrid/stories", model.getComponentResourcePath());
+        
     }
 
     /**
@@ -188,13 +230,15 @@ public class StoriesModelTest {
      */
     @Test
     public void testMethodsSemiAuto() throws Exception {
+        
         context.load().json(RESOURCE_CONTENT_SEMI, TEST_CONTENT_ROOT);
         MockSlingHttpServletRequest request = context.request();
         context.request().setPathInfo(RESOURCE);
         request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
-        assertEquals("Solutions", model.getStoryList().get(0).getTitle());
+        
+        assertEquals("Solutions", model.getStoryList().get(0).getHeading());
         assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
                 model.getStoryList().get(0).getFileReference());
         assertEquals("alt", model.getStoryList().get(0).getAlt());
@@ -228,12 +272,40 @@ public class StoriesModelTest {
         Mockito.when(pageManager.getPage(SOLUTIONS_PAGE)).thenReturn(context.pageManager().getPage(SOLUTIONS_PAGE));
         List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, 4, "and");
         assertEquals("Solutions", aggregatorList.get(0).getTitle());
-        assertEquals("Solution Desc", aggregatorList.get(0).getDescription());
         assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg", aggregatorList.get(0).getImagePath());
         assertEquals("alt", aggregatorList.get(0).getAltText());
-        assertEquals("link text1", aggregatorList.get(0).getLinkText());
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/home", aggregatorList.get(0).getLinkPath());
-        assertEquals("link", aggregatorList.get(0).getPwButtonTheme());
+    }
+    
+    @Test
+    public void testGetStartedMessage() {
+        
+        String imageServiceUrl = dynamicImageModel.getImageServiceURL();
+        String videoServiceUrl = dynamicImageModel.getVideoServiceUrl();
+        String dynamicImage = dynamicImageModel.getAltText();
+        String finalPath = dynamicImageModel.getFinalPath();
+        Assert.assertEquals("alt text", "Image1 alt", dynamicImage);
+        assertNotNull("image service URL is not null", imageServiceUrl);
+        Assert.assertEquals("final path", "/tetrapak/p2", finalPath);
+        Assert.assertEquals("image service URL", imageServiceUrl, "https://s7g10.scene7.com/is/image");
+        Assert.assertEquals("image service URL", videoServiceUrl, "https://s7g10.scene7.com/is/content");
+        String[] dynamicMediaConfMap = dynamicImageModel.getDynamicMediaConfiguration();
+        assertTrue("configuration map should not be empty", dynamicMediaConfMap.toString().length() > 0);
+        Assert.assertEquals("default image URL", "/content/dam/customerhub/cow-blue-background.png",
+                dynamicImageModel.getDefaultImageUrl());
+        Assert.assertEquals("default image URL", "https://s7g10.scene7.com/is/image/tetrapak/p2?scl=1",
+                dynamicImageModel.getDesktopLargeUrl());
+        Assert.assertEquals("default image URL",
+                "https://s7g10.scene7.com/is/image/tetrapak/p2?wid=500&hei=600&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+                dynamicImageModel.getDesktopUrl());
+        Assert.assertEquals("default image URL",
+                "https://s7g10.scene7.com/is/image/tetrapak/p2?wid=100&hei=150&cropn=2.4375,2.28,3.48125,16.64&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+                dynamicImageModel.getMobileLandscapeUrl());
+        Assert.assertEquals("default image URL",
+                "https://s7g10.scene7.com/is/image/tetrapak/p2?wid=250&hei=100&cropn=2.4375,2.28,3.48125,16.64&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+                dynamicImageModel.getMobilePortraitUrl());
+        Assert.assertEquals("default image URL", "/content/dam/tetrapak/p2.png", dynamicImageModel.getImagePath());
+
     }
 
 }
