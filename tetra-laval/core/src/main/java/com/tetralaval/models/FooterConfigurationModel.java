@@ -1,6 +1,6 @@
 package com.tetralaval.models;
 
-import com.tetralaval.constants.PWConstants;
+import com.tetralaval.constants.TLConstants;
 import com.tetralaval.models.multifield.FooterLinkModel;
 import com.tetralaval.models.multifield.SocialLinkModel;
 import com.tetralaval.utils.LinkUtils;
@@ -104,18 +104,12 @@ public class FooterConfigurationModel {
      */
     public List<SocialLinkModel> getSocialLinks() {
         final List<SocialLinkModel> lists = new ArrayList<>();
-        String countryCode = resource.getPath().split(PWConstants.SLASH)[5];
+        String countryCode = resource.getPath().split(TLConstants.SLASH)[5];
         if (Objects.nonNull(socialLinks)) {
         	final String [] valueArray = {"Xing","Vkontakte"};
         	lists.addAll(socialLinks);
-        	if (countryCode.equalsIgnoreCase(PWConstants.RU_COUNTRY_CODE)) {
-        		modifyList(lists,valueArray[0]);
-            } else if (countryCode.equalsIgnoreCase(PWConstants.DE_COUNTRY_CODE)) {
-            	modifyList(lists,valueArray[1]);
-            } else {
-            	for (String value : valueArray) {
-            		modifyList(lists, value);
-            	}
+            for (String value : valueArray) {
+                modifyList(lists, value);
             }
         }
         return lists;

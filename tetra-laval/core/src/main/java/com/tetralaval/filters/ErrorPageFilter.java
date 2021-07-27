@@ -1,9 +1,8 @@
 package com.tetralaval.filters;
 
 import com.day.cq.wcm.api.Page;
-import com.tetralaval.constants.PWConstants;
+import com.tetralaval.constants.TLConstants;
 import com.tetralaval.utils.LinkUtils;
-import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -20,7 +19,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Component(
@@ -54,13 +52,13 @@ public class ErrorPageFilter implements Filter {
 
             if (resource == null || (resource != null && (resource.getResourceType() == null ||
                     resource.getResourceType().equals("sling:nonexisting")))) {
-                String path = Arrays.stream(slingRequest.getPathInfo().split(PWConstants.SLASH))
+                String path = Arrays.stream(slingRequest.getPathInfo().split(TLConstants.SLASH))
                         .filter(s -> !StringUtils.EMPTY.equals(s))
-                        .limit(PWConstants.LANGUAGE_PAGE_LEVEL + 1)
-                        .collect(Collectors.joining(PWConstants.SLASH));
-                Resource languageResource = resource.getResourceResolver().resolve(PWConstants.SLASH + path);
+                        .limit(TLConstants.LANGUAGE_PAGE_LEVEL + 1)
+                        .collect(Collectors.joining(TLConstants.SLASH));
+                Resource languageResource = resource.getResourceResolver().resolve(TLConstants.SLASH + path);
                 Page languagePage = languageResource.adaptTo(Page.class);
-                slingResponse.sendRedirect(LinkUtils.sanitizeLink(languagePage.getPath() + PWConstants.SLASH + "404", slingRequest));
+                slingResponse.sendRedirect(LinkUtils.sanitizeLink(languagePage.getPath() + TLConstants.SLASH + "404", slingRequest));
                 return;
             }
             chain.doFilter(request, response);
