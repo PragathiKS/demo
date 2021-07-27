@@ -1,7 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +10,7 @@ import javax.inject.Inject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -25,8 +24,8 @@ import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.export.json.ExporterConstants;
 import com.tetrapak.publicweb.core.beans.DeviceTypeBean;
-import com.tetrapak.publicweb.core.beans.StoriesBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.multifield.StoriesManualModel;
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
@@ -68,11 +67,7 @@ public class StoriesModel {
     /** The logical operator. */
     @ValueMapValue
     private String logicalOperator;
-
-    /** The enable black gradient. */
-    @ValueMapValue
-    private boolean enableBlackGradient;
-
+    
     /** The link label. */
     @ValueMapValue
     private String linkLabel;
@@ -88,20 +83,31 @@ public class StoriesModel {
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
-    
+
+    /** The component resource path. */
+    @ValueMapValue
+    private String componentResourcePath;
+
+    /** The manual list. */
+    @Inject
+    @Via("resource")
+    private List<StoriesManualModel> storiesManualList;
+
     /** The semi automatic list. */
     @Inject
     @Via("resource")
     private List<SemiAutomaticModel> semiAutomaticList;
 
-    /** The story list. */
-    private List<StoriesBean> storyList = new ArrayList<>();
+    /** The teaser list. */
+    private List<StoriesManualModel> storyList = new ArrayList<>();
 
     /** The aggregator service. */
     @OSGiService
     private AggregatorService aggregatorService;
 
-    /** The dynamic media service. */
+    /**
+     * The dynamic media service.
+     */
     @OSGiService
     private DynamicMediaService dynamicMediaService;
 
@@ -111,20 +117,46 @@ public class StoriesModel {
     private DynamicImageModel dynamicImageModel;
 
     /**
+     * The Constant PATH_SEPARATOR.
+     */
+    private static final String PATH_SEPARATOR = "/";
+
+    /**
+     * The Constant DESKTOP.
+     */
+    private static final String DESKTOP = "desktop";
+
+    /**
+     * The Constant DESKTOP.
+     */
+    private static final String DESKTOP_LARGE = "desktopL";
+
+    /**
+     * The Constant MOBILELANDSCAPE.
+     */
+    private static final String MOBILELANDSCAPE = "mobileL";
+
+    /**
+     * The Constant MOBILEPORTRAIT.
+     */
+    private static final String MOBILEPORTRAIT = "mobileP";
+
+    /**
      * Inits the.
      */
     @PostConstruct
     protected void init() {
         resource = request.getResource();
+        componentResourcePath = resource.getPath();
         if (StringUtils.isNotBlank(contentType)) {
             switch (contentType) {
-                case PWConstants.AUTOMATIC:
+                case "automatic":
                     generateListAutomaticWay();
                     break;
-                case PWConstants.SEMI_AUTOMATIC:
+                case "semi-automatic":
                     generateListSemiAutomatically();
                     break;
-                case PWConstants.MANUAL:
+                case "manual":
                     getStoriesManualList();
                     break;
                 default:
@@ -141,20 +173,31 @@ public class StoriesModel {
      * @return the dynamic media params
      */
     private DeviceTypeBean getDynamicMediaParams(String imagePath) {
+        String finalPath = StringUtils.EMPTY;
         String dynamicMediaUrl = dynamicMediaService.getImageServiceUrl();
-        if (Objects.nonNull(dynamicMediaUrl) && Objects.nonNull(imagePath)) {
-            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PWConstants.SLASH) + PWConstants.SLASH
-                    + GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
+        Resource imageRes = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
+        if (Objects.nonNull(imageRes)) {
+            final ValueMap vMap = imageRes.getValueMap();
+            String fileFormat = vMap.get("dam:Fileformat", StringUtils.EMPTY);
+            String scene7Type = vMap.get("dam:scene7Type", StringUtils.EMPTY);
+            if (fileFormat.equalsIgnoreCase("GIF") && !scene7Type.equalsIgnoreCase("Image")) {
+                dynamicMediaUrl = dynamicMediaService.getVideoServiceUrl();
+            }
+        }
+        if (imagePath != null) {
+            finalPath = PWConstants.SLASH + GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
+        }
+
+        if (null != dynamicMediaUrl) {
+            dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PATH_SEPARATOR) + finalPath;
         }
         final DeviceTypeBean deviceTypeBean = new DeviceTypeBean();
         if (StringUtils.isNotBlank(dynamicMediaUrl)) {
-            deviceTypeBean.setDesktop(dynamicImageModel.createDynamicMediaUrl(PWConstants.DESKTOP, dynamicMediaUrl));
-            deviceTypeBean.setDesktopLarge(
-                    dynamicImageModel.createDynamicMediaUrl(PWConstants.DESKTOP_LARGE, dynamicMediaUrl));
-            deviceTypeBean.setMobilePortrait(
-                    dynamicImageModel.createDynamicMediaUrl(PWConstants.MOBILEPORTRAIT, dynamicMediaUrl));
-            deviceTypeBean.setMobileLandscape(
-                    dynamicImageModel.createDynamicMediaUrl(PWConstants.MOBILELANDSCAPE, dynamicMediaUrl));
+            deviceTypeBean.setDesktop(dynamicImageModel.createDynamicMediaUrl(DESKTOP, dynamicMediaUrl));
+            deviceTypeBean.setDesktopLarge(dynamicImageModel.createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
+            deviceTypeBean.setMobilePortrait(dynamicImageModel.createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl));
+            deviceTypeBean
+                    .setMobileLandscape(dynamicImageModel.createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl));
         }
         return deviceTypeBean;
     }
@@ -178,30 +221,22 @@ public class StoriesModel {
      * @return the stories manual list
      */
     public void getStoriesManualList() {
-        final ResourceResolver resourceResolver = request.getResourceResolver();
-        final Resource manualStoriesResource = resourceResolver
-                .getResource(resource.getPath().concat("/manualList"));
-        if (Objects.nonNull(manualStoriesResource)) {
-            final Iterator<Resource> rootIterator = manualStoriesResource.listChildren();
-            while (rootIterator.hasNext()) {
-                final Resource storyResource = rootIterator.next();
-                StoriesBean stories = new StoriesBean();
-                final List<DeviceTypeBean> dynamicMediaParameters = new ArrayList<>();
-                storyResource.getValueMap().get("title", StringUtils.EMPTY);
-                stories.setHeading(storyResource.getValueMap().get("heading", StringUtils.EMPTY));
-                stories.setFileReference(
-                        storyResource.getValueMap().get(PWConstants.FILE_REFERENCE, StringUtils.EMPTY));
-                if (Objects.nonNull(storyResource.getValueMap().get(PWConstants.FILE_REFERENCE))) {
-                    dynamicMediaParameters.add(getDynamicMediaParams(
-                            storyResource.getValueMap().get(PWConstants.FILE_REFERENCE).toString()));
-                    stories.setDynamicMediaUrlList(dynamicMediaParameters);
-                }
-                stories.setAlt(storyResource.getValueMap().get("alt", StringUtils.EMPTY));
-                stories.setLinkPath(LinkUtils
-                        .sanitizeLink(storyResource.getValueMap().get("linkPath", StringUtils.EMPTY), request));
-                storyList.add(stories);
+        for (StoriesManualModel storiesManualModel : storiesManualList) {
+            StoriesManualModel stories = new StoriesManualModel();
+            final List<DeviceTypeBean> dynamicMediaParameters = new ArrayList<>();
+            stories.setTitle(storiesManualModel.getTitle());
+            stories.setFileReference(storiesManualModel.getFileReference());
+            if (Objects.nonNull(storiesManualModel.getFileReference())) {
+                dynamicMediaParameters.add(getDynamicMediaParams(storiesManualModel.getFileReference()));
+                stories.setDynamicMediaUrlList(dynamicMediaParameters);
             }
+            stories.setAlt(storiesManualModel.getAlt());
+            storiesManualList.add(stories);
+            stories.setAlt(storiesManualModel.getAlt());
+            stories.setLinkPath(LinkUtils.sanitizeLink(storiesManualModel.getLinkPath(), request));
+            storiesManualList.add(stories);
         }
+        storyList.addAll(storiesManualList);
     }
 
     /**
@@ -222,9 +257,9 @@ public class StoriesModel {
      */
     private void setTabListfromAggregator(List<AggregatorModel> aggregatorList) {
         for (AggregatorModel aggregator : aggregatorList) {
-            StoriesBean stories = new StoriesBean();
+            StoriesManualModel stories = new StoriesManualModel();
             final List<DeviceTypeBean> dynamicMediaParameters = new ArrayList<>();
-            stories.setHeading(aggregator.getTitle());
+            stories.setTitle(aggregator.getTitle());
             stories.setFileReference(aggregator.getImagePath());
             if (Objects.nonNull(aggregator.getImagePath())) {
                 dynamicMediaParameters.add(getDynamicMediaParams(aggregator.getImagePath()));
@@ -235,16 +270,9 @@ public class StoriesModel {
             storyList.add(stories);
         }
     }
-    
-    /**
-     * Checks if is enable black gradient.
-     *
-     * @return true, if is enable black gradient
-     */
-    public boolean isEnableBlackGradient() {
-        return enableBlackGradient;
-    }
 
+
+    
     /**
      * Gets the link label.
      *
@@ -282,11 +310,20 @@ public class StoriesModel {
     }
 
     /**
-     * Gets the story list.
+     * Gets the component resource path.
      *
-     * @return the story list
+     * @return the component resource path
      */
-    public List<StoriesBean> getStoryList() {
+    public String getComponentResourcePath() {
+        return componentResourcePath;
+    }
+
+    /**
+     * Gets the teaser list.
+     *
+     * @return the teaser list
+     */
+    public List<StoriesManualModel> getStoryList() {
         return new ArrayList<>(storyList);
     }
 }

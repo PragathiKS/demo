@@ -405,7 +405,21 @@ public final class PWConstants {
 
     /** Constant SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE */
     public static final String SUBSCRIPTION_NEWS_ARTICLE_TEMAPLTE = "pw.subscription.newsarticle.template";
+    
+    /** The Constant DESKTOP. */
+    public static final String DESKTOP = "desktop";
 
+    /** The Constant DESKTOP.*/
+    public static final String DESKTOP_LARGE = "desktopL";
+
+    /** The Constant MOBILELANDSCAPE. */
+    public static final String MOBILELANDSCAPE = "mobileL";
+
+    /** The Constant PATH_SEPARATOR. */
+    public static final String PATH_SEPARATOR = "/";
+
+    /** The Constant MOBILEPORTRAIT. */
+    public static final String MOBILEPORTRAIT = "mobileP";
 
     /**
      * Instantiates a new PW constants.
