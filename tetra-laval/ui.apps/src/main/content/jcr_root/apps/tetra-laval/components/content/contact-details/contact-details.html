@@ -1,0 +1,15 @@
+<sly data-sly-use.model="com.tetralaval.models.ContactModel"/>
+
+<sly data-sly-list.contactItem="${model.contactDetails}">
+    <p>anchorId = ${contactItem.anchorId}</p>
+    <p>anchorTitle = ${contactItem.anchorTitle}</p>
+    <p>text</p>
+    <sly>${contactItem.text @ context='html'}</sly>
+    <hr/>
+</sly>
+
+<hr/>
+
+<p>mapUrl = ${model.mapUrl}</p>
+<p>pwPadding = ${model.pwPadding}</p>
+<p>topSpacing = ${model.topSpacing}</p>
