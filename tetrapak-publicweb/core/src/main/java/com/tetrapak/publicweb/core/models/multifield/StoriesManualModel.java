@@ -31,6 +31,10 @@ public class StoriesManualModel {
     /** The alt. */
     @ValueMapValue
     private String alt;
+    
+    /** The link path. */
+    @ValueMapValue
+    private String linkPath;
 
     /** The dynamic media url list. */
     private List<DeviceTypeBean> dynamicMediaUrlList;
@@ -90,6 +94,25 @@ public class StoriesManualModel {
      */
     public void setAlt(String alt) {
         this.alt = alt;
+    }
+    
+    /**
+     * Gets the link path.
+     *
+     * @return the link path
+     */
+    public String getLinkPath() {
+        return linkPath;
+    }
+
+    /**
+     * Sets the link path.
+     *
+     * @param linkPath
+     *            the new link path
+     */
+    public void setLinkPath(String linkPath) {
+        this.linkPath = linkPath;
     }
 
     /**
