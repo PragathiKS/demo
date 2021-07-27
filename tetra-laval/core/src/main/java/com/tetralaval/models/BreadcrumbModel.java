@@ -1,17 +1,22 @@
 package com.tetralaval.models;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
 import com.day.cq.wcm.api.WCMMode;
+import com.tetralaval.constants.TLConstants;
+import com.tetralaval.utils.LinkUtils;
+import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
@@ -20,8 +25,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
-import com.tetralaval.constants.PWConstants;
-import com.tetralaval.utils.LinkUtils;
 import com.tetralaval.utils.NavigationUtil;
 
 /**
@@ -54,33 +57,28 @@ public class BreadcrumbModel {
     @PostConstruct
     protected void init() {
         LOGGER.debug("Inside init method");
+        Resource resource = request.getResource();
+        ResourceResolver resourceResolver = resource.getResourceResolver();
+
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        final String rootPath = LinkUtils.getRootPath(request.getPathInfo()).replace(".html", StringUtils.EMPTY);
         homePagePath = LinkUtils.sanitizeLink(rootPath, request);
-        final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
-        final String[] pages = path.split("/");
-        final int length = pages.length - 1;
-        Page parent = currentPage.getParent();
-        final String title = NavigationUtil.getNavigationTitle(currentPage);
+        final String path = currentPage.getPath().replace(rootPath, StringUtils.EMPTY);
+        final List<String> pages = Arrays.stream(path.split("/")).filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList());
 
-        breadcrumbPages.put(title, currentPage.getPath());
-        for (int i = 0; i <= length; i++) {
-            if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav() && parent.getContentResource()!=null) {
+        Page languagePage = PageUtil.getLanguagePage(resourceResolver.resolve(rootPath));
+        breadcrumbPages.put(NavigationUtil.getNavigationTitle(languagePage), languagePage.getPath());
 
-                if (parent.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
-                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent), null);
-                } else {
-                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent),
-                            LinkUtils.sanitizeLink(parent.getPath(), request));
-                }
-
-                parent = parent.getParent();
-            }
+        String currentPath = languagePage.getPath();
+        for (int i = 0; i < pages.size(); i++) {
+            currentPath += TLConstants.SLASH + pages.get(i);
+            Page currentPage = PageUtil.getCurrentPage(resourceResolver.resolve(currentPath));
+            breadcrumbPages.put(NavigationUtil.getNavigationTitle(currentPage), currentPage.getPath());
         }
+
         final List<String> alKeys = new ArrayList<String>(breadcrumbPages.keySet());
-        Collections.reverse(alKeys);
         for (final String key : alKeys) {
-            breadcrumbSubpages.put(key, breadcrumbPages.get(key));
+            breadcrumbSubpages.put(key, LinkUtils.sanitizeLink(breadcrumbPages.get(key), request));
         }
     }
 

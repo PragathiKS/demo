@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
     <filter root="/conf/tetra-laval"/>
-    <filter root="/content/tetra-laval" mode="update"/>
-    <filter root="/content/dam/tetra-laval" mode="update"/>
-    <filter root="/content/experience-fragments/tetra-laval" mode="update"/>
-    <filter root="/content/cq:tags/tetra-laval" mode="update"/>
 </workspaceFilter>

@@ -1,6 +1,10 @@
 package com.tetralaval.models;
 
 import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.wcm.api.Page;
+import com.tetralaval.constants.TLConstants;
+import com.tetralaval.utils.PageUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -12,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * The Class FooterConfigurationModel.
@@ -20,8 +26,7 @@ import javax.jcr.RepositoryException;
 public class ExperienceFragmentModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExperienceFragmentModel.class);
 
-    private final static String CONTENT_ROOT_PATH = "/content/tetra-laval/home";
-    private final static String EXPERIENCE_FRAGMENT_ROOT_PATH = "/content/experience-fragments/tetra-laval/en";
+    private final static String EXPERIENCE_FRAGMENT_ROOT_PATH = "/content/experience-fragments/tetra-laval";
 
     private final static String HEADER_EXPERIENCE_FRAGMENT_NODENAME = "header";
     private final static String FOOTER_EXPERIENCE_FRAGMENT_NODENAME = "footer";
@@ -41,11 +46,15 @@ public class ExperienceFragmentModel {
     @PostConstruct
     protected void init() {
         resourceResolver = resource.getResourceResolver();
-        Node contentRootNode = getContentRootNode();
+        int currentLevel = Arrays.stream(PageUtil.getCurrentPage(resource).getPath().split(TLConstants.SLASH))
+                .filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList()).size() - 1;
+        Page page = PageUtil.getLanguagePage(resource);
 
-        if (!checkIfExperienceFragment() && !checkIfContentRootPage() && contentRootNode != null) {
-            Node headerNode = getExperienceFragmentNode(contentRootNode, HEADER_EXPERIENCE_FRAGMENT_NODENAME);
-            Node footerNode = getExperienceFragmentNode(contentRootNode, FOOTER_EXPERIENCE_FRAGMENT_NODENAME);
+        if (!checkIfExperienceFragment() && page != null && page.adaptTo(Node.class) != null &&
+                currentLevel > TLConstants.LANGUAGE_PAGE_LEVEL) {
+            Node currentNode = page.adaptTo(Node.class);
+            Node headerNode = getExperienceFragmentNode(currentNode, HEADER_EXPERIENCE_FRAGMENT_NODENAME);
+            Node footerNode = getExperienceFragmentNode(currentNode, FOOTER_EXPERIENCE_FRAGMENT_NODENAME);
 
             headerPath = getFragmentPath(headerNode);
             footerPath = getFragmentPath(footerNode);
@@ -56,17 +65,6 @@ public class ExperienceFragmentModel {
         return resource.getPath().indexOf(EXPERIENCE_FRAGMENT_ROOT_PATH) != -1;
     }
 
-    private boolean checkIfContentRootPage() {
-        return resource.getPath().equals(String.format("%s/%s", CONTENT_ROOT_PATH, JcrConstants.JCR_CONTENT));
-    }
-
-    private Node getContentRootNode() {
-        Resource resource = resourceResolver.resolve(CONTENT_ROOT_PATH);
-        if (resource != null && resource.adaptTo(Node.class) != null) {
-            return resource.adaptTo(Node.class);
-        }
-        return null;
-    }
 
     private Node getExperienceFragmentNode(Node node, String xfNodename) {
         String path = String.format("%s/%s", JcrConstants.JCR_CONTENT, xfNodename);

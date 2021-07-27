@@ -2,12 +2,10 @@ package com.tetralaval.utils;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import com.tetralaval.constants.PWConstants;
+import com.tetralaval.constants.TLConstants;
 import org.apache.sling.api.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Locale;
 
 /**
  * The Class PageUtil.
@@ -46,36 +44,6 @@ public final class PageUtil {
     }
 
     /**
-     * This method returns page locale default is en-US.
-     *
-     * @param currentPage
-     *            current page
-     * @return local current locale
-     */
-    public static Locale getPageLocale(final Page currentPage) {
-        if (currentPage != null) {
-            return currentPage.getLanguage(false);
-        }
-
-        return new Locale.Builder().setLanguage(PWConstants.SITE_LANGUAGE_COUNTRY_CODE)
-                .setRegion(PWConstants.GLOBAL_ISO_CODE).build();
-    }
-
-    /**
-     * Gets the language page.
-     *
-     * @param currentPage
-     *            the current page
-     * @return language
-     */
-    public static Page getLanguagePage(final Page currentPage) {
-        if (currentPage != null) {
-            return currentPage.getAbsoluteParent(PWConstants.MARKET_ROOT_PAGE_LEVEL);
-        }
-        return null;
-    }
-
-    /**
      * Gets the language page.
      *
      * @param resource
@@ -85,7 +53,7 @@ public final class PageUtil {
     public static Page getLanguagePage(final Resource resource) {
         final Page currentPage = getCurrentPage(resource);
         if (currentPage != null) {
-            return currentPage.getAbsoluteParent(PWConstants.MARKET_ROOT_PAGE_LEVEL);
+            return currentPage.getAbsoluteParent(TLConstants.LANGUAGE_PAGE_LEVEL);
         }
         return null;
     }
