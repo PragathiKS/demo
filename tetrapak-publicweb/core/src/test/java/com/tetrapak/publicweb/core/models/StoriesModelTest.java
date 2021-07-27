@@ -154,23 +154,14 @@ public class StoriesModelTest {
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
 
-        assertEquals("Heading", model.getHeading());
-        assertEquals("View All", model.getLinkLabel());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/search.html", model.getLinkPath());
         assertEquals("grayscale-white", model.getPwTheme());
         assertEquals("true", model.getEnableCarousel());
         assertEquals("anchorId", model.getAnchorId());
         assertEquals("Anchor title", model.getAnchorTitle());
-
-        assertEquals("Title", model.getTeaserList().get(1).getTitle());
-        assertEquals("Description", model.getTeaserList().get(1).getDescription());
+        assertEquals("Title", model.getStoryList().get(1).getTitle());
         assertEquals("/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
-                model.getTeaserList().get(1).getFileReference());
-        assertEquals("Alt", model.getTeaserList().get(1).getAlt());
-        assertEquals("Link Text", model.getTeaserList().get(1).getLinkText());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/solutions.html",
-                model.getTeaserList().get(1).getLinkPath());
-        assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
+                model.getStoryList().get(1).getFileReference());
+        assertEquals("Alt", model.getStoryList().get(1).getAlt());
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/test40/jcr:content/root/responsivegrid/teaser", model.getComponentResourcePath());
     }
 
@@ -187,7 +178,6 @@ public class StoriesModelTest {
         request.setResource(context.resourceResolver().getResource(RESOURCE_TWO));
         resource = context.currentResource(RESOURCE_TWO);
         model = request.adaptTo(modelClass);
-        assertEquals("abc.pdf", model.getTeaserList().get(0).getAssetName());
     }
 
     /**
@@ -204,15 +194,10 @@ public class StoriesModelTest {
         request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
-        assertEquals("Solutions", model.getTeaserList().get(0).getTitle());
-        assertEquals("Solution Desc", model.getTeaserList().get(0).getDescription());
+        assertEquals("Solutions", model.getStoryList().get(0).getTitle());
         assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
-                model.getTeaserList().get(0).getFileReference());
-        assertEquals("alt", model.getTeaserList().get(0).getAlt());
-        assertEquals("link text1", model.getTeaserList().get(0).getLinkText());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/home.html",
-                model.getTeaserList().get(0).getLinkPath());
-        assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
+                model.getStoryList().get(0).getFileReference());
+        assertEquals("alt", model.getStoryList().get(0).getAlt());
     }
 
     /**

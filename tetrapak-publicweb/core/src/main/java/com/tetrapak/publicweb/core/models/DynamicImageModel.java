@@ -541,7 +541,7 @@ public class DynamicImageModel {
 	 *            the image path
 	 * @return the string
 	 */
-	private String createDynamicMediaUrl(final String deviceType, final String imagePath) {
+	public String createDynamicMediaUrl(final String deviceType, final String imagePath) {
 		String url = "";
 		final Map<String, String> dynamicMediaConfiguration = getMap(getDynamicMediaConfiguration());
 		final String finalComponentName = getComponentName(request.getResource());
