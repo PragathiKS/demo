@@ -31,7 +31,7 @@ class Businessinquiryform {
     this.cache.countryList = [];
     this.cache.$countryField = this.root.find('.formfield.country-field');
     this.cache.$positionField = this.root.find('.formfield.position-field');
-
+    this.cache.$formInfo = this.root.find('form');
     this.cache.requestPayload = {
       'domainURL': window.location.host,
       'purposeOfContact': '',
@@ -412,8 +412,17 @@ class Businessinquiryform {
       $positionDropItem.removeClass('active');
       $(this).addClass('active');
     });
-
   }
+
+  analyticsFormstart(stepHead, mainHead) {
+    const formElements = $(this.cache.$formInfo).find('input, button, select, textarea');
+    formElements.each(function(i, val) {
+      $(val).on('click', function () {
+        makeLoad(stepHead, mainHead);
+      });
+    });
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
@@ -432,8 +441,8 @@ class Businessinquiryform {
     this.linkText = this.root.find('.newRequestBtn').text().trim();
     $('#bef-step-4 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
     $('#bef-step-5 label').slice(0, 1).each((i, v) => this.restObj2[$(v).text()] = 'NA');
-    makeLoad(this.step1head, this.mainHead);
     this.getCountryList();
+    this.analyticsFormstart(this.step1head, this.mainHead);
   }
 }
 

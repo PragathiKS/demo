@@ -131,4 +131,36 @@
             font-size: $font-xl;
         }
     }
+
+    // Baidu Map Controls
+    .BMap_stdMp {
+        &ViewMap {
+            display: inline-block;
+            color: $color-denim;
+            background: $color-white;
+            border-radius: 4px;
+            box-shadow: 0 1px 5px 0 $color-tundora;
+            font-size: $font-sm;
+            font-weight: 500;
+            padding: $padding-xxs $padding-l;
+            position: absolute;
+            right: 15px;
+            top: 20px;
+            text-align: center;
+            z-index: 99;
+        }
+        &Pan {
+            display: none;
+        }
+        &Zoom {
+            top: 10px;
+            right: 0;
+        }
+        &Slider {
+            display: none;
+        }
+    }
+    .BMap_zlHolder.hvr {
+        display: none;
+    }
 }

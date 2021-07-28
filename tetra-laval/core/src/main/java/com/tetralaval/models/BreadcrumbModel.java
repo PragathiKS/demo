@@ -5,13 +5,12 @@ import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
 import com.day.cq.wcm.api.WCMMode;
-import com.tetralaval.constants.PWConstants;
+import com.tetralaval.constants.TLConstants;
 import com.tetralaval.utils.LinkUtils;
 import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -72,7 +71,7 @@ public class BreadcrumbModel {
 
         String currentPath = languagePage.getPath();
         for (int i = 0; i < pages.size(); i++) {
-            currentPath += PWConstants.SLASH + pages.get(i);
+            currentPath += TLConstants.SLASH + pages.get(i);
             Page currentPage = PageUtil.getCurrentPage(resourceResolver.resolve(currentPath));
             breadcrumbPages.put(NavigationUtil.getNavigationTitle(currentPage), currentPage.getPath());
         }

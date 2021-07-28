@@ -137,7 +137,7 @@ public class PageLoadAnalyticsModel {
 
     /** The site section 4. */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
-    
+
     /** The site section 4. */
     private final StringBuilder siteSection5 = new StringBuilder(StringUtils.EMPTY);
 
@@ -391,7 +391,6 @@ public class PageLoadAnalyticsModel {
             countryLanguageCodeBean.setPageUrl(LinkUtils.sanitizeLink(PWConstants.GLOBAL_HOME_PAGE, request));
             hrefLangValues.add(countryLanguageCodeBean);
         }
-
         final String marketRootPath = LinkUtils.getMarketsRootPath(currentPage.getPath());
         Resource marketRootResource = currentPage.getContentResource().getResourceResolver()
                 .getResource(marketRootPath);
@@ -547,7 +546,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("pageCategories", pageCategories.toString());        
+        pageInfo.addProperty("pageCategories", pageCategories.toString());
 		pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);

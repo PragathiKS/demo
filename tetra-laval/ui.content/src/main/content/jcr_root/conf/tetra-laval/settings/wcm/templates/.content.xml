@@ -5,7 +5,7 @@
     <rep:policy/>
     <global-page-template/>
     <content-page-template/>
-    <feed-page-template/>
+    <article-page-template/>
     <campaign-page-template/>
     <global-xfpage-template/>
     <error-page-template/>

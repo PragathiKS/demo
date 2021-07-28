@@ -6,7 +6,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.tetralaval.constants.PWConstants;
+import com.tetralaval.constants.TLConstants;
 import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
@@ -41,6 +41,8 @@ public class AdobeAnalyticsModel {
     private final static String QA_RUN_MODE = "qa";
     private final static String STAGE_RUN_MODE = "stage";
     private final static String PROD_RUN_MODE = "prod";
+    private final static String CONTENT_LOAD_EVENT = "content-load";
+    private final static String LOGIN_STATUS = "logged-in";
     private final static String ERROR_PAGE_TEMPLATE_NAME = "error-page-template";
     private final static String ERROR_VALUE = "error";
     private final static String ERROR_PAGE_TYPE_VALUE = "errorPage";
@@ -107,9 +109,9 @@ public class AdobeAnalyticsModel {
     }
 
     private List<String> generateSiteSections() {
-        String sectionPath = Text.getAbsoluteParent(resource.getPath(), PWConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL);
+        String sectionPath = Text.getAbsoluteParent(resource.getPath(), TLConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL);
         String path = request.getPathInfo().replace(sectionPath, StringUtils.EMPTY).replace(".html", StringUtils.EMPTY);
-        return Arrays.stream(path.split(PWConstants.SLASH)).filter(s -> !s.equals(StringUtils.EMPTY)).collect(Collectors.toList());
+        return Arrays.stream(path.split(TLConstants.SLASH)).filter(s -> !s.equals(StringUtils.EMPTY)).collect(Collectors.toList());
     }
 
     public boolean isDevelopment() {
@@ -128,7 +130,7 @@ public class AdobeAnalyticsModel {
         if (isErrorPage()) {
             return ERROR_VALUE;
         }
-        String sectionPath = Text.getAbsoluteParent(resource.getPath(), PWConstants.CHAPTER_LEVEL);
+        String sectionPath = Text.getAbsoluteParent(resource.getPath(), TLConstants.CHAPTER_LEVEL);
         return resourceResolver.resolve(sectionPath).getName();
     }
 
@@ -142,7 +144,7 @@ public class AdobeAnalyticsModel {
         }
 
         Page currentPage = PageUtil.getCurrentPage(resource);
-        final Page languagePage = currentPage != null ? currentPage.getAbsoluteParent(PWConstants.LANGUAGE_PAGE_LEVEL) : null;
+        final Page languagePage = currentPage != null ? currentPage.getAbsoluteParent(TLConstants.LANGUAGE_PAGE_LEVEL) : null;
         if (languagePage != null) {
             siteLanguage = languagePage.getName();
         }
@@ -204,13 +206,13 @@ public class AdobeAnalyticsModel {
         }
         pageInfo.addProperty("siteCountry", siteLanguage);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("siteName", "tetralaval");
-        pageInfo.addProperty("event", "content-load");
+        pageInfo.addProperty("siteName", TLConstants.SITE_NAME);
+        pageInfo.addProperty("event", CONTENT_LOAD_EVENT);
 
         JsonObject userInfo = new JsonObject();
         userInfo.addProperty("userId", StringUtils.EMPTY);
         userInfo.addProperty("userRole", StringUtils.EMPTY);
-        userInfo.addProperty("logInStatus", "logged-in");
+        userInfo.addProperty("logInStatus", LOGIN_STATUS);
         userInfo.addProperty("userLanguage", StringUtils.EMPTY);
         userInfo.addProperty("userType", StringUtils.EMPTY);
 
