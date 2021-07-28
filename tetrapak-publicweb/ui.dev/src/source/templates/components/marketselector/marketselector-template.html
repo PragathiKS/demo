@@ -22,11 +22,11 @@
                     <a data-sly-test="${marketLanguage.linkPath!='#' || marketLanguage.linkPath!=''}" href="${marketLanguage.linkPath}" target="_self" auto_locator="countryName">						
                         <sly data-sly-test="${languageSize >=2}">
                              <span class="${marketLanguage.isCurrentLanguage ? 'selected' : 'blank'}">${marketList.marketName}</span>
-							<sly data-sly-test="${marketLanguage.countryTitle}"><span><i class="icon-ver-line"></i></span><span class="${marketLanguage.isCurrentLanguage ? 'selected' : 'blank'}">${marketLanguage.countryTitle}</span></sly>
+							<sly data-sly-test="${marketLanguage.countryTitle}"><span class="${marketLanguage.isCurrentLanguage ? 'selected' : 'blank'}">${marketLanguage.countryTitle}</span></sly>
 							<span class="${marketLanguage.isCurrentLanguage ? 'selected' : 'blank'}">${languageSize >=2 ? concatenatedLanguage : ''}</span>
 						</sly>
 						<sly data-sly-test="${languageSize<2}"><span class="${marketList.isActive ? 'selected' : 'blank'}">${marketList.marketName}</span></sly>
-						<sly data-sly-test="${marketList.countryName}"><span><i class="icon-ver-line"></i></span><span class="${marketList.isActive ? 'selected' : 'blank'}">${marketList.countryName}</span></sly>						
+						<sly data-sly-test="${marketList.countryName}"><span class="${marketList.isActive ? 'selected' : 'blank'}">${marketList.countryName}</span></sly>						
 						<i data-sly-test="${data.globalMarketPath==marketLanguage.linkPath}" class="icon-Globe"></i>
                     </a>
                   </li>
