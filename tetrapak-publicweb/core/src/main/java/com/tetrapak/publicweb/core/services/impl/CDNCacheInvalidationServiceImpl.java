@@ -175,6 +175,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                     str = EntityUtils.toString(entity);
                 } catch (ParseException | IOException e) {
                     tx.getLog().error("Error while parsing response :: " + e);
+                    LOGGER.error("Error while parsing response for path :: {}",tx.getAction().getPath(),e);
                 }
                 tx.getLog().info("Response body :: " + str);
             }
@@ -182,6 +183,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                 return ReplicationResult.OK;
             }
         }
+        LOGGER.error("Error received from cdn and response is null for path:: {}",tx.getAction().getPath());
         return new ReplicationResult(false, 0, "Replication failed");
     }
 
@@ -319,9 +321,13 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                         LinkUtils.getRootPath(path).replace(config.contentPathForCDNCacheInvalidation(), ""));
                 purgeDirs.add(contentPath);
                 directoryToBePurged = contentPath;
+            } else if (StringUtils.isNotBlank(path) && (path.startsWith(PWConstants.ONLINE_HELP_CONTENT_PATH))
+                    || path.startsWith(PWConstants.ONLINE_HELP_DAM_PATH)) {
+                purgeOnlineHelpCache(purgeDirs, path);
+            } else if (StringUtils.isNotBlank(path)
+                    && (path.startsWith(PWConstants.DS_CONTENT_PATH) || path.startsWith(PWConstants.DS_CONTENT_DAM_PATH))) {
+                purgeDesignSystemCache(purgeDirs, path);
             }
-            purgeDesignSystemCache(purgeDirs, path);
-            purgeOnlineHelpCache(purgeDirs, path);
         }
         /**
          * Below condition checks if cache purge request for same directory is made within 5 minutes, then don't send
@@ -354,13 +360,10 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      *            the path
      */
     private void purgeDesignSystemCache(final JsonArray purgeDirs, final String path) {
-        if (StringUtils.isNotBlank(path)
-                && (path.startsWith(PWConstants.DS_CONTENT_PATH) || path.startsWith(PWConstants.DS_CONTENT_DAM_PATH))) {
             final String contentPath = config.dsDomainForCDN() + PWConstants.SLASH;
             LOGGER.debug("DS content path {}", contentPath);
             purgeDirs.add(contentPath);
             directoryToBePurged = contentPath;
-        }
     }
 
     /**
@@ -372,12 +375,10 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      *            the path
      */
     private void purgeOnlineHelpCache(final JsonArray purgeDirs, final String path) {
-        if (StringUtils.isNotBlank(path) && (path.startsWith(PWConstants.ONLINE_HELP_CONTENT_PATH))) {
             final String contentPath = config.onlineHelpDomainForCDN() + PWConstants.SLASH;
             LOGGER.debug("Online Help content path {}", contentPath);
             purgeDirs.add(contentPath);
             directoryToBePurged = contentPath;
-        }
     }
 
     /**
