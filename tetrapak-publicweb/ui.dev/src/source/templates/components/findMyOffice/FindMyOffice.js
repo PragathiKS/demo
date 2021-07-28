@@ -7,7 +7,6 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import { isMobile } from '../../../scripts/common/common';
-
 class FindMyOffice {
   constructor({ el }) {
     this.root = $(el);
@@ -16,6 +15,9 @@ class FindMyOffice {
 
   initCache() {
     this.cache.map = {};
+    this.cache.baiduMap = null;
+    this.cache.baiduMapMarker = null;
+    this.cache.isChinaLocale = window.location.href.indexOf('zh-cn') === -1 ? false:true;
     this.cache.googleMaps = '';
     this.cache.officesList = [];
     this.cache.officesNameList = [];
@@ -50,16 +52,83 @@ class FindMyOffice {
 
   bindEvents() {
     const googleApiKey = this.cache.googleApi.data('google-api-key');
-    const isChina = window.location.href.indexOf('zh-cn');
-    if(isChina === -1){
+    if (!this.cache.isChinaLocale) {
       loadGoogleMapsApi({
         key: googleApiKey,
         libraries: ['places', 'geometry']
       }).then(this.handleGoogleMapApi);
     } else {
       this.getOfficesList();
+      this.initBaiduMap();
     }
     this.root.on('click', '.js-localSiteUrl', this.goToLocalSite);
+  }
+
+  initBaiduMap = () => {
+    const $this = this;
+    this.cache.baiduMap = new window.BMap.Map('pw-find-my-office__map');
+    const point = new window.BMap.Point(this.cache.defaultLongitude, this.cache.defaultLatitude);
+    this.cache.baiduMap.centerAndZoom(point, 1);
+    this.cache.baiduMap.enableDragging();
+    this.cache.baiduMap.enableDoubleClickZoom();
+    this.cache.baiduMap.enablePinchToZoom();
+    this.cache.baiduMap.enableKeyboard();
+
+    const zoomCtrl = new window.BMap.NavigationControl({
+      anchor: 'BMAP_ANCHOR_TOP_RIGHT',
+      type: 'BMAP_NAVIGATION_CONTROL_ZOOM'
+    });
+    this.cache.baiduMap.addControl(zoomCtrl);
+    setTimeout(function() {
+      $this.customizeBaiduMap();
+    }, 1500);
+  }
+
+  customizeBaiduMap = () => {
+    const mapCtrl = $('.BMap_stdMpCtrl');
+    const mapZoomOut = $('.BMap_stdMpZoomOut');
+    
+    $(mapCtrl).css({
+      'height': '55px',
+      'inset': 'auto -10px 20px auto', 
+      'width': '50px'
+    });
+    $(mapZoomOut).css({
+      'top':'25px'
+    });
+    
+    // Generate View Full Map button
+    const mapURI = 'https://map.baidu.com/?latlng='+ this.cache.defaultLongitude+','+this.cache.defaultLatitude +'&autoOpen=true&l';
+    const newlink = document.createElement('a');
+    newlink.classList.add('BMap_stdMpViewMap');
+    newlink.textContent = '查看全屏';
+    newlink.setAttribute('href', mapURI);
+    newlink.setAttribute('target', '_blank');
+    newlink.setAttribute('auto_locator', 'viewLargeMapCTA');
+    $('.pw-find-my-office__map').prepend(newlink);
+  }
+
+  baiduMapMarker = (map, lng, lat) => {
+    map.removeOverlay(this.cache.baiduMapMarker);
+    const markerArr = [{
+      icon: { w: 40, h: 55, l: 0, t: 0, x: 6, lb: 5 }
+    }];
+
+    for (let i = 0; i < markerArr.length; i++) {
+      const json = markerArr[i];
+      const p0 = lng;
+      const p1 = lat;
+      const point = new window.BMap.Point(p0, p1);
+      const iconImg = this.createBaiduMapMarkerIcon(json.icon);
+      const marker = new window.BMap.Marker(point, { icon: iconImg });
+      this.cache.baiduMapMarker = marker;
+      map.addOverlay(marker);
+    }
+  }
+
+  createBaiduMapMarkerIcon = (json) => {
+    const icon = new window.BMap.Icon('/content/dam/tetrapak/publicweb/Pin.png', new window.BMap.Size(json.w, json.h), { imageOffset: new window.BMap.Size(-json.l, -json.t), infoWindowOffset: new window.BMap.Size(json.lb + 5, 1), offset: new window.BMap.Size(json.x, json.h) });
+    return icon;
   }
 
   goToLocalSite = e => {
@@ -144,23 +213,37 @@ class FindMyOffice {
       $('.js-pw-find-my-office__map').height(formHeight);
     }
   };
-
+  
   renderMarkerPosition = (office, options) => {
-    const latLng = new this.cache.googleMaps.LatLng(
-      office.latitude,
-      office.longitude
-    );
-    this.cache.marker = new this.cache.googleMaps.Marker({
-      position: latLng,
-      title: office.name,
-      icon: '/content/dam/tetrapak/publicweb/Pin.png'
-    });
+    if (this.cache.isChinaLocale) {
+      if (office.offices) {
+        const point = new window.BMap.Point(office.longitude, office.latitude);
+        this.cache.baiduMap.centerAndZoom(point, 6);
+      } else {
+        const point = new window.BMap.Point(office.longitude, office.latitude);
+        this.cache.baiduMap.centerAndZoom(point, 11);
+        this.baiduMapMarker(this.cache.baiduMap, office.longitude, office.latitude);
+      }
+      const mapURL = 'https://map.baidu.com/?latlng='+ office.latitude + ',' + office.longitude +'&autoOpen=true&l';
+      document.querySelector('.BMap_stdMpViewMap').setAttribute('href', mapURL);
+    } else {
+      const latLng = new this.cache.googleMaps.LatLng(
+        office.latitude,
+        office.longitude
+      );
 
-    // To add the marker to the map, call setMap();
-    this.cache.marker.setMap(this.cache.map);
-    this.cache.marker.setVisible(options.markerVisibility);
-    this.cache.map.setZoom(options.mapZoomLevel || 5);
-    this.cache.map.panTo(this.cache.marker.position);
+      this.cache.marker = new this.cache.googleMaps.Marker({
+        position: latLng,
+        title: office.name,
+        icon: '/content/dam/tetrapak/publicweb/Pin.png'
+      });
+
+      // To add the marker to the map, call setMap();
+      this.cache.marker.setMap(this.cache.map);
+      this.cache.marker.setVisible(options.markerVisibility);
+      this.cache.map.setZoom(options.mapZoomLevel || 5);
+      this.cache.map.panTo(this.cache.marker.position);
+    }
   };
 
   resetOfficeDetails = () => {
@@ -271,12 +354,8 @@ class FindMyOffice {
         if (data) {
           this.cache.normalizedData = data;
           this.renderCountries();
-          this.cache.selectedCountry = this.root.find(
-            '.js-dropdown-item-country'
-          );
-          $(
-            '.js-pw-form__dropdown__country,.js-pw-form__dropdown__country-select'
-          ).keydown(e =>
+          this.cache.selectedCountry = this.root.find('.js-dropdown-item-country');
+          $('.js-pw-form__dropdown__country,.js-pw-form__dropdown__country-select').keydown(e =>
             this.onKeydown(e, Object.keys(this.cache.normalizedData))
           );
           this.cache.selectedCountry.on('click', this.onClickCountryItem);
@@ -332,6 +411,7 @@ class FindMyOffice {
     );
     const gotoMapButton = document.createElement('div');
     $(gotoMapButton).addClass('view-larger-map');
+    $(gotoMapButton).attr('auto_locator', 'viewLargeMapCTA');
     gotoMapButton.innerHTML = $(this.cache.hiddenElement).text();
     this.cache.map.controls[
       this.cache.googleMaps.ControlPosition.TOP_RIGHT

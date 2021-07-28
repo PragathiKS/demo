@@ -2,7 +2,7 @@ package com.tetralaval.models;
 
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
-import com.tetralaval.constants.PWConstants;
+import com.tetralaval.constants.TLConstants;
 import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -46,12 +46,12 @@ public class ExperienceFragmentModel {
     @PostConstruct
     protected void init() {
         resourceResolver = resource.getResourceResolver();
-        int currentLevel = Arrays.stream(PageUtil.getCurrentPage(resource).getPath().split(PWConstants.SLASH))
+        int currentLevel = Arrays.stream(PageUtil.getCurrentPage(resource).getPath().split(TLConstants.SLASH))
                 .filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList()).size() - 1;
         Page page = PageUtil.getLanguagePage(resource);
 
         if (!checkIfExperienceFragment() && page != null && page.adaptTo(Node.class) != null &&
-                currentLevel > PWConstants.LANGUAGE_PAGE_LEVEL) {
+                currentLevel > TLConstants.LANGUAGE_PAGE_LEVEL) {
             Node currentNode = page.adaptTo(Node.class);
             Node headerNode = getExperienceFragmentNode(currentNode, HEADER_EXPERIENCE_FRAGMENT_NODENAME);
             Node footerNode = getExperienceFragmentNode(currentNode, FOOTER_EXPERIENCE_FRAGMENT_NODENAME);
