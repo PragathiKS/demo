@@ -190,11 +190,11 @@ public class StoriesModel {
                 dynamicMediaUrl = dynamicMediaService.getVideoServiceUrl();
             }
         }
-        if (imagePath != null) {
+        if (Objects.nonNull(imagePath)) {
             finalPath = PWConstants.SLASH + GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
         }
 
-        if (null != dynamicMediaUrl) {
+        if (Objects.nonNull(dynamicMediaUrl)) {
             dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PWConstants.PATH_SEPARATOR) + finalPath;
             dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PATH_SEPARATOR) + finalPath;
         }
