@@ -4,10 +4,9 @@
 
     a {
         font-family: $font-monsterrat;
-        span {
-            font-weight: 400;
-            &.selected {
-                font-weight: 700;
+        &:hover {
+            span:nth-child(2) {
+                border-left: 1px solid $color-sky-blue;
             }
         }
     }
@@ -90,9 +89,20 @@
         @media #{$desktop} {
             &:last-child {
                 @include padding-bottom($padding-l);
-        }
+            }
         }
 
+        span {
+            font-weight: 400;
+            &.selected {
+                font-weight: 700;
+            }
+            &:nth-child(2) {
+                border-left: 1px solid $color-congress-blue;
+                padding-left: $padding-sm;
+                margin-left: $margin-xs;
+            }
+        }
     }
 
     .icon-Close_pw {
