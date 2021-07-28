@@ -49,6 +49,11 @@ public class FooterModel {
     /** The go to top label. */
     private String goToTopLabel;
 
+    /** We chat QR code */
+    private String wechatQrCodeReference;
+
+    private String qrAltText;
+
     /**
      * Inits the.
      */
@@ -74,6 +79,8 @@ public class FooterModel {
                     footerLinksSanitized.add(footerLink);
                 }
                 goToTopLabel = configurationModel.getGoToTopLabel();
+                wechatQrCodeReference = configurationModel.getWechatQrCodeReference();
+                qrAltText = configurationModel.getQrAltText();
 
             }
         }
@@ -131,5 +138,23 @@ public class FooterModel {
      */
     public String getGoToTopLabel() {
         return goToTopLabel;
+    }
+
+    /**
+     * Gets the We chat QR code.
+     *
+     * @return the We chat QR code
+     */
+    public String getWechatQrCodeReference() {
+        return wechatQrCodeReference;
+    }
+
+    /**
+     * Gets the Image Alt text.
+     *
+     * @return the Image Alt text
+     */
+    public String getQrAltText() {
+        return qrAltText;
     }
 }
