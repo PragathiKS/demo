@@ -1,15 +1,32 @@
 <sly data-sly-use.model="com.tetralaval.models.ContactModel"/>
 
-<sly data-sly-list.contactItem="${model.contactDetails}">
-    <p>anchorId = ${contactItem.anchorId}</p>
-    <p>anchorTitle = ${contactItem.anchorTitle}</p>
-    <p>text</p>
-    <sly>${contactItem.text @ context='html'}</sly>
-    <hr/>
-</sly>
-
-<hr/>
-
-<p>mapUrl = ${model.mapUrl}</p>
-<p>pwPadding = ${model.pwPadding}</p>
-<p>topSpacing = ${model.topSpacing}</p>
+<p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+<section class="page-section pw-theme--${model.pwTheme}">
+    <div class="tp-container pw-padding--${model.pwPadding}">
+        <div class="contact-row">
+            <div class="col-learnmore-units col-half">
+                <div class="learnmore-units-wrapper">
+                    <div class="text-container rich-content">
+                        <h1 data-sly-test="${model.title}">${model.title}</h1>
+                        <sly data-sly-list.contactItem="${model.contactDetails}">
+                            <div id="${contactItem.anchorId}" data-module='RichText' title="${contactItem.anchorTitle}"
+                                 class="pw-container reference-class">
+                                <div class="tp-pw-richText justify-content-lg-center justify-content-sm-center">
+                                    <div data-link-section='RTE_Text Hyperlink' data-link-name=''
+                                         class="col-sm-12 fullBleed tp-pw-richText-wrapper">
+                                        ${contactItem.text @context='html'}
+                                    </div>
+                                </div>
+                            </div>
+                        </sly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-learnmore-units col-half">
+                <div class="learnmore-units-wrapper">
+                    <iframe src="${model.mapUrl}" width="100%" height="450" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

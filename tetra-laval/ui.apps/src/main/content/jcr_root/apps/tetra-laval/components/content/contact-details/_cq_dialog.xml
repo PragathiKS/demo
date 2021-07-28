@@ -16,65 +16,72 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <contactDetails
+                            <title
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldLabel="Contact Details">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    jcr:title="Click to Expand"
-                                    sling:resourceType="granite/ui/components/foundation/container"
-                                    name="./contactDetails">
-                                    <layout
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/layouts/collapsible"/>
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <details
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/include"
-                                            path="/apps/publicweb/components/content/richtext/cq:dialog/content/items/rte/items/column/items/text"/>
-                                        <anchorId
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/include"
-                                            path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor/items/column/items/anchorId"/>
-                                        <anchorTitle
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/include"
-                                            path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor/items/column/items/anchorTitle"/>
-                                    </items>
-                                </field>
-                            </contactDetails>
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Title"
+                                name="./title"/>
                             <mapUrl
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Map url"
                                 name="./mapUrl"/>
+                            <contactDetails
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Contact Details"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./contactDetails">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <details
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                    path="/apps/publicweb/components/content/richtext/cq:dialog/content/items/rte/items/column/items/text"/>
+                                                <anchorId
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                    path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor/items/column/items/anchorId"/>
+                                                <anchorTitle
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                    path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor/items/column/items/anchorTitle"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </contactDetails>
                         </items>
                     </column>
                 </items>
             </baseInfo>
-            <spacing
+            <design
                 jcr:primaryType="nt:unstructured"
-                jcr:title="Spacing"
+                jcr:title="Design"
                 sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                 <items jcr:primaryType="nt:unstructured">
                     <column
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
+                            <pwThemes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
                             <padding
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
                                 path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/padding"/>
-                            <topmargin
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/topmargin"/>
                         </items>
                     </column>
                 </items>
-            </spacing>
+            </design>
         </items>
     </content>
 </jcr:root>

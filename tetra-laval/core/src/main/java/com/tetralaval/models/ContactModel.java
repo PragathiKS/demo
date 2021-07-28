@@ -26,26 +26,33 @@ public class ContactModel {
     private Resource resource;
 
     @ValueMapValue
+    private String title;
+
+    @ValueMapValue
     private String mapUrl;
+
+    @ValueMapValue
+    private String pwTheme;
 
     @ValueMapValue
     private String pwPadding;
 
-    @ValueMapValue
-    private String topSpacing;
-
     private List<ContactDetailsModel> contactDetails;
+
+    public String getTitle() {
+        return title;
+    }
 
     public String getMapUrl() {
         return mapUrl;
     }
 
-    public String getPwPadding() {
-        return pwPadding;
+    public String getPwTheme() {
+        return pwTheme;
     }
 
-    public String getTopSpacing() {
-        return topSpacing;
+    public String getPwPadding() {
+        return pwPadding;
     }
 
     public List<ContactDetailsModel> getContactDetails() {
