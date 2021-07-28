@@ -1,0 +1,43 @@
+.tp-pw-sidebar {
+    ul {
+        display: inline-block;
+        position: fixed;
+        right: 0;
+        transform: translateY(-50%);
+        top: 50%;
+    }
+    &__link {
+        color: $color-white-new;
+        background-color: $color-light-green;
+        overflow: hidden;
+        padding: $padding-l;
+        position: relative;
+        &:hover {
+            color: $color-white-new;
+        }
+    }
+    .icon-WeChat_pw {
+        left: 10px;
+        position: absolute;
+        transform: translateY(-45%);
+        top: 50%;
+        &::before {
+            font-size: $font-l;
+        }
+    }
+    .modal-header {
+        border: 0;
+        display: flex;
+        align-items: center;
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            line-height: 1;
+        }
+        .js-close-btn {
+            &::before {
+                font-size: $font-normal;
+            }
+        }
+    }
+}
