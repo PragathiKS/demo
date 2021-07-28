@@ -1,0 +1,23 @@
+.contact-row {
+  display: flex;
+  font-size: $font-normal;
+  .col-learnmore-units {
+    @include margin-bottom($margin-l);
+  }
+  @media #{$mobile} {
+    flex-direction: column;
+  }
+  h1 {
+    @include margin-top($margin-xxl);
+    @include margin-bottom($margin-md);
+  }
+  h3 {
+    font-size: $font-l;
+    @include margin-top($margin-l);
+    @include margin-bottom($margin-sm);
+  }
+
+  .col-half {
+    flex-basis: 50%;
+  }
+}
