@@ -359,7 +359,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      * @param path
      *            the path
      */
-    private void purgeDesignSystemCache(final JsonArray purgeDirs, final String path) {
+    private void purgeDesignSystemCache(final JsonArray purgeDirs) {
             final String contentPath = config.dsDomainForCDN() + PWConstants.SLASH;
             LOGGER.debug("DS content path {}", contentPath);
             purgeDirs.add(contentPath);
@@ -374,7 +374,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      * @param path
      *            the path
      */
-    private void purgeOnlineHelpCache(final JsonArray purgeDirs, final String path) {
+    private void purgeOnlineHelpCache(final JsonArray purgeDirs) {
             final String contentPath = config.onlineHelpDomainForCDN() + PWConstants.SLASH;
             LOGGER.debug("Online Help content path {}", contentPath);
             purgeDirs.add(contentPath);
