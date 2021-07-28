@@ -1,46 +1,55 @@
-
- <sly data-sly-template.marketselector_template="${@data, flag}">
-  <div class="modal tp-modal pw-lang-selector js-lang-modal fade" id="lang-modal" data-module="Marketselector" tabindex="-1" role="dialog">
+<sly data-sly-template.marketselector_template="${@data, flag}">
+  <div class="modal tp-modal pw-lang-selector js-lang-modal fade" id="lang-modal" data-module="Marketselector"
+    tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
       <div class="modal-content tp-modal-content">
-        
         <div class="modal-header pw-lang-selector__header" auto_locator="countrySelectorHeader">
-          <h4 role="heading" data-sly-test="${data.marketTitle}" class="pw-lang-selector__header__heading">${data.marketTitle}
+          <h4 role="heading" data-sly-test="${data.marketTitle}" class="pw-lang-selector__header__heading">
+            ${data.marketTitle}
           </h4>
-          <button type="button" auto_locator="languageSelectModal" class="tp-close-btn icon-Close_pw pw-lang-selector__header__close js-close-btn" aria-label="Market selector close button" title="Market selector close button"></button>
+          <button type="button" auto_locator="languageSelectModal"
+            class="tp-close-btn icon-Close_pw pw-lang-selector__header__close js-close-btn"
+            aria-label="Market selector close button" title="Market selector close button"></button>
         </div>
-
         <div class="modal-body pw-lang-selector__body row" auto_locator="countryListBox">
           <sly data-sly-list.marketList=${data.markets}>
-            <sly data-sly-test.languageSize="${marketList.languages.size}"/>
-              <sly data-sly-list.marketLanguage="${marketList.languages}">
-                <sly data-sly-test = "${marketLanguage.languageIndex==1 || marketLanguage.languageIndex==data.col2Start || marketLanguage.languageIndex==data.col3Start || marketLanguage.languageIndex==data.col4Start}">
-                            <section class="pw-lang-selector__lang-container col-md-3"><ul>
-                </sly>
-                <sly data-sly-test="${languageSize >= 2}" data-sly-test.concatenatedLanguage="${'{0}{1}{2}' @ format=['(', marketLanguage.languageName, ')']}"/>
-                  <li class='pw-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}" aria-label="${marketLanguage.languageName}" auto_locator="countryTiles">
-                    <a data-sly-test="${marketLanguage.linkPath!='#' || marketLanguage.linkPath!=''}" href="${marketLanguage.linkPath}" target="_self" auto_locator="countryName">						
-                        <sly data-sly-test="${languageSize >=2}">
-                             <span class="${marketLanguage.isCurrentLanguage ? 'selected' : 'blank'}">${marketList.marketName}</span>
-							<sly data-sly-test="${marketLanguage.countryTitle}"><span><i class="icon-ver-line"></i></span><span class="${marketLanguage.isCurrentLanguage ? 'selected' : 'blank'}">${marketLanguage.countryTitle}</span></sly>
-							<span class="${marketLanguage.isCurrentLanguage ? 'selected' : 'blank'}">${languageSize >=2 ? concatenatedLanguage : ''}</span>
-						</sly>
-						<sly data-sly-test="${languageSize<2}"><span class="${marketList.isActive ? 'selected' : 'blank'}">${marketList.marketName}</span></sly>
-						<sly data-sly-test="${marketList.countryName}"><span><i class="icon-ver-line"></i></span><span class="${marketList.isActive ? 'selected' : 'blank'}">${marketList.countryName}</span></sly>						
-						<i data-sly-test="${data.globalMarketPath==marketLanguage.linkPath}" class="icon-Globe"></i>
-                    </a>
-                  </li>
-
-                  <sly data-sly-test = "${marketLanguage.languageIndex==data.col1End || marketLanguage.languageIndex==data.col2End || marketLanguage.languageIndex==data.col3End || marketLanguage.languageIndex==data.col4End}">
-                    </ul></section>
+            <sly data-sly-test.languageSize="${marketList.languages.size}" />
+            <sly data-sly-list.marketLanguage="${marketList.languages}">
+              <sly
+                data-sly-test="${marketLanguage.languageIndex==1 || marketLanguage.languageIndex==data.col2Start || marketLanguage.languageIndex==data.col3Start || marketLanguage.languageIndex==data.col4Start}">
+                <section class="pw-lang-selector__lang-container col-md-3">
+                  <ul>
+              </sly>
+              <sly data-sly-test="${languageSize >= 2}"
+                data-sly-test.concatenatedLanguage="${'{0}{1}{2}' @ format=['(', marketLanguage.languageName, ')']}" />
+              <li class='pw-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}"
+                aria-label="${marketLanguage.languageName}" auto_locator="countryTiles">
+                <a data-sly-test="${marketLanguage.linkPath!='#' || marketLanguage.linkPath!=''}"
+                  href="${marketLanguage.linkPath}" target="_self" auto_locator="countryName"
+                  class="${marketList.isActive ? 'selected' : 'blank'}">
+                  <sly data-sly-test="${languageSize >=2}">
+                    <span>${marketList.marketName}</span>
+                    <sly data-sly-test="${marketLanguage.countryTitle}">
+                      <span>${marketLanguage.countryTitle} ${languageSize >=2 ? concatenatedLanguage : ''}</span>
+                    </sly>
                   </sly>
-
-
-              </sly>     
+                  <sly data-sly-test="${languageSize<2}">
+                    <span>${marketList.marketName}</span>
+                  </sly>
+                  <sly data-sly-test="${marketList.countryName}">
+                    <span>${marketList.countryName}</span></sly>
+                    <i data-sly-test="${data.globalMarketPath==marketLanguage.linkPath}" class="icon-Globe"></i>
+                </a>
+              </li>
+              <sly
+                data-sly-test="${marketLanguage.languageIndex==data.col1End || marketLanguage.languageIndex==data.col2End || marketLanguage.languageIndex==data.col3End || marketLanguage.languageIndex==data.col4End}">
+                </ul>
+                </section>
+              </sly>
+            </sly>
           </sly>
         </div>
-
-      </div>  
+      </div>
     </div>
-  </div>  
+  </div>
 </sly>
