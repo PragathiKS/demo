@@ -323,10 +323,10 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                 directoryToBePurged = contentPath;
             } else if (StringUtils.isNotBlank(path) && (path.startsWith(PWConstants.ONLINE_HELP_CONTENT_PATH))
                     || path.startsWith(PWConstants.ONLINE_HELP_DAM_PATH)) {
-                purgeOnlineHelpCache(purgeDirs, path);
+                purgeOnlineHelpCache(purgeDirs);
             } else if (StringUtils.isNotBlank(path)
                     && (path.startsWith(PWConstants.DS_CONTENT_PATH) || path.startsWith(PWConstants.DS_CONTENT_DAM_PATH))) {
-                purgeDesignSystemCache(purgeDirs, path);
+                purgeDesignSystemCache(purgeDirs);
             }
         }
         /**
