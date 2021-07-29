@@ -15,8 +15,8 @@ class FindMyOffice {
 
   initCache() {
     this.cache.map = {};
-    this.cache.baiduMap = null;
-    this.cache.baiduMapMarker = null;
+    this.cache.bMap = null;
+    this.cache.bMapMarker = null;
     this.cache.isChinaLocale = window.location.href.indexOf('zh-cn') === -1 ? false:true;
     this.cache.googleMaps = '';
     this.cache.officesList = [];
@@ -66,19 +66,19 @@ class FindMyOffice {
 
   initBaiduMap = () => {
     const $this = this;
-    this.cache.baiduMap = new window.BMap.Map('pw-find-my-office__map');
+    this.cache.bMap = new window.BMap.Map('pw-find-my-office__map');
     const point = new window.BMap.Point(this.cache.defaultLongitude, this.cache.defaultLatitude);
-    this.cache.baiduMap.centerAndZoom(point, 1);
-    this.cache.baiduMap.enableDragging();
-    this.cache.baiduMap.enableDoubleClickZoom();
-    this.cache.baiduMap.enablePinchToZoom();
-    this.cache.baiduMap.enableKeyboard();
+    this.cache.bMap.centerAndZoom(point, 1);
+    this.cache.bMap.enableDragging();
+    this.cache.bMap.enableDoubleClickZoom();
+    this.cache.bMap.enablePinchToZoom();
+    this.cache.bMap.enableKeyboard();
 
     const zoomCtrl = new window.BMap.NavigationControl({
       anchor: 'BMAP_ANCHOR_TOP_RIGHT',
       type: 'BMAP_NAVIGATION_CONTROL_ZOOM'
     });
-    this.cache.baiduMap.addControl(zoomCtrl);
+    this.cache.bMap.addControl(zoomCtrl);
     setTimeout(function() {
       $this.customizeBaiduMap();
     }, 1500);
@@ -90,7 +90,11 @@ class FindMyOffice {
     
     $(mapCtrl).css({
       'height': '55px',
-      'inset': 'auto -10px 20px auto', 
+      'inset': 'auto -10px 20px auto',
+      'top': 'auto',
+      'right': '-10px',
+      'bottom': '20px',
+      'left': 'auto',
       'width': '50px'
     });
     $(mapZoomOut).css({
@@ -109,7 +113,9 @@ class FindMyOffice {
   }
 
   baiduMapMarker = (map, lng, lat) => {
-    map.removeOverlay(this.cache.baiduMapMarker);
+    if(this.cache.bMapMarker) {
+      map.removeOverlay(this.cache.bMapMarker);
+    }
     const markerArr = [{
       icon: { w: 40, h: 55, l: 0, t: 0, x: 6, lb: 5 }
     }];
@@ -121,7 +127,7 @@ class FindMyOffice {
       const point = new window.BMap.Point(p0, p1);
       const iconImg = this.createBaiduMapMarkerIcon(json.icon);
       const marker = new window.BMap.Marker(point, { icon: iconImg });
-      this.cache.baiduMapMarker = marker;
+      this.cache.bMapMarker = marker;
       map.addOverlay(marker);
     }
   }
@@ -218,11 +224,11 @@ class FindMyOffice {
     if (this.cache.isChinaLocale) {
       if (office.offices) {
         const point = new window.BMap.Point(office.longitude, office.latitude);
-        this.cache.baiduMap.centerAndZoom(point, 6);
+        this.cache.bMap.centerAndZoom(point, 6);
       } else {
         const point = new window.BMap.Point(office.longitude, office.latitude);
-        this.cache.baiduMap.centerAndZoom(point, 11);
-        this.baiduMapMarker(this.cache.baiduMap, office.longitude, office.latitude);
+        this.cache.bMap.centerAndZoom(point, 11);
+        this.baiduMapMarker(this.cache.bMap, office.longitude, office.latitude);
       }
       const mapURL = 'https://map.baidu.com/?latlng='+ office.latitude + ',' + office.longitude +'&autoOpen=true&l';
       document.querySelector('.BMap_stdMpViewMap').setAttribute('href', mapURL);
