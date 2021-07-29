@@ -2387,6 +2387,7 @@
 "hideContactFooterForm@Delete": "true",
 "jcr:createdBy": "sapient-user",
 "jcr:title": "Belgium",
+"countryName": "Belgique",
 "cq:lastReplicationAction": "Activate",
 "jcr:versionHistory": "492ec701-8772-4866-ae27-417aa2dde0bf",
 "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
@@ -2424,6 +2425,7 @@
 "pinterest"
 ],
 "jcr:title": "French",
+"countryTitle": "Belgique",
 "cq:lastReplicationAction": "Activate",
 "jcr:versionHistory": "f5b04624-0388-4ad5-8a47-86096d146ea6",
 "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",

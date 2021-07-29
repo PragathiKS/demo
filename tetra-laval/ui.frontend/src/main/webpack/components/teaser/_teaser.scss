@@ -1,0 +1,126 @@
+.pw-container {
+    .teaser {
+        padding-top: $padding-sm;
+
+        @media #{$desktop} {
+            padding-top: $padding-md;
+        }
+    }
+}
+
+.tp-teaser {
+    @include padding($padding-md);
+    @include margin($margin-md);
+    max-width: $body-max-width;
+    border-radius: 4px;
+    
+    @media #{$desktop} {
+        @include padding($padding-xxxl $padding-l 0 $padding-l);
+        @include margin($margin-zero $margin-xxxl);
+    }
+
+    &__heading {
+        @include padding-bottom($padding-md);
+        @media #{$desktop} {
+            @include padding-left($padding-l);
+            @include padding-bottom($padding-l);
+            font-weight: 700;
+        }
+
+        h2,
+        h3 {
+            @include font-size($font-l);
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 32px;
+            @media #{$desktop} {
+                @include font-size($font-xl);
+                line-height: 40px;
+                font-weight: 700;
+            }
+        }
+    }
+    &__link {
+        @include margin-left($margin-md);
+        @include margin-bottom($margin-md);
+        @media #{$desktop} {
+            @include margin-left($margin-l);
+            @include margin-bottom($margin-l);
+        }
+        .nowrap-text {
+            @include margin-left($margin-sm);
+        }
+    }
+
+    &__details {
+        &__details.row {
+            @media #{$desktop} {
+                @include margin-left($margin-zero);
+                @include margin-right($margin-zero);
+            }
+        }
+        img {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .teaserMargin {
+            @include margin-bottom($margin-xl);
+            @media #{$desktop} {
+                @include margin-bottom($margin-xxxl);
+                @include padding-left($margin-l);
+                @include padding-right($margin-l);
+            }
+        }
+        .rightbar {
+            border: 0 solid $color-mercury;
+            @media #{$desktop} {
+                border-right-width: 1px;
+            }
+        }
+        .image {
+            @include margin-top(0);
+            @include margin-bottom($margin-md);
+            width: 100%;
+            @media #{$desktop} {
+                @include margin-top(0);
+            }
+        }
+        .title {
+            @include margin-top($margin-zero);
+            @include margin-bottom($margin-md);
+            @include font-size($font-md);
+            line-height: 24px;
+            font-style: normal;
+            font-weight: bold;
+            color: $color-tundora;
+
+        }
+        .description {
+            @include font-size($font-baseline);
+            font-style: normal;
+            font-weight: normal;
+            line-height: 24px;
+            color: $color-tundora;
+        }
+        .link {
+            @include margin-top($margin-md);
+            @include margin-bottom($margin-zero);
+            color: $color-congress-blue;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 24px;
+    
+            @media #{$desktop} {
+                @include margin-top($margin-xl);
+            }
+
+            a, span {
+                font-weight: 500;
+            }
+        }
+        .teaser-image-link {
+            width: 100%;
+        }
+    }
+}

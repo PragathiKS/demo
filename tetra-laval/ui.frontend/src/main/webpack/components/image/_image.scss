@@ -1,0 +1,18 @@
+.tp-pw-image {
+    max-width: 100%;
+    @media #{$desktop} {
+        min-width: $v-desktop-max;
+    }
+    margin-bottom: $margin-md;
+
+    a {
+        width: 100%;
+    }
+    @media #{$desktop} {
+        margin-bottom: $margin-l;
+    }
+
+    img {
+        width: 100%;
+    }
+}
