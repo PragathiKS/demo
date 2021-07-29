@@ -1,6 +1,6 @@
 // to do track analitycs
 // write code 
 
-class Footer {}
+class Header {}
 
-export default Footer;
+export default Header;

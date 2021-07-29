@@ -1,0 +1,95 @@
+<sly data-sly-use.headerConfig="com.tetralaval.models.HeaderConfigurationModel"/>
+
+<p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+<header class="tp_pw-header-wrapper" data-module="Header">
+    <div class="tp_pw-header-content">
+        <nav class="tp_pw-header">
+            <div class="tp_pw-header__mobile-nav">
+                <input class="tp_pw-header__mobile-nav-btn" type="checkbox" id="menu-btn" aria-label="Mobile menu" />
+                <label class="tp_pw-header__mobile-nav-label" for="menu-btn">
+                    <i class="tp_pw-header__mobile-nav-navicon"></i>
+                </label>
+                <ul class="tp_pw-header__mobile-nav-menu" data-sly-list.navigationItem="${headerConfig.navigationModelList}">
+                    <sly data-sly-test.hasFirstLevel="${navigationItem.children}"/>
+                    <li class="tp_pw-header__mobile-nav-menu-item ${hasFirstLevel ? 'tp_pw-header__mobile-nav-menu-mega' : ''}">
+                        <a href="${navigationItem.link}" data-sly-test="${!hasFirstLevel}"
+                           class="tp_pw-header__link">${navigationItem.label}</a>
+                        <sly data-sly-test="${hasFirstLevel}">
+                            <input class="mega-menu-btn" type="checkbox" id="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" aria-label="second menu"/>
+                            <label for="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" class="d-flex justify-content-between">
+                                <span class="tp_pw-header__link">${navigationItem.label}</span>
+                                <i class="tp_pw-header-arrow icon-Arrow_Right_pw"></i>
+                            </label>
+                            <ul class="tp_pw-header__mobile-nav-menu-next-lvl-menu">
+                                <li class="tp_pw-header__mobile-nav-menu-item">
+                                    <label for="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" class="d-flex justify-content-between text-center" aria-label="main menu">
+                                        <i class="tp_pw-header-arrow tp_pw-header-arrow--left icon-Arrow_Right_pw"></i>
+                                        <span class="text-center flex-grow-1">${navigationItem.label}</span>
+                                    </label>
+                                </li>
+                                <sly data-sly-list.subnavigationItem="${navigationItem.children}">
+                                    <li class="tp_pw-header__mobile-nav-menu-item">
+                                        <ul>
+                                            <li>
+                                                <h4 class="tp_pw-header__mega-menu-header">${subnavigationItem.label}</h4>
+                                            </li>
+                                            <sly data-sly-list.subItem="${subnavigationItem.children}">
+                                                <li>
+                                                    <a href="${subItem.link}" class="tp_pw-header__link">${subItem.label}</a>
+                                                </li>
+                                            </sly>
+                                        </ul>
+                                    </li>
+                                </sly>
+                            </ul>
+                        </sly>
+                    </li>
+                </ul>
+            </div>
+            <a class="js-tp_pw-header__nav-logo" href="${headerConfig.logoLink}"
+                data-sly-test="${headerConfig.logoLink && headerConfig.logoLink != '#'}">
+                <img class="tp_pw-header__nav-logo" src="${headerConfig.logoImagePath}" alt="${headerConfig.logoAlt}" title="Tetralaval">
+            </a>
+            <ul class="tp_pw-header__nav" data-sly-list.navigationItem="${headerConfig.navigationModelList}">
+                <sly data-sly-test.hasFirstLevel="${navigationItem.children}"/>
+                <li class="tp_pw-header__nav-item ${hasFirstLevel ? 'tp_pw-header__mega-menu' : ''}">
+                    <a href="${navigationItem.link}">${navigationItem.label}</a>
+                    <sly data-sly-test="${hasFirstLevel}">
+                        <span>${navigationIem.label}</span>
+                        <div class="tp_pw-header__mega-menu-content">
+                            <div class="tp_pw-header__mega-menu-content__wrapper">
+                                <div class="row" data-sly-list.subnavigationItem="${navigationItem.children}">
+                                    <sly data-sly-test.hasSecondLevel="${subnavigationItem.children}"/>
+                                    <div class="col-3" data-sly-test="${subnavigationItemList.index < 4}">
+                                        <a data-sly-test="${!hasSecondLevel}" href="${subnavigationItem.link}"
+                                           class="tp_pw-header__mega-menu-link">${subnavigationItem.label}</a>
+                                        <sly data-sly-test="${hasSecondLevel}">
+                                            <h4 class="tp_pw-header__mega-menu-header">${subnavigationItem.label}</h4>
+                                            <sly data-sly-list.subItem="${subnavigationItem.children}">
+                                                <a href="${subItem.link}" class="tp_pw-header__mega-menu-link">${subItem.label}</a>
+                                            </sly>
+                                        </sly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </sly>
+                </li>
+            </ul>
+            <div class="tp_pw-header__nav-options">
+                <button class="js-tp_pw-header__nav-options-search" aria-label="Find on page"
+                        type="button" title="Find on page"
+                        data-sly-test="${headerConfig.searchLink && headerConfig.searchLink != '#'}">
+                    <i class="icon-Search_blue_pw d-none d-lg-block"></i>
+                </button>
+                <a class="js-tp_pw-header__nav-options-envelope" aria-label="Contact us"
+                   type="button" title="Contact us" target="_self" href="${headerConfig.contactLink}"
+                   data-sly-test="${headerConfig.contactLink && headerConfig.contactLink != '#'}">
+                    <i class="icon-Envelope_Outlined_Blue_pw"></i>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <sly data-sly-use.lib="/apps/publicweb/components/content/searchbar/searchbar-template.html"
+        data-sly-call="${lib.searchbar_template @ searchPage=headerConfig.searchLink}"/>
+</header>

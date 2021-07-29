@@ -2,6 +2,5 @@
 // Stylesheets
 import "./main.scss";
 
-// Javascript or Typescript
-import "../../components/**/*.js";
-// import "./**/*.ts";
+// Application start point
+import "../source/core/core.js"

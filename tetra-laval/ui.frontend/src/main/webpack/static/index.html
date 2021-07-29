@@ -11,109 +11,157 @@
     </head>
     <body>
         <div class="page basicpage">
-            <!-- <div class="root container responsivegrid">
-                <div class="cmp-container">
-                    <header class="experiencefragment">
-                        <div class="cmp-experiencefragment">
-                            <div class="cmp-container">
-                                <div class="navigation">
-                                    <nav class="cmp-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-                                        <ul class="cmp-navigation__group">
-                                            <li class="cmp-navigation__item cmp-navigation__item--level-0 cmp-navigation__item--active">
-                                                <a href="/content/tetra-laval/us/en.html" title="Tetra Laval" aria-current="page" class="cmp-navigation__item-link">Tetra Laval</a>
-                                            </li>
+           
+<!-- HEADER START -->
+
+        <header class="tp_pw-header-wrapper" data-module="Header">
+            <div class="tp_pw-header-content">
+                <nav class="tp_pw-header">
+                    <div class="tp_pw-header__mobile-nav">
+                        <input class="tp_pw-header__mobile-nav-btn" type="checkbox" id="menu-btn" aria-label="Mobile menu"/>
+                        <label class="tp_pw-header__mobile-nav-label" for="menu-btn">
+                            <i class="tp_pw-header__mobile-nav-navicon"></i>
+                        </label>
+                        <ul class="tp_pw-header__mobile-nav-menu">
+                            <li class="tp_pw-header__mobile-nav-menu-item tp_pw-header__mobile-nav-menu-mega">
+                                <input class="mega-menu-btn" type="checkbox" id="mobile-navigation-next-lvl-menu-btn" aria-label="second menu"/>
+                                <label for="mobile-navigation-next-lvl-menu-btn" class="d-flex justify-content-between">
+                                    <span class="tp_pw-header__link">Menu item A</span>
+                                    <i class="tp_pw-header-arrow icon-Arrow_Right_pw"></i>
+                                </label>
+                                <ul class="tp_pw-header__mobile-nav-menu-next-lvl-menu">
+                                    <li class="tp_pw-header__mobile-nav-menu-item">
+                                        <label for="mobile-navigation-next-lvl-menu-btn" class="d-flex justify-content-between text-center" aria-label="main menu">
+                                            <i class="tp_pw-header-arrow tp_pw-header-arrow--left icon-Arrow_Right_pw"></i>
+                                            <span class="text-center flex-grow-1">Level 1, Menu item A</span>
+                                        </label>
+                                    </li>
+                                    <li class="tp_pw-header__mobile-nav-menu-item">
+                                        <ul>
+                                            <li><h4 class="tp_pw-header__mega-menu-header">Tetra Laval</h4></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
                                         </ul>
-                                    </nav>
-                                </div>
-                                <div class="languagenavigation">
-                                    <nav class="cmp-languagenavigation">
-                                        <ul class="cmp-languagenavigation__group">
-                                            <li class="cmp-languagenavigation__item cmp-languagenavigation__item--langcode-en cmp-languagenavigation__item--level-0">
-                                                <span class="cmp-languagenavigation__item-title" lang="en">United States</span>
-                                                <ul class="cmp-languagenavigation__group">
-                                                    <li class="cmp-languagenavigation__item cmp-languagenavigation__item--langcode-en cmp-languagenavigation__item--level-1">
-                                                        <a class="cmp-languagenavigation__item-link" href="/content/tetra-laval/us/en.html" hreflang="en" lang="en" rel="alternate" title="English">English</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                    </li>
+                                    <li class="tp_pw-header__mobile-nav-menu-item">
+                                        <ul>
+                                            <li><h4 class="tp_pw-header__mega-menu-header">Tetra Laval</h4></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
                                         </ul>
-                                    </nav>
-                                </div>
-                                <div class="search">
-                                    <section class="cmp-search" role="search" data-cmp-is="search" data-cmp-min-length="3" data-cmp-results-size="10">
-                                        <form class="cmp-search__form" data-cmp-hook-search="form" method="get" action="/content/tetra-laval/us/en.searchresults.json/_jcr_content/root/search" autocomplete="off">
-                                            <div class="cmp-search__field">
-                                                <i class="cmp-search__icon" data-cmp-hook-search="icon"></i>
-                                                <span class="cmp-search__loading-indicator" data-cmp-hook-search="loadingIndicator"></span>
-                                                <input class="cmp-search__input" data-cmp-hook-search="input" type="text" name="fulltext" placeholder="Search" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-invalid="false"/>
-                                                <button class="cmp-search__clear" data-cmp-hook-search="clear">
-                                                    <i class="cmp-search__clear-icon"></i>
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <div class="cmp-search__results" data-cmp-hook-search="results" role="listbox" aria-multiselectable="false"></div>
-                                        <script data-cmp-hook-search="itemTemplate" type="x-template">
-                                            <a class="cmp-search__item" data-cmp-hook-search="item">
-                                                <span class="cmp-search__item-title" data-cmp-hook-search="itemTitle"></span>
-                                            </a>
-                                        </script>
-                                    </section></div>
-                            </div>
-                        </div>
-                    </header>
-                    <main class="container responsivegrid">
-                        <div class="cmp-container">
-                            <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
-                                <div class="title aem-GridColumn aem-GridColumn--default--12">
-                                    <div class="cmp-title">
-                                        <h1 class="cmp-title__text">Welcome to Tetra Laval!</h1>
-                                    </div>
-                                </div>
-                                <div class="container responsivegrid aem-GridColumn aem-GridColumn--default--12">
-                                    <div class="cmp-container">
-                                        <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
-                                            <div class="text aem-GridColumn aem-GridColumn--default--12">
-                                                <div class="cmp-text">
-                                                    <p>This is the main welcome page of your web site. A few notes about this site:</p>
-                                                    <ul>
-                                                        <li>It is built entirely with the Core Components - see the <a href="https://www.adobe.com/go/aem_cmp_library">Component Library</a> to view the components in all their shapes and forms.</li>
-                                                        <li>Only the Hello World component has been built custom to illustrate how further components can be built (which also shows how JavaScript is best initialized for components, so that it also works well with the Page Editor).</li>
-                                                        <li>The page header and footer are assembled as Experience Fragments, which <a href="https://docs.adobe.com/content/help/en/experience-manager-core-components/using/components/experience-fragment.html#localized-site-structure">can also be localized if needed</a>.<br />
-                                                        </li>
-                                                        <li>The Style System is used to insert a sematic &lt;header&gt; and &lt;footer&gt; element to the corresponding Experience Fragment components, as well as a &lt;main&gt; element to the container of the page content. This allows to apply some CSS specifically to these sections of the page.</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="helloworld aem-GridColumn aem-GridColumn--default--12"><div class="cmp-helloworld" data-cmp-is="helloworld">
-                                                <h2 class="cmp-helloworld__title">Hello World Component</h2>
-                                                <div class="cmp-helloworld__item">
-                                                    <p class="cmp-helloworld__item-label">Model message:</p>
-                                                </div>
-                                            </div></div>
+                                    </li>
+                                    <li class="tp_pw-header__mobile-nav-menu-item">
+                                        <ul>
+                                            <li><h4 class="tp_pw-header__mega-menu-header">Tetra Laval</h4></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="tp_pw-header__mobile-nav-menu-item">
+                                        <ul>
+                                            <li><h4 class="tp_pw-header__mega-menu-header">Tetra Laval</h4></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                            <li><a href="" class="tp_pw-header__link">Level 1, Menu item B</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="tp_pw-header__mobile-nav-menu-item">
+                                <a href="" class="tp_pw-header__link">Menu item B</a>
+                            </li>
+                            <li class="tp_pw-header__mobile-nav-menu-item">
+                                <a href="" class="tp_pw-header__link">Menu item C</a>
+                            </li>
+                            <li class="tp_pw-header__mobile-nav-menu-item">
+                                <a href="" class="tp_pw-header__link">Menu item D</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="js-tp_pw-header__nav-logo" href="Go_to_main_page">
+                        <img class="tp_pw-header__nav-logo" src="https://banner2.cleanpng.com/20180525/he/kisspng-tetra-pak-tetra-laval-packaging-and-labeling-sidel-tetra-pak-5b0889cd26fad9.8094498915272862211597.jpg" alt="TetraPak Logo" title="MainLogo">
+                    </a>
+                    <ul class="tp_pw-header__nav">
+                        <li class="tp_pw-header__nav-item tp_pw-header__mega-menu">
+                            <a href="">Annual Reports</a>
+                            <div class="tp_pw-header__mega-menu-content">
+                                <div class="tp_pw-header__mega-menu-content__wrapper">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <h4 class="tp_pw-header__mega-menu-header">Tetra Laval</h4>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval in brief</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Comments by the chairman of the boiard</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval group broad</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Sidel facts</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">DeLaval facts</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval world treds</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval International</a>
+                                        </div>
+                                        <div class="col-3">
+                                            <h4 class="tp_pw-header__mega-menu-header">Tetra Pak</h4>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval in brief</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Comments by the chairman of the boiard</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval group broad</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Sidel facts</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">DeLaval facts</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval world treds</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval International</a>
+                                        </div>
+                                        <div class="col-3">
+                                            <h4 class="tp_pw-header__mega-menu-header">Sidel</h4>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval in brief</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Comments by the chairman of the boiard</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval group broad</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Sidel facts</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">DeLaval facts</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval world treds</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval International</a>
+                                        </div>
+                                        <div class="col-3">
+                                            <h4 class="tp_pw-header__mega-menu-header">Delaval</h4>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval in brief</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Comments by the chairman of the boiard</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval group broad</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Sidel facts</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">DeLaval facts</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval world treds</a>
+                                            <a href="" class="tp_pw-header__mega-menu-link">Tetra Laval International</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </main>
-                    <footer class="experiencefragment">
-                        <div class="cmp-experiencefragment">
-                            <div class="cmp-container">
-                                <div class="separator">
-                                    <div class="cmp-separator">
-                                        <hr class="cmp-separator__horizontal-rule"/>
-                                    </div></div>
-                                <div class="text">
-                                    <div class="cmp-text">
-                                        <p>Copyright 2019, Tetra Laval. All rights reserved.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-            </div> -->
-         
+                        </li>
+                        <li class="tp_pw-header__nav-item">
+                            <a href="">Facts</a>
+                        </li>
+                        <li class="tp_pw-header__nav-item">
+                            <a href="">Sustainability</a>
+                        </li>
+                        <li class="tp_pw-header__nav-item">
+                            <a href="">Carrer</a>
+                        </li>
+                        <li class="tp_pw-header__nav-item">
+                            <a href="">News</a>
+                        </li>
+                        <li class="tp_pw-header__nav-item">
+                            <a href="">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="tp_pw-header__nav-options">
+                        <button class="js-tp_pw-header__nav-options-search" aria-label="Find on page" type="button" title="Find on page">
+                            <i class="icon-Search_blue_pw d-none d-lg-block"></i>
+                        </button>
+                        <a href="" class="js-tp_pw-header__nav-options-envelope" aria-label="Contact us" type="button" title="Contact us">
+                            <i class="icon-Envelope_Outlined_Blue_pw"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+    
+
             <!-- SEARCH START -->
             <div class="pw-header-search-bar js-pw-header-search-bar show" data-module="Searchbar">
                 <div auto-locator="searchBoxContainerPaddingMargin" class="d-flex align-items-center tp-container pw-header-search-bar__container">
@@ -131,6 +179,9 @@
                 </div>
             </div>
             <!-- SEARCH STOP -->
+        </header>
+
+        <!-- HEADER STOP -->
 
             <!-- BREADCRUMB START -->
             <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
@@ -142,7 +193,6 @@
                 </div>
             </div>
             <!-- BREADCRUMB STOP -->
-
 
 
             <!-- TEASER START -->
