@@ -208,8 +208,8 @@ public class StoriesModelTest {
         model = request.adaptTo(modelClass);
         
         assertEquals("Load More", model.getLinkLabel());
+        assertEquals(Boolean.TRUE, model.isEnableBlackGradient());
         assertEquals("grayscale-white", model.getPwTheme());
-        assertEquals("true", model.getEnableCarousel());
         assertEquals("anchorId", model.getAnchorId());
         assertEquals("Anchor title", model.getAnchorTitle());
         assertEquals("Title", model.getStoryList().get(1).getHeading());
@@ -218,7 +218,6 @@ public class StoriesModelTest {
         assertEquals("Alt", model.getStoryList().get(1).getAlt());
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/solutions.html",
                 model.getStoryList().get(1).getLinkPath());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/test40/jcr:content/root/responsivegrid/stories", model.getComponentResourcePath());
         
     }
 
