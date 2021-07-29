@@ -101,7 +101,7 @@ class FindMyOffice {
     const mapURI = 'https://map.baidu.com/?latlng='+ this.cache.defaultLongitude+','+this.cache.defaultLatitude +'&autoOpen=true&l';
     const newlink = document.createElement('a');
     newlink.classList.add('BMap_stdMpViewMap');
-    newlink.textContent = '查看全屏';
+    newlink.textContent = $(this.cache.hiddenElement).text();
     newlink.setAttribute('href', mapURI);
     newlink.setAttribute('target', '_blank');
     newlink.setAttribute('auto_locator', 'viewLargeMapCTA');
