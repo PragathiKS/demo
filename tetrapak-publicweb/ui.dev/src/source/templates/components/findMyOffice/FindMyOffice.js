@@ -98,7 +98,7 @@ class FindMyOffice {
     });
     
     // Generate View Full Map button
-    const mapURI = 'https://map.baidu.com/?latlng='+ this.cache.defaultLongitude+','+this.cache.defaultLatitude +'&autoOpen=true&l';
+    const mapURI = 'https://map.baidu.com/?latlng='+ this.cache.defaultLatitude +','+ this.cache.defaultLongitude +'&autoOpen=true&l';
     const newlink = document.createElement('a');
     newlink.classList.add('BMap_stdMpViewMap');
     newlink.textContent = $(this.cache.hiddenElement).text();
