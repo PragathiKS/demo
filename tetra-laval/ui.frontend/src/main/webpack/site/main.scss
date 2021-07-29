@@ -1,14 +1,9 @@
-// to do paths 
-// delete boilerplate scss
+// common styles imported from tetrapak-commons
+@import '~tpCommon/styles/global/default/en/base.scss';
+@import '~tpCommon/styles/vendor.scss';
+@import '~tpCommon/styles/global/common/placeholders';
 
-@import 'variables';
-@import 'base';
-@import './styles/*.scss';
-
-@import './new\ styles/vendor.scss';
-
+// local styles for TL
 @import './new styles/global/default/en/base.scss';
-
-@import './styles/default/en/base.scss';
 
 @import '../components/**/*.scss';

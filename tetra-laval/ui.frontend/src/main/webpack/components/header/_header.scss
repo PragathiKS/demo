@@ -53,8 +53,8 @@
       z-index: $zindex-nav;
 
       &-item {
-        @include font-size($font-baseline);
-        @include line-height($line-height-body, $font-baseline);
+        @include font-size($font-normal);
+        @include line-height($line-height-body, $font-normal);
 
         padding: $padding-md;
         border-bottom: 1px solid $color-mercury;

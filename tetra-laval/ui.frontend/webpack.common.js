@@ -61,6 +61,16 @@ module.exports = {
                   }
             },
             {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ['@babel/preset-env']
+                    }
+                  }
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -153,8 +163,9 @@ module.exports = {
       alias: {
         jquery: path.resolve('../../tetrapak-commons/ui.dev/src/node_modules/jquery'),
         bootstrap: path.resolve('../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
-        tpPublicScripts: path.resolve('../../tetrapak-publicweb/ui.dev/src/source/scripts'),
-        tpCommon: path.resolve('../../tetrapak-commons/ui.dev/src/source')
+        tpPublic: path.resolve('../../tetrapak-publicweb/ui.dev/src/source'),
+        tpCommon: path.resolve('../../tetrapak-commons/ui.dev/src/source'),
+        'core-js': path.resolve('../../tetrapak-commons/ui.dev/src/node_modules/core-js')
       }
     }
 };
