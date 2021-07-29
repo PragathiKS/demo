@@ -382,6 +382,9 @@ public final class PWConstants {
     /** Constant ONLINE_HELP_CONTENT_PATH */
     public static final String ONLINE_HELP_CONTENT_PATH = "/content/online-help";
 
+    /** Constant ONLINE_HELP_DAM_PATH */
+    public static final String ONLINE_HELP_DAM_PATH = "/content/dam/online-help";
+
     /** Constant SUBSCRIPTION_EMAIL_CTA_TEXT */
     public static final String SUBSCRIPTION_EMAIL_CTA_TEXT = "pw.subscription.email.ctaText";
 

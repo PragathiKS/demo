@@ -1,0 +1,54 @@
+.tp-container-textImage,
+.tp-container-textImage-wide {
+    @include max-width($body-max-width);
+    margin: auto;
+}
+.pw-banner {
+    position: relative;
+
+    &__content {
+        @include padding($padding-xxxl);
+
+        @media #{$mobile} {
+            @include padding($padding-md);
+        }
+
+        &_wrapper {
+            @media #{$desktop} {
+                @include padding(0 $padding-xxxl);
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                align-items: center;
+                position: absolute;
+            }
+        }
+        
+        &__title {
+            @include margin-bottom($margin-md);
+
+            &.hero-title {
+                word-wrap: break-word;
+                h1,
+                h2,
+                h3 {
+                    @include font-size($font-xl);
+                    line-height: 40px;
+                    @media #{$mobile-large} {
+                        @include font-size($font-xxl);
+                        line-height: 48px;
+                    }
+                    @media #{$desktop} {
+                        @include font-size($font-xxxl);
+                        line-height: 60px;
+                    }
+                }
+            }
+        }
+
+        &__description {
+            @include margin-bottom($margin-xl);
+        }
+    }
+}

@@ -20,8 +20,8 @@ class Marketselector {
 
     trackMarketSelectorAnalytics = (e) => {
       e.preventDefault();
-      const $target = $(e.target);
-      const $this = $(e.target).text().trim();
+      const $target = $(e.currentTarget);
+      const $this = $(e.currentTarget).text().trim();
       const marketlink = $this;
       const url = $target.attr('href');
       const linkType = $target.attr('target') === '_blank'? 'external' :'internal';

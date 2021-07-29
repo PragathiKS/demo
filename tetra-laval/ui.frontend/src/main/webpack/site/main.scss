@@ -1,0 +1,15 @@
+// to do paths 
+// delete boilerplate scss
+
+@import 'variables';
+@import 'base';
+@import './styles/*.scss';
+
+@import './new\ styles/vendor.scss';
+
+@import './new styles/global/default/en/base.scss';
+
+@import './styles/default/en/base.scss';
+
+@import '../components/**/*.scss';
+@import '../pages/**/*.scss';

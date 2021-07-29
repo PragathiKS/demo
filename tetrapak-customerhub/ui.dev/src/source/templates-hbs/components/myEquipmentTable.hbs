@@ -1,4 +1,8 @@
 <div class="tp-my-equipment__table custom-scrollbar-horizontal on">
+    {{#if noDataMessage}}
+    <h3>{{i18n key=noDataFound}}</h3>
+    {{else}}
     {{> molecules/table/table baseClass="tp-my-equipment__table-summary" jsClass="js-my-equipment__table-summary"
     list=summary headings=summaryHeadings}}
+    {{/if}}
 </div>

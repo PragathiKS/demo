@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.beans.LanguageBean;
 import com.tetrapak.publicweb.core.beans.MarketBean;
 
@@ -21,15 +22,24 @@ public class HeaderModelTest {
 
     /** The Constant RESOURCE_CONTENT. */
     private static final String RESOURCE_CONTENT = "/header/test-content.json";
+    
+    /** The Constant RESOURCE_CONTENT. */
+    private static final String RESOURCE_CONTENT_TWO = "/header/test-global-content.json";
 
     /** The Constant MARKETS_CONTENT. */
     private static final String MARKETS_CONTENT = "/header/markets-content.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
     private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/language-masters/en";
+    
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String TEST_CONTENT_ROOT_TWO = "/content/tetrapak/publicweb/global";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
+    
+    /** The Constant RESOURCE. */
+    private static final String RESOURCE_TWO = TEST_CONTENT_ROOT_TWO + "/jcr:content";
 
     /** The Constant MARKETS_CONTENT_ROOT. */
     private static final String MARKETS_CONTENT_ROOT = "/content/tetrapak/publicweb";
@@ -58,6 +68,11 @@ public class HeaderModelTest {
     @Mock
     private HeaderConfigurationModel headerConfig;
     
+    @Mock
+    private Page currentPage;
+    
+    Class<HeaderModel> modelClass = HeaderModel.class;
+    
     /**
      * Sets the up.
      *
@@ -68,7 +83,7 @@ public class HeaderModelTest {
      */
     @Before
     public void setUp() throws Exception {
-        Class<HeaderModel> modelClass = HeaderModel.class;
+        
         MockSlingHttpServletRequest request = context.request();
         context.load().json(MARKETS_CONTENT, MARKETS_CONTENT_ROOT);
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
@@ -81,7 +96,9 @@ public class HeaderModelTest {
         model = request.adaptTo(modelClass);
         
         marketBean.setMarketName("Belgium");
-        languageBean.setLanguageName("French");
+        marketBean.setCountryName("Belgique");
+        languageBean.setLanguageName("French"); 
+        languageBean.setCountryTitle("Belgique");
     }
 
     /**
@@ -108,8 +125,11 @@ public class HeaderModelTest {
         assertEquals("Header", "Solutions", model.getSolutionPageTitle());
         assertEquals("Header", true, model.getMarketList().getMarkets().get(2).equals(marketBean));
         assertEquals("Header", "Belgium", model.getMarketList().getMarkets().get(2).getMarketName());
+        assertEquals("Header", "Belgique", model.getMarketList().getMarkets().get(2).getCountryName());
         assertEquals("Header", "French",
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLanguageName());
+        assertEquals("Header", "Belgique",
+                model.getMarketList().getMarkets().get(2).getLanguages().get(0).getCountryTitle());
         assertEquals("Header", "/content/tetrapak/publicweb/be/fr/home.html",
                 model.getMarketList().getMarkets().get(2).getLanguages().get(0).getLinkPath());
         assertEquals("Header", true,
@@ -167,6 +187,20 @@ public class HeaderModelTest {
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/food-categories/cheese.html",
                 model.getFoodCategorySection().get(0).getPath());
         assertEquals("Cheese", model.getFoodCategorySection().get(0).getTitle());
+    }
+    
+    @Test
+    public void testGetMarketList() {
+        MockSlingHttpServletRequest request = context.request();
+        context.load().json(RESOURCE_CONTENT_TWO, TEST_CONTENT_ROOT_TWO); 
+        context.request().setPathInfo(RESOURCE_TWO);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_TWO));
+        resource = context.currentResource(RESOURCE_TWO);
+        context.addModelsForPackage("com.tetrapak.publicweb.core.models");
+        model = request.adaptTo(modelClass);
+        
+        assertEquals("Header", "Tetra Pak Global",
+                model.getMarketList().getGlobalMarketTitle());
     }
 
 }

@@ -2,12 +2,16 @@ package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
+
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -30,6 +34,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.Collections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -104,7 +110,14 @@ public class PageLoadAnalyticsModel {
     /** The staging. */
     private boolean staging;
 
-    /** The development. */
+    /**
+     * The pageCategories.
+     */
+    private StringBuilder pageCategories = new StringBuilder();
+
+    /**
+     * The development.
+     */
     private boolean development;
 
     /** The product name. */
@@ -140,6 +153,9 @@ public class PageLoadAnalyticsModel {
     /** The href lang values. */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
 
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageLoadAnalyticsModel.class);
+
     /**
      * Inits the model.
      */
@@ -155,6 +171,7 @@ public class PageLoadAnalyticsModel {
             }
         }
 
+        updatePageCategories();
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
@@ -165,6 +182,27 @@ public class PageLoadAnalyticsModel {
         updateProductName();
         updateHrefLang();
         digitalData = buildDigitalDataJson();
+    }
+
+    /**
+     * Update Page Categories.
+     */
+    private void updatePageCategories() {
+        try {
+            ResourceResolver resourceResolver = resource.getResourceResolver();
+            StringBuilder stringBuilder = new StringBuilder();
+            TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+            final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
+            if (ArrayUtils.isNotEmpty(tagValue)) {
+                for (String tags : tagValue) {
+                    Tag tag = tagManager.resolve(tags);
+                        stringBuilder.append((tag.getTitle()) + ",");
+                    }
+                    pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "");
+            }
+        }catch (Exception exception){
+            LOGGER.error(" There is an exception while executing updatePageCategories ");
+        }
     }
 
     /**
@@ -508,7 +546,8 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
-        pageInfo.addProperty("siteName", applicationName);
+        pageInfo.addProperty("pageCategories", pageCategories.toString());
+		pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
