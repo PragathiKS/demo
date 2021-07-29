@@ -22,9 +22,9 @@
                         jcr:lastModified="{Date}2021-07-20T12:18:38.902+02:00"
                         jcr:lastModifiedBy="admin"
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Tetra Laval Common Page"
+                        jcr:title="Tetra Laval Content Page"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[group:Tetra Laval : Commons,group:Tetra Laval : Content]">
+                        components="[group:Tetra Laval : Content]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1581165968127900>
                 </responsivegrid>
