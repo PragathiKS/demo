@@ -74,9 +74,8 @@
                                     <maxTeasers
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
-                                        fieldDescription="Enter the maximum number of stories to be shown: min-1; max-12"
-                                        fieldLabel="Maximum number of stories to be shown"
-                                        max="12"
+                                        fieldDescription="Enter the  number of stories to be shown: min-1"
+                                        fieldLabel="Number of stories to be shown"
                                         min="1"
                                         name="./maxTeasers"/>
                                 </items>
