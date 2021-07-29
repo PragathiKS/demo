@@ -79,6 +79,10 @@ public class ExperienceFragmentModel {
     }
 
     private String getFragmentPath(Node node) {
+        if (node == null) {
+            return null;
+        }
+        
         String fragmentPath = null;
         try {
             fragmentPath = String.format("%s/%s/root.content.html", node.getProperty(FRAGMENT_PATH_PROPERTY).getString(), JcrConstants.JCR_CONTENT);

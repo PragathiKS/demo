@@ -3,4 +3,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Text &amp; Video"
     sling:resourceSuperType="publicweb/components/content/textVideo"
-    componentGroup="Tetra Laval : Commons"/>
+    componentGroup="Tetra Laval : Content"/>
