@@ -13,6 +13,14 @@
             @include padding($padding-md);
         }
 
+        &--background-white {
+            background-color: rgba($color: $color-white, $alpha: $alpha-e)
+        }
+
+        &--background-black {
+            background-color: rgba($color: $color-black, $alpha: $alpha-e)
+        }
+
         &_wrapper {
             @media #{$desktop} {
                 @include padding(0 $padding-xxxl);
