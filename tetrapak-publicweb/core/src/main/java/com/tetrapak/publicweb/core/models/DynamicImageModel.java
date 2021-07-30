@@ -196,7 +196,7 @@ public class DynamicImageModel {
 		}
 
 		if (null != dynamicMediaUrl) {
-			dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PWConstants.PATH_SEPARATOR) + finalPath;
+			dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PWConstants.SLASH) + finalPath;
 		}
 
 		if (StringUtils.isNotBlank(dynamicMediaUrl)) {
@@ -376,7 +376,7 @@ public class DynamicImageModel {
 		if (StringUtils.isNotBlank(componentName)) {
 			return componentName;
 		} else {
-			return StringUtils.substringAfterLast(resource.getResourceType(), PWConstants.PATH_SEPARATOR);
+			return StringUtils.substringAfterLast(resource.getResourceType(), PWConstants.SLASH);
 		}
 	}
 

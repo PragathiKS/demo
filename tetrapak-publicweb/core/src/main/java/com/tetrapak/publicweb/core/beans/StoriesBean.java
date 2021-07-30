@@ -1,39 +1,22 @@
-package com.tetrapak.publicweb.core.models.multifield;
+package com.tetrapak.publicweb.core.beans;
 
 import java.util.List;
 
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
-import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
-import com.tetrapak.publicweb.core.beans.DeviceTypeBean;
-
 /**
- * The Class StoriesManualModel.
+ * The Class DeviceTypeBean.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class StoriesManualModel {
+public class StoriesBean {
 
-    /** The resource. */
-    @Self
-    private Resource resource;
-
-    /** The title. */
-    @ValueMapValue
+    /** The heading. */
     private String heading;
 
     /** The file reference. */
-    @ValueMapValue
     private String fileReference;
 
     /** The alt. */
-    @ValueMapValue
     private String alt;
-    
+
     /** The link path. */
-    @ValueMapValue
     private String linkPath;
 
     /** The dynamic media url list. */
@@ -95,7 +78,7 @@ public class StoriesManualModel {
     public void setAlt(String alt) {
         this.alt = alt;
     }
-    
+
     /**
      * Gets the link path.
      *

@@ -415,11 +415,19 @@ public final class PWConstants {
     /** The Constant MOBILELANDSCAPE. */
     public static final String MOBILELANDSCAPE = "mobileL";
 
-    /** The Constant PATH_SEPARATOR. */
-    public static final String PATH_SEPARATOR = "/";
-
     /** The Constant MOBILEPORTRAIT. */
     public static final String MOBILEPORTRAIT = "mobileP";
+    
+    /** The Constant AUTOMATIC. */
+    public static final String AUTOMATIC = "automatic";
+    
+    /** The Constant SEMI_AUTOMATIC. */
+    public static final String SEMI_AUTOMATIC = "semi-automatic";
+    
+    /** The Constant MANUAL. */
+    public static final String MANUAL = "manual";
+    
+    
 
     /**
      * Instantiates a new PW constants.
