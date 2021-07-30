@@ -1,25 +1,31 @@
-<div class="modal-dialog modal-dialog-centered tp-modal-dialog">
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="{{autoLocatorModal}}">
     <div class="modal-content tp-my-equipment__modal-content tp-modal-content">
         <div class="modal-header tpmol-modal-header">
-            <div class="js-my-equipment__modal-header tp-my-equipment__modal-header">
+            <div class="js-my-equipment__modal-header tp-my-equipment__modal-header" auto_locator="headlineOverlay">
                     {{i18n key=header}}
             </div>
-            <button type="button"
+            <button type="button" auto_locator="closebtnOverlay"
                 class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
                 <span class="sr-only">Close</span>
             </button>
         </div>
         <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
-            <ul class="tp-my-equipment-filter-options">
-                {{#each formData}}
-                {{> atoms/checkbox/checkbox value=option text=option check=isChecked
-                uniqueKey=option
-                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
-                {{/each}}
-            </ul>
+            {{#if isTextInput}}
+                {{> atoms/input/input defaultValue=formData autoLocator=autoLocatorInput eleClasses="js-tp-my-equipment-filter-input"}}
+            {{else}}
+                <ul class="tp-my-equipment-filter-options">
+                    {{#each formData}}
+                        {{> atoms/checkbox/checkbox value=option text=option check=isChecked disabled=isDisabled
+                        uniqueKey=option
+                        autoLocatorCheckbox=@root.autoLocatorCheckbox
+                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                        jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                    {{/each}}
+                </ul>
+            {{/if}}
         </div>
         <div class="modal-footer tpmol-modal-footer">
-            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button" auto_locator="confirmbtnOverlay">
                 <span class="tpatom-btn__text sly-text">
                     {{#if customiseTable}}
                     {{i18n key=hideAndShowCta}}
@@ -29,7 +35,7 @@
                 </span>
             </button>
             {{#if singleButton}}
-            <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-button">
+            <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-button" auto_locator="removeAllOverlay">
                 <i class="icon icon-My_Euipment_Bin_X"></i>
                 <span class="tpatom-btn__text sly-text">{{i18n key=removeAll}}</span>
             </button>

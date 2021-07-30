@@ -13,6 +13,7 @@
         @include line-height($font-l, $font-baseline);
         @include padding($padding-md);
         @include margin-right($margin-sm);
+        @include margin-bottom($margin-md);
         border: 1px solid $color-congress-blue;
         color: $color-congress-blue;
         box-sizing: border-box;
@@ -31,6 +32,10 @@
         }
     }
 
+    &__filter-button-all {
+        display: none;
+    }
+
     &__heading {
         @include font-size($font-xl);
         @include line-height(40px, $font-xl);
@@ -46,8 +51,9 @@
         border-bottom: 1px solid $color-congress-blue;
     }
 
-    &__filter-wrapper {
+    &__filter-chips {
         display: flex;
+        flex-wrap: wrap;
     }
 
     &__modal-body {
@@ -104,6 +110,17 @@
 
     &__remove-button {
         color: $color-congress-blue;
+    }
+
+    &__show-hide-button {
+        @include margin-right($margin-md);
+        color: $color-congress-blue;
+
+        i {
+            @include margin-right(3px);
+            display: inline-block;
+            transform: translateY(1px);
+        }
     }
 
     .modal-footer > :not(:first-child) {

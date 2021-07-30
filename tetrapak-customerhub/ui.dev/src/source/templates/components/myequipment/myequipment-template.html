@@ -29,24 +29,57 @@
       </div>
     </div>
     <div class="tp-my-equipment__filter-wrapper">
-      <button type="button" data-toggle="modal" data-target="#equipment-filter-modal" class="tp-my-equipment__country-button-filter tp-my-equipment__filter-button">
-        ${"cuhu.equipment.country" @i18n} +
-      </button>
-      <!-- <button class="tp-my-equipment__site-button-filter tp-my-equipment__filter-button">
-            ${"cuhu.equipment.site" @i18n}
-      </button> -->
+      <div class="tp-my-equipment__filter-chips">
+        <button type="button" class="tp-my-equipment__country-button-filter tp-my-equipment__filter-button" auto_locator="countryFilter">
+          ${"cuhu.equipment.country" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.site' @i18n} +" class="tp-my-equipment__site-button-filter tp-my-equipment__filter-button" auto_locator="customerFilter">
+          ${"cuhu.equipment.site" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.line' @i18n} +" class="tp-my-equipment__line-button-filter tp-my-equipment__filter-button" auto_locator="lineFilter">
+          ${"cuhu.equipment.line" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.equipmentstatus' @i18n} +" class="tp-my-equipment__status-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="statusFilter">
+          ${"cuhu.equipment.equipmentstatus" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.equipmentdescription' @i18n} +" class="tp-my-equipment__equip-desc-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="descriptionFilter">
+          ${"cuhu.equipment.equipmentdescription" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.serialnumber' @i18n} +" class="tp-my-equipment__serial-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="serialNoFilter">
+          ${"cuhu.equipment.serialnumber" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.functionallocation' @i18n} +" class="tp-my-equipment__functional-loc-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="functionalLocFilter">
+          ${"cuhu.equipment.functionallocation" @i18n} +
+        </button>
+      </div>
+      <div>
+        <button data-show-label="cuhu.equipment.showallfilters" data-hide-label="cuhu.equipment.hideallfilters" class="tpatom-btn tp-my-equipment__show-hide-button js-tp-my-equipment__show-hide-all-button" auto_locator="hideFilter">
+          <i class="icon icon-Filter"></i>
+          <span class="tpatom-btn__text sly-text">cuhu.equipment.showallfilters</span>
+        </button>
+        <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-all-button" auto_locator="removeFilter">
+          <i class="icon icon-My_Euipment_Bin_X"></i>
+          <span class="tpatom-btn__text sly-text">cuhu.equipment.removeallfilters</span>
+        </button>
+      </div>
     </div>
 
-    <div class="tp-my-equipment__search-count">
-    </div>
+    <div class="tp-my-equipment__search-count"></div>
 
     <div id="equipment-filter-modal" class="modal js-filter-modal tp-modal fade tp-equipment__filter-form" tabindex="-1" aria-hidden="true" role="dialog">
     </div>
 
-    <div class="tp-my-equipment__table_wrapper">
-
-    </div>
-    <div class="tp-my-equipment__pagination-container" id="pagination-container"></div>
+    <div class="tp-my-equipment__table_wrapper"></div>
+    <div class="tp-my-equipment__flex-container">
+      <div class="tp-my-equipment__pagination-container" id="pagination-container"></div>
+      <div class="tp-my-equipment__serial-desc"><span class="tp-my-equipment__astrick">*</span> ${"cuhu.equipment.permanentVolumeConversion" @i18n}</div>
+  </div>
   </div>
   </div>
 </sly>
