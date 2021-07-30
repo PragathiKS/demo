@@ -8,6 +8,15 @@ public final class TLConstants {
     /** The Constant SITE_NAME for Adobe Analytics. */
     public static final String SITE_NAME = "tetralaval";
 
+    /** The Constant ROOT_PATH. */
+    public static final String ROOT_PATH = "/content/tetrapak/tetralaval";
+
+    /** The Constant EXPERIENCE_FRAGMENTS_PATH. */
+    public static final String EXPERIENCE_FRAGMENTS_PATH = "/content/experience-fragments/tetra-laval";
+
+    /** The Constant LANGUAGE_MASTERS_PATH. */
+    public static final String LANGUAGE_MASTERS_PATH = "/content/tetrapak/tetralaval/lang-masters";
+
     /** The Constant CHAPTER_LEVEL. */
     public static final int CHAPTER_LEVEL = 5;
 
@@ -19,6 +28,9 @@ public final class TLConstants {
 
     /** The Constant SLASH. */
     public static final String SLASH = "/";
+
+    /** The Constant HTML_EXTENSION. */
+    public static final String HTML_EXTENSION = ".html";
 
     /**
      * Instantiates a new PW constants.

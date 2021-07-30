@@ -57,4 +57,12 @@ public final class PageUtil {
         }
         return null;
     }
+
+    public static boolean isExperienceFragment(final String path) {
+        return path.contains(TLConstants.EXPERIENCE_FRAGMENTS_PATH);
+    }
+
+    public static boolean isLanguageMaster(final String path) {
+        return path.contains(TLConstants.LANGUAGE_MASTERS_PATH);
+    }
 }
