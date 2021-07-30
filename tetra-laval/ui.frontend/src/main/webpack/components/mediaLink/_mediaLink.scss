@@ -14,12 +14,12 @@
         }
     }
     h4 {
-         color: $color-tundora;
         @include font-size($font-md);
-
         @include margin-bottom($margin-md);
 
+        color: $color-tundora;
         font-weight: 500;
+
         @media #{$desktop} {
             @include margin-bottom(0);
         }

@@ -1,8 +1,3 @@
-.tp-container-textImage,
-.tp-container-textImage-wide {
-    @include max-width($body-max-width);
-    margin: auto;
-}
 .pw-banner {
     position: relative;
 
@@ -24,7 +19,7 @@
                 position: absolute;
             }
         }
-        
+
         &__title {
             @include margin-bottom($margin-md);
 
