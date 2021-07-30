@@ -2,6 +2,7 @@
   "name": "customerhub",
   "version": "0.0.1",
   "dependencies": {
+    "@ashwanipahal/paginationjs": "^2.3.0",
     "argon-formatter": "0.0.7",
     "argon-logger": "^0.1.2",
     "deparam.js": "^2.1.1",
@@ -13,7 +14,7 @@
     "sanitize-html": "^1.21.1",
     "slick-carousel": "^1.8.1",
     "vanilla-lazyload": "^8.17.0",
-    "@ashwanipahal/paginationjs": "^2.3.0"
+    "zapfilter": "^2.0.3"
   },
   "scripts": {
     "build": "grunt aem",
