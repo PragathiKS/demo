@@ -1,0 +1,51 @@
+{
+  "enableBlackGradient": true,
+  "linkLabel":"Load More",
+  "anchorId":null,
+  "anchorTitle":null,
+  "pwTheme":"grayscale-white",
+  "storyList":[
+     {
+        "heading":"Processing Solutions",
+        "fileReference":"/content/dam/tetrapak/publicweb/gb/en/food/images/girl-drinking-milk.jpg",
+        "alt":"Girl drinking milk",
+        "linkPath":"/content/tetrapak/publicweb/lang-masters/en/solutions/processing.html",
+        "dynamicMediaUrlList":[
+           {
+              "desktop":"https://s7g10.scene7.com/is/image/tetrapakdev/girl-drinking-milk?wid=1248&hei=703&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "desktopLarge":"https://s7g10.scene7.com/is/image/tetrapakdev/girl-drinking-milk?wid=1248&hei=703&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "mobileLandscape":"https://s7g10.scene7.com/is/image/tetrapakdev/girl-drinking-milk?wid=672&hei=378&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "mobilePortrait":"https://s7g10.scene7.com/is/image/tetrapakdev/girl-drinking-milk?wid=254&hei=143&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0"
+           }
+        ]
+     },
+     {
+        "heading":"Packaging Solutions",
+        "fileReference":"/content/dam/tetrapak/publicweb/gb/en/packaging/top-view-carton-packages-packaging.jpg",
+        "alt":"Packages",
+        "linkPath":"/content/tetrapak/publicweb/lang-masters/en/solutions/packaging.html",
+        "dynamicMediaUrlList":[
+           {
+              "desktop":"https://s7g10.scene7.com/is/image/tetrapaktest/top-view-carton-packages-packaging?wid=1248&hei=703&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "desktopLarge":"https://s7g10.scene7.com/is/image/tetrapaktest/top-view-carton-packages-packaging?wid=1248&hei=703&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "mobileLandscape":"https://s7g10.scene7.com/is/image/tetrapaktest/top-view-carton-packages-packaging?wid=672&hei=378&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "mobilePortrait":"https://s7g10.scene7.com/is/image/tetrapaktest/top-view-carton-packages-packaging?wid=254&hei=143&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0"
+           }
+        ]
+     },
+     {
+        "heading":"Service Solutions",
+        "fileReference":"/content/dam/tetrapak/publicweb/gb/en/packaging/top-view-carton-packages-packaging.jpg",
+        "alt":"Engineer wearing Hololens",
+        "linkPath":"/content/tetrapak/publicweb/lang-masters/en/solutions/services.html",
+        "dynamicMediaUrlList":[
+           {
+              "desktop":"https://s7g10.scene7.com/is/image/tetrapaktest/top-view-carton-packages-packaging?wid=1248&hei=703&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "desktopLarge":"https://s7g10.scene7.com/is/image/tetrapaktest/top-view-carton-packages-packaging?wid=1248&hei=703&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "mobileLandscape":"https://s7g10.scene7.com/is/image/tetrapaktest/top-view-carton-packages-packaging?wid=672&hei=378&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0",
+              "mobilePortrait":"https://s7g10.scene7.com/is/image/tetrapaktest/top-view-carton-packages-packaging?wid=254&hei=143&fmt=jpg&resMode=sharp2&qlt=85,0&op_usm=1.75,0.3,2,0"
+           }
+        ]
+     }
+  ]
+}

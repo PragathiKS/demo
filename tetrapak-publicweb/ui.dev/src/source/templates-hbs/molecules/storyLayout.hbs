@@ -1,0 +1,94 @@
+{{#if_eq isDataComplete "true"}}
+<div class="row margin-bottom no-gutters">
+    <div class="col-lg-8">
+        {{> atoms/story autoLocator="largeImagePod" contentClass = "large-text" storyContent = storyContent1 }}
+    </div>
+    <div class="col-lg-4">
+        <div class="img-2 img-wrapper-padding padding-left">
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent2 }}
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent3 }}
+        </div>
+    </div>
+</div>
+<div class="row no-gutters margin-bottom">
+    <div class="col-lg-4 img-wrapper-padding padding-right">
+        <div class="img-2">
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent4 }}
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent5 }}
+        </div>
+    </div>
+    <div class="col-lg-8">
+        {{> atoms/story autoLocator="largeImagePod" contentClass = "large-text" storyContent = storyContent6 }}
+    </div>
+</div>
+{{/if_eq}}
+{{#if_eq isDataComplete "false"}}
+{{#if_eq itemsLength 1}}
+<div class="row no-gutters">
+    {{> atoms/story autoLocator="fullImagePod" contentClass = "large-text" storyContent = storyContent1 }}
+</div>
+{{/if_eq}}
+{{#if_eq itemsLength 2}}
+<div class="row no-gutters">
+    <div class="col-lg-6 img-wrapper-padding padding-sm-right">
+        {{> atoms/story autoLocator="mediumImagePod" storyContent = storyContent1 }}
+    </div>
+    <div class="col-lg-6 img-wrapper-padding padding-sm-left">
+        {{> atoms/story autoLocator="mediumImagePod" storyContent = storyContent2 }}
+    </div>
+
+</div>
+{{/if_eq}}
+{{#if_eq itemsLength 3}}
+<div class="row no-gutters margin-bottom">
+    <div class="col-lg-8">
+        {{> atoms/story autoLocator="largeImagePod" contentClass = "large-text" storyContent = storyContent1 }}
+    </div>
+    <div class="col-lg-4 img-wrapper-padding padding-left">
+        <div class="img-2">
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent2 }}
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent3 }}
+        </div>
+    </div>
+</div>
+{{/if_eq}}
+{{#if_eq itemsLength 4}}
+<div class="row no-gutters margin-bottom">
+    <div class="col-lg-8">
+        {{> atoms/story autoLocator="largeImagePod" contentClass = "large-text" storyContent = storyContent1 }}
+    </div>
+    <div class="col-lg-4 img-wrapper-padding padding-left">
+        <div class="img-2">
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent2 }}
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent3 }}
+        </div>
+    </div>
+</div>
+<div class="row no-gutters">
+    <div class="col-lg-12">
+        {{> atoms/story autoLocator="fullImagePod" contentClass = "large-text" storyContent = storyContent4 }}
+    </div>
+</div>
+{{/if_eq}}
+{{#if_eq itemsLength 5}}
+<div class="row no-gutters margin-bottom">
+    <div class="col-lg-8">
+        {{> atoms/story autoLocator="largeImagePod" contentClass = "large-text" storyContent = storyContent1 }}
+    </div>
+    <div class="col-lg-4 img-wrapper-padding padding-left">
+        <div class="img-2">
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent2 }}
+            {{> atoms/story autoLocator="smallImagePod" storyContent = storyContent3 }}
+        </div>
+    </div>
+</div>
+<div class="row no-gutters">
+    <div class="col-lg-6 img-wrapper-padding padding-sm-right">
+        {{> atoms/story autoLocator="mediumImagePod" storyContent = storyContent4 }}
+    </div>
+    <div class="col-lg-6 img-wrapper-padding padding-sm-left">
+        {{> atoms/story autoLocator="mediumImagePod" storyContent = storyContent5 }}
+    </div>
+</div>
+{{/if_eq}}
+{{/if_eq}}

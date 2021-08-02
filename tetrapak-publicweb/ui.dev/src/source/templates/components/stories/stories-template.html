@@ -1,0 +1,15 @@
+<sly data-sly-template.stories_template="${@data, flag}">
+  <div class="pw-container" data-module="Stories">
+    <div class="pw-stories pw-padding--regular pw-theme--${data.pwTheme}" id="${data.anchorId}" title="${data.anchorTitle}">
+      <sly data-sly-test.isWcmmode="${wcmmode.edit}"></sly>
+      <div data-wcm-mode="${isWcmmode}" class="d-none js-stories-data" data-stories-api="${resource.path}"></div>
+      <div class="${data.enableBlackGradient ? 'pw-stories__black-gradient' : ''}  pw-stories__story-grid"></div>
+      <div class="d-none show-more">
+        <div auto-locator="showMore" data-link-name="${data.linkLabel}" class="pw-stories__load-more">
+          <span>${data.linkLabel}</span>
+          <i class="icon icon-Arrow_Right_pw"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</sly>
