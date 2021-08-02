@@ -430,6 +430,17 @@ public final class PWConstants {
     /** The Constant MANUAL. */
     public static final String MANUAL = "manual";
     
+    /** The Constant MANUAL. */
+    public static final String MANUAL_LIST = "manualList";
+    
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_LINK = "linkPath";
+    
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_HEADING = "heading";
+    
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_ALT = "alt";
     
 
     /**

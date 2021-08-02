@@ -3,7 +3,7 @@ package com.tetrapak.publicweb.core.beans;
 import java.util.List;
 
 /**
- * The Class DeviceTypeBean.
+ * The Class StoriesBean.
  */
 public class StoriesBean {
 

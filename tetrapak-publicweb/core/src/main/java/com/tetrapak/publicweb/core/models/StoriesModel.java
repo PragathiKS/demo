@@ -180,15 +180,14 @@ public class StoriesModel {
     public void getStoriesManualList() {
         final ResourceResolver resourceResolver = request.getResourceResolver();
         final Resource manualStoriesResource = resourceResolver
-                .getResource(resource.getPath().concat("/manualList"));
+                .getResource(resource.getPath().concat(PWConstants.SLASH).concat(PWConstants.MANUAL_LIST));
         if (Objects.nonNull(manualStoriesResource)) {
             final Iterator<Resource> rootIterator = manualStoriesResource.listChildren();
             while (rootIterator.hasNext()) {
                 final Resource storyResource = rootIterator.next();
                 StoriesBean stories = new StoriesBean();
-                final List<DeviceTypeBean> dynamicMediaParameters = new ArrayList<>();
-                storyResource.getValueMap().get("title", StringUtils.EMPTY);
-                stories.setHeading(storyResource.getValueMap().get("heading", StringUtils.EMPTY));
+                final List<DeviceTypeBean> dynamicMediaParameters = new ArrayList<>();              
+                stories.setHeading(storyResource.getValueMap().get(PWConstants.PARAM_HEADING, StringUtils.EMPTY));
                 stories.setFileReference(
                         storyResource.getValueMap().get(PWConstants.FILE_REFERENCE, StringUtils.EMPTY));
                 if (Objects.nonNull(storyResource.getValueMap().get(PWConstants.FILE_REFERENCE))) {
@@ -196,9 +195,9 @@ public class StoriesModel {
                             storyResource.getValueMap().get(PWConstants.FILE_REFERENCE).toString()));
                     stories.setDynamicMediaUrlList(dynamicMediaParameters);
                 }
-                stories.setAlt(storyResource.getValueMap().get("alt", StringUtils.EMPTY));
+                stories.setAlt(storyResource.getValueMap().get(PWConstants.PARAM_ALT, StringUtils.EMPTY));
                 stories.setLinkPath(LinkUtils
-                        .sanitizeLink(storyResource.getValueMap().get("linkPath", StringUtils.EMPTY), request));
+                        .sanitizeLink(storyResource.getValueMap().get(PWConstants.PARAM_LINK, StringUtils.EMPTY), request));
                 storyList.add(stories);
             }
         }
