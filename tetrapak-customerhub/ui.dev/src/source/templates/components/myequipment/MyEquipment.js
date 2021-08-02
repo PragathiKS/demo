@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import '@ashwanipahal/paginationjs';
-import Zapfilter from 'zapFilter';
+import Zapfilter from 'zapfilter';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { tableSort,isMobile, getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
@@ -685,10 +685,10 @@ class MyEquipment {
         singleButton: formDetail.singleButton === false ? false : true,
         customiseTable: formDetail.activeForm === 'customise-table' ? true : false,
         isTextInput: formDetail.isTextInput,
-        autoLocatorModal: formDetail.activeForm + 'Overlay',
-        autoLocatorInput: formDetail.activeForm + 'InputBox',
-        autoLocatorCheckbox: formDetail.activeForm + 'FilterCheckboxOverlay',
-        autoLocatorCheckboxText: formDetail.activeForm + 'FilterItemOverlay'
+        autoLocatorModal: `${formDetail.activeForm}Overlay`,
+        autoLocatorInput: `${formDetail.activeForm}InputBox`,
+        autoLocatorCheckbox: `${formDetail.activeForm}FilterCheckboxOverlay`,
+        autoLocatorCheckboxText: `${formDetail.activeForm}FilterItemOverlay`
       },
       target: '.tp-equipment__filter-form',
       hidden: false
