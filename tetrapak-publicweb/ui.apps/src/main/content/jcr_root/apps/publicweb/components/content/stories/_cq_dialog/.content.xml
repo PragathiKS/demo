@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
-    jcr:title="Stories Component Configurations"
+    jcr:title="Stories Component Configuration"
     sling:resourceType="cq/gui/components/authoring/dialog">
     <content
         jcr:primaryType="nt:unstructured"
@@ -179,10 +179,20 @@
                                     jcr:primaryType="nt:unstructured"
                                     showhidetargetvalue="manual"/>
                             </manualcontent>
+							<enableblackgradient
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Black gradient will be enabled by default on all images"
+                                name="./enableBlackGradient"
+								checked="true"
+								cq:showOnCreate="true"
+								uncheckedValue="false"
+								value="true"
+                                text="Enable Black Gradient"/>
 							<linklabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Load More label"
+                                fieldLabel="Show More label"
                                 name="./linkLabel"/>                            
                         </items>
                     </column>
@@ -209,26 +219,6 @@
                     </column>
                 </items>
             </design>
-			<carousel
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Carousel"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <enablecarousel
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Select to enable carousel on this component"
-                                name="./enableCarousel"
-								value="true"
-                                text="Enable Carousel"/>
-                        </items>
-                    </column>
-                </items>
-            </carousel>
         </items>
     </content>
 </jcr:root>
