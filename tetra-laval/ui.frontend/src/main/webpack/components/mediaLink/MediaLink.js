@@ -1,4 +1,4 @@
-import MediaLinkParent from 'tpPublic/templates/components/mediaLink/MediaLink'
+import MediaLinkParent from 'tpPublic/templates/components/mediaLink/MediaLink.js'
 
 class MediaLink extends MediaLinkParent {}
 

@@ -1,4 +1,4 @@
-import SearchbarParent from 'tpPublic/templates/components/searchbar/Searchbar'
+import SearchbarParent from 'tpPublic/templates/components/searchbar/Searchbar.js'
 
 class Searchbar extends SearchbarParent {}
 

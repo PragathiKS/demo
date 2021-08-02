@@ -1,4 +1,4 @@
-import TextImageParent from 'tpPublic/templates/components/textVideo/TextVideo'
+import TextImageParent from 'tpPublic/templates/components/textVideo/TextVideo.js'
 
 class TextVideo extends TextImageParent {}
 
