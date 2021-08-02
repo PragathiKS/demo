@@ -13,7 +13,7 @@
     @include margin($margin-md);
     max-width: $body-max-width;
     border-radius: 4px;
-    
+
     @media #{$desktop} {
         @include padding($padding-xxxl $padding-l 0 $padding-l);
         @include margin($margin-zero $margin-xxxl);
@@ -90,18 +90,18 @@
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
             @include font-size($font-md);
+            color: $color-tundora;
             line-height: 24px;
             font-style: normal;
             font-weight: bold;
-            color: $color-tundora;
 
         }
         .description {
             @include font-size($font-baseline);
+            color: $color-tundora;
             font-style: normal;
             font-weight: normal;
             line-height: 24px;
-            color: $color-tundora;
         }
         .link {
             @include margin-top($margin-md);
@@ -110,12 +110,13 @@
             font-weight: 500;
             font-size: 14px;
             line-height: 24px;
-    
+
             @media #{$desktop} {
                 @include margin-top($margin-xl);
             }
 
-            a, span {
+            a,
+            span {
                 font-weight: 500;
             }
         }

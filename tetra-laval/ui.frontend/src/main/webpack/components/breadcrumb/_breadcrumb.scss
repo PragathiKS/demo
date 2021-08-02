@@ -13,9 +13,9 @@
     &__link {
         @include font-size($font-sm);
         @include line-height($font-m-md, $font-m-md);
+        color: $color-boulder;
         font-style: normal;
         font-weight: 500;
-        color: $color-boulder;
         &:hover {
             color: $color-dark-blue;
         }
