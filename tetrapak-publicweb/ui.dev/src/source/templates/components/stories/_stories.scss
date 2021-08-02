@@ -1,0 +1,139 @@
+.pw-stories {
+    @include margin($margin-md);
+
+    .gradient-class {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 70%;
+        bottom: $spacing-small;
+    }
+    &__black-gradient {
+        .gradient-class {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 99.61%);
+        }
+    }
+
+    .set {
+        display: none;
+        height: 100px;
+        &.show {
+            display: block;
+        }
+    }
+    .story-text {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        color: $color-white;
+        font-weight: 700;
+        position: absolute;
+        left: $spacing-small;
+        right: $spacing-small;
+        bottom: $spacing-small;
+    }
+
+    .image-wrapper {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media #{$mobile} {
+        .image-wrapper {
+            @include padding-bottom($padding-md);
+            &.padding-zero {
+                @include padding-bottom($padding-zero);
+                .gradient-class {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+    .icon {
+        @include margin-left($margin-sm);
+        transform: rotate(90deg);
+    }
+    .show-more {
+        display: flex;
+        justify-content: center;
+    }
+    &__load-more {
+        @include margin-top($margin-zero);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-sm $padding-md);
+        border: 1px solid $color-congress-blue;
+        display: flex;
+        color: $color-congress-blue;
+        border-radius: $border-radius;
+        cursor: pointer;
+    }
+
+    @media #{$desktop} {
+        @include margin($margin-xxxl);
+        .gradient-class {
+            bottom: 0;
+        }
+        &__black-gradient {
+            .gradient-class {
+                bottom: 0;
+            }
+        }
+
+        &__load-more {
+            @include margin-top($margin-l);
+            &:hover {
+                color: $color-sky-blue;
+                border-color: $color-sky-blue;
+            }
+        }
+        .img-wrapper-padding {
+            &.padding-sm-left {
+                @include padding-left($padding-sm);
+            }
+            &.padding-sm-right {
+                @include padding-right($padding-sm);
+            }
+            &.padding-right {
+                @include padding-right($padding-md);
+            }
+            &.padding-left {
+                @include padding-left($padding-md);
+            }
+        }
+
+        .story-text {
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
+            left: $spacing-big;
+            right: $spacing-big;
+            bottom: $spacing-big;
+            &.large-text {
+                @include font-size($font-xl);
+                @include line-height(40px, $font-xl);
+            }
+        }
+
+        .img-2 {
+            display: flex;
+            flex-direction: column;
+            & > a {
+                &:first-child {
+                    @include margin-bottom($margin-md);
+                }
+            }
+        }
+
+        .margin-bottom {
+            &.margin-bottom-zero {
+                @include margin-bottom($margin-zero);
+            }
+            @include margin-bottom($margin-md);
+        }
+    }
+}
