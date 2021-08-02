@@ -104,6 +104,14 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String serialNumToolTip;
 
+	/** The functional location. */
+	@ValueMapValue
+	private String functionalLocation;
+
+	/** The functional location tool tip. */
+	@ValueMapValue
+	private String functionalLocationToolTip;
+
 	/** The sling settings service. */
 	@OSGiService
     private SlingSettingsService slingSettingsService;
@@ -132,16 +140,42 @@ public class MyEquipmentModel {
 	/** The hide And Show Cta.*/
 	@ValueMapValue
 	private String hideAndShowCta;
-	
+
+	/** The no Data Found.*/
+	@ValueMapValue
+	private String noDataFound;
+
+	/** The permanent volume conversion.*/
+	@ValueMapValue
+	private String permanentVolumeConversion;
+
+	/**
+	 * Gets the noDataFound.
+	 *
+	 * @return the noDataFound
+	 */
+	public String getNoDataFound() {
+		return noDataFound;
+	}
+
+	/**
+	 * Gets the Permanent Volume Conversion.
+	 *
+	 * @return the permanentVolumeConversion
+	 */
+	public String getPermanentVolumeConversion() {
+		return permanentVolumeConversion;
+	}
+
 	/**
 	 * Gets the hideAndShowCta.
 	 *
 	 * @return the hideAndShowCta
 	 */
-	public String gethideAndShowCta() {
+	public String getHideAndShowCta() {
 		return hideAndShowCta;
 	}
-	
+
 	/**
 	 * Gets the country api.
 	 *
@@ -195,7 +229,7 @@ public class MyEquipmentModel {
 	public String getEquipStatToolTip() {
 		return evaluateToolTip(equipStatToolTip);
 	}
-	
+
 	/**
 	 * Gets the country tool tip.
 	 *
@@ -240,7 +274,26 @@ public class MyEquipmentModel {
 	public String getSerialNumToolTip() {
 		return evaluateToolTip(serialNumToolTip);
 	}
-	
+
+
+	/**
+	 * Gets the functional location.
+	 *
+	 * @return the functional location
+	 */
+	public String getFunctionalLocation() {
+		return functionalLocation;
+	}
+
+	/**
+	 * Gets the functional location tool tip.
+	 *
+	 * @return the functional location tool tip
+	 */
+	public String getFunctionalLocationToolTip() {
+		return functionalLocationToolTip;
+	}
+
 	/**
 	 * Gets the i18n keys.
 	 *
@@ -357,7 +410,7 @@ public class MyEquipmentModel {
 	public boolean isPublishEnvironment() {
 		return isPublishEnvironment;
 	}
-	
+
 
 	/**
 	 * Gets the tool tip class.
@@ -376,7 +429,7 @@ public class MyEquipmentModel {
 	public void setToolTipClass(String toolTipClass) {
 		this.toolTipClass = toolTipClass;
 	}
-	
+
 	/**
 	 * Inits the.
 	 */
@@ -397,13 +450,17 @@ public class MyEquipmentModel {
         i18KeyMap.put("last", getLast());
         i18KeyMap.put("customizeTable", getCustomizeTable());
         i18KeyMap.put("serialNumToolTip", getSerialNumToolTip());
+        i18KeyMap.put("functionalLocation", getFunctionalLocation());
+		i18KeyMap.put("functionalLocationToolTip", getFunctionalLocationToolTip());
         i18KeyMap.put("lineToolTip", getLineToolTip());
         i18KeyMap.put("siteToolTip", getSiteToolTip());
         i18KeyMap.put("countryToolTip", getCountryToolTip());
         i18KeyMap.put("equipDescToolTip", getEquipDescToolTip());
         i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
-		i18KeyMap.put("hideAndShowCta", gethideAndShowCta());
+		i18KeyMap.put("hideAndShowCta", getHideAndShowCta());
+		i18KeyMap.put("noDataFound", getNoDataFound());
+		i18KeyMap.put("permanentVolumeConversion", getPermanentVolumeConversion());
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }

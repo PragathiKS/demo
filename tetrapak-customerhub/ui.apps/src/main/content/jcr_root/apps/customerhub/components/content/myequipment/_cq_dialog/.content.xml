@@ -102,6 +102,24 @@
                                 fieldLabel="Customize Table Label (i18N key)"
                                 name="./customizeTable"
                                 required="true"/>
+                            <functionalLocation
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Functional Location (i18N key)"
+                                    name="./functionalLocation"
+                                    required="true"/>
+                            <noDataFound
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="No Data Found Label (i18N key)"
+                                    name="./noDataFound"
+                                    required="true"/>
+                            <permanentVolumeConversion
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Permanent Volume Conversion Label (i18N key)"
+                                    name="./permanentVolumeConversion"
+                                    required="true"/>
                         </items>
                     </column1>
                     <column2
@@ -139,7 +157,12 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Equipment Status Tool Tip Text (i18N key)"
-                                name="./equipStatToolTip"/>						
+                                name="./equipStatToolTip"/>
+                            <functionalLocationToolTip
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Functional Location Tool Tip Text (i18N key)"
+                                    name="./functionalLocationToolTip"/>
                         </items>
                     </column2>
                 </items>
