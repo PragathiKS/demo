@@ -1,4 +1,4 @@
-import BannerParent from `${tpPublic}/templates/components/Banner/Banner.js`
+import BannerParent from 'tpPublic/templates/components/banner/Banner'
 
 class Banner extends BannerParent {}
 

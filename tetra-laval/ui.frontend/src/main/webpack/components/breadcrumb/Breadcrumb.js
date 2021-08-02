@@ -1,4 +1,4 @@
-import BreadcrumbParent from `${tpPublic}/templates/components/Breadcrumb/Breadcrumb.js`
+import BreadcrumbParent from 'tpPublic/templates/components/breadcrumb/Breadcrumb'
 
 class Breadcrumb extends BreadcrumbParent {}
 

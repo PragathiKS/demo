@@ -1,4 +1,4 @@
-import ImageParent from `${tpPublic}/templates/components/image/image.js`
+import ImageParent from 'tpPublic/templates/components/image/Image'
 
 class Image extends ImageParent {};
 

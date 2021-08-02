@@ -1,4 +1,4 @@
-import AnchorParent from `${tpPublic}/templates/components/Anchor/Anchor.js`
+import AnchorParent from 'tpPublic/templates/components/anchor/Anchor'
 
 class Anchor extends AnchorParent {}
 
