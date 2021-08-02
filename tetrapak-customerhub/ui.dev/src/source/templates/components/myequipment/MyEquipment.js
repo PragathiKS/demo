@@ -176,14 +176,14 @@ function getKeyMap(key,i18nKeys){
     }
     case 'equipmentStatus': {
       headerObj['keyLabel'] = i18nKeys['equipmentStatus'];
-      headerObj['showTooltip'] = i18nKeys['equipmentStatus'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipmentStatus'];
+      headerObj['showTooltip'] = i18nKeys['equipStatToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['equipStatToolTip'];
       break;
     }
     case 'functionalLocation': {
       headerObj['keyLabel'] = i18nKeys['functionalLocation'];
-      headerObj['showTooltip'] = i18nKeys['functionalLocation'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['functionalLocations'];
+      headerObj['showTooltip'] = i18nKeys['functionalLocationToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['functionalLocationToolTip'];
       break;
     }
     default: {

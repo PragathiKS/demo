@@ -29,7 +29,8 @@
                "equipStatToolTip":"cuhu.equipment.equipstattooltip",
                "siteToolTip":"cuhu.equipment.sitetooltip",
                "lineToolTip":"cuhu.equipment.linetooltip",
-               "serialNumToolTip":"cuhu.equipment.serialnumtooltip"
+               "serialNumToolTip":"cuhu.equipment.serialnumtooltip",
+               "functionalLocationToolTip":"cuhu.equipment.functionallocationtooltip"
             }
          }
       }
