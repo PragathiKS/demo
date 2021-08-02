@@ -1,4 +1,4 @@
-import TextImageParent from 'tpPublic/templates/components/TextImage/TextImage.js'
+import TextImageParent from 'tpPublic/templates/components/textImage/TextImage.js'
 
 class TextImage  extends TextImageParent {}
 

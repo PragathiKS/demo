@@ -1,4 +1,4 @@
-import TeaserParent from 'tpPublic/templates/components/Teaser/Teaser.js'
+import TeaserParent from 'tpPublic/templates/components/teaser/teaser.js'
 
 class Teaser extends TeaserParent {}
 
