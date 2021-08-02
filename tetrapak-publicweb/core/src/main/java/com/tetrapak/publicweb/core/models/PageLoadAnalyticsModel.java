@@ -2,12 +2,16 @@ package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
+
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.CountryLanguageCodeBean;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CookieDataDomainScriptService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -30,6 +34,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.Collections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class PageLoadAnalyticsModel.
@@ -37,21 +43,31 @@ import java.util.Collections;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
-    /** The request. */
+    /**
+     * The request.
+     */
     @SlingObject
     private SlingHttpServletRequest request;
 
-    /** The resource. */
+    /**
+     * The resource.
+     */
     private Resource resource;
 
-    /** The current page. */
+    /**
+     * The current page.
+     */
     private Page currentPage;
 
-    /** The sling settings service. */
+    /**
+     * The sling settings service.
+     */
     @OSGiService
     private SlingSettingsService slingSettingsService;
 
-    /** The xssapi. */
+    /**
+     * The xssapi.
+     */
     @OSGiService
     protected XSSAPI xssapi;
 
@@ -59,31 +75,49 @@ public class PageLoadAnalyticsModel {
     @OSGiService
     private CookieDataDomainScriptService cookieDataDomainScriptService;
 
-    /** The Constant PAGE_LOAD_EVENT. */
+    /**
+     * The Constant PAGE_LOAD_EVENT.
+     */
     private static final String PAGE_LOAD_EVENT = "content-load";
 
-    /** The Constant TETRAPAK_TAGS_ROOT_PATH. */
+    /**
+     * The Constant TETRAPAK_TAGS_ROOT_PATH.
+     */
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
 
-    /** The Constant PW_ERROR_PAGE_TEMPLATE_NAME. */
+    /**
+     * The Constant PW_ERROR_PAGE_TEMPLATE_NAME.
+     */
     private static final String PW_ERROR_PAGE_TEMPLATE_NAME = "public-web-error-page";
 
-    /** The Constant X_DEFAULT. */
+    /**
+     * The Constant X_DEFAULT.
+     */
     private static final String X_DEFAULT = "x-default";
 
-    /** The channel. */
+    /**
+     * The channel.
+     */
     private String channel = StringUtils.EMPTY;
 
-    /** The page name. */
+    /**
+     * The page name.
+     */
     private String pageName = StringUtils.EMPTY;
 
-    /** The site language. */
+    /**
+     * The site language.
+     */
     private String siteLanguage = StringUtils.EMPTY;
 
-    /** The site country. */
+    /**
+     * The site country.
+     */
     private String siteCountry = StringUtils.EMPTY;
 
-    /** The page type. */
+    /**
+     * The page type.
+     */
     private String pageType = StringUtils.EMPTY;
 
     /** The data domain script. */
@@ -98,47 +132,79 @@ public class PageLoadAnalyticsModel {
     /** The digital data. */
     private String digitalData;
 
-    /** The production. */
+    /**
+     * The production.
+     */
     private boolean production;
 
-    /** The staging. */
+    /**
+     * The staging.
+     */
     private boolean staging;
 
-    /** The development. */
+    /**
+     * The pageCategories.
+     */
+    private StringBuilder pageCategories = new StringBuilder();
+
+    /**
+     * The development.
+     */
     private boolean development;
 
-    /** The product name. */
+    /**
+     * The product name.
+     */
     private String productName;
 
-    /** The site section 0. */
+    /**
+     * The site section 0.
+     */
     private final StringBuilder siteSection0 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The site section 1. */
+    /**
+     * The site section 1.
+     */
     private StringBuilder siteSection1 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The site section 2. */
+    /**
+     * The site section 2.
+     */
     private final StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The site section 3. */
+    /**
+     * The site section 3.
+     */
     private final StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The site section 4. */
+    /**
+     * The site section 4.
+     */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
 
     /** The site section 4. */
     private final StringBuilder siteSection5 = new StringBuilder(StringUtils.EMPTY);
 
-    /** The Constant COUNTRY_LEVEL. */
+    /**
+     * The Constant COUNTRY_LEVEL.
+     */
     private static final int COUNTRY_LEVEL = 4;
 
-    /** The Constant LANGUAGE_LEVEL. */
+    /**
+     * The Constant LANGUAGE_LEVEL.
+     */
     private static final int LANGUAGE_LEVEL = 5;
 
-    /** The Constant HREFLANG_LIST_MINIMUM_SIZE. */
+    /**
+     * The Constant HREFLANG_LIST_MINIMUM_SIZE.
+     */
     private static final int HREFLANG_LIST_MINIMUM_SIZE = 2;
 
     /** The href lang values. */
     private List<CountryLanguageCodeBean> hrefLangValues = new ArrayList<>();
+
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageLoadAnalyticsModel.class);
 
     /**
      * Inits the model.
@@ -155,6 +221,7 @@ public class PageLoadAnalyticsModel {
             }
         }
 
+        updatePageCategories();
         updateLanguageAndCountry();
         updateRunMode();
         updateSiteSections();
@@ -165,6 +232,27 @@ public class PageLoadAnalyticsModel {
         updateProductName();
         updateHrefLang();
         digitalData = buildDigitalDataJson();
+    }
+
+    /**
+     * Update Page Categories.
+     */
+    private void updatePageCategories() {
+        try {
+            ResourceResolver resourceResolver = resource.getResourceResolver();
+            StringBuilder stringBuilder = new StringBuilder();
+            TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+            final String[] tagValue = currentPage.getProperties().get("cq:tags", String[].class);
+            if (ArrayUtils.isNotEmpty(tagValue)) {
+                for (String tags : tagValue) {
+                    Tag tag = tagManager.resolve(tags);
+                        stringBuilder.append((tag.getTitle()) + ",");
+                    }
+                    pageCategories = stringBuilder.replace(stringBuilder.lastIndexOf(","), stringBuilder.lastIndexOf(",") + 1, "");
+            }
+        }catch (Exception exception){
+            LOGGER.error(" There is an exception while executing updatePageCategories ");
+        }
     }
 
     /**
@@ -508,6 +596,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteSection5", siteSection5.toString());
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
+        pageInfo.addProperty("pageCategories", pageCategories.toString());
         pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
