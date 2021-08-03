@@ -1,0 +1,43 @@
+<div auto-locator="storyOrganism" class="tp-stories">
+    {{#if_noteq firstSet.length 0}}
+        <div>
+            {{> molecules/storyLayout
+            isDataComplete = "true"
+            storyContent1 = firstSet.[0]
+            storyContent2 = firstSet.[1]
+            storyContent3 = firstSet.[2]
+            storyContent4 = firstSet.[3]
+            storyContent5 = firstSet.[4]
+            storyContent6 = firstSet.[5]
+            }}
+        </div>
+    {{/if_noteq}}
+    {{#if_noteq restSet.length 0}}
+        <div>
+            {{#each restSet}}
+                {{> molecules/storyLayout
+                isDataComplete = "true"
+                storyContent1 = this.[0]
+                storyContent2 = this.[1]
+                storyContent3 = this.[2]
+                storyContent4 = this.[3]
+                storyContent5 = this.[4]
+                storyContent6 = this.[5]
+                }}
+            {{/each}}
+        </div>
+    {{/if_noteq}}
+    {{#if_noteq iteratorValue.length 0}}
+        <div>
+            {{> molecules/storyLayout
+                isDataComplete = "false"
+                itemsLength = iteratorValue.length
+                storyContent1 = iteratorValue.[0]
+                storyContent2 = iteratorValue.[1]
+                storyContent3 = iteratorValue.[2]
+                storyContent4 = iteratorValue.[3]
+                storyContent5 = iteratorValue.[4]
+            }}
+        </div>
+    {{/if_noteq}}
+</div>

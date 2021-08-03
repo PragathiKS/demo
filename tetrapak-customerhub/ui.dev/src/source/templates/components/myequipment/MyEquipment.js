@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import '@ashwanipahal/paginationjs';
-import Zapfilter from 'zapFilter';
+import Zapfilter from 'zapfilter';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { tableSort,isMobile, getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
@@ -176,14 +176,14 @@ function getKeyMap(key,i18nKeys){
     }
     case 'equipmentStatus': {
       headerObj['keyLabel'] = i18nKeys['equipmentStatus'];
-      headerObj['showTooltip'] = i18nKeys['equipmentStatus'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipmentStatus'];
+      headerObj['showTooltip'] = i18nKeys['equipStatToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['equipStatToolTip'];
       break;
     }
     case 'functionalLocation': {
       headerObj['keyLabel'] = i18nKeys['functionalLocation'];
-      headerObj['showTooltip'] = i18nKeys['functionalLocation'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['functionalLocations'];
+      headerObj['showTooltip'] = i18nKeys['functionalLocationToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['functionalLocationToolTip'];
       break;
     }
     default: {
@@ -685,10 +685,10 @@ class MyEquipment {
         singleButton: formDetail.singleButton === false ? false : true,
         customiseTable: formDetail.activeForm === 'customise-table' ? true : false,
         isTextInput: formDetail.isTextInput,
-        autoLocatorModal: formDetail.activeForm + 'Overlay',
-        autoLocatorInput: formDetail.activeForm + 'InputBox',
-        autoLocatorCheckbox: formDetail.activeForm + 'FilterCheckboxOverlay',
-        autoLocatorCheckboxText: formDetail.activeForm + 'FilterItemOverlay'
+        autoLocatorModal: `${formDetail.activeForm}Overlay`,
+        autoLocatorInput: `${formDetail.activeForm}InputBox`,
+        autoLocatorCheckbox: `${formDetail.activeForm}FilterCheckboxOverlay`,
+        autoLocatorCheckboxText: `${formDetail.activeForm}FilterItemOverlay`
       },
       target: '.tp-equipment__filter-form',
       hidden: false

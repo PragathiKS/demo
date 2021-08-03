@@ -19,6 +19,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 import com.tetrapak.publicweb.core.models.multifield.TabModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
@@ -116,13 +117,13 @@ public class TabsListModel {
         resource = request.getResource();    
         if(StringUtils.isNotBlank(contentType)) {
         	switch (contentType) {
-        	case "automatic":
+        	case PWConstants.AUTOMATIC:
         	    generateListAutomaticWay();
         	    break;
-        	case "semi-automatic":
+        	case PWConstants.SEMI_AUTOMATIC:
         	    generateListSemiAutomatically();
         	    break;
-        	case "manual":
+        	case PWConstants.MANUAL:
         	    generateListManually();
         	    break;
         	default:

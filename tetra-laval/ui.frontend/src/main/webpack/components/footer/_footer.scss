@@ -12,7 +12,7 @@
         @media #{$desktop} {
             @include padding($padding-xxxl);
         }
-        
+
         .tp-pw-footer-data-logo {
             img {
                 width: 156px;
@@ -28,7 +28,7 @@
         &:active {
             color: $color-mercury;
             text-decoration: none;
-        }        
+        }
     }
 
     &__navigation-list {
@@ -45,7 +45,7 @@
                     @include margin-right($margin-l);
                 }
             }
-            
+
             @media #{$mobile} {
                 &:not(:last-child) {
                     @include margin-bottom($margin-md);
@@ -60,7 +60,7 @@
         @media #{$mobile} {
             @include margin-top($margin-xl);
         }
- 
+
         &:not(:first-child) {
             @include margin-left($margin-md);
         }
