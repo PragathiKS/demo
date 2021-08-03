@@ -2,8 +2,10 @@ package com.tetralaval.models.sitemap;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "url")
+@XmlType(propOrder = { "location", "lastModification" })
 public class Url {
     private String location;
     private String lastModification;
