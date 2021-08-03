@@ -475,11 +475,13 @@ class MyEquipment {
           }).then(response => {
             this.cache.$spinner.addClass('d-none');
             this.cache.$content.removeClass('d-none');
-            this.cache.filteredTableData = response.data;
-            this.cache.filteredTableData = this.cache.filteredTableData.map((item) => ({
+            this.cache.tableData = response.data;
+            this.cache.tableData = this.cache.tableData.map((item) => ({
               ...item,
               equipmentStatus: item.equipmentStatus || ''
             }));
+            this.cache.filteredTableData = [...this.cache.tableData];
+            this.deleteAllFilters();
             renderPaginationTableData.call(
               this,
               _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
