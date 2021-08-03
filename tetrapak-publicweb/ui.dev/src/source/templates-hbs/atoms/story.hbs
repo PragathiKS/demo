@@ -1,0 +1,16 @@
+<a auto-locator={{autoLocator}} href={{storyContent.linkPath}}
+      class="{{#if storyContent.linkPath}}js-stories-analytics{{/if}} image-wrapper {{#if storyContent.class-hide}}{{storyContent.class-hide}}{{/if}} {{#if storyContent.padding-zero}}padding-zero{{/if}}">
+      <div class="gradient-class">
+            <h3 data-heading="{{storyContent.heading}}" class="story-text data {{#if contentClass}}{{contentClass}}{{/if}}">{{storyContent.heading}}</h3>
+      </div>
+      {{#if storyContent.isWcmmode}}
+      <img alt={{storyContent.alt}} src={{storyContent.fileReference}} />
+      {{else}}
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${imgRatio}'%3E%3C/svg%3E"
+            data-src={{storyContent.dynamicMediaUrlList.[0].desktop}} class="img-responsive js-dynamic-media"
+            itemprop="image" alt={{storyContent.alt}} data-src_desktop={{storyContent.dynamicMediaUrlList.[0].desktop}}
+            data-src_desktopL={{storyContent.dynamicMediaUrlList.[0].desktopLarge}}
+            data-src_mobileP={{storyContent.dynamicMediaUrlList.[0].mobilePortrait}}
+            data-src_mobileL={{storyContent.dynamicMediaUrlList.[0].mobileLandscape}} />
+      {{/if}}
+</a>

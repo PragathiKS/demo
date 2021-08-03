@@ -168,7 +168,8 @@
         "source/templates/components/video/",
         "source/templates/components/errorPage/",
         "source/templates/components/pagination/",
-        "source/templates/components/socialsidebar/"
+        "source/templates/components/socialsidebar/",
+        "source/templates/components/stories/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
