@@ -104,6 +104,14 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String serialNumToolTip;
 
+	/** The functional location. */
+	@ValueMapValue
+	private String functionalLocation;
+
+	/** The functional location tool tip. */
+	@ValueMapValue
+	private String functionalLocationToolTip;
+
 	/** The sling settings service. */
 	@OSGiService
     private SlingSettingsService slingSettingsService;
@@ -267,6 +275,25 @@ public class MyEquipmentModel {
 		return evaluateToolTip(serialNumToolTip);
 	}
 
+
+	/**
+	 * Gets the functional location.
+	 *
+	 * @return the functional location
+	 */
+	public String getFunctionalLocation() {
+		return functionalLocation;
+	}
+
+	/**
+	 * Gets the functional location tool tip.
+	 *
+	 * @return the functional location tool tip
+	 */
+	public String getFunctionalLocationToolTip() {
+		return functionalLocationToolTip;
+	}
+
 	/**
 	 * Gets the i18n keys.
 	 *
@@ -423,6 +450,8 @@ public class MyEquipmentModel {
         i18KeyMap.put("last", getLast());
         i18KeyMap.put("customizeTable", getCustomizeTable());
         i18KeyMap.put("serialNumToolTip", getSerialNumToolTip());
+        i18KeyMap.put("functionalLocation", getFunctionalLocation());
+		i18KeyMap.put("functionalLocationToolTip", getFunctionalLocationToolTip());
         i18KeyMap.put("lineToolTip", getLineToolTip());
         i18KeyMap.put("siteToolTip", getSiteToolTip());
         i18KeyMap.put("countryToolTip", getCountryToolTip());

@@ -11,7 +11,7 @@
     &__filter-button {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
-        @include padding($padding-md);
+        @include padding($padding-sm $padding-md);
         @include margin-right($margin-sm);
         @include margin-bottom($margin-md);
         border: 1px solid $color-congress-blue;
@@ -24,11 +24,13 @@
             &.active {
                 border-width: 2px;
                 font-weight: 700;
+                background-color: $color-wild-sand;
             }
         }
         &.active {
             border-width: 2px;
             font-weight: 700;
+            background-color: $color-wild-sand;
         }
     }
 
