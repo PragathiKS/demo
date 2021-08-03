@@ -1,5 +1,5 @@
-import ImageParent from 'tpPublic/templates/components/image/Image.js'
+import ImageParent from 'tpPublic/templates/components/image/image.js';
 
-class Image extends ImageParent {};
+class Image extends ImageParent {}
 
 export default Image;
