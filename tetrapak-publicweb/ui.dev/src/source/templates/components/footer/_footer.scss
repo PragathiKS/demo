@@ -34,6 +34,10 @@
             color: $color-mercury;
             text-decoration: none;
         }
+
+        &.weChatLink {
+            pointer-events: none;
+        }
     }
 
     &__navigation-list {
