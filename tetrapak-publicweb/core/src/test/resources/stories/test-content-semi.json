@@ -27,6 +27,7 @@
 					"contentType": "semi-automatic",
 					"jcr:created": "Mon Apr 13 2020 10:49:59 GMT+0530",
 					"linkLabel": "Load More",
+					"enableBlackGradient": "true",
 					"maxTeasers": "12",
 					"pwTheme": "grayscale-white",
 					"tags": [
