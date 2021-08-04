@@ -2,6 +2,7 @@
     $document.on("foundation-contentloaded", showSoftConversionForm);
 	$document.on("click", ".cq-dialog-submit", validatePardotURL);
  
+ 	const listOfResourceTypes = ["publicweb/components/content/textImage", "publicweb/components/content/textVideo", "publicweb/components/content/banner"];
     function showSoftConversionForm(){
         var dialog = (gAuthor != null) ? gAuthor.DialogFrame.currentDialog : null,
             componentPath = (dialog != null) ? dialog.editable : null;
@@ -34,7 +35,9 @@
              pardotUrlRegex: /^(https:\/\/)?go+([\-\.]{1}tetrapak+)*\.[com]{2,5}(:[0-9]{1,5})?(\/.*)?$/
         };
 
-        if(dropdownValue==="enableSoftconversion" && !patterns.pardotUrlRegex.test(pardotUrl)) {
+		if(!isTargetDialog($form,listOfResourceTypes)){
+            return;
+        }else if(dropdownValue==="enableSoftconversion" && !patterns.pardotUrlRegex.test(pardotUrl)) {
             gAuthor.ui.helpers.prompt({
                 title: "Invalid Pardot URL - Softconversion Form",
                 message: "Pardot URL for softconversion form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
@@ -65,6 +68,11 @@
 		}else{
             $form.submit();
         }
+	}
+	
+	function isTargetDialog($formElement, dlgResourceType) {
+    	const resourceType = $formElement.find("input[name='./sling:resourceType']").val();
+        return dlgResourceType.indexOf(resourceType) > -1 ? true : false;
 	}
 	
 }($(document), Granite.author));
