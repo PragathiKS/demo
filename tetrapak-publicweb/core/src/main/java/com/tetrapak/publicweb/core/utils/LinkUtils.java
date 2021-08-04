@@ -9,7 +9,6 @@ import com.tetrapak.publicweb.core.constants.PWConstants;
 
 public class LinkUtils extends WCMUsePojo {
 
-    private static final String PARAM_LINK = "linkPath";
     private String sanitizedLink;
 
     /** The Constant FORWARD_SLASH. */
@@ -81,7 +80,7 @@ public class LinkUtils extends WCMUsePojo {
 
     @Override
     public void activate() throws Exception {
-        sanitizedLink = get(PARAM_LINK, String.class);
+        sanitizedLink = get(PWConstants.PARAM_LINK, String.class);
 
     }
 

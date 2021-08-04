@@ -1,0 +1,30 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": [
+			"mix:versionable"
+		],
+		"jcr:createdBy": "admin",
+		"jcr:title": "English",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "8e561793-7556-41bb-bcba-05d5402dfa6a",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+		"cq:lastReplicatedBy": "admin",
+		"jcr:language": "it_it",
+		"jcr:predecessors": [
+			"79b9b09e-c34c-4604-9258-456aee9823ea"
+		],
+		"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
+		"cq:lastReplicated": "Wed Mar 25 2020 13:20:39 GMT+0000",
+		"cq:lastModified": "Mon Mar 30 2020 19:04:32 GMT+0530",
+		"jcr:baseVersion": "79b9b09e-c34c-4604-9258-456aee9823ea",
+		"jcr:isCheckedOut": true,
+		"jcr:uuid": "5b44965b-6a84-496c-87c1-75639aa97ad1",
+		"sling:resourceType": "publicweb/components/structure/pages/languagepage",
+		"cq:allowedTemplates": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"cq:lastModifiedBy": "admin"
+	}
+}
