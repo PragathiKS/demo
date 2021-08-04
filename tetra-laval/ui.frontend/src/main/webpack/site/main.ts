@@ -1,6 +1,6 @@
 
 // Stylesheets
-import "./main.scss";
+import './main.scss';
 
 // Application start point
-import "../source/core/core.js"
+import '../source/core/core.js';
