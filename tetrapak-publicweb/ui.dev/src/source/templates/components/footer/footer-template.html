@@ -20,7 +20,7 @@
         </div>
         <div class="col-lg-3 text-lg-right tp-pw-footer__social-media">
           <div class="tp-pw-footer__social-media-items footer-analytics" data-sly-list.socialLink="${data.socialLinks}">
-            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics"
+            <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics${socialLink.socialMedia == 'WeChat' ? ' weChatLink':''}"
               href="${socialLink.socialMediaLink}" target="_blank" data-sly-test="${socialLink.socialMediaLink}"
               data-link-name="${socialLink.socialMedia}">
               <i class="icon-${socialLink.socialMedia}_pw"></i>
