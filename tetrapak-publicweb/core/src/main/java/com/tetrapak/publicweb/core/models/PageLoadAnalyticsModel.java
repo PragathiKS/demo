@@ -43,31 +43,21 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageLoadAnalyticsModel {
 
-    /**
-     * The request.
-     */
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
 
-    /**
-     * The resource.
-     */
+    /** The resource. */
     private Resource resource;
 
-    /**
-     * The current page.
-     */
+    /** The current page. */
     private Page currentPage;
 
-    /**
-     * The sling settings service.
-     */
+    /** The sling settings service. */
     @OSGiService
     private SlingSettingsService slingSettingsService;
 
-    /**
-     * The xssapi.
-     */
+    /** The xssapi. */
     @OSGiService
     protected XSSAPI xssapi;
 
@@ -75,49 +65,31 @@ public class PageLoadAnalyticsModel {
     @OSGiService
     private CookieDataDomainScriptService cookieDataDomainScriptService;
 
-    /**
-     * The Constant PAGE_LOAD_EVENT.
-     */
+    /** The Constant PAGE_LOAD_EVENT. */
     private static final String PAGE_LOAD_EVENT = "content-load";
 
-    /**
-     * The Constant TETRAPAK_TAGS_ROOT_PATH.
-     */
+    /** The Constant TETRAPAK_TAGS_ROOT_PATH. */
     public static final String TETRAPAK_TAGS_ROOT_PATH = "/content/cq:tags/tetrapak/";
 
-    /**
-     * The Constant PW_ERROR_PAGE_TEMPLATE_NAME.
-     */
+    /** The Constant PW_ERROR_PAGE_TEMPLATE_NAME. */
     private static final String PW_ERROR_PAGE_TEMPLATE_NAME = "public-web-error-page";
 
-    /**
-     * The Constant X_DEFAULT.
-     */
+    /** The Constant X_DEFAULT. */
     private static final String X_DEFAULT = "x-default";
 
-    /**
-     * The channel.
-     */
+    /** The channel. */
     private String channel = StringUtils.EMPTY;
 
-    /**
-     * The page name.
-     */
+    /** The page name. */
     private String pageName = StringUtils.EMPTY;
 
-    /**
-     * The site language.
-     */
+    /** The site language. */
     private String siteLanguage = StringUtils.EMPTY;
 
-    /**
-     * The site country.
-     */
+    /** The site country. */
     private String siteCountry = StringUtils.EMPTY;
 
-    /**
-     * The page type.
-     */
+    /** The page type. */
     private String pageType = StringUtils.EMPTY;
 
     /** The data domain script. */
@@ -132,14 +104,10 @@ public class PageLoadAnalyticsModel {
     /** The digital data. */
     private String digitalData;
 
-    /**
-     * The production.
-     */
+    /** The production. */
     private boolean production;
 
-    /**
-     * The staging.
-     */
+    /** The staging. */
     private boolean staging;
 
     /**
@@ -152,52 +120,34 @@ public class PageLoadAnalyticsModel {
      */
     private boolean development;
 
-    /**
-     * The product name.
-     */
+    /** The product name. */
     private String productName;
 
-    /**
-     * The site section 0.
-     */
+    /** The site section 0. */
     private final StringBuilder siteSection0 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The site section 1.
-     */
+    /** The site section 1. */
     private StringBuilder siteSection1 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The site section 2.
-     */
+    /** The site section 2. */
     private final StringBuilder siteSection2 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The site section 3.
-     */
+    /** The site section 3. */
     private final StringBuilder siteSection3 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The site section 4.
-     */
+    /** The site section 4. */
     private final StringBuilder siteSection4 = new StringBuilder(StringUtils.EMPTY);
 
     /** The site section 4. */
     private final StringBuilder siteSection5 = new StringBuilder(StringUtils.EMPTY);
 
-    /**
-     * The Constant COUNTRY_LEVEL.
-     */
+    /** The Constant COUNTRY_LEVEL. */
     private static final int COUNTRY_LEVEL = 4;
 
-    /**
-     * The Constant LANGUAGE_LEVEL.
-     */
+    /** The Constant LANGUAGE_LEVEL. */
     private static final int LANGUAGE_LEVEL = 5;
 
-    /**
-     * The Constant HREFLANG_LIST_MINIMUM_SIZE.
-     */
+    /** The Constant HREFLANG_LIST_MINIMUM_SIZE. */
     private static final int HREFLANG_LIST_MINIMUM_SIZE = 2;
 
     /** The href lang values. */
@@ -597,7 +547,7 @@ public class PageLoadAnalyticsModel {
         pageInfo.addProperty("siteCountry", siteCountry);
         pageInfo.addProperty("siteLanguage", siteLanguage);
         pageInfo.addProperty("pageCategories", pageCategories.toString());
-        pageInfo.addProperty("siteName", applicationName);
+		pageInfo.addProperty("siteName", applicationName);
 
         pageInfo.addProperty("event", PAGE_LOAD_EVENT);
 
