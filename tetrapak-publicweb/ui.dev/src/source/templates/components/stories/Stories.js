@@ -186,6 +186,10 @@ class Stories {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.find('.story-text');
+    const link = $target.closest('.js-stories-analytics');
+    if(!link.attr('href') || link.attr('href') === '#') {
+      return;
+    }
     const dataObj = {
       'linkSection' : 'Stories_image click',
       'linkParentTitle': '',
