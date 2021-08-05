@@ -94,8 +94,8 @@
 
                     input {
                         &[type='checkbox'] {
-                            display: none;
-                        }
+                        display: none;
+                      }
                     }
 
                     .mega-menu-btn:checked ~ .tp_pw-header__mobile-nav-menu-next-lvl-menu {
@@ -135,7 +135,7 @@
                     height: 100%;
                     content: '';
                     position: absolute;
-                    transition: position .2s ease-out;
+                    transition: all .2s ease-out;
                 }
 
                 &::after {
@@ -146,28 +146,28 @@
                     height: 100%;
                     content: '';
                     position: absolute;
-                    transition: position .2s ease-out;
+                    transition: all .2s ease-out;
                 }
             }
 
-            &-btn &:checked ~.tp_pw-header__mobile-nav-menu {
+            &-btn:checked ~.tp_pw-header__mobile-nav-menu {
                 max-height: calc(100vh - 65px);
             }
 
-            &-btn &:checked ~ &-label &-navicon {
+            &-btn:checked ~ &-label &-navicon {
                 background: transparent;
             }
 
-            &-btn &:checked ~ &-label &-navicon &::before {
+            &-btn:checked ~ &-label &-navicon::before {
                 transform: rotate(-45deg);
             }
 
-            &-btn &:checked ~ &-label &-navicon &::after {
+            &-btn:checked ~ &-label &-navicon::after {
                 transform: rotate(45deg);
             }
 
-            &-btn &:checked ~ &-label &-navicon &::before,
-            &-btn &:checked ~ &-label &-navicon &::after {
+            &-btn:checked ~ &-label &-navicon::before,
+            &-btn:checked ~ &-label &-navicon::after {
                 top: 0;
             }
         }
@@ -187,7 +187,7 @@
         &-item {
             padding: $padding-xl 0;
 
-            &:not(:first-child) &:not(:last-child) {
+            &:not(:first-child):not(:last-child) {
                 margin: 0 20px;
             }
 
@@ -247,7 +247,7 @@
         width: 100%;
         background-color: $color-white;
         left: 50%;
-        transform: translate(-50%, 11%);
+        transform: translate(-50%, 9%);
         z-index: $zindex-header;
         &__wrapper {
             margin: 0 auto;
@@ -266,16 +266,7 @@
     }
 
     &-wrapper {
-        height: 88px;
-        background-color: $color-white;
-        width: 100%;
-        @media #{ $mobile } {
-            height: 65px;
-		}
-	}
-
-    &-content {
-        padding: 0 $padding-xxxl;
+        top: 0;
         position: fixed;
         z-index: $zindex-header;
         background-color: $color-white;
@@ -286,7 +277,18 @@
         width: 100%;
 
         @media #{ $mobile } {
+            height: 65px;
+		}
+	}
+
+    &-content {
+        height: 88px;
+        background-color: $color-white;
+        width: 100%;
+
+        @media #{ $mobile } {
             padding: 0;
+            height: 58px;
 		}
 	}
 }
