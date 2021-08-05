@@ -29,7 +29,7 @@ import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVL
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Tetra Laval - Search service",
                 SLING_SERVLET_METHODS + "=" + HttpConstants.METHOD_GET,
-                SLING_SERVLET_RESOURCE_TYPES + "=tetra-laval/components/structure/searchresults"
+                SLING_SERVLET_RESOURCE_TYPES + "=tetra-laval/components/structure/search-page"
         }
 )
 public class SearchResultsServlet extends SlingSafeMethodsServlet {

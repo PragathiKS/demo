@@ -18,7 +18,6 @@ import com.tetralaval.models.search.ResultItem;
 import com.tetralaval.models.search.ResultModel;
 import com.tetralaval.services.ArticleService;
 import com.tetralaval.services.SearchResultsService;
-import com.tetralaval.servlet.SearchResultsServlet;
 import com.tetralaval.utils.LinkUtils;
 import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -39,7 +38,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.math.BigDecimal;
@@ -47,7 +46,14 @@ import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component(immediate = true, service = SearchResultsService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
@@ -63,6 +69,9 @@ public class SearchResultsServiceImpl implements SearchResultsService {
     private final static String HIDE_IN_SEARCH_PROP = "hideInSearch";
     private final static String ARTICLE_DATE_PROP = "articleDate";
     private final static String ARTICLE_TYPE_PROP = "articleType";
+    private final static String MEDIA_LABEL_PROP = "mediaLabel";
+    private final static String VIDEO_THUMBNAIL_PROP = "videoThumbnail";
+    private final static String DOCUMENT_THUMBNAIL_PROP = "documentThumbnail";
 
     private final static String RESOURCES_GROUP = "3_group";
     private final static String PAGES_GROUP = String.format("%s.1_group", RESOURCES_GROUP);
@@ -88,6 +97,9 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
 
     private String path;
+    private String mediaLabel;
+    private String videoThumbnail;
+    private String documentThumbnail;
 
     private SearchResultsConfiguration config;
 
@@ -300,6 +312,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     private ResultItem setSearchResultItemData(SlingHttpServletRequest request, Hit hit) throws RepositoryException {
         ResultItem resultItem = new ResultItem();
+        setAssetsProperties(request);
 
         Resource resource = hit.getResource();
         if (resource != null) {
@@ -309,16 +322,16 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 String mediaTitle = assetMetadataProperties.get(DamConstants.DC_TITLE, StringUtils.EMPTY);
                 String mediaType = getMediaType(assetMetadataProperties);
 
-//                resultItem.setType(searchResultsModel.getMediaLabel());
+                resultItem.setType(mediaLabel);
                 resultItem.setTitle(StringUtils.isBlank(mediaTitle) ? hit.getTitle() : mediaTitle);
                 setMediaSize(resultItem, assetMetadataProperties);
-//                searchResultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf('.') + 1));
+                resultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf(TLConstants.DOT) + 1));
                 resultItem.setAssetType(mediaType);
                 if (TLConstants.VIDEO.equalsIgnoreCase(mediaType)) {
-//                    searchResultItem.setAssetThumbnail(searchResultsModel.getVideoThumbnail());
+                    resultItem.setAssetThumbnail(videoThumbnail);
                 }
                 if (TLConstants.DOCUMENT.equalsIgnoreCase(mediaType)) {
-//                    searchResultItem.setAssetThumbnail(searchResultsModel.getDocumentThumbnail());
+                    resultItem.setAssetThumbnail(documentThumbnail);
                 }
             } else {
                 resultItem.setTitle(PageUtil.getCurrentPage(resource).getTitle());
@@ -382,6 +395,21 @@ public class SearchResultsServiceImpl implements SearchResultsService {
             resultItem.setSizeType("KB");
         }
         return resultItem;
+    }
+
+    private void setAssetsProperties(SlingHttpServletRequest request) {
+        Resource resource = request.getResource().getResourceResolver()
+                .resolve(String.format("%s%s", request.getResource().getPath(), "/root/responsivegrid/searchresults"));
+        if (resource != null && resource.adaptTo(Node.class) != null) {
+            Node node = resource.adaptTo(Node.class);
+            try {
+                mediaLabel = node.hasProperty(MEDIA_LABEL_PROP) ? node.getProperty(MEDIA_LABEL_PROP).getString() : null;
+                videoThumbnail = node.hasProperty(VIDEO_THUMBNAIL_PROP) ? node.getProperty(VIDEO_THUMBNAIL_PROP).getString() : null;
+                documentThumbnail = node.hasProperty(DOCUMENT_THUMBNAIL_PROP) ? node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString() : null;
+            } catch (RepositoryException re) {
+                LOGGER.error("setAssetsProperties:: RepositoryException", re.getMessage(), re);
+            }
+        }
     }
 
     private String formatDate(String dateString) {

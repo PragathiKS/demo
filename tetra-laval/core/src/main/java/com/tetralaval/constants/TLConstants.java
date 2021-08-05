@@ -44,6 +44,9 @@ public final class TLConstants {
     /** The Constant COMA. */
     public static final String COMA = ",";
 
+    /** The Constant DOT. */
+    public static final String DOT = ".";
+
     /** The Constant HTML_EXTENSION. */
     public static final String HTML_EXTENSION = ".html";
 

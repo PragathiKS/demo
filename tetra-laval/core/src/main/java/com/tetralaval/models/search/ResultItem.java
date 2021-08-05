@@ -4,7 +4,6 @@ public class ResultItem {
     private String type;
     private String title;
     private String description;
-    private String productType;
     private String path;
     private String size;
     private String sizeType;
@@ -36,14 +35,6 @@ public class ResultItem {
     public void setDescription(String description) {
         this.description = description;
     }
-
-//    public String getProductType() {
-//        return productType;
-//    }
-//
-//    public void setProductType(String productType) {
-//        this.productType = productType;
-//    }
 
     public String getPath() {
         return path;
@@ -85,19 +76,19 @@ public class ResultItem {
         this.assetType = assetType;
     }
 
-//    public String getAssetExtension() {
-//        return assetExtension;
-//    }
-//
-//    public void setAssetExtension(String assetExtension) {
-//        this.assetExtension = assetExtension;
-//    }
-//
-//    public String getAssetThumbnail() {
-//        return assetThumbnail;
-//    }
-//
-//    public void setAssetThumbnail(String assetThumbnail) {
-//        this.assetThumbnail = assetThumbnail;
-//    }
+    public String getAssetExtension() {
+        return assetExtension;
+    }
+
+    public void setAssetExtension(String assetExtension) {
+        this.assetExtension = assetExtension;
+    }
+
+    public String getAssetThumbnail() {
+        return assetThumbnail;
+    }
+
+    public void setAssetThumbnail(String assetThumbnail) {
+        this.assetThumbnail = assetThumbnail;
+    }
 }

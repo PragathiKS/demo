@@ -1,8 +1,8 @@
 package com.tetralaval.models.search;
 
-import com.day.cq.tagging.Tag;
+import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.tagging.TagConstants;
-import com.day.cq.tagging.TagManager;
+import com.day.cq.wcm.api.Page;
 import com.tetralaval.services.ArticleService;
 import com.tetralaval.services.SearchResultsService;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -14,7 +14,6 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +24,9 @@ public class SearchResultsModel {
 
     @SlingObject
     private SlingHttpServletRequest request;
+
+    @Inject
+    private Page page;
 
     @Inject
     private ArticleService articleService;
@@ -42,7 +44,7 @@ public class SearchResultsModel {
 
     @PostConstruct
     protected void init() {
-        this.servletPath = request.getResource().getPath();
+        this.servletPath = String.format("%s/%s", page.getPath(), JcrConstants.JCR_CONTENT);
         this.contentTypeList = articleService.getFilterTypes();
         this.themeList = getTags();
     }
