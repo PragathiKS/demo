@@ -1,12 +1,140 @@
 import $ from 'jquery';
 import 'bootstrap';
 import '@ashwanipahal/paginationjs';
-import Zapfilter from 'zapfilter';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { tableSort,isMobile, getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+
+// https://github.com/interstellarjay/zapfilter
+class Zapfilter {
+  constructor(dataSet, filters) {
+    this.filters = filters || [];
+    this.filteredSet = dataSet || [];
+    this.filterORBuffer = dataSet || [];
+  }
+
+  getAllFilters() {
+    return this.filters;
+  }
+
+  getTotalFilters() {
+    return this.filters.length;
+  }
+
+  setFilters(filters) {
+    return filters.forEach(f => this.filters.push(f));
+  }
+
+  clearFilters() {
+    this.filterORBuffer = [];
+    this.filteredSet = [];
+    return (this.filters = []);
+  }
+
+  applySingleFilter(x, f) {
+    return f.filter(x, f.onProperty, f.value);
+  }
+
+  applyZapFilters(x, f) {
+    return (x = this.applySingleFilter(x, f));
+  }
+
+  applyORFilters(i, x, f) {
+    // Used with this.filterOR(..)
+    return (this.filterORBuffer[i] = this.applySingleFilter(x, f));
+  }
+
+  combineResultsAndRemoveDuplicates(combinedDataSet) {
+    const buffer = combinedDataSet;
+    const isolateUniques = buffer.filter(
+      (value, index) => buffer.indexOf(value) === index
+    );
+    const isolateUniquesFlat = isolateUniques.map(x => x[0]);
+    return isolateUniquesFlat;
+  }
+
+  filterAND(dataSet) {
+    // Missing data set
+    if (!dataSet) {
+      throw new Error('ZapFilter error ===> No data set supplied!');
+    }
+    // Filter the data
+    this.filteredSet = dataSet;
+    // Filter the result
+    for (let i = 0; i < this.filters.length; i++) {
+      this.filteredSet = this.applyZapFilters(
+        this.filteredSet,
+        this.filters[i]
+      );
+    }
+    // Return the response
+    return this.filteredSet;
+  }
+
+  filter(dataSet) {
+    // Missing data set
+    if (!dataSet) {
+      throw new Error('ZapFilter error ===> No data set supplied!');
+    }
+    // Filter the data
+    this.filteredSet = dataSet;
+    // Filter the result
+    for (let i = 0; i < this.filters.length; i++) {
+      this.applyORFilters(i, this.filteredSet, this.filters[i]);
+    }
+    // Return the response
+    const flattenedResultsWithPotentialDuplicates = this.filterORBuffer;
+    const results = this.combineResultsAndRemoveDuplicates(
+      flattenedResultsWithPotentialDuplicates
+    );
+    return results;
+  }
+
+  filterEqualTo(data, property, value) {
+    return data.filter(item => {
+      if (typeof item[property] === 'string') {
+        return (
+          item[property].toUpperCase().replace(/\s|_|-/g, '') ===
+          value.toUpperCase().replace(/\s|_|-/g, '')
+        );
+      }
+      return item[property] === value;
+    });
+  }
+
+  filterEqualToArr(data, property, valueArr) {
+    return data.filter(item => {
+      if (typeof item[property] === 'string') {
+        return (
+          valueArr.includes(item[property])
+        );
+      }
+      return valueArr.includes(item[property]);
+    });
+  }
+
+  filterPartialMatch(data, property, value) {
+    return data.filter(item => {
+      if (typeof item[property] !== 'string') {
+        throw new Error(
+          'ZapFilter error ===> filterPartialMatch function must validate string value!'
+        );
+      }
+      // Parse value to uppercase and remove spaces, dashes and underscores.
+      const v = value.toUpperCase().replace(/\s|_|-/g, '');
+      return RegExp(v, 'g').test(
+        item[property].toUpperCase().replace(/\s|_|-/g, '')
+      );
+    });
+  }
+
+  removeDuplicates(dataSet) {
+    const flatData = dataSet.flat();
+    return this.combineResultsAndRemoveDuplicates(flatData);
+  }
+}
 
 function getFormattedData(array){
   array.forEach((item,index) => {
@@ -718,22 +846,11 @@ class MyEquipment {
         });
       } else {
         this.cache.activeFiltersArr.push({
-          filter: this.filterEqualToArr,
+          filter: this.cache.zapFilter.filterEqualToArr,
           onProperty: key,
           value: combinedFiltersObj[key]
         });
       }
-    });
-  }
-
-  filterEqualToArr(data, property, valueArr) {
-    return data.filter(item => {
-      if (typeof item[property] === 'string') {
-        return (
-          valueArr.includes(item[property])
-        );
-      }
-      return valueArr.includes(item[property]);
     });
   }
 
