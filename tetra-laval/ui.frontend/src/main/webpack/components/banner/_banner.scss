@@ -1,3 +1,8 @@
+@function getbackgroundcolor($basecolor) {
+    @return rgba($color: $basecolor, $alpha: $alpha-e);
+  }
+
+
 .pw-banner {
     position: relative;
 
@@ -9,11 +14,11 @@
         }
 
         &--background-white {
-            background-color: rgba($color: $color-white, $alpha: $alpha-e)
+            background-color: getbackgroundcolor($color-white);
         }
 
         &--background-black {
-            background-color: rgba($color: $color-black, $alpha: $alpha-e)
+            background-color: getbackgroundcolor($color-black);
         }
 
         &_wrapper {

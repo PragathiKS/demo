@@ -14,7 +14,7 @@ module.exports = env => {
         performance: { hints: 'warning' },
         plugins: [
             new HtmlWebpackPlugin({
-                template: path.resolve(__dirname, SOURCE_ROOT + '/static/searchresults.html')
+                template: path.resolve(__dirname, SOURCE_ROOT + '/static/index.html')
             })
         ],
         devServer: {
