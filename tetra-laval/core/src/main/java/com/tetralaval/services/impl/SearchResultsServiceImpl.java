@@ -135,10 +135,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         map.put(String.format("%s.%s.p.or", ASSETS_GROUP, TAGS_GROUP), "true");
 
         map.putAll(setResources());
-        map.putAll(setTags(PAGES_GROUP, String.format("%s/%s", JcrConstants.JCR_CONTENT,
-                TagConstants.PN_TAGS), filterModelList));
-        map.putAll(setTags(ASSETS_GROUP, String.format("%s/%s/%s", JcrConstants.JCR_CONTENT,
-                DamConstants.METADATA_FOLDER, TagConstants.PN_TAGS), filterModelList));
+        if (filterModelList != null) {
+            map.putAll(setTags(PAGES_GROUP, String.format("%s/%s", JcrConstants.JCR_CONTENT,
+                    TagConstants.PN_TAGS), filterModelList));
+            map.putAll(setTags(ASSETS_GROUP, String.format("%s/%s/%s", JcrConstants.JCR_CONTENT,
+                    DamConstants.METADATA_FOLDER, TagConstants.PN_TAGS), filterModelList));
+        }
         map.putAll(setTemplates(params));
         return map;
     }
@@ -288,17 +290,20 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     private Map<String, String> setTemplates(RequestParameterMap params) {
         Map<String, String> map = new HashMap<>();
+        String[] articleTypes = getArticleTypes(params);
 
         // fetched only these pages which have the same type as selected in filters
-        int articleIndex = 0;
-        for (String articleType : getArticleTypes(params)) {
-            articleIndex++;
-            map.put(String.format("%s.%s.%d_group.1_property", PAGES_GROUP, TEMPLATES_GROUP, articleIndex),
-                    String.format("@%s/%s", JcrConstants.JCR_CONTENT, NameConstants.NN_TEMPLATE));
-            map.put(String.format("%s.%s.%d_group.1_property.value", PAGES_GROUP, TEMPLATES_GROUP, articleIndex), ARTICLE_TEMPLATE);
-            map.put(String.format("%s.%s.%d_group.2_property", PAGES_GROUP, TEMPLATES_GROUP, articleIndex),
-                    String.format("@%s/articleType", JcrConstants.JCR_CONTENT));
-            map.put(String.format("%s.%s.%d_group.2_property.value", PAGES_GROUP, TEMPLATES_GROUP, articleIndex), articleType);
+        if (articleTypes != null) {
+            int articleIndex = 0;
+            for (String articleType : articleTypes) {
+                articleIndex++;
+                map.put(String.format("%s.%s.%d_group.1_property", PAGES_GROUP, TEMPLATES_GROUP, articleIndex),
+                        String.format("@%s/%s", JcrConstants.JCR_CONTENT, NameConstants.NN_TEMPLATE));
+                map.put(String.format("%s.%s.%d_group.1_property.value", PAGES_GROUP, TEMPLATES_GROUP, articleIndex), ARTICLE_TEMPLATE);
+                map.put(String.format("%s.%s.%d_group.2_property", PAGES_GROUP, TEMPLATES_GROUP, articleIndex),
+                        String.format("@%s/articleType", JcrConstants.JCR_CONTENT));
+                map.put(String.format("%s.%s.%d_group.2_property.value", PAGES_GROUP, TEMPLATES_GROUP, articleIndex), articleType);
+            }
         }
         return map;
     }
