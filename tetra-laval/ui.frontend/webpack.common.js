@@ -4,7 +4,6 @@ const path                    = require('path');
 const webpack                 = require('webpack');
 const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
 const TSConfigPathsPlugin     = require('tsconfig-paths-webpack-plugin');
-const CopyWebpackPlugin       = require('copy-webpack-plugin');
 const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
 
 const SOURCE_ROOT = __dirname + '/src/main/webpack';
@@ -22,10 +21,7 @@ module.exports = {
         site: SOURCE_ROOT + '/site/main.ts'
     },
     output: {
-        filename: (chunkData) => {
-            return chunkData.chunk.name === 'dependencies' ? 'clientlib-dependencies/[name].js' : 'clientlib-site/[name].js';
-        },
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist/clientlib-site')
     },
     module: {
         rules: [
@@ -49,16 +45,6 @@ module.exports = {
                         }
                     }
                 ]
-            },
-            {
-                test: /\.m?js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                      presets: ['@babel/preset-env']
-                    }
-                  }
             },
             {
                 test: /\.m?js$/,
@@ -110,7 +96,6 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: 'fonts/',
                         esModule: false
                     },
                 },
@@ -124,13 +109,9 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'clientlib-[name]/[name].css'
+            filename: '[name].css'
         }),
-        new CopyWebpackPlugin([
-            { from: path.resolve(__dirname, SOURCE_ROOT + '/resources'), to: './clientlib-site/' }
-        ]),
         new webpack.ProvidePlugin({
           $: 'jquery',
           jQuery: 'jquery',
