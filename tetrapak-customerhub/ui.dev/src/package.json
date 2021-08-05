@@ -13,8 +13,7 @@
     "moment": "^2.24.0",
     "sanitize-html": "^1.21.1",
     "slick-carousel": "^1.8.1",
-    "vanilla-lazyload": "^8.17.0",
-    "zapfilter": "^2.0.3"
+    "vanilla-lazyload": "^8.17.0"
   },
   "scripts": {
     "build": "grunt aem",
