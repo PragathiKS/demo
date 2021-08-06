@@ -18,7 +18,7 @@ module.exports = env => {
             })
         ],
         devServer: {
-            inline: true,
+            hot: true,
             proxy: [{
                 context: ['/content', '/etc.clientlibs'],
                 target: 'http://localhost:4502',
