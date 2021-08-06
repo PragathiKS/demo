@@ -43,6 +43,12 @@ class Stories {
           dynMedia.processImages();
           this.cache.storiesLink = this.root.find('.js-stories-analytics');
           addLinkAttr('.js-stories-analytics');
+
+          $(this.cache.storiesLink).each(function() {
+            if (!$(this).attr('href') || $(this).attr('href') === '#') {
+              $(this).addClass('js-stories-withoutLink');
+            }
+          });
           this.cache.storiesLink.on('click', this.trackImageAnalytics);
         }
       });

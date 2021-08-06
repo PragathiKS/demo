@@ -141,4 +141,10 @@
             @include margin-bottom($margin-md);
         }
     }
+
+    .js-stories {
+        &-withoutLink {
+            pointer-events: none;
+        }
+    }
 }
