@@ -43,10 +43,15 @@ class Stories {
           dynMedia.processImages();
           this.cache.storiesLink = this.root.find('.js-stories-analytics');
           addLinkAttr('.js-stories-analytics');
-
+          
           $(this.cache.storiesLink).each(function() {
-            if (!$(this).attr('href') || $(this).attr('href') === '#') {
-              $(this).addClass('js-stories-withoutLink');
+            const linkText = $(this).find('h3.story-text');
+            const maxSize = 60;
+            let sizeString = $.trim(linkText.text());
+            
+            if(sizeString.length > maxSize) {
+              sizeString = sizeString.substring(0, maxSize)+'...';
+              linkText.text(sizeString);
             }
           });
           this.cache.storiesLink.on('click', this.trackImageAnalytics);

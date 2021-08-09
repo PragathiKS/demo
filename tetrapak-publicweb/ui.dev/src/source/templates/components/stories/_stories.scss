@@ -127,7 +127,8 @@
         .img-2 {
             display: flex;
             flex-direction: column;
-            & > a {
+            & > a,
+            div {
                 &:first-child {
                     @include margin-bottom($margin-md);
                 }
@@ -139,12 +140,6 @@
                 @include margin-bottom($margin-zero);
             }
             @include margin-bottom($margin-md);
-        }
-    }
-
-    .js-stories {
-        &-withoutLink {
-            pointer-events: none;
         }
     }
 }
