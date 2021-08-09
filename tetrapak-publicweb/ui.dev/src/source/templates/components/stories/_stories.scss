@@ -127,7 +127,8 @@
         .img-2 {
             display: flex;
             flex-direction: column;
-            & > a, div {
+            & > a,
+            div {
                 &:first-child {
                     @include margin-bottom($margin-md);
                 }
