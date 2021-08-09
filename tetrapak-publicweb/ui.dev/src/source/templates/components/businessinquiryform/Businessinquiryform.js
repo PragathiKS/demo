@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
@@ -125,8 +124,18 @@ class Businessinquiryform {
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
       return params[key] = value;
     });
-
-    console.log('Final DATA Object >>>', params);
+    
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        dataObj['utm_campaign'] = params[key];
+      } else if(key === 'utm_content') {
+        dataObj['utm_content'] = params[key];
+      } else if(key === 'utm_medium') {
+        dataObj['utm_medium'] = params[key];
+      } else if(key === 'utm_source') {
+        dataObj['utm_source'] = params[key];
+      }
+    });
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
