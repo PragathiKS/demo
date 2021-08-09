@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
@@ -117,6 +118,14 @@ class Businessinquiryform {
     dataObj['pageurl'] = this.cache.requestPayload.pageurl;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
+
+    // IF UTM fields in URL
+    const params = {};
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+      return params[key] = value;
+    });
+
+    console.log('Final DATA Object >>>', params);
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
