@@ -86,6 +86,7 @@ buildNumber.properties
 # NPM
 node_modules/
 yarn.lock
+*-lock.json
 
 # Webpack
 build/

@@ -119,6 +119,24 @@ class Businessinquiryform {
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
 
+    // IF UTM fields in URL
+    const params = {};
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+      return params[key] = value;
+    });
+    
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        dataObj['utm_campaign'] = params[key];
+      } else if(key === 'utm_content') {
+        dataObj['utm_content'] = params[key];
+      } else if(key === 'utm_medium') {
+        dataObj['utm_medium'] = params[key];
+      } else if(key === 'utm_source') {
+        dataObj['utm_source'] = params[key];
+      }
+    });
+
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,

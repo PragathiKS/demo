@@ -11,6 +11,7 @@ pipeline {
      }
     
     parameters {
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Tetralaval'
 		booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
@@ -70,6 +71,19 @@ pipeline {
                     }
                     else {
 					    dir('tetrapak-commons') {
+					        sh "npm install --prefix ui.dev/src"
+						}
+					}
+                }
+                
+                script {
+                    if (params.Build_Publicweb) {
+                        appname = "publicweb"
+                        buildandsonar()
+                    }
+                
+                    else {
+					    dir('tetrapak-publicweb') {
 					        sh "npm install --prefix ui.dev/src"
 						}
 					}
