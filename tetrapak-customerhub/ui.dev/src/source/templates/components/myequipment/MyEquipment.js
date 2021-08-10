@@ -321,13 +321,18 @@ function getKeyMap(key,i18nKeys){
   return headerObj;
 }
 
-function _mapHeadings(keys,i18nKeys) {
+function _mapHeadings(keys,i18nKeys,activeSortData) {
+  const sortByKey = activeSortData.sortedByKey;
+  const sortOrder = activeSortData.sortOrder;
   return keys.map(key => ({
     key,
-    myEquipment:true,
+    myEquipment: true,
+    isSortable: this.cache.sortableKeys.includes(key),
+    isActiveSort: key === sortByKey,
+    sortOrder: sortOrder,
     i18nKey: getKeyMap(key,i18nKeys).keyLabel,
-    showTooltip:getKeyMap(key,i18nKeys).showTooltip,
-    tooltipText:getKeyMap(key,i18nKeys).tooltipText
+    showTooltip: getKeyMap(key,i18nKeys).showTooltip,
+    tooltipText: getKeyMap(key,i18nKeys).tooltipText
   }));
 }
 
@@ -339,7 +344,7 @@ function _processTableData(data){
       this.cache.tableHeaders = keys;
       return tableSort.call(this, summary, keys);
     });
-    data.summaryHeadings = _mapHeadings.call(this,keys,data.i18nKeys);
+    data.summaryHeadings = _mapHeadings.call(this,keys,data.i18nKeys,this.cache.activeSortData);
   }
   return data;
 }
@@ -425,6 +430,8 @@ class MyEquipment {
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
     this.cache.activeFiltersArr = [];
+    this.cache.sortableKeys = ['siteName','lineName','equipmentStatus','serialNumber'];
+    this.cache.activeSortData = {};
   }
   bindEvents() {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
@@ -517,6 +524,11 @@ class MyEquipment {
 
     this.cache.$showHideAllFiltersBtn.on('click', () => {
       this.showHideAllFilters();
+    });
+
+    this.root.on('click', '.js-my-equipment__table-summary__cellheading.sortable',  (e) => {
+      const $tHeadBtn = $(e.currentTarget);
+      this.sortTableByKey($tHeadBtn);
     });
   }
 
@@ -745,6 +757,7 @@ class MyEquipment {
   deleteAllFilters = () => {
     const $filterBtns = this.root.find('.tp-my-equipment__filter-button:not(.tp-my-equipment__country-button-filter)');
     this.cache.combinedFiltersObj = {};
+    this.cache.activeSortData = {};
     this.updateActiveFiltersData();
 
     $filterBtns.each((index, item) => {
@@ -755,6 +768,32 @@ class MyEquipment {
 
     this.renderTableData(null,[]);
     this.renderSearchCount();
+  }
+
+  propComparator = (propName, reverse) => (a, b) => {
+    if (reverse) {
+      return a[propName] === b[propName] ? 0 : a[propName] > b[propName] ? -1 : 1;
+    } else {
+      return a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
+    }
+  };
+
+  sortTableByKey = ($tHeadBtn) => {
+    const sortedByKey = $tHeadBtn.data('key');
+    const currentSortOrder = this.cache.activeSortData.sortOrder;
+    this.cache.activeSortData = {
+      'sortedByKey': sortedByKey,
+      'sortOrder': currentSortOrder === 'asc' ? 'desc' : 'asc'
+    };
+
+    this.cache.filteredTableData.sort(this.propComparator(sortedByKey, currentSortOrder === 'asc'));
+    renderPaginationTableData.call(
+      this,
+      _processTableData.call(this, {
+        summary: this.cache.filteredTableData,
+        i18nKeys: this.cache.i18nKeys
+      }),
+      {isCustomiseTableFilter: false});
   }
 
   showHideAllFilters = () => {
