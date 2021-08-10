@@ -1,5 +1,7 @@
 package com.tetralaval.models.search;
 
+import java.util.Calendar;
+
 public class ResultItem {
     private String type;
     private String title;
@@ -11,6 +13,7 @@ public class ResultItem {
     private String assetType;
     private String assetExtension;
     private String assetThumbnail;
+    private Calendar sortDate;
 
     public String getType() {
         return type;
@@ -90,5 +93,13 @@ public class ResultItem {
 
     public void setAssetThumbnail(String assetThumbnail) {
         this.assetThumbnail = assetThumbnail;
+    }
+
+    public Calendar getSortDate() {
+        return sortDate;
+    }
+
+    public void setSortDate(Calendar sortDate) {
+        this.sortDate = sortDate;
     }
 }

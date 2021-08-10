@@ -48,6 +48,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -78,8 +79,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
     private final static String ASSETS_GROUP = String.format("%s.2_group", RESOURCES_GROUP);
     private final static String TAGS_GROUP = "1_group";
     private final static String TEMPLATES_GROUP = "2_group";
-
-    private final static String SORT_DESCENDING = "desc";
 
     private final static String ARTICLE_TEMPLATE = "/conf/tetra-laval/settings/wcm/templates/article-page-template";
 
@@ -126,7 +125,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         List<FilterModel> filterModelList = getTags(request, params);
 
         map.putAll(getFulltext(params));
-        map.putAll(setResultsOrder());
+//        map.putAll(setResultsOrder());
         map.putAll(setResultsAmount(params));
 
         map.put(String.format("%s.p.or", RESOURCES_GROUP), "true");
@@ -183,6 +182,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 LOGGER.error("[performSearch] There was an issue getting the resource", e);
             }
         }
+        resource.sort((o1, o2) -> o2.getSortDate().compareTo(o1.getSortDate()));
         resultModel.setSearchResults(resource);
         return resultModel;
     }
@@ -234,17 +234,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return page;
     }
 
-    private Map<String, String> setResultsOrder() {
-        Map<String, String> map = new HashMap<>();
-
-        // set sorting logic for search results
-        map.put("1_orderby", String.format("@%s/%s", JcrConstants.JCR_CONTENT, ARTICLE_DATE_PROP));
-        map.put("1_orderby.sort", SORT_DESCENDING);
-        map.put("2_orderby", String.format("@%s/%s", JcrConstants.JCR_CONTENT, NameConstants.PN_PAGE_LAST_MOD));
-        map.put("2_orderby.sort", SORT_DESCENDING);
-        return map;
-    }
-
     private Map<String, String> setResultsAmount(RequestParameterMap params) {
         Map<String, String> map = new HashMap<>();
 
@@ -266,8 +255,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         map.put(String.format("%s.path", ASSETS_GROUP), TLConstants.DAM_ROOT_PATH);
 
         // fetched only these results which do not have checked hideInSearch flag
-        map.put("1_property.operation", "exists");
-        map.put("1_property.value", "false");
         map.put(String.format("%s.property", PAGES_GROUP),
                 String.format("@%s/%s", JcrConstants.JCR_CONTENT, HIDE_IN_SEARCH_PROP));
         map.put(String.format("%s.property.operation", PAGES_GROUP), "exists");
@@ -338,10 +325,18 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 if (TLConstants.DOCUMENT.equalsIgnoreCase(mediaType)) {
                     resultItem.setAssetThumbnail(documentThumbnail);
                 }
+                resultItem.setSortDate(hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, Calendar.class));
             } else {
                 resultItem.setTitle(PageUtil.getCurrentPage(resource).getTitle());
                 resultItem.setDescription(hit.getProperties().get(JcrConstants.JCR_DESCRIPTION, StringUtils.EMPTY));
                 setContentFields(resultItem, hit.getResource().getChild(JcrConstants.JCR_CONTENT));
+
+                if (hit.getProperties().get(ARTICLE_DATE_PROP) != null) {
+                    resultItem.setSortDate(hit.getProperties().get(ARTICLE_DATE_PROP, Calendar.class));
+                }
+                if (hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD) != null) {
+                    resultItem.setSortDate(hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, Calendar.class));
+                }
             }
             resultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), request));
         }
