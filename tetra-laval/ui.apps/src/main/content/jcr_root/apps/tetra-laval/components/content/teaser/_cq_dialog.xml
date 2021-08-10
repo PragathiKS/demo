@@ -45,7 +45,7 @@
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                                             fieldLabel="Page URL"
                                                             name="./pageURL"
-                                                            rootPath="/content/tetra-laval"/>
+                                                            rootPath="/content/tetrapak/tetralaval"/>
                                                     </items>
                                                 </column>
                                             </items>
