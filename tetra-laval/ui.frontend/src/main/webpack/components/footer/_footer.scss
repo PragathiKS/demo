@@ -35,6 +35,10 @@
         li {
             display: inline-block;
         }
+        
+        @media #{$desktop} {
+            float: right;
+        }
     }
 
     &__links-list {
