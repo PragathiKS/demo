@@ -14,6 +14,9 @@ public final class TLConstants {
     /** The Constant ROOT_PATH. */
     public static final String ROOT_PATH = "/content/tetrapak/tetralaval";
 
+    /** The Constant DAM_ROOT_PATH. */
+    public static final String DAM_ROOT_PATH = "/content/dam/tetra-laval";
+
     /** The Constant EXPERIENCE_FRAGMENTS_PATH. */
     public static final String EXPERIENCE_FRAGMENTS_PATH = "/content/experience-fragments/tetra-laval";
 
@@ -35,8 +38,26 @@ public final class TLConstants {
     /** The Constant HYPHEN. */
     public static final String HYPHEN = "-";
 
+    /** The Constant COLON. */
+    public static final String COLON = ":";
+
+    /** The Constant COMA. */
+    public static final String COMA = ",";
+
+    /** The Constant DOT. */
+    public static final String DOT = ".";
+
     /** The Constant HTML_EXTENSION. */
     public static final String HTML_EXTENSION = ".html";
+
+    /** The Constant IMAGE. */
+    public static final String IMAGE = "image";
+
+    /** The Constant VIDEO. */
+    public static final String VIDEO = "video";
+
+    /** The Constant DOCUMENT. */
+    public static final String DOCUMENT = "document";
 
     /**
      * Instantiates a new PW constants.
