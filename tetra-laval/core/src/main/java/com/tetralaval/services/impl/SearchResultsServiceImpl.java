@@ -125,7 +125,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         List<FilterModel> filterModelList = getTags(request, params);
 
         map.putAll(getFulltext(params));
-//        map.putAll(setResultsOrder());
         map.putAll(setResultsAmount(params));
 
         map.put(String.format("%s.p.or", RESOURCES_GROUP), "true");
@@ -325,31 +324,33 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 if (TLConstants.DOCUMENT.equalsIgnoreCase(mediaType)) {
                     resultItem.setAssetThumbnail(documentThumbnail);
                 }
-                resultItem.setSortDate(hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, Calendar.class));
             } else {
                 resultItem.setTitle(PageUtil.getCurrentPage(resource).getTitle());
                 resultItem.setDescription(hit.getProperties().get(JcrConstants.JCR_DESCRIPTION, StringUtils.EMPTY));
-                setContentFields(resultItem, hit.getResource().getChild(JcrConstants.JCR_CONTENT));
-
-                if (hit.getProperties().get(ARTICLE_DATE_PROP) != null) {
-                    resultItem.setSortDate(hit.getProperties().get(ARTICLE_DATE_PROP, Calendar.class));
-                }
-                if (hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD) != null) {
-                    resultItem.setSortDate(hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, Calendar.class));
-                }
+                setContentFields(resultItem, hit);
             }
             resultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), request));
+            resultItem.setSortDate(getSortDate(hit, Calendar.class));
         }
         return resultItem;
     }
 
-    private void setContentFields(ResultItem resultItem, Resource resource) throws RepositoryException {
-        ValueMap valueMap = resource.getValueMap();
+    private <T> T getSortDate(Hit hit, Class<T> cls) throws RepositoryException {
+        if (hit.getProperties().containsKey(ARTICLE_DATE_PROP)) {
+            return hit.getProperties().get(ARTICLE_DATE_PROP, cls);
+        } else if (hit.getProperties().containsKey(NameConstants.PN_PAGE_LAST_MOD)) {
+            return hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, cls);
+        } else if (hit.getProperties().containsKey(JcrConstants.JCR_LASTMODIFIED)) {
+            return hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, cls);
+        }
+        return null;
+    }
+
+    private void setContentFields(ResultItem resultItem, Hit hit) throws RepositoryException {
         String articleTypeName = null;
 
-        String articleType = valueMap.get(ARTICLE_TYPE_PROP, String.class);
-        String date = valueMap.get(valueMap.containsKey(ARTICLE_DATE_PROP) ?
-                ARTICLE_DATE_PROP : NameConstants.PN_PAGE_LAST_MOD, String.class);
+        String articleType = hit.getProperties().get(ARTICLE_TYPE_PROP, String.class);
+        String date = getSortDate(hit, String.class);
 
         List<FilterModel> filters = articleService.getFilterTypes().stream()
                 .filter(filterModel -> filterModel.getKey().equals(articleType))
