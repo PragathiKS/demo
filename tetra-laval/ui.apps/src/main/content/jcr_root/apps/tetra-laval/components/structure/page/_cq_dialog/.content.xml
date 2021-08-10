@@ -116,6 +116,19 @@
                                                     allowBulkEdit="{Boolean}true"
                                                     cq-msm-lockable="hideInSitemap"/>
                                             </hideinsitemap>
+                                            <aggregatorPage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./aggregatorPage"
+                                                renderReadOnly="{Boolean}true"
+                                                text="Aggregator Page"
+                                                fieldDescription="Check if you want to set page as aggregator page. Moreover please set redirect to proper search page in Advanced tab"
+                                                value="true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    allowBulkEdit="{Boolean}true"
+                                                    cq-msm-lockable="aggregatorPage"/>
+                                            </aggregatorPage>
                                         </items>
                                     </title>
                                     <moretitles
