@@ -66,7 +66,7 @@ class MediaLink {
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     }
     if (linkType === 'internal') {
-      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
         window.open($this.attr('href'), '_blank');
       }
       else {
