@@ -3,5 +3,5 @@
           jcr:description="Banner"
           jcr:primaryType="cq:Component"
           jcr:title="Banner"
-          sling:resourceSuperType="foundation/components/parbase"
+          sling:resourceSuperType="publicweb/components/content/banner"
           componentGroup="Tetra Laval : Content"/>

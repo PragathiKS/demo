@@ -67,9 +67,12 @@ public class ContactModel {
                     Node currentNode = iterator.nextNode();
                     ContactDetailsModel contactDetailsModel = new ContactDetailsModel();
 
-                    contactDetailsModel.setAnchorId(currentNode.getProperty(ANCHOR_ID_PROPERTY).getString());
-                    contactDetailsModel.setAnchorTitle(currentNode.getProperty(ANCHOR_TITLE_PROPERTY).getString());
-                    contactDetailsModel.setText(currentNode.getProperty(TEXT_PROPERTY).getString());
+                    contactDetailsModel.setAnchorId(currentNode.hasProperty(ANCHOR_ID_PROPERTY) ?
+                            currentNode.getProperty(ANCHOR_ID_PROPERTY).getString() : null);
+                    contactDetailsModel.setAnchorTitle(currentNode.hasProperty(ANCHOR_TITLE_PROPERTY) ?
+                            currentNode.getProperty(ANCHOR_TITLE_PROPERTY).getString() : null);
+                    contactDetailsModel.setText(currentNode.hasProperty(TEXT_PROPERTY) ?
+                            currentNode.getProperty(TEXT_PROPERTY).getString() : null);
                     contactDetailsModels.add(contactDetailsModel);
                 }
             } catch (RepositoryException re) {
