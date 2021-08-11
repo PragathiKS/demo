@@ -210,7 +210,7 @@
             a {
                 @include font-size($font-normal);
                 @include line-height($line-height-small, $font-normal);
-                margin-left: $padding-sm;
+                margin-left: $padding-md;
             }
 
             @media #{$mobile} {
