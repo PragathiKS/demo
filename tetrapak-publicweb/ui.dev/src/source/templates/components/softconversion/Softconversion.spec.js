@@ -94,6 +94,38 @@ describe('Softconversion', function () {
     done();
   });
 
+  it('should update request payload for UTM if avaialble in URL params', function (done) {
+    const paramsURL = 'http://www.test.com/?utm_campaign=val1&utm_content=val2&utm_medium=val3&utm_source=val4'
+    const params = {};
+    paramsURL.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+      return params[key] = value;
+    });
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        this.softconversion.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_content') {
+        this.softconversion.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_medium') {
+        this.softconversion.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_source') {
+        this.softconversion.cache.requestPayload[key] = params[key];
+      }
+    });
+    this.softconversion.cache.$submitBtn.click();
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        expect(this.softconversion.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_content') {
+        expect(this.softconversion.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_medium') {
+        expect(this.softconversion.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_source') {
+        expect(this.softconversion.cache.requestPayload[key]).to.equal(params[key]);
+      }
+    });
+    done();
+  });
+
   it('should close modal on close icon click', function (done) {
     $('.js-close-btn').click();
     expect(this.softconversion.hidePopUp.called).to.be.true;
@@ -135,7 +167,4 @@ describe('Softconversion', function () {
     expect(this.softconversion.showPopup.called).to.be.true;
     done();
   });
-
-
-
 });
