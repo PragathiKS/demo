@@ -1,18 +1,18 @@
 .otFloatingRoundedCorner {
     position: fixed;
     padding: 20px;
-    background-color: #fff;
+    background-color: $color-white;
     width: 100%;
     max-width: 375px;
     border-radius: 2.5px;
     bottom: 1em;
     left: 1em;
     font-size: 1rem;
-    box-shadow: 0 0 18px rgb(0 0 0 / 20%);
+    box-shadow: $boxShadow;
     z-index: 2147483645;
 
     h3 {
-        color: #4a4a4a;
+        color: $color-tundora;
         font-weight: 600;
         font-size: 1rem;
         padding: 0 0 10px 25px;
@@ -24,13 +24,13 @@
     }
 
     a {
-        color: #023F88;
+        color: $color-congress-blue;
     }
 
     button {
-        background-color: #023F88;
-        border-color: #023F88;
-        color: #FFFFFF;
+        background-color: $color-congress-blue;
+        border-color: $color-congress-blue;
+        color: $color-white;
         padding: 12px 10px;
         font-size: .82em;
         font-weight: 600;
@@ -44,14 +44,10 @@
         width: 90%;
         display: inherit;
     }
-
-    &.hide {
-        display: none;
-    }
 }
 
 .pc-dark-filter {
-    background: rgba(0,0,0,0.5);
+    background: $overlayColor;
     z-index: 2147483646;
     width: 100%;
     height: 100%;
@@ -63,22 +59,18 @@
     animation-name: onetrust-fade-in;
     animation-duration: 400ms;
     animation-timing-function: ease-in-out;
+}
 
+.pc-dark-filter, .otFloatingRoundedCorner {
     &.hide {
         display: none;
     }
 }
 
 .aem-AuthorLayer-Edit {
-    .pc-dark-filter {
-        &.hide {
-            display: block;
-        }
-    }
-    .otFloatingRoundedCorner {
+    .pc-dark-filter, .otFloatingRoundedCorner {
         &.hide {
             display: block;
         }
     }
 }
-
