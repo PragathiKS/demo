@@ -166,3 +166,9 @@ $medium: "only screen and (min-width: #{$tp-medium})" !default;
 $large: "only screen and (min-width: #{$tp-large})" !default;
 $landscape: "only screen and (orientation: landscape)" !default;
 $portrait: "only screen and (orientation: portrait)" !default;
+
+$boxShadow: 0 0 18px rgb(0 0 0 / 20%);
+$overlayColor: rgba(0,0,0,0.5);
+
+
+
