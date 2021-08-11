@@ -14,7 +14,7 @@ class CookiePolicy {
 
     bindEvents() {
         // checking if cookie exist
-        if ( document.cookie.indexOf('cookiePolicy') > -1) {
+        if ( document.cookie.indexOf('cookieconsent') > -1) {
             this.removeCookieBar();
         } else {
             this.cache.$confirmationButton.on('click', this.removeCookieBar);
@@ -28,7 +28,9 @@ class CookiePolicy {
     }
 
     createCookie = e => {
-        document.cookie = 'cookiePolicy';
+        let date = new Date();
+        date.setFullYear(date.getFullYear() + 10);
+        document.cookie = `cookieconsent=true; expires=${date}; path=/`;
     }
 
     init () {
