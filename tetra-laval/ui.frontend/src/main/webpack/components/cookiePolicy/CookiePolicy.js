@@ -5,23 +5,36 @@ class CookiePolicy {
         this.root = $(el);
     }
 
-    init() {
-        this.$confirmationButton = this.root.find('.confirmation-button');
+    cache = {};
+    initCache() {
+        this.cache.$confirmationButton = this.root.find('.confirmation-button');
+        this.cache.$cookiesOverlay = $('.pc-dark-filter');
+        this.cache.$cookiesBar = $('.otFloatingRoundedCorner');
+    }
+
+    bindEvents() {
+        // checking if cookie exist
         if ( document.cookie.indexOf('cookiePolicy') > -1) {
             this.removeCookieBar();
+        } else {
+            this.cache.$confirmationButton.on('click', this.removeCookieBar);
+            this.cache.$confirmationButton.on('click', this.createCookie);
         }
-        this.$confirmationButton.on('click', this.removeCookieBar);
-        this.$confirmationButton.on('click', this.createCookie);
     }
 
     removeCookieBar = e => {
-        $('.pc-dark-filter').addClass('hide');
-        $('.otFloatingRoundedCorner').addClass('hide');
+        this.cache.$cookiesOverlay.addClass('hide');
+        this.cache.$cookiesBar.addClass('hide');
     }
 
-    createCookie  = e => {
+    createCookie = e => {
         document.cookie = 'cookiePolicy';
-    };
+    }
+
+    init () {
+        this.initCache();
+        this.bindEvents();
+    }
 }
 
 export default CookiePolicy;
