@@ -23,4 +23,5 @@ class CookiePolicy {
         document.cookie = 'cookiePolicy';
     };
 }
+
 export default CookiePolicy;
