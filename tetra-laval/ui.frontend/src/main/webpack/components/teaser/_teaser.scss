@@ -72,6 +72,12 @@
                 @include padding-right($margin-l);
             }
         }
+        .teaserMarginL {
+            @media #{$desktop} {
+                @include padding-left($margin-l);
+                @include padding-right($margin-l);
+            }
+        }
         .rightbar {
             border: 0 solid $color-mercury;
             @media #{$desktop} {
