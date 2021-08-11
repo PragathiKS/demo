@@ -71,6 +71,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
     private final static String ARTICLE_DATE_PROP = "articleDate";
     private final static String ARTICLE_TYPE_PROP = "articleType";
     private final static String MEDIA_LABEL_PROP = "mediaLabel";
+    private final static String ASSETS_PATH_PROP = "assetsPath";
     private final static String VIDEO_THUMBNAIL_PROP = "videoThumbnail";
     private final static String DOCUMENT_THUMBNAIL_PROP = "documentThumbnail";
 
@@ -97,6 +98,8 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     private String path;
     private String mediaLabel;
+    private String mediaId;
+    private String assetsPath;
     private String videoThumbnail;
     private String documentThumbnail;
 
@@ -119,10 +122,15 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     @Override
     public Map<String, String> setSearchQueryMap(SlingHttpServletRequest request, RequestParameterMap params) {
+        setAssetsProperties(request);
         path = getLanguagePagePath(request);
 
         Map<String, String> map = new HashMap<>();
         List<FilterModel> filterModelList = getTags(request, params);
+        String[] articleTypes = getArticleTypes(params);
+        boolean isMediaChecked = Arrays.stream(articleTypes)
+                .filter(s -> mediaId.equals(s))
+                .collect(Collectors.toList()).size() > 0;
 
         map.putAll(getFulltext(params));
         map.putAll(setResultsAmount(params));
@@ -130,16 +138,22 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         map.put(String.format("%s.p.or", RESOURCES_GROUP), "true");
         map.put(String.format("%s.%s.p.or", PAGES_GROUP, TAGS_GROUP), "true");
         map.put(String.format("%s.%s.p.or", PAGES_GROUP, TEMPLATES_GROUP), "true");
-        map.put(String.format("%s.%s.p.or", ASSETS_GROUP, TAGS_GROUP), "true");
 
-        map.putAll(setResources());
+        if (isMediaChecked) {
+            map.put(String.format("%s.%s.p.or", ASSETS_GROUP, TAGS_GROUP), "true");
+        }
+
+        map.putAll(setResources(isMediaChecked));
         if (filterModelList != null) {
             map.putAll(setTags(PAGES_GROUP, String.format("%s/%s", JcrConstants.JCR_CONTENT,
                     TagConstants.PN_TAGS), filterModelList));
-            map.putAll(setTags(ASSETS_GROUP, String.format("%s/%s/%s", JcrConstants.JCR_CONTENT,
-                    DamConstants.METADATA_FOLDER, TagConstants.PN_TAGS), filterModelList));
+
+            if (isMediaChecked) {
+                map.putAll(setTags(ASSETS_GROUP, String.format("%s/%s/%s", JcrConstants.JCR_CONTENT,
+                        DamConstants.METADATA_FOLDER, TagConstants.PN_TAGS), filterModelList));
+            }
         }
-        map.putAll(setTemplates(params));
+        map.putAll(setTemplates(articleTypes));
         return map;
     }
 
@@ -184,6 +198,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         resource.sort((o1, o2) -> o2.getSortDate().compareTo(o1.getSortDate()));
         resultModel.setSearchResults(resource);
         return resultModel;
+    }
+
+    @Override
+    public String setMediaId(String mediaLabel) {
+        return mediaLabel.toLowerCase()
+                .replaceAll("\\s+", TLConstants.HYPHEN);
     }
 
     private Map<String, String> getFulltext(RequestParameterMap params) {
@@ -243,15 +263,17 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return map;
     }
 
-    private Map<String, String> setResources() {
+    private Map<String, String> setResources(boolean isMediaChecked) {
         Map<String, String> map = new HashMap<>();
 
         // creating map configuration for different resources
         map.put(String.format("%s.type", PAGES_GROUP), NameConstants.NT_PAGE);
         map.put(String.format("%s.path", PAGES_GROUP), path);
 
-        map.put(String.format("%s.type", ASSETS_GROUP), DamConstants.NT_DAM_ASSET);
-        map.put(String.format("%s.path", ASSETS_GROUP), TLConstants.DAM_ROOT_PATH);
+        if (isMediaChecked) {
+            map.put(String.format("%s.type", ASSETS_GROUP), DamConstants.NT_DAM_ASSET);
+            map.put(String.format("%s.path", ASSETS_GROUP), assetsPath);
+        }
 
         // fetched only these results which do not have checked hideInSearch flag
         map.put(String.format("%s.property", PAGES_GROUP),
@@ -274,9 +296,8 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return map;
     }
 
-    private Map<String, String> setTemplates(RequestParameterMap params) {
+    private Map<String, String> setTemplates(String[] articleTypes) {
         Map<String, String> map = new HashMap<>();
-        String[] articleTypes = getArticleTypes(params);
 
         // fetched only these pages which have the same type as selected in filters
         if (articleTypes != null) {
@@ -303,7 +324,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     private ResultItem setSearchResultItemData(SlingHttpServletRequest request, Hit hit) throws RepositoryException {
         ResultItem resultItem = new ResultItem();
-        setAssetsProperties(request);
 
         Resource resource = hit.getResource();
         if (resource != null) {
@@ -405,6 +425,8 @@ public class SearchResultsServiceImpl implements SearchResultsService {
             Node node = resource.adaptTo(Node.class);
             try {
                 mediaLabel = node.hasProperty(MEDIA_LABEL_PROP) ? node.getProperty(MEDIA_LABEL_PROP).getString() : null;
+                mediaId = setMediaId(mediaLabel);
+                assetsPath = node.hasProperty(ASSETS_PATH_PROP) ? node.getProperty(ASSETS_PATH_PROP).getString() : TLConstants.DAM_ROOT_PATH;
                 videoThumbnail = node.hasProperty(VIDEO_THUMBNAIL_PROP) ? node.getProperty(VIDEO_THUMBNAIL_PROP).getString() : null;
                 documentThumbnail = node.hasProperty(DOCUMENT_THUMBNAIL_PROP) ? node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString() : null;
             } catch (RepositoryException re) {

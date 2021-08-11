@@ -31,6 +31,14 @@
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="Media Label"
                         name="./mediaLabel"/>
+                    <assetsPath
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        fieldLabel="Assets path"
+                        fieldDescription="Path which should be used for searching assets for search"
+                        emptyText="Leave empty if you want to use /content/dam/tetra-laval"
+                        name="./assetsPath"
+                        rootPath="/content/dam/tetra-laval"/>
                     <videoThumbnail
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
