@@ -18,12 +18,15 @@
         padding: 0 0 10px 25px;
         width: 80%;
     }
+
     p {
         padding: 0 25px 10px 25px;
     }
+
     a {
         color: #023F88;
     }
+
     button {
         background-color: #023F88;
         border-color: #023F88;
@@ -41,9 +44,10 @@
         width: 90%;
         display: inherit;
     }
+
     &.hide {
-            display: none;
-        }
+        display: none;
+    }
 }
 
 .pc-dark-filter {
