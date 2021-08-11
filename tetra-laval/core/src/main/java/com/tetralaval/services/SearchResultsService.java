@@ -18,4 +18,6 @@ public interface SearchResultsService {
     List<FilterModel> getFilters(SlingHttpServletRequest request, String[] tags);
 
     ResultModel getResults(SlingHttpServletRequest request, Map<String, String> map);
+
+    String setMediaId(String mediaLabel);
 }

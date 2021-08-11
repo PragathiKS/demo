@@ -4,6 +4,13 @@ public class FilterModel {
     private String key;
     private String label;
 
+    public FilterModel() {}
+
+    public FilterModel(String key, String label) {
+        this.key = key;
+        this.label = label;
+    }
+
     public String getKey() {
         return key;
     }
