@@ -128,9 +128,9 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
         List<FilterModel> filterModelList = getTags(request, params);
         String[] articleTypes = getArticleTypes(params);
-        boolean isMediaChecked = Arrays.stream(articleTypes)
+        boolean isMediaChecked = articleTypes != null ? Arrays.stream(articleTypes)
                 .filter(s -> mediaId.equals(s))
-                .collect(Collectors.toList()).size() > 0;
+                .collect(Collectors.toList()).size() > 0 : false;
 
         map.putAll(getFulltext(params));
         map.putAll(setResultsAmount(params));
@@ -287,11 +287,13 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
 
         // generating map using tags selected in search result filters
-        int tagIndex = 0;
-        for (FilterModel filterModel : filterModelList) {
-            tagIndex++;
-            map.put(String.format("%s.1_group.%d_property", resourceGroup, tagIndex), cqTagsProp);
-            map.put(String.format("%s.1_group.%d_property.value", resourceGroup, tagIndex), filterModel.getKey());
+        if (filterModelList != null && filterModelList.size() > 0) {
+            int tagIndex = 0;
+            for (FilterModel filterModel : filterModelList) {
+                tagIndex++;
+                map.put(String.format("%s.1_group.%d_property", resourceGroup, tagIndex), cqTagsProp);
+                map.put(String.format("%s.1_group.%d_property.value", resourceGroup, tagIndex), filterModel.getKey());
+            }
         }
         return map;
     }
@@ -300,7 +302,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
 
         // fetched only these pages which have the same type as selected in filters
-        if (articleTypes != null) {
+        if (articleTypes != null && articleTypes.length > 0) {
             int articleIndex = 0;
             for (String articleType : articleTypes) {
                 articleIndex++;
