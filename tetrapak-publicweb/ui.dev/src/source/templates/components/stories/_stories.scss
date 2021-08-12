@@ -37,7 +37,7 @@
         position: relative;
         height: auto;
         width: 100%;
-        @media #{$tablet} {
+        @media #{$tablet-large} {
             height: 100%;
         }
         img {
@@ -79,7 +79,7 @@
     }
     .col-lg-4 {
         display: block;
-        @media #{$tablet} {
+        @media #{$tablet-large} {
             display: flex;
         }
     }
