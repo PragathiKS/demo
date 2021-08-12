@@ -96,8 +96,7 @@ class Zapfilter {
     return data.filter(item => {
       if (typeof item[property] === 'string') {
         return (
-          item[property].toUpperCase().replace(/\s|_|-/g, '') ===
-          value.toUpperCase().replace(/\s|_|-/g, '')
+          item[property].toUpperCase() === value.toUpperCase()
         );
       }
       return item[property] === value;
@@ -150,6 +149,9 @@ function getFormattedData(array){
 function getFilterModalData(filterByProperty, array, combinedFiltersObj, filteredTableData) {
   const filterOptionsArr = [];
   const zapFilter = new Zapfilter();
+  // if a single filter is used, do not disable any of it's options in the modal
+  const isSingleFilterApplied = typeof combinedFiltersObj[filterByProperty] !== 'undefined' &&
+                                  Object.keys(combinedFiltersObj).length === 1;
 
   array.forEach((row) => {
     if (filterOptionsArr.indexOf(row[filterByProperty]) === -1) {
@@ -172,7 +174,7 @@ function getFilterModalData(filterByProperty, array, combinedFiltersObj, filtere
     filterOptionsArr[index] = {
       option: item,
       isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(item) : false,
-      isDisabled: typeof itemFilteredTableData[0] === 'undefined'
+      isDisabled: typeof itemFilteredTableData[0] === 'undefined' && !isSingleFilterApplied
     };
   });
 
