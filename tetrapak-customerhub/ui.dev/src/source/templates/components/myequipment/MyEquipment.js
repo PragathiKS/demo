@@ -514,6 +514,13 @@ class MyEquipment {
       this.applyFilter();
     });
 
+    this.root.on('keydown', '.js-tp-my-equipment-filter-input',  (e) => {
+      const currentKeyCode = e.keyCode || e.which;
+      if (currentKeyCode === 13) {
+        this.applyFilter();
+      }
+    });
+
     this.root.on('click', '.js-tp-my-equipment__remove-button',  () => {
       this.applyFilter({removeFilter:true});
     });
