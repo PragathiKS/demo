@@ -128,7 +128,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
         List<FilterModel> filterModelList = getTags(request, params);
         String[] articleTypes = getArticleTypes(params);
-        boolean isMediaChecked = articleTypes != null ? Arrays.stream(articleTypes)
+        boolean isMediaChecked = articleTypes != null && mediaId != null ? Arrays.stream(articleTypes)
                 .filter(s -> mediaId.equals(s))
                 .collect(Collectors.toList()).size() > 0 : false;
 
@@ -202,8 +202,11 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     @Override
     public String setMediaId(String mediaLabel) {
-        return mediaLabel.toLowerCase()
-                .replaceAll("\\s+", TLConstants.HYPHEN);
+        if (mediaLabel != null) {
+            return mediaLabel.toLowerCase()
+                    .replaceAll("\\s+", TLConstants.HYPHEN);
+        }
+        return null;
     }
 
     private Map<String, String> getFulltext(RequestParameterMap params) {
