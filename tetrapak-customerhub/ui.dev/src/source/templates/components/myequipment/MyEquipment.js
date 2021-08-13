@@ -539,6 +539,13 @@ class MyEquipment {
       const $tHeadBtn = $(e.currentTarget);
       this.sortTableByKey($tHeadBtn);
     });
+
+    $modal.on('shown.bs.modal', () => {
+      const $freeTextSearchInput = $modal.find('.js-tp-my-equipment-filter-input');
+      if ($freeTextSearchInput.length) {
+        $freeTextSearchInput.focus();
+      }
+    });
   }
 
   mapTableColumn = () => {
