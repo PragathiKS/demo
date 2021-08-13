@@ -7,7 +7,8 @@
             <div class="col-lg-5 col-xs-12 text-lg-left">
                 <div class="row">
                     <div class="col-12 tp-pw-footer__logo footer-logo footer-analytics">
-                        <a class="tp-pw-footer-data-analytics tp-pw-footer-data-logo" href="${footerConfig.logoLink}" target="_blank">
+                        <a class="tp-pw-footer-data-analytics tp-pw-footer-data-logo" href="${footerConfig.logoLink}" target="_blank"
+                           data-link-section="Footer_LogoClick" data-link-name="${footerConfig.logoAlt}">
                             <img src="${footerConfig.logoImagePath}" alt="${footerConfig.logoAlt}" />
                         </a>
                     </div>
@@ -16,7 +17,9 @@
                         <ul class="tp-pw-footer__links-list" data-sly-list.linkItem="${footerConfig.footerLinks}">
                             <li class="footer-analytics">
                                 <a class="tp-pw-footer__link tp-pw-footer-data-analytics" href="${linkItem.linkPath}"
-                                   target="${linkItem.internal ? '_self' : '_blank'}">${linkItem.linkLabel}</a>
+                                   target="${linkItem.internal ? '_self' : '_blank'}"
+                                   data-link-section="Footer_Text Hyperlink"
+                                   data-link-name="${linkItem.linkLabel}">${linkItem.linkLabel}</a>
                             </li>
                         </ul>
                     </div>
@@ -28,7 +31,8 @@
                         <ul class="tp-pw-footer__navigation-list" data-sly-list.socialLinkItem="${footerConfig.socialLinks}">
                             <li class="tp-pw-footer__social-media-items footer-analytics">
                                 <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics"
-                                   href="${socialLinkItem.socialMediaLink}" target="_blank" data-link-name="${socialLinkItem.socialMedia}">
+                                   href="${socialLinkItem.socialMediaLink}" target="_blank" data-link-name="${socialLinkItem.socialMedia}"
+                                   data-link-section="${socialLinkItem.socialMedia}_Text Hyperlink">
                                     <i class="${'icon-{0}_pw' @ format=[socialLinkItem.socialMedia]}"></i>
                                 </a>
                             </li>
