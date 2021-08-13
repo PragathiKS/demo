@@ -1,18 +1,31 @@
 .tp-pw-image {
-    max-width: 100%;
+    max-width: 1440px !important;
+    padding: 16px 16px;
+    margin: 0 auto;
     @media #{$desktop} {
-        min-width: $v-desktop-max;
+        padding: 24px 48px;
     }
-    margin-bottom: $margin-md;
 
     a {
         width: 100%;
-    }
-    @media #{$desktop} {
-        margin-bottom: $margin-l;
     }
 
     img {
         width: 100%;
     }
+
+    .pw-margin--regular {
+        margin: 0;
+        border-radius: 4px;
+
+        .tp-pw-image__center-align {
+            padding: 16px 16px;
+            max-width: 100%;
+            text-align: center;
+            @media #{$desktop} {
+                padding: 24px 48px;
+            }
+        }
+    }
+
 }
