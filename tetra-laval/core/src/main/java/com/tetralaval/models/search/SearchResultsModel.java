@@ -53,7 +53,9 @@ public class SearchResultsModel {
     @PostConstruct
     protected void init() {
         List<FilterModel> filterModel = articleService.getFilterTypes();
-        filterModel.add(new FilterModel(searchResultsService.setMediaId(mediaLabel), mediaLabel));
+        if (mediaLabel != null) {
+            filterModel.add(new FilterModel(searchResultsService.setMediaId(mediaLabel), mediaLabel));
+        }
 
         this.servletPath = String.format("%s/%s", page.getPath(), JcrConstants.JCR_CONTENT);
         this.contentTypeList = filterModel;
