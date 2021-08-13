@@ -34,10 +34,8 @@
         patterns = {
              pardotUrlRegex: /^(https:\/\/)?go+([\-\.]{1}tetrapak+)*\.[com]{2,5}(:[0-9]{1,5})?(\/.*)?$/
         };
-
-		if(!isTargetDialog($form,listOfResourceTypes)){
-            return;
-        }else if(dropdownValue==="enableSoftconversion" && !patterns.pardotUrlRegex.test(pardotUrl)) {
+ 
+        if(dropdownValue==="enableSoftconversion" && !patterns.pardotUrlRegex.test(pardotUrl)) {
             gAuthor.ui.helpers.prompt({
                 title: "Invalid Pardot URL - Softconversion Form",
                 message: "Pardot URL for softconversion form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
