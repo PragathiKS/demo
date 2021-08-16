@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.adobe.granite.workflow.WorkflowException;
 import com.adobe.granite.workflow.WorkflowSession;
 import com.adobe.granite.workflow.exec.WorkItem;
 import com.adobe.granite.workflow.exec.WorkflowData;
@@ -137,9 +138,10 @@ public class RolloutActivateSitesTest {
 
     /**
      * Test execute.
+     * @throws WorkflowException 
      */
     @Test
-    public void testExecute(){
+    public void testExecute() throws WorkflowException{
         when(workflowData.getPayload()).thenReturn(PAYLOAD_PATH);
         when(workflowSession.adaptTo(ResourceResolver.class)).thenReturn(payloadRes.getResourceResolver());
         paramMetaDataMap = new SimpleMetaDataMap();
