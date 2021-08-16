@@ -282,13 +282,6 @@
 	}
 
     &-content {
-        height: 88px;
-        background-color: $color-white;
-        width: 100%;
-
-        @media #{ $mobile } {
-            padding: 0;
-            height: 58px;
-		}
+        padding: 0;
 	}
 }
