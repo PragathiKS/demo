@@ -279,16 +279,15 @@
         @media #{ $mobile } {
             height: 65px;
 		}
-	}
-
-    &-content {
-        height: 88px;
-        background-color: $color-white;
-        width: 100%;
-
-        @media #{ $mobile } {
+		.tp-pw-header__container {
+            height: 88px;
             padding: 0;
-            height: 58px;
-		}
+            background-color: $color-white;
+            width: 100%;
+
+            @media #{ $mobile } {
+                height: 58px;
+            }
+        }
 	}
 }

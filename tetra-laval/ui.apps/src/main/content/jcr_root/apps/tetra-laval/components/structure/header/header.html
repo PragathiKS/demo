@@ -2,9 +2,9 @@
 
 <p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
 <header class="tp_pw-header-wrapper" data-module="Header">
-    <div class="tp_pw-header-content">
+    <div class="tp-pw-header__container">
         <nav class="tp_pw-header">
-            <div class="tp_pw-header__mobile-nav tp-pw-header__container">
+            <div class="tp_pw-header__mobile-nav">
                 <input class="tp_pw-header__mobile-nav-btn" type="checkbox" id="menu-btn" aria-label="Mobile menu" />
                 <label class="tp_pw-header__mobile-nav-label" for="menu-btn">
                     <i class="tp_pw-header__mobile-nav-navicon"></i>
@@ -51,7 +51,7 @@
                data-link-section="Header_LogoClick" data-link-name="${headerConfig.logoAlt}">
                 <img class="tp_pw-header__nav-logo" src="${headerConfig.logoImagePath}" alt="${headerConfig.logoAlt}" title="Tetralaval">
             </a>
-            <ul class="tp_pw-header__nav tp-pw-header__container" data-sly-list.navigationItem="${headerConfig.navigationModelList}">
+            <ul class="tp_pw-header__nav" data-sly-list.navigationItem="${headerConfig.navigationModelList}">
                 <sly data-sly-test.hasFirstLevel="${navigationItem.children}"/>
                 <li class="tp_pw-header__nav-item ${hasFirstLevel ? 'tp_pw-header__mega-menu' : ''}">
                     <a href="${navigationItem.link}">${navigationItem.label}</a>
