@@ -12,6 +12,10 @@ body {
     @media #{$desktop} {
         padding-top: 90px;
     }
+
+    &.search-page .tl-breadcrumb {
+        display: none;
+    }
 }
 
 .aem-GridColumn--default--hide {
