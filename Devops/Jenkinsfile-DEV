@@ -291,8 +291,9 @@ pipeline {
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 60
                 echo "Installing New Package on author"
-                sh "curl -k -u ${username}:${password} -F force=true -d  '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
-                sleep 60
+                sh "curl -k -u ${username}:${password} -F force=true  -F install=true -F name=${packageName} '${author_url}/crx/packmgr/service.jsp'"
+
+		sleep 60
 
     }
 
