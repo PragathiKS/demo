@@ -33,7 +33,7 @@ public interface CreateLiveCopyService {
      * @throws WCMException 
      * @throws PersistenceException 
      */
-    public void createLiveCopy(ResourceResolver resourceResolver, String srcPath, RolloutManager rolloutManager,
+    public boolean createLiveCopy(ResourceResolver resourceResolver, String srcPath, RolloutManager rolloutManager,
             LiveRelationshipManager liveRelManager, String language, boolean isDeep, boolean flowComingFromLBScheduler) throws PersistenceException, WCMException, RepositoryException;
 
 }
