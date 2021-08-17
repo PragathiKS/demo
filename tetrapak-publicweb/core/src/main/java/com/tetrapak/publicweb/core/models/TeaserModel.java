@@ -136,25 +136,30 @@ public class TeaserModel {
         }
     }
 
-    /**
-     * Gets the manual list.
-     *
-     * @return the manual list
-     */
-    public void getManualList() {
-        manualList.stream().forEach(model -> model.setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)));
-        teaserList.addAll(manualList);
-    }
+	/**
+	 * Gets the manual list.
+	 *
+	 * @return the manual list
+	 */
+	public void getManualList() {
+		if (manualList != null && !manualList.isEmpty()) {
+			manualList.stream()
+					.forEach(model -> model.setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)));
+			teaserList.addAll(manualList);
+		}
+	}
 
-    /**
-     * Generate list semi automatically.
-     */
-    private void generateListSemiAutomatically() {
-        List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, semiAutomaticList);
-        if (!aggregatorList.isEmpty()) {
-            setTabListfromAggregator(aggregatorList);
-        }
-    }
+	/**
+	 * Generate list semi automatically.
+	 */
+	private void generateListSemiAutomatically() {
+		if (semiAutomaticList != null && !semiAutomaticList.isEmpty()) {
+			List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, semiAutomaticList);
+			if (!aggregatorList.isEmpty()) {
+				setTabListfromAggregator(aggregatorList);
+			}
+		}
+	}
 
     /**
      * Sets the tab list from aggregator.
