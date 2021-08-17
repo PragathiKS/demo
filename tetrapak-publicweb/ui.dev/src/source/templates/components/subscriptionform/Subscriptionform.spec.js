@@ -55,6 +55,38 @@ describe('Subscriptionform', function () {
     expect(this.subscription.cache.requestPayload['country']).to.equal('Albania');
   });
 
+  it('should update request payload for UTM if avaialble in URL params', function (done) {
+    const paramsURL = 'http://www.test.com/?utm_campaign=val1&utm_content=val2&utm_medium=val3&utm_source=val4'
+    const params = {};
+    paramsURL.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+      return params[key] = value;
+    });
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        this.subscription.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_content') {
+        this.subscription.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_medium') {
+        this.subscription.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_source') {
+        this.subscription.cache.requestPayload[key] = params[key];
+      }
+    });
+    this.subscription.cache.$submitBtn.click();
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        expect(this.subscription.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_content') {
+        expect(this.subscription.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_medium') {
+        expect(this.subscription.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_source') {
+        expect(this.subscription.cache.requestPayload[key]).to.equal(params[key]);
+      }
+    });
+    done();
+  });
+
   it('should get country list and it should be equal to 2', function () {
     expect(this.subscription.getCountryList.called).to.be.true;
     expect(this.subscription.cache.countryList.length).to.equal(2);

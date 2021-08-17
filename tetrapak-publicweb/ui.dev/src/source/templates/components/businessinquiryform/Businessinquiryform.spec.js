@@ -133,6 +133,37 @@ describe('BusinessInquiryForm', function () {
     expect(this.businessinquiry.cache.requestPayload['position']).to.equal('position');
     done();
   });
+  it('should update request payload for UTM if avaialble in URL params', function (done) {
+    const paramsURL = 'http://www.test.com/?utm_campaign=val1&utm_content=val2&utm_medium=val3&utm_source=val4'
+    const params = {};
+    paramsURL.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+      return params[key] = value;
+    });
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        this.businessinquiry.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_content') {
+        this.businessinquiry.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_medium') {
+        this.businessinquiry.cache.requestPayload[key] = params[key];
+      } else if(key === 'utm_source') {
+        this.businessinquiry.cache.requestPayload[key] = params[key];
+      }
+    });
+    this.businessinquiry.cache.$submitBtn.click();
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        expect(this.businessinquiry.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_content') {
+        expect(this.businessinquiry.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_medium') {
+        expect(this.businessinquiry.cache.requestPayload[key]).to.equal(params[key]);
+      } else if(key === 'utm_source') {
+        expect(this.businessinquiry.cache.requestPayload[key]).to.equal(params[key]);
+      }
+    });
+    done();
+  });
   it('should call newRequestHanlder on newRequestBtn is clicked', function (done) {
     $('.newRequestBtn').click();
     expect(this.businessinquiry.newRequestHanlder.called).to.be.true;
@@ -179,6 +210,4 @@ describe('BusinessInquiryForm', function () {
     document.getElementById('step1btn').click();
     done();
   });
-
-
 });
