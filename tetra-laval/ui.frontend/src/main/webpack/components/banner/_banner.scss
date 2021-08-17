@@ -36,10 +36,10 @@
                 position: absolute;
             }
             &.pw-banner__content--background-white {
-                color: getbackgroundcolor($color-white);
+                color: $color-white;
             }
             &.pw-banner__content--background-black {
-                color: getbackgroundcolor($color-tundora);
+                color: $color-tundora;
             }
         }
 
@@ -48,10 +48,10 @@
 
             &.hero-title {
                 word-wrap: break-word;
-                color: getbackgroundcolor($color-white);
+                color: $color-white;
 
                 &.pw-banner__content--text-black {
-                    color: getbackgroundcolor($color-tundora);
+                    color: $color-tundora;
                 }
                 h1,
                 h2,
@@ -71,12 +71,11 @@
         }
 
         &__description {
-            color: getbackgroundcolor($color-white);
+            color: $color-white;
 
             &.pw-banner__content--text-black {
-                color: getbackgroundcolor($color-tundora)
+                color: $color-tundora;
             }
-
             @include margin-bottom($margin-xl);
         }
     }
