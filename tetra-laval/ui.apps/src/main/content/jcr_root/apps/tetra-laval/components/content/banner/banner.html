@@ -1,4 +1,5 @@
 <sly data-sly-use.model="com.tetralaval.models.BannerModel"/>
+    <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
 
 <p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.banner}" class="cq-placeholder"></p>
 
