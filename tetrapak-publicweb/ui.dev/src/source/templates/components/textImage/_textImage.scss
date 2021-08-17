@@ -10,11 +10,12 @@
     &--display-row {
         > .row {
             flex-direction: row;
+            flex-wrap: wrap-reverse;
         }
         .leftPad {
             @include padding-left($padding-zero);
             @include padding-right($padding-zero);
-            @include margin-top($margin-zero);
+            @include margin-top($margin-md);
             @media #{$desktop} {
                 @include padding-left($padding-zero);
                 @include padding-right($padding-l);
@@ -24,11 +25,9 @@
         .rightPad {
             @include padding-left($padding-zero);
             @include padding-right($padding-zero);
-            @include margin-top($margin-md);
             @media #{$desktop} {
                 @include padding-right($padding-zero);
                 @include padding-left($padding-l);
-                @include margin-top($margin-zero);
             }
         }
     }
@@ -36,21 +35,20 @@
     &--display-row-reversed {
         > .row {
             flex-direction: row-reverse;
+            flex-wrap: wrap-reverse;
         }
         .rightPad {
             @include padding-left($padding-zero);
             @include padding-right($padding-zero);
-            @include margin-top($margin-md);
             @media #{$desktop} {
                 @include padding-left($padding-zero);
                 @include padding-right($padding-l);
-                @include margin-top($margin-zero);
             }
         }
         .leftPad {
             @include padding-left($padding-zero);
             @include padding-right($padding-zero);
-            @include margin-top($margin-zero);
+            @include margin-top($margin-md);
             @media #{$desktop} {
                 @include padding-right($padding-zero);
                 @include padding-left($padding-l);
