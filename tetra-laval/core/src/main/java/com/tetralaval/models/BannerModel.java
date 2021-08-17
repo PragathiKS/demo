@@ -69,6 +69,8 @@ public class BannerModel {
     @ValueMapValue
     private String width;
 
+    private String linkType;
+
     /**
      * The init method.
      */
@@ -172,5 +174,9 @@ public class BannerModel {
 
     public String getWidth() {
         return width;
+    }
+
+    public String getLinkType() {
+        return LinkUtils.linkType(this.linkPath);
     }
 }

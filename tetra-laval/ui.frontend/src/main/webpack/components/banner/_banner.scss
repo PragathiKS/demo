@@ -1,7 +1,6 @@
 @function getbackgroundcolor($basecolor) {
     @return rgba($color: $basecolor, $alpha: $alpha-e);
-  }
-
+}
 
 .pw-banner {
     position: relative;
@@ -12,16 +11,21 @@
         @media #{$mobile} {
             @include padding($padding-md);
         }
-
-        &--background-white {
-            background-color: getbackgroundcolor($color-white);
+        @media #{$desktop} {
+            &--background-white {
+                background-color: getbackgroundcolor($color-white);
+            }
+            &--background-black {
+                background-color: getbackgroundcolor($color-tundora);
+            }
         }
-
-        &--background-black {
-            background-color: getbackgroundcolor($color-black);
-        }
-
         &_wrapper {
+            &.reverse {
+                @media #{$desktop} {
+                    display: flex;
+                    flex-direction: row-reverse;
+                 }
+            }
             @media #{$desktop} {
                 @include padding(0 $padding-xxxl);
                 top: 0;
@@ -31,6 +35,12 @@
                 align-items: center;
                 position: absolute;
             }
+            &.pw-banner__content--background-white {
+                color: $color-white;
+            }
+            &.pw-banner__content--background-black {
+                color: $color-tundora;
+            }
         }
 
         &__title {
@@ -38,6 +48,11 @@
 
             &.hero-title {
                 word-wrap: break-word;
+                color: $color-white;
+
+                &.pw-banner__content--text-black {
+                    color: $color-tundora;
+                }
                 h1,
                 h2,
                 h3 {
@@ -56,6 +71,11 @@
         }
 
         &__description {
+            color: $color-white;
+
+            &.pw-banner__content--text-black {
+                color: $color-tundora;
+            }
             @include margin-bottom($margin-xl);
         }
     }

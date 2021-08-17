@@ -51,6 +51,19 @@ public class LinkUtils extends WCMUsePojo {
         return isPreviewURL;
     }
 
+    /**
+     * Used for analytics code to determine the link type
+     */
+    public static String linkType(final String linkPath) {
+        if (StringUtils.startsWith(linkPath, "/content/dam/") || StringUtils.endsWith(linkPath, ".pdf")) {
+            return "download";
+        } else if (StringUtils.startsWith(linkPath, "/content/")) {
+            return "internal";
+        } else {
+            return "external";
+        }
+    }
+
     @Override
     public void activate() throws Exception {
         sanitizedLink = get(PARAM_LINK, String.class);
