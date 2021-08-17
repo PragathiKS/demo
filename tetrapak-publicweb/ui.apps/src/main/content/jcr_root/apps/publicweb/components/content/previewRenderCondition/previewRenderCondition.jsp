@@ -34,7 +34,7 @@
     Config cfg = cmp.getConfig();
     String path = cmp.getExpressionHelper().getString(cfg.get("path", ""));
 
-   if (path.startsWith("/content/tetrapak/publicweb"))
+   if (path.startsWith("/content/tetrapak/publicweb") || path.startsWith("/content/online-help"))
    {
      isPWSite = true;
    }

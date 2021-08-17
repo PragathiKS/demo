@@ -79,6 +79,7 @@ public class BannerModelTest {
         assertEquals("en.html", model.getAssetName());
         assertEquals("gray", model.getPwCardTheme());
         assertEquals("true",model.getEnableSoftcoversion());
+        assertEquals("enableSoftconversion",model.getFormType());
 
     }
 }

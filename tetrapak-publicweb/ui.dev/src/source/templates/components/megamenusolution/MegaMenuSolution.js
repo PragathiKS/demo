@@ -61,7 +61,7 @@ class MegaMenuSolution {
       navigationSection
     };
 
-    const linkType = ($this.find('i.icon') && $this.find('i.icon').hasClass('icon-Union')) ? 'external' : 'internal';
+    const linkType = ($this.find('i.icon') && $this.find('i.icon').is('.icon-Union, .icon-Download')) ? 'external' : 'internal';
 
     linkClickObject = {
       linkType,

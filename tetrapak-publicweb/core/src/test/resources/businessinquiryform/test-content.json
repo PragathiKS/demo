@@ -43,6 +43,19 @@
 			  "privacyPolicy": "I agree that the information I have provided will only be used in accordance with Tetra Pak privacy policy.",
 			  "jcr:lastModified": "Tue Jun 23 2020 16:35:21 GMT+0530",
 			  "sling:resourceType": "publicweb/components/structure/formconfig/formconsenttextsconfig"
+			},
+			"subscriptionformconf" : {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:createdBy": "admin",
+				"jcr:lastModifiedBy": "admin",
+				"jcr:created": "Tue Jun 23 2020 16:16:41 GMT+0530",
+				"contactUsLink":"/content/tetrapak/publicweb/lang-masters/en/contact-us",
+				"newsroomLink": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/news-room",
+				"legalInfoLink": "/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/legal-information",
+				"thankyouHeading": "Thank you for subscribing!",
+				"thankyouDescriptionText": "Confirm your subscription.",
+				"jcr:lastModified": "Tue Jun 23 2020 16:35:21 GMT+0530",
+				"sling:resourceType": "publicweb/components/structure/formconfig/subscriptionformconf"
 			}
 				}
 			}

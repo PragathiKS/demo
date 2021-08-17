@@ -155,10 +155,11 @@
                                         jcr:primaryType="nt:unstructured"
                                         text="Bright Blue"
                                         value="sky-blue"/>
-                                </items>
-                                <granite:data
+									<black
                                         jcr:primaryType="nt:unstructured"
-                                        disableenabletargetvalue="hero"/>
+                                        text="Black Gradient"
+                                        value="black"/>
+                                </items>
                             </pwCardTheme>
                         </items>
                     </column>

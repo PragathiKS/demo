@@ -48,6 +48,8 @@
 					"sling:resourceType": "publicweb/components/structure/footerconfiguration",
 					"logoLink": "/content/tetrapak/publicweb/lang-masters",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
+					"wechatQrCodeReference": "/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png",
+					"qrAltText": "Alt Text",
 					"footerLinks":{
 					"jcr:primaryType": "nt:unstructured",
 					"item0": {

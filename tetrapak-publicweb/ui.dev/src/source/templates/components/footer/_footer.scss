@@ -34,6 +34,10 @@
             color: $color-mercury;
             text-decoration: none;
         }
+
+        &.weChatLink {
+            pointer-events: none;
+        }
     }
 
     &__navigation-list {
@@ -57,6 +61,16 @@
         }
     }
 
+    &__social-media {
+        @media #{$desktop} {
+            display: flex;
+            justify-content: flex-end;
+        }
+        @media #{$small-desktop} {
+            display: block;
+        }
+    }
+
     &__social-media-items {
         @media #{$mobile} {
             @include margin-top($margin-xxxl);
@@ -72,6 +86,25 @@
 
             &:last-child {
                 margin-right: 0;
+            }
+
+            &.icon-wechat-code {
+                display: inline-block;
+                max-width: 115px;
+                cursor: default;
+                pointer-events: none;
+
+                @media #{$mobile} {
+                    cursor: pointer;
+                    pointer-events: auto;
+                }
+            }
+        }
+
+        &__wechat-code {
+            margin-left: $margin-xs;
+            @media #{$mobile} {
+                margin-left: $margin-zero;
             }
         }
     }

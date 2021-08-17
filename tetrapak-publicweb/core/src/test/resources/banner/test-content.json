@@ -33,6 +33,7 @@
 			"headingTag":"h1",
 			"pwCardTheme":"gray",
 			"enableSoftcoversion":"true",
+			"formType":"enableSoftconversion",
 			"anchorId":"test",
 			"anchorTitle":"title",
 			"imageCrop":"103,146,629,672"

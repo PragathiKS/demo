@@ -63,5 +63,7 @@ public class FooterConfigurationModelTest {
         assertEquals("/content/tetrapak/publicweb", model.getFooterLinks().get(1).getLinkPath());
         assertEquals("Linkedin", model.getSocialLinks().get(0).getSocialMedia());
         assertEquals("http://www.google.com", model.getSocialLinks().get(0).getSocialMediaLink());
+        assertEquals("/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png", model.getWechatQrCodeReference());
+        assertEquals("Alt Text",model.getQrAltText());
     }
 }

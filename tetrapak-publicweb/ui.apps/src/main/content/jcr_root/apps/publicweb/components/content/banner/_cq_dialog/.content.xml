@@ -25,16 +25,21 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <textimage
                                         jcr:primaryType="nt:unstructured"
-                                        text="Text &amp; Image Banner"
+                                        text="Text &amp; Image Banner (3:1)"
                                         value="textImage"/>
+                                    <textimagewide
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Text &amp; Image Banner (21:9)"
+                                        value="textImage-wide"/>
                                     <hero
                                         jcr:primaryType="nt:unstructured"
-                                        text="Top Banner"
+                                        text="Top Banner (3:1)"
                                         value="hero"/>
-                                </items>
-                                <granite:data
+                                    <herowide
                                         jcr:primaryType="nt:unstructured"
-                                        cq-dialog-dropdown-disable-enable-target=".bannerType-disable-enable-target"/>
+                                        text="Top Banner (21:9)"
+                                        value="hero-wide"/>
+                                </items>
                             </bannertype>
                         </items>
                     </column>
@@ -73,22 +78,22 @@
                             <title
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Recommended to use characters less than set Limit: 50 chars considering translations"
-                                fieldLabel="Title (Max character : 50)"
+                                fieldDescription="For 21:9 banner, we recommend max characters of 30. Always preview the design in different responsive states, from wide desktop to narrow mobile."
+                                fieldLabel="Title (Max characters: 50 for more information see tooltip)"
                                 maxlength="{Long}50"
                                 name="./title"/>
                             <subtitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Recommended to use characters less than set Limit: 50 chars considering translations"
-                                fieldLabel="Subtitle (Max character : 50)"
+                                fieldDescription="For 21:9 banner, we recommend max characters of 35. Always preview the design in different responsive states, from wide desktop to narrow mobile."
+                                fieldLabel="Subtitle (Max characters: 50 for more information see tooltip)"
                                 maxlength="{Long}50"
                                 name="./subtitle"/>
                             <text
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                fieldDescription="Recommended to use characters less than set Limit: 300 chars considering translations"
-                                fieldLabel="Description (Max character : 300)"
+                                fieldDescription="For 21:9 banner, we recommend max characters of 180. Always preview the design in different responsive states, from wide desktop to narrow mobile."
+                                fieldLabel="Description (Max characters: 300 for more information see tooltip)"
                                 maxlength="{Long}300"
                                 name="./text"/>
                             <linkLabel

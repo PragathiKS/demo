@@ -17,6 +17,7 @@ $font-xxl: 42px;
 $font-m-xxl: $font-xl;
 $font-xxxl: 60px;
 $font-m-xxxl: 36px;
+$font-l-xxl: 56px;
 // Body width
 $body-max-width: 1440px;
 // Variables for z-index
@@ -57,6 +58,8 @@ $color-text-link-hover: $color-tundora;
 $color-text-link-visited: $color-congress-blue;
 $color-text-link-active: $color-congress-blue;
 $color-sky-blue:#00BDF2;
+$color-white-new:#FFFFFF;
+$color-light-green: #6ea617;
 /*
  * Border Colors
  * 1) Border colors are used as decoration or dividers, such as as a seperator
@@ -104,6 +107,7 @@ $opacity-mid:0.5;
 $opacity-disabled: 0.4;
 $opacity-null: 0;
 $opacity-visible: 1;
+$opacity-banner: 0.7;
 //icon boxing
 $min-accessible-dimension:46px;
 // letter spacing
@@ -125,6 +129,3 @@ $section-menu-height-mobile: 56;
 
 // sticky-view-height
 $sticky-view-height: $header-height-mobile + $section-menu-height-mobile
-
-
-

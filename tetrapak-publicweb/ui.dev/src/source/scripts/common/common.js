@@ -311,6 +311,7 @@ export const addLinkAttr = (linkClass) => {
       }
       if (isDownloable(thisHref)) {
         $(this).data('download-type', 'download');
+        $(this).attr('target', '_blank');
       }
     }
   });
@@ -360,7 +361,7 @@ export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redi
     false,
     eventObject
   );
-  
+
   if(redirect) {
     setTimeout(function() {
       if (linkType === 'internal')  {

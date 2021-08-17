@@ -1,126 +1,117 @@
 <sly data-sly-template.banner_template="${@data, flag}">
     <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
+    <sly data-sly-test.isFormTypeAuthored="${data.formType != ''}"/>
+    <sly data-sly-test.isSoftConvEnabled="${data.enableSoftcoversion != ''}"/>
+    <sly data-sly-test.heroBanner="${data.bannerType == 'hero' || data.bannerType == 'hero-wide'}" />
+    <sly data-sly-test.textImageBanner="${data.bannerType == 'textImage' || data.bannerType == 'textImage-wide'}" />            
+    <sly data-sly-test.cardTheme="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row-reversed')}" />
+    <sly data-sly-test.cardThemeReverse="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row')}" />
+
     <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner">
-        <div class="pw-banner ${data.bannerType == 'hero' ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
+        <div class="pw-banner ${heroBanner ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
             data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}"
             data-link-section="Hero Image_imageClick" data-link-name="${data.linkLabel}"
             data-asset-name="${data.assetName}" data-href="${data.formType ? '': data.linkPath}">
-			<sly data-sly-test.isFormTypeAuthored="${data.formType != ''}"/>
-			<sly data-sly-test.isSoftConvEnabled="${data.enableSoftcoversion != ''}"/>
-            <sly data-sly-test="${!wcmmode.edit}">
-                <div class="pw-banner__image-wrapper">
-                    <sly data-sly-test="${data.bannerType == 'hero'}">
-                        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                            data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive', isBanner=true}">
+                <sly data-sly-test="${wcmmode.edit}">
+                    <div class="pw-banner__image-wrapper">
+                        <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
+                    </div>
+                </sly>
+                <sly data-sly-test="${!wcmmode.edit}">
+                    <div class="pw-banner__image-wrapper">
+                        <sly data-sly-test="${heroBanner}">
+                            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                                data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive', isBanner=true, imageRatio='0 0 3 1'}">
+                            </sly>
                         </sly>
-                    </sly>
-                    <sly data-sly-test="${data.bannerType == 'textImage'}">
-                        <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                            data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, className='img-responsive', isBanner=true}">
+                        <sly data-sly-test="${textImageBanner}">
+                            <sly data-sly-test.textImageBannerType="${data.bannerType == 'textImage' ? 'banner' : 'banner-wide'}" />
+                            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                                data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=textImageBannerType, className='img-responsive', isBanner=true, imageRatio='0 0 21 9'}">
+                            </sly>
                         </sly>
+                    </div>
+                </sly>
+                <sly data-sly-test="${heroBanner}">
+                    <div class="pw-banner-herowrapper">
+                        <div class="pw-banner__sideSection ${(data.pwDisplay =='display-row') ? 'left' : 'right'} ${data.pwCardTheme}"></div>
+                        <section class="pw-banner__contentwrapper">
+                                <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} ${data.pwDisplay =='display-row-reversed' ? 'display-row-reversed-wrapper' : ''}">
+                                    <div class="pw-banner__gradient-bg"></div>
+                                    <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
+                                </div>
+                        </section>
+                    </div>
+                </sly>
+                <sly data-sly-test="${textImageBanner}">
+                    <sly data-sly-test="${cardTheme || cardThemeReverse}">
+                        <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${cardTheme ? 'display-row-reversed-wrapper' : ''}">
+                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
+                        </div>
                     </sly>
-                </div>
-            </sly>
-            <sly data-sly-test="${wcmmode.edit}">
-                <div class="pw-banner__image-wrapper">
-                    <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
-                </div>
-            </sly>
-            <sly data-sly-test="${data.bannerType == 'hero'}">
-                <div class="pw-banner-herowrapper">
-            </sly>
-            <sly data-sly-test="${data.bannerType == 'hero'}">
-                <sly data-sly-test="${data.pwDisplay =='display-row'}">
-                    <div class="pw-banner__sideSection left"></div>
+                     <sly data-sly-test="${data.pwCardTheme == null || data.pwCardTheme =='gray'}">
+                        <div class="${data.subtitle ? '' : 'no-subtitle'}">
+                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
+                        </div>
+                    </sly>
                 </sly>
-                <sly data-sly-test="${data.pwDisplay =='display-row-reversed'}">
-                    <div class="pw-banner__sideSection right"></div>
-                </sly>
-                <section class="pw-banner__contentwrapper">
-            </sly>
-            <sly data-sly-test="${data.bannerType == 'textImage'}">
-                <sly data-sly-test="${data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed'}">
-                    <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} display-row-reversed-wrapper">
-                </sly>
-                <sly data-sly-test="${data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row'}">
-                    <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'}">
-                </sly>
-                <sly data-sly-test="${data.pwCardTheme =='gray'}">
-                    <div class="${data.subtitle ? '' : 'no-subtitle'}">
-                </sly>
-            </sly>
-            <sly data-sly-test="${data.bannerType == 'hero'}">
-                <sly data-sly-test="${data.pwDisplay =='display-row-reversed'}">
-                    <div
-                        class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} display-row-reversed-wrapper">
-                        <div class="pw-banner__gradient-bg"></div>
-                </sly>
-                <sly data-sly-test="${data.pwDisplay =='display-row'}">
-                    <div class="pw-banner__bgcolor ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay}">
-                        <div class="pw-banner__gradient-bg"></div>
-                </sly>
-            </sly>
-            <div class="pw-banner__content banner-sibling ${data.pwDisplay} ${data.pwCardTheme}"></div>
-            <div data-sly-test="${data.title}" class="pw-banner__content banner-parent ${data.pwDisplay}
-                ${data.pwCardTheme}">
-                <div data-sly-test="${data.subtitle}" class="pw-banner__content__subtitle ${data.pwCardTheme}">
-                    ${data.subtitle @ context='html'}
-                </div>
-                <div data-sly-test="${data.title}" class="pw-banner__content__title">
-                    <sly data-sly-test="${data.headingTag == 'h1'}"
-                        data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
-                        data-sly-call="${title.heading_h1_template @ headingText=data.title, variant='regular'}" />
-                    <sly data-sly-test="${data.headingTag == 'h2'}"
-                        data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
-                        data-sly-call="${title.heading_h2_template @ headingText=data.title, variant='regular'}" />
-                    <sly data-sly-test="${data.headingTag != 'h2' && data.headingTag != 'h1'}"
-                        data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
-                        data-sly-call="${title.heading_h3_template @ headingText=data.title, variant='regular'}" />
-                </div>
-                <div class="pw-banner__content__description">${data.text @ context='html'}</div>
-                <a data-sly-test="${data.linkLabel && (!isFormTypeAuthored && !isSoftConvEnabled)}" href="${data.linkPath}"
-                    class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics"
-                    title="${btnTooltip}" data-asset-name="${data.assetName}"
-                    data-link-section="Hero Image_${dataLinkSectionCTAText}" data-link-type="internal"
-                    data-link-banner-title="${data.title}" data-link-name="${data.linkLabel}"
-                    data-anchor-type="${dataLinkSectionCTAText}">
-                    <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span
-                        class="nowrap-text">&#8288;<i
-                            class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
-                </a>
-                <input type="hidden" class="componentName-banner" name="componentName" value="${resource.name}" />
-                <button data-sly-test="${(isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled)}"
-                    class="tpatom-link tpatom-link--primary js-softconversion-pw-banner text-left"
-                    data-link-section="button click" data-link-banner-title="${data.title}"
-                    data-link-name="${data.linkLabel}" data-anchor-type="CTA"
-                    title="${'pw.form.button.download' @ i18n}">
-                    <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span
-                        class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
-                </button>
-                <button data-sly-test="${isFormTypeAuthored && data.formType == 'enableSubscription'}"
-                    class="tpatom-link tpatom-link--primary js-subscription-pw-banner text-left"
-                    data-link-section="button click" data-link-banner-title="${data.title}"
-                    data-link-name="${data.linkLabel}" data-anchor-type="CTA"
-                    title="${'pw.form.button.download' @ i18n}">
-                    <span class="tpatom-link__text sly-text">${data.linkLabel @ context='html'}</span><span
-                        class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
-                </button>
-            </div>
         </div>
-
-        <sly data-sly-test="${(isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled)}"
-            data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
-            data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Banner'}" />
-        <sly data-sly-test="${isFormTypeAuthored && data.formType == 'enableSubscription'}" data-sly-use.subscriptionform="/apps/publicweb/components/content/subscriptionform/subscriptionform-template.html"
-             data-sly-call="${subscriptionform.subscriptionform_template @ data=data.subscriptionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Banner'}" />
-
-        <sly data-sly-test="${data.bannerType == 'hero'}">
-            </section>
-         </sly>
-         <sly data-sly-test="${data.bannerType == 'hero'}">
-			</div>
-		</sly>
-        </div>
-	</div>
+            <sly data-sly-test="${(isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled)}"
+         data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
+         data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Banner'}" />
+    <sly data-sly-test="${isFormTypeAuthored && data.formType == 'enableSubscription'}" 
+         data-sly-use.subscriptionform="/apps/publicweb/components/content/subscriptionform/subscriptionform-template.html"
+         data-sly-call="${subscriptionform.subscriptionform_template @ data=data.subscriptionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Banner'}" />
+    </div>
 </sly>
 
+
+<sly data-sly-template.bannerCommon="${@bannerData, dataLinkSectionCTAText, isFormTypeAuthored, isSoftConvEnabled, heroBanner, textImageBanner, cardTheme, cardThemeReverse}">
+    <div class="pw-banner__content banner-sibling ${bannerData.pwDisplay} ${bannerData.pwCardTheme}"></div>
+    <div data-sly-test="${bannerData.title}" class="pw-banner__content banner-parent ${bannerData.pwDisplay}
+        ${bannerData.pwCardTheme}">
+        <div data-sly-test="${bannerData.subtitle}" class="pw-banner__content__subtitle ${bannerData.pwCardTheme}">
+            ${bannerData.subtitle @ context='html'}
+        </div>
+        <div data-sly-test="${bannerData.title}" class="pw-banner__content__title ${bannerData.pwCardTheme} ${bannerData.bannerType == 'hero-wide' ?  'hero-title' : ''}">
+            <sly data-sly-test="${bannerData.headingTag == 'h1'}"
+                data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
+                data-sly-call="${title.heading_h1_template @ headingText=bannerData.title, variant='regular'}" />
+            <sly data-sly-test="${bannerData.headingTag == 'h2'}"
+                data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
+                data-sly-call="${title.heading_h2_template @ headingText=bannerData.title, variant='regular'}" />
+            <sly data-sly-test="${bannerData.headingTag != 'h2' && bannerData.headingTag != 'h1'}"
+                data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
+                data-sly-call="${title.heading_h3_template @ headingText=bannerData.title, variant='regular'}" />
+        </div>
+        <div class="pw-banner__content__description">${bannerData.text @ context='html'}</div>
+        <a data-sly-test="${bannerData.linkLabel && (!isFormTypeAuthored && !isSoftConvEnabled)}" href="${bannerData.linkPath}"
+            class="tpatom-link tpatom-link--${bannerData.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics ${bannerData.text ? '' : 'no-desc'}"
+            title="${btnTooltip}" data-asset-name="${bannerData.assetName}"
+            data-link-section="Hero Image_${dataLinkSectionCTAText}" data-link-type="internal"
+            data-link-banner-title="${bannerData.title}" data-link-name="${bannerData.linkLabel}"
+            data-anchor-type="${dataLinkSectionCTAText}">
+            <span class="tpatom-link__text sly-text">${bannerData.linkLabel @ context='html'}</span><span
+                class="nowrap-text">&#8288;<i
+                    class="icon ${bannerData.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
+        </a>
+        <input type="hidden" class="componentName-banner" name="componentName" value="${resource.name}" />
+        <button data-sly-test="${(isFormTypeAuthored && bannerData.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled)}"
+            class="tpatom-link tpatom-link--primary js-softconversion-pw-banner text-left"
+            data-link-section="button click" data-link-banner-title="${bannerData.title}"
+            data-link-name="${bannerData.linkLabel}" data-anchor-type="CTA"
+            title="${'pw.form.button.download' @ i18n}">
+            <span class="tpatom-link__text sly-text">${bannerData.linkLabel @ context='html'}</span><span
+                class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
+        </button>
+        <button data-sly-test="${isFormTypeAuthored && bannerData.formType == 'enableSubscription'}"
+            class="tpatom-link tpatom-link--primary js-subscription-pw-banner text-left"
+            data-link-section="button click" data-link-banner-title="${bannerData.title}"
+            data-link-name="${bannerData.linkLabel}" data-anchor-type="CTA"
+            title="${'pw.form.button.download' @ i18n}">
+            <span class="tpatom-link__text sly-text">${bannerData.linkLabel @ context='html'}</span><span
+                class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
+        </button>
+    </div>
+
+</sly>
