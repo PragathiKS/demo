@@ -3,7 +3,7 @@
 <p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.banner}" class="cq-placeholder"></p>
 
 <div id="${model.anchorId}" class="tp-container-textImage mt-lg-24 pw-container" title="${model.anchorTitle}" data-module="Banner">
-    <div class="pw-banner js-pw-banner "
+    <div class="pw-banner js-pw-banner"
          data-link-section="Hero Image_imageClick">
         <div class="row m-0">
             <div class="col-12 p-0">
@@ -16,7 +16,7 @@
                 </picture>
             </div>
         </div>
-        <div class="row m-0 pw-banner__content_wrapper ">
+        <div class="row m-0 pw-banner__content_wrapper ${properties.layout}">
             <div class="col-lg-7 col-xl-6 p-0">
                 <div class="pw-banner__content ${properties.backgroundColor}">
                     <h1 class="pw-banner__content__title hero-title ${properties.textColor}">${model.title @context='html'}</h1>
