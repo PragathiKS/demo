@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
 	<filter root="/apps/cq/gui" mode="update"/>
+	<filter root="/apps/cq/experience-fragments" mode="update"/>
     <filter root="/apps/publicweb" mode="update">
 	    <exclude pattern="/apps/publicweb/i18n(/.*)?"/>
 	</filter>
