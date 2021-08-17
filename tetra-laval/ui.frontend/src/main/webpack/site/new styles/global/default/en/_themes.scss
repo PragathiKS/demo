@@ -1,11 +1,21 @@
 body {
     @include line-height($font-l, $font-baseline);
-    font-family: $font-monsterrat;
+    font-family: $font-family-primary;
     background: $color-wild-sand;
     font-weight: 400;
     font-size: $font-baseline;
     font-style: normal;
     position: relative;
+    padding-top: 80px;
+    margin-top: 0;
+
+    @media #{$desktop} {
+        padding-top: 90px;
+    }
+
+    &.search-page .tl-breadcrumb {
+        display: none;
+    }
 }
 
 .aem-GridColumn--default--hide {
@@ -14,7 +24,7 @@ body {
 
 a {
     @include line-height($font-l, $font-baseline);
-    font-family: $font-monsterrat;
+    font-family: $font-family-primary;
     font-weight: 400;
     font-size: $font-baseline;
     color: $color-dark-blue;
@@ -34,15 +44,15 @@ img {
 }
 h1,
 h2 {
-    font-family: $font-monsterrat;
+    font-family: $font-family-primary;
     font-weight: 700;
 }
 h3 {
-    font-family: $font-monsterrat;
+    font-family: $font-family-primary;
     font-weight: 400;
 }
 h4 {
-    font-family: $font-monsterrat;
+    font-family: $font-family-primary;
     font-weight: 500;
 }
 
@@ -136,7 +146,7 @@ h4 {
 .tpatom-link--transparent,
 .tpatom-link--datepicker {
     span {
-        font-family: $font-monsterrat;
+        font-family: $font-family-primary;
     }
 }
 
@@ -177,7 +187,7 @@ h4 {
     letter-spacing: 0;
 }
 .tpatom-heading {
-    font-family: $font-monsterrat;
+    font-family: $font-family-primary;
     &--regular {
         font-weight: 400;
         @media #{$desktop} {

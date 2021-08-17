@@ -48,6 +48,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -70,6 +71,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
     private final static String ARTICLE_DATE_PROP = "articleDate";
     private final static String ARTICLE_TYPE_PROP = "articleType";
     private final static String MEDIA_LABEL_PROP = "mediaLabel";
+    private final static String ASSETS_PATH_PROP = "assetsPath";
     private final static String VIDEO_THUMBNAIL_PROP = "videoThumbnail";
     private final static String DOCUMENT_THUMBNAIL_PROP = "documentThumbnail";
 
@@ -78,8 +80,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
     private final static String ASSETS_GROUP = String.format("%s.2_group", RESOURCES_GROUP);
     private final static String TAGS_GROUP = "1_group";
     private final static String TEMPLATES_GROUP = "2_group";
-
-    private final static String SORT_DESCENDING = "desc";
 
     private final static String ARTICLE_TEMPLATE = "/conf/tetra-laval/settings/wcm/templates/article-page-template";
 
@@ -98,6 +98,8 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     private String path;
     private String mediaLabel;
+    private String mediaId;
+    private String assetsPath;
     private String videoThumbnail;
     private String documentThumbnail;
 
@@ -120,28 +122,38 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     @Override
     public Map<String, String> setSearchQueryMap(SlingHttpServletRequest request, RequestParameterMap params) {
+        setAssetsProperties(request);
         path = getLanguagePagePath(request);
 
         Map<String, String> map = new HashMap<>();
         List<FilterModel> filterModelList = getTags(request, params);
+        String[] articleTypes = getArticleTypes(params);
+        boolean isMediaChecked = articleTypes != null && mediaId != null ? Arrays.stream(articleTypes)
+                .filter(s -> mediaId.equals(s))
+                .collect(Collectors.toList()).size() > 0 : false;
 
         map.putAll(getFulltext(params));
-        map.putAll(setResultsOrder());
         map.putAll(setResultsAmount(params));
 
         map.put(String.format("%s.p.or", RESOURCES_GROUP), "true");
         map.put(String.format("%s.%s.p.or", PAGES_GROUP, TAGS_GROUP), "true");
         map.put(String.format("%s.%s.p.or", PAGES_GROUP, TEMPLATES_GROUP), "true");
-        map.put(String.format("%s.%s.p.or", ASSETS_GROUP, TAGS_GROUP), "true");
 
-        map.putAll(setResources());
+        if (isMediaChecked) {
+            map.put(String.format("%s.%s.p.or", ASSETS_GROUP, TAGS_GROUP), "true");
+        }
+
+        map.putAll(setResources(isMediaChecked));
         if (filterModelList != null) {
             map.putAll(setTags(PAGES_GROUP, String.format("%s/%s", JcrConstants.JCR_CONTENT,
                     TagConstants.PN_TAGS), filterModelList));
-            map.putAll(setTags(ASSETS_GROUP, String.format("%s/%s/%s", JcrConstants.JCR_CONTENT,
-                    DamConstants.METADATA_FOLDER, TagConstants.PN_TAGS), filterModelList));
+
+            if (isMediaChecked) {
+                map.putAll(setTags(ASSETS_GROUP, String.format("%s/%s/%s", JcrConstants.JCR_CONTENT,
+                        DamConstants.METADATA_FOLDER, TagConstants.PN_TAGS), filterModelList));
+            }
         }
-        map.putAll(setTemplates(params));
+        map.putAll(setTemplates(articleTypes));
         return map;
     }
 
@@ -183,8 +195,18 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 LOGGER.error("[performSearch] There was an issue getting the resource", e);
             }
         }
+        resource.sort((o1, o2) -> o2.getSortDate().compareTo(o1.getSortDate()));
         resultModel.setSearchResults(resource);
         return resultModel;
+    }
+
+    @Override
+    public String setMediaId(String mediaLabel) {
+        if (mediaLabel != null) {
+            return mediaLabel.toLowerCase()
+                    .replaceAll("\\s+", TLConstants.HYPHEN);
+        }
+        return null;
     }
 
     private Map<String, String> getFulltext(RequestParameterMap params) {
@@ -234,17 +256,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return page;
     }
 
-    private Map<String, String> setResultsOrder() {
-        Map<String, String> map = new HashMap<>();
-
-        // set sorting logic for search results
-        map.put("1_orderby", String.format("@%s/%s", JcrConstants.JCR_CONTENT, ARTICLE_DATE_PROP));
-        map.put("1_orderby.sort", SORT_DESCENDING);
-        map.put("2_orderby", String.format("@%s/%s", JcrConstants.JCR_CONTENT, NameConstants.PN_PAGE_LAST_MOD));
-        map.put("2_orderby.sort", SORT_DESCENDING);
-        return map;
-    }
-
     private Map<String, String> setResultsAmount(RequestParameterMap params) {
         Map<String, String> map = new HashMap<>();
 
@@ -255,19 +266,19 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return map;
     }
 
-    private Map<String, String> setResources() {
+    private Map<String, String> setResources(boolean isMediaChecked) {
         Map<String, String> map = new HashMap<>();
 
         // creating map configuration for different resources
         map.put(String.format("%s.type", PAGES_GROUP), NameConstants.NT_PAGE);
         map.put(String.format("%s.path", PAGES_GROUP), path);
 
-        map.put(String.format("%s.type", ASSETS_GROUP), DamConstants.NT_DAM_ASSET);
-        map.put(String.format("%s.path", ASSETS_GROUP), TLConstants.DAM_ROOT_PATH);
+        if (isMediaChecked) {
+            map.put(String.format("%s.type", ASSETS_GROUP), DamConstants.NT_DAM_ASSET);
+            map.put(String.format("%s.path", ASSETS_GROUP), assetsPath);
+        }
 
         // fetched only these results which do not have checked hideInSearch flag
-        map.put("1_property.operation", "exists");
-        map.put("1_property.value", "false");
         map.put(String.format("%s.property", PAGES_GROUP),
                 String.format("@%s/%s", JcrConstants.JCR_CONTENT, HIDE_IN_SEARCH_PROP));
         map.put(String.format("%s.property.operation", PAGES_GROUP), "exists");
@@ -279,21 +290,22 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
 
         // generating map using tags selected in search result filters
-        int tagIndex = 0;
-        for (FilterModel filterModel : filterModelList) {
-            tagIndex++;
-            map.put(String.format("%s.1_group.%d_property", resourceGroup, tagIndex), cqTagsProp);
-            map.put(String.format("%s.1_group.%d_property.value", resourceGroup, tagIndex), filterModel.getKey());
+        if (filterModelList != null && filterModelList.size() > 0) {
+            int tagIndex = 0;
+            for (FilterModel filterModel : filterModelList) {
+                tagIndex++;
+                map.put(String.format("%s.1_group.%d_property", resourceGroup, tagIndex), cqTagsProp);
+                map.put(String.format("%s.1_group.%d_property.value", resourceGroup, tagIndex), filterModel.getKey());
+            }
         }
         return map;
     }
 
-    private Map<String, String> setTemplates(RequestParameterMap params) {
+    private Map<String, String> setTemplates(String[] articleTypes) {
         Map<String, String> map = new HashMap<>();
-        String[] articleTypes = getArticleTypes(params);
 
         // fetched only these pages which have the same type as selected in filters
-        if (articleTypes != null) {
+        if (articleTypes != null && articleTypes.length > 0) {
             int articleIndex = 0;
             for (String articleType : articleTypes) {
                 articleIndex++;
@@ -317,7 +329,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
     private ResultItem setSearchResultItemData(SlingHttpServletRequest request, Hit hit) throws RepositoryException {
         ResultItem resultItem = new ResultItem();
-        setAssetsProperties(request);
 
         Resource resource = hit.getResource();
         if (resource != null) {
@@ -341,20 +352,30 @@ public class SearchResultsServiceImpl implements SearchResultsService {
             } else {
                 resultItem.setTitle(PageUtil.getCurrentPage(resource).getTitle());
                 resultItem.setDescription(hit.getProperties().get(JcrConstants.JCR_DESCRIPTION, StringUtils.EMPTY));
-                setContentFields(resultItem, hit.getResource().getChild(JcrConstants.JCR_CONTENT));
+                setContentFields(resultItem, hit);
             }
             resultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), request));
+            resultItem.setSortDate(getSortDate(hit, Calendar.class));
         }
         return resultItem;
     }
 
-    private void setContentFields(ResultItem resultItem, Resource resource) throws RepositoryException {
-        ValueMap valueMap = resource.getValueMap();
+    private <T> T getSortDate(Hit hit, Class<T> cls) throws RepositoryException {
+        if (hit.getProperties().containsKey(ARTICLE_DATE_PROP)) {
+            return hit.getProperties().get(ARTICLE_DATE_PROP, cls);
+        } else if (hit.getProperties().containsKey(NameConstants.PN_PAGE_LAST_MOD)) {
+            return hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, cls);
+        } else if (hit.getProperties().containsKey(JcrConstants.JCR_LASTMODIFIED)) {
+            return hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, cls);
+        }
+        return null;
+    }
+
+    private void setContentFields(ResultItem resultItem, Hit hit) throws RepositoryException {
         String articleTypeName = null;
 
-        String articleType = valueMap.get(ARTICLE_TYPE_PROP, String.class);
-        String date = valueMap.get(valueMap.containsKey(ARTICLE_DATE_PROP) ?
-                ARTICLE_DATE_PROP : NameConstants.PN_PAGE_LAST_MOD, String.class);
+        String articleType = hit.getProperties().get(ARTICLE_TYPE_PROP, String.class);
+        String date = getSortDate(hit, String.class);
 
         List<FilterModel> filters = articleService.getFilterTypes().stream()
                 .filter(filterModel -> filterModel.getKey().equals(articleType))
@@ -409,6 +430,8 @@ public class SearchResultsServiceImpl implements SearchResultsService {
             Node node = resource.adaptTo(Node.class);
             try {
                 mediaLabel = node.hasProperty(MEDIA_LABEL_PROP) ? node.getProperty(MEDIA_LABEL_PROP).getString() : null;
+                mediaId = setMediaId(mediaLabel);
+                assetsPath = node.hasProperty(ASSETS_PATH_PROP) ? node.getProperty(ASSETS_PATH_PROP).getString() : TLConstants.DAM_ROOT_PATH;
                 videoThumbnail = node.hasProperty(VIDEO_THUMBNAIL_PROP) ? node.getProperty(VIDEO_THUMBNAIL_PROP).getString() : null;
                 documentThumbnail = node.hasProperty(DOCUMENT_THUMBNAIL_PROP) ? node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString() : null;
             } catch (RepositoryException re) {
