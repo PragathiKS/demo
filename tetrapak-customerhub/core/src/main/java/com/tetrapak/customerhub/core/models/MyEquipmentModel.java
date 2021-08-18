@@ -112,6 +112,22 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String functionalLocationToolTip;
 
+	/** The site description. */
+	@ValueMapValue
+	private String siteDescription;
+
+	/** The site description tool tip. */
+	@ValueMapValue
+	private String siteDescToolTip;
+
+	/** The location. */
+	@ValueMapValue
+	private String location;
+
+	/** The location tool tip. */
+	@ValueMapValue
+	private String locationToolTip;
+
 	/** The sling settings service. */
 	@OSGiService
     private SlingSettingsService slingSettingsService;
@@ -295,6 +311,42 @@ public class MyEquipmentModel {
 	}
 
 	/**
+	 * Gets the site description.
+	 *
+	 * @return the site description.
+	 */
+	public String getSiteDescription() {
+		return siteDescription;
+	}
+
+	/**
+	 * Gets the site description tool tip.
+	 *
+	 * @return the site description tool tip
+	 */
+	public String getSiteDescToolTip() {
+		return siteDescToolTip;
+	}
+
+	/**
+	 * Gets the location.
+	 *
+	 * @return the location
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * Gets the location tool tip.
+	 *
+	 * @return the location tool tip
+	 */
+	public String getLocationToolTip() {
+		return locationToolTip;
+	}
+
+	/**
 	 * Gets the i18n keys.
 	 *
 	 * @return the i18n keys
@@ -451,6 +503,10 @@ public class MyEquipmentModel {
         i18KeyMap.put("customizeTable", getCustomizeTable());
         i18KeyMap.put("serialNumToolTip", getSerialNumToolTip());
         i18KeyMap.put("functionalLocation", getFunctionalLocation());
+        i18KeyMap.put("siteDescription", getSiteDescription());
+        i18KeyMap.put("location", getLocation());
+		i18KeyMap.put("locationToolTip", getLocationToolTip());
+		i18KeyMap.put("siteDescToolTip", getSiteDescToolTip());
 		i18KeyMap.put("functionalLocationToolTip", getFunctionalLocationToolTip());
         i18KeyMap.put("lineToolTip", getLineToolTip());
         i18KeyMap.put("siteToolTip", getSiteToolTip());
