@@ -458,7 +458,7 @@ class MyEquipment {
     this.cache.customisableTableHeaders = [
       {key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
       {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
-      {key:'lineName',option:i18nKeys['site'],isChecked:true,index:2},
+      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:2},
       {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
       {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4},
       {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:5},
