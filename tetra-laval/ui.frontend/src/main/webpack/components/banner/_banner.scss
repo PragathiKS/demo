@@ -5,7 +5,7 @@
 .pw-banner {
     @include margin(0 0 16px 0);
 
-    @media #{$desktop} {
+    @media #{$tablet} {
         @include margin(0 48px);
     }
     
@@ -14,10 +14,11 @@
     &__content {
         @include padding($padding-xxxl);
 
-        @media #{$mobile} {
+        @media (max-width: $v-tablet - 1px){
             @include padding($padding-md);
         }
-        @media #{$desktop} {
+
+        @media #{$tablet} {
             &--background-white {
                 background-color: getbackgroundcolor($color-white);
             }
@@ -27,12 +28,12 @@
         }
         &_wrapper {
             &.reverse {
-                @media #{$desktop} {
+                @media #{$tablet} {
                     display: flex;
                     flex-direction: row-reverse;
                  }
             }
-            @media #{$desktop} {
+            @media #{$tablet} {
                 @include padding(0 $padding-xxxl);
                 top: 0;
                 left: 0;
@@ -57,7 +58,7 @@
                 color: $color-white;
                 font-size: 32px;
                 line-height: 40px;
-                @media #{$desktop} {
+                @media #{$tablet} {
                     font-weight: bold;
                     font-size: 78px;
                     line-height: 96px;
@@ -90,7 +91,7 @@
                 line-height: 24px;
                 font-family: $font-family-primary;
 
-                @media #{$desktop} {
+                @media #{$tablet} {
                     &--secondary {
                         background: $color-white;
                         color: $color-congress-blue;
@@ -100,7 +101,7 @@
             }
         }
 
-        @media (max-width: $v-desktop - 1px) {
+        @media (max-width: $v-tablet - 1px) {
             &__title {
                 color: $color-tundora !important;
             }
@@ -113,14 +114,14 @@
     &__image {
         border-radius: 0;
 
-        @media #{$desktop} {
+        @media #{$tablet} {
             border-radius: 4px;
             min-height: 620px;
             object-fit: cover;
         }
     }
 
-    @media (min-width: 1024px) and (max-width: 1439px) {
+    @media (min-width: $v-tablet) and (max-width: $v-desktop - 1px) {
         &__content_wrapper .col-lg-7 {
             flex: 0 0 100%;
             max-width: 696px;
@@ -131,7 +132,7 @@
     }
 
     picture {
-        @media #{$desktop} {
+        @media #{$tablet} {
             &::before {
                 height: 100%;
                 width: 100%;
