@@ -11,8 +11,8 @@ describe('Banner', function () {
     this.initSpy = sinon.spy(this.banner, 'init');
     this.analyticsSpy = sinon.spy(this.banner, 'trackAnalytics');
     this.trackBannerImageClickSpy = sinon.spy(this.banner, 'trackBannerImageClick');
-
     this.openStub = sinon.stub(window, 'open');
+    
     window.digitalData = {};
     window._satellite = {
       track() { /* Dummy method */ }
@@ -24,7 +24,7 @@ describe('Banner', function () {
     this.initSpy.restore();
     this.analyticsSpy.restore();
     this.trackBannerImageClickSpy.restore();
-    this.openStub.restore();
+    this.openStub.restore(); 
   });
   it('should initialize', function (done) {
     expect(this.initSpy.called).to.be.true;
@@ -45,8 +45,13 @@ describe('Banner', function () {
     $('.js-softconversion-pw-banner').trigger('click');
     done();
   });
+
   it('trigger subscription form on click', function (done) {
     $('.js-subscription-pw-banner').trigger('click');
+    done();
+  });
+  it('trigger window load', function(done) {
+    $(window).trigger('load')
     done();
   });
 });

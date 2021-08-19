@@ -7,6 +7,22 @@ body {
     font-style: normal;
     position: relative;
 }
+.bannercontainer {
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+.fixed {
+    position: sticky;
+    width: 100%;
+}
+
+.cq-Editable-dom--container .banner {
+    height: auto;
+}
+.banner {
+    transition: all 1.2s cubic-bezier(0.62, 0.44, 0, 1);
+}
 
 .aem-GridColumn--default--hide {
     display: none;
