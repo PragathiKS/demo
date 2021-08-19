@@ -60,6 +60,15 @@ $color-text-link-active: $color-congress-blue;
 $color-sky-blue:#00BDF2;
 $color-white-new:#FFFFFF;
 $color-light-green: #6ea617;
+
+$slide-number: 6;
+
+/* Set stacking context of slides */
+@for $i from 1 to ($slide-number + 1) {
+    .banner:nth-child(#{$i}) {
+        z-index: - (($slide-number + 1) - $i); 
+    }
+}
 /*
  * Border Colors
  * 1) Border colors are used as decoration or dividers, such as as a seperator
