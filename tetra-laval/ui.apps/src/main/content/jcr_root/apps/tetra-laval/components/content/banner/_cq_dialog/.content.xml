@@ -15,7 +15,7 @@
                     <column
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured" sling:hideChildren="[pwThemes,pwCardTheme,pwDisplay]">
+                        <items jcr:primaryType="nt:unstructured" sling:hideChildren="[pwThemes,pwButtonThemes,pwCardTheme,pwDisplay]">
                             <layout
                                     granite:class="cq-dialog-dropdown-showhide"
                                     jcr:primaryType="nt:unstructured"
@@ -80,6 +80,26 @@
                                         jcr:primaryType="nt:unstructured"
                                         cq-dialog-dropdown-showhide-target=".formType-showhide-target"/>
                             </backgroudColor>
+                            <buttonStyle
+                                    granite:class="cq-dialog-dropdown-showhide"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Color of button"
+                                    name="./buttonStyle">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <white
+                                            jcr:primaryType="nt:unstructured"
+                                            text="White with blue border"
+                                            value="secondary"/>
+                                    <blue
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Blue with white border"
+                                            value="link"/>
+                                </items>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-dialog-dropdown-showhide-target=".formType-showhide-target"/>
+                            </buttonStyle>
                         </items>
                     </column>
                 </items>
