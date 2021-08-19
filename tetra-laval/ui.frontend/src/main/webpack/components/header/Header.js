@@ -42,6 +42,9 @@ class Header {
     this.cache.$searchBarCloseIcon.on('click', () => {
       $('.pw-overlay').removeClass('show');
     })
+    this.cache.$megaMenu.on('mouseover', () => {
+      this.cache.$overlay.removeClass('.d-none');
+    })
 
     this.cache.$headerLogo.on('click', this.logoTrackAnalytics);
     this.cache.$contactBtn.on('click', this.contactBtnTrackAnalytics);

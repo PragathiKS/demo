@@ -36,8 +36,12 @@ class CookiePolicy {
     }
 
     createCookie = e => {
-        let date = new Date();
+        e.stopPropagation()
+
+        const date = new Date();
+
         date.setFullYear(date.getFullYear() + 10);
+
         document.cookie = `cookieconsent=true; expires=${date}; path=/`;
     }
 

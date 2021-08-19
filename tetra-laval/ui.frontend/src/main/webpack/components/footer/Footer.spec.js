@@ -1,9 +1,8 @@
 import Footer from './Footer';
-import * as commonFunctions from 'tpPublic/scripts/common/common';
 
 describe('Footer', function () {
-  beforeAll(function () {
-    const htmlElement = `
+  before(function () {
+    const componentTemplate = `
         <footer class="tp-pw-footer js-tp-pw-footer" data-module="Footer" id="footer">
             <div class="tp-pw-footer__container tp-container">
                 <div class="row">
@@ -88,36 +87,51 @@ describe('Footer', function () {
             </div>
         </footer>
     `;
-        document.body.insertAdjacentHTML('afterbegin', htmlElement);
+        document.body.insertAdjacentHTML('afterbegin', componentTemplate);
 
         this.subject = new Footer({
             el: document.querySelector('#footer')
         });
+
+        sinon.spy(this.subject, 'init');
+        sinon.spy(this.subject, 'initCache');
+        sinon.spy(this.subject, 'bindEvents');
+        sinon.spy(this.subject, 'logoTrackAnalytics');
+        sinon.spy(this.subject, 'linksTrackAnalytics');
+        sinon.spy(this.subject, 'socialMediasTrackAnalytics');
+
+        this.subject.init();
     });
 
-    it('should create component', function () {
-        expect(this.subject).toBeInstanceOf(Footer);
+    it('should initialize component', function () {
+        expect(this.subject.init.called).to.be.true;
+        expect(this.subject).to.be.instanceOf(Footer);
     })
 
     it('should intialize cache and bind events', function () {
-        spyOn(this.subject, 'initCache');
-        spyOn(this.subject, 'bindEvents');
-
-        this.subject.init();
-
-        expect(this.subject.initCache).toHaveBeenCalled();
-        expect(this.subject.bindEvents).toHaveBeenCalled();
-    });
+        expect(this.subject.initCache.called).to.be.true;
+        expect(this.subject.bindEvents.called).to.be.true;
+    })
 
     describe('calling events', function () {
-        xit('should track analitycs, while logo is click', function () {
-            this.subject.init();
-
+        it('should track analitycs, while logo is click', function () {
             this.subject.cache.$footerLogo.trigger('click');
+
+            expect(this.subject.logoTrackAnalytics.called).to.be.true;
+        })
+        it('should track analitycs, while links are click', function () {
+            this.subject.cache.$footerLinks.trigger('click');
+
+            expect(this.subject.linksTrackAnalytics.called).to.be.true;
+        })
+        it('should track analitycs, while social media links are click', function () {
+            this.subject.cache.$footerSocialMedias.trigger('click');
+
+            expect(this.subject.socialMediasTrackAnalytics.called).to.be.true;
         })
     });
 
-    afterAll(() => {
+    after(() => {
       document.body.removeChild(document.getElementById('footer'));
     });
 });
