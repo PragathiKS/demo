@@ -65,17 +65,16 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <blue
                                             jcr:primaryType="nt:unstructured"
-                                            text="Blue with white border"
+                                            text="Blue"
                                             value="primary"/>
                                     <white
                                             jcr:primaryType="nt:unstructured"
-                                            text="White with blue border"
+                                            text="White"
                                             value="secondary"/>
                                 </items>
                                 <granite:data
                                         jcr:primaryType="nt:unstructured"
                                         cq-dialog-dropdown-showhide-target=".formType-showhide-target"/>
-
                             </buttonColor>
                             <backgroudColor
                                     granite:class="cq-dialog-dropdown-showhide"
