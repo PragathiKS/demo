@@ -40,13 +40,19 @@ class Header {
       }
     })
     this.cache.$searchBarCloseIcon.on('click', () => {
-      this.cache.$searchBar.removeClass('show');
+      $('.pw-overlay').removeClass('show');
     })
 
     this.cache.$headerLogo.on('click', this.logoTrackAnalytics);
     this.cache.$contactBtn.on('click', this.contactBtnTrackAnalytics);
     this.cache.$firstLevelNavigation.on('click', this.firstLevelNavigationTrackAnalytics);
     this.cache.$secondLevelNavigation.on('click', this.secondLevelNavigationTrackAnalytics);
+    this.cache.$megaMenu.on('mouseover', () => {
+      $('.pw-overlay').removeClass('d-none');
+    })
+    this.cache.$megaMenu.on('mouseout', () => {
+      $('.pw-overlay').addClass('d-none');
+    })
   }
 
   setSearchBtnAttributes = (textValue) => {
@@ -148,6 +154,7 @@ class Header {
     this.cache.$contactBtn = this.root.find(`.js-tp_pw-header__nav-options-envelope${this.cache.linkClassSelector}`);
     this.cache.$firstLevelNavigation = this.root.find('.tp_pw-header__nav-item');
     this.cache.$secondLevelNavigation = this.root.find('.tp_pw-header__mega-menu-link');
+    this.cache.$megaMenu = this.root.find('.tp_pw-header__mega-menu');
 
     this.bindEvents()
   }
