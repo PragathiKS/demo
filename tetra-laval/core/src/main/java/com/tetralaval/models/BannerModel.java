@@ -54,9 +54,25 @@ public class BannerModel {
     @ValueMapValue
     private String pwTheme;
 
-    /** The pw button theme. */
+    /** The pw button colour. */
     @ValueMapValue
-    private String pwButtonTheme;
+    private String buttonColor;
+
+    /** The image gradient. */
+    @ValueMapValue
+    private String imageGradient;
+
+    /** The layout. */
+    @ValueMapValue
+    private String layout;
+
+    /** The background colour colour. */
+    @ValueMapValue
+    private String backgroundColor;
+
+    /** The text colour. */
+    @ValueMapValue
+    private String textColor;
 
     /** The anchor id. */
     @ValueMapValue
@@ -66,9 +82,11 @@ public class BannerModel {
     @ValueMapValue
     private String anchorTitle;
 
+    /** The width. */
     @ValueMapValue
     private String width;
 
+    /** The anchor linkType. */
     private String linkType;
 
     /**
@@ -115,10 +133,20 @@ public class BannerModel {
         return LinkUtils.sanitizeLink(linkPath, request);
     }
 
+    /**
+     * Gets the file reference.
+     *
+     * @return the file reference
+     */
     public String getFileReference() {
         return fileReference;
     }
 
+    /**
+     * Gets the image alt text.
+     *
+     * @return the image alt text
+     */
     public String getImageAltText() {
         return imageAltText;
     }
@@ -133,12 +161,48 @@ public class BannerModel {
     }
 
     /**
-     * Gets the pw button theme.
+     * Gets the button colour.
      *
-     * @return the pw button theme
+     * @return the button colour
      */
-    public String getPwButtonTheme() {
-        return pwButtonTheme;
+    public String getButtonColor() {
+        return buttonColor;
+    }
+
+    /**
+     * Gets the image gradient.
+     *
+     * @return the image gradient
+     */
+    public String getImageGradient() {
+        return imageGradient;
+    }
+
+    /**
+     * Gets the layout.
+     *
+     * @return the layout
+     */
+    public String getLayout() {
+        return layout;
+    }
+
+    /**
+     * Gets the colour.
+     *
+     * @return the background colour
+     */
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    /**
+     * Gets the text colour.
+     *
+     * @return the text colour
+     */
+    public String getTextColor() {
+        return textColor;
     }
 
     /**
@@ -172,10 +236,20 @@ public class BannerModel {
         return assetName;
     }
 
+    /**
+     * Gets the link width.
+     *
+     * @return the width
+     */
     public String getWidth() {
         return width;
     }
 
+    /**
+     * Gets the link path.
+     *
+     * @return the link path
+     */
     public String getLinkType() {
         return LinkUtils.linkType(this.linkPath);
     }
