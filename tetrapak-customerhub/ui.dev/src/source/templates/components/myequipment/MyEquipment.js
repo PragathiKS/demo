@@ -245,7 +245,7 @@ function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country, description,site,line,serialNumber,equipmentStatus,functionalLocation;
+    let country, description,site,line,serialNumber,equipmentStatus,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
@@ -257,6 +257,12 @@ function _processKeys(keys, ob) {
       else if(i === 'equipmentTypeDesc'){
         description = i;
       }
+      else if(i === 'siteDesc'){
+        siteDescription = i;
+      }
+      else if(i === 'location'){
+        location = i;
+      }
       else if(i === 'serialNumber'){
         serialNumber = i;
       }
@@ -267,7 +273,7 @@ function _processKeys(keys, ob) {
         functionalLocation = i;
       }
     }
-    return [country, site, line, description, serialNumber, equipmentStatus, functionalLocation];
+    return [country, site, line, description, serialNumber, equipmentStatus, functionalLocation, siteDescription, location];
   }
 }
 
@@ -296,6 +302,18 @@ function getKeyMap(key,i18nKeys){
       headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
       headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
+      break;
+    }
+    case 'siteDesc': {
+      headerObj['keyLabel'] = i18nKeys['siteDescription'];
+      headerObj['showTooltip'] = i18nKeys['siteDescToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['siteDescToolTip'];
+      break;
+    }
+    case 'location': {
+      headerObj['keyLabel'] = i18nKeys['location'];
+      headerObj['showTooltip'] = i18nKeys['locationToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['locationToolTip'];
       break;
     }
     case 'serialNumber': {
@@ -437,10 +455,17 @@ class MyEquipment {
   }
   bindEvents() {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
-    this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
+    this.cache.customisableTableHeaders = [
+      {key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
       {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
+      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:2},
       {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
-      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4}];
+      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4},
+      {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:5},
+      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:true,index:6},
+      {key:'siteDesc',option:i18nKeys['siteDescription'],isChecked:true,index:7},
+      {key:'location',option:i18nKeys['location'],isChecked:true,index:8}
+    ];
 
     this.cache.$countryFilterLabel.on('click', () => {
       const formDetail = { activeForm:'country',header:i18nKeys['country'] };
@@ -535,8 +560,8 @@ class MyEquipment {
       this.showHideAllFilters();
     });
 
-    this.root.on('click', '.js-my-equipment__table-summary__cellheading.sortable',  (e) => {
-      const $tHeadBtn = $(e.currentTarget);
+    this.root.on('click', '.js-my-equipment__table-summary__sort',  (e) => {
+      const $tHeadBtn = $(e.currentTarget).parent();
       this.sortTableByKey($tHeadBtn);
     });
 

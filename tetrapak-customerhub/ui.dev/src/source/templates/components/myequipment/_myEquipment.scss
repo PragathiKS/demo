@@ -76,6 +76,9 @@
             &.hide {
                 display: none;
             }
+            &.sorted {
+                padding: 16px 2px 16px 30px;
+            }
             button {
                 font-weight: 500;
             }
@@ -84,6 +87,11 @@
                 &:hover {
                     color: $color-congress-blue;
                 }
+            }
+            .icon-Chevron_Down {
+                width: 12px;
+                position: absolute;
+                left: 16px;
             }
         }
         td {
