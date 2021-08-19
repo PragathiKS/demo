@@ -1,5 +1,7 @@
 // Karma configuration
 // Generated on Fri Jun 25 2021 14:28:14 GMT+0200 (GMT+02:00)
+const webpack                 = require('webpack');
+const webpackConfig           = require('./webpack.common')
 
 module.exports = function(config) {
   config.set({
@@ -27,6 +29,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
+      'src/**/*.spec.js': ['webpack']
     },
 
 
@@ -64,6 +67,43 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser instances should be started simultaneously
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    plugins: [
+      'karma-chrome-launcher',
+      'karma-jasmine',
+      'karma-webpack'
+    ],
+
+    webpack: {
+      mode: 'development',
+      module: {
+        rules: [
+          {
+            test: /\.m?js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env']
+                }
+              }
+          },
+          {
+            test: /\.hbs$/,
+            exclude: /node_modules/,
+            loader: "handlebars-loader"
+          }
+        ]
+      },
+      plugins: [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery'
+        })
+      ],
+      resolve: webpackConfig.resolve
+    }
   })
 }
