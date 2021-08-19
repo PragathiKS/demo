@@ -3,15 +3,22 @@
 }
 
 .pw-banner {
+    @include margin(0 0 16px 0);
+
+    @media #{$tablet} {
+        @include margin(0 48px);
+    }
+    
     position: relative;
 
     &__content {
         @include padding($padding-xxxl);
 
-        @media #{$mobile} {
+        @media (max-width: $v-tablet - 1px){
             @include padding($padding-md);
         }
-        @media #{$desktop} {
+
+        @media #{$tablet} {
             &--background-white {
                 background-color: getbackgroundcolor($color-white);
             }
@@ -21,12 +28,12 @@
         }
         &_wrapper {
             &.reverse {
-                @media #{$desktop} {
+                @media #{$tablet} {
                     display: flex;
                     flex-direction: row-reverse;
                  }
             }
-            @media #{$desktop} {
+            @media #{$tablet} {
                 @include padding(0 $padding-xxxl);
                 top: 0;
                 left: 0;
@@ -49,34 +56,108 @@
             &.hero-title {
                 word-wrap: break-word;
                 color: $color-white;
+                font-size: 32px;
+                line-height: 40px;
+                @media #{$tablet} {
+                    font-weight: bold;
+                    font-size: 78px;
+                    line-height: 96px;
+                }
 
                 &.pw-banner__content--text-black {
                     color: $color-tundora;
-                }
-                h1,
-                h2,
-                h3 {
-                    @include font-size($font-xl);
-                    line-height: 40px;
-                    @media #{$mobile-large} {
-                        @include font-size($font-xxl);
-                        line-height: 48px;
-                    }
-                    @media #{$desktop} {
-                        @include font-size($font-xxxl);
-                        line-height: 60px;
-                    }
                 }
             }
         }
 
         &__description {
             color: $color-white;
+            font-size: 14px;
 
             &.pw-banner__content--text-black {
                 color: $color-tundora;
             }
             @include margin-bottom($margin-xl);
+        }
+
+        &__media {
+            a.tpatom-link {
+                padding: 8px 16px;
+                background: $color-congress-blue;
+                color: $color-white;
+                border-radius: 4px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 24px;
+                font-family: $font-family-primary;
+
+                @media #{$tablet} {
+                    &--secondary {
+                        background: $color-white;
+                        color: $color-congress-blue;
+                        border: none;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: $v-tablet - 1px) {
+            &__title {
+                color: $color-tundora !important;
+            }
+            &__description {
+                color: $color-tundora !important;
+            }
+        }
+    }
+
+    &__image {
+        border-radius: 0;
+
+        @media #{$tablet} {
+            border-radius: 4px;
+            min-height: 620px;
+            object-fit: cover;
+        }
+    }
+
+    @media (min-width: $v-tablet) and (max-width: $v-desktop - 1px) {
+        &__content_wrapper .col-lg-7 {
+            flex: 0 0 100%;
+            max-width: 696px;
+        }
+        &__image {
+            min-height: 457px;
+        }
+    }
+
+    picture {
+        @media #{$tablet} {
+            &::before {
+                height: 100%;
+                width: 100%;
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                border-radius: 4px;
+            }
+
+            &.white-bg::before {
+                background: linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+            }
+
+            &.white-bg-reverse::before {
+                background: linear-gradient(90deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.7) 100%);
+            }
+
+            &.black-bg::before {
+                background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(255,255,255,0) 70%);
+            }
+
+            &.black-bg-reverse::before {
+                background: linear-gradient(90deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%);
+            }
         }
     }
 }
