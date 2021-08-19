@@ -92,7 +92,7 @@
                 font-family: $font-family-primary;
 
                 @media #{$tablet} {
-                    &--secondary {
+                    &.secondary {
                         background: $color-white;
                         color: $color-congress-blue;
                         border: none;
