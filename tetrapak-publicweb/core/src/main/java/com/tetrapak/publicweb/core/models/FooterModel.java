@@ -48,11 +48,21 @@ public class FooterModel {
 
     /** The go to top label. */
     private String goToTopLabel;
+    
+    /** We chat QR code Text */
+    private String wechatQrCodeText;
 
     /** We chat QR code */
     private String wechatQrCodeReference;
-
+    
+    /** We chat Alt text */
     private String qrAltText;
+    
+    /** We chat App Store */
+    private String appStoreReference;
+    
+    /** We chat Google play */
+    private String googlePlayReference;
 
     /**
      * Inits the.
@@ -62,6 +72,7 @@ public class FooterModel {
         final List<FooterLinkModel> footerLinks;
         LOGGER.debug("inside init method");
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+        LOGGER.info("Root path--"+rootPath);
         final String path = rootPath + "/jcr:content/root/responsivegrid/footerconfiguration";
         final Resource footerConfigurationResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(footerConfigurationResource)) {
@@ -77,13 +88,15 @@ public class FooterModel {
                     String sanitizedPath = LinkUtils.sanitizeLink(footerLink.getLinkPath(), request);
                     footerLink.setLinkPath(sanitizedPath);
                     footerLinksSanitized.add(footerLink);
-                }
-                goToTopLabel = configurationModel.getGoToTopLabel();
-                wechatQrCodeReference = configurationModel.getWechatQrCodeReference();
-                qrAltText = configurationModel.getQrAltText();
-
-            }
-        }
+				}
+				goToTopLabel = configurationModel.getGoToTopLabel();
+				wechatQrCodeText = configurationModel.getWechatQrCodeText();
+				wechatQrCodeReference = configurationModel.getWechatQrCodeReference();
+				qrAltText = configurationModel.getQrAltText();
+				appStoreReference = configurationModel.getAppStoreReference();
+				googlePlayReference = configurationModel.getGooglePlayReference();
+			}
+		}
     }
 
     /**
@@ -157,4 +170,31 @@ public class FooterModel {
     public String getQrAltText() {
         return qrAltText;
     }
+    /**
+     * Gets the QR code text.
+     * 
+     * @return the QR code text
+     */
+    public String getWechatQrCodeText() {
+		return wechatQrCodeText;
+	}
+  
+	/**
+	 * Gets the App store.
+	 * 
+	 * @return the App store.
+	 */
+	public String getAppStoreReference() {
+		return appStoreReference;
+	}
+
+	/**
+	 * Gets the Google play store.
+	 * 
+	 * @return the Google play store.
+	 */
+	public String getGooglePlayReference() {
+		return googlePlayReference;
+	}
+
 }

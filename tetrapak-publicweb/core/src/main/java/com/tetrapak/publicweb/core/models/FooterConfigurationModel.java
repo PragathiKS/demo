@@ -52,6 +52,10 @@ public class FooterConfigurationModel {
     /** The go to top label. */
     @ValueMapValue
     private String goToTopLabel;
+    
+    /** QR code Text*/
+    @ValueMapValue
+    private String wechatQrCodeText;
 
     /** QR code */
     @ValueMapValue
@@ -60,6 +64,14 @@ public class FooterConfigurationModel {
     /** Alt Text*/
     @ValueMapValue
     private String qrAltText;
+    
+    /** App Store */
+    @ValueMapValue
+    private String appStoreReference;
+    
+    /** Google play */
+    @ValueMapValue
+    private String googlePlayReference;
 
     /**
      * Gets the logo image path.
@@ -178,4 +190,31 @@ public class FooterConfigurationModel {
     public String getQrAltText() {
         return qrAltText;
     }
+    /**
+     * Gets the QR code text.
+     * 
+     * @return the QR code text
+     */
+    public String getWechatQrCodeText() {
+		return wechatQrCodeText;
+	}
+  
+	/**
+	 * Gets the App store.
+	 * 
+	 * @return the App store.
+	 */
+	public String getAppStoreReference() {
+		return appStoreReference;
+	}
+
+	/**
+	 * Gets the Google play store.
+	 * 
+	 * @return the Google play store.
+	 */
+	public String getGooglePlayReference() {
+		return googlePlayReference;
+	}
+
 }
