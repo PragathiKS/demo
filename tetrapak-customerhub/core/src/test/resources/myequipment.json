@@ -30,7 +30,10 @@
                "siteToolTip":"cuhu.equipment.sitetooltip",
                "lineToolTip":"cuhu.equipment.linetooltip",
                "serialNumToolTip":"cuhu.equipment.serialnumtooltip",
-               "functionalLocationToolTip":"cuhu.equipment.functionallocationtooltip"
+               "functionalLocationToolTip":"cuhu.equipment.functionallocationtooltip",
+               "hideAllFilters":"cuhu.equipment.hideallfilters",
+               "showAllFilters":"cuhu.equipment.showallfilters",
+               "removeAllFilters":"cuhu.equipment.removeallfilters"
             }
          }
       }
