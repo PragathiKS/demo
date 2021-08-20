@@ -177,31 +177,6 @@ public class DynamicImageModel {
 	private static final String CROPN = "cropn";
 
 	/**
-	 * The Constant DESKTOP.
-	 */
-	private static final String DESKTOP = "desktop";
-
-	/**
-	 * The Constant DESKTOP.
-	 */
-	private static final String DESKTOP_LARGE = "desktopL";
-
-	/**
-	 * The Constant MOBILELANDSCAPE.
-	 */
-	private static final String MOBILELANDSCAPE = "mobileL";
-
-	/**
-	 * The Constant PATH_SEPARATOR.
-	 */
-	private static final String PATH_SEPARATOR = "/";
-
-	/**
-	 * The Constant MOBILEPORTRAIT.
-	 */
-	private static final String MOBILEPORTRAIT = "mobileP";
-
-	/**
 	 * Post construct.
 	 */
 	@PostConstruct
@@ -221,14 +196,14 @@ public class DynamicImageModel {
 		}
 
 		if (null != dynamicMediaUrl) {
-			dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PATH_SEPARATOR) + finalPath;
+			dynamicMediaUrl = StringUtils.removeEndIgnoreCase(dynamicMediaUrl, PWConstants.SLASH) + finalPath;
 		}
 
 		if (StringUtils.isNotBlank(dynamicMediaUrl)) {
-			setDesktopUrl(createDynamicMediaUrl(DESKTOP, dynamicMediaUrl));
-			setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
-			setMobilePortraitUrl(createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl));
-			setMobileLandscapeUrl(createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl));
+			setDesktopUrl(createDynamicMediaUrl(PWConstants.DESKTOP, dynamicMediaUrl));
+			setDesktopLargeUrl(createDynamicMediaUrl(PWConstants.DESKTOP_LARGE, dynamicMediaUrl));
+			setMobilePortraitUrl(createDynamicMediaUrl(PWConstants.MOBILEPORTRAIT, dynamicMediaUrl));
+			setMobileLandscapeUrl(createDynamicMediaUrl(PWConstants.MOBILELANDSCAPE, dynamicMediaUrl));
 		}
 		setDefaultImage();
 	}
@@ -401,7 +376,7 @@ public class DynamicImageModel {
 		if (StringUtils.isNotBlank(componentName)) {
 			return componentName;
 		} else {
-			return StringUtils.substringAfterLast(resource.getResourceType(), PATH_SEPARATOR);
+			return StringUtils.substringAfterLast(resource.getResourceType(), PWConstants.SLASH);
 		}
 	}
 
@@ -541,7 +516,7 @@ public class DynamicImageModel {
 	 *            the image path
 	 * @return the string
 	 */
-	private String createDynamicMediaUrl(final String deviceType, final String imagePath) {
+	public String createDynamicMediaUrl(final String deviceType, final String imagePath) {
 		String url = "";
 		final Map<String, String> dynamicMediaConfiguration = getMap(getDynamicMediaConfiguration());
 		final String finalComponentName = getComponentName(request.getResource());
@@ -575,12 +550,12 @@ public class DynamicImageModel {
 			final StringBuilder key) {
 		String imageConfiguration;
 		final String cropping = getCroppingFromMobile();
-		if (deviceType.equals(DESKTOP) && StringUtils.isNotBlank(dwidth) && StringUtils.isNotBlank(dheight)) {
+		if (deviceType.equals(PWConstants.DESKTOP) && StringUtils.isNotBlank(dwidth) && StringUtils.isNotBlank(dheight)) {
 			imageConfiguration = dwidth + "," + dheight;
-		} else if (deviceType.equals(MOBILELANDSCAPE)) {
+		} else if (deviceType.equals(PWConstants.MOBILELANDSCAPE)) {
 			imageConfiguration = getImageConfigurationForMobile(dynamicMediaConfiguration, key, cropping, mwidthl,
 					mheightl);
-		} else if (deviceType.equals(MOBILEPORTRAIT)) {
+		} else if (deviceType.equals(PWConstants.MOBILEPORTRAIT)) {
 			imageConfiguration = getImageConfigurationForMobile(dynamicMediaConfiguration, key, cropping, mwidthp,
 					mheightp);
 		} else {

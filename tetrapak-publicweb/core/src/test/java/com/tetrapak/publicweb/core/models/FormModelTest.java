@@ -31,6 +31,8 @@ public class FormModelTest {
      */
     private static final String RESOURCE = CONTACT_US_CONTENT_ROOT + "/en/contact-us/jcr:content/form";
 
+    private static final String SUBSCRIPTION = CONTACT_US_CONTENT_ROOT + "/en/jcr:content/root/responsivegrid/subscriptionformconf";
+
     /** The resource. */
     private Resource resource;
 
@@ -44,9 +46,6 @@ public class FormModelTest {
     public void setUp() throws Exception {
         context.load().json(TEST_RESOURCE_CONTENT, CONTACT_US_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
-        resource = context.currentResource(RESOURCE);
-        model = resource.adaptTo(modelClass);
-
     }
 
     /**
@@ -56,6 +55,8 @@ public class FormModelTest {
      */
     @Test
     public void testDailogValues() throws Exception {
+        resource = context.currentResource(RESOURCE);
+        model = resource.adaptTo(modelClass);
         assertEquals("Form", "Business Enquiry", model.getHeading());
         assertEquals("Form", "title", model.getAnchorTitle());
         assertEquals("Form", "test01", model.getAnchorId());
@@ -69,5 +70,16 @@ public class FormModelTest {
         assertEquals("Form", "grayscale-white", model.getPwTheme());
        }
 
+
+    @Test
+    public void testDailogValuesSubscription() throws Exception {
+        resource = context.currentResource(SUBSCRIPTION);
+        model = resource.adaptTo(modelClass);
+        assertEquals("Form", "Thank you for subscribing!", model.getThankyouHeading());
+        assertEquals("Form","Confirm your subscription.", model.getThankyouDescriptionText());
+        assertEquals("Form","/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/legal-information",model.getLegalInfoLink());
+        assertEquals("Form","/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak/news-and-events/news-room", model.getNewsroomLink());
+        assertEquals("Form","/content/tetrapak/publicweb/lang-masters/en/contact-us",model.getContactUsLink());
+    }
 
 }

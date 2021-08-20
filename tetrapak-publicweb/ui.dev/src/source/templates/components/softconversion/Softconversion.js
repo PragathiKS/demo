@@ -196,6 +196,25 @@ class Softconversion {
       apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
     }
     loadDownloadReady(this.mainHeading, { ...this.restObj2, 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' }, this.cache.$parentComponent);
+
+    // IF UTM fields in URL
+    const params = {};
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+      return params[key] = value;
+    });
+
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        apiPayload['utm_campaign'] = params[key];
+      } else if(key === 'utm_content') {
+        apiPayload['utm_content'] = params[key];
+      } else if(key === 'utm_medium') {
+        apiPayload['utm_medium'] = params[key];
+      } else if(key === 'utm_source') {
+        apiPayload['utm_source'] = params[key];
+      }
+    });
+
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,

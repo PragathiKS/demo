@@ -1,0 +1,47 @@
+import groovy.transform.Field
+import javax.jcr.Node
+import org.apache.commons.lang3.StringUtils
+
+/**
+set DRY_RUN = false to actually make and save changes in crx.
+**/
+@Field final DRY_RUN = true
+
+/**
+Change ROOT_PAGE_PATH path as per requirement without '/' at the end
+Change COMPONENT_NAME_NODE as per requirement to delete required component without '/' at the start and end
+Change COMPONENT_TITLE as per requirement
+**/
+@Field final PATHS = [
+  ROOT_PAGE_PATH: "/content/tetrapak/publicweb",
+  COMPONENT_NAME_NODE: "publicweb/components/content/title",
+  COMPONENT_TITLE: "title"
+]
+
+def buildQuery(page, term) {
+  def queryManager = session.workspace.queryManager;
+  def statement = 'select * from nt:base where jcr:path like \'' + page.path + '/%\' and sling:resourceType = \'' + term + '\'';
+  queryManager.createQuery(statement, 'sql');
+}
+
+final def page = getPage(PATHS.ROOT_PAGE_PATH)
+
+final def query = buildQuery(page, PATHS.COMPONENT_NAME_NODE);
+final def result = query.execute()
+
+count = 0;
+result.nodes.each {
+  node ->
+    String nodePath = node.path;
+
+  deactivate(nodePath);
+
+  if (nodePath.contains(PATHS.COMPONENT_TITLE)) {
+    count++;
+    println 'deleting--' + nodePath;
+    node.remove();
+    session.save();
+  }
+}
+println 'No Of component found :' + result.nodes.size();
+println 'Number of Component Deleted: ' + count;
