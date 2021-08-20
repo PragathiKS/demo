@@ -72,7 +72,6 @@ public class FooterModel {
         final List<FooterLinkModel> footerLinks;
         LOGGER.debug("inside init method");
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        LOGGER.info("Root path--"+rootPath);
         final String path = rootPath + "/jcr:content/root/responsivegrid/footerconfiguration";
         final Resource footerConfigurationResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(footerConfigurationResource)) {
