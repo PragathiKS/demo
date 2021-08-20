@@ -18,8 +18,8 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
- * @author ojaswarn
  * The Class MyEquipmentModel.
+ *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MyEquipmentModel {
@@ -164,6 +164,18 @@ public class MyEquipmentModel {
 	/** The permanent volume conversion.*/
 	@ValueMapValue
 	private String permanentVolumeConversion;
+	
+	/** The show all filters. */
+	@ValueMapValue
+    private String showAllFilters;
+		
+	/** The hide all filters. */
+	@ValueMapValue
+    private String hideAllFilters;
+	
+	/** The remove all filters. */
+	@ValueMapValue
+    private String removeAllFilters;
 
 	/**
 	 * Gets the noDataFound.
@@ -446,6 +458,33 @@ public class MyEquipmentModel {
 	}
 
 	/**
+	 * Gets the show all filters.
+	 *
+	 * @return the show all filters
+	 */
+	public String getShowAllFilters() {
+        return showAllFilters;
+    }
+
+    /**
+     * Gets the hide all filters.
+     *
+     * @return the hide all filters
+     */
+    public String getHideAllFilters() {
+        return hideAllFilters;
+    }
+
+    /**
+     * Gets the removes the all filters.
+     *
+     * @return the removes the all filters
+     */
+    public String getRemoveAllFilters() {
+        return removeAllFilters;
+    }
+
+    /**
 	 * Gets the sling settings service.
 	 *
 	 * @return the sling settings service
@@ -517,6 +556,10 @@ public class MyEquipmentModel {
 		i18KeyMap.put("hideAndShowCta", getHideAndShowCta());
 		i18KeyMap.put("noDataFound", getNoDataFound());
 		i18KeyMap.put("permanentVolumeConversion", getPermanentVolumeConversion());
+		i18KeyMap.put("showallfilters ", getShowAllFilters());
+		i18KeyMap.put("hideallfilters ", getHideAllFilters());
+		i18KeyMap.put("removeallfilters", getRemoveAllFilters());
+		
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
