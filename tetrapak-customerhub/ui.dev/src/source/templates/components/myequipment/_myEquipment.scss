@@ -138,6 +138,12 @@
         }
     }
 
+    &__type-group-option {
+        & + .tp-my-equipment-filter-options {
+            @include margin-left($margin-md);
+        }
+    }
+
     .modal-footer > :not(:first-child) {
         @include margin-left($margin-l);
     }

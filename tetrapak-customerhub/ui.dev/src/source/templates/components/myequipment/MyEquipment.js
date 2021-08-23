@@ -146,6 +146,30 @@ function getFormattedData(array){
   return array;
 }
 
+function groupByBusinessType(filterOptionsArr) {
+  const businessTypeArr = [];
+  const groupedFilterOptions = [];
+  // get all unique business types
+  filterOptionsArr.forEach((item) => {
+    if (businessTypeArr.indexOf(item['businessType']) === -1) {
+      businessTypeArr.push(item['businessType']);
+    }
+  });
+
+  // create an object for each business type with it's corresponding items
+  businessTypeArr.forEach((businessType) => {
+    const optionsForBusinessType = filterOptionsArr.filter(filterOption => filterOption.businessType === businessType);
+
+    groupedFilterOptions.push({
+      businessTypeLabel: businessType,
+      options: optionsForBusinessType,
+      isChecked: !optionsForBusinessType.some(filterOption => filterOption.isChecked === false)
+    });
+  });
+
+  return groupedFilterOptions;
+}
+
 function getFilterModalData(filterByProperty, array, combinedFiltersObj, filteredTableData) {
   const filterOptionsArr = [];
   const zapFilter = new Zapfilter();
@@ -154,8 +178,13 @@ function getFilterModalData(filterByProperty, array, combinedFiltersObj, filtere
                                   Object.keys(combinedFiltersObj).length === 1;
 
   array.forEach((row) => {
-    if (filterOptionsArr.indexOf(row[filterByProperty]) === -1) {
-      filterOptionsArr.push(row[filterByProperty]);
+    // do not push duplicates, only unique items
+    const isItemPresent = filterOptionsArr.some((o) => o.value === row[filterByProperty]);
+    if (!isItemPresent) {
+      filterOptionsArr.push({
+        value: row[filterByProperty],
+        businessType: row['businessType'] ? row['businessType'] : null
+      });
     }
   });
 
@@ -166,15 +195,16 @@ function getFilterModalData(filterByProperty, array, combinedFiltersObj, filtere
     zapFilter.setFilters([{
       filter: zapFilter.filterEqualTo,
       onProperty: filterByProperty,
-      value: item
+      value: item.value
     }]);
 
     itemFilteredTableData = zapFilter.filter(filteredTableData);
 
     filterOptionsArr[index] = {
-      option: item,
-      isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(item) : false,
-      isDisabled: typeof itemFilteredTableData[0] === 'undefined' && !isSingleFilterApplied
+      option: item.value,
+      isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(item.value) : false,
+      isDisabled: typeof itemFilteredTableData[0] === 'undefined' && !isSingleFilterApplied,
+      businessType: item.businessType
     };
   });
 
@@ -183,7 +213,11 @@ function getFilterModalData(filterByProperty, array, combinedFiltersObj, filtere
     return a.option.localeCompare(b.option);
   });
 
-  return filterOptionsArr;
+  if (filterByProperty === 'equipmentType') {
+    return groupByBusinessType(filterOptionsArr);
+  } else {
+    return filterOptionsArr;
+  }
 }
 
 function _renderCountryFilters() {
@@ -427,6 +461,7 @@ class MyEquipment {
     this.cache.$statusFilterLabel = this.root.find('.tp-my-equipment__status-button-filter');
     this.cache.$serialNumberFilterLabel = this.root.find('.tp-my-equipment__serial-button-filter');
     this.cache.$equipmentDescFilterLabel = this.root.find('.tp-my-equipment__equip-desc-button-filter');
+    this.cache.$equipmentTypeFilterLabel = this.root.find('.tp-my-equipment__equip-type-button-filter');
     this.cache.$functionalLocFilterLabel = this.root.find('.tp-my-equipment__functional-loc-button-filter');
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
@@ -501,6 +536,13 @@ class MyEquipment {
       $modal.modal();
     });
 
+    this.cache.$equipmentTypeFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'equipmentType',header:i18nKeys['equipmentType']};
+      this.cache.filterModalData['equipmentType'] = getFilterModalData('equipmentType', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
+      this.renderFilterForm(this.cache.filterModalData['equipmentType'], formDetail, this.cache.$equipmentTypeFilterLabel);
+      $modal.modal();
+    });
+
     this.cache.$serialNumberFilterLabel.on('click', () => {
       const formDetail = {activeForm:'serialNumber',header:i18nKeys['serialNumber'], isTextInput: true};
       const activeSerialNum = this.cache.combinedFiltersObj['serialNumber'] ? this.cache.combinedFiltersObj['serialNumber'] : '';
@@ -569,6 +611,26 @@ class MyEquipment {
       const $freeTextSearchInput = $modal.find('.js-tp-my-equipment-filter-input');
       if ($freeTextSearchInput.length) {
         $freeTextSearchInput.focus();
+      }
+    });
+
+    // functionality to check/uncheck all inputs in a specific category
+    // Equipment Type filter - All Packaging , All processing
+    this.root.on('change', '.js-tp-my-equipment-filter-group-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $currentTargetWrapper = $currentTarget.parents('.tp-my-equipment__type-group-option');
+      const $checkboxGroupInputs = $currentTargetWrapper.next().find('.tpatom-checkbox__input').not(':disabled');
+      $checkboxGroupInputs.each((index, item) => {
+        $(item).prop('checked', $currentTarget.is(':checked'));
+      });
+    });
+
+    this.root.on('change', '.tp-my-equipment-group-filter-options .js-tp-my-equipment-filter-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $thisGroupAllWrapper = $currentTarget.parents('.tp-my-equipment-group-filter-options').prev();
+      const $thisGroupAllCheckbox = $thisGroupAllWrapper.find('.js-tp-my-equipment-filter-group-checkbox');
+      if (!$currentTarget.is(':checked')) {
+        $thisGroupAllCheckbox.prop('checked', false);
       }
     });
   }
@@ -721,6 +783,12 @@ class MyEquipment {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
         this.updateActiveFiltersData();
         label = i18nKeys['equipmentStatus'];
+        break;
+      }
+      case 'equipmentType': {
+        filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
+        this.updateActiveFiltersData();
+        label = i18nKeys['equipmentType'];
         break;
       }
       case 'serialNumber': {
@@ -891,6 +959,7 @@ class MyEquipment {
       data: {
         header: formDetail.header,
         formData: data,
+        isEquipmentType: formDetail.header === i18nKeys['equipmentType'],
         ...i18nKeys,
         singleButton: formDetail.singleButton === false ? false : true,
         customiseTable: formDetail.activeForm === 'customise-table' ? true : false,
