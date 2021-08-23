@@ -13,15 +13,36 @@
             {{#if isTextInput}}
                 {{> atoms/input/input defaultValue=formData autoLocator=autoLocatorInput eleClasses="js-tp-my-equipment-filter-input"}}
             {{else}}
-                <ul class="tp-my-equipment-filter-options">
+                {{#if isEquipmentType}}
                     {{#each formData}}
-                        {{> atoms/checkbox/checkbox value=option text=option check=isChecked disabled=isDisabled
-                        uniqueKey=option
+                        {{> atoms/checkbox/checkbox value=this.businessTypeLabel text=this.businessTypeLabel check=isChecked disabled=isDisabled
+                        uniqueKey=this.businessTypeLabel
+                        baseClass="tp-my-equipment__type-group-option js-tp-my-equipment-type-group-option"
                         autoLocatorCheckbox=@root.autoLocatorCheckbox
                         autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                        jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                        jsMyEquipmentFilter="js-tp-my-equipment-filter-group-checkbox js-tp-my-equipment-filter-checkbox"}}
+
+                        <div class="tp-my-equipment-filter-options tp-my-equipment-group-filter-options">
+                            {{#each this.options}}
+                                {{> atoms/checkbox/checkbox value=option text=option check=isChecked disabled=isDisabled
+                                uniqueKey=option
+                                autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                            {{/each}}
+                        </div>
                     {{/each}}
-                </ul>
+                    {{else}}
+                        <div class="tp-my-equipment-filter-options">
+                            {{#each formData}}
+                                {{> atoms/checkbox/checkbox value=option text=option check=isChecked disabled=isDisabled
+                                uniqueKey=option
+                                autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                            {{/each}}
+                        </div>
+                {{/if}}
             {{/if}}
         </div>
         <div class="modal-footer tpmol-modal-footer">
