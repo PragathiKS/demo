@@ -279,7 +279,7 @@ function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country, description,site,line,serialNumber,equipmentStatus,functionalLocation,siteDescription,location;
+    let country,equipmentTypeDesc,site,line,serialNumber,equipmentStatus,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
@@ -289,7 +289,7 @@ function _processKeys(keys, ob) {
         line = i;
       }
       else if(i === 'equipmentTypeDesc'){
-        description = i;
+        equipmentTypeDesc = i;
       }
       else if(i === 'siteDesc'){
         siteDescription = i;
@@ -307,7 +307,7 @@ function _processKeys(keys, ob) {
         functionalLocation = i;
       }
     }
-    return [country, site, line, description, serialNumber, equipmentStatus, functionalLocation, siteDescription, location];
+    return [country, line, equipmentStatus, functionalLocation, serialNumber, site, siteDescription, location, equipmentTypeDesc];
   }
 }
 
@@ -492,14 +492,14 @@ class MyEquipment {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
     this.cache.customisableTableHeaders = [
       {key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
-      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
-      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:2},
-      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
+      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:1},
+      {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:2},
+      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:true,index:3},
       {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4},
-      {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:5},
-      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:true,index:6},
-      {key:'siteDesc',option:i18nKeys['siteDescription'],isChecked:true,index:7},
-      {key:'location',option:i18nKeys['location'],isChecked:true,index:8}
+      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:5},
+      {key:'siteDesc',option:i18nKeys['siteDescription'],isChecked:true,index:6},
+      {key:'location',option:i18nKeys['location'],isChecked:true,index:7},
+      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:8}
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {
@@ -746,7 +746,7 @@ class MyEquipment {
 
   applyFilter = (options) => {
     const { activeFilterForm, $activeFilterBtn, i18nKeys } = this.cache;
-    const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox');
+    const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
     let filterCount = 0;
     let filterData = [];
