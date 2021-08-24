@@ -455,7 +455,6 @@ class MyEquipment {
   initCache() {
     this.cache.$modal = this.root.parent().find('.js-filter-modal');
     this.cache.$countryFilterLabel = this.root.find('.tp-my-equipment__country-button-filter');
-    this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment__site-button-filter');
     this.cache.$customerFilterLabel = this.root.find('.tp-my-equipment__customer-button-filter');
     this.cache.$lineFilterLabel = this.root.find('.tp-my-equipment__line-button-filter');
     this.cache.$statusFilterLabel = this.root.find('.tp-my-equipment__status-button-filter');
@@ -508,10 +507,10 @@ class MyEquipment {
       $modal.modal();
     });
 
-    this.cache.$siteFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'siteName',header:i18nKeys['site']};
-      this.cache.filterModalData['siteName'] = getFilterModalData('siteName', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
-      this.renderFilterForm(this.cache.filterModalData['siteName'], formDetail, this.cache.$siteFilterLabel);
+    this.cache.$customerFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'customer',header:i18nKeys['customer']};
+      this.cache.filterModalData['customer'] = getFilterModalData('customer', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
+      this.renderFilterForm(this.cache.filterModalData['customer'], formDetail, this.cache.$customerFilterLabel);
       $modal.modal();
     });
 
@@ -767,10 +766,10 @@ class MyEquipment {
         label = i18nKeys['country'];
         break;
       }
-      case 'siteName': {
+      case 'customer': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
         this.updateActiveFiltersData();
-        label = i18nKeys['site'];
+        label = i18nKeys['customer'];
         break;
       }
       case 'lineName': {
