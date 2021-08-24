@@ -1,0 +1,3 @@
+form[action*=tetralaval] coral-panelstack[maximized] > coral-panel[selected] > coral-panel-content {
+    overflow: unset;
+}
