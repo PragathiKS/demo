@@ -12,7 +12,6 @@ class Footer {
     this.cache.toTopLink = $('#tp-pw-footer__link');
     this.cache.$imageModal = this.root.find('.js-qrCode-modal');
     this.cache.$footerLink=this.root.find('.tp-pw-footer-data-analytics');
-    this.cache.$footerWeChatLink=this.root.find('.weChatLink');
     this.cache.$closeModal = this.root.find('.js-close-btn');
   }
   bindEvents() {
