@@ -10,16 +10,31 @@ class Footer {
   cache = {};
   initCache() {
     this.cache.toTopLink = $('#tp-pw-footer__link');
+    this.cache.$imageModal = this.root.find('.js-qrCode-modal');
     this.cache.$footerLink=this.root.find('.tp-pw-footer-data-analytics');
+    this.cache.$footerWeChatLink=this.root.find('.weChatLink');
+    this.cache.$closeModal = this.root.find('.js-close-btn');
   }
   bindEvents() {
     this.initCache();
     this.cache.toTopLink.on('click', this.goToTop);
     const {$footerLink} = this.cache;
+    const $this = this;
+    // Footer Social Media Click
     $footerLink.on('click', this.trackAnalytics);
+
+    // PopUp Close Button
+    this.cache.$closeModal.on('click', function (e) {
+      e.preventDefault();
+      $this.cache.$imageModal.modal('hide');
+    });
+  }
+  showPopup = () => {
+    this.cache.$imageModal.modal();
   }
   trackAnalytics = (e) => {
     e.preventDefault();
+    const self = this;
     const $target = $(e.target);
     const $this = $target.closest('.tp-pw-footer-data-analytics');
     const targetLink = $this.attr('target');
@@ -52,16 +67,20 @@ class Footer {
       eventObj['event'] = 'Footer';
     }
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    if(url && targetLink && !$this.hasClass('tp-pw-footer__social-media-items__link')){
-      if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224) {
+    if($($this).hasClass('weChatLink')) {
+      self.showPopup();
+    } else {
+      if(url && targetLink && !$this.hasClass('tp-pw-footer__social-media-items__link')){
+        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224) {
+          window.open(url,'_blank');
+        }
+        else {
+          window.open(url,'_self');
+        }
+      }
+      if($this.hasClass('tp-pw-footer__social-media-items__link')){
         window.open(url,'_blank');
       }
-      else {
-        window.open(url,'_self');
-      }
-    }
-    if($this.hasClass('tp-pw-footer__social-media-items__link')){
-      window.open(url,'_blank');
     }
   }
   goToTop(e) {

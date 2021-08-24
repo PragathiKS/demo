@@ -34,10 +34,6 @@
             color: $color-mercury;
             text-decoration: none;
         }
-
-        &.weChatLink {
-            pointer-events: none;
-        }
     }
 
     &__navigation-list {
@@ -60,22 +56,13 @@
 
         }
     }
-
     &__social-media {
-        @media #{$desktop} {
-            display: flex;
-            justify-content: flex-end;
-        }
-        @media #{$small-desktop} {
-            display: block;
-        }
-    }
-
-    &__social-media-items {
         @media #{$mobile} {
             @include margin-top($margin-xxxl);
             @include margin-bottom($margin-xxxl);
         }
+    }
+    &__social-media-items {
         &__link {
             @include font-size($font-l);
             @include margin-right($margin-md);
@@ -83,29 +70,50 @@
                 @include margin-left($margin-md);
                 margin-right: 0;
             }
-
+            &:first-child {
+                margin-left: 0;
+            }
             &:last-child {
                 margin-right: 0;
             }
+        }
+        &__img {
+            margin-left: $margin-md;
 
-            &.icon-wechat-code {
-                display: inline-block;
-                max-width: 115px;
-                cursor: default;
-                pointer-events: none;
-
+            &:first-child {
+                margin-left: 0;
+            }
+            &Title {
+                color: $color-white-new;
+                margin-bottom: $margin-md;
+            }
+            &.storeImgs {
                 @media #{$mobile} {
-                    cursor: pointer;
-                    pointer-events: auto;
+                    display: flex;
+                    flex-direction: column;
+                }
+                img {
+                    margin-left: 0;
+                    margin-top: $margin-md;
+                    max-width: 100%;
+
+                    &:first-child {
+                        margin-top: 0;
+                    }
                 }
             }
-        }
-
-        &__wechat-code {
-            margin-left: $margin-xs;
-            @media #{$mobile} {
-                margin-left: $margin-zero;
+            &.appStore {
+                width: 120px;
             }
+            &.playStore {
+                width: 150px;
+            }
+        }
+        &__wechat-code {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin-bottom: $margin-md;
         }
     }
 
@@ -119,4 +127,19 @@
         }
     }
 
+    .modal-header {
+        border: 0;
+        display: flex;
+        align-items: center;
+        h2 {
+            font-size: $font-l;
+            font-weight: normal;
+            line-height: 1;
+        }
+        .js-close-btn {
+            &::before {
+                font-size: $font-normal;
+            }
+        }
+    }
 }

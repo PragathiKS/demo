@@ -18,7 +18,44 @@
             </li>
           </ul>
         </div>
-        <div class="col-lg-3 text-lg-right tp-pw-footer__social-media">
+        <div class="col-lg-3 ${data.wechatQrCodeReference == null ? 'text-lg-right':''} tp-pw-footer__social-media">
+          <!-- IF Additional Social Media Image -->
+          <h4 class="tp-pw-footer__social-media-items__imgTitle" data-sly-test="${data.wechatQrCodeText}">${data.wechatQrCodeText}</h4>
+          <sly data-sly-test="${data.wechatQrCodeReference != null}">
+            <div class="tp-pw-footer__social-media-items__wechat-code">
+              <div class="tp-pw-footer__social-media-items__img">
+                <img src="${data.wechatQrCodeReference}" alt="${data.qrAltText}">
+              </div>
+              <div class="tp-pw-footer__social-media-items__img storeImgs">
+                <sly data-sly-test="${data.appStoreReference != null}">
+                  <img src="${data.appStoreReference}" alt="${data.appStoreAltText}" class="tp-pw-footer__social-media-items__img appStore">
+                </sly>
+                <sly data-sly-test="${data.googlePlayReference != null}">
+                  <img src="${data.googlePlayReference}" alt="${data.googlePlayAltText}" class="tp-pw-footer__social-media-items__img playStore">
+                </sly>
+              </div>
+            </div>
+          </sly>
+          <!-- QR Code Modal -->
+          <sly data-sly-test="${data.wechatQrCodeReference != null}">
+            <div class="tp-pw-footer__modal modal tp-modal js-qrCode-modal fade"tabindex="-1" role="dialog">
+              <div class="modal-dialog modal-dialog-centered tp-modal-dialog modal-md">
+                <div class="modal-content tp-modal-content pw-padding--regular pw-margin--regular">
+                  <div class="modal-header">
+                    <h2 role="heading" class="">
+                      <span class="pw-footer__modalTitle">${data.wechatQrCodeText}</span>
+                    </h2>
+                    <button type="button" class="tp-close-btn icon-Close_pw pw-footer__header__close js-close-btn" aria-label="close button" title="close button"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img src="${data.wechatQrCodeReference}" alt="${data.qrAltText}" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sly>
+
+          <!-- Social Media Links -->
           <div class="tp-pw-footer__social-media-items footer-analytics" data-sly-list.socialLink="${data.socialLinks}">
             <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics${socialLink.socialMedia == 'WeChat' ? ' weChatLink':''}"
               href="${socialLink.socialMediaLink}" target="_blank" data-sly-test="${socialLink.socialMediaLink}"
@@ -26,15 +63,6 @@
               <i class="icon-${socialLink.socialMedia}_pw"></i>
             </a>
           </div>
-
-          <!-- IF Additional Social Media Image -->
-          <sly data-sly-test="${data.wechatQrCodeReference != null}">
-            <div class="tp-pw-footer__social-media-items__wechat-code">
-              <a class="tp-pw-footer__social-media-items__link tp-pw-footer__link tp-pw-footer-data-analytics icon-wechat-code" href="javascript:;" target="_blank" data-link-name="${data.qrAltText}">
-                <img src="${data.wechatQrCodeReference}" alt="${data.qrAltText}">
-              </a>
-            </div>
-          </sly>
         </div>
       </div>
       <div class="col tp_goTopBtn">
