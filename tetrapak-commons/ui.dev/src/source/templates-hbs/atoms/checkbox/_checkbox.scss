@@ -4,6 +4,7 @@
         @include margin-bottom($margin-sm);
         position: relative;
         padding: 0;
+        display: flex;
     }
     &__input {
         position: absolute;
@@ -37,6 +38,7 @@
         display: inline-block;
         border: 1px solid $color-boulder;
         color: $color-boulder;
+        flex-shrink: 0;
         &::before {
             @include font-size($font-baseline);
             width: 100%;
