@@ -67,8 +67,6 @@ module.exports = {
       categories: ['tetra-laval.site'],
       dependencies: ['tetra-laval.dependencies'],
       assets: {
-        // Copy entrypoint scripts and stylesheets into the respective ClientLib
-        // directories
         js: {
           cwd: 'clientlib-site',
           files: ['**/*.js'],
@@ -78,6 +76,12 @@ module.exports = {
           cwd: 'clientlib-site',
           files: ['**/*.css'],
           flatten: false
+        },
+        resources: {
+          files: [{
+            src: path.join(__dirname, '../../tetrapak-commons/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/*.*'),
+            dest: 'fonts/'
+          }]
         }
       }
     }
