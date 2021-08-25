@@ -32,23 +32,38 @@
         width: auto;
     }
 
+    ul {
+        ul {
+            @include padding-left($padding-md);
+            @include padding-top($padding-xs);
+
+            li {
+                &::before  {
+                    @include margin-right($margin-m);
+                }
+            }
+        }
+    }
+
     li {
         display: block;
     }
 
-    .tp-pw-richText-wrapper a {
-        @include padding(0);
-        border: 0;
-        color: $color-congress-blue;
-        background: none;
-        cursor: pointer;
+    .tp-pw-richText-wrapper {
+        & a {
+            @include padding(0);
+            border: 0;
+            color: $color-congress-blue;
+            background: none;
+            cursor: pointer;
 
-        &:hover {
-            color: $color-sky-blue;
-            background-color: transparent;
-        }
-        & > .icon {
-            @include padding-left(6px);
+            &:hover {
+                color: $color-sky-blue;
+                background-color: transparent;
+            }
+            & > .icon {
+                @include padding-left(6px);
+            }
         }
     }
 
@@ -100,14 +115,22 @@
 
     ul {
         li {
-            @include font-size($font-baseline);
-
             &::before {
-                @include margin-right($margin-sm);
                 @include font-size($bullet-size);
                 display: inline-block;
                 color: $color-tundora;
                 content: '\2022';
+            }
+        }
+
+        ul {
+            li {
+                &::before {
+                    @include font-size($bullet-size);
+                    display: inline-block;
+                    color: $color-tundora;
+                    content: '\2022';
+                }
             }
         }
     }
@@ -118,7 +141,6 @@
         li {
             &::before {
                 @include margin-right($margin-sm);
-                @include font-size(14px);
                 content: counters(section, '.') ' ';
                 counter-increment: section;
             }
@@ -127,41 +149,41 @@
 
     ol ol,
     ul ul {
-        @include padding(0 0 0 20px);
+        li {
+            &::before  {
+                @include margin-right($margin-m);
+            }
+        }
     }
+
 
     ul > li > ul,
     ol > li > ol {
+        @include padding-top($padding-xs);
         @include margin-bottom(0);
-        :last-child {
-            @include padding-bottom(0);
-        }
+    }
+
+    ul > li > ul {
+        @include padding-left($padding-m);
+    }
+
+    ol > li > ol {
+        @include padding-left($padding-l);
     }
 
     ul li,
     ol li {
-        @include font-size(14px);
         @include padding-bottom(16px);
         &::before {
             color: $color-tundora;
         }
-        &:last-child {
-            @include padding-bottom(0);
-        }
-        li {
-            @include padding-bottom(8px);
-        }
-    }
-
-    ol li ol,
-    ul li ul {
-        @include padding-top(16px);
     }
 
     ul ul ul {
         li {
-            @include font-size(12px);
-            @include padding-bottom(8px);
+            @include padding-left($padding-xs);
+            @include line-height($line-height-body, $font-m-sm);
+
             &::before {
                 content: '\2012';
                 font-weight: 400;
@@ -170,9 +192,8 @@
     }
 
     ol ol ol {
-        @include padding-left(28px);
+        @include padding-left($padding-xxl);
         li {
-            @include font-size(12px);
             @include padding-bottom(8px);
         }
     }
