@@ -12,7 +12,7 @@
     }
 
     .pw-anchor-list > .pw-anchor-content {
-        @include font-size($font-baseline);
+        font-size: $font-baseline;
         @include line-height($font-l, $font-baseline);
         @include padding($padding-sm $padding-md);
         color: $color-congress-blue;

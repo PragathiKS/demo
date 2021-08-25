@@ -71,7 +71,7 @@
 
     &__subTitle {
         @include margin-bottom($margin-sm);
-        @include font-size($font-sm);
+        font-size: $font-sm;
         @include line-height(16px, $font-sm);
         color: $color-boulder;
         font-weight: 500;
@@ -82,23 +82,34 @@
         @media #{$desktop} {
             @include margin-top($margin-xl);
         }
+        a {
+            font-size: $font-baseline;
+        }
     }
 
     &__title {
         @include margin-bottom($padding-md);
-        @include font-size($font-m-xl);
+        font-size: $font-l;
+        font-weight: bold;
         @include line-height(32px, $font-m-xl);
         color: $color-tundora;
         @media #{$desktop} {
             @include margin-bottom($padding-md);
-            @include font-size($font-xl);
+            font-size: $font-xl;
             @include line-height(40px, $font-xl);
+        }
+        h3, h2 {
+            font-size: $font-l;
+            font-weight: bold;
+            @media #{$desktop} {
+                font-size: $font-xl;
+            }
         }
     }
 
     &__description {
         @include margin-bottom($margin-zero);
-        @include font-size($font-baseline);
+        font-size: $font-baseline;
         @include line-height(24px, $font-baseline);
         ul {
             li {

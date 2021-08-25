@@ -25,7 +25,7 @@
         @extend .d-lg-none;
 
         @media #{$mobile} {
-            @include font-size($font-m-md);
+            font-size: $font-m-md;
             @include line-height($line-height-medium, $font-m-md);
         }
 
@@ -52,7 +52,7 @@
             z-index: $zindex-nav;
 
             &-item {
-                @include font-size($font-normal);
+                font-size: $font-normal;
                 @include line-height($line-height-body, $font-normal);
 
                 color: $color-congress-blue;
@@ -204,17 +204,17 @@
             @extend .d-flex;
             @extend .align-items-center;
 
-            @include font-size($font-normal);
+            font-size: $font-normal;
             @include line-height($line-height-small, $font-normal);
 
             a {
-                @include font-size($font-normal);
+                font-size: $font-normal;
                 @include line-height($line-height-small, $font-normal);
                 margin-left: $padding-md;
             }
 
             @media #{$mobile} {
-                @include font-size($font-m-md);
+                font-size: $font-m-md;
                 @include line-height($line-height-medium, $font-m-md);
             }
         }
@@ -248,7 +248,8 @@
         width: 100%;
         background-color: $color-white;
         left: 50%;
-        transform: translate(-50%, 10.5%);
+        transform: translate(-50%,0px);
+        top: 88px;
         z-index: $zindex-header;
         &__wrapper {
             margin: 0 auto;

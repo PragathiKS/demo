@@ -29,12 +29,12 @@
 
         h2,
         h3 {
-            @include font-size($font-l);
+            font-size: $font-l;
             font-weight: bold;
             font-size: 24px;
             line-height: 32px;
             @media #{$desktop} {
-                @include font-size($font-xl);
+                font-size: $font-xl;
                 line-height: 40px;
                 font-weight: 700;
             }
@@ -95,7 +95,7 @@
         .title {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
-            @include font-size($font-md);
+            font-size: $font-md;
             color: $color-tundora;
             line-height: 24px;
             font-style: normal;
@@ -103,7 +103,7 @@
 
         }
         .description {
-            @include font-size($font-baseline);
+            font-size: $font-baseline;
             color: $color-tundora;
             font-style: normal;
             font-weight: normal;
@@ -114,7 +114,7 @@
             @include margin-bottom($margin-zero);
             color: $color-congress-blue;
             font-weight: 500;
-            font-size: 14px;
+            font-size: $font-baseline;
             line-height: 24px;
 
             @media #{$desktop} {
@@ -124,6 +124,7 @@
             a,
             span {
                 font-weight: 500;
+                font-size: $font-baseline;
             }
         }
         .teaser-image-link {

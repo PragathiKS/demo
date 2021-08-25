@@ -59,7 +59,7 @@
     }
 
     &__social-media-items {
-        @include font-size($font-l);
+        font-size: $font-l;
 
         @media #{$mobile} {
             @include margin-top($margin-xl);
