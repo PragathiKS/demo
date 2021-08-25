@@ -70,7 +70,7 @@
     }
 
     &__subTitle {
-        font-size: 12px;
+        font-size: $font-sm;
         @include margin-top($margin-zero);
         @include margin-bottom($margin-sm);
         @include line-height($font-normal, $font-sm);
@@ -84,7 +84,7 @@
             text-transform: $uppercase;
         }
         span.tpatom-subheading {
-            font-size: 12px;
+            font-size: $font-sm;
             @include line-height($font-normal, $font-sm);
             font-family: $font-family-primary;
             font-weight: 500;
@@ -95,15 +95,15 @@
         @include margin-bottom($margin-md);
 
         h3 {
-            font-size: 24px;
+            font-size: $font-l;
             @media #{$desktop} {
-                font-size: 32px;
+                font-size: $font-xl;
             }
         }
     }
 
     &__description {
-        font-size: 14px;
+        font-size: $font-baseline;
         @include line-height(28px, 16px);
         ul {
             li {
@@ -117,7 +117,7 @@
             }
         }
         @media #{$desktop} {
-            font-size: 14px;
+            font-size: $font-baseline;
             @include line-height(24px, 14px);
         }
         a {
@@ -140,11 +140,11 @@
             @include line-height(24px, 14px);
             background-color: none;
             a {
-                font-size: 14px;
+                font-size: $font-baseline;
             }
         }
         a {
-            font-size: 14px;
+            font-size: $font-baseline;
         }
     }
 
