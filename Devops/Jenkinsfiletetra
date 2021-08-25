@@ -66,7 +66,7 @@ pipeline {
 			
                 script {
                     if (params.Build_Commons) {
-                        appname = "commons"
+                        appname = "tetrapak-commons"
                         buildandsonar()
                     }
                     else {
