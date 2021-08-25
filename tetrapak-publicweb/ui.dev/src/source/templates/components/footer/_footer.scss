@@ -34,10 +34,6 @@
             color: $color-mercury;
             text-decoration: none;
         }
-
-        &.weChatLink {
-            pointer-events: none;
-        }
     }
 
     &__navigation-list {
@@ -60,52 +56,64 @@
 
         }
     }
-
     &__social-media {
-        @media #{$desktop} {
-            display: flex;
-            justify-content: flex-end;
-        }
-        @media #{$small-desktop} {
-            display: block;
-        }
-    }
-
-    &__social-media-items {
         @media #{$mobile} {
             @include margin-top($margin-xxxl);
             @include margin-bottom($margin-xxxl);
         }
+    }
+    &__social-media-items {
         &__link {
             @include font-size($font-l);
             @include margin-right($margin-md);
             @media #{$desktop} {
                 @include margin-left($margin-md);
-                margin-right: 0;
+                margin-right: $margin-zero;
             }
-
-            &:last-child {
-                margin-right: 0;
-            }
-
-            &.icon-wechat-code {
-                display: inline-block;
-                max-width: 115px;
-                cursor: default;
-                pointer-events: none;
-
-                @media #{$mobile} {
-                    cursor: pointer;
-                    pointer-events: auto;
-                }
-            }
-        }
-
-        &__wechat-code {
-            margin-left: $margin-xs;
-            @media #{$mobile} {
+            &:first-child {
                 margin-left: $margin-zero;
             }
+            &:last-child {
+                margin-right: $margin-zero;
+            }
+        }
+        &__img {
+            margin-left: $margin-md;
+
+            &:first-child {
+                margin-left: $margin-zero;
+            }
+            &Title {
+                color: $color-white-new;
+                margin-bottom: $margin-md;
+            }
+            &.storeImgs {
+                @media #{$mobile} {
+                    display: flex;
+                    flex-direction: column;
+                }
+                img {
+                    margin-left: $margin-zero;
+                    margin-top: $margin-md;
+                    max-width: 100%;
+
+                    &:first-child {
+                        margin-top: $margin-zero;
+                    }
+                }
+            }
+            &.appStore {
+                width: 120px;
+            }
+            &.playStore {
+                width: 150px;
+            }
+        }
+        &__wechat-code {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin-bottom: $margin-md;
         }
     }
 
@@ -118,5 +126,4 @@
             margin-left: $margin-sm;
         }
     }
-
 }

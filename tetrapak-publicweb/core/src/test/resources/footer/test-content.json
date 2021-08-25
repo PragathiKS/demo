@@ -49,7 +49,12 @@
 					"logoLink": "/content/tetrapak/publicweb/lang-masters",
 					"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
 					"wechatQrCodeReference": "/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png",
+					"wechatQrCodeText": "QR code Text",
 					"qrAltText": "Alt Text",
+					"appStoreReference": "/content/dam/tetrapak/publicweb/gb/App-Store.png",
+					"appStoreAltText": "App store alt text",
+                    "googlePlayReference": "/content/dam/tetrapak/publicweb/gb/Google-Play.png",
+                    "googlePlayAltText": "Google play alt text",
 					"footerLinks":{
 					"jcr:primaryType": "nt:unstructured",
 					"item0": {
