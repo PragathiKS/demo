@@ -114,6 +114,10 @@ Rich text
     ol,
     ul {
         @include margin-bottom(8px);
+        font-size: $font-baseline;
+        li {
+            font-size: $font-baseline;
+        }
     }
 
     ul {
