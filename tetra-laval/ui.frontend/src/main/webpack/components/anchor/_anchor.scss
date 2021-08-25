@@ -3,10 +3,6 @@
     &.tp-container {
         @include padding(0);
         @include margin($margin-l $margin-xl);
-        @media #{$desktop} {
-            @include margin($margin-l $margin-xl $margin-zero $margin-xl);
-            @include margin-bottom(-$margin-md);
-        }
     }
     &__regular {
         @media #{$desktop} {
@@ -30,7 +26,7 @@
         &.tp-container {
             @include max-width($body-max-width);
             @include padding(0);
-            @include margin($margin-l auto $margin-zero auto);
+            @include margin($margin-xl auto);
         }
         .pw-anchor-list {
             @include border-radius($border-radius);

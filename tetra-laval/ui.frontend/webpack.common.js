@@ -57,13 +57,19 @@ module.exports = {
                   }
             },
             {
-                test: /\.scss$/,
+                test: /\.(sc|sa|c)ss$/,
+                exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
+                        options: { url: false }
+                    },
+                    {
+                        loader: 'string-replace-loader',
                         options: {
-                            url: false
+                            search: /(\.+\/)+assets/g,
+                            replace: `../resources`
                         }
                     },
                     {
@@ -73,55 +79,39 @@ module.exports = {
                                 return [
                                     require('autoprefixer')
                                 ];
-                            }
+                            },
                         }
                     },
                     {
                         loader: 'sass-loader',
-                        options: {
-                            url: false
-                        }
                     },
                     {
                         loader: 'glob-import-loader',
                         options: {
-                            resolve: resolve
+                            sourceMap: true,
+                            sourceMapContents: false
                         }
                     }
                 ]
             },
             {
-                test: /\.(ttf|eot|woff|woff2|svg)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        esModule: false
-                    },
-                },
-            },
-            {
               test: /\.hbs$/,
-              exclude: /node_modules/,
-              loader: "handlebars-loader"
+              loader: 'ignore-loader'
             }
         ]
     },
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].css'
+            filename: "[name].css",
+            chunkFilename: "[name].css"
         }),
         new webpack.ProvidePlugin({
           $: 'jquery',
           jQuery: 'jquery',
           'window.jQuery': 'jquery'
         }),
-        new webpack.LoaderOptionsPlugin({
-          options: {
-            handlebarsLoader: {}
-          }
-        })
+        new webpack.ProgressPlugin()
     ],
     stats: {
         assetsSort: 'chunks',

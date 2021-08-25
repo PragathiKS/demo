@@ -49,10 +49,26 @@ public class FooterModel {
     /** The go to top label. */
     private String goToTopLabel;
 
-    /** We chat QR code */
-    private String wechatQrCodeReference;
+	/** We chat QR code Text */
+	private String wechatQrCodeText;
 
-    private String qrAltText;
+	/** We chat QR code */
+	private String wechatQrCodeReference;
+
+	/** We chat Alt text */
+	private String qrAltText;
+
+	/** We chat App Store */
+	private String appStoreReference;
+
+	/** We chat App Store Alt text */
+	private String appStoreAltText;
+
+	/** We chat Google play */
+	private String googlePlayReference;
+
+	/** We chat Google play Alt text */
+	private String googlePlayAltText;
 
     /**
      * Inits the.
@@ -78,13 +94,17 @@ public class FooterModel {
                     footerLink.setLinkPath(sanitizedPath);
                     footerLinksSanitized.add(footerLink);
                 }
-                goToTopLabel = configurationModel.getGoToTopLabel();
-                wechatQrCodeReference = configurationModel.getWechatQrCodeReference();
-                qrAltText = configurationModel.getQrAltText();
-
-            }
-        }
-    }
+				goToTopLabel = configurationModel.getGoToTopLabel();
+				wechatQrCodeText = configurationModel.getWechatQrCodeText();
+				wechatQrCodeReference = configurationModel.getWechatQrCodeReference();
+				qrAltText = configurationModel.getQrAltText();
+				appStoreReference = configurationModel.getAppStoreReference();
+				appStoreAltText = configurationModel.getAppStoreAltText();
+				googlePlayReference = configurationModel.getGooglePlayReference();
+				googlePlayAltText = configurationModel.getGooglePlayAltText();
+			}
+		}
+	}
 
     /**
      * Gets the logo image path.
@@ -157,4 +177,49 @@ public class FooterModel {
     public String getQrAltText() {
         return qrAltText;
     }
+    
+	/**
+	 * Gets the QR code text.
+	 * 
+	 * @return the QR code text.
+	 */
+	public String getWechatQrCodeText() {
+		return wechatQrCodeText;
+	}
+
+	/**
+	 * Gets the App store.
+	 * 
+	 * @return the App store.
+	 */
+	public String getAppStoreReference() {
+		return appStoreReference;
+	}
+
+	/**
+	 * Gets the App store Alt text.
+	 * 
+	 * @return the App store Alt text.
+	 */
+	public String getAppStoreAltText() {
+		return appStoreAltText;
+	}
+
+	/**
+	 * Gets the Google play store.
+	 * 
+	 * @return the Google play store.
+	 */
+	public String getGooglePlayReference() {
+		return googlePlayReference;
+	}
+
+	/**
+	 * Gets the Google play Alt text.
+	 * 
+	 * @return the Google play Alt text.
+	 */
+	public String getGooglePlayAltText() {
+		return googlePlayAltText;
+	}
 }

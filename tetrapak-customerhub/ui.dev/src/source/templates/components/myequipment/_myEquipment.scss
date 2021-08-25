@@ -125,6 +125,17 @@
 
     &__remove-button {
         color: $color-congress-blue;
+
+        &:hover {
+            color: $color-sky-blue;
+            .icon {
+                color: $color-sky-blue;
+            }
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-sm);
+        }
     }
 
     &__show-hide-button {
@@ -135,6 +146,23 @@
             @include margin-right(3px);
             display: inline-block;
             transform: translateY(1px);
+        }
+
+        &:hover {
+            color: $color-sky-blue;
+            .icon {
+                color: $color-sky-blue;
+            }
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-sm);
+        }
+    }
+
+    &__type-group-option {
+        & + .tp-my-equipment-filter-options {
+            @include margin-left($margin-md);
         }
     }
 

@@ -34,8 +34,8 @@
           ${"cuhu.equipment.country" @i18n} +
         </button>
 
-        <button type="button" data-label="${'cuhu.equipment.site' @i18n} +" class="tp-my-equipment__site-button-filter tp-my-equipment__filter-button" auto_locator="customerFilter">
-          ${"cuhu.equipment.site" @i18n} +
+        <button type="button" data-label="${'cuhu.equipment.customer' @i18n} +" class="tp-my-equipment__customer-button-filter tp-my-equipment__filter-button" auto_locator="customerFilter">
+          ${"cuhu.equipment.customer" @i18n} +
         </button>
 
         <button type="button" data-label="${'cuhu.equipment.line' @i18n} +" class="tp-my-equipment__line-button-filter tp-my-equipment__filter-button" auto_locator="lineFilter">
@@ -44,6 +44,10 @@
 
         <button type="button" data-label="${'cuhu.equipment.equipmentstatus' @i18n} +" class="tp-my-equipment__status-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="statusFilter">
           ${"cuhu.equipment.equipmentstatus" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.equipmenttype' @i18n} +" class="tp-my-equipment__equip-type-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="typeFilter">
+          ${"cuhu.equipment.equipmenttype" @i18n} +
         </button>
 
         <button type="button" data-label="${'cuhu.equipment.equipmentdescription' @i18n} +" class="tp-my-equipment__equip-desc-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="descriptionFilter">
@@ -61,11 +65,11 @@
       <div>
         <button data-show-label="cuhu.equipment.showallfilters" data-hide-label="cuhu.equipment.hideallfilters" class="tpatom-btn tp-my-equipment__show-hide-button js-tp-my-equipment__show-hide-all-button" auto_locator="hideFilter">
           <i class="icon icon-Filter"></i>
-          <span class="tpatom-btn__text sly-text">cuhu.equipment.showallfilters</span>
+          <span class="tpatom-btn__text sly-text">${"cuhu.equipment.showallfilters" @i18n}</span>
         </button>
         <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-all-button" auto_locator="removeFilter">
           <i class="icon icon-My_Euipment_Bin_X"></i>
-          <span class="tpatom-btn__text sly-text">cuhu.equipment.removeallfilters</span>
+          <span class="tpatom-btn__text sly-text">${"cuhu.equipment.removeallfilters" @i18n}</span>
         </button>
       </div>
     </div>

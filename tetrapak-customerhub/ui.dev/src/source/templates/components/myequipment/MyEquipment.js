@@ -146,6 +146,30 @@ function getFormattedData(array){
   return array;
 }
 
+function groupByBusinessType(filterOptionsArr) {
+  const businessTypeArr = [];
+  const groupedFilterOptions = [];
+  // get all unique business types
+  filterOptionsArr.forEach((item) => {
+    if (businessTypeArr.indexOf(item['businessType']) === -1) {
+      businessTypeArr.push(item['businessType']);
+    }
+  });
+
+  // create an object for each business type with it's corresponding items
+  businessTypeArr.forEach((businessType) => {
+    const optionsForBusinessType = filterOptionsArr.filter(filterOption => filterOption.businessType === businessType);
+
+    groupedFilterOptions.push({
+      businessTypeLabel: businessType,
+      options: optionsForBusinessType,
+      isChecked: !optionsForBusinessType.some(filterOption => filterOption.isChecked === false)
+    });
+  });
+
+  return groupedFilterOptions;
+}
+
 function getFilterModalData(filterByProperty, array, combinedFiltersObj, filteredTableData) {
   const filterOptionsArr = [];
   const zapFilter = new Zapfilter();
@@ -154,8 +178,13 @@ function getFilterModalData(filterByProperty, array, combinedFiltersObj, filtere
                                   Object.keys(combinedFiltersObj).length === 1;
 
   array.forEach((row) => {
-    if (filterOptionsArr.indexOf(row[filterByProperty]) === -1) {
-      filterOptionsArr.push(row[filterByProperty]);
+    // do not push duplicates, only unique items
+    const isItemPresent = filterOptionsArr.some((o) => o.value === row[filterByProperty]);
+    if (!isItemPresent) {
+      filterOptionsArr.push({
+        value: row[filterByProperty],
+        businessType: row['businessType'] ? row['businessType'] : null
+      });
     }
   });
 
@@ -166,15 +195,16 @@ function getFilterModalData(filterByProperty, array, combinedFiltersObj, filtere
     zapFilter.setFilters([{
       filter: zapFilter.filterEqualTo,
       onProperty: filterByProperty,
-      value: item
+      value: item.value
     }]);
 
     itemFilteredTableData = zapFilter.filter(filteredTableData);
 
     filterOptionsArr[index] = {
-      option: item,
-      isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(item) : false,
-      isDisabled: typeof itemFilteredTableData[0] === 'undefined' && !isSingleFilterApplied
+      option: item.value,
+      isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(item.value) : false,
+      isDisabled: typeof itemFilteredTableData[0] === 'undefined' && !isSingleFilterApplied,
+      businessType: item.businessType
     };
   });
 
@@ -183,7 +213,11 @@ function getFilterModalData(filterByProperty, array, combinedFiltersObj, filtere
     return a.option.localeCompare(b.option);
   });
 
-  return filterOptionsArr;
+  if (filterByProperty === 'equipmentType') {
+    return groupByBusinessType(filterOptionsArr);
+  } else {
+    return filterOptionsArr;
+  }
 }
 
 function _renderCountryFilters() {
@@ -245,7 +279,7 @@ function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country, description,site,line,serialNumber,equipmentStatus,functionalLocation,siteDescription,location;
+    let country,equipmentTypeDesc,site,line,serialNumber,equipmentStatus,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
@@ -255,7 +289,7 @@ function _processKeys(keys, ob) {
         line = i;
       }
       else if(i === 'equipmentTypeDesc'){
-        description = i;
+        equipmentTypeDesc = i;
       }
       else if(i === 'siteDesc'){
         siteDescription = i;
@@ -273,7 +307,7 @@ function _processKeys(keys, ob) {
         functionalLocation = i;
       }
     }
-    return [country, site, line, description, serialNumber, equipmentStatus, functionalLocation, siteDescription, location];
+    return [country, line, equipmentStatus, functionalLocation, serialNumber, site, siteDescription, location, equipmentTypeDesc];
   }
 }
 
@@ -421,12 +455,12 @@ class MyEquipment {
   initCache() {
     this.cache.$modal = this.root.parent().find('.js-filter-modal');
     this.cache.$countryFilterLabel = this.root.find('.tp-my-equipment__country-button-filter');
-    this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment__site-button-filter');
     this.cache.$customerFilterLabel = this.root.find('.tp-my-equipment__customer-button-filter');
     this.cache.$lineFilterLabel = this.root.find('.tp-my-equipment__line-button-filter');
     this.cache.$statusFilterLabel = this.root.find('.tp-my-equipment__status-button-filter');
     this.cache.$serialNumberFilterLabel = this.root.find('.tp-my-equipment__serial-button-filter');
     this.cache.$equipmentDescFilterLabel = this.root.find('.tp-my-equipment__equip-desc-button-filter');
+    this.cache.$equipmentTypeFilterLabel = this.root.find('.tp-my-equipment__equip-type-button-filter');
     this.cache.$functionalLocFilterLabel = this.root.find('.tp-my-equipment__functional-loc-button-filter');
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
@@ -457,14 +491,14 @@ class MyEquipment {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
     this.cache.customisableTableHeaders = [
       {key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
-      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
-      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:2},
-      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
+      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:1},
+      {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:2},
+      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:true,index:3},
       {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4},
-      {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:5},
-      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:true,index:6},
-      {key:'siteDesc',option:i18nKeys['siteDescription'],isChecked:true,index:7},
-      {key:'location',option:i18nKeys['location'],isChecked:true,index:8}
+      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:5},
+      {key:'siteDesc',option:i18nKeys['siteDescription'],isChecked:true,index:6},
+      {key:'location',option:i18nKeys['location'],isChecked:true,index:7},
+      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:8}
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {
@@ -473,10 +507,10 @@ class MyEquipment {
       $modal.modal();
     });
 
-    this.cache.$siteFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'siteName',header:i18nKeys['site']};
-      this.cache.filterModalData['siteName'] = getFilterModalData('siteName', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
-      this.renderFilterForm(this.cache.filterModalData['siteName'], formDetail, this.cache.$siteFilterLabel);
+    this.cache.$customerFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'customer',header:i18nKeys['customer']};
+      this.cache.filterModalData['customer'] = getFilterModalData('customer', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
+      this.renderFilterForm(this.cache.filterModalData['customer'], formDetail, this.cache.$customerFilterLabel);
       $modal.modal();
     });
 
@@ -498,6 +532,13 @@ class MyEquipment {
       const formDetail = {activeForm:'equipmentTypeDesc', header:i18nKeys['equipmentDescription'], isTextInput: true};
       const activeEquipTypeDesc = this.cache.combinedFiltersObj['equipmentTypeDesc'] ? this.cache.combinedFiltersObj['equipmentTypeDesc'] : '';
       this.renderFilterForm(activeEquipTypeDesc, formDetail, this.cache.$equipmentDescFilterLabel);
+      $modal.modal();
+    });
+
+    this.cache.$equipmentTypeFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'equipmentType',header:i18nKeys['equipmentType']};
+      this.cache.filterModalData['equipmentType'] = getFilterModalData('equipmentType', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
+      this.renderFilterForm(this.cache.filterModalData['equipmentType'], formDetail, this.cache.$equipmentTypeFilterLabel);
       $modal.modal();
     });
 
@@ -569,6 +610,26 @@ class MyEquipment {
       const $freeTextSearchInput = $modal.find('.js-tp-my-equipment-filter-input');
       if ($freeTextSearchInput.length) {
         $freeTextSearchInput.focus();
+      }
+    });
+
+    // functionality to check/uncheck all inputs in a specific category
+    // Equipment Type filter - All Packaging , All processing
+    this.root.on('change', '.js-tp-my-equipment-filter-group-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $currentTargetWrapper = $currentTarget.parents('.tp-my-equipment__type-group-option');
+      const $checkboxGroupInputs = $currentTargetWrapper.next().find('.tpatom-checkbox__input').not(':disabled');
+      $checkboxGroupInputs.each((index, item) => {
+        $(item).prop('checked', $currentTarget.is(':checked'));
+      });
+    });
+
+    this.root.on('change', '.tp-my-equipment-group-filter-options .js-tp-my-equipment-filter-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $thisGroupAllWrapper = $currentTarget.parents('.tp-my-equipment-group-filter-options').prev();
+      const $thisGroupAllCheckbox = $thisGroupAllWrapper.find('.js-tp-my-equipment-filter-group-checkbox');
+      if (!$currentTarget.is(':checked')) {
+        $thisGroupAllCheckbox.prop('checked', false);
       }
     });
   }
@@ -684,7 +745,7 @@ class MyEquipment {
 
   applyFilter = (options) => {
     const { activeFilterForm, $activeFilterBtn, i18nKeys } = this.cache;
-    const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox');
+    const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
     let filterCount = 0;
     let filterData = [];
@@ -705,10 +766,10 @@ class MyEquipment {
         label = i18nKeys['country'];
         break;
       }
-      case 'siteName': {
+      case 'customer': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
         this.updateActiveFiltersData();
-        label = i18nKeys['site'];
+        label = i18nKeys['customer'];
         break;
       }
       case 'lineName': {
@@ -721,6 +782,12 @@ class MyEquipment {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
         this.updateActiveFiltersData();
         label = i18nKeys['equipmentStatus'];
+        break;
+      }
+      case 'equipmentType': {
+        filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
+        this.updateActiveFiltersData();
+        label = i18nKeys['equipmentType'];
         break;
       }
       case 'serialNumber': {
@@ -891,6 +958,7 @@ class MyEquipment {
       data: {
         header: formDetail.header,
         formData: data,
+        isEquipmentType: formDetail.header === i18nKeys['equipmentType'],
         ...i18nKeys,
         singleButton: formDetail.singleButton === false ? false : true,
         customiseTable: formDetail.activeForm === 'customise-table' ? true : false,

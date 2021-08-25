@@ -40,6 +40,10 @@ module.exports = merge(common, {
             }
         }
     },
-    devtool: 'none',
-    performance: { hints: false }
+    devtool: 'false',
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    }
 });

@@ -10,7 +10,18 @@
             <responsivegrid
                 cq:policy="wcm/foundation/components/responsivegrid/content-default"
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/core/components/policies/mapping"/>
+                sling:resourceType="wcm/core/components/policies/mapping">
+				<publicweb jcr:primaryType="nt:unstructured">
+                    <components jcr:primaryType="nt:unstructured">
+                        <content jcr:primaryType="nt:unstructured">
+                            <bannercontainer
+                                cq:policy="publicweb/components/content/bannercontainer/policy_1566807883229"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        </content>
+                    </components>
+                </publicweb>
+			</responsivegrid>
         </root>
     </jcr:content>
 </jcr:root>

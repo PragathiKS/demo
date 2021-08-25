@@ -71,7 +71,12 @@ public class FooterModelTest {
         assertEquals("/content/tetrapak/publicweb.html", model.getFooterLinks().get(1).getLinkPath());
         assertEquals("Linkedin", model.getSocialLinks().get(0).getSocialMedia());
         assertEquals("http://www.google.com", model.getSocialLinks().get(0).getSocialMediaLink());
+        assertEquals("QR code Text",model.getWechatQrCodeText());
         assertEquals("/content/dam/tetrapak/publicweb/gb/TetraPak-Wechat-QR-code.png", model.getWechatQrCodeReference());
         assertEquals("Alt Text",model.getQrAltText());
+        assertEquals("/content/dam/tetrapak/publicweb/gb/App-Store.png", model.getAppStoreReference());
+        assertEquals("App store alt text", model.getAppStoreAltText());
+        assertEquals("/content/dam/tetrapak/publicweb/gb/Google-Play.png",model.getGooglePlayReference());
+        assertEquals("Google play alt text",model.getGooglePlayAltText());
     }
 }

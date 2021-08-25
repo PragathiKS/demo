@@ -9,11 +9,33 @@ class Banner {
   initCache() {
     this.cache.$itbLink = this.root.find('.js-banner-analytics');
     this.cache.$pwBanner = this.root.find('.js-pw-banner');
+    this.cache.bannerContainer=$('body').find('.bannercontainer');
     this.cache.$existingBanner = this.root.find('.pw-banner__content.banner-parent');
     this.cache.$siblingBanner = this.root.find('.pw-banner__content.banner-sibling');
     this.cache.$sideSection = this.root.find('.pw-banner__sideSection.left');
     this.cache.$sideSectionright = this.root.find('.pw-banner__sideSection.right');
     this.cache.componentName = this.root.find('.componentName-banner').val();
+    this.cache.currentElement=0 ;
+    this.cache.stickyHeight= $('body').find('.pw-navigation.sticky').css('top');
+
+    if (this.cache.bannerContainer.length){
+      if($('.pw-navigation.sticky').length &&  isDesktopMode()){
+        this.cache.headerHeight= $('body').find('.tp-pw-header').height() + parseInt(this.cache.stickyHeight ,10);
+        this.cache.topElement = this.cache.headerHeight - 20;
+      }
+      else if ($('.pw-navigation.sticky').length &&  !(isDesktopMode())){
+        this.cache.headerHeight= $('body').find('.tp-pw-header').height() + parseInt(this.cache.stickyHeight ,10);
+        this.cache.topElement = this.cache.headerHeight - 8;
+      }
+      else {
+        this.cache.headerHeight= $('body').find('.tp-pw-header').height();
+        this.cache.topElement = this.cache.headerHeight;
+      }
+      this.cache.calculatedHeight=0 ;
+      this.cache.eles = document.getElementsByClassName('banner');
+      this.cache.lastElement = this.cache.eles.length -1;
+      this.cache.previousElement = this.cache.eles[this.cache.lastElement -1];
+    }
   }
 
   bindEvents() {
@@ -29,6 +51,11 @@ class Banner {
         $pwBanner.css({'max-width':window.screen.availWidth,'margin-left':'auto','margin-right':'auto'});
       }
       $(window).on('load resize', function () {
+        if($('body').find('.banner').length > 1) {
+          $('body').find('.banner').each(function(){
+            $('.banner').css( 'margin-bottom' , '8px');
+          }); 
+        }
         const zoomLevel = (( window.outerWidth) / window.innerWidth) * 100;
         const bannerHeight = $existingBanner.outerHeight();
         const bannerWidth = $existingBanner.outerWidth();
@@ -62,6 +89,10 @@ class Banner {
         }
       });
     }
+    if((this.cache.eles.length > 1) && (this.cache.bannerContainer.length)){
+      window.addEventListener('scroll', this.onScroll, false);
+    }
+   
     $itbLink.off().on('click', this.trackAnalytics);
 
     // Open SoftConversion Form
@@ -76,6 +107,22 @@ class Banner {
       $('body').find('.'+this.cache.componentName).trigger('showSubscription-pw');
     });
 
+  }
+  onScroll = () =>{
+    const scrollBarPosition = window.pageYOffset || document.body.scrollTop;
+    this.cache.calculatedHeight = this.cache.eles[this.cache.currentElement].offsetTop - this.cache.currentElement *16;
+    if(scrollBarPosition > 0 && scrollBarPosition >= this.cache.calculatedHeight) {
+      $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
+      this.cache.topElement=this.cache.topElement + 16;
+      if(this.cache.currentElement < this.cache.lastElement) {
+        $(this.cache.eles[this.cache.currentElement]).addClass('fixed');
+        this.cache.currentElement++;
+      }
+      else if(this.cache.currentElement === this.cache.lastElement){
+        $(this.cache.eles[this.cache.lastElement]).addClass('fixed');
+        $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px'); 
+      }
+    }
   }
 
   trackAnalytics = (e) => {
