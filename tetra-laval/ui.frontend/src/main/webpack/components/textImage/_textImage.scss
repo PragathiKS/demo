@@ -96,6 +96,7 @@
 
         h3 {
             font-size: $font-l;
+            font-weight: bold;
             @media #{$desktop} {
                 font-size: $font-xl;
             }
@@ -132,13 +133,11 @@
         @include margin-top($margin-md);
         @include padding($padding-zero);
         @include line-height(28px, 16px);
-        background-color: none;
         
         @media #{$desktop} {
             @include margin-bottom($margin-zero);
             @include padding($padding-zero);
             @include line-height(24px, 14px);
-            background-color: none;
             a {
                 font-size: $font-baseline;
             }
@@ -146,7 +145,18 @@
         a {
             font-size: $font-baseline;
         }
+        .tpatom-btn--primary, 
+        .tpatom-link--primary,
+        .tpatom-btn--secondary, 
+        .tpatom-link--secondary, 
+        .tpatom-btn--primary:hover:not([disabled]), 
+        .tpatom-link--primary:hover:not([disabled]) {
+            background-color: $color-white;
+            border: 1px solid $color-congress-blue;
+            color: $color-congress-blue;
+        }
     }
+    
 
     &__image {
         width: 100%;
@@ -154,10 +164,10 @@
 }
 .tpatom-heading {
     &--regular {
-        @include font-size($font-l);
+        font-size: $font-l;
         @include line-height($font-xl, $font-l);
         @media #{$desktop} {
-            @include font-size($font-xl);
+            font-size: $font-xl;
             line-height: 40px;
         }
     }

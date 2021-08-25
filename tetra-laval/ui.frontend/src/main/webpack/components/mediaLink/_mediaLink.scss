@@ -6,15 +6,17 @@
             @include margin-bottom(0);
         }
     }
-    h1 {
+    h1, h2 {
+        font-size: $font-l;
         @include margin-bottom($margin-md);
 
         @media #{$desktop} {
+            font-size: $font-xl;
             @include margin-bottom($margin-l);
         }
     }
     h4 {
-        @include font-size($font-md);
+        font-size: $font-md;
         @include margin-bottom($margin-md);
 
         color: $color-tundora;
@@ -38,20 +40,21 @@
     }
 
     &__heading {
-        @include font-size($font-l);
+        font-size: $font-l;
         @include padding-top($padding-zero);
         @include margin-bottom($margin-md);
         @media #{$desktop} {
+            font-size: $font-xl;
             @include padding-top($padding-zero);
             @include margin-bottom($margin-l);
         }
 
         h3 {
-            @include font-size($font-l);
+            font-size: $font-l;
             @include line-height($font-xl, $font-l);
             font-weight: 400;
             @media #{$desktop} {
-                @include font-size($font-xl);
+                font-size: $font-xl;
                 @include line-height(40px, $font-xl);
                 font-weight: 700;
             }
@@ -63,7 +66,7 @@
         @include min-height(24px);
         h4 {
             @include padding-left($padding-zero);
-            @include font-size($font-md);
+            font-size: $font-md;
             @include line-height($font-l, $font-md);
             font-weight: 500;
         }
@@ -72,7 +75,7 @@
     &__link.tpatom-link--transparent {
         @include min-height(56px);
         @include line-height(24px, 14px);
-        @include font-size(14px);
+        font-size: $font-baseline;
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid $color-mercury;
