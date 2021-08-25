@@ -243,11 +243,12 @@
 
     &__mega-menu-content {
         display: none;
+        border-top: 1px solid #e5e5e5;
         position: absolute;
         width: 100%;
         background-color: $color-white;
         left: 50%;
-        transform: translate(-50%, 8.5%);
+        transform: translate(-50%, 10.5%);
         z-index: $zindex-header;
         &__wrapper {
             margin: 0 auto;
