@@ -87,7 +87,8 @@ Rich text
     }
 
     h3 {
-        font-size: $font-md;
+        font-size: $font-l;
+        font-weight: normal;
         @include line-height($line-height-header-s, $font-l);
         @include margin-bottom($margin-md);
     }
@@ -288,7 +289,8 @@ Rich text
             @include line-height($line-height-header-m, $font-xl);
         }
         h3 {
-            font-size: $font-md;
+            font-size: $font-l;
+            font-weight: normal;
             @include line-height($line-height-header-s, $font-l);
         }
         h4 {
