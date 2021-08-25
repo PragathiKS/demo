@@ -87,7 +87,7 @@ Rich text
     }
 
     h3 {
-        font-size: $font-l;
+        font-size: $font-md;
         @include line-height($line-height-header-s, $font-l);
         @include margin-bottom($margin-md);
     }
@@ -99,13 +99,13 @@ Rich text
     }
 
     p {
-        font-size: 16px;
+        font-size: $font-baseline;
         @include line-height(28px, 16px);
         @include margin-bottom(24px);
     }
 
     small {
-        font-size: 14px;
+        font-size: $font-baseline;
         @include line-height(24px, 14px);
         @include margin-bottom(16px);
     }
@@ -280,7 +280,7 @@ Rich text
             @include padding(48px);
         }
         h1 {
-            font-size: $font-xxl;
+            font-size: $font-xl;
             @include line-height($line-height-header-l, $font-xxl);
         }
         h2 {
@@ -288,7 +288,7 @@ Rich text
             @include line-height($line-height-header-m, $font-xl);
         }
         h3 {
-            font-size: $font-l;
+            font-size: $font-md;
             @include line-height($line-height-header-s, $font-l);
         }
         h4 {
@@ -296,13 +296,13 @@ Rich text
             @include line-height($line-height-body, $font-md);
         }
         p {
-            font-size: 14px;
+            font-size: $font-baseline;
             @include line-height(24px, 14px);
             @include margin-bottom($margin-l);
         }
 
         small {
-            font-size: 12px;
+            font-size: $font-sm;
             @include line-height(20px, 12px);
             @include margin-bottom(24px);
         }
