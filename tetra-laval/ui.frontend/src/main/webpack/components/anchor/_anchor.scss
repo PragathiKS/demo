@@ -18,6 +18,15 @@
         color: $color-congress-blue;
         font-weight: 500;
         border-bottom: 1px solid $color-mercury;
+        a {
+            font-weight: 500;
+            color: $color-congress-blue;
+        }
+        &:hover {
+            a {
+                color: $color-dark-blue;
+            }
+        }
     }
 
     @media #{$desktop} {
@@ -46,7 +55,7 @@
             }
             &:hover {
                 a {
-                    color: $color-sky-blue;
+                    color: $color-dark-blue;
                 }
             }
         }
