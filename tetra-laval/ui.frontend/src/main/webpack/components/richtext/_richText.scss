@@ -15,7 +15,7 @@
 }
 
 .pw-container.pw-margin--zero.topmargin {
-    @include margin-top($margin-l);
+    @include margin-top(0);
 }
 
 @media #{$desktop} {
