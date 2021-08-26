@@ -148,22 +148,6 @@ pipeline {
     }
 
     def devdeployment() {
-	  if (params.Build_Commons)  {
-                packageName = "tetrapak-commons.complete"
-                repoName = "tetrapak"
-                fileName = "1.0.0-DEV${build_id_number}-SNAPSHOT"
-                devartifactdownload()
-                parallel (
-                    "Author Commons" : {
-                authordeploy()
-                    },
-                    "Publisher Commons" : {
-                publishdeploy()
-                    }
-                )
-
-            }
-
 	    if (params.Build_Tetralaval)  {
                 packageName = "tetrapak-tetralaval.all"
                 repoName = "tetrapak-tetralaval"
