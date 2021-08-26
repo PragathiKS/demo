@@ -2,7 +2,7 @@
     @include padding(0 $padding-xxxl);
     &.tp-container {
         @include padding(0);
-        @include margin($margin-l $margin-xl);
+        @include margin($margin-sm $margin-xl $margin-l $margin-xl);
     }
     &__regular {
         @media #{$desktop} {
