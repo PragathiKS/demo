@@ -91,6 +91,10 @@
                 line-height: 24px;
                 font-family: $font-family-primary;
 
+                &.remove {
+                    display: none;
+                }
+
                 @media #{$tablet} {
                     &.secondary {
                         background: $color-white;

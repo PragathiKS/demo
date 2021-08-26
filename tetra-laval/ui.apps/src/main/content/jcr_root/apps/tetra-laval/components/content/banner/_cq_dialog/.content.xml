@@ -56,26 +56,6 @@
                                         jcr:primaryType="nt:unstructured"
                                         cq-dialog-dropdown-showhide-target=".formType-showhide-target"/>
                             </textColor>
-                            <buttonColor
-                                    granite:class="cq-dialog-dropdown-showhide"
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldLabel="Color of button"
-                                    name="./buttonColor">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <blue
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Blue"
-                                            value="primary"/>
-                                    <white
-                                            jcr:primaryType="nt:unstructured"
-                                            text="White"
-                                            value="secondary"/>
-                                </items>
-                                <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        cq-dialog-dropdown-showhide-target=".formType-showhide-target"/>
-                            </buttonColor>
                             <backgroudColor
                                     granite:class="cq-dialog-dropdown-showhide"
                                     jcr:primaryType="nt:unstructured"
@@ -100,6 +80,30 @@
                                         jcr:primaryType="nt:unstructured"
                                         cq-dialog-dropdown-showhide-target=".formType-showhide-target"/>
                             </backgroudColor>
+                            <buttonColor
+                                    granite:class="cq-dialog-dropdown-showhide"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Button type"
+                                    name="./buttonColor">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <blue
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Blue button"
+                                            value="primary"/>
+                                    <white
+                                            jcr:primaryType="nt:unstructured"
+                                            text="White button"
+                                            value="secondary"/>
+                                    <remove
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Remove button"
+                                            value="remove"/>
+                                </items>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-dialog-dropdown-showhide-target=".formType-showhide-target"/>
+                            </buttonColor>
                             <imageGradient
                                     granite:class="cq-dialog-dropdown-showhide"
                                     jcr:primaryType="nt:unstructured"
