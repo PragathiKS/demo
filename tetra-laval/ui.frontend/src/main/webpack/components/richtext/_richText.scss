@@ -4,7 +4,7 @@
 }
 
 .pw-container.pw-margin--regular.reference-class {
-    @include margin-top(16px);
+    @include margin-top(0);
 }
 
 .pw-container.pw-margin--zero.reference-class {
@@ -20,7 +20,7 @@
 
 @media #{$desktop} {
     .pw-container.pw-margin--regular.reference-class {
-        @include margin-top($margin-l);
+        @include margin-top(0);
     }
 }
 
