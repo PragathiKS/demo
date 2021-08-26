@@ -1,9 +1,10 @@
 .tp-pw-image {
-    max-width: 1440px !important;
-    padding: 16px 16px;
-    margin: 0 auto;
+    @include padding(0);
+    margin: 0 auto 16px auto;
+
     @media #{$desktop} {
-        padding: 24px 48px;
+        @include max-width($body-max-width);
+        margin: 0 auto 24px auto;
     }
 
     a {
@@ -15,17 +16,18 @@
     }
 
     .pw-margin--regular {
-        margin: 0;
         border-radius: 4px;
-        padding: 0;
+        @include padding($padding-md);
+        @include margin(0 $margin-md);
+        @media #{$desktop} {
+            @include padding($padding-l $padding-xxxl);
+            @include margin(0 $margin-xxxl);
+        }
 
         .tp-pw-image__center-align {
-            padding: 16px 16px;
+            padding: 0;
             max-width: 100%;
             text-align: center;
-            @media #{$desktop} {
-                padding: 24px 48px;
-            }
         }
     }
 

@@ -1,4 +1,3 @@
-Rich text
 
 .pw-container.reference-class {
     @include margin-top(0);
@@ -26,6 +25,8 @@ Rich text
 }
 
 .tp-pw-richText {
+    border-radius: 4px;
+    
     &.tp-pw-richText-container {
         @include margin-top(0);
         @include margin-left(16px);

@@ -6,11 +6,16 @@ body {
     font-size: $font-baseline;
     font-style: normal;
     position: relative;
-    padding-top: 80px;
+    padding-top: 65px;
     margin-top: 0;
     overflow-y: scroll;
+
+    @media #{$tablet} {
+        padding-top: 80px;
+    }
+ 
     @media #{$desktop} {
-        padding-top: 90px;
+        padding-top: 89px;
     }
 
     &.search-page .tl-breadcrumb {
@@ -107,12 +112,12 @@ h4 {
 .pw-container {
     @include padding(0);
     max-width: 100%;
-    margin: 16px auto 0 auto;
+    margin: 0 auto 16px auto;
     height: auto;
 
     @media #{$desktop} {
         @include max-width($body-max-width);
-        margin: 24px auto 0 auto;
+        margin: 0 auto 24px auto;
     }
 }
 .pw-overlay {

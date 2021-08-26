@@ -2,10 +2,18 @@
     @return rgba($color: $basecolor, $alpha: $alpha-e);
 }
 
+.tl-banner #banner {
+    margin-top: $margin-zero;
+}
+
 .pw-banner {
     @include margin(0 0 16px 0);
 
     @media #{$tablet} {
+        @include margin(0 16px);
+    }
+
+    @media #{$desktop} {
         @include margin(0 48px);
     }
     
@@ -85,7 +93,7 @@
                 padding: 8px 16px;
                 background: $color-congress-blue;
                 color: $color-white;
-                border-radius: 4px;
+                border-radius: 0;
                 font-weight: 500;
                 font-size: 14px;
                 line-height: 24px;
@@ -100,6 +108,7 @@
                         background: $color-white;
                         color: $color-congress-blue;
                         border: none;
+                        border-radius: 4px;
                     }
                 }
             }
@@ -117,6 +126,7 @@
 
     &__image {
         border-radius: 0;
+        width: 100%;
 
         @media #{$tablet} {
             border-radius: 4px;
