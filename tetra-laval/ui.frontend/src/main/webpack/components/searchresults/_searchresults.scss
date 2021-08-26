@@ -1,5 +1,6 @@
 .pw-search-results {
     @include margin-bottom($margin-l);
+    @include margin-top($margin-l);
 
     .capitalizeText {
         text-transform: capitalize;
