@@ -4,6 +4,7 @@
     display: none;
     background: $color-white;
     z-index: $z-index-search-bar;
+    box-shadow: -2px 8px 12px rgb(0 0 0 / 14%);
 
     &.show {
         display: flex;

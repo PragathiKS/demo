@@ -1,14 +1,18 @@
 .tl-contact-details {
+  border-radius: 4px;
+  margin: 0 auto 16px auto;
   padding: 0 16px;
   @media #{$desktop} {
+    margin: 0 auto 24px auto;
     padding: 0 48px;
   }
   @media (min-width: 1024px) and (max-width: 1199px) {
     padding: 0 41px;
   }
   .page-section {
+    border-radius: 4px;
     max-width: 1344px;
-    margin: 24px auto;
+    margin: 0 auto;
   }
   .contact-row {
     display: flex;
