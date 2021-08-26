@@ -15,7 +15,7 @@
     border-radius: 4px;
 
     @media #{$desktop} {
-        @include padding($padding-xxxl $padding-l 0 $padding-l);
+        @include padding($padding-xxxl $padding-l);
         @include margin($margin-zero $margin-xxxl);
     }
 

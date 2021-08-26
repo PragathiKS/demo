@@ -41,7 +41,7 @@ Rich text
 
             li {
                 &::before  {
-                    @include margin-right($margin-m);
+                    @include margin-right($margin-sm);
                 }
             }
         }
@@ -123,6 +123,7 @@ Rich text
     ul {
         li {
             &::before {
+                @include margin-right($margin-sm);
                 font-size: $bullet-size;
                 display: inline-block;
                 color: $color-tundora;
