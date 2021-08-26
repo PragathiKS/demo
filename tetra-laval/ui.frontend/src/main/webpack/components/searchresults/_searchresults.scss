@@ -7,6 +7,7 @@
     }
 
     @media #{$desktop} {
+        @include margin-top($margin-xxxl);
         @include margin-bottom($margin-xxxl);
     }
     .margin-auto {
