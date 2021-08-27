@@ -32,7 +32,7 @@ class Banner {
         this.cache.topElement = this.cache.headerHeight;
       }
       this.cache.calculatedHeight=0 ;
-      this.cache.eles = document.getElementsByClassName('banner');
+      this.cache.eles = document.getElementsByClassName('banner-stack');
       this.cache.lastElement = this.cache.eles.length -1;
       this.cache.previousElement = this.cache.eles[this.cache.lastElement -1];
     }
@@ -51,11 +51,6 @@ class Banner {
         $pwBanner.css({'max-width':window.screen.availWidth,'margin-left':'auto','margin-right':'auto'});
       }
       $(window).on('load resize', function () {
-        if($('body').find('.banner').length > 1) {
-          $('body').find('.banner').each(function(){
-            $('.banner').css( 'margin-bottom' , '8px');
-          }); 
-        }
         const zoomLevel = (( window.outerWidth) / window.innerWidth) * 100;
         const bannerHeight = $existingBanner.outerHeight();
         const bannerWidth = $existingBanner.outerWidth();
@@ -112,13 +107,14 @@ class Banner {
     const scrollBarPosition = window.pageYOffset || document.body.scrollTop;
     this.cache.calculatedHeight = this.cache.eles[this.cache.currentElement].offsetTop - this.cache.currentElement *16;
     if(scrollBarPosition > 0 && scrollBarPosition >= this.cache.calculatedHeight) {
-      $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
-      this.cache.topElement=this.cache.topElement + 16;
       if(this.cache.currentElement < this.cache.lastElement) {
+        $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
+        this.cache.topElement=this.cache.topElement + 16;
         $(this.cache.eles[this.cache.currentElement]).addClass('fixed');
         this.cache.currentElement++;
       }
       else if(this.cache.currentElement === this.cache.lastElement){
+        $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
         $(this.cache.eles[this.cache.lastElement]).addClass('fixed');
         $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px'); 
       }
@@ -181,6 +177,11 @@ class Banner {
 
   init() {
     /* Mandatory method */
+    if(($('body').find('.tp-container-hero').length > 1) && ($('body').find('.bannercontainer').length)) {
+      $('.tp-container-hero').each(function(){
+        $('.tp-container-hero').parent().addClass('banner-stack');
+      }); 
+    }
     this.initCache();
     this.bindEvents();
     addLinkAttr('.js-banner-analytics');
