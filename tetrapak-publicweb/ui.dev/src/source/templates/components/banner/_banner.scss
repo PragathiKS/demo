@@ -441,3 +441,6 @@
         width: 540px;
     }
 }
+.banner-stack {
+    @include margin-bottom($margin-sm);
+}
