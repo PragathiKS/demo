@@ -1,5 +1,16 @@
 import CookiePolicy from './CookiePolicy';
 
+function resetCookie () {
+  const cookies = document.cookie.split(';');
+
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i];
+      const eqPos = cookie.indexOf('=');
+      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = `${name  }=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+    }
+}
+
 describe('CookiePolicy', function () {
   before(function () {
     const componentTemplate = `
@@ -9,18 +20,17 @@ describe('CookiePolicy', function () {
           <button class="confirmation-button">Button_Text</button>
         </div>
       </div>
-    `
+    `;
     document.body.insertAdjacentHTML('afterbegin', componentTemplate);
 
     this.subject = new CookiePolicy({
-        el: document.querySelector('#cookie-policy')
+      el: document.querySelector('#cookie-policy')
     });
 
     sinon.spy(this.subject, 'init');
     sinon.spy(this.subject, 'initCache');
     sinon.spy(this.subject, 'bindEvents');
     sinon.spy(this.subject, 'removeCookieBar');
-    sinon.spy(this.subject, 'createCookie');
 
     this.subject.init();
     this.subject.initCache();
@@ -32,34 +42,29 @@ describe('CookiePolicy', function () {
   });
 
   it('should intialize cache and bind events', function () {
-      expect(this.subject.initCache.called).to.be.true;
-      expect(this.subject.bindEvents.called).to.be.true;
+    expect(this.subject.initCache.called).to.be.true;
+    expect(this.subject.bindEvents.called).to.be.true;
   });
 
-  it('should create new cookie, when cookie not exist', function () {
+  it('should create new cookie and hide cookie modal, when cookie not exist', function (done) {
+    resetCookie();
+    sinon.spy(this.subject, 'createCookie');
+
     this.subject.cache.$confirmationButton.trigger('click');
 
-    expect(this.subject.removeCookieBar.called).to.be.true;
+    done()
+
     expect(this.subject.createCookie.called).to.be.true;
+    expect(this.subject.removeCookieBar.called).to.be.true;
   });
 
-  it('should remove existing cookie and hide elements, when cookie exist', function () {
-    let cookies = document.cookie.split(';');
-
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i];
-      const eqPos = cookie.indexOf("=");
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-    this.subject.bindEvents()
-
+  it('should hide cookie modal, when cookie exist', function () {
     expect(this.subject.removeCookieBar.called).to.be.true;
     expect(this.subject.cache.$cookiesOverlay.hasClass('hide')).to.be.true;
     expect(this.subject.cache.$cookiesBar.hasClass('hide')).to.be.true;
   });
 
-  after(() => {
+  after(function() {
     document.body.removeChild(document.getElementById('cookie-policy'));
   });
-})
+});

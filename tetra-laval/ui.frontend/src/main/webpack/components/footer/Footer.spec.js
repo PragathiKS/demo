@@ -19,29 +19,19 @@ describe('Footer', function () {
                             <div class="col-12">
                                 <ul class="tp-pw-footer__links-list">
                                     <li class="footer-analytics">
-                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">&#x24B8; Tetra Laval International S.A.</a>
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">&#x24B8; Tetra Laval International S.A.</a>
                                     </li>
                                     <li class="footer-analytics">
-                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">Cookie Policy</a>
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">Cookie Policy</a>
                                     </li>
                                     <li class="footer-analytics">
-                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">Link C</a>
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">Link C</a>
                                     </li>
                                     <li class="footer-analytics">
-                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">Link D</a>
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">Link D</a>
                                     </li>
                                     <li class="footer-analytics">
-                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">Link E</a>
+                                        <a class="tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">Link E</a>
                                     </li>
                                 </ul>
                             </div>
@@ -52,30 +42,22 @@ describe('Footer', function () {
                             <div class="col">
                                 <ul class="tp-pw-footer__navigation-list">
                                     <li class="tp-pw-footer__social-media-items footer-analytics">
-                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">
+                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">
                                             <i class="icon-Linkedin_pw"></i>
                                         </a>
                                     </li>
                                     <li class="tp-pw-footer__social-media-items footer-analytics">
-                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">
+                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">
                                             <i class="icon-Facebook_pw"></i>
                                         </a>
                                     </li>
                                     <li class="tp-pw-footer__social-media-items footer-analytics">
-                                        <a class="tp-pw-footer__social-media-items  tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">
+                                        <a class="tp-pw-footer__social-media-items  tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">
                                             <i class="icon-instagram_pw"></i>
                                         </a>
                                     </li>
                                     <li class="tp-pw-footer__social-media-items footer-analytics">
-                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics"
-                                        href="" target="_blank"
-                                        data-link-name="">
+                                        <a class="tp-pw-footer__social-media-items tp-pw-footer__link tp-pw-footer-data-analytics" href="" target="_blank" data-link-name="">
                                             <i class="icon-Twitter_pw"></i>
                                         </a>
                                     </li>
@@ -87,51 +69,51 @@ describe('Footer', function () {
             </div>
         </footer>
     `;
-        document.body.insertAdjacentHTML('afterbegin', componentTemplate);
+    document.body.insertAdjacentHTML('afterbegin', componentTemplate);
 
-        this.subject = new Footer({
-            el: document.querySelector('#footer')
-        });
-
-        sinon.spy(this.subject, 'init');
-        sinon.spy(this.subject, 'initCache');
-        sinon.spy(this.subject, 'bindEvents');
-        sinon.spy(this.subject, 'logoTrackAnalytics');
-        sinon.spy(this.subject, 'linksTrackAnalytics');
-        sinon.spy(this.subject, 'socialMediasTrackAnalytics');
-
-        this.subject.init();
+    this.subject = new Footer({
+      el: document.querySelector('#footer')
     });
 
-    it('should initialize component', function () {
-        expect(this.subject.init.called).to.be.true;
-        expect(this.subject).to.be.instanceOf(Footer);
-    })
+    sinon.spy(this.subject, 'init');
+    sinon.spy(this.subject, 'initCache');
+    sinon.spy(this.subject, 'bindEvents');
+    sinon.spy(this.subject, 'logoTrackAnalytics');
+    sinon.spy(this.subject, 'linksTrackAnalytics');
+    sinon.spy(this.subject, 'socialMediasTrackAnalytics');
 
-    it('should intialize cache and bind events', function () {
-        expect(this.subject.initCache.called).to.be.true;
-        expect(this.subject.bindEvents.called).to.be.true;
-    })
+    this.subject.init();
+  });
 
-    describe('calling events', function () {
-        it('should track analitycs, while logo is click', function () {
-            this.subject.cache.$footerLogo.trigger('click');
+  it('should initialize component', function () {
+    expect(this.subject.init.called).to.be.true;
+    expect(this.subject).to.be.instanceOf(Footer);
+  });
 
-            expect(this.subject.logoTrackAnalytics.called).to.be.true;
-        })
-        it('should track analitycs, while links are click', function () {
-            this.subject.cache.$footerLinks.trigger('click');
+  it('should intialize cache and bind events', function () {
+    expect(this.subject.initCache.called).to.be.true;
+    expect(this.subject.bindEvents.called).to.be.true;
+  });
 
-            expect(this.subject.linksTrackAnalytics.called).to.be.true;
-        })
-        it('should track analitycs, while social media links are click', function () {
-            this.subject.cache.$footerSocialMedias.trigger('click');
+  describe('calling events', function () {
+    it('should track analitycs, while logo is click', function () {
+      this.subject.cache.$footerLogo.trigger('click');
 
-            expect(this.subject.socialMediasTrackAnalytics.called).to.be.true;
-        })
+      expect(this.subject.logoTrackAnalytics.called).to.be.true;
     });
+    it('should track analitycs, while links are click', function () {
+      this.subject.cache.$footerLinks.trigger('click');
 
-    after(() => {
-      document.body.removeChild(document.getElementById('footer'));
+      expect(this.subject.linksTrackAnalytics.called).to.be.true;
     });
+    it('should track analitycs, while social media links are click', function () {
+      this.subject.cache.$footerSocialMedias.trigger('click');
+
+      expect(this.subject.socialMediasTrackAnalytics.called).to.be.true;
+    });
+  });
+
+  after(function() {
+    document.body.removeChild(document.getElementById('footer'));
+  });
 });

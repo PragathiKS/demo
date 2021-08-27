@@ -17,6 +17,7 @@ class Header {
       if (this.isMobileMode()) {
         const searchIcon = this.cache.$searchBtn.find('.icon-Search_blue_pw');
 
+
         if (this.isSearchBarShown()) {
           if (this.cache.$searchBtn.find('.icon-Close_pw')[0]) {
             this.cache.$searchBar.removeClass('show');
@@ -38,34 +39,25 @@ class Header {
           this.setSearchBtnAttributes('Find on page');
         }
       }
-    })
+    });
     this.cache.$searchBarCloseIcon.on('click', () => {
-      $('.pw-overlay').removeClass('show');
-    })
-    this.cache.$megaMenu.on('mouseover', () => {
-      this.cache.$overlay.removeClass('.d-none');
-    })
-
+      this.cache.$searchBar.removeClass('show');
+    });
     this.cache.$headerLogo.on('click', this.logoTrackAnalytics);
     this.cache.$contactBtn.on('click', this.contactBtnTrackAnalytics);
     this.cache.$firstLevelNavigation.on('click', this.firstLevelNavigationTrackAnalytics);
     this.cache.$secondLevelNavigation.on('click', this.secondLevelNavigationTrackAnalytics);
     this.cache.$megaMenu.on('mouseover', () => {
-      $('.pw-overlay').removeClass('d-none');
-    })
-    this.cache.$megaMenu.on('mouseout', () => {
-      $('.pw-overlay').addClass('d-none');
-    })
+      this.cache.$overlay.removeClass('d-none');
+    });
   }
 
   setSearchBtnAttributes = (textValue) => {
-    this.cache.$searchBtn.attr('aria-label', textValue)
-    this.cache.$searchBtn.attr('title', textValue)
+    this.cache.$searchBtn.attr('aria-label', textValue);
+    this.cache.$searchBtn.attr('title', textValue);
   }
 
-  isSearchBarShown = () => {
-    return this.cache.$searchBar.hasClass('show');
-  }
+  isSearchBarShown = () => this.cache.$searchBar.hasClass('show')
 
   isMobileMode = () => {
     const outerWidth = $(window).outerWidth();
@@ -88,8 +80,6 @@ class Header {
   }
 
   firstLevelNavigationTrackAnalytics = e => {
-    e.preventDefault();
-
     const $target = $(e.target);
     const linkType = $target.attr('target') === '_blank' ? 'external' : 'internal';
     const linkName = $target.text();
@@ -106,7 +96,7 @@ class Header {
       linkParentTitle: ''
     });
 
-    if (!$target.closest(".tp_pw-header__mega-menu").length) {
+    if (!$target.closest('.tp_pw-header__mega-menu').length) {
       this.sendRedirect(e, $target, linkType);
     }
   }
@@ -150,16 +140,17 @@ class Header {
 
   init() {
     this.cache.linkClassSelector = '.header-analytics';
-    this.cache.$headerLogo = this.root.find(`.js-tp_pw-header__nav-logo${this.cache.linkClassSelector}`);
-    this.cache.$searchBtn = this.root.find(`.js-tp_pw-header__nav-options-search${this.cache.linkClassSelector}`);
+    this.cache.$headerLogo = this.root.find(`.js-tp_pw-header__nav-logo`);
+    this.cache.$searchBtn = this.root.find(`.js-tp_pw-header__nav-options-search`);
     this.cache.$searchBar = this.root.find('.js-pw-header-search-bar');
     this.cache.$searchBarCloseIcon = this.root.find('.search-bar-close');
-    this.cache.$contactBtn = this.root.find(`.js-tp_pw-header__nav-options-envelope${this.cache.linkClassSelector}`);
+    this.cache.$contactBtn = this.root.find(`.js-tp_pw-header__nav-options-envelope`);
     this.cache.$firstLevelNavigation = this.root.find('.tp_pw-header__nav-item');
     this.cache.$secondLevelNavigation = this.root.find('.tp_pw-header__mega-menu-link');
     this.cache.$megaMenu = this.root.find('.tp_pw-header__mega-menu');
+    this.cache.$overlay = this.root.find('.pw-overlay');
 
-    this.bindEvents()
+    this.bindEvents();
   }
 }
 

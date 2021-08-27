@@ -3,7 +3,12 @@ module.exports =  {
       "browser": true,
       "node": true,
       "jquery": true,
-      "es6": true
+      "es6": true,
+      "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "sinon": true
   },
   "parser":  '@typescript-eslint/parser',
   "parserOptions": {
@@ -11,9 +16,14 @@ module.exports =  {
       "allowImportExportEverywhere": true
   },
   "plugins": [
-      "jquery"
+      "jquery",
+      "sinon",
+      "mocha"
   ],
-  "extends": "eslint:recommended",
+  "extends": [
+      "eslint:recommended",
+      "plugin:mocha/recommended"
+  ],
   "rules": {
       "strict": [
           "error"
@@ -144,6 +154,7 @@ module.exports =  {
       "jquery/no-show": "warn",
       "jquery/no-hide": "warn",
       "jquery/no-fade": "warn",
-      "jquery/no-slide": "warn"
+      "jquery/no-slide": "warn",
+
   }
 };

@@ -1,15 +1,15 @@
 import $ from 'jquery';
 
 class CookiePolicy {
-    constructor({ el }) {
-        this.root = $(el);
-    }
+  constructor({ el }) {
+    this.root = $(el);
+  }
 
     cache = {};
     initCache() {
-        this.cache.$confirmationButton = this.root.find('.confirmation-button');
-        this.cache.$cookiesOverlay = $('.pc-dark-filter');
-        this.cache.$cookiesBar = $('.otFloatingRoundedCorner');
+      this.cache.$confirmationButton = this.root.find('.confirmation-button');
+      this.cache.$cookiesOverlay = $('.pc-dark-filter');
+      this.cache.$cookiesBar = $('.otFloatingRoundedCorner');
     }
 
     bindEvents() {
@@ -36,18 +36,19 @@ class CookiePolicy {
     }
 
     createCookie = e => {
-        e.stopPropagation()
+      e.stopPropagation();
+      this.removeCookieBar();
 
-        const date = new Date();
+      const date = new Date();
 
-        date.setFullYear(date.getFullYear() + 10);
+      date.setFullYear(date.getFullYear() + 10);
 
-        document.cookie = `cookieconsent=true; expires=${date}; path=/`;
+      document.cookie = `cookieconsent=true; expires=${date}; path=/`;
     }
 
     init () {
-        this.initCache();
-        this.bindEvents();
+      this.initCache();
+      this.bindEvents();
     }
 }
 

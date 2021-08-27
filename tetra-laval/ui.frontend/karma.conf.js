@@ -17,9 +17,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/**/*.spec.js'
+      'src/main/webpack/components/**/*.js',
     ],
-
 
     // list of files / patterns to exclude
     exclude: [
@@ -29,14 +28,26 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
-      'src/**/*.spec.js': [ 'webpack' ]
+      'src/**/*.js': [ 'webpack', 'coverage' ]
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      reporters: [
+        {
+          type : 'html',
+          dir : 'coverage/'
+        },
+        {
+          type: 'text-summary'
+        }
+      ]
+    },
 
     singleRun: true, //just run once by default
 
@@ -75,7 +86,8 @@ module.exports = function(config) {
       'karma-webpack',
       'karma-mocha',
       'karma-chai',
-      'karma-sinon'
+      'karma-sinon',
+      'karma-coverage'
     ],
 
     webpack: {
@@ -94,8 +106,7 @@ module.exports = function(config) {
           },
           {
             test: /\.hbs$/,
-            exclude: /node_modules/,
-            loader: "handlebars-loader"
+            loader: 'ignore-loader'
           }
         ]
       },
