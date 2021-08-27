@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Fri Jun 25 2021 14:28:14 GMT+0200 (GMT+02:00)
 const webpack                 = require('webpack');
-const webpackConfig           = require('./webpack.common')
+const webpackConfig           = require('./webpack.common');
 
 module.exports = function(config) {
   config.set({
@@ -12,14 +12,13 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://www.npmjs.com/search?q=keywords:karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai', 'sinon'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'src/**/*.spec.js'
+      'src/main/webpack/components/**/*.js',
     ],
-
 
     // list of files / patterns to exclude
     exclude: [
@@ -29,15 +28,28 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
-      'src/**/*.spec.js': ['webpack']
+      'src/**/*.js': [ 'webpack', 'coverage' ]
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
+    coverageReporter: {
+      reporters: [
+        {
+          type : 'html',
+          dir : 'coverage/'
+        },
+        {
+          type: 'text-summary'
+        }
+      ]
+    },
+
+    singleRun: true, //just run once by default
 
     // web server port
     port: 9876,
@@ -71,8 +83,11 @@ module.exports = function(config) {
 
     plugins: [
       'karma-chrome-launcher',
-      'karma-jasmine',
-      'karma-webpack'
+      'karma-webpack',
+      'karma-mocha',
+      'karma-chai',
+      'karma-sinon',
+      'karma-coverage'
     ],
 
     webpack: {
@@ -91,8 +106,7 @@ module.exports = function(config) {
           },
           {
             test: /\.hbs$/,
-            exclude: /node_modules/,
-            loader: "handlebars-loader"
+            loader: 'ignore-loader'
           }
         ]
       },
