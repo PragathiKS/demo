@@ -6,16 +6,12 @@ body {
     font-size: $font-baseline;
     font-style: normal;
     position: relative;
-    padding-top: 65px;
+    padding-top: 81px;
     margin-top: 0;
     overflow-y: scroll;
 
-    @media #{$tablet} {
-        padding-top: 80px;
-    }
- 
     @media #{$desktop} {
-        padding-top: 89px;
+        padding-top: 113px;
     }
 
     &.search-page .tl-breadcrumb {
