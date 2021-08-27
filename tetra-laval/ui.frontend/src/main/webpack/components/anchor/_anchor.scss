@@ -2,7 +2,7 @@
     @include padding(0 $padding-xxxl);
     &.tp-container {
         @include padding(0);
-        @include margin($margin-sm $margin-xl $margin-l $margin-xl);
+        @include margin($margin-sm $margin-xl $margin-xl $margin-xl);
     }
     &__regular {
         @media #{$desktop} {
@@ -33,10 +33,9 @@
         display: flex;
         justify-content: center;
         &.tp-container {
-            margin: 0 auto;
             @include max-width($body-max-width);
             @include padding(0);
-            
+            @include margin(0 auto);
         }
         .pw-anchor-list {
             @include border-radius($border-radius);
