@@ -1,6 +1,6 @@
 import CookiePolicy from './CookiePolicy';
 
-function resetCookie () {
+function resetCookieHelper () {
   const cookies = document.cookie.split(';');
 
   for (let i = 0; i < cookies.length; i++) {
@@ -47,10 +47,11 @@ describe('CookiePolicy', function () {
   });
 
   it('should create new cookie and hide cookie modal, when cookie not exist', function (done) {
-    resetCookie();
-    sinon.spy(this.subject, 'createCookie');
+    resetCookieHelper();
 
+    sinon.spy(this.subject, 'createCookie');
     this.subject.cache.$confirmationButton.trigger('click');
+
 
     done();
 

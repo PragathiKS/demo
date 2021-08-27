@@ -13,26 +13,26 @@ class CookiePolicy {
     }
 
     bindEvents() {
-        // checking if cookie not exist
-        if ( document.cookie.indexOf('cookieconsent') === -1) {
-            this.addCookieBar();
-            this.actionAfterClick();
-        }
+      // checking if cookie not exist
+      if ( document.cookie.indexOf('cookieconsent') === -1) {
+        this.addCookieBar();
+        this.actionAfterClick();
+      }
     }
 
-    addCookieBar = e => {
-        this.cache.$cookiesOverlay.addClass('show');
-        this.cache.$cookiesBar.addClass('show');
+    addCookieBar = () => {
+      this.cache.$cookiesOverlay.addClass('show');
+      this.cache.$cookiesBar.addClass('show');
     }
 
-    removeCookieBar = e => {
-        this.cache.$cookiesOverlay.removeClass('show');
-        this.cache.$cookiesBar.removeClass('show');
+    removeCookieBar = () => {
+      this.cache.$cookiesOverlay.removeClass('show');
+      this.cache.$cookiesBar.removeClass('show');
     }
 
-    actionAfterClick = e => {
-        this.cache.$confirmationButton.on('click', this.removeCookieBar);
-        this.cache.$confirmationButton.on('click', this.createCookie);
+    actionAfterClick = () => {
+      this.cache.$confirmationButton.on('click', this.removeCookieBar);
+      this.cache.$confirmationButton.on('click', this.createCookie);
     }
 
     createCookie = e => {
