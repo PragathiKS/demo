@@ -27,13 +27,15 @@
         }
     }
 
+    padding-bottom: $padding-l;
     @include border-radius($border-radius);
     @include padding-left($padding-md);
     @include padding-right($padding-md);
     @include padding-top($padding-l);
     @include margin(0 $margin-md);
     @media #{$desktop} {
-        @include padding($padding-xxxl);
+        padding-top: $padding-xxxl;
+        padding-bottom: $padding-l;
         @include padding-left($padding-xxxl);
         @include padding-right($padding-xxxl);
         @include margin(0 $margin-xxxl);
@@ -42,7 +44,7 @@
     &__heading {
         font-size: $font-l;
         @include padding-top($padding-zero);
-        @include margin-bottom($margin-md);
+        @include margin-bottom(0);
         @media #{$desktop} {
             font-size: $font-xl;
             @include padding-top($padding-zero);
@@ -64,6 +66,10 @@
     &__subheading {
         @include margin-bottom($margin-md);
         @include min-height(24px);
+        margin-top: $margin-l;
+        @media #{$desktop} {
+            margin-top: 0;
+        }
         h4 {
             @include padding-left($padding-zero);
             font-size: $font-md;
@@ -102,6 +108,17 @@
             @include margin-top(16px);
             @include padding-right(16px);
             line-height: 24px;
+        }
+    }
+
+    &__linklist {
+        @media #{$desktop} {
+
+            margin-bottom: $margin-l;
+
+            // &.noMobileHeader {
+            //     margin-bottom: 0;
+            // }
         }
     }
 }
