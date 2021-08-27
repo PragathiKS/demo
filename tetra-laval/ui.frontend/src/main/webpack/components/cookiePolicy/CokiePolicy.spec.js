@@ -3,12 +3,12 @@ import CookiePolicy from './CookiePolicy';
 function resetCookie () {
   const cookies = document.cookie.split(';');
 
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i];
-      const eqPos = cookie.indexOf('=');
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = `${name  }=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-    }
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i];
+    const eqPos = cookie.indexOf('=');
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = `${name  }=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+  }
 }
 
 describe('CookiePolicy', function () {
@@ -52,7 +52,7 @@ describe('CookiePolicy', function () {
 
     this.subject.cache.$confirmationButton.trigger('click');
 
-    done()
+    done();
 
     expect(this.subject.createCookie.called).to.be.true;
     expect(this.subject.removeCookieBar.called).to.be.true;

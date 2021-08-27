@@ -184,77 +184,77 @@ describe('Header', function () {
   });
 
   it('should set aria-label and title for search button', function () {
-      this.subject.setSearchBtnAttributes('test');
+    this.subject.setSearchBtnAttributes('test');
 
-      expect(this.subject.cache.$searchBtn.attr('aria-label')).to.eql('test');
-      expect(this.subject.cache.$searchBtn.attr('title')).to.eql('test');
+    expect(this.subject.cache.$searchBtn.attr('aria-label')).to.eql('test');
+    expect(this.subject.cache.$searchBtn.attr('title')).to.eql('test');
   });
 
   describe('events', function () {
-      describe('on search button click', function () {
-          it('should show searchbar and run track analytics', function () {
-              sinon.spy(this.subject, 'isSearchBarShown');
-              sinon.spy(this.subject, 'searchBtnTrackAnalytics');
+    describe('on search button click', function () {
+      it('should show searchbar and run track analytics', function () {
+        sinon.spy(this.subject, 'isSearchBarShown');
+        sinon.spy(this.subject, 'searchBtnTrackAnalytics');
 
-              this.subject.cache.$searchBtn.trigger('click');
+        this.subject.cache.$searchBtn.trigger('click');
 
-              expect(this.subject.isSearchBarShown.called).to.be.true;
-              expect(this.subject.searchBtnTrackAnalytics.called).to.be.true;
-              expect(this.subject.cache.$searchBar.hasClass('show')).to.be.true;
-          })
-      })
-      describe('on search bar close button click', function () {
-          it('should close searchbar', function () {
-              this.subject.cache.$searchBarCloseIcon.trigger('click');
-
-              expect(this.subject.cache.$overlay.hasClass('show')).to.be.false;
-          })
-      })
-      describe('on megamenu link mouseover', function () {
-          it('should show content of megamenu', function () {
-              this.subject.cache.$megaMenu.trigger('mouseover');
-
-              expect(this.subject.cache.$overlay.hasClass('d-none')).to.be.false;
-          })
-      })
-      describe('on header logo click', function () {
-          it('should run track analytics', function (done) {
-              sinon.spy(this.subject, 'logoTrackAnalytics');
-
-              this.subject.cache.$headerLogo.trigger('click');
-                done()
-              expect(this.subject.logoTrackAnalytics.called).to.be.true;
-          })
-      })
-      describe('on contact button click', function () {
-          it('should run track analytics', function (done) {
-              sinon.spy(this.subject, 'contactBtnTrackAnalytics');
-
-              this.subject.cache.$contactBtn.trigger('click');
-            done()
-              expect(this.subject.contactBtnTrackAnalytics.called).to.be.true;
-          });
+        expect(this.subject.isSearchBarShown.called).to.be.true;
+        expect(this.subject.searchBtnTrackAnalytics.called).to.be.true;
+        expect(this.subject.cache.$searchBar.hasClass('show')).to.be.true;
       });
-      describe('on first level navigation link click', function () {
-          it('should run track analytics', function (done) {
-              sinon.spy(this.subject, 'firstLevelNavigationTrackAnalytics');
+    });
+    describe('on search bar close button click', function () {
+      it('should close searchbar', function () {
+        this.subject.cache.$searchBarCloseIcon.trigger('click');
 
-              this.subject.cache.$firstLevelNavigation.trigger('click');
-              done()
-
-              expect(this.subject.firstLevelNavigationTrackAnalytics.called).to.be.true;
-          });
+        expect(this.subject.cache.$overlay.hasClass('show')).to.be.false;
       });
-      describe('on second level navigation link click', function () {
-          it('should run track analytics', function (done) {
-              sinon.spy(this.subject, 'secondLevelNavigationTrackAnalytics');
+    });
+    describe('on megamenu link mouseover', function () {
+      it('should show content of megamenu', function () {
+        this.subject.cache.$megaMenu.trigger('mouseover');
 
-              this.subject.cache.$secondLevelNavigation.trigger('click');
-              done()
-
-              expect(this.subject.secondLevelNavigationTrackAnalytics.called).to.be.true;
-          });
+        expect(this.subject.cache.$overlay.hasClass('d-none')).to.be.false;
       });
+    });
+    describe('on header logo click', function () {
+      it('should run track analytics', function (done) {
+        sinon.spy(this.subject, 'logoTrackAnalytics');
+
+        this.subject.cache.$headerLogo.trigger('click');
+        done();
+        expect(this.subject.logoTrackAnalytics.called).to.be.true;
+      });
+    });
+    describe('on contact button click', function () {
+      it('should run track analytics', function (done) {
+        sinon.spy(this.subject, 'contactBtnTrackAnalytics');
+
+        this.subject.cache.$contactBtn.trigger('click');
+        done();
+        expect(this.subject.contactBtnTrackAnalytics.called).to.be.true;
+      });
+    });
+    describe('on first level navigation link click', function () {
+      it('should run track analytics', function (done) {
+        sinon.spy(this.subject, 'firstLevelNavigationTrackAnalytics');
+
+        this.subject.cache.$firstLevelNavigation.trigger('click');
+        done();
+
+        expect(this.subject.firstLevelNavigationTrackAnalytics.called).to.be.true;
+      });
+    });
+    describe('on second level navigation link click', function () {
+      it('should run track analytics', function (done) {
+        sinon.spy(this.subject, 'secondLevelNavigationTrackAnalytics');
+
+        this.subject.cache.$secondLevelNavigation.trigger('click');
+        done();
+
+        expect(this.subject.secondLevelNavigationTrackAnalytics.called).to.be.true;
+      });
+    });
   });
 
   after(function() {
