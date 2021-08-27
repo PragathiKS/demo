@@ -22,7 +22,8 @@
                "first":"cuhu.equipment.first",
                "equipmentDescription":"cuhu.equipment.equipmentdescription",
                "equipmentStatus":"cuhu.equipment.equipmentstatus",
-               "equipmentType":"cuhu.equipment.equipmenttype",
+               "equipmentType":"cuhu.equipment.equipmentType",
+               "functionalLocation":"cuhu.equipment.functionalLocation",
                "countryToolTip":"cuhu.equipment.countrytooltip",
                "country":"cuhu.equipment.country",
                "sling:resourceType":"customerhub/components/content/myequipment",
@@ -32,7 +33,7 @@
                "siteToolTip":"cuhu.equipment.sitetooltip",
                "lineToolTip":"cuhu.equipment.linetooltip",
                "serialNumToolTip":"cuhu.equipment.serialnumtooltip",
-               "functionalLocationToolTip":"cuhu.equipment.functionallocationtooltip",
+               "functionalLocationToolTip":"cuhu.equipment.functionalLocationToolTip",
                "hideAllFilters":"cuhu.equipment.hideallfilters",
                "showAllFilters":"cuhu.equipment.showallfilters",
                "removeAllFilters":"cuhu.equipment.removeallfilters"
