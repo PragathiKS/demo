@@ -85,6 +85,16 @@
         a {
             font-size: $font-baseline;
         }
+        .tpatom-btn--primary, 
+        .tpatom-link--primary,
+        .tpatom-btn--secondary, 
+        .tpatom-link--secondary, 
+        .tpatom-btn--primary:hover:not([disabled]), 
+        .tpatom-link--primary:hover:not([disabled]) {
+            background-color: $color-white;
+            border: 1px solid $color-congress-blue;
+            color: $color-congress-blue;
+        }
     }
 
     &__title {
