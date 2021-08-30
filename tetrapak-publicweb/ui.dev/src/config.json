@@ -167,7 +167,7 @@
         "source/templates/components/textVideo/",
         "source/templates/components/video/",
         "source/templates/components/errorPage/",
-        "source/templates/components/pagination/",
+		"source/templates/components/pagination/",
         "source/templates/components/socialsidebar/",
         "source/templates/components/stories/"
       ],
