@@ -484,7 +484,7 @@ class MyEquipment {
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
     this.cache.activeFiltersArr = [];
-    this.cache.sortableKeys = ['siteName','lineName','equipmentStatus','serialNumber'];
+    this.cache.sortableKeys = ['siteName','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentTypeDesc'];
     this.cache.activeSortData = {};
   }
   bindEvents() {
