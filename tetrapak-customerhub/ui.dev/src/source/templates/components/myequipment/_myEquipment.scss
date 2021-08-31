@@ -389,6 +389,7 @@
     @include font-size($font-sm);
     @include line-height($font-m-md, $font-sm);
     @include padding($padding-l);
+    font-family: $font-monsterrat;
     border: 1px solid $color-mercury;
     color: $color-tundora;
     font-size: $font-sm;
@@ -396,6 +397,7 @@
     text-align: left;
     background-color: $color-wild-sand;
     border-radius: 4px;
+    font-weight: 500;
 }
 
 .tooltip-header {
