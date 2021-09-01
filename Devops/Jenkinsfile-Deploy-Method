@@ -77,6 +77,18 @@ pipeline {
                 }
             }
         }
+	stage('QA Cache Clear') {
+            agent {
+                node {
+                label 'cfe-deploy'
+            }
+            }
+            steps {
+                script {
+                    cacheflush()
+                }
+            }
+        }
     }
 }
 
@@ -295,4 +307,11 @@ pipeline {
                 sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
                 sleep 60
 
+    }
+    def cacheflush() {
+                echo "Starting Dev Dispatcher Cache Clear"
+                withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                {
+                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.1.35 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
     }
