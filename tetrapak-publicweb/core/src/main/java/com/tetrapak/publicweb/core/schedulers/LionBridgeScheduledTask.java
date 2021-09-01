@@ -2,13 +2,17 @@ package com.tetrapak.publicweb.core.schedulers;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -73,11 +77,14 @@ public class LionBridgeScheduledTask implements Runnable {
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(LionBridgeScheduledTask.class);
 
-    /** The pages to roll out. */
-    private Set<String> pagesToRollOut;
-    
     /** The map of LB resource to page mapping. */
     private Map<String,String> lbResourceToPageMapping;
+    
+    /** The map of sorted LB resource to page mapping. */
+    private LinkedHashMap<String, String> sortedLbResourceToPageMapping ;
+    
+    /** The set of LB page processed. */
+    private Set<String> pagesProcessed;
     
     List<String> deleteResourcesList;
 
@@ -86,7 +93,11 @@ public class LionBridgeScheduledTask implements Runnable {
      */
     @Override
     public void run() {
-        pagesToRollOut = new TreeSet<>();
+    	Comparator<String> sortComparatorByContentPathHierarchy = (String path1,String path2) -> {
+            if(path1.split(PWConstants.SLASH).length < path2.split(PWConstants.SLASH).length)return -1;
+            else if(path1.split(PWConstants.SLASH).length > path2.split(PWConstants.SLASH).length)return 1;
+            else return 0;
+        };
         lbResourceToPageMapping = new HashMap<>();
         LOGGER.debug("{{LionBridgeScheduledTask started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
@@ -109,8 +120,12 @@ public class LionBridgeScheduledTask implements Runnable {
                     }
 
                 }
-                if (!pagesToRollOut.isEmpty()) {
-                    createRolloutAndActivate(resolver, pagesToRollOut);
+                
+                if (!lbResourceToPageMapping.isEmpty()) {
+                	sortedLbResourceToPageMapping = lbResourceToPageMapping.entrySet().stream()
+                    .sorted(Map.Entry.<String,String>comparingByValue(sortComparatorByContentPathHierarchy))
+                    .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(e1,e2)->e1,LinkedHashMap::new));
+                    createRolloutAndActivate(resolver, sortedLbResourceToPageMapping);
                 }
                 if (!deleteResourcesList.isEmpty()) {
                     deleteResources(resolver, deleteResourcesList);
@@ -132,8 +147,7 @@ public class LionBridgeScheduledTask implements Runnable {
         if (lbChildResource.getValueMap().containsKey(PWConstants.LB_TRANSLATED_PROP)) {
             String translatedPage = lbChildResource.getValueMap().get(PWConstants.LB_TRANSLATED_PROP).toString();
             LOGGER.info("LionBridgeScheduledTask pagesToRolloutAndActivate on page {}", translatedPage);
-            pagesToRollOut.add(translatedPage);
-            lbResourceToPageMapping.put(translatedPage, lbChildResource.getPath());
+            lbResourceToPageMapping.put(lbChildResource.getPath(), translatedPage);
         }
     }
 
@@ -143,18 +157,24 @@ public class LionBridgeScheduledTask implements Runnable {
      * @param resolver            the resolver
      * @param translatedPages the translated pages
      */
-    public void createRolloutAndActivate(final ResourceResolver resolver, final Set<String> translatedPages) {
-    	try {
-	        for (String translatedPage : translatedPages) {
-	            String language = PageUtil.getLanguagePage(resolver.getResource(translatedPage)).getName();
-	            LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate on page {}", translatedPage);
-	            createLiveCopyService.createLiveCopy(resolver, translatedPage, rolloutManager, liveRelManager, language,
-	                    false, true);
-	            deleteResourcesList.add(lbResourceToPageMapping.get(translatedPage));
-	        }
-    	}catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
-            LOGGER.error("An error occurred while creating live copy", e);
-        }
+    public void createRolloutAndActivate(final ResourceResolver resolver, final Map<String,String> translatedPages) {
+    	pagesProcessed = new HashSet<String>();
+    	translatedPages.forEach(
+    	          (lbNode, translatedPagePath) -> {
+    				  try {
+    		        	if(resolver.getResource(translatedPagePath) != null && !pagesProcessed.contains(translatedPagePath)) {
+    			            String language = PageUtil.getLanguagePage(resolver.getResource(translatedPagePath)).getName();
+    			            LOGGER.info("LionBridgeScheduledTask createRolloutAndActivate on page {}", translatedPagePath);
+    			            createLiveCopyService.createLiveCopy(resolver, translatedPagePath, rolloutManager, liveRelManager, language,
+    			                    false, true);
+    		        	}
+    		            deleteResourcesList.add(lbNode);
+    		            pagesProcessed.add(translatedPagePath);
+    		        }catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
+    		            LOGGER.error("An error occurred while creating live copy", e);
+    		        }
+    	          }
+    	      );
     }
 
     /**
