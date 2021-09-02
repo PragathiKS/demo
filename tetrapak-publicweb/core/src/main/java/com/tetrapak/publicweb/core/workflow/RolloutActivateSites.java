@@ -13,8 +13,10 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adobe.granite.workflow.WorkflowException;
 import com.adobe.granite.workflow.WorkflowSession;
 import com.adobe.granite.workflow.exec.WorkItem;
+import com.adobe.granite.workflow.exec.Workflow;
 import com.adobe.granite.workflow.exec.WorkflowData;
 import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
@@ -45,7 +47,7 @@ public class RolloutActivateSites implements WorkflowProcess {
     /** The live rel manager. */
     @Reference
     private LiveRelationshipManager liveRelManager;
-    
+
     /** The create live copy service. */
     @Reference
     private CreateLiveCopyService createLiveCopyService;
@@ -53,6 +55,9 @@ public class RolloutActivateSites implements WorkflowProcess {
     /** The resource resolver factory. */
     @Reference
     private ResourceResolverFactory resourceResolverFactory;
+
+    /** The workflow. */
+    Workflow workflow;
 
     /**
      * Execute.
@@ -63,20 +68,34 @@ public class RolloutActivateSites implements WorkflowProcess {
      *            the workflow session
      * @param paramMetaDataMap
      *            the param meta data map
+     * @throws WorkflowException
+     *             the workflow exception
      */
-    public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap paramMetaDataMap) {
+    public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap paramMetaDataMap)
+            throws WorkflowException {
         LOGGER.debug("inside execute method");
+        boolean isLiveCopyCreated = false;
         try {
-	        ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
-	        // get the payload page from the workflow data
-	        WorkflowData workflowData = workItem.getWorkflowData();
-	        String payload = workflowData.getPayload().toString();
-	        if (Objects.nonNull(resolver)) {
-	            String language = PageUtil.getLanguagePage(resolver.getResource(payload)).getName();
-	            LOGGER.info("language : {}",language);
-	            createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, language,false, false);
-	        }
-        }catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
+            ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
+            WorkflowData workflowData = workItem.getWorkflowData();
+
+            String payload = workflowData.getPayload().toString();
+
+            if (Objects.nonNull(resolver)) {
+                String language = PageUtil.getLanguagePage(resolver.getResource(payload)).getName();
+                LOGGER.info("language : {}", language);
+                isLiveCopyCreated = createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager,
+                        liveRelManager, language, false, false);
+
+                if (!isLiveCopyCreated) {
+                    workflow = workflowSession.getWorkflow(workItem.getWorkflow().getId());
+                    if(Objects.nonNull(workflow)) {
+                        workflowSession.terminateWorkflow(workflow);
+                        LOGGER.error("Workflow Terminated without executing successfully!!!");
+                    }                                        
+                }
+            }
+        } catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
             LOGGER.error("An error occurred while creating live copy", e);
         }
     }

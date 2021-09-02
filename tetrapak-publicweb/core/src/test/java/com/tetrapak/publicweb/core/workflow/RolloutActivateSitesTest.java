@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.adobe.granite.workflow.exec.Workflow;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.engine.SlingRequestProcessor;
@@ -15,6 +16,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.adobe.granite.workflow.WorkflowException;
 import com.adobe.granite.workflow.WorkflowSession;
 import com.adobe.granite.workflow.exec.WorkItem;
 import com.adobe.granite.workflow.exec.WorkflowData;
@@ -39,6 +41,10 @@ import io.wcm.testing.mock.aem.junit.AemContext;
  * The Class RolloutActivateSitesTest.
  */
 public class RolloutActivateSitesTest {
+
+    /** The Workflow. */
+    @Mock
+    private Workflow workflow;
 
     /** The work item. */
     @Mock
@@ -137,10 +143,12 @@ public class RolloutActivateSitesTest {
 
     /**
      * Test execute.
+     * @throws WorkflowException 
      */
     @Test
-    public void testExecute(){
+    public void testExecute() throws WorkflowException{
         when(workflowData.getPayload()).thenReturn(PAYLOAD_PATH);
+        when(workItem.getWorkflow()).thenReturn(workflow);
         when(workflowSession.adaptTo(ResourceResolver.class)).thenReturn(payloadRes.getResourceResolver());
         paramMetaDataMap = new SimpleMetaDataMap();
         paramMetaDataMap.put("PROCESS_ARGS", "PAYLOAD_PATH");
