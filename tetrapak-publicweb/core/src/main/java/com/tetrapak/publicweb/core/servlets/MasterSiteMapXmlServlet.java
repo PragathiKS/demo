@@ -115,7 +115,9 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 while (languagePages.hasNext()) {
                     Page languagePage = languagePages.next();
-                    createSiteMapXml(xmlStreamWriter, slingRequest, languagePage.getPath());
+                    if(!languagePage.getProperties().get(PWConstants.NOINDEX_PROPERTY, "").equals(PWConstants.NOINDEX_VALUE)){
+                        createSiteMapXml(xmlStreamWriter, slingRequest, languagePage.getPath());
+                    }
                 }
             }
         }
