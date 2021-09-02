@@ -53,13 +53,33 @@ public class FooterConfigurationModel {
     @ValueMapValue
     private String goToTopLabel;
 
-    /** QR code */
-    @ValueMapValue
-    private String wechatQrCodeReference;
+	/** QR code Text */
+	@ValueMapValue
+	private String wechatQrCodeText;
+
+	/** QR code */
+	@ValueMapValue
+	private String wechatQrCodeReference;
 
     /** Alt Text*/
     @ValueMapValue
     private String qrAltText;
+    
+	/** App Store */
+	@ValueMapValue
+	private String appStoreReference;
+
+	/** App Store Alt text */
+	@ValueMapValue
+	private String appStoreAltText;
+
+	/** Google play */
+	@ValueMapValue
+	private String googlePlayReference;
+
+	/** Google play Alt Text */
+	@ValueMapValue
+	private String googlePlayAltText;
 
     /**
      * Gets the logo image path.
@@ -178,4 +198,48 @@ public class FooterConfigurationModel {
     public String getQrAltText() {
         return qrAltText;
     }
+	/**
+	 * Gets the QR code text.
+	 * 
+	 * @return the QR code text
+	 */
+	public String getWechatQrCodeText() {
+		return wechatQrCodeText;
+	}
+
+	/**
+	 * Gets the App store.
+	 * 
+	 * @return the App store.
+	 */
+	public String getAppStoreReference() {
+		return appStoreReference;
+	}
+
+	/**
+	 * Gets the App store Alt text.
+	 * 
+	 * @return the App store Alt text.
+	 */
+	public String getAppStoreAltText() {
+		return appStoreAltText;
+	}
+
+	/**
+	 * Gets the Google play store.
+	 * 
+	 * @return the Google play store.
+	 */
+	public String getGooglePlayReference() {
+		return googlePlayReference;
+	}
+
+	/**
+	 * Gets the Google play Alt text.
+	 * 
+	 * @return the Google play Alt text.
+	 */
+	public String getGooglePlayAltText() {
+		return googlePlayAltText;
+	}
 }

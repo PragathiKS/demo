@@ -11,6 +11,7 @@ describe('Footer', function () {
     this.initSpy = sinon.spy(this.footer, 'init');
     this.trackAnalyticsSpy = sinon.spy(this.footer, 'trackAnalytics');
     this.goToTopSpy = sinon.spy(this.footer, 'goToTop');
+    this.showPopupSpy = sinon.spy(this.footer, 'showPopup');
     this.openStub = sinon.stub(window, 'open');
     this.isExternalStub = sinon.stub(this.footer, 'isExternal');
     this.isExternalStub.returns(true);
@@ -26,6 +27,7 @@ describe('Footer', function () {
     this.goToTopSpy.restore();
     this.trackAnalyticsSpy.restore();
     this.openStub.restore();
+    this.showPopupSpy.restore();
     this.isExternalStub.restore();
   });
   it('should initialize', function (done) {
@@ -42,5 +44,13 @@ describe('Footer', function () {
     expect(this.footer.trackAnalytics.called).to.be.true;
     done();
   });
-
+  it('should open modal', function (done) {
+    $('.tp-pw-footer-data-analytics').click();
+    expect(this.footer.showPopup.called).to.be.true;
+    done();
+  });
+  it('should click of js-close-btn', function (done) {
+    $('.js-close-btn').trigger('click');
+    done();
+  });
 });

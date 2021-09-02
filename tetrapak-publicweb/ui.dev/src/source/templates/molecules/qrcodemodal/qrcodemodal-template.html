@@ -1,0 +1,18 @@
+<!-- QR Code Modal -->
+<sly data-sly-template.qrcodemodal_template="${@ qrcodeTitle,qrcodeImg,qrcodeAlt}">
+    <div class="tp-pw-qrCode__modal modal tp-modal js-qrCode-modal fade"tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered tp-modal-dialog modal-md">
+            <div class="modal-content tp-modal-content pw-padding--regular pw-margin--regular">
+                <div class="modal-header">
+                    <h2 role="heading" class="">
+                        <span class="pw-footer__modalTitle">${qrcodeTitle}</span>
+                    </h2>
+                    <button type="button" class="tp-close-btn icon-Close_pw tp-pw-qrCode__header__close js-close-btn" aria-label="close button" title="close button"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="${qrcodeImg}" alt="${qrcodeAlt}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</sly>
