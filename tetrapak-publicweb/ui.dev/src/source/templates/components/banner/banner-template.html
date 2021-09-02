@@ -7,7 +7,7 @@
     <sly data-sly-test.cardTheme="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row-reversed')}" />
     <sly data-sly-test.cardThemeReverse="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row')}" />
 
-    <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner">
+    <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner" auto_locator="${data.bannerType}">
         <div class="pw-banner ${heroBanner ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
             data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}"
             data-link-section="Hero Image_imageClick" data-link-name="${data.linkLabel}"
@@ -18,7 +18,7 @@
                     </div>
                 </sly>
                 <sly data-sly-test="${!wcmmode.edit}">
-                    <div class="pw-banner__image-wrapper">
+                    <div class="pw-banner__image-wrapper" auto_locator="bannerImage">
                         <sly data-sly-test="${heroBanner}">
                             <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
                                 data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, imageCrop=data.imageCrop, componentName=data.bannerType, className='img-responsive', isBanner=true, imageRatio='0 0 3 1'}">
@@ -35,7 +35,7 @@
                 <sly data-sly-test="${heroBanner}">
                     <div class="pw-banner-herowrapper">
                         <div class="pw-banner__sideSection ${(data.pwDisplay =='display-row') ? 'left' : 'right'} ${data.pwCardTheme}"></div>
-                        <section class="pw-banner__contentwrapper">
+                        <section class="pw-banner__contentwrapper" auto_locator="bannerCard">
                                 <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} ${data.pwDisplay =='display-row-reversed' ? 'display-row-reversed-wrapper' : ''}">
                                     <div class="pw-banner__gradient-bg"></div>
                                     <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
@@ -70,10 +70,10 @@
     <div class="pw-banner__content banner-sibling ${bannerData.pwDisplay} ${bannerData.pwCardTheme}"></div>
     <div data-sly-test="${bannerData.title}" class="pw-banner__content banner-parent ${bannerData.pwDisplay}
         ${bannerData.pwCardTheme}">
-        <div data-sly-test="${bannerData.subtitle}" class="pw-banner__content__subtitle ${bannerData.pwCardTheme}">
+        <div data-sly-test="${bannerData.subtitle}" class="pw-banner__content__subtitle ${bannerData.pwCardTheme}" auto_locator="bannerSubtitle">
             ${bannerData.subtitle @ context='html'}
         </div>
-        <div data-sly-test="${bannerData.title}" class="pw-banner__content__title ${bannerData.pwCardTheme} ${bannerData.bannerType == 'hero-wide' ?  'hero-title' : ''}">
+        <div data-sly-test="${bannerData.title}" class="pw-banner__content__title ${bannerData.pwCardTheme} ${bannerData.bannerType == 'hero-wide' ?  'hero-title' : ''}" auto_locator ="bannerHeadline">
             <sly data-sly-test="${bannerData.headingTag == 'h1'}"
                 data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
                 data-sly-call="${title.heading_h1_template @ headingText=bannerData.title, variant='regular'}" />
@@ -84,7 +84,7 @@
                 data-sly-use.title="/apps/commons/components/atoms/heading/heading.html" +
                 data-sly-call="${title.heading_h3_template @ headingText=bannerData.title, variant='regular'}" />
         </div>
-        <div class="pw-banner__content__description">${bannerData.text @ context='html'}</div>
+        <div class="pw-banner__content__description" auto_locator ="bannerDescription">${bannerData.text @ context='html'}</div>
         <a data-sly-test="${bannerData.linkLabel && (!isFormTypeAuthored && !isSoftConvEnabled)}" href="${bannerData.linkPath}"
             class="tpatom-link tpatom-link--${bannerData.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics ${bannerData.text ? '' : 'no-desc'}"
             title="${btnTooltip}" data-asset-name="${bannerData.assetName}"
@@ -100,7 +100,7 @@
             class="tpatom-link tpatom-link--primary js-softconversion-pw-banner text-left"
             data-link-section="button click" data-link-banner-title="${bannerData.title}"
             data-link-name="${bannerData.linkLabel}" data-anchor-type="CTA"
-            title="${'pw.form.button.download' @ i18n}">
+            title="${'pw.form.button.download' @ i18n}" auto_locator="bannerCTA">
             <span class="tpatom-link__text sly-text">${bannerData.linkLabel @ context='html'}</span><span
                 class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
         </button>

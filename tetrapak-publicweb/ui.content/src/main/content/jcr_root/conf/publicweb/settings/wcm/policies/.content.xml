@@ -113,6 +113,15 @@
                     </form-container>
                 </container>
             </form>
+			<content jcr:primaryType="nt:unstructured">
+                <bannercontainer jcr:primaryType="nt:unstructured">
+                    <policy_1566807883229
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Banner Container Policy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/apps/publicweb/components/content/banner]"/>
+                </bannercontainer>
+            </content>
         </components>
     </publicweb>
 </jcr:root>
