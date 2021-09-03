@@ -132,10 +132,9 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      */
     private void createSiteMapXml(XMLStreamWriter xmlStreamWriter, SlingHttpServletRequest slingRequest,
             Page languagePage) {
-        final String siteMapPath = languagePage.getPath();
         try {
             if(!languagePage.getProperties().get(PWConstants.NOINDEX_PROPERTY, "").equals(PWConstants.NOINDEX_VALUE)) {
-                writeXML(siteMapPath, xmlStreamWriter, slingRequest);
+                writeXML(languagePage.getPath(), xmlStreamWriter, slingRequest);
             }
         } catch (XMLStreamException e) {
             LOGGER.error("MasterSiteMapXmlServlet :: Error while writing XML {}", e.getMessage());
