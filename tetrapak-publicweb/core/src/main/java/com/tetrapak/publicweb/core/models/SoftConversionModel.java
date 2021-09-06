@@ -1,5 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +16,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
@@ -180,5 +184,40 @@ public class SoftConversionModel extends FormModel {
      */
     private void setCountryOptions() {
         this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
+    }
+    
+    /**
+     * Gets the position options.
+     *
+     * @return the position options
+     */
+    public List<DropdownOption> getPositionOptions(){
+    	return fetchTags(formConfig.getPositionTagsPath());
+    }
+    
+    /**
+     * Gets the function options.
+     *
+     * @return the function options
+     */
+    public List<DropdownOption> getFunctionOptions(){
+    	return fetchTags(formConfig.getFunctionTagsPath());
+    }
+    
+    private List<DropdownOption> fetchTags(String tagPath){
+    	final List<DropdownOption> tagOptions = new ArrayList<DropdownOption>();
+    	if(StringUtils.isNotEmpty(tagPath)) {
+	    	final TagManager tagManager = resource.getResourceResolver().adaptTo(TagManager.class);
+	    	final Tag rootTag = tagManager.resolve(tagPath);
+	    	final Iterator<Tag> childTagsIterator = rootTag.listChildren();
+	    	while(childTagsIterator.hasNext()) {
+	    		DropdownOption option = new DropdownOption();
+	    		final Tag tag = childTagsIterator.next();
+	    		option.setKey(tag.getName());
+	    		option.setValue(tag.getTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource))));
+	    		tagOptions.add(option);
+	    	}
+    	}
+    	return tagOptions;
     }
 }
