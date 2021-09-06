@@ -173,8 +173,7 @@
                                 fieldDescription="Functions displayed based on tag selected. Select 'Functions' tag."
                                 fieldLabel="Functions Tags Path"
                                 name="./functionTagsPath"
-                                rootPath="/content/cq:tags/pardot-system-config"
-                                validation="pw.softconversion.functiontags.validator"/>	
+                                rootPath="/content/cq:tags/pardot-system-config"/>	
                         </items>
                     </column>
                 </items>

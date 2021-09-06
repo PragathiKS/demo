@@ -209,14 +209,16 @@ public class SoftConversionModel extends FormModel {
     	if(StringUtils.isNotEmpty(tagPath)) {
 	    	final TagManager tagManager = resource.getResourceResolver().adaptTo(TagManager.class);
 	    	final Tag rootTag = tagManager.resolve(tagPath);
-	    	final Iterator<Tag> childTagsIterator = rootTag.listChildren();
-	    	while(childTagsIterator.hasNext()) {
-	    		DropdownOption option = new DropdownOption();
-	    		final Tag tag = childTagsIterator.next();
-	    		option.setKey(tag.getName());
-	    		option.setValue(tag.getTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource))));
-	    		tagOptions.add(option);
-	    	}
+	    	if(Objects.nonNull(rootTag)) {
+		    	final Iterator<Tag> childTagsIterator = rootTag.listChildren();
+		    	while(childTagsIterator.hasNext()) {
+		    		DropdownOption option = new DropdownOption();
+		    		final Tag tag = childTagsIterator.next();
+		    		option.setKey(tag.getName());
+		    		option.setValue(tag.getTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource))));
+		    		tagOptions.add(option);
+		    	}
+	    	}	
     	}
     	return tagOptions;
     }
