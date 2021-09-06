@@ -177,7 +177,7 @@ public class SoftConversionModelTest {
 	}
     
     /**
-     * Test position tags.
+     * Test function tags.
      *
      * @throws Exception
      *             the exception
