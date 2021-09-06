@@ -102,20 +102,19 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      *            the market pages
      * @param xmlStreamWriter
      *            the xml stream writer
-     * @param resourceResolver
-     *            the resource resolver
+     * @param slingRequest
+     *            the sling request
      * @return the market pages
      */
     private void getMarketPages(Iterator<Page> marketPages, XMLStreamWriter xmlStreamWriter,
             SlingHttpServletRequest slingRequest) {
-
         while (marketPages.hasNext()) {
             Page marketPage = marketPages.next();
             if (!marketPage.getName().equalsIgnoreCase(PWConstants.LANG_MASTERS)) {
                 Iterator<Page> languagePages = marketPage.listChildren();
                 while (languagePages.hasNext()) {
                     Page languagePage = languagePages.next();
-                    createSiteMapXml(xmlStreamWriter, slingRequest, languagePage.getPath());
+                    createSiteMapXml(xmlStreamWriter, slingRequest, languagePage);
                 }
             }
         }
@@ -126,15 +125,17 @@ public class MasterSiteMapXmlServlet extends SlingSafeMethodsServlet {
      *
      * @param xmlStreamWriter
      *            the xml stream writer
-     * @param resourceResolver
-     *            the resource resolver
-     * @param siteMapPath
-     *            the site map path
+     * @param slingRequest
+     *            the sling request
+     * @param languagePage
+     *            the language Page
      */
     private void createSiteMapXml(XMLStreamWriter xmlStreamWriter, SlingHttpServletRequest slingRequest,
-            String siteMapPath) {
+            Page languagePage) {
         try {
-            writeXML(siteMapPath, xmlStreamWriter, slingRequest);
+            if(!languagePage.getProperties().get(PWConstants.NOINDEX_PROPERTY, StringUtils.EMPTY).equals(PWConstants.NOINDEX_VALUE)) {
+                writeXML(languagePage.getPath(), xmlStreamWriter, slingRequest);
+            }
         } catch (XMLStreamException e) {
             LOGGER.error("MasterSiteMapXmlServlet :: Error while writing XML {}", e.getMessage());
         }
