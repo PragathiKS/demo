@@ -32,6 +32,12 @@ public class SoftConversionFormConfigModel extends FormConfigModel {
 
     @ValueMapValue
     private String noButtonLabel;
+    
+    @ValueMapValue
+    private String positionTagsPath;
+    
+    @ValueMapValue
+    private String functionTagsPath;
 
 
     /**
@@ -86,6 +92,24 @@ public class SoftConversionFormConfigModel extends FormConfigModel {
      */
     public String getNoButtonLabel() {
         return noButtonLabel;
+    }
+    
+    /**
+     * Gets the position tag path.
+     *
+     * @return the position tag path
+     */
+    public String getPositionTagsPath() {
+    	return positionTagsPath;
+    }
+    
+    /**
+     * Gets the function tag path.
+     *
+     * @return the function tag path
+     */
+    public String getFunctionTagsPath() {
+    	return functionTagsPath;
     }
 
 }
