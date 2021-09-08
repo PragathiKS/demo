@@ -32,9 +32,9 @@ public class PageHeadModel {
     @PostConstruct
     public void initModel() {
         final String path = request.getResource().getPath();
-        if(baiduMapService.getBaiduMapKey() != null && path.contains("/cn")) { 
-            baiduMapkey = baiduMapService.getBaiduMapKey();
-        }
+		if (null != baiduMapService.getBaiduMapKey() && path.contains("/cn")) {
+			baiduMapkey = baiduMapService.getBaiduMapKey();
+		}
     }
 
     /**
