@@ -164,6 +164,10 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
             if(resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) == null && flowComingFromLBScheduler) {            	
             	throw new WCMException("Unable to perform rollout operation for "+page+" as parent page not present.");
             }
+            
+            if(resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) == null && !flowComingFromLBScheduler) {
+            	LOGGER.info("Unable to perform rollout operation for {} as parent page not present.", pagePath);        
+            }
             if (resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) != null) {
                 isLiveCopyExists = false;
                 pageManager.copy(blueprintPage, pagePath, getNextPage(blueprintPage), !isDeep, false, true);
