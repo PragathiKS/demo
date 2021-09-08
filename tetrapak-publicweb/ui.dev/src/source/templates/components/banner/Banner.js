@@ -84,8 +84,10 @@ class Banner {
         }
       });
     }
-    if((this.cache.eles.length > 1) && (this.cache.bannerContainer.length)){
-      window.addEventListener('scroll', this.onScroll, false);
+    if(this.cache.eles && this.cache.bannerContainer){
+      if(this.cache.eles.length > 1) {
+        window.addEventListener('scroll', this.onScroll, false);
+      }
     }
    
     $itbLink.off().on('click', this.trackAnalytics);
