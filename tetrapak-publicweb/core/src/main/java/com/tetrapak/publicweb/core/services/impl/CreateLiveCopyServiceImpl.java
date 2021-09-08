@@ -94,12 +94,9 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      * @throws PersistenceException 
      */
     @Override
-    public boolean createLiveCopy(ResourceResolver resolver, String payload, RolloutManager rolloutManager,
+    public void createLiveCopy(ResourceResolver resolver, String payload, RolloutManager rolloutManager,
             LiveRelationshipManager liveRelManager, String language, boolean isDeep, boolean flowComingFromLBScheduler) throws PersistenceException, WCMException, RepositoryException {
-            boolean isPageExists = false;
-            boolean isLiveCopyCreated = false;
-          
-    		if (config.enableConfig()) {
+            if (config.enableConfig()) {
                 pathToReplicate = new ArrayList<>();
                 LOGGER.info("payload : {}", payload);
                 PageManager pageManager = resolver.adaptTo(PageManager.class);
@@ -107,16 +104,11 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                 String rootPath = LinkUtils.getRootPath(payload);
                 LOGGER.debug("rootPath : {}", rootPath);
                 String page = payload.replace(rootPath, StringUtils.EMPTY);
-                isPageExists = checkAndCreateLiveCopies(resolver, payload, language, page, isDeep, flowComingFromLBScheduler);
-                if(!isPageExists) {
-	                CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);	
-	                CreateLiveCopyServiceUtil.replicatePaths(resolver, pathToReplicate, replicator);	                
-	                isLiveCopyCreated = true;
-                }else {
-                	LOGGER.error("Unable to roll out and replicate the Page:::::" + page);                	
-                }
-            }    		
-    		return isLiveCopyCreated;
+                checkAndCreateLiveCopies(resolver, payload, language, page, isDeep, flowComingFromLBScheduler);
+                CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
+
+                CreateLiveCopyServiceUtil.replicatePaths(resolver, pathToReplicate, replicator);
+            }
     }
 
     /**
@@ -156,13 +148,12 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
         Boolean isLiveCopyExists = true;
         PageManager pageManager = resolver.adaptTo(PageManager.class);
         final Page blueprintPage = pageManager.getPage(payload);
- 
         for (String path : CreateLiveCopyServiceUtil.getLiveCopyBasePaths(language, config)) {
             String pagePath = path + page;
             String parentPagePath = pagePath.substring(0, pagePath.lastIndexOf("/"));
             LOGGER.debug("pagepath : {}", pagePath);
-            if(resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) == null && flowComingFromLBScheduler) {            	
-            	throw new WCMException("Unable to perform rollout operation for "+page+" as parent page not present.");
+            if(resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) == null && flowComingFromLBScheduler) {
+            	throw new WCMException("Unable to perform rollout operation for "+pagePath+" as parent page not present.");
             }
             
             if(resolver.getResource(pagePath) == null && resolver.getResource(parentPagePath) == null && !flowComingFromLBScheduler) {
@@ -194,8 +185,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                 }
             }
             pathToReplicate.add(pagePath);
-
-        }     
+        }
         return isLiveCopyExists;
     }
     
@@ -219,7 +209,6 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      *            the blueprint page
      * @return the next page
      */
-
     private String getNextPage(Page blueprintPage) {
         Iterator<Page> pages = blueprintPage.getParent().listChildren();
         int count = 0;
