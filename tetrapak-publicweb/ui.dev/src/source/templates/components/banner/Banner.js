@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { isDesktopMode,getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { isExternal, isDownloable  } from '../../../scripts/utils/updateLink';
 class Banner {
   constructor({ el }) {
@@ -120,9 +121,26 @@ class Banner {
         $(this.cache.eles[this.cache.lastElement]).addClass('fixed');
         $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px'); 
       }
+      if (this.cache.currentElement >= 0 || this.cache.currentElement === this.cache.lastElement){
+        this.trackScrollAnalytics(this.cache.currentElement + 1);
+      }
     }
   }
 
+  trackScrollAnalytics = (elements) => {
+    const noOfTilesScrolled =elements;
+    let scrollObj = {};
+    let eventObj = {};
+    scrollObj = {
+      noOfTilesScrolled
+    };
+    eventObj = {
+      eventType: 'Stackable Banner Scrolled',
+      event: 'Banner'
+    };
+    trackAnalytics(scrollObj, 'scroll', '', undefined, false, eventObj);
+  }
+ 
   trackAnalytics = (e) => {
     e.preventDefault();
     getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.js-banner-analytics');
