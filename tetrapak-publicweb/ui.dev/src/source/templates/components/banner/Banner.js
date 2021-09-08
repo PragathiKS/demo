@@ -84,8 +84,10 @@ class Banner {
         }
       });
     }
-    if((this.cache.eles.length > 1) && (this.cache.bannerContainer.length)){
-      window.addEventListener('scroll', this.onScroll, false);
+    if(this.cache.eles && this.cache.bannerContainer){
+      if(this.cache.eles.length > 1) {
+        window.addEventListener('scroll', this.onScroll, false);
+      }
     }
    
     $itbLink.off().on('click', this.trackAnalytics);
@@ -177,9 +179,9 @@ class Banner {
 
   init() {
     /* Mandatory method */
-    if(($('body').find('.tp-container-hero').length > 1) && ($('body').find('.bannercontainer').length)) {
-      $('.tp-container-hero').each(function(){
-        $('.tp-container-hero').parent().addClass('banner-stack');
+    if(($('body').find('.tp-container-hero').length > 1 || $('body').find('.tp-container-hero-wide').length > 1) && ($('body').find('.bannercontainer').length)) {
+      $('.tp-container-hero , .tp-container-hero-wide').each(function(){
+        $(this).parent().addClass('banner-stack');
       }); 
     }
     this.initCache();
