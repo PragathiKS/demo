@@ -6,8 +6,6 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 
@@ -16,9 +14,6 @@ import javax.annotation.PostConstruct;
  */
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageHeadModel {
-
-    /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(PageHeadModel.class);
 
     /** The request. */
     @SlingObject
@@ -37,7 +32,7 @@ public class PageHeadModel {
     @PostConstruct
     public void initModel() {
         final String path = request.getResource().getPath();
-        if(baiduMapService.getBaiduMapKey() != null && path.contains("/cn")) {
+        if(baiduMapService.getBaiduMapKey() != null && path.contains("/cn")) { 
             baiduMapkey = baiduMapService.getBaiduMapKey();
         }
     }
