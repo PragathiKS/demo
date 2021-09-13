@@ -205,7 +205,7 @@ public class SoftConversionModel extends FormModel {
     }
     
     private List<DropdownOption> fetchTags(String tagPath){
-    	final List<DropdownOption> tagOptions = new ArrayList<DropdownOption>();
+    	final List<DropdownOption> tagOptions = new ArrayList<>();
     	if(StringUtils.isNotEmpty(tagPath)) {
 	    	final TagManager tagManager = resource.getResourceResolver().adaptTo(TagManager.class);
 	    	final Tag rootTag = tagManager.resolve(tagPath);
