@@ -165,8 +165,7 @@
                                 fieldDescription="Positions displayed based on tag selected. Select 'Position' tag."
                                 fieldLabel="Position Tags Path"
                                 name="./positionTagsPath"
-                                rootPath="/content/cq:tags/pardot-system-config"
-                                validation="pw.softconversion.positiontags.validator"/>
+                                rootPath="/content/cq:tags/pardot-system-config"/>
 							<functiontags
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
