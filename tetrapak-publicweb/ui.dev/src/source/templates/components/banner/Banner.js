@@ -109,20 +109,27 @@ class Banner {
   onScroll = () =>{
     const scrollBarPosition = window.pageYOffset || document.body.scrollTop;
     this.cache.calculatedHeight = this.cache.eles[this.cache.currentElement].offsetTop - this.cache.currentElement *16;
+    const top_of_element = this.cache.bannerContainer.offset().top;
+    const bottom_of_element = this.cache.bannerContainer.offset().top + this.cache.bannerContainer.outerHeight();
+    const bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
+    const top_of_screen = $(window).scrollTop();
     if(scrollBarPosition > 0 && scrollBarPosition >= this.cache.calculatedHeight) {
       if(this.cache.currentElement < this.cache.lastElement) {
         $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
         this.cache.topElement=this.cache.topElement + 16;
         $(this.cache.eles[this.cache.currentElement]).addClass('fixed');
+        if ((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
+          this.trackScrollAnalytics(this.cache.currentElement + 1); 
+        }
         this.cache.currentElement++;
       }
       else if(this.cache.currentElement === this.cache.lastElement){
         $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
         $(this.cache.eles[this.cache.lastElement]).addClass('fixed');
-        $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px'); 
-      }
-      if (this.cache.currentElement >= 0 || this.cache.currentElement === this.cache.lastElement){
-        this.trackScrollAnalytics(this.cache.currentElement + 1);
+        $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px');
+        if ((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
+          this.trackScrollAnalytics(this.cache.currentElement + 1); 
+        }
       }
     }
   }
