@@ -44,7 +44,6 @@ class Softconversion {
     this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`company-${this.cache.$componentName}`]='';
-    this.cache.requestPayload[`position-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`site_language_${this.cache.$componentName}`]='';
     this.cache.requestPayload[`site_country_${this.cache.$componentName}`]='';
     this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`]='';
@@ -251,27 +250,24 @@ class Softconversion {
 
     const apiPayload =  {};
 
-    apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
-    apiPayload.countryTitle = this.cache.requestPayload['countryTitle'];
-    apiPayload.country = this.cache.requestPayload['country'];
-    if(this.cache.requestPayload['positionTitle'] !== '') {
+    const userType = parseInt(storageUtil.getCookie('userType'), 10);
+    const visitorEmail = storageUtil.getCookie('visitor-mail');
+
+    if(visitorEmail && userType === 1) {
       apiPayload.positionTitle =  this.cache.requestPayload['positionTitle'];
       apiPayload.position = this.cache.requestPayload['position'];
-    }
-    if(this.cache.requestPayload['functionTitle'] !== '') {
       apiPayload.functionTitle =  this.cache.requestPayload['functionTitle'];
       apiPayload.function = this.cache.requestPayload['function'];
-    }
-    
-    apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
-    apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
-    apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
-    if(this.cache.requestPayload[`company-${this.cache.$componentName}`].trim()){
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
+    } else {
+      apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
+      apiPayload.countryTitle = this.cache.requestPayload['countryTitle'];
+      apiPayload.country = this.cache.requestPayload['country'];
+      apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
+      apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
+      apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
     }
-    if(this.cache.requestPayload[`position-${this.cache.$componentName}`].trim()){
-      apiPayload.position = this.cache.requestPayload[`position-${this.cache.$componentName}`];
-    }
+
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
@@ -310,11 +306,11 @@ class Softconversion {
       }
     );
 
-    //drop cookies of email id
-    storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
-    const userType = parseInt(storageUtil.getCookie('userType'), 10);
+    //drop cookies
     if(userType === 1) {
       this.cache.$userType = userType+1;
+    } else {
+      storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
     }
     storageUtil.setCookie('userType', this.cache.$userType, 365);
 
@@ -444,19 +440,6 @@ class Softconversion {
       requestPayload[fieldtitle] = title;
       $dropItem.removeClass('active');
       $(this).addClass('active');
-
-      /*
-      e.preventDefault();
-      const countryTitle = $(this).data('countrytitle');
-      const parentDrop = $(this).closest('.dropdown');
-      $('.dropdown-toggle span', parentDrop).text(countryTitle);
-      $('input', parentDrop).val(countryTitle);
-      requestPayload['country'] = countryTitle;
-      self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload['country'];
-      requestPayload['countryTitle'] = countryTitle;
-      $dropItem.removeClass('active');
-      $(this).addClass('active');
-      */
     });
   }
 
