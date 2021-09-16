@@ -1,7 +1,7 @@
 .tp-my-equipment {
     &__modal-content {
         max-height: 500px;
-        overflow: scroll;
+        overflow: auto;
     }
     &__header-wrapper {
         @include margin-bottom($margin-l);
@@ -11,24 +11,30 @@
     &__filter-button {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
-        @include padding($padding-md);
+        @include padding($padding-sm $padding-md);
         @include margin-right($margin-sm);
+        @include margin-bottom($margin-md);
         border: 1px solid $color-congress-blue;
         color: $color-congress-blue;
         box-sizing: border-box;
         border-radius: 22px;
+        font-weight: 500;
         &:hover {
-            border: 2px solid $color-congress-blue;
-            font-weight: 500;
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
             &.active {
-                border-width: 2px;
                 font-weight: 700;
+                background-color: $color-wild-sand;
             }
         }
         &.active {
-            border-width: 2px;
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
             font-weight: 700;
+            background-color: $color-wild-sand;
         }
+    }
+
+    &__filter-button-all {
+        display: none;
     }
 
     &__heading {
@@ -46,8 +52,9 @@
         border-bottom: 1px solid $color-congress-blue;
     }
 
-    &__filter-wrapper {
+    &__filter-chips {
         display: flex;
+        flex-wrap: wrap;
     }
 
     &__modal-body {
@@ -55,7 +62,6 @@
     }
 
     &__table {
-        overflow: scroll;
         table {
             position: relative;
             border-collapse: separate;
@@ -69,8 +75,22 @@
             &.hide {
                 display: none;
             }
+            &.sorted {
+                padding: 16px 2px 16px 30px;
+            }
             button {
                 font-weight: 500;
+            }
+            .icon {
+                color: inherit;
+                &:hover {
+                    color: $color-congress-blue;
+                }
+            }
+            .icon-Chevron_Down {
+                width: 12px;
+                position: absolute;
+                left: 16px;
             }
         }
         td {
@@ -104,6 +124,45 @@
 
     &__remove-button {
         color: $color-congress-blue;
+
+        &:hover {
+            color: $color-sky-blue;
+            .icon {
+                color: $color-sky-blue;
+            }
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-sm);
+        }
+    }
+
+    &__show-hide-button {
+        @include margin-right($margin-md);
+        color: $color-congress-blue;
+
+        i {
+            @include margin-right(3px);
+            display: inline-block;
+            transform: translateY(1px);
+        }
+
+        &:hover {
+            color: $color-sky-blue;
+            .icon {
+                color: $color-sky-blue;
+            }
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-sm);
+        }
+    }
+
+    &__type-group-option {
+        & + .tp-my-equipment-filter-options {
+            @include margin-left($margin-md);
+        }
     }
 
     .modal-footer > :not(:first-child) {
@@ -176,8 +235,18 @@
         }
     }
 
-    &__pagination-container {
+    &__flex-container {
         @include padding-top($padding-md);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__serial-desc {
+        @include margin-top($margin-md);
+    }
+
+    &__astrick {
+        color: $color-secondary-orange;
     }
 
     .pagination-icon-wrapper {
@@ -207,24 +276,16 @@
                 align-items: center;
             }
 
-            li.paginationjs-ellipsis {
-                a {
-                    min-width: 24px;
-                }
-            }
-
             li.paginationjs-prev,
             li.paginationjs-next {
                 width: 24px;
                 text-align: center;
                 a {
-                    min-width: 24px;
                     cursor: pointer;
                 }
             }
 
             li.paginationjs-prev {
-                @include margin-left($margin-l);
                 i {
                     &::before {
                         transform: rotate(-180deg);
@@ -235,16 +296,29 @@
             li {
                 border: 0;
                 a {
+                    @include padding($padding-zero 9px);
                     color: $color-congress-blue;
                     height: 24px;
+                    min-width: auto;
                     line-height: 24px;
                     &:hover {
                         background-color: transparent;
                     }
                 }
                 &.paginationjs-next {
-                    @include margin-right($margin-l);
+                    @include margin-right($margin-xs);
+                    @media #{$desktop} {
+                        @include margin-right($margin-l);
+                    }
+
                     border-right: 0;
+                }
+                &.paginationjs-prev {
+                    @include margin-left($margin-xs);
+                    @media #{$desktop} {
+                        @include margin-left($margin-l);
+                    }
+
                 }
                 &:last-child {
                     border-right: 0;
@@ -255,9 +329,7 @@
                 a {
                     color: $color-congress-blue;
                     height: 24px;
-                    width: 24px;
                     border-radius: 4px;
-                    min-width: 24px;
                     line-height: 24px;
                 }
 
@@ -267,6 +339,12 @@
                         background: $color-congress-blue;
                     }
                 }
+            }
+        }
+        @media #{$mobile} {
+            .first,
+            .last {
+                display: none;
             }
         }
     }
@@ -286,6 +364,14 @@
             display: flex;
             line-height: 40px;
             align-items: center;
+        }
+        &__flex-container {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &__serial-desc {
+            @include margin-top($margin-zero);
         }
     }
 }
@@ -321,6 +407,7 @@
     @include font-size($font-sm);
     @include line-height($font-m-md, $font-sm);
     @include padding($padding-l);
+    font-family: $font-monsterrat;
     border: 1px solid $color-mercury;
     color: $color-tundora;
     font-size: $font-sm;
@@ -328,6 +415,7 @@
     text-align: left;
     background-color: $color-wild-sand;
     border-radius: 4px;
+    font-weight: 500;
 }
 
 .tooltip-header {

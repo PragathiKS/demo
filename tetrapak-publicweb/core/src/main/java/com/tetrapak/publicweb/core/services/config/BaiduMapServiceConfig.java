@@ -19,5 +19,5 @@ public @interface BaiduMapServiceConfig {
             name = "Baidu Map Key",
             description = "Baidu Map Key",
             type = AttributeType.STRING)
-    String baiduMapKey();
+    String baiduMapKey() default "i2VwWovOU2OomMlYNPhXmGhMXcESpXVr";
 }

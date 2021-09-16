@@ -1,0 +1,111 @@
+@import '~tpPublic/templates/molecules/searchbar/searchBar.scss';
+
+.pw-header-search-bar {
+    display: none;
+    background: $color-white;
+    z-index: $z-index-search-bar;
+    box-shadow: -2px 8px 12px rgb(0 0 0 / 14%);
+
+    &.show {
+        display: flex;
+    }
+    .search-label {
+        text-indent: -10000px;
+        position: absolute;
+    }
+    @media #{$mobile} {
+        height: calc(100vh - #{$header-height-mobile * 1px});
+        .tp-container {
+            @include padding($padding-l $padding-md);
+        }
+        &__container {
+            flex: 1;
+            flex-direction: column;
+            .row {
+                justify-content: center;
+                width: 100%;
+            }
+            .input-box {
+                @include border-radius($border-radius);
+                @include padding(10px $padding-md);
+                border: 1px solid $color-boulder;
+                display: flex;
+                justify-content: space-between;
+                input {
+                    border: 0;
+                    color: $color-boulder;
+                    flex: 1;
+                    font-weight: 400;
+                    &::placeholder {
+                        color: $color-boulder;
+                    }
+                }
+                .icon-wrapper {
+                    display: flex;
+                    i.icon {
+                        &::before {
+                            font-size: $font-m-md;
+                            line-height: $font-m-md;
+                        }
+                    }
+                }
+                .search-icon {
+                    cursor: pointer;
+                }
+                .search-bar-close {
+                    @include margin-right($margin-md);
+                    display: none;
+                }
+                .vl {
+                    @include margin($margin-zero $margin-md);
+                    border-left: 1px solid $color-mercury;
+                }
+            }
+        }
+    }
+
+    @media #{$desktop} {
+        position: fixed;
+        height: 60px;
+        top: 89px;
+        width: 100%;
+        &__container {
+            flex: 1;
+            .row {
+                @include padding($padding-md $padding-zero);
+                justify-content: center;
+                width: 100%;
+            }
+            .input-box {
+                display: flex;
+                justify-content: space-between;
+                max-width: 880px;
+                input {
+                    border: 0;
+                    color: $color-boulder;
+                    flex: 1;
+                    &::placeholder {
+                        color: $color-boulder;
+                    }
+                }
+                .icon-wrapper {
+                    @include margin-left($margin-l);
+                    display: flex;
+                    i.icon {
+                        &::before {
+                            font-size: $font-normal;
+                            line-height: $font-normal;
+                        }
+                    }
+                }
+                .search-icon {
+                    cursor: pointer;
+                }
+                .vl {
+                    @include margin($margin-zero $margin-l);
+                    border-left: 1px solid $color-mercury;
+                }
+            }
+        }
+    }
+}
