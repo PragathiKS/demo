@@ -1,0 +1,23 @@
+<sly data-sly-template.equipmentdetails_template="${@ data, flag}">
+  <div data-sly-test="${data.isPublishEnvironment}" class="tp-card tp-equipment-details js-equipment-details"
+       data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
+       data-details-api="${data.equipmentListApi}"
+       data-module="EquipmentDetails">
+
+    <code class="d-none js-equipment-details__config">${data.i18nKeys}</code>
+
+    <div class="tp-spinner">
+      <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html" data-sly-call="${loading.loader_template}" />
+    </div>
+
+    <div class="tp-equipment-details__content-wrapper d-none">
+      <a href="#" class="tp-equipment-details__btn tp-equipment-details__back-btn" auto_locator="backToEquipmentList">
+        <i class="icon icon-Chevron_Left"></i>
+        ${"cuhu.equipment.backToEquipList" @i18n}
+      </a>
+
+      <div class="tp-equipment-details__content js-equipment-details__content"
+           data-list-api="${data.equipmentListApi}"></div>
+    </div>
+  </div>
+</sly>
