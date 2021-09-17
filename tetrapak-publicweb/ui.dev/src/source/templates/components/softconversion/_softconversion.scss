@@ -75,10 +75,8 @@
 
     .modal-dialog {
         @include margin($margin-md);
-        // max-width: 100%;
 
         @media #{$desktop} {
-            // @include max-width(500px);
             margin: auto;
         }
     }
@@ -262,26 +260,8 @@
                 }
             }
 
-            .descriptionTextThankyou {
+            .description-text-thankyou {
                 @include margin-bottom($margin-md);
-            }
-        }
-
-        .summary {
-            //&:not(:last-child) {
-            //    @include margin-bottom($margin-md);
-            // }
-            &:last-child {
-                div + div {
-                    @include margin-bottom($margin-zero);
-                }
-            }
-            div + div {
-                @include margin-bottom($margin-sm);
-                font-weight: 900;
-                @media #{$desktop} {
-                    @include margin-bottom($margin-md);
-                }
             }
         }
 
