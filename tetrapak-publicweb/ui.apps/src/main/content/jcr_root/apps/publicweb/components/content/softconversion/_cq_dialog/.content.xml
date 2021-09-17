@@ -159,6 +159,20 @@
                                     </summarytext>
                                 </items>
                             </thankyou>
+							<positiontags
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldDescription="Positions displayed based on tag selected. Select 'Position' tag."
+                                fieldLabel="Position Tags Path"
+                                name="./positionTagsPath"
+                                rootPath="/content/cq:tags/pardot-system-config"/>
+							<functiontags
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldDescription="Functions displayed based on tag selected. Select 'Functions' tag."
+                                fieldLabel="Functions Tags Path"
+                                name="./functionTagsPath"
+                                rootPath="/content/cq:tags/pardot-system-config"/>	
                         </items>
                     </column>
                 </items>

@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.models;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -32,6 +33,14 @@ public class SoftConversionFormConfigModel extends FormConfigModel {
 
     @ValueMapValue
     private String noButtonLabel;
+    
+    @ValueMapValue
+    @Default(values="/content/cq:tags/pardot-system-config/position")
+    private String positionTagsPath;
+    
+    @ValueMapValue
+    @Default(values="/content/cq:tags/pardot-system-config/function")
+    private String functionTagsPath;
 
 
     /**
@@ -86,6 +95,24 @@ public class SoftConversionFormConfigModel extends FormConfigModel {
      */
     public String getNoButtonLabel() {
         return noButtonLabel;
+    }
+    
+    /**
+     * Gets the position tag path.
+     *
+     * @return the position tag path
+     */
+    public String getPositionTagsPath() {
+    	return positionTagsPath;
+    }
+    
+    /**
+     * Gets the function tag path.
+     *
+     * @return the function tag path
+     */
+    public String getFunctionTagsPath() {
+    	return functionTagsPath;
     }
 
 }

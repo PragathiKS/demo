@@ -1,0 +1,43 @@
+{
+"jcr:primaryType": "cq:Tag",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "Position",
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "admin",
+"jcr:title.en": "Position",
+"jcr:created": "Tue Jul 27 2021 17:06:45 GMT+0200",
+"cq:lastReplicated": "Fri Dec 11 2020 03:54:15 GMT+0000",
+"sling:resourceType": "cq/tagging/components/tag",
+"c-suite":{
+"jcr:primaryType": "cq:Tag",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "C-suite",
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "admin",
+"jcr:title.en": "C-suite",
+"jcr:created": "Tue Jul 27 2021 17:06:45 GMT+0200",
+"cq:lastReplicated": "Fri Dec 11 2020 03:54:15 GMT+0000",
+"sling:resourceType": "cq/tagging/components/tag"
+},
+"vice-president":{
+"jcr:primaryType": "cq:Tag",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "Vice President",
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "admin",
+"jcr:title.en": "Vice President",
+"jcr:created": "Tue Jul 27 2021 17:06:45 GMT+0200",
+"cq:lastReplicated": "Fri Dec 11 2020 03:54:15 GMT+0000",
+"jcr:description": "",
+"sling:resourceType": "cq/tagging/components/tag"
+}
+}

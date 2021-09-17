@@ -10,7 +10,9 @@
         }
     }
 
-    .country-field-wrapper {
+    .country-field-wrapper,
+    .position-field-wrapper,
+    .function-field-wrapper {
         @include padding-left($padding-zero);
         @include padding-right($padding-zero);
     }
@@ -73,11 +75,8 @@
 
     .modal-dialog {
         @include margin($margin-md);
-        max-width: 100%;
 
         @media #{$desktop} {
-            @include margin(0 $margin-md);
-            @include max-width(900px);
             margin: auto;
         }
     }
@@ -122,7 +121,9 @@
         }
 
         // Dropdown styling
-        .country-field {
+        .country-field,
+        .position-field,
+        .function-field {
             .pw-form__dropdown__menu {
                 .active {
                     border: 0;
@@ -259,26 +260,8 @@
                 }
             }
 
-            .descriptionTextThankyou {
+            .description-text-thankyou {
                 @include margin-bottom($margin-md);
-            }
-        }
-
-        .summary {
-            //&:not(:last-child) {
-            //    @include margin-bottom($margin-md);
-            // }
-            &:last-child {
-                div + div {
-                    @include margin-bottom($margin-zero);
-                }
-            }
-            div + div {
-                @include margin-bottom($margin-sm);
-                font-weight: 900;
-                @media #{$desktop} {
-                    @include margin-bottom($margin-md);
-                }
             }
         }
 
@@ -342,7 +325,15 @@
             }
         }
     }
-
-
-
+    .pw-form {
+        &__visitorType {
+            @include margin-top($margin-md);
+        }
+        &__userPartially {
+            @include margin-top($margin-md);
+        }
     }
+    .marketing-consent {
+        @include margin-top($margin-md);
+    }
+}
