@@ -142,10 +142,10 @@ class Banner {
       noOfTilesScrolled
     };
     eventObj = {
-      eventType: 'Stackable Banner Scrolled',
-      event: 'Banner'
+      eventType: 'Stackable Banner Scroll',
+      event: 'Stackable Banner'
     };
-    trackAnalytics(scrollObj, 'scroll', '', undefined, false, eventObj);
+    trackAnalytics(scrollObj, 'scroll', 'tileScroll', undefined, false, eventObj);
   }
  
   trackAnalytics = (e) => {
