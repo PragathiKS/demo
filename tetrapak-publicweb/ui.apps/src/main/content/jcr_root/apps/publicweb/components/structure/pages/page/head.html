@@ -37,7 +37,7 @@
     <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description @ context='scriptComment'}"/>
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="robots" data-sly-test.indexVal="${properties.noIndex ? properties.noIndex : 'index'}" data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" content="${indexVal}, ${followVal}"/>
+    <meta name="robots" data-sly-test.indexVal="${properties.noIndex ? 'noindex' : 'index'}" data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" content="${indexVal}, ${followVal}"/>
     <!--/* Start of SEO canonical and href functionality */-->
     <sly data-sly-test="${indexVal != 'noindex' && followVal != 'nofollow' && digitalDataModel.isPublisher}">
     <sly data-sly-test="${digitalDataModel.canonicalURL}">
