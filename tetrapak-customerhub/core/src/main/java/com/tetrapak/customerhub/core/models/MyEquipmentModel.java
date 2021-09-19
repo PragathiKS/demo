@@ -184,6 +184,9 @@ public class MyEquipmentModel {
 	/** The remove all filters. */
 	@ValueMapValue
     private String removeAllFilters;
+	
+	/** The download excel servlet url. */
+	private String downloadExcelServletUrl;
 
 	/**
 	 * Gets the noDataFound.
@@ -211,7 +214,7 @@ public class MyEquipmentModel {
 	public String getHideAndShowCta() {
 		return hideAndShowCta;
 	}
-
+	
 	/**
 	 * Gets the country api.
 	 *
@@ -548,6 +551,15 @@ public class MyEquipmentModel {
 	}
 
 	/**
+	 * Gets the download excel servlet url.
+	 *
+	 * @return the download excel servlet url
+	 */
+	public String getDownloadExcelServletUrl() {
+		return downloadExcelServletUrl;
+	}
+	
+	/**
 	 * Inits the.
 	 */
 	@PostConstruct
@@ -593,6 +605,7 @@ public class MyEquipmentModel {
         }
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+        downloadExcelServletUrl = resource.getPath() + ".download.excel";
         
         countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, "myequipment-countrylist");
