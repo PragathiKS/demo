@@ -1,5 +1,5 @@
 <!-- QR Code Modal -->
-<sly data-sly-template.qrcodemodal_template="${@ qrcodeTitle,qrcodeImg,qrcodeAlt}">
+<sly data-sly-template.qrcodemodal_template="${@ qrcodeTitle,qrcodeImg,qrcodeAlt,mediaComponent}">
     <div class="tp-pw-qrCode__modal modal tp-modal js-qrCode-modal fade"tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog modal-md">
             <div class="modal-content tp-modal-content pw-padding--regular pw-margin--regular">
@@ -11,6 +11,11 @@
                 </div>
                 <div class="modal-body text-center">
                     <img src="${qrcodeImg}" alt="${qrcodeAlt}" />
+                    <sly data-sly-test="${data.googlePlayReference != null}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=qrcodeImg, altText=qrcodeAlt, componentName=mediaComponent, className='tp-pw-footer__social-media-items__img playStore'}" />
+                    </sly>
+                    <sly data-sly-test = "${wcmmode.edit}">
+                    <img data-sly-test = "${qrcodeImg != null}" alt="${qrcodeAlt}" src="${qrcodeImg}" class="image img-responsive" />
+                    </sly>
                 </div>
             </div>
         </div>
