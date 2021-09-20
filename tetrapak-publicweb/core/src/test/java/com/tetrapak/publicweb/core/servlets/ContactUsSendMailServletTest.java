@@ -42,7 +42,7 @@ public class ContactUsSendMailServletTest {
     /** The Constant TEST_CONTENT_ROOT. */
     private static final String EN_CONTENT_ROOT = "/content/tetrapak/public-web/lang-masters/en";
 
-    private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/contentfragment/countries";
+    private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/contentfragment/pardot-countries";
 
     String inputJson;
 
@@ -56,7 +56,7 @@ public class ContactUsSendMailServletTest {
 
         countryDetailService = new CountryDetailServiceImpl();
         final Map<String, Object> countryConfig = new HashMap<>();
-        countryConfig.put("getCountriesContentFragmentRootPath", COUNTRIES_ROOT);
+        countryConfig.put("getPardotCountriesCFRootPath", COUNTRIES_ROOT);
         context.registerService(CountryDetailService.class, countryDetailService);
         MockOsgi.activate(context.getService(CountryDetailService.class), context.bundleContext(), countryConfig);
 
