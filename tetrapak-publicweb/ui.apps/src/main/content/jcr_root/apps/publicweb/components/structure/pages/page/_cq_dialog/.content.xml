@@ -107,18 +107,6 @@
                                                 ignoreData="{Boolean}true"
                                                 name="_charset_"
                                                 value="utf-8"/>
-											<hideinsitemap
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                name="./hideInSitemap"
-                                                renderReadOnly="{Boolean}true"
-                                                text="Hide in Sitemap"
-                                                value="true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="hideInSitemap"/>
-                                            </hideinsitemap>
                                         </items>
                                     </title>
                                     <moretitles
@@ -233,16 +221,16 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
                                             <noIndex
-												jcr:primaryType="nt:unstructured"
-												cq:showOnCreate="{Boolean}true"
-												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-												renderReadOnly="true"
-												name="./noIndex"
-												text="No Index"
-												value="noindex">
-												<granite:data
+                                                    cq:showOnCreate="{Boolean}true"
                                                     jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="noIndex"/>
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    name="./noIndex"
+                                                    renderReadOnly="true"
+                                                    text="No Index/ Hide in Sitemap"
+                                                    value="true">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-msm-lockable="noIndex"/>
                                             </noIndex>
 											<noFollow
 												jcr:primaryType="nt:unstructured"
