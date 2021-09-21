@@ -23,7 +23,8 @@ set DRY_RUN = false to actually make and save changes in crx.
 	CQ_TAGGABLE: "cq:Taggable",
 	MODEL: "model",
 	MASTER: "master",
-	DATA: "data"
+	DATA: "data",
+	NT_UNSTRUCTURED: "nt:unstructured"
   ]
 ]
 
@@ -51,13 +52,13 @@ results.hits.each { hit ->
 					if (!nodetemp.hasNode(PROPS.NAME.DATA)) {
 					    noOfContentFragments++
 					    println "Pardot Countries without data node = ${nodetemp.path}"
-					    nodetemp.addNode("data", "nt:unstructured")
+					    nodetemp.addNode(PROPS.NAME.DATA, "nt:unstructured")
 					    
 					    Node pardotCountryDataNode = getNode(nodetemp.path+"/"+PROPS.NAME.DATA)
 					    println pardotCountryDataNode.path
 					    pardotCountryDataNode.setProperty(PROPS.NAME.CQ_MODEL, PATHS.COUNTRY_MODEL_PATH)
 					    
-					    pardotCountryDataNode.addNode("master", "nt:unstructured")
+					    pardotCountryDataNode.addNode(PROPS.NAME.MASTER, PROPS.NAME.NT_UNSTRUCTURED)
 					    
 					    Node pardotCountryMasterNode = getNode(pardotCountryDataNode.path+"/"+PROPS.NAME.MASTER)
 					    println pardotCountryMasterNode.path
