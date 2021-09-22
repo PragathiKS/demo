@@ -1,12 +1,11 @@
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
-import com.tetrapak.customerhub.core.beans.financials.results.Params;
-import com.tetrapak.customerhub.core.beans.financials.results.Results;
+import com.tetrapak.customerhub.core.beans.equipmentlist.Results;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -16,6 +15,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 import javax.servlet.ServletOutputStream;
 
 import static org.junit.Assert.assertFalse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EquipmentListExcelServiceImplTest {
@@ -40,9 +42,20 @@ public class EquipmentListExcelServiceImplTest {
         Mockito.when(response.getOutputStream()).thenReturn(servletOutputStream);
         Mockito.doNothing().when(servletOutputStream).write(Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
     }
+    
+    /**
+     * Test method for
+     * {@link EquipmentListExcelServiceImpl#generateEquipmentListExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.equipmentlist.Results)}.
+     */
+    @Test
+    public void testGenerateEquipmentListResultsExcelWithNullApiResp() {
+        Results apiResponse = null;
+        assertFalse(equipmentListExcelService.generateEquipmentListExcel(servletRequest, response, apiResponse));
+    }
 
     @Test
-    public void testGenerateFinancialsResultsExcel() {
+    public void testGenerateEquipmentListExcel() {
+    	Results apiResponse = new Results();
         Equipments paramRequest = new Equipments();
         paramRequest.setId("ID");
         paramRequest.setCountryCode("Country");
@@ -76,5 +89,8 @@ public class EquipmentListExcelServiceImplTest {
         paramRequest.setEquipmentCategoryDesc("Equipment Category Description");
         paramRequest.setEofsConfirmationDate("Eofs Confirmation Date");
         paramRequest.setEofsValidFromDate("Eofs Valid From Date");
+        List<Equipments> equipments = new ArrayList<>();
+        equipments.add(paramRequest);
+        apiResponse.setData(equipments);
     }
 }

@@ -1,25 +1,44 @@
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.EquipmentListApiService;
+import com.tetrapak.customerhub.core.services.config.EquipmentListApiServiceConfig;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
+
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.osgi.service.metatype.annotations.Designate;
 
 @Component(immediate = true, service = EquipmentListApiService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
+@Designate(ocd = EquipmentListApiServiceConfig.class)
 public class EquipmentListApiServiceImpl implements EquipmentListApiService{
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentListApiServiceImpl.class);
 
     @Reference
     private APIGEEService apigeeService;
+    
+    private EquipmentListApiServiceConfig config;
+
+    /**
+     * activate method
+     * @param config API GEE Service configuration
+     */
+    @Activate
+    public void activate(EquipmentListApiServiceConfig config) {
+
+        this.config = config;
+    }
+
+    @Override
+    public int getNoOfRecordsCount() {
+
+        return config.noOfRecords();
+    }
+
 
     /**
      * @param paramsRequest params
@@ -27,11 +46,10 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService{
      * @return json object
      */
     @Override
-    //public JsonObject getEquipmentList(Equipments paramsRequest, String token) {
-    public JsonObject getEquipmentList(String token) {
+    public JsonObject getEquipmentList(String token, String countryCode) {
         JsonObject jsonResponse = new JsonObject();
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(apigeeService, "myequipment-equipmentlist")+ "?results=extended";
+                .getSelectedApiMapping(apigeeService, "myequipment-equipmentlist")+ "?countrycode="+countryCode+"&results=extended&count="+getNoOfRecordsCount();
         return HttpUtil.getJsonObject(token, jsonResponse, url);
     }
 }
