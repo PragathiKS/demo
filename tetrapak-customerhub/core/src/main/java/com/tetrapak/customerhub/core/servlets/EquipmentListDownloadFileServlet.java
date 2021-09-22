@@ -21,6 +21,8 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
+
 import javax.servlet.Servlet;
 
 @Component(service = Servlet.class, property = {
@@ -31,7 +33,9 @@ import javax.servlet.Servlet;
 })
 public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet{
 
-    @Reference
+	private static final long serialVersionUID = -8769537523421118922L;
+
+	@Reference
     private EquipmentListApiService equipmentListApiService;
 
     @Reference
@@ -49,32 +53,31 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet{
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         final String extension = request.getRequestPathInfo().getExtension();
-        //String params = request.getParameter("id");
+        boolean flag = false;
+        String countryCode = request.getParameter("countrycode");
 
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
 
-        //Equipments paramsRequest = gson.fromJson(params, Equipments.class);
-
         final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY
                 : getAuthTokenValue(request);
         LOGGER.debug("Got authToken from cookie : {}", token);
-        //JsonObject jsonResponse = equipmentListApiService.getEquipmentList(paramsRequest,token);
-        JsonObject jsonResponse = equipmentListApiService.getEquipmentList(token);
+
+        LOGGER.debug("In EquipmentListDownloadFileServlet.doPost(), start time of equipment list api is {}", new Date());
+        JsonObject jsonResponse = equipmentListApiService.getEquipmentList(token, countryCode);
+        LOGGER.debug("In EquipmentListDownloadFileServlet.doPost(), end time of equipment list api is {}", new Date());
         JsonElement statusResponse = jsonResponse.get(CustomerHubConstants.STATUS);
 
-        boolean flag = false;
         MyEquipmentModel myEquipmentModel = request.getResource().adaptTo(MyEquipmentModel.class);
 
         if (null == myEquipmentModel){
             LOGGER.error("My Equipment Model is null!");
         } else if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
-            LOGGER.error("Unable to retrieve response from API got status code:{}", statusResponse.toString());
+            LOGGER.error("Unable to retrieve response from API got status code:{}", statusResponse);
         } else {
         	JsonElement resultsResponse = jsonResponse.get(CustomerHubConstants.RESULT);
         	Results results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), Results.class);
             if (CustomerHubConstants.EXCEL.equalsIgnoreCase(extension)) {
-                //flag = excelService.generateEquipmentListExcel(request,response,paramsRequest);
             	flag = excelService.generateEquipmentListExcel(request,response, results);
             } else {
                 LOGGER.error("File type not specified for the download operation.");
