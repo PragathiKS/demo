@@ -60,7 +60,7 @@ public class SoftConversionModelTest {
     private static final String TEST_POSITIONTAGS_RESOURCE_CONTENT = "/softconversion/position-tags.json";
     
     /** The Constant POSITIONTAGS_CONTENT_ROOT. */
-    private static final String POSITIONTAGS_CONTENT_ROOT = "/content/cq:tags/pardot-system-config/position";
+    private static final String POSITIONTAGS_CONTENT_ROOT = "/content/cq:tags/pardot-system-config/job-title";
     
     /** The Constant TEST_FUNCTIONTAGS_RESOURCE_CONTENT. */
     private static final String TEST_FUNCTIONTAGS_RESOURCE_CONTENT = "/softconversion/function-tags.json";
@@ -127,7 +127,7 @@ public class SoftConversionModelTest {
         assertEquals("Form", "Yes, I am", model.getFormConfig().getYesButtonLabel());
         assertEquals("Form", "No, I am not", model.getFormConfig().getNoButtonLabel());
         assertEquals("form", "http://pardotURL", model.getPardotUrl());
-        assertEquals("Form", "/content/cq:tags/pardot-system-config/position", model.getFormConfig().getPositionTagsPath());
+        assertEquals("Form", "/content/cq:tags/pardot-system-config/job-title", model.getFormConfig().getPositionTagsPath());
         assertEquals("Form", "/content/cq:tags/pardot-system-config/function", model.getFormConfig().getFunctionTagsPath());
 
     }
