@@ -1,0 +1,85 @@
+.tp-pw-footer {
+    @include margin-top($margin-l);
+    min-height: 100px;
+    background-color: $color-congress-blue;
+    @media #{$desktop} {
+        @include margin-top($margin-l);
+    }
+
+    &__container {
+        @include padding($padding-xl);
+
+        @media #{$desktop} {
+            @include padding($padding-xxxl);
+        }
+
+        .tp-pw-footer-data-logo {
+            img {
+                width: 156px;
+                height: auto;
+            }
+        }
+    }
+
+    &__link {
+        color: $color-white;
+
+        &:hover,
+        &:active {
+            color: $color-mercury;
+            text-decoration: none;
+        }
+    }
+
+    &__navigation-list {
+        li {
+            display: inline-block;
+        }
+        
+        @media #{$desktop} {
+            float: right;
+        }
+    }
+
+    &__links-list {
+        li {
+            @media #{$desktop} {
+                display: inline-block;
+                &:not(:last-child) {
+                    @include margin-right($margin-l);
+                }
+            }
+
+            @media #{$mobile} {
+                &:not(:last-child) {
+                    @include margin-bottom($margin-md);
+                }
+            }
+        }
+    }
+
+    &__social-media-items {
+        font-size: $font-l;
+
+        @media #{$mobile} {
+            @include margin-top($margin-xl);
+        }
+
+        &:not(:first-child) {
+            @include margin-left($margin-md);
+        }
+    }
+
+    &__text {
+        @include line-height($spacing-big, $font-baseline);
+        @include margin-bottom($margin-xl);
+        color: $color-white;
+    }
+
+    &__logo {
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+        @include margin-bottom($margin-md);
+    }
+}

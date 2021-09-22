@@ -1,0 +1,41 @@
+<template data-sly-template.head="${@ page}"
+          data-sly-use.headlibRenderer="headlibs.html"
+          data-sly-use.headResources="head.resources.html"
+          data-sly-use.adobeAnalytics="com.tetralaval.models.analytics.AdobeAnalyticsModel">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>
+    ${page.title @ context='scriptComment'} | ${inheritedPageProperties.titleSuffix ? inheritedPageProperties.titleSuffix : 'Tetra Laval'}
+  </title>
+  <script>
+      var digitalData = ${adobeAnalytics.data @ context="unsafe"};
+  </script>
+    <link rel="icon" type="image/png" href="/etc.clientlibs/tetra-laval/clientlibs/clientlib-site/resources/images/favicon-16x16.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+  <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
+  <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description @ context='scriptComment'}"/>
+  <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta name="robots" data-sly-test.indexVal="${properties.noIndex ? properties.noIndex : 'index'}" data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" content="${indexVal}, ${followVal}"/>
+
+  <meta data-sly-test="${properties['jcr:title']}" property="og:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
+  <meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>                                                
+  <meta property="og:type" content="website"/>                                                                                           
+
+  <meta data-sly-test="${properties['jcr:description']}" name="twitter:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>
+  <meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
+  <meta name="twitter:site" content="@tetralaval"/>
+  <meta name="twitter:card" content="summary" />
+
+  <script data-sly-test="${adobeAnalytics.development}" src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+  <script data-sly-test="${adobeAnalytics.production}" src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
+
+  <sly data-sly-include="customheaderlibs.html"/>
+  <sly data-sly-call="${headlibRenderer.headlibs @
+                        designPath                = page.designPath,
+                        staticDesignPath          = page.staticDesignPath,
+                        clientLibCategories       = page.clientLibCategories,
+                        clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
+                        hasCloudconfigSupport     = page.hasCloudconfigSupport}"/>
+  <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath}"/>
+</template>
