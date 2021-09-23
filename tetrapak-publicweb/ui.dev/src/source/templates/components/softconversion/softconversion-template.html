@@ -94,13 +94,13 @@
                                                                 data-sly-test.concatepressandmedia="${'{0}{1}' @ format=['pressandmedia-', componentName, ')']}" />
 
                                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatecustomer, label='pw.form.softconversion.customer', name='typeOfVisitorOptions', locale= 'en'}">
+                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatecustomer, label='pw.form.softconversion.customer', name='typeOfVisitorOptions', locale= 'en', autoLocatorInput='scfPurposeOptionsButton', autoLocatorLabel='scfPurposeOptionsLabel'}">
                                                             </sly>
                                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatetalent, label='pw.form.contactus.career', name='typeOfVisitorOptions', locale= 'en'}">
+                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatetalent, label='pw.form.contactus.career', name='typeOfVisitorOptions', locale= 'en', autoLocatorInput='scfPurposeOptionsButton', autoLocatorLabel='scfPurposeOptionsLabel'}">
                                                             </sly>
                                                             <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatepressandmedia, label='pw.form.softconversion.pressandmedia', name='typeOfVisitorOptions', labelClass='mb-0', locale= 'en'}">
+                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatepressandmedia, label='pw.form.softconversion.pressandmedia', name='typeOfVisitorOptions', labelClass='mb-0', locale= 'en', autoLocatorInput='scfPurposeOptionsButton', autoLocatorLabel='scfPurposeOptionsLabel'}">
                                                             </sly>
                                                             <input type="hidden"
                                                                 name="typeOfVisitorTitle-${componentName}"
@@ -193,21 +193,21 @@
                                                         <!-- Marketing Consent -->
                                                         <div class="col-sm-12 formfield marketing-consent">
                                                             <div class="row form-group no-gutters">
-                                                                <div class="col-sm-1">
-                                                                    <label class="tpatom-checkbox__label clearfix">
-                                                                        <input type="checkbox"
-                                                                            class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left"
-                                                                            id="market-consent-${componentName}"
-                                                                            name="market-consent"
-                                                                            auto_locator="scfConsentCheckBox">
-                                                                        <i
-                                                                            class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-                                                                    </label>
+                                                                <div class="d-flex">
+                                                                    <div>
+                                                                        <label class="tpatom-checkbox__label clearfix">
+                                                                            <input type="checkbox"
+                                                                                class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left"
+                                                                                id="market-consent-${componentName}"
+                                                                                name="market-consent"
+                                                                                auto_locator="scfConsentCheckBox">
+                                                                            <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="marketing-consent-text">
+                                                                        ${data.consentConfig.marketingConsent @ context="html"}
+                                                                    </div>
                                                                 </div>
-
-                                                                <div class="col-sm-11 marketingConsentText">
-                                                                    ${data.consentConfig.marketingConsent @
-                                                                    context="html"} </div>
                                                             </div>
                                                         </div>
                                                         <input type="text" name="pardot_extra_field_${componentName}"

@@ -1,4 +1,4 @@
-<sly data-sly-template.radiofieldinput_template="${@ label, id, name, checked, parentClass, labelClass, locale}">
+<sly data-sly-template.radiofieldinput_template="${@ label, id, name, checked, parentClass, labelClass, locale, autoLocatorInput, autoLocatorLabel}">
     <div class="form-check formfields ${parentClass}">
         <input class="form-check-input" type="radio" name="${name}" id="${id}" value="${label @i18n, locale = locale}" data-persist-val="${label @i18n, locale = locale}" checked=${checked}>
         <label class="form-check-label ${labelClass}" for="${id}">
