@@ -24,34 +24,33 @@
           <sly data-sly-test="${data.wechatQrCodeReference != null}">
             <div class="tp-pw-footer__social-media-items__wechat-code">
               <div class="tp-pw-footer__social-media-items__img">
-                <sly data-sly-test = "${!wcmmode.edit}">
-                  <sly data-sly-test = "${data.wechatQrCodeReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.wechatQrCodeReference, altText=data.qrAltText, componentName=footerQR, className='tp-pw-footer__social-media--weChat'}" />
+                <sly data-sly-test="${!wcmmode.edit}">
+                  <sly data-sly-test="${data.wechatQrCodeReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.wechatQrCodeReference, altText=data.qrAltText, componentName=footerQr, className='tp-pw-footer__social-media--weChat'}" />
                 </sly>
-                <sly data-sly-test = "${wcmmode.edit}">
-                  <img data-sly-test = "${data.wechatQrCodeReference}" alt="${data.qrAltText}" src="${data.wechatQrCodeReference}" class="image img-responsive" />
+                <sly data-sly-test="${wcmmode.edit}">
+                  <img data-sly-test="${data.wechatQrCodeReference}" alt="${data.qrAltText}" src="${data.wechatQrCodeReference}" class="image img-responsive" />
                 </sly>
               </div>
               <div class="tp-pw-footer__social-media-items__img storeImgs">
-                <sly data-sly-test = "${!wcmmode.edit}">
+                <sly data-sly-test="${!wcmmode.edit}">
                   <sly data-sly-test="${data.appStoreReference != null}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.appStoreReference, altText=data.appStoreAltText, componentName=footerAppStore, className='tp-pw-footer__social-media-items__img appStore'}" />
                 </sly>
-                <sly data-sly-test = "${wcmmode.edit}">
-                  <img data-sly-test = "${data.appStoreReference != null}" alt="${data.appStoreAltText}" src="${data.appStoreReference}" class="image img-responsive" />
+                <sly data-sly-test="${wcmmode.edit}">
+                  <img data-sly-test="${data.appStoreReference != null}" alt="${data.appStoreAltText}" src="${data.appStoreReference}" class="image img-responsive" />
                 </sly>
 
-                <sly data-sly-test = "${!wcmmode.edit}">
+                <sly data-sly-test="${!wcmmode.edit}">
                   <sly data-sly-test="${data.googlePlayReference != null}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.googlePlayReference, altText=data.googlePlayAltText, componentName=footerGooglePlay, className='tp-pw-footer__social-media-items__img playStore'}" />
                 </sly>
-                <sly data-sly-test = "${wcmmode.edit}">
-                  <img data-sly-test = "${data.googlePlayReference != null}" alt="${data.googlePlayAltText}" src="${data.googlePlayReference}" class="image img-responsive" />
+                <sly data-sly-test="${wcmmode.edit}">
+                  <img data-sly-test="${data.googlePlayReference != null}" alt="${data.googlePlayAltText}" src="${data.googlePlayReference}" class="image img-responsive" />
                 </sly>
               </div>
             </div>
           </sly>
           <!-- QR Code Modal -->
           <sly data-sly-test="${data.wechatQrCodeReference != null}" data-sly-use.qrcodemodal="/apps/publicweb/components/molecules/qrcodemodal/qrcodemodal-template.html"
-            data-sly-call="${qrcodemodal.qrcodemodal_template @qrcodeTitle=data.wechatQrCodeText, qrcodeImg=data.wechatQrCodeReference, qrcodeAlt=data.qrAltText, mediaComponent=footerQR}">
-          </sly>
+            data-sly-call="${qrcodemodal.qrcodemodal_template @qrcodeTitle=data.wechatQrCodeText, qrcodeImg=data.wechatQrCodeReference, qrcodeAlt=data.qrAltText, mediaComponent=footerQr}" />
 
           <!-- Social Media Links -->
           <div class="tp-pw-footer__social-media-items footer-analytics" data-sly-list.socialLink="${data.socialLinks}">
