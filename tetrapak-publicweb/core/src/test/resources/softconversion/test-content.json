@@ -30,7 +30,7 @@
 					  "downloadReadyDescriptionText":"your download is ready",
 					  "yesButtonLabel":"Yes, I am",
 					  "noButtonLabel":"No, I am not",
-					  "positionTagsPath": "/content/cq:tags/pardot-system-config/position",
+					  "positionTagsPath": "/content/cq:tags/pardot-system-config/job-title",
 					  "functionTagsPath": "/content/cq:tags/pardot-system-config/function",
 					  "jcr:lastModified": "Tue Jun 23 2020 16:35:21 GMT+0530",
 					  "sling:resourceType": "publicweb/components/structure/formconfig/businessinquiryformconfig"

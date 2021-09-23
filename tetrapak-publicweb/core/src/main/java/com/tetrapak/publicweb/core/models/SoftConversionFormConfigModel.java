@@ -35,7 +35,7 @@ public class SoftConversionFormConfigModel extends FormConfigModel {
     private String noButtonLabel;
     
     @ValueMapValue
-    @Default(values="/content/cq:tags/pardot-system-config/position")
+    @Default(values="/content/cq:tags/pardot-system-config/job-title")
     private String positionTagsPath;
     
     @ValueMapValue
