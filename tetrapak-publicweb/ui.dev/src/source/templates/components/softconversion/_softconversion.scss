@@ -335,5 +335,9 @@
     }
     .marketing-consent {
         @include margin-top($margin-md);
+
+        &-text {
+            @include margin-left($margin-xs);
+        }
     }
 }
