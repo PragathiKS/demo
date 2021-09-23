@@ -72,13 +72,11 @@ describe('Softconversion', function () {
   
   it('Should update payload with position dropItem changes', function() {
     document.getElementById('ddtest1').click();
-    expect(this.softconversion.cache.requestPayload['positionTitle']).to.equal('C-suite');
     expect(this.softconversion.cache.requestPayload['position']).to.equal('C-suite');
   });
 
   it('Should update payload with function dropItem changes', function() {
     document.getElementById('ddtest2').click();
-    expect(this.softconversion.cache.requestPayload['functionTitle']).to.equal('Administrative');
     expect(this.softconversion.cache.requestPayload['function']).to.equal('Administrative');
   });
 

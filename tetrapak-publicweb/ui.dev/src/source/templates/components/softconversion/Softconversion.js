@@ -51,9 +51,7 @@ class Softconversion {
     this.cache.requestPayload['typeOfVisitorTitle']='';
     this.cache.requestPayload['countryTitle']='';
     this.cache.requestPayload['country']='';
-    this.cache.requestPayload['positionTitle']='';
     this.cache.requestPayload['position']='';
-    this.cache.requestPayload['functionTitle']='';
     this.cache.requestPayload['function']='';
     this.cache.countryList = [];
     this.cache.positionList = [];
@@ -254,11 +252,9 @@ class Softconversion {
     const visitorEmail = storageUtil.getCookie('visitor-mail');
 
     if(visitorEmail && userType === 1) {
-      apiPayload.positionTitle =  this.cache.requestPayload['positionTitle'];
-      apiPayload.position = this.cache.requestPayload['position'];
-      apiPayload.functionTitle =  this.cache.requestPayload['functionTitle'];
-      apiPayload.function = this.cache.requestPayload['function'];
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
+      apiPayload.position = this.cache.requestPayload['position'];
+      apiPayload.function = this.cache.requestPayload['function'];
     } else {
       apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
       apiPayload.countryTitle = this.cache.requestPayload['countryTitle'];
@@ -361,7 +357,7 @@ class Softconversion {
         if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'market-consent'){
           requestPayload[fieldName] = $('input[name="market-consent"]:checked').length > 0;
         }
-        if (($(this).prop('required') && $(this).val() === '') || (fieldName === `email-${$componentName}`) && !self.validEmail($(this).val())) {
+        if (($(this).prop('required') && $(this).val() === '')) {
           
           const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
           let erLbl = '';
@@ -393,7 +389,11 @@ class Softconversion {
               erLbl = self.step1heading;
               break;
             case `email-${$componentName}`:
-              erLbl = $(`#cf-step-1-${$componentName} label`)[0].textContent;
+              if((fieldName === `email-${$componentName}`) && !self.validEmail($(this).val())) {
+                erLbl = $(`#cf-step-1-${$componentName} label`)[0].textContent;
+              } else {
+                erLbl = $(`#cf-step-1-${$componentName} label`)[0].textContent;
+              }
               break;
             case `firstName-${$componentName}`:
               erLbl = $(`#cf-step-1-${$componentName} label`)[1].textContent;
@@ -437,7 +437,9 @@ class Softconversion {
       $('.dropdown-toggle span', parentDrop).text(title);
       $('input', parentDrop).val(title);
       requestPayload[field] = title;
-      requestPayload[fieldtitle] = title;
+      if(field === 'country') {
+        requestPayload[fieldtitle] = title;
+      }
       $dropItem.removeClass('active');
       $(this).addClass('active');
     });
