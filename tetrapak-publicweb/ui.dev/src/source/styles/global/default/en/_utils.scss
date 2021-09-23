@@ -263,9 +263,10 @@ $progress-units: (
     ul {
         li:before {
             @include margin-right($margin-sm);
+            @include padding-right($padding-sm);
             content: '\2022';
             color: $color-tundora;
-            display: inline-block;
+            display: table-cell;
         }
     }
     ul ul ul {
