@@ -62,26 +62,30 @@ import java.util.stream.Collectors;
 public class SearchResultsServiceImpl implements SearchResultsService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultsServiceImpl.class);
 
-    private final static String FULLTEXT_PARAM = "searchTerm";
-    private final static String ARTICLE_TYPE_PARAM = "contentType";
-    private final static String TAGS_PARAM = "theme";
-    private final static String PAGE_PARAM = "page";
+    private static final String FULLTEXT_PARAM = "searchTerm";
+    private static final String ARTICLE_TYPE_PARAM = "contentType";
+    private static final String TAGS_PARAM = "theme";
+    private static final String PAGE_PARAM = "page";
 
-    private final static String HIDE_IN_SEARCH_PROP = "hideInSearch";
-    private final static String ARTICLE_DATE_PROP = "articleDate";
-    private final static String ARTICLE_TYPE_PROP = "articleType";
-    private final static String MEDIA_LABEL_PROP = "mediaLabel";
-    private final static String ASSETS_PATH_PROP = "assetsPath";
-    private final static String VIDEO_THUMBNAIL_PROP = "videoThumbnail";
-    private final static String DOCUMENT_THUMBNAIL_PROP = "documentThumbnail";
+    private static final String HIDE_IN_SEARCH_PROP = "hideInSearch";
+    private static final String ARTICLE_DATE_PROP = "articleDate";
+    private static final String ARTICLE_TYPE_PROP = "articleType";
+    private static final String MEDIA_LABEL_PROP = "mediaLabel";
+    private static final String ASSETS_PATH_PROP = "assetsPath";
+    private static final String VIDEO_THUMBNAIL_PROP = "videoThumbnail";
+    private static final String DOCUMENT_THUMBNAIL_PROP = "documentThumbnail";
 
-    private final static String RESOURCES_GROUP = "3_group";
-    private final static String PAGES_GROUP = String.format("%s.1_group", RESOURCES_GROUP);
-    private final static String ASSETS_GROUP = String.format("%s.2_group", RESOURCES_GROUP);
-    private final static String TAGS_GROUP = "1_group";
-    private final static String TEMPLATES_GROUP = "2_group";
+    private static final String RESOURCES_GROUP = "3_group";
+    private static final String PAGES_GROUP = String.format("%s.1_group", RESOURCES_GROUP);
+    private static final String ASSETS_GROUP = String.format("%s.2_group", RESOURCES_GROUP);
+    private static final String TAGS_GROUP = "1_group";
+    private static final String TEMPLATES_GROUP = "2_group";
 
-    private final static String ARTICLE_TEMPLATE = "/conf/tetra-laval/settings/wcm/templates/article-page-template";
+    private static final String SECOND_LEVEL_OF_GROUP_PLACEHOLDER = "%s.%s.p.or";
+
+    private static final int KILO_BYTES_VALUE = 1024;
+
+    private static final String ARTICLE_TEMPLATE = "/conf/tetra-laval/settings/wcm/templates/article-page-template";
 
     @Reference
     private XSSAPI xssAPI;
@@ -128,19 +132,23 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
         List<FilterModel> filterModelList = getTags(request, params);
         String[] articleTypes = getArticleTypes(params);
-        boolean isMediaChecked = articleTypes != null && mediaId != null ? Arrays.stream(articleTypes)
-                .filter(s -> mediaId.equals(s))
-                .collect(Collectors.toList()).size() > 0 : false;
+        boolean isMediaChecked = false;
+
+        if (articleTypes != null && mediaId != null) {
+            isMediaChecked = Arrays.stream(articleTypes)
+                    .filter(s -> mediaId.equals(s))
+                    .collect(Collectors.toList()).isEmpty();
+        }
 
         map.putAll(getFulltext(params));
         map.putAll(setResultsAmount(params));
 
         map.put(String.format("%s.p.or", RESOURCES_GROUP), "true");
-        map.put(String.format("%s.%s.p.or", PAGES_GROUP, TAGS_GROUP), "true");
-        map.put(String.format("%s.%s.p.or", PAGES_GROUP, TEMPLATES_GROUP), "true");
+        map.put(String.format(SECOND_LEVEL_OF_GROUP_PLACEHOLDER, PAGES_GROUP, TAGS_GROUP), "true");
+        map.put(String.format(SECOND_LEVEL_OF_GROUP_PLACEHOLDER, PAGES_GROUP, TEMPLATES_GROUP), "true");
 
         if (isMediaChecked) {
-            map.put(String.format("%s.%s.p.or", ASSETS_GROUP, TAGS_GROUP), "true");
+            map.put(String.format(SECOND_LEVEL_OF_GROUP_PLACEHOLDER, ASSETS_GROUP, TAGS_GROUP), "true");
         }
 
         map.putAll(setResources(isMediaChecked));
@@ -225,7 +233,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
         // fetched only these results which contains specific query text
         Map<String, String> map = new HashMap<>();
-        map.put("fulltext", fulltext != null ? fulltext : StringUtils.EMPTY);
+
+        if (fulltext != null) {
+            map.put("fulltext", fulltext);
+        } else {
+            map.put("fulltext", StringUtils.EMPTY);
+        }
         return map;
     }
 
@@ -290,7 +303,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
 
         // generating map using tags selected in search result filters
-        if (filterModelList != null && filterModelList.size() > 0) {
+        if (filterModelList.isEmpty()) {
             int tagIndex = 0;
             for (FilterModel filterModel : filterModelList) {
                 tagIndex++;
@@ -339,7 +352,13 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 String mediaType = getMediaType(assetMetadataProperties);
 
                 resultItem.setType(mediaLabel);
-                resultItem.setTitle(StringUtils.isBlank(mediaTitle) ? hit.getTitle() : mediaTitle);
+
+                if (StringUtils.isBlank(mediaTitle)) {
+                    resultItem.setTitle(hit.getTitle());
+                } else {
+                    resultItem.setTitle(mediaTitle);
+                }
+
                 setMediaSize(resultItem, assetMetadataProperties);
                 resultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf(TLConstants.DOT) + 1));
                 resultItem.setAssetType(mediaType);
@@ -381,7 +400,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 .filter(filterModel -> filterModel.getKey().equals(articleType))
                 .collect(Collectors.toList());
 
-        if (filters.size() > 0) {
+        if (filters.isEmpty()) {
             articleTypeName = filters.get(0).getLabel();
         }
         resultItem.setType(articleTypeName);
@@ -409,9 +428,9 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         } catch (NumberFormatException e) {
             LOGGER.error("Invalid Asset Size", e.getMessage(), e);
         }
-        double convertedSize = size / 1024;
-        if (convertedSize > 1024) {
-            convertedSize = convertedSize / 1024;
+        double convertedSize = size / KILO_BYTES_VALUE;
+        if (convertedSize > KILO_BYTES_VALUE) {
+            convertedSize = convertedSize / KILO_BYTES_VALUE;
             resultItem.setSize(String.valueOf(BigDecimal.valueOf(convertedSize)
                     .setScale(1, RoundingMode.HALF_UP)));
             resultItem.setSizeType("MB");
@@ -429,11 +448,30 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         if (resource != null && resource.adaptTo(Node.class) != null) {
             Node node = resource.adaptTo(Node.class);
             try {
-                mediaLabel = node.hasProperty(MEDIA_LABEL_PROP) ? node.getProperty(MEDIA_LABEL_PROP).getString() : null;
+                if (node.hasProperty(MEDIA_LABEL_PROP)) {
+                    mediaLabel = node.getProperty(MEDIA_LABEL_PROP).getString();
+                } else {
+                    mediaLabel = null;
+                }
                 mediaId = setMediaId(mediaLabel);
-                assetsPath = node.hasProperty(ASSETS_PATH_PROP) ? node.getProperty(ASSETS_PATH_PROP).getString() : TLConstants.DAM_ROOT_PATH;
-                videoThumbnail = node.hasProperty(VIDEO_THUMBNAIL_PROP) ? node.getProperty(VIDEO_THUMBNAIL_PROP).getString() : null;
-                documentThumbnail = node.hasProperty(DOCUMENT_THUMBNAIL_PROP) ? node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString() : null;
+
+                if (node.hasProperty(ASSETS_PATH_PROP)) {
+                    assetsPath = node.getProperty(ASSETS_PATH_PROP).getString();
+                } else {
+                    assetsPath = TLConstants.DAM_ROOT_PATH;
+                }
+
+                if (node.hasProperty(VIDEO_THUMBNAIL_PROP)) {
+                    videoThumbnail = node.getProperty(VIDEO_THUMBNAIL_PROP).getString();
+                } else {
+                    videoThumbnail = null;
+                }
+
+                if (node.hasProperty(DOCUMENT_THUMBNAIL_PROP)) {
+                    documentThumbnail = node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString();
+                } else {
+                    documentThumbnail = null;
+                }
             } catch (RepositoryException re) {
                 LOGGER.error("setAssetsProperties:: RepositoryException", re.getMessage(), re);
             }

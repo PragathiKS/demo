@@ -8,9 +8,6 @@ import org.apache.sling.api.SlingHttpServletRequest;
 
 public class LinkUtils extends WCMUsePojo {
 
-    private static final String PARAM_LINK = "linkPath";
-    private String sanitizedLink;
-
     /**
      * Add .html to link if is internal
      *
@@ -66,7 +63,6 @@ public class LinkUtils extends WCMUsePojo {
 
     @Override
     public void activate() throws Exception {
-        sanitizedLink = get(PARAM_LINK, String.class);
-
+        // This is override method
     }
 }

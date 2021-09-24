@@ -1,26 +1,27 @@
 package com.tetralaval.models;
 
+import com.tetralaval.constants.TLConstants;
 import com.tetralaval.models.multifield.ContactDetailsModel;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
-import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactModel {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ContactModel.class);
 
-    private final static String CONTACT_DETAILS_NODE = "contactDetails";
-    private final static String ANCHOR_ID_PROPERTY = "anchorId";
-    private final static String ANCHOR_TITLE_PROPERTY = "anchorTitle";
-    private final static String TEXT_PROPERTY = "text";
+    private static final String CONTACT_DETAILS_NODE = "contactDetails";
 
     @Inject
     private Resource resource;
@@ -39,6 +40,11 @@ public class ContactModel {
 
     private List<ContactDetailsModel> contactDetails;
 
+    @PostConstruct
+    protected void init() {
+        contactDetails = prepareContactDetails();
+    }
+
     public String getTitle() {
         return title;
     }
@@ -56,28 +62,34 @@ public class ContactModel {
     }
 
     public List<ContactDetailsModel> getContactDetails() {
+        return contactDetails;
+    }
+
+    private List<ContactDetailsModel> prepareContactDetails() {
         List<ContactDetailsModel> contactDetailsModels = new ArrayList<>();
         Resource contactDetailsResource = resource.getChild(CONTACT_DETAILS_NODE);
-        if (contactDetailsResource.adaptTo(Node.class) != null) {
-            try {
-                Node contactDetailsNode = contactDetailsResource.adaptTo(Node.class);
-                NodeIterator iterator = contactDetailsNode.getNodes();
+        try {
+            Node contactDetailsNode = contactDetailsResource.adaptTo(Node.class);
+            NodeIterator iterator = contactDetailsNode.getNodes();
 
-                while (iterator.hasNext()) {
-                    Node currentNode = iterator.nextNode();
-                    ContactDetailsModel contactDetailsModel = new ContactDetailsModel();
+            while (iterator.hasNext()) {
+                Node currentNode = iterator.nextNode();
+                ContactDetailsModel contactDetailsModel = new ContactDetailsModel();
 
-                    contactDetailsModel.setAnchorId(currentNode.hasProperty(ANCHOR_ID_PROPERTY) ?
-                            currentNode.getProperty(ANCHOR_ID_PROPERTY).getString() : null);
-                    contactDetailsModel.setAnchorTitle(currentNode.hasProperty(ANCHOR_TITLE_PROPERTY) ?
-                            currentNode.getProperty(ANCHOR_TITLE_PROPERTY).getString() : null);
-                    contactDetailsModel.setText(currentNode.hasProperty(TEXT_PROPERTY) ?
-                            currentNode.getProperty(TEXT_PROPERTY).getString() : null);
-                    contactDetailsModels.add(contactDetailsModel);
+                if (currentNode.hasProperty(TLConstants.ANCHOR_ID_PROPERTY)) {
+                    contactDetailsModel.setAnchorId(currentNode.getProperty(TLConstants.ANCHOR_ID_PROPERTY).getString());
                 }
-            } catch (RepositoryException re) {
-                return new ArrayList<>();
+                if (currentNode.hasProperty(TLConstants.ANCHOR_TITLE_PROPERTY)) {
+                    contactDetailsModel.setAnchorTitle(currentNode.getProperty(TLConstants.ANCHOR_TITLE_PROPERTY).getString());
+                }
+                if (currentNode.hasProperty(TLConstants.TEXT_PROPERTY)) {
+                    contactDetailsModel.setText(currentNode.getProperty(TLConstants.TEXT_PROPERTY).getString());
+                }
+                contactDetailsModels.add(contactDetailsModel);
             }
+        } catch (Exception e) {
+            LOGGER.error("Exception in ContactModel#getContactDetails()", e.getMessage(), e);
+            return new ArrayList<>();
         }
         return contactDetailsModels;
     }

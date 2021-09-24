@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import com.day.cq.wcm.api.WCMMode;
-import com.tetralaval.constants.TLConstants;
 import com.tetralaval.utils.LinkUtils;
 import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +31,8 @@ import com.tetralaval.utils.NavigationUtil;
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BreadcrumbModel {
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
     /** The request. */
     @SlingObject
@@ -39,12 +40,10 @@ public class BreadcrumbModel {
 
     /** The home page path. */
     private String homePagePath;
+
     /** The current page. */
     @ScriptVariable
     private Page currentPage;
-
-    /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
@@ -69,14 +68,11 @@ public class BreadcrumbModel {
         Page languagePage = PageUtil.getLanguagePage(resourceResolver.resolve(rootPath));
         breadcrumbPages.put(NavigationUtil.getNavigationTitle(languagePage), languagePage.getPath());
 
-        String currentPath = languagePage.getPath();
         for (int i = 0; i < pages.size(); i++) {
-            currentPath += TLConstants.SLASH + pages.get(i);
-            Page currentPage = PageUtil.getCurrentPage(resourceResolver.resolve(currentPath));
             breadcrumbPages.put(NavigationUtil.getNavigationTitle(currentPage), currentPage.getPath());
         }
 
-        final List<String> alKeys = new ArrayList<String>(breadcrumbPages.keySet());
+        final List<String> alKeys = new ArrayList<>(breadcrumbPages.keySet());
         for (final String key : alKeys) {
             breadcrumbSubpages.put(key, LinkUtils.sanitizeLink(breadcrumbPages.get(key), request));
         }

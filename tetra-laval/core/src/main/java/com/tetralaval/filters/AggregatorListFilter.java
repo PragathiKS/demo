@@ -12,8 +12,6 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterConfig;
@@ -34,18 +32,19 @@ import java.util.Objects;
         }
 )
 public class AggregatorListFilter implements Filter {
-    private static final Logger log = LoggerFactory.getLogger(AggregatorListFilter.class);
-    private final static String AGGREGATOR_PAGE_PROPERTY = "aggregatorPage";
+    private static final String AGGREGATOR_PAGE_PROPERTY = "aggregatorPage";
 
     @Reference
     private ArticleService articleService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        // This is override method
     }
 
     @Override
     public void destroy() {
+        // This is override method
     }
 
     @Override
@@ -64,11 +63,8 @@ public class AggregatorListFilter implements Filter {
                     return;
                 }
             }
-            chain.doFilter(request, response);
-        } else {
-            chain.doFilter(request, response);
-            return;
         }
+        chain.doFilter(request, response);
     }
 
     private String getRedirect(final SlingHttpServletRequest slingRequest) {

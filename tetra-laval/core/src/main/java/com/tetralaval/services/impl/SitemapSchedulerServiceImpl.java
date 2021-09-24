@@ -39,17 +39,23 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component(immediate = true, service = SitemapSchedulerService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = SitemapSchedulerConfiguration.class)
 public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
-    private static final Logger log = LoggerFactory.getLogger(SitemapSchedulerServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SitemapSchedulerServiceImpl.class);
 
     private static final String SITEMAP_NAMESPACE = "http://www.sitemaps.org/schemas/sitemap/0.9";
     private static final String SITEMAP_XML = "sitemap.xml";
     private static final String HIDE_IN_SITEMAP = "hideInSitemap";
+
+    private static final String PATH_PLACEHOLDER = "%s/%s";
 
     @Reference
     private ResourceResolverFactory resolverFactory;
@@ -96,13 +102,13 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
                 createSitemap(sitemapIndexNode, sitemapIndex);
 
                 for (String countryCode : countryCodes) {
-                    String path = String.format("%s/%s", TLConstants.ROOT_PATH, getMarketPath(countryCode));
+                    String path = String.format(PATH_PLACEHOLDER, TLConstants.ROOT_PATH, getMarketPath(countryCode));
                     byte[] marketUrlSet = getMarketSitemap(path, countryCode);
                     Node marketNode = getSitemapLocationNode(path);
                     createSitemap(marketNode, marketUrlSet);
                 }
-            } catch (RepositoryException re) {
-                log.error("Session fetch error = {}", re.getStackTrace());
+            } catch (Exception e) {
+                LOGGER.error("Session fetch error = {}", e.getMessage(), e);
             } finally {
                 if (session != null) {
                     session.logout();
@@ -119,9 +125,8 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             jaxbMarshaller.marshal(collection, file);
             return Files.readAllBytes(Paths.get(file.getPath()));
-        }
-        catch (JAXBException | IOException e) {
-            log.error("Error during marshaller = {}", e.getStackTrace());
+        } catch (JAXBException | IOException e) {
+            LOGGER.error("Error during marshaller = {}", e.getMessage(), e);
         }
         return null;
     }
@@ -132,7 +137,7 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
 
     private String getMarketPath(String countryCode) {
         String[] parts = countryCode.split(TLConstants.HYPHEN);
-        return String.format("%s/%s", parts[1], parts[0]);
+        return String.format(PATH_PLACEHOLDER, parts[1], parts[0]);
     }
 
     private List<String> getListOfCountryCodes() {
@@ -171,7 +176,8 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
     }
 
     private void createSitemap(Node node, byte[] bytes) {
-        Node sitemapNode, jcrContentNode;
+        Node sitemapNode;
+        Node jcrContentNode;
         try {
             if (!node.hasNode(SITEMAP_XML)) {
                 sitemapNode = node.addNode(SITEMAP_XML, JcrConstants.NT_FILE);
@@ -191,7 +197,7 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             jcrContentNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance());
             session.save();
         } catch (RepositoryException re) {
-            log.error("Error during the sitemap creation = {}", re.getStackTrace());
+            LOGGER.error("Error during the sitemap creation = {}", re.getMessage(), re);
         }
     }
 
@@ -201,7 +207,7 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
 
         List<Sitemap> sitemaps = new ArrayList<>();
         for (String countryCode : countryCodes) {
-            String path = String.format("%s/%s", TLConstants.ROOT_PATH, getMarketPath(countryCode));
+            String path = String.format(PATH_PLACEHOLDER, TLConstants.ROOT_PATH, getMarketPath(countryCode));
 
             if (!isHideInSitemap(path)) {
                 Sitemap sitemap = new Sitemap();
@@ -210,6 +216,8 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
                             TLConstants.SITE_NAME, StringUtils.EMPTY), countryCode, SITEMAP_XML));
                 } catch (Exception e) {
                     sitemap.setLocation(String.format("%s/%s/%s", TLConstants.DEFAULT_EXTERNALIZER, countryCode, SITEMAP_XML));
+                    LOGGER.error("getSitemapIndex: set default externalizer path defined in TLConstants in case of missing configuration",
+                            e.getMessage(), e);
                 }
                 sitemaps.add(sitemap);
             }
@@ -220,7 +228,8 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             JAXBContext jaxbContext = JAXBContext.newInstance(SitemapIndex.class);
             return objToXml(jaxbContext, sitemapIndex);
         } catch (JAXBException jaxbException) {
-            log.error("Error during the creation of jaxbContext instance for sitemapIndex = {}", jaxbException.getStackTrace());
+            LOGGER.error("Error during the creation of jaxbContext instance for sitemapIndex = {}",
+                    jaxbException.getMessage(), jaxbException);
         }
         return null;
     }
@@ -232,13 +241,15 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         urlSet.setXmlns(SITEMAP_NAMESPACE);
         urls.addAll(getPageForSitemap(path));
 
-        urlSet.setUrls(urls.stream().map(url -> {
+        urlSet.setUrls(urls.stream().map((Url url) -> {
             String newPath = url.getLocation().replace(path, countryCode);
             try {
                 url.setLocation(String.format("%s%s", externalizer.externalLink(resourceResolver,
                         TLConstants.SITE_NAME, StringUtils.EMPTY), newPath));
             } catch (Exception e) {
-                url.setLocation(String.format("%s/%s", TLConstants.DEFAULT_EXTERNALIZER, newPath));
+                url.setLocation(String.format(PATH_PLACEHOLDER, TLConstants.DEFAULT_EXTERNALIZER, newPath));
+                LOGGER.error("getMarketSitemap: set default externalizer path defined in TLConstants in case of missing configuration",
+                        e.getMessage(), e);
             }
             return url;
         }).collect(Collectors.toList()));
@@ -247,7 +258,8 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             JAXBContext jaxbContext = JAXBContext.newInstance(UrlSet.class);
             return objToXml(jaxbContext, urlSet);
         } catch (JAXBException jaxbException) {
-            log.error("Error during the creation of jaxbContext instance for urlset = {}", jaxbException.getStackTrace());
+            LOGGER.error("Error during the creation of jaxbContext instance for urlset = {}",
+                    jaxbException.getMessage(), jaxbException);
         }
         return null;
     }
@@ -282,9 +294,9 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         if (resource != null && resource.adaptTo(Node.class) != null) {
             Node node = resource.adaptTo(Node.class);
             try {
-                return node.hasProperty(String.format("%s/%s", JcrConstants.JCR_CONTENT, HIDE_IN_SITEMAP));
+                return node.hasProperty(String.format(PATH_PLACEHOLDER, JcrConstants.JCR_CONTENT, HIDE_IN_SITEMAP));
             } catch (RepositoryException re) {
-                log.error("isHideInSitemap error = {}", re.getStackTrace());
+                LOGGER.error("isHideInSitemap error = {}", re.getMessage(), re);
             }
         }
         return false;

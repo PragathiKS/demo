@@ -36,7 +36,7 @@ public class SearchResultsServlet extends SlingSafeMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultsServlet.class);
 
     @Reference
-    private SearchResultsService searchResultsService;
+    private transient SearchResultsService searchResultsService;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
