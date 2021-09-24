@@ -198,6 +198,7 @@ class Softconversion {
       $userUnknown.hide();
       $userUnknown.find('input').each(function() {
         $(this).removeAttr('required');
+        $(this).prop('checked', false);
       });
       $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).addClass('active');
       $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).removeClass('active');
