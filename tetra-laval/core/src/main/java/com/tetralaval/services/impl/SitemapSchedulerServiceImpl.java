@@ -128,7 +128,7 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         } catch (JAXBException | IOException e) {
             LOGGER.error("Error during marshaller = {}", e.getMessage(), e);
         }
-        return null;
+        return new byte[0];
     }
 
     private String getCountryCode(Page languagePage, Page countryPage) {
@@ -188,14 +188,16 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
                 sitemapNode = node.getNode(SITEMAP_XML);
             }
 
-            ValueFactory factory = session.getValueFactory();
-            InputStream is = new ByteArrayInputStream(bytes);
-            Binary binary = factory.createBinary(is);
-            Value value = factory.createValue(binary);
-            jcrContentNode = sitemapNode.getNode(JcrConstants.JCR_CONTENT);
-            jcrContentNode.setProperty(JcrConstants.JCR_DATA, value);
-            jcrContentNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance());
-            session.save();
+            if (bytes.length > 0) {
+                ValueFactory factory = session.getValueFactory();
+                InputStream is = new ByteArrayInputStream(bytes);
+                Binary binary = factory.createBinary(is);
+                Value value = factory.createValue(binary);
+                jcrContentNode = sitemapNode.getNode(JcrConstants.JCR_CONTENT);
+                jcrContentNode.setProperty(JcrConstants.JCR_DATA, value);
+                jcrContentNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance());
+                session.save();
+            }
         } catch (RepositoryException re) {
             LOGGER.error("Error during the sitemap creation = {}", re.getMessage(), re);
         }
@@ -231,7 +233,7 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             LOGGER.error("Error during the creation of jaxbContext instance for sitemapIndex = {}",
                     jaxbException.getMessage(), jaxbException);
         }
-        return null;
+        return new byte[0];
     }
 
     private byte[] getMarketSitemap(String path, String countryCode) {
@@ -261,7 +263,7 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             LOGGER.error("Error during the creation of jaxbContext instance for urlset = {}",
                     jaxbException.getMessage(), jaxbException);
         }
-        return null;
+        return new byte[0];
     }
 
     private List<Url> getPageForSitemap(String path) {
