@@ -37,6 +37,12 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
             "equipmentCategory", "equipmentCategoryDesc", "eofsConfirmationDate", "eofsValidFromDate"
     };
 
+    /**
+     * @param SlingHttpServletRequest req
+     * @param SlingHttpServletResponse response
+     * @param Results apiResponse
+     * @return boolean flag
+     */
     @Override
     public boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response, Results apiResponse) {
         if(Objects.nonNull(apiResponse)){
@@ -61,6 +67,9 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
         return false;
     }
 
+    /**
+     * @return String array of excel columns
+     */
     private String[][] getColumnHeaderArray() {
         String[][] columnNames = new String[1][37];
         String[] tags = new String[]{

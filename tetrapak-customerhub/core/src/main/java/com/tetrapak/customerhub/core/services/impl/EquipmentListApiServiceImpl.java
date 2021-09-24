@@ -33,6 +33,10 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService{
         this.config = config;
     }
 
+    /**
+     * @param 
+     * @return number of records to fetch
+     */
     @Override
     public int getNoOfRecordsCount() {
 
