@@ -511,14 +511,15 @@ public class SearchResultsServiceImpl implements SearchResultsService {
      * @throws RepositoryException
      */
     private <T> T getSortDate(Hit hit, Class<T> cls) throws RepositoryException {
+        T sortDate = null;
         if (hit.getProperties().containsKey(ARTICLE_DATE_PROP)) {
-            return hit.getProperties().get(ARTICLE_DATE_PROP, cls);
+            sortDate = hit.getProperties().get(ARTICLE_DATE_PROP, cls);
         } else if (hit.getProperties().containsKey(NameConstants.PN_PAGE_LAST_MOD)) {
-            return hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, cls);
+            sortDate = hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, cls);
         } else if (hit.getProperties().containsKey(JcrConstants.JCR_LASTMODIFIED)) {
-            return hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, cls);
+            sortDate = hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, cls);
         }
-        return null;
+        return sortDate;
     }
 
     /**
@@ -550,17 +551,18 @@ public class SearchResultsServiceImpl implements SearchResultsService {
      * @return
      */
     private String getMediaType(ValueMap assetMetadataProperties) {
+        String mediaType = StringUtils.EMPTY;
         if (assetMetadataProperties.containsKey(DamConstants.DC_FORMAT)) {
             String dcFormat = assetMetadataProperties.get(DamConstants.DC_FORMAT, StringUtils.EMPTY);
             if (dcFormat.contains(TLConstants.IMAGE)) {
-                return TLConstants.IMAGE;
+                mediaType = TLConstants.IMAGE;
             } else if (dcFormat.contains(TLConstants.VIDEO)) {
-                return TLConstants.VIDEO;
+                mediaType = TLConstants.VIDEO;
             } else {
-                return TLConstants.DOCUMENT;
+                mediaType = TLConstants.DOCUMENT;
             }
         }
-        return StringUtils.EMPTY;
+        return mediaType;
     }
 
     /**

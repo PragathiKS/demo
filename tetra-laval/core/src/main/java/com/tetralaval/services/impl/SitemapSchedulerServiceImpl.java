@@ -127,10 +127,13 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         List<String> countryCodes = getListOfCountryCodes();
         if (countryCodes != null) {
             try {
-                byte[] sitemapIndex = getSitemapIndex(countryCodes);
                 Node sitemapIndexNode = getSitemapLocationNode(TLConstants.ROOT_PATH);
+                if (sitemapIndexNode == null) {
+                    return;
+                }
                 session = sitemapIndexNode.getSession();
 
+                byte[] sitemapIndex = getSitemapIndex(countryCodes);
                 createSitemap(sitemapIndexNode, sitemapIndex);
 
                 for (String countryCode : countryCodes) {
@@ -139,8 +142,8 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
                     Node marketNode = getSitemapLocationNode(path);
                     createSitemap(marketNode, marketUrlSet);
                 }
-            } catch (Exception e) {
-                LOGGER.error("Session fetch error = {}", e.getMessage(), e);
+            } catch (RepositoryException re) {
+                LOGGER.error("Session fetch error = {}", re.getMessage(), re);
             } finally {
                 if (session != null) {
                     session.logout();
@@ -206,15 +209,26 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
 
             while (rootChildren != null && rootChildren.hasNext()) {
                 Page countryPage = rootChildren.next();
-                if (!TLConstants.LANGUAGE_MASTERS_PATH.equals(countryPage.getPath())
-                        && !isHideInSitemap(countryPage.getPath())) {
-                    Iterator<Page> countryChildren = countryPage.listChildren();
-                    while (countryChildren != null && countryChildren.hasNext()) {
-                        Page languagePage = countryChildren.next();
-                        if (!isHideInSitemap(languagePage.getPath())) {
-                            countryCodes.add(getCountryCode(languagePage, countryPage));
-                        }
-                    }
+                countryCodes = createCountryCodes(countryPage, countryCodes);
+            }
+        }
+        return countryCodes;
+    }
+
+    /**
+     * Create country codes list
+     * @param countryPage
+     * @param countryCodes
+     * @return
+     */
+    private List<String> createCountryCodes(Page countryPage, List<String> countryCodes) {
+        if (!TLConstants.LANGUAGE_MASTERS_PATH.equals(countryPage.getPath())
+                && !isHideInSitemap(countryPage.getPath())) {
+            Iterator<Page> countryChildren = countryPage.listChildren();
+            while (countryChildren != null && countryChildren.hasNext()) {
+                Page languagePage = countryChildren.next();
+                if (!isHideInSitemap(languagePage.getPath())) {
+                    countryCodes.add(getCountryCode(languagePage, countryPage));
                 }
             }
         }
@@ -285,10 +299,10 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
                 try {
                     sitemap.setLocation(String.format("%s%s/%s", externalizer.externalLink(resourceResolver,
                             TLConstants.SITE_NAME, StringUtils.EMPTY), countryCode, SITEMAP_XML));
-                } catch (Exception e) {
+                } catch (IllegalArgumentException iae) {
                     sitemap.setLocation(String.format("%s/%s/%s", TLConstants.DEFAULT_EXTERNALIZER, countryCode, SITEMAP_XML));
                     LOGGER.error("getSitemapIndex: set default externalizer path defined in TLConstants in case of missing configuration",
-                            e.getMessage(), e);
+                            iae.getMessage(), iae);
                 }
                 sitemaps.add(sitemap);
             }
@@ -323,10 +337,10 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             try {
                 url.setLocation(String.format("%s%s", externalizer.externalLink(resourceResolver,
                         TLConstants.SITE_NAME, StringUtils.EMPTY), newPath));
-            } catch (Exception e) {
+            } catch (IllegalArgumentException iae) {
                 url.setLocation(String.format(PATH_PLACEHOLDER, TLConstants.DEFAULT_EXTERNALIZER, newPath));
                 LOGGER.error("getMarketSitemap: set default externalizer path defined in TLConstants in case of missing configuration",
-                        e.getMessage(), e);
+                        iae.getMessage(), iae);
             }
             return url;
         }).collect(Collectors.toList()));
