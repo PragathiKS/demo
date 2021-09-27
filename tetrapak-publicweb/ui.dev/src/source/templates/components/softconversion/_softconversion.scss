@@ -329,9 +329,6 @@
         &__visitorType {
             @include margin-top($margin-md);
         }
-        &__userPartially {
-            @include margin-top($margin-md);
-        }
     }
     .marketing-consent {
         @include margin-top($margin-md);

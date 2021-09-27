@@ -198,8 +198,13 @@ class Softconversion {
       $userUnknown.hide();
       $userUnknown.find('input').each(function() {
         $(this).removeAttr('required');
-        $(this).prop('checked', false);
       });
+
+      // Uncheck Marketing Consent
+      const marketingConsent = $('.marketing-consent').find('input');
+      $(marketingConsent).prop('checked', false);
+
+      // Open Form 2
       $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).addClass('active');
       $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).removeClass('active');
@@ -253,6 +258,7 @@ class Softconversion {
     const visitorEmail = storageUtil.getCookie('visitor-mail');
 
     if(visitorEmail && userType === 1) {
+      apiPayload.email = storageUtil.getCookie('visitor-mail');
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
       apiPayload.position = this.cache.requestPayload['position'];
       apiPayload.function = this.cache.requestPayload['function'];
@@ -270,9 +276,7 @@ class Softconversion {
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     apiPayload.pardotUrl = pardotUrl;
     apiPayload.pageurl = this.cache.requestPayload['pageurl'];
-    if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
-      apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
-    }
+    apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked') ? true:false;
     loadDownloadReady(this.mainHeading, { 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' }, this.cache.$parentComponent);
 
     // IF UTM fields in URL
