@@ -276,7 +276,9 @@ class Softconversion {
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     apiPayload.pardotUrl = pardotUrl;
     apiPayload.pageurl = this.cache.requestPayload['pageurl'];
-    apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked') ? true:false;
+    if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
+      apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
+    }
     loadDownloadReady(this.mainHeading, { 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' }, this.cache.$parentComponent);
 
     // IF UTM fields in URL
