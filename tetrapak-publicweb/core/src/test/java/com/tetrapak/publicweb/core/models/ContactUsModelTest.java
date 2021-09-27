@@ -20,7 +20,7 @@ import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 /**
- *
+ * The Class ContactUsModelTest.
  */
 public class ContactUsModelTest {
 
@@ -30,20 +30,23 @@ public class ContactUsModelTest {
 
     /** The Constant TEST_RESOURCE_CONTENT. */
     private static final String TEST_RESOURCE_CONTENT = "/contactus/test-content.json";
+
+    /** The Constant TEST_RESOURCE_CFM. */
     private static final String TEST_RESOURCE_CFM = "/contactus/test-countries-content.json";
 
-    /**
-     * The Constant FILLING_MACHINE_CONTENT_ROOT.
-     *
-     */
+    /** The Constant CONTACT_US_CONTENT_ROOT. */
     private static final String CONTACT_US_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
-    private static final String COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/cfm/countries";
+
+    /** The Constant PARDOT_COUNTRIES_ROOT. */
+    private static final String PARDOT_COUNTRIES_ROOT = "/content/dam/tetrapak/publicweb/contentfragment/pardot-countries";
+
     /** The model class. */
     Class<ContactUsModel> modelClass = ContactUsModel.class;
 
     /** The model. */
     private ContactUsModel model;
 
+    /** The country detail service. */
     private CountryDetailService countryDetailService;
 
     /**
@@ -64,14 +67,14 @@ public class ContactUsModelTest {
     public void setUp() throws Exception {
         countryDetailService = new CountryDetailServiceImpl();
         context.load().json(TEST_RESOURCE_CONTENT, CONTACT_US_CONTENT_ROOT);
-        context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
+        context.load().json(TEST_RESOURCE_CFM, PARDOT_COUNTRIES_ROOT);
 
         context.addModelsForClasses(modelClass);
         context.registerService(CountryDetailService.class, countryDetailService);
         // context.registerInjectActivateService(countryDetailService);
         final Map<String, Object> countryConfig = new HashMap<>();
-        countryConfig.put("getCountriesContentFragmentRootPath",
-                "/content/dam/tetrapak/publicweb/cfm/countries");
+        countryConfig.put("getPardotCountriesCFRootPath",
+                "/content/dam/tetrapak/publicweb/contentfragment/pardot-countries");
         MockOsgi.activate(context.getService(CountryDetailService.class), context.bundleContext(), countryConfig);
 
         resource = context.currentResource(RESOURCE);
@@ -80,6 +83,7 @@ public class ContactUsModelTest {
     }
 
     /**
+     * Test dailog values.
      *
      * @throws Exception
      *             the exception
@@ -100,13 +104,18 @@ public class ContactUsModelTest {
         assertEquals("ContactUs", "Contact us", model.getAlt());
         assertEquals("ContactUs", "Please select the countryyou wish to contact.", model.getDescriptionText());
         assertEquals("ContactUs", "grayscale-white", model.getPwTheme());
-        assertEquals("ContactUs",
-                "/content/tetrapak/publicweb/gb/en/jcr:content/contactus.sendmail.json",
+        assertEquals("ContactUs", "/content/tetrapak/publicweb/gb/en/jcr:content/contactus.sendmail.json",
                 model.getApiUrl());
     }
 
+    /**
+     * Test pardot countries.
+     *
+     * @throws Exception
+     *             the exception
+     */
     @Test
-    public void testCountries() throws Exception {
+    public void testPardotCountries() throws Exception {
 
         assertEquals("ContactUs", 2, model.getCountryOptions().size());
         assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());

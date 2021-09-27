@@ -75,7 +75,7 @@ class Banner {
             $sideSectionright.css('width', finalWidth +'px');
           } else {
             const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
-            const bannerRightOffset = bannerOffset.left + bannerWidth;
+            const bannerRightOffset = bannerOffset.left + bannerWidth - 48;
             $sideSectionright.css('width', `${(pwContainerRightOffset - bannerRightOffset)}px`);
           }
           if($('.pw-banner-herowrapper').length) {
@@ -118,7 +118,7 @@ class Banner {
       else if(this.cache.currentElement === this.cache.lastElement){
         $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
         $(this.cache.eles[this.cache.lastElement]).addClass('fixed');
-        $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px'); 
+        $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px');
       }
     }
   }

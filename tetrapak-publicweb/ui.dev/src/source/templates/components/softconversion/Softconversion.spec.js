@@ -16,6 +16,8 @@ describe('Softconversion', function () {
     this.yesMeBtnHandlerSpy = sinon.spy(this.softconversion, 'yesMeBtnHandler');
     this.onRadioChangeHandlerSpy = sinon.spy(this.softconversion, 'onRadioChangeHandler');
     this.getCountryListSpy = sinon.spy(this.softconversion, 'getCountryList');
+    this.getPositionListSpy = sinon.spy(this.softconversion, 'getPositionList');
+    this.getFunctionListSpy = sinon.spy(this.softconversion, 'getFunctionList');
 
     this.softconversion.root.modal = ()=>{};
     this.openStub = sinon.stub(window, 'open');
@@ -35,6 +37,8 @@ describe('Softconversion', function () {
     this.openStub.restore();
     this.showPopupSpy.restore();
     this.getCountryListSpy.restore();
+    this.getPositionListSpy.restore();
+    this.getFunctionListSpy.restore();
   });
 
   it('should initialize', function (done) {
@@ -48,10 +52,32 @@ describe('Softconversion', function () {
     $('.country-dropdown, .country-dropdown-select').keydown();
   });
 
-  it('Should update payload with dropItem changes', function() {
+  it('should get position list and it should be equal to 2', function () {
+    expect(this.softconversion.getPositionList.called).to.be.true;
+    expect(this.softconversion.cache.positionList.length).to.equal(2);
+    $('.position-dropdown, .position-dropdown-select').keydown();
+  });
+
+  it('should get function list and it should be equal to 2', function () {
+    expect(this.softconversion.getFunctionList.called).to.be.true;
+    expect(this.softconversion.cache.functionList.length).to.equal(2);
+    $('.function-dropdown, .function-dropdown-select').keydown();
+  });
+
+  it('Should update payload with country dropItem changes', function() {
     document.getElementById('ddtest').click();
-    expect(this.softconversion.cache.requestPayload['countryTitle']).to.equal('Albania');
-    expect(this.softconversion.cache.requestPayload['country']).to.equal('Albania');
+    expect(this.softconversion.cache.requestPayload['countryTitle']).to.equal('Afghanistan');
+    expect(this.softconversion.cache.requestPayload['country']).to.equal('Afghanistan');
+  });
+  
+  it('Should update payload with position dropItem changes', function() {
+    document.getElementById('ddtest1').click();
+    expect(this.softconversion.cache.requestPayload['position']).to.equal('C-suite');
+  });
+
+  it('Should update payload with function dropItem changes', function() {
+    document.getElementById('ddtest2').click();
+    expect(this.softconversion.cache.requestPayload['function']).to.equal('Administrative');
   });
 
   it('should not submit Form when required fields are empty', function (done) {
@@ -67,33 +93,30 @@ describe('Softconversion', function () {
     document.getElementById('lastName-textimage').value = 'last';
     document.getElementById('email-textimage').value = 'email@em.com';
     document.getElementById('company-textimage').value = 'mockmessage';
-    document.getElementById('position-textimage').value = 'mockmessage';
+    document.getElementById('country').value = 'Afghanistan';
+    document.getElementById('position').value = 'VP';
+    document.getElementById('function').value = 'Administrative';
     document.getElementById('typeOfVisitor').value = 'Customer';
-    document.getElementById('market-consent-textimage').value='checked';
-
     this.softconversion.cache.$submitBtn.click();
     expect(this.softconversion.submitForm.called).to.be.true;
     done();
   });
 
-  it('Should not update request payload on step-1 next button click', function (done) {
-    document.getElementById('typeOfVisitor').value = 'Customer';
-    document.getElementById('step1btn').click();
-    expect(this.softconversion.cache.requestPayload['typeOfVisitorTitle']).to.not.equal('Customer');
-    done();
-  });
-
-  it('should update request payload when step-2 next button is clicked', function (done) {
+  it('should not update request payload on submit button click', function (done) {
     document.getElementById('firstName-textimage').value = 'first';
     document.getElementById('lastName-textimage').value = 'last';
     document.getElementById('email-textimage').value = 'email';
-    document.getElementById('step2btn').click();
+    document.getElementById('company-textimage').value = 'company';
+    document.getElementById('typeOfVisitor').value = 'Customer';
+    this.softconversion.cache.$submitBtn.click();
     expect(this.softconversion.cache.requestPayload['firstName-textimage']).to.equal('first');
     expect(this.softconversion.cache.requestPayload['lastName-textimage']).to.equal('last');
     expect(this.softconversion.cache.requestPayload['email-textimage']).to.equal('email');
+    expect(this.softconversion.cache.requestPayload['company-textimage']).to.equal('company');
+    expect(this.softconversion.cache.requestPayload['typeOfVisitorTitle']).to.not.equal('Customer');
     done();
   });
-
+  
   it('should update request payload for UTM if avaialble in URL params', function (done) {
     const paramsURL = 'http://www.test.com/?utm_campaign=val1&utm_content=val2&utm_medium=val3&utm_source=val4'
     const params = {};

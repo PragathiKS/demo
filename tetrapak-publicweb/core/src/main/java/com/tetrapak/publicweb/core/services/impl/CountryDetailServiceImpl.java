@@ -88,21 +88,12 @@ public class CountryDetailServiceImpl implements CountryDetailService {
         return jcrResource.getValueMap().get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
     }
 
-    /**
-     * Gets the country cf root path.
-     *
-     * @return the country cf root path
-     */
-    @Override
-    public String getCountryCfRootPath() {
-        return countryConfig.getCountriesContentFragmentRootPath();
-    }
 
     @Override
     public String[] fetchContactEmailAddresses(final ContactUs contactUs, final ResourceResolver resourceResolver) {
         LOGGER.debug("Inside fetch contact email Addess - Start");
         String[] contactEmails = null;
-        final String countryDataPath = getCountryCfRootPath() + PWConstants.SLASH + contactUs.getCountry()
+        final String countryDataPath = getPardotCountryCfRootPath() + PWConstants.SLASH + contactUs.getCountry()
                 + DATA_ROOT_PATH;
         final Resource countryDataResource = resourceResolver.getResource(countryDataPath);
         if (Objects.nonNull(countryDataResource)) {
@@ -110,27 +101,6 @@ public class CountryDetailServiceImpl implements CountryDetailService {
                     .get(contactUs.getPurposeOfContact() + "emails");
         }
         return contactEmails;
-    }
-
-    @Override
-    public List<DropdownOption> fetchCountryList(final ResourceResolver resourceResolver) {
-        final List<DropdownOption> countryList = new ArrayList<>();
-        final Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
-        if (Objects.nonNull(countriesRootRes)) {
-            final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
-            while (rootIterator.hasNext()) {
-                final Resource childResource = rootIterator.next();
-                if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
-                    final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
-                    if (Objects.nonNull(jcrResource)) {
-                        addCountry(countryList, childResource, jcrResource);
-                    }
-                }
-            }
-        }
-        countryList
-                .sort((final DropdownOption op1, final DropdownOption op2) -> op1.getValue().compareTo(op2.getValue()));
-        return countryList;
     }
 
     /**

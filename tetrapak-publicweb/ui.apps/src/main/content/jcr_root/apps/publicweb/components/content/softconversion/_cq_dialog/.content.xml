@@ -159,6 +159,20 @@
                                     </summarytext>
                                 </items>
                             </thankyou>
+							<positiontags
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldDescription="Positions displayed based on tag selected. Select 'Position' tag."
+                                fieldLabel="Position Tags Path"
+                                name="./positionTagsPath"
+                                rootPath="/content/cq:tags/pardot-system-config"/>
+							<functiontags
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldDescription="Functions displayed based on tag selected. Select 'Functions' tag."
+                                fieldLabel="Functions Tags Path"
+                                name="./functionTagsPath"
+                                rootPath="/content/cq:tags/pardot-system-config"/>	
                         </items>
                     </column>
                 </items>
@@ -184,35 +198,6 @@
                                 fieldDescription="Provide pardot form handler URL. Valid URL starts with - https://go.tetrapak.com/"
                                 fieldLabel="Pardot form handler URL"
                                 name="./pardotUrl"/>                             
-                            <summarytext
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                fieldDescription="Suggested to use characters less than recommended Limit: 220 chars considering translations"
-                                fieldLabel="Body Text"
-                                name="./descriptionText"
-                                useFixedInlineToolbar="{Boolean}true">
-                                <rtePlugins jcr:primaryType="nt:unstructured">
-                                    <format
-                                        jcr:primaryType="nt:unstructured"
-                                        features="*"/>
-                                    <links
-                                        jcr:primaryType="nt:unstructured"
-                                        features="modifylink,unlink"/>
-                                    <justify
-                                        jcr:primaryType="nt:unstructured"
-                                        features="-"/>
-                                    <lists
-                                        jcr:primaryType="nt:unstructured"
-                                        features="-"/>
-                                </rtePlugins>
-                                <uiSettings jcr:primaryType="nt:unstructured">
-                                    <cui jcr:primaryType="nt:unstructured">
-                                        <dialogFullScreen
-                                            jcr:primaryType="nt:unstructured"
-                                            toolbar="[format#bold,format#italic,format#underline,links#modifylink,links#unlink]"/>
-                                    </cui>
-                                </uiSettings>
-                            </summarytext>
                             <thankyou
                                 jcr:primaryType="nt:unstructured"
                                 jcr:title="Thank you section"

@@ -1,15 +1,14 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.services.BaiduMapService;
+import javax.annotation.PostConstruct;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
+import com.tetrapak.publicweb.core.services.BaiduMapService;
 
 /**
  * The Class PageHeadModel.
@@ -17,8 +16,7 @@ import javax.annotation.PostConstruct;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PageHeadModel {
 
-    /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(PageHeadModel.class);
+
 
     /** The request. */
     @SlingObject

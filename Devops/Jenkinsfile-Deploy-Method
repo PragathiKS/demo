@@ -11,9 +11,9 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetraPak Module', name: 'DeployMyTetrapak'
         booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
 
-        string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: '')
-        string(name: 'Snapshot_MyTetrapak', defaultValue: 'SnapshotVersion', description: '')
-        string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: '')
+        string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+        string(name: 'Snapshot_MyTetrapak', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+        string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
 
     }
 
@@ -74,6 +74,18 @@ pipeline {
                             
                         //}
                     }					
+                }
+            }
+        }
+	stage('QA Cache Clear') {
+            agent {
+                node {
+                label 'cfe-deploy'
+            }
+            }
+            steps {
+                script {
+                    cacheflush()
                 }
             }
         }
@@ -266,33 +278,40 @@ pipeline {
     def authordeploy() {
                 
                 echo "Uninstalling Old Commons Package on author for Commons"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
                 sleep 60
                 echo "Deleting Old Commons Package on author"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
                 sleep 60
                 echo "Uploading New Commons Package on author"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 60
                 echo "Installing New Commons Package on author"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
                 sleep 60
 
     }
 
     def publishdeploy() {
                 
-                echo "Uninstalling Old Commons Package on publish for Commons"
-                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
-                sleep 60
-                echo "Deleting Old Commons Package on publish"
-                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
+               echo "Uninstalling Old Commons Package on publish for Commons"
+               sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
+               sleep 60
+               echo "Deleting Old Commons Package on publish"
+               sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
                 sleep 60
                 echo "Uploading New Commons Package on publish"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 60
                 echo "Installing New Commons Package on publish"
-                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
                 sleep 60
 
+    }
+    def cacheflush() {
+                echo "Starting Dev Dispatcher Cache Clear"
+                withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                {
+                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.1.35 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
     }

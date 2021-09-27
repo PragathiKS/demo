@@ -33,7 +33,7 @@
     }
 
     li {
-        display: block;
+        display: table-row;
     }
 
     .tp-pw-richText-wrapper a {
@@ -104,10 +104,11 @@
     }
 
     ul {
+        display: table;
         li {
             &::before {
-                @include margin-right($margin-sm);
-                display: inline-block;
+                @include margin-right($padding-sm);
+                display: table-cell;
                 color: $color-tundora;
                 content: '\2022';
             }
@@ -115,12 +116,15 @@
     }
 
     ol {
+        display: table;
         counter-reset: section;
         list-style-type: none;
         li {
             &::before {
                 @include margin-right($margin-sm);
                 @include font-size(14px);
+                @include padding-right($padding-sm);
+                display: table-cell;
                 content: counters(section, '.') ' ';
                 counter-increment: section;
             }

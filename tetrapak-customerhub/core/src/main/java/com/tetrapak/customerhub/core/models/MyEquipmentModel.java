@@ -18,8 +18,8 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
- * @author ojaswarn
  * The Class MyEquipmentModel.
+ *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MyEquipmentModel {
@@ -43,6 +43,10 @@ public class MyEquipmentModel {
 	/** The site. */
 	@ValueMapValue
 	private String site;
+
+	/** The customer. */
+	@ValueMapValue
+	private String customer;
 	
 	/** The equipment description. */
 	@ValueMapValue
@@ -55,6 +59,10 @@ public class MyEquipmentModel {
 	/** The equipment status. */
 	@ValueMapValue
 	private String equipmentStatus;
+
+	/** The equipment type. */
+	@ValueMapValue
+	private String equipmentType;
 	
 	/** The my equipment. */
 	@ValueMapValue
@@ -104,6 +112,30 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String serialNumToolTip;
 
+	/** The functional location. */
+	@ValueMapValue
+	private String functionalLocation;
+
+	/** The functional location tool tip. */
+	@ValueMapValue
+	private String functionalLocationToolTip;
+
+	/** The site description. */
+	@ValueMapValue
+	private String siteDescription;
+
+	/** The site description tool tip. */
+	@ValueMapValue
+	private String siteDescToolTip;
+
+	/** The location. */
+	@ValueMapValue
+	private String location;
+
+	/** The location tool tip. */
+	@ValueMapValue
+	private String locationToolTip;
+
 	/** The sling settings service. */
 	@OSGiService
     private SlingSettingsService slingSettingsService;
@@ -129,6 +161,57 @@ public class MyEquipmentModel {
 	@OSGiService
 	private APIGEEService service;
 	
+	/** The hide And Show Cta.*/
+	@ValueMapValue
+	private String hideAndShowCta;
+
+	/** The no Data Found.*/
+	@ValueMapValue
+	private String noDataFound;
+
+	/** The permanent volume conversion.*/
+	@ValueMapValue
+	private String permanentVolumeConversion;
+	
+	/** The show all filters. */
+	@ValueMapValue
+    private String showAllFilters;
+		
+	/** The hide all filters. */
+	@ValueMapValue
+    private String hideAllFilters;
+	
+	/** The remove all filters. */
+	@ValueMapValue
+    private String removeAllFilters;
+
+	/**
+	 * Gets the noDataFound.
+	 *
+	 * @return the noDataFound
+	 */
+	public String getNoDataFound() {
+		return noDataFound;
+	}
+
+	/**
+	 * Gets the Permanent Volume Conversion.
+	 *
+	 * @return the permanentVolumeConversion
+	 */
+	public String getPermanentVolumeConversion() {
+		return permanentVolumeConversion;
+	}
+
+	/**
+	 * Gets the hideAndShowCta.
+	 *
+	 * @return the hideAndShowCta
+	 */
+	public String getHideAndShowCta() {
+		return hideAndShowCta;
+	}
+
 	/**
 	 * Gets the country api.
 	 *
@@ -182,7 +265,7 @@ public class MyEquipmentModel {
 	public String getEquipStatToolTip() {
 		return evaluateToolTip(equipStatToolTip);
 	}
-	
+
 	/**
 	 * Gets the country tool tip.
 	 *
@@ -227,7 +310,62 @@ public class MyEquipmentModel {
 	public String getSerialNumToolTip() {
 		return evaluateToolTip(serialNumToolTip);
 	}
-	
+
+
+	/**
+	 * Gets the functional location.
+	 *
+	 * @return the functional location
+	 */
+	public String getFunctionalLocation() {
+		return functionalLocation;
+	}
+
+	/**
+	 * Gets the functional location tool tip.
+	 *
+	 * @return the functional location tool tip
+	 */
+	public String getFunctionalLocationToolTip() {
+		return functionalLocationToolTip;
+	}
+
+	/**
+	 * Gets the site description.
+	 *
+	 * @return the site description.
+	 */
+	public String getSiteDescription() {
+		return siteDescription;
+	}
+
+	/**
+	 * Gets the site description tool tip.
+	 *
+	 * @return the site description tool tip
+	 */
+	public String getSiteDescToolTip() {
+		return siteDescToolTip;
+	}
+
+	/**
+	 * Gets the location.
+	 *
+	 * @return the location
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * Gets the location tool tip.
+	 *
+	 * @return the location tool tip
+	 */
+	public String getLocationToolTip() {
+		return locationToolTip;
+	}
+
 	/**
 	 * Gets the i18n keys.
 	 *
@@ -274,6 +412,15 @@ public class MyEquipmentModel {
 	}
 
 	/**
+	 * Gets the customer.
+	 *
+	 * @return the customer
+	 */
+	public String getCustomer() {
+		return customer;
+	}
+
+	/**
 	 * Gets the equipment description.
 	 *
 	 * @return the equipment description
@@ -298,6 +445,15 @@ public class MyEquipmentModel {
 	 */
 	public String getEquipmentStatus() {
 		return equipmentStatus;
+	}
+
+	/**
+	 * Gets the equipment type.
+	 *
+	 * @return the equipment type
+	 */
+	public String getEquipmentType() {
+		return equipmentType;
 	}
 
 	/**
@@ -328,6 +484,33 @@ public class MyEquipmentModel {
 	}
 
 	/**
+	 * Gets the show all filters.
+	 *
+	 * @return the show all filters
+	 */
+	public String getShowAllFilters() {
+        return showAllFilters;
+    }
+
+    /**
+     * Gets the hide all filters.
+     *
+     * @return the hide all filters
+     */
+    public String getHideAllFilters() {
+        return hideAllFilters;
+    }
+
+    /**
+     * Gets the removes the all filters.
+     *
+     * @return the removes the all filters
+     */
+    public String getRemoveAllFilters() {
+        return removeAllFilters;
+    }
+
+    /**
 	 * Gets the sling settings service.
 	 *
 	 * @return the sling settings service
@@ -344,7 +527,7 @@ public class MyEquipmentModel {
 	public boolean isPublishEnvironment() {
 		return isPublishEnvironment;
 	}
-	
+
 
 	/**
 	 * Gets the tool tip class.
@@ -363,7 +546,7 @@ public class MyEquipmentModel {
 	public void setToolTipClass(String toolTipClass) {
 		this.toolTipClass = toolTipClass;
 	}
-	
+
 	/**
 	 * Inits the.
 	 */
@@ -374,9 +557,11 @@ public class MyEquipmentModel {
         i18KeyMap.put("applyFilter", getApplyFilter());
         i18KeyMap.put("myEquipment", getMyEquipment());
         i18KeyMap.put("equipmentStatus", getEquipmentStatus());
+        i18KeyMap.put("equipmentType", getEquipmentType());
         i18KeyMap.put("serialNumber", getSerialNumber());
         i18KeyMap.put("equipmentDescription", getEquipmentDescription());
         i18KeyMap.put("site", getSite());
+        i18KeyMap.put("customer", getCustomer());
         i18KeyMap.put("searchResults", getSearchResults());
         i18KeyMap.put("line", getLine());
         i18KeyMap.put("country", getCountry());
@@ -384,12 +569,25 @@ public class MyEquipmentModel {
         i18KeyMap.put("last", getLast());
         i18KeyMap.put("customizeTable", getCustomizeTable());
         i18KeyMap.put("serialNumToolTip", getSerialNumToolTip());
+        i18KeyMap.put("functionalLocation", getFunctionalLocation());
+        i18KeyMap.put("siteDescription", getSiteDescription());
+        i18KeyMap.put("location", getLocation());
+		i18KeyMap.put("locationToolTip", getLocationToolTip());
+		i18KeyMap.put("siteDescToolTip", getSiteDescToolTip());
+		i18KeyMap.put("functionalLocationToolTip", getFunctionalLocationToolTip());
         i18KeyMap.put("lineToolTip", getLineToolTip());
         i18KeyMap.put("siteToolTip", getSiteToolTip());
         i18KeyMap.put("countryToolTip", getCountryToolTip());
         i18KeyMap.put("equipDescToolTip", getEquipDescToolTip());
         i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
+		i18KeyMap.put("hideAndShowCta", getHideAndShowCta());
+		i18KeyMap.put("noDataFound", getNoDataFound());
+		i18KeyMap.put("permanentVolumeConversion", getPermanentVolumeConversion());
+		i18KeyMap.put("showallfilters ", getShowAllFilters());
+		i18KeyMap.put("hideallfilters ", getHideAllFilters());
+		i18KeyMap.put("removeallfilters", getRemoveAllFilters());
+		
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }

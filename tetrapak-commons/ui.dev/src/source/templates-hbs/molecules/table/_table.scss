@@ -6,21 +6,27 @@
         background: transparent;
 
         span {
-            @include margin-right(6px);
+            @include margin-right(4px);
         }
 
         .icon::before {
             // icon placement
             @include font-size($font-sm);
-            @include width($font-sm);
-            @include height($font-sm/2);
             transition: transform 0.3s;
-            vertical-align: middle;
+            color: $color-text;
         }
 
-        &.desc {
+        &.asc {
             .icon::before {
                 transform: rotate(180deg);
+            }
+        }
+
+        &:hover {
+            color: $color-congress-blue;
+
+            .icon::before {
+                color: $color-congress-blue;
             }
         }
     }

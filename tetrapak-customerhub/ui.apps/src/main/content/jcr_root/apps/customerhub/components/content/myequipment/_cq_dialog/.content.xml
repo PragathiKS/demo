@@ -42,6 +42,12 @@
                                 fieldLabel="Site Label (i18N key)"
                                 name="./site"
                                 required="true"/>
+                            <customer
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Customer Label (i18N key)"
+                                name="./customer"
+                                required="true"/>
                             <equipmentDescription
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -59,6 +65,12 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Equipment Status Label (i18N key)"
                                 name="./equipmentStatus"
+                                required="true"/>
+                            <equipmentType
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Equipment Type Label (i18N key)"
+                                name="./equipmentType"
                                 required="true"/>
                             <myEquipment
                                 jcr:primaryType="nt:unstructured"
@@ -90,12 +102,66 @@
                                 fieldLabel="Last Label (i18N key)"
                                 name="./last"
                                 required="true"/>
+							<hideAndShowCta
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Hide And Show Cta Label (i18N key)"
+                                name="./hideAndShowCta"
+                                required="true"/>
                             <customizeTable
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Customize Table Label (i18N key)"
                                 name="./customizeTable"
                                 required="true"/>
+                            <functionalLocation
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Functional Location (i18N key)"
+                                name="./functionalLocation"
+                                required="true"/>
+                            <siteDescription
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Site Description (i18N key)"
+                                name="./siteDescription"
+                                required="true"/>
+                            <location
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Location (i18N key)"
+                                name="./location"
+                                required="true"/>
+                            <noDataFound
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="No Data Found Label (i18N key)"
+                                    name="./noDataFound"
+                                    required="true"/>
+                            <permanentVolumeConversion
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Permanent Volume Conversion Label (i18N key)"
+                                    name="./permanentVolumeConversion"
+                                    required="true"/>
+							<showallfilters
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Show all filters (i18N key)"
+                                    name="./showAllFilters"
+                                    required="true"/>
+							<hideallfilters
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Hide all filters (i18N key)"
+                                    name="./hideAllFilters"
+                                    required="true"/>
+							<removeallfilters
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Remove all filters (i18N key)"
+                                    name="./removeAllFilters"
+                                    required="true"/>
                         </items>
                     </column1>
                     <column2
@@ -133,7 +199,22 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Equipment Status Tool Tip Text (i18N key)"
-                                name="./equipStatToolTip"/>						
+                                name="./equipStatToolTip"/>
+                            <functionalLocationToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Functional Location Tool Tip Text (i18N key)"
+                                name="./functionalLocationToolTip"/>
+                            <siteDescToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Site Description Tool Tip Text (i18N key)"
+                                name="./siteDescToolTip"/>
+                            <locationToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Location Tool Tip Text (i18N key)"
+                                name="./locationToolTip"/>
                         </items>
                     </column2>
                 </items>

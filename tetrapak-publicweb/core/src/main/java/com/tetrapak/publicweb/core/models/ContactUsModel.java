@@ -67,11 +67,11 @@ public class ContactUsModel extends FormModel {
 
 
     /**
-     * Fetches country list from content fragments.
+     * Fetches country list from pardot countries content fragments.
      *
      */
     private void setCountryOptions() {
-        this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver());
+        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
     }
 
     /**

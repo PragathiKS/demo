@@ -1,0 +1,90 @@
+import groovy.transform.Field
+import javax.jcr.Node
+
+/**
+set DRY_RUN = false to actually make and save changes in crx.
+**/
+@Field final DRY_RUN = true
+
+@Field final PATHS = [
+  PARDOT_COUNTRY_CONTENT_FRAGMENT_PATH: "/content/dam/tetrapak/publicweb/contentfragment/pardot-countries"
+]
+
+@Field final PROPS = [
+  NAME: [
+    ASSOCIATED: "associated",
+    CQ_PARENT_PATH: "cq:parentPath",
+	CQ_NAME: "cq:name",
+    DAM_ASSET: "dam:Asset",
+	JCR_CONTENT: "jcr:content",
+	MODEL: "model"
+  ]
+]
+
+/*Flag to count the number of nodes*/
+noOfModifiedFragments = 0
+noOfAssocNodesRemoved = 0
+noOfModelNodesRemoved = 0
+
+
+def pardotCountriesPredicates = [
+    "path": PATHS.PARDOT_COUNTRY_CONTENT_FRAGMENT_PATH,
+    "type": PROPS.NAME.DAM_ASSET
+]
+
+def query = createQuery(pardotCountriesPredicates)
+query.hitsPerPage = 240
+
+def results = query.result
+println "Number of Pardot Countries ${results.totalMatches}"
+
+results.hits.each { hit ->
+    println "Country name = ${hit.node.name}"
+    getNode(hit.node.path).recurse { 
+        node ->NodeIterator it = node.getNodes()
+	    def count =0
+		    while(it.hasNext()){
+			    nodetemp = it.nextNode()
+			    
+			    /*Add properties in existing nodes*/
+	            if (nodetemp.name.endsWith(PROPS.NAME.JCR_CONTENT) && !nodetemp.path.contains("/renditions/original")) {
+	                noOfModifiedFragments++
+                    nodetemp.setProperty(PROPS.NAME.CQ_PARENT_PATH, PATHS.PARDOT_COUNTRY_CONTENT_FRAGMENT_PATH)
+			        if ((nodetemp.path).contains("${hit.node.name}")){
+			            nodetemp.setProperty(PROPS.NAME.CQ_NAME, "${hit.node.name}")
+			        }
+	            }
+			    /*Delete nodes to synchronize structure with Countries content fragment*/
+		    	if (nodetemp.name.endsWith(PROPS.NAME.ASSOCIATED)) {
+		    	    noOfAssocNodesRemoved++
+			        nodetemp.remove();
+	            }
+		}
+	}
+    if(!DRY_RUN){
+        session.save();
+    }
+}
+
+results.hits.each { hit ->
+    println "Country Name = ${hit.node.name}"
+    getNode(hit.node.path).recurse { 
+        node ->NodeIterator it = node.getNodes()
+	    def count =0
+		    while(it.hasNext()){
+			    nodetemp = it.nextNode()
+			    /*Delete nodes to synchronize structure with Countries content fragment*/
+			    if (nodetemp.name.endsWith(PROPS.NAME.MODEL)) {
+			        noOfModelNodesRemoved++
+			        nodetemp.remove();
+	            }
+		}
+	}
+    if(!DRY_RUN){
+        session.save();
+    }
+}
+
+println "NUMBER OF FRAGMENTS WHERE PROPERTY HAS BEEN UPDATED :: " + noOfModifiedFragments
+println "NUMBER OF REDUNDANT NODES REMOVED (ASSOCIATED) :: " + noOfAssocNodesRemoved
+println "NUMBER OF REDUNDANT NODES REMOVED (MODELS) :: " + noOfModelNodesRemoved
