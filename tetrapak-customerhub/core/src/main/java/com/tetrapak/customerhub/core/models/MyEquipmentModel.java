@@ -605,7 +605,7 @@ public class MyEquipmentModel {
         }
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
-        downloadExcelServletUrl = resource.getPath() + ".download.excel";
+        downloadExcelServletUrl = resource.getPath() + CustomerHubConstants.EXCEL_DOWNLOAD_EXTENSION;
         
         countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, "myequipment-countrylist");
