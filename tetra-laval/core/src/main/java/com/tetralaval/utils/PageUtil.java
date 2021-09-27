@@ -53,10 +53,20 @@ public final class PageUtil {
         return null;
     }
 
+    /**
+     * Check if path represents an experience fragment
+     * @param path
+     * @return
+     */
     public static boolean isExperienceFragment(final String path) {
         return path.contains(TLConstants.EXPERIENCE_FRAGMENTS_PATH);
     }
 
+    /**
+     * Check if path represents a language master
+     * @param path
+     * @return
+     */
     public static boolean isLanguageMaster(final String path) {
         return path.contains(TLConstants.LANGUAGE_MASTERS_PATH);
     }

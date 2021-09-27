@@ -46,48 +46,80 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * SitemapSchedulerServiceImpl
+ */
 @Component(immediate = true, service = SitemapSchedulerService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = SitemapSchedulerConfiguration.class)
 public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
+    /** LOGGER constant */
     private static final Logger LOGGER = LoggerFactory.getLogger(SitemapSchedulerServiceImpl.class);
 
+    /** SITEMAP_NAMESPACE constant */
     private static final String SITEMAP_NAMESPACE = "http://www.sitemaps.org/schemas/sitemap/0.9";
+    /** SITEMAP_XML constant */
     private static final String SITEMAP_XML = "sitemap.xml";
+    /** HIDE_IN_SITEMAP constant */
     private static final String HIDE_IN_SITEMAP = "hideInSitemap";
 
+    /** PATH_PLACEHOLDER constant */
     private static final String PATH_PLACEHOLDER = "%s/%s";
 
+    /** resolverFactory */
     @Reference
     private ResourceResolverFactory resolverFactory;
 
+    /** externalizer */
     @Reference
     private Externalizer externalizer;
 
+    /** config */
     private SitemapSchedulerConfiguration config;
 
+    /** resourceResolver */
     private ResourceResolver resourceResolver;
+    /** session */
     private Session session;
 
+    /**
+     * activate method
+     * @param config
+     */
     @Activate
     public void activate(SitemapSchedulerConfiguration config) {
         this.config = config;
     }
 
+    /**
+     * schedulerName getter
+     * @return schedulerName
+     */
     @Override
     public String getSchedulerName() {
-        return config.schdulerName();
+        return config.schedulerName();
     }
 
+    /**
+     * enabled getter
+     * @return enabled
+     */
     @Override
     public Boolean isEnabled() {
         return config.enabled();
     }
 
+    /**
+     * cronExpression getter
+     * @return cronExpression
+     */
     @Override
     public String getCronExpression() {
         return config.cronExpression();
     }
 
+    /**
+     * Generate sitemap method
+     */
     @Override
     public void generateSitemap() {
         resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
@@ -117,6 +149,13 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         }
     }
 
+    /**
+     * Parse object to xml - bytes array
+     * @param jaxbContext
+     * @param collection
+     * @param <T>
+     * @return
+     */
     private <T> byte[] objToXml(JAXBContext jaxbContext, T collection) {
         try {
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -131,15 +170,30 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         return new byte[0];
     }
 
+    /**
+     * Get countryCode based on languagePage and countryPage names
+     * @param languagePage
+     * @param countryPage
+     * @return country code
+     */
     private String getCountryCode(Page languagePage, Page countryPage) {
         return String.format("%s%s%s", languagePage.getName(), TLConstants.HYPHEN, countryPage.getName());
     }
 
+    /**
+     * Get marketPath
+     * @param countryCode
+     * @return market path
+     */
     private String getMarketPath(String countryCode) {
         String[] parts = countryCode.split(TLConstants.HYPHEN);
         return String.format(PATH_PLACEHOLDER, parts[1], parts[0]);
     }
 
+    /**
+     * Get list of country codes
+     * @return
+     */
     private List<String> getListOfCountryCodes() {
         List<String> countryCodes = null;
 
@@ -167,6 +221,11 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         return countryCodes;
     }
 
+    /**
+     * Get node where sitemap should be stored
+     * @param path
+     * @return
+     */
     private Node getSitemapLocationNode(String path) {
         Resource resource = resourceResolver.resolve(path);
         if (resource != null && resource.adaptTo(Node.class) != null) {
@@ -175,6 +234,11 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         return null;
     }
 
+    /**
+     * Generate and save sitemap
+     * @param node
+     * @param bytes
+     */
     private void createSitemap(Node node, byte[] bytes) {
         Node sitemapNode;
         Node jcrContentNode;
@@ -203,6 +267,11 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         }
     }
 
+    /**
+     * Generate sitemapIndex
+     * @param countryCodes
+     * @return
+     */
     private byte[] getSitemapIndex(List<String> countryCodes) {
         SitemapIndex sitemapIndex = new SitemapIndex();
         sitemapIndex.setXmlns(SITEMAP_NAMESPACE);
@@ -236,6 +305,12 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         return new byte[0];
     }
 
+    /**
+     * Generate marketSitemap
+     * @param path
+     * @param countryCode
+     * @return
+     */
     private byte[] getMarketSitemap(String path, String countryCode) {
         List<Url> urls = new ArrayList<>();
 
@@ -266,6 +341,11 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         return new byte[0];
     }
 
+    /**
+     * Get urls for sitemap
+     * @param path
+     * @return list of url
+     */
     private List<Url> getPageForSitemap(String path) {
         List<Url> urls = new ArrayList<>();
         if (!isHideInSitemap(path)) {
@@ -291,6 +371,11 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         return urls;
     }
 
+    /**
+     * Check if page should be visible in sitemap
+     * @param path
+     * @return
+     */
     private boolean isHideInSitemap(String path) {
         Resource resource = resourceResolver.resolve(path);
         if (resource != null && resource.adaptTo(Node.class) != null) {

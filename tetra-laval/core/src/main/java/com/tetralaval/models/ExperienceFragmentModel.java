@@ -23,21 +23,30 @@ import java.util.stream.Collectors;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ExperienceFragmentModel {
+    /** LOGGER constant */
     private static final Logger LOGGER = LoggerFactory.getLogger(ExperienceFragmentModel.class);
 
+    /** HEADER_EXPERIENCE_FRAGMENT_NODENAME constant */
     private static final String HEADER_EXPERIENCE_FRAGMENT_NODENAME = "header";
+    /** FOOTER_EXPERIENCE_FRAGMENT_NODENAME constant */
     private static final String FOOTER_EXPERIENCE_FRAGMENT_NODENAME = "footer";
 
+    /** FRAGMENT_PATH_PROPERTY constant */
     private static final String FRAGMENT_PATH_PROPERTY = "fragmentPath";
 
-    /** The request. */
+    /** The resource. */
     @Self
     private Resource resource;
 
+    /** headerPath */
     private String headerPath;
 
+    /** footerPath */
     private String footerPath;
 
+    /**
+     * Init method
+     */
     @PostConstruct
     protected void init() {
         int currentLevel = Arrays.stream(PageUtil.getCurrentPage(resource).getPath().split(TLConstants.SLASH))
@@ -55,11 +64,20 @@ public class ExperienceFragmentModel {
         }
     }
 
+    /**
+     * Check if page is an experience fragment
+     * @return boolean
+     */
     private boolean checkIfExperienceFragment() {
         return resource.getPath().indexOf(TLConstants.EXPERIENCE_FRAGMENTS_PATH) != -1;
     }
 
-
+    /**
+     * Get experience fragment as node base on nodename
+     * @param node
+     * @param xfNodename
+     * @return experience fragment node
+     */
     private Node getExperienceFragmentNode(Node node, String xfNodename) {
         String path = String.format("%s/%s", JcrConstants.JCR_CONTENT, xfNodename);
         Node xfNode = null;
@@ -72,6 +90,11 @@ public class ExperienceFragmentModel {
         return xfNode;
     }
 
+    /**
+     * Get fragment path stored in properties
+     * @param node
+     * @return fragment path
+     */
     private String getFragmentPath(Node node) {
         if (node == null) {
             return null;
@@ -87,10 +110,18 @@ public class ExperienceFragmentModel {
         return fragmentPath;
     }
 
+    /**
+     * headerPath getter
+     * @return headerPath
+     */
     public String getHeaderPath() {
         return headerPath;
     }
 
+    /**
+     * footerPath getter
+     * @return footerPath
+     */
     public String getFooterPath() {
         return footerPath;
     }

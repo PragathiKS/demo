@@ -53,10 +53,18 @@ public class FooterLinkModel {
         this.linkPath=linkPath;
     }
 
+    /**
+     * internal getter
+     * @return internal
+     */
     public boolean isInternal() {
         return internal;
     }
 
+    /**
+     * internal setter
+     * @param internal
+     */
     public void setInternal(boolean internal) {
         this.internal = internal;
     }

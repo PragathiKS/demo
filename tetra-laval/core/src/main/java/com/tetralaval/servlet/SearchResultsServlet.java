@@ -24,6 +24,9 @@ import java.util.Map;
 import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVLET_METHODS;
 import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVLET_RESOURCE_TYPES;
 
+/**
+ * SearchResultsServlet
+ */
 @Component(
         service = Servlet.class,
         property = {
@@ -33,12 +36,20 @@ import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVL
         }
 )
 public class SearchResultsServlet extends SlingSafeMethodsServlet {
+    /** LOGGER constant */
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultsServlet.class);
+    /** serialVersionUID constant */
     private static final long serialVersionUID = 7734985662044063776L;
 
+    /** searchResultsService */
     @Reference
     private transient SearchResultsService searchResultsService;
 
+    /**
+     * Return search results
+     * @param request
+     * @param response
+     */
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         try {

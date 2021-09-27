@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterConfigurationModel {
 
-    /** The resource. */
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
 
@@ -110,6 +110,11 @@ public class FooterConfigurationModel {
         return lists;
     }
 
+    /**
+     * Set FooterLinkModel
+     * @param footerLinkModel
+     * @return FooterLinkModel
+     */
     private FooterLinkModel setFooterLinkModel(FooterLinkModel footerLinkModel) {
         String linkPath = footerLinkModel.getLinkPath();
 

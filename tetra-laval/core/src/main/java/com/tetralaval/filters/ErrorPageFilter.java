@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * Error page filter
+ */
 @Component(
     service = Filter.class,
     name = "Custom Error Page Redirecting Filter",
@@ -30,16 +33,32 @@ import java.util.stream.Collectors;
 )
 
 public class ErrorPageFilter implements Filter {
+    /**
+     * init method
+     * @param filterConfig
+     * @throws ServletException
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         // This is override method
     }
 
+    /**
+     * destroy method
+     */
     @Override
     public void destroy() {
         // This is override method
     }
 
+    /**
+     * Redirect to 404 page in case of not found resource/page
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {

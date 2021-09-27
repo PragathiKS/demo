@@ -34,7 +34,7 @@ public class HeaderConfigurationModel {
     private static final int LANGUAGE_MASTERS_PATH_LEVEL = 1;
     private static final int ROOT_PATH_LEVEL = 2;
 
-    /** The resource. */
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
 
@@ -62,9 +62,14 @@ public class HeaderConfigurationModel {
     @ValueMapValue
     private String searchLink;
 
+    /** resourceResolver */
     private ResourceResolver resourceResolver;
+    /** navigationModelList */
     private List<NavigationModel> navigationModelList;
 
+    /**
+     * Init method
+     */
     @PostConstruct
     protected void init() {
         resource = request.getResource();
@@ -86,30 +91,59 @@ public class HeaderConfigurationModel {
         }
     }
 
+    /**
+     * logoImagePath getter
+     * @return logoImagePath
+     */
     public String getLogoImagePath() {
         return logoImagePath;
     }
 
+    /**
+     * logoLink getter
+     * @return logoLink
+     */
     public String getLogoLink() {
         return LinkUtils.sanitizeLink(logoLink, request);
     }
 
+    /**
+     * logoAlt getter
+     * @return logoAlt
+     */
     public String getLogoAlt() {
         return logoAlt;
     }
 
+    /**
+     * contactLink getter
+     * @return contactLink
+     */
     public String getContactLink() {
         return LinkUtils.sanitizeLink(contactLink, request);
     }
 
+    /**
+     * searchLink getter
+     * @return searchLink
+     */
     public String getSearchLink() {
         return LinkUtils.sanitizeLink(searchLink, request);
     }
 
+    /**
+     * navigationModelList getter
+     * @return navigationModelList
+     */
     public List<NavigationModel> getNavigationModelList() {
         return navigationModelList;
     }
 
+    /**
+     * Generate header navigation
+     * @param path
+     * @return list of NavigationModel
+     */
     private List<NavigationModel> generateNavigation(String path) {
         List<NavigationModel> navigationList = new ArrayList<>();
         List<String> paths = Arrays.stream(path.split(TLConstants.SLASH))
@@ -141,10 +175,25 @@ public class HeaderConfigurationModel {
         return navigationList;
     }
 
+    /**
+     * Generate path
+     * @param path
+     * @param rootPath
+     * @param lastIndex
+     * @return path
+     */
     private String generatePath(String path, String rootPath, int lastIndex) {
         return generatePath(path, rootPath, rootPath, lastIndex);
     }
 
+    /**
+     * Generate path
+     * @param path
+     * @param replaceRootPath
+     * @param rootPath
+     * @param lastIndex
+     * @return path
+     */
     private String generatePath(String path, String replaceRootPath, String rootPath, int lastIndex) {
         return String.format("%s/%s%s", rootPath,
                 String.join(TLConstants.SLASH, Arrays.stream(path

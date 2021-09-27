@@ -17,9 +17,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+/**
+ * Article type datasource
+ */
 public class ArticleTypeDatasource extends WCMUsePojo {
 
+    /**
+     * Generates list of article types configured in OSGI
+     *
+     * @throws Exception
+     */
     @Activate
     public void activate() throws Exception {
         ArticleService articleService = getSlingScriptHelper().getService(ArticleService.class);

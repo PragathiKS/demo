@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import com.day.cq.wcm.api.WCMMode;
+import com.tetralaval.constants.TLConstants;
 import com.tetralaval.utils.LinkUtils;
 import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -60,7 +61,7 @@ public class BreadcrumbModel {
         ResourceResolver resourceResolver = resource.getResourceResolver();
 
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo()).replace(".html", StringUtils.EMPTY);
+        final String rootPath = LinkUtils.getRootPath(request.getPathInfo()).replace(TLConstants.HTML_EXTENSION, StringUtils.EMPTY);
         homePagePath = LinkUtils.sanitizeLink(rootPath, request);
         final String path = currentPage.getPath().replace(rootPath, StringUtils.EMPTY);
         final List<String> pages = Arrays.stream(path.split("/")).filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList());

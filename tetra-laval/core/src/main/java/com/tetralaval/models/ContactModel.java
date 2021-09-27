@@ -18,54 +18,92 @@ import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ContactModel
+ */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ContactModel {
+    /** LOGGER constant */
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactModel.class);
 
+    /** CONTACT_DETAILS_NODE constant */
     private static final String CONTACT_DETAILS_NODE = "contactDetails";
 
+    /** resource */
     @Inject
     private Resource resource;
 
+    /** title */
     @ValueMapValue
     private String title;
 
+    /** mapUrl */
     @ValueMapValue
     private String mapUrl;
 
+    /** pwTheme */
     @ValueMapValue
     private String pwTheme;
 
+    /** pwPadding */
     @ValueMapValue
     private String pwPadding;
 
+    /** contactDetails */
     private List<ContactDetailsModel> contactDetails;
 
+    /**
+     * Init method
+     */
     @PostConstruct
     protected void init() {
         contactDetails = prepareContactDetails();
     }
 
+    /**
+     * title getter
+     * @return title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * mapUrl getter
+     * @return mapUrl
+     */
     public String getMapUrl() {
         return mapUrl;
     }
 
+    /**
+     * pwTheme getter
+     * @return pwTheme
+     */
     public String getPwTheme() {
         return pwTheme;
     }
 
+    /**
+     * pwPadding getter
+     * @return pwPadding
+     */
     public String getPwPadding() {
         return pwPadding;
     }
 
+    /**
+     * contactDetails getter
+     * @return contactDetails
+     */
     public List<ContactDetailsModel> getContactDetails() {
         return contactDetails;
     }
 
+    /**
+     * Preparing contact details
+     * @return list of ContactDetailsModel
+     */
     private List<ContactDetailsModel> prepareContactDetails() {
         Resource contactDetailsResource = resource.getChild(CONTACT_DETAILS_NODE);
         if (contactDetailsResource == null) {

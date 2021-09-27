@@ -22,32 +22,45 @@ import java.util.List;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SearchResultsModel {
 
+    /** request */
     @SlingObject
     private SlingHttpServletRequest request;
 
+    /** page */
     @Inject
     private Page page;
 
+    /** articleService */
     @Inject
     private ArticleService articleService;
 
+    /** searchResultsService */
     @Inject
     private SearchResultsService searchResultsService;
 
+    /** tags */
     @ValueMapValue
     @Named(value = TagConstants.PN_TAGS)
     private String[] tags;
 
+    /** mediaLabel */
     @ValueMapValue
     private String mediaLabel;
 
+    /** assetsPath */
     @ValueMapValue
     private String assetsPath;
 
+    /** servletPath */
     private String servletPath;
+    /** contentTypeList */
     private List<FilterModel> contentTypeList;
+    /** themeList */
     private List<FilterModel> themeList;
 
+    /**
+     * init method
+     */
     @PostConstruct
     protected void init() {
         List<FilterModel> filterModel = articleService.getFilterTypes();
@@ -60,18 +73,34 @@ public class SearchResultsModel {
         this.themeList = getTags();
     }
 
+    /**
+     * Get tags
+     * @return list of FilterModel
+     */
     private List<FilterModel> getTags() {
         return searchResultsService.getFilters(request, tags);
     }
 
+    /**
+     * servletPath getter
+     * @return servletPath
+     */
     public String getServletPath() {
         return servletPath;
     }
 
+    /**
+     * contentTypeList getter
+     * @return contentTypeList
+     */
     public List<FilterModel> getContentTypeList() {
         return contentTypeList;
     }
 
+    /**
+     * themeList getter
+     * @return themeList
+     */
     public List<FilterModel> getThemeList() {
         return themeList;
     }
