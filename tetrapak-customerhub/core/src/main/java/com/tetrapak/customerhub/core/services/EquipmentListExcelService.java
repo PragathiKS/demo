@@ -1,8 +1,6 @@
 package com.tetrapak.customerhub.core.services;
 
-import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
 import com.tetrapak.customerhub.core.beans.equipmentlist.Results;
-import com.tetrapak.customerhub.core.models.MyEquipmentModel;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 
