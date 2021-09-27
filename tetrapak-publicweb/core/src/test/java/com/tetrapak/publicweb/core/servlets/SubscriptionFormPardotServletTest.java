@@ -38,16 +38,15 @@ public class SubscriptionFormPardotServletTest {
     public void setup() throws IOException {
 
         pardotService = new PardotServiceImpl();
-        final Map<String, Object> pardotConfig = new HashMap<>();
-        pardotConfig.put("pardotSubscriptionFormURL", "http://go.tetrapak.com/l/857883/2020-05-29/xttt");
         context.registerService(PardotService.class, pardotService);
-        MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
+        MockOsgi.activate(context.getService(PardotService.class), context.bundleContext());
 
         subscriptionFormPardotServlet = MockHelper.getServlet(context, SubscriptionFormPardotServlet.class);
 
         final Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("firstName", "firstName");
         parameterMap.put("lastName", "lastName");
+        parameterMap.put("pardotUrl", "http://go.tetrapak.com/l/857883/2020-05-29/xttt");
         parameterMap.put("types-communication", "Press and Media Communication");
         parameterMap.put("types-communication", "Event Invitations");
         parameterMap.put("interestArea", "Packaging");
