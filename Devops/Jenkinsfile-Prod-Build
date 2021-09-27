@@ -93,6 +93,19 @@ pipeline {
                 }
             }
         }
+	stage('Stage Cache Clear') {
+            agent {
+                node {
+                label 'cfe-deploy'
+            }
+            }
+            steps {
+                script {
+                    cacheflush()
+                }
+            }
+			}
+
 }
 }
     def buildandsonar() {
@@ -226,3 +239,11 @@ pipeline {
                 sleep 60
 
     }     
+    def cacheflush() {
+                echo "Starting Stage Dispatcher Cache Clear"
+                withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    {
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.56.128.106 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
+    }
