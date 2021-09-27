@@ -8,8 +8,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +15,6 @@ import java.util.List;
 @Component(immediate = true, service = ArticleService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = ArticleConfiguration.class)
 public class ArticleServiceImpl implements ArticleService {
-    private static final Logger log = LoggerFactory.getLogger(ArticleServiceImpl.class);
-
     private ArticleConfiguration config;
 
     @Activate

@@ -34,6 +34,7 @@ import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVL
 )
 public class SearchResultsServlet extends SlingSafeMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultsServlet.class);
+    private static final long serialVersionUID = 7734985662044063776L;
 
     @Reference
     private transient SearchResultsService searchResultsService;

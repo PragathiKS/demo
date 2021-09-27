@@ -6,8 +6,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class FooterLinkModel.
  */

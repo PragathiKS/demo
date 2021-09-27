@@ -1,11 +1,8 @@
 package com.tetralaval.models;
 
-import javax.annotation.PostConstruct;
-
 import com.tetralaval.constants.TLConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
@@ -23,9 +20,6 @@ public class BannerModel {
     @SlingObject
     private SlingHttpServletRequest request;
     
-    /** The resource. */
-    private Resource resource;
-
     /** The title. */
     @ValueMapValue
     private String title;
@@ -88,14 +82,6 @@ public class BannerModel {
 
     /** The anchor linkType. */
     private String linkType;
-
-    /**
-     * The init method.
-     */
-    @PostConstruct
-    protected void init() {
-        resource = request.getResource();
-    }
 
     /**
      * Gets the title.

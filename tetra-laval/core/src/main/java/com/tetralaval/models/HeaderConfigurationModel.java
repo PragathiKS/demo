@@ -29,7 +29,10 @@ import java.util.stream.Collectors;
  */
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderConfigurationModel {
-    private final static String HIDE_IN_NAV_PROPERTY = "hideInNav";
+    private static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
+
+    private static final int LANGUAGE_MASTERS_PATH_LEVEL = 1;
+    private static final int ROOT_PATH_LEVEL = 2;
 
     /** The resource. */
     @SlingObject
@@ -72,13 +75,14 @@ public class HeaderConfigurationModel {
 
         if (PageUtil.isExperienceFragment(path)) {
             navigationModelList = generateNavigation(
-                    generatePath(path, TLConstants.EXPERIENCE_FRAGMENTS_PATH, TLConstants.LANGUAGE_MASTERS_PATH, 1));
+                    generatePath(path, TLConstants.EXPERIENCE_FRAGMENTS_PATH, TLConstants.LANGUAGE_MASTERS_PATH,
+                            LANGUAGE_MASTERS_PATH_LEVEL));
         } else if (PageUtil.isLanguageMaster(path)) {
             navigationModelList = generateNavigation(
-                    generatePath(path, TLConstants.LANGUAGE_MASTERS_PATH, 1));
+                    generatePath(path, TLConstants.LANGUAGE_MASTERS_PATH, LANGUAGE_MASTERS_PATH_LEVEL));
         } else  {
             navigationModelList = generateNavigation(
-                    generatePath(path, TLConstants.ROOT_PATH, 2));
+                    generatePath(path, TLConstants.ROOT_PATH, ROOT_PATH_LEVEL));
         }
     }
 
@@ -107,7 +111,7 @@ public class HeaderConfigurationModel {
     }
 
     private List<NavigationModel> generateNavigation(String path) {
-        List<NavigationModel> navigationModelList = new ArrayList<>();
+        List<NavigationModel> navigationList = new ArrayList<>();
         List<String> paths = Arrays.stream(path.split(TLConstants.SLASH))
                 .filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList());
         int currentLevel = paths.size();
@@ -129,12 +133,12 @@ public class HeaderConfigurationModel {
                         navigationModel.setLabel((String) properties.getOrDefault(JcrConstants.JCR_TITLE, null));
                         navigationModel.setLink(LinkUtils.sanitizeLink(currentPath, request));
                         navigationModel.setChildren(generateNavigation(currentPath));
-                        navigationModelList.add(navigationModel);
+                        navigationList.add(navigationModel);
                     }
                 }
             }
         }
-        return navigationModelList.size() == 0 ? null : navigationModelList;
+        return navigationList;
     }
 
     private String generatePath(String path, String rootPath, int lastIndex) {

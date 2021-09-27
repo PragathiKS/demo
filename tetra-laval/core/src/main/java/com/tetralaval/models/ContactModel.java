@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,8 +67,12 @@ public class ContactModel {
     }
 
     private List<ContactDetailsModel> prepareContactDetails() {
-        List<ContactDetailsModel> contactDetailsModels = new ArrayList<>();
         Resource contactDetailsResource = resource.getChild(CONTACT_DETAILS_NODE);
+        if (contactDetailsResource == null) {
+            return new ArrayList<>();
+        }
+
+        List<ContactDetailsModel> contactDetailsModels = new ArrayList<>();
         try {
             Node contactDetailsNode = contactDetailsResource.adaptTo(Node.class);
             NodeIterator iterator = contactDetailsNode.getNodes();
@@ -87,8 +92,8 @@ public class ContactModel {
                 }
                 contactDetailsModels.add(contactDetailsModel);
             }
-        } catch (Exception e) {
-            LOGGER.error("Exception in ContactModel#getContactDetails()", e.getMessage(), e);
+        } catch (RepositoryException re) {
+            LOGGER.error("Exception in ContactModel#getContactDetails()", re.getMessage(), re);
             return new ArrayList<>();
         }
         return contactDetailsModels;

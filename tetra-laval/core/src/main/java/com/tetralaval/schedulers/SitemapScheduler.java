@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 @Component(immediate = true, service = SitemapScheduler.class)
 public class SitemapScheduler implements Runnable {
-    private static final Logger log = LoggerFactory.getLogger(SitemapScheduler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SitemapScheduler.class);
 
     private int schedulerId;
 
@@ -29,7 +29,7 @@ public class SitemapScheduler implements Runnable {
         schedulerId = getSchedulerId();
         addScheduler();
 
-        log.info("SitemapScheduler was activated");
+        LOGGER.info("SitemapScheduler was activated");
     }
 
     @Modified
@@ -38,14 +38,14 @@ public class SitemapScheduler implements Runnable {
         schedulerId = getSchedulerId();
         addScheduler();
 
-        log.info("SitemapScheduler was modified");
+        LOGGER.info("SitemapScheduler was modified");
     }
 
     @Deactivate
     protected void deactivate(SitemapSchedulerConfiguration config) {
         removeScheduler();
 
-        log.info("SitemapScheduler was deactivated");
+        LOGGER.info("SitemapScheduler was deactivated");
     }
 
     private int getSchedulerId() {
@@ -55,7 +55,7 @@ public class SitemapScheduler implements Runnable {
     private void removeScheduler() {
         scheduler.unschedule(String.valueOf(schedulerId));
 
-        log.info("SitemapScheduler was removed");
+        LOGGER.info("SitemapScheduler was removed");
     }
 
     private void addScheduler() {
@@ -67,9 +67,9 @@ public class SitemapScheduler implements Runnable {
 
             scheduler.schedule(this, scheduleOptions);
 
-            log.info("SitemapScheduler was added");
+            LOGGER.info("SitemapScheduler was added");
         } else {
-            log.info("SitemapScheduler is disabled");
+            LOGGER.info("SitemapScheduler is disabled");
         }
     }
 

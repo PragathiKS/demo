@@ -4,8 +4,6 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetralaval.constants.TLConstants;
 import org.apache.sling.api.resource.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Class PageUtil.
@@ -13,9 +11,6 @@ import org.slf4j.LoggerFactory;
  * @author Sandip kumar
  */
 public final class PageUtil {
-
-    /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(PageUtil.class);
 
     /**
      * Instantiates a new page util.

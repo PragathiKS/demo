@@ -400,7 +400,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 .filter(filterModel -> filterModel.getKey().equals(articleType))
                 .collect(Collectors.toList());
 
-        if (filters.isEmpty()) {
+        if (!filters.isEmpty()) {
             articleTypeName = filters.get(0).getLabel();
         }
         resultItem.setType(articleTypeName);

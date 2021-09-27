@@ -36,30 +36,28 @@ import java.util.stream.Collectors;
 public class AdobeAnalyticsModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(AdobeAnalyticsModel.class);
 
-    private final static String COLON = ":";
-    private final static String DEV_RUN_MODE = "dev";
-    private final static String QA_RUN_MODE = "qa";
-    private final static String STAGE_RUN_MODE = "stage";
-    private final static String PROD_RUN_MODE = "prod";
-    private final static String CONTENT_LOAD_EVENT = "content-load";
-    private final static String LOGIN_STATUS = "logged-in";
-    private final static String ERROR_PAGE_TEMPLATE_NAME = "error-page-template";
-    private final static String ERROR_VALUE = "error";
-    private final static String ERROR_PAGE_TYPE_VALUE = "errorPage";
-    private final static String[] ERROR_CODES_ARRAY = new String[]{
+    private static final String COLON = ":";
+    private static final String DEV_RUN_MODE = "dev";
+    private static final String QA_RUN_MODE = "qa";
+    private static final String STAGE_RUN_MODE = "stage";
+    private static final String PROD_RUN_MODE = "prod";
+    private static final String CONTENT_LOAD_EVENT = "content-load";
+    private static final String LOGIN_STATUS = "logged-in";
+    private static final String ERROR_PAGE_TEMPLATE_NAME = "error-page-template";
+    private static final String ERROR_VALUE = "error";
+    private static final String ERROR_PAGE_TYPE_VALUE = "errorPage";
+    private static final String[] ERROR_CODES_ARRAY = new String[]{
             String.valueOf(HttpServletResponse.SC_NOT_FOUND),
             String.valueOf(HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
     };
-    private final static Map<String, String> ERROR_TYPES_MAP = new HashMap<String, String>(){{
-        put(String.valueOf(HttpServletResponse.SC_NOT_FOUND), "resource not found");
-        put(String.valueOf(HttpServletResponse.SC_INTERNAL_SERVER_ERROR), "internal server error");
-    }};
 
     @SlingObject
     private SlingHttpServletRequest request;
 
     @OSGiService
     private SlingSettingsService slingSettingsService;
+
+    private Map<String, String> errorTypesMap;
 
     private Resource resource;
     private ResourceResolver resourceResolver;
@@ -75,15 +73,23 @@ public class AdobeAnalyticsModel {
 
     @PostConstruct
     public void initModel() {
+        createErrorTypesMap();
+
         resource = request.getResource();
         resourceResolver = resource.getResourceResolver();
         try {
             node = resource.adaptTo(Node.class);
             updateRunMode();
             buildAnalyticsData();
-        } catch (Exception e) {
-            LOGGER.error("Error during initialization Adobe Analytics = {}", e.getStackTrace());
+        } catch (RepositoryException re) {
+            LOGGER.error("Error during initialization Adobe Analytics = {}", re.getMessage(), re);
         }
+    }
+
+    private void createErrorTypesMap() {
+        errorTypesMap = new HashMap<>();
+        errorTypesMap.put(String.valueOf(HttpServletResponse.SC_NOT_FOUND), "resource not found");
+        errorTypesMap.put(String.valueOf(HttpServletResponse.SC_INTERNAL_SERVER_ERROR), "internal server error");
     }
 
     private void updateRunMode() {
@@ -100,8 +106,10 @@ public class AdobeAnalyticsModel {
     }
 
     private String getTemplatePath() throws RepositoryException {
-        return node.hasProperty(NameConstants.NN_TEMPLATE) ?
-                node.getProperty(NameConstants.NN_TEMPLATE).getString() : StringUtils.EMPTY;
+        if (node.hasProperty(NameConstants.NN_TEMPLATE)) {
+            return node.getProperty(NameConstants.NN_TEMPLATE).getString();
+        }
+        return StringUtils.EMPTY;
     }
 
     private boolean isErrorPage() throws RepositoryException {
@@ -144,9 +152,11 @@ public class AdobeAnalyticsModel {
         }
 
         Page currentPage = PageUtil.getCurrentPage(resource);
-        final Page languagePage = currentPage != null ? currentPage.getAbsoluteParent(TLConstants.LANGUAGE_PAGE_LEVEL) : null;
-        if (languagePage != null) {
-            siteLanguage = languagePage.getName();
+        if (currentPage != null) {
+            Page languagePage = currentPage.getAbsoluteParent(TLConstants.LANGUAGE_PAGE_LEVEL);
+            if (languagePage != null) {
+                siteLanguage = languagePage.getName();
+            }
         }
         return String.join(COLON, new String[]{"tl", siteLanguage, channel, pageName});
     }
@@ -183,7 +193,7 @@ public class AdobeAnalyticsModel {
         if (isErrorPage()) {
             for (String errorCode : ERROR_CODES_ARRAY) {
                 if (resource.getPath().contains(errorCode)) {
-                    return ERROR_TYPES_MAP.getOrDefault(errorCode, StringUtils.EMPTY);
+                    return errorTypesMap.getOrDefault(errorCode, StringUtils.EMPTY);
                 }
             }
         }
@@ -195,7 +205,7 @@ public class AdobeAnalyticsModel {
         String[] sections = setSiteSections();
         String errorCode = setErrorCode();
 
-        JsonObject data = new JsonObject();
+        JsonObject jsonData = new JsonObject();
         JsonObject pageInfo = new JsonObject();
         pageInfo.addProperty("channel", channel);
         pageInfo.addProperty("pageName", setPageName(channel, errorCode));
@@ -220,13 +230,13 @@ public class AdobeAnalyticsModel {
         errorData.addProperty("errorcode", errorCode);
         errorData.addProperty("errortype", setErrorType());
 
-        data.add("pageinfo", pageInfo);
-        data.add("userinfo", userInfo);
-        data.add("error", errorData);
+        jsonData.add("pageinfo", pageInfo);
+        jsonData.add("userinfo", userInfo);
+        jsonData.add(ERROR_VALUE, errorData);
 
         final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
-        this.data = gson.toJson(data);
+        this.data = gson.toJson(jsonData);
     }
 
     public String getData() {
