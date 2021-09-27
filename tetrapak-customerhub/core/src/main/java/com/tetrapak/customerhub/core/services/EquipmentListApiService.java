@@ -11,7 +11,7 @@ public interface EquipmentListApiService {
      * @param token         token
      * @return json object
      */
-	JsonObject getEquipmentList(String token, String countryCode);
-	
-	int getNoOfRecordsCount();
+    JsonObject getEquipmentList(String token, String countryCode);
+
+    int getNoOfRecordsCount();
 }

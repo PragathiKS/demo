@@ -19,43 +19,36 @@ import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
-public class EquipmentListExcelServiceImplTest {
+@RunWith(MockitoJUnitRunner.class) public class EquipmentListExcelServiceImplTest {
 
-    @Mock
-    private SlingHttpServletRequest servletRequest;
+    @Mock private SlingHttpServletRequest servletRequest;
 
-    @Mock
-    private SlingHttpServletResponse response;
+    @Mock private SlingHttpServletResponse response;
 
     EquipmentListExcelServiceImpl equipmentListExcelService = new EquipmentListExcelServiceImpl();
 
-    @Mock
-    ServletOutputStream servletOutputStream;
+    @Mock ServletOutputStream servletOutputStream;
 
     /**
      * @throws java.lang.Exception
      */
-    @Before
-    public void setUp() throws Exception {
+    @Before public void setUp() throws Exception {
 
         Mockito.when(response.getOutputStream()).thenReturn(servletOutputStream);
         Mockito.doNothing().when(servletOutputStream).write(Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
     }
-    
+
     /**
      * Test method for
      * {@link EquipmentListExcelServiceImpl#generateEquipmentListExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.equipmentlist.Results)}.
      */
-    @Test
-    public void testGenerateEquipmentListResultsExcelWithNullApiResp() {
+    @Test public void testGenerateEquipmentListResultsExcelWithNullApiResp() {
         Results apiResponse = null;
         assertFalse(equipmentListExcelService.generateEquipmentListExcel(servletRequest, response, apiResponse));
     }
 
-    @Test
-    public void testGenerateEquipmentListExcel() {
-    	Results apiResponse = new Results();
+    @Test public void testGenerateEquipmentListExcel() {
+        Results apiResponse = new Results();
         Equipments paramRequest = new Equipments();
         paramRequest.setId("ID");
         paramRequest.setCountryCode("Country");

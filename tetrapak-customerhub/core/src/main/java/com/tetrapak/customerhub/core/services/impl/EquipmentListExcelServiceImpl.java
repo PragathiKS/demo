@@ -19,8 +19,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-@Component(immediate = true, service = EquipmentListExcelService.class)
-public class EquipmentListExcelServiceImpl implements EquipmentListExcelService {
+@Component(immediate = true, service = EquipmentListExcelService.class) public class EquipmentListExcelServiceImpl
+        implements EquipmentListExcelService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentListExcelServiceImpl.class);
     private static final String WHITE = "<white>";
@@ -29,23 +29,25 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
     private SlingHttpServletRequest request;
     private String language;
     private static final String I18N_PREFIX = "cuhu.equipment.";
-    private static final String[] COLFIELDS = {
-            "id","countryCode","countryName","customer","customerNumber","customerName","location" ,"lineName", "equipmentstatus","isSecondhand","equipmentType",
-            "businessType" ,"equipmentTypeDesc", "functionalLocation", "functionalLocationDesc","serialnumber", "siteName", "siteDescription", "permanentVolumeConversion",
-            "position", "machineSystem", "material", "materialDesc", "manufacturerModelNumber", "manufacturerSerialNumber", "superiorEquipment","superiorEquipmentName",
-            "superiorEquipmentSerialNumber", "manufacturer", "manufacturerCountry", "constructionYear","customerWarrantyStartDate", "customerWarrantyEndDate",
-            "equipmentCategory", "equipmentCategoryDesc", "eofsConfirmationDate", "eofsValidFromDate"
+    private static final String[] COLFIELDS = { "id", "countryCode", "countryName", "customer", "customerNumber",
+            "customerName", "location", "lineName", "equipmentstatus", "isSecondhand", "equipmentType", "businessType",
+            "equipmentTypeDesc", "functionalLocation", "functionalLocationDesc", "serialnumber", "siteName",
+            "siteDescription", "permanentVolumeConversion", "position", "machineSystem", "material", "materialDesc",
+            "manufacturerModelNumber", "manufacturerSerialNumber", "superiorEquipment", "superiorEquipmentName",
+            "superiorEquipmentSerialNumber", "manufacturer", "manufacturerCountry", "constructionYear",
+            "customerWarrantyStartDate", "customerWarrantyEndDate", "equipmentCategory", "equipmentCategoryDesc",
+            "eofsConfirmationDate", "eofsValidFromDate"
     };
 
     /**
-     * @param SlingHttpServletRequest req
+     * @param SlingHttpServletRequest  req
      * @param SlingHttpServletResponse response
-     * @param Results apiResponse
+     * @param Results                  apiResponse
      * @return boolean flag
      */
-    @Override
-    public boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response, Results apiResponse) {
-        if(Objects.nonNull(apiResponse)){
+    @Override public boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
+            Results apiResponse) {
+        if (Objects.nonNull(apiResponse)) {
             language = GlobalUtil.getLanguage(req);
             request = req;
             ExcelFileData excelReportData = new ExcelFileData();
@@ -59,7 +61,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
             if (ExcelUtil.generateExcelReport(response, excelReportData)) {
                 LOGGER.debug("Excel file: {} generated successfully!", excelReportData.getExcelSheetName());
                 return true;
-            }else {
+            } else {
                 LOGGER.error("Equipment Data is null so can not process the excel creation!");
             }
             return false;
@@ -72,8 +74,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
      */
     private String[][] getColumnHeaderArray() {
         String[][] columnNames = new String[1][37];
-        String[] tags = new String[]{
-                ExcelUtil.DARK_GREY_BG_TAG
+        String[] tags = new String[] { ExcelUtil.DARK_GREY_BG_TAG
         };
         columnNames[0][0] = addTagToContent(WHITE + getI18nVal(COLFIELDS[0]), tags);
         columnNames[0][1] = addTagToContent(WHITE + getI18nVal(COLFIELDS[1]), tags);
@@ -145,7 +146,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
         }
         return value;
     }
-    
+
     /**
      * @param documents documents
      * @return doc list
@@ -153,48 +154,48 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
     private String[][] getEquipmentsList(List<Equipments> equipments) {
         String[][] equipmentList = new String[equipments.size()][37];
         int counter = 0;
-        String[] tags = new String[]{};
+        String[] tags = new String[] {};
         Iterator<Equipments> itr = equipments.iterator();
         while (itr.hasNext()) {
-                Equipments equipment = itr.next();
-                equipmentList[counter][0] = addTagToContent(equipment.getId(), tags);
-                equipmentList[counter][1] = addTagToContent(equipment.getCountryCode(), tags);
-                equipmentList[counter][2] = addTagToContent(equipment.getCountryName(), tags);
-                equipmentList[counter][3] = addTagToContent(equipment.getCustomer(), tags);
-                equipmentList[counter][4] = addTagToContent(equipment.getCustomerNumber(), tags);
-                equipmentList[counter][5] = addTagToContent(equipment.getCustomerName(), tags);
-                equipmentList[counter][6] = addTagToContent(equipment.getLocation(), tags);
-                equipmentList[counter][7] = addTagToContent(equipment.getLineName(), tags);
-                equipmentList[counter][8] = addTagToContent(equipment.getEquipmentStatus(), tags);
-                equipmentList[counter][9] = addTagToContent(equipment.getIsSecondhand(), tags);
-                equipmentList[counter][10] = addTagToContent(equipment.getEquipmentType(), tags);
-                equipmentList[counter][11] = addTagToContent(equipment.getBusinessType(), tags);
-                equipmentList[counter][12] = addTagToContent(equipment.getEquipmentTypeDesc(), tags);
-                equipmentList[counter][13] = addTagToContent(equipment.getFunctionalLocation(), tags);
-                equipmentList[counter][14] = addTagToContent(equipment.getFunctionalLocationDesc(), tags);
-                equipmentList[counter][15] = addTagToContent(equipment.getSerialNumber(), tags);
-                equipmentList[counter][16] = addTagToContent(equipment.getSiteName(), tags);
-                equipmentList[counter][17] = addTagToContent(equipment.getSiteDesc(), tags);
-                equipmentList[counter][18] = addTagToContent(equipment.getPermanentVolumeConversion(), tags);
-                equipmentList[counter][19] = addTagToContent(equipment.getPosition(), tags);
-                equipmentList[counter][20] = addTagToContent(equipment.getMachineSystem(), tags);
-                equipmentList[counter][21] = addTagToContent(equipment.getMaterial(), tags);
-                equipmentList[counter][22] = addTagToContent(equipment.getMaterialDesc(), tags);
-                equipmentList[counter][23] = addTagToContent(equipment.getManufacturerModelNumber(), tags);
-                equipmentList[counter][24] = addTagToContent(equipment.getManufacturerSerialNumber(), tags);
-                equipmentList[counter][25] = addTagToContent(equipment.getSuperiorEquipment(), tags);
-                equipmentList[counter][26] = addTagToContent(equipment.getSuperiorEquipmentName(), tags);
-                equipmentList[counter][27] = addTagToContent(equipment.getSuperiorEquipmentSerialNumber(), tags);
-                equipmentList[counter][28] = addTagToContent(equipment.getManufacturer(), tags);
-                equipmentList[counter][29] = addTagToContent(equipment.getManufacturerCountry(), tags);
-                equipmentList[counter][30] = addTagToContent(equipment.getConstructionYear(), tags);
-                equipmentList[counter][31] = addTagToContent(equipment.getCustomerWarrantyStartDate(), tags);
-                equipmentList[counter][32] = addTagToContent(equipment.getCustomerWarrantyEndDate(), tags);
-                equipmentList[counter][33] = addTagToContent(equipment.getEquipmentCategory(), tags);
-                equipmentList[counter][34] = addTagToContent(equipment.getEquipmentCategoryDesc(), tags);
-                equipmentList[counter][35] = addTagToContent(equipment.getEofsConfirmationDate(), tags);
-                equipmentList[counter][36] = addTagToContent(equipment.getEofsValidFromDate(), tags);
-                counter++;
+            Equipments equipment = itr.next();
+            equipmentList[counter][0] = addTagToContent(equipment.getId(), tags);
+            equipmentList[counter][1] = addTagToContent(equipment.getCountryCode(), tags);
+            equipmentList[counter][2] = addTagToContent(equipment.getCountryName(), tags);
+            equipmentList[counter][3] = addTagToContent(equipment.getCustomer(), tags);
+            equipmentList[counter][4] = addTagToContent(equipment.getCustomerNumber(), tags);
+            equipmentList[counter][5] = addTagToContent(equipment.getCustomerName(), tags);
+            equipmentList[counter][6] = addTagToContent(equipment.getLocation(), tags);
+            equipmentList[counter][7] = addTagToContent(equipment.getLineName(), tags);
+            equipmentList[counter][8] = addTagToContent(equipment.getEquipmentStatus(), tags);
+            equipmentList[counter][9] = addTagToContent(equipment.getIsSecondhand(), tags);
+            equipmentList[counter][10] = addTagToContent(equipment.getEquipmentType(), tags);
+            equipmentList[counter][11] = addTagToContent(equipment.getBusinessType(), tags);
+            equipmentList[counter][12] = addTagToContent(equipment.getEquipmentTypeDesc(), tags);
+            equipmentList[counter][13] = addTagToContent(equipment.getFunctionalLocation(), tags);
+            equipmentList[counter][14] = addTagToContent(equipment.getFunctionalLocationDesc(), tags);
+            equipmentList[counter][15] = addTagToContent(equipment.getSerialNumber(), tags);
+            equipmentList[counter][16] = addTagToContent(equipment.getSiteName(), tags);
+            equipmentList[counter][17] = addTagToContent(equipment.getSiteDesc(), tags);
+            equipmentList[counter][18] = addTagToContent(equipment.getPermanentVolumeConversion(), tags);
+            equipmentList[counter][19] = addTagToContent(equipment.getPosition(), tags);
+            equipmentList[counter][20] = addTagToContent(equipment.getMachineSystem(), tags);
+            equipmentList[counter][21] = addTagToContent(equipment.getMaterial(), tags);
+            equipmentList[counter][22] = addTagToContent(equipment.getMaterialDesc(), tags);
+            equipmentList[counter][23] = addTagToContent(equipment.getManufacturerModelNumber(), tags);
+            equipmentList[counter][24] = addTagToContent(equipment.getManufacturerSerialNumber(), tags);
+            equipmentList[counter][25] = addTagToContent(equipment.getSuperiorEquipment(), tags);
+            equipmentList[counter][26] = addTagToContent(equipment.getSuperiorEquipmentName(), tags);
+            equipmentList[counter][27] = addTagToContent(equipment.getSuperiorEquipmentSerialNumber(), tags);
+            equipmentList[counter][28] = addTagToContent(equipment.getManufacturer(), tags);
+            equipmentList[counter][29] = addTagToContent(equipment.getManufacturerCountry(), tags);
+            equipmentList[counter][30] = addTagToContent(equipment.getConstructionYear(), tags);
+            equipmentList[counter][31] = addTagToContent(equipment.getCustomerWarrantyStartDate(), tags);
+            equipmentList[counter][32] = addTagToContent(equipment.getCustomerWarrantyEndDate(), tags);
+            equipmentList[counter][33] = addTagToContent(equipment.getEquipmentCategory(), tags);
+            equipmentList[counter][34] = addTagToContent(equipment.getEquipmentCategoryDesc(), tags);
+            equipmentList[counter][35] = addTagToContent(equipment.getEofsConfirmationDate(), tags);
+            equipmentList[counter][36] = addTagToContent(equipment.getEofsValidFromDate(), tags);
+            counter++;
         }
         return equipmentList;
     }
