@@ -39,49 +39,87 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * SitemapSchedulerServiceImpl
+ */
 @Component(immediate = true, service = SitemapSchedulerService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = SitemapSchedulerConfiguration.class)
 public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
-    private static final Logger log = LoggerFactory.getLogger(SitemapSchedulerServiceImpl.class);
+    /** LOGGER constant */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SitemapSchedulerServiceImpl.class);
 
+    /** SITEMAP_NAMESPACE constant */
     private static final String SITEMAP_NAMESPACE = "http://www.sitemaps.org/schemas/sitemap/0.9";
+    /** SITEMAP_XML constant */
     private static final String SITEMAP_XML = "sitemap.xml";
+    /** HIDE_IN_SITEMAP constant */
     private static final String HIDE_IN_SITEMAP = "hideInSitemap";
 
+    /** PATH_PLACEHOLDER constant */
+    private static final String PATH_PLACEHOLDER = "%s/%s";
+
+    /** resolverFactory */
     @Reference
     private ResourceResolverFactory resolverFactory;
 
+    /** externalizer */
     @Reference
     private Externalizer externalizer;
 
+    /** config */
     private SitemapSchedulerConfiguration config;
 
+    /** resourceResolver */
     private ResourceResolver resourceResolver;
+    /** session */
     private Session session;
 
+    /**
+     * activate method
+     * @param config
+     */
     @Activate
     public void activate(SitemapSchedulerConfiguration config) {
         this.config = config;
     }
 
+    /**
+     * schedulerName getter
+     * @return schedulerName
+     */
     @Override
     public String getSchedulerName() {
-        return config.schdulerName();
+        return config.schedulerName();
     }
 
+    /**
+     * enabled getter
+     * @return enabled
+     */
     @Override
     public Boolean isEnabled() {
         return config.enabled();
     }
 
+    /**
+     * cronExpression getter
+     * @return cronExpression
+     */
     @Override
     public String getCronExpression() {
         return config.cronExpression();
     }
 
+    /**
+     * Generate sitemap method
+     */
     @Override
     public void generateSitemap() {
         resourceResolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory);
@@ -89,20 +127,23 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         List<String> countryCodes = getListOfCountryCodes();
         if (countryCodes != null) {
             try {
-                byte[] sitemapIndex = getSitemapIndex(countryCodes);
                 Node sitemapIndexNode = getSitemapLocationNode(TLConstants.ROOT_PATH);
+                if (sitemapIndexNode == null) {
+                    return;
+                }
                 session = sitemapIndexNode.getSession();
 
+                byte[] sitemapIndex = getSitemapIndex(countryCodes);
                 createSitemap(sitemapIndexNode, sitemapIndex);
 
                 for (String countryCode : countryCodes) {
-                    String path = String.format("%s/%s", TLConstants.ROOT_PATH, getMarketPath(countryCode));
+                    String path = String.format(PATH_PLACEHOLDER, TLConstants.ROOT_PATH, getMarketPath(countryCode));
                     byte[] marketUrlSet = getMarketSitemap(path, countryCode);
                     Node marketNode = getSitemapLocationNode(path);
                     createSitemap(marketNode, marketUrlSet);
                 }
             } catch (RepositoryException re) {
-                log.error("Session fetch error = {}", re.getStackTrace());
+                LOGGER.error("Session fetch error = {}", re.getMessage(), re);
             } finally {
                 if (session != null) {
                     session.logout();
@@ -111,6 +152,13 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         }
     }
 
+    /**
+     * Parse object to xml - bytes array
+     * @param jaxbContext
+     * @param collection
+     * @param <T>
+     * @return
+     */
     private <T> byte[] objToXml(JAXBContext jaxbContext, T collection) {
         try {
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -119,22 +167,36 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             jaxbMarshaller.marshal(collection, file);
             return Files.readAllBytes(Paths.get(file.getPath()));
+        } catch (JAXBException | IOException e) {
+            LOGGER.error("Error during marshaller = {}", e.getMessage(), e);
         }
-        catch (JAXBException | IOException e) {
-            log.error("Error during marshaller = {}", e.getStackTrace());
-        }
-        return null;
+        return new byte[0];
     }
 
+    /**
+     * Get countryCode based on languagePage and countryPage names
+     * @param languagePage
+     * @param countryPage
+     * @return country code
+     */
     private String getCountryCode(Page languagePage, Page countryPage) {
         return String.format("%s%s%s", languagePage.getName(), TLConstants.HYPHEN, countryPage.getName());
     }
 
+    /**
+     * Get marketPath
+     * @param countryCode
+     * @return market path
+     */
     private String getMarketPath(String countryCode) {
         String[] parts = countryCode.split(TLConstants.HYPHEN);
-        return String.format("%s/%s", parts[1], parts[0]);
+        return String.format(PATH_PLACEHOLDER, parts[1], parts[0]);
     }
 
+    /**
+     * Get list of country codes
+     * @return
+     */
     private List<String> getListOfCountryCodes() {
         List<String> countryCodes = null;
 
@@ -147,21 +209,37 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
 
             while (rootChildren != null && rootChildren.hasNext()) {
                 Page countryPage = rootChildren.next();
-                if (!TLConstants.LANGUAGE_MASTERS_PATH.equals(countryPage.getPath())
-                        && !isHideInSitemap(countryPage.getPath())) {
-                    Iterator<Page> countryChildren = countryPage.listChildren();
-                    while (countryChildren != null && countryChildren.hasNext()) {
-                        Page languagePage = countryChildren.next();
-                        if (!isHideInSitemap(languagePage.getPath())) {
-                            countryCodes.add(getCountryCode(languagePage, countryPage));
-                        }
-                    }
+                countryCodes = createCountryCodes(countryPage, countryCodes);
+            }
+        }
+        return countryCodes;
+    }
+
+    /**
+     * Create country codes list
+     * @param countryPage
+     * @param countryCodes
+     * @return
+     */
+    private List<String> createCountryCodes(Page countryPage, List<String> countryCodes) {
+        if (!TLConstants.LANGUAGE_MASTERS_PATH.equals(countryPage.getPath())
+                && !isHideInSitemap(countryPage.getPath())) {
+            Iterator<Page> countryChildren = countryPage.listChildren();
+            while (countryChildren != null && countryChildren.hasNext()) {
+                Page languagePage = countryChildren.next();
+                if (!isHideInSitemap(languagePage.getPath())) {
+                    countryCodes.add(getCountryCode(languagePage, countryPage));
                 }
             }
         }
         return countryCodes;
     }
 
+    /**
+     * Get node where sitemap should be stored
+     * @param path
+     * @return
+     */
     private Node getSitemapLocationNode(String path) {
         Resource resource = resourceResolver.resolve(path);
         if (resource != null && resource.adaptTo(Node.class) != null) {
@@ -170,8 +248,14 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         return null;
     }
 
+    /**
+     * Generate and save sitemap
+     * @param node
+     * @param bytes
+     */
     private void createSitemap(Node node, byte[] bytes) {
-        Node sitemapNode, jcrContentNode;
+        Node sitemapNode;
+        Node jcrContentNode;
         try {
             if (!node.hasNode(SITEMAP_XML)) {
                 sitemapNode = node.addNode(SITEMAP_XML, JcrConstants.NT_FILE);
@@ -182,34 +266,43 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
                 sitemapNode = node.getNode(SITEMAP_XML);
             }
 
-            ValueFactory factory = session.getValueFactory();
-            InputStream is = new ByteArrayInputStream(bytes);
-            Binary binary = factory.createBinary(is);
-            Value value = factory.createValue(binary);
-            jcrContentNode = sitemapNode.getNode(JcrConstants.JCR_CONTENT);
-            jcrContentNode.setProperty(JcrConstants.JCR_DATA, value);
-            jcrContentNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance());
-            session.save();
+            if (bytes.length > 0) {
+                ValueFactory factory = session.getValueFactory();
+                InputStream is = new ByteArrayInputStream(bytes);
+                Binary binary = factory.createBinary(is);
+                Value value = factory.createValue(binary);
+                jcrContentNode = sitemapNode.getNode(JcrConstants.JCR_CONTENT);
+                jcrContentNode.setProperty(JcrConstants.JCR_DATA, value);
+                jcrContentNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance());
+                session.save();
+            }
         } catch (RepositoryException re) {
-            log.error("Error during the sitemap creation = {}", re.getStackTrace());
+            LOGGER.error("Error during the sitemap creation = {}", re.getMessage(), re);
         }
     }
 
+    /**
+     * Generate sitemapIndex
+     * @param countryCodes
+     * @return
+     */
     private byte[] getSitemapIndex(List<String> countryCodes) {
         SitemapIndex sitemapIndex = new SitemapIndex();
         sitemapIndex.setXmlns(SITEMAP_NAMESPACE);
 
         List<Sitemap> sitemaps = new ArrayList<>();
         for (String countryCode : countryCodes) {
-            String path = String.format("%s/%s", TLConstants.ROOT_PATH, getMarketPath(countryCode));
+            String path = String.format(PATH_PLACEHOLDER, TLConstants.ROOT_PATH, getMarketPath(countryCode));
 
             if (!isHideInSitemap(path)) {
                 Sitemap sitemap = new Sitemap();
                 try {
                     sitemap.setLocation(String.format("%s%s/%s", externalizer.externalLink(resourceResolver,
                             TLConstants.SITE_NAME, StringUtils.EMPTY), countryCode, SITEMAP_XML));
-                } catch (Exception e) {
+                } catch (IllegalArgumentException iae) {
                     sitemap.setLocation(String.format("%s/%s/%s", TLConstants.DEFAULT_EXTERNALIZER, countryCode, SITEMAP_XML));
+                    LOGGER.error("getSitemapIndex: set default externalizer path defined in TLConstants in case of missing configuration",
+                            iae.getMessage(), iae);
                 }
                 sitemaps.add(sitemap);
             }
@@ -220,11 +313,18 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             JAXBContext jaxbContext = JAXBContext.newInstance(SitemapIndex.class);
             return objToXml(jaxbContext, sitemapIndex);
         } catch (JAXBException jaxbException) {
-            log.error("Error during the creation of jaxbContext instance for sitemapIndex = {}", jaxbException.getStackTrace());
+            LOGGER.error("Error during the creation of jaxbContext instance for sitemapIndex = {}",
+                    jaxbException.getMessage(), jaxbException);
         }
-        return null;
+        return new byte[0];
     }
 
+    /**
+     * Generate marketSitemap
+     * @param path
+     * @param countryCode
+     * @return
+     */
     private byte[] getMarketSitemap(String path, String countryCode) {
         List<Url> urls = new ArrayList<>();
 
@@ -232,13 +332,15 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         urlSet.setXmlns(SITEMAP_NAMESPACE);
         urls.addAll(getPageForSitemap(path));
 
-        urlSet.setUrls(urls.stream().map(url -> {
+        urlSet.setUrls(urls.stream().map((Url url) -> {
             String newPath = url.getLocation().replace(path, countryCode);
             try {
                 url.setLocation(String.format("%s%s", externalizer.externalLink(resourceResolver,
                         TLConstants.SITE_NAME, StringUtils.EMPTY), newPath));
-            } catch (Exception e) {
-                url.setLocation(String.format("%s/%s", TLConstants.DEFAULT_EXTERNALIZER, newPath));
+            } catch (IllegalArgumentException iae) {
+                url.setLocation(String.format(PATH_PLACEHOLDER, TLConstants.DEFAULT_EXTERNALIZER, newPath));
+                LOGGER.error("getMarketSitemap: set default externalizer path defined in TLConstants in case of missing configuration",
+                        iae.getMessage(), iae);
             }
             return url;
         }).collect(Collectors.toList()));
@@ -247,11 +349,17 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
             JAXBContext jaxbContext = JAXBContext.newInstance(UrlSet.class);
             return objToXml(jaxbContext, urlSet);
         } catch (JAXBException jaxbException) {
-            log.error("Error during the creation of jaxbContext instance for urlset = {}", jaxbException.getStackTrace());
+            LOGGER.error("Error during the creation of jaxbContext instance for urlset = {}",
+                    jaxbException.getMessage(), jaxbException);
         }
-        return null;
+        return new byte[0];
     }
 
+    /**
+     * Get urls for sitemap
+     * @param path
+     * @return list of url
+     */
     private List<Url> getPageForSitemap(String path) {
         List<Url> urls = new ArrayList<>();
         if (!isHideInSitemap(path)) {
@@ -277,14 +385,19 @@ public class SitemapSchedulerServiceImpl implements SitemapSchedulerService {
         return urls;
     }
 
+    /**
+     * Check if page should be visible in sitemap
+     * @param path
+     * @return
+     */
     private boolean isHideInSitemap(String path) {
         Resource resource = resourceResolver.resolve(path);
         if (resource != null && resource.adaptTo(Node.class) != null) {
             Node node = resource.adaptTo(Node.class);
             try {
-                return node.hasProperty(String.format("%s/%s", JcrConstants.JCR_CONTENT, HIDE_IN_SITEMAP));
+                return node.hasProperty(String.format(PATH_PLACEHOLDER, JcrConstants.JCR_CONTENT, HIDE_IN_SITEMAP));
             } catch (RepositoryException re) {
-                log.error("isHideInSitemap error = {}", re.getStackTrace());
+                LOGGER.error("isHideInSitemap error = {}", re.getMessage(), re);
             }
         }
         return false;

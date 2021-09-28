@@ -1,7 +1,7 @@
 package com.tetralaval.constants;
 
 /**
- * The Class PWConstants.
+ * The Class TLConstants.
  */
 public final class TLConstants {
 
@@ -59,8 +59,17 @@ public final class TLConstants {
     /** The Constant DOCUMENT. */
     public static final String DOCUMENT = "document";
 
+    /** The Constant ANCHOR_ID_PROPERTY. */
+    public static final String ANCHOR_ID_PROPERTY = "anchorId";
+
+    /** The Constant ANCHOR_TITLE_PROPERTY. */
+    public static final String ANCHOR_TITLE_PROPERTY = "anchorTitle";
+
+    /** The Constant TEXT_PROPERTY. */
+    public static final String TEXT_PROPERTY = "text";
+
     /**
-     * Instantiates a new PW constants.
+     * Instantiates a new TL constants.
      */
     private TLConstants() {
         /*

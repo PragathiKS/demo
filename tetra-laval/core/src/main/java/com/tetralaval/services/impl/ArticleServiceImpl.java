@@ -8,29 +8,41 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ArticleService
+ */
 @Component(immediate = true, service = ArticleService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = ArticleConfiguration.class)
 public class ArticleServiceImpl implements ArticleService {
-    private static final Logger log = LoggerFactory.getLogger(ArticleServiceImpl.class);
-
+    /** config */
     private ArticleConfiguration config;
 
+    /**
+     * activate method
+     * @param config
+     */
     @Activate
     public void activate(ArticleConfiguration config) {
         this.config = config;
     }
 
+    /**
+     * type getter
+     * @return type
+     */
     @Override
     public String[] getType() {
         return config.type();
     }
 
+    /**
+     * filterTypes getter
+     * @return filterTypes
+     */
     @Override
     public List<FilterModel> getFilterTypes() {
         List<FilterModel> filterModels = new ArrayList<>();

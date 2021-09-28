@@ -32,6 +32,8 @@ import com.tetralaval.utils.NavigationUtil;
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BreadcrumbModel {
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
     /** The request. */
     @SlingObject
@@ -39,12 +41,10 @@ public class BreadcrumbModel {
 
     /** The home page path. */
     private String homePagePath;
+
     /** The current page. */
     @ScriptVariable
     private Page currentPage;
-
-    /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
@@ -61,7 +61,7 @@ public class BreadcrumbModel {
         ResourceResolver resourceResolver = resource.getResourceResolver();
 
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo()).replace(".html", StringUtils.EMPTY);
+        final String rootPath = LinkUtils.getRootPath(request.getPathInfo()).replace(TLConstants.HTML_EXTENSION, StringUtils.EMPTY);
         homePagePath = LinkUtils.sanitizeLink(rootPath, request);
         final String path = currentPage.getPath().replace(rootPath, StringUtils.EMPTY);
         final List<String> pages = Arrays.stream(path.split("/")).filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList());
@@ -69,14 +69,11 @@ public class BreadcrumbModel {
         Page languagePage = PageUtil.getLanguagePage(resourceResolver.resolve(rootPath));
         breadcrumbPages.put(NavigationUtil.getNavigationTitle(languagePage), languagePage.getPath());
 
-        String currentPath = languagePage.getPath();
         for (int i = 0; i < pages.size(); i++) {
-            currentPath += TLConstants.SLASH + pages.get(i);
-            Page currentPage = PageUtil.getCurrentPage(resourceResolver.resolve(currentPath));
             breadcrumbPages.put(NavigationUtil.getNavigationTitle(currentPage), currentPage.getPath());
         }
 
-        final List<String> alKeys = new ArrayList<String>(breadcrumbPages.keySet());
+        final List<String> alKeys = new ArrayList<>(breadcrumbPages.keySet());
         for (final String key : alKeys) {
             breadcrumbSubpages.put(key, LinkUtils.sanitizeLink(breadcrumbPages.get(key), request));
         }

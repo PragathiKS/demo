@@ -6,10 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 
+/**
+ * LinkUtils
+ */
 public class LinkUtils extends WCMUsePojo {
-
-    private static final String PARAM_LINK = "linkPath";
-    private String sanitizedLink;
 
     /**
      * Add .html to link if is internal
@@ -17,18 +17,20 @@ public class LinkUtils extends WCMUsePojo {
      * @param link
      */
     public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {
+        String finalLink = link;
         if (StringUtils.isBlank(link)) {
-            return "#";
+            finalLink = "#";
         } else if (Boolean.TRUE.equals(isPreviewURL(request))) {
-            return request.getResourceResolver().map(link);
-        } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
+            finalLink = request.getResourceResolver().map(link);
+        } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(TLConstants.HTML_EXTENSION)
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
-                return request.getResourceResolver().map(link);
+                finalLink = request.getResourceResolver().map(link);
+            } else {
+                finalLink = link + TLConstants.HTML_EXTENSION;
             }
-            return link + ".html";
         }
-        return link;
+        return finalLink;
     }
 
     /**
@@ -42,6 +44,11 @@ public class LinkUtils extends WCMUsePojo {
         return Text.getAbsoluteParent(pagePath, TLConstants.LANGUAGE_PAGE_LEVEL);
     }
 
+    /**
+     * Check if url follows to preview
+     * @param request
+     * @return
+     */
     public static Boolean isPreviewURL(SlingHttpServletRequest request) {
         String previewHeader = request.getHeader("preview");
         Boolean isPreviewURL = false;
@@ -66,7 +73,6 @@ public class LinkUtils extends WCMUsePojo {
 
     @Override
     public void activate() throws Exception {
-        sanitizedLink = get(PARAM_LINK, String.class);
-
+        // This is override method
     }
 }

@@ -12,52 +12,79 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * SitemapScheduler
+ */
 @Component(immediate = true, service = SitemapScheduler.class)
 public class SitemapScheduler implements Runnable {
-    private static final Logger log = LoggerFactory.getLogger(SitemapScheduler.class);
+    /** LOGGER constant */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SitemapScheduler.class);
 
+    /** schedulerId */
     private int schedulerId;
 
+    /** scheduler */
     @Reference
     private Scheduler scheduler;
 
+    /** sitemapSchedulerService */
     @Reference
     private SitemapSchedulerService sitemapSchedulerService;
 
+    /**
+     * Activate method
+     */
     @Activate
     protected void activate() {
         schedulerId = getSchedulerId();
         addScheduler();
 
-        log.info("SitemapScheduler was activated");
+        LOGGER.info("SitemapScheduler was activated");
     }
 
+    /**
+     * Modified method
+     */
     @Modified
     protected void modified() {
         removeScheduler();
         schedulerId = getSchedulerId();
         addScheduler();
 
-        log.info("SitemapScheduler was modified");
+        LOGGER.info("SitemapScheduler was modified");
     }
 
+    /**
+     * Deactivate method
+     * @param config
+     */
     @Deactivate
     protected void deactivate(SitemapSchedulerConfiguration config) {
         removeScheduler();
 
-        log.info("SitemapScheduler was deactivated");
+        LOGGER.info("SitemapScheduler was deactivated");
     }
 
+    /**
+     * schedulerId getter
+     * @return schedulerId
+     */
     private int getSchedulerId() {
         return sitemapSchedulerService.getSchedulerName().hashCode();
     }
 
+    /**
+     * removeScheduler method
+     */
     private void removeScheduler() {
         scheduler.unschedule(String.valueOf(schedulerId));
 
-        log.info("SitemapScheduler was removed");
+        LOGGER.info("SitemapScheduler was removed");
     }
 
+    /**
+     * addScheduler method
+     */
     private void addScheduler() {
         if(sitemapSchedulerService.isEnabled()) {
             ScheduleOptions scheduleOptions = scheduler.EXPR(sitemapSchedulerService.getCronExpression());
@@ -67,12 +94,15 @@ public class SitemapScheduler implements Runnable {
 
             scheduler.schedule(this, scheduleOptions);
 
-            log.info("SitemapScheduler was added");
+            LOGGER.info("SitemapScheduler was added");
         } else {
-            log.info("SitemapScheduler is disabled");
+            LOGGER.info("SitemapScheduler is disabled");
         }
     }
 
+    /**
+     * run method
+     */
     @Override
     public void run() {
         sitemapSchedulerService.generateSitemap();

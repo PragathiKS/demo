@@ -12,8 +12,6 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterConfig;
@@ -24,6 +22,9 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Aggregator List Filter
+ */
 @Component(
         service = Filter.class,
         name = "Custom Aggregator List Redirecting Filter",
@@ -34,20 +35,40 @@ import java.util.Objects;
         }
 )
 public class AggregatorListFilter implements Filter {
-    private static final Logger log = LoggerFactory.getLogger(AggregatorListFilter.class);
-    private final static String AGGREGATOR_PAGE_PROPERTY = "aggregatorPage";
+    private static final String AGGREGATOR_PAGE_PROPERTY = "aggregatorPage";
 
+    /**
+     * Article service
+     */
     @Reference
     private ArticleService articleService;
 
+    /**
+     * init method
+     * @param filterConfig
+     * @throws ServletException
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        // This is override method
     }
 
+    /**
+     * destroy method
+     */
     @Override
     public void destroy() {
+        // This is override method
     }
 
+    /**
+     * Redirect to page (usually to search page) configured inside Page Properties
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -64,13 +85,15 @@ public class AggregatorListFilter implements Filter {
                     return;
                 }
             }
-            chain.doFilter(request, response);
-        } else {
-            chain.doFilter(request, response);
-            return;
         }
+        chain.doFilter(request, response);
     }
 
+    /**
+     * Get redirect url page fetched from Page Properties
+     * @param slingRequest
+     * @return redirect url link
+     */
     private String getRedirect(final SlingHttpServletRequest slingRequest) {
         String redirect = StringUtils.EMPTY;
         if (Objects.nonNull(PageUtil.getCurrentPage(slingRequest.getResource()))

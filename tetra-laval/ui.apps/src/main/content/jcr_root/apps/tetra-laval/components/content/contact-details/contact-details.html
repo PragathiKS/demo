@@ -1,7 +1,7 @@
 <sly data-sly-use.model="com.tetralaval.models.ContactModel"/>
 
 <p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
-<section class="page-section pw-theme--${model.pwTheme}">
+<section class="page-section pw-theme--${model.pwTheme}" data-sly-test="${model.contactDetails}">
     <div class="tp-container pw-padding--${model.pwPadding}">
         <div class="contact-row">
             <div class="col-learnmore-units col-half">

@@ -57,69 +57,124 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * SearchResultsServiceImpl
+ */
 @Component(immediate = true, service = SearchResultsService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = SearchResultsConfiguration.class)
 public class SearchResultsServiceImpl implements SearchResultsService {
+    /** LOGGER constant */
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultsServiceImpl.class);
 
-    private final static String FULLTEXT_PARAM = "searchTerm";
-    private final static String ARTICLE_TYPE_PARAM = "contentType";
-    private final static String TAGS_PARAM = "theme";
-    private final static String PAGE_PARAM = "page";
+    /** FULLTEXT_PARAM constant */
+    private static final String FULLTEXT_PARAM = "searchTerm";
+    /** ARTICLE_TYPE_PARAM constant */
+    private static final String ARTICLE_TYPE_PARAM = "contentType";
+    /** TAGS_PARAM constant */
+    private static final String TAGS_PARAM = "theme";
+    /** PAGE_PARAM constant */
+    private static final String PAGE_PARAM = "page";
 
-    private final static String HIDE_IN_SEARCH_PROP = "hideInSearch";
-    private final static String ARTICLE_DATE_PROP = "articleDate";
-    private final static String ARTICLE_TYPE_PROP = "articleType";
-    private final static String MEDIA_LABEL_PROP = "mediaLabel";
-    private final static String ASSETS_PATH_PROP = "assetsPath";
-    private final static String VIDEO_THUMBNAIL_PROP = "videoThumbnail";
-    private final static String DOCUMENT_THUMBNAIL_PROP = "documentThumbnail";
+    /** HIDE_IN_SEARCH_PROP constant */
+    private static final String HIDE_IN_SEARCH_PROP = "hideInSearch";
+    /** ARTICLE_DATE_PROP constant */
+    private static final String ARTICLE_DATE_PROP = "articleDate";
+    /** ARTICLE_TYPE_PROP constant */
+    private static final String ARTICLE_TYPE_PROP = "articleType";
+    /** MEDIA_LABEL_PROP constant */
+    private static final String MEDIA_LABEL_PROP = "mediaLabel";
+    /** ASSETS_PATH_PROP constant */
+    private static final String ASSETS_PATH_PROP = "assetsPath";
+    /** VIDEO_THUMBNAIL_PROP constant */
+    private static final String VIDEO_THUMBNAIL_PROP = "videoThumbnail";
+    /** DOCUMENT_THUMBNAIL_PROP constant */
+    private static final String DOCUMENT_THUMBNAIL_PROP = "documentThumbnail";
 
-    private final static String RESOURCES_GROUP = "3_group";
-    private final static String PAGES_GROUP = String.format("%s.1_group", RESOURCES_GROUP);
-    private final static String ASSETS_GROUP = String.format("%s.2_group", RESOURCES_GROUP);
-    private final static String TAGS_GROUP = "1_group";
-    private final static String TEMPLATES_GROUP = "2_group";
+    /** RESOURCES_GROUP constant */
+    private static final String RESOURCES_GROUP = "3_group";
+    /** PAGES_GROUP constant */
+    private static final String PAGES_GROUP = String.format("%s.1_group", RESOURCES_GROUP);
+    /** ASSETS_GROUP constant */
+    private static final String ASSETS_GROUP = String.format("%s.2_group", RESOURCES_GROUP);
+    /** TAGS_GROUP constant */
+    private static final String TAGS_GROUP = "1_group";
+    /** TEMPLATES_GROUP constant */
+    private static final String TEMPLATES_GROUP = "2_group";
 
-    private final static String ARTICLE_TEMPLATE = "/conf/tetra-laval/settings/wcm/templates/article-page-template";
+    /** SECOND_LEVEL_OF_GROUP_PLACEHOLDER constant */
+    private static final String SECOND_LEVEL_OF_GROUP_PLACEHOLDER = "%s.%s.p.or";
 
+    /** KILO_BYTES_VALUE constant */
+    private static final int KILO_BYTES_VALUE = 1024;
+
+    /** ARTICLE_TEMPLATE constant */
+    private static final String ARTICLE_TEMPLATE = "/conf/tetra-laval/settings/wcm/templates/article-page-template";
+
+    /** xssAPI */
     @Reference
     private XSSAPI xssAPI;
 
+    /** xssFilter */
     @Reference
     private XSSFilter xssFilter;
 
+    /** queryBuilder */
     @Reference
     private QueryBuilder queryBuilder;
 
+    /** articleService */
     @Reference
     private ArticleService articleService;
 
-
+    /** path */
     private String path;
+    /** mediaLabel */
     private String mediaLabel;
+    /** mediaId */
     private String mediaId;
+    /** assetsPath */
     private String assetsPath;
+    /** videoThumbnail */
     private String videoThumbnail;
+    /** documentThumbnail */
     private String documentThumbnail;
 
+    /** config */
     private SearchResultsConfiguration config;
 
+    /**
+     * activate method
+     * @param config
+     */
     @Activate
     public void activate(SearchResultsConfiguration config) {
         this.config = config;
     }
 
+    /**
+     * itemsPerPage getter
+     * @return itemsPerPage
+     */
     @Override
     public int getItemsPerPage() {
         return config.itemsPerPage();
     }
 
+    /**
+     * maxResultSuggestions getter
+     * @return maxResultSuggestions
+     */
     @Override
-    public int getMaxResultSuggesions() {
-        return config.maxResultSuggesions();
+    public int getMaxResultSuggestions() {
+        return config.maxResultSuggestions();
     }
 
+    /**
+     * Return search query map
+     * @param request
+     * @param params
+     * @return
+     */
     @Override
     public Map<String, String> setSearchQueryMap(SlingHttpServletRequest request, RequestParameterMap params) {
         setAssetsProperties(request);
@@ -128,19 +183,23 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
         List<FilterModel> filterModelList = getTags(request, params);
         String[] articleTypes = getArticleTypes(params);
-        boolean isMediaChecked = articleTypes != null && mediaId != null ? Arrays.stream(articleTypes)
-                .filter(s -> mediaId.equals(s))
-                .collect(Collectors.toList()).size() > 0 : false;
+        boolean isMediaChecked = false;
+
+        if (articleTypes != null && mediaId != null) {
+            isMediaChecked = Arrays.stream(articleTypes)
+                    .filter(s -> mediaId.equals(s))
+                    .collect(Collectors.toList()).isEmpty();
+        }
 
         map.putAll(getFulltext(params));
         map.putAll(setResultsAmount(params));
 
         map.put(String.format("%s.p.or", RESOURCES_GROUP), "true");
-        map.put(String.format("%s.%s.p.or", PAGES_GROUP, TAGS_GROUP), "true");
-        map.put(String.format("%s.%s.p.or", PAGES_GROUP, TEMPLATES_GROUP), "true");
+        map.put(String.format(SECOND_LEVEL_OF_GROUP_PLACEHOLDER, PAGES_GROUP, TAGS_GROUP), "true");
+        map.put(String.format(SECOND_LEVEL_OF_GROUP_PLACEHOLDER, PAGES_GROUP, TEMPLATES_GROUP), "true");
 
         if (isMediaChecked) {
-            map.put(String.format("%s.%s.p.or", ASSETS_GROUP, TAGS_GROUP), "true");
+            map.put(String.format(SECOND_LEVEL_OF_GROUP_PLACEHOLDER, ASSETS_GROUP, TAGS_GROUP), "true");
         }
 
         map.putAll(setResources(isMediaChecked));
@@ -157,6 +216,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return map;
     }
 
+    /**
+     * Get filters
+     * @param request
+     * @param tags
+     * @return list of FilterModel
+     */
     @Override
     public List<FilterModel> getFilters(SlingHttpServletRequest request, String[] tags) {
         List<FilterModel> filterModels = new ArrayList<>();
@@ -173,6 +238,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return filterModels;
     }
 
+    /**
+     * Get results
+     * @param request
+     * @param map
+     * @return ResultModel
+     */
     @Override
     public ResultModel getResults(SlingHttpServletRequest request, Map<String, String> map) {
         ResultModel resultModel = new ResultModel();
@@ -200,6 +271,11 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return resultModel;
     }
 
+    /**
+     * Set mediaId based on mediaLabel
+     * @param mediaLabel
+     * @return mediaId
+     */
     @Override
     public String setMediaId(String mediaLabel) {
         if (mediaLabel != null) {
@@ -209,6 +285,11 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return null;
     }
 
+    /**
+     * Get fulltext
+     * @param params
+     * @return
+     */
     private Map<String, String> getFulltext(RequestParameterMap params) {
         String fulltext = null;
         RequestParameter fulltextParam = params.getValue(FULLTEXT_PARAM);
@@ -225,10 +306,20 @@ public class SearchResultsServiceImpl implements SearchResultsService {
 
         // fetched only these results which contains specific query text
         Map<String, String> map = new HashMap<>();
-        map.put("fulltext", fulltext != null ? fulltext : StringUtils.EMPTY);
+
+        if (fulltext != null) {
+            map.put("fulltext", fulltext);
+        } else {
+            map.put("fulltext", StringUtils.EMPTY);
+        }
         return map;
     }
 
+    /**
+     * Get articleTypes
+     * @param params
+     * @return array of articleTypes
+     */
     private String[] getArticleTypes(RequestParameterMap params) {
         String[] articleTypes = null;
         RequestParameter articleTypesParam = params.getValue(ARTICLE_TYPE_PARAM);
@@ -238,6 +329,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return articleTypes;
     }
 
+    /**
+     * Get tags
+     * @param request
+     * @param params
+     * @return list of FilterModel
+     */
     private List<FilterModel> getTags(SlingHttpServletRequest request, RequestParameterMap params) {
         List<FilterModel> filters = null;
         RequestParameter tagsParam = params.getValue(TAGS_PARAM);
@@ -247,6 +344,11 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return filters;
     }
 
+    /**
+     * Get page number
+     * @param params
+     * @return pageNumber
+     */
     private int getPageNumber(RequestParameterMap params) {
         int page = 1;
         RequestParameter pageParam = params.getValue(PAGE_PARAM);
@@ -256,16 +358,26 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return page;
     }
 
+    /**
+     * Set results amount
+     * @param params
+     * @return
+     */
     private Map<String, String> setResultsAmount(RequestParameterMap params) {
         Map<String, String> map = new HashMap<>();
 
         // set amount of results
-        map.put("p.guessTotal", String.valueOf(getMaxResultSuggesions()));
+        map.put("p.guessTotal", String.valueOf(getMaxResultSuggestions()));
         map.put("p.offset", String.valueOf((getPageNumber(params) - 1) * getItemsPerPage()));
         map.put("p.limit", String.valueOf(getItemsPerPage()));
         return map;
     }
 
+    /**
+     * Set resources
+     * @param isMediaChecked
+     * @return
+     */
     private Map<String, String> setResources(boolean isMediaChecked) {
         Map<String, String> map = new HashMap<>();
 
@@ -286,11 +398,18 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return map;
     }
 
+    /**
+     * Set tags
+     * @param resourceGroup
+     * @param cqTagsProp
+     * @param filterModelList
+     * @return
+     */
     private Map<String, String> setTags(String resourceGroup, String cqTagsProp, List<FilterModel> filterModelList) {
         Map<String, String> map = new HashMap<>();
 
         // generating map using tags selected in search result filters
-        if (filterModelList != null && filterModelList.size() > 0) {
+        if (filterModelList.isEmpty()) {
             int tagIndex = 0;
             for (FilterModel filterModel : filterModelList) {
                 tagIndex++;
@@ -301,6 +420,11 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return map;
     }
 
+    /**
+     * Set templates
+     * @param articleTypes
+     * @return
+     */
     private Map<String, String> setTemplates(String[] articleTypes) {
         Map<String, String> map = new HashMap<>();
 
@@ -320,6 +444,11 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return map;
     }
 
+    /**
+     * Get languagePage path
+     * @param request
+     * @return languagePage path
+     */
     private String getLanguagePagePath(SlingHttpServletRequest request) {
         return String.join(TLConstants.SLASH, Arrays.stream(request.getPathInfo()
                 .split(TLConstants.SLASH))
@@ -327,6 +456,13 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 .subList(0, TLConstants.CHAPTER_LEVEL + 1));
     }
 
+    /**
+     * Set search result item details
+     * @param request
+     * @param hit
+     * @return resultItem
+     * @throws RepositoryException
+     */
     private ResultItem setSearchResultItemData(SlingHttpServletRequest request, Hit hit) throws RepositoryException {
         ResultItem resultItem = new ResultItem();
 
@@ -339,7 +475,13 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 String mediaType = getMediaType(assetMetadataProperties);
 
                 resultItem.setType(mediaLabel);
-                resultItem.setTitle(StringUtils.isBlank(mediaTitle) ? hit.getTitle() : mediaTitle);
+
+                if (StringUtils.isBlank(mediaTitle)) {
+                    resultItem.setTitle(hit.getTitle());
+                } else {
+                    resultItem.setTitle(mediaTitle);
+                }
+
                 setMediaSize(resultItem, assetMetadataProperties);
                 resultItem.setAssetExtension(hit.getPath().substring(hit.getPath().lastIndexOf(TLConstants.DOT) + 1));
                 resultItem.setAssetType(mediaType);
@@ -360,17 +502,32 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return resultItem;
     }
 
+    /**
+     * Set sort date method
+     * @param hit
+     * @param cls
+     * @param <T>
+     * @return
+     * @throws RepositoryException
+     */
     private <T> T getSortDate(Hit hit, Class<T> cls) throws RepositoryException {
+        T sortDate = null;
         if (hit.getProperties().containsKey(ARTICLE_DATE_PROP)) {
-            return hit.getProperties().get(ARTICLE_DATE_PROP, cls);
+            sortDate = hit.getProperties().get(ARTICLE_DATE_PROP, cls);
         } else if (hit.getProperties().containsKey(NameConstants.PN_PAGE_LAST_MOD)) {
-            return hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, cls);
+            sortDate = hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, cls);
         } else if (hit.getProperties().containsKey(JcrConstants.JCR_LASTMODIFIED)) {
-            return hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, cls);
+            sortDate = hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, cls);
         }
-        return null;
+        return sortDate;
     }
 
+    /**
+     * Set content fields
+     * @param resultItem
+     * @param hit
+     * @throws RepositoryException
+     */
     private void setContentFields(ResultItem resultItem, Hit hit) throws RepositoryException {
         String articleTypeName = null;
 
@@ -381,27 +538,39 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 .filter(filterModel -> filterModel.getKey().equals(articleType))
                 .collect(Collectors.toList());
 
-        if (filters.size() > 0) {
+        if (!filters.isEmpty()) {
             articleTypeName = filters.get(0).getLabel();
         }
         resultItem.setType(articleTypeName);
         resultItem.setDate(formatDate(date));
     }
 
+    /**
+     * Get media type
+     * @param assetMetadataProperties
+     * @return
+     */
     private String getMediaType(ValueMap assetMetadataProperties) {
+        String mediaType = StringUtils.EMPTY;
         if (assetMetadataProperties.containsKey(DamConstants.DC_FORMAT)) {
             String dcFormat = assetMetadataProperties.get(DamConstants.DC_FORMAT, StringUtils.EMPTY);
             if (dcFormat.contains(TLConstants.IMAGE)) {
-                return TLConstants.IMAGE;
+                mediaType = TLConstants.IMAGE;
             } else if (dcFormat.contains(TLConstants.VIDEO)) {
-                return TLConstants.VIDEO;
+                mediaType = TLConstants.VIDEO;
             } else {
-                return TLConstants.DOCUMENT;
+                mediaType = TLConstants.DOCUMENT;
             }
         }
-        return StringUtils.EMPTY;
+        return mediaType;
     }
 
+    /**
+     * Set media size
+     * @param resultItem
+     * @param assetMetadataProperties
+     * @return
+     */
     private ResultItem setMediaSize(ResultItem resultItem, ValueMap assetMetadataProperties) {
         double size = 0;
         try {
@@ -409,9 +578,9 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         } catch (NumberFormatException e) {
             LOGGER.error("Invalid Asset Size", e.getMessage(), e);
         }
-        double convertedSize = size / 1024;
-        if (convertedSize > 1024) {
-            convertedSize = convertedSize / 1024;
+        double convertedSize = size / KILO_BYTES_VALUE;
+        if (convertedSize > KILO_BYTES_VALUE) {
+            convertedSize = convertedSize / KILO_BYTES_VALUE;
             resultItem.setSize(String.valueOf(BigDecimal.valueOf(convertedSize)
                     .setScale(1, RoundingMode.HALF_UP)));
             resultItem.setSizeType("MB");
@@ -423,23 +592,51 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         return resultItem;
     }
 
+    /**
+     * Set assets properties
+     * @param request
+     */
     private void setAssetsProperties(SlingHttpServletRequest request) {
         Resource resource = request.getResource().getResourceResolver()
                 .resolve(String.format("%s%s", request.getResource().getPath(), "/root/responsivegrid/searchresults"));
         if (resource != null && resource.adaptTo(Node.class) != null) {
             Node node = resource.adaptTo(Node.class);
             try {
-                mediaLabel = node.hasProperty(MEDIA_LABEL_PROP) ? node.getProperty(MEDIA_LABEL_PROP).getString() : null;
+                if (node.hasProperty(MEDIA_LABEL_PROP)) {
+                    mediaLabel = node.getProperty(MEDIA_LABEL_PROP).getString();
+                } else {
+                    mediaLabel = null;
+                }
                 mediaId = setMediaId(mediaLabel);
-                assetsPath = node.hasProperty(ASSETS_PATH_PROP) ? node.getProperty(ASSETS_PATH_PROP).getString() : TLConstants.DAM_ROOT_PATH;
-                videoThumbnail = node.hasProperty(VIDEO_THUMBNAIL_PROP) ? node.getProperty(VIDEO_THUMBNAIL_PROP).getString() : null;
-                documentThumbnail = node.hasProperty(DOCUMENT_THUMBNAIL_PROP) ? node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString() : null;
+
+                if (node.hasProperty(ASSETS_PATH_PROP)) {
+                    assetsPath = node.getProperty(ASSETS_PATH_PROP).getString();
+                } else {
+                    assetsPath = TLConstants.DAM_ROOT_PATH;
+                }
+
+                if (node.hasProperty(VIDEO_THUMBNAIL_PROP)) {
+                    videoThumbnail = node.getProperty(VIDEO_THUMBNAIL_PROP).getString();
+                } else {
+                    videoThumbnail = null;
+                }
+
+                if (node.hasProperty(DOCUMENT_THUMBNAIL_PROP)) {
+                    documentThumbnail = node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString();
+                } else {
+                    documentThumbnail = null;
+                }
             } catch (RepositoryException re) {
                 LOGGER.error("setAssetsProperties:: RepositoryException", re.getMessage(), re);
             }
         }
     }
 
+    /**
+     * Set proper format date
+     * @param dateString
+     * @return
+     */
     private String formatDate(String dateString) {
         if (dateString != null && dateString.length() > 0 && dateString.contains("T")) {
             final String parsedDate = dateString.substring(0, dateString.indexOf("T"));

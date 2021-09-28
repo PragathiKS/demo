@@ -8,8 +8,6 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -21,6 +19,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * Error page filter
+ */
 @Component(
     service = Filter.class,
     name = "Custom Error Page Redirecting Filter",
@@ -32,16 +33,32 @@ import java.util.stream.Collectors;
 )
 
 public class ErrorPageFilter implements Filter {
-    private static final Logger log = LoggerFactory.getLogger(ErrorPageFilter.class);
-
+    /**
+     * init method
+     * @param filterConfig
+     * @throws ServletException
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        // This is override method
     }
 
+    /**
+     * destroy method
+     */
     @Override
     public void destroy() {
+        // This is override method
     }
 
+    /**
+     * Redirect to 404 page in case of not found resource/page
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -51,21 +68,18 @@ public class ErrorPageFilter implements Filter {
             final Resource resource = slingRequest.getResource();
 
             if (resource == null || (resource != null && (resource.getResourceType() == null ||
-                    resource.getResourceType().equals("sling:nonexisting")))) {
+                    resource.getResourceType().equals(Resource.RESOURCE_TYPE_NON_EXISTING)))) {
                 String path = Arrays.stream(slingRequest.getPathInfo().split(TLConstants.SLASH))
                         .filter(s -> !StringUtils.EMPTY.equals(s))
-                        .limit(TLConstants.LANGUAGE_PAGE_LEVEL + 1)
+                        .limit((long)TLConstants.LANGUAGE_PAGE_LEVEL + 1)
                         .collect(Collectors.joining(TLConstants.SLASH));
                 Resource languageResource = resource.getResourceResolver().resolve(TLConstants.SLASH + path);
                 Page languagePage = languageResource.adaptTo(Page.class);
                 slingResponse.sendRedirect(LinkUtils.sanitizeLink(languagePage.getPath() + TLConstants.SLASH + "404", slingRequest));
                 return;
             }
-            chain.doFilter(request, response);
-        } else {
-            chain.doFilter(request, response);
-            return;
         }
+        chain.doFilter(request, response);
     }
 
 }
