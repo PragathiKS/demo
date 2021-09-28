@@ -228,14 +228,32 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         TagManager tagManager = request.getResource().getResourceResolver().adaptTo(TagManager.class);
         if (tagManager != null && tags != null) {
             for (String tagString : tags) {
-                Tag tag = tagManager.resolve(tagString);
+                Tag tag = tagManager.resolve(decodeColonInKey(tagString));
                 FilterModel filterModel = new FilterModel();
                 filterModel.setLabel(tag.getTitle());
-                filterModel.setKey(tagString);
+                filterModel.setKey(encodeColonInKey(tagString));
                 filterModels.add(filterModel);
             }
         }
         return filterModels;
+    }
+
+    /**
+     * Encode colon in tag key
+     * @param text
+     * @return
+     */
+    private String encodeColonInKey(String text) {
+        return text.replaceAll("\\:+", "-fc-");
+    }
+
+    /**
+     * Decode colon in tag key
+     * @param text
+     * @return
+     */
+    private String decodeColonInKey(String text) {
+        return text.replaceAll("(-fc-)+", TLConstants.COLON);
     }
 
     /**
@@ -409,12 +427,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
 
         // generating map using tags selected in search result filters
-        if (filterModelList.isEmpty()) {
+        if (!filterModelList.isEmpty()) {
             int tagIndex = 0;
             for (FilterModel filterModel : filterModelList) {
                 tagIndex++;
                 map.put(String.format("%s.1_group.%d_property", resourceGroup, tagIndex), cqTagsProp);
-                map.put(String.format("%s.1_group.%d_property.value", resourceGroup, tagIndex), filterModel.getKey());
+                map.put(String.format("%s.1_group.%d_property.value", resourceGroup, tagIndex), decodeColonInKey(filterModel.getKey()));
             }
         }
         return map;
