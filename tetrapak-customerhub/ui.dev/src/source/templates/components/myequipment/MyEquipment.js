@@ -498,7 +498,7 @@ class MyEquipment {
       {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:5},
       {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:6},
       {key:'location',option:i18nKeys['location'],isChecked:false,index:7},
-      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:false,index:8},
+      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:false,index:8}
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {
