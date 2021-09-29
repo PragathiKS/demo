@@ -92,4 +92,18 @@ public final class CustomerHubConstants {
     public static final String JCR_PRIMARY_TYPE = "jcr:primaryType";
     
     public static final String SPACE = " ";
+    
+    public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
+    
+    public static final String EQUALS = "=";
+    
+    public static final String QUESTION_MARK = "?";
+    
+    public static final String AMPERSAND = "&";
+    
+    public static final String COUNTRY_CODE = "countrycode";
+    
+    public static final String COUNT = "count";
+    
+    public static final String DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER = "results=extended";
 }
