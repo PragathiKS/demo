@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class Results {
 
 	@SerializedName("data")
-    @Expose
+	@Expose
 	private List<Equipments> data;
 
 	public List<Equipments> getData() {
@@ -18,6 +18,5 @@ public class Results {
 	public void setData(List<Equipments> data) {
 		this.data = data;
 	}
-	
-	
+
 }
