@@ -1,0 +1,80 @@
+import groovy.transform.Field
+import javax.jcr.Node
+import com.day.cq.commons.jcr.JcrUtil
+
+/**
+set DRY_RUN = false to actually make and save changes in crx.
+**/
+@Field final DRY_RUN = true
+
+@Field final PATHS = [
+  COUNTRIES_CONTENT_FRAGMENT_PATH: "/content/dam/tetrapak/publicweb/contentfragment/countries",
+  PARDOT_COUNTRY_CONTENT_FRAGMENT_PATH: "/content/dam/tetrapak/publicweb/contentfragment/pardot-countries"
+]
+
+@Field final PROPS = [
+  NAME: [
+    DAM_ASSET: "dam:Asset",
+    DATA: "data",
+    METADATA: "metadata",
+    FORWARD_SLASH: "/",
+    JCR_CONTENT: "jcr:content"
+  ]
+]
+
+/*Flag to count the number of FRAGMENTS*/
+noOfMatchingContentFragments = 0
+
+/** List of countries from Countries content fragments **/
+def countryList = []
+
+def predicates = [
+    "path": PATHS.COUNTRIES_CONTENT_FRAGMENT_PATH,
+    "type": PROPS.NAME.DAM_ASSET
+]
+
+def query = createQuery(predicates)
+query.hitsPerPage = 150
+def results = query.result
+println "Number of Countries ${results.totalMatches}"
+
+results.hits.each { hit ->
+    println "Country = ${hit.node.name}"
+	String countryName = hit.node.name;
+	countryList.add(countryName);
+}
+
+countryList.each {
+    updatePardotCountries(it) 
+}
+
+
+/** Update pardot countries with data node. **/
+def updatePardotCountries(String countryName) {
+    def pardotCountriesPredicates = [
+        "path": PATHS.PARDOT_COUNTRY_CONTENT_FRAGMENT_PATH,
+        "type": PROPS.NAME.DAM_ASSET
+    ]
+
+    def query2 = createQuery(pardotCountriesPredicates)
+    query2.hitsPerPage = 250
+
+    def results2 = query2.result
+    results2.hits.each { pardot ->
+		if(pardot.node.name == countryName){
+		    noOfMatchingContentFragments++
+			println "Pardot Country Name ${pardot.node.name}"
+			
+			def pardotContentFragPath = PATHS.PARDOT_COUNTRY_CONTENT_FRAGMENT_PATH+PROPS.NAME.FORWARD_SLASH+"${pardot.node.name}"+PROPS.NAME.FORWARD_SLASH+PROPS.NAME.JCR_CONTENT
+			def countryDataPath = PATHS.COUNTRIES_CONTENT_FRAGMENT_PATH+PROPS.NAME.FORWARD_SLASH+"${countryName}"+PROPS.NAME.FORWARD_SLASH+PROPS.NAME.JCR_CONTENT+PROPS.NAME.FORWARD_SLASH+PROPS.NAME.DATA
+			
+			Node dataNode = getNode(countryDataPath)
+			Node destNode= getNode(pardotContentFragPath)
+			JcrUtil.copy(dataNode, destNode, null)
+		}
+	}
+	if(!DRY_RUN){
+        session.save();
+    }
+}
+println "TOTAL NUMBER OF MATCHING CONTENT FRAGMENTS :: " + noOfMatchingContentFragments

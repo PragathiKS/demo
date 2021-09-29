@@ -1,0 +1,75 @@
+import groovy.transform.Field
+import javax.jcr.Node
+import javax.jcr.Value
+
+/**
+set DRY_RUN = false to actually make and save changes in crx.
+**/
+@Field final DRY_RUN = true
+
+@Field final PATHS = [
+  PARDOT_COUNTRY_CONTENT_FRAGMENT_PATH: "/content/dam/tetrapak/publicweb/contentfragment/pardot-countries",
+  COUNTRY_MODEL_PATH: "/conf/publicweb/settings/dam/cfm/models/country",
+  ORIGINAL_RENDITIONS: "/renditions/original",
+  DATA_JCR: "/data/jcr:content"
+]
+
+@Field final PROPS = [
+  NAME: [
+    ASSOCIATED: "associated",
+    DAM_ASSET: "dam:Asset",
+    CQ_MODEL: "cq:model",
+	JCR_CONTENT: "jcr:content",
+	CQ_TAGGABLE: "cq:Taggable",
+	MODEL: "model",
+	MASTER: "master",
+	DATA: "data",
+	NT_UNSTRUCTURED: "nt:unstructured"
+  ]
+]
+
+/*Flag to count the number of FRAGMENTS */
+noOfContentFragments = 0
+
+def pardotCountriesPredicates = [
+    "path": PATHS.PARDOT_COUNTRY_CONTENT_FRAGMENT_PATH,
+    "type": PROPS.NAME.DAM_ASSET
+]
+
+def query = createQuery(pardotCountriesPredicates)
+query.hitsPerPage = 240
+
+def results = query.result
+println "Number of Pardot Countries ${results.totalMatches}"
+
+results.hits.each { hit ->
+    getNode(hit.node.path).recurse { 
+        node ->NodeIterator it = node.getNodes()
+		    while(it.hasNext()){
+			    nodetemp = it.nextNode()
+			    //Add properties to existing nodes
+				if (nodetemp.name.endsWith(PROPS.NAME.JCR_CONTENT) && !nodetemp.path.contains(PATHS.ORIGINAL_RENDITIONS) && !nodetemp.path.contains(PATHS.DATA_JCR)) {
+					if (!nodetemp.hasNode(PROPS.NAME.DATA)) {
+					    noOfContentFragments++
+					    println "Pardot Countries without data node = ${nodetemp.path}"
+					    nodetemp.addNode(PROPS.NAME.DATA, "nt:unstructured")
+					    
+					    Node pardotCountryDataNode = getNode(nodetemp.path+"/"+PROPS.NAME.DATA)
+					    println pardotCountryDataNode.path
+					    pardotCountryDataNode.setProperty(PROPS.NAME.CQ_MODEL, PATHS.COUNTRY_MODEL_PATH)
+					    
+					    pardotCountryDataNode.addNode(PROPS.NAME.MASTER, PROPS.NAME.NT_UNSTRUCTURED)
+					    
+					    Node pardotCountryMasterNode = getNode(pardotCountryDataNode.path+"/"+PROPS.NAME.MASTER)
+					    println pardotCountryMasterNode.path
+                        pardotCountryMasterNode.addMixin(PROPS.NAME.CQ_TAGGABLE)
+					}
+	            }
+		    }
+	}
+    if(!DRY_RUN){
+        session.save();
+    }
+}
+
+println "TOTAL NUMBER OF FRAGMENTS UPDATED :: " + noOfContentFragments
