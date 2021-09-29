@@ -44,12 +44,10 @@ public class SubscriptionFormPardotServlet extends SlingAllMethodsServlet {
      */
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
-        try {
-            pardotService.submitPardotPostRespose(request.getParameterMap(),
-                    pardotService.getSubscriptionFormPardotURL());
+        try {           
+            pardotService.submitPardotPostRespose(request.getParameterMap());          
             // send response
             sendResponse(resp);
-
         } catch (final IOException ioException) {
             LOGGER.error("ioException :{}", ioException.getMessage(), ioException);
         }
