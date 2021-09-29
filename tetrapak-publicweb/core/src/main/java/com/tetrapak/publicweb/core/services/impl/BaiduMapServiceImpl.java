@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Impl class for BaiduMapService.
  */
-@Component(immediate = true, service = BaiduMapService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Component(immediate = true, service = BaiduMapService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @Designate(ocd = BaiduMapServiceConfig.class)
 public class BaiduMapServiceImpl implements BaiduMapService{
 
