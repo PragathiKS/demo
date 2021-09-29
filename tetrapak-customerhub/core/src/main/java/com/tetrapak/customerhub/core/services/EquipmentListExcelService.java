@@ -9,17 +9,18 @@ import org.apache.sling.api.SlingHttpServletResponse;
  */
 public interface EquipmentListExcelService {
 
-    /**
-     * Method to generate Equipment List excel
-     *
-     * @param req        SlingHttpServletRequest the POST request call from the My Equipment page frontend
-     * @param response   SlingHttpServletResponse to send the excel file to the browser
-     * @param equipments data from the frontend got from the POST request
-     *                   regarding the equipment details
-     * @return true if successful in generation of the excel otherwise false
-     */
-    boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
-            Results apiResponse);
+	/**
+	 * Method to generate Equipment List excel
+	 *
+	 * @param req        SlingHttpServletRequest the POST request call from the My
+	 *                   Equipment page frontend
+	 * @param response   SlingHttpServletResponse to send the excel file to the
+	 *                   browser
+	 * @param equipments data from the frontend got from the POST request regarding
+	 *                   the equipment details
+	 * @return true if successful in generation of the excel otherwise false
+	 */
+	boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
+			Results apiResponse);
 
 }
-

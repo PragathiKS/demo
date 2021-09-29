@@ -15,45 +15,49 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 
 @Component(immediate = true, service = EquipmentListApiService.class, configurationPolicy = ConfigurationPolicy.OPTIONAL)
-@Designate(ocd = EquipmentListApiServiceConfig.class) public class EquipmentListApiServiceImpl
-        implements EquipmentListApiService {
+@Designate(ocd = EquipmentListApiServiceConfig.class)
+public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 
-    @Reference private APIGEEService apigeeService;
+	@Reference
+	private APIGEEService apigeeService;
 
-    private EquipmentListApiServiceConfig config;
+	private EquipmentListApiServiceConfig config;
 
-    /**
-     * activate method
-     *
-     * @param config API GEE Service configuration
-     */
-    @Activate public void activate(EquipmentListApiServiceConfig config) {
+	/**
+	 * activate method
+	 *
+	 * @param config API GEE Service configuration
+	 */
+	@Activate
+	public void activate(EquipmentListApiServiceConfig config) {
 
-        this.config = config;
-    }
+		this.config = config;
+	}
 
-    /**
-     * @param
-     * @return number of records to fetch
-     */
-    @Override public int getNoOfRecordsCount() {
+	/**
+	 * @param
+	 * @return number of records to fetch
+	 */
+	@Override
+	public int getNoOfRecordsCount() {
 
-        return config.noOfRecords();
-    }
+		return config.noOfRecords();
+	}
 
-    /**
-     * @param paramsRequest params
-     * @param token         token
-     * @return json object
-     */
-    @Override public JsonObject getEquipmentList(String token, String countryCode) {
-        JsonObject jsonResponse = new JsonObject();
-        final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(apigeeService, "myequipment-equipmentlist") + CustomerHubConstants.QUESTION_MARK
-                + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS + countryCode
-                + CustomerHubConstants.AMPERSAND + CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER
-                + CustomerHubConstants.AMPERSAND + CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS
-                + getNoOfRecordsCount();
-        return HttpUtil.getJsonObject(token, jsonResponse, url);
-    }
+	/**
+	 * @param paramsRequest params
+	 * @param token         token
+	 * @return json object
+	 */
+	@Override
+	public JsonObject getEquipmentList(String token, String countryCode) {
+		JsonObject jsonResponse = new JsonObject();
+		final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
+				+ GlobalUtil.getSelectedApiMapping(apigeeService, "myequipment-equipmentlist")
+				+ CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS
+				+ countryCode + CustomerHubConstants.AMPERSAND
+				+ CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER + CustomerHubConstants.AMPERSAND
+				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS + getNoOfRecordsCount();
+		return HttpUtil.getJsonObject(token, jsonResponse, url);
+	}
 }
