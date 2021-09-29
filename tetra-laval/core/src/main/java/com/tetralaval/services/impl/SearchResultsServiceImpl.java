@@ -186,7 +186,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         boolean isMediaChecked = false;
 
         if (articleTypes != null && mediaId != null) {
-            isMediaChecked = Arrays.stream(articleTypes)
+            isMediaChecked = !Arrays.stream(articleTypes)
                     .filter(s -> mediaId.equals(s))
                     .collect(Collectors.toList()).isEmpty();
         }
