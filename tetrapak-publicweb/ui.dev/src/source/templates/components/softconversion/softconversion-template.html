@@ -1,378 +1,317 @@
 <sly data-sly-template.softconversion_template="${@data, componentName, downloadPath, assetName, parentComponent}">
-	<sly data-sly-test.cfstep1="${'{0}{1}' @ format=['cf-step-1-', componentName, ')']}" />
-	<sly data-sly-test.cfstep1Target="${'{0}{1}' @ format=['#cf-step-1-', componentName, ')']}" />
-	<sly data-sly-test.cfstep2="${'{0}{1}' @ format=['cf-step-2-', componentName, ')']}" />
-	<sly data-sly-test.cfstep2Target="${'{0}{1}' @ format=['#cf-step-2-', componentName, ')']}" />
-	<sly data-sly-test.cfstep3="${'{0}{1}' @ format=['cf-step-3-', componentName, ')']}" />
-	<sly data-sly-test.cfstep3Target="${'{0}{1}' @ format=['#cf-step-3-', componentName, ')']}" />
-	<sly data-sly-test.cfstepdownloadReady="${'{0}{1}' @ format=['cf-step-downloadReady-', componentName, ')']}" />
-	<sly data-sly-test.cfstepdownloadReadyTarget="${'{0}{1}' @ format=['#cf-step-downloadReady-', componentName, ')']}" />
-	<sly data-sly-test.cfstepthankyou="${'{0}{1}' @ format=['cf-step-thankyou-', componentName, ')']}" />
-	<sly data-sly-test.cfstepthankyouTarget="${'{0}{1}' @ format=['#cf-step-thankyou-', componentName, ')']}" />
-
-	<sly data-sly-test.firstnameid="${'{0}{1}' @ format=['firstName-', componentName, ')']}" />
-	<sly data-sly-test.lastnameid="${'{0}{1}' @ format=['lastName-', componentName, ')']}" />
-	<sly data-sly-test.emailid="${'{0}{1}' @ format=['email-', componentName, ')']}" />
+    <sly data-sly-test.cfstep1="${'{0}{1}' @ format=['cf-step-1-', componentName, ')']}" />
+    <sly data-sly-test.cfstepdownloadReady="${'{0}{1}' @ format=['cf-step-downloadReady-', componentName, ')']}" />
+    <sly data-sly-test.cfstepdownloadReadyTarget="${'{0}{1}' @ format=['#cf-step-downloadReady-', componentName, ')']}" />
+    <sly data-sly-test.cfstepthankyou="${'{0}{1}' @ format=['cf-step-thankyou-', componentName, ')']}" />
+    <sly data-sly-test.cfstepthankyouTarget="${'{0}{1}' @ format=['#cf-step-thankyou-', componentName, ')']}" />
+    <sly data-sly-test.firstnameid="${'{0}{1}' @ format=['firstName-', componentName, ')']}" />
+    <sly data-sly-test.lastnameid="${'{0}{1}' @ format=['lastName-', componentName, ')']}" />
+    <sly data-sly-test.emailid="${'{0}{1}' @ format=['email-', componentName, ')']}" />
     <sly data-sly-test.companyid="${'{0}{1}' @ format=['company-', componentName, ')']}" />
-    <sly data-sly-test.positionid="${'{0}{1}' @ format=['position-', componentName, ')']}" />
-
     <sly data-sly-test.notmebtn="${'{0}{1}' @ format=['notmebtn notmebtn-', componentName, ')']}" />
     <sly data-sly-test.yesmebtn="${'{0}{1}' @ format=['yesmebtn-', componentName, ')']}" />
 
-    <div class="pw-softconversion modal tp-modal js-soft-modal ${componentName} fade"  data-module="Softconversion" tabindex="-1" role="dialog">
-    	<input type="hidden" class="ComponentNameSoft" name="ComponentNameSoft" value="${componentName}">
+    <div class="pw-softconversion modal tp-modal js-soft-modal ${componentName} fade" data-module="Softconversion" tabindex="-1" role="dialog" auto_locator="softConversionForm">
+        <input type="hidden" class="ComponentNameSoft" name="ComponentNameSoft" value="${componentName}">
         <input type="hidden" class="parentComponent" name="parentComponent" value="${parentComponent}">
-        <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
-      <div class="modal-content tp-modal-content">
+        <div class="modal-dialog modal-dialog-centered tp-modal-dialog modal-md">
+            <div class="modal-content tp-modal-content">
+                <div class="modal-header pw-softconversion__header" auto_locator="softConversionSectionHeader">
+                    <h2 role="heading" class="pw-softconversion__header__heading heading_${componentName}" auto_locator="scfFormHeading">${data.heading}</h2>
+                    <input type="hidden" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
+                    <button type="button" class="tp-close-btn icon-Close_pw pw-softconversion__header__close js-close-btn" aria-label="close button" title="close button" auto_locator="scfCrossIcon"></button>
+                </div>
 
-      	<div class="modal-header pw-softconversion__header" auto_locator="softConversionSectionHeader">
-          <h2 role="heading" class="pw-softconversion__header__heading heading_${componentName}" auto_locator="headingFontStep1">${data.heading}
-          </h2>
-          <input type="hidden" name="heading_${componentName}" id="heading_${componentName}" value="${data.heading}">
-          <button type="button" class="tp-close-btn icon-Close_pw pw-softconversion__header__close js-close-btn" aria-label="close button" title="close button"></button>
-        </div>
+                <div class="modal-body pw-softconversion__body pw-sf_body_${componentName} row no-gutters" auto_locator="softConversionSectionBody">
+                    <div class="col-lg-12">
+                        <div class="pw-softconversion__form" auto_locator="contactUsParentContainerStep1">
+                            <div class="tab-content">
+                                <form id="pw-form-soft-conversion" class="pw-form pw-form-softconversion-${componentName}" accept-charset="UTF-8" data-softconversion-api-url="${data.apiUrl}" data-softconversion-pardot-url="${data.pardotUrl}" autocomplete="off">
+                                    <div class="tab-pane tab-${componentName} active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel" id="${cfstep1}">
+                                        <div class="row no-gutters">
+                                            <div class="col-lg-12" auto_locator="leftColumnPaddingStep1">
+                                                <div class="tab-content tab-content-steps">
+                                                    <!-- Form Fields -->
+                                                    <div class="row no-gutters pw-form__userUnknown">
+                                                        <div class="col-sm-12 formfield">
+                                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
+                                                                data-sly-call="${inputField.inputfield_template @ inputType='email', id=emailid, label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='scfEmailBox', autoLocatorLabel='scfEmailLabel', inputClass='validateForTags'}">
+                                                            </sly>
+                                                        </div>
+                                                        <div class="col-sm-12 formfield">
+                                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html" data-sly-call="${inputField.inputfield_template @ inputType='text', id=firstnameid, label='pw.form.label.firstName', error='pw.form.errormsg.firstname', required=true, autoLocatorInput='scfFirstNameBox', autoLocatorLabel='scfFirstNameLabel', inputClass='validateForTags'}">
+                                                            </sly>
+                                                        </div>
+                                                        <div class="col-sm-12 formfield">
+                                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html" data-sly-call="${inputField.inputfield_template @ inputType='text', id=lastnameid, label='pw.form.label.lastName', error='pw.form.errormsg.lastname', required=true, autoLocatorInput='scfLastNameBox', autoLocatorLabel='scfLastNameLabel', inputClass='validateForTags'}">
+                                                            </sly>
+                                                        </div>
+                                                        
+                                                        <div class="country-field-wrapper col-lg-12 formfield">
+                                                            <div class="form-group country-field country"
+                                                                data-name-label="${'pw.form.country' @i18n}">
+                                                                <label class="country-value" for="country"
+                                                                    auto_locator="scfCountryLabel">${'pw.form.label.country' @ i18n}</label>
+                                                                <div class="pw-form__dropdown dropdown text-left">
+                                                                    <button
+                                                                        class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-haspopup="true"
+                                                                        auto_locator="scfCountryDropDown"
+                                                                        aria-expanded="false">
+                                                                        <span class="js-pw-form__dropdown__country-text" data-placeholder="${'pw.form.softconversion.dropdownPlaceholder' @ i18n}">${'pw.form.softconversion.dropdownPlaceholder' @ i18n}</span>
+                                                                        <i class="icon icon-Arrow_Right_pw"></i></button>
+                                                                    </button>
+                                                                    <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
+                                                                        data-sly-list.country="${data.countryOptions}" data-dropdownType="country">
+                                                                        <a href="#" class="dropdown-item"
+                                                                            data-field-name="country"
+                                                                            data-field-title="countryTitle"
+                                                                            data-title="${country.key}">
+                                                                            ${country.value}
+                                                                        </a>
+                                                                    </div>
+                                                                    <input type="hidden" name="countryTitle"
+                                                                        class="form-control validateForTags"
+                                                                        id="country" required>
+                                                                </div>
+                                                                <div data-country-error-msg="${'pw.form.errormsg.country' @i18n}"
+                                                                    class="errorMsg">${'pw.form.errormsg.country' @i18n}
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-        <div class="modal-body pw-softconversion__body pw-sf_body_${componentName} row no-gutters" auto_locator="softConversionSectionBody">
+                                                        <!-- Radio Buttons -->
+                                                        <h4 class="col-sm-12 radioHeading" auto_locator="scfPurposeTitle">${'pw.form.heading.typeofvisitor' @ i18n}</h4>
+                                                        <div class="col-sm-12 formfield radioWrap"
+                                                            auto_locator="softconversionOptionListContainerStep1">
+                                                            <sly
+                                                                data-sly-test.concatecustomer="${'{0}{1}' @ format=['customer-', componentName, ')']}" />
+                                                            <sly
+                                                                data-sly-test.concatetalent="${'{0}{1}' @ format=['talent-', componentName, ')']}" />
+                                                            <sly
+                                                                data-sly-test.concatepressandmedia="${'{0}{1}' @ format=['pressandmedia-', componentName, ')']}" />
 
-        <div class="col-lg-12">
-        <div class="pw-softconversion__form"
-             auto_locator="contactUsParentContainerStep1">
-            <div class="tab-content">
-                <form id="pw-form-soft-conversion" class="pw-form pw-form-softconversion-${componentName}" accept-charset="UTF-8"
-                    data-softconversion-api-url="${data.apiUrl}" data-softconversion-pardot-url="${data.pardotUrl}" autocomplete="off">
-                    <div class="tab-pane tab-${componentName} active" data-stepNumber="1" data-stepName="contactPurpose" role="tabpanel"
-                        id="${cfstep1}">
-                        <div class="row no-gutters">
+                                                            <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatecustomer, label='pw.form.softconversion.customer', name='typeOfVisitorOptions', locale= 'en', autoLocatorInput='scfPurposeOptionsButton', autoLocatorLabel='scfPurposeOptionsLabel'}">
+                                                            </sly>
+                                                            <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatetalent, label='pw.form.contactus.career', name='typeOfVisitorOptions', locale= 'en', autoLocatorInput='scfPurposeOptionsButton', autoLocatorLabel='scfPurposeOptionsLabel'}">
+                                                            </sly>
+                                                            <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatepressandmedia, label='pw.form.softconversion.pressandmedia', name='typeOfVisitorOptions', labelClass='mb-0', locale= 'en', autoLocatorInput='scfPurposeOptionsButton', autoLocatorLabel='scfPurposeOptionsLabel'}">
+                                                            </sly>
+                                                            <input type="hidden"
+                                                                name="typeOfVisitorTitle-${componentName}"
+                                                                class="form-control" id="typeOfVisitor-${componentName}"
+                                                                required>
+                                                            <div class="errorMsg purposeOfContactError">
+                                                                ${'pw.form.errormsg.typeofvisitor' @i18n}
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                            <div class="col-lg-7 separator" auto_locator="leftColumnPaddingStep1">
-                                <div class="tab-content tab-content-steps">
-                                    <div class="row">
-                                    	<div class="col-sm-12 description" auto_locator="descriptionFontStep1">${data.descriptionText @ context="html"}</div>
-                                        <p class="col-sm-12 radioHeading" auto_locator="visitorTypeFontStep1">${'pw.form.heading.typeofvisitor' @ i18n}</p>
-                                        <div class="col-sm-12 formfield radioWrap"
-                                            auto_locator="softconversionOptionListContainerStep1">
-                                            <sly data-sly-test.concatecustomer="${'{0}{1}' @ format=['customer-', componentName, ')']}" />
-                                            <sly data-sly-test.concatetalent="${'{0}{1}' @ format=['talent-', componentName, ')']}" />
-                                            <sly data-sly-test.concatepressandmedia="${'{0}{1}' @ format=['pressandmedia-', componentName, ')']}" />
+                                                    <div class="row no-gutters pw-form__userPartially">
+                                                        <div class="col-sm-12 formfield company-${componentName}">
+                                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
+                                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id=companyid, label='pw.form.label.company', error='pw.form.errormsg.company', autoLocatorInput='scfCompanyBox', autoLocatorLabel='scfCompanyLabel', inputClass='validateForTags'}">
+                                                            </sly>
+                                                        </div>
+                                                        
+                                                        <div class="position-field-wrapper col-lg-12 formfield position-${componentName}">
+                                                            <div class="form-group position-field position"
+                                                                data-name-label="${'pw.form.position' @i18n}">
+                                                                <label class="position-value" for="position"
+                                                                    auto_locator="scfPositionLabel">${'pw.form.label.position' @ i18n}</label>
+                                                                <div class="pw-form__dropdown dropdown text-left">
+                                                                    <button
+                                                                        class="btn dropdown-toggle position-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-haspopup="true"
+                                                                        auto_locator="scfPositionDropDown"
+                                                                        aria-expanded="false">
+                                                                        <span class="js-pw-form__dropdown__position-text" data-placeholder="${'pw.form.softconversion.dropdownPlaceholder' @ i18n}">${'pw.form.softconversion.dropdownPlaceholder' @ i18n}</span>
+                                                                        <i class="icon icon-Arrow_Right_pw"></i></button>
+                                                                    </button>
+                                                                    <div class="dropdown-menu pw-form__dropdown__menu position-dropdown-select"
+                                                                        data-sly-list.position="${data.positionOptions}" data-dropdownType="position">
+                                                                        <a href="#" class="dropdown-item"
+                                                                            data-field-name="position"
+                                                                            data-field-title="positionTitle"
+                                                                            data-title="${position.key}">
+                                                                            ${position.value}
+                                                                        </a>
+                                                                    </div>
+                                                                    <input type="hidden" name="positionTitle"
+                                                                        class="form-control validateForTags"
+                                                                        id="position">
+                                                                </div>
+                                                                <div data-position-error-msg="${'pw.form.softconversion.errormsg.position' @i18n}"
+                                                                    class="errorMsg">${'pw.form.softconversion.errormsg.position' @i18n}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="function-field-wrapper col-lg-12 formfield function-${componentName}">
+                                                            <div class="form-group function-field function"
+                                                                data-name-label="${'pw.form.function' @i18n}">
+                                                                <label class="function-value" for="function"
+                                                                    auto_locator="scfFunctionLabel">Function</label>
+                                                                <div class="pw-form__dropdown dropdown text-left">
+                                                                    <button
+                                                                        class="btn dropdown-toggle function-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                                                        type="button" data-toggle="dropdown"
+                                                                        aria-haspopup="true"
+                                                                        auto_locator="scfFunctionDropDown"
+                                                                        aria-expanded="false">
+                                                                        <span class="js-pw-form__dropdown__function-text" data-placeholder="${'pw.form.softconversion.dropdownPlaceholder' @ i18n}">${'pw.form.softconversion.dropdownPlaceholder' @ i18n}</span>
+                                                                        <i class="icon icon-Arrow_Right_pw"></i></button>
+                                                                    </button>
+                                                                    <div class="dropdown-menu pw-form__dropdown__menu function-dropdown-select"
+                                                                        data-sly-list.function="${data.functionOptions}" data-dropdownType="function">
+                                                                        <a href="#" class="dropdown-item"
+                                                                            data-field-name="function"
+                                                                            data-field-title="functionTitle"
+                                                                            data-title="${function.key}">
+                                                                            ${function.value}
+                                                                        </a>
+                                                                    </div>
+                                                                    <input type="hidden" name="functionTitle"
+                                                                        class="form-control validateForTags"
+                                                                        id="function">
+                                                                </div>
+                                                                <div data-function-error-msg="${'pw.form.softconversion.errormsg.function' @i18n}"
+                                                                    class="errorMsg">${'pw.form.softconversion.errormsg.function' @i18n}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                            <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatecustomer, label='pw.form.softconversion.customer', name='typeOfVisitorOptions', locale= 'en'}">
-                                            </sly>
-                                            <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatetalent, label='pw.form.contactus.career', name='typeOfVisitorOptions', locale= 'en'}">
-                                            </sly>
-                                            <sly data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                                                data-sly-call="${radioField.radiofieldinput_template @ id=concatepressandmedia, label='pw.form.softconversion.pressandmedia', name='typeOfVisitorOptions', labelClass='mb-0', locale= 'en'}">
-                                            </sly>
-                                            <input type="hidden" name="typeOfVisitorTitle-${componentName}" class="form-control"
-                                                id="typeOfVisitor-${componentName}" required>
-                                            <div class="errorMsg purposeOfContactError">${'pw.form.errormsg.typeofvisitor' @i18n}
+                                                    <div class="row no-gutters">
+                                                        <!-- Marketing Consent -->
+                                                        <div class="col-sm-12 formfield marketing-consent">
+                                                            <div class="row form-group no-gutters">
+                                                                <div class="d-flex">
+                                                                    <div>
+                                                                        <label class="tpatom-checkbox__label clearfix">
+                                                                            <input type="checkbox"
+                                                                                class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left"
+                                                                                id="market-consent-${componentName}"
+                                                                                name="market-consent"
+                                                                                auto_locator="scfConsentCheckBox">
+                                                                            <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="marketing-consent-text">
+                                                                        ${data.consentConfig.marketingConsent @ context="html"}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <input type="text" name="pardot_extra_field_${componentName}"
+                                                            id="pardot_extra_field_${componentName}" class="d-none"
+                                                            tabindex="-1"
+                                                            title="padot input field for soft conversion form" />
+                                                        <input type="hidden" name="site_language_${componentName}"
+                                                            id="site_language_${componentName}"
+                                                            value="${data.siteLanguage}" class="d-none" tabindex="-1" />
+                                                        <input type="hidden" name="site_country_${componentName}"
+                                                            id="site_country_${componentName}"
+                                                            value="${data.siteCountry}" class="d-none" tabindex="-1" />
+
+                                                        <div class="privacy-policy"
+                                                            auto_locator="softConversionMarketingPrivacyStep3">
+                                                            ${data.consentConfig.privacyPolicy @ context="html"}
+                                                        </div>
+                                                    </div>
+                                                    <!-- Button Group -->
+                                                    <div class="row no-gutters button-group">
+                                                        <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.submit', btnType='submit', customClasses='previewLinkBtn', btnTarget=cfstepdownloadReadyTarget, autoLocator='scfSubmit'}" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
-                                        <div class="col-lg-9">
-                                            <sly data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                                                data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3]}">
-                                            </sly>
-                                        </div>
-                                        <div class="pw-progressbar__steps d-none d-lg-block col-md-3" auto_locator="progressBarStep1Text">
-                                            <p>
-                                                ${'pw.form.step {0} of {1}'  @i18n, format=['1','3']}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters button-group">
-                                        <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget=cfstep2Target,icon_classes='icon-Arrow_Right_pw', autoLocator='softConversionNextButtonStep1'}" />
-                                    </div>
-                                </div>
-                            </div>
 
-                             <div class="col-lg-5" auto_locator="softConversionRightContainerStep1">
-                                <div class="row no-gutters">
-                                    <div class="col-sm-12 main-heading"
-                                        auto_locator="softConversionRightContainerHeadingTextStep1">
-                                             <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
-                                    </div>
-                                </div>
+                                    <div class="tab-pane tab-${componentName}" role="tabpanel"
+                                        id="${cfstepdownloadReady}">
+                                        <div class="row thankyou">
+                                            <div class="col text-center" auto_locator="readyForDownload">
 
-                            </div>
-                        </div>
-                    </div>
-                   <div class="tab-pane tab-${componentName}" data-stepNumber="2" data-stepName="contactInfo" role="tabpanel"
-                        id="${cfstep2}">
-                        <div class="row no-gutters">
-
-                            <div class="col-lg-7 separator">
-                                <div class="tab-content tab-content-steps">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-12 right-heading" auto_locator="softConversionLeftContainerHeadingTextStep2">
-                                            <sly
-                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.contactinformation', variant='small'}" />
-                                        </div>
-                                        <div class="col-sm-12 formfield" auto_locator="softConversionInputStep2">
-                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id=firstnameid, label='pw.form.label.firstName', error='pw.form.errormsg.firstname', required=true, autoLocatorInput='firstNameInput', autoLocatorLabel='firstNameHelpText', inputClass='validateForTags'}">
-                                            </sly>
-                                        </div>
-                                        <div class="col-sm-12 formfield" auto_locator="softConversionInputStep2">
-                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id=lastnameid, label='pw.form.label.lastName', error='pw.form.errormsg.lastname', required=true, autoLocatorInput='lastNameInput', autoLocatorLabel='lastNameHelpText', inputClass='validateForTags'}">
-                                            </sly>
-                                        </div>
-                                        <div class="col-sm-12 formfield" auto_locator="softConversionInputStep2">
-                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                                data-sly-call="${inputField.inputfield_template @ inputType='email', id=emailid, label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags'}">
-                                            </sly>
-                                        </div>
-                                        <div class="country-field-wrapper col-sm-12 col-lg-6">
-                                          <div class="formfield country-field country" data-country-name-label="${'pw.form.country' @i18n}">
-                                            <label class="country-value" for="country"
-                                                auto_locator="softConvCountrySelectorHelpText">${'pw.form.label.country' @
-                                                i18n}</label>
-                                            <div class="pw-form__dropdown dropdown text-left">
-                                                <button
-                                                    class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
-                                                    type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                    auto_locator="countrySelectDropdown" aria-expanded="false">
-                                                    <span
-                                                        class="js-pw-form__dropdown__country-text" data-country-placeholder="${'pw.form.label.countryPlaceholder' @
-                                                        i18n}">${'pw.form.label.countryPlaceholder'
-                                                        @ i18n}</span>
-                                                    <i class="icon icon-Arrow_Right_pw"></i></button>
-                                                </button>
-                                                <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
-                                                    data-sly-list.country="${data.countryOptions}">
-                                                    <a href="#"
-                                                        class="dropdown-item"
-                                                        data-country="${country.key}"
-                                                        data-countrytitle="${country.value}">
-                                                        ${country.value}
+                                                <div auto_locator="scfDownloadHeading">
+                                                    <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                                        data-sly-call="${heading.heading_h3_template @ headingText=data.formConfig.downloadReadyHeading}" />
+                                                </div>
+                                                <div class="description-text-thankyou"
+                                                    auto_locator="scfDownloadBodyText">
+                                                    ${data.formConfig.downloadReadyDescriptionText @ context='html'}
+                                                </div>
+                                                <div class="button-group">
+                                                    <a data-downloadlink="${downloadPath}" data-asset-name="${assetName}" data-link-section="button click" data-link-name="${'pw.form.button.download' @ i18n}" data-parent-title="${data.formConfig.downloadReadyHeading}" href="${cfstepthankyouTarget}" class="tpatom-link tpatom-link--primary thankyouTarget text-left" title="${'pw.form.button.download' @ i18n}" auto_locator="scfDownloadCTA">
+                                                        <span class="tpatom-link__text sly-text text-left">${'pw.form.button.download' @ i18n}</span>
+                                                        <span  class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
                                                     </a>
                                                 </div>
-                                                <input type="hidden" name="countryTitle" class="form-control validateForTags"
-                                                    id="country" required>
                                             </div>
-                                            <div data-country-error-msg="${'pw.form.errormsg.country' @i18n}" class="errorMsg">${'pw.form.errormsg.country' @i18n}</div>
-                                          </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep2">
-                                        <div class="col-lg-9">
-                                            <sly data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                                                data-sly-call="${progressBar.progressbar_template @ activeStep=2, totalStep=[1,2,3]}">
-                                            </sly>
-                                        </div>
-                                        <div class="pw-progressbar__steps d-none d-lg-block col-md-3" auto_locator="progressBarStep2Text">
-                                            <p>  ${'pw.form.step {0} of {1}'  @i18n, format=['2','3']}</p>
                                         </div>
                                     </div>
-                                    <div class="row no-gutters button-group">
-                                        <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget=cfstep1Target, variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='softConversionPreviousButtonStep2' }" />
-                                        <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget=cfstep3Target, icon_classes='icon-Arrow_Right_pw', autoLocator='softConversionNextButtonStep2' }" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-5" auto_locator="softConversionRightContainerSummaryAreaStep2">
 
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-12 main-heading" auto_locator="softConversionRightContainerHeadingTextStep2">
-                                            <sly
-                                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters summary">
-                                        <div class="col-lg-12">${'pw.form.heading.typeofvisitor' @ i18n}</div>
-                                        <div class="col-lg-12 typeOfVisitorTitle-${componentName}" auto_locator="softConversionRightContainerSummaryVisitorTitleStep2"></div>
-                                    </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="tab-pane tab-${componentName}" data-stepNumber="3" data-stepName="submitForm" role="tabpanel" id="${cfstep3}">
-                        <div class="row no-gutters">
-
-                            <div class="col-lg-7 separator">
-                                <div class="tab-content tab-content-steps">
-                                    <div class="serviceError">${'pw.form.errormsg.serviceerror' @i18n}</div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-12 formfield company-${componentName}" auto_locator="softConversionInputStep3">
-                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id=companyid, label='pw.form.label.company', error='pw.form.errormsg.company', required=true, autoLocatorInput='companyInput', autoLocatorLabel='companyHelpText', inputClass='validateForTags'}">
-                                            </sly>
-                                        </div>
-                                        <div class="col-sm-12 formfield company-${componentName}" auto_locator="softConversionInputStep3">
-                                            <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                                                data-sly-call="${inputField.inputfield_template @ inputType='text', id=positionid, label='pw.form.label.position', error='pw.form.errormsg.position', required=true, autoLocatorInput='positionInput', autoLocatorLabel='positionHelpText', inputClass='validateForTags'}">
-                                            </sly>
-                                        </div>
-
-                                        <div class="col-sm-12 formfield marketing-consent" auto_locator="softConversionMarketingPrivacyStep3">
-											<div class="row form-group no-gutters">
-                                           <div class="col-sm-1">
-        									<label class="tpatom-checkbox__label clearfix">
-											<input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="market-consent-${componentName}" name="market-consent" auto_locator="positionInput">
-                                            <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-                                            </label>
-        								</div>
-
-    									<div class="col-sm-11 marketingConsentText">${data.consentConfig.marketingConsent @ context="html"} </div>
-										</div>
-    									</div>
-                                         <input type="text" name="pardot_extra_field_${componentName}" id="pardot_extra_field_${componentName}"
-                                                    class="d-none" tabindex="-1" title="padot input field for soft conversion form" />
-                                         <input type="hidden" name="site_language_${componentName}" id="site_language_${componentName}" value="${data.siteLanguage}"
-                                                    class="d-none" tabindex="-1" />
-                                         <input type="hidden" name="site_country_${componentName}" id="site_country_${componentName}" value="${data.siteCountry}"
-                                                    class="d-none" tabindex="-1" />
-
-                                        <div class="privacy-policy" auto_locator="softConversionMarketingPrivacyStep3">
-                                                ${data.consentConfig.privacyPolicy @ context="html"}
+                                    <div class="tab-pane tab-${componentName}" role="tabpanel" id="${cfstepthankyou}">
+                                        <div class="row thankyou">
+                                            <div class="col text-center">
+                                                <div auto_locator="scfThankYouHeading">
+                                                    <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                                        data-sly-call="${heading.heading_h3_template @ headingText=data.formConfig.thankyouHeading}" />
+                                                </div>
+                                                <div class="descriptionTextThankyou" auto_locator="scfThankYouBodyText">
+                                                    ${data.formConfig.thankyouDescriptionText @ context='html'}
+                                                </div>
+                                                <div class="button-group">
+                                                    <a href="${data.moreButtonAction}"
+                                                        class="tpatom-link tpatom-link--primary moreButton-${componentName}"
+                                                        data-link-section="button click"
+                                                        data-link-name="${data.moreButtonLabel}"
+                                                        data-parent-title="${data.formConfig.thankyouHeading}"
+                                                        title="${data.moreButtonLabel}" target="_self" auto_locator="scfThankYouCTA">
+                                                        <span class="tpatom-link__text sly-text">
+                                                            ${data.moreButtonLabel}
+                                                        </span>
+                                                    </a>
+                                                </div>
                                             </div>
-
-                                    </div>
-                                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep3">
-                                        <div class="col-lg-9">
-                                            <sly data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                                                data-sly-call="${progressBar.progressbar_template @ activeStep=3, totalStep=[1,2,3]}">
-                                            </sly>
-                                        </div>
-                                        <div class="pw-progressbar__steps d-none d-lg-block col-lg-3" auto_locator="progressBarStep3Text">
-                                            <p>  ${'pw.form.step {0} of {1}'  @i18n, format=['3','3']}</p>
                                         </div>
                                     </div>
-                                    <div class="row no-gutters button-group">
-                                        <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget=cfstep2Target, variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='softConversionPreviousButtonStep3'}" />
-                                        <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.submit', btnType='submit', customClasses='previewLinkBtn', btnTarget=cfstepdownloadReadyTarget, autoLocator='softConversionSubmitButtonStep3'}" />
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-lg-5">
+                                    <div class="tab-pane tab-${componentName}" role="tabpanel"
+                                        id="cf-step-welcomeback-${componentName}">
+                                        <div class="row thankyou">
+                                            <div class="col text-center">
 
-                                <div auto_locator="softConversionContainerSummaryAreaStep3">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-12 main-heading" auto_locator="softConversionRightContainerHeadingTextStep3">
-                                            <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                                data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
+                                                <div auto_locator="scfWelcomeHeading">
+                                                    <sly data-sly-test="data.formConfig.welcomeBackHeading"
+                                                        data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                                        data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.welcomeBackHeading}" />
+                                                </div>
+                                                <div class="description-text-thankyou"
+                                                    auto_locator="scfWelcomeBodyText">
+                                                    ${data.formConfig.welcomeBackDescriptionText @ context='html'}
+                                                    <p id="visitor-email-${componentName}"></p>
+                                                </div>
+                                                <div class="button-group">
+                                                    <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                                                        data-sly-call="${previousButton.tabbutton_template @ btnText=data.formConfig.noButtonLabel, variant='secondary', customClasses=notmebtn, autoLocator='scfWelcomeNoCTA'}" />
+                                                    <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                                                        data-sly-call="${nextButton.tabbutton_template @ btnText=data.formConfig.yesButtonLabel,customClasses=yesmebtn, autoLocator='scfWelcomeYesCTA'}" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row no-gutters summary" auto_locator="softConversionRightSummaryStep3">
-                                        <div class="col-lg-12">${'pw.form.heading.typeofvisitor' @ i18n}</div>
-                                        <div class="col-lg-12 typeOfVisitorTitle-${componentName}"></div>
-                                    </div>
-                                    <div class="row no-gutters summary" auto_locator="softConversionRightSummaryStep3">
-                                        <div class="col-lg-12">${'pw.form.label.firstName' @ i18n}</div>
-                                        <div class="col-lg-12 firstName-${componentName}"></div>
-                                    </div>
-                                    <div class="row no-gutters summary" auto_locator="softConversionRightSummaryStep3">
-                                        <div class="col-lg-12">${'pw.form.label.lastName' @ i18n}</div>
-                                        <div class="col-lg-12 lastName-${componentName}"></div>
-                                    </div>
-                                    <div class="row no-gutters summary" auto_locator="softConversionRightSummaryStep3">
-                                        <div class="col-lg-12">${'pw.form.label.email' @ i18n}</div>
-                                        <div class="col-lg-12 email-${componentName}"></div>
-                                    </div>
-                                    <div class="row no-gutters summary">
-                                      <div class="col-lg-12">${'pw.form.label.country' @ i18n}</div>
-                                      <div class="col-lg-12 countryTitle"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="tab-pane tab-${componentName}" role="tabpanel" id="${cfstepdownloadReady}">
-                        <div class="row thankyou">
-                            <div class="col text-center" auto_locator="readyForDownload">
-
-                                <div auto_locator="readyForDownloadHeading">
-                                    <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.heading_h3_template @ headingText=data.formConfig.downloadReadyHeading}" />
-                                </div>
-                                <div class="descriptionTextThankyou" auto_locator="readyForDownloadDescription">
-                                    ${data.formConfig.downloadReadyDescriptionText @ context='html'}
-                                </div>
-                                <div class="button-group">
-                                       <a data-downloadlink="${downloadPath}"
-                                          data-asset-name="${assetName}"
-                                          data-link-section="button click"
-                                          data-link-name="${'pw.form.button.download' @ i18n}"
-                                          data-parent-title="${data.formConfig.downloadReadyHeading}"
-                                       href="${cfstepthankyouTarget}" class="tpatom-link tpatom-link--primary thankyouTarget text-left" title="${'pw.form.button.download' @ i18n}">
-                                            <span class="tpatom-link__text sly-text text-left">${'pw.form.button.download' @ i18n}</span><span class="nowrap-text">&#8288;<i class="icon icon--link icon-Download"></i></span>
-                                            </a>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-                    <div class="tab-pane tab-${componentName}" role="tabpanel" id="${cfstepthankyou}">
-                        <div class="row thankyou">
-                            <div class="col text-center" auto_locator="thankyouPage">
-
-                                <div auto_locator="thankyouHeading">
-                                    <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.heading_h3_template @ headingText=data.formConfig.thankyouHeading}" />
-                                </div>
-                                <div class="descriptionTextThankyou" auto_locator="thankyouDescription">
-                                    ${data.formConfig.thankyouDescriptionText @ context='html'}
-                                </div>
-                                <div class="button-group">
-                                    <a href="${data.moreButtonAction}" class="tpatom-link tpatom-link--primary moreButton-${componentName}"
-                                    data-link-section="button click"
-                                    data-link-name="${data.moreButtonLabel}"
-                                    data-parent-title="${data.formConfig.thankyouHeading}"
-                                    title="${data.moreButtonLabel}"
-                                    target="_self">
-                                            <span class="tpatom-link__text sly-text"> ${data.moreButtonLabel}
-                                                    </span>
-                                            </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane tab-${componentName}" role="tabpanel" id="cf-step-welcomeback-${componentName}">
-                        <div class="row thankyou">
-                            <div class="col text-center" auto_locator="welcomeBackPage">
-
-                                <div auto_locator="welcomeBackHeading">
-                                    <sly data-sly-test="data.formConfig.welcomeBackHeading" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                                        data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.welcomeBackHeading}" />
-                                </div>
-                                <div class="descriptionTextThankyou" auto_locator="welcomeBackDescription">
-                                    ${data.formConfig.welcomeBackDescriptionText @ context='html'}
-                                    <p id="visitor-email-${componentName}"></p>
-                                </div>
-                                <div class="button-group">
-                                        <sly data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${previousButton.tabbutton_template @ btnText=data.formConfig.noButtonLabel, variant='secondary', customClasses=notmebtn, autoLocator='softConversionNotMeButton'}" />
-                                        <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                                            data-sly-call="${nextButton.tabbutton_template @ btnText=data.formConfig.yesButtonLabel,customClasses=yesmebtn, autoLocator='softConversionYesMeButton'}" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
+                </div>
             </div>
         </div>
     </div>
-
-        </div>
-
-    </div>
-</div>
-</div>
 </sly>

@@ -1,0 +1,43 @@
+{
+"jcr:primaryType": "cq:Tag",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "Function",
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "admin",
+"jcr:title.en": "Function",
+"jcr:created": "Tue Jul 27 2021 17:06:45 GMT+0200",
+"cq:lastReplicated": "Fri Dec 11 2020 03:54:15 GMT+0000",
+"sling:resourceType": "cq/tagging/components/tag",
+"administrative":{
+"jcr:primaryType": "cq:Tag",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "Administrative",
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "admin",
+"jcr:title.en": "Administrative",
+"jcr:created": "Tue Jul 27 2021 17:06:45 GMT+0200",
+"cq:lastReplicated": "Fri Dec 11 2020 03:54:15 GMT+0000",
+"sling:resourceType": "cq/tagging/components/tag"
+},
+"business-development":{
+"jcr:primaryType": "cq:Tag",
+"jcr:mixinTypes": [
+"cq:ReplicationStatus"
+],
+"jcr:createdBy": "admin",
+"jcr:title": "Business Development",
+"cq:lastReplicationAction": "Activate",
+"cq:lastReplicatedBy": "admin",
+"jcr:title.en": "Business Development",
+"jcr:created": "Tue Jul 27 2021 17:06:45 GMT+0200",
+"cq:lastReplicated": "Fri Dec 11 2020 03:54:15 GMT+0000",
+"jcr:description": "",
+"sling:resourceType": "cq/tagging/components/tag"
+}
+}
