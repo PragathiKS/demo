@@ -123,6 +123,15 @@ public final class CustomerHubConstants {
     /** The Constant SPACE. */
     public static final String SPACE = " ";
 
+    /** The Constant EXCEL_DOWNLOAD_EXTENSION. */
+    public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
+
+    /** The Constant COUNT. */
+    public static final String COUNT = "count";
+
+    /** The Constant DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER. */
+    public static final String DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER = "results=extended";
+
     /** The Constant EQUIPMENT_INFORMATION. */
     public static final String EQUIPMENT_INFORMATION = "equipmentInformation";
 
