@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2019-08-30T06:49:53.075Z"
+        cq:lastModifiedBy="sapient-tarun"
+        cq:lastReplicated="{Date}2019-09-19T07:28:33.365Z"
+        cq:lastReplicatedBy="admin"
+        cq:lastReplicationAction="Activate"
+        cq:template="/conf/customerhub/settings/wcm/templates/landing-page"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Equipment Details"
+        jcr:uuid="07681fc1-4e73-4733-8cf6-b1bf4ab6970e"
+        sling:resourceType="customerhub/components/structure/page"
+        iconClass="icon-Cog"
+        iconLabel="cuhu_EquipmentDetails_leftNav"
+        showTitle="false">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <equipmentdetails
+                    jcr:created="{Date}2021-09-16T16:12:32.393+03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2021-09-23T16:05:41.391+03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="customerhub/components/content/equipmentdetails"
+                    additionalDetails="cuhu.equipment.additionalDetails"
+                    backToEquipList="cuhu.financial.DocumentNumber"
+                    businessType="cuhu.equipment.businessType "
+                    constructionYear="cuhu.equipment.constructionYear "
+                    country="cuhu.equipment.country"
+                    customerWarrantyEndDate="cuhu.equipment.customerWarrantyEndDate "
+                    customerWarrantyStartDate="cuhu.equipment.customerWarrantyStartDate "
+                    eofsConfirmationDate="cuhu.equipment.eofsConfirmationDate "
+                    eofsValidFromDate="cuhu.equipment.eofsValidFromDate "
+                    equipmentCategory="cuhu.equipment.equipmentCategory "
+                    equipmentDescription="cuhu.equipment.equipmentdescription"
+                    equipmentDetails="cuhu.equipment.equipmentDetails"
+                    equipmentInformation="cuhu.equipment.equipmentInformation"
+                    equipmentStatus="cuhu.equipment.equipmentstatus"
+                    equipmentType="equipmentType"
+                    functionalLocationDesc="cuhu.equipment.functionalLocationDesc "
+                    line="cuhu.equipment.line"
+                    location="location"
+                    machineSystem="cuhu.equipment.machineSystem"
+                    manufacturer="cuhu.equipment.manufacturer"
+                    manufacturerCountry="cuhu.equipment.manufacturerCountry "
+                    manufacturerModelNumber="cuhu.equipment.manufacturerModelNumber "
+                    manufacturerSerialNumber="cuhu.equipment.manufacturerSerialNumber "
+                    material="cuhu.equipment.material"
+                    position="cuhu.equipment.position"
+                    site="cuhu.equipment.site"
+                    superiorEquipment="cuhu.equipment.superiorEquipment "
+                    updateEquipmentInformation="cuhu.equipment.updateEquipmentInformation"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>
