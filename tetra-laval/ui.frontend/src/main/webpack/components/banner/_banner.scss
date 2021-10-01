@@ -75,6 +75,10 @@
                 &.pw-banner__content--text-black {
                     color: $color-tundora;
                 }
+
+                &.pw-banner__content--text-blue {
+                    color: $color-congress-blue;
+                }
             }
         }
 
@@ -84,6 +88,9 @@
 
             &.pw-banner__content--text-black {
                 color: $color-tundora;
+            }
+            &.pw-banner__content--text-blue {
+                color: $color-congress-blue;
             }
             @include margin-bottom($margin-xl);
         }
