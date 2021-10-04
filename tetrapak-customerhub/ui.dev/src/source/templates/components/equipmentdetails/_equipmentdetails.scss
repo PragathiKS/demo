@@ -1,0 +1,119 @@
+.tp-equipment-details {
+    &__title {
+        @include margin-bottom($margin-l);
+    }
+
+    &__info-card-col {
+        @include margin-bottom($margin-l);
+    }
+
+    &__info-card {
+        @include padding($padding-l);
+        display: flex;
+        background-color: $color-wild-sand;
+        border-radius: $border-radius;
+        height: 100%;
+        flex-direction: column;
+
+        h3 {
+            @include padding-bottom($padding-md);
+            @include margin-bottom($margin-l);
+            border-bottom: 1px solid $color-mercury;
+        }
+    }
+
+    &__info-line {
+        @include margin-bottom($margin-xl);
+        display: flex;
+        font-weight: 500;
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-md);
+            display: block;
+        }
+
+        i {
+            @include margin-right($margin-md);
+            display: inline-block;
+            color: $color-congress-blue;
+        }
+    }
+
+    &__info-cell-1 {
+        @include width(110px);
+        @include margin-right($margin-xxl);
+
+        @media #{$mobile} {
+            width: 100%;
+        }
+    }
+
+    &__info-cell-2 {
+        font-weight: 700;
+    }
+
+    &__details-row {
+        @include margin-bottom($margin-xl);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__details-row-title {
+        @include margin-bottom($margin-md);
+    }
+
+    &__details-line {
+        @include padding($padding-md);
+        display: flex;
+        border-bottom: 1px solid $color-mercury;
+
+        @media #{$mobile} {
+            display: block;
+        }
+    }
+
+    &__details-cell {
+        &:first-child {
+            @include width(310px);
+
+            @media #{$mobile} {
+                width: 100%;
+            }
+        }
+    }
+
+    &__action-wrap {
+        margin-top: auto;
+    }
+
+    &__btn {
+        color: $color-congress-blue;
+        transition: color $anim-speed-quick $anim-ease;
+        font-weight: 500;
+
+        i {
+            @include font-size($font-sm);
+            @include margin-left(3px);
+            display: inline-block;
+            transform: translateY(1px);
+        }
+
+        &:hover {
+            color: $color-sky-blue;
+        }
+    }
+
+    &__back-btn {
+        @include margin-bottom($margin-l);
+
+        i {
+            @include font-size($font-normal);
+            @include margin-right($margin-sm);
+            display: inline-block;
+            margin-left: 0;
+            transform: translateY(2px);
+        }
+    }
+}
