@@ -464,6 +464,6 @@ public class EquipmentDetailsModel {
         i18nKeys = gson.toJson(i18KeyMap);
 
         equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-                + GlobalUtil.getSelectedApiMapping(service, "myequipment-equipmentlist");
+                + GlobalUtil.getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
     }
 }

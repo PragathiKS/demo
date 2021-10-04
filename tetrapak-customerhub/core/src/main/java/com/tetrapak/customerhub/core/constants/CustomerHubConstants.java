@@ -169,7 +169,7 @@ public final class CustomerHubConstants {
     public static final String LINE = "line";
 
     /** The Constant EQUIPMENT_STATUS. */
-    public static final String EQUIPMENT_STATUS = "equipmentStatus";
+    public static final String EQUIPMENT_STATUS = "equipmentstatus";
 
     /** The Constant POSITION. */
     public static final String POSITION = "position";
@@ -308,6 +308,9 @@ public final class CustomerHubConstants {
 
     /** The Constant REMOVE_ALL_FILTERS. */
     public static final String REMOVE_ALL_FILTERS = "removeallfilters";
+    
+    /** The Constant EQUIPMENT_LIST_API. */
+    public static final String EQUIPMENT_LIST_API = "myequipment-equipmentlist";
 
 }
 
