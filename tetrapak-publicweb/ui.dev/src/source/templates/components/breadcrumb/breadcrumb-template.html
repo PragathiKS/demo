@@ -1,21 +1,32 @@
 <sly data-sly-template.breadcrumb_template="${@ data, flag}"
     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
     <sly data-sly-test="${data.breadcrumbSubpages}">
+        
         <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
             <div class="tp_pw-breadcrumb__wrapper">
-            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.homePagePath}">${'pw.breadcrumb.home' @ i18n}</a>
-            <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
-<sly data-sly-test="${!subpagesList.last}">
-            <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.breadcrumbSubpages[subpages]}"><i class="icon-Arrow_Right_pw tp_icon"></i>${subpages}</a>
-</sly>
-            <sly data-sly-test="${subpagesList.last}">
-            <i class="icon-Arrow_Right_pw tp_icon"></i> <span>${subpages}</span>
-            </sly>
-            </sly>
+                <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link${data.breadcrumbSubpages.size == 1 ? ' secondlast':''}" href="${data.homePagePath}">
+                	<sly data-sly-test="${data.breadcrumbSubpages.size == 1}">
+	                	<i class="icon-Chevron_Left_pw tp_icon"></i>
+                        <i class="icon-Arrow_Right_pw tp_icon"></i>
+                    </sly>
+                    ${'pw.breadcrumb.home' @ i18n}
+                </a>
+                <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
+                    <sly data-sly-test="${!subpagesList.last}">
+                        <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link ${data.currentPageParentIndex == subpagesList.count ? 'secondlast':''}" href="${data.breadcrumbSubpages[subpages]}">
+                            <i class="icon-Chevron_Left_pw tp_icon"></i>
+                            <i class="icon-Arrow_Right_pw tp_icon"></i>
+                            ${subpages}
+                        </a>
+                    </sly>
+                    <sly data-sly-test="${subpagesList.last}">
+                        <span class="tp_pw-breadcrumb__link last">
+                            <i class="icon-Arrow_Right_pw tp_icon"></i> <span>${subpages}</span>
+                        </span>
+                    </sly>
+                </sly>
+            </div>
         </div>
-    </div>
-
     </sly>
-    <sly data-sly-test="${!data.breadcrumbSubpages}"
-       data-sly-call="${templates.placeholder @ isEmpty = !data.breadcrumbSubpages}"></sly>
+    <sly data-sly-test="${!data.breadcrumbSubpages}" data-sly-call="${templates.placeholder @ isEmpty = !data.breadcrumbSubpages}"></sly>
 </sly>
