@@ -138,6 +138,18 @@ public class EquipmentDetailsModel {
     @Inject
     private String equipmentListApi;
 
+    /** The cancel. */
+    @Inject
+    private String cancel;
+
+    /** The request updates. */
+    @Inject
+    private String requestUpdates;
+
+    /** The make updates. */
+    @Inject
+    private String makeUpdates;
+
     /** The i 18 n keys. */
     private String i18nKeys;
 
@@ -405,6 +417,33 @@ public class EquipmentDetailsModel {
     }
 
     /**
+     * Gets the cancel.
+     *
+     * @return the cancel
+     */
+    public String getCancel() {
+        return cancel;
+    }
+
+    /**
+     * Gets the request updates.
+     *
+     * @return the request updates
+     */
+    public String getRequestUpdates() {
+        return requestUpdates;
+    }
+
+    /**
+     * Gets the make updates.
+     *
+     * @return the make updates
+     */
+    public String getMakeUpdates() {
+        return makeUpdates;
+    }
+
+    /**
      * Gets the equipment list api.
      *
      * @return the equipment list api
@@ -455,6 +494,9 @@ public class EquipmentDetailsModel {
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_CATEGORY, getEquipmentCategory());
         i18KeyMap.put(CustomerHubConstants.CONFIRMATION_DATE, getEofsConfirmationDate());
         i18KeyMap.put(CustomerHubConstants.VALID_FROM_DATE, getEofsValidFromDate());
+        i18KeyMap.put(CustomerHubConstants.CANCEL, getCancel());
+        i18KeyMap.put(CustomerHubConstants.REQUEST_UPDATES, getRequestUpdates());
+        i18KeyMap.put(CustomerHubConstants.MAKE_UPDATES, getMakeUpdates());
 
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;

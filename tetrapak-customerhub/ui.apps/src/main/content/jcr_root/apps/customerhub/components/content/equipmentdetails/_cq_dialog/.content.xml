@@ -41,6 +41,24 @@
                                             fieldLabel="equipmentDetails Label (i18N key)"
                                             name="./equipmentDetails"
                                             required="true"/>
+                                    <cancel
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Cancel Button Label (i18N key)"
+                                            name="./cancel"
+                                            required="true"/>
+                                    <requestUpdates
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Request Updates Button Label (i18N key)"
+                                            name="./requestUpdates"
+                                            required="true"/>
+                                    <makeUpdates
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Make Updates Button Label (i18N key)"
+                                            name="./requestUpdates"
+                                            required="true"/>
                                     <country
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -65,11 +83,11 @@
                                             fieldLabel="Line Label (i18N key)"
                                             name="./line"
                                             required="true"/>
-                                    <equipmentStatus
+                                    <equipmentstatus
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldLabel="Equipment Status Label (i18N key)"
-                                            name="./equipmentStatus"
+                                            name="./equipmentstatus"
                                             required="true"/>
                                     <position
                                             jcr:primaryType="nt:unstructured"
