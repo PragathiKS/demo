@@ -19,6 +19,14 @@
         padding: 0 48px 0 0;
     }
 
+    .icon-Arrow_Right_pw.tp_icon {
+        @include margin(0 6px);
+        @include font-size($font-xxs);
+        @include line-height($font-xxs, $font-xxs);
+        display: inline;
+        vertical-align: middle;
+    }
+
     &__link {
         @include font-size($font-sm);
         @include line-height($font-m-md, $font-sm);
@@ -28,24 +36,28 @@
             color: $color-sky-blue;
         }
 
+        .icon-Chevron_Left_pw {
+            display: none;
+        }
+
         .last {
             pointer-events: none;
         }
+
         @media #{$mobile} {
             display: none;
+            font-weight: 500;
 
             &.secondlast {
                 display: block;
             }
+            .icon-Arrow_Right_pw.tp_icon {
+                display: none;
+            }
+            .icon-Chevron_Left_pw {
+                display: inline-block;
+            }
         }
-    }
-
-    .icon-Arrow_Right_pw.tp_icon {
-        @include margin(0 6px);
-        @include font-size($font-xxs);
-        @include line-height($font-xxs, $font-xxs);
-        display: inline;
-        vertical-align: middle;
     }
 
     span {

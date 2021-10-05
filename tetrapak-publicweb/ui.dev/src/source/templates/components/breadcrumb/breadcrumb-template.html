@@ -4,21 +4,18 @@
         
         <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
             <div class="tp_pw-breadcrumb__wrapper">
-                <!-- <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.homePagePath}">${'pw.breadcrumb.home' @ i18n}</a> -->
                 <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link${data.breadcrumbSubpages.size == 1 ? ' secondlast':''}" href="${data.homePagePath}">
                 	<sly data-sly-test="${data.breadcrumbSubpages.size == 1}">
 	                	<i class="icon-Chevron_Left_pw tp_icon"></i>
+                        <i class="icon-Arrow_Right_pw tp_icon"></i>
                     </sly>
                     ${'pw.breadcrumb.home' @ i18n}
                 </a>
                 <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
                     <sly data-sly-test="${!subpagesList.last}">
-                        <!-- <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link" href="${data.breadcrumbSubpages[subpages]}">
-                            <i class="icon-Arrow_Right_pw tp_icon"></i>
-                            ${subpages}
-                        </a> -->
-                        <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link secondlast" href="${data.breadcrumbSubpages[subpages]}">
+                        <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link ${data.currentPageParentIndex == subpagesList.count ? 'secondlast':''}" href="${data.breadcrumbSubpages[subpages]}">
                             <i class="icon-Chevron_Left_pw tp_icon"></i>
+                            <i class="icon-Arrow_Right_pw tp_icon"></i>
                             ${subpages}
                         </a>
                     </sly>
