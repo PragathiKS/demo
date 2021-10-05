@@ -169,7 +169,7 @@ public final class CustomerHubConstants {
     public static final String LINE = "line";
 
     /** The Constant EQUIPMENT_STATUS. */
-    public static final String EQUIPMENT_STATUS = "equipmentstatus";
+    public static final String EQUIPMENT_STATUS = "equipmentStatus";
 
     /** The Constant POSITION. */
     public static final String POSITION = "position";
@@ -245,6 +245,15 @@ public final class CustomerHubConstants {
 
     /** The Constant VALID_FROM_DATE. */
     public static final String VALID_FROM_DATE = "eofsValidFromDate";
+
+    /** The Constant CANCEL. */
+    public static final String CANCEL = "cancel";
+
+    /** The Constant REQUEST_UPDATES. */
+    public static final String REQUEST_UPDATES = "requestUpdates";
+
+    /** The Constant MAKE_UPDATES. */
+    public static final String MAKE_UPDATES = "makeUpdates";
 
     /** The Constant FIRST. */
     public static final String FIRST = "first";
