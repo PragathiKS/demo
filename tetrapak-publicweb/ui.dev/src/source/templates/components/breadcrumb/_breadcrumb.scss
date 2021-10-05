@@ -19,8 +19,8 @@
         padding: 0 48px 0 0;
     }
 
-    .icon-Arrow_Right_pw.tp_icon {
-        @include margin(0 6px);
+    .icon-Arrow_Right_pw {
+        @include margin($margin-zero $margin-xs+2);
         @include font-size($font-xxs);
         @include line-height($font-xxs, $font-xxs);
         display: inline;
@@ -30,32 +30,35 @@
     &__link {
         @include font-size($font-sm);
         @include line-height($font-m-md, $font-sm);
+        display: none;
         color: $color-tundora;
-        font-weight: normal;
+        font-weight: 500;
         &:hover {
             color: $color-sky-blue;
         }
-
-        .icon-Chevron_Left_pw {
-            display: none;
+        &.secondlast {
+            display: inline-block;
         }
-
-        .last {
-            pointer-events: none;
-        }
-
-        @media #{$mobile} {
-            display: none;
-            font-weight: 500;
-
-            &.secondlast {
-                display: block;
+        .icon {
+            &-Chevron_Left_pw {
+                display: inline;
             }
-            .icon-Arrow_Right_pw.tp_icon {
+            &-Arrow_Right_pw {
                 display: none;
             }
-            .icon-Chevron_Left_pw {
-                display: inline-block;
+        }
+
+        @media #{$desktop} {
+            display: inline-block;
+            font-weight: normal;
+
+            .icon {
+                &-Chevron_Left_pw {
+                    display: none;
+                }
+                &-Arrow_Right_pw {
+                    display: inline;
+                }
             }
         }
     }
