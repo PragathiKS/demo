@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
 
@@ -57,18 +56,6 @@ public class SoftConversionModelTest {
      */
     private Resource resource;
     
-    /** The Constant TEST_POSITIONTAGS_RESOURCE_CONTENT. */
-    private static final String TEST_POSITIONTAGS_RESOURCE_CONTENT = "/softconversion/position-tags.json";
-    
-    /** The Constant POSITIONTAGS_CONTENT_ROOT. */
-    private static final String POSITIONTAGS_CONTENT_ROOT = "/content/cq:tags/pardot-system-config/job-title";
-    
-    /** The Constant TEST_FUNCTIONTAGS_RESOURCE_CONTENT. */
-    private static final String TEST_FUNCTIONTAGS_RESOURCE_CONTENT = "/softconversion/function-tags.json";
-    
-    /** The Constant FUNCTIONTAGS_CONTENT_ROOT. */
-    private static final String FUNCTIONTAGS_CONTENT_ROOT = "/content/cq:tags/pardot-system-config/function";
-
     /**
      * Sets the up.
      *
@@ -80,8 +67,6 @@ public class SoftConversionModelTest {
 
         context.load().json(TEST_RESOURCE_CONTENT, SOFTCONVERSION_CONTENT_ROOT);
         context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
-        context.load().json(TEST_POSITIONTAGS_RESOURCE_CONTENT, POSITIONTAGS_CONTENT_ROOT);
-        context.load().json(TEST_FUNCTIONTAGS_RESOURCE_CONTENT, FUNCTIONTAGS_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
 
         countryDetailService = new CountryDetailServiceImpl();
@@ -128,8 +113,6 @@ public class SoftConversionModelTest {
         assertEquals("Form", "Yes, I am", model.getFormConfig().getYesButtonLabel());
         assertEquals("Form", "No, I am not", model.getFormConfig().getNoButtonLabel());
         assertEquals("form", "http://pardotURL", model.getPardotUrl());
-        assertEquals("Form", "/content/cq:tags/pardot-system-config/job-title", model.getFormConfig().getPositionTagsPath());
-        assertEquals("Form", "/content/cq:tags/pardot-system-config/function", model.getFormConfig().getFunctionTagsPath());
 
     }
 
@@ -163,29 +146,5 @@ public class SoftConversionModelTest {
         assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
 
     }
-    
-    /**
-     * Test position tags.
-     *
-     * @throws Exception
-     *             the exception
-     */
-    @Test
-	public void testPositionTags() {
-    	assertEquals("Form", 2, model.getPositionOptions().size());
-	    assertEquals("Form", "c-suite", model.getPositionOptions().get(0).getKey());
-	}
-    
-    /**
-     * Test function tags.
-     *
-     * @throws Exception
-     *             the exception
-     */
-    @Test
-	public void testFunctionTags() {
-    	assertEquals("Form", 2, model.getFunctionOptions().size());
-	    assertEquals("Form", "administrative", model.getFunctionOptions().get(0).getKey());
-	}
 
 }
