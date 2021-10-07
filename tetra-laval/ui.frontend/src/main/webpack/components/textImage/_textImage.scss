@@ -153,12 +153,20 @@
         .tpatom-btn--primary,
         .tpatom-link--primary,
         .tpatom-btn--secondary,
-        .tpatom-link--secondary,
-        .tpatom-btn--primary:hover:not([disabled]),
-        .tpatom-link--primary:hover:not([disabled]) {
+        .tpatom-link--secondary {
             border: 1px solid $color-congress-blue;
             color: $color-congress-blue;
             background-color: $color-white;
+        }
+        .tpatom-btn--primary,
+        .tpatom-link--primary {
+            &:hover {
+                &:not([disabled]) {
+                    border: 1px solid $color-congress-blue;
+                    color: $color-congress-blue;
+                    background-color: $color-white;
+                }
+            }
         }
     }
 
