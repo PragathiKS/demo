@@ -23,7 +23,7 @@
 
     .icon-Arrow_Right_pw {
         &.tp_icon {
-            @include margin(0 6px);
+            @include margin(0 $margin-xs);
             @include line-height($font-xxs, $font-xxs);
             display: inline;
             font-size: $font-xxs;

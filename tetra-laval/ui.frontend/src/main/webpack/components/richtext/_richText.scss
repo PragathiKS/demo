@@ -29,9 +29,9 @@
 
     &.tp-pw-richText-container {
         @include margin-top(0);
-        @include margin-left(16px);
-        @include margin-right(16px);
-        @include padding(24px 16px);
+        @include margin-left($margin-md);
+        @include margin-right($margin-md);
+        @include padding($padding-l $padding-md);
         width: auto;
     }
 
@@ -102,19 +102,19 @@
 
     p {
         @include line-height(28px, 16px);
-        @include margin-bottom(24px);
+        @include margin-bottom($margin-l);
         font-size: $font-baseline;
     }
 
     small {
         @include line-height(24px, 14px);
-        @include margin-bottom(16px);
+        @include margin-bottom($margin-md);
         font-size: $font-baseline;
     }
 
     ol,
     ul {
-        @include margin-bottom(8px);
+        @include margin-bottom($margin-sm);
         font-size: $font-baseline;
         li {
             font-size: $font-baseline;
@@ -182,7 +182,7 @@
 
     ul li,
     ol li {
-        @include padding-bottom(16px);
+        @include padding-bottom($padding-md);
         &::before {
             color: $color-tundora;
         }
@@ -282,9 +282,9 @@
     @media #{$desktop} {
         &.tp-pw-richText-container {
             @include margin-top(0);
-            @include margin-left(48px);
-            @include margin-right(48px);
-            @include padding(48px);
+            @include margin-left($margin-xxxl);
+            @include margin-right($margin-xxxl);
+            @include padding($padding-xxxl);
         }
         h1 {
             @include line-height($line-height-header-l, $font-xxl);

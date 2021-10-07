@@ -2,19 +2,19 @@
     @return rgba($color: $basecolor, $alpha: $alpha-e);
 }
 
-.tl-banner #banner {
-    margin-top: $margin-zero;
-}
+//.tl-banner #banner {
+//    margin-top: $margin-zero;
+//}
 
 .pw-banner {
-    @include margin(0 0 16px 0);
+    @include margin(0 0 $margin-md 0);
 
     @media #{$tablet} {
-        @include margin(0 16px);
+        @include margin(0 $margin-md);
     }
 
     @media #{$desktop} {
-        @include margin(0 48px);
+        @include margin(0 $margin-xxxl);
     }
     position: relative;
 
@@ -61,16 +61,16 @@
             @include margin-bottom($margin-md);
 
             &.hero-title {
-                color: $color-white;
+                color: $color-tundora;
                 word-wrap: break-word;
                 font-size: 32px;
                 line-height: 40px;
                 @media #{$tablet} {
+                    color: $color-white;
                     font-weight: bold;
                     font-size: 78px;
                     line-height: 96px;
                 }
-
                 &.pw-banner__content--text-black {
                     color: $color-tundora;
                 }
@@ -82,22 +82,24 @@
         }
 
         &__description {
+            @include margin-bottom($margin-xl);
             color: $color-white;
             font-size: 14px;
-
             &.pw-banner__content--text-black {
                 color: $color-tundora;
             }
             &.pw-banner__content--text-blue {
                 color: $color-congress-blue;
             }
-            @include margin-bottom($margin-xl);
+            @media (max-width: $v-tablet - 1px) {
+                color: $color-tundora;
+            }
         }
 
         &__media {
             a.tpatom-link {
+                @include padding($padding-sm $padding-md);
                 color: $color-white;
-                padding: 8px 16px;
                 background: $color-congress-blue;
                 border-radius: 4px;
                 font-weight: 500;
@@ -117,15 +119,6 @@
                         border-radius: 4px;
                     }
                 }
-            }
-        }
-
-        @media (max-width: $v-tablet - 1px) {
-            &__title {
-                color: $color-tundora !important;
-            }
-            &__description {
-                color: $color-tundora !important;
             }
         }
     }
