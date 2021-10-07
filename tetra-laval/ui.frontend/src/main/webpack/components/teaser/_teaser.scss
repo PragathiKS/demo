@@ -33,6 +33,7 @@
         h3 {
             font-size: $font-l;
             font-weight: bold;
+            line-height: 32px;
             line-height: $line-height-header-s;
             @media #{$desktop} {
                 font-size: $font-xl;
@@ -100,6 +101,9 @@
         .title {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
+            color: $color-tundora;
+            font-size: $font-md;
+            line-height: 24px;
             color: $color-emperor;
             font-size: $font-md;
             line-height: $line-height-body;
@@ -108,6 +112,8 @@
 
         }
         .description {
+            color: $color-tundora;
+            font-size: $font-baseline;
             color: $color-emperor;
             font-size: $font-baseline;
             font-style: normal;

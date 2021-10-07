@@ -16,13 +16,12 @@
     @media #{$desktop} {
         @include margin(0 48px);
     }
-    
     position: relative;
 
     &__content {
         @include padding($padding-xxxl);
 
-        @media (max-width: $v-tablet - 1px){
+        @media (max-width: $v-tablet - 1px) {
             @include padding($padding-md);
         }
 
@@ -62,6 +61,14 @@
             @include margin-bottom($margin-md);
 
             &.hero-title {
+                color: $color-white;
+                word-wrap: break-word;
+                font-size: 32px;
+                line-height: 40px;
+                @media #{$tablet} {
+                    font-weight: bold;
+                    font-size: 78px;
+                    line-height: 96px;
                 word-wrap: break-word;
                 font-size: $font-xl;
                 line-height: $line-height-header-m;
@@ -126,6 +133,7 @@
 
         &__media {
             a.tpatom-link {
+                color: $color-white;
                 padding: 8px 16px;
                 background: $color-congress-blue;
                 color: $color-white;
@@ -141,9 +149,9 @@
 
                 @media #{$tablet} {
                     &.secondary {
-                        background: $color-white;
+                        border: 0;
                         color: $color-congress-blue;
-                        border: none;
+                        background: $color-white;
                         border-radius: 4px;
                     }
                 }
@@ -176,27 +184,35 @@
             &::before {
                 height: 100%;
                 width: 100%;
-                content: "";
+                content: '';
                 position: absolute;
                 top: 0;
                 right: 0;
                 border-radius: 4px;
             }
 
-            &.white-bg::before {
-                background: linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+            &.white-bg {
+                &::before {
+                    background: linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+                }
             }
 
-            &.white-bg-reverse::before {
-                background: linear-gradient(90deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.7) 100%);
+            &.white-bg-reverse {
+                &::before {
+                    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.7) 100%);
+                }
             }
 
-            &.black-bg::before {
-                background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(255,255,255,0) 70%);
+            &.black-bg {
+                &::before {
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+                }
             }
 
-            &.black-bg-reverse::before {
-                background: linear-gradient(90deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%);
+            &.black-bg-reverse {
+                &::before {
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.7) 100%);
+                }
             }
         }
     }
