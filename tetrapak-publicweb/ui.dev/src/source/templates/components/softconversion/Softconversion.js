@@ -231,6 +231,7 @@ class Softconversion {
       apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
       apiPayload.pardot_extra_field = '';
       apiPayload.pardotUrl = pardotUrl;
+      apiPayload.pageurl = this.cache.requestPayload['pageurl'];
       apiPayload.marketingConsent = true;
 
       ajaxWrapper.getXhrObj({
