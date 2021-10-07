@@ -71,9 +71,9 @@
 
     &__subTitle {
         @include margin-bottom($margin-sm);
-        font-size: $font-sm;
         @include line-height(16px, $font-sm);
         color: $color-boulder;
+        font-size: $font-sm;
         font-weight: 500;
         text-transform: uppercase;
     }
@@ -85,30 +85,31 @@
         a {
             font-size: $font-baseline;
         }
-        .tpatom-btn--primary, 
+        .tpatom-btn--primary,
         .tpatom-link--primary,
-        .tpatom-btn--secondary, 
-        .tpatom-link--secondary, 
-        .tpatom-btn--primary:hover:not([disabled]), 
+        .tpatom-btn--secondary,
+        .tpatom-link--secondary,
+        .tpatom-btn--primary:hover:not([disabled]),
         .tpatom-link--primary:hover:not([disabled]) {
-            background-color: $color-white;
             border: 1px solid $color-congress-blue;
             color: $color-congress-blue;
+            background-color: $color-white;
         }
     }
 
     &__title {
         @include margin-bottom($padding-md);
-        font-size: $font-l;
-        font-weight: bold;
         @include line-height(32px, $font-m-xl);
         color: $color-tundora;
+        font-size: $font-l;
+        font-weight: bold;
         @media #{$desktop} {
             @include margin-bottom($padding-md);
-            font-size: $font-xl;
             @include line-height(40px, $font-xl);
+            font-size: $font-xl;
         }
-        h3, h2 {
+        h3,
+        h2 {
             font-size: $font-l;
             font-weight: bold;
             @media #{$desktop} {
@@ -119,8 +120,8 @@
 
     &__description {
         @include margin-bottom($margin-zero);
-        font-size: $font-baseline;
         @include line-height(24px, $font-baseline);
+        font-size: $font-baseline;
         ul {
             li {
                 display: flex;

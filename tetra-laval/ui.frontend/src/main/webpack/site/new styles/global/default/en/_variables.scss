@@ -167,8 +167,9 @@ $large: "only screen and (min-width: #{$tp-large})" !default;
 $landscape: "only screen and (orientation: landscape)" !default;
 $portrait: "only screen and (orientation: portrait)" !default;
 
-$boxShadow: 0 0 18px rgb(0 0 0 / 20%);
-$overlayColor: rgba(0,0,0,0.5);
+$box-shadow: 0 0 18px rgb(0 0 0 / 20%);
+$box-shadow-search: -2px 8px 12px rgb(0 0 0 / 14%);
+$overlay-color: rgba(0,0,0,0.5);
 
 
 

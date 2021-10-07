@@ -11,9 +11,9 @@
     }
 
     &__link {
-        font-size: 12px !important;
         @include line-height($font-m-md, $font-m-md);
         color: $color-boulder;
+        font-size: $font-sm;
         font-style: normal;
         font-weight: 500;
         &:hover {
@@ -25,16 +25,16 @@
         &.tp_icon {
             @include margin(0 6px);
             @include line-height($font-xxs, $font-xxs);
-            font-size: 8px !important;
             display: inline;
+            font-size: $font-xxs;
             vertical-align: middle;
         }
     }
 
     span {
-        font-size: 12px !important;
         @include line-height($font-m-md, $font-m-md);
         color: $color-tundora;
+        font-size: $font-sm;
         font-weight: 500;
     }
 }

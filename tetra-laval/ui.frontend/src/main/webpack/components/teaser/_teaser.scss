@@ -31,7 +31,6 @@
         h3 {
             font-size: $font-l;
             font-weight: bold;
-            font-size: 24px;
             line-height: 32px;
             @media #{$desktop} {
                 font-size: $font-xl;
@@ -95,16 +94,16 @@
         .title {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
-            font-size: $font-md;
             color: $color-tundora;
+            font-size: $font-md;
             line-height: 24px;
             font-style: normal;
             font-weight: bold;
 
         }
         .description {
-            font-size: $font-baseline;
             color: $color-tundora;
+            font-size: $font-baseline;
             font-style: normal;
             font-weight: normal;
             line-height: 24px;

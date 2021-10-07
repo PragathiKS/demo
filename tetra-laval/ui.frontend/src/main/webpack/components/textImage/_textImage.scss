@@ -70,11 +70,11 @@
     }
 
     &__subTitle {
-        font-size: $font-sm;
         @include margin-top($margin-zero);
         @include margin-bottom($margin-sm);
         @include line-height($font-normal, $font-sm);
         color: $color-boulder;
+        font-size: $font-sm;
         font-weight: 500;
         text-transform: $uppercase;
         letter-spacing: normal;
@@ -84,8 +84,8 @@
             text-transform: $uppercase;
         }
         span.tpatom-subheading {
-            font-size: $font-sm;
             @include line-height($font-normal, $font-sm);
+            font-size: $font-sm;
             font-family: $font-family-primary;
             font-weight: 500;
         }
@@ -104,8 +104,8 @@
     }
 
     &__description {
-        font-size: $font-baseline;
         @include line-height(28px, 16px);
+        font-size: $font-baseline;
         ul {
             li {
                 display: flex;
@@ -118,8 +118,8 @@
             }
         }
         @media #{$desktop} {
-            font-size: $font-baseline;
             @include line-height(24px, 14px);
+            font-size: $font-baseline;
         }
         a {
             &:hover {
@@ -133,7 +133,7 @@
         @include margin-top($margin-md);
         @include padding($padding-zero);
         @include line-height(28px, 16px);
-        
+
         @media #{$desktop} {
             @include margin-bottom($margin-zero);
             @include padding($padding-zero);
@@ -145,18 +145,17 @@
         a {
             font-size: $font-baseline;
         }
-        .tpatom-btn--primary, 
+        .tpatom-btn--primary,
         .tpatom-link--primary,
-        .tpatom-btn--secondary, 
-        .tpatom-link--secondary, 
-        .tpatom-btn--primary:hover:not([disabled]), 
+        .tpatom-btn--secondary,
+        .tpatom-link--secondary,
+        .tpatom-btn--primary:hover:not([disabled]),
         .tpatom-link--primary:hover:not([disabled]) {
-            background-color: $color-white;
             border: 1px solid $color-congress-blue;
             color: $color-congress-blue;
+            background-color: $color-white;
         }
     }
-    
 
     &__image {
         width: 100%;
@@ -164,8 +163,8 @@
 }
 .tpatom-heading {
     &--regular {
-        font-size: $font-l;
         @include line-height($font-xl, $font-l);
+        font-size: $font-l;
         @media #{$desktop} {
             font-size: $font-xl;
             line-height: 40px;
