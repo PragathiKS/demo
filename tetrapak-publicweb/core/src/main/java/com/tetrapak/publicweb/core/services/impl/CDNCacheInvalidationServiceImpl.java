@@ -90,10 +90,10 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      */
     private static final String SI_PROTOCOL = "cdn-serviceinsight://";
 
-    /** path of directory to be purged in cdn **/
+    /** path of directory to be purged in cdn *. */
     private String directoryToBePurged = StringUtils.EMPTY;
 
-    /** Static variable to host cdn request directory path along with their timestamp **/
+    /** Static variable to host cdn request directory path along with their timestamp *. */
     private static Map<String, String> cdnRequestTimeStampRecord = new HashMap<>();
 
     /**
@@ -175,7 +175,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                     str = EntityUtils.toString(entity);
                 } catch (ParseException | IOException e) {
                     tx.getLog().error("Error while parsing response :: " + e);
-                    LOGGER.error("Error while parsing response for path :: {}",tx.getAction().getPath(),e);
+                    LOGGER.error("Error while parsing response for path :: {}", tx.getAction().getPath(), e);
                 }
                 tx.getLog().info("Response body :: " + str);
             }
@@ -183,7 +183,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
                 return ReplicationResult.OK;
             }
         }
-        LOGGER.error("Error received from cdn and response is null for path:: {}",tx.getAction().getPath());
+        LOGGER.error("Error received from cdn and response is null for path:: {}", tx.getAction().getPath());
         return new ReplicationResult(false, 0, "Replication failed");
     }
 
@@ -315,19 +315,7 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
         JsonObject json = null;
         final JsonArray purgeDirs = new JsonArray();
         for (final String path : tx.getAction().getPaths()) {
-            if (StringUtils.isNotBlank(path) && (path.startsWith(config.contentPathForCDNCacheInvalidation())
-                    || path.startsWith(config.damPathForCDNCacheInvalidation()))) {
-                final String contentPath = config.domainForCDN() + findUrlMapping(
-                        LinkUtils.getRootPath(path).replace(config.contentPathForCDNCacheInvalidation(), ""));
-                purgeDirs.add(contentPath);
-                directoryToBePurged = contentPath;
-            } else if (StringUtils.isNotBlank(path) && (path.startsWith(PWConstants.ONLINE_HELP_CONTENT_PATH))
-                    || path.startsWith(PWConstants.ONLINE_HELP_DAM_PATH)) {
-                purgeOnlineHelpCache(purgeDirs);
-            } else if (StringUtils.isNotBlank(path)
-                    && (path.startsWith(PWConstants.DS_CONTENT_PATH) || path.startsWith(PWConstants.DS_CONTENT_DAM_PATH))) {
-                purgeDesignSystemCache(purgeDirs);
-            }
+            findDirectoryForPurge(purgeDirs, path);
         }
         /**
          * Below condition checks if cache purge request for same directory is made within 5 minutes, then don't send
@@ -352,18 +340,43 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     }
 
     /**
-     * Purge design system cache.
+     * Find directory for Purge.
      *
      * @param purgeDirs
      *            the purge dirs
      * @param path
      *            the path
      */
-    private void purgeDesignSystemCache(final JsonArray purgeDirs) {
-            final String contentPath = config.dsDomainForCDN() + PWConstants.SLASH;
-            LOGGER.debug("DS content path {}", contentPath);
+    private void findDirectoryForPurge(final JsonArray purgeDirs, final String path) {
+        if (StringUtils.isNotBlank(path) && (path.startsWith(config.contentPathForCDNCacheInvalidation())
+                || path.startsWith(config.damPathForCDNCacheInvalidation()))) {
+            final String contentPath = config.domainForCDN() + findUrlMapping(
+                    LinkUtils.getRootPath(path).replace(config.contentPathForCDNCacheInvalidation(), ""));
             purgeDirs.add(contentPath);
             directoryToBePurged = contentPath;
+        } else if (StringUtils.isNotBlank(path) && (path.startsWith(PWConstants.ONLINE_HELP_CONTENT_PATH))
+                || path.startsWith(PWConstants.ONLINE_HELP_DAM_PATH)) {
+            purgeOnlineHelpCache(purgeDirs);
+        } else if (StringUtils.isNotBlank(path)
+                && (path.startsWith(PWConstants.DS_CONTENT_PATH) || path.startsWith(PWConstants.DS_CONTENT_DAM_PATH))) {
+            purgeDesignSystemCache(purgeDirs);
+        } else if (StringUtils.isNotBlank(path) && (path.startsWith(PWConstants.TETRA_LAVAL_CONTENT_PATH)
+                || path.startsWith(PWConstants.TETRA_LAVAL_CONTENT_DAM_PATH))) {
+            purgeTetraLavalCache(purgeDirs);
+        }
+    }
+
+    /**
+     * Purge design system cache.
+     *
+     * @param purgeDirs
+     *            the purge dirs
+     */
+    private void purgeDesignSystemCache(final JsonArray purgeDirs) {
+        final String contentPath = config.dsDomainForCDN() + PWConstants.SLASH;
+        LOGGER.debug("DS content path {}", contentPath);
+        purgeDirs.add(contentPath);
+        directoryToBePurged = contentPath;
     }
 
     /**
@@ -371,14 +384,25 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
      *
      * @param purgeDirs
      *            the purge dirs
-     * @param path
-     *            the path
      */
     private void purgeOnlineHelpCache(final JsonArray purgeDirs) {
-            final String contentPath = config.onlineHelpDomainForCDN() + PWConstants.SLASH;
-            LOGGER.debug("Online Help content path {}", contentPath);
-            purgeDirs.add(contentPath);
-            directoryToBePurged = contentPath;
+        final String contentPath = config.onlineHelpDomainForCDN() + PWConstants.SLASH;
+        LOGGER.debug("Online Help content path {}", contentPath);
+        purgeDirs.add(contentPath);
+        directoryToBePurged = contentPath;
+    }
+
+    /**
+     * Purge tetra laval cache.
+     *
+     * @param purgeDirs
+     *            the purge dirs
+     */
+    private void purgeTetraLavalCache(final JsonArray purgeDirs) {
+        final String contentPath = config.tetraLavalDomainForCDN() + PWConstants.SLASH;
+        LOGGER.debug("Tetra Laval content path {}", contentPath);
+        purgeDirs.add(contentPath);
+        directoryToBePurged = contentPath;
     }
 
     /**

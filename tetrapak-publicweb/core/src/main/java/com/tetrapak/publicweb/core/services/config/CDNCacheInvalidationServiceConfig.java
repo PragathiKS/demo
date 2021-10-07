@@ -55,7 +55,7 @@ public @interface CDNCacheInvalidationServiceConfig {
             description = "Mapping for AEM content path to CDN path. Example 'en-gb=/gb/en'",
             type = AttributeType.STRING)
     String[] urlMapping();
-    
+
     /**
      * DS Domain for CDN.
      *
@@ -66,7 +66,7 @@ public @interface CDNCacheInvalidationServiceConfig {
             description = "Design System Domain for CDN Cache Invalidation, For example : http://design.tetrapak.com",
             type = AttributeType.STRING)
     String dsDomainForCDN();
-    
+
     /**
      * Online Help Domain for CDN.
      *
@@ -77,5 +77,16 @@ public @interface CDNCacheInvalidationServiceConfig {
             description = "Online Help Domain for CDN Cache Invalidation, For example : http://editor-guide.tetrapak.com",
             type = AttributeType.STRING)
     String onlineHelpDomainForCDN();
+
+    /**
+     * Tetra laval domain for CDN.
+     *
+     * @return the string
+     */
+    @AttributeDefinition(
+            name = "Tetra Laval Domain",
+            description = "Tetra Laval Domain for CDN Cache Invalidation, For example : http://www.tetralaval.com",
+            type = AttributeType.STRING)
+    String tetraLavalDomainForCDN();
 
 }
