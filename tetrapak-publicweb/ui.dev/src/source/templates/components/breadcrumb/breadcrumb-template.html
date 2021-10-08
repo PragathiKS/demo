@@ -13,7 +13,7 @@
                 </a>
                 <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
                     <sly data-sly-test="${!subpagesList.last}">
-                        <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link ${data.currentPageParentIndex == subpagesList.count ? 'secondlast':''}" href="${data.breadcrumbSubpages[subpages]}">
+                        <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link ${data.currentPageActiveParentIndex == subpagesList.count ? 'secondlast':''}" href="${data.breadcrumbSubpages[subpages]}">
                             <i class="icon-Chevron_Left_pw tp_icon"></i>
                             <i class="icon-Arrow_Right_pw tp_icon"></i>
                             ${subpages}
