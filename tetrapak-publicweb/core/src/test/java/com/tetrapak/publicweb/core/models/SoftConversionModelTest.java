@@ -1,4 +1,3 @@
-
 package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
@@ -13,7 +12,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
 
