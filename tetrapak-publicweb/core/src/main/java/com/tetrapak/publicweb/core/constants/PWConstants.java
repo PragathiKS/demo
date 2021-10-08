@@ -443,10 +443,10 @@ public final class PWConstants {
     public static final String PARAM_ALT = "alt";
     
     /** Constant TETRA_LAVAL_CONTENT_PATH */
-    public static final String TETRA_LAVAL_CONTENT_PATH = "/content/tetrapak/tetra-laval";
+    public static final String TETRA_LAVAL_CONTENT_PATH = "/content/tetrapak/tetralaval";
     
     /** Constant TETRA_LAVAL_CONTENT_DAM_PATH */
-    public static final String TETRA_LAVAL_CONTENT_DAM_PATH = "/content/dam/tetralaval";
+    public static final String TETRA_LAVAL_CONTENT_DAM_PATH = "/content/dam/tetra-laval";
     
 
     /**
