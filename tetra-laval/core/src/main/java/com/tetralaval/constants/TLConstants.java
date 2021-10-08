@@ -56,6 +56,9 @@ public final class TLConstants {
     /** The Constant DOCUMENT. */
     public static final String DOCUMENT = "document";
 
+    /** The Constant PAGE_TYPE. */
+    public static final String PAGE_TYPE = "PAGE";
+
     /** The Constant ANCHOR_ID_PROPERTY. */
     public static final String ANCHOR_ID_PROPERTY = "anchorId";
 

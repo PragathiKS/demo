@@ -547,7 +547,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
      * @throws RepositoryException
      */
     private void setContentFields(ResultItem resultItem, Hit hit) throws RepositoryException {
-        String articleTypeName = null;
+        String articleTypeName = TLConstants.PAGE_TYPE;
 
         String articleType = hit.getProperties().get(ARTICLE_TYPE_PROP, String.class);
         String date = getSortDate(hit, String.class);
