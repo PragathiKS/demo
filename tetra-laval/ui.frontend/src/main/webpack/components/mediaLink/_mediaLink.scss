@@ -59,7 +59,7 @@
             font-size: $font-l;
             font-weight: 400;
             @media #{$desktop} {
-                @include line-height(40px, $font-xl);
+                @include line-height($line-height-header-m, $font-xl);
                 font-size: $font-xl;
                 font-weight: 700;
             }
@@ -83,7 +83,7 @@
 
     &__link.tpatom-link--transparent {
         @include min-height(56px);
-        @include line-height(24px, 14px);
+        @include line-height($line-height-body, $font-baseline);
         display: flex;
         font-size: $font-baseline;
         justify-content: space-between;
@@ -93,7 +93,7 @@
             @media #{$desktop} {
                 @include margin-left($margin-zero);
             }
-            @include line-height(24px, 14px);
+            @include line-height($line-height-body, $font-baseline);
             font-weight: 400;
         }
         i.icon {
@@ -101,7 +101,7 @@
             @include margin-right($margin-md);
             @include margin-top($margin-md);
             display: inline-block;
-            line-height: 24px;
+            line-height: $line-height-body;
             &::before {
                 height: 16px;
                 width: 16px;
@@ -110,7 +110,7 @@
         .icon.icon-Circle_Arrow_Right_pw {
             @include margin-top($margin-md);
             @include padding-right($padding-md);
-            line-height: 24px;
+            line-height: $line-height-body;
         }
     }
 
