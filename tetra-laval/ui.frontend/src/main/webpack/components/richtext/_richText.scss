@@ -101,15 +101,15 @@
     }
 
     p {
+        @include line-height(28px, $font-normal);
+        @include margin-bottom($margin-l);
         font-size: $font-baseline;
-        @include line-height(28px, 16px);
-        @include margin-bottom(24px);
     }
 
     small {
+        @include line-height($line-height-body, $font-baseline);
+        @include margin-bottom($margin-md);
         font-size: $font-baseline;
-        @include line-height(24px, 14px);
-        @include margin-bottom(16px);
     }
 
     ol,
@@ -304,15 +304,14 @@
             @include line-height($line-height-body, $font-md);
         }
         p {
-            font-size: $font-baseline;
-            @include line-height(24px, 14px);
+            @include line-height($line-height-body, $font-baseline);
             @include margin-bottom($margin-l);
         }
 
         small {
+            @include line-height($line-height-medium, $font-sm);
+            @include margin-bottom($margin-l);
             font-size: $font-sm;
-            @include line-height(20px, 12px);
-            @include margin-bottom(24px);
         }
 
         ol,

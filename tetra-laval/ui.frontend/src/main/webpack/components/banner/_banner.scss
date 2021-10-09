@@ -63,9 +63,8 @@
 
             &.hero-title {
                 word-wrap: break-word;
-                color: $color-white;
-                font-size: 32px;
-                line-height: 40px;
+                font-size: $font-xl;
+                line-height: $line-height-header-m;
                 @media #{$tablet} {
                     font-weight: bold;
                     font-size: 56px;
@@ -84,8 +83,7 @@
 
         &__description {
             color: $color-white;
-            font-size: 14px;
-
+            font-size: $font-baseline;
             &.pw-banner__content--text-black {
                 color: $color-tundora;
             }
@@ -102,8 +100,8 @@
                 color: $color-white;
                 border-radius: 4px;
                 font-weight: 500;
-                font-size: 14px;
-                line-height: 24px;
+                font-size: $font-baseline;
+                line-height: $line-height-body;
                 font-family: $font-family-primary;
 
                 &.remove {

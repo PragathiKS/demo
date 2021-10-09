@@ -56,8 +56,8 @@
             @include line-height($font-xl, $font-l);
             font-weight: 400;
             @media #{$desktop} {
+                @include line-height($line-height-header-m, $font-xl);
                 font-size: $font-xl;
-                @include line-height(40px, $font-xl);
                 font-weight: 700;
             }
         }
@@ -80,9 +80,9 @@
 
     &__link.tpatom-link--transparent {
         @include min-height(56px);
-        @include line-height(24px, 14px);
-        font-size: $font-baseline;
+        @include line-height($line-height-body, $font-baseline);
         display: flex;
+        font-size: $font-baseline;
         justify-content: space-between;
         border-bottom: 1px solid $color-mercury;
         span {
@@ -90,7 +90,7 @@
             @media #{$desktop} {
                 @include margin-left($margin-zero);
             }
-            @include line-height(24px, 14px);
+            @include line-height($line-height-body, $font-baseline);
             font-weight: 400;
         }
         i.icon {
@@ -98,16 +98,16 @@
             @include margin-right(16px);
             @include margin-top(16px);
             display: inline-block;
-            line-height: 24px;
+            line-height: $line-height-body;
             &::before {
                 height: 16px;
                 width: 16px;
             }
         }
         .icon.icon-Circle_Arrow_Right_pw {
-            @include margin-top(16px);
-            @include padding-right(16px);
-            line-height: 24px;
+            @include margin-top($margin-md);
+            @include padding-right($padding-md);
+            line-height: $line-height-body;
         }
     }
 
