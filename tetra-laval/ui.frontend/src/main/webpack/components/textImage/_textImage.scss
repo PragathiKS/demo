@@ -104,6 +104,7 @@
     }
 
     &__description {
+        @include line-height(28px, $font-normal);
         @include line-height(28px, 16px);
         @include line-height(28px, $font-normal);
         font-size: $font-baseline;
@@ -119,7 +120,7 @@
             }
         }
         @media #{$desktop} {
-            @include line-height(24px, 14px);
+            @include line-height($line-height-body, $font-baseline);
             font-size: $font-baseline;
             @include line-height($line-height-body, $font-baseline);
             font-size: $font-baseline;
@@ -135,7 +136,7 @@
         @include margin-bottom(0);
         @include margin-top($margin-md);
         @include padding($padding-zero);
-        @include line-height(28px, 16px);
+        @include line-height(28px, $font-normal);
 
         @include line-height(28px, $font-normal);
 

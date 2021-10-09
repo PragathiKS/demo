@@ -63,8 +63,8 @@
             &.hero-title {
                 color: $color-tundora;
                 word-wrap: break-word;
-                font-size: 32px;
-                line-height: 40px;
+                font-size: $font-xl;
+                line-height: $line-height-header-m;
                 @media #{$tablet} {
                     color: $color-white;
                     font-weight: bold;
@@ -113,7 +113,7 @@
         &__description {
             @include margin-bottom($margin-xl);
             color: $color-white;
-            font-size: 14px;
+            font-size: $font-baseline;
             &.pw-banner__content--text-black {
                 color: $color-tundora;
             }

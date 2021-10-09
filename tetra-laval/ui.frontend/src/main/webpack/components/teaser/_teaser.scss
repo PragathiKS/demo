@@ -33,6 +33,7 @@
         h3 {
             font-size: $font-l;
             font-weight: bold;
+            line-height: $line-height-header-s;
             line-height: 32px;
             line-height: $line-height-header-s;
             @media #{$desktop} {
@@ -103,6 +104,7 @@
             @include margin-bottom($margin-md);
             color: $color-tundora;
             font-size: $font-md;
+            line-height: $line-height-body;
             line-height: 24px;
             color: $color-emperor;
             font-size: $font-md;
