@@ -1,13 +1,12 @@
 <sly data-sly-template.breadcrumb_template="${@ data, flag}"
     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
     <sly data-sly-test="${data.breadcrumbSubpages}">
-        
+
         <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
             <div class="tp_pw-breadcrumb__wrapper">
                 <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link${data.breadcrumbSubpages.size == 1 ? ' secondlast':''}" href="${data.homePagePath}">
                 	<sly data-sly-test="${data.breadcrumbSubpages.size == 1}">
 	                	<i class="icon-Chevron_Left_pw tp_icon"></i>
-                        <i class="icon-Arrow_Right_pw tp_icon"></i>
                     </sly>
                     ${'pw.breadcrumb.home' @ i18n}
                 </a>
