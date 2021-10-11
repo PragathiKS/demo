@@ -46,7 +46,7 @@ public class BreadcrumbModel {
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
 
     /** The Current Page Parent Index. */
-    private int currentPageParentIndex;
+    private int currentPageActiveParentIndex;
 
     /**
      * Inits the.
@@ -89,7 +89,7 @@ public class BreadcrumbModel {
 
     private void checkAndSetCurrentParentPageIndex(int activePageHierarchyIndex, int i) {
         if(activePageHierarchyIndex == 1) {
-            currentPageParentIndex = i + 1;
+            currentPageActiveParentIndex = i + 1;
         }
     }
 
@@ -112,10 +112,18 @@ public class BreadcrumbModel {
     }
 
     /**
+     * Gets the  current Page Active Parent index
+     * @return current Page Active Parent index
+     */
+    public int getCurrentPageActiveParentIndex() {
+        return (breadcrumbSubpages.size()-currentPageActiveParentIndex);
+    }
+
+    /**
      * Gets the  current Page Parent index
      * @return current Page Parent index
      */
     public int getCurrentPageParentIndex() {
-        return (breadcrumbSubpages.size()-currentPageParentIndex);
+        return breadcrumbSubpages.size()-1;
     }
 }
