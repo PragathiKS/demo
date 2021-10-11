@@ -9,11 +9,6 @@
     @media #{$desktop} {
         @include margin($spacing-big auto);
     }
-
-    @media #{$i-pad} {
-        display: none;
-    }
-
     &__wrapper {
         margin: 0;
         padding: 0 48px 0 0;
