@@ -31,6 +31,11 @@
         &:hover {
             color: $color-sky-blue;
         }
+        &.last {
+            &:hover {
+                color: inherit;
+            }
+        }
         &.secondlast {
             display: inline-block;
         }
