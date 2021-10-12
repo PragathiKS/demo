@@ -31,11 +31,10 @@
         h3 {
             font-size: $font-l;
             font-weight: bold;
-            font-size: 24px;
-            line-height: 32px;
+            line-height: $line-height-header-s;
             @media #{$desktop} {
                 font-size: $font-xl;
-                line-height: 40px;
+                line-height: $line-height-header-m;
                 font-weight: 700;
             }
         }
@@ -95,19 +94,19 @@
         .title {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
-            font-size: $font-md;
             color: $color-tundora;
-            line-height: 24px;
+            font-size: $font-md;
+            line-height: $line-height-body;
             font-style: normal;
             font-weight: bold;
 
         }
         .description {
-            font-size: $font-baseline;
             color: $color-tundora;
+            font-size: $font-baseline;
             font-style: normal;
             font-weight: normal;
-            line-height: 24px;
+            line-height: $line-height-body;
         }
         .link {
             @include margin-top($margin-md);
@@ -115,7 +114,7 @@
             color: $color-congress-blue;
             font-weight: 500;
             font-size: $font-baseline;
-            line-height: 24px;
+            line-height: $line-height-body;
 
             @media #{$desktop} {
                 @include margin-top($margin-xl);

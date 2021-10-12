@@ -26,12 +26,12 @@
 
 .tp-pw-richText {
     border-radius: 4px;
-    
+
     &.tp-pw-richText-container {
         @include margin-top(0);
-        @include margin-left(16px);
-        @include margin-right(16px);
-        @include padding(24px 16px);
+        @include margin-left($margin-md);
+        @include margin-right($margin-md);
+        @include padding($padding-l $padding-md);
         width: auto;
     }
 
@@ -76,45 +76,45 @@
     }
 
     h1 {
-        font-size: $font-xl;
         @include line-height($line-height-header-m, $font-xl);
         @include margin-bottom($margin-md);
+        font-size: $font-xl;
     }
 
     h2 {
-        font-size: $font-xl;
         @include line-height($line-height-header-m, $font-xl);
         @include margin-bottom($margin-md);
+        font-size: $font-xl;
     }
 
     h3 {
-        font-size: $font-l;
-        font-weight: normal;
         @include line-height($line-height-header-s, $font-l);
         @include margin-bottom($margin-md);
+        font-size: $font-l;
+        font-weight: normal;
     }
 
     h4 {
-        font-size: $font-md;
         @include margin-bottom($margin-md);
         @include line-height($line-height-body, $font-md);
+        font-size: $font-md;
     }
 
     p {
+        @include line-height(28px, $font-normal);
+        @include margin-bottom($margin-l);
         font-size: $font-baseline;
-        @include line-height(28px, 16px);
-        @include margin-bottom(24px);
     }
 
     small {
+        @include line-height($line-height-body, $font-baseline);
+        @include margin-bottom($margin-md);
         font-size: $font-baseline;
-        @include line-height(24px, 14px);
-        @include margin-bottom(16px);
     }
 
     ol,
     ul {
-        @include margin-bottom(8px);
+        @include margin-bottom($margin-sm);
         font-size: $font-baseline;
         li {
             font-size: $font-baseline;
@@ -125,9 +125,9 @@
         li {
             &::before {
                 @include margin-right($margin-sm);
-                font-size: $bullet-size;
                 display: inline-block;
                 color: $color-tundora;
+                font-size: $bullet-size;
                 content: '\2022';
             }
         }
@@ -135,9 +135,9 @@
         ul {
             li {
                 &::before {
-                    font-size: $bullet-size;
                     display: inline-block;
                     color: $color-tundora;
+                    font-size: $bullet-size;
                     content: '\2022';
                 }
             }
@@ -182,7 +182,7 @@
 
     ul li,
     ol li {
-        @include padding-bottom(16px);
+        @include padding-bottom($padding-md);
         &::before {
             color: $color-tundora;
         }
@@ -282,37 +282,37 @@
     @media #{$desktop} {
         &.tp-pw-richText-container {
             @include margin-top(0);
-            @include margin-left(48px);
-            @include margin-right(48px);
-            @include padding(48px);
+            @include margin-left($margin-xxxl);
+            @include margin-right($margin-xxxl);
+            @include padding($padding-xxxl);
         }
         h1 {
-            font-size: $font-xxl;
             @include line-height($line-height-header-l, $font-xxl);
+            font-size: $font-xl;
         }
         h2 {
-            font-size: $font-xl;
             @include line-height($line-height-header-m, $font-xl);
+            font-size: $font-xl;
         }
         h3 {
+            @include line-height($line-height-header-s, $font-l);
             font-size: $font-l;
             font-weight: normal;
-            @include line-height($line-height-header-s, $font-l);
         }
         h4 {
-            font-size: $font-md;
             @include line-height($line-height-body, $font-md);
+            font-size: $font-md;
         }
         p {
-            font-size: $font-baseline;
-            @include line-height(24px, 14px);
+            @include line-height($line-height-body, $font-baseline);
             @include margin-bottom($margin-l);
+            font-size: $font-baseline;
         }
 
         small {
+            @include line-height($line-height-medium, $font-sm);
+            @include margin-bottom($margin-l);
             font-size: $font-sm;
-            @include line-height(20px, 12px);
-            @include margin-bottom(24px);
         }
 
         ol,
