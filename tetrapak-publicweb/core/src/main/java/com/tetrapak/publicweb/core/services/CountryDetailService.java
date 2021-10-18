@@ -15,10 +15,13 @@ public interface CountryDetailService {
     /**
      * Fetch pardot country list.
      *
-     * @param resourceResolver the resource resolver
+     * @param resourceResolver
+     *            the resource resolver
+     * @param formType
+     *            the String             
      * @return the list
      */
-    List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver);
+    List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver, String formType);
 
     /**
      * Fetch contact email addresses.

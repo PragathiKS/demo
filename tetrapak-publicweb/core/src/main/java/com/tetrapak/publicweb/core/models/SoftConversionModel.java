@@ -3,6 +3,7 @@ package com.tetrapak.publicweb.core.models;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +20,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
@@ -67,6 +69,9 @@ public class SoftConversionModel extends FormModel {
     /** The country detail service. */
     @OSGiService
     private CountryDetailService countryDetailService;
+    
+    /** The form type. */
+    private String formType;
     
     /**
      * The init method.
@@ -183,7 +188,8 @@ public class SoftConversionModel extends FormModel {
      *
      */
     private void setCountryOptions() {
-        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
+        formType = PWConstants.SOFT_CONVERSION;
+        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver(), formType);
     }
     
     /**
@@ -214,8 +220,8 @@ public class SoftConversionModel extends FormModel {
 		    	while(childTagsIterator.hasNext()) {
 		    		DropdownOption option = new DropdownOption();
 		    		final Tag tag = childTagsIterator.next();
-		    		option.setKey(tag.getName());
-		    		option.setValue(tag.getTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource))));
+		    		option.setKey(tag.getLocalizedTitle(Locale.ENGLISH));
+		    		option.setValue(tag.getLocalizedTitle(Locale.ENGLISH));
 		    		tagOptions.add(option);
 		    	}
 	    	}	

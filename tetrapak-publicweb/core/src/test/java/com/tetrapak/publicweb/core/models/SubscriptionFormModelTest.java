@@ -16,7 +16,6 @@ import org.junit.Test;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
-import com.tetrapak.publicweb.core.services.impl.PardotServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
