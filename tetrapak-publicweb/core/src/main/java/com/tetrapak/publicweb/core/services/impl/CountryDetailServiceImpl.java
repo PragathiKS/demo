@@ -112,8 +112,7 @@ public class CountryDetailServiceImpl implements CountryDetailService {
         return contactEmails;
     }
 
-    @Override
-    public List<DropdownOption> fetchCountryList(final ResourceResolver resourceResolver) {
+    public List<DropdownOption> fetchCountryList(final ResourceResolver resourceResolver, String formType) {
         final List<DropdownOption> countryList = new ArrayList<>();
         final Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
         if (Objects.nonNull(countriesRootRes)) {
@@ -123,7 +122,7 @@ public class CountryDetailServiceImpl implements CountryDetailService {
                 if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
                     final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
                     if (Objects.nonNull(jcrResource)) {
-                        addCountry(countryList, childResource, jcrResource);
+                        addCountry(countryList, childResource, jcrResource, formType);
                     }
                 }
             }
@@ -139,12 +138,17 @@ public class CountryDetailServiceImpl implements CountryDetailService {
      * @param jcrResource
      */
     private void addCountry(final List<DropdownOption> countryList, final Resource childResource,
-            final Resource jcrResource) {
+            final Resource jcrResource, String formType) {
         final String title = setCountryTitle(jcrResource);
         if (!title.contains("Corporate")) {
             final DropdownOption country = new DropdownOption();
-            country.setKey(childResource.getName());
-            country.setValue(title);
+            if(Objects.nonNull(formType) && formType.equalsIgnoreCase(PWConstants.SOFT_CONVERSION)) {
+                country.setKey(title);
+                country.setValue(title);
+            } else {
+                country.setKey(childResource.getName());
+                country.setValue(title);
+            }            
             countryList.add(country);
         }
     }
@@ -156,7 +160,7 @@ public class CountryDetailServiceImpl implements CountryDetailService {
 	 * @return the list
 	 */
 	@Override
-	public List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver) {
+	public List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver, String formType) {
 		final List<DropdownOption> countryList = new ArrayList<>();
         final Resource countriesRootRes = resourceResolver.getResource(getPardotCountryCfRootPath());
         if (Objects.nonNull(countriesRootRes)) {
@@ -166,7 +170,7 @@ public class CountryDetailServiceImpl implements CountryDetailService {
                 if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
                     final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
                     if (Objects.nonNull(jcrResource)) {
-                        addCountry(countryList, childResource, jcrResource);
+                        addCountry(countryList, childResource, jcrResource, formType);
                     }
                 }
             }

@@ -442,6 +442,9 @@ public final class PWConstants {
     /** The Constant PARAM_LINK. */
     public static final String PARAM_ALT = "alt";
     
+    /** The Constant SOFT_CONVERSION. */
+    public static final String SOFT_CONVERSION = "softconversion";
+    
 
     /**
      * Instantiates a new PW constants.
