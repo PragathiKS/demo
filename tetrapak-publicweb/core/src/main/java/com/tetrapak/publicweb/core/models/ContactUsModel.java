@@ -35,9 +35,6 @@ public class ContactUsModel extends FormModel {
 
     /** The consent config. */
     private FormConsentConfigModel consentConfig;
-    
-    /** The form type. */
-    private String formType;
 
     /**
      * Inits the.
@@ -74,7 +71,7 @@ public class ContactUsModel extends FormModel {
      *
      */
     private void setCountryOptions() {
-        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver(), formType);
+        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
     }
 
     /**

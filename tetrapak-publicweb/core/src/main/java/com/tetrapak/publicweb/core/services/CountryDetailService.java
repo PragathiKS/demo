@@ -21,7 +21,7 @@ public interface CountryDetailService {
      *            the String             
      * @return the list
      */
-    List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver, String formType);
+    List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver);
 
     /**
      * Fetch contact email addresses.

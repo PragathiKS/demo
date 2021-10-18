@@ -454,9 +454,6 @@ public final class PWConstants {
     /** Constant TETRA_LAVAL_CONTENT_DAM_PATH */
     public static final String TETRA_LAVAL_CONTENT_DAM_PATH = "/content/dam/tetra-laval";
 
-	/** The Constant SOFT_CONVERSION. */
-    public static final String SOFT_CONVERSION = "softconversion";
-
     /**
      * Instantiates a new PW constants.
      */
