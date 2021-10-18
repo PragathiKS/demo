@@ -72,9 +72,6 @@ public class SubscriptionFormModel extends FormModel {
 
     /** The market site subscribed. */
     private String marketSiteSubscribed;
-    
-    /** The form type. */
-    private String formType;
 
     /**
      * The init method.
@@ -141,7 +138,7 @@ public class SubscriptionFormModel extends FormModel {
 	 * Sets the country options.
 	 */
 	public void setCountryOptions() {
-		this.countryOptions = countryService.fetchPardotCountryList(resource.getResourceResolver(), formType);
+		this.countryOptions = countryService.fetchPardotCountryList(resource.getResourceResolver());
 	}
 
 	/**

@@ -70,9 +70,6 @@ public class SoftConversionModel extends FormModel {
     @OSGiService
     private CountryDetailService countryDetailService;
     
-    /** The form type. */
-    private String formType;
-    
     /**
      * The init method.
      */
@@ -188,8 +185,7 @@ public class SoftConversionModel extends FormModel {
      *
      */
     private void setCountryOptions() {
-        formType = PWConstants.SOFT_CONVERSION;
-        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver(), formType);
+        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
     }
     
     /**

@@ -35,9 +35,6 @@ public class ContactUsModel extends FormModel {
 
     /** The consent config. */
     private FormConsentConfigModel consentConfig;
-    
-    /** The form type. */
-    private String formType;
 
     /**
      * Inits the.
@@ -70,11 +67,11 @@ public class ContactUsModel extends FormModel {
 
 
     /**
-     * Fetches country list from content fragments.
+     * Fetches country list from pardot countries content fragments.
      *
      */
     private void setCountryOptions() {
-        this.countryOptions = countryDetailService.fetchCountryList(resource.getResourceResolver(), formType);
+        this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
     }
 
     /**
@@ -86,8 +83,7 @@ public class ContactUsModel extends FormModel {
         return resource.getPath() + ".sendmail.json";
     }
 
-    /**
-     * Gets the consent config.
+    /*     * Gets the consent config.
      *
      * @return the consent config
      */

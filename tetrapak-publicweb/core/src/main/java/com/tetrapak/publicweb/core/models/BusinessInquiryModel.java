@@ -49,9 +49,6 @@ public class BusinessInquiryModel extends FormModel {
 	/** The country detail service. */
 	@OSGiService
 	private CountryDetailService countryDetailService;
-	
-	/** The form type. */
-	private String formType;
 
 	/**
 	 * The init method.
@@ -167,7 +164,7 @@ public class BusinessInquiryModel extends FormModel {
 	 *
 	 */
 	private void setCountryOptions() {
-		this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver(), formType);
+		this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
 
 	}
 
