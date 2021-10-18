@@ -442,11 +442,8 @@ public final class PWConstants {
     /** The Constant PARAM_LINK. */
     public static final String PARAM_ALT = "alt";
     
-    /** Constant TETRA_LAVAL_CONTENT_PATH */
-    public static final String TETRA_LAVAL_CONTENT_PATH = "/content/tetrapak/tetra-laval";
-    
-    /** Constant TETRA_LAVAL_CONTENT_DAM_PATH */
-    public static final String TETRA_LAVAL_CONTENT_DAM_PATH = "/content/dam/tetralaval";
+    /** The Constant SOFT_CONVERSION. */
+    public static final String SOFT_CONVERSION = "softconversion";
     
 
     /**
