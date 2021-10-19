@@ -94,6 +94,7 @@
         .title {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
+            color: $color-tundora;
             font-size: $font-md;
             line-height: $line-height-body;
             font-style: normal;
