@@ -76,9 +76,9 @@
     }
 
     h1 {
-        font-size: $font-xxl;
-        @include line-height($line-height-header-m, $font-xxl);
+        @include line-height($line-height-header-m, $font-xl);
         @include margin-bottom($margin-md);
+        font-size: $font-xl;
     }
 
     h2 {
