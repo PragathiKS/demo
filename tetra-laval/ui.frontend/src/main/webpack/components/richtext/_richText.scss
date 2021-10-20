@@ -288,7 +288,7 @@
         }
         h1 {
             @include line-height($line-height-header-l, $font-xxl);
-            font-size: $font-xl;
+            font-size: $font-xxl;
         }
         h2 {
             @include line-height($line-height-header-m, $font-xl);
