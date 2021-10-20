@@ -8,9 +8,6 @@ public final class TLConstants {
     /** The Constant SITE_NAME for Adobe Analytics. */
     public static final String SITE_NAME = "tetralaval";
 
-    /** The Constant DEFAULT_EXTERNALIZER. */
-    public static final String DEFAULT_EXTERNALIZER = "https://www.tetralaval.com";
-
     /** The Constant ROOT_PATH. */
     public static final String ROOT_PATH = "/content/tetrapak/tetralaval";
 
@@ -58,6 +55,9 @@ public final class TLConstants {
 
     /** The Constant DOCUMENT. */
     public static final String DOCUMENT = "document";
+
+    /** The Constant PAGE_TYPE. */
+    public static final String PAGE_TYPE = "PAGE";
 
     /** The Constant ANCHOR_ID_PROPERTY. */
     public static final String ANCHOR_ID_PROPERTY = "anchorId";

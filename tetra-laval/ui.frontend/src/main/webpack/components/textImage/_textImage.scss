@@ -104,8 +104,8 @@
     }
 
     &__description {
+        @include line-height(28px, $font-normal);
         font-size: $font-baseline;
-        @include line-height(28px, 16px);
         ul {
             li {
                 display: flex;
@@ -118,8 +118,8 @@
             }
         }
         @media #{$desktop} {
+            @include line-height($line-height-body, $font-baseline);
             font-size: $font-baseline;
-            @include line-height(24px, 14px);
         }
         a {
             &:hover {
@@ -132,12 +132,12 @@
         @include margin-bottom(0);
         @include margin-top($margin-md);
         @include padding($padding-zero);
-        @include line-height(28px, 16px);
-        
+        @include line-height(28px, $font-normal);
+
         @media #{$desktop} {
             @include margin-bottom($margin-zero);
             @include padding($padding-zero);
-            @include line-height(24px, 14px);
+            @include line-height($line-height-body, $font-baseline);
             a {
                 font-size: $font-baseline;
             }
@@ -168,7 +168,7 @@
         @include line-height($font-xl, $font-l);
         @media #{$desktop} {
             font-size: $font-xl;
-            line-height: 40px;
+            line-height: $line-height-header-m;
         }
     }
 }

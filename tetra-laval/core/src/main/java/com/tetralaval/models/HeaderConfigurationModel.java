@@ -154,22 +154,26 @@ public class HeaderConfigurationModel {
             if (currentResource != null && currentResource.adaptTo(Node.class) != null) {
                 Page currentPage = currentResource.adaptTo(Page.class);
                 Iterator<Page> pageIterator = currentPage.listChildren();
+                navigationList = createNavigationList(pageIterator, navigationList);
+            }
+        }
+        return navigationList;
+    }
 
-                while (pageIterator.hasNext()) {
-                    Page childPage = pageIterator.next();
-                    NavigationModel navigationModel = new NavigationModel();
+    private List<NavigationModel> createNavigationList(Iterator<Page> pageIterator, List<NavigationModel> navigationList) {
+        while (pageIterator.hasNext()) {
+            Page childPage = pageIterator.next();
+            NavigationModel navigationModel = new NavigationModel();
 
-                    ValueMap properties = childPage.getProperties();
-                    boolean isHide = Boolean.parseBoolean((String) properties.getOrDefault(HIDE_IN_NAV_PROPERTY, "false"));
+            ValueMap properties = childPage.getProperties();
+            boolean isHide = Boolean.parseBoolean((String) properties.getOrDefault(HIDE_IN_NAV_PROPERTY, "false"));
 
-                    if (!isHide) {
-                        String currentPath = childPage.getPath();
-                        navigationModel.setLabel((String) properties.getOrDefault(JcrConstants.JCR_TITLE, null));
-                        navigationModel.setLink(LinkUtils.sanitizeLink(currentPath, request));
-                        navigationModel.setChildren(generateNavigation(currentPath));
-                        navigationList.add(navigationModel);
-                    }
-                }
+            if (!isHide) {
+                String currentPath = childPage.getPath();
+                navigationModel.setLabel((String) properties.getOrDefault(JcrConstants.JCR_TITLE, null));
+                navigationModel.setLink(LinkUtils.sanitizeLink(currentPath, request));
+                navigationModel.setChildren(generateNavigation(currentPath));
+                navigationList.add(navigationModel);
             }
         }
         return navigationList;

@@ -186,7 +186,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         boolean isMediaChecked = false;
 
         if (articleTypes != null && mediaId != null) {
-            isMediaChecked = Arrays.stream(articleTypes)
+            isMediaChecked = !Arrays.stream(articleTypes)
                     .filter(s -> mediaId.equals(s))
                     .collect(Collectors.toList()).isEmpty();
         }
@@ -228,14 +228,32 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         TagManager tagManager = request.getResource().getResourceResolver().adaptTo(TagManager.class);
         if (tagManager != null && tags != null) {
             for (String tagString : tags) {
-                Tag tag = tagManager.resolve(tagString);
+                Tag tag = tagManager.resolve(decodeColonInKey(tagString));
                 FilterModel filterModel = new FilterModel();
                 filterModel.setLabel(tag.getTitle());
-                filterModel.setKey(tagString);
+                filterModel.setKey(encodeColonInKey(tagString));
                 filterModels.add(filterModel);
             }
         }
         return filterModels;
+    }
+
+    /**
+     * Encode colon in tag key
+     * @param text
+     * @return
+     */
+    private String encodeColonInKey(String text) {
+        return text.replaceAll("\\:+", "-fc-");
+    }
+
+    /**
+     * Decode colon in tag key
+     * @param text
+     * @return
+     */
+    private String decodeColonInKey(String text) {
+        return text.replaceAll("(-fc-)+", TLConstants.COLON);
     }
 
     /**
@@ -409,12 +427,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         Map<String, String> map = new HashMap<>();
 
         // generating map using tags selected in search result filters
-        if (filterModelList.isEmpty()) {
+        if (!filterModelList.isEmpty()) {
             int tagIndex = 0;
             for (FilterModel filterModel : filterModelList) {
                 tagIndex++;
                 map.put(String.format("%s.1_group.%d_property", resourceGroup, tagIndex), cqTagsProp);
-                map.put(String.format("%s.1_group.%d_property.value", resourceGroup, tagIndex), filterModel.getKey());
+                map.put(String.format("%s.1_group.%d_property.value", resourceGroup, tagIndex), decodeColonInKey(filterModel.getKey()));
             }
         }
         return map;
@@ -511,14 +529,15 @@ public class SearchResultsServiceImpl implements SearchResultsService {
      * @throws RepositoryException
      */
     private <T> T getSortDate(Hit hit, Class<T> cls) throws RepositoryException {
+        T sortDate = null;
         if (hit.getProperties().containsKey(ARTICLE_DATE_PROP)) {
-            return hit.getProperties().get(ARTICLE_DATE_PROP, cls);
+            sortDate = hit.getProperties().get(ARTICLE_DATE_PROP, cls);
         } else if (hit.getProperties().containsKey(NameConstants.PN_PAGE_LAST_MOD)) {
-            return hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, cls);
+            sortDate = hit.getProperties().get(NameConstants.PN_PAGE_LAST_MOD, cls);
         } else if (hit.getProperties().containsKey(JcrConstants.JCR_LASTMODIFIED)) {
-            return hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, cls);
+            sortDate = hit.getProperties().get(JcrConstants.JCR_LASTMODIFIED, cls);
         }
-        return null;
+        return sortDate;
     }
 
     /**
@@ -528,7 +547,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
      * @throws RepositoryException
      */
     private void setContentFields(ResultItem resultItem, Hit hit) throws RepositoryException {
-        String articleTypeName = null;
+        String articleTypeName = TLConstants.PAGE_TYPE;
 
         String articleType = hit.getProperties().get(ARTICLE_TYPE_PROP, String.class);
         String date = getSortDate(hit, String.class);
@@ -550,17 +569,18 @@ public class SearchResultsServiceImpl implements SearchResultsService {
      * @return
      */
     private String getMediaType(ValueMap assetMetadataProperties) {
+        String mediaType = StringUtils.EMPTY;
         if (assetMetadataProperties.containsKey(DamConstants.DC_FORMAT)) {
             String dcFormat = assetMetadataProperties.get(DamConstants.DC_FORMAT, StringUtils.EMPTY);
             if (dcFormat.contains(TLConstants.IMAGE)) {
-                return TLConstants.IMAGE;
+                mediaType = TLConstants.IMAGE;
             } else if (dcFormat.contains(TLConstants.VIDEO)) {
-                return TLConstants.VIDEO;
+                mediaType = TLConstants.VIDEO;
             } else {
-                return TLConstants.DOCUMENT;
+                mediaType = TLConstants.DOCUMENT;
             }
         }
-        return StringUtils.EMPTY;
+        return mediaType;
     }
 
     /**
