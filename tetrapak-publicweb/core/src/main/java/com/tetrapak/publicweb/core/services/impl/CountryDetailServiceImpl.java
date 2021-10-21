@@ -50,7 +50,12 @@ public class CountryDetailServiceImpl implements CountryDetailService {
                 name = "Countries Content Fragment Root Path",
                 description = "countries Content Fragment Root Path")
         String getCountriesContentFragmentRootPath() default "/content/dam/tetrapak/publicweb/contentfragment/countries";
-        
+
+        /**
+         * Gets the pardot countries CF root path.
+         *
+         * @return the pardot countries CF root path
+         */
         @AttributeDefinition(
                 name = "Pardot Countries Content Fragment Root Path",
                 description = "Pardot countries Content Fragment Root Path")
@@ -67,8 +72,8 @@ public class CountryDetailServiceImpl implements CountryDetailService {
     /**
      * activate method.
      *
-     * @param config
-     *            site Improve Script URL configuration
+     * @param countryConfig
+     *            the country config
      */
     @Activate
     public void activate(final CountryDetailServiceConfig countryConfig) {
@@ -78,8 +83,6 @@ public class CountryDetailServiceImpl implements CountryDetailService {
     /**
      * Sets the country title.
      *
-     * @param countryTitle
-     *            the country title
      * @param jcrResource
      *            the jcr resource
      * @return the string
@@ -89,20 +92,19 @@ public class CountryDetailServiceImpl implements CountryDetailService {
     }
 
     /**
-     * Gets the country cf root path.
+     * Fetch contact email addresses.
      *
-     * @return the country cf root path
+     * @param contactUs
+     *            the contact us
+     * @param resourceResolver
+     *            the resource resolver
+     * @return the string[]
      */
-    @Override
-    public String getCountryCfRootPath() {
-        return countryConfig.getCountriesContentFragmentRootPath();
-    }
-
     @Override
     public String[] fetchContactEmailAddresses(final ContactUs contactUs, final ResourceResolver resourceResolver) {
         LOGGER.debug("Inside fetch contact email Addess - Start");
         String[] contactEmails = null;
-        final String countryDataPath = getCountryCfRootPath() + PWConstants.SLASH + contactUs.getCountry()
+        final String countryDataPath = getPardotCountryCfRootPath() + PWConstants.SLASH + contactUs.getCountry()
                 + DATA_ROOT_PATH;
         final Resource countryDataResource = resourceResolver.getResource(countryDataPath);
         if (Objects.nonNull(countryDataResource)) {
@@ -112,30 +114,15 @@ public class CountryDetailServiceImpl implements CountryDetailService {
         return contactEmails;
     }
 
-    public List<DropdownOption> fetchCountryList(final ResourceResolver resourceResolver, String formType) {
-        final List<DropdownOption> countryList = new ArrayList<>();
-        final Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
-        if (Objects.nonNull(countriesRootRes)) {
-            final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
-            while (rootIterator.hasNext()) {
-                final Resource childResource = rootIterator.next();
-                if (Objects.nonNull(childResource) && !childResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
-                    final Resource jcrResource = childResource.getChild(JcrConstants.JCR_CONTENT);
-                    if (Objects.nonNull(jcrResource)) {
-                        addCountry(countryList, childResource, jcrResource, formType);
-                    }
-                }
-            }
-        }
-        countryList
-                .sort((final DropdownOption op1, final DropdownOption op2) -> op1.getValue().compareTo(op2.getValue()));
-        return countryList;
-    }
-
     /**
+     * Adds the country.
+     *
      * @param countryList
+     *            the country list
      * @param childResource
+     *            the child resource
      * @param jcrResource
+     *            the jcr resource
      */
     private void addCountry(final List<DropdownOption> countryList, final Resource childResource,
             final Resource jcrResource) {
@@ -148,15 +135,16 @@ public class CountryDetailServiceImpl implements CountryDetailService {
         }
     }
 
-	/**
-	 * Fetch pardot country list.
-	 *
-	 * @param resourceResolver the resource resolver
-	 * @return the list
-	 */
-	@Override
-	public List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver) {
-		final List<DropdownOption> countryList = new ArrayList<>();
+    /**
+     * Fetch pardot country list.
+     *
+     * @param resourceResolver
+     *            the resource resolver
+     * @return the list
+     */
+    @Override
+    public List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver) {
+        final List<DropdownOption> countryList = new ArrayList<>();
         final Resource countriesRootRes = resourceResolver.getResource(getPardotCountryCfRootPath());
         if (Objects.nonNull(countriesRootRes)) {
             final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
@@ -173,15 +161,15 @@ public class CountryDetailServiceImpl implements CountryDetailService {
         countryList
                 .sort((final DropdownOption op1, final DropdownOption op2) -> op1.getValue().compareTo(op2.getValue()));
         return countryList;
-	}
+    }
 
-	/**
-	 * Gets the pardot country cf root path.
-	 *
-	 * @return the pardot country cf root path
-	 */
-	@Override
-	public String getPardotCountryCfRootPath() {
-		return countryConfig.getPardotCountriesCFRootPath();
-	}
+    /**
+     * Gets the pardot country cf root path.
+     *
+     * @return the pardot country cf root path
+     */
+    @Override
+    public String getPardotCountryCfRootPath() {
+        return countryConfig.getPardotCountriesCFRootPath();
+    }
 }
