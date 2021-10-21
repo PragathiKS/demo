@@ -46,7 +46,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 	 */
 	@Override
 	public boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
-			Results apiResponse) {
+			List<Equipments> apiResponse) {
 		if (Objects.nonNull(apiResponse)) {
 			language = GlobalUtil.getLanguage(req);
 			request = req;
@@ -56,7 +56,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			excelReportData.setCellBorderColor(IndexedColors.GREY_25_PERCENT.index);
 			excelReportData.setHasMargin(false);
 			String[][] data = getColumnHeaderArray();
-			data = ArrayUtils.addAll(data, getEquipmentsList(apiResponse.getData()));
+			data = ArrayUtils.addAll(data, getEquipmentsList(apiResponse));
 			excelReportData.setData(data);
 			if (ExcelUtil.generateExcelReport(response, excelReportData)) {
 				LOGGER.debug("Excel file: {} generated successfully!", excelReportData.getExcelSheetName());
