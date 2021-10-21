@@ -95,6 +95,8 @@ public final class CustomerHubConstants {
     
     public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
     
+    public static final String SKIP ="skip";
+    
     public static final String EQUALS = "=";
     
     public static final String QUESTION_MARK = "?";

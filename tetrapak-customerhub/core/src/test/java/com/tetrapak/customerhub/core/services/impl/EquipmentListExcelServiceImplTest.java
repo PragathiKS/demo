@@ -49,7 +49,7 @@ public class EquipmentListExcelServiceImplTest {
 	 */
 	@Test
 	public void testGenerateEquipmentListResultsExcelWithNullApiResp() {
-		Results apiResponse = null;
+		List<Equipments> apiResponse = null;
 		assertFalse(equipmentListExcelService.generateEquipmentListExcel(servletRequest, response, apiResponse));
 	}
 

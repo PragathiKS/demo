@@ -1,8 +1,11 @@
 package com.tetrapak.customerhub.core.services;
 
+import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
 import com.tetrapak.customerhub.core.beans.equipmentlist.Results;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+
+import java.util.List;
 
 /**
  * Equipment List Excel Service
@@ -21,6 +24,6 @@ public interface EquipmentListExcelService {
 	 * @return true if successful in generation of the excel otherwise false
 	 */
 	boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
-			Results apiResponse);
+			List<Equipments> apiResponse);
 
 }
