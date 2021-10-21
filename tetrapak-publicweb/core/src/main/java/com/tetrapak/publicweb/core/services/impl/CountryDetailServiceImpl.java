@@ -113,7 +113,7 @@ public class CountryDetailServiceImpl implements CountryDetailService {
         final String title = setCountryTitle(jcrResource);
         if (!title.contains("Corporate")) {
             final DropdownOption country = new DropdownOption();
-            country.setKey(childResource.getName());
+            country.setKey(title);
             country.setValue(title);
             countryList.add(country);
         }
