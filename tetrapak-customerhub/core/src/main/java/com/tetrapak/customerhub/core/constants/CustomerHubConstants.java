@@ -138,6 +138,9 @@ public final class CustomerHubConstants {
     /** The Constant EXCEL_DOWNLOAD_EXTENSION. */
     public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
 
+    /** The Constant SKIP */
+    public static final String SKIP = "skip";
+
     /** The Constant COUNT. */
     public static final String COUNT = "count";
 
