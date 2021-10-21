@@ -28,8 +28,6 @@ public interface CountryDetailService {
      *
      * @param resourceResolver
      *            the resource resolver
-     * @param formType
-     *            the String             
      * @return the list
      */
     List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver);
