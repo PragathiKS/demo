@@ -448,6 +448,12 @@ public final class PWConstants {
     /** The Constant NOINDEX_PROPERTY. */
     public static final String NOINDEX_PROPERTY = "noIndex";
 
+	/** Constant TETRA_LAVAL_CONTENT_PATH */
+    public static final String TETRA_LAVAL_CONTENT_PATH = "/content/tetrapak/tetralaval";
+    
+    /** Constant TETRA_LAVAL_CONTENT_DAM_PATH */
+    public static final String TETRA_LAVAL_CONTENT_DAM_PATH = "/content/dam/tetra-laval";
+
     /**
      * Instantiates a new PW constants.
      */

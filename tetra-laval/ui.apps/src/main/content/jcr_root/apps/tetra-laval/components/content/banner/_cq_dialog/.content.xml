@@ -44,13 +44,17 @@
                                     name="./textColor">
                                 <items jcr:primaryType="nt:unstructured">
                                     <white
-                                            jcr:primaryType="nt:unstructured"
-                                            text="White"
-                                            value=""/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="White"
+                                        value=""/>
                                     <black
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Black"
-                                            value="pw-banner__content--text-black"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Black"
+                                        value="pw-banner__content--text-black"/>
+                                    <blue
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Blue"
+                                        value="pw-banner__content--text-blue"/>
                                 </items>
                                 <granite:data
                                         jcr:primaryType="nt:unstructured"

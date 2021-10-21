@@ -29,9 +29,12 @@ import java.util.stream.Collectors;
  */
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderConfigurationModel {
-    private final static String HIDE_IN_NAV_PROPERTY = "hideInNav";
+    private static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
 
-    /** The resource. */
+    private static final int LANGUAGE_MASTERS_PATH_LEVEL = 1;
+    private static final int ROOT_PATH_LEVEL = 2;
+
+    /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
 
@@ -59,9 +62,14 @@ public class HeaderConfigurationModel {
     @ValueMapValue
     private String searchLink;
 
+    /** resourceResolver */
     private ResourceResolver resourceResolver;
+    /** navigationModelList */
     private List<NavigationModel> navigationModelList;
 
+    /**
+     * Init method
+     */
     @PostConstruct
     protected void init() {
         resource = request.getResource();
@@ -72,42 +80,72 @@ public class HeaderConfigurationModel {
 
         if (PageUtil.isExperienceFragment(path)) {
             navigationModelList = generateNavigation(
-                    generatePath(path, TLConstants.EXPERIENCE_FRAGMENTS_PATH, TLConstants.LANGUAGE_MASTERS_PATH, 1));
+                    generatePath(path, TLConstants.EXPERIENCE_FRAGMENTS_PATH, TLConstants.LANGUAGE_MASTERS_PATH,
+                            LANGUAGE_MASTERS_PATH_LEVEL));
         } else if (PageUtil.isLanguageMaster(path)) {
             navigationModelList = generateNavigation(
-                    generatePath(path, TLConstants.LANGUAGE_MASTERS_PATH, 1));
+                    generatePath(path, TLConstants.LANGUAGE_MASTERS_PATH, LANGUAGE_MASTERS_PATH_LEVEL));
         } else  {
             navigationModelList = generateNavigation(
-                    generatePath(path, TLConstants.ROOT_PATH, 2));
+                    generatePath(path, TLConstants.ROOT_PATH, ROOT_PATH_LEVEL));
         }
     }
 
+    /**
+     * logoImagePath getter
+     * @return logoImagePath
+     */
     public String getLogoImagePath() {
         return logoImagePath;
     }
 
+    /**
+     * logoLink getter
+     * @return logoLink
+     */
     public String getLogoLink() {
         return LinkUtils.sanitizeLink(logoLink, request);
     }
 
+    /**
+     * logoAlt getter
+     * @return logoAlt
+     */
     public String getLogoAlt() {
         return logoAlt;
     }
 
+    /**
+     * contactLink getter
+     * @return contactLink
+     */
     public String getContactLink() {
         return LinkUtils.sanitizeLink(contactLink, request);
     }
 
+    /**
+     * searchLink getter
+     * @return searchLink
+     */
     public String getSearchLink() {
         return LinkUtils.sanitizeLink(searchLink, request);
     }
 
+    /**
+     * navigationModelList getter
+     * @return navigationModelList
+     */
     public List<NavigationModel> getNavigationModelList() {
         return navigationModelList;
     }
 
+    /**
+     * Generate header navigation
+     * @param path
+     * @return list of NavigationModel
+     */
     private List<NavigationModel> generateNavigation(String path) {
-        List<NavigationModel> navigationModelList = new ArrayList<>();
+        List<NavigationModel> navigationList = new ArrayList<>();
         List<String> paths = Arrays.stream(path.split(TLConstants.SLASH))
                 .filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList());
         int currentLevel = paths.size();
@@ -116,31 +154,50 @@ public class HeaderConfigurationModel {
             if (currentResource != null && currentResource.adaptTo(Node.class) != null) {
                 Page currentPage = currentResource.adaptTo(Page.class);
                 Iterator<Page> pageIterator = currentPage.listChildren();
-
-                while (pageIterator.hasNext()) {
-                    Page childPage = pageIterator.next();
-                    NavigationModel navigationModel = new NavigationModel();
-
-                    ValueMap properties = childPage.getProperties();
-                    boolean isHide = Boolean.parseBoolean((String) properties.getOrDefault(HIDE_IN_NAV_PROPERTY, "false"));
-
-                    if (!isHide) {
-                        String currentPath = childPage.getPath();
-                        navigationModel.setLabel((String) properties.getOrDefault(JcrConstants.JCR_TITLE, null));
-                        navigationModel.setLink(LinkUtils.sanitizeLink(currentPath, request));
-                        navigationModel.setChildren(generateNavigation(currentPath));
-                        navigationModelList.add(navigationModel);
-                    }
-                }
+                navigationList = createNavigationList(pageIterator, navigationList);
             }
         }
-        return navigationModelList.size() == 0 ? null : navigationModelList;
+        return navigationList;
     }
 
+    private List<NavigationModel> createNavigationList(Iterator<Page> pageIterator, List<NavigationModel> navigationList) {
+        while (pageIterator.hasNext()) {
+            Page childPage = pageIterator.next();
+            NavigationModel navigationModel = new NavigationModel();
+
+            ValueMap properties = childPage.getProperties();
+            boolean isHide = Boolean.parseBoolean((String) properties.getOrDefault(HIDE_IN_NAV_PROPERTY, "false"));
+
+            if (!isHide) {
+                String currentPath = childPage.getPath();
+                navigationModel.setLabel((String) properties.getOrDefault(JcrConstants.JCR_TITLE, null));
+                navigationModel.setLink(LinkUtils.sanitizeLink(currentPath, request));
+                navigationModel.setChildren(generateNavigation(currentPath));
+                navigationList.add(navigationModel);
+            }
+        }
+        return navigationList;
+    }
+
+    /**
+     * Generate path
+     * @param path
+     * @param rootPath
+     * @param lastIndex
+     * @return path
+     */
     private String generatePath(String path, String rootPath, int lastIndex) {
         return generatePath(path, rootPath, rootPath, lastIndex);
     }
 
+    /**
+     * Generate path
+     * @param path
+     * @param replaceRootPath
+     * @param rootPath
+     * @param lastIndex
+     * @return path
+     */
     private String generatePath(String path, String replaceRootPath, String rootPath, int lastIndex) {
         return String.format("%s/%s%s", rootPath,
                 String.join(TLConstants.SLASH, Arrays.stream(path

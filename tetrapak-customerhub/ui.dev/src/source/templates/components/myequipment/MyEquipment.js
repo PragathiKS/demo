@@ -307,7 +307,7 @@ function _processKeys(keys, ob) {
         functionalLocation = i;
       }
     }
-    return [country, line, equipmentStatus, functionalLocation, serialNumber, site, siteDescription, location, equipmentTypeDesc];
+    return [country, site, siteDescription, line, equipmentTypeDesc, serialNumber, equipmentStatus, location, functionalLocation];
   }
 }
 
@@ -491,14 +491,14 @@ class MyEquipment {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
     this.cache.customisableTableHeaders = [
       {key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
-      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:1},
-      {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:2},
-      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:false,index:3},
-      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4},
-      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:5},
-      {key:'siteDesc',option:i18nKeys['siteDescription'],isChecked:false,index:6},
+      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
+      {key:'siteDesc',option:i18nKeys['siteDescription'],isChecked:false,index:2},
+      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:3},
+      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:4},
+      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:5},
+      {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:6},
       {key:'location',option:i18nKeys['location'],isChecked:false,index:7},
-      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:8}
+      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:false,index:8}
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {

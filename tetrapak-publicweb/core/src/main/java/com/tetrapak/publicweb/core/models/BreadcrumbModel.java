@@ -45,6 +45,9 @@ public class BreadcrumbModel {
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
 
+    /** The Current Page Parent Index. */
+    private int currentPageActiveParentIndex;
+
     /**
      * Inits the.
      */
@@ -59,6 +62,7 @@ public class BreadcrumbModel {
         final int length = pages.length - 1;
         Page parent = currentPage.getParent();
         final String title = NavigationUtil.getNavigationTitle(currentPage);
+        int activePageHierarchyIndex = 0;
 
         breadcrumbPages.put(title, currentPage.getPath());
         for (int i = 0; i <= length; i++) {
@@ -67,6 +71,8 @@ public class BreadcrumbModel {
                 if (parent.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
                     breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent), null);
                 } else {
+                    activePageHierarchyIndex++;
+                    checkAndSetCurrentParentPageIndex(activePageHierarchyIndex,i);
                     breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent),
                             LinkUtils.sanitizeLink(parent.getPath(), request));
                 }
@@ -78,6 +84,12 @@ public class BreadcrumbModel {
         Collections.reverse(alKeys);
         for (final String key : alKeys) {
             breadcrumbSubpages.put(key, breadcrumbPages.get(key));
+        }
+    }
+
+    private void checkAndSetCurrentParentPageIndex(int activePageHierarchyIndex, int i) {
+        if(activePageHierarchyIndex == 1) {
+            currentPageActiveParentIndex = i + 1;
         }
     }
 
@@ -99,4 +111,19 @@ public class BreadcrumbModel {
         return LinkUtils.sanitizeLink(homePagePath, request);
     }
 
+    /**
+     * Gets the  current Page Active Parent index
+     * @return current Page Active Parent index
+     */
+    public int getCurrentPageActiveParentIndex() {
+        return (breadcrumbSubpages.size()-currentPageActiveParentIndex);
+    }
+
+    /**
+     * Gets the  current Page Parent index
+     * @return current Page Parent index
+     */
+    public int getCurrentPageParentIndex() {
+        return breadcrumbSubpages.size()-1;
+    }
 }

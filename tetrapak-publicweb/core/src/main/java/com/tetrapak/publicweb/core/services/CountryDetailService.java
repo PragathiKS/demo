@@ -15,7 +15,8 @@ public interface CountryDetailService {
     /**
      * Fetch pardot country list.
      *
-     * @param resourceResolver the resource resolver
+     * @param resourceResolver
+     *            the resource resolver
      * @return the list
      */
     List<DropdownOption> fetchPardotCountryList(ResourceResolver resourceResolver);

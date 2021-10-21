@@ -1,4 +1,3 @@
-
 package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
@@ -13,7 +12,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
 
@@ -160,7 +158,7 @@ public class SoftConversionModelTest {
     public void testCountries() throws Exception {
 
         assertEquals("ContactUs", 2, model.getCountryOptions().size());
-        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
+        assertEquals("ContactUs", "Albania", model.getCountryOptions().get(0).getKey());
 
     }
     
@@ -173,7 +171,7 @@ public class SoftConversionModelTest {
     @Test
 	public void testPositionTags() {
     	assertEquals("Form", 2, model.getPositionOptions().size());
-	    assertEquals("Form", "c-suite", model.getPositionOptions().get(0).getKey());
+	    assertEquals("Form", "C-suite", model.getPositionOptions().get(0).getKey());
 	}
     
     /**
@@ -185,7 +183,7 @@ public class SoftConversionModelTest {
     @Test
 	public void testFunctionTags() {
     	assertEquals("Form", 2, model.getFunctionOptions().size());
-	    assertEquals("Form", "administrative", model.getFunctionOptions().get(0).getKey());
+	    assertEquals("Form", "Administrative", model.getFunctionOptions().get(0).getKey());
 	}
 
 }

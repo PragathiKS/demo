@@ -1,4 +1,11 @@
 .medialink {
+    @include border-radius($border-radius);
+    @include padding-left($padding-md);
+    @include padding-right($padding-md);
+    @include padding-top($padding-l);
+    @include margin(0 $margin-md);
+    padding-bottom: $padding-l;
+
     &-list {
         @include margin-bottom($margin-l);
 
@@ -6,20 +13,22 @@
             @include margin-bottom(0);
         }
     }
-    h1, h2 {
-        font-size: $font-l;
+
+    h1,
+    h2 {
         @include margin-bottom($margin-md);
+        font-size: $font-l;
 
         @media #{$desktop} {
-            font-size: $font-xl;
             @include margin-bottom($margin-l);
+            font-size: $font-xl;
         }
     }
-    h4 {
-        font-size: $font-md;
-        @include margin-bottom($margin-md);
 
+    h4 {
+        @include margin-bottom($margin-md);
         color: $color-tundora;
+        font-size: $font-md;
         font-weight: 500;
 
         @media #{$desktop} {
@@ -27,37 +36,31 @@
         }
     }
 
-    padding-bottom: $padding-l;
-    @include border-radius($border-radius);
-    @include padding-left($padding-md);
-    @include padding-right($padding-md);
-    @include padding-top($padding-l);
-    @include margin(0 $margin-md);
     @media #{$desktop} {
-        padding-top: $padding-xxxl;
-        padding-bottom: $padding-l;
         @include padding-left($padding-xxxl);
         @include padding-right($padding-xxxl);
         @include margin(0 $margin-xxxl);
+        padding-top: $padding-xxxl;
+        padding-bottom: $padding-l;
     }
 
     &__heading {
-        font-size: $font-l;
         @include padding-top($padding-zero);
         @include margin-bottom(0);
+        font-size: $font-l;
         @media #{$desktop} {
-            font-size: $font-xl;
             @include padding-top($padding-zero);
             @include margin-bottom($margin-l);
+            font-size: $font-xl;
         }
 
         h3 {
-            font-size: $font-l;
             @include line-height($font-xl, $font-l);
+            font-size: $font-l;
             font-weight: 400;
             @media #{$desktop} {
+                @include line-height($line-height-header-m, $font-xl);
                 font-size: $font-xl;
-                @include line-height(40px, $font-xl);
                 font-weight: 700;
             }
         }
@@ -72,17 +75,17 @@
         }
         h4 {
             @include padding-left($padding-zero);
-            font-size: $font-md;
             @include line-height($font-l, $font-md);
+            font-size: $font-md;
             font-weight: 500;
         }
     }
 
     &__link.tpatom-link--transparent {
         @include min-height(56px);
-        @include line-height(24px, 14px);
-        font-size: $font-baseline;
+        @include line-height($line-height-body, $font-baseline);
         display: flex;
+        font-size: $font-baseline;
         justify-content: space-between;
         border-bottom: 1px solid $color-mercury;
         span {
@@ -90,24 +93,24 @@
             @media #{$desktop} {
                 @include margin-left($margin-zero);
             }
-            @include line-height(24px, 14px);
+            @include line-height($line-height-body, $font-baseline);
             font-weight: 400;
         }
         i.icon {
-            @include margin-left(16px);
-            @include margin-right(16px);
-            @include margin-top(16px);
+            @include margin-left($margin-md);
+            @include margin-right($margin-md);
+            @include margin-top($margin-md);
             display: inline-block;
-            line-height: 24px;
+            line-height: $line-height-body;
             &::before {
                 height: 16px;
                 width: 16px;
             }
         }
         .icon.icon-Circle_Arrow_Right_pw {
-            @include margin-top(16px);
-            @include padding-right(16px);
-            line-height: 24px;
+            @include margin-top($margin-md);
+            @include padding-right($padding-md);
+            line-height: $line-height-body;
         }
     }
 

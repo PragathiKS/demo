@@ -12,15 +12,14 @@
     }
 
     .pw-anchor-list > .pw-anchor-content {
-        font-size: $font-baseline;
         @include line-height($font-l, $font-baseline);
         @include padding($padding-sm $padding-md);
         color: $color-congress-blue;
         font-weight: 500;
         border-bottom: 1px solid $color-mercury;
         a {
-            font-weight: 500;
             color: $color-congress-blue;
+            font-weight: 500;
         }
         &:hover {
             a {

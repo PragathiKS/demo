@@ -8,7 +8,7 @@
     bottom: 1em;
     left: 1em;
     font-size: 1rem;
-    box-shadow: $boxShadow;
+    box-shadow: $box-shadow;
     z-index: 2147483646;
 
     h3 {
@@ -20,7 +20,7 @@
     }
 
     p {
-        padding: 0 25px 10px 25px;
+        @include padding(0 $padding-l $padding-sm $padding-l);
     }
 
     a {
@@ -28,9 +28,10 @@
     }
 
     button {
+        display: inherit;
+        color: $color-white;
         background-color: $color-congress-blue;
         border-color: $color-congress-blue;
-        color: $color-white;
         padding: 12px 10px;
         font-size: .82em;
         font-weight: 600;
@@ -42,13 +43,12 @@
         word-wrap: break-word;
         margin: 0 auto;
         width: 90%;
-        display: inherit;
     }
 }
 
 .pc-dark-filter {
     display: none;
-    background: $overlayColor;
+    background: $overlay-color;
     z-index: 2147483645;
     width: 100%;
     height: 100%;
@@ -61,16 +61,10 @@
     animation-timing-function: ease-in-out;
 }
 
-.pc-dark-filter, .otFloatingRoundedCorner {
+.pc-dark-filter,
+.otFloatingRoundedCorner {
     &.show {
         display: block;
         position: fixed;
-    }
-}
-
-.aem-AuthorLayer-Edit {
-    .pc-dark-filter, .otFloatingRoundedCorner {
-       display: block;
-       position: fixed;
     }
 }

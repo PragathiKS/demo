@@ -198,8 +198,13 @@ class Softconversion {
       $userUnknown.hide();
       $userUnknown.find('input').each(function() {
         $(this).removeAttr('required');
-        $(this).prop('checked', false);
       });
+
+      // Uncheck Marketing Consent
+      const marketingConsent = $('.marketing-consent').find('input');
+      $(marketingConsent).prop('checked', false);
+
+      // Open Form 2
       $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).addClass('active');
       $(`#cf-step-thankyou-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).removeClass('active');
@@ -226,6 +231,7 @@ class Softconversion {
       apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
       apiPayload.pardot_extra_field = '';
       apiPayload.pardotUrl = pardotUrl;
+      apiPayload.pageurl = this.cache.requestPayload['pageurl'];
       apiPayload.marketingConsent = true;
 
       ajaxWrapper.getXhrObj({
@@ -253,6 +259,7 @@ class Softconversion {
     const visitorEmail = storageUtil.getCookie('visitor-mail');
 
     if(visitorEmail && userType === 1) {
+      apiPayload.email = storageUtil.getCookie('visitor-mail');
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
       apiPayload.position = this.cache.requestPayload['position'];
       apiPayload.function = this.cache.requestPayload['function'];

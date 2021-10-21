@@ -1,10 +1,10 @@
-@import '~tpPublic/templates/molecules/searchbar/searchBar.scss';
+@import '~tpPublic/templates/molecules/searchbar/searchBar';
 
 .pw-header-search-bar {
     display: none;
     background: $color-white;
     z-index: $z-index-search-bar;
-    box-shadow: -2px 8px 12px rgb(0 0 0 / 14%);
+    box-shadow: $box-shadow-search;
 
     &.show {
         display: flex;
@@ -27,7 +27,7 @@
             }
             .input-box {
                 @include border-radius($border-radius);
-                @include padding(10px $padding-md);
+                @include padding($padding-sm $padding-md);
                 border: 1px solid $color-boulder;
                 display: flex;
                 justify-content: space-between;

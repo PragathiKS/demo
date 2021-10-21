@@ -10,7 +10,6 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/core/components/policies/mapping">
             <responsivegrid
-                cq:policy="wcm/foundation/components/responsivegrid/policy_1581165968127900"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/core/components/policies/mapping"/>
         </root>

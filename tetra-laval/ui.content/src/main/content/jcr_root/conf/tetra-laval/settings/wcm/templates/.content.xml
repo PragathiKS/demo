@@ -10,4 +10,5 @@
     <global-xfpage-template/>
     <error-page-template/>
     <search-page-template/>
+    <language-page-template/>
 </jcr:root>

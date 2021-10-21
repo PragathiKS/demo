@@ -101,6 +101,7 @@
     ol,
     ul {
         @include margin-bottom(8px);
+        @include padding-left($padding-xxl);
     }
 
     ul {

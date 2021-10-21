@@ -83,8 +83,7 @@ public class ContactUsModel extends FormModel {
         return resource.getPath() + ".sendmail.json";
     }
 
-    /**
-     * Gets the consent config.
+    /*     * Gets the consent config.
      *
      * @return the consent config
      */

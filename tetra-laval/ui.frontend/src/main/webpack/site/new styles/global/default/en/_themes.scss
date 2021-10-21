@@ -1,5 +1,6 @@
 body {
     @include line-height($font-l, $font-baseline);
+    color: $color-tundora;
     font-family: $font-family-primary;
     background: $color-wild-sand;
     font-weight: 400;

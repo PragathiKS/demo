@@ -68,6 +68,8 @@ public class BreadcrumbModelTest {
         assertEquals("/content/tetrapak/publicweb/language-masters/en/solution.html",
                 model.getBreadcrumbSubpages().get("English"));
         assertEquals(null, model.getBreadcrumbSubpages().get("check"));
+        assertEquals("There should have been out put as 2",2, model.getCurrentPageParentIndex());
+        assertEquals("There should have been out put as 1", 1, model.getCurrentPageActiveParentIndex());
     }
 
 }
