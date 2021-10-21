@@ -131,7 +131,7 @@ public class SubscriptionFormModelTest {
     @Test
     public void testCountries() throws Exception {
         assertEquals("ContactUs", 2, model.getCountryOptions().size());
-        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
+        assertEquals("ContactUs", "Albania", model.getCountryOptions().get(0).getKey());
 
     }
 }
