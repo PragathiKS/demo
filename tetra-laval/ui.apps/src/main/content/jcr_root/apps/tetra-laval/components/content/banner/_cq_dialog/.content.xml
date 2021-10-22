@@ -46,7 +46,7 @@
                                     <white
                                         jcr:primaryType="nt:unstructured"
                                         text="White"
-                                        value=""/>
+                                        value="pw-banner__content--text-white"/>
                                     <black
                                         jcr:primaryType="nt:unstructured"
                                         text="Black"
