@@ -94,7 +94,7 @@
         .title {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
-            color: $color-tundora;
+            color: $color-emperor;
             font-size: $font-md;
             line-height: $line-height-body;
             font-style: normal;
@@ -103,7 +103,7 @@
         }
         .description {
             font-size: $font-baseline;
-            color: $color-tundora;
+            color: $color-emperor;
             font-style: normal;
             font-weight: normal;
             line-height: $line-height-body;

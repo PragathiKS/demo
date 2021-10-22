@@ -99,7 +99,7 @@
     &__title {
         @include margin-bottom($padding-md);
         @include line-height($line-height-header-s, $font-m-xl);
-        color: $color-tundora;
+        color: $color-emperor;
         font-size: $font-l;
         font-weight: bold;
         @media #{$desktop} {
@@ -126,7 +126,7 @@
                 &::before {
                     @include margin-right($margin-sm);
                     display: inline-block;
-                    color: $color-tundora;
+                    color: $color-emperor;
                     content: '\2022';
                 }
             }

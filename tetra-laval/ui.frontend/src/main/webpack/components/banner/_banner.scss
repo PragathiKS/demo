@@ -31,7 +31,7 @@
                 background-color: getbackgroundcolor($color-white);
             }
             &--background-black {
-                background-color: getbackgroundcolor($color-tundora);
+                background-color: getbackgroundcolor($color-emperor);
             }
         }
         &_wrapper {
@@ -54,7 +54,7 @@
                 color: $color-white;
             }
             &.pw-banner__content--background-black {
-                color: $color-tundora;
+                color: $color-emperor;
             }
         }
 
@@ -71,8 +71,12 @@
                     line-height: 64px;
                 }
 
+                &.pw-banner__content--text-white {
+                    color: $color-white;
+                }
+
                 &.pw-banner__content--text-black {
-                    color: $color-tundora;
+                    color: $color-emperor;
                 }
 
                 &.pw-banner__content--text-blue {
@@ -84,8 +88,11 @@
         &__description {
             color: $color-white;
             font-size: $font-baseline;
+            &.pw-banner__content--text-white {
+                color: $color-white;
+            }
             &.pw-banner__content--text-black {
-                color: $color-tundora;
+                color: $color-emperor;
             }
             &.pw-banner__content--text-blue {
                 color: $color-congress-blue;
@@ -121,10 +128,10 @@
 
         @media (max-width: $v-tablet - 1px) {
             &__title {
-                color: $color-tundora !important;
+                color: $color-emperor !important;
             }
             &__description {
-                color: $color-tundora !important;
+                color: $color-emperor !important;
             }
         }
     }

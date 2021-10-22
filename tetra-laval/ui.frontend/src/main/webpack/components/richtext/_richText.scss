@@ -127,7 +127,7 @@
                 @include margin-right($margin-sm);
                 font-size: $bullet-size;
                 display: inline-block;
-                color: $color-tundora;
+                color: $color-emperor;
                 content: '\2022';
             }
         }
@@ -137,7 +137,7 @@
                 &::before {
                     font-size: $bullet-size;
                     display: inline-block;
-                    color: $color-tundora;
+                    color: $color-emperor;
                     content: '\2022';
                 }
             }
@@ -184,7 +184,7 @@
     ol li {
         @include padding-bottom(16px);
         &::before {
-            color: $color-tundora;
+            color: $color-emperor;
         }
     }
 

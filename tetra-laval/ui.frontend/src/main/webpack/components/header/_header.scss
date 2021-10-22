@@ -122,7 +122,7 @@
 
             &-navicon {
                 display: block;
-                background: $color-tundora;
+                background: $color-emperor;
                 height: 2px;
                 width: 18px;
                 position: relative;
@@ -130,7 +130,7 @@
                 &::before {
                     display: block;
                     top: 5px;
-                    background: $color-tundora;
+                    background: $color-emperor;
                     width: 100%;
                     height: 100%;
                     content: '';
@@ -141,7 +141,7 @@
                 &::after {
                     display: block;
                     top: -5px;
-                    background: $color-tundora;
+                    background: $color-emperor;
                     width: 100%;
                     height: 100%;
                     content: '';
@@ -231,11 +231,11 @@
 
         &-link {
             display: block;
-            color: $color-congress-blue;
+            color: inherit;
             font-weight: 500;
 
             &:hover {
-                color: unset;
+                color: inherit;
                 cursor: pointer;
             }
         }

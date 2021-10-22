@@ -2,7 +2,7 @@
     @include max-width($body-max-width);
     @include padding(0 $padding-xxxl $padding-l);
     display: none;
-    color: $color-tundora;
+    color: $color-emperor;
     position: relative;
     width: 100%;
 
@@ -34,7 +34,7 @@
     span {
         font-size: 12px !important;
         @include line-height($font-m-md, $font-m-md);
-        color: $color-tundora;
+        color: $color-emperor;
         font-weight: 500;
     }
 }
