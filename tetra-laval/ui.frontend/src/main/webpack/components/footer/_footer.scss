@@ -1,7 +1,7 @@
 .tp-pw-footer {
     @include margin-top($margin-l);
     min-height: 100px;
-    background-color: $color-congress-blue;
+    background-color: $color-dark-blue;
     @media #{$desktop} {
         @include margin-top($margin-l);
     }
