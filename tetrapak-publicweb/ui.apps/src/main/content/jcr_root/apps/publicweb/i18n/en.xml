@@ -27,10 +27,198 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.packaging"
         sling:message="Packaging"/>
+    <pw.form.businessenq.packaging.additionalMaterials
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.packaging.additionalMaterials"
+            sling:message="Additional Materials (e.g. Opening, Closures, Straws)"/>
+    <pw.form.businessenq.packaging.fillingMachines
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.packaging.fillingMachines"
+            sling:message="Filling Machines"/>
+    <pw.form.businessenq.packaging.installationServices
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.packaging.installationServices"
+            sling:message="Installation Services"/>
+    <pw.form.businessenq.packaging.multipacksTraysLogistic
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.packaging.multipacksTraysLogistic"
+            sling:message="Multipacks, Trays &amp; Logistic Solutions"/>
+    <pw.form.businessenq.packaging.packagePortfolio
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.packaging.packagePortfolio"
+            sling:message="Package Portfolio"/>
+    <pw.form.businessenq.packaging.startUpOffering
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.packaging.startUpOffering"
+            sling:message="Start-up Offering"/>
     <pw.form.businessenq.processing
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.processing"
         sling:message="Processing"/>
+    <pw.form.businessenq.processing.fc.beverages
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.beverages"
+            sling:message="Beverages"/>
+    <pw.form.businessenq.processing.fc.beverages.alcoholic
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.beverages.alcoholic"
+            sling:message="Alcoholic Beverages"/>
+    <pw.form.businessenq.processing.fc.beverages.dairyAlternative
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.beverages.dairyAlternative"
+            sling:message="Dairy Alternative"/>
+    <pw.form.businessenq.processing.fc.beverages.juiceNectarStillDrinks
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.beverages.juiceNectarStillDrinks"
+            sling:message="Juice, Nectar &amp; Still Drinks"/>
+    <form.businessenq.processing.fc.iceCream
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.iceCream"
+            sling:message="Ice Cream"/>
+    <pw.form.businessenq.processing.fc.cheese
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.cheese"
+            sling:message="Cheese"/>
+    <pw.form.businessenq.processing.fc.cheese.cheddar
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.cheese.cheddar"
+            sling:message="Cheddar"/>
+    <pw.form.businessenq.processing.fc.cheese.pastaFilata
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.cheese.pastaFilata"
+            sling:message="Pasta Filata"/>
+    <pw.form.businessenq.processing.fc.cheese.plantBasedCheeseAlternative
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.cheese.plantBasedCheeseAlternative"
+            sling:message="Plant-based Cheese Alternative"/>
+    <pw.form.businessenq.processing.fc.cheese.semiHardCheese
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.cheese.semiHardCheese"
+            sling:message="Semi-hard Cheese"/>
+    <pw.form.businessenq.processing.fc.cheese.wheyProcessing
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.cheese.wheyProcessing"
+            sling:message="Whey Processing"/>
+    <pw.form.businessenq.processing.fc.cheese.otherVarieties
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.cheese.otherVarieties"
+            sling:message="Other Varieties (spreadable, cottage cheese, etc)"/>
+    <pw.form.businessenq.processing.fc.dairy
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy"
+            sling:message="Dairy"/>
+    <pw.form.businessenq.processing.fc.dairy.concentratedMilk
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.concentratedMilk "
+            sling:message="Concentrated / Condensed Milk"/>
+    <pw.form.businessenq.processing.fc.dairy.cream
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.cream"
+            sling:message="Cream"/>
+    <pw.form.businessenq.processing.fc.dairy.flavoredAndOrValueAddMilk
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.flavoredAndOrValueAddMilk"
+            sling:message="Flavored and/or Value-add Milk"/>
+    <pw.form.businessenq.processing.fc.dairy.milkPowder
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.milkPowder"
+            sling:message="Milk Powder"/>
+    <pw.form.businessenq.processing.fc.dairy.pasteurizedESLMilk
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.pasteurizedESLMilk"
+            sling:message="Pasteurized &amp; ESL Milk"/>
+    <pw.form.businessenq.processing.fc.dairy.recombinedMilk
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.recombinedMilk"
+            sling:message="Recombined Milk"/>
+    <pw.form.businessenq.processing.fc.dairy.uhtMilk
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.uhtMilk"
+            sling:message="UHT Milk"/>
+    <pw.form.businessenq.processing.fc.dairy.yoghurtOrFermentedDairy
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.yoghurtOrFermentedDairy"
+            sling:message="Yoghurt / Fermented Dairy"/>
+    <pw.form.businessenq.processing.fc.dairy.otherDairyProducts
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.dairy.otherDairyProducts"
+            sling:message="Other Dairy Products"/>
+    <pw.form.businessenq.processing.fc.preparedFoods
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.preparedFoods"
+            sling:message="Prepared Foods"/>
+    <pw.form.businessenq.processing.fc.pf.babyFoodFormula
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.pf.babyFoodFormula"
+            sling:message="Baby Food / Infant Formula"/>
+    <pw.form.businessenq.processing.fc.pf.desserts
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.pf.desserts"
+            sling:message="Desserts"/>
+    <pw.form.businessenq.processing.fc.pf.dipsDressings
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.pf.dipsDressings"
+            sling:message="Dips &amp; Dressings"/>
+    <pw.form.businessenq.processing.fc.pf.fruitPreparationsJams
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.pf.fruitPreparationsJams"
+            sling:message="Fruit Preparations / Jams"/>
+    <pw.form.businessenq.processing.fc.pf.sauces
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.pf.sauces"
+            sling:message="Sauces"/>
+    <pw.form.businessenq.processing.fc.pf.spreads
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.pf.spreads"
+            sling:message="Spreads"/>
+    <pw.form.businessenq.processing.fc.pf.soups
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.pf.soups"
+            sling:message="Soups"/>
+    <pw.form.businessenq.processing.fc.pf.tomatoProducts
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.pf.tomatoProducts"
+            sling:message="Tomato Products"/>
+    <pw.form.businessenq.processing.fc.powder
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.powder"
+            sling:message="Powder"/>
+    <pw.form.businessenq.processing.fc.powder.infantFormulaPowder
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.powder.infantFormulaPowder"
+            sling:message="Infant Formula Powder"/>
+    <pw.form.businessenq.processing.fc.powder.milkPowder
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.powder.milkPowder"
+            sling:message="Milk Powder"/>
+    <pw.form.businessenq.processing.fc.powder.plantBasedPowder
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.powder.plantBasedPowder"
+            sling:message="Plant-based Powder"/>
+    <pw.form.businessenq.processing.fc.powder.powderHandling
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.powder.powderHandling"
+            sling:message="Powder Handling"/>
+    <pw.form.businessenq.processing.fc.powder.whey
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.powder.whey"
+            sling:message="Whey"/>
+    <pw.form.businessenq.processing.fc.nonFoodProducts
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.fc.nonFoodProducts"
+            sling:message="Non-food Products"/>
+    <pw.form.businessenq.processing.scope.dontknow
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.scope.equipment"
+            sling:message="Don’t know"/>
+    <pw.form.businessenq.processing.scope.equipment
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.scope.equipment"
+            sling:message="Equipment"/>
+    <pw.form.businessenq.processing.scope.line
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.processing.scope.line"
+            sling:message="Line"/>
     <pw.form.businessenq.requestaquote
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.requestaquote"
@@ -43,6 +231,46 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.services"
         sling:message="Services"/>
+    <pw.form.businessenq.services.automation
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.automation"
+            sling:message="Automation"/>
+    <pw.form.businessenq.services.consultancy
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.consultancy"
+            sling:message="Expert Services (Consultancy)"/>
+    <pw.form.businessenq.services.consumables
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.consumables"
+            sling:message="Consumables (e.g. adhesives, lubricant, membranes)"/>
+    <pw.form.businessenq.services.installation
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.installation"
+            sling:message="Installation"/>
+    <pw.form.businessenq.services.maintenance
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.maintenance"
+            sling:message="Maintenance"/>
+    <pw.form.businessenq.services.parts
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.parts"
+            sling:message="Parts"/>
+    <pw.form.businessenq.services.plantComponents
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.plantComponents"
+            sling:message="Plant Components (e.g. pumps &amp; valves)"/>
+    <pw.form.businessenq.services.servicesAgreements
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.servicesAgreements"
+            sling:message="Services Agreements"/>
+    <pw.form.businessenq.services.training
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.training"
+            sling:message="Training"/>
+    <pw.form.businessenq.services.upgrades
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.services.upgrades"
+            sling:message="Upgrades for Equipment &amp; Machines"/>
     <pw.form.button.download
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.download"
