@@ -126,7 +126,7 @@
             &::before {
                 @include margin-right($margin-sm);
                 display: inline-block;
-                color: $color-tundora;
+                color: $color-emperor;
                 font-size: $bullet-size;
                 content: '\2022';
             }
@@ -136,7 +136,7 @@
             li {
                 &::before {
                     display: inline-block;
-                    color: $color-tundora;
+                    color: $color-emperor;
                     font-size: $bullet-size;
                     content: '\2022';
                 }
@@ -184,7 +184,7 @@
     ol li {
         @include padding-bottom($padding-md);
         &::before {
-            color: $color-tundora;
+            color: $color-emperor;
         }
     }
 

@@ -1,6 +1,6 @@
 body {
     @include line-height($font-l, $font-baseline);
-    color: $color-tundora;
+    color: $color-emperor;
     font-family: $font-family-primary;
     background: $color-wild-sand;
     font-weight: 400;
@@ -29,7 +29,11 @@ a {
     font-family: $font-family-primary;
     font-weight: 400;
     font-size: $font-baseline;
-    color: $color-dark-blue;
+    color: inherit;
+    
+    &:hover {
+        color: inherit;
+    }
 }
 
 .font-fixing {
