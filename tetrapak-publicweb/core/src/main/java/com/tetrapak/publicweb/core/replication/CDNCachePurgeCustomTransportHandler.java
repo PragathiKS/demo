@@ -65,9 +65,7 @@ public class CDNCachePurgeCustomTransportHandler implements TransportHandler {
     @Override
     public final ReplicationResult deliver(final TransportContext ctx, final ReplicationTransaction tx) {
         final ReplicationActionType replicationType = tx.getAction().getType();
-        if (replicationType == ReplicationActionType.TEST) {
-            return cdnCacheInvalidationService.doTest(ctx, tx);
-        } else if (replicationType == ReplicationActionType.ACTIVATE
+        if (replicationType == ReplicationActionType.ACTIVATE
                 || replicationType == ReplicationActionType.DEACTIVATE) {
             return cdnCacheInvalidationService.doActivate(ctx, tx);
         }
