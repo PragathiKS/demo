@@ -1,0 +1,124 @@
+.medialink {
+    &-list {
+        @include margin-bottom($margin-l);
+
+        @media #{$desktop} {
+            @include margin-bottom(0);
+        }
+    }
+    h1, h2 {
+        font-size: $font-l;
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            font-size: $font-xl;
+            @include margin-bottom($margin-l);
+        }
+    }
+    h4 {
+        font-size: $font-md;
+        @include margin-bottom($margin-md);
+
+        color: $color-emperor;
+        font-weight: 500;
+
+        @media #{$desktop} {
+            @include margin-bottom(0);
+        }
+    }
+
+    padding-bottom: $padding-l;
+    @include border-radius($border-radius);
+    @include padding-left($padding-md);
+    @include padding-right($padding-md);
+    @include padding-top($padding-l);
+    @include margin(0 $margin-md);
+    @media #{$desktop} {
+        padding-top: $padding-xxxl;
+        padding-bottom: $padding-l;
+        @include padding-left($padding-xxxl);
+        @include padding-right($padding-xxxl);
+        @include margin(0 $margin-xxxl);
+    }
+
+    &__heading {
+        font-size: $font-l;
+        @include padding-top($padding-zero);
+        @include margin-bottom(0);
+        @media #{$desktop} {
+            font-size: $font-xl;
+            @include padding-top($padding-zero);
+            @include margin-bottom($margin-l);
+        }
+
+        h3 {
+            font-size: $font-l;
+            @include line-height($font-xl, $font-l);
+            font-weight: 400;
+            @media #{$desktop} {
+                @include line-height($line-height-header-m, $font-xl);
+                font-size: $font-xl;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &__subheading {
+        @include margin-bottom($margin-md);
+        @include min-height(24px);
+        margin-top: $margin-l;
+        @media #{$desktop} {
+            margin-top: 0;
+        }
+        h4 {
+            @include padding-left($padding-zero);
+            font-size: $font-md;
+            @include line-height($font-l, $font-md);
+            font-weight: 500;
+        }
+    }
+
+    &__link.tpatom-link--transparent {
+        @include min-height(56px);
+        @include line-height($line-height-body, $font-baseline);
+        display: flex;
+        font-size: $font-baseline;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-mercury;
+        span {
+            @include margin($margin-md);
+            @media #{$desktop} {
+                @include margin-left($margin-zero);
+            }
+            @include line-height($line-height-body, $font-baseline);
+            font-weight: 400;
+        }
+        i.icon {
+            @include margin-left(16px);
+            @include margin-right(16px);
+            @include margin-top(16px);
+            display: inline-block;
+            line-height: $line-height-body;
+            &::before {
+                height: 16px;
+                width: 16px;
+            }
+        }
+        .icon.icon-Circle_Arrow_Right_pw {
+            @include margin-top($margin-md);
+            @include padding-right($padding-md);
+            line-height: $line-height-body;
+        }
+    }
+
+    &__linklist {
+        @media #{$desktop} {
+
+            margin-bottom: $margin-l;
+
+            // &.noMobileHeader {
+            //     margin-bottom: 0;
+            // }
+        }
+    }
+}

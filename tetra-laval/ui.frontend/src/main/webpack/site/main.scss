@@ -1,0 +1,11 @@
+// common styles imported from tetrapak-commons
+@import '~tpCommon/styles/global/common/_imports';
+@import '~tpCommon/styles/global/pw-icon-fonts/_pw-icons.scss';
+@import '~tpCommon/styles/vendor.scss';
+@import '~tpCommon/styles/global/common/placeholders';
+
+// local styles for TL
+@import './new styles/global/default/en/base.scss';
+
+@import '../components/**/*.scss';
+@import '../pages/**/*.scss';

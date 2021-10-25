@@ -1,0 +1,189 @@
+@function getbackgroundcolor($basecolor) {
+    @return rgba($color: $basecolor, $alpha: $alpha-e);
+}
+
+.tl-banner #banner {
+    margin-top: $margin-zero;
+}
+
+.pw-banner {
+    @include margin(0 0 16px 0);
+
+    @media #{$tablet} {
+        @include margin(0 16px);
+    }
+
+    @media #{$desktop} {
+        @include margin(0 48px);
+    }
+    
+    position: relative;
+
+    &__content {
+        @include padding($padding-xxxl);
+
+        @media (max-width: $v-tablet - 1px){
+            @include padding($padding-md);
+        }
+
+        @media #{$tablet} {
+            &--background-white {
+                background-color: getbackgroundcolor($color-white);
+            }
+            &--background-black {
+                background-color: getbackgroundcolor($color-emperor);
+            }
+        }
+        &_wrapper {
+            &.reverse {
+                @media #{$tablet} {
+                    display: flex;
+                    flex-direction: row-reverse;
+                 }
+            }
+            @media #{$tablet} {
+                @include padding(0 $padding-xxxl);
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                align-items: center;
+                position: absolute;
+            }
+            &.pw-banner__content--background-white {
+                color: $color-white;
+            }
+            &.pw-banner__content--background-black {
+                color: $color-emperor;
+            }
+        }
+
+        &__title {
+            @include margin-bottom($margin-md);
+
+            &.hero-title {
+                word-wrap: break-word;
+                font-size: $font-xl;
+                line-height: $line-height-header-m;
+                @media #{$tablet} {
+                    font-weight: bold;
+                    font-size: 56px;
+                    line-height: 64px;
+                }
+
+                &.pw-banner__content--text-white {
+                    color: $color-white;
+                }
+
+                &.pw-banner__content--text-black {
+                    color: $color-emperor;
+                }
+
+                &.pw-banner__content--text-blue {
+                    color: $color-congress-blue;
+                }
+            }
+        }
+
+        &__description {
+            color: $color-white;
+            font-size: $font-baseline;
+            &.pw-banner__content--text-white {
+                color: $color-white;
+            }
+            &.pw-banner__content--text-black {
+                color: $color-emperor;
+            }
+            &.pw-banner__content--text-blue {
+                color: $color-congress-blue;
+            }
+            @include margin-bottom($margin-xl);
+        }
+
+        &__media {
+            a.tpatom-link {
+                padding: 8px 16px;
+                background: $color-congress-blue;
+                color: $color-white;
+                border-radius: 4px;
+                font-weight: 500;
+                font-size: $font-baseline;
+                line-height: $line-height-body;
+                font-family: $font-family-primary;
+
+                &.remove {
+                    display: none;
+                }
+
+                @media #{$tablet} {
+                    &.secondary {
+                        background: $color-white;
+                        color: $color-congress-blue;
+                        border: none;
+                        border-radius: 4px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: $v-tablet - 1px) {
+            &__title {
+                color: $color-emperor !important;
+            }
+            &__description {
+                color: $color-emperor !important;
+            }
+        }
+    }
+
+    &__image {
+        border-radius: 0;
+        width: 100%;
+
+        @media #{$tablet} {
+            border-radius: 4px;
+            min-height: 620px;
+            object-fit: cover;
+        }
+    }
+
+    @media (min-width: $v-tablet) and (max-width: $v-desktop - 1px) {
+        &__content_wrapper .col-lg-7 {
+            flex: 0 0 100%;
+            max-width: 696px;
+        }
+        &__image {
+            min-height: 457px;
+        }
+    }
+
+    picture {
+        @media #{$tablet} {
+            &::before {
+                height: 100%;
+                width: 100%;
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                border-radius: 4px;
+            }
+
+            &.white-bg::before {
+                background: linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+            }
+
+            &.white-bg-reverse::before {
+                background: linear-gradient(90deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.7) 100%);
+            }
+
+            &.black-bg::before {
+                background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(255,255,255,0) 70%);
+            }
+
+            &.black-bg-reverse::before {
+                background: linear-gradient(90deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%);
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+.tl-contact-details {
+  border-radius: 4px;
+  margin: 0 auto 16px auto;
+  padding: 0 16px;
+  @media #{$desktop} {
+    margin: 0 auto 24px auto;
+    padding: 0 48px;
+  }
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    padding: 0 41px;
+  }
+  .page-section {
+    border-radius: 4px;
+    max-width: 1344px;
+    margin: 0 auto;
+  }
+  .contact-row {
+    display: flex;
+    font-size: $font-normal;
+    .col-learnmore-units {
+      margin-bottom: 0;
+    }
+    @media #{$mobile} {
+      flex-direction: column;
+    }
+    h1 {
+      @include margin-top(0);
+      @include margin-bottom($margin-md);
+    }
+    h3 {
+      font-size: $font-l;
+      @include margin-top($margin-l);
+      @include margin-bottom($margin-sm);
+    }
+    .col-half {
+      flex-basis: 50%;
+    }
+  }
+  
+}

@@ -1,0 +1,162 @@
+.pw-text-video {
+    @include border-radius($border-radius);
+    $self: &;
+
+    &--display-row {
+        > .row {
+            flex-direction: row;
+        }
+        .left-pad {
+            order: 2;
+            @media #{$desktop} {
+                padding-right: $padding-l;
+                order: unset;
+            }
+        }
+        .right-pad {
+            @media #{$desktop} {
+                padding-left: $padding-l;
+            }
+        }
+    }
+
+    &--display-row-reversed {
+        > .row {
+            flex-direction: row-reverse;
+        }
+        .left-pad {
+            order: 2;
+            @media #{$desktop} {
+                padding-left: $padding-l;
+                order: unset;
+            }
+        }
+        .right-pad {
+            @media #{$desktop} {
+                padding-right: $padding-l;
+            }
+        }
+    }
+
+    &--display-column {
+        > .row {
+            flex-direction: column;
+        }
+        #{$self}__video {
+            @include margin-top($padding-l);
+            @media #{$desktop} {
+                @include margin-top($margin-xxxl);
+            }
+        }
+    }
+
+    &--display-column-reversed {
+        > .row {
+            flex-direction: column-reverse;
+        }
+        .left-pad {
+            padding-left: 24px;
+        }
+        .right-pad {
+            padding-right: 24px;
+        }
+
+        #{$self}__video {
+            @include margin-bottom($padding-l);
+            @media #{$desktop} {
+                @include margin-bottom($margin-xxxl);
+            }
+        }
+    }
+
+    &__subTitle {
+        @include margin-bottom($margin-sm);
+        @include line-height($line-height-small, $font-sm);
+        color: $color-boulder;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    &__link {
+        @include margin-top($margin-xl);
+        @media #{$desktop} {
+            @include margin-top($margin-xl);
+        }
+        a {
+            font-size: $font-baseline;
+        }
+        .tpatom-btn--primary, 
+        .tpatom-link--primary,
+        .tpatom-btn--secondary, 
+        .tpatom-link--secondary, 
+        .tpatom-btn--primary:hover:not([disabled]), 
+        .tpatom-link--primary:hover:not([disabled]) {
+            background-color: $color-white;
+            border: 1px solid $color-congress-blue;
+            color: $color-congress-blue;
+        }
+    }
+
+    &__title {
+        @include margin-bottom($padding-md);
+        @include line-height($line-height-header-s, $font-m-xl);
+        color: $color-emperor;
+        font-size: $font-l;
+        font-weight: bold;
+        @media #{$desktop} {
+            @include margin-bottom($padding-md);
+            @include line-height($line-height-header-m, $font-xl);
+            font-size: $font-xl;
+        }
+        h3, h2 {
+            font-size: $font-l;
+            font-weight: bold;
+            @media #{$desktop} {
+                font-size: $font-xl;
+            }
+        }
+    }
+
+    &__description {
+        @include margin-bottom($margin-zero);
+        @include line-height($line-height-body, $font-baseline);
+        font-size: $font-baseline;
+        ul {
+            li {
+                display: flex;
+                &::before {
+                    @include margin-right($margin-sm);
+                    display: inline-block;
+                    color: $color-emperor;
+                    content: '\2022';
+                }
+            }
+        }
+        @media #{$desktop} {
+            @include margin-bottom($margin-zero);
+        }
+    }
+
+    &__video {
+        @include border-radius($border-radius);
+        @include margin-bottom($margin-md);
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+
+        @media #{$desktop} {
+            @include margin-bottom(0);
+        }
+
+        video,
+        iframe {
+            @include border-radius($border-radius);
+            @include margin-bottom(0);
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<sly data-sly-use.model="com.tetralaval.models.BannerModel"/>
+    <sly data-sly-test.dataLinkSectionCTAText="${model.buttonColor}" />
+
+<p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+
+<div id="${model.anchorId}" class="tp-container-textImage mt-lg-24 pw-container"
+     title="${model.anchorTitle}" data-module="Banner" data-sly-test="${model.fileReference}">
+    <div class="pw-banner js-pw-banner"
+         data-link-section="Hero Image_imageClick">
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <picture class="${model.imageGradient}">
+                    <source srcset="${model.fileReference}"
+                            media="(min-width: 800px)">
+                    <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                         data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=model.fileReference, altText=model.imageAltText, className='pw-banner__image', isBanner=true, imageRatio='0 0 3 1'}">
+                    </sly>
+                </picture>
+            </div>
+        </div>
+        <div class="row m-0 pw-banner__content_wrapper ${model.layout}">
+            <div class="col-lg-7 col-xl-8 p-0">
+                <div class="pw-banner__content ${model.backgroundColor}">
+                    <h1 class="pw-banner__content__title hero-title ${model.textColor}">${model.title @context='html'}</h1>
+                    <div data-sly-test="${model.text}" class="pw-banner__content__description ${model.textColor}">
+                        ${model.text @context='html'}
+                    </div>
+                    <div class="pw-banner__content__media" data-sly-test="${model.linkPath != '#'}">
+                        <input type="hidden" class="componentName-banner" name="componentName"/>
+                        <a class="tpatom-link ${model.buttonColor} js-banner-analytics" href="${model.linkPath}"
+                           data-link-banner-title="${bannerData.title}" data-link-name="${model.linkLabel}"
+                           data-anchor-type="${dataLinkSectionCTAText}" data-link-section="Hero Image"
+                           data-link-type="${model.linkType}">${model.linkLabel @context='html'}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
