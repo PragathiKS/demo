@@ -15,10 +15,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.viewLargerMap"
         sling:message="View larger map"/>
-    <pw.form.businessenq.bestDescriptionText
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.bestDescriptionText"
-            sling:message="What describes your request the best?"/>
     <pw.form.businessenq.contactme
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.contactme"
@@ -27,18 +23,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.endtoendsolution"
         sling:message="End To End - Solutions"/>
-    <pw.form.businessenq.jobTitle
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.jobTitle"
-            sling:message="Job title"/>
-    <pw.form.businessenq.lookingForAlternativeText
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.lookingForAlternativeText"
-            sling:message="I’m looking for new alternatives or a new solution provider&#xa;"/>
-    <pw.form.businessenq.messagebox.howWeCanHelpText
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.messagebox.howWeCanHelpText"
-            sling:message="How we can help you?"/>
     <pw.form.businessenq.packaging
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.packaging"
@@ -125,7 +109,7 @@
             sling:message="Dairy"/>
     <pw.form.businessenq.processing.fc.dairy.concentratedMilk
             jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.processing.fc.dairy.concentratedMilk"
+            sling:key="pw.form.businessenq.processing.fc.dairy.concentratedMilk "
             sling:message="Concentrated / Condensed Milk"/>
     <pw.form.businessenq.processing.fc.dairy.cream
             jcr:primaryType="sling:MessageEntry"
@@ -163,14 +147,6 @@
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.processing.fc.preparedFoods"
             sling:message="Prepared Foods"/>
-    <pw.form.businessenq.processing.foodCategory
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.processing.foodCategory"
-            sling:message="Food category"/>
-    <pw.form.businessenq.processing.messageBoxPlaceHolderText
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.processing.messageBoxPlaceHolderText"
-            sling:message="Please describe the end-product of production and how we can help you?"/>
     <pw.form.businessenq.processing.fc.pf.babyFoodFormula
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.processing.fc.pf.babyFoodFormula"
@@ -233,7 +209,7 @@
             sling:message="Non-food Products"/>
     <pw.form.businessenq.processing.scope.dontknow
             jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.processing.scope.dontknow"
+            sling:key="pw.form.businessenq.processing.scope.equipment"
             sling:message="Don’t know"/>
     <pw.form.businessenq.processing.scope.equipment
             jcr:primaryType="sling:MessageEntry"
@@ -243,10 +219,6 @@
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.processing.scope.line"
             sling:message="Line"/>
-    <pw.form.businessenq.projectInDevelopmentText
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.projectInDevelopmentText"
-            sling:message="I have a project in development with budget assigned"/>
     <pw.form.businessenq.requestaquote
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.requestaquote"
@@ -255,18 +227,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.requestforproductinfo"
         sling:message="Request for product information"/>
-    <pw.form.businessenq.scopeOfRequest
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.scopeOfRequest"
-            sling:message="Scope of request"/>
-    <pw.form.businessenq.selectOneOrMoreBusinessArea
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.selectOneOrMoreBusinessArea"
-            sling:message="Select one or more business areas"/>
-    <pw.form.businessenq.selectPosition
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.selectPosition"
-            sling:message="Select your position"/>
     <pw.form.businessenq.services
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.services"
@@ -311,10 +271,6 @@
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.services.upgrades"
             sling:message="Upgrades for Equipment &amp; Machines"/>
-    <pw.form.businessenq.specificAreaOfInterest
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.specificAreaOfInterest"
-            sling:message="Specific area of interest"/>
     <pw.form.button.download
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.button.download"
@@ -362,7 +318,7 @@
     <pw.form.errormsg.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.country"
-        sling:message="Please select country/region"/>
+        sling:message="Please select country"/>
     <pw.form.errormsg.firstname
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.firstname"
@@ -391,22 +347,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.position"
         sling:message="Enter your position"/>
-    <pw.form.errormsg.selectFoodCategory
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.errormsg.selectFoodCategory"
-            sling:message="Please select food category"/>
     <pw.form.errormsg.purposeofcontact
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.purposeofcontact"
         sling:message="Please select purpose of contact"/>
-    <pw.form.errormsg.scopeRequest
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.errormsg.scopeRequest"
-            sling:message="Please select scope of request"/>
-    <pw.form.errormsg.selectOneOption
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.errormsg.selectOneOption"
-            sling:message="Please select one option"/>
     <pw.form.errormsg.serviceerror
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.serviceerror"
@@ -451,14 +395,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.heading.typeofvisitor"
         sling:message="Reasons for visit today"/>
-    <pw.form.label.chooseOneOptionText
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.label.chooseOneOptionText"
-            sling:message="Choose one option"/>
-    <pw.form.label.cityWorkspaceText
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.label.cityWorkspaceText"
-            sling:message="City of Workplace"/>
     <pw.form.label.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.company"
@@ -470,11 +406,11 @@
     <pw.form.label.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.country"
-        sling:message="Country/Region"/>
+        sling:message="Country/Location"/>
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
-        sling:message="Select Country/Region"/>
+        sling:message="Select Country/Location"/>
     <pw.form.label.email
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.email"
@@ -487,10 +423,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.firstName"
         sling:message="First name"/>
-    <pw.form.label.function
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.label.function"
-            sling:message="Function"/>
     <pw.form.label.lastName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.lastName"
@@ -510,7 +442,7 @@
     <pw.form.label.phonenumber
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phonenumber"
-        sling:message="Phone number"/>
+        sling:message="Phone number (optional)"/>
     <pw.form.label.phoneplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phoneplaceholder"
@@ -519,10 +451,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.position"
         sling:message="Position"/>
-    <pw.form.label.yourRole
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.label.yourRole"
-            sling:message="Your role"/>
     <pw.form.managepreferences.areasofinterest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.managepreferences.areasofinterest"
@@ -715,6 +643,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.breadcrumb.home"
         sling:message="Home"/>
+     <pw.form.businessenq.jobTitle
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.businessenq.jobTitle"
+        sling:message="Job title"/>
      <pw.form.businessenq.selectPosition
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.selectPosition"
