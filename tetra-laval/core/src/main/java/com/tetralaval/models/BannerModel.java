@@ -3,6 +3,7 @@ package com.tetralaval.models;
 import com.tetralaval.constants.TLConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
@@ -19,7 +20,11 @@ public class BannerModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-    
+
+    /** The headingTag. */
+    @ValueMapValue
+    private String headingTag;
+
     /** The title. */
     @ValueMapValue
     private String title;
@@ -82,6 +87,15 @@ public class BannerModel {
 
     /** The anchor linkType. */
     private String linkType;
+
+    /**
+     * Gets the headingTag.
+     *
+     * @return the headingTag
+     */
+    public String getHeadingTag() {
+        return headingTag;
+    }
 
     /**
      * Gets the title.
