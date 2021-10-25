@@ -68,8 +68,15 @@
                 @media #{$tablet} {
                     color: $color-white;
                     font-weight: bold;
-                    font-size: 56px;
-                    line-height: 64px;
+
+                    &.h1 {
+                        font-size: 56px;
+                        line-height: 64px;
+                    }
+                    &.h2 {
+                        font-size: 32px;
+                        line-height: 40px;
+                    }
                 }
 
                 &.pw-banner__content--text-white {

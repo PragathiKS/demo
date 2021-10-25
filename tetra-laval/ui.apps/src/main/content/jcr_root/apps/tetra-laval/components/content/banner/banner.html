@@ -21,7 +21,10 @@
         <div class="row m-0 pw-banner__content_wrapper ${model.layout}">
             <div class="col-lg-7 col-xl-8 p-0">
                 <div class="pw-banner__content ${model.backgroundColor}">
-                    <h1 class="pw-banner__content__title hero-title ${model.textColor}">${model.title @context='html'}</h1>
+                    <sly data-sly-test.titleStyles="${'pw-banner__content__title hero-title {0} {1}' @ format=[model.textColor,model.headingTag || 'h1']}"/>
+                    <h1 data-sly-test="${!model.headingTag || model.headingTag == 'h1'}" class="${titleStyles}">${model.title @context='html'}</h1>
+                    <h2 data-sly-test="${model.headingTag == 'h2'}" class="${titleStyles}">${model.title @context='html'}</h2>
+
                     <div data-sly-test="${model.text}" class="pw-banner__content__description ${model.textColor}">
                         ${model.text @context='html'}
                     </div>
