@@ -7,11 +7,11 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.SimpleTimeZone;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import javax.crypto.Mac;
@@ -26,7 +26,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.ContentType;
@@ -76,9 +75,6 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     /** The Constant SI_ACTION_EXPIRE. */
     private static final String SI_ACTION_EXPIRE = "expire";
 
-    /** The Constant SI_PROP_TESTURI. */
-    private static final String SI_PROP_TESTURI = "testUri";
-
     /** The Constant BASIC_AUTH_HEADER_PREFIX. */
     private static final String BASIC_AUTH_HEADER_PREFIX = "Basic ";
 
@@ -106,31 +102,6 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
     public void activate(final CDNCacheInvalidationServiceConfig config) {
 
         this.config = config;
-    }
-
-    /**
-     * Send test request to service insight via a GET request.
-     *
-     * service insight will respond with a 200 HTTP status code if the request was successfully submitted. The response
-     * will have information about the queue length, but we're simply interested in the fact that the request was
-     * authenticated.
-     *
-     * @param ctx
-     *            Transport Context
-     * @param tx
-     *            Replication Transaction
-     * @return ReplicationResult OK if 200 response from ServiceInsight
-     */
-    @Override
-    public ReplicationResult doTest(final TransportContext ctx, final ReplicationTransaction tx) {
-        final String uri = ctx.getConfig().getTransportURI().replace(SI_PROTOCOL, StringUtils.EMPTY);
-        final String domain = uri.substring(0, uri.indexOf(PWConstants.SLASH));
-        final String fullHttpUrl = PWConstants.HTTPS_PROTOCOL + domain
-                + ctx.getConfig().getProperties().get(SI_PROP_TESTURI).toString();
-        final HttpGet request = new HttpGet(fullHttpUrl);
-        tx.getLog().info("------ Triggering TEST RUN ------");
-        tx.getLog().info("URL :: " + fullHttpUrl);
-        return getResult(sendRequest(request, ctx, tx, directoryToBePurged), tx);
     }
 
     /**

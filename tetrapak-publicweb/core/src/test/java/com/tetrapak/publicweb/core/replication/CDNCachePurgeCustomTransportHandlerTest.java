@@ -97,19 +97,6 @@ public class CDNCachePurgeCustomTransportHandlerTest {
     }
 
     @Test
-    public void deliver_Test() {
-
-        underTest = MockHelper.getTransportHandler(context, CDNCachePurgeCustomTransportHandler.class);
-        final MockTransportContext transportContext = new MockTransportContext();
-        transportContext.setConfig(config);
-        final ReplicationTransaction replicationTransaction = new MockReplicationTransaction(
-                new ReplicationAction(ReplicationActionType.TEST, "/content/tetrapak/publicweb/gb/en"));
-        // when(replicationTransaction.getAction()).thenReturn(replicationAction);
-        // when(replicationAction.getType()).thenReturn(ReplicationActionType.TEST);
-        assertEquals(ReplicationResult.OK, underTest.deliver(transportContext, replicationTransaction));
-    }
-
-    @Test
     public void deliver_activate() throws Exception {
         underTest = MockHelper.getTransportHandler(context, CDNCachePurgeCustomTransportHandler.class);
         final MockTransportContext transportContext = new MockTransportContext();
