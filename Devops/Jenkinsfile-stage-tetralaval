@@ -63,7 +63,7 @@ pipeline {
 
                 script {
                     if (params.Build_Tetralaval) {
-                        appname = "tetralaval"
+                        appname = "tetra-laval"
                         buildandsonar()
                     }
                 }
@@ -109,7 +109,7 @@ pipeline {
 }
     def buildandsonar() {
                 echo "Build ${appname}"
-                dir("tetrapak-${appname}") {
+                dir("${appname}") {
                 sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
                 sh "npm cache clean --force"
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
