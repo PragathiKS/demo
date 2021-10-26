@@ -114,7 +114,7 @@ pipeline {
                 sh "npm cache clean --force"
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {
-                                                sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-${build_id_number}"
+                                                sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} -Dbaseline.skip=true install deploy -Pminify -Dbuildversion=1.0.0-${build_id_number}"
                                                 if (!params.Sonar_Analysis) {
                         echo "Skipping Sonar execution for customerhub module"
                     } else {
