@@ -64,8 +64,8 @@
             margin-right: auto;
         }
         ul {
-            list-style: unset;
             @include padding-left($margin-l);
+            list-style: unset;
         }
         .teaserMargin {
             @include margin-bottom($margin-xl);
