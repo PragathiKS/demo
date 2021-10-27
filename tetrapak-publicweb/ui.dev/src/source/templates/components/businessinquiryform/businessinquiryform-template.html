@@ -6,7 +6,7 @@
         <div class="tab-content">
           <form class="pw-form pw-form-businessEnquiry" accept-charset="UTF-8" data-bef-api-servlet="${data.apiUrl}"
             data-bef-countryCode="${data.siteCountry}" data-bef-langCode="${data.siteLanguage}" autocomplete="off">
-            <!--step1 start-->
+            <!--step1 start -->
             <div class="bef-tab-pane active" data-stepNumber="1" data-stepName="purposeOfContact" role="tabpanel"
               id="bef-step-1">
               <div class="row no-gutters">
@@ -39,6 +39,15 @@
                 </div>
                 <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep1">
                   <div class="tab-content tab-content-steps">
+                    <div class="row pw-progress" auto_locator="progressBarStep1">
+                      <div class="col-lg-10">
+                        <sly
+                          data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
+                          data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
+                        </sly>
+                      </div>
+                    </div>
+                    <!-- Purpose of Contact -->
                     <div class="row">
                       <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -53,29 +62,59 @@
                           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
                           data-sly-call="${radioField.radiofieldinput_template @ id='requestAProductInfo',  required=true, label='pw.form.businessenq.requestforproductinfo', name='purposeOfContactOptionsInBusinessEq', locale= 'en'}">
                         </sly>
-                        <sly
-                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                          data-sly-call="${radioField.radiofieldinput_template @ id='ContactMe', required=true, label='pw.form.businessenq.contactme', name='purposeOfContactOptionsInBusinessEq', labelClass='mb-0', locale= 'en'}">
-                        </sly>
                         <input type="hidden" name="purposeOfContactInBusinessEqTitle" class="form-control"
                           id="purposeOfContactInBusinessEqTitle" required>
                         <div class="errorMsg purposeOfBusinessContactError">${'pw.form.errormsg.purposeofcontact' @i18n }
                         </div>
                       </div>
                     </div>
-                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
-                      <div class="col-lg-9">
-                        <sly
-                          data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3,4,5]}">
-                        </sly>
+
+                    <!-- Business Area of Interest -->
+                    <div class="row">
+                      <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep2">
+                        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.businessarea', variant='small'}" />
                       </div>
-                      <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                        <p>
-                          ${'pw.form.step {0} of {1}' @i18n, format=['1','5']}
-                        </p>
+
+                      <div class="col-sm-12 formfield">
+                        <div class="form-group">
+                          <div class="checboxField">
+                            <label class="consentlabel" for="baoiPackaging">
+                              <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiPackaging" name="purposeOfContactOptionsInInterestArea" value="${'pw.form.businessenq.packaging' @i18n}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.businessenq.packaging' @i18n}
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="checboxField">
+                            <label class="consentlabel" for="baoiProcessing">
+                              <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiProcessing" name="purposeOfContactOptionsInInterestArea" value="${'pw.form.businessenq.processing' @i18n}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.businessenq.processing' @i18n}
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="checboxField">
+                            <label class="consentlabel" for="baoiServices">
+                              <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiServices" name="purposeOfContactOptionsInInterestArea" value="${'pw.form.businessenq.services' @i18n}">
+                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                ${'pw.form.businessenq.services' @i18n}
+                            </label>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="purposeOfInterestAreaEqTitle" class="form-control"
+                          id="purposeOfInterestAreaEqTitle" required>
+                        <div class="errorMsg purposeOfBusinessIntersetError">
+                          ${'pw.form.errormsg.businessareofinterest' @i18n}
+                        </div>
                       </div>
                     </div>
+
                     <div class="row no-gutters button-group">
                       <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
                         data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-2',icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep1'}" />
@@ -85,9 +124,110 @@
               </div>
             </div>
             <!--step1 end-->
-            <!--step2 start-->
-            <div class="bef-tab-pane" data-stepNumber="2" data-stepName="businesAreaOfInterest"
-              auto_locator="businessEnquiryListContainerStep2" role="tabpanel" id="bef-step-2">
+
+            <!--step 2 - Specific Interest Are - Packaging start -->
+            <div class="bef-tab-pane" data-stepNumber="2" data-stepName="specificIntAreaPackaging" role="tabpanel" id="bef-step-2">
+              <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep2">
+                <div class="row no-gutters">
+                  <div class="col-sm-12 main-heading" data-sly-test="${data.formConfig.heading}"
+                    auto_locator="businessEnquiryLeftContainerHeadingStep2">
+                    <sly data-sly-test="${data.formConfig.heading}"
+                      data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                      data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.heading}" />
+                  </div>
+                </div>
+                <div auto_locator="businessEnquiryLeftContainerSummaryAreaStep2">
+                  <div class="row no-gutters">
+                    <div class="col-sm-12">
+                      <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
+                        data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                        data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
+                    </div>
+                  </div>
+                  <div class="row no-gutters summary">
+                    <div class="col-lg-5">${'pw.form.heading.purposeofcontact' @i18n}</div>
+                    <div class="col-lg-7 purposeOfContactInBusinessEqTitle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep2">
+                <div class="tab-content tab-content-steps">
+                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
+                    <div class="col-lg-10">
+                      <sly
+                        data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
+                        data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
+                      </sly>
+                    </div>
+                  </div>
+
+                  <!-- Level 2 Business Area of Interest -->
+                  <div class="row">
+                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+                      <h4 class="tpatom-heading tpatom-heading--small">Specific area of interest</h4>
+                    </div>
+
+                    <!-- Business Area of Interest - Services -->
+                    <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep2">
+                      <div id="Packaging" data-specificIntType="Packaging">
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiPackagingAdditionalMaterials',  required=true, label='pw.form.businessenq.packaging.additionalMaterials', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiPackagingPackagePortfolio',  required=true, label='pw.form.businessenq.packaging.packagePortfolio', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiPackagingFillingMachines',  required=true, label='pw.form.businessenq.packaging.fillingMachines', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiPackagingMultipacksTraysLogistic',  required=true, label='pw.form.businessenq.packaging.multipacksTraysLogistic', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiPackagingStartUpOffering',  required=true, label='pw.form.businessenq.packaging.startUpOffering', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiPackagingInstallationServices',  required=true, label='pw.form.businessenq.packaging.installationServices', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                      </div>
+
+                      <div id="Processing" data-specificIntType="Processing">
+                        <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+                          <h4 class="tpatom-heading tpatom-heading--small">Scope of request</h4>
+                        </div>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiPackagingAdditionalMaterials',  required=true, label='pw.form.businessenq.packaging.additionalMaterials', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                      </div>
+                      
+                      <input type="hidden" name="specificInterestAreaEqTitle" class="form-control"
+                        id="specificInterestAreaEqTitle" required>
+                      <div class="errorMsg specificInterestAreaError">Please select specific area of interest
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row no-gutters button-group">
+                    <sly
+                      data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                      data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-1', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep2' }" />
+                    <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                      data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-3', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep2' }" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--step 2 end-->
+
+            <!--step 3 - Specific Interest Are - Processing start -->
+            <div class="bef-tab-pane" data-stepNumber="3" data-stepName="specificIntAreaProcessing"
+              auto_locator="businessEnquiryListContainerStep2" role="tabpanel" id="bef-step-3">
               <div class="row no-gutters">
                 <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep2">
                   <div class="row no-gutters">
@@ -114,61 +254,224 @@
                 </div>
                 <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep2">
                   <div class="tab-content tab-content-steps">
-                    <div class="row">
-                      <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep2">
-                        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.businessarea', variant='small'}" />
+                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
+                      <div class="col-lg-10">
+                        <sly
+                          data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
+                          data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
+                        </sly>
                       </div>
-                      <div class="col-sm-12 formfield" auto_locator="businessEnquiryListContainerStep2">
+                    </div>
+
+                    
+                    <!-- Business Area of Interest - Processing Scope of request -->
+                    <div class="row">
+                      <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep2">
+                        <h4 class="tpatom-heading tpatom-heading--small">Scope of request</h4>
                         <sly
                           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                          data-sly-call="${radioField.radiofieldinput_template @ id='Processing', label='pw.form.businessenq.processing', name='purposeOfContactOptionsInInterestArea', locale= 'en'}">
+                          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingEquipment',  required=true, label='pw.form.businessenq.processing.scope.equipment', name='businessAreaInterestProcessingSupport', locale= 'en'}">
                         </sly>
                         <sly
                           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                          data-sly-call="${radioField.radiofieldinput_template @ id='packaging', label='pw.form.businessenq.packaging', name='purposeOfContactOptionsInInterestArea', locale= 'en'}">
+                          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingLine',  required=true, label='pw.form.businessenq.processing.scope.line', name='businessAreaInterestProcessingSupport', locale= 'en'}">
                         </sly>
                         <sly
                           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                          data-sly-call="${radioField.radiofieldinput_template @ id='services', label='pw.form.businessenq.services', name='purposeOfContactOptionsInInterestArea', locale= 'en'}">
+                          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingDontknow',  required=true, label='pw.form.businessenq.processing.scope.dontknow', name='businessAreaInterestProcessingSupport', locale= 'en'}">
                         </sly>
-                        <sly
-                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                          data-sly-call="${radioField.radiofieldinput_template @ id='etesolution', label='pw.form.businessenq.endtoendsolution', name='purposeOfContactOptionsInInterestArea', labelClass='mb-0', locale= 'en'}">
-                        </sly>
-                        <input type="hidden" name="purposeOfInterestAreaEqTitle" class="form-control"
-                          id="purposeOfInterestAreaEqTitle" required>
-                        <div class="errorMsg purposeOfBusinessIntersetError">
-                          ${'pw.form.errormsg.businessareofinterest' @i18n}
+
+                        <div>
+                          <input type="hidden" name="businessAreaInterestProcessingSupportEqTitle" class="form-control" id="businessAreaInterestProcessingSupportEqTitle" required>
+                          <div class="errorMsg specificInterestAreaError">Please select scope of request
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep2">
-                      <div class="col-lg-9">
-                        <sly
-                          data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template @ activeStep=2, totalStep=[1,2,3,4,5]}">
-                        </sly>
-                      </div>
-                      <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                        <p> ${'pw.form.step {0} of {1}' @i18n, format=['2','5']}</p>
+
+                    <!-- Business Area of Interest - Processing Food Category -->
+                    <div class="row">
+                      <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep2">
+                        <h4 class="tpatom-heading tpatom-heading--small">Food Category</h4>
+
+                        <ul class="pw-form-baoiProcessingLevel2">
+                          <li>
+                            <sly
+                              data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                              data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingFoodBeverages',  required=true, label='pw.form.businessenq.processing.fc.beverages', name='businessAreaProcessingCategoryFood', locale= 'en'}">
+                            </sly>
+                          </li>
+                          <li>
+                            <sly
+                              data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                              data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingFoodIceCream',  required=true, label='pw.form.businessenq.processing.fc.iceCream', name='businessAreaProcessingCategoryFood', locale= 'en'}">
+                            </sly>
+                          </li>
+                          <li>
+                            <sly
+                              data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                              data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingFoodCheese',  required=true, label='pw.form.businessenq.processing.fc.cheese', name='businessAreaProcessingCategoryFood', locale= 'en'}">
+                            </sly>
+                          </li>
+                          <li>
+                            <sly
+                              data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                              data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingFoodDairy',  required=true, label='pw.form.businessenq.processing.fc.dairy', name='businessAreaProcessingCategoryFood', locale= 'en'}">
+                            </sly>
+                          </li>
+                          <li>
+                            <sly
+                              data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                              data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingFoodPreparedFoods',  required=true, label='pw.form.businessenq.processing.fc.preparedFoods', name='businessAreaProcessingCategoryFood', locale= 'en'}">
+                            </sly>
+                          </li>
+                          <li>
+                            <sly
+                              data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                              data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingFoodPowder',  required=true, label='pw.form.businessenq.processing.fc.powder', name='businessAreaProcessingCategoryFood', locale= 'en'}">
+                            </sly>
+                          </li>
+                          <li>
+                            <sly
+                              data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                              data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingFoodnonFoodProducts',  required=true, label='pw.form.businessenq.processing.fc.nonFoodProducts', name='businessAreaProcessingCategoryFood', locale= 'en'}">
+                            </sly>
+                          </li>
+                        </ul>
+                        <div>
+                          <input type="hidden" name="businessAreaProcessingCategoryFood" class="form-control" id="businessAreaProcessingCategoryFood" required>
+                          <div class="errorMsg specificInterestAreaError">Please select food category
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    
                     <div class="row no-gutters button-group">
                       <sly
                         data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-1', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep2' }" />
+                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-2', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep2' }" />
                       <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-3', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep2' }" />
+                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-4', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep2' }" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!--step 2 end-->
-            <!--step 3 start-->
-            <div class="bef-tab-pane" data-stepNumber="3" role="tabpanel"
-              auto_locator="businessEnquiryListContainerStep3" id="bef-step-3">
+            <!--step 3 end-->
+
+            <!--step 4 - Specific Interest Are - Services start -->
+            <div class="bef-tab-pane" data-stepNumber="4" data-stepName="specificIntAreaServices" role="tabpanel" id="bef-step-4">
+              <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep2">
+                <div class="row no-gutters">
+                  <div class="col-sm-12 main-heading" data-sly-test="${data.formConfig.heading}"
+                    auto_locator="businessEnquiryLeftContainerHeadingStep2">
+                    <sly data-sly-test="${data.formConfig.heading}"
+                      data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                      data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.heading}" />
+                  </div>
+                </div>
+                <div auto_locator="businessEnquiryLeftContainerSummaryAreaStep2">
+                  <div class="row no-gutters">
+                    <div class="col-sm-12">
+                      <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
+                        data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                        data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
+                    </div>
+                  </div>
+                  <div class="row no-gutters summary">
+                    <div class="col-lg-5">${'pw.form.heading.purposeofcontact' @i18n}</div>
+                    <div class="col-lg-7 purposeOfContactInBusinessEqTitle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep2">
+                <div class="tab-content tab-content-steps">
+                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
+                    <div class="col-lg-10">
+                      <sly
+                        data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
+                        data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
+                      </sly>
+                    </div>
+                  </div>
+
+                  <!-- Level 2 Business Area of Interest -->
+                  <div class="row">
+                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+                      <h4 class="tpatom-heading tpatom-heading--small">Specific area of interest</h4>
+                    </div>
+
+                    <!-- Business Area of Interest - Services -->
+                    <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep2">
+                      <div id="Services" data-specificIntType="Services">
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesMaintenance',  required=true, label='pw.form.businessenq.services.maintenance', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesTraining',  required=true, label='pw.form.businessenq.services.training', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesConsultancy',  required=true, label='pw.form.businessenq.services.consultancy', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesAutomation',  required=true, label='pw.form.businessenq.services.automation', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesInstallation',  required=true, label='pw.form.businessenq.services.installation', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesAgreements',  required=true, label='pw.form.businessenq.services.servicesAgreements', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesParts',  required=true, label='pw.form.businessenq.services.parts', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesConsumables',  required=true, label='pw.form.businessenq.services.consumables', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesPlantComponents',  required=true, label='pw.form.businessenq.services.plantComponents', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesUpgrades',  required=true, label='pw.form.businessenq.services.upgrades', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesOther',  required=true, label='Other(specify in next step)', name='businessAreaInterest', locale= 'en'}">
+                        </sly>
+                      </div>
+
+                      <input type="hidden" name="specificInterestAreaEqTitle" class="form-control"
+                        id="specificInterestAreaEqTitle" required>
+                      <div class="errorMsg specificInterestAreaError">Please select specific area of interest
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row no-gutters button-group">
+                    <sly
+                      data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                      data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-4', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep2' }" />
+                    <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+                      data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-5', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep2' }" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--step 4 end-->
+
+            <!--step 5 - Request Fields start -->
+            <div class="bef-tab-pane" data-stepNumber="5" data-stepName="request" role="tabpanel"
+              auto_locator="businessEnquiryListContainerStep3" id="bef-step-5">
               <div class="row no-gutters">
                 <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep3">
                   <div class="row no-gutters">
@@ -199,173 +502,84 @@
                 </div>
                 <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep3">
                   <div class="tab-content tab-content-steps">
-                    <div class="row">
-                      <div class="col-sm-12 right-heading form-field-heading"
-                        data-step-heading="${'pw.form.heading.howcanihelp' @i18n}"
-                        auto_locator="businessEnquiryContainerHeadingTextStep3">
-                        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.howcanihelp', variant='small'}" />
-                      </div>
-                      <div class="col-sm-12">
-                        <div class="formfield">
-                          <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
-                            for="messageText">${'pw.form.label.message' @i18n}</label>
-                          <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
-                            id="businessEnquiryMessageText" rows="12" name="message" required></textarea>
-                          <div data-error-msg="${'pw.form.errormsg.messagebox' @i18n}" class="errorMsg">
-                            ${'pw.form.errormsg.messagebox' @i18n}</div>
-                        </div>
-                      </div>
-                    </div>
                     <div class="row no-gutters pw-progress" auto_locator="progressBarStep3">
-                      <div class="col-lg-9">
+                      <div class="col-lg-10">
                         <sly
                           data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template @ activeStep=3, totalStep=[1,2,3,4,5]}">
+                          data-sly-call="${progressBar.progressbar_template @ activeStep=2, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
                         </sly>
                       </div>
-                      <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                        <p> ${'pw.form.step {0} of {1}' @i18n, format=['3','5']}</p>
-                      </div>
                     </div>
-                    <div class="row no-gutters button-group">
-                      <sly
-                        data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-2', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep3' }" />
-                      <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-4', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep3' }" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- step 3 end -->
-            <!--step 4 start-->
-            <div class="bef-tab-pane" data-stepNumber="4" role="tabpanel"
-              auto_locator="businessEnquiryListContainerStep4" id="bef-step-4">
-              <div class="row no-gutters">
-                <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep4">
-                  <div class="row no-gutters">
-                    <div class="col-sm-12 main-heading" auto_locator="businessFormLeftContainerHeadingStep4">
-                      <sly data-sly-test="${data.formConfig.heading}"
-                        data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                        data-sly-call="${heading.heading_h2_template @ headingText=data.formConfig.heading}" />
-                    </div>
-                  </div>
-                  <div auto_locator="businessFormLeftContainerSummaryAreaStep4">
-                    <div class="row no-gutters">
-                      <div class="col-sm-12">
-                        <sly data-sly-test="${'pw.form.heading.summary' @i18n}"
-                          data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
 
-                      </div>
-                    </div>
-                    <div class="row no-gutters summary">
-                      <div class="col-lg-5">${'pw.form.heading.purposeofcontact' @i18n}</div>
-                      <div class="col-lg-7 purposeOfContactInBusinessEqTitle"></div>
-                    </div>
-                    <div class="row no-gutters summary">
-                      <div class="col-lg-5">${'pw.form.heading.businessarea' @i18n}</div>
-                      <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
-                    </div>
-                    <div class="row no-gutters summary">
-                      <div class="col-lg-5">${'pw.form.label.message' @i18n}</div>
-                      <div class="col-lg-7 message"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep4">
-                  <div class="tab-content tab-content-steps">
+                    <!-- Level 3 Business Area of Interest -->
                     <div class="row">
-                      <div class="col-sm-12">
-                        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.contactinformation', variant='small'}" />
-                      </div>
-                      <div class="col-sm-12 formfield">
-                        <div class="formfield">
-                          <sly
-                            data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='firstNameField', label='pw.form.label.firstName', error='pw.form.errormsg.firstname', required=true, autoLocatorInput='firstNameInput', autoLocatorLabel='firstNameHelpText', inputClass='validateForTags'}">
-                          </sly>
-                        </div>
-                        <div class="formfield">
-                          <sly
-                            data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='lastNameField', label='pw.form.label.lastName', error='pw.form.errormsg.lastname', required=true, autoLocatorInput='lastNameInput', autoLocatorLabel='lastNameHelpText', inputClass='validateForTags'}">
-                          </sly>
-                        </div>
-                        <div class="formfield">
-                          <sly
-                            data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='email', id='emailBef', label='pw.form.label.email' , placeholder='pw.form.label.emailPlaceholder', required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags'}">
-                          </sly>
-                        </div>
-                        <div class="formfield">
-                          <sly
-                            data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='phoneField', label='pw.form.label.phonenumber' , placeholder='pw.form.label.phoneplaceholder',   autoLocatorInput='phoneInput', autoLocatorLabel='phoneText', inputClass='validateForTags'}">
-                          </sly>
-                        </div>
-                        <div class="country-field-wrapper col-sm-12 col-lg-6">
-                          <div class="formfield country-field country"
-                            data-country-name-label="${'pw.form.country' @i18n}">
-                            <label class="country-value" for="country"
-                              auto_locator="businessContactUsCountrySelectorHelpText">${'pw.form.label.country' @
-                              i18n}</label>
-                            <div class="pw-form__dropdown dropdown text-left">
-                              <button
-                                class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
-                                type="button" data-toggle="dropdown" aria-haspopup="true"
-                                auto_locator="countrySelectDropdown" aria-expanded="false">
-                                <span class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
-                                  @ i18n}</span>
-                                <i class="icon icon-Arrow_Right_pw"></i></button>
-                              </button>
-                              <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
-                                data-sly-list.country="${data.countryOptions}">
-                                <a href="#" class="dropdown-item" data-country="${country.key}"
-                                  data-countrytitle="${country.value}">
-                                  ${country.value}
-                                </a>
-                              </div>
-                              <input type="hidden" name="countryTitle" class="form-control validateForTags" id="country"
-                                required>
-                            </div>
-                            <div data-country-error-msg="${'pw.form.errormsg.country' @i18n}" class="errorMsg">
-                              ${'pw.form.errormsg.country' @i18n}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep4">
-                      <div class="col-lg-9">
+                      <!-- Business Area of Interest - Services -->
+                      <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep2">
+                        <h4 class="tpatom-heading tpatom-heading--small">What describes your request the best?</h4>
                         <sly
-                          data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template @ activeStep=4, totalStep=[1,2,3,4,5]}">
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='requestBusinessEnquiryDevelopment',  required=true, label='I have a project in development with a budget assigned', name='businessEnquiryNeed', locale= 'en'}">
+                        </sly>
+                        <sly
+                          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+                          data-sly-call="${radioField.radiofieldinput_template @ id='requestBusinessEnquirySolution',  required=true, label='I’m looking for new alternatives or a new solution provider', name='businessEnquiryNeed', locale= 'en'}">
                         </sly>
                       </div>
-                      <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                        <p> ${'pw.form.step {0} of {1}' @i18n, format=['4','5']}</p>
+                      <div class="country-field-wrapper col-sm-12 col-lg-6">
+                        <div class="formfield country-field country"
+                          data-country-name-label="${'pw.form.country' @i18n}">
+                          <label class="country-value" for="country"
+                            auto_locator="businessContactUsCountrySelectorHelpText">${'pw.form.label.country' @
+                            i18n}</label>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button
+                              class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                              type="button" data-toggle="dropdown" aria-haspopup="true"
+                              auto_locator="countrySelectDropdown" aria-expanded="false">
+                              <span class="js-pw-form__dropdown__country-text">${'pw.form.label.countryPlaceholder'
+                                @ i18n}</span>
+                              <i class="icon icon-Arrow_Right_pw"></i></button>
+                            </button>
+                            <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
+                              data-sly-list.country="${data.countryOptions}">
+                              <a href="#" class="dropdown-item" data-country="${country.key}"
+                                data-countrytitle="${country.value}">
+                                ${country.value}
+                              </a>
+                            </div>
+                            <input type="hidden" name="countryTitle" class="form-control validateForTags" id="country"
+                              required>
+                          </div>
+                          <div data-country-error-msg="${'pw.form.errormsg.country' @i18n}" class="errorMsg">
+                            ${'pw.form.errormsg.country' @i18n}</div>
+                        </div>
+                      </div>
+                      <div class="formfield">
+                        <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
+                          for="messageText">${'pw.form.label.message' @i18n}</label>
+                        <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
+                          id="businessEnquiryMessageText" rows="12" name="message" required></textarea>
+                        <div data-error-msg="${'pw.form.errormsg.messagebox' @i18n}" class="errorMsg">
+                          ${'pw.form.errormsg.messagebox' @i18n}</div>
                       </div>
                     </div>
-                    <input type="text" name="pardot_extra_field" id="pardot_extra_field_bef" class="d-none"
-                      tabindex="-1" title="pardot business enquiry inpuut field" />
+
                     <div class="row no-gutters button-group">
                       <sly
                         data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-3', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep4' }" />
+                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-5', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep3' }" />
                       <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-5', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep4' }" />
+                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-6', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep3' }" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!--step 4 end-->
-            <!--step 5 start-->
-            <div class="bef-tab-pane" data-stepNumber="5" data-stepName="contactInfo" role="tabpanel"
-              auto_locator="businessEnquiryListContainerStep5" id="bef-step-5">
+            <!-- step 5 end -->
+
+            <!--step 6 start -->
+            <div class="bef-tab-pane" data-stepNumber="6" data-stepName="contactInfo" role="tabpanel"
+              auto_locator="businessEnquiryListContainerStep5" id="bef-step-6">
               <div class="row no-gutters">
                 <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep5">
                   <div class="row no-gutters">
@@ -420,6 +634,20 @@
                 </div>
                 <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep5">
                   <div class="tab-content tab-content-steps">
+                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep5">
+                      <div class="col-lg-10">
+                        <sly
+                          data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
+                          data-sly-call="${progressBar.progressbar_template @ activeStep=3, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
+                        </sly>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 heading-summary">
+                        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.companyinformation', variant='small'}" />
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="col-sm-12 heading-summary">
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
@@ -465,11 +693,11 @@
                         <div class="formfield">
                           <div class="form-group formfield">
                             <div class="checboxField">
-                              <label class="consentlabel" for="befconsentcheckbox"><input type="checkbox"
-                                  class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left"
-                                  id="befconsentcheckbox" name="consent">
-                                <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
-                                ${data.consentConfig.marketingConsent @ context='html'}</label>
+                              <label class="consentlabel" for="befconsentcheckbox">
+                                <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="befconsentcheckbox" name="consent">
+                                  <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                  ${data.consentConfig.marketingConsent @ context='html'}
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -478,21 +706,10 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row no-gutters pw-progress" auto_locator="progressBarStep5">
-                      <div class="col-lg-9">
-                        <sly
-                          data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template @ activeStep=5, totalStep=[1,2,3,4,5]}">
-                        </sly>
-                      </div>
-                      <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                        <p> ${'pw.form.step {0} of {1}' @i18n, format=['5','5']}</p>
-                      </div>
-                    </div>
                     <div class="row no-gutters button-group">
                       <sly
                         data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-4', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep5' }" />
+                        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-6', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep5' }" />
                       <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
                         data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.submit', btnType='submit', btnTarget='#bef-step-final', autoLocator='businessFormSubmitButtonStep5', customClasses='previewLinkBtn'}" />
                     </div>
@@ -500,8 +717,9 @@
                 </div>
               </div>
             </div>
-            <!---step 5 end-->
-            <!--step 6 start-->
+            <!---step 6 end-->
+
+            <!--step Final start -->
             <div class="bef-tab-pane" role="tabpanel" id="bef-step-final"
               auto_locator="businessEnquiryListContainerStepFinal">
               <div class="row no-gutters thankyou">
@@ -533,7 +751,7 @@
                 </div>
               </div>
             </div>
-            <!--step 6 end-->
+            <!--step Final end-->
           </form>
         </div>
       </div>

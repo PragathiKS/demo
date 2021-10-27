@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
@@ -20,8 +21,8 @@ class Businessinquiryform {
     }
     this.cache.businessformapi = this.root.find('form.pw-form-businessEnquiry');
     this.cache.$nextbtn = this.root.find('.pw-businessEnquiry-form .tpatom-btn[type=button]');
-    this.cache.$radioListFirst = this.root.find('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]');
-    this.cache.$radioListSecond = this.root.find('input[type=radio][name="purposeOfContactOptionsInInterestArea"]');
+    this.cache.$purposeContact = this.root.find('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]');
+    this.cache.$businessInterest = this.root.find('input[type=checkbox][name="purposeOfContactOptionsInInterestArea"]');
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
     this.cache.$submitBtn = $('form.pw-form-businessEnquiry button[type="submit"]', this.root);
     this.cache.$inputText = $('form.pw-form-businessEnquiry  input[type="text"]', this.root);
@@ -158,7 +159,7 @@ class Businessinquiryform {
   }
 
 
-  onRadioChangeHandlerFirst = e => {
+  onPurposeOfContactHandler = e => {
     const { requestPayload } = this.cache;
     const id = e.target.id;
     const value = e.target.value;
@@ -169,15 +170,24 @@ class Businessinquiryform {
     requestPayload['purposeOfContactInBusinessEqTitle'] = labelValue;
   }
 
-  onRadioChangeHandlerSecond = e => {
-    const { requestPayload } = this.cache;
+  onBusinessInterestChangeHandler = e => {
+    const { requestPayload, $businessInterest } = this.cache;
     const id = e.target.id;
     const value = e.target.value;
+
+    $businessInterest.each(function() {
+      console.log('Hiren Current Item >>>', $(this), $(this).val());
+      if($(this).prop('checked')) {
+        console.log('Hiren Parmar - Checkbox checked=true');
+      } else {
+        console.log('Hiren Parmar - Checkbox checked=false');
+      }
+    });
     const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(labelValue);
-    requestPayload['areaOfInterest'] = id;
+    requestPayload['areaOfInterest'] = value;
     requestPayload['purposeOfInterestAreaEqTitle'] = labelValue;
     requestPayload['areaOfInterestTitle'] = value;
+    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(labelValue);
   }
 
   checkMessageLength = () => {
@@ -189,10 +199,10 @@ class Businessinquiryform {
 
 
   bindEvents() {
-    const { requestPayload, $radioListFirst, $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn, $dropItem, $positionDropItem } = this.cache;
+    const { requestPayload, $purposeContact, $businessInterest, $newRequestBtn, $nextbtn, $submitBtn, $dropItem, $positionDropItem } = this.cache;
     const self = this;
-    $radioListFirst.on('change', this.onRadioChangeHandlerFirst);
-    $radioListSecond.on('change', this.onRadioChangeHandlerSecond);
+    $purposeContact.on('change', this.onPurposeOfContactHandler);
+    $businessInterest.on('change', this.onBusinessInterestChangeHandler);
     $newRequestBtn.on('click', this.newRequestHanlder);
 
     $nextbtn.click(function (e) {
@@ -231,12 +241,13 @@ class Businessinquiryform {
             e.stopPropagation();
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim(), fieldName = $(this).attr('name');
             let erLbl = '';
+            console.log('Hiren Parmar Field Name >>>', fieldName, isvalid);
             switch (fieldName) {
             case 'purposeOfContactInBusinessEqTitle':
               erLbl = self.step1head;
               break;
             case 'purposeOfInterestAreaEqTitle':
-              erLbl = self.step2head;
+              erLbl = self.step1head;
               break;
             case 'message':
               erLbl = $('#bef-step-3 label')[0].textContent;
@@ -355,7 +366,7 @@ class Businessinquiryform {
               erLbl = self.step1head;
               break;
             case 'purposeOfInterestAreaEqTitle':
-              erLbl = self.step2head;
+              erLbl = self.step1head;
               break;
             case 'firstNameField':
               erLbl = $('#bef-step-4 label')[0].textContent;
