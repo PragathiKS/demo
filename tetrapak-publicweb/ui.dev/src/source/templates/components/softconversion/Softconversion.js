@@ -232,8 +232,6 @@ class Softconversion {
       apiPayload.pardot_extra_field = '';
       apiPayload.pardotUrl = pardotUrl;
       apiPayload.pageurl = this.cache.requestPayload['pageurl'];
-      apiPayload.marketingConsent = true;
-
       ajaxWrapper.getXhrObj({
         url: servletPath,
         method: ajaxMethods.POST,
