@@ -11,17 +11,6 @@ import com.tetrapak.publicweb.core.beans.DropdownOption;
  * The Interface CountryDetailService.
  */
 public interface CountryDetailService {
-
-    /**
-     * Fetch country list.
-     *
-     * @param resourceResolver
-     *            the resource resolver
-     * @param formType
-     *            the String
-     * @return the list
-     */
-    List<DropdownOption> fetchCountryList(ResourceResolver resourceResolver, String formType);
     
     /**
      * Fetch pardot country list.
@@ -42,13 +31,6 @@ public interface CountryDetailService {
      * @return the string[]
      */
     String[] fetchContactEmailAddresses(ContactUs contactUs, ResourceResolver resourceResolver);
-
-    /**
-     * Gets the country cf root path.
-     *
-     * @return the country cf root path
-     */
-    String getCountryCfRootPath();
     
     /**
      * Gets the pardot country cf root path.
