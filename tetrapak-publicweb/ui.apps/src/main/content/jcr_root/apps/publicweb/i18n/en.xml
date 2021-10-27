@@ -391,6 +391,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.position"
         sling:message="Enter your position"/>
+    <pw.form.errormsg.selectFoodCategory
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.errormsg.selectFoodCategory"
+            sling:message="Please select food category"/>
     <pw.form.errormsg.purposeofcontact
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.purposeofcontact"
