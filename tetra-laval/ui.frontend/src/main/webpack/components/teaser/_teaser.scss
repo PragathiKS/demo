@@ -63,6 +63,10 @@
             margin-left: auto;
             margin-right: auto;
         }
+        ul {
+            @include padding-left($margin-l);
+            list-style: unset;
+        }
         .teaserMargin {
             @include margin-bottom($margin-xl);
             @media #{$desktop} {
