@@ -33,7 +33,7 @@ class Businessinquiryform {
     this.cache.$countryField = this.root.find('.formfield.country-field');
     this.cache.$positionField = this.root.find('.formfield.position-field');
     this.cache.$formInfo = this.root.find('form');
-    this.cache.$isFormStart = false;
+    this.cache.$isFormStart = false;    
     this.cache.requestPayload = {
       'domainURL': window.location.host,
       'purposeOfContact': '',
@@ -45,6 +45,10 @@ class Businessinquiryform {
       'phoneField': '',
       'purposeOfContactInBusinessEqTitle': '',
       'purposeOfInterestAreaEqTitle': '',
+      'specificInterestAreaPackagingEqTitle': '',
+      'businessAreaInterestProcessingSupportEqTitle': '',
+      'businessAreaProcessingCategoryFoodEqtitle': '',
+      'businessAreaInterestServicesEqTitle': '',
       'company': '',
       'position': '',
       'country': '',
@@ -177,6 +181,7 @@ class Businessinquiryform {
 
     $businessInterest.each(function() {
       console.log('Hiren Current Item >>>', $(this), $(this).val());
+      $businessInterest = $(this).val();
       if($(this).prop('checked')) {
         console.log('Hiren Parmar - Checkbox checked=true');
       } else {
@@ -221,6 +226,9 @@ class Businessinquiryform {
           break;
         case '#bef-step-4':
           changeStepPrev(self.mainHead, 'Step 5', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          break;
+        case '#bef-step-5':
+          changeStepPrev(self.mainHead, 'Step 6', self.step6head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
           break;
         default:
           break;
@@ -307,6 +315,9 @@ class Businessinquiryform {
             case '#bef-step-5':
               changeStepNext(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj });
               break;
+            case '#bef-step-6':
+              changeStepNext(self.mainHead, 'Step 4', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj });
+              break;
             default:
               break;
             }
@@ -326,8 +337,11 @@ class Businessinquiryform {
         case '#bef-step-5':
           changeStepError(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
-        case '#bef-step-final':
+        case '#bef-step-6':
           changeStepError(self.mainHead, 'Step 5', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          break;
+        case '#bef-step-final':
+          changeStepError(self.mainHead, 'Step 5', self.step6head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         default:
           break;
@@ -468,6 +482,7 @@ class Businessinquiryform {
     this.step3head = $('#bef-step-3 .tab-content-steps').find('h4').text();
     this.step4head = $('#bef-step-4 .tab-content-steps').find('h4').text();
     this.step5head = $('#bef-step-5 .tab-content-steps').find('h4').text();
+    this.step6head = $('#bef-step-6 .tab-content-steps').find('h4').text();
     this.mainHead = $($('.pw-businessEnquiry-form .main-heading').find('h2')[0]).text().trim();
     this.restObj = {};
     this.restObj2 = {};
