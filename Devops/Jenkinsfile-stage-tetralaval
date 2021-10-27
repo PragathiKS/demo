@@ -62,15 +62,15 @@ pipeline {
                 }
 
                 script {
-                    if (params.Build_Tetralaval) {
-                        appname = "tetra-laval"
+                    if (params.Build_Publicweb) {
+                        appname = "publicweb"
                         buildandsonar()
                     }
                 }
 
                 script {
-                    if (params.Build_Publicweb) {
-                        appname = "publicweb"
+                    if (params.Build_Tetralaval) {
+                        appname = "tetra-laval"
                         buildandsonar()
                     }
                 }
