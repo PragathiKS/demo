@@ -1,10 +1,6 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 
@@ -76,11 +72,85 @@ public class BusinessInquiryModel extends FormModel {
 	}
 
 	/**
+	 * Get the tags Value for displaying Processing Roles.
+	 *
+	 */
+	public Map<String, String> getTagProcessingRoles() {
+		final String[] tagsCheck = formConfig.getProfileTags();
+		final String rootTag = tagsCheck[Arrays.asList(tagsCheck).indexOf("pardot-system-config:processing-roles")];
+		final ResourceResolver resolver = resource.getResourceResolver();
+		final TagManager tagManager = resolver.adaptTo(TagManager.class);
+		final Tag tag = tagManager.resolve(rootTag);
+		final Iterator<Tag> tagIterator = tag.listChildren();
+		final Map<String, String> tagsValues = new LinkedHashMap<>();
+		String otherTagName = StringUtils.EMPTY;
+		String otherTagTitle = StringUtils.EMPTY;
+		while (tagIterator.hasNext()) {
+			final Tag childtag = tagIterator.next();
+			final String defaultTagTitle = childtag.getTitle();
+			final String tagName = childtag.getName();
+			final String localizedTagTitle = childtag
+					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
+
+			if (tagName.equalsIgnoreCase("other")) {
+				otherTagTitle = localizedTagTitle != null ? localizedTagTitle : defaultTagTitle;
+				otherTagName = childtag.getName();
+			} else {
+				if (null != localizedTagTitle) {
+					tagsValues.put(tagName, localizedTagTitle);
+				} else {
+					tagsValues.put(tagName, defaultTagTitle);
+				}
+			}
+		}
+		tagsValues.put(otherTagName, otherTagTitle);
+		return tagsValues;
+	}
+
+	/**
+	 * Get the tags Value for displaying Function.
+	 *
+	 */
+	public Map<String, String> getTagFunctions() {
+		final String[] tagsCheck = formConfig.getProfileTags();
+		final String rootTag = tagsCheck[Arrays.asList(tagsCheck).indexOf("pardot-system-config:function")];
+		final ResourceResolver resolver = resource.getResourceResolver();
+		final TagManager tagManager = resolver.adaptTo(TagManager.class);
+		final Tag tag = tagManager.resolve(rootTag);
+		final Iterator<Tag> tagIterator = tag.listChildren();
+		final Map<String, String> tagsValues = new LinkedHashMap<>();
+		String otherTagName = StringUtils.EMPTY;
+		String otherTagTitle = StringUtils.EMPTY;
+		while (tagIterator.hasNext()) {
+			final Tag childtag = tagIterator.next();
+			final String defaultTagTitle = childtag.getTitle();
+			final String tagName = childtag.getName();
+			final String localizedTagTitle = childtag
+					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
+
+			if (tagName.equalsIgnoreCase("other")) {
+				otherTagTitle = localizedTagTitle != null ? localizedTagTitle : defaultTagTitle;
+				otherTagName = childtag.getName();
+			} else {
+				if (null != localizedTagTitle) {
+					tagsValues.put(tagName, localizedTagTitle);
+				} else {
+					tagsValues.put(tagName, defaultTagTitle);
+				}
+			}
+		}
+		tagsValues.put(otherTagName, otherTagTitle);
+		return tagsValues;
+	}
+
+
+	/**
 	 * Get the tags Value for displaying Position.
 	 *
 	 */
 	public Map<String, String> getTagTitles() {
-		final String rootTag = formConfig.getProfileTags();
+		final String[] tagsCheck = formConfig.getProfileTags();
+		final String rootTag = tagsCheck[Arrays.asList(tagsCheck).indexOf("pardot-system-config:job-title")];
 		final ResourceResolver resolver = resource.getResourceResolver();
 		final TagManager tagManager = resolver.adaptTo(TagManager.class);
 		final Tag tag = tagManager.resolve(rootTag);
