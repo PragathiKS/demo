@@ -10,7 +10,13 @@
                     <button type="button" class="tp-close-btn icon-Close_pw tp-pw-qrCode__header__close js-close-btn" aria-label="close button" title="close button"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="${qrcodeImg}" alt="${qrcodeAlt}" />
+                    
+                    <sly data-sly-test="${!wcmmode.edit}">
+                        <sly data-sly-test="${qrcodeImg != null}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=qrcodeImg, altText=qrcodeAlt, componentName='footerQr', className='image img-responsive'}" />
+                    </sly>
+                    <sly data-sly-test = "${wcmmode.edit}">
+                        <img data-sly-test = "${qrcodeImg != null}" alt="${qrcodeAlt}" src="${qrcodeImg}" class="image img-responsive" />
+                    </sly>
                 </div>
             </div>
         </div>
