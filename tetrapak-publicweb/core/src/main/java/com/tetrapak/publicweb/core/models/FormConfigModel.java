@@ -51,7 +51,7 @@ public class FormConfigModel {
 	@ValueMapValue
 	private String[] tags;
 
-	public String[] getPardotSystemConfigTags() {
+	public String[] getProfileTags() {
 		return tags;
 	}
 
