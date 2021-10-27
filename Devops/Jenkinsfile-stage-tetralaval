@@ -61,14 +61,19 @@ pipeline {
                                         }
                 }
 
-                script {
+                   script {
                     if (params.Build_Publicweb) {
                         appname = "publicweb"
                         buildandsonar()
                     }
+                
+                    else {
+					    dir('tetrapak-publicweb') {
+					        sh "npm install --prefix ui.dev/src"
+						}
+					}
                 }
-
-                script {
+                   script {
                     if (params.Build_Tetralaval) {
                         appname = "tetra-laval"
                         buildandsonar()
