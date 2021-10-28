@@ -16,7 +16,6 @@ import org.junit.Test;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.services.impl.CountryDetailServiceImpl;
-import com.tetrapak.publicweb.core.services.impl.PardotServiceImpl;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -132,7 +131,7 @@ public class SubscriptionFormModelTest {
     @Test
     public void testCountries() throws Exception {
         assertEquals("ContactUs", 2, model.getCountryOptions().size());
-        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
+        assertEquals("ContactUs", "Albania", model.getCountryOptions().get(0).getKey());
 
     }
 }

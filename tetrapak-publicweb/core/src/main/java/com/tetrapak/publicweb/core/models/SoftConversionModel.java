@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.models;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +17,10 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
@@ -180,5 +186,42 @@ public class SoftConversionModel extends FormModel {
      */
     private void setCountryOptions() {
         this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
+    }
+    
+    /**
+     * Gets the position options.
+     *
+     * @return the position options
+     */
+    public List<DropdownOption> getPositionOptions(){
+    	return fetchTags(formConfig.getPositionTagsPath());
+    }
+    
+    /**
+     * Gets the function options.
+     *
+     * @return the function options
+     */
+    public List<DropdownOption> getFunctionOptions(){
+    	return fetchTags(formConfig.getFunctionTagsPath());
+    }
+    
+    private List<DropdownOption> fetchTags(String tagPath){
+    	final List<DropdownOption> tagOptions = new ArrayList<>();
+    	if(StringUtils.isNotEmpty(tagPath)) {
+	    	final TagManager tagManager = resource.getResourceResolver().adaptTo(TagManager.class);
+	    	final Tag rootTag = tagManager.resolve(tagPath);
+	    	if(Objects.nonNull(rootTag)) {
+		    	final Iterator<Tag> childTagsIterator = rootTag.listChildren();
+		    	while(childTagsIterator.hasNext()) {
+		    		DropdownOption option = new DropdownOption();
+		    		final Tag tag = childTagsIterator.next();
+		    		option.setKey(tag.getLocalizedTitle(Locale.ENGLISH));
+		    		option.setValue(tag.getLocalizedTitle(Locale.ENGLISH));
+		    		tagOptions.add(option);
+		    	}
+	    	}	
+    	}
+    	return tagOptions;
     }
 }
