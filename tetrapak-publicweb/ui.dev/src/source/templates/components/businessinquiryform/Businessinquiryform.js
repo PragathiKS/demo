@@ -177,22 +177,29 @@ class Businessinquiryform {
   onBusinessInterestChangeHandler = e => {
     const { requestPayload, $businessInterest } = this.cache;
     const id = e.target.id;
-    const value = e.target.value;
+    let value = e.target.value;
+    const checkedItems = [];
+    const labelValue = $('label[for="'+id+'"]').text().trim();
 
     $businessInterest.each(function() {
-      console.log('Hiren Current Item >>>', $(this), $(this).val());
-      $businessInterest = $(this).val();
       if($(this).prop('checked')) {
+        value = $(this).val();
+        console.log('Checked Value >>>', value, labelValue);
+        requestPayload['areaOfInterest'] = value;
+        requestPayload['purposeOfInterestAreaEqTitle'] = labelValue;
+        requestPayload['areaOfInterestTitle'] = value;
+        $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(labelValue);
         console.log('Hiren Parmar - Checkbox checked=true');
+        checkedItems.push(value);
       } else {
+        value = $(this).val();
+        const index = checkedItems.indexOf(value);
+        if (index > -1) {
+          checkedItems.splice(index, 1);
+        }
         console.log('Hiren Parmar - Checkbox checked=false');
       }
     });
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    requestPayload['areaOfInterest'] = value;
-    requestPayload['purposeOfInterestAreaEqTitle'] = labelValue;
-    requestPayload['areaOfInterestTitle'] = value;
-    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(labelValue);
   }
 
   checkMessageLength = () => {
