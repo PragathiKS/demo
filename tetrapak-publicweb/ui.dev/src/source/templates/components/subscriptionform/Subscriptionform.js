@@ -196,11 +196,13 @@ class Subscriptionform {
     });
 
     $thankYouCTA.click(function(e) {
+      const $target = e.currentTarget;
       e.preventDefault();
       const $parentTitle = $('.'+$componentName).find('.pw-subscription__thankYouTitle').html();
       $(this).attr('data-parent-title', $parentTitle);
       getLinkClickAnalytics(e, 'parent-title', 'newsletter subscription form', '.thankyouTarget', false);
       self.hidePopUp();
+      window.open($($target).attr('href'), $($target).attr('target'));
     });
   }
 
