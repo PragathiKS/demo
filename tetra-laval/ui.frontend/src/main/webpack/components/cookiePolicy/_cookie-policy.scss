@@ -68,3 +68,10 @@
         position: fixed;
     }
 }
+
+.aem-AuthorLayer-Edit {
+    .pc-dark-filter,
+    .otFloatingRoundedCorner {
+        display: none;
+    }
+}
