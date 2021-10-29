@@ -125,7 +125,7 @@
             sling:message="Dairy"/>
     <pw.form.businessenq.processing.fc.dairy.concentratedMilk
             jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.processing.fc.dairy.concentratedMilk "
+            sling:key="pw.form.businessenq.processing.fc.dairy.concentratedMilk"
             sling:message="Concentrated / Condensed Milk"/>
     <pw.form.businessenq.processing.fc.dairy.cream
             jcr:primaryType="sling:MessageEntry"
@@ -233,7 +233,7 @@
             sling:message="Non-food Products"/>
     <pw.form.businessenq.processing.scope.dontknow
             jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.processing.scope.equipment"
+            sling:key="pw.form.businessenq.processing.scope.dontknow"
             sling:message="Don’t know"/>
     <pw.form.businessenq.processing.scope.equipment
             jcr:primaryType="sling:MessageEntry"
