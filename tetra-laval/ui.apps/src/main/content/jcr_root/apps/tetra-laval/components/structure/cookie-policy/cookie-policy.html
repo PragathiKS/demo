@@ -1,7 +1,9 @@
 <p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
 
-<div class="pc-dark-filter"></div>
-<div class="otFloatingRoundedCorner" data-module="CookiePolicy">
-   ${properties.text @context='html'}
-   <button class="confirmation-button">${properties.buttonText}</button>
-</div>
+<sly data-sly-test="${!wcmmode.edit}">
+   <div class="pc-dark-filter"></div>
+   <div class="otFloatingRoundedCorner" data-module="CookiePolicy">
+      ${properties.text @context='html'}
+      <button class="confirmation-button">${properties.buttonText}</button>
+   </div>
+</sly>
