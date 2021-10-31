@@ -28,15 +28,20 @@ class Businessinquiryform {
     this.cache.$subFoodCategory = $('.subFoodData');
     this.cache.$baIntServices = this.root.find('input[type=radio][name="businessAreaInterestServices"]');
     this.cache.$businessInterest = this.root.find('input[type=checkbox][name="purposeOfContactOptionsInInterestArea"]');
+    this.cache.$businessEnqNeed = this.root.find('input[type=radio][name="businessEnquiryNeed"]');
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
     this.cache.$submitBtn = $('form.pw-form-businessEnquiry button[type="submit"]', this.root);
     this.cache.$inputText = $('form.pw-form-businessEnquiry  input[type="text"]', this.root);
     this.cache.$inputEmail = $('form.pw-form-businessEnquiry  input[type="email"]', this.root);
+    this.cache.$roleDropItem = $('.role-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$dropItem = $('.country-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.$positionDropItem = $('.position-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$functionDropItem = $('.function-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
     this.cache.countryList = [];
+    this.cache.$roleField = this.root.find('.formfield.role-field');
     this.cache.$countryField = this.root.find('.formfield.country-field');
     this.cache.$positionField = this.root.find('.formfield.position-field');
+    this.cache.$functionField = this.root.find('.formfield.function-field');
     this.cache.$formInfo = this.root.find('form');
     this.cache.$isFormStart = false;    
     this.cache.requestPayload = {
@@ -48,12 +53,14 @@ class Businessinquiryform {
       'emailBef': '',
       'message': '',
       'phoneField': '',
+      'cityOfWorkPlaceField': '',
       'purposeOfContactInBusinessEqTitle': '',
       'purposeOfInterestAreaEqTitle': '',
       'specificInterestAreaPackagingEqTitle': '',
       'businessAreaInterestProcessingSupportEqTitle': '',
       'businessAreaProcessingCategoryFoodEqtitle': '',
       'businessAreaInterestServicesEqTitle': '',
+      'businessEnquiryNeedEqTitle': '',
       'company': '',
       'position': '',
       'country': '',
@@ -178,6 +185,17 @@ class Businessinquiryform {
     requestPayload['purposeOfContactInBusinessEqTitle'] = labelValue;
   }
 
+  onBusinessEnqNeedHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="businessEnquiryNeedEqTitle"]').val(labelValue);
+    requestPayload['businessEnquiryNeed'] = id;
+    requestPayload['businessEnquiryNeedTitle'] = value;
+    requestPayload['businessEnquiryNeedEqTitle'] = labelValue;
+  }
+
   onBaIntPackagingHandler = e => {
     const { requestPayload } = this.cache;
     const id = e.target.id;
@@ -300,7 +318,8 @@ class Businessinquiryform {
   }
 
   bindEvents() {
-    const { requestPayload, $purposeContact, $baIntPackaging, $baIntProcessingSupport, $baIntProcessingCategoryFood, $subFoodCategory, $baIntServices, $businessInterest, $newRequestBtn, $nextbtn, $submitBtn, $dropItem, $positionDropItem } = this.cache;
+    const { requestPayload, $purposeContact, $baIntPackaging, $baIntProcessingSupport, $baIntProcessingCategoryFood, $subFoodCategory, $baIntServices, $businessInterest, $businessEnqNeed, $newRequestBtn, $nextbtn, $submitBtn, $roleDropItem, $dropItem, $positionDropItem, $functionDropItem } = this.cache;
+    
     const self = this;
     $purposeContact.on('change', this.onPurposeOfContactHandler);
     $baIntPackaging.on('change', this.onBaIntPackagingHandler);
@@ -316,6 +335,7 @@ class Businessinquiryform {
     });
     $baIntServices.on('change', this.onBaIntServicesHandler);
     $businessInterest.on('change', this.onBusinessInterestChangeHandler);
+    $businessEnqNeed.on('change', this.onBusinessEnqNeedHandler);
     $newRequestBtn.on('click', this.newRequestHanlder);
 
     $nextbtn.click(function (e) {
@@ -562,6 +582,32 @@ class Businessinquiryform {
       requestPayload['position'] = positionKey;
       self.restObj2[self.cache.$positionField.data('position-name-label')] = positionTitle;
       $positionDropItem.removeClass('active');
+      $(this).addClass('active');
+    });
+
+    $roleDropItem.click(function (e) {
+      e.preventDefault();
+      const roleTitle = $(this).data('roletitle');
+      const roleKey = $(this).data('rolekey');
+      const parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle span', parentDrop).text(roleTitle);
+      $('input', parentDrop).val(roleKey);
+      requestPayload['role'] = roleKey;
+      self.restObj2[self.cache.$roleField.data('role-name-label')] = roleTitle;
+      $roleDropItem.removeClass('active');
+      $(this).addClass('active');
+    });
+
+    $functionDropItem.click(function (e) {
+      e.preventDefault();
+      const functionTitle = $(this).data('functiontitle');
+      const functionKey = $(this).data('functionkey');
+      const parentDrop = $(this).closest('.dropdown');
+      $('.dropdown-toggle span', parentDrop).text(functionTitle);
+      $('input', parentDrop).val(functionKey);
+      requestPayload['function'] = functionKey;
+      self.restObj2[self.cache.$functionField.data('function-name-label')] = functionTitle;
+      $functionDropItem.removeClass('active');
       $(this).addClass('active');
     });
   }
