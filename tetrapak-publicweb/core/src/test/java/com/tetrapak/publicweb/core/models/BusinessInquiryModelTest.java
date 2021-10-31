@@ -79,7 +79,7 @@ public class BusinessInquiryModelTest {
 		pardotService = new PardotServiceImpl();
 		context.load().json(TEST_RESOURCE_CONTENT, TEST_CONTENT_ROOT);
 		context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
-		context.load().json("/businessinquiryform/tags.json", "/content/cq:tags/pardot-system-config");
+		context.load().json("/businessinquiryform/tags.json", "/content/cq:tags/tetrapak");
 
 		context.addModelsForClasses(modelClass);
 		context.registerService(PardotService.class, pardotService);
@@ -126,22 +126,22 @@ public class BusinessInquiryModelTest {
 				"/content/tetrapak/publicweb/gb/en/contact-us/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
 				model.getApiUrl());
 		assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
-		assertEquals("Form", "pardot-system-config:job-title", model.getFormConfig().getPardotSystemConfigTags()[0]);
+		assertEquals("Form", "tetrapak:job-title", model.getFormConfig().getPardotSystemConfigTags());
 	}
 	
 	@Test
 	public void testTagTitles() {
-	    assertEquals("Form", true, model.getTagTitles().containsValue("Associate"));
+	    assertEquals("Form", true, model.getTagTitles().containsValue("job-title"));
 	}
 
 	@Test
 	public void testTagFunctions() {
-		assertEquals("Form", true, model.getTagFunctions().containsValue("Administrative"));
+		assertEquals("Form", true, model.getTagFunctions().containsValue("Sustainability"));
 	}
 
 	@Test
 	public void testTagProcessingRoles() {
-		assertEquals("Form", true, model.getTagProcessingRoles().containsValue("Consultant"));
+		assertEquals("Form", true, model.getTagProcessingRoles().containsValue("Sustainability"));
 	}
 
 
@@ -171,7 +171,7 @@ public class BusinessInquiryModelTest {
 	public void testCountries() throws Exception {
 
 	    assertEquals("ContactUs", 2, model.getCountryOptions().size());
-        assertEquals("ContactUs", "Albania", model.getCountryOptions().get(0).getKey());
+        assertEquals("ContactUs", "albania", model.getCountryOptions().get(0).getKey());
 
 	}
 
