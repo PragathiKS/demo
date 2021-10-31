@@ -126,13 +126,24 @@ public class BusinessInquiryModelTest {
 				"/content/tetrapak/publicweb/gb/en/contact-us/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
 				model.getApiUrl());
 		assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
-		assertEquals("Form", "tetrapak:job-title", model.getFormConfig().getProfileTags());
+		assertEquals("Form", "tetrapak:job-title", model.getFormConfig().getPardotSystemConfigTags());
 	}
 	
 	@Test
 	public void testTagTitles() {
-	    assertEquals("Form", true, model.getTagTitles().containsValue("Sustainability"));
+	    assertEquals("Form", true, model.getTagTitles().containsValue("job-title"));
 	}
+
+	@Test
+	public void testTagFunctions() {
+		assertEquals("Form", true, model.getTagFunctions().containsValue("Sustainability"));
+	}
+
+	@Test
+	public void testTagProcessingRoles() {
+		assertEquals("Form", true, model.getTagProcessingRoles().containsValue("Sustainability"));
+	}
+
 
 	/**
 	 * Test fetch language.
