@@ -236,4 +236,22 @@
     .checboxField {
         display: flex;
     }
+
+    .ba-sub-heading {
+        color: $color-tundora;
+        font-size: $font-sm;
+        font-weight: 500;
+        line-height: $font-m-md;
+    }
+
+    .subFoodData {
+        display: none;
+        .pw-businessEnquiry-form_subFoodItems {
+            margin-left: $margin-l + 4;
+        }
+
+        &.active {
+            display: block;
+        }
+    }
 }
