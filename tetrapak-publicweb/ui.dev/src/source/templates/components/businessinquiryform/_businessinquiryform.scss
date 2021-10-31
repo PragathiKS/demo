@@ -44,8 +44,10 @@
         }
     }
 
+    .role-field-wrapper,
     .country-field-wrapper,
-    .position-field-wrapper {
+    .position-field-wrapper,
+    .function-field-wrapper {
         @include padding-left($padding-zero);
         @include padding-right($padding-zero);
     }
