@@ -107,8 +107,49 @@
 "cq:ctTransItemId.sv_se": "b996596e-f171-4fac-9b90-01e481c87cb5",
 "cq:lastReplicatedBy": "sapient-sandip",
 "sling:resourceType": "cq/tagging/components/tag"
+},
+"associate": {
+  "jcr:mixinTypes":"[cq:ReplicationStatus]",
+  "jcr:primaryType":"cq:Tag",
+  "jcr:title":"Associate",
+  "jcr:title.de":"Partner",
+  "jcr:title.en":"Associate",
+  "jcr:title.es":"Asociado",
+  "jcr:title.fr":"Collaborateur",
+  "jcr:title.it":"Dipendente",
+  "jcr:title.ja":"提携先",
+  "jcr:title.pt":"Associado",
+  "jcr:title.ru":"Заместитель руководителя",
+  "jcr:title.sv_se":"Delägare",
+  "jcr:title.tr":"Ortak",
+  "jcr:title.zh":"助理",
+  " sling:resourceType":"cq/tagging/components/tag"
 }
 },
+  "function": {
+    "jcr:primaryType": "cq:Tag",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus"
+    ],
+    "administrative": {
+      "jcr:mixinTypes":"[cq:ReplicationStatus]",
+      "jcr:primaryType":"cq:Tag",
+      "jcr:title":"Administrative",
+      " sling:resourceType":"cq/tagging/components/tag"
+    }
+  },
+  "processing-roles": {
+    "jcr:primaryType": "cq:Tag",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus"
+    ],
+    "consultant": {
+      "jcr:mixinTypes":"[cq:ReplicationStatus]",
+      "jcr:primaryType":"cq:Tag",
+      "jcr:title":"Consultant",
+      " sling:resourceType":"cq/tagging/components/tag"
+    }
+  },
 "sustainability": {
 "jcr:primaryType": "cq:Tag",
 "jcr:mixinTypes": [
