@@ -487,6 +487,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.firstName"
         sling:message="First name"/>
+    <pw.form.label.function
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.label.function"
+            sling:message="Function"/>
     <pw.form.label.lastName
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.lastName"
