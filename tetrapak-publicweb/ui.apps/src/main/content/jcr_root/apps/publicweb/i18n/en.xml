@@ -510,7 +510,7 @@
     <pw.form.label.phonenumber
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phonenumber"
-        sling:message="Phone number (optional)"/>
+        sling:message="Phone number"/>
     <pw.form.label.phoneplaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.phoneplaceholder"
