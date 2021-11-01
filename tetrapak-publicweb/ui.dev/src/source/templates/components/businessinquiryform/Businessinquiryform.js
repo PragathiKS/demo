@@ -46,6 +46,49 @@ class Businessinquiryform {
     this.cache.$isFormStart = false;    
     this.cache.requestPayload = {
       'domainURL': window.location.host,
+      'purpose': '',
+      'businessArea': '',
+      /*
+      'businessAreaInterestPackaging': '',
+      'businessAreaInterestProcessingSupport': '',
+      'businessAreaInterestServices': '',
+      'businessAreaProcessingCategoryFood': '',
+      'businessAreaProcessingNeedBeverage': '',
+      'businessAreaProcessingNeedCheese': '',
+      'businessAreaProcessingNeedDairy': '',
+      'businessAreaProcessingNeedPreparedFoods': '',
+      'businessAreaProcessingNeedPowder': '',
+      'businessEnquiryProfile': '',
+      'businessEnquiryProfileOther': '',
+      */
+      'businessEnquiryNeed': '',
+      'firstName': '',
+      'lastName': '',
+      'email': '',
+      'message': '',
+      'phone': '',
+      'workplaceCity': '',
+      'country': '',
+      'countryTitle': '',
+      'company': '',
+      'position': '',
+      'function': '',
+      'marketingConsent':'',
+      /*
+      'purposeOfContactInBusinessEqTitle': '',
+      'purposeOfInterestAreaEqTitle': '',
+      'specificInterestAreaPackagingEqTitle': '',
+      'businessAreaInterestProcessingSupportEqTitle': '',
+      'businessAreaProcessingCategoryFoodEqtitle': '',
+      'businessAreaInterestServicesEqTitle': '',
+      'businessEnquiryNeedEqTitle': '',
+      */
+      'pageurl': window.location.href
+    };
+    /*
+    // Previous RequestPayload
+    this.cache.requestPayload = {
+      'domainURL': window.location.host,
       'purposeOfContact': '',
       'interestArea': '',
       'firstNameField': '',
@@ -68,6 +111,7 @@ class Businessinquiryform {
       'marketingConsent':'',
       'pageurl': window.location.href
     };
+     */
   }
 
   onKeydown = (event, options) => {
@@ -108,11 +152,17 @@ class Businessinquiryform {
   }
 
   submitForm = () => {
+    const { requestPayload } = this.cache;
     const self = this;
     const servletPath = this.cache.businessformapi.data('bef-api-servlet');
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
     const dataObj = {};
+    $.each( requestPayload, function( key, value ) {
+      dataObj[key] = value;
+    });
+    
+    /*
     dataObj['purpose'] = this.cache.requestPayload.purposeOfContactTitle;
     dataObj['businessArea'] = this.cache.requestPayload.areaOfInterestTitle;
     dataObj['firstName'] = this.cache.requestPayload.firstNameField;
@@ -126,6 +176,7 @@ class Businessinquiryform {
     dataObj['position'] = this.cache.requestPayload.position;
     dataObj['country'] = this.cache.requestPayload.country;
     dataObj['countryTitle'] = this.cache.requestPayload.countryTitle;
+    */
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
@@ -154,6 +205,8 @@ class Businessinquiryform {
       }
     });
 
+    console.log('Hiren Parmar - Data Object', dataObj);
+
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
@@ -180,91 +233,8 @@ class Businessinquiryform {
     const value = e.target.value;
     const labelValue = $('label[for="'+id+'"]').text().trim();
     $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(labelValue);
-    requestPayload['purposeOfContact'] = id;
-    requestPayload['purposeOfContactTitle'] = value;
-    requestPayload['purposeOfContactInBusinessEqTitle'] = labelValue;
-  }
-
-  onBusinessEnqNeedHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessEnquiryNeedEqTitle"]').val(labelValue);
-    requestPayload['businessEnquiryNeed'] = id;
-    requestPayload['businessEnquiryNeedTitle'] = value;
-    requestPayload['businessEnquiryNeedEqTitle'] = labelValue;
-  }
-
-  onBaIntPackagingHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val(labelValue);
-    requestPayload['specificInterestAreaPackaging'] = id;
-    requestPayload['specificInterestAreaPackagingTitle'] = value;
-    requestPayload['specificInterestAreaPackagingEqTitle'] = labelValue;
-  }
-
-  onBaIntProcessingSupportHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestProcessing'] = id;
-    requestPayload['businessAreaInterestProcessingTitle'] = value;
-    requestPayload['businessAreaInterestProcessingSupportEqTitle'] = labelValue;
-  }
-
-  onBaIntProcessingCategoryFoodHandler = e => {
-    const { requestPayload, $subFoodCategory } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-
-    // Hide and Reset Sub food Categories
-    $subFoodCategory.hide();
-    $subFoodCategory.find('.formfield').removeClass('field-error');
-    $subFoodCategory.each(function() {
-      const inputHandler = $(this).find('.form-control.field-handler');
-      $(inputHandler).val('').removeAttr('required');
-      const $subFoodCategoryChecks = $(this).find('input');
-      $subFoodCategoryChecks.each(function() {
-        $(this).prop('checked', false);
-      });
-    });
-    
-    $(e.currentTarget).parent().next('.subFoodData').show().find('.form-control.field-handler').attr('required', true);
-    $('input[type=hidden][name="businessAreaProcessingCategoryFoodEqtitle"]').val(labelValue);
-    requestPayload['businessAreaProcessingCategoryFood'] = id;
-    requestPayload['businessAreaProcessingCategoryFoodTitle'] = value;
-    requestPayload['businessAreaProcessingCategoryFoodEqtitle'] = labelValue;
-  }
-
-  onBaIntSubCategoryFoodHandler = e => {
-    const { requestPayload } = this.cache;
-    const inputHandler = $(e.currentTarget).closest('.formfield').find('.form-control.field-handler');
-    const hiddenInput = $(inputHandler).attr('data-fieldname');
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $(inputHandler).val(labelValue);
-    requestPayload[hiddenInput] = id;
-    requestPayload[hiddenInput+'Title'] = value;
-    requestPayload[hiddenInput+'Eqtitle'] = labelValue;
-  }
-
-  onBaIntServicesHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessAreaInterestServicesEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestServices'] = id;
-    requestPayload['businessAreaInterestServicesTitle'] = value;
-    requestPayload['businessAreaInterestServicesEqTitle'] = labelValue;
+    requestPayload['purpose'] = value;
+    // requestPayload['purposeOfContactInBusinessEqTitle'] = labelValue;
   }
 
   onBusinessInterestChangeHandler = () => {
@@ -304,10 +274,85 @@ class Businessinquiryform {
 
   setRequestPayload = (val) => {
     const { requestPayload } = this.cache;
-    requestPayload['areaOfInterest'] = val;
-    requestPayload['purposeOfInterestAreaEqTitle'] = val;
-    requestPayload['areaOfInterestTitle'] = val;
+    requestPayload['businessArea'] = val;
+    // requestPayload['purposeOfInterestAreaEqTitle'] = val;
     $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
+  }
+  
+  onBaIntPackagingHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val(labelValue);
+    requestPayload['businessAreaInterestPackaging'] = value;
+    // requestPayload['specificInterestAreaPackagingEqTitle'] = labelValue;
+  }
+
+  onBaIntProcessingSupportHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val(labelValue);
+    requestPayload['businessAreaInterestProcessingSupport'] = value;
+    // requestPayload['businessAreaInterestProcessingSupportEqTitle'] = labelValue;
+  }
+
+  onBaIntProcessingCategoryFoodHandler = e => {
+    const { requestPayload, $subFoodCategory } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+
+    // Hide and Reset Sub food Categories
+    $subFoodCategory.hide();
+    $subFoodCategory.find('.formfield').removeClass('field-error');
+    $subFoodCategory.each(function() {
+      const inputHandler = $(this).find('.form-control.field-handler');
+      $(inputHandler).val('').removeAttr('required');
+      const $subFoodCategoryChecks = $(this).find('input');
+      $subFoodCategoryChecks.each(function() {
+        $(this).prop('checked', false);
+      });
+    });
+    
+    $(e.currentTarget).parent().next('.subFoodData').show().find('.form-control.field-handler').attr('required', true);
+    $('input[type=hidden][name="businessAreaProcessingCategoryFoodEqtitle"]').val(labelValue);
+    requestPayload['businessAreaProcessingCategoryFood'] = value;
+    // requestPayload['businessAreaProcessingCategoryFoodEqtitle'] = labelValue;
+  }
+
+  onBaIntSubCategoryFoodHandler = e => {
+    const { requestPayload } = this.cache;
+    const inputHandler = $(e.currentTarget).closest('.formfield').find('.form-control.field-handler');
+    const hiddenInput = $(inputHandler).attr('data-fieldname');
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $(inputHandler).val(labelValue);
+    requestPayload[hiddenInput] = value;
+    // requestPayload[hiddenInput+'Eqtitle'] = labelValue;
+  }
+
+  onBaIntServicesHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="businessAreaInterestServicesEqTitle"]').val(labelValue);
+    requestPayload['businessAreaInterestServices'] = value;
+    // requestPayload['businessAreaInterestServicesEqTitle'] = labelValue;
+  }
+  
+  onBusinessEnqNeedHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="businessEnquiryNeedEqTitle"]').val(labelValue);
+    requestPayload['businessEnquiryNeed'] = value;
+    // requestPayload['businessEnquiryNeedEqTitle'] = labelValue;
   }
 
   checkMessageLength = () => {
@@ -377,7 +422,6 @@ class Businessinquiryform {
             e.stopPropagation();
             const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim(), fieldName = $(this).attr('name');
             let erLbl = '';
-            console.log('Hiren Parmar Field Name >>>', fieldName, isvalid);
             switch (fieldName) {
             case 'purposeOfContactInBusinessEqTitle':
               erLbl = self.step1head;
@@ -386,22 +430,34 @@ class Businessinquiryform {
               erLbl = self.step1head2;
               break;
             case 'message':
+              erLbl = $('#bef-step-2 label')[3].textContent;
+              break;
+            case 'email':
               erLbl = $('#bef-step-3 label')[0].textContent;
               break;
-            case 'firstNameField':
-              erLbl = $('#bef-step-4 label')[0].textContent;
+            case 'firstName':
+              erLbl = $('#bef-step-3 label')[1].textContent;
               break;
-            case 'lastNameField':
-              erLbl = $('#bef-step-4 label')[1].textContent;
+            case 'lastName':
+              erLbl = $('#bef-step-3 label')[2].textContent;
               break;
-            case 'emailBef':
-              erLbl = $('#bef-step-4 label')[2].textContent;
+            case 'phone':
+              erLbl = $('#bef-step-3 label')[3].textContent;
+              break;
+            case 'workplaceCity':
+              erLbl = $('#bef-step-3 label')[4].textContent;
+              break;
+            case 'country':
+              erLbl = $('#bef-step-3 label')[5].textContent;
               break;
             case 'company':
-              erLbl = $('#bef-step-5 label')[0].textContent;
+              erLbl = $('#bef-step-3 label')[6].textContent;
               break;
             case 'position':
-              erLbl = $('#bef-step-5 label')[1].textContent;
+              erLbl = $('#bef-step-3 label')[7].textContent;
+              break;
+            case 'function':
+              erLbl = $('#bef-step-3 label')[8].textContent;
               break;
             default:
               erLbl = fieldName;
@@ -419,7 +475,7 @@ class Businessinquiryform {
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
-        if (!(self.cache.requestPayload['phoneField']).length > 0) {
+        if (!(self.cache.requestPayload['phone']).length > 0) {
           $('#phoneSummery').hide();
         }
         else {
@@ -469,7 +525,7 @@ class Businessinquiryform {
           changeStepError(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#bef-step-final':
-          changeStepError(self.mainHead, 'Step 3', self.step6head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         default:
           break;
@@ -592,7 +648,11 @@ class Businessinquiryform {
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(roleTitle);
       $('input', parentDrop).val(roleKey);
-      requestPayload['role'] = roleKey;
+      if(roleKey === 'other') {
+        requestPayload['businessEnquiryProfileOther'] = roleKey; 
+      } else {
+        requestPayload['businessEnquiryProfile'] = roleKey;
+      }
       self.restObj2[self.cache.$roleField.data('role-name-label')] = roleTitle;
       $roleDropItem.removeClass('active');
       $(this).addClass('active');
@@ -640,8 +700,8 @@ class Businessinquiryform {
     this.restObj2 = {};
     this.linkTitle = this.root.find('.thankyou').find('h2').text().trim();
     this.linkText = this.root.find('.newRequestBtn').text().trim();
-    $('#bef-step-4 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
-    $('#bef-step-5 label').slice(0, 1).each((i, v) => this.restObj2[$(v).text()] = 'NA');
+    $('#bef-step-3 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
+    $('#bef-step-3 label').slice(0, 1).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     this.getCountryList();
     this.analyticsFormstart(this.step1head, this.mainHead);
   }
