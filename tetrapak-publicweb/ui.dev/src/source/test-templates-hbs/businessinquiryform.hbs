@@ -1,12 +1,12 @@
 <div class="businessinquiryform parbase aem-GridColumn aem-GridColumn--default--12">
   <div id="befUs" class="pw-container" data-locator="BusinessInquiryForm" data-module="Businessinquiryform">
-    <div class="pw-businessEnquiry-form pw-theme--grayscale-white pw-padding--regular pw-margin--regular"
-      id="pw-contactUs" auto_locator="businessEnquiryStepsWrapper">
+    <div class="pw-businessEnquiry-form pw-theme--grayscale-white pw-padding--regular pw-margin--regular" id="pw-befUs"
+      auto_locator="businessEnquiryStepsWrapper">
       <div class="tab-content">
         <form class="pw-form pw-form-businessEnquiry" accept-charset="UTF-8"
-          data-bef-api-servlet="http://go.tetrapak.com/l/857883/2020-05-29/w6xt" data-bef-countrycode="lang-masters"
+          data-bef-api-servlet="https://go.tetrapak.com/l/857883/2021-10-06/5zyc6" data-bef-countrycode="global"
           data-bef-langcode="en" autocomplete="off">
-          <!--step1 start-->
+          <!--step1 start -->
           <div class="bef-tab-pane active" data-stepnumber="1" data-stepname="purposeOfContact" role="tabpanel"
             id="bef-step-1">
             <div class="row no-gutters">
@@ -23,78 +23,129 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 separator" auto_locator="businessEnquiryRightContainerStep1">
+              <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep1">
                 <div class="tab-content tab-content-steps">
+                  <div class="row pw-progress" auto_locator="progressBarStep1">
+                    <div class="col-lg-10">
+
+                      <ul class="pw-progressbar_wrapper">
+
+
+                        <li class="step1 step-box active ">
+                          <div class="steps">
+                            <span class="circle"><span>1</span></span>
+                            <span class="stepname">Purpose</span>
+                          </div>
+                        </li>
+
+
+
+                        <li class="step1 step-box  ">
+                          <div class="steps">
+                            <span class="circle"><span>2</span></span>
+                            <span class="stepname">Request</span>
+                          </div>
+                        </li>
+
+
+
+                        <li class="step1 step-box  ">
+                          <div class="steps">
+                            <span class="circle"><span>3</span></span>
+                            <span class="stepname">Contact</span>
+                          </div>
+                        </li>
+                      </ul>
+
+                    </div>
+                  </div>
+                  <!-- Purpose of Contact -->
                   <div class="row">
                     <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+
                       <h4 class="tpatom-heading tpatom-heading--small">Purpose of contact</h4>
-                    </div>.
+
+                    </div>
                     <div class="col-sm-12 formfield" auto_locator="businessEnquiryListContainerStep1">
+
                       <div class="form-check formfields ">
                         <input class="form-check-input" type="radio" name="purposeOfContactOptionsInBusinessEq"
-                          id="requestAQuote" value="Request a quote">
-                        <label class="form-check-label " for="requestAQuote">
+                          id="requestAQuote" value="Request for Quote">
+                        <label class="form-check-label requestAQuote" for="requestAQuote">
                           Request a quote
                         </label>
                         <div class="form-check-radio"></div>
                       </div>
+                      
                       <div class="form-check formfields ">
                         <input class="form-check-input" type="radio" name="purposeOfContactOptionsInBusinessEq"
-                          id="requestAProductInfo" value="Request for product information">
-                        <label class="form-check-label " for="requestAProductInfo">
+                          id="requestAProductInfo" value="Request for Information">
+                        <label class="form-check-label mb-0" for="requestAProductInfo">
                           Request for product information
                         </label>
                         <div class="form-check-radio"></div>
                       </div>
-                      <div class="form-check formfields ">
-                        <input class="form-check-input" type="radio" name="purposeOfContactOptionsInBusinessEq"
-                          id="ContactMe" value="Contact me">
-                        <label class="form-check-label mb-0" for="ContactMe">
-                          Contact me
-                        </label>
-                        <div class="form-check-radio"></div>
-                      </div>
+
                       <input type="hidden" name="purposeOfContactInBusinessEqTitle" class="form-control"
                         id="purposeOfContactInBusinessEqTitle" required="">
                       <div class="errorMsg purposeOfBusinessContactError">Please select purpose of contact
                       </div>
                     </div>
                   </div>
-                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
-                    <div class="col-lg-9">
-                      <ul class="pw-progressbar_wrapper ">
-                        <li class="step1 step-box active ">
-                          <div class="steps">
-                            <span class="circle"><span>1</span></span>
-                          </div>
-                        </li>
-                        <li class="step1 step-box  ">
-                          <div class="steps">
-                            <span class="circle"><span>2</span></span>
-                          </div>
-                        </li>
-                        <li class="step1 step-box  ">
-                          <div class="steps">
-                            <span class="circle"><span>3</span></span>
-                          </div>
-                        </li>
-                        <li class="step1 step-box  ">
-                          <div class="steps">
-                            <span class="circle"><span>4</span></span>
-                          </div>
-                        </li>
-                      </ul>
+
+                  <!-- Business Area of Interest -->
+                  <div class="row businessArea">
+                    <div class="col-sm-12 pw-form--heading" auto_locator="businessEnquiryContainerHeadingTextStep2">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Business area of interest</h4>
+
                     </div>
-                    <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                      <p>
-                        step 1 of 4
-                      </p>
+                    <div class="col-sm-12 pw-form--sub_heading">
+                      Select one or more business areas
+                    </div>
+
+                    <div class="col-sm-12 formfield">
+                      <div class="checboxField">
+                        <label class="checkboxLabel packaging" for="baoiPackaging">
+                          <input type="checkbox"
+                            class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left"
+                            id="baoiPackaging" name="purposeOfContactOptionsInInterestArea" value="Packaging">
+                          <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                          Packaging
+                        </label>
+                      </div>
+                      <div class="checboxField">
+                        <label class="checkboxLabel" for="baoiProcessing">
+                          <input type="checkbox"
+                            class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left"
+                            id="baoiProcessing" name="purposeOfContactOptionsInInterestArea" value="Processing">
+                          <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                          Processing
+                        </label>
+                      </div>
+                      <div class="checboxField mb-0">
+                        <label class="checkboxLabel" for="baoiServices">
+                          <input type="checkbox"
+                            class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left"
+                            id="baoiServices" name="purposeOfContactOptionsInInterestArea" value="Services">
+                          <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                          Services
+                        </label>
+                      </div>
+
+                      <input type="hidden" name="purposeOfInterestAreaEqTitle" class="form-control"
+                        id="purposeOfInterestAreaEqTitle" required="">
+                      <div class="errorMsg purposeOfBusinessIntersetError">
+                        Please select business area of interest
+                      </div>
                     </div>
                   </div>
+
                   <div class="row no-gutters button-group">
-                    <button data-target="#bef-step-2" id="step1btn" type="button" class="tpatom-btn tpatom-btn--primary "
-                      auto_locator="businessFormNextButtonStep1">
-                      <span class="tp-next-btn__text">next</span>
+
+                    <button data-target="#bef-step-2" id="step1btn" type="button"
+                      class="tpatom-btn tpatom-btn--primary step1Btn" auto_locator="businessFormNextButtonStep1">
+                      <span class="tp-next-btn__text">Next</span>
                       <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
                     </button>
 
@@ -104,247 +155,864 @@
             </div>
           </div>
           <!--step1 end-->
-          <!--step2 start-->
-          <div class="bef-tab-pane" data-stepnumber="2" data-stepname="businesAreaOfInterest" role="tabpanel"
-            id="bef-step-2">
+
+          <!--step 1 - Specific Interest Are - Packaging start -->
+          <div class="bef-tab-pane specificIntAreaPackaging" data-stepnumber="2"
+            data-stepname="specificIntAreaPackaging" role="tabpanel" id="businessInquiry_packaging">
             <div class="row no-gutters">
-              <div class="col-lg-6 separator">
+              <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep1">
                 <div class="row no-gutters">
-                  <div class="col-sm-12 main-heading" auto_locator="businessEnquiryLeftContainerHeadingStep2">
-                    <h2 class="tpatom-heading tpatom-heading--">business enquery form</h2>
+                  <div class="col-sm-12 main-heading" auto_locator="businessEnquiryLeftContainerHeadingStep1">
+
+                    <h2 class="tpatom-heading tpatom-heading--">Contact our sales team</h2>
+
                   </div>
                 </div>
-                <div auto_locator="businessEnquiryLeftContainerSummaryAreaStep2">
+                <div auto_locator="businessEnquiryLeftContainerSummaryAreaStep1">
                   <div class="row no-gutters">
                     <div class="col-sm-12">
+
                       <h4 class="tpatom-heading tpatom-heading--small">Summary</h4>
+
                     </div>
                   </div>
                   <div class="row no-gutters summary">
-                    <div class="col-lg-6">Purpose of contact</div>
-                    <div class="col-lg-6 purposeOfContactInBusinessEqTitle"></div>
+                    <div class="col-lg-5">Purpose of contact</div>
+                    <div class="col-lg-7 purposeOfContactInBusinessEqTitle"></div>
+                  </div>
+                  <div class="row no-gutters summary">
+                    <div class="col-lg-5">Business area of interest</div>
+                    <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="tab-content tab-content-steps" auto_locator="businessEnquiryRightContainerSummaryAreaStep2">
-                  <div class="row">
-                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep2">
-                      <h4 class="tpatom-heading tpatom-heading--small">Please select business area of interest</h4>
+              <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep1">
+                <div class="tab-content tab-content-steps">
+                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
+                    <div class="col-lg-10">
+
+                      <ul class="pw-progressbar_wrapper">
+
+
+                        <li class="step1 step-box active ">
+                          <div class="steps">
+                            <span class="circle"><span>1</span></span>
+                            <span class="stepname">Purpose</span>
+                          </div>
+                        </li>
+
+
+
+                        <li class="step1 step-box  ">
+                          <div class="steps">
+                            <span class="circle"><span>2</span></span>
+                            <span class="stepname">Request</span>
+                          </div>
+                        </li>
+
+
+
+                        <li class="step1 step-box  ">
+                          <div class="steps">
+                            <span class="circle"><span>3</span></span>
+                            <span class="stepname">Contact</span>
+                          </div>
+                        </li>
+                      </ul>
+
                     </div>
-                    <div class="col-sm-12 formfield" auto_locator="businessEnquiryListContainerStep2">
+                  </div>
+
+                  <div class="row no-gutters">
+                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Specific area of interest</h4>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep1">
+
                       <div class="form-check formfields ">
-                        <input class="form-check-input" type="radio" name="purposeOfContactOptionsInInterestArea"
-                          id="Processing" value="Processing">
-                        <label class="form-check-label " for="Processing">
-                          Processing
+                        <input class="form-check-input" type="radio" name="businessAreaInterestPackaging"
+                          id="boaiPackagingAdditionalMaterials" value="Additional Materials"
+                          data-persist-val="Additional Materials (e.g. Opening, Closures, Straws)">
+                        <label class="form-check-label " for="boaiPackagingAdditionalMaterials">
+                          Additional Materials (e.g. Opening, Closures, Straws)
                         </label>
                         <div class="form-check-radio"></div>
                       </div>
+
+
                       <div class="form-check formfields ">
-                        <input class="form-check-input" type="radio" name="purposeOfContactOptionsInInterestArea"
-                          id="packaging" value="Packaging">
-                        <label class="form-check-label " for="packaging">
-                          Packaging
+                        <input class="form-check-input" type="radio" name="businessAreaInterestPackaging"
+                          id="boaiPackagingPackagePortfolio" value="Packages" data-persist-val="Package Portfolio">
+                        <label class="form-check-label " for="boaiPackagingPackagePortfolio">
+                          Package Portfolio
                         </label>
                         <div class="form-check-radio"></div>
                       </div>
+
+
                       <div class="form-check formfields ">
-                        <input class="form-check-input" type="radio" name="purposeOfContactOptionsInInterestArea"
-                          id="services" value="Services">
-                        <label class="form-check-label " for="services">
-                          Services
+                        <input class="form-check-input" type="radio" name="businessAreaInterestPackaging"
+                          id="boaiPackagingFillingMachines" value="Filling Machines"
+                          data-persist-val="Filling Machines">
+                        <label class="form-check-label " for="boaiPackagingFillingMachines">
+                          Filling Machines
                         </label>
                         <div class="form-check-radio"></div>
                       </div>
+
+
                       <div class="form-check formfields ">
-                        <input class="form-check-input" type="radio" name="purposeOfContactOptionsInInterestArea"
-                          id="etesolution" value="End-to-End solutions">
-                        <label class="form-check-label mb-0" for="etesolution">
-                          End-to-End solutions
+                        <input class="form-check-input" type="radio" name="businessAreaInterestPackaging"
+                          id="boaiPackagingMultipacksTraysLogistic" value="Downstream Equipment"
+                          data-persist-val="Multipacks, Trays &amp; Logistic Solutions">
+                        <label class="form-check-label " for="boaiPackagingMultipacksTraysLogistic">
+                          Multipacks, Trays &amp; Logistic Solutions
                         </label>
                         <div class="form-check-radio"></div>
                       </div>
-                      <input type="hidden" name="purposeOfInterestAreaEqTitle" class="form-control"
-                        id="purposeOfInterestAreaEqTitle" required="">
-                      <div class="errorMsg purposeOfBusinessIntersetError">
+
+
+                      <div class="form-check formfields ">
+                        <input class="form-check-input" type="radio" name="businessAreaInterestPackaging"
+                          id="boaiPackagingStartUpOffering" value="Start-up Offering"
+                          data-persist-val="Start-up Offering">
+                        <label class="form-check-label " for="boaiPackagingStartUpOffering">
+                          Start-up Offering
+                        </label>
+                        <div class="form-check-radio"></div>
+                      </div>
+
+
+                      <div class="form-check formfields ">
+                        <input class="form-check-input" type="radio" name="businessAreaInterestPackaging"
+                          id="boaiPackagingInstallationServices" value="Installation, Commissioning &amp; Validation"
+                          data-persist-val="Installation Services">
+                        <label class="form-check-label " for="boaiPackagingInstallationServices">
+                          Installation Services
+                        </label>
+                        <div class="form-check-radio"></div>
+                      </div>
+
+
+                      <div class="form-check formfields ">
+                        <input class="form-check-input" type="radio" name="businessAreaInterestPackaging"
+                          id="boaiPackagingInstallationServices" value="Other"
+                          data-persist-val="Other(specify in next step)">
+                        <label class="form-check-label " for="boaiPackagingInstallationServices">
+                          Other(specify in next step)
+                        </label>
+                        <div class="form-check-radio"></div>
+                      </div>
+
+                      <input type="hidden" name="specificInterestAreaPackagingEqTitle" class="form-control"
+                        id="specificInterestAreaPackagingEqTitle" required="">
+                      <div class="errorMsg specificInterestAreaError">
                         Please select business area of interest
                       </div>
                     </div>
                   </div>
-                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep2">
-                    <div class="col-lg-9">
-                      <ul class="pw-progressbar_wrapper ">
-                        <li class="step1 step-box  done">
-                          <div class="steps">
-                            <span class="circle"><span>1</span></span>
-                          </div>
-                        </li>
-                        <li class="step1 step-box active ">
-                          <div class="steps">
-                            <span class="circle"><span>2</span></span>
-                          </div>
-                        </li>
-                        <li class="step1 step-box  ">
-                          <div class="steps">
-                            <span class="circle"><span>3</span></span>
-                          </div>
-                        </li>
-                        <li class="step1 step-box  ">
-                          <div class="steps">
-                            <span class="circle"><span>4</span></span>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                      <p> step 2 of 3</p>
-                    </div>
-                  </div>
+
                   <div class="row no-gutters button-group">
+
                     <button data-target="#bef-step-1" type="button" class="tpatom-btn tpatom-btn--secondary previousbtn"
-                      auto_locator="businessFormPreviousButtonStep2">
-                      <span class="tp-next-btn__text">previous</span>
+                      auto_locator="businessFormPreviousButtonStep1">
+                      <span class="tp-next-btn__text">Previous</span>
                       <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
                     </button>
-                    <button data-target="#bef-step-3" type="button" id='step2btn' class="tpatom-btn tpatom-btn--primary "
-                      auto_locator="businessFormNextButtonStep2">
-                      <span class="tp-next-btn__text">next</span>
+
+
+                    <button data-target="#bef-step-2" type="button" class="tpatom-btn tpatom-btn--primary "
+                      auto_locator="businessFormNextButtonStep1">
+                      <span class="tp-next-btn__text">Next</span>
                       <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
                     </button>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!--step 2 end-->
-          <!--step 3 start-->
-          <div class="bef-tab-pane" data-stepnumber="3" role="tabpanel" id="bef-step-3">
+          <!--step 1 Specific Interest Are - Packaging end -->
+
+          <!--step 1 - Specific Interest Are - Processing start -->
+          <div class="bef-tab-pane specificIntAreaProcessing" data-stepnumber="2"
+            data-stepname="specificIntAreaProcessing" role="tabpanel" id="businessInquiry_processing">
             <div class="row no-gutters">
-              <div class="col-lg-6 separator">
+              <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep1">
+                <div class="row no-gutters">
+                  <div class="col-sm-12 main-heading" auto_locator="businessEnquiryLeftContainerHeadingStep1">
+
+                    <h2 class="tpatom-heading tpatom-heading--">Contact our sales team</h2>
+
+                  </div>
+                </div>
+                <div auto_locator="businessEnquiryLeftContainerSummaryAreaStep1">
+                  <div class="row no-gutters">
+                    <div class="col-sm-12">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Summary</h4>
+
+                    </div>
+                  </div>
+                  <div class="row no-gutters summary">
+                    <div class="col-lg-5">Purpose of contact</div>
+                    <div class="col-lg-7 purposeOfContactInBusinessEqTitle"></div>
+                  </div>
+                  <div class="row no-gutters summary">
+                    <div class="col-lg-5">Business area of interest</div>
+                    <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep1">
+                <div class="tab-content tab-content-steps">
+                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
+                    <div class="col-lg-10">
+
+                      <ul class="pw-progressbar_wrapper">
+
+
+                        <li class="step1 step-box active ">
+                          <div class="steps">
+                            <span class="circle"><span>1</span></span>
+                            <span class="stepname">Purpose</span>
+                          </div>
+                        </li>
+
+
+
+                        <li class="step1 step-box  ">
+                          <div class="steps">
+                            <span class="circle"><span>2</span></span>
+                            <span class="stepname">Request</span>
+                          </div>
+                        </li>
+
+
+
+                        <li class="step1 step-box  ">
+                          <div class="steps">
+                            <span class="circle"><span>3</span></span>
+                            <span class="stepname">Contact</span>
+                          </div>
+                        </li>
+                      </ul>
+
+                    </div>
+                  </div>
+
+                  <div class="row no-gutters">
+                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Scope of request</h4>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12 formfield form-group" auto_locator="businessEnquiryRightContainerStep1">
+
+                      <div class="form-check formfields ">
+                        <input class="form-check-input" type="radio" name="businessAreaInterestProcessingSupport"
+                          id="baoiProcessingEquipment" value="Equipment" data-persist-val="Equipment">
+                        <label class="form-check-label " for="baoiProcessingEquipment">
+                          Equipment
+                        </label>
+                        <div class="form-check-radio"></div>
+                      </div>
+
+
+                      <div class="form-check formfields ">
+                        <input class="form-check-input" type="radio" name="businessAreaInterestProcessingSupport"
+                          id="baoiProcessingLine" value="Line" data-persist-val="Line">
+                        <label class="form-check-label " for="baoiProcessingLine">
+                          Line
+                        </label>
+                        <div class="form-check-radio"></div>
+                      </div>
+
+
+                      <div class="form-check formfields ">
+                        <input class="form-check-input" type="radio" name="businessAreaInterestProcessingSupport"
+                          id="baoiProcessingDontknow" value="Don’t know" data-persist-val="Don’t know">
+                        <label class="form-check-label mb-0" for="baoiProcessingDontknow">
+                          Don’t know
+                        </label>
+                        <div class="form-check-radio"></div>
+                      </div>
+
+
+                      <div>
+                        <input type="hidden" name="businessAreaInterestProcessingSupportEqTitle" class="form-control"
+                          id="businessAreaInterestProcessingSupportEqTitle" required="">
+                        <div class="errorMsg">Please select scope of request
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row no-gutters">
+                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Food category</h4>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep1">
+                      <ul class="pw-form-baoiProcessingLevel2">
+                        <li>
+
+                          <div class="form-check formfields ">
+                            <input class="form-check-input" type="radio" name="businessAreaProcessingCategoryFood"
+                              id="baoiProcessingFoodBeverages" value="Beverages" data-persist-val="Beverages">
+                            <label class="form-check-label " for="baoiProcessingFoodBeverages">
+                              Beverages
+                            </label>
+                            <div class="form-check-radio"></div>
+                          </div>
+
+                          <div class="subFoodData">
+                            <div class="formfield">
+                              <ul class="pw-businessEnquiry-form_subFoodItems">
+                                <li>
+
+                                  <div class="form-check formfields ">
+                                    <input class="form-check-input" type="radio"
+                                      name="businessAreaProcessingNeedBeverage" id="foodBeveragesAlcohol"
+                                      value="Alcoholic Beverages" data-persist-val="Alcoholic Beverages">
+                                    <label class="form-check-label " for="foodBeveragesAlcohol">
+                                      Alcoholic Beverages
+                                    </label>
+                                    <div class="form-check-radio"></div>
+                                  </div>
+
+
+                                  <div class="form-check formfields ">
+                                    <input class="form-check-input" type="radio"
+                                      name="businessAreaProcessingNeedBeverage" id="foodBeveragesDairy"
+                                      value="Dairy Alternative" data-persist-val="Dairy Alternative">
+                                    <label class="form-check-label " for="foodBeveragesDairy">
+                                      Dairy Alternative
+                                    </label>
+                                    <div class="form-check-radio"></div>
+                                  </div>
+
+
+                                  <div class="form-check formfields ">
+                                    <input class="form-check-input" type="radio"
+                                      name="businessAreaProcessingNeedBeverage" id="foodBeveragesJuice"
+                                      value="Juice, Nectar &amp; Still Drinks"
+                                      data-persist-val="Juice, Nectar &amp; Still Drinks">
+                                    <label class="form-check-label " for="foodBeveragesJuice">
+                                      Juice, Nectar &amp; Still Drinks
+                                    </label>
+                                    <div class="form-check-radio"></div>
+                                  </div>
+
+                                </li>
+                              </ul>
+                              <input type="hidden" name="foodBeveragesEqTitle" class="form-control field-handler"
+                                id="foodBeveragesEqTitle" data-fieldname="businessAreaProcessingNeedBeverage">
+                              <div class="errorMsg">Please select one option
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+
+                          <div class="form-check formfields ">
+                            <input class="form-check-input" type="radio" name="businessAreaProcessingCategoryFood"
+                              id="baoiProcessingFoodIceCream" value="Ice Cream" data-persist-val="Ice Cream">
+                            <label class="form-check-label " for="baoiProcessingFoodIceCream">
+                              Ice Cream
+                            </label>
+                            <div class="form-check-radio"></div>
+                          </div>
+
+                        </li>
+                        <li>
+
+                          <div class="form-check formfields ">
+                            <input class="form-check-input" type="radio" name="businessAreaProcessingCategoryFood"
+                              id="baoiProcessingFoodCheese" value="Cheese" data-persist-val="Cheese">
+                            <label class="form-check-label " for="baoiProcessingFoodCheese">
+                              Cheese
+                            </label>
+                            <div class="form-check-radio"></div>
+                          </div>
+                        </li>
+                        <li>
+
+                          <div class="form-check formfields ">
+                            <input class="form-check-input" type="radio" name="businessAreaProcessingCategoryFood"
+                              id="baoiProcessingFoodDairy" value="Dairy" data-persist-val="Dairy">
+                            <label class="form-check-label " for="baoiProcessingFoodDairy">
+                              Dairy
+                            </label>
+                            <div class="form-check-radio"></div>
+                          </div>
+                        </li>
+                        <li>
+
+                          <div class="form-check formfields ">
+                            <input class="form-check-input" type="radio" name="businessAreaProcessingCategoryFood"
+                              id="baoiProcessingFoodPreparedFoods" value="Prepared Foods"
+                              data-persist-val="Prepared Foods">
+                            <label class="form-check-label " for="baoiProcessingFoodPreparedFoods">
+                              Prepared Foods
+                            </label>
+                            <div class="form-check-radio"></div>
+                          </div>
+                        </li>
+                        <li>
+
+                          <div class="form-check formfields ">
+                            <input class="form-check-input" type="radio" name="businessAreaProcessingCategoryFood"
+                              id="baoiProcessingFoodPowder" value="Powder" data-persist-val="Powder">
+                            <label class="form-check-label " for="baoiProcessingFoodPowder">
+                              Powder
+                            </label>
+                            <div class="form-check-radio"></div>
+                          </div>
+                        </li>
+                        <li>
+
+                          <div class="form-check formfields ">
+                            <input class="form-check-input" type="radio" name="businessAreaProcessingCategoryFood"
+                              id="baoiProcessingFoodnonFoodProducts" value="Non-food Products"
+                              data-persist-val="Non-food Products">
+                            <label class="form-check-label mb-0" for="baoiProcessingFoodnonFoodProducts">
+                              Non-food Products
+                            </label>
+                            <div class="form-check-radio"></div>
+                          </div>
+
+                        </li>
+                      </ul>
+                      <div>
+                        <input type="hidden" name="businessAreaProcessingCategoryFoodEqtitle" class="form-control"
+                          id="businessAreaProcessingCategoryFoodEqtitle" required="">
+                        <div class="errorMsg">Please select food category
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row no-gutters button-group">
+
+                    <button data-target="#bef-step-1" type="button" class="tpatom-btn tpatom-btn--secondary previousbtn"
+                      auto_locator="businessFormPreviousButtonStep1">
+                      <span class="tp-next-btn__text">Previous</span>
+                      <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
+                    </button>
+
+
+                    <button data-target="#bef-step-2" type="button" class="tpatom-btn tpatom-btn--primary "
+                      auto_locator="businessFormNextButtonStep1">
+                      <span class="tp-next-btn__text">Next</span>
+                      <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--step 1 Specific Interest Are - Processing end -->
+
+          <!--step 1 - Specific Interest Are - Services start -->
+          <div class="bef-tab-pane specificIntAreaServices" data-stepnumber="2" data-stepname="specificIntAreaServices"
+            role="tabpanel" id="businessInquiry_services">
+            <div class="row no-gutters">
+              <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep1">
+                <div class="row no-gutters">
+                  <div class="col-sm-12 main-heading" auto_locator="businessEnquiryLeftContainerHeadingStep1">
+
+                    <h2 class="tpatom-heading tpatom-heading--">Contact our sales team</h2>
+
+                  </div>
+                </div>
+                <div auto_locator="businessEnquiryLeftContainerSummaryAreaStep1">
+                  <div class="row no-gutters">
+                    <div class="col-sm-12">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Summary</h4>
+
+                    </div>
+                  </div>
+                  <div class="row no-gutters summary">
+                    <div class="col-lg-5">Purpose of contact</div>
+                    <div class="col-lg-7 purposeOfContactInBusinessEqTitle"></div>
+                  </div>
+                  <div class="row no-gutters summary">
+                    <div class="col-lg-5">Business area of interest</div>
+                    <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep1">
+                <div class="tab-content tab-content-steps">
+                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
+                    <div class="col-lg-10">
+
+                      <ul class="pw-progressbar_wrapper">
+
+
+                        <li class="step1 step-box active ">
+                          <div class="steps">
+                            <span class="circle"><span>1</span></span>
+                            <span class="stepname">Purpose</span>
+                          </div>
+                        </li>
+
+
+
+                        <li class="step1 step-box  ">
+                          <div class="steps">
+                            <span class="circle"><span>2</span></span>
+                            <span class="stepname">Request</span>
+                          </div>
+                        </li>
+
+
+
+                        <li class="step1 step-box  ">
+                          <div class="steps">
+                            <span class="circle"><span>3</span></span>
+                            <span class="stepname">Contact</span>
+                          </div>
+                        </li>
+                      </ul>
+
+                    </div>
+                  </div>
+
+                  <div class="row no-gutters">
+                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Specific area of interest</h4>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep1">
+                      <div id="Services">
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesMaintenance" value="Maintenance" data-persist-val="Maintenance">
+                          <label class="form-check-label " for="boaiServicesMaintenance">
+                            Maintenance
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesTraining" value="Training" data-persist-val="Training">
+                          <label class="form-check-label " for="boaiServicesTraining">
+                            Training
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesConsultancy" value="Expert Services"
+                            data-persist-val="Expert Services (Consultancy)">
+                          <label class="form-check-label " for="boaiServicesConsultancy">
+                            Expert Services (Consultancy)
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesAutomation" value="Automation" data-persist-val="Automation">
+                          <label class="form-check-label " for="boaiServicesAutomation">
+                            Automation
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesInstallation" value="Installation" data-persist-val="Installation">
+                          <label class="form-check-label " for="boaiServicesInstallation">
+                            Installation
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesAgreements" value="Services Solutions"
+                            data-persist-val="Services Agreements">
+                          <label class="form-check-label " for="boaiServicesAgreements">
+                            Services Agreements
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesParts" value="Parts" data-persist-val="Parts">
+                          <label class="form-check-label " for="boaiServicesParts">
+                            Parts
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesConsumables" value="Consumables"
+                            data-persist-val="Consumables (e.g. adhesives, lubricant, membranes)">
+                          <label class="form-check-label " for="boaiServicesConsumables">
+                            Consumables (e.g. adhesives, lubricant, membranes)
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesPlantComponents" value="Plant Components"
+                            data-persist-val="Plant Components (e.g. pumps &amp; valves)">
+                          <label class="form-check-label " for="boaiServicesPlantComponents">
+                            Plant Components (e.g. pumps &amp; valves)
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesUpgrades" value="Upgrades"
+                            data-persist-val="Upgrades for Equipment &amp; Machines">
+                          <label class="form-check-label " for="boaiServicesUpgrades">
+                            Upgrades for Equipment &amp; Machines
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessAreaInterestServices"
+                            id="boaiServicesOther" value="Other" data-persist-val="Other(specify in next step)">
+                          <label class="form-check-label mb-0" for="boaiServicesOther">
+                            Other(specify in next step)
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+                      </div>
+
+                      <input type="hidden" name="businessAreaInterestServicesEqTitle" class="form-control"
+                        id="businessAreaInterestServicesEqTitle" required="">
+                      <div class="errorMsg">Please select business area of interest
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row no-gutters button-group">
+
+                    <button data-target="#bef-step-1" type="button" class="tpatom-btn tpatom-btn--secondary previousbtn"
+                      auto_locator="businessFormPreviousButtonStep1">
+                      <span class="tp-next-btn__text">Previous</span>
+                      <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
+                    </button>
+
+
+                    <button data-target="#bef-step-2" type="button" class="tpatom-btn tpatom-btn--primary "
+                      auto_locator="businessFormNextButtonStep1">
+                      <span class="tp-next-btn__text">Next</span>
+                      <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--step 1 Specific Interest Are - Services end -->
+
+          <!--step 2 - Request Fields start -->
+          <div class="bef-tab-pane" data-stepnumber="3" data-stepname="request" role="tabpanel"
+            auto_locator="businessEnquiryListContainerStep2" id="bef-step-2">
+            <div class="row no-gutters">
+              <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep2">
                 <div class="row no-gutters">
                   <div class="col-sm-12 main-heading" auto_locator="businessFormLeftContainerHeadingStep3">
-                    <h2 class="tpatom-heading tpatom-heading--">business enquery form</h2>
+
+                    <h2 class="tpatom-heading tpatom-heading--">Contact our sales team</h2>
+
                   </div>
                 </div>
                 <div auto_locator="businessFormLeftContainerSummaryAreaStep3">
                   <div class="row no-gutters">
                     <div class="col-sm-12">
-                      <h4 class="tpatom-heading tpatom-heading--small"></h4>
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Summary</h4>
+
+
                     </div>
                   </div>
                   <div class="row no-gutters summary">
-                    <div class="col-lg-6">Purpose of contact</div>
-                    <div class="col-lg-6 purposeOfContactInBusinessEqTitle"></div>
+                    <div class="col-lg-5">Purpose of contact</div>
+                    <div class="col-lg-7 purposeOfContactInBusinessEqTitle"></div>
                   </div>
                   <div class="row no-gutters summary">
-                    <div class="col-lg-6">Business area of interest</div>
-                    <div class="col-lg-6 purposeOfInterestAreaEqTitle"></div>
+                    <div class="col-lg-5">Business area of interest</div>
+                    <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep2">
                 <div class="tab-content tab-content-steps">
-                  <div class="row">
-                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep3">
-                      <h4 class="tpatom-heading tpatom-heading--small">Contact information</h4>
-                    </div>
-                    <div class="col-sm-12 formfield" auto_locator="businessEnquiryListContainerStep3">
-                      <div class="col-sm-12 formfield">
-                        <div class="form-group">
-                          <label for="firstName" auto_locator="firstNameHelpText">First name</label>
-                          <input type="text" class="form-control " id="firstNameField" name="firstNameField" required=""
-                            auto_locator="firstNameInput">
-                          <div class="errorMsg">Enter your first name</div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 formfield">
-                        <div class="form-group">
-                          <label for="lastName" auto_locator="lastNameHelpText">Last name</label>
-                          <input type="text" class="form-control " id="lastNameField" name="lastNameField" required=""
-                            auto_locator="lastNameInput">
-                          <div class="errorMsg">Enter your last name</div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 formfield">
-                        <div class="form-group">
-                          <label for="email" auto_locator="emailHelpText">E-mail</label>
-                          <input type="email" class="form-control " id="emailBef" name="emailBef"
-                            placeholder="example@example.com" required="" auto_locator="emailInput">
-                          <div class="errorMsg">Please enter your email in this format: example@example.com</div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 formfield">
-                        <div class="form-group">
-                          <label for="phone" auto_locator="phoneText">Phone number</label>
-                          <input type="text" class="form-control " id="phoneField" name="phoneField"
-                            placeholder="Country code and Number" auto_locator="phoneInput">
-                        </div>
-                      </div>
-                      <div class="country-field-wrapper col-sm-12 col-lg-4">
-                                              <div class="formfield country-field country" data-country-name-label="Country">
-                                                <label for="country" auto_locator="contactUsCountrySelectorHelpText">Country</label>
-                                                <div class="pw-form__dropdown dropdown text-left">
-                                                    <button class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" auto_locator="countrySelectDropdown" aria-expanded="false">
-                                                        <span class="js-pw-form__dropdown__country-text">Argentina</span>
-                                                        <i class="icon icon-Arrow_Right_pw"></i></button>
-
-                                                    <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 6484px, 0px);" x-out-of-boundaries="">
-                                                        <a href="#" id="ddtest" class="dropdown-item" data-country="albania" data-countrytitle="Albania">
-                                                            Albania
-                                                        </a>
-
-                                                        <a href="#" class="dropdown-item" data-country="algeria" data-countrytitle="Algeria">
-                                                            Algeria
-                                                        </a>
-
-
-                                                    </div>
-                                                    <input type="hidden" name="countryTitle" class="form-control validateForTags" id="country" required="" value="Argentina">
-                                                </div>
-                                                <div data-country-error-msg="Please select country" class="errorMsg">Please select country</div>
-                                            </div>
-                                          </div>
-                    </div>
-                  </div>
                   <div class="row no-gutters pw-progress" auto_locator="progressBarStep2">
-                    <div class="col-lg-9">
-                      <ul class="pw-progressbar_wrapper ">
+                    <div class="col-lg-10">
+
+                      <ul class="pw-progressbar_wrapper">
+
+
                         <li class="step1 step-box  done">
                           <div class="steps">
                             <span class="circle"><span>1</span></span>
+                            <span class="stepname">Purpose</span>
                           </div>
                         </li>
-                        <li class="step1 step-box  done">
-                          <div class="steps">
-                            <span class="circle"><span>2</span></span>
-                          </div>
-                        </li>
+
+
+
                         <li class="step1 step-box active ">
                           <div class="steps">
-                            <span class="circle"><span>3</span></span>
+                            <span class="circle"><span>2</span></span>
+                            <span class="stepname">Request</span>
                           </div>
                         </li>
+
+
+
                         <li class="step1 step-box  ">
                           <div class="steps">
-                            <span class="circle"><span>4</span></span>
+                            <span class="circle"><span>3</span></span>
+                            <span class="stepname">Contact</span>
                           </div>
                         </li>
                       </ul>
-                    </div>
-                    <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                      <p> step 3 of 4</p>
+
                     </div>
                   </div>
+
+                  <div class="row">
+                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">What describes your request the best?</h4>
+
+                    </div>
+                    <div class="col-sm-12" auto_locator="businessEnquiryRightContainerStep2">
+                      <div class="form-group formfield">
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessEnquiryNeed"
+                            id="requestBusinessEnquiryDevelopment"
+                            value="Have a project in development with a budget assigned"
+                            data-persist-val="I have a project in development with budget assigned">
+                          <label class="form-check-label " for="requestBusinessEnquiryDevelopment">
+                            I have a project in development with budget assigned
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+
+                        <div class="form-check formfields ">
+                          <input class="form-check-input" type="radio" name="businessEnquiryNeed"
+                            id="requestBusinessEnquirySolution"
+                            value="Looking for new alternatives or a new solution provider"
+                            data-persist-val="I’m looking for new alternatives or a new solution provider">
+                          <label class="form-check-label mb-0" for="requestBusinessEnquirySolution">
+                            I’m looking for new alternatives or a new solution provider
+
+                          </label>
+                          <div class="form-check-radio"></div>
+                        </div>
+
+                        <input type="hidden" name="businessEnquiryNeedEqTitle" class="form-control"
+                          id="businessEnquiryNeedEqTitle" required="">
+                        <div class="errorMsg">Please select one option
+                        </div>
+                      </div>
+
+                      <div class="role-field-wrapper col-sm-12 col-lg-6">
+                        <div class="formfield role-field country form-group" data-role-name-label="Your role">
+                          <label class="role-value" for="country">
+                            Your role
+                          </label>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button
+                              class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                              type="button" data-toggle="dropdown" aria-haspopup="true"
+                              auto_locator="roleSelectDropdown" aria-expanded="false">
+                              <span class="js-pw-form__dropdown__country-text">Choose one option</span>
+                              <i class="icon icon-Arrow_Right_pw"></i></button>
+
+
+                            <div class="dropdown-menu pw-form__dropdown__menu">
+                              <a href="#" id="rddtest" class="dropdown-item" data-rolekey="consultant"
+                                data-roletitle="Consultant">
+                                Consultant
+                              </a>
+
+                              <a href="#" class="dropdown-item" data-rolekey="other" data-roletitle="Other">
+                                Other
+                              </a>
+                            </div>
+
+                            <input type="hidden" name="role" class="form-control validateForTags" id="role" required="">
+                          </div>
+                          <div data-role-error-msg="Please select one option" class="errorMsg">
+                            Please select one option</div>
+                        </div>
+                      </div>
+
+                      <div class="formfield">
+                        <label class="text-area-label" data-text-area-label="Message" for="messageText">Message</label>
+                        <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
+                          id="businessEnquiryMessageText" rows="12" name="message" required="">Message</textarea>
+                        <div data-error-msg="Fill in your query/message" class="errorMsg">
+                          Fill in your query/message</div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="row no-gutters button-group">
-                    <button data-target="#bef-step-2" type="button" class="tpatom-btn tpatom-btn--secondary previousbtn"
+
+                    <button data-target="#bef-step-1" type="button"
+                      class="tpatom-btn tpatom-btn--secondary previousbtn step2Btn"
                       auto_locator="businessFormPreviousButtonStep3">
-                      <span class="tp-next-btn__text">previous</span>
+                      <span class="tp-next-btn__text">Previous</span>
                       <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
                     </button>
-                    <button data-target="#bef-step-4" id="step3btn" type="button" class="tpatom-btn tpatom-btn--primary "
-                      auto_locator="businessFormNextButtonStep3">
-                      <span class="tp-next-btn__text">next</span>
+
+
+                    <button data-target="#bef-step-3" id="step2btn" type="button"
+                      class="tpatom-btn tpatom-btn--primary " auto_locator="businessFormNextButtonStep3">
+                      <span class="tp-next-btn__text">Next</span>
                       <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
                     </button>
 
@@ -353,149 +1021,287 @@
               </div>
             </div>
           </div>
-          <!--step 3 end-->
-          <!--step 4 start-->
-          <div class="bef-tab-pane" data-stepnumber="4" data-stepname="contactInfo" role="tabpanel" id="bef-step-4">
+          <!-- step 2 end -->
+
+          <!--step 3 start -->
+          <div class="bef-tab-pane" data-stepnumber="4" data-stepname="contactInfo" role="tabpanel"
+            auto_locator="businessEnquiryListContainerStep5" id="bef-step-3">
             <div class="row no-gutters">
-              <div class="col-lg-6 separator">
+              <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep3">
                 <div class="row no-gutters">
-                  <div class="col-sm-12 main-heading" auto_locator="businessFormLeftContainerHeadingStep4">
-                    <h2 class="tpatom-heading tpatom-heading--">business enquery form</h2>
+                  <div class="col-sm-12 main-heading" auto_locator="businessFormLeftContainerHeadingStep5">
+
+                    <h2 class="tpatom-heading tpatom-heading--">Contact our sales team</h2>
+
                   </div>
                 </div>
-                <div auto_locator="businessFormLeftContainerSummaryAreaStep4">
+                <div auto_locator="businessFormLeftContainerSummaryAreaStep5">
                   <div class="row no-gutters">
                     <div class="col-sm-12">
-                      <h4 class="tpatom-heading tpatom-heading--small"></h4>
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Summary</h4>
+
                     </div>
                   </div>
                   <div class="row no-gutters summary">
-                    <div class="col-lg-6">Purpose of contact</div>
-                    <div class="col-lg-6 purposeOfContactInBusinessEqTitle"></div>
+                    <div class="col-lg-5">Purpose of contact</div>
+                    <div class="col-lg-7 purposeOfContactInBusinessEqTitle"></div>
                   </div>
                   <div class="row no-gutters summary">
-                    <div class="col-lg-6">Business area of interest</div>
-                    <div class="col-lg-6 purposeOfInterestAreaEqTitle"></div>
+                    <div class="col-lg-5">Business area of interest</div>
+                    <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
                   </div>
                   <div class="row no-gutters summary">
-                    <div class="col-lg-6">First name</div>
-                    <div class="col-lg-6 firstName"></div>
-                  </div>
-                  <div class="row no-gutters summary">
-                    <div class="col-lg-6">Last name</div>
-                    <div class="col-lg-6 lastName"></div>
-                  </div>
-                  <div class="row no-gutters summary">
-                    <div class="col-lg-6">E-mail</div>
-                    <div class="col-lg-6 email"></div>
-                  </div>
-                  <div class="row no-gutters summary">
-                    <div class="col-lg-6">Phone number</div>
-                    <div class="col-lg-6 phone"></div>
+                    <div class="col-lg-5">Message</div>
+                    <div class="col-lg-7 message"></div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep3">
                 <div class="tab-content tab-content-steps">
-                  <div class="row">
-                    <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep4">
-                      <h4 class="tpatom-heading tpatom-heading--small">Company information</h4>
-                    </div>
-                    <div class="col-sm-12 formfield" auto_locator="businessEnquiryListContainerStep4">
-                      <div class="col-sm-12 formfield">
-                        <div class="form-group">
-                          <label for="company" auto_locator="companyText">Company</label>
-                          <input type="text" class="form-control " id="company" name="company" required=""
-                            auto_locator="companyInput">
-                          <div class="errorMsg">Enter your company name</div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 formfield">
-                        <div class="form-group">
-                          <label for="position" auto_locator="positionText">Position</label>
-                          <input type="text" class="form-control " id="position" name="position" required=""
-                            auto_locator="positionInput">
-                          <div class="errorMsg">Enter your position</div>
-                        </div>
-                      </div>
-                      <div class="position-field-wrapper col-sm-12 col-lg-6">
-                          <div class="formfield position-field country form-group" data-position-name-label="Job title">
-                            <label class="position-value" for="country">Job title</label>
-                            <div class="pw-form__dropdown dropdown text-left">
-                              <button class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left" type="button" data-toggle="dropdown" aria-haspopup="true" auto_locator="positionSelectDropdown" aria-expanded="false">
-                                <span class="js-pw-form__dropdown__country-text">Select title</span>
-                                <i class="icon icon-Arrow_Right_pw"></i></button>
+                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep3">
+                    <div class="col-lg-10">
 
-                              <div class="dropdown-menu pw-form__dropdown__menu">
-                                <a href="#" id="pddtest" class="dropdown-item" data-positionkey="associate" data-positiontitle="Associate">
-                                  Associate
-                                </a>
+                      <ul class="pw-progressbar_wrapper">
 
-                                <a href="#" class="dropdown-item" data-positionkey="be-electronics" data-positiontitle="BE Electronics">
-                                  BE Electronics
-                                </a>
-                              </div>
-                              <input type="hidden" name="positionTitle" class="form-control validateForTags" id="positionTitle" required="">
-                            </div>
-                            <div data-position-error-msg="Enter your position" class="errorMsg">
-                              Enter your position</div>
-                          </div>
-                      </div>
-                      <div class="col-sm-12 formfield">
-                        <div class="form-group">
-                          <input id="befconsentcheckbox" required="" type="checkbox" name="consent">
-                          <label for="befconsentcheckbox">
-                            <p>my consentg</p>
-                          </label>
-                          <div class="errorMsg">Please select marketing consent</div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 formfield">
-                        <p></p>
-                        <p>privacy policy text</p>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row no-gutters pw-progress" auto_locator="progressBarStep2">
-                    <div class="col-lg-9">
-                      <ul class="pw-progressbar_wrapper ">
+
                         <li class="step1 step-box  done">
                           <div class="steps">
                             <span class="circle"><span>1</span></span>
+                            <span class="stepname">Purpose</span>
                           </div>
                         </li>
+
+
+
                         <li class="step1 step-box  done">
                           <div class="steps">
                             <span class="circle"><span>2</span></span>
+                            <span class="stepname">Request</span>
                           </div>
                         </li>
-                        <li class="step1 step-box  done">
-                          <div class="steps">
-                            <span class="circle"><span>3</span></span>
-                          </div>
-                        </li>
+
+
+
                         <li class="step1 step-box active ">
                           <div class="steps">
-                            <span class="circle"><span>4</span></span>
+                            <span class="circle"><span>3</span></span>
+                            <span class="stepname">Contact</span>
                           </div>
                         </li>
                       </ul>
 
                     </div>
-                    <div class="pw-progressbar__steps d-none d-lg-block col-md-3">
-                      <p> step 4 of 4</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 heading-summary">
+
+                      <h4 class="tpatom-heading tpatom-heading--small">Company information</h4>
+
+                    </div>
+                    <div class="col-sm-6 formfield" auto_locator="businessEnquiryListContainerStep3">
+                      <div class="formfield">
+
+
+                        <div class="form-group">
+                          <label for="email" auto_locator="emailHelpText">E-mail</label>
+                          <input type="email" class="form-control validateForTags" id="email" name="email" required=""
+                            auto_locator="emailInput">
+                          <div data-error-msg="Please enter your email in this format: example@example.com"
+                            class="errorMsg">Please enter your email in this format: example@example.com</div>
+                        </div>
+
+                      </div>
+                      <div class="formfield">
+
+
+                        <div class="form-group">
+                          <label for="firstName" auto_locator="firstNameHelpText">First name</label>
+                          <input type="text" class="form-control validateForTags" id="firstName" name="firstName"
+                            required="" auto_locator="firstNameInput">
+                          <div data-error-msg="Enter your first name" class="errorMsg">Enter your first name</div>
+                        </div>
+
+                      </div>
+                      <div class="formfield">
+
+
+                        <div class="form-group">
+                          <label for="lastName" auto_locator="lastNameHelpText">Last name</label>
+                          <input type="text" class="form-control validateForTags" id="lastName" name="lastName"
+                            required="" auto_locator="lastNameInput">
+                          <div data-error-msg="Enter your last name" class="errorMsg">Enter your last name</div>
+                        </div>
+
+                      </div>
+                      <div class="formfield">
+
+
+                        <div class="form-group">
+                          <label for="phone" auto_locator="phoneText">Phone number (optional)</label>
+                          <input type="text" class="form-control validateForTags" id="phone" name="phone"
+                            placeholder="Country code and Number" required="" auto_locator="phoneInput">
+                          <div data-error-msg="Enter Valid Phone Number" class="errorMsg">Enter Valid Phone Number
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="formfield">
+
+
+                        <div class="form-group">
+                          <label for="workplaceCity" auto_locator="cityOfWorkPlaceHelpText">City of Workplace</label>
+                          <input type="text" class="form-control validateForTags" id="workplaceCity"
+                            name="workplaceCity" required="" auto_locator="cityOfWorkPlaceInput">
+                          <div data-error-msg="Enter City of workplace" class="errorMsg">Enter City of workplace</div>
+                        </div>
+
+                      </div>
+                      <div class="country-field-wrapper col-sm-12 col-lg-4">
+                        <div class="formfield country-field country" data-country-name-label="Country">
+                          <label for="country" auto_locator="contactUsCountrySelectorHelpText">Country</label>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button
+                              class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                              type="button" data-toggle="dropdown" aria-haspopup="true"
+                              auto_locator="countrySelectDropdown" aria-expanded="false">
+                              <span class="js-pw-form__dropdown__country-text">Argentina</span>
+                              <i class="icon icon-Arrow_Right_pw"></i></button>
+
+                            <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
+                              x-placement="bottom-start"
+                              style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 6484px, 0px);"
+                              x-out-of-boundaries="">
+                              <a href="#" id="ddtest" class="dropdown-item" data-country="albania"
+                                data-countrytitle="Albania">
+                                Albania
+                              </a>
+
+                              <a href="#" class="dropdown-item" data-country="algeria" data-countrytitle="Algeria">
+                                Algeria
+                              </a>
+
+
+                            </div>
+                            <input type="hidden" name="countryTitle" class="form-control validateForTags" id="country"
+                              required="" value="Argentina">
+                          </div>
+                          <div data-country-error-msg="Please select country" class="errorMsg">Please select country
+                          </div>
+                        </div>
+                      </div>
+                      <div class="formfield">
+
+
+                        <div class="form-group">
+                          <label for="company" auto_locator="companyText">Company</label>
+                          <input type="text" class="form-control validateForTags" id="company" name="company"
+                            required="" auto_locator="companyInput">
+                          <div data-error-msg="Enter your company name" class="errorMsg">Enter your company name</div>
+                        </div>
+
+                      </div>
+                      <div class="position-field-wrapper col-sm-12 col-lg-6">
+                        <div class="formfield position-field country form-group" data-position-name-label="Job title">
+                          <label class="position-value" for="country">Job title</label>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button
+                              class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                              type="button" data-toggle="dropdown" aria-haspopup="true"
+                              auto_locator="positionSelectDropdown" aria-expanded="false">
+                              <span class="js-pw-form__dropdown__country-text">Select title</span>
+                              <i class="icon icon-Arrow_Right_pw"></i></button>
+
+                            <div class="dropdown-menu pw-form__dropdown__menu">
+                              <a href="#" id="pddtest" class="dropdown-item" data-positionkey="associate"
+                                data-positiontitle="Associate">
+                                Associate
+                              </a>
+
+                              <a href="#" class="dropdown-item" data-positionkey="be-electronics"
+                                data-positiontitle="BE Electronics">
+                                BE Electronics
+                              </a>
+                            </div>
+                            <input type="hidden" name="positionTitle" class="form-control validateForTags"
+                              id="positionTitle" required="">
+                          </div>
+                          <div data-position-error-msg="Enter your position" class="errorMsg">
+                            Enter your position</div>
+                        </div>
+                      </div>
+
+                      <div class="function-field-wrapper col-sm-12">
+                        <div class="formfield function-field country form-group" data-function-name-label="Function">
+                          <label class="function-value" for="country">Function</label>
+                          <div class="pw-form__dropdown dropdown text-left">
+                            <button
+                              class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                              type="button" data-toggle="dropdown" aria-haspopup="true"
+                              auto_locator="functionSelectDropdown" aria-expanded="false">
+                              <span class="js-pw-form__dropdown__country-text">Choose one option</span>
+                              <i class="icon icon-Arrow_Right_pw"></i></button>
+
+
+                            <div class="dropdown-menu pw-form__dropdown__menu">
+                              <a href="#" id="fddtest" class="dropdown-item" data-functionkey="administrative"
+                                data-functiontitle="Administrative">
+                                Administrative
+                              </a>
+
+                              <a href="#" class="dropdown-item" data-functionkey="business-development"
+                                data-functiontitle="Business Development">
+                                Business Development
+                              </a>
+                            </div>
+
+                            <input type="hidden" name="function" class="form-control validateForTags" id="function"
+                              required="">
+                          </div>
+                          <div data-function-error-msg="Please select one option" class="errorMsg">
+                            Please select one option</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="formfield">
+                        <div class="form-group formfield">
+                          <div class="checboxField">
+                            <label class="checkboxLabel" for="befconsentcheckbox">
+                              <input type="checkbox"
+                                class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left"
+                                id="befconsentcheckbox" name="marketingConsent">
+                              <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                              <p>Yes, I would like to receive regular updates from Tetra Pak</p>
+
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="formfield">
+                        <p></p>
+                        <p>I agree that the information I have provided will only be used in accordance with <a
+                            href="/content/tetrapak/publicweb/global/en/about-tetra-pak/legal-information.html"
+                            title="Legal information">Tetra Pak's privacy policy</a></p>
+                        <p></p>
+                      </div>
                     </div>
                   </div>
                   <div class="row no-gutters button-group">
+
                     <button data-target="#bef-step-3" type="button" class="tpatom-btn tpatom-btn--secondary previousbtn"
-                      auto_locator="businessFormPreviousButtonStep4">
-                      <span class="tp-next-btn__text">previous</span>
+                      auto_locator="businessFormPreviousButtonStep5">
+                      <span class="tp-next-btn__text">Previous</span>
                       <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
                     </button>
-                    <button data-target="#bfe-step-final" type="submit" id="step4btn" class="tpatom-btn tpatom-btn--primary "
-                      auto_locator="contactUsSubmitButtonStep3">
-                      <span class="tp-next-btn__text">submit</span>
+
+
+                    <button data-target="#bef-step-final" type="submit" id="step3btn"
+                      class="tpatom-btn tpatom-btn--primary previewLinkBtn"
+                      auto_locator="businessFormSubmitButtonStep5">
+                      <span class="tp-next-btn__text">Submit</span>
                       <i class="tpatom-button__icon "></i>
                     </button>
 
@@ -504,29 +1310,32 @@
               </div>
             </div>
           </div>
-          <!---step 4 end-->
-          <!--step 5 start-->
-          <div class="bef-tab-pane" role="tabpanel" id="bfe-step-final">
-            <div class="row thankyou">
+          <!---step 3 end-->
+
+          <!--step Final start -->
+          <div class="bef-tab-pane" role="tabpanel" id="bef-step-final"
+            auto_locator="businessEnquiryListContainerStepFinal">
+            <div class="row no-gutters thankyou">
               <input type="text" name="pardot_extra_field" id="pardot_extra_field_bef" class="d-none" tabindex="-1">
-              <div class="col text-center" auto_locator="contactUsThankYouMessage">
-                <div auto_locator="contactUsThankYouPageMessage">
-                  <h2 class="tpatom-heading tpatom-heading--">thankyou</h2>
+              <div class="col-md-8 offset-md-2 text-center" auto_locator="befUsThankYouMessage">
+                <div class="bef-thankyou-img"></div>
+                <div auto_locator="befUsThankYouPageMessage">
+                  <h2 class="tpatom-heading tpatom-heading--">Thank you for your interest</h2>
                 </div>
-                <div class="descriptionTextThankyou" auto_locator="contactUsThankYouPageDescription">
-                  <p>see you soon</p>
+                <div class="descriptionTextThankyou" auto_locator="befUsThankYouPageDescription">
+                  <p>Your request has been submitted to our teams and we will be in touch shortly. Please click on the
+                    button below if you want to submit another request or if you have another query for us.</p>
                 </div>
                 <div class="button-group">
-
                   <button type="button" class="tpatom-btn tpatom-btn--primary newRequestBtn">
-                    <span class="tp-next-btn__text">newrequest</span>
+                    <span class="tp-next-btn__text">New Request</span>
                     <i class="tpatom-button__icon "></i>
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <!--step 5 end-->
+          <!--step Final end-->
         </form>
       </div>
     </div>
