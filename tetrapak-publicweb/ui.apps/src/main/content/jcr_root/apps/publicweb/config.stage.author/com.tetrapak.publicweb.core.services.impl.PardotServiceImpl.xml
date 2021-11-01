@@ -5,5 +5,5 @@
           pardotSubscriptionFormURL="http://go.tetrapak.com/l/857883/2020-05-29/w6z5"
           pardotTokenGenerationApiClientId="iyrBxL1yeztoTE3BXmkMOPe7ztl1B80X"
 		  pardotTokenGenerationApiClientSecret="I4r5fA1hGQtPzgCe"
-          pardotSubscribersApiURL="https://api-dev.tetrapak.com/experimental/externalnewsletters"
-          pardotTokenGenerationUrl="https://api-dev.tetrapak.com/oauth2/token"/>
+          pardotSubscribersApiURL="https://api-mig.tetrapak.com/experimental/externalnewsletters"
+          pardotTokenGenerationUrl="https://api-mig.tetrapak.com/oauth2/token"/>
