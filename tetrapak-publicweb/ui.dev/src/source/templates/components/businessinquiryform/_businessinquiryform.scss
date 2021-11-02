@@ -207,9 +207,9 @@
                 flex: 0;
             }
             &::after {
-                left: $margin-md + 4;
+                left: $margin-twenty;
                 position: absolute;
-                top: $margin-sm + 2;
+                top: $margin-ten;
                 width: 100%;
             }
             &:last-child {
@@ -231,10 +231,10 @@
         min-width: 20px;
     }
 
-    .checboxField {
+    .checkbox-field {
         display: flex;
     }
-    .checkboxLabel p {
+    .checkbox-label p {
         display: inline;
     }
 
@@ -253,9 +253,9 @@
             margin-bottom: $margin-sm;
         }
     }
-    .subFoodData {
+    .sub-food-data {
         display: none;
-        padding-left: $margin-l + 4;
+        padding-left: $margin-twenty-eight;
         &.active {
             display: block;
         }
@@ -272,7 +272,7 @@
             font-size: $font-sm;
             font-weight: 500;
             line-height: $font-m-md;
-            margin-bottom: $margin-md + 2;
+            margin-bottom: $margin-eighteen;
         }
     }
 }
