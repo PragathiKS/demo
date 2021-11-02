@@ -198,16 +198,27 @@
             }
         }
     }
-
-    ul.pw-progressbar_wrapper .step-box {
-        &::before {
-            flex: 0;
-        }
-        &::after {
-            flex: 1;
-        }
-        &:last-child {
-            flex: 0;
+    ul.pw-progressbar_wrapper {
+        margin: $margin-zero;
+        margin-bottom: $margin-l;
+        .step-box {
+            position: relative;
+            &::before {
+                flex: 0;
+            }
+            &::after {
+                left: $margin-md + 4;
+                position: absolute;
+                top: $margin-sm + 2;
+                width: 100%;
+            }
+            &:last-child {
+                flex: 0;
+            }
+            .steps {
+                position: relative;
+                z-index: 1;
+            }
         }
     }
 
@@ -220,7 +231,10 @@
         min-width: 20px;
     }
 
-    .consentlabel p {
+    .checboxField {
+        display: flex;
+    }
+    .checkboxLabel p {
         display: inline;
     }
 
@@ -234,26 +248,31 @@
             @include margin-top($margin-l);
         }
     }
-
-    .checboxField {
-        display: flex;
+    .businessArea {
+        .checboxField {
+            margin-bottom: $margin-sm;
+        }
     }
-
-    .ba-sub-heading {
-        color: $color-tundora;
-        font-size: $font-sm;
-        font-weight: 500;
-        line-height: $font-m-md;
-    }
-
     .subFoodData {
         display: none;
-        .pw-businessEnquiry-form_subFoodItems {
-            margin-left: $margin-l + 4;
-        }
-
+        padding-left: $margin-l + 4;
         &.active {
             display: block;
+        }
+    }
+    .pw-form {
+        &--heading {
+            h4 {
+                margin-top: $margin-l;
+                margin-bottom: $margin-sm;
+            }
+        }
+        &--sub_heading {
+            color: $color-tundora;
+            font-size: $font-sm;
+            font-weight: 500;
+            line-height: $font-m-md;
+            margin-bottom: $margin-md + 2;
         }
     }
 }
