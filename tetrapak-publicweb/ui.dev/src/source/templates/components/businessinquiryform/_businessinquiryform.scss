@@ -201,17 +201,24 @@
     ul.pw-progressbar_wrapper {
         margin: $margin-zero;
         margin-bottom: $margin-l;
-    }
-
-    ul.pw-progressbar_wrapper .step-box {
-        &::before {
-            flex: 0;
-        }
-        &::after {
-            flex: 1;
-        }
-        &:last-child {
-            flex: 0;
+        .step-box {
+            position: relative;
+            &::before {
+                flex: 0;
+            }
+            &::after {
+                left: $margin-md + 4;
+                position: absolute;
+                top: $margin-sm + 2;
+                width: 100%;
+            }
+            &:last-child {
+                flex: 0;
+            }
+            .steps {
+                position: relative;
+                z-index: 1;
+            }
         }
     }
 
