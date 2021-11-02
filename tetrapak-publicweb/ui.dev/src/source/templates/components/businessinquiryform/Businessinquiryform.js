@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError, newPage } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
+import { ajaxMethods, REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
 import { validateFieldsForTags } from '../../../scripts/common/common';
 
 class Businessinquiryform {
@@ -46,72 +45,15 @@ class Businessinquiryform {
     this.cache.$isFormStart = false;    
     this.cache.requestPayload = {
       'domainURL': window.location.host,
-      'purpose': '',
-      'businessArea': '',
-      /*
-      'businessAreaInterestPackaging': '',
-      'businessAreaInterestProcessingSupport': '',
-      'businessAreaInterestServices': '',
-      'businessAreaProcessingCategoryFood': '',
-      'businessAreaProcessingNeedBeverage': '',
-      'businessAreaProcessingNeedCheese': '',
-      'businessAreaProcessingNeedDairy': '',
-      'businessAreaProcessingNeedPreparedFoods': '',
-      'businessAreaProcessingNeedPowder': '',
-      'businessEnquiryProfile': '',
-      'businessEnquiryProfileOther': '',
-      */
-      'businessEnquiryNeed': '',
       'firstName': '',
       'lastName': '',
       'email': '',
       'message': '',
       'phone': '',
       'workplaceCity': '',
-      'country': '',
-      'countryTitle': '',
       'company': '',
-      'position': '',
-      'function': '',
-      'marketingConsent':'',
-      /*
-      'purposeOfContactInBusinessEqTitle': '',
-      'purposeOfInterestAreaEqTitle': '',
-      'specificInterestAreaPackagingEqTitle': '',
-      'businessAreaInterestProcessingSupportEqTitle': '',
-      'businessAreaProcessingCategoryFoodEqtitle': '',
-      'businessAreaInterestServicesEqTitle': '',
-      'businessEnquiryNeedEqTitle': '',
-      */
       'pageurl': window.location.href
     };
-    /*
-    // Previous RequestPayload
-    this.cache.requestPayload = {
-      'domainURL': window.location.host,
-      'purposeOfContact': '',
-      'interestArea': '',
-      'firstNameField': '',
-      'lastNameField': '',
-      'emailBef': '',
-      'message': '',
-      'phoneField': '',
-      'cityOfWorkPlaceField': '',
-      'purposeOfContactInBusinessEqTitle': '',
-      'purposeOfInterestAreaEqTitle': '',
-      'specificInterestAreaPackagingEqTitle': '',
-      'businessAreaInterestProcessingSupportEqTitle': '',
-      'businessAreaProcessingCategoryFoodEqtitle': '',
-      'businessAreaInterestServicesEqTitle': '',
-      'businessEnquiryNeedEqTitle': '',
-      'company': '',
-      'position': '',
-      'country': '',
-      'countryTitle': '',
-      'marketingConsent':'',
-      'pageurl': window.location.href
-    };
-     */
   }
 
   onKeydown = (event, options) => {
@@ -140,6 +82,10 @@ class Businessinquiryform {
     return REG_EMAIL.test(email);
   }
 
+  validPhone(phone) {
+    return REG_NUM.test(phone);
+  }
+
   reloadPage() {
     location.reload();
   }
@@ -162,27 +108,11 @@ class Businessinquiryform {
       dataObj[key] = value;
     });
     
-    /*
-    dataObj['purpose'] = this.cache.requestPayload.purposeOfContactTitle;
-    dataObj['businessArea'] = this.cache.requestPayload.areaOfInterestTitle;
-    dataObj['firstName'] = this.cache.requestPayload.firstNameField;
-    dataObj['lastName'] = this.cache.requestPayload.lastNameField;
-    dataObj['email'] = this.cache.requestPayload.emailBef;
-    if(this.cache.requestPayload.phoneField.trim()){
-      dataObj['phoneNumber'] = this.cache.requestPayload.phoneField;
-    }
-    dataObj['company'] = this.cache.requestPayload.company;
-    dataObj['businessEnquiryMessage'] = this.cache.requestPayload.message;
-    dataObj['position'] = this.cache.requestPayload.position;
-    dataObj['country'] = this.cache.requestPayload.country;
-    dataObj['countryTitle'] = this.cache.requestPayload.countryTitle;
-    */
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
-      dataObj['marketingConsent'] = this.root.find(`#befconsentcheckbox`).is(':checked');
+      dataObj['marketingConsent'] = 'True';
     }
-    dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
     dataObj['pageurl'] = this.cache.requestPayload.pageurl;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
@@ -204,9 +134,7 @@ class Businessinquiryform {
         dataObj['utm_source'] = params[key];
       }
     });
-
-    console.log('Hiren Parmar - Data Object', dataObj);
-
+    
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
@@ -234,7 +162,6 @@ class Businessinquiryform {
     const labelValue = $('label[for="'+id+'"]').text().trim();
     $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(labelValue);
     requestPayload['purpose'] = value;
-    // requestPayload['purposeOfContactInBusinessEqTitle'] = labelValue;
   }
 
   onBusinessInterestChangeHandler = () => {
@@ -275,37 +202,21 @@ class Businessinquiryform {
   setRequestPayload = (val) => {
     const { requestPayload } = this.cache;
     requestPayload['businessArea'] = val;
-    // requestPayload['purposeOfInterestAreaEqTitle'] = val;
     $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
-  }
-  
-  onBaIntPackagingHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestPackaging'] = value;
-    // requestPayload['specificInterestAreaPackagingEqTitle'] = labelValue;
+    this.resetBusinessIntFields();
   }
 
-  onBaIntProcessingSupportHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestProcessingSupport'] = value;
-    // requestPayload['businessAreaInterestProcessingSupportEqTitle'] = labelValue;
+  resetBusinessIntFields = () => {
+    const self = this;
+    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val('');
+    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val('');
+    $('input[type=hidden][name="businessAreaProcessingCategoryFoodEqtitle"]').val('');
+    $('input[type=hidden][name="businessAreaInterestServicesEqTitle"]').val('');
+    self.resetSubFoodCategory();
   }
 
-  onBaIntProcessingCategoryFoodHandler = e => {
-    const { requestPayload, $subFoodCategory } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-
-    // Hide and Reset Sub food Categories
+  resetSubFoodCategory = () => {
+    const { $subFoodCategory } = this.cache;
     $subFoodCategory.hide();
     $subFoodCategory.find('.formfield').removeClass('field-error');
     $subFoodCategory.each(function() {
@@ -316,11 +227,39 @@ class Businessinquiryform {
         $(this).prop('checked', false);
       });
     });
+  }
+  
+  onBaIntPackagingHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val(labelValue);
+    requestPayload['businessAreaInterestPackaging'] = value;
+  }
+
+  onBaIntProcessingSupportHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val(labelValue);
+    requestPayload['businessAreaInterestProcessingSupport'] = value;
+  }
+
+  onBaIntProcessingCategoryFoodHandler = e => {
+    const self = this;
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+
+    // Hide and Reset Sub food Categories
+    self.resetSubFoodCategory();
     
     $(e.currentTarget).parent().next('.subFoodData').show().find('.form-control.field-handler').attr('required', true);
     $('input[type=hidden][name="businessAreaProcessingCategoryFoodEqtitle"]').val(labelValue);
     requestPayload['businessAreaProcessingCategoryFood'] = value;
-    // requestPayload['businessAreaProcessingCategoryFoodEqtitle'] = labelValue;
   }
 
   onBaIntSubCategoryFoodHandler = e => {
@@ -332,7 +271,6 @@ class Businessinquiryform {
     const labelValue = $('label[for="'+id+'"]').text().trim();
     $(inputHandler).val(labelValue);
     requestPayload[hiddenInput] = value;
-    // requestPayload[hiddenInput+'Eqtitle'] = labelValue;
   }
 
   onBaIntServicesHandler = e => {
@@ -342,7 +280,6 @@ class Businessinquiryform {
     const labelValue = $('label[for="'+id+'"]').text().trim();
     $('input[type=hidden][name="businessAreaInterestServicesEqTitle"]').val(labelValue);
     requestPayload['businessAreaInterestServices'] = value;
-    // requestPayload['businessAreaInterestServicesEqTitle'] = labelValue;
   }
   
   onBusinessEnqNeedHandler = e => {
@@ -352,7 +289,6 @@ class Businessinquiryform {
     const labelValue = $('label[for="'+id+'"]').text().trim();
     $('input[type=hidden][name="businessEnquiryNeedEqTitle"]').val(labelValue);
     requestPayload['businessEnquiryNeed'] = value;
-    // requestPayload['businessEnquiryNeedEqTitle'] = labelValue;
   }
 
   checkMessageLength = () => {
@@ -367,6 +303,7 @@ class Businessinquiryform {
     
     const self = this;
     $purposeContact.on('change', this.onPurposeOfContactHandler);
+    $businessInterest.on('change', this.onBusinessInterestChangeHandler);
     $baIntPackaging.on('change', this.onBaIntPackagingHandler);
     $baIntProcessingSupport.on('change', this.onBaIntProcessingSupportHandler);
     $baIntProcessingCategoryFood.on('change', this.onBaIntProcessingCategoryFoodHandler);
@@ -379,7 +316,6 @@ class Businessinquiryform {
       });
     });
     $baIntServices.on('change', this.onBaIntServicesHandler);
-    $businessInterest.on('change', this.onBusinessInterestChangeHandler);
     $businessEnqNeed.on('change', this.onBusinessEnqNeedHandler);
     $newRequestBtn.on('click', this.newRequestHanlder);
 
@@ -413,10 +349,20 @@ class Businessinquiryform {
           const fieldName = $(this).attr('name');
           $('div.' + fieldName).text($(this).val());
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
+
           if (fieldName in self.cache.requestPayload) {
-            requestPayload[fieldName] = newSafeValues;
+            if($(this).attr('type') !== 'radio' && $(this).attr('type') !== 'checkbox') {
+              if(fieldName === 'businessEnquiryProfile') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else if(fieldName === 'businessEnquiryProfileOther') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else {
+                requestPayload[fieldName] = newSafeValues;
+              }
+            }
           }
-          if (($(this).prop('required') && $(this).val() === '') || self.validateField(requestPayload[fieldName]) || (fieldName === 'emailBef') && !self.validEmail($(this).val())) {
+          
+          if (($(this).prop('required') && $(this).val() === '') || self.validateField(requestPayload[fieldName]) || ((fieldName === 'email') && !self.validEmail($(this).val())) || (fieldName === 'phone') && !self.validPhone($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -446,9 +392,6 @@ class Businessinquiryform {
               break;
             case 'workplaceCity':
               erLbl = $('#bef-step-3 label')[4].textContent;
-              break;
-            case 'country':
-              erLbl = $('#bef-step-3 label')[5].textContent;
               break;
             case 'company':
               erLbl = $('#bef-step-3 label')[6].textContent;
@@ -546,13 +489,25 @@ class Businessinquiryform {
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
 
           $('div.' + fieldName).text($(this).val());
+
           if (fieldName in self.cache.requestPayload) {
-            requestPayload[fieldName] = newSafeValues;
+            if($(this).attr('type') !== 'radio' && $(this).attr('type') !== 'checkbox') {
+              if(fieldName === 'position') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else if(fieldName === 'function') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else {
+                requestPayload[fieldName] = newSafeValues;
+              }
+            }
           }
-          if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
-            requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
+
+          if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'marketingConsent') {
+            if($('input[name="marketingConsent"]:checked').length > 0) {
+              requestPayload[fieldName] = 'True';
+            }
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailBef') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
+          if (($(this).prop('required') && $(this).val() === '') || ((fieldName === 'email') && !self.validEmail($(this).val())) || (fieldName === 'phone') && !self.validPhone($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -566,20 +521,32 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step1head2;
               break;
-            case 'firstNameField':
+            case 'message':
+              erLbl = $('#bef-step-2 label')[3].textContent;
+              break;
+            case 'email':
               erLbl = $('#bef-step-3 label')[0].textContent;
               break;
-            case 'lastNameField':
+            case 'firstName':
               erLbl = $('#bef-step-3 label')[1].textContent;
               break;
-            case 'emailBef':
+            case 'lastName':
               erLbl = $('#bef-step-3 label')[2].textContent;
               break;
-            case 'company':
+            case 'phone':
               erLbl = $('#bef-step-3 label')[3].textContent;
               break;
-            case 'position':
+            case 'workplaceCity':
               erLbl = $('#bef-step-3 label')[4].textContent;
+              break;
+            case 'company':
+              erLbl = $('#bef-step-3 label')[6].textContent;
+              break;
+            case 'position':
+              erLbl = $('#bef-step-3 label')[7].textContent;
+              break;
+            case 'function':
+              erLbl = $('#bef-step-3 label')[8].textContent;
               break;
             default:
               erLbl = fieldName;
@@ -635,7 +602,7 @@ class Businessinquiryform {
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(positionTitle);
       $('input', parentDrop).val(positionKey);
-      requestPayload['position'] = positionKey;
+      requestPayload['position'] = positionTitle;
       self.restObj2[self.cache.$positionField.data('position-name-label')] = positionTitle;
       $positionDropItem.removeClass('active');
       $(this).addClass('active');
@@ -649,10 +616,13 @@ class Businessinquiryform {
       $('.dropdown-toggle span', parentDrop).text(roleTitle);
       $('input', parentDrop).val(roleKey);
       if(roleKey === 'other') {
-        requestPayload['businessEnquiryProfileOther'] = roleKey; 
+        requestPayload['businessEnquiryProfileOther'] = roleTitle;
+        $('input', parentDrop).attr('name', 'businessEnquiryProfileOther');
       } else {
-        requestPayload['businessEnquiryProfile'] = roleKey;
+        requestPayload['businessEnquiryProfile'] = roleTitle;
+        $('input', parentDrop).attr('name', 'businessEnquiryProfile');
       }
+      
       self.restObj2[self.cache.$roleField.data('role-name-label')] = roleTitle;
       $roleDropItem.removeClass('active');
       $(this).addClass('active');
@@ -665,7 +635,7 @@ class Businessinquiryform {
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(functionTitle);
       $('input', parentDrop).val(functionKey);
-      requestPayload['function'] = functionKey;
+      requestPayload['function'] = functionTitle;
       self.restObj2[self.cache.$functionField.data('function-name-label')] = functionTitle;
       $functionDropItem.removeClass('active');
       $(this).addClass('active');
