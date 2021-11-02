@@ -169,7 +169,7 @@ public final class CustomerHubConstants {
     public static final String LINE = "line";
 
     /** The Constant EQUIPMENT_STATUS. */
-    public static final String EQUIPMENT_STATUS = "equipmentstatus";
+    public static final String EQUIPMENT_STATUS = "equipmentStatus";
 
     /** The Constant POSITION. */
     public static final String POSITION = "position";
