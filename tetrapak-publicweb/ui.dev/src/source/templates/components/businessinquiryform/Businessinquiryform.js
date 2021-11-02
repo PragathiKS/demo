@@ -45,21 +45,13 @@ class Businessinquiryform {
     this.cache.$isFormStart = false;    
     this.cache.requestPayload = {
       'domainURL': window.location.host,
-      'purpose': '',
-      'businessArea': '',
-      'businessEnquiryNeed': '',
       'firstName': '',
       'lastName': '',
       'email': '',
       'message': '',
       'phone': '',
       'workplaceCity': '',
-      'country': '',
-      'countryTitle': '',
       'company': '',
-      'position': '',
-      'function': '',
-      'pardot_extra_field': '',
       'pageurl': window.location.href
     };
   }
@@ -121,7 +113,6 @@ class Businessinquiryform {
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
       dataObj['marketingConsent'] = 'True';
     }
-    dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
     dataObj['pageurl'] = this.cache.requestPayload.pageurl;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
@@ -358,13 +349,16 @@ class Businessinquiryform {
           const fieldName = $(this).attr('name');
           $('div.' + fieldName).text($(this).val());
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
+          
           if (fieldName in self.cache.requestPayload) {
-            if(fieldName === 'businessEnquiryProfile') {
-              requestPayload[fieldName] = self.cache.requestPayload[fieldName];
-            } else if(fieldName === 'businessEnquiryProfileOther') {
-              requestPayload[fieldName] = self.cache.requestPayload[fieldName];
-            } else {
-              requestPayload[fieldName] = newSafeValues;
+            if($(this).attr('type') !== 'radio' && $(this).attr('type') !== 'checkbox') {
+              if(fieldName === 'businessEnquiryProfile') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else if(fieldName === 'businessEnquiryProfileOther') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else {
+                requestPayload[fieldName] = newSafeValues;
+              }
             }
           }
           
@@ -495,15 +489,19 @@ class Businessinquiryform {
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
 
           $('div.' + fieldName).text($(this).val());
+          
           if (fieldName in self.cache.requestPayload) {
-            if(fieldName === 'position') {
-              requestPayload[fieldName] = self.cache.requestPayload[fieldName];
-            } else if(fieldName === 'function') {
-              requestPayload[fieldName] = self.cache.requestPayload[fieldName];
-            } else {
-              requestPayload[fieldName] = newSafeValues;
+            if($(this).attr('type') !== 'radio' && $(this).attr('type') !== 'checkbox') {
+              if(fieldName === 'position') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else if(fieldName === 'function') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else {
+                requestPayload[fieldName] = newSafeValues;
+              }
             }
           }
+          
           if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'marketingConsent') {
             if($('input[name="marketingConsent"]:checked').length > 0) {
               requestPayload[fieldName] = 'True';
