@@ -155,6 +155,14 @@ class Businessinquiryform {
     );
   }
   
+  onRadioClickHandler = (e, hiddenVal, rpVal) => {
+    const { requestPayload } = this.cache;
+    const labelValue = $('label[for="'+e.target.id+'"]').text().trim();
+    $('input[type=hidden][name="'+hiddenVal+'"]').val(labelValue);
+    requestPayload[rpVal] = e.target.value;
+  }
+
+  /*
   onPurposeOfContactHandler = e => {
     const { requestPayload } = this.cache;
     const id = e.target.id;
@@ -163,6 +171,43 @@ class Businessinquiryform {
     $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(labelValue);
     requestPayload['purpose'] = value;
   }
+
+  onBaIntPackagingHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val(labelValue);
+    requestPayload['businessAreaInterestPackaging'] = value;
+  }
+
+  onBaIntProcessingSupportHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val(labelValue);
+    requestPayload['businessAreaInterestProcessingSupport'] = value;
+  }
+
+  onBaIntServicesHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="businessAreaInterestServicesEqTitle"]').val(labelValue);
+    requestPayload['businessAreaInterestServices'] = value;
+  }
+  
+  onBusinessEnqNeedHandler = e => {
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $('input[type=hidden][name="businessEnquiryNeedEqTitle"]').val(labelValue);
+    requestPayload['businessEnquiryNeed'] = value;
+  }
+  */
 
   onBusinessInterestChangeHandler = () => {
     const self = this;
@@ -229,24 +274,6 @@ class Businessinquiryform {
     });
   }
   
-  onBaIntPackagingHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestPackaging'] = value;
-  }
-
-  onBaIntProcessingSupportHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestProcessingSupport'] = value;
-  }
-
   onBaIntProcessingCategoryFoodHandler = e => {
     const self = this;
     const { requestPayload } = this.cache;
@@ -261,7 +288,7 @@ class Businessinquiryform {
     $('input[type=hidden][name="businessAreaProcessingCategoryFoodEqtitle"]').val(labelValue);
     requestPayload['businessAreaProcessingCategoryFood'] = value;
   }
-
+  
   onBaIntSubCategoryFoodHandler = e => {
     const { requestPayload } = this.cache;
     const inputHandler = $(e.currentTarget).closest('.formfield').find('.form-control.field-handler');
@@ -272,25 +299,7 @@ class Businessinquiryform {
     $(inputHandler).val(labelValue);
     requestPayload[hiddenInput] = value;
   }
-
-  onBaIntServicesHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessAreaInterestServicesEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestServices'] = value;
-  }
   
-  onBusinessEnqNeedHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessEnquiryNeedEqTitle"]').val(labelValue);
-    requestPayload['businessEnquiryNeed'] = value;
-  }
-
   checkMessageLength = () => {
     const msgBox = this.root.find('textarea#businessEnquiryMessageText');
     if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 170){
@@ -302,11 +311,35 @@ class Businessinquiryform {
     const { requestPayload, $purposeContact, $baIntPackaging, $baIntProcessingSupport, $baIntProcessingCategoryFood, $subFoodCategory, $baIntServices, $businessInterest, $businessEnqNeed, $newRequestBtn, $nextbtn, $submitBtn, $roleDropItem, $dropItem, $positionDropItem, $functionDropItem } = this.cache;
     
     const self = this;
-    $purposeContact.on('change', this.onPurposeOfContactHandler);
+    $purposeContact.on('change', function(e) {
+      self.onRadioClickHandler(e, 'purposeOfContactInBusinessEqTitle', 'purpose');
+    });
+    $baIntPackaging.on('change', function(e) {
+      self.onRadioClickHandler(e, 'specificInterestAreaPackagingEqTitle', 'businessAreaInterestPackaging');
+    });
+    $baIntProcessingSupport.on('change', function(e) {
+      self.onRadioClickHandler(e, 'businessAreaInterestProcessingSupportEqTitle', 'businessAreaInterestProcessingSupport');
+    });
+    $baIntProcessingCategoryFood.on('change', function(e) {
+      const self = this;
+      self.resetSubFoodCategory();
+      $(e.currentTarget).parent().next('.subFoodData').show().find('.form-control.field-handler').attr('required', true);
+      self.onRadioClickHandler(e, 'businessAreaProcessingCategoryFoodEqtitle', 'businessAreaProcessingCategoryFood');
+    });
+    $baIntServices.on('change', function(e) {
+      self.onRadioClickHandler(e, 'businessAreaInterestServicesEqTitle', 'businessAreaInterestServices');
+    });
+    $businessEnqNeed.on('change', function(e) {
+      self.onRadioClickHandler(e, 'businessEnquiryNeedEqTitle', 'businessEnquiryNeed');
+    });
+
     $businessInterest.on('change', this.onBusinessInterestChangeHandler);
-    $baIntPackaging.on('change', this.onBaIntPackagingHandler);
-    $baIntProcessingSupport.on('change', this.onBaIntProcessingSupportHandler);
-    $baIntProcessingCategoryFood.on('change', this.onBaIntProcessingCategoryFoodHandler);
+    // $purposeContact.on('change', this.onPurposeOfContactHandler);
+    // $baIntPackaging.on('change', this.onBaIntPackagingHandler);
+    // $baIntProcessingSupport.on('change', this.onBaIntProcessingSupportHandler);
+    // $baIntProcessingCategoryFood.on('change', this.onBaIntProcessingCategoryFoodHandler);
+    // $baIntServices.on('change', this.onBaIntServicesHandler);
+    // $businessEnqNeed.on('change', this.onBusinessEnqNeedHandler);
 
     // Sub Food Category
     $subFoodCategory.each(function() {
@@ -315,8 +348,6 @@ class Businessinquiryform {
         $(this).on('change', self.onBaIntSubCategoryFoodHandler);
       });
     });
-    $baIntServices.on('change', this.onBaIntServicesHandler);
-    $businessEnqNeed.on('change', this.onBusinessEnqNeedHandler);
     $newRequestBtn.on('click', this.newRequestHanlder);
 
     $nextbtn.click(function (e) {
@@ -395,12 +426,6 @@ class Businessinquiryform {
               break;
             case 'company':
               erLbl = $('#bef-step-3 label')[6].textContent;
-              break;
-            case 'position':
-              erLbl = $('#bef-step-3 label')[7].textContent;
-              break;
-            case 'function':
-              erLbl = $('#bef-step-3 label')[8].textContent;
               break;
             default:
               erLbl = fieldName;
@@ -541,12 +566,6 @@ class Businessinquiryform {
               break;
             case 'company':
               erLbl = $('#bef-step-3 label')[6].textContent;
-              break;
-            case 'position':
-              erLbl = $('#bef-step-3 label')[7].textContent;
-              break;
-            case 'function':
-              erLbl = $('#bef-step-3 label')[8].textContent;
               break;
             default:
               erLbl = fieldName;
