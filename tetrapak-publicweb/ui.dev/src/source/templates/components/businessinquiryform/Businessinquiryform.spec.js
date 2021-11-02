@@ -19,7 +19,9 @@ describe('BusinessInquiryForm', function () {
     this.initSpy = sinon.spy(this.businessinquiry, 'init');
     this.submitFormSpy = sinon.spy(this.businessinquiry, 'submitForm');
     this.newRequestHanlderSpy = sinon.spy(this.businessinquiry, 'newRequestHanlder');
-    this.reloadStub = sinon.stub(this.businessinquiry, 'reloadPage');
+    this.reloadPageSpy = sinon.stub(this.businessinquiry, 'reloadPage');
+    this.validateFieldSpy = sinon.stub(this.businessinquiry, 'validateField');
+    this.checkMessageLengthSpy = sinon.stub(this.businessinquiry, 'checkMessageLength');
     this.onPurposeOfContactHandlerSpy = sinon.spy(this.businessinquiry, 'onPurposeOfContactHandler');
     this.onBusinessInterestChangeHandlerSpy = sinon.spy(this.businessinquiry, 'onBusinessInterestChangeHandler');
     this.onBaIntPackagingHandlerSpy = sinon.spy(this.businessinquiry, 'onBaIntPackagingHandler');
@@ -38,7 +40,9 @@ describe('BusinessInquiryForm', function () {
     this.initSpy.restore();
     this.submitFormSpy.restore();
     this.newRequestHanlderSpy.restore();
-    this.reloadStub.restore();
+    this.reloadPageSpy.restore();
+    this.validateFieldSpy.restore();
+    this.checkMessageLengthSpy.restore();
     this.onPurposeOfContactHandlerSpy.restore();
     this.onBusinessInterestChangeHandlerSpy.restore();
     this.onBaIntPackagingHandlerSpy.restore();
@@ -58,6 +62,21 @@ describe('BusinessInquiryForm', function () {
   it('should call newRequestHanlder on newRequestBtn is clicked', function (done) {
     $('.newRequestBtn').click();
     expect(this.businessinquiry.newRequestHanlder.called).to.be.true;
+    done();
+  });
+  it('should call reloadPage on button is clicked', function (done) {
+    $('.newRequestBtn').click();
+    expect(this.businessinquiry.reloadPage.called).to.be.true;
+    done();
+  });
+  it('should call validateField on button is clicked', function (done) {
+    $('.tpatom-btn').click();
+    expect(this.businessinquiry.validateField.called).to.be.true;
+    done();
+  });
+  it('should call checkMessageLength on button is clicked', function (done) {
+    $('.tpatom-btn').click();
+    expect(this.businessinquiry.checkMessageLength.called).to.be.true;
     done();
   });
   it('should call onPurposeOfContactHandler on onPurposeOfContactHandler button is changes', function (done) {
