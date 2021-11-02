@@ -22,14 +22,9 @@ describe('BusinessInquiryForm', function () {
     this.reloadPageSpy = sinon.stub(this.businessinquiry, 'reloadPage');
     this.validateFieldSpy = sinon.stub(this.businessinquiry, 'validateField');
     this.checkMessageLengthSpy = sinon.stub(this.businessinquiry, 'checkMessageLength');
-    this.onPurposeOfContactHandlerSpy = sinon.spy(this.businessinquiry, 'onPurposeOfContactHandler');
+    this.onRadioClickHandlerSpy = sinon.spy(this.businessinquiry, 'onRadioClickHandler');
     this.onBusinessInterestChangeHandlerSpy = sinon.spy(this.businessinquiry, 'onBusinessInterestChangeHandler');
-    this.onBaIntPackagingHandlerSpy = sinon.spy(this.businessinquiry, 'onBaIntPackagingHandler');
-    this.onBaIntProcessingSupportHandlerSpy = sinon.spy(this.businessinquiry, 'onBaIntProcessingSupportHandler');
-    this.onBaIntProcessingCategoryFoodHandlerSpy = sinon.spy(this.businessinquiry, 'onBaIntProcessingCategoryFoodHandler');
     this.onBaIntSubCategoryFoodHandlerSpy = sinon.spy(this.businessinquiry, 'onBaIntSubCategoryFoodHandler');
-    this.onBaIntServicesHandlerSpy = sinon.spy(this.businessinquiry, 'onBaIntServicesHandler');
-    this.onBusinessEnqNeedHandlerSpy = sinon.spy(this.businessinquiry, 'onBusinessEnqNeedHandler');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse({statusCode:'200'}));
     this.getCountryListSpy = sinon.spy(this.businessinquiry, 'getCountryList');
@@ -43,14 +38,9 @@ describe('BusinessInquiryForm', function () {
     this.reloadPageSpy.restore();
     this.validateFieldSpy.restore();
     this.checkMessageLengthSpy.restore();
-    this.onPurposeOfContactHandlerSpy.restore();
+    this.onRadioClickHandlerSpy.restore();
     this.onBusinessInterestChangeHandlerSpy.restore();
-    this.onBaIntPackagingHandlerSpy.restore();
-    this.onBaIntProcessingSupportHandlerSpy.restore();
-    this.onBaIntProcessingCategoryFoodHandlerSpy.restore();
     this.onBaIntSubCategoryFoodHandlerSpy.restore();
-    this.onBaIntServicesHandlerSpy.restore();
-    this.onBusinessEnqNeedHandlerSpy.restore();
     this.getCountryListSpy.restore();
     this.ajaxStub.restore();
   });
@@ -64,62 +54,43 @@ describe('BusinessInquiryForm', function () {
     expect(this.businessinquiry.newRequestHanlder.called).to.be.true;
     done();
   });
+
   it('should call reloadPage on button is clicked', function (done) {
     $('.newRequestBtn').click();
     expect(this.businessinquiry.reloadPage.called).to.be.true;
     done();
   });
+
   it('should call validateField on button is clicked', function (done) {
     $('.tpatom-btn').click();
     expect(this.businessinquiry.validateField.called).to.be.true;
     done();
   });
+
   it('should call checkMessageLength on button is clicked', function (done) {
     $('.tpatom-btn').click();
     expect(this.businessinquiry.checkMessageLength.called).to.be.true;
     done();
   });
-  it('should call onPurposeOfContactHandler on onPurposeOfContactHandler button is changes', function (done) {
+
+  it('should call onRadioClickHandler on radio button is changes', function (done) {
     $('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]').change();
-    expect(this.businessinquiry.onPurposeOfContactHandler.called).to.be.true;
+    expect(this.businessinquiry.onRadioClickHandler.called).to.be.true;
     done();
   });
+
   it('should call onBusinessInterestChangeHandler on onBusinessInterestChangeHandler button is changes', function (done) {
     $('input[type=checkbox][name="purposeOfContactOptionsInInterestArea"]').change();
     expect(this.businessinquiry.onBusinessInterestChangeHandler.called).to.be.true;
     done();
   });
-  it('should call onBaIntPackagingHandler on onBaIntPackagingHandler button is changes', function (done) {
-    $('input[type=radio][name="businessAreaInterestPackaging"]').change();
-    expect(this.businessinquiry.onBaIntPackagingHandler.called).to.be.true;
-    done();
-  });
-  it('should call onBaIntProcessingSupportHandler on onBaIntProcessingSupportHandler button is changes', function (done) {
-    $('input[type=radio][name="businessAreaInterestProcessingSupport"]').change();
-    expect(this.businessinquiry.onBaIntProcessingSupportHandler.called).to.be.true;
-    done();
-  });
-  it('should call onBaIntProcessingCategoryFoodHandler on onBaIntProcessingCategoryFoodHandler button is changes', function (done) {
-    $('input[type=radio][name="businessAreaProcessingCategoryFood"]').change();
-    expect(this.businessinquiry.onBaIntProcessingCategoryFoodHandler.called).to.be.true;
-    done();
-  });
+  
   it('should call onBaIntSubCategoryFoodHandler on onBaIntSubCategoryFoodHandler button is changes', function (done) {
     $('input[type=radio][name="businessAreaProcessingNeedBeverage"]').change();
     expect(this.businessinquiry.onBaIntSubCategoryFoodHandler.called).to.be.true;
     done();
   });
-  it('should call onBaIntServicesHandler on onBaIntServicesHandler button is changes', function (done) {
-    $('input[type=radio][name="businessAreaInterestServices"]').change();
-    expect(this.businessinquiry.onBaIntServicesHandler.called).to.be.true;
-    done();
-  });
-  it('should call onBusinessEnqNeedHandler on onBusinessEnqNeedHandler button is changes', function (done) {
-    $('input[type=radio][name="businessEnquiryNeed"]').change();
-    expect(this.businessinquiry.onBusinessEnqNeedHandler.called).to.be.true;
-    done();
-  });
-
+  
   it('should get country list and it should be equal to 2', function () {
     expect(this.businessinquiry.getCountryList.called).to.be.true;
     expect(this.businessinquiry.cache.countryList.length).to.equal(2);
