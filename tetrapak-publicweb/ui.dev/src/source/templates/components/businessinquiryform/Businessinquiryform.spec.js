@@ -21,6 +21,7 @@ describe('BusinessInquiryForm', function () {
     this.newRequestHanlderSpy = sinon.spy(this.businessinquiry, 'newRequestHanlder');
     this.reloadPageSpy = sinon.stub(this.businessinquiry, 'reloadPage');
     this.validateFieldSpy = sinon.stub(this.businessinquiry, 'validateField');
+    this.resetErrorMsgSpy = sinon.stub(this.businessinquiry, 'resetErrorMsg');
     this.checkMessageLengthSpy = sinon.stub(this.businessinquiry, 'checkMessageLength');
     this.onRadioClickHandlerSpy = sinon.spy(this.businessinquiry, 'onRadioClickHandler');
     this.onBusinessInterestChangeHandlerSpy = sinon.spy(this.businessinquiry, 'onBusinessInterestChangeHandler');
@@ -37,6 +38,7 @@ describe('BusinessInquiryForm', function () {
     this.newRequestHanlderSpy.restore();
     this.reloadPageSpy.restore();
     this.validateFieldSpy.restore();
+    this.resetErrorMsgSpy.restore();
     this.checkMessageLengthSpy.restore();
     this.onRadioClickHandlerSpy.restore();
     this.onBusinessInterestChangeHandlerSpy.restore();
@@ -64,6 +66,12 @@ describe('BusinessInquiryForm', function () {
   it('should call validateField on button is clicked', function (done) {
     $('.tpatom-btn').click();
     expect(this.businessinquiry.validateField.called).to.be.true;
+    done();
+  });
+
+  it('should call resetErrorMsg on button is clicked', function (done) {
+    $('input').change();
+    expect(this.businessinquiry.resetErrorMsg.called).to.be.true;
     done();
   });
 
