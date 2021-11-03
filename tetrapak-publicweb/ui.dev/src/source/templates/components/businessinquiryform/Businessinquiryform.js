@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
@@ -219,7 +218,6 @@ class Businessinquiryform {
     const { $subFoodCategory } = this.cache;
     $subFoodCategory.hide();
     $subFoodCategory.find('.formfield').removeClass('field-error');
-    console.log('Hiren Parmar - Reset Sub Category');
     $subFoodCategory.each(function() {
       const inputHandler = $(this).find('.form-control.field-handler');
       $(inputHandler).val('').removeAttr('required');
