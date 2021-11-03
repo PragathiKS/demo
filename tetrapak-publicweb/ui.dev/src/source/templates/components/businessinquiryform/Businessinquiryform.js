@@ -30,12 +30,9 @@ class Businessinquiryform {
     this.cache.$businessEnqNeed = this.root.find('input[type=radio][name="businessEnquiryNeed"]');
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
     this.cache.$submitBtn = $('form.pw-form-businessEnquiry button[type="submit"]', this.root);
-    this.cache.$inputText = $('form.pw-form-businessEnquiry  input[type="text"]', this.root);
-    this.cache.$inputEmail = $('form.pw-form-businessEnquiry  input[type="email"]', this.root);
-    this.cache.$roleDropItem = $('.role-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
-    this.cache.$dropItem = $('.country-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
-    this.cache.$positionDropItem = $('.position-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
-    this.cache.$functionDropItem = $('.function-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$inputText = $('form.pw-form-businessEnquiry input[type="text"]', this.root);
+    this.cache.$inputEmail = $('form.pw-form-businessEnquiry input[type="email"]', this.root);
+    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.countryList = [];
     this.cache.$roleField = this.root.find('.formfield.role-field');
     this.cache.$countryField = this.root.find('.formfield.country-field');
@@ -162,7 +159,7 @@ class Businessinquiryform {
     requestPayload[rpVal] = e.target.value;
   }
 
-  onBusinessInterestChangeHandler = () => {
+  onBusinessInterestChangeHandler = (e) => {
     const self = this;
     const { $businessInterest } = this.cache;
     const checkedItems = [];
@@ -194,6 +191,10 @@ class Businessinquiryform {
       self.setRequestPayload(checkedItems.join(' and '));
     } else if(checkedItems.length === 3) {
       self.setRequestPayload('All 3');
+    }
+
+    if(checkedItems.length > 0) {
+      $(e.currentTarget).closest('.formfield').removeClass('field-error');
     }
   }
 
@@ -244,7 +245,8 @@ class Businessinquiryform {
   
   onBaIntSubCategoryFoodHandler = e => {
     const { requestPayload } = this.cache;
-    const inputHandler = $(e.currentTarget).closest('.formfield').find('.form-control.field-handler');
+    const formField = $(e.currentTarget).closest('.formfield');
+    const inputHandler = $(formField).find('.form-control.field-handler');
     const hiddenInput = $(inputHandler).attr('data-fieldname');
     const id = e.target.id;
     const value = e.target.value;
@@ -252,16 +254,23 @@ class Businessinquiryform {
     $(inputHandler).val(labelValue);
     requestPayload[hiddenInput] = value;
   }
+
+  resetErrorMsg = (e) => {
+    if($(this).attr('type') !== 'checkbox') {
+      $(e.currentTarget).closest('.formfield').removeClass('field-error');
+      $(e.currentTarget).closest('.form-group').removeClass('field-error');
+    }
+  }
   
   checkMessageLength = () => {
     const msgBox = this.root.find('textarea#businessEnquiryMessageText');
-    if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 170){
-      this.root.find('.message').text(`${msgBox.val().substring(0, 170)}...`);
+    if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 204){
+      this.root.find('.message').text(`${msgBox.val().substring(0, 204)}...`);
     }
   }
 
   bindEvents() {
-    const { requestPayload, $purposeContact, $baIntPackaging, $baIntProcessingSupport, $baIntProcessingCategoryFood, $subFoodCategory, $baIntServices, $businessInterest, $businessEnqNeed, $newRequestBtn, $nextbtn, $submitBtn, $roleDropItem, $dropItem, $positionDropItem, $functionDropItem } = this.cache;
+    const { businessformapi, requestPayload, $purposeContact, $baIntPackaging, $baIntProcessingSupport, $baIntProcessingCategoryFood, $subFoodCategory, $baIntServices, $businessInterest, $businessEnqNeed, $newRequestBtn, $nextbtn, $submitBtn, $dropItem } = this.cache;
     
     const self = this;
     $purposeContact.on('change', function(e) {
@@ -296,6 +305,11 @@ class Businessinquiryform {
     });
     $newRequestBtn.on('click', this.newRequestHanlder);
 
+    // Remove Error message on change
+    $('input, textarea', businessformapi).each(function () {
+      $(this).on('change', self.resetErrorMsg);
+    });
+    
     $nextbtn.click(function (e) {
       let isvalid = true;
       const target = $(this).attr('data-target'),  tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea'), errObj = [];
@@ -330,8 +344,6 @@ class Businessinquiryform {
           if (fieldName in self.cache.requestPayload) {
             if($(this).attr('type') !== 'radio' && $(this).attr('type') !== 'checkbox') {
               if(fieldName === 'businessEnquiryProfile') {
-                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
-              } else if(fieldName === 'businessEnquiryProfileOther') {
                 requestPayload[fieldName] = self.cache.requestPayload[fieldName];
               } else {
                 requestPayload[fieldName] = newSafeValues;
@@ -549,61 +561,29 @@ class Businessinquiryform {
 
     $dropItem.click(function (e) {
       e.preventDefault();
-      const countryTitle = $(this).data('countrytitle');
+      const title = $(this).attr('data-title');
+      const field = $(this).attr('data-field-name');
+      const fieldtitle = $(this).attr('data-field-title');
       const parentDrop = $(this).closest('.dropdown');
-      $('.dropdown-toggle span', parentDrop).text(countryTitle);
-      $('input', parentDrop).val(countryTitle);
-      requestPayload['country'] = countryTitle;
-      self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload['country'];
-      requestPayload['countryTitle'] = countryTitle;
+      $('.dropdown-toggle span', parentDrop).text(title);
+      $('input', parentDrop).val(title);
+      requestPayload[field] = title;
+      if(field === 'country') {
+        self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload[field];
+        requestPayload[fieldtitle] = title;
+      }
+      if(field === 'position') {
+        self.restObj2[self.cache.$positionField.data('position-name-label')] = requestPayload[field];
+      }
+      if(field === 'function') {
+        self.restObj2[self.cache.$functionField.data('function-name-label')] = requestPayload[field];
+      }
+      if(field === 'businessEnquiryProfile') {
+        self.restObj2[self.cache.$roleField.data('role-name-label')] = requestPayload[field];
+      }
       $dropItem.removeClass('active');
       $(this).addClass('active');
-    });
-
-    $positionDropItem.click(function (e) {
-      e.preventDefault();
-      const positionTitle = $(this).data('positiontitle');
-      const positionKey = $(this).data('positionkey');
-      const parentDrop = $(this).closest('.dropdown');
-      $('.dropdown-toggle span', parentDrop).text(positionTitle);
-      $('input', parentDrop).val(positionKey);
-      requestPayload['position'] = positionTitle;
-      self.restObj2[self.cache.$positionField.data('position-name-label')] = positionTitle;
-      $positionDropItem.removeClass('active');
-      $(this).addClass('active');
-    });
-
-    $roleDropItem.click(function (e) {
-      e.preventDefault();
-      const roleTitle = $(this).data('roletitle');
-      const roleKey = $(this).data('rolekey');
-      const parentDrop = $(this).closest('.dropdown');
-      $('.dropdown-toggle span', parentDrop).text(roleTitle);
-      $('input', parentDrop).val(roleKey);
-      if(roleKey === 'other') {
-        requestPayload['businessEnquiryProfileOther'] = roleTitle;
-        $('input', parentDrop).attr('name', 'businessEnquiryProfileOther');
-      } else {
-        requestPayload['businessEnquiryProfile'] = roleTitle;
-        $('input', parentDrop).attr('name', 'businessEnquiryProfile');
-      }
-      
-      self.restObj2[self.cache.$roleField.data('role-name-label')] = roleTitle;
-      $roleDropItem.removeClass('active');
-      $(this).addClass('active');
-    });
-
-    $functionDropItem.click(function (e) {
-      e.preventDefault();
-      const functionTitle = $(this).data('functiontitle');
-      const functionKey = $(this).data('functionkey');
-      const parentDrop = $(this).closest('.dropdown');
-      $('.dropdown-toggle span', parentDrop).text(functionTitle);
-      $('input', parentDrop).val(functionKey);
-      requestPayload['function'] = functionTitle;
-      self.restObj2[self.cache.$functionField.data('function-name-label')] = functionTitle;
-      $functionDropItem.removeClass('active');
-      $(this).addClass('active');
+      $(this).closest('.form-group').removeClass('field-error');
     });
   }
 
