@@ -308,8 +308,7 @@
                               <sly data-sly-test="${data.TagProcessingRoles}">
                                 <div class="dropdown-menu pw-form__dropdown__menu"
                                       data-sly-list.tagName="${data.TagProcessingRoles}">
-                                  <a href="#" class="dropdown-item" data-roleKey="${tagName}"
-                                    data-roleTitle="${data.TagProcessingRoles[tagName]}">
+                                  <a href="#" class="dropdown-item" data-roleKey="${tagName}" data-field-name="businessEnquiryProfile" data-field-title="roleTitle" data-title="${data.TagProcessingRoles[tagName]}">
                                     ${data.TagProcessingRoles[tagName]}
                                   </a>
                                 </div>
@@ -326,7 +325,7 @@
                           <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
                             for="messageText">${'pw.form.label.message' @i18n}</label>
                           <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
-                            id="businessEnquiryMessageText" rows="12" name="message" required></textarea>
+                            id="businessEnquiryMessageText" rows="12" name="message" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
                           <div data-error-msg="${'pw.form.errormsg.messagebox' @i18n}" class="errorMsg">
                             ${'pw.form.errormsg.messagebox' @i18n}</div>
                         </div>
@@ -443,8 +442,7 @@
                               </button>
                               <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
                                 data-sly-list.country="${data.countryOptions}">
-                                <a href="#" class="dropdown-item" data-country="${country.key}"
-                                  data-countrytitle="${country.value}">
+                                <a href="#" class="dropdown-item" data-country="${country.key}" data-field-name="country" data-field-title="countryTitle" data-title="${country.value}">
                                   ${country.value}
                                 </a>
                               </div>
@@ -478,8 +476,7 @@
                               <sly data-sly-test="${data.TagTitles}">
                                 <div class="dropdown-menu pw-form__dropdown__menu"
                                       data-sly-list.tagName="${data.TagTitles}">
-                                  <a href="#" class="dropdown-item" data-positionKey="${tagName}"
-                                    data-positionTitle="${data.TagTitles[tagName]}">
+                                  <a href="#" class="dropdown-item" data-positionKey="${tagName}" data-field-name="position" data-field-title="positionTitle" data-title="${data.TagTitles[tagName]}">
                                     ${data.TagTitles[tagName]}
                                   </a>
                                 </div>
@@ -509,8 +506,7 @@
                               <sly data-sly-test="${data.TagFunctions}">
                                 <div class="dropdown-menu pw-form__dropdown__menu"
                                       data-sly-list.tagName="${data.TagFunctions}">
-                                  <a href="#" class="dropdown-item" data-functionKey="${tagName}"
-                                    data-functionTitle="${data.TagFunctions[tagName]}">
+                                  <a href="#" class="dropdown-item" data-functionKey="${tagName}" data-field-name="function" data-field-title="functionTitle" data-title="${data.TagFunctions[tagName]}">
                                     ${data.TagFunctions[tagName]}
                                   </a>
                                 </div> 
