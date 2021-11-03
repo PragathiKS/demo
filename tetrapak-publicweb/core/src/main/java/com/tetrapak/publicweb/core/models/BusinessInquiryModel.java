@@ -1,9 +1,11 @@
 package com.tetrapak.publicweb.core.models;
-
-import java.util.*;
-
 import javax.annotation.PostConstruct;
-
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Arrays;
 import com.tetrapak.publicweb.core.constants.FormConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -63,13 +65,15 @@ public class BusinessInquiryModel extends FormModel {
 
 		final Resource formConfigResource = GlobalUtil.fetchConfigResource(resource,
 				"/jcr:content/root/responsivegrid/businessinquiryformc");
-		if (Objects.nonNull(formConfigResource))
+		if (Objects.nonNull(formConfigResource)) {
 			this.formConfig = formConfigResource.adaptTo(FormConfigModel.class);
+		}
 
 		final Resource consentConfigResource = GlobalUtil.fetchConfigResource(resource,
 				"/jcr:content/root/responsivegrid/formconsenttextsconf");
-		if (Objects.nonNull(consentConfigResource))
+		if (Objects.nonNull(consentConfigResource)) {
 			this.consentConfig = consentConfigResource.adaptTo(FormConsentConfigModel.class);
+		}
 	}
 
 	/**
@@ -100,11 +104,12 @@ public class BusinessInquiryModel extends FormModel {
 	/**
 	 * @param firstLevelTag
 	 * first level tag :: ardot-system-config:job-title - job-title
-	 * @return
+	 * @return tag values
 	 */
 	private Map<String, String> getChildTags(final String firstLevelTag){
 		final String[] pardotFieldTags = formConfig.getPardotSystemConfigTags();
-		final String rootTag = pardotFieldTags[Arrays.asList(pardotFieldTags).indexOf(firstLevelTag)];
+		final int firstLevelTagIndex = Arrays.asList(pardotFieldTags).indexOf(firstLevelTag);
+		final String rootTag = pardotFieldTags[firstLevelTagIndex];
 		final ResourceResolver resolver = resource.getResourceResolver();
 		final TagManager tagManager = resolver.adaptTo(TagManager.class);
 		final Tag tag = Objects.requireNonNull(tagManager).resolve(rootTag);
@@ -119,7 +124,11 @@ public class BusinessInquiryModel extends FormModel {
 			final String localizedTagTitle = childtag
 					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
 			if (tagName.equalsIgnoreCase(FormConstants.OTHER)) {
-				otherTagTitle = localizedTagTitle != null ? localizedTagTitle : defaultTagTitle;
+				if(null != localizedTagTitle){
+					otherTagTitle = localizedTagTitle;
+				} else {
+					otherTagTitle = defaultTagTitle;
+				}
 				otherTagName = childtag.getName();
 			} else {
 				if (null != localizedTagTitle) {
@@ -176,7 +185,7 @@ public class BusinessInquiryModel extends FormModel {
 	/**
 	 * Gets the country options.
 	 *
-	 * @return the country options
+	 * @return countryOptions the country options
 	 */
 	public List<DropdownOption> getCountryOptions() {
 		return countryOptions;
