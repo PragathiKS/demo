@@ -19,9 +19,12 @@ describe('BusinessInquiryForm', function () {
     this.initSpy = sinon.spy(this.businessinquiry, 'init');
     this.submitFormSpy = sinon.spy(this.businessinquiry, 'submitForm');
     this.newRequestHanlderSpy = sinon.spy(this.businessinquiry, 'newRequestHanlder');
-    this.reloadStub = sinon.stub(this.businessinquiry, 'reloadPage');
-    this.onRadioChangeHandlerFirstSpy = sinon.spy(this.businessinquiry, 'onRadioChangeHandlerFirst');
-    this.onRadioChangeHandlerSecondSpy = sinon.spy(this.businessinquiry, 'onRadioChangeHandlerSecond');
+    this.reloadPageSpy = sinon.stub(this.businessinquiry, 'reloadPage');
+    this.validateFieldSpy = sinon.stub(this.businessinquiry, 'validateField');
+    this.checkMessageLengthSpy = sinon.stub(this.businessinquiry, 'checkMessageLength');
+    this.onRadioClickHandlerSpy = sinon.spy(this.businessinquiry, 'onRadioClickHandler');
+    this.onBusinessInterestChangeHandlerSpy = sinon.spy(this.businessinquiry, 'onBusinessInterestChangeHandler');
+    this.onBaIntSubCategoryFoodHandlerSpy = sinon.spy(this.businessinquiry, 'onBaIntSubCategoryFoodHandler');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse({statusCode:'200'}));
     this.getCountryListSpy = sinon.spy(this.businessinquiry, 'getCountryList');
@@ -32,9 +35,12 @@ describe('BusinessInquiryForm', function () {
     this.initSpy.restore();
     this.submitFormSpy.restore();
     this.newRequestHanlderSpy.restore();
-    this.reloadStub.restore();
-    this.onRadioChangeHandlerFirstSpy.restore();
-    this.onRadioChangeHandlerSecondSpy.restore();
+    this.reloadPageSpy.restore();
+    this.validateFieldSpy.restore();
+    this.checkMessageLengthSpy.restore();
+    this.onRadioClickHandlerSpy.restore();
+    this.onBusinessInterestChangeHandlerSpy.restore();
+    this.onBaIntSubCategoryFoodHandlerSpy.restore();
     this.getCountryListSpy.restore();
     this.ajaxStub.restore();
   });
@@ -43,6 +49,48 @@ describe('BusinessInquiryForm', function () {
     expect(this.businessinquiry.init.called).to.be.true;
   });
 
+  it('should call newRequestHanlder on newRequestBtn is clicked', function (done) {
+    $('.newRequestBtn').click();
+    expect(this.businessinquiry.newRequestHanlder.called).to.be.true;
+    done();
+  });
+
+  it('should call reloadPage on button is clicked', function (done) {
+    $('.newRequestBtn').click();
+    expect(this.businessinquiry.reloadPage.called).to.be.true;
+    done();
+  });
+
+  it('should call validateField on button is clicked', function (done) {
+    $('.tpatom-btn').click();
+    expect(this.businessinquiry.validateField.called).to.be.true;
+    done();
+  });
+
+  it('should call checkMessageLength on button is clicked', function (done) {
+    $('.tpatom-btn').click();
+    expect(this.businessinquiry.checkMessageLength.called).to.be.true;
+    done();
+  });
+
+  it('should call onRadioClickHandler on radio button is changes', function (done) {
+    $('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]').change();
+    expect(this.businessinquiry.onRadioClickHandler.called).to.be.true;
+    done();
+  });
+
+  it('should call onBusinessInterestChangeHandler on onBusinessInterestChangeHandler button is changes', function (done) {
+    $('input[type=checkbox][name="purposeOfContactOptionsInInterestArea"]').change();
+    expect(this.businessinquiry.onBusinessInterestChangeHandler.called).to.be.true;
+    done();
+  });
+  
+  it('should call onBaIntSubCategoryFoodHandler on onBaIntSubCategoryFoodHandler button is changes', function (done) {
+    $('input[type=radio][name="businessAreaProcessingNeedBeverage"]').change();
+    expect(this.businessinquiry.onBaIntSubCategoryFoodHandler.called).to.be.true;
+    done();
+  });
+  
   it('should get country list and it should be equal to 2', function () {
     expect(this.businessinquiry.getCountryList.called).to.be.true;
     expect(this.businessinquiry.cache.countryList.length).to.equal(2);
@@ -57,51 +105,33 @@ describe('BusinessInquiryForm', function () {
 
   it('Should update payload with positionDropItem changes', function() {
     document.getElementById('pddtest').click();
-    expect(this.businessinquiry.cache.requestPayload['position']).to.equal('associate');
+    expect(this.businessinquiry.cache.requestPayload['position']).to.equal('Associate');
   });
 
-  it('Should update request payload on step-1 next button click', function () {
-    $('input[name="purposeOfContactOptionsInBusinessEq"]').click({target : { value : 'Contact me' , id : 'demo'}});
-    $('input[name="purposeOfContactInBusinessEqTitle"]').val('Contact me');
-    document.getElementById('step1btn').click();
-    expect(this.businessinquiry.cache.requestPayload['purposeOfContactInBusinessEqTitle']).to.equal('Contact me');
+  it('Should update payload with functionDropItem changes', function() {
+    document.getElementById('fddtest').click();
+    expect(this.businessinquiry.cache.requestPayload['function']).to.equal('Administrative');
   });
 
+  it('Should update payload with roleDropItem changes', function() {
+    document.getElementById('rddtest').click();
+    expect(this.businessinquiry.cache.requestPayload['businessEnquiryProfile']).to.equal('Consultant');
+  });
+  
   it('Should update request payload on radio button change', function () {
     $('input[type=radio][name="purposeOfContactInBusinessEqTitle"]').trigger('change');
     expect(this.businessinquiry.cache.requestPayload['purposeOfContactInBusinessEqTitle']).to.not.equal('Other');
   });
-
-  it('Should update request payload on step-2 next button click', function () {
-    $('input[name="purposeOfContactOptionsInInterestArea"]').click({ target : { value : 'End-to-End solutions' , id : 'demo'}});
-    $('input[name="purposeOfInterestAreaEqTitle"]').val('End-to-End solutions');
-    document.getElementById('step2btn').click();
-    expect(this.businessinquiry.cache.requestPayload['purposeOfInterestAreaEqTitle']).to.equal('End-to-End solutions');
-  });
-
-  it('should update request payload when step-3 next button is clicked', function (done) {
-    document.getElementById('firstNameField').value = 'first';
-    document.getElementById('lastNameField').value = 'last';
-    document.getElementById('emailBef').value = 'email';
-    document.getElementById('phoneField').value = 'phone';
-    document.getElementById('step3btn').click();
-    expect(this.businessinquiry.cache.requestPayload['firstNameField']).to.equal('first');
-    expect(this.businessinquiry.cache.requestPayload['lastNameField']).to.equal('last');
-    expect(this.businessinquiry.cache.requestPayload['emailBef']).to.equal('email');
-    expect(this.businessinquiry.cache.requestPayload['phoneField']).to.equal('phone');
-    done();
-  });
-
-
+  
   it('should submit Form when required fields are not empty', function (done) {
-    $('input[name="purposeOfContactInBusinessEqTitle"]').val("Contact me");
-    $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
-    document.getElementById('firstNameField').value = 'first';
-    document.getElementById('lastNameField').value = 'last';
-    document.getElementById('emailBef').value = 'email';
-    document.getElementById('phoneField').value = 'mockmessage';
+    $('input[name="purposeOfContactInBusinessEqTitle"]').val("Request for Quote");
+    $('input[name="purposeOfInterestAreaEqTitle"]').val("Packaging");
+    document.getElementById('email').value = 'email@email.com';
+    document.getElementById('firstName').value = 'first';
+    document.getElementById('lastName').value = 'last';
+    document.getElementById('phone').value = '1234567890';
+    document.getElementById('workplaceCity').value = 'mockmessage';
     document.getElementById('company').value = 'company';
-    document.getElementById('position').value = 'position';
     document.getElementById('befconsentcheckbox').checked = true;
     this.businessinquiry.cache.$submitBtn.click();
     expect(this.businessinquiry.submitForm.called).to.be.true;
@@ -109,30 +139,21 @@ describe('BusinessInquiryForm', function () {
   });
 
   it('should submit Form when honeypot field is filled', function (done) {
-    $('input[name="purposeOfContactInBusinessEqTitle"]').val("Contact me");
-    $('input[name="purposeOfInterestAreaEqTitle"]').val("End to End Solution");
-    document.getElementById('firstNameField').value = 'first';
-    document.getElementById('lastNameField').value = 'last';
-    document.getElementById('emailBef').value = 'email';
-    document.getElementById('phoneField').value = 'mockmessage';
+    $('input[name="purposeOfContactInBusinessEqTitle"]').val("Request for Quote");
+    $('input[name="purposeOfInterestAreaEqTitle"]').val("Packaging");
+    document.getElementById('email').value = 'email@email.com';
+    document.getElementById('firstName').value = 'first';
+    document.getElementById('lastName').value = 'last';
+    document.getElementById('phone').value = '1234567890';
+    document.getElementById('workplaceCity').value = 'mockmessage';
     document.getElementById('company').value = 'company';
-    document.getElementById('position').value = 'position';
     document.getElementById('befconsentcheckbox').checked = true;
     document.getElementById('pardot_extra_field_bef').value = 'honeypot';
     this.businessinquiry.cache.$submitBtn.click();
     expect(this.businessinquiry.submitForm.called).to.be.true;
     done();
   });
-
-  it('should update request payload when step-4 next button is clicked', function (done) {
-    document.getElementById('company').value = 'company';
-    document.getElementById('position').value = 'position';
-    document.getElementById('befconsentcheckbox').checked = true;
-    $(document.getElementById('step4btn')).click();
-    expect(this.businessinquiry.cache.requestPayload['company']).to.equal('company');
-    expect(this.businessinquiry.cache.requestPayload['position']).to.equal('position');
-    done();
-  });
+  
   it('should update request payload for UTM if avaialble in URL params', function (done) {
     const paramsURL = 'http://www.test.com/?utm_campaign=val1&utm_content=val2&utm_medium=val3&utm_source=val4'
     const params = {};
@@ -164,45 +185,30 @@ describe('BusinessInquiryForm', function () {
     });
     done();
   });
-  it('should call newRequestHanlder on newRequestBtn is clicked', function (done) {
-    $('.newRequestBtn').click();
-    expect(this.businessinquiry.newRequestHanlder.called).to.be.true;
-    done();
-  });
-  it('should call onRadioChangeHandlerFirst on onRadioChangeHandlerFirst button is changes', function (done) {
-    $('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]').change();
-    expect(this.businessinquiry.onRadioChangeHandlerFirst.called).to.be.true;
-    done();
-  });
-  it('should call onRadioChangeHandlerSecond on onRadioChangeHandlerSecond button is changes', function (done) {
-    $('input[type=radio][name="purposeOfContactOptionsInInterestArea"]').change();
-    expect(this.businessinquiry.onRadioChangeHandlerSecond.called).to.be.true;
-    done();
-  });
+  
   it('Should call step-2 previous button click', function () {
     $('#step1btn').addClass('previousbtn');
     $('#step2btn').addClass('previousbtn');
-    $('#step3btn').addClass('previousbtn');
     document.getElementById('step1btn').click();
     document.getElementById('step2btn').click();
-    document.getElementById('step3btn').click();
   });
 
   it('should give error on empty fields', function (done) {
-    $('#step3btn').removeClass('previousbtn');
-    document.getElementById('firstNameField').value = '';
-    document.getElementById('lastNameField').value = 'last';
-    document.getElementById('emailBef').value = 'email@gmail.com';
-    document.getElementById('phoneField').value = 'phone';
+    document.getElementById('email').value = 'email@email.com';
+    document.getElementById('firstName').value = '';
+    document.getElementById('lastName').value = 'last';
+    document.getElementById('phone').value = '';
+    document.getElementById('workplaceCity').value = 'Sweden';
     document.getElementById('company').value = 'company';
-    document.getElementById('step4btn').click();
-    document.getElementById('firstNameField').value = 'first';
-    document.getElementById('lastNameField').value = '';
-    document.getElementById('step4btn').click();
-    document.getElementById('phoneField').value = '';
-    document.getElementById('lastNameField').value = 'last';
-    document.getElementById('step4btn').click();
-    document.getElementById('phoneField').value = 'phone';
+    document.getElementById('step3btn').click();
+    document.getElementById('firstName').value = 'first';
+    document.getElementById('lastName').value = '';
+    document.getElementById('step3btn').click();
+    document.getElementById('phone').value = '';
+    document.getElementById('lastName').value = 'last';
+    document.getElementById('step3btn').click();
+    document.getElementById('phone').value = '9870980980';
+    document.getElementById('workplaceCity').value = 'Sweden';
     document.getElementById('company').value = '';
     $('input[name="purposeOfContactInBusinessEqTitle"]').val('');
     $('input[name="purposeOfInterestAreaEqTitle"]').val('value');

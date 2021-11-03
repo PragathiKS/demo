@@ -49,9 +49,9 @@ public class FormConfigModel {
 	 * @return the tags
 	 */
 	@ValueMapValue
-	private String tags;
+	private String[] tags;
 
-	public String getProfileTags() {
+	public String[] getPardotSystemConfigTags() {
 		return tags;
 	}
 
