@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     if (params.Build_Commons) {
-                        appname = "commons"
+                        appname = "tetrapak-commons"
                         buildandsonar()
                     }
                     else {
@@ -61,16 +61,21 @@ pipeline {
                                         }
                 }
 
-                script {
-                    if (params.Build_Tetralaval) {
-                        appname = "tetralaval"
-                        buildandsonar()
-                    }
-                }
-
-                script {
+                   script {
                     if (params.Build_Publicweb) {
                         appname = "publicweb"
+                        buildandsonar()
+                    }
+
+                    else {
+                                            dir('tetrapak-publicweb') {
+                                                sh "npm install --prefix ui.dev/src"
+                                                }
+                                        }
+                }
+                   script {
+                    if (params.Build_Tetralaval) {
+                        appname = "tetra-laval"
                         buildandsonar()
                     }
                 }
@@ -93,6 +98,18 @@ pipeline {
                 }
             }
         }
+                stage('Tetralaval Cache Clear') {
+            agent {
+                node {
+                label 'cfe-deploy'
+            }
+            }
+            steps {
+                script {
+                    cacheflush()
+                }
+            }
+        }
 }
 }
     def buildandsonar() {
@@ -102,7 +119,8 @@ pipeline {
                 sh "npm cache clean --force"
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {
-                                                sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-${build_id_number}"
+
+                                                sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbaseline.skip=true -Dbuildversion=1.0.0-${build_id_number}"
                                                 if (!params.Sonar_Analysis) {
                         echo "Skipping Sonar execution for customerhub module"
                     } else {
@@ -123,28 +141,7 @@ pipeline {
 
 
     def stagedeployment() {
-
-        if (params.Build_Commons)    {
-                packageName = "tetrapak-commons.complete"
-                repoName = "tetrapak"
-                fileName = "1.0.0-${build_id_number}"
-                prodartifactdownload()
-                parallel (
-                    "Author Commons" : {
-                authordeploy()
-                    },
-                    "Publisher Commons" : {
-                publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
-                    //},
-                    //"Publisher 2 Commons" : {
-                publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
-                    }
-                )
-
-            }
-        if (params.Build_Tetralaval) {
+               if (params.Build_Tetralaval) {
                 packageName = "tetrapak-tetralaval.all"
                 repoName = "tetrapak-tetralaval"
                 fileName = "1.0.0-${build_id_number}"
@@ -163,25 +160,7 @@ pipeline {
                     }
                 )
         }
-        if (params.Build_Publicweb) {
-                packageName = "tetrapak-publicweb.complete"
-                repoName = "tetrapak-publicweb"
-                fileName = "1.0.0-${build_id_number}"
-                prodartifactdownload()
-                parallel (
-                    "Author PublicWeb" : {
-                authordeploy()
-                    },
-                    "Publisher PublicWeb" : {
-                publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
-                    //},
-                    //"Publisher 2 PublicWeb" : {
-                publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
-                    }
-                )
-            }
+        
     }
 
     def prodartifactdownload() {
@@ -226,3 +205,12 @@ pipeline {
                 sleep 60
 
     }
+        def cacheflush() {
+                echo "Starting Stage Dispatcher Cache Clear"
+                withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                    {
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.56.128.106 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                }
+    }
+
