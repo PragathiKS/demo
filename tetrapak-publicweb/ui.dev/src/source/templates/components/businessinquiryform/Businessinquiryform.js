@@ -24,7 +24,7 @@ class Businessinquiryform {
     this.cache.$baIntPackaging = this.root.find('input[type=radio][name="businessAreaInterestPackaging"]');
     this.cache.$baIntProcessingSupport = this.root.find('input[type=radio][name="businessAreaInterestProcessingSupport"]');
     this.cache.$baIntProcessingCategoryFood = this.root.find('input[type=radio][name="businessAreaProcessingCategoryFood"]');
-    this.cache.$subFoodCategory = $('.subFoodData');
+    this.cache.$subFoodCategory = $('.sub-food-data');
     this.cache.$baIntServices = this.root.find('input[type=radio][name="businessAreaInterestServices"]');
     this.cache.$businessInterest = this.root.find('input[type=checkbox][name="purposeOfContactOptionsInInterestArea"]');
     this.cache.$businessEnqNeed = this.root.find('input[type=radio][name="businessEnquiryNeed"]');
@@ -162,53 +162,6 @@ class Businessinquiryform {
     requestPayload[rpVal] = e.target.value;
   }
 
-  /*
-  onPurposeOfContactHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(labelValue);
-    requestPayload['purpose'] = value;
-  }
-
-  onBaIntPackagingHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestPackaging'] = value;
-  }
-
-  onBaIntProcessingSupportHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestProcessingSupport'] = value;
-  }
-
-  onBaIntServicesHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessAreaInterestServicesEqTitle"]').val(labelValue);
-    requestPayload['businessAreaInterestServices'] = value;
-  }
-  
-  onBusinessEnqNeedHandler = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="businessEnquiryNeedEqTitle"]').val(labelValue);
-    requestPayload['businessEnquiryNeed'] = value;
-  }
-  */
-
   onBusinessInterestChangeHandler = () => {
     const self = this;
     const { $businessInterest } = this.cache;
@@ -284,7 +237,7 @@ class Businessinquiryform {
     // Hide and Reset Sub food Categories
     self.resetSubFoodCategory();
     
-    $(e.currentTarget).parent().next('.subFoodData').show().find('.form-control.field-handler').attr('required', true);
+    $(e.currentTarget).parent().next('.sub-food-data').show().find('.form-control.field-handler').attr('required', true);
     $('input[type=hidden][name="businessAreaProcessingCategoryFoodEqtitle"]').val(labelValue);
     requestPayload['businessAreaProcessingCategoryFood'] = value;
   }
@@ -321,9 +274,8 @@ class Businessinquiryform {
       self.onRadioClickHandler(e, 'businessAreaInterestProcessingSupportEqTitle', 'businessAreaInterestProcessingSupport');
     });
     $baIntProcessingCategoryFood.on('change', function(e) {
-      const self = this;
       self.resetSubFoodCategory();
-      $(e.currentTarget).parent().next('.subFoodData').show().find('.form-control.field-handler').attr('required', true);
+      $(e.currentTarget).parent().next('.sub-food-data').show().find('.form-control.field-handler').attr('required', true);
       self.onRadioClickHandler(e, 'businessAreaProcessingCategoryFoodEqtitle', 'businessAreaProcessingCategoryFood');
     });
     $baIntServices.on('change', function(e) {
@@ -334,13 +286,7 @@ class Businessinquiryform {
     });
 
     $businessInterest.on('change', this.onBusinessInterestChangeHandler);
-    // $purposeContact.on('change', this.onPurposeOfContactHandler);
-    // $baIntPackaging.on('change', this.onBaIntPackagingHandler);
-    // $baIntProcessingSupport.on('change', this.onBaIntProcessingSupportHandler);
-    // $baIntProcessingCategoryFood.on('change', this.onBaIntProcessingCategoryFoodHandler);
-    // $baIntServices.on('change', this.onBaIntServicesHandler);
-    // $businessEnqNeed.on('change', this.onBusinessEnqNeedHandler);
-
+    
     // Sub Food Category
     $subFoodCategory.each(function() {
       const $subFoodCategoryChecks = $(this).find('input');
