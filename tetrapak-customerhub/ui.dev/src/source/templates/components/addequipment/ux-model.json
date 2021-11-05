@@ -1,0 +1,9 @@
+{
+  "title": "Add Equipment",
+  "subTitle": "Have added a new equipment to your installed base that is not showing up in your equipment list?",
+  "serialNumberLabel": "Serial number",
+  "dragAndDropDescription": "Add photo or file to your equipment",
+  "dragAndDropTitle": "Drag a file here",
+  "dragAndDropSubTitle": "Or, if you prefer",
+  "dragAndDropButton": "Select a files"
+}
