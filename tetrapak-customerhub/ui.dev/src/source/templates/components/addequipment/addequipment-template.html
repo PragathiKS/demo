@@ -1,0 +1,27 @@
+<sly data-sly-template.addequipment_template="${@data, flag}">
+    <div class="tp-add-equipment tp-card" data-module="AddEquipment">
+        <h1 class="tp-add-equipment__title">${data.title @context='html'}</h1>
+        <p class="tp-add-equipment__subtitle">${data.subTitle @context='html'}</p>
+        <div class="tp-add-equipment__form">
+<!--            <div class="row tp-add-equipment__serial-number">-->
+<!--                <div class="col-lg-3 tp-add-equipment__drag-and-drop">-->
+<!--                    <div class="tp-add-equipment__serial-number-label">label</div>-->
+<!--                    <div class="tp-add-equipment__serial-number-label">field</div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row">
+                <div class="col-lg-6 tp-add-equipment__drag-and-drop-wrapper">
+                    <div class="tp-add-equipment__drag-and-drop-description-wrapper">
+                        <p class="tp-add-equipment__drag-and-drop-description">${data.dragAndDropDescription @context='html'}</p>
+                        <i class="tpatom-list-item__icon icon-Info"></i>
+                    </div>
+                    <div class="tp-add-equipment__drag-and-drop">
+                        <h2 class="tp-add-equipment__drag-and-drop-title">${data.dragAndDropTitle @context='html'}</h2>
+                        <p class="tp-add-equipment__drag-and-drop-subtitle">${data.dragAndDropSubTitle @context='html'}</p>
+                        <p>${data.dragAndDropButton @context='html'}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sly>

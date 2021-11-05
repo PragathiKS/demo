@@ -1,0 +1,43 @@
+.tp-add-equipment {
+    &__title {
+        @include margin-bottom($margin-md);
+    }
+
+    &__subtitle {
+        @include margin-bottom($spacing-big);
+        @include line-height($font-l, $font-baseline);
+    }
+
+    &__drag-and-drop {
+        border: 1px dashed rgba($color-boulder, $opacity-mid);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: $border-radius;
+        background-color: rgba($color-wild-sand, $opacity-mid);
+        height: 210px;
+        box-sizing: border-box;
+
+        &-description {
+            @include line-height($font-l, $font-baseline);
+            @include margin-bottom($spacing-small-half);
+            font-weight: 500;
+
+            &-wrapper {
+                display: flex;
+            }
+        }
+
+        &-title {
+            @include margin-top(40px);
+            color: $color-boulder;
+        }
+
+        &-subtitle {
+            @include line-height($font-l, $font-baseline);
+            @include font-size($font-baseline);
+            @include margin-top(7px);
+            color: $color-boulder;
+        }
+    }
+}
