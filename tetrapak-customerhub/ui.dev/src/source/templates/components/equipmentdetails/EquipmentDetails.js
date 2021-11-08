@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 
@@ -51,12 +52,14 @@ function _renderEquipmentDetails() {
 
 function  _renderEquipInfoCard(view) {
   const $this = this;
-  const { data, i18nKeys } = $this.cache;
+  const { countryData, statuses, data, i18nKeys } = $this.cache;
 
   render.fn({
     template: 'equipmentDetailsInfoCard',
     data: {
       ...data,
+      statuses: statuses,
+      countries: countryData,
       i18nKeys: i18nKeys,
       isEquipUpdate: view && view.update,
       isEquipView: view && view.view,
@@ -125,10 +128,16 @@ class EquipmentDetails {
 
   initCache() {
     this.cache.configJson = this.root.find('.js-equipment-details__config').text();
+    this.cache.countryApi = this.root.data('country-api');
     this.cache.detailsApi = this.root.data('details-api');
+    this.cache.submitApi = this.root.data('submit-api');
     this.cache.$contentWrapper = this.root.find('.tp-equipment-details__content-wrapper');
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$modal = this.root.parent().find('.js-update-modal');
+    this.cache.countryData = [];
+    this.cache.formData = {};
+    this.cache.statuses = [{ key: 'sold', desc: 'sold'}, {key: 'available', desc: 'available' }];
+    this.cache.$updateBtn = this.root.find('.js-equipment-details__req-make-update');
 
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
@@ -140,24 +149,62 @@ class EquipmentDetails {
 
   bindEvents() {
     this.root.on('click', '.js-equipment-details__update',  (e) => {
-      this.renderEquipInfoCard({update: true});
+      this.renderEquipInfoCardWithCountries();
     });
 
     this.root.on('click', '.js-equipment-details__cancel',  (e) => {
       this.renderEquipInfoCard({view: true});
     });
 
-    this.root.on('click', '.js-equipment-details__thanks',  (e) => {
-      this.renderEquipInfoCard({confirmed: true});
-    });
+    // this.root.on('click', '.js-equipment-details__thanks',  (e) => {
+    //   this.renderEquipInfoCard({confirmed: true});
+    // });
 
     this.root.on('click', '.js-equipment-details__req-update',  (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
+      console.log('data: ', data);
+      this.cache.formData = data;
       this.renderEquipUpdateModal();
+    });
+
+    this.root.on('click', '.js-equipment-details__req-make-update',  (e) => {
+      this.cache.$spinner.removeClass('d-none');
+      const submitApi = this.cache.submitApi;
+      auth.getToken(({ data: authData }) => {
+        ajaxWrapper
+          .getXhrObj({
+            url: submitApi,
+            method: ajaxMethods.POST,
+            cache: true,
+            dataType: 'json',
+            contentType: 'application/json',
+            data: this.cache.formData,
+            beforeSend(jqXHR) {
+              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            },
+            showLoader: true
+          }).done(res => {
+            console.log('res: ', res);
+            this.cache.$spinner.addClass('d-none');
+            this.cache.$contentWrapper.removeClass('d-none');
+            this.cache.$modal.modal('hide');
+            this.renderEquipInfoCard({confirmed: true});
+          }).fail(() => {
+            this.cache.$contentWrapper.removeClass('d-none');
+            this.cache.$spinner.addClass('d-none');
+          });
+      });
     });
 
     this.root.on('click', '.js-close-btn, .js-equipment-details__conf-cancel',  () => {
       this.cache.$modal.modal('hide');
     });
+  }
+
+  renderEquipInfoCardWithCountries(){
+    return _renderEquipInfoCardWithCountries.apply(this, arguments);
   }
 
   renderEquipmentDetails() {

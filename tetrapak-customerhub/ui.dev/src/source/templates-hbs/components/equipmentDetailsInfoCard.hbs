@@ -5,7 +5,7 @@
         <div class="tp-equipment-details__info-line">
             <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.country}}</div>
             <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
-                {{> atoms/dropdown/dropdown-custom options=equipData.country name="country" jsClass="js-contacts-filtering__site"}}
+                {{> atoms/dropdown/dropdown options=countries name="country" jsClass="js-tp-contacts-filtering__site"}}
             </div>
         </div>
         <div class="tp-equipment-details__info-line">
@@ -28,7 +28,9 @@
         </div>
         <div class="tp-equipment-details__info-line">
             <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentStatus}}</div>
-            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">---</div>
+            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                {{> atoms/dropdown/dropdown options=statuses name="equipmentStatus" jsClass="js-tp-my-equipment-filter-dropdown"}}
+            </div>
         </div>
         <div class="tp-equipment-details__info-line">
             <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.position}}</div>
@@ -50,9 +52,9 @@
 
             {{> atoms/buttons/button/button text=i18nKeys.cancel modifier="secondary" jsClass="js-equipment-details__cancel"}}
 
-            <button type="button" class="tp-equipment-details__btn js-equipment-details__thanks">
+            {{!-- <button type="button" class="tp-equipment-details__btn js-equipment-details__thanks">
                 <span>thanks</span>
-            </button>
+            </button> --}}
         </div>
     </form>
 {{/if}}
