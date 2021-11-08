@@ -508,4 +508,8 @@ public class EquipmentDetailsModel {
         equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
     }
+
+    public String getSubmitUrl() {
+        return resource.getPath() + "equipment.json";
+    }
 }
