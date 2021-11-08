@@ -4,13 +4,14 @@
     }
 
     &__subtitle {
-        @include margin-bottom($spacing-big);
+        @include margin-bottom($margin-l);
         @include line-height($font-l, $font-baseline);
     }
 
     &__drag-and-drop {
-        border: 1px dashed rgba($color-boulder, $opacity-mid);
+        //border: 1px dashed rgba($color-boulder, $opacity-mid);
         display: flex;
+        background-image: url('data:image/svg+xml,%3csvg width=\'100%25\' height=\'100%25\' xmlns=\'http://www.w3.org/2000/svg\'%3e%3crect width=\'100%25\' height=\'100%25\' fill=\'none\' rx=\'4\' ry=\'4\' stroke=\'%23ADADAD\' stroke-width=\'2\' stroke-dasharray=\'5%2c 10\' stroke-dashoffset=\'0\' stroke-linecap=\'square\'/%3e%3c/svg%3e');
         flex-direction: column;
         align-items: center;
         border-radius: $border-radius;
@@ -20,11 +21,13 @@
 
         &-description {
             @include line-height($font-l, $font-baseline);
-            @include margin-bottom($spacing-small-half);
+            @include margin-bottom($margin-sm);
+            @include margin-right($margin-sm);
             font-weight: 500;
 
             &-wrapper {
                 display: flex;
+                align-items: baseline;
             }
         }
 
@@ -36,8 +39,34 @@
         &-subtitle {
             @include line-height($font-l, $font-baseline);
             @include font-size($font-baseline);
-            @include margin-top(7px);
+            @include margin-top($margin-sm);
             color: $color-boulder;
+        }
+
+        &-button {
+            @include margin-top($margin-l);
+            @include padding($padding-sm);
+            border: 1px solid $color-congress-blue;
+            display: flex;
+            color: $color-congress-blue;
+            align-items: baseline;
+            border-radius: $border-radius;
+
+            span {
+                @include line-height($font-l, $font-baseline);
+            }
+        }
+    }
+
+    &__serial-number {
+        &-wrapper {
+            @include margin-bottom($margin-md);
+        }
+
+        &-label {
+            @include line-height($font-l, $font-baseline);
+            @include margin-top($margin-zero);
+            font-weight: 500;
         }
     }
 }
