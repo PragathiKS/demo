@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-lg-3 tp-add-equipment__serial-number-wrapper">
+        {{> atoms/input/input
+            labelText=serialNumberLabel
+            labelClasses="tp-add-equipment__serial-number-label"
+            eleClasses="js-tp-add-equipment__serial-number-input"
+            placeholder="444454-44444"
+        }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 tp-add-equipment__drag-and-drop-wrapper">
+        <div class="tp-add-equipment__drag-and-drop-description-wrapper">
+            <p class="tp-add-equipment__drag-and-drop-description">{{dragAndDropDescription}}</p>
+            <i class="icon icon-Circle_Tick"></i>
+        </div>
+        <div class="tp-add-equipment__drag-and-drop">
+            <h2 class="tp-add-equipment__drag-and-drop-title">{{dragAndDropTitle}}</h2>
+            <p class="tp-add-equipment__drag-and-drop-subtitle">{{dragAndDropSubTitle}}</p>
+            {{> atoms/buttons/button/button
+                modifier="transparent"
+                jsClass="js-tp-add-equipment__drag-and-drop-button"
+                className="tp-add-equipment__drag-and-drop-button"
+                iconClass="icon-Play"
+                text=dragAndDropButton
+            }}
+        </div>
+    </div>
+</div>
