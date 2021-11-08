@@ -134,6 +134,10 @@ public class EquipmentDetailsModel {
     @Inject
     private String eofsValidFromDate;
 
+    /** The country api. */
+	@Inject
+	private String countryApi;
+
     /** The equipment list api. */
     @Inject
     private String equipmentListApi;
@@ -244,6 +248,15 @@ public class EquipmentDetailsModel {
     public String getUpdateEquipmentInformation() {
         return updateEquipmentInformation;
     }
+
+    /**
+	 * Gets the country api.
+	 *
+	 * @return the country api
+	 */
+	public String getCountryApi() {
+		return countryApi;
+	}
 
     /**
      * Gets the equipment details.
@@ -505,6 +518,9 @@ public class EquipmentDetailsModel {
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
 
+        countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-countrylist");
+        
         equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
     }
