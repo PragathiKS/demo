@@ -323,9 +323,9 @@
 
                         <div class="formfield">
                           <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
-                            for="messageText">${'pw.form.label.message' @i18n}</label>
+                            for="businessEnquiryMessageText">${'pw.form.label.message' @i18n}</label>
                           <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
-                            id="businessEnquiryMessageText" rows="12" name="message" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
+                            id="businessEnquiryMessageText" rows="12" name="businessEnquiryMessage" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
                           <div data-error-msg="${'pw.form.errormsg.messagebox' @i18n}" class="errorMsg">
                             ${'pw.form.errormsg.messagebox' @i18n}</div>
                         </div>
@@ -375,7 +375,7 @@
                     </div>
                     <div class="row no-gutters summary">
                       <div class="col-lg-5">${'pw.form.label.message' @i18n}</div>
-                      <div class="col-lg-7 message"></div>
+                      <div class="col-lg-7 businessEnquiryMessage"></div>
                     </div>
                   </div>
                 </div>
