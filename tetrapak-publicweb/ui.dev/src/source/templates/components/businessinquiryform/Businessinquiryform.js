@@ -265,7 +265,7 @@ class Businessinquiryform {
   checkMessageLength = () => {
     const msgBox = this.root.find('textarea#businessEnquiryMessageText');
     if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 204){
-      this.root.find('.message').text(`${msgBox.val().substring(0, 204)}...`);
+      this.root.find('.businessEnquiryMessage').text(`${msgBox.val().substring(0, 204)}...`);
     }
   }
 
