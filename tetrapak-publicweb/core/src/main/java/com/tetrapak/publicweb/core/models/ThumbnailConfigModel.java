@@ -1,10 +1,12 @@
 package com.tetrapak.publicweb.core.models;
 
 import com.day.cq.commons.LanguageUtil;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -16,9 +18,10 @@ import javax.inject.Inject;
 public class ThumbnailConfigModel {
 
     private static final String THUMBNAIL_CONFIG_PATH = "/jcr:content/root/responsivegrid/thumbnailconfig";
+    private static final String IMAGE_PATH_PROPERTY_NAME = "imagePath";
 
-    @Inject
-    private Resource pageContent;
+    @Self
+    private Resource resource;
 
     @Inject
     private String fileReference;
@@ -38,13 +41,13 @@ public class ThumbnailConfigModel {
     }
 
     private String resolvePathFromLanguagePage() {
-        final String path = LanguageUtil.getLanguageRoot(pageContent.getPath()) + THUMBNAIL_CONFIG_PATH;
-        Resource configResource = pageContent.getResourceResolver().getResource(path);
-        return getPropertyValueFromResource(configResource, "fileReference");
+        final String path = LanguageUtil.getLanguageRoot(resource.getPath()) + THUMBNAIL_CONFIG_PATH;
+        Resource configResource = resource.getResourceResolver().getResource(path);
+        return getPropertyValueFromResource(configResource, PWConstants.FILE_REFERENCE);
     }
 
     private String resolvePathFromPageProperties() {
-        return getPropertyValueFromResource(pageContent, "imagePath");
+        return getPropertyValueFromResource(resource, IMAGE_PATH_PROPERTY_NAME);
     }
 
     private String getPropertyValueFromResource(Resource resource, String key) {
