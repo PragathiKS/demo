@@ -278,7 +278,17 @@ class Softconversion {
     if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
       apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
     }
-    loadDownloadReady(this.mainHeading, { 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' }, this.cache.$parentComponent);
+
+    const dataObj = {
+      'E-mail': apiPayload.email,
+      'First name': apiPayload.firstName,
+      'Last name': apiPayload.lastName,
+      'Country/Location': apiPayload.country,
+      'Visitor Type': apiPayload.visitorType,
+      'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked'
+    };
+
+    loadDownloadReady(this.mainHeading, dataObj, this.cache.$parentComponent);
 
     // IF UTM fields in URL
     const params = {};
