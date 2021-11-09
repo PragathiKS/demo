@@ -35,6 +35,10 @@
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.lookingForAlternativeText"
             sling:message="I’m looking for new alternatives or a new solution provider&#xa;"/>
+    <pw.form.businessenq.other
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="pw.form.businessenq.other"
+            sling:message="Other"/>
     <pw.form.businessenq.messagebox.howWeCanHelpText
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.messagebox.howWeCanHelpText"
