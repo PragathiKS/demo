@@ -53,9 +53,12 @@
   
   <meta data-sly-test="${properties['jcr:title']}" property="og:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
   <meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>                                                
-  <meta property="og:type" content="website"/>                                                                                           
+  <meta property="og:type" content="website"/>
   <meta property="og:url" content="${digitalDataModel.currentPageURL}"/>
-
+  <sly data-sly-use.thumbnailConfigModel="com.tetrapak.publicweb.core.models.ThumbnailConfigModel">
+    <meta data-sly-test="${thumbnailConfigModel.valid}" property="og:image"
+          content="${thumbnailConfigModel.openGraphImagePath}"/>
+  </sly>
   <meta data-sly-test="${properties['jcr:description']}" name="twitter:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>
     <meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
     <meta name="twitter:site" content="@tetrapak" />
