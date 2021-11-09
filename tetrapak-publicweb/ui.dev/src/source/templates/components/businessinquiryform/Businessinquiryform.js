@@ -45,7 +45,7 @@ class Businessinquiryform {
       'firstName': '',
       'lastName': '',
       'email': '',
-      'message': '',
+      'businessEnquiryMessage': '',
       'phone': '',
       'workplaceCity': '',
       'company': '',
@@ -364,7 +364,7 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step1head2;
               break;
-            case 'message':
+            case 'businessEnquiryMessage':
               erLbl = $('#bef-step-2 label')[3].textContent;
               break;
             case 'email':
@@ -504,7 +504,7 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step1head2;
               break;
-            case 'message':
+            case 'businessEnquiryMessage':
               erLbl = $('#bef-step-2 label')[3].textContent;
               break;
             case 'email':
