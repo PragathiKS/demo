@@ -87,7 +87,7 @@
                               ${'pw.form.businessenq.packaging' @i18n}
                           </label>
                         </div>
-                        <div class="checkbox-field">
+                        <div class="checkbox-field" id="processingCheckboxDiv" data-processing-msg-placeholder-text="${'pw.form.businessenq.processing.messageBoxPlaceHolderText' @i18n}">
                           <label class="checkbox-label" for="baoiProcessing">
                             <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiProcessing" name="purposeOfContactOptionsInInterestArea" value="${'pw.form.businessenq.processing' @i18n}">
                               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
@@ -321,7 +321,7 @@
                           </div>
                         </div>
 
-                        <div class="formfield">
+                        <div class="formfield" id="messageBoxDiv" data-general-placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}">
                           <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
                             for="businessEnquiryMessageText">${'pw.form.label.message' @i18n}</label>
                           <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"

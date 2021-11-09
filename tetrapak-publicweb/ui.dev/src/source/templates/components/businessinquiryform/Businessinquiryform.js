@@ -165,6 +165,7 @@ class Businessinquiryform {
     const checkedItems = [];
     const step1Btn = $('#bef-step-1 .step1Btn');
     const step2Btn = $('#bef-step-2 .step2Btn');
+    $('#businessEnquiryMessageText').attr('placeholder', $('#messageBoxDiv').attr('data-general-placeholder'));
     
     $businessInterest.each(function() {
       if($(this).prop('checked')) {
@@ -176,7 +177,6 @@ class Businessinquiryform {
         }
       }
     });
-    
     if(checkedItems.length === 0) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
@@ -190,7 +190,10 @@ class Businessinquiryform {
       $(step2Btn).attr('data-target', '#bef-step-1');
       self.setRequestPayload(checkedItems.join(' and '));
     } else if(checkedItems.length === 3) {
-      self.setRequestPayload('All 3');
+      self.setRequestPayload(checkedItems.join(' & '));
+    }
+    if(checkedItems.length === 1 && checkedItems[0].toLowerCase() === 'processing'){
+      $('#businessEnquiryMessageText').attr('placeholder', $('#processingCheckboxDiv').attr('data-processing-msg-placeholder-text'));
     }
 
     if(checkedItems.length > 0) {
