@@ -64,7 +64,7 @@
                         </sly>
                         <input type="hidden" name="purposeOfContactInBusinessEqTitle" class="form-control"
                           id="purposeOfContactInBusinessEqTitle" required>
-                        <div class="errorMsg purposeOfBusinessContactError">${'pw.form.errormsg.purposeofcontact' @i18n }
+                        <div class="errorMsg purposeOfBusinessContactError">${'pw.form.errormsg.selectOneOption' @i18n }
                         </div>
                       </div>
                     </div>
@@ -326,8 +326,8 @@
                             for="businessEnquiryMessageText">${'pw.form.label.message' @i18n}</label>
                           <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
                             id="businessEnquiryMessageText" rows="12" name="businessEnquiryMessage" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
-                          <div data-error-msg="${'pw.form.errormsg.messagebox' @i18n}" class="errorMsg">
-                            ${'pw.form.errormsg.messagebox' @i18n}</div>
+                          <div data-error-msg="${'pw.form.errormsg.enterthisfield' @i18n}" class="errorMsg">
+                            ${'pw.form.errormsg.enterthisfield' @i18n}</div>
                         </div>
                       </div>
                     </div>
@@ -398,31 +398,31 @@
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='email', id='email', label='pw.form.label.email' , required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='email', id='email', label='pw.form.label.email' , required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags', placeholder='pw.form.label.emailPlaceholder'}">
                           </sly>
                         </div>
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='firstName', label='pw.form.label.firstName', error='pw.form.errormsg.firstname', required=true, autoLocatorInput='firstNameInput', autoLocatorLabel='firstNameHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='firstName', label='pw.form.label.firstName', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='firstNameInput', autoLocatorLabel='firstNameHelpText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='lastName', label='pw.form.label.lastName', error='pw.form.errormsg.lastname', required=true, autoLocatorInput='lastNameInput', autoLocatorLabel='lastNameHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='lastName', label='pw.form.label.lastName', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='lastNameInput', autoLocatorLabel='lastNameHelpText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='phone', inputClass='phoneInput', label='pw.form.label.phonenumber', error='Enter Valid Phone Number', placeholder='pw.form.label.phoneplaceholder', required=true,  autoLocatorInput='phoneInput', autoLocatorLabel='phoneText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='phone', inputClass='phoneInput', label='pw.form.label.phonenumber', error='pw.form.errormsg.enterthisfield', placeholder='pw.form.label.phoneplaceholder', required=true,  autoLocatorInput='phoneInput', autoLocatorLabel='phoneText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='workplaceCity', label='pw.form.label.cityWorkspaceText', error='Enter City of workplace', required=true, autoLocatorInput='cityOfWorkPlaceInput', autoLocatorLabel='cityOfWorkPlaceHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='workplaceCity', label='pw.form.label.cityWorkspaceText', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='cityOfWorkPlaceInput', autoLocatorLabel='cityOfWorkPlaceHelpText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="country-field-wrapper col-sm-12">
@@ -456,7 +456,7 @@
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='company', label='pw.form.label.company', error='pw.form.errormsg.company', required=true, autoLocatorInput='companyInput', autoLocatorLabel='companyText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='company', label='pw.form.label.company', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='companyInput', autoLocatorLabel='companyText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="position-field-wrapper col-sm-12">
