@@ -358,7 +358,7 @@
     <pw.form.errormsg.businessareofinterest
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.businessareofinterest"
-        sling:message="Please select business area of interest"/>
+        sling:message="Please select one or more option"/>
     <pw.form.errormsg.company
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.company"
@@ -367,6 +367,10 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.country"
         sling:message="Please select country"/>
+    <pw.form.errormsg.enterthisfield
+        jcr:primaryType="sling:MessageEntry"
+        sling:key="pw.form.errormsg.enterthisfield"
+        sling:message="Please enter this field"/>
     <pw.form.errormsg.firstname
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.firstname"
