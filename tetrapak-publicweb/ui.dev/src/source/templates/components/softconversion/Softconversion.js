@@ -280,11 +280,11 @@ class Softconversion {
     }
 
     const dataObj = {
-      'E-mail': apiPayload.email,
-      'First name': apiPayload.firstName,
-      'Last name': apiPayload.lastName,
-      'Country/Location': apiPayload.country,
-      'Visitor Type': apiPayload.visitorType,
+      'E-mail': 'NA',
+      'First name': 'NA',
+      'Last name': 'NA',
+      'Country/Region': apiPayload.country,
+      'Purpose of visit': apiPayload.visitorType,
       'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked'
     };
 
@@ -424,11 +424,6 @@ class Softconversion {
             $(this).closest('.form-group, .formfield').addClass('field-error');
           }
           
-          errObj.push({
-            formErrorMessage: errmsg,
-            formErrorField: erLbl
-          });
-
           errObj.push({
             formErrorMessage: errmsg,
             formErrorField: erLbl
