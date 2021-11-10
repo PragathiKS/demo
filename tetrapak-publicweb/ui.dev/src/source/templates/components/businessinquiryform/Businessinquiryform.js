@@ -203,7 +203,11 @@ class Businessinquiryform {
 
   setRequestPayload = (val) => {
     const { requestPayload } = this.cache;
-    requestPayload['businessArea'] = val;
+    if(val.indexOf('&') > 0){
+      requestPayload['businessArea'] = 'All 3';
+    } else {
+      requestPayload['businessArea'] = val;
+    }
     $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
     this.resetBusinessIntFields();
   }
