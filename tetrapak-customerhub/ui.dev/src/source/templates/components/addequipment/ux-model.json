@@ -1,5 +1,5 @@
 {
-  "i18nKeys": "{\"serialNumberLabel\": \"Serial number\", \"dragAndDropDescription\": \"Add photo or file to your equipment\", \"dragAndDropTitle\": \"Upload a file\", \"dragAndDropButton\": \"Select a files\"}",
+  "i18nKeys": "{\"serialNumberLabel\": \"Serial number\", \"dragAndDropDescription\": \"Add photo or file to your equipment\", \"dragAndDropTitle\": \"Upload a file\", \"dragAndDropButton\": \"Select a files\", \"detailsTitle\": \"Details\", \"detailsSubtitle\": \"If these details are not clear from your attached documents or photos, Tetra Pak will get in touch to understand what data to enter.\"}",
   "title": "Add new equipment",
   "subTitle": "Have added a new equipment to your installed base that is not showing up in your equipment list?"
 }
