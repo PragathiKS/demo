@@ -28,6 +28,14 @@ $color-red: #ff0000;
             @include padding($padding-l);
         }
 
+        &-wrapper {
+            @include margin-bottom($margin-md);
+
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+            }
+        }
+
         &-description {
             @include line-height($font-l, $font-baseline);
             @include margin-right($margin-sm);
@@ -142,6 +150,28 @@ $color-red: #ff0000;
             @include line-height($font-l, $font-baseline);
             @include margin-top($margin-zero);
             font-weight: 500;
+        }
+    }
+
+    &__details {
+        @include padding($padding-md);
+        border-radius: $border-radius;
+        background-color: $color-wild-sand;
+
+        @media #{$desktop} {
+            @include padding($padding-l);
+        }
+
+        &-title {
+            @include line-height($font-l, $font-md);
+            @include font-size($font-md);
+            @include margin-bottom($margin-md);
+            color: $color-tundora;
+        }
+
+        &-subtitle {
+            @include margin-bottom($margin-l);
+            @include line-height($font-l, $font-baseline);
         }
     }
 }

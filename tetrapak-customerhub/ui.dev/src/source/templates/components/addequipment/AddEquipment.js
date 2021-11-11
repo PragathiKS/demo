@@ -116,7 +116,7 @@ class AddEquipment {
   renderFiles() {
     const $this = this;
     render.fn({
-      template: 'addEquipmentFile',
+      template: 'addEquipmentFiles',
       target: '.js-tp-add-equipment__drag-and-drop-files-container',
       data: this.cache.files
     }, () => {
