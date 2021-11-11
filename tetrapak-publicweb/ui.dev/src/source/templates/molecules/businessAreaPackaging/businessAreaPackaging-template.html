@@ -44,12 +44,12 @@
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingOther',  required=true, label='Other (specify in next step)', name='businessAreaInterestPackaging', locale= 'en', value='Other'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingOther',  required=true, label='pw.form.businessenq.other', name='businessAreaInterestPackaging', locale= 'en', value='Other'}">
         </sly>
         <input type="hidden" name="specificInterestAreaPackagingEqTitle" class="form-control"
           id="specificInterestAreaPackagingEqTitle" required>
         <div class="errorMsg specificInterestAreaError">
-          ${'pw.form.errormsg.businessareofinterest' @i18n}
+          ${'pw.form.errormsg.selectOneOption' @i18n}
         </div>
       </div>
     </div>

@@ -45,7 +45,7 @@ class Businessinquiryform {
       'firstName': '',
       'lastName': '',
       'email': '',
-      'message': '',
+      'businessEnquiryMessage': '',
       'phone': '',
       'workplaceCity': '',
       'company': '',
@@ -165,6 +165,7 @@ class Businessinquiryform {
     const checkedItems = [];
     const step1Btn = $('#bef-step-1 .step1Btn');
     const step2Btn = $('#bef-step-2 .step2Btn');
+    $('#businessEnquiryMessageText').attr('placeholder', $('#messageBoxDiv').attr('data-general-placeholder'));
     
     $businessInterest.each(function() {
       if($(this).prop('checked')) {
@@ -176,7 +177,6 @@ class Businessinquiryform {
         }
       }
     });
-    
     if(checkedItems.length === 0) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
@@ -190,7 +190,10 @@ class Businessinquiryform {
       $(step2Btn).attr('data-target', '#bef-step-1');
       self.setRequestPayload(checkedItems.join(' and '));
     } else if(checkedItems.length === 3) {
-      self.setRequestPayload('All 3');
+      self.setRequestPayload(checkedItems.join(' & '));
+    }
+    if(checkedItems.length === 1 && checkedItems[0].toLowerCase() === 'processing'){
+      $('#businessEnquiryMessageText').attr('placeholder', $('#processingCheckboxDiv').attr('data-processing-msg-placeholder-text'));
     }
 
     if(checkedItems.length > 0) {
@@ -200,7 +203,11 @@ class Businessinquiryform {
 
   setRequestPayload = (val) => {
     const { requestPayload } = this.cache;
-    requestPayload['businessArea'] = val;
+    if(val.indexOf('&') > 0){
+      requestPayload['businessArea'] = 'All 3';
+    } else {
+      requestPayload['businessArea'] = val;
+    }
     $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
     this.resetBusinessIntFields();
   }
@@ -265,7 +272,7 @@ class Businessinquiryform {
   checkMessageLength = () => {
     const msgBox = this.root.find('textarea#businessEnquiryMessageText');
     if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 204){
-      this.root.find('.message').text(`${msgBox.val().substring(0, 204)}...`);
+      this.root.find('.businessEnquiryMessage').text(`${msgBox.val().substring(0, 204)}...`);
     }
   }
 
@@ -364,7 +371,7 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step1head2;
               break;
-            case 'message':
+            case 'businessEnquiryMessage':
               erLbl = $('#bef-step-2 label')[3].textContent;
               break;
             case 'email':
@@ -504,7 +511,7 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step1head2;
               break;
-            case 'message':
+            case 'businessEnquiryMessage':
               erLbl = $('#bef-step-2 label')[3].textContent;
               break;
             case 'email':

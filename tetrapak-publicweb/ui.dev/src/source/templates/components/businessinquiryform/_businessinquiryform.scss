@@ -72,6 +72,8 @@
             }
         }
         // Dropdown styling
+        .function-field,
+        .role-field,
         .country-field,
         .position-field {
             .pw-form__dropdown__menu {
@@ -188,7 +190,7 @@
         .lastNameField,
         .emailBef,
         .countryField,
-        .message,
+        .businessEnquiryMessage,
         .phoneField {
             font-weight: 700;
         }
