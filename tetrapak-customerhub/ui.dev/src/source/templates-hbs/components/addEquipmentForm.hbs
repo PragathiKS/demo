@@ -13,18 +13,19 @@
     <div class="col-lg-6 tp-add-equipment__drag-and-drop-wrapper">
         <div class="tp-add-equipment__drag-and-drop-description-wrapper">
             <p class="tp-add-equipment__drag-and-drop-description">{{dragAndDropDescription}}</p>
-            <i class="icon icon-Circle_Tick"></i>
+            <i class="icon-Info"></i>
         </div>
-        <div class="tp-add-equipment__drag-and-drop">
+        <div class="tp-add-equipment__drag-and-drop js-tp-add-equipment__drag-and-drop">
             <h2 class="tp-add-equipment__drag-and-drop-title">{{dragAndDropTitle}}</h2>
-            <p class="tp-add-equipment__drag-and-drop-subtitle">{{dragAndDropSubTitle}}</p>
             {{> atoms/buttons/button/button
                 modifier="transparent"
                 jsClass="js-tp-add-equipment__drag-and-drop-button"
                 className="tp-add-equipment__drag-and-drop-button"
-                iconClass="icon-Play"
+                iconClass="icon-Plus"
                 text=dragAndDropButton
             }}
+            <div class="js-tp-add-equipment__drag-and-drop-files-container">
+            </div>
         </div>
     </div>
 </div>

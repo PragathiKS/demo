@@ -1,5 +1,5 @@
 {
-  "i18nKeys": "{\"serialNumberLabel\": \"Serial number\", \"dragAndDropDescription\": \"Add photo or file to your equipment\", \"dragAndDropTitle\": \"Drag a file here\", \"dragAndDropSubTitle\": \"Or, if you prefer\", \"dragAndDropButton\": \"Select a files\"}",
-  "title": "Add Equipment",
+  "i18nKeys": "{\"serialNumberLabel\": \"Serial number\", \"dragAndDropDescription\": \"Add photo or file to your equipment\", \"dragAndDropTitle\": \"Upload a file\", \"dragAndDropButton\": \"Select a files\"}",
+  "title": "Add new equipment",
   "subTitle": "Have added a new equipment to your installed base that is not showing up in your equipment list?"
 }
