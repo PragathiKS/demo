@@ -1,6 +1,6 @@
 {{#each this}}
     <div class="tp-add-equipment__drag-and-drop-file-container">
-    {{this}}
+        {{this}}
         <div class="tp-add-equipment__drag-and-drop-file-info-container">
             <i class="icon-PDF tp-add-equipment__drag-and-drop-file-icon tp-add-equipment__drag-and-drop-file-icon--file"></i>
             <p class="tp-add-equipment__drag-and-drop-file-name">{{name}} ({{@key}})</p>
