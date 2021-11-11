@@ -190,7 +190,7 @@ class Businessinquiryform {
       $(step2Btn).attr('data-target', '#bef-step-1');
       self.setRequestPayload(checkedItems.join(' and '));
     } else if(checkedItems.length === 3) {
-      self.setRequestPayload(checkedItems.join(' & '));
+      self.setRequestPayload(checkedItems.join(' , '));
     }
     if(checkedItems.length === 1 && checkedItems[0].toLowerCase() === 'processing'){
       $('#businessEnquiryMessageText').attr('placeholder', $('#processingCheckboxDiv').attr('data-processing-msg-placeholder-text'));
@@ -203,10 +203,11 @@ class Businessinquiryform {
 
   setRequestPayload = (val) => {
     const { requestPayload } = this.cache;
-    if(val.indexOf('&') > 0){
+    if(val.indexOf(',') > 0){
       requestPayload['businessArea'] = 'All 3';
     } else {
       requestPayload['businessArea'] = val;
+      val = val.replace('and',',');
     }
     $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
     this.resetBusinessIntFields();
