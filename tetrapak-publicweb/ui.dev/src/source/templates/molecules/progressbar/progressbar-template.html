@@ -12,7 +12,7 @@
         <li class="step1 step-box ${activeClass} ${doneClass}">
             <div class="steps">
                 <span class="circle"><span>${step}</span></span>
-                <span data-sly-test="${stepTitles}" class="stepname">${stepTitles[stepList.index]}</span></span>
+                <span data-sly-test="${stepTitles}" class="stepname">${stepTitles[stepList.index] @i18n}</span></span>
             </div>
         </li>
     </ul>
