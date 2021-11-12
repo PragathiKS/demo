@@ -2,6 +2,29 @@ import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 
+function _renderLayout() {
+  const $this = this;
+  render.fn({
+    template: 'addEquipmentForm',
+    target: '.js-tp-add-equipment__form',
+    data: $this.cache.i18nKeys
+  }, () => {
+    $this.cache.$contentWrapper.removeClass('d-none');
+    $this.cache.$spinner.addClass('d-none');
+  });
+}
+function _renderFiles() {
+  const $this = this;
+  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: (obj.size / (1024 * 1024)).toFixed(2) + ' MB', removeFileLabel: $this.cache.i18nKeys.removeFileLabel }));
+  render.fn({
+    template: 'addEquipmentFiles',
+    target: '.js-tp-add-equipment__drag-and-drop-files-container',
+    data: obj
+  }, () => {
+    $this.bindEventsAfterFilesRender();
+  });
+}
+
 class AddEquipment {
   constructor({ el }) {
     this.root = $(el);
@@ -18,18 +41,10 @@ class AddEquipment {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
-    this.cache.$document = $(window.document);
-  }
-  initCacheAfterFormRender() {
-    this.cache.$dragAndDrop = this.root.find('.js-tp-add-equipment__drag-and-drop');
-    this.cache.$dragAndDropAddButton = this.root.find('.js-tp-add-equipment__drag-and-drop-button');
-  }
-  initCacheAfterFilesRender() {
-    this.cache.$dragAndDropRemoveButton = this.root.find('.js-tp-add-equipment__drag-and-drop-file-remove-container');
   }
   bindEvents() {
     const $this = this;
-    $this.cache.$dragAndDrop.on('dragenter', e => {
+    $this.root.find('.js-tp-add-equipment__drag-and-drop').on('dragenter', e => {
       $this.dragAndDropPreventDefault(e);
     }).on('dragleave', e => {
       $this.dragAndDropPreventDefault(e);
@@ -38,7 +53,7 @@ class AddEquipment {
       $this.dropFiles(e, $this, true);
     });
 
-    $this.cache.$document.on('dragenter', e => {
+    $(window.document).on('dragenter', e => {
       $this.dragAndDropPreventDefault(e);
     }).on('dragover', e => {
       $this.dragAndDropPreventDefault(e);
@@ -46,13 +61,14 @@ class AddEquipment {
       $this.dragAndDropPreventDefault(e);
     });
 
-    $this.cache.$dragAndDropAddButton.click(() => {
+    $this.root.find('.js-tp-add-equipment__drag-and-drop-button').click(() => {
       $this.addInputTypeFile();
     });
+
   }
   bindEventsAfterFilesRender() {
     const $this = this;
-    $this.cache.$dragAndDropRemoveButton.click((event) => {
+    $this.root.find('.js-tp-add-equipment__drag-and-drop-file-remove-container').click((event) => {
       $this.removeFile(event);
     });
   }
@@ -101,28 +117,11 @@ class AddEquipment {
     e.preventDefault();
   }
   renderLayout() {
-    const $this = this;
-    render.fn({
-      template: 'addEquipmentForm',
-      target: '.js-tp-add-equipment__form',
-      data: $this.cache.i18nKeys
-    }, () => {
-      $this.cache.$contentWrapper.removeClass('d-none');
-      $this.cache.$spinner.addClass('d-none');
-
-      $this.initCacheAfterFormRender();
-    });
+    return _renderLayout.apply(this, arguments);
   }
+
   renderFiles() {
-    const $this = this;
-    render.fn({
-      template: 'addEquipmentFiles',
-      target: '.js-tp-add-equipment__drag-and-drop-files-container',
-      data: this.cache.files
-    }, () => {
-      $this.initCacheAfterFilesRender();
-      $this.bindEventsAfterFilesRender();
-    });
+    return _renderFiles.apply(this, arguments);
   }
   init() {
     this.initCache();
