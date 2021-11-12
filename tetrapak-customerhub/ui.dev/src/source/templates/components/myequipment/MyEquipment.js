@@ -700,7 +700,7 @@ class MyEquipment {
         $pagination.addClass('pagination-lock');
         this.cache.activePage = $btn.data('page-number');
         this.cache.skipIndex = $btn.data('skip');
-        this.renderNewPage();
+        this.renderNewPage({'resetSkip': false});
       }
     });
   }
@@ -943,7 +943,7 @@ class MyEquipment {
       'sortedByKey': sortedByKey,
       'sortOrder': currentSortOrder === 'asc' ? 'desc' : 'asc'
     };
-    this.renderNewPage();
+    this.renderNewPage({'resetSkip': true});
   }
 
   showHideAllFilters = () => {
@@ -1044,7 +1044,7 @@ class MyEquipment {
     });
   }
 
-  renderNewPage() {
+  renderNewPage({resetSkip}) {
     const {itemsPerPage, skipIndex, countryData, activeSortData} = this.cache;
     const equipmentApi = this.cache.equipmentApi.data('list-api');
     const activeCountry = countryData.filter(e => e.isChecked);
@@ -1054,8 +1054,11 @@ class MyEquipment {
     this.cache.$content.addClass('d-none');
     this.cache.$spinner.removeClass('d-none');
 
+    // if sorting for a column is enabled
+    // if resetSkip flag, go to 1st page
     if (activeSortData) {
-      apiUrlRequest = `${equipmentApi}?skip=${skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
+      this.cache.activePage = resetSkip ? 1 : this.cache.activePage;
+      apiUrlRequest = `${equipmentApi}?skip=${resetSkip ? 0 : skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
     } else {
       apiUrlRequest = `${equipmentApi}?skip=${skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`;
     }
