@@ -1,4 +1,9 @@
 $color-red: #ff0000;
+@mixin label {
+    @include line-height($font-l, $font-baseline);
+    @include margin-top($margin-md);
+    font-weight: 500;
+}
 
 .tp-add-equipment {
     &__title {
@@ -15,7 +20,6 @@ $color-red: #ff0000;
     }
 
     &__subtitle {
-        @include margin-bottom($margin-l);
         @include line-height($font-l, $font-baseline);
     }
 
@@ -42,6 +46,7 @@ $color-red: #ff0000;
             display: inline;
 
             &-wrapper {
+                @include margin-top($margin-l);
                 @include margin-bottom($margin-md);
 
                 i {
@@ -141,18 +146,6 @@ $color-red: #ff0000;
         }
     }
 
-    &__serial-number {
-        &-wrapper {
-            @include margin-bottom($margin-l);
-        }
-
-        &-label {
-            @include line-height($font-l, $font-baseline);
-            @include margin-top($margin-zero);
-            font-weight: 500;
-        }
-    }
-
     &__details {
         @include padding($padding-md);
         border-radius: $border-radius;
@@ -170,7 +163,32 @@ $color-red: #ff0000;
         }
 
         &-subtitle {
-            @include margin-bottom($margin-l);
+            @include line-height($font-l, $font-baseline);
+
+            @media #{$desktop} {
+                @include margin-top($margin-zero);
+            }
+        }
+    }
+
+    &__field {
+        &-wrapper {
+            label {
+                @include label;
+            }
+        }
+
+        &-label {
+            @include label;
+        }
+    }
+
+    &__submit {
+        @include margin-top($margin-md);
+        display: flex;
+        align-items: center;
+
+        span {
             @include line-height($font-l, $font-baseline);
         }
     }

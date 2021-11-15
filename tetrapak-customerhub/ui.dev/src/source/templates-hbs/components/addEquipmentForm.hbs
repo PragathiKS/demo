@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-lg-3 tp-add-equipment__serial-number-wrapper">
         {{> atoms/input/input
-            labelText=serialNumberLabel
-            labelClasses="tp-add-equipment__serial-number-label"
-            eleClasses="js-tp-add-equipment__serial-number-input"
-            placeholder="444454-44444"
+                labelText=i18nKeys.serialNumberLabel
+                placeholder="444454-44444"
+                name="tp-add-equipment-serial-number"
+                labelClasses="tp-add-equipment__field-label"
         }}
     </div>
 </div>
@@ -12,17 +12,17 @@
 <div class="row">
     <div class="col-lg-6 tp-add-equipment__drag-and-drop-wrapper">
         <div class="tp-add-equipment__drag-and-drop-description-wrapper">
-            <p class="tp-add-equipment__drag-and-drop-description">{{dragAndDropDescription}}</p>
+            <p class="tp-add-equipment__drag-and-drop-description">{{i18nKeys.dragAndDropDescription}}</p>
             <i class="icon-Info"></i>
         </div>
         <div class="tp-add-equipment__drag-and-drop js-tp-add-equipment__drag-and-drop">
-            <h2 class="tp-add-equipment__drag-and-drop-title">{{dragAndDropTitle}}</h2>
+            <h2 class="tp-add-equipment__drag-and-drop-title">{{i18nKeys.dragAndDropTitle}}</h2>
             {{> atoms/buttons/button/button
-                modifier="transparent"
-                jsClass="js-tp-add-equipment__drag-and-drop-button"
-                className="tp-add-equipment__drag-and-drop-button"
-                iconClass="icon-Plus"
-                text=dragAndDropButton
+                    modifier="transparent"
+                    jsClass="js-tp-add-equipment__drag-and-drop-button"
+                    className="tp-add-equipment__drag-and-drop-button"
+                    iconClass="icon-Plus"
+                    text=i18nKeys.dragAndDropButton
             }}
             <div class="js-tp-add-equipment__drag-and-drop-files-container">
             </div>
@@ -33,8 +33,79 @@
 <div class="row">
     <div class="col-lg-6 tp-add-equipment__details-wrapper">
         <div class="tp-add-equipment__details">
-            <h2 class="tp-add-equipment__details-title">{{detailsTitle}}</h2>
-            <p class="tp-add-equipment__details-subtitle">{{detailsSubtitle}}</p>
+            <h2 class="tp-add-equipment__details-title">{{i18nKeys.detailsTitle}}</h2>
+            <p class="tp-add-equipment__details-subtitle">{{i18nKeys.detailsSubtitle}}</p>
+            {{> atoms/dropdown/dropdown
+                    defaultValue=i18nKeys.dropdownPlaceholder
+                    options=country
+                    name="tp-add-equipment-country"
+                    labelText=i18nKeys.countryLabel
+                    wrapClasses="tp-add-equipment__field-wrapper"
+            }}
+            {{> atoms/dropdown/dropdown
+                    defaultValue=i18nKeys.dropdownPlaceholder
+                    options=site
+                    name="tp-add-equipment-site"
+                    labelText=i18nKeys.siteLabel
+                    wrapClasses="tp-add-equipment__field-wrapper"
+            }}
+            {{> atoms/dropdown/dropdown
+                    defaultValue=i18nKeys.dropdownPlaceholder
+                    options=line
+                    name="tp-add-equipment-line"
+                    labelText=i18nKeys.lineLabel
+                    wrapClasses="tp-add-equipment__field-wrapper"
+            }}
+            {{> atoms/input/input
+                    labelText=i18nKeys.serialNumberLabel
+                    name="tp-add-equipment-position"
+                    labelClasses="tp-add-equipment__field-label"
+            }}
+            {{> atoms/dropdown/dropdown
+                    defaultValue=i18nKeys.dropdownPlaceholder
+                    options=equipmentStatus
+                    name="tp-add-equipment-equipment-status"
+                    labelText=i18nKeys.equipmentStatusLabel
+                    wrapClasses="tp-add-equipment__field-wrapper"
+            }}
+            {{> atoms/input/input
+                    labelText=i18nKeys.machineSystemLabel
+                    name="tp-add-equipment-machine-system"
+                    labelClasses="tp-add-equipment__field-label"
+            }}
+            {{> atoms/input/input
+                    labelText=i18nKeys.equipmentDescriptionLabel
+                    name="tp-add-equipment-equipment-description"
+                    labelClasses="tp-add-equipment__field-label"
+            }}
+            {{> atoms/input/input
+                    labelText=i18nKeys.manufactureModelNumberLabel
+                    name="tp-add-equipment-manufacture-model-number"
+                    labelClasses="tp-add-equipment__field-label"
+            }}
+            {{> atoms/input/input
+                    labelText=i18nKeys.manufactureOfAssetLabel
+                    name="tp-add-equipment-manufacture-of-asset"
+                    labelClasses="tp-add-equipment__field-label"
+            }}
+            {{> atoms/dropdown/dropdown
+                    defaultValue=i18nKeys.dropdownPlaceholder
+                    options=country
+                    name="tp-add-equipment-country-of-manufacture"
+                    labelText=i18nKeys.countryOfManufactureLabel
+                    wrapClasses="tp-add-equipment__field-wrapper"
+            }}
+            {{> atoms/input/input
+                    labelText=i18nKeys.constructionYearLabel
+                    name="tp-add-equipment-construction-year"
+                    labelClasses="tp-add-equipment__field-label"
+            }}
+            {{> atoms/buttons/button/button
+                    modifier="primary"
+                    iconClass="icon-Chevron_Right"
+                    text=i18nKeys.submitLabel
+                    className="tp-add-equipment__submit"
+            }}
         </div>
     </div>
 </div>
