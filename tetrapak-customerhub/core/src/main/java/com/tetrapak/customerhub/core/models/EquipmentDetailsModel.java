@@ -142,6 +142,10 @@ public class EquipmentDetailsModel {
     @Inject
     private String equipmentListApi;
 
+    /** The status api. */
+    @Inject
+    private String statusApi;
+
     /** The cancel. */
     @Inject
     private String cancel;
@@ -256,6 +260,15 @@ public class EquipmentDetailsModel {
 	 */
 	public String getCountryApi() {
 		return countryApi;
+	}
+
+    /**
+	 * Gets the status api.
+	 *
+	 * @return the status api
+	 */
+	public String getStatusApi() {
+		return statusApi;
 	}
 
     /**
@@ -520,6 +533,9 @@ public class EquipmentDetailsModel {
 
         countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, "myequipment-countrylist");
+
+        statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-statuslist");
         
         equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);

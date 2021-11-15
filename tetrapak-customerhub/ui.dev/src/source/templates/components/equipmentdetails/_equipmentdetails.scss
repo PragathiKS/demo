@@ -93,6 +93,14 @@
         margin-top: auto;
     }
 
+    &__note {
+        @include margin-top(18px);
+
+        span {
+            font-weight: 700;
+        }
+    }
+
     &__btn {
         color: $color-congress-blue;
         transition: color $anim-speed-quick $anim-ease;

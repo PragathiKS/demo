@@ -86,18 +86,18 @@ function  _renderEquipUpdateModal() {
   const { $modal, i18nKeys } = $this.cache;
   const $form = $this.cache.$contentWrapper.find('.js-equipment-details__form');
   const $formInputs = $form.find('input');
-  let formData = {};
+  // let formData = {};
 
-  $formInputs.each((index, item) => {
-    const inputName = $(item).attr('name');
-    const inputVal = $(item).val();
-    formData[inputName] = inputVal;
-  });
+  // $formInputs.each((index, item) => {
+  //   const inputName = $(item).attr('name');
+  //   const inputVal = $(item).val();
+  //   formData[inputName] = inputVal;
+  // });
 
   render.fn({
     template: 'equipmentDetailsConfirm',
     data: {
-      formData: formData,
+      formData: this.cache.formData,
       i18nKeys: i18nKeys
     },
     target: '.js-update-modal'
@@ -138,13 +138,14 @@ class EquipmentDetails {
     this.cache.configJson = this.root.find('.js-equipment-details__config').text();
     this.cache.countryApi = this.root.data('country-api');
     this.cache.detailsApi = this.root.data('details-api');
+    this.cache.statusApi = this.root.data('status-api');
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.$contentWrapper = this.root.find('.tp-equipment-details__content-wrapper');
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$modal = this.root.parent().find('.js-update-modal');
     this.cache.countryData = [];
     this.cache.formData = {};
-    this.cache.statuses = [{ key: 'sold', desc: 'sold'}, {key: 'available', desc: 'available' }];
+    this.cache.statuses = [];
     this.cache.$updateBtn = this.root.find('.js-equipment-details__req-make-update');
 
     try {
@@ -157,7 +158,7 @@ class EquipmentDetails {
 
   bindEvents() {
     this.root.on('click', '.js-equipment-details__update',  (e) => {
-      this.renderEquipInfoCardWithCountries();
+      this.renderEquipInfoCardWithData();
     });
 
     this.root.on('click', '.js-equipment-details__cancel',  (e) => {
@@ -211,8 +212,8 @@ class EquipmentDetails {
     });
   }
 
-  renderEquipInfoCardWithCountries(){
-    return _renderEquipInfoCardWithCountries.apply(this, arguments);
+  renderEquipInfoCardWithData(){
+    return _renderEquipInfoCardWithData.apply(this, arguments);
   }
 
   renderEquipmentDetails() {
