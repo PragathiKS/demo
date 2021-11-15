@@ -7,7 +7,7 @@ function _renderLayout() {
   render.fn({
     template: 'addEquipmentForm',
     target: '.js-tp-add-equipment__form',
-    data: $this.cache.i18nKeys
+    data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.country, line: $this.cache.line , site: $this.cache.site, equipmentStatus: $this.cache.equipmentStatus }
   }, () => {
     $this.cache.$contentWrapper.removeClass('d-none');
     $this.cache.$spinner.addClass('d-none');
@@ -20,8 +20,6 @@ function _renderFiles() {
     template: 'addEquipmentFiles',
     target: '.js-tp-add-equipment__drag-and-drop-files-container',
     data: obj
-  }, () => {
-    $this.bindEventsAfterFilesRender();
   });
 }
 
@@ -41,34 +39,30 @@ class AddEquipment {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+    const dummyArray  = [ { key: 'A', desc: 'A' }, { key: 'B', desc: 'B'}, { key: 'C', desc: 'C'} ];
+    this.cache.country = dummyArray;
+    this.cache.site = dummyArray;
+    this.cache.line = dummyArray;
+    this.cache.equipmentStatus = dummyArray;
   }
   bindEvents() {
     const $this = this;
-    $this.root.find('.js-tp-add-equipment__drag-and-drop').on('dragenter', e => {
-      $this.dragAndDropPreventDefault(e);
-    }).on('dragleave', e => {
-      $this.dragAndDropPreventDefault(e);
-    }).on('drop', e => {
-      $this.dragAndDropPreventDefault(e);
-      $this.dropFiles(e, $this, true);
-    });
-
-    $(window.document).on('dragenter', e => {
-      $this.dragAndDropPreventDefault(e);
-    }).on('dragover', e => {
-      $this.dragAndDropPreventDefault(e);
-    }).on('drop', e => {
+    $(window.document).on('dragenter dragover drop', e => {
       $this.dragAndDropPreventDefault(e);
     });
 
-    $this.root.find('.js-tp-add-equipment__drag-and-drop-button').click(() => {
+    $this.root.on('dragenter dragleave drop', '.js-tp-add-equipment__drag-and-drop', e => {
+      $this.dragAndDropPreventDefault(e);
+      if (e.type === 'drop') {
+        $this.dropFiles(e, $this, true);
+      }
+    });
+
+    $this.root.on('click', '.js-tp-add-equipment__drag-and-drop-button', () => {
       $this.addInputTypeFile();
     });
 
-  }
-  bindEventsAfterFilesRender() {
-    const $this = this;
-    $this.root.find('.js-tp-add-equipment__drag-and-drop-file-remove-container').click((event) => {
+    $this.root.on('click', '.js-tp-add-equipment__drag-and-drop-file-remove-container', event => {
       $this.removeFile(event);
     });
   }
@@ -100,8 +94,6 @@ class AddEquipment {
       }
     }
     $this.renderFiles();
-    // eslint-disable-next-line no-console
-    console.log($this.cache.files, 'dropFiles');
   }
   filterFiles(file) {
     if (file.type === 'application/pdf' || file.type.startsWith('image/')) {
