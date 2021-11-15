@@ -104,7 +104,8 @@ public class CountryDetailServiceImpl implements CountryDetailService {
     public String[] fetchContactEmailAddresses(final ContactUs contactUs, final ResourceResolver resourceResolver) {
         LOGGER.debug("Inside fetch contact email Addess - Start");
         String[] contactEmails = null;
-        final String countryDataPath = getPardotCountryCfRootPath() + PWConstants.SLASH + contactUs.getCountry()
+        final String countryDataPath = getPardotCountryCfRootPath() + PWConstants.SLASH
+                + StringUtils.lowerCase(contactUs.getCountry()).replace(PWConstants.SPACE, PWConstants.HYPHEN)
                 + DATA_ROOT_PATH;
         final Resource countryDataResource = resourceResolver.getResource(countryDataPath);
         if (Objects.nonNull(countryDataResource)) {
