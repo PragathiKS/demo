@@ -321,5 +321,8 @@ public final class CustomerHubConstants {
     /** The Constant EQUIPMENT_LIST_API. */
     public static final String EQUIPMENT_LIST_API = "myequipment-equipmentlist";
 
+        /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_THANK_YOU_LABEL = "equipmentDetails-ThankYouHeading";
+
 }
 

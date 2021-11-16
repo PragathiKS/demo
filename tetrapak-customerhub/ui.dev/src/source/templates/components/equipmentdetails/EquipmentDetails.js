@@ -169,6 +169,12 @@ class EquipmentDetails {
     //   this.renderEquipInfoCard({confirmed: true});
     // });
 
+    this.root.on('blur', 'textarea', (e) => {
+      console.log('blur textarea: ', e);
+      let sanitized = e.target.value.replace(/<\/?script>|[<>]/gm, "");
+      $(e.target).val(sanitized);
+    })
+
     this.root.on('click', '.js-equipment-details__req-update',  (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());

@@ -203,6 +203,12 @@
                                             fieldLabel="eofsValidFromDate Label (i18N key)"
                                             name="./eofsValidFromDate"
                                             required="true"/>
+                                    <thankYouLabel 
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="thankYou Label (i18N key)"
+                                            name="./thankYouLabel"
+                                            required="true"/>
                                 </items>
                             </column>
                         </items>

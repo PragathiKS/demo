@@ -161,6 +161,10 @@ public class EquipmentDetailsModel {
     /** The i 18 n keys. */
     private String i18nKeys;
 
+    /** The thank you label. */
+    @Inject
+    private String thankYouLabel;
+
     /** The sling settings service. */
     @OSGiService
     private SlingSettingsService slingSettingsService;
@@ -488,6 +492,15 @@ public class EquipmentDetailsModel {
     }
 
     /**
+     * Gets the ThankYou label
+     *
+     * @return the thankYouLabel
+     */
+    public String getThankYouLabel() {
+        return thankYouLabel;
+    }
+
+    /**
      * init method.
      */
     @PostConstruct
@@ -523,6 +536,7 @@ public class EquipmentDetailsModel {
         i18KeyMap.put(CustomerHubConstants.CANCEL, getCancel());
         i18KeyMap.put(CustomerHubConstants.REQUEST_UPDATES, getRequestUpdates());
         i18KeyMap.put(CustomerHubConstants.MAKE_UPDATES, getMakeUpdates());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_LABEL, getThankYouLabel());
 
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
