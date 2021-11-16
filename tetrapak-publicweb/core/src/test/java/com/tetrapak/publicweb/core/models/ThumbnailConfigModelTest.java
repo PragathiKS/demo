@@ -1,12 +1,12 @@
 package com.tetrapak.publicweb.core.models;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
-import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ThumbnailConfigModelTest {
 
@@ -33,22 +33,22 @@ public class ThumbnailConfigModelTest {
 
     @Test
     public void testValidThumbnailFromPageProperties() {
-        Resource resource = context.resourceResolver().getResource(CONTENT_ROOT_WITH_CONFIG + "/" + TEST_PAGE_NODE_WITH_THUMBNAIL);
-        ThumbnailConfigModel model = resource.adaptTo(ThumbnailConfigModel.class);
+        context.currentPage(CONTENT_ROOT_WITH_CONFIG + "/" + TEST_PAGE_NODE_WITH_THUMBNAIL);
+        ThumbnailConfigModel model = context.request().adaptTo(ThumbnailConfigModel.class);
         assertTrue(model.isValid());
     }
 
     @Test
     public void testValidThumbnailFromLangConfiguration() {
-        Resource resource = context.resourceResolver().getResource(CONTENT_ROOT_WITH_CONFIG + "/" + TEST_PAGE_NODE_WITHOUT_THUMBNAIL);
-        ThumbnailConfigModel model = resource.adaptTo(ThumbnailConfigModel.class);
+        context.currentPage(CONTENT_ROOT_WITH_CONFIG + "/" + TEST_PAGE_NODE_WITHOUT_THUMBNAIL);
+        ThumbnailConfigModel model = context.request().adaptTo(ThumbnailConfigModel.class);
         assertTrue(model.isValid());
     }
 
     @Test
     public void testIfNotValidWhenNoConfigFound() {
-        Resource resource = context.resourceResolver().getResource(CONTENT_ROOT_WITH_NO_CONFIG + "/" + TEST_PAGE_NODE_WITHOUT_THUMBNAIL);
-        ThumbnailConfigModel model = resource.adaptTo(ThumbnailConfigModel.class);
+        context.currentPage(CONTENT_ROOT_WITH_NO_CONFIG + "/" + TEST_PAGE_NODE_WITHOUT_THUMBNAIL);
+        ThumbnailConfigModel model = context.request().adaptTo(ThumbnailConfigModel.class);
         assertFalse(model.isValid());
     }
 }
