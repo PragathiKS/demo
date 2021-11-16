@@ -1,11 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
+import com.day.cq.commons.Externalizer;
 import com.day.cq.commons.LanguageUtil;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +24,9 @@ public class ThumbnailConfigModel {
 
     @Self
     private Resource resource;
+
+    @OSGiService
+    private Externalizer externalizer;
 
     @Inject
     private String fileReference;
@@ -63,6 +68,6 @@ public class ThumbnailConfigModel {
     }
 
     public String getOpenGraphImagePath() {
-        return openGraphImagePath;
+        return externalizer.publishLink(resource.getResourceResolver(), openGraphImagePath);
     }
 }
