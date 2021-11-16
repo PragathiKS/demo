@@ -21,6 +21,7 @@ public class ThumbnailConfigModel {
 
     private static final String THUMBNAIL_CONFIG_PATH = "/jcr:content/root/responsivegrid/thumbnailconfig";
     private static final String IMAGE_PATH_PROPERTY_NAME = "imagePath";
+    private static final String PUBLICWEB_EXTERNALIZER_CONFIG = "publicweb";
 
     @Self
     private Resource resource;
@@ -68,6 +69,6 @@ public class ThumbnailConfigModel {
     }
 
     public String getOpenGraphImagePath() {
-        return externalizer.publishLink(resource.getResourceResolver(), openGraphImagePath);
+        return externalizer.externalLink(resource.getResourceResolver(), PUBLICWEB_EXTERNALIZER_CONFIG, openGraphImagePath);
     }
 }
