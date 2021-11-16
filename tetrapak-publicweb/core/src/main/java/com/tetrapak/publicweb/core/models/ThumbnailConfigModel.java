@@ -8,6 +8,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ public class ThumbnailConfigModel {
     private static final String THUMBNAIL_CONFIG_PATH = "/jcr:content/root/responsivegrid/thumbnailconfig";
     private static final String IMAGE_PATH_PROPERTY_NAME = "imagePath";
 
-    @Inject
+    @Self
     private Resource resource;
 
     @OSGiService
