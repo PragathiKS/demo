@@ -190,9 +190,12 @@
         .lastNameField,
         .emailBef,
         .countryField,
-        .businessEnquiryMessage,
         .phoneField {
             font-weight: 700;
+        }
+        .businessEnquiryMessage {
+            font-weight: 700;
+            word-break: break-all;
         }
         .col-lg-5 {
             @media #{$desktop} {
