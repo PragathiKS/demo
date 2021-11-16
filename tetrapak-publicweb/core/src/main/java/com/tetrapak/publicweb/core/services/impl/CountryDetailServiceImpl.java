@@ -112,6 +112,8 @@ public class CountryDetailServiceImpl implements CountryDetailService {
         if (Objects.nonNull(countryDataResource)) {
             contactEmails = (String[]) countryDataResource.getValueMap()
                     .get(contactUs.getPurposeOfContact() + "emails");
+        } else {
+            LOGGER.error("Country resource is null");
         }
         return contactEmails;
     }
