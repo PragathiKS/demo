@@ -22,6 +22,7 @@ import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  * The Class BusinessInquiryModel.
@@ -33,6 +34,9 @@ public class BusinessInquiryModel extends FormModel {
 	/** The resource. */
 	@Self
 	private Resource resource;
+
+	@ValueMapValue
+	private String pardotBusinessInquiryServiceUrl;
 
 	/** The pardot service. */
 	@OSGiService
@@ -54,6 +58,7 @@ public class BusinessInquiryModel extends FormModel {
 	 */
 	@PostConstruct
 	protected void init() {
+		pardotService.setBusinesInquiryServiceURL(pardotBusinessInquiryServiceUrl);
 		setCountryOptions();
 		setFormConfig();
 	}
