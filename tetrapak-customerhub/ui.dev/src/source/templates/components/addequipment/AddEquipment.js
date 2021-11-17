@@ -6,7 +6,7 @@ function _renderLayout() {
   const $this = this;
   render.fn({
     template: 'addEquipmentForm',
-    target: '.js-tp-add-equipment__form',
+    target: '.js-tp-add-equipment__content-wrapper',
     data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.country, line: $this.cache.line , site: $this.cache.site, equipmentStatus: $this.cache.equipmentStatus }
   }, () => {
     $this.cache.$contentWrapper.removeClass('d-none');
@@ -96,11 +96,9 @@ class AddEquipment {
     $this.renderFiles();
   }
   filterFiles(file) {
-    if (file.type === 'application/pdf' || file.type.startsWith('image/')) {
-      const maxFileSize = 10 * 1024 * 1024;
-      if (file.size < maxFileSize) {
-        return true;
-      }
+    const maxFileSize = 10 * 1024 * 1024;
+    if (file.size < maxFileSize) {
+      return true;
     }
     return false;
   }

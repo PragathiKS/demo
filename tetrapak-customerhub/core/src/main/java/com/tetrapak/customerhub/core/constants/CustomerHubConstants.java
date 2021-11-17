@@ -5,6 +5,13 @@ package com.tetrapak.customerhub.core.constants;
  */
 public final class CustomerHubConstants {
 
+    /**
+     * Instantiates a new customer hub constants.
+     */
+    private CustomerHubConstants() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /** The Constant DEFAULT_LOCALE. */
     public static final String DEFAULT_LOCALE = "en";
 
@@ -34,18 +41,6 @@ public final class CustomerHubConstants {
 
     /** The Constant EMPTY_STRING. */
     public static final String EMPTY_STRING = "";
-
-    /** The Constant COMMA. */
-    public static final String COMMA = ",";
-
-    /** The Constant NEWLINE. */
-    public static final String NEWLINE = "\n";
-
-    /** The Constant SEMI_COLON. */
-    public static final String SEMI_COLON = ";";
-    
-    /** The Constant QUOT_ESCAPED. */
-    public static final String QUOTE_ESCAPED = "\"";
 
     /** The Constant CQ_TEMPLATE. */
     public static final String CQ_TEMPLATE = "cq:template";
@@ -128,8 +123,8 @@ public final class CustomerHubConstants {
     /** The Constant SPACE. */
     public static final String SPACE = " ";
     
-    /** The Constant EQUALS_CHAR. */
-    public static final String EQUALS_CHAR = "=";
+    /** The Constant EQUALS. */
+    public static final String EQUALS = "=";
     
     /** The Constant QUESTION_MARK. */
     public static final String QUESTION_MARK = "?";
@@ -138,13 +133,10 @@ public final class CustomerHubConstants {
     public static final String AMPERSAND = "&";
     
     /** The Constant COUNTRY_CODE. */
-    public static final String COUNTRY_CODE = "countrycodes";
+    public static final String COUNTRY_CODE = "countrycode";
     
     /** The Constant EXCEL_DOWNLOAD_EXTENSION. */
     public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
-
-    /** The Constant SKIP */
-    public static final String SKIP = "skip";
 
     /** The Constant COUNT. */
     public static final String COUNT = "count";
@@ -177,7 +169,7 @@ public final class CustomerHubConstants {
     public static final String LINE = "line";
 
     /** The Constant EQUIPMENT_STATUS. */
-    public static final String EQUIPMENT_STATUS = "equipmentStatus";
+    public static final String EQUIPMENT_STATUS = "equipmentstatus";
 
     /** The Constant POSITION. */
     public static final String POSITION = "position";
@@ -254,15 +246,6 @@ public final class CustomerHubConstants {
     /** The Constant VALID_FROM_DATE. */
     public static final String VALID_FROM_DATE = "eofsValidFromDate";
 
-    /** The Constant CANCEL. */
-    public static final String CANCEL = "cancel";
-
-    /** The Constant REQUEST_UPDATES. */
-    public static final String REQUEST_UPDATES = "requestUpdates";
-
-    /** The Constant MAKE_UPDATES. */
-    public static final String MAKE_UPDATES = "makeUpdates";
-
     /** The Constant FIRST. */
     public static final String FIRST = "first";
 
@@ -329,44 +312,14 @@ public final class CustomerHubConstants {
     /** The Constant EQUIPMENT_LIST_API. */
     public static final String EQUIPMENT_LIST_API = "myequipment-equipmentlist";
 
-    /** The Constant STATUS_LIST_API. */
-    public static final String EQUIPMENT_STATUSLIST_API = "myequipment-statuslist";
-
-    /** The Constant COUNTRY_LIST_API. */
-    public static final String EQUIPMENT_COUNTRYLIST_API = "myequipment-countrylist";
-
-    /** The Constant SITES_LIST_API. */
-    public static final String EQUIPMENT_SITESLIST_API = "myequipment-siteslist";
-
-    /** The Constant LINES_LIST_API. */
-    public static final String EQUIPMENT_LINESLIST_API = "myequipment-lineslist";
-
-    /** The Constant THANK_YOU_LABEL . */
-    public static final String EQUIPMENT_THANK_YOU_LABEL = "equipmentDetails-ThankYouHeading";
-
-    /** The Constant THANK_YOU_DESCRIPTION . */
-    public static final String EQUIPMENT_THANK_YOU_DESCRIPTION = "equipmentDetails-ThankYouDescription";
-
-    /** The Constant THANK_YOU_LABEL . */
-    public static final String EQUIPMENT_MODAL_CONFIRM_HEADER = "equipmentDetails-modalConfirmHeader";
-
-    /** The Constant THANK_YOU_LABEL . */
-    public static final String EQUIPMENT_MODAL_CONFIRM_TEXT = "equipmentDetails-modalConfirmText";
-
-    /** The Constant THANK_YOU_LABEL . */
-    public static final String EQUIPMENT_STATUS_UPDATE_HEADING = "equipmentDetails-statusUpdateHeading";
-
-    /** The Constant THANK_YOU_LABEL . */
-    public static final String EQUIPMENT_STATUS_UPDATE_DESCRIPTION = "equipmentDetails-statusUpdateDescription";
-
     /** The Constant NEW_EQUIPMENT_TITLE. */
     public static final String NEW_EQUIPMENT_TITLE = "title";
 
     /** The Constant NEW_EQUIPMENT_SUBTITLE. */
     public static final String NEW_EQUIPMENT_SUBTITLE = "subTitle";
 
-    /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER_LABEL. */
-    public static final String NEW_EQUIPMENT_SERIAL_NUMBER_LABEL = "serialNumberLabel";
+    /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER. */
+    public static final String NEW_EQUIPMENT_SERIAL_NUMBER = "serialNumberLabel";
 
     /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION. */
     public static final String NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION = "dragAndDropDescription";
@@ -440,59 +393,5 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_ADD_ANOTHER_EQUIPMENT_LABEL. */
     public static final String NEW_EQUIPMENT_ADD_ANOTHER_EQUIPMENT_LABEL = "addAnotherEquipmentLabel";
 
-    /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_SERIAL_NUMBER_ERROR_MSG = "serialNumberErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_COUNTRY_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_COUNTRY_ERROR_MSG = "countryErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_SITE_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_SITE_ERROR_MSG = "siteErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_LINE_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_LINE_ERROR_MSG = "lineErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_POSITION_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_POSITION_ERROR_MSG = "positionErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_EQUIPMENT_STATUS_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_EQUIPMENT_STATUS_ERROR_MSG = "equipmentStatusErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_EQUIPMENT_DESCRIPTION_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_EQUIPMENT_DESCRIPTION_ERROR_MSG = "equipmentDescriptionErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_ERROR_MSG = "manufactureOfAssetErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_ERROR_MSG = "countryOfManufactureErrorMsg";
-
-    /** The Constant NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG. */
-    public static final String NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG = "constructionYearErrorMsg";
-
-    /** TheConstant for Source name. */
-    public static final String TETRAPAK_CUSTOMERHUB = "tetrapak-customerhub";
-
-    /** TheConstant for Source name. */
-    public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";
-    
-    /** TheConstant TEXT_CSV */
-    public static final String TEXT_CSV = "text/csv";
-    
-    /** TheConstant CONTENT_DISPOSITION */
-    public static final String CONTENT_DISPOSITION= "Content-Disposition";
-    
-    /** TheConstant ATTACHMENT_FILENAME */
-    public static final String ATTACHMENT_FILENAME = "attachment; filename";
-    
-    /** TheConstant CSV_COMMA_SEPARATOR */
-    public static final String CSV_COMMA_SEPARATOR= "sep=,";
-
-    /**
-     * Instantiates a new customer hub constants.
-     */
-    private CustomerHubConstants() {
-        throw new IllegalStateException("Utility class");
-    }
 }
 

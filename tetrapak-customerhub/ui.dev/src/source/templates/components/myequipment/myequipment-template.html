@@ -22,8 +22,12 @@
           </button>
         </div>
         <div class="tp-my-equipment__header-actions">
-          <div class="tp-my-equipment__customise-table-action js-my-equipment__customise-table-action">
-            <i class="icon icon-Hide"></i>
+          <a data-sly-test="${data.addNewEquipmentUrl}" class="tp-my-equipment__action-button js-my-equipment__add-new-equipment-action" href="${data.addNewEquipmentUrl}.html">
+            <i class="icon icon-Circle_Plus action-icon"></i>
+            <span class="tpatom-btn__text tp-my-equipment__header-action-text">${data.addNewEquipmentLabel @i18n}</span>
+          </a>
+          <div class="tp-my-equipment__action-button js-my-equipment__customise-table-action">
+            <i class="icon icon-Hide action-icon"></i>
             <span class="tpatom-btn__text tp-my-equipment__header-action-text">${"cuhu.equipment.customizetable" @i18n} +</span>
           </div>
         </div>
