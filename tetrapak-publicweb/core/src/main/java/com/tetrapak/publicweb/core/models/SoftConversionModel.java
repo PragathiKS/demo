@@ -56,7 +56,7 @@ public class SoftConversionModel extends FormModel {
     @ValueMapValue
     private String pardotUrl;
     
-    /** The pardot url. */
+    /** The pardot China url. */
     @ValueMapValue
     private String pardotChinaUrl;
 

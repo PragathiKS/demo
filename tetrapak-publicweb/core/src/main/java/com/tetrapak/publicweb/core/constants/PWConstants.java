@@ -486,6 +486,9 @@ public final class PWConstants {
     
     /** The COUNTRY_TITLE. */
     public static final String COUNTRY_TITLE = "countryTitle";
+    
+    /** The BASIC. */
+    public static final String BASIC = "Basic";
 
     /**
      * Instantiates a new PW constants.

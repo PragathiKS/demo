@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.servlet.Servlet;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.auth.AuthenticationException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -54,7 +55,7 @@ public class SubscriptionFormPardotServlet extends SlingAllMethodsServlet {
             final String country = StringUtils.substringAfterLast(marketPath, PWConstants.SLASH);
             if (country.equalsIgnoreCase(PWConstants.CHINA_COUNTRY_CODE)
                     || (request.getParameterMap().get(PWConstants.COUNTRY_TITLE)[0]).equalsIgnoreCase(PWConstants.CHINA)) {
-                pardotService.submitcustomFormServicePostResponse(request.getParameterMap());
+                submitCustomFormData(request);
             } else {
                 pardotService.submitPardotPostRespose(request.getParameterMap());
             }             
@@ -62,6 +63,19 @@ public class SubscriptionFormPardotServlet extends SlingAllMethodsServlet {
             sendResponse(resp);
         } catch (final IOException ioException) {
             LOGGER.error("ioException :{}", ioException.getMessage(), ioException);
+        }
+    }
+
+    /**
+     * Submit custom form data.
+     *
+     * @param request the request
+     */
+    private void submitCustomFormData(final SlingHttpServletRequest request) {
+        try {
+            pardotService.submitcustomFormServicePostResponse(request.getParameterMap());
+        } catch (AuthenticationException | IOException e) {
+            LOGGER.error("Error occurred while submission of form data {}", e.getMessage());
         }
     }
 
