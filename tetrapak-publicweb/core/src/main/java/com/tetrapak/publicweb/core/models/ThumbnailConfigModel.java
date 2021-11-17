@@ -1,14 +1,14 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.commons.Externalizer;
 import com.day.cq.commons.LanguageUtil;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -16,17 +16,17 @@ import javax.inject.Inject;
 /**
  * The Class ThumbnailConfigModel.
  */
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ThumbnailConfigModel {
 
     private static final String THUMBNAIL_CONFIG_PATH = "/jcr:content/root/responsivegrid/thumbnailconfig";
     private static final String IMAGE_PATH_PROPERTY_NAME = "imagePath";
 
-    @Self
-    private Resource resource;
+    @SlingObject
+    private SlingHttpServletRequest request;
 
-    @OSGiService
-    private Externalizer externalizer;
+    @Inject
+    private Resource resource;
 
     @Inject
     private String fileReference;
@@ -68,6 +68,6 @@ public class ThumbnailConfigModel {
     }
 
     public String getOpenGraphImagePath() {
-        return externalizer.publishLink(resource.getResourceResolver(), openGraphImagePath);
+        return LinkUtils.sanitizeLink(openGraphImagePath, request);
     }
 }
