@@ -20,7 +20,6 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
-import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
@@ -56,6 +55,10 @@ public class SoftConversionModel extends FormModel {
     /** The pardot url. */
     @ValueMapValue
     private String pardotUrl;
+    
+    /** The pardot url. */
+    @ValueMapValue
+    private String pardotChinaUrl;
 
     /** The form config. */
     private SoftConversionFormConfigModel formConfig;
@@ -154,6 +157,15 @@ public class SoftConversionModel extends FormModel {
     }
 
     /**
+     * Gets the pardot china url.
+     *
+     * @return the pardot china url
+     */
+    public String getPardotChinaUrl() {
+        return LinkUtils.getUrlWithoutProtocol(pardotChinaUrl);
+    }
+
+    /**
      * Gets the form config.
      *
      * @return the form config
@@ -206,6 +218,12 @@ public class SoftConversionModel extends FormModel {
     	return fetchTags(formConfig.getFunctionTagsPath());
     }
     
+    /**
+     * Fetch tags.
+     *
+     * @param tagPath the tag path
+     * @return the list
+     */
     private List<DropdownOption> fetchTags(String tagPath){
     	final List<DropdownOption> tagOptions = new ArrayList<>();
     	if(StringUtils.isNotEmpty(tagPath)) {

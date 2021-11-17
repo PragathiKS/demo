@@ -76,4 +76,21 @@ public interface PardotService {
 	 * @return the subscriber mail addresses
 	 */
     List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas);
+
+    /**
+     * Gets the bearer token for custom form service.
+     *
+     * @return the bearer token for custom form service
+     */
+    BearerToken getBearerTokenForCustomFormService();
+
+    /**
+     * Submit custom form service post response.
+     *
+     * @param parameters
+     *            the parameters
+     * @param url
+     *            the url
+     */
+    void submitcustomFormServicePostResponse(Map<String, String[]> parameters);
 }
