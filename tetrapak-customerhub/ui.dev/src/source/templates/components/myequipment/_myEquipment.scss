@@ -223,11 +223,11 @@
             }
         }
     }
-    .icon-Hide {
+    .action-icon {
         display: none;
     }
 
-    &__customise-table-action {
+    &__action-button {
         display: flex;
         cursor: pointer;
         &:hover * {
@@ -356,14 +356,18 @@
         &__header-actions {
             display: flex;
         }
-        .icon-Hide {
+        .action-icon {
             @include padding-right($padding-sm);
             display: flex;
         }
-        &__customise-table-action {
+        &__action-button {
             display: flex;
             line-height: 40px;
             align-items: center;
+
+            &:not(:last-child) {
+                @include margin-right($margin-md);
+            }
         }
         &__flex-container {
             flex-direction: row;

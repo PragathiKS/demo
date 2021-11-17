@@ -162,6 +162,19 @@
                                     fieldLabel="Remove all filters (i18N key)"
                                     name="./removeAllFilters"
                                     required="true"/>
+                            <addNewEquipmentLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Add new equipment label (i18N key)"
+                                    name="./addNewEquipmentLabel"
+                                    required="true"/>
+                            <addNewEquipmentUrl
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Add new equipment URL (i18N key)"
+                                    name="./addNewEquipmentUrl"
+                                    rootPath="/content/tetrapak/customerhub"
+                                    required="true"/>
                         </items>
                     </column1>
                     <column2

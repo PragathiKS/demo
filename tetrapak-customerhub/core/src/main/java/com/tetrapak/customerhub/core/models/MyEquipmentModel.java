@@ -188,6 +188,14 @@ public class MyEquipmentModel {
 	/** The download excel servlet url. */
 	private String downloadExcelServletUrl;
 
+	/** The add new equipment label. */
+	@ValueMapValue
+	private String addNewEquipmentLabel;
+
+	/** The add new equipment Url. */
+	@ValueMapValue
+	private String addNewEquipmentUrl;
+
 	/**
 	 * Gets the noDataFound.
 	 *
@@ -558,7 +566,24 @@ public class MyEquipmentModel {
 	public String getDownloadExcelServletUrl() {
 		return downloadExcelServletUrl;
 	}
-	
+
+	/**
+	 * Gets the add new equipment label.
+	 *
+	 * @return the add new equipment label
+	 */
+	public String getAddNewEquipmentLabel() {
+		return addNewEquipmentLabel;
+	}
+
+	/**
+	 * Gets the add new equipment label.
+	 *
+	 * @return the add new equipment url
+	 */
+	public String getAddNewEquipmentUrl() {
+		return addNewEquipmentUrl;
+	}
 	/**
 	 * Inits the.
 	 */

@@ -312,5 +312,86 @@ public final class CustomerHubConstants {
     /** The Constant EQUIPMENT_LIST_API. */
     public static final String EQUIPMENT_LIST_API = "myequipment-equipmentlist";
 
+    /** The Constant NEW_EQUIPMENT_TITLE. */
+    public static final String NEW_EQUIPMENT_TITLE = "title";
+
+    /** The Constant NEW_EQUIPMENT_SUBTITLE. */
+    public static final String NEW_EQUIPMENT_SUBTITLE = "subTitle";
+
+    /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER. */
+    public static final String NEW_EQUIPMENT_SERIAL_NUMBER = "serialNumberLabel";
+
+    /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION. */
+    public static final String NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION = "dragAndDropDescription";
+
+    /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_TITLE. */
+    public static final String NEW_EQUIPMENT_DRAG_AND_DROP_TITLE = "dragAndDropTitle";
+
+    /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE. */
+    public static final String NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE = "dragAndDropSubtitle";
+
+    /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON. */
+    public static final String NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON = "dragAndDropButton";
+
+    /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_REMOVE_FILE_LABEL. */
+    public static final String NEW_EQUIPMENT_DRAG_AND_DROP_REMOVE_FILE_LABEL = "dragAndDropRemoveFileLabel";
+
+    /** The Constant NEW_EQUIPMENT_DETAILS_TITLE. */
+    public static final String NEW_EQUIPMENT_DETAILS_TITLE = "detailsTitle";
+
+    /** The Constant NEW_EQUIPMENT_DETAILS_SUBTITLE. */
+    public static final String NEW_EQUIPMENT_DETAILS_SUBTITLE = "detailsSubtitle";
+
+    /** The Constant NEW_EQUIPMENT_COUNTRY_LABEL. */
+    public static final String NEW_EQUIPMENT_COUNTRY_LABEL = "countryLabel";
+
+    /** The Constant NEW_EQUIPMENT_SITE_LABEL. */
+    public static final String NEW_EQUIPMENT_SITE_LABEL = "siteLabel";
+
+    /** The Constant NEW_EQUIPMENT_LINE_LABEL. */
+    public static final String NEW_EQUIPMENT_LINE_LABEL = "lineLabel";
+
+    /** The Constant NEW_EQUIPMENT_POSITION_LABEL. */
+    public static final String NEW_EQUIPMENT_POSITION_LABEL = "positionLabel";
+
+    /** The Constant NEW_EQUIPMENT_EQUIPMENT_STATUS_LABEL. */
+    public static final String NEW_EQUIPMENT_EQUIPMENT_STATUS_LABEL = "equipmentStatusLabel";
+
+    /** The Constant NEW_EQUIPMENT_MACHINE_SYSTEM_LABEL. */
+    public static final String NEW_EQUIPMENT_MACHINE_SYSTEM_LABEL = "machineSystemLabel";
+
+    /** The Constant NEW_EQUIPMENT_EQUIPMENT_DESCRIPTION_LABEL. */
+    public static final String NEW_EQUIPMENT_EQUIPMENT_DESCRIPTION_LABEL = "equipmentDescriptionLabel";
+
+    /** The Constant NEW_EQUIPMENT_MANUFACTURE_MODEL_NUMBER_LABEL. */
+    public static final String NEW_EQUIPMENT_MANUFACTURE_MODEL_NUMBER_LABEL = "manufactureModelNumberLabel";
+
+    /** The Constant NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_LABEL. */
+    public static final String NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_LABEL = "manufactureOfAssetLabel";
+
+    /** The Constant NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_LABEL. */
+    public static final String NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_LABEL = "countryOfManufactureLabel";
+
+    /** The Constant NEW_EQUIPMENT_CONTRUCTION_YEAR_LABEL. */
+    public static final String NEW_EQUIPMENT_CONTRUCTION_YEAR_LABEL = "constructionYearLabel";
+
+    /** The Constant NEW_EQUIPMENT_COMMENTS_LABEL. */
+    public static final String NEW_EQUIPMENT_COMMENTS_LABEL = "commentsLabel";
+
+    /** The Constant NEW_EQUIPMENT_SUBMIT_BUTTON_LABEL. */
+    public static final String NEW_EQUIPMENT_SUBMIT_BUTTON_LABEL = "submitButtonLabel";
+
+    /** The Constant NEW_EQUIPMENT_DROPDOWN_PLACEHOLDER. */
+    public static final String NEW_EQUIPMENT_DROPDOWN_PLACEHOLDER = "dropdownPlaceholder";
+
+    /** The Constant NEW_EQUIPMENT_SUBMIT_TITLE. */
+    public static final String NEW_EQUIPMENT_SUBMIT_TITLE = "submitTitle";
+
+    /** The Constant NEW_EQUIPMENT_SUBMIT_SUBTITLE. */
+    public static final String NEW_EQUIPMENT_SUBMIT_SUBTITLE = "submitSubtitle";
+
+    /** The Constant NEW_EQUIPMENT_ADD_ANOTHER_EQUIPMENT_LABEL. */
+    public static final String NEW_EQUIPMENT_ADD_ANOTHER_EQUIPMENT_LABEL = "addAnotherEquipmentLabel";
+
 }
 
