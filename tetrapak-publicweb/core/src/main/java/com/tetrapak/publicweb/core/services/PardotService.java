@@ -1,7 +1,11 @@
 package com.tetrapak.publicweb.core.services;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.http.auth.AuthenticationException;
+
 import com.google.gson.JsonObject;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
 
@@ -76,4 +80,21 @@ public interface PardotService {
 	 * @return the subscriber mail addresses
 	 */
     List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas);
+
+    /**
+     * Gets the bearer token for custom form service.
+     *
+     * @return the bearer token for custom form service
+     */
+    BearerToken getBearerTokenForCustomFormService();
+
+    /**
+     * Submit custom form service post response.
+     *
+     * @param parameters
+     *            the parameters
+     * @param url
+     *            the url
+     */
+    void submitcustomFormServicePostResponse(Map<String, String[]> parameters) throws IOException, AuthenticationException;
 }

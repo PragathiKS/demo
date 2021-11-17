@@ -2,6 +2,9 @@ package com.tetrapak.publicweb.core.servlets;
 
 import java.io.IOException;
 import javax.servlet.Servlet;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.http.auth.AuthenticationException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -11,7 +14,10 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PardotService;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
 
 /**
  * The Class SubscriptionFormPardotServlet.
@@ -45,11 +51,31 @@ public class SubscriptionFormPardotServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         try {           
-            pardotService.submitPardotPostRespose(request.getParameterMap());          
+            String marketPath = LinkUtils.getCountryPath(request.getPathInfo());
+            final String country = StringUtils.substringAfterLast(marketPath, PWConstants.SLASH);
+            if (country.equalsIgnoreCase(PWConstants.CHINA_COUNTRY_CODE)
+                    || (request.getParameterMap().get(PWConstants.COUNTRY_TITLE)[0]).equalsIgnoreCase(PWConstants.CHINA)) {
+                submitCustomFormData(request);
+            } else {
+                pardotService.submitPardotPostRespose(request.getParameterMap());
+            }             
             // send response
             sendResponse(resp);
         } catch (final IOException ioException) {
             LOGGER.error("ioException :{}", ioException.getMessage(), ioException);
+        }
+    }
+
+    /**
+     * Submit custom form data.
+     *
+     * @param request the request
+     */
+    private void submitCustomFormData(final SlingHttpServletRequest request) {
+        try {
+            pardotService.submitcustomFormServicePostResponse(request.getParameterMap());
+        } catch (AuthenticationException | IOException e) {
+            LOGGER.error("Error occurred while submission of form data {}", e.getMessage());
         }
     }
 

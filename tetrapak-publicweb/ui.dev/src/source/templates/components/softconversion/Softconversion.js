@@ -189,6 +189,7 @@ class Softconversion {
     this.cache.$userType = 1;
     storageUtil.setCookie('userType', '', -1);
     storageUtil.setCookie('visitor-mail', '', -1);
+    storageUtil.setCookie('countryValue', '', -1);
   }
 
   yesMeBtnHandler = () => {
@@ -225,12 +226,19 @@ class Softconversion {
 
       const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
       const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
+      const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
+      const countryCookie= storageUtil.getCookie('countryValue');
       const apiPayload =  {};
       apiPayload.email = storageUtil.getCookie('visitor-mail');
       apiPayload.language = this.root.find(`#site_language_${this.cache.$componentName}`).val();
       apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
       apiPayload.pardot_extra_field = '';
-      apiPayload.pardotUrl = pardotUrl;
+      if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
+        apiPayload.pardotUrl = chinapardotUrl;
+      }
+      else {
+        apiPayload.pardotUrl = pardotUrl;
+      }
       apiPayload.pageurl = this.cache.requestPayload['pageurl'];
       ajaxWrapper.getXhrObj({
         url: servletPath,
@@ -250,11 +258,12 @@ class Softconversion {
   submitForm = () => {
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
     const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
-
+    const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
     const apiPayload =  {};
 
     const userType = parseInt(storageUtil.getCookie('userType'), 10);
     const visitorEmail = storageUtil.getCookie('visitor-mail');
+    const countryCookie= storageUtil.getCookie('countryValue');
 
     if(visitorEmail && userType === 1) {
       apiPayload.email = storageUtil.getCookie('visitor-mail');
@@ -273,7 +282,12 @@ class Softconversion {
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
-    apiPayload.pardotUrl = pardotUrl;
+    if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
+      apiPayload.pardotUrl = chinapardotUrl;
+    }
+    else {
+      apiPayload.pardotUrl = pardotUrl;
+    }
     apiPayload.pageurl = this.cache.requestPayload['pageurl'];
     if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
       apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
@@ -325,7 +339,7 @@ class Softconversion {
       storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
     }
     storageUtil.setCookie('userType', this.cache.$userType, 365);
-
+    storageUtil.setCookie('countryValue', this.cache.requestPayload['country'], 365);
     $(`.heading_${this.cache.$componentName}`, this.root).text('');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');

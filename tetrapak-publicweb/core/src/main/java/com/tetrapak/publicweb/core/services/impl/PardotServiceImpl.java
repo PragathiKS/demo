@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -27,6 +28,8 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
@@ -49,18 +52,12 @@ public class PardotServiceImpl implements PardotService {
 
     /** The success. */
     private static final int SUCESSS = 200;
-
-    /** The bearer. */
-    private static final String BEARER = "Bearer";
+    
+    /** The success. */
+    private static final int CREATED = 201;
     
     /** The Constant DATA_FIELD. */
     private static final String DATA_FIELD = "data";
-    
-    /** The Constant ACCEPT. */
-    private static final String ACCEPT = "Accept";
-    
-    /** The Constant APPLICATION_JSON. */
-    private static final String APPLICATION_JSON = "application/json";
 
     /**
      * Activate.
@@ -92,8 +89,8 @@ public class PardotServiceImpl implements PardotService {
     public void submitPardotPostRespose(final Map<String, String[]> parameters, final String url) {
         LOGGER.info("Inside service response");
         final HttpPost postRequest = new HttpPost(url);
-        postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        postRequest.addHeader(ACCEPT, APPLICATION_JSON);
+        postRequest.addHeader(PWConstants.CONTENT_TYPE, PWConstants.APPLICATION_ENCODING);
+        postRequest.addHeader(PWConstants.ACCEPT, PWConstants.APPLICATION_JSON);
         final ArrayList<NameValuePair> postParameters = new ArrayList<>();
 
         for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
@@ -157,7 +154,7 @@ public class PardotServiceImpl implements PardotService {
         LOGGER.debug("Inside getManagePrefJson method");
         String apiUrl = config.pardotSubscribersApiURL() + "/subscriberpreferences/" + emailToCheck;
         BearerToken token = getBearerToken();
-        String jsonResponse = getPardotApiGetRespose(BEARER, apiUrl, token.getAccessToken());
+        String jsonResponse = getPardotApiGetRespose(PWConstants.BEARER, apiUrl, token.getAccessToken());
         if (StringUtils.isNotBlank(jsonResponse)) {
         	jsonData = new JsonParser().parse(jsonResponse).getAsJsonObject();
     		return jsonData.get("data").getAsJsonArray().get(0).getAsJsonObject();
@@ -190,7 +187,7 @@ public class PardotServiceImpl implements PardotService {
                 if (!interestAreas.isEmpty()) {
                     apiUrl = apiUrl + "&areas=" + areas;
                 }
-                final String jsonResponse = getPardotApiGetRespose(BEARER, apiUrl, token.getAccessToken());
+                final String jsonResponse = getPardotApiGetRespose(PWConstants.BEARER, apiUrl, token.getAccessToken());
                 if (!jsonResponse.isEmpty()) {
                     JSONObject jsonObject = new JSONObject(jsonResponse);
                     mailAddresses = getMailAddresses(jsonObject);
@@ -258,7 +255,7 @@ public class PardotServiceImpl implements PardotService {
         final String encodedAuthString = Base64.getEncoder()
                 .encodeToString(authString.getBytes(StandardCharsets.UTF_8));
         final String apiURL = config.pardotTokenGenerationUrl();
-        jsonResponse = getPardotApiPostRespose("Basic", apiURL, encodedAuthString);
+        jsonResponse = getPardotApiPostRespose(PWConstants.BASIC, apiURL, encodedAuthString);
         if (StringUtils.isNotBlank(jsonResponse)) {
             try {
                 JSONObject json = new JSONObject(jsonResponse);
@@ -284,11 +281,11 @@ public class PardotServiceImpl implements PardotService {
         String jsonResponse = StringUtils.EMPTY;
         LOGGER.debug("Http Post request URL : {}", apiURL);
         final HttpPost postRequest = new HttpPost(apiURL);
-        postRequest.addHeader("Authorization", authType + PWConstants.SPACE + encodedAuthString);
-        postRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        postRequest.addHeader(ACCEPT, APPLICATION_JSON);
+        postRequest.addHeader(PWConstants.AUTHORIZATION, authType + PWConstants.SPACE + encodedAuthString);
+        postRequest.addHeader(PWConstants.CONTENT_TYPE, PWConstants.APPLICATION_ENCODING);
+        postRequest.addHeader(PWConstants.ACCEPT, PWConstants.APPLICATION_JSON);
         final ArrayList<NameValuePair> postParameters = new ArrayList<>();
-        postParameters.add(new BasicNameValuePair("grant_type", "client_credentials"));
+        postParameters.add(new BasicNameValuePair(PWConstants.GRANT_TYPE, PWConstants.CLIENT_CREDENTIALS));
 
         final HttpClient httpClient = HttpClientBuilder.create().build();
         int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
@@ -319,8 +316,8 @@ public class PardotServiceImpl implements PardotService {
         String jsonResponse = StringUtils.EMPTY;
         LOGGER.debug("Http Get request URL : {}", apiURL);
         final HttpGet getRequest = new HttpGet(apiURL);
-        getRequest.addHeader("Authorization", authType + PWConstants.SPACE + encodedAuthString);
-        getRequest.addHeader(ACCEPT, APPLICATION_JSON);
+        getRequest.addHeader(PWConstants.AUTHORIZATION, authType + PWConstants.SPACE + encodedAuthString);
+        getRequest.addHeader(PWConstants.ACCEPT, PWConstants.APPLICATION_JSON);
 
         final HttpClient httpClient = HttpClientBuilder.create().build();
         int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
@@ -336,5 +333,106 @@ public class PardotServiceImpl implements PardotService {
             LOGGER.error("Unable to connect to the url {}", e.getMessage());
         }
         return jsonResponse;
+    }
+    
+    /**
+     * Gets the bearer token.
+     *
+     * @return the bearer token
+     */
+    @Override
+    public BearerToken getBearerTokenForCustomFormService() {
+        BearerToken bearerToken = new BearerToken();
+        String jsonResponse = null;
+        final String authString = config.customFormServiceClientID() + ":" + config.customFormServiceClientSecret();
+        final String encodedAuthString = Base64.getEncoder()
+                .encodeToString(authString.getBytes(StandardCharsets.UTF_8));
+        final String apiURL = config.customTokenGenerationUrl();
+        jsonResponse = getAuthTokenPostResponse(PWConstants.BASIC, apiURL, encodedAuthString);
+        if (StringUtils.isNotBlank(jsonResponse)) {
+            try {                
+                bearerToken = new ObjectMapper().readValue(jsonResponse, BearerToken.class);
+            } catch (final IOException e) {
+                LOGGER.error("Unable to convert json to pojo for the bearer token response {}", e.getMessage());
+            }
+        }
+        return bearerToken;
+    }
+
+    /**
+     * Gets the auth token post response.
+     *
+     * @param authType
+     *            the auth type
+     * @param apiUrl
+     *            the api url
+     * @param encodedAuthString
+     *            the encoded auth string
+     * @return the auth token post response
+     */
+    private String getAuthTokenPostResponse(final String authType, final String apiUrl,
+            final String encodedAuthString) {
+        String jsonResponse = StringUtils.EMPTY;
+
+        // POST API Call to Custom Form Service End point to get json data
+        final HttpPost postRequest = new HttpPost(apiUrl);
+        postRequest.addHeader(PWConstants.AUTHORIZATION, authType + PWConstants.SPACE+ encodedAuthString);
+        postRequest.addHeader(PWConstants.CONTENT_TYPE, PWConstants.APPLICATION_ENCODING);
+        postRequest.addHeader(PWConstants.ACCEPT, PWConstants.APPLICATION_JSON);
+        final ArrayList<NameValuePair> postParameters = new ArrayList<>();
+        postParameters.add(new BasicNameValuePair(PWConstants.GRANT_TYPE, PWConstants.CLIENT_CREDENTIALS));
+
+        final HttpClient httpClient = HttpClientBuilder.create().build();
+        int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
+        try {
+            postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
+            final HttpResponse httpResponse = httpClient.execute(postRequest);
+            statusCode = httpResponse.getStatusLine().getStatusCode();
+            if (statusCode == SUCESSS) {
+                jsonResponse = EntityUtils.toString(httpResponse.getEntity());
+            }
+            LOGGER.debug("getAuthTokenPostResponse :: HTTP POST request status code: {}", statusCode);
+            LOGGER.debug("getAuthTokenPostResponse :: HTTP Post request Jsonresponse {}", jsonResponse);
+        } catch (final IOException e) {
+            LOGGER.error("Unable to connect to the custom form service URL {}", e.getMessage());
+        }
+        return jsonResponse;
+    }
+
+    /**
+     * Submit custom form service post response.
+     *
+     * @param parameters
+     *            the parameters
+     */
+    @Override
+    public void submitcustomFormServicePostResponse(final Map<String, String[]> parameters)
+            throws IOException, AuthenticationException {
+        LOGGER.info("Inside submitcustomFormServicePostResponse");
+
+        final String apiURL = config.customFormServiceUrl();
+        final HttpPost postRequest = new HttpPost(apiURL);
+        postRequest.addHeader(PWConstants.CONTENT_TYPE, PWConstants.APPLICATION_ENCODING);
+        postRequest.addHeader(PWConstants.AUTHORIZATION,
+                PWConstants.BEARER + PWConstants.SPACE + getBearerTokenForCustomFormService().getAccessToken());
+
+        final ArrayList<NameValuePair> postParameters = new ArrayList<>();
+        for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
+        }
+
+        final HttpClient httpClient = HttpClientBuilder.create().build();
+        int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
+        try {
+            postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
+            final HttpResponse httpResponse = httpClient.execute(postRequest);
+            statusCode = httpResponse.getStatusLine().getStatusCode();
+            if (statusCode != SUCESSS || statusCode != CREATED) {
+                LOGGER.error("Error while submitting custom form service data to APIGEE {}", statusCode);
+            }
+            LOGGER.info("Status code {}", statusCode);
+        } catch (final IOException e) {
+            LOGGER.error("Error while submitting custom form service post request {}", e.getMessage());
+        }
     }
 }
