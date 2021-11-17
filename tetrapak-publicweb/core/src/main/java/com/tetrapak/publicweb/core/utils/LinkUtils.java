@@ -162,7 +162,6 @@ public class LinkUtils extends WCMUsePojo {
         String updatedUrl = StringUtils.EMPTY;
         if (StringUtils.isNotBlank(path)) {
             updatedUrl = path.replaceFirst("^(http[s]?://)", "");
-            ;
         }
         return updatedUrl;
     }
