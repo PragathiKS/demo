@@ -207,9 +207,9 @@
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.processing.fc.powder.infantFormulaPowder"
             sling:message="Infant formula powder"/>
-    <pw.form.businessenq.processing.fc.powder.milkPowder
+    <pw.form.businessenq.processing.fc.milkPowder
             jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.processing.fc.powder.milkPowder"
+            sling:key="pw.form.businessenq.processing.fc.milkPowder"
             sling:message="Milk powder"/>
     <pw.form.businessenq.processing.fc.powder.plantBasedPowder
             jcr:primaryType="sling:MessageEntry"
@@ -715,10 +715,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.breadcrumb.home"
         sling:message="Home"/>
-     <pw.form.businessenq.selectPosition
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.businessenq.selectPosition"
-        sling:message="Select your position"/>
     <pw.subscriptionMail.label.cta
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.subscriptionMail.label.cta"
