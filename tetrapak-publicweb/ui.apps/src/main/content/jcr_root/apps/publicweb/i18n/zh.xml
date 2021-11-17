@@ -15,10 +15,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.viewLargerMap"
         sling:message="查看大图"/>
-    <pw.form.businessenq.contactme
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.businessenq.contactme"
-        sling:message="联系我"/>
     <pw.form.businessenq.endtoendsolution
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.endtoendsolution"
