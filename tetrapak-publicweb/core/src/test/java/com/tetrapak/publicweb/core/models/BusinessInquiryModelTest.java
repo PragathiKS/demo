@@ -85,7 +85,6 @@ public class BusinessInquiryModelTest {
 		context.registerService(PardotService.class, pardotService);
 		// context.registerInjectActivateService(countryDetailService);
 		final Map<String, Object> pardotConfig = new HashMap<>();
-		pardotConfig.put("pardotBusinessInquiryServiceUrl", "http://pardotURL");
 		MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
 		countryDetailService = new CountryDetailServiceImpl();

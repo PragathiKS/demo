@@ -39,7 +39,6 @@ public class BusinessEnquiryPardotServletTest {
 
         pardotService = new PardotServiceImpl();
         final Map<String, Object> pardotConfig = new HashMap<>();
-        pardotConfig.put("pardotBusinessInquiryServiceUrl", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
         context.registerService(PardotService.class, pardotService);
         MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
