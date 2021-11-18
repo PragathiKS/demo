@@ -11,17 +11,6 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface PardotServiceConfig {
 
     /**
-     * Pardot business inquiry service url.
-     *
-     * @return Pardot BusinessInquiry Service Url
-     */
-    @AttributeDefinition(
-            name = "Pardot BusinessInquiry form handler URL",
-            description = "Pardot BusinessInquiry Form URL",
-            type = AttributeType.STRING)
-    String pardotBusinessInquiryServiceUrl();
-
-    /**
      * Pardot subscription form URL.
      *
      * @return the string

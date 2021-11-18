@@ -15,10 +15,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.viewLargerMap"
         sling:message="Daha büyük haritayı görüntüleyin"/>
-    <pw.form.businessenq.contactme
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.businessenq.contactme"
-        sling:message="Bana ulaşın"/>
     <pw.form.businessenq.endtoendsolution
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.endtoendsolution"

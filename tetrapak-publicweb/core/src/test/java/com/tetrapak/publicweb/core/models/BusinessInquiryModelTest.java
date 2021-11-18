@@ -85,7 +85,6 @@ public class BusinessInquiryModelTest {
 		context.registerService(PardotService.class, pardotService);
 		// context.registerInjectActivateService(countryDetailService);
 		final Map<String, Object> pardotConfig = new HashMap<>();
-		pardotConfig.put("pardotBusinessInquiryServiceUrl", "http://pardotURL");
 		MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
 		countryDetailService = new CountryDetailServiceImpl();
@@ -127,6 +126,7 @@ public class BusinessInquiryModelTest {
 				model.getApiUrl());
 		assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
 		assertEquals("Form", "pardot-system-config:job-title", model.getFormConfig().getPardotSystemConfigTags()[0]);
+		assertEquals("Form", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt", model.getBefPardotURL());
 	}
 	
 	@Test
