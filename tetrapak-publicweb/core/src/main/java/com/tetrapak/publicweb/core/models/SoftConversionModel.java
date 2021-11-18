@@ -20,7 +20,6 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.tetrapak.publicweb.core.beans.DropdownOption;
-import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
@@ -217,7 +216,7 @@ public class SoftConversionModel extends FormModel {
 		    		DropdownOption option = new DropdownOption();
 		    		final Tag tag = childTagsIterator.next();
 		    		option.setKey(tag.getLocalizedTitle(Locale.ENGLISH));
-		    		option.setValue(tag.getLocalizedTitle(Locale.ENGLISH));
+		    		option.setValue(tag.getTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource))));
 		    		tagOptions.add(option);
 		    	}
 	    	}	
