@@ -6,6 +6,14 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
 import { validateFieldsForTags } from '../../../scripts/common/common';
 
+function isInvalidBusinessAreaOption(key, businessArea) {
+  if(key === 'businessArea') {
+    return false;
+  }
+  const isInvalid = key.startsWith('businessArea') && !key.toLowerCase().includes(businessArea.toLowerCase());
+  return isInvalid;
+}
+
 class Businessinquiryform {
   constructor({ el }) {
     this.root = $(el);
@@ -103,6 +111,9 @@ class Businessinquiryform {
     const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
     const dataObj = {};
     $.each( requestPayload, function( key, value ) {
+      if(isInvalidBusinessAreaOption(key, requestPayload.businessArea)) {
+        return;
+      }
       dataObj[key] = value;
     });
     
@@ -187,15 +198,26 @@ class Businessinquiryform {
       $(step1Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
       $(step2Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
       self.setRequestPayload(checkedItems[0]);
+      if(checkedItems[0].toLowerCase() === 'packaging' || checkedItems[0].toLowerCase() === 'services') {
+        $('.summary-interest').addClass('show');
+        $('.summary-packaging').removeClass('show');
+      }
+      
     } else if(checkedItems.length === 2) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
       self.setRequestPayload(checkedItems.join(' and '));
+      $('.summary-packaging').removeClass('show');
+      $('.summary-interest').removeClass('show');
     } else if(checkedItems.length === 3) {
       self.setRequestPayload(checkedItems.join(' , '));
+      $('.summary-packaging').removeClass('show');
+      $('.summary-interest').removeClass('show');
     }
     if(checkedItems.length === 1 && checkedItems[0].toLowerCase() === 'processing'){
       $('#businessEnquiryMessageText').attr('placeholder', $('#processingCheckboxDiv').attr('data-processing-msg-placeholder-text'));
+      $('.summary-packaging').addClass('show');
+      $('.summary-interest').removeClass('show');
     }
 
     if(checkedItems.length > 0) {
@@ -212,7 +234,6 @@ class Businessinquiryform {
       val = val.replace('and',',');
     }
     $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
-    this.resetBusinessIntFields();
   }
 
   resetBusinessIntFields = () => {
