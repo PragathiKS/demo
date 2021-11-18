@@ -165,6 +165,14 @@ public class EquipmentDetailsModel {
     @Inject
     private String thankYouLabel;
 
+    /** The Modal Confirm Header. */
+    @Inject
+    private String modalConfirmHeader;
+
+    /** The Modal Confirm Text. */
+    @Inject
+    private String modalConfirmText;
+
     /** The sling settings service. */
     @OSGiService
     private SlingSettingsService slingSettingsService;
@@ -501,6 +509,24 @@ public class EquipmentDetailsModel {
     }
 
     /**
+     * Gets the Modal Confirm Label
+     *
+     * @return the modalConfirmHeader
+     */
+    public String getModalConfirmHeader() {
+        return modalConfirmHeader;
+    }
+
+    /**
+     * Gets the Modal Confirm Text
+     *
+     * @return the modalConfirmText
+     */
+    public String getModalConfirmText() {
+        return modalConfirmText;
+    }
+
+    /**
      * init method.
      */
     @PostConstruct
@@ -537,6 +563,8 @@ public class EquipmentDetailsModel {
         i18KeyMap.put(CustomerHubConstants.REQUEST_UPDATES, getRequestUpdates());
         i18KeyMap.put(CustomerHubConstants.MAKE_UPDATES, getMakeUpdates());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_LABEL, getThankYouLabel());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_HEADER, getModalConfirmHeader());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_TEXT, getModalConfirmText());
 
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
@@ -550,7 +578,7 @@ public class EquipmentDetailsModel {
 
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, "myequipment-statuslist");
-        
+
         equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
     }
