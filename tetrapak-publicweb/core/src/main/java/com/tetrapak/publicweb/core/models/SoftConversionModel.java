@@ -215,7 +215,7 @@ public class SoftConversionModel extends FormModel {
 		    	while(childTagsIterator.hasNext()) {
 		    		DropdownOption option = new DropdownOption();
 		    		final Tag tag = childTagsIterator.next();
-		    		option.setKey(tag.getLocalizedTitle(Locale.ENGLISH));
+		    		option.setKey(tag.getTitle());
 		    		option.setValue(tag.getTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource))));
 		    		tagOptions.add(option);
 		    	}
