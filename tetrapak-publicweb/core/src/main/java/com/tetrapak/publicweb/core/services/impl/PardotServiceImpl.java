@@ -296,10 +296,10 @@ public class PardotServiceImpl implements PardotService {
             if (statusCode == SUCESSS) {
                 jsonResponse = EntityUtils.toString(httpResponse.getEntity());
             }
-            LOGGER.debug("Http Post request status code: {}", statusCode);
-            LOGGER.debug("HTTP Post request Jsonresponse {}", jsonResponse);
+            LOGGER.debug("getPardotApiPostRespose :: HTTP POST request status code: {}", statusCode);
+            LOGGER.debug("getPardotApiPostRespose :: HTTP Post request Jsonresponse {}", jsonResponse);
         } catch (final IOException e) {
-            LOGGER.error("Unable to connect to the url {}", e.getMessage());
+            LOGGER.error("Unable to connect to the URL {}", e.getMessage());
         }
         return jsonResponse;
     }
@@ -348,7 +348,7 @@ public class PardotServiceImpl implements PardotService {
         final String encodedAuthString = Base64.getEncoder()
                 .encodeToString(authString.getBytes(StandardCharsets.UTF_8));
         final String apiURL = config.customTokenGenerationUrl();
-        jsonResponse = getAuthTokenPostResponse(PWConstants.BASIC, apiURL, encodedAuthString);
+        jsonResponse = getPardotApiPostRespose(PWConstants.BASIC, apiURL, encodedAuthString);
         if (StringUtils.isNotBlank(jsonResponse)) {
             try {                
                 bearerToken = new ObjectMapper().readValue(jsonResponse, BearerToken.class);
@@ -357,46 +357,6 @@ public class PardotServiceImpl implements PardotService {
             }
         }
         return bearerToken;
-    }
-
-    /**
-     * Gets the auth token post response.
-     *
-     * @param authType
-     *            the auth type
-     * @param apiUrl
-     *            the api url
-     * @param encodedAuthString
-     *            the encoded auth string
-     * @return the auth token post response
-     */
-    private String getAuthTokenPostResponse(final String authType, final String apiUrl,
-            final String encodedAuthString) {
-        String jsonResponse = StringUtils.EMPTY;
-
-        // POST API Call to Custom Form Service End point to get json data
-        final HttpPost postRequest = new HttpPost(apiUrl);
-        postRequest.addHeader(PWConstants.AUTHORIZATION, authType + PWConstants.SPACE+ encodedAuthString);
-        postRequest.addHeader(PWConstants.CONTENT_TYPE, PWConstants.APPLICATION_ENCODING);
-        postRequest.addHeader(PWConstants.ACCEPT, PWConstants.APPLICATION_JSON);
-        final ArrayList<NameValuePair> postParameters = new ArrayList<>();
-        postParameters.add(new BasicNameValuePair(PWConstants.GRANT_TYPE, PWConstants.CLIENT_CREDENTIALS));
-
-        final HttpClient httpClient = HttpClientBuilder.create().build();
-        int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
-        try {
-            postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
-            final HttpResponse httpResponse = httpClient.execute(postRequest);
-            statusCode = httpResponse.getStatusLine().getStatusCode();
-            if (statusCode == SUCESSS) {
-                jsonResponse = EntityUtils.toString(httpResponse.getEntity());
-            }
-            LOGGER.debug("getAuthTokenPostResponse :: HTTP POST request status code: {}", statusCode);
-            LOGGER.debug("getAuthTokenPostResponse :: HTTP Post request Jsonresponse {}", jsonResponse);
-        } catch (final IOException e) {
-            LOGGER.error("Unable to connect to the custom form service URL {}", e.getMessage());
-        }
-        return jsonResponse;
     }
 
     /**
@@ -422,17 +382,12 @@ public class PardotServiceImpl implements PardotService {
         }
 
         final HttpClient httpClient = HttpClientBuilder.create().build();
-        int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
-        try {
-            postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
-            final HttpResponse httpResponse = httpClient.execute(postRequest);
-            statusCode = httpResponse.getStatusLine().getStatusCode();
-            if (statusCode != SUCESSS || statusCode != CREATED) {
-                LOGGER.error("Error while submitting custom form service data to APIGEE {}", statusCode);
-            }
-            LOGGER.info("Status code {}", statusCode);
-        } catch (final IOException e) {
-            LOGGER.error("Error while submitting custom form service post request {}", e.getMessage());
-        }
+        postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
+        final HttpResponse httpResponse = httpClient.execute(postRequest);
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+        LOGGER.info("Status code {}", statusCode);
+        if (statusCode != SUCESSS || statusCode != CREATED) {
+            throw new IOException("Error occurred while submitting custom form service data to APIGEE");
+        }       
     }
 }
