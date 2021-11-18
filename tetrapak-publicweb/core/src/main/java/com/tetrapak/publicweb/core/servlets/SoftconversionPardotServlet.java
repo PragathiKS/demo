@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.Servlet;
 
-import org.apache.http.auth.AuthenticationException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -16,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
@@ -75,7 +75,7 @@ public class SoftconversionPardotServlet extends SlingAllMethodsServlet {
     private void submitCustomFormData(final SlingHttpServletRequest request) {
         try {
             pardotService.submitcustomFormServicePostResponse(request.getParameterMap());
-        } catch (AuthenticationException | IOException e) {
+        } catch (Exception e) {
             LOGGER.error("Error occurred while submission of form data {}", e.getMessage());
         }
     }
@@ -90,7 +90,7 @@ public class SoftconversionPardotServlet extends SlingAllMethodsServlet {
     private void sendResponse(final SlingHttpServletResponse resp) throws IOException {
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write("Success");
+        resp.getWriter().write(PWConstants.STATUS_SUCCESS);
     }
 
 }

@@ -7,11 +7,12 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
-import org.apache.http.auth.AuthenticationException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -367,7 +368,7 @@ public class PardotServiceImpl implements PardotService {
      */
     @Override
     public void submitcustomFormServicePostResponse(final Map<String, String[]> parameters)
-            throws IOException, AuthenticationException {
+            throws Exception {
         LOGGER.info("Inside submitcustomFormServicePostResponse");
 
         final String apiURL = config.customFormServiceUrl();
@@ -387,7 +388,7 @@ public class PardotServiceImpl implements PardotService {
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         LOGGER.info("Status code {}", statusCode);
         if (statusCode != SUCESSS || statusCode != CREATED) {
-            throw new IOException("Error occurred while submitting custom form service data to APIGEE");
+            throw new HttpException("Error occurred while submitting custom form service data to APIGEE");
         }       
     }
 }

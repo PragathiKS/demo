@@ -96,5 +96,5 @@ public interface PardotService {
      * @param url
      *            the url
      */
-    void submitcustomFormServicePostResponse(Map<String, String[]> parameters) throws IOException, AuthenticationException;
+    void submitcustomFormServicePostResponse(Map<String, String[]> parameters) throws Exception;
 }
