@@ -34,7 +34,7 @@
                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                     fieldDescription="Provide pardot businessInquiry form URL. Valid URL starts with - https://go.tetrapak.com/"
                     fieldLabel="Pardot form handler URL"
-                    name="./pardotBusinessInquiryServiceUrl"
+                    name="./befPardotURL"
                     required="{Boolean}true"/>
         </items>
     </content>

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.Servlet;
 
+import com.tetrapak.publicweb.core.constants.FormConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -50,8 +51,8 @@ public class BusinessEnquiryPardotServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         try {
-            pardotService.submitPardotPostRespose(request.getParameterMap(),
-                    pardotService.getBusinesInquiryServiceURL());
+            final String befPardotURL = request.getParameter(FormConstants.BEF_PARDOT_URL_PROPERTY);
+            pardotService.submitPardotPostRespose(request.getParameterMap(),befPardotURL);
             // send response
             sendResponse(resp);
 
