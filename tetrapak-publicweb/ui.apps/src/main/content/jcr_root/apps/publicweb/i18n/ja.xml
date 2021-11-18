@@ -15,10 +15,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.viewLargerMap"
         sling:message="大きな地図で見る"/>
-    <pw.form.businessenq.contactme
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.businessenq.contactme"
-        sling:message="連絡を希望します"/>
     <pw.form.businessenq.endtoendsolution
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.endtoendsolution"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="sling:OsgiConfig"
-          pardotBusinessInquiryServiceUrl="http://go.tetrapak.com/l/857883/2021-10-28/6n4ls"
           pardotSubscriptionFormURL="http://go.tetrapak.com/l/857883/2020-07-22/2cnjf"
           pardotTokenGenerationApiClientId="ZPMGxol5RyrU14pvZrSkYAV49uUjhFrJ"
           pardotTokenGenerationApiClientSecret="4xCGfaj5Ltw9rojx"
