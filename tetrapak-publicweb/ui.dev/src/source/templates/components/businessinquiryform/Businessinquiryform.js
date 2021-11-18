@@ -100,6 +100,7 @@ class Businessinquiryform {
     const servletPath = this.cache.businessformapi.data('bef-api-servlet');
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
+    const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
     const dataObj = {};
     $.each( requestPayload, function( key, value ) {
       dataObj[key] = value;
@@ -107,6 +108,7 @@ class Businessinquiryform {
     
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
+    dataObj['befPardotURL'] = befPardotURL;
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
       dataObj['marketingConsent'] = 'True';
     }

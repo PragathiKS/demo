@@ -35,8 +35,11 @@ public class BusinessInquiryModel extends FormModel {
 	@Self
 	private Resource resource;
 
+	/**
+	 * Business Enquery Form Pardot URL
+	 */
 	@ValueMapValue
-	private String pardotBusinessInquiryServiceUrl;
+	private String befPardotURL;
 
 	/** The pardot service. */
 	@OSGiService
@@ -58,7 +61,6 @@ public class BusinessInquiryModel extends FormModel {
 	 */
 	@PostConstruct
 	protected void init() {
-		pardotService.setBusinesInquiryServiceURL(pardotBusinessInquiryServiceUrl);
 		setCountryOptions();
 		setFormConfig();
 	}
@@ -203,6 +205,14 @@ public class BusinessInquiryModel extends FormModel {
 	private void setCountryOptions() {
 		this.countryOptions = countryDetailService.fetchPardotCountryList(resource.getResourceResolver());
 
+	}
+
+	/**
+	 * Get Pardot Service Url
+	 * @return befPardotURL
+	 */
+	public String getBefPardotURL() {
+		return befPardotURL;
 	}
 
 }

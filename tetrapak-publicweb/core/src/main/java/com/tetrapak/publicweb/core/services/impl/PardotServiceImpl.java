@@ -62,8 +62,6 @@ public class PardotServiceImpl implements PardotService {
     /** The Constant APPLICATION_JSON. */
     private static final String APPLICATION_JSON = "application/json";
 
-    private String businessEnquiryPardotURL = StringUtils.EMPTY;
-
     /**
      * Activate.
      *
@@ -72,25 +70,6 @@ public class PardotServiceImpl implements PardotService {
     @Activate
     public void activate(final PardotServiceConfig config) {
         this.config = config;
-    }
-
-    /**
-     * Sets the busines inquiry service URL.
-     * @param pardotUrl
-     */
-    @Override
-    public void setBusinesInquiryServiceURL(final String pardotUrl) {
-        this.businessEnquiryPardotURL=pardotUrl;
-    }
-
-    /**
-     * Gets the busines inquiry service URL.
-     *
-     * @return the busines inquiry service URL
-     */
-    @Override
-    public String getBusinesInquiryServiceURL() {
-        return this.businessEnquiryPardotURL;
     }
 
     /**

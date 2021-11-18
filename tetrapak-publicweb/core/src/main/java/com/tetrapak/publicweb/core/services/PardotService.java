@@ -10,19 +10,6 @@ import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
  */
 public interface PardotService {
 
-	/**
-	 * Sets the busines inquiry service URL
-	 * @param pardotUrl
-	 */
-	void setBusinesInquiryServiceURL(String pardotUrl);
-
-	/**
-	 * Gets the busines inquiry service URL.
-	 *
-	 * @return the busines inquiry service URL
-	 */
-	String getBusinesInquiryServiceURL();
-
     /**
 	 * Gets the subscription form pardot URL.
 	 *
