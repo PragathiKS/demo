@@ -21,6 +21,7 @@ public class ThumbnailConfigModel {
 
     private static final String THUMBNAIL_CONFIG_PATH = "/jcr:content/root/responsivegrid/thumbnailconfig";
     private static final String IMAGE_PATH_PROPERTY_NAME = "imagePath";
+    private static final String HASH_SIGN = "#";
 
     @SlingObject
     private SlingHttpServletRequest request;
@@ -38,11 +39,12 @@ public class ThumbnailConfigModel {
 
     @PostConstruct
     private void init() {
-        this.openGraphImagePath = StringUtils.defaultString(resolvePathFromPageProperties(), resolvePathFromLanguagePage());
+        String path = StringUtils.defaultString(resolvePathFromPageProperties(), resolvePathFromLanguagePage());
+        this.openGraphImagePath = LinkUtils.sanitizeLink(path, request);
     }
 
     public boolean isValid() {
-        return StringUtils.isNotEmpty(openGraphImagePath);
+        return StringUtils.isNotEmpty(openGraphImagePath) && !StringUtils.equals(HASH_SIGN, openGraphImagePath);
     }
 
     private String resolvePathFromLanguagePage() {
@@ -68,6 +70,6 @@ public class ThumbnailConfigModel {
     }
 
     public String getOpenGraphImagePath() {
-        return LinkUtils.sanitizeLink(openGraphImagePath, request);
+        return this.openGraphImagePath;
     }
 }
