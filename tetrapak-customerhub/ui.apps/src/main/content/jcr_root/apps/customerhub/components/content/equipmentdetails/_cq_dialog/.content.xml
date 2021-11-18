@@ -209,6 +209,18 @@
                                             fieldLabel="thankYou Label (i18N key)"
                                             name="./thankYouLabel"
                                             required="true"/>
+                                    <modalConfirmHeader
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Modal Confirm Header (i18N key)"
+                                            name="./modalConfirmHeader"
+                                            required="true"/>
+                                    <modalConfirmText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Modal Confirm Text (i18N key)"
+                                            name="./modalConfirmText"
+                                            required="true"/>
                                 </items>
                             </column>
                         </items>

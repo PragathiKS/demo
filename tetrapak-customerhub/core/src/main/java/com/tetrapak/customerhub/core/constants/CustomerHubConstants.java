@@ -5,13 +5,6 @@ package com.tetrapak.customerhub.core.constants;
  */
 public final class CustomerHubConstants {
 
-    /**
-     * Instantiates a new customer hub constants.
-     */
-    private CustomerHubConstants() {
-        throw new IllegalStateException("Utility class");
-    }
-
     /** The Constant DEFAULT_LOCALE. */
     public static final String DEFAULT_LOCALE = "en";
 
@@ -123,8 +116,8 @@ public final class CustomerHubConstants {
     /** The Constant SPACE. */
     public static final String SPACE = " ";
     
-    /** The Constant EQUALS. */
-    public static final String EQUALS = "=";
+    /** The Constant EQUALS_CHAR. */
+    public static final String EQUALS_CHAR = "=";
     
     /** The Constant QUESTION_MARK. */
     public static final String QUESTION_MARK = "?";
@@ -321,8 +314,20 @@ public final class CustomerHubConstants {
     /** The Constant EQUIPMENT_LIST_API. */
     public static final String EQUIPMENT_LIST_API = "myequipment-equipmentlist";
 
-        /** The Constant THANK_YOU_LABEL . */
+    /** The Constant THANK_YOU_LABEL . */
     public static final String EQUIPMENT_THANK_YOU_LABEL = "equipmentDetails-ThankYouHeading";
 
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_MODAL_CONFIRM_HEADER = "equipmentDetails-modalConfirmHeader";
+
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_MODAL_CONFIRM_TEXT = "equipmentDetails-modalConfirmText";
+
+    /**
+     * Instantiates a new customer hub constants.
+     */
+    private CustomerHubConstants() {
+        throw new IllegalStateException("Utility class");
+    }
 }
 
