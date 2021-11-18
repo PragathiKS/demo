@@ -138,7 +138,9 @@
                                                                         <a href="#" class="dropdown-item"
                                                                             data-field-name="position"
                                                                             data-field-title="positionTitle"
-                                                                            data-title="${position.key}">
+                                                                            data-title="${position.value}"
+                                                                            data-key="${position.key}"
+                                                                            >
                                                                             ${position.value}
                                                                         </a>
                                                                     </div>
@@ -169,9 +171,11 @@
                                                                     <div class="dropdown-menu pw-form__dropdown__menu function-dropdown-select"
                                                                         data-sly-list.function="${data.functionOptions}" data-dropdownType="function">
                                                                         <a href="#" class="dropdown-item"
+                                                                            data-key="${function.key}"
                                                                             data-field-name="function"
                                                                             data-field-title="functionTitle"
-                                                                            data-title="${function.key}">
+                                                                            data-title="${function.value}"
+                                                                            >
                                                                             ${function.value}
                                                                         </a>
                                                                     </div>
