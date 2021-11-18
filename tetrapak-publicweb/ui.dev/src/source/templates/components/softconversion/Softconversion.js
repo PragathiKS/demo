@@ -442,12 +442,13 @@ class Softconversion {
     $dropItem.click(function (e) {
       e.preventDefault();
       const title = $(this).data('title');
+      const value = $(this).data('key');
       const field = $(this).data('field-name');
       const fieldtitle = $(this).data('field-title');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(title);
       $('input', parentDrop).val(title);
-      requestPayload[field] = title;
+      requestPayload[field] = value || title;
       if(field === 'country') {
         requestPayload[fieldtitle] = title;
       }
