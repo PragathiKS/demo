@@ -1,11 +1,13 @@
 package com.tetrapak.customerhub.core.services.impl;
 
+import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
@@ -16,6 +18,9 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 @Component(service = EquipmentDetailsService.class, immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @Designate(ocd = EquipmentDetailsServiceImpl.Config.class)
 public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
+
+    @Reference
+    private APIGEEService apigeeService;
 
     /**
      * The Interface Config.

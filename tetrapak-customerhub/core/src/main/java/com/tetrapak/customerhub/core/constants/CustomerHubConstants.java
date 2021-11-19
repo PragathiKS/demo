@@ -317,6 +317,9 @@ public final class CustomerHubConstants {
     /** The Constant THANK_YOU_LABEL . */
     public static final String EQUIPMENT_THANK_YOU_LABEL = "equipmentDetails-ThankYouHeading";
 
+    /** The Constant THANK_YOU_DESCRIPTION . */
+    public static final String EQUIPMENT_THANK_YOU_DESCRIPTION = "equipmentDetails-ThankYouDescription";
+
     /** The Constant THANK_YOU_LABEL . */
     public static final String EQUIPMENT_MODAL_CONFIRM_HEADER = "equipmentDetails-modalConfirmHeader";
 
