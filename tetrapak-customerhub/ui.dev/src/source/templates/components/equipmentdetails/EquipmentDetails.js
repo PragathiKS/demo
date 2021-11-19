@@ -170,8 +170,17 @@ class EquipmentDetails {
     this.root.on('click', '.js-equipment-details__req-update',  (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
-      console.log('data: ', data);
-      this.cache.formData = data;
+      const { equipData} = this.cache.data;
+      this.cache.formData = {
+        oldCountry: equipData.countryName,
+        oldLocation: equipData.location,
+        oldSiteName: equipData.siteName,
+        oldLineName: equipData.lineName,
+        oldEquipmentStatus: equipData.equipmentStatus,
+        oldPosition: equipData.position,
+        oldEquipmentTypeDesc: equipData.equipmentTypeDesc,
+        ...data,
+      }
       this.renderEquipUpdateModal();
     });
 
@@ -186,10 +195,9 @@ class EquipmentDetails {
             cache: true,
             dataType: 'json',
             contentType: 'application/json',
-            data: this.cache.formData,
+            data: JSON.stringify(this.cache.formData),
             beforeSend(jqXHR) {
               jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             },
             showLoader: true
           }).done(res => {
