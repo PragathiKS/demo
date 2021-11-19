@@ -576,7 +576,7 @@ public class EquipmentDetailsModel {
         i18KeyMap.put(CustomerHubConstants.REQUEST_UPDATES, getRequestUpdates());
         i18KeyMap.put(CustomerHubConstants.MAKE_UPDATES, getMakeUpdates());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_LABEL, getThankYouLabel());
-        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_LABEL, getThankYouDescription());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_DESCRIPTION, getThankYouDescription());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_HEADER, getModalConfirmHeader());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_TEXT, getModalConfirmText());
 
