@@ -14,6 +14,9 @@ function isInvalidBusinessAreaOption(key, businessArea) {
   return isInvalid;
 }
 
+function capitalizeFirstLetter([ first, ...rest ]) {
+  return [ first.toUpperCase(), ...rest ].join('');
+}
 class Businessinquiryform {
   constructor({ el }) {
     this.root = $(el);
@@ -593,12 +596,14 @@ class Businessinquiryform {
     $dropItem.click(function (e) {
       e.preventDefault();
       const title = $(this).attr('data-title');
+      const finalValue = $(this).attr('data-pardot-title');
+      const pardtottitle = capitalizeFirstLetter(finalValue);
       const field = $(this).attr('data-field-name');
       const fieldtitle = $(this).attr('data-field-title');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(title);
       $('input', parentDrop).val(title);
-      requestPayload[field] = title;
+      requestPayload[field] = pardtottitle;
       if(field === 'country') {
         self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload[field];
         requestPayload[fieldtitle] = title;
