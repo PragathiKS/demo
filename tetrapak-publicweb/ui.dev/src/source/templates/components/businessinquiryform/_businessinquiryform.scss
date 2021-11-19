@@ -186,6 +186,13 @@
         }
         .purposeOfContactInBusinessEqTitle,
         .purposeOfInterestAreaEqTitle,
+        .specificInterestAreaPackagingEqTitle,
+        .businessAreaInterestServicesEqTitle,
+        .businessAreaInterestProcessingSupportEqTitle,
+        .businessAreaProcessingCategoryFoodEqtitle,
+        .businessEnquiryProfile,
+        .businessEnquiryNeedEqTitle,
+        .businessEnquiryProfile,
         .firstNameField,
         .lastNameField,
         .emailBef,
@@ -200,6 +207,13 @@
         .col-lg-5 {
             @media #{$desktop} {
                 padding-right: $padding-xxxl;
+            }
+        }
+        &.summary-packaging,
+        &.summary-interest {
+            display: none;
+            &.show {
+                display: flex;
             }
         }
     }

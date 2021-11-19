@@ -256,6 +256,18 @@
                       <div class="col-lg-5">${'pw.form.heading.businessarea' @i18n}</div>
                       <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
                     </div>
+                   <div class="row no-gutters summary summary-interest">
+                      <div class="col-lg-5">${'pw.form.businessenq.specificAreaOfInterest' @i18n}</div>
+                      <div class="col-lg-7 specificInterestAreaPackagingEqTitle businessAreaInterestServicesEqTitle "></div>
+                    </div>
+                    <div class="row no-gutters summary summary-packaging">
+                      <div class="col-lg-5">${'pw.form.businessenq.scopeOfRequest' @i18n}</div>
+                      <div class="col-lg-7 businessAreaInterestProcessingSupportEqTitle"></div>
+                    </div>
+                    <div class="row no-gutters summary summary-packaging">
+                      <div class="col-lg-5">${'pw.form.businessenq.processing.foodCategory' @i18n}</div>
+                      <div class="col-lg-7 businessAreaProcessingCategoryFoodEqtitle"></div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep2">
@@ -308,7 +320,7 @@
                               <sly data-sly-test="${data.TagProcessingRoles}">
                                 <div class="dropdown-menu pw-form__dropdown__menu"
                                       data-sly-list.tagName="${data.TagProcessingRoles}">
-                                  <a href="#" class="dropdown-item" data-roleKey="${tagName}" data-field-name="businessEnquiryProfile" data-field-title="roleTitle" data-title="${data.TagProcessingRoles[tagName]}">
+                                  <a href="#" class="dropdown-item" data-roleKey="${tagName}" data-field-name="businessEnquiryProfile" data-field-title="roleTitle" data-title="${data.TagProcessingRoles[tagName]}" data-pardot-title= "${tagName}">
                                     ${data.TagProcessingRoles[tagName]}
                                   </a>
                                 </div>
@@ -377,6 +389,27 @@
                       <div class="col-lg-5">${'pw.form.label.message' @i18n}</div>
                       <div class="col-lg-7 businessEnquiryMessage"></div>
                     </div>
+                    <div class="row no-gutters summary summary-interest">
+                      <div class="col-lg-5">${'pw.form.businessenq.specificAreaOfInterest' @i18n}</div>
+                      <div class="col-lg-7 specificInterestAreaPackagingEqTitle businessAreaInterestServicesEqTitle"></div>
+                    </div>
+                    <div class="row no-gutters summary summary-packaging">
+                      <div class="col-lg-5">${'pw.form.businessenq.scopeOfRequest' @i18n}</div>
+                      <div class="col-lg-7 businessAreaInterestProcessingSupportEqTitle"></div>
+                    </div>
+                    <div class="row no-gutters summary summary-packaging">
+                      <div class="col-lg-5">${'pw.form.businessenq.processing.foodCategory' @i18n}</div>
+                      <div class="col-lg-7 businessAreaProcessingCategoryFoodEqtitle"></div>
+                    </div>
+                    <div class="row no-gutters summary">
+                      <div class="col-lg-5">${'pw.form.businessenq.bestDescriptionText' @i18n}</div>
+                      <div class="col-lg-7 businessEnquiryNeedEqTitle"></div>
+                    </div>
+                    <div class="row no-gutters summary">
+                      <div class="col-lg-5">${'pw.form.label.yourRole' @i18n}</div>
+                      <div class="col-lg-7 businessEnquiryProfile"></div>
+                    </div>
+
                   </div>
                 </div>
                 <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep3">
@@ -442,7 +475,7 @@
                               </button>
                               <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
                                 data-sly-list.country="${data.countryOptions}">
-                                <a href="#" class="dropdown-item" data-country="${country.key}" data-field-name="country" data-field-title="countryTitle" data-title="${country.value}">
+                                <a href="#" class="dropdown-item" data-country="${country.key}" data-field-name="country" data-field-title="countryTitle" data-title="${country.value}" data-pardot-title="${country.value}">
                                   ${country.value}
                                 </a>
                               </div>
@@ -476,7 +509,7 @@
                               <sly data-sly-test="${data.TagTitles}">
                                 <div class="dropdown-menu pw-form__dropdown__menu"
                                       data-sly-list.tagName="${data.TagTitles}">
-                                  <a href="#" class="dropdown-item" data-positionKey="${tagName}" data-field-name="position" data-field-title="positionTitle" data-title="${data.TagTitles[tagName]}">
+                                  <a href="#" class="dropdown-item" data-positionKey="${tagName}" data-field-name="position" data-field-title="positionTitle" data-title="${data.TagTitles[tagName]}" data-pardot-title="${tagName}">
                                     ${data.TagTitles[tagName]}
                                   </a>
                                 </div>
@@ -506,7 +539,7 @@
                               <sly data-sly-test="${data.TagFunctions}">
                                 <div class="dropdown-menu pw-form__dropdown__menu"
                                       data-sly-list.tagName="${data.TagFunctions}">
-                                  <a href="#" class="dropdown-item" data-functionKey="${tagName}" data-field-name="function" data-field-title="functionTitle" data-title="${data.TagFunctions[tagName]}">
+                                  <a href="#" class="dropdown-item" data-functionKey="${tagName}" data-field-name="function" data-field-title="functionTitle" data-title="${data.TagFunctions[tagName]}" data-pardot-title="${tagName}">
                                     ${data.TagFunctions[tagName]}
                                   </a>
                                 </div> 
