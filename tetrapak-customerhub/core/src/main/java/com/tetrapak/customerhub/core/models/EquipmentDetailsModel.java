@@ -165,6 +165,10 @@ public class EquipmentDetailsModel {
     @Inject
     private String thankYouLabel;
 
+    /** The thank you text. */
+    @Inject
+    private String thankYouDescription;
+
     /** The Modal Confirm Header. */
     @Inject
     private String modalConfirmHeader;
@@ -509,6 +513,15 @@ public class EquipmentDetailsModel {
     }
 
     /**
+     * Gets the ThankYou description
+     *
+     * @return the thankYouDescription
+     */
+    public String getThankYouDescription() {
+        return thankYouDescription;
+    }
+
+    /**
      * Gets the Modal Confirm Label
      *
      * @return the modalConfirmHeader
@@ -563,6 +576,7 @@ public class EquipmentDetailsModel {
         i18KeyMap.put(CustomerHubConstants.REQUEST_UPDATES, getRequestUpdates());
         i18KeyMap.put(CustomerHubConstants.MAKE_UPDATES, getMakeUpdates());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_LABEL, getThankYouLabel());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_LABEL, getThankYouDescription());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_HEADER, getModalConfirmHeader());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_TEXT, getModalConfirmText());
 
