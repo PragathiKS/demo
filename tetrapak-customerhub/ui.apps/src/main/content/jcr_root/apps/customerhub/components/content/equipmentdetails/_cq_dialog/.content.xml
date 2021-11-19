@@ -227,6 +227,18 @@
                                             fieldLabel="Modal Confirm Text (i18N key)"
                                             name="./modalConfirmText"
                                             required="true"/>
+                                    <statusUpdateHeading
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Status Update Header (i18N key)"
+                                            name="./statusUpdateHeading"
+                                            required="true"/>
+                                    <statusUpdateDescription
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Status Update Description  (i18N key)"
+                                            name="./statusUpdateDescription"
+                                            required="true"/>
                                 </items>
                             </column>
                         </items>

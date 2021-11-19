@@ -177,6 +177,14 @@ public class EquipmentDetailsModel {
     @Inject
     private String modalConfirmText;
 
+    /** The Status Update Heading. */
+    @Inject
+    private String statusUpdateHeading;
+
+    /** The Status Update Description. */
+    @Inject
+    private String statusUpdateDescription;
+
     /** The sling settings service. */
     @OSGiService
     private SlingSettingsService slingSettingsService;
@@ -504,7 +512,7 @@ public class EquipmentDetailsModel {
     }
 
     /**
-     * Gets the ThankYou label
+     * Gets the ThankYou label.
      *
      * @return the thankYouLabel
      */
@@ -513,7 +521,7 @@ public class EquipmentDetailsModel {
     }
 
     /**
-     * Gets the ThankYou description
+     * Gets the ThankYou description.
      *
      * @return the thankYouDescription
      */
@@ -524,19 +532,37 @@ public class EquipmentDetailsModel {
     /**
      * Gets the Modal Confirm Label
      *
-     * @return the modalConfirmHeader
+     * @return the modalConfirmHeader.
      */
     public String getModalConfirmHeader() {
         return modalConfirmHeader;
     }
 
     /**
-     * Gets the Modal Confirm Text
+     * Gets the Modal Confirm Text.
      *
      * @return the modalConfirmText
      */
     public String getModalConfirmText() {
         return modalConfirmText;
+    }
+
+    /**
+     * Gets the Status Update Heading.
+     *
+     * @return the statusUpdateHeading
+     */
+    public String getStatusUpdateHeading() {
+        return statusUpdateHeading;
+    }
+
+    /**
+     * Gets the Status Update Description.
+     *
+     * @return the statusUpdateDescription
+     */
+    public String getStatusUpdateDescription() {
+        return statusUpdateDescription;
     }
 
     /**
@@ -579,6 +605,8 @@ public class EquipmentDetailsModel {
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_DESCRIPTION, getThankYouDescription());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_HEADER, getModalConfirmHeader());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_TEXT, getModalConfirmText());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_STATUS_UPDATE_HEADING, getStatusUpdateHeading());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_STATUS_UPDATE_DESCRIPTION, getStatusUpdateDescription());
 
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
