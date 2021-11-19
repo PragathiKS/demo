@@ -1,15 +1,13 @@
 package com.tetrapak.customerhub.core.services;
 
-import org.apache.http.HttpStatus;
-import org.apache.sling.api.SlingHttpServletRequest;
+import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
+import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 
 /**
  * Tetra Pak Equipment Details Service
  */
 public interface EquipmentDetailsService {
 
-    HttpStatus addEquipment(final SlingHttpServletRequest request);
-
-    HttpStatus editEquipment(final SlingHttpServletRequest request);
+    EquipmentResponse editEquipment(final EquipmentUpdateFormBean bean);
 
 }

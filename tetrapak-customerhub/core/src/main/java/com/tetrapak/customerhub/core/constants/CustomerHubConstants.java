@@ -326,6 +326,12 @@ public final class CustomerHubConstants {
     /** The Constant THANK_YOU_LABEL . */
     public static final String EQUIPMENT_MODAL_CONFIRM_TEXT = "equipmentDetails-modalConfirmText";
 
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_STATUS_UPDATE_HEADING = "equipmentDetails-statusUpdateHeading";
+
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_STATUS_UPDATE_DESCRIPTION = "equipmentDetails-statusUpdateDescription";
+
     /**
      * Instantiates a new customer hub constants.
      */
