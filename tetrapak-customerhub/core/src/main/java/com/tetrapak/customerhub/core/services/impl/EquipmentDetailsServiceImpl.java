@@ -8,6 +8,7 @@ import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -18,75 +19,36 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.metatype.annotations.Designate;
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 /**
  * The Class EquipmentDetailsServiceImpl.
  */
 @Component(service = EquipmentDetailsService.class, immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
-@Designate(ocd = EquipmentDetailsServiceImpl.Config.class)
 public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentDetailsServiceImpl.class);
-    public static final String AUTH_TYPE = "Basic";
+    public static final String MYEQUIPMENT_REQUEST_UPDATE = "myequipment-requestUpdate";
 
     @Reference
     private APIGEEService apigeeService;
 
-    /**
-     * The Interface Config.
-     */
-    @ObjectClassDefinition(
-            name = "Tetra Pak - Equipment Details Service",
-            description = "Tetra Pak - Equipment Details Service")
-    public static @interface Config {
-
-    }
-
     @Override
-    public EquipmentResponse editEquipment(EquipmentUpdateFormBean bean) {
+    public EquipmentResponse editEquipment(EquipmentUpdateFormBean bean, String token) {
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-                + "equipments/requestupdate?version=preview";
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpPost apiRequest = new HttpPost(url);
-
-        final String authString = apigeeService.getApigeeClientID() + ":" + apigeeService.getApigeeClientSecret();
-        final String encodedAuthString = Base64.getEncoder()
-                .encodeToString(authString.getBytes(StandardCharsets.UTF_8));
-
-        apiRequest.addHeader("Authorization", AUTH_TYPE + " " + encodedAuthString);
-        apiRequest.addHeader("Content-Type", "application/json");
+                + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REQUEST_UPDATE);
 
         Gson gson = new Gson();
         String jsonObject = gson.toJson(convertFormToApiJson(bean));
 
-        EquipmentResponse response = new EquipmentResponse("200", HttpStatus.SC_OK);
-        try {
-            apiRequest.setEntity(new StringEntity(jsonObject));
-            HttpResponse res = client.execute(apiRequest);
-            LOGGER.debug("request send: " + res.getStatusLine());
-        } catch (UnsupportedEncodingException e) {
-            response = new EquipmentResponse("Unsupported Encoding", HttpStatus.SC_INTERNAL_SERVER_ERROR);
-            LOGGER.error("Unsupported Encoding" + e);
-        } catch (ClientProtocolException e) {
-            response = new EquipmentResponse("ClientProtocolException Error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
-            LOGGER.error("ClientProtocolException Error" + e);
-        } catch (IOException e) {
-            response = new EquipmentResponse("IO Error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
-            LOGGER.error("IO Error" + e);
-        }
-        return response;
+        return sendAPIGeePost(url, token, jsonObject);
     }
 
     private EquipmentApiUpdateRequestBean convertFormToApiJson(EquipmentUpdateFormBean bean) {
@@ -113,5 +75,32 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
         metadatas.add(bean.getDescriptionMetadata());
 
         return metadatas;
+    }
+
+    private EquipmentResponse sendAPIGeePost(String url, String token, String entity) {
+
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpPost apiRequest = new HttpPost(url);
+
+        apiRequest.addHeader("Authorization", "Bearer " + token);
+        apiRequest.addHeader("Content-Type", "application/json");
+        apiRequest.setEntity(new StringEntity(entity, "UTF-8"));
+
+        EquipmentResponse response;
+        try {
+            HttpResponse res = client.execute(apiRequest);
+            response = new EquipmentResponse(res.getStatusLine().getReasonPhrase(), res.getStatusLine().getStatusCode());
+            LOGGER.debug("request sent: " + res.getStatusLine());
+        } catch (UnsupportedEncodingException e) {
+            response = new EquipmentResponse("Unsupported Encoding", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            LOGGER.error("Unsupported Encoding" + e);
+        } catch (ClientProtocolException e) {
+            response = new EquipmentResponse("ClientProtocolException Error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            LOGGER.error("ClientProtocolException Error" + e);
+        } catch (IOException e) {
+            response = new EquipmentResponse("IO Error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            LOGGER.error("IO Error" + e);
+        }
+        return response;
     }
 }
