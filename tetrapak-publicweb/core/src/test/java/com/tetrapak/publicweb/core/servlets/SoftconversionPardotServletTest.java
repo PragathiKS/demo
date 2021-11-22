@@ -65,6 +65,6 @@ public class SoftconversionPardotServletTest {
     @Test
     public void doPost() throws IOException {
         softconversionPardotServlet.doPost(context.request(), context.response());
-        assertEquals("Success", context.response().getOutputAsString());
+        assertEquals("success", context.response().getOutputAsString());
     }
 }

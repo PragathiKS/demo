@@ -68,6 +68,6 @@ public class SubscriptionFormPardotServletTest {
     @Test
     public void doPost() throws IOException {
         subscriptionFormPardotServlet.doPost(context.request(), context.response());
-        assertEquals("Success", context.response().getOutputAsString());
+        assertEquals("success", context.response().getOutputAsString());
     }
 }
