@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -29,6 +30,8 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 8364168871420162838L;
 
+    private static final String AUTH_TOKEN = "authToken";
+
     private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentDetailsServlet.class);
 
     @Reference
@@ -44,7 +47,10 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
         try {
             Gson gson = new Gson();
             EquipmentUpdateFormBean bean = gson.fromJson(request.getReader(), EquipmentUpdateFormBean.class);
-            EquipmentResponse equipmentResponse = equipmentDetailsService.editEquipment(bean);
+
+            final String token = getAuthTokenValue(request);
+
+            EquipmentResponse equipmentResponse = equipmentDetailsService.editEquipment(bean, token);
             if (equipmentResponse != null) {
                 response.setStatus(equipmentResponse.getStatusCode());
                 response.getWriter().write(equipmentResponse.getStatusMessage());
@@ -57,5 +63,12 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
             response.setStatus(HttpStatus.SC_BAD_REQUEST);
             response.getWriter().write("json error");
         }
+    }
+
+    private String getAuthTokenValue(SlingHttpServletRequest request) {
+        if (null == request.getCookie(AUTH_TOKEN)) {
+            return StringUtils.EMPTY;
+        }
+        return xssAPI.encodeForHTML(request.getCookie(AUTH_TOKEN).getValue());
     }
 }

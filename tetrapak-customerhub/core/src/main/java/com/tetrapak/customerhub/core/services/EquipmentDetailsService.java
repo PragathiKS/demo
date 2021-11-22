@@ -8,6 +8,6 @@ import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
  */
 public interface EquipmentDetailsService {
 
-    EquipmentResponse editEquipment(final EquipmentUpdateFormBean bean);
+    EquipmentResponse editEquipment(final EquipmentUpdateFormBean bean, String token);
 
 }
