@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { tableSort, getI18n } from '../../../scripts/common/common';
+import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -201,9 +201,28 @@ function paginate(totalItems, currentPage, pageSize, maxPages) {
     nextPage: currentPage + 1,
     prevSkip: (currentPage - 2) * pageSize,
     nextSkip: currentPage * pageSize,
-    lastSkip: (endPage - 1) * pageSize,
+    lastSkip: (totalPages - 1) * pageSize,
     pages: pagesHbsArr
   };
+}
+
+function buildTableRows(data, keys) {
+  const dataObject = {
+    row: []
+  };
+
+  keys.forEach((key, index) => {
+    const value = data[key];
+    dataObject.row[index] = {
+      key,
+      value
+    };
+    if (data['id']) {
+      dataObject.rowLink = data['id'];
+      dataObject.isClickable = true;
+    }
+  });
+  return dataObject;
 }
 
 function getFormattedData(array){
@@ -467,7 +486,7 @@ function _processTableData(data){
     data.summary = data.summary.map(summary => {
       keys = _processKeys(keys, summary);
       this.cache.tableHeaders = keys;
-      return tableSort.call(this, summary, keys);
+      return buildTableRows.call(this, summary, keys);
     });
     data.summaryHeadings = _mapHeadings.call(this,keys,data.i18nKeys,this.cache.activeSortData);
   }
@@ -662,6 +681,13 @@ class MyEquipment {
     this.root.on('click', '.js-my-equipment__table-summary__sort',  (e) => {
       const $tHeadBtn = $(e.currentTarget).parent();
       this.sortTableByKey($tHeadBtn);
+    });
+
+    this.root.on('click', '.js-my-equipment__table-summary__row',  (e) => {
+      const id = $(e.currentTarget).attr('href');
+      const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
+      const url = `${equipmentDetailsUrl}?id=${id}`;
+      window.location.href = url;
     });
 
     $modal.on('shown.bs.modal', () => {
