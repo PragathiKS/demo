@@ -47,10 +47,11 @@ public class SoftconversionPardotServletTest {
         final Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("firstName", "firstName");
         parameterMap.put("lastName", "lastName");
+        parameterMap.put("countryTitle", "India");
         parameterMap.put("pardotUrl", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
 
         context.request().setParameterMap(parameterMap);
-
+        context.request().setPathInfo("/content/tetrapak/public-web/in/en");
         context.request().setResource(context.currentResource());
 
     }
