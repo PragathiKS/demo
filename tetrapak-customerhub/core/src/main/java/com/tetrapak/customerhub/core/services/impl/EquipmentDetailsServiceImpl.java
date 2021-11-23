@@ -9,6 +9,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -24,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,13 +36,19 @@ import java.util.List;
 public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentDetailsServiceImpl.class);
-    public static final String MYEQUIPMENT_REQUEST_UPDATE = "myequipment-requestUpdate";
+    private static final String MYEQUIPMENT_REQUEST_UPDATE = "myequipment-requestUpdate";
+
+    private HttpClient client = HttpClientBuilder.create().build();
 
     @Reference
     private APIGEEService apigeeService;
 
     @Override
     public EquipmentResponse editEquipment(EquipmentUpdateFormBean bean, String token) {
+
+        if (StringUtils.isEmpty(token)) {
+            return new EquipmentResponse("Missing token", HttpStatus.SC_BAD_REQUEST);
+        }
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REQUEST_UPDATE);
@@ -79,12 +87,12 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
 
     private EquipmentResponse sendAPIGeePost(String url, String token, String entity) {
 
-        HttpClient client = HttpClientBuilder.create().build();
         HttpPost apiRequest = new HttpPost(url);
 
         apiRequest.addHeader("Authorization", "Bearer " + token);
         apiRequest.addHeader("Content-Type", "application/json");
-        apiRequest.setEntity(new StringEntity(entity, "UTF-8"));
+        apiRequest.addHeader("accept", "*/*");
+        apiRequest.setEntity(new StringEntity(entity, StandardCharsets.UTF_8));
 
         EquipmentResponse response;
         try {

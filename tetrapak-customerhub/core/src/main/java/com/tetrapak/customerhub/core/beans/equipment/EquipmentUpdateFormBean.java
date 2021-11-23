@@ -1,11 +1,13 @@
 package com.tetrapak.customerhub.core.beans.equipment;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Bean that maps Edit equipment request json;
  */
 public class EquipmentUpdateFormBean {
 
-    private String equipmentId = "8000000930"; // TODO: hardcoded - awaiting in request
+    private String equipmentId;
     private String comments;
 
     private String country;
@@ -37,6 +39,10 @@ public class EquipmentUpdateFormBean {
         return comments;
     }
 
+    public boolean isValid() {
+        return !StringUtils.isAnyBlank(equipmentId);
+    }
+
     public EquipmentMetaData getCountryMetadata() {
         return new EquipmentMetaData("Country", oldCountry, country);
     }
@@ -64,5 +70,4 @@ public class EquipmentUpdateFormBean {
     public EquipmentMetaData getDescriptionMetadata() {
         return new EquipmentMetaData("Description", oldEquipmentTypeDesc, equipmentTypeDesc);
     }
-
 }

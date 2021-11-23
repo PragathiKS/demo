@@ -44,12 +44,11 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
         LOGGER.debug("Start: Equipment details - Post");
-        try {
-            Gson gson = new Gson();
-            EquipmentUpdateFormBean bean = gson.fromJson(request.getReader(), EquipmentUpdateFormBean.class);
 
+        Gson gson = new Gson();
+        EquipmentUpdateFormBean bean = gson.fromJson(request.getReader(), EquipmentUpdateFormBean.class);
+        if (bean.isValid()) {
             final String token = getAuthTokenValue(request);
-
             EquipmentResponse equipmentResponse = equipmentDetailsService.editEquipment(bean, token);
             if (equipmentResponse != null) {
                 response.setStatus(equipmentResponse.getStatusCode());
@@ -58,10 +57,9 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
                 response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
                 response.getWriter().write("request error");
             }
-        } catch (IOException e) {
-            LOGGER.error("Error while par" + e);
+        } else {
             response.setStatus(HttpStatus.SC_BAD_REQUEST);
-            response.getWriter().write("json error");
+            response.getWriter().write("bad request");
         }
     }
 
