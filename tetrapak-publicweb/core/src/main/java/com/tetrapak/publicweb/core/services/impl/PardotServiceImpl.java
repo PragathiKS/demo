@@ -386,9 +386,16 @@ public class PardotServiceImpl implements PardotService {
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
         final HttpResponse httpResponse = httpClient.execute(postRequest);
         int statusCode = httpResponse.getStatusLine().getStatusCode();
-        LOGGER.info("Status code {}", statusCode);
-        if (statusCode != SUCESSS || statusCode != CREATED) {
-            throw new HttpException("Error occurred while submitting custom form service data to APIGEE");
-        }       
+        LOGGER.info("submitcustomFormServicePostResponse :: Status code {}", statusCode);     
+            switch (statusCode) {
+            case CREATED:
+                LOGGER.info("Custom form service data submitted successfully to APIGEE {}", statusCode);
+                break;
+            case SUCESSS:
+                LOGGER.info("Custom form service data submitted successfully to APIGEE {}", statusCode);
+                break;
+            default:
+                throw new HttpException("Error occurred while submitting custom form service data to APIGEE");
+            }      
     }
 }

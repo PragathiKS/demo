@@ -270,7 +270,7 @@ class Softconversion {
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
       apiPayload.position = this.cache.requestPayload['position'];
       apiPayload.function = this.cache.requestPayload['function'];
-      apiPayload.countryTitle = countryCookie;
+      apiPayload.country = countryCookie;
     } else {
       apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
       apiPayload.countryTitle = this.cache.requestPayload['countryTitle'];
