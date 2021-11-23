@@ -29,6 +29,9 @@ describe('BusinessInquiryForm', function () {
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.returns(ajaxResponse({statusCode:'200'}));
     this.getCountryListSpy = sinon.spy(this.businessinquiry, 'getCountryList');
+    this.getPositionListSpy = sinon.spy(this.businessinquiry, 'getPositionList');
+    this.getFunctionListSpy = sinon.spy(this.businessinquiry, 'getFunctionList');
+    this.getRoleListSpy = sinon.spy(this.businessinquiry, 'getRoleList');
     this.businessinquiry.init();
   });
   after(function () {
@@ -44,6 +47,9 @@ describe('BusinessInquiryForm', function () {
     this.onBusinessInterestChangeHandlerSpy.restore();
     this.onBaIntSubCategoryFoodHandlerSpy.restore();
     this.getCountryListSpy.restore();
+    this.getPositionListSpy.restore();
+    this.getFunctionListSpy.restore();
+    this.getRoleListSpy.restore();
     this.ajaxStub.restore();
   });
 
@@ -103,6 +109,24 @@ describe('BusinessInquiryForm', function () {
     expect(this.businessinquiry.getCountryList.called).to.be.true;
     expect(this.businessinquiry.cache.countryList.length).to.equal(2);
     $('.country-dropdown, .country-dropdown-select').keydown();
+  });
+
+  it('should get position list and it should be equal to 2', function () {
+    expect(this.businessinquiry.getPositionList.called).to.be.true;
+    expect(this.businessinquiry.cache.positionList.length).to.equal(2);
+    $('.position-dropdown, .position-dropdown-select').keydown();
+  });
+
+  it('should get function list and it should be equal to 2', function () {
+    expect(this.businessinquiry.getFunctionList.called).to.be.true;
+    expect(this.businessinquiry.cache.functionList.length).to.equal(2);
+    $('.function-dropdown, .function-dropdown-select').keydown();
+  });
+
+  it('should get role list and it should be equal to 2', function () {
+    expect(this.businessinquiry.getRoleList.called).to.be.true;
+    expect(this.businessinquiry.cache.roleList.length).to.equal(2);
+    $('.role-dropdown, .role-dropdown-select').keydown();
   });
 
   it('Should update payload with dropItem changes', function() {
