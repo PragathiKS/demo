@@ -22,6 +22,17 @@ function _renderFiles() {
     data: obj
   });
 }
+function _renderSubmit() {
+  const $this = this;
+  render.fn({
+    template: 'addEquipmentSubmit',
+    target: '.js-tp-add-equipment__content-wrapper',
+    data: { i18nKeys: $this.cache.i18nKeys }
+  }, () => {
+    $this.cache.$contentWrapper.removeClass('d-none');
+    $this.cache.$spinner.addClass('d-none');
+  });
+}
 
 class AddEquipment {
   constructor({ el }) {
@@ -65,11 +76,38 @@ class AddEquipment {
     $this.root.on('click', '.js-tp-add-equipment__drag-and-drop-file-remove-container', event => {
       $this.removeFile(event);
     });
+
+    $this.root.on('click', '.js-tp-add-equipment__submit', () => {
+      let isFormValid = true;
+      $this.root.find('.error-msg--active').removeClass('error-msg--active');
+      const requiredFrmElements = $this.root.find('.js-tp-add-equipment__form-element [required]');
+      requiredFrmElements.each(function () {
+        if (!$(this).val()) {
+          isFormValid = false;
+          $(this).closest('.js-tp-add-equipment__form-element').find('.error-msg').addClass('error-msg--active');
+        }
+      });
+      // isFormValid = true;
+      if (isFormValid) {
+        $this.cache.$contentWrapper.addClass('d-none');
+        $this.cache.$spinner.removeClass('d-none');
+        setTimeout(() => {
+          $this.renderSubmit();
+        }, 5000);
+      }
+    });
+
+    $this.root.on('click', '.js-tp-add-equipment__add-another-equipment', () => {
+      $this.cache.$contentWrapper.addClass('d-none');
+      $this.cache.$spinner.removeClass('d-none');
+      $this.renderLayout();
+    });
   }
   removeFile(e) {
     const index = $(e.currentTarget).data('index');
     this.cache.files.splice(index, 1);
     this.renderFiles();
+    this.setFieldsMandatory();
   }
   addInputTypeFile() {
     const input = document.createElement('input');
@@ -94,24 +132,36 @@ class AddEquipment {
       }
     }
     $this.renderFiles();
+    $this.setFieldsMandatory();
   }
   filterFiles(file) {
     const maxFileSize = 10 * 1024 * 1024;
-    if (file.size < maxFileSize) {
-      return true;
-    }
-    return false;
+    return file.size < maxFileSize;
   }
   dragAndDropPreventDefault(e) {
     e.stopPropagation();
     e.preventDefault();
   }
+  setFieldsMandatory() {
+    const fields = this.root.find('.js-tp-add-equipment__toggle-mandatory');
+    const isFileUploaded = this.cache.files.length ? 1 : 0;
+    fields.each(function () {
+      if (isFileUploaded) {
+        $(this).removeAttr('required');
+        $(this).closest('.js-tp-add-equipment__form-element').find('.error-msg').removeClass('error-msg--active');
+      } else {
+        $(this).attr('required', true);
+      }
+    });
+  }
   renderLayout() {
     return _renderLayout.apply(this, arguments);
   }
-
   renderFiles() {
     return _renderFiles.apply(this, arguments);
+  }
+  renderSubmit() {
+    return _renderSubmit.apply(this, arguments);
   }
   init() {
     this.initCache();

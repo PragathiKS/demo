@@ -21,6 +21,9 @@
         {{#if placeholder}}
             placeholder="{{i18n key=placeholder}}"
         {{/if}}
+        {{#if required}}
+           required
+        {{/if}}
         {{#eachData this}}
             {{@key}}="{{this}}"
         {{/eachData}}

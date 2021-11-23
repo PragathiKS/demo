@@ -32,7 +32,7 @@ public class AddEquipmentModel {
 
     /** The serial number label. */
     @Inject
-    private String serialNumber;
+    private String serialNumberLabel;
 
     /** The drag and drop description. */
     @Inject
@@ -130,7 +130,45 @@ public class AddEquipmentModel {
     @Inject
     private String addAnotherEquipmentLabel;
 
+    /** The serial number error msg. */
+    @Inject
+    private String serialNumberErrorMsg;
 
+    /** The country error msg. */
+    @Inject
+    private String countryErrorMsg;
+
+    /** The site error msg. */
+    @Inject
+    private String siteErrorMsg;
+
+    /** The line error msg. */
+    @Inject
+    private String lineErrorMsg;
+
+    /** The position error msg. */
+    @Inject
+    private String positionErrorMsg;
+
+    /** The equipment status error msg. */
+    @Inject
+    private String equipmentStatusErrorMsg;
+
+    /** The equipment description error msg. */
+    @Inject
+    private String equipmentDescriptionErrorMsg;
+
+    /** The manufacture of asset error msg. */
+    @Inject
+    private String manufactureOfAssetErrorMsg;
+
+    /** The country of manufacture error msg. */
+    @Inject
+    private String countryOfManufactureErrorMsg;
+
+    /** The construction year error msg. */
+    @Inject
+    private String constructionYearErrorMsg;
 
 
     /** The i 18 n keys. */
@@ -169,8 +207,8 @@ public class AddEquipmentModel {
      *
      * @return the serial number label
      */
-    public String getSerialNumber() {
-        return serialNumber;
+    public String getSerialNumberLabel() {
+        return serialNumberLabel;
     }
 
     /**
@@ -282,16 +320,16 @@ public class AddEquipmentModel {
     public String getEquipmentDescriptionLabel() { return equipmentDescriptionLabel; }
 
     /**
-     * Gets the details title.
+     * Gets the manufacture model number label.
      *
-     * @return the details title
+     * @return the manufacture model number label.
      */
     public String getManufactureModelNumberLabel() { return manufactureModelNumberLabel; }
 
     /**
-     * Gets the details title.
+     * Gets the manufacture of asset label.
      *
-     * @return the details title
+     * @return the manufacture of asset label
      */
     public String getManufactureOfAssetLabel() { return manufactureOfAssetLabel; }
 
@@ -352,6 +390,77 @@ public class AddEquipmentModel {
     public String getAddAnotherEquipmentLabel() { return addAnotherEquipmentLabel; }
 
     /**
+     * Gets the serial number error msg.
+     *
+     * @return the serial number error msg
+     */
+    public String getSerialNumberErrorMsg() { return serialNumberErrorMsg; }
+
+    /**
+     * Gets the country error msg.
+     *
+     * @return the country error msg
+     */
+    public String getCountryErrorMsg() { return countryErrorMsg; }
+
+    /**
+     * Gets the site error msg.
+     *
+     * @return the site error msg
+     */
+    public String getSiteErrorMsg() { return siteErrorMsg; }
+
+    /**
+     * Gets the line error msg.
+     *
+     * @return the line error msg
+     */
+    public String getLineErrorMsg() { return lineErrorMsg; }
+
+    /**
+     * Gets the position error msg.
+     *
+     * @return the position error msg
+     */
+    public String getPositionErrorMsg() { return positionErrorMsg; }
+
+    /**
+     * Gets the equipment status error msg.
+     *
+     * @return the equipment status error msg
+     */
+    public String getEquipmentStatusErrorMsg() { return equipmentStatusErrorMsg; }
+
+    /**
+     * Gets the equipment description error msg.
+     *
+     * @return the equipment description error msg
+     */
+    public String getEquipmentDescriptionErrorMsg() { return equipmentDescriptionErrorMsg; }
+
+    /**
+     * Gets the manufacture of asset error msg.
+     *
+     * @return the manufacture of asset error msg
+     */
+    public String getManufactureOfAssetErrorMsg() { return manufactureOfAssetErrorMsg; }
+
+    /**
+     * Gets the country of manufacture error msg.
+     *
+     * @return the country of manufacture error msg
+     */
+    public String getCountryOfManufactureErrorMsg() { return countryOfManufactureErrorMsg; }
+
+    /**
+     * Gets the construction year error msg.
+     *
+     * @return the construction year error msg
+     */
+    public String getConstructionYearErrorMsg() { return constructionYearErrorMsg; }
+
+
+    /**
      * init method.
      */
     @PostConstruct
@@ -359,7 +468,7 @@ public class AddEquipmentModel {
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_TITLE, getTitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SUBTITLE, getSubTitle());
-        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SERIAL_NUMBER, getSerialNumber());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SERIAL_NUMBER_LABEL, getSerialNumberLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION, getDragAndDropDescription());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_TITLE, getDragAndDropTitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE, getDragAndDropSubtitle());
@@ -384,6 +493,16 @@ public class AddEquipmentModel {
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SUBMIT_TITLE, getSubmitTitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SUBMIT_SUBTITLE, getSubmitSubtitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_ADD_ANOTHER_EQUIPMENT_LABEL, getAddAnotherEquipmentLabel());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SERIAL_NUMBER_ERROR_MSG, getSerialNumberErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_COUNTRY_ERROR_MSG, getCountryErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SITE_ERROR_MSG, getSiteErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_LINE_ERROR_MSG, getLineErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_POSITION_ERROR_MSG, getPositionErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_EQUIPMENT_STATUS_ERROR_MSG, getEquipmentStatusErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_EQUIPMENT_DESCRIPTION_ERROR_MSG, getEquipmentDescriptionErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_ERROR_MSG, getManufactureOfAssetErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_ERROR_MSG, getCountryOfManufactureErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG, getConstructionYearErrorMsg());
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);

@@ -2,13 +2,15 @@
 <p class="tp-add-equipment__subtitle">{{i18n key=i18nKeys.subTitle}}</p>
 
 <div class="row">
-    <div class="col-lg-3 tp-add-equipment__serial-number-wrapper">
+    <div class="col-lg-3 tp-add-equipment__serial-number-wrapper js-tp-add-equipment__form-element">
         {{> atoms/input/input
                 labelText=i18nKeys.serialNumberLabel
                 placeholder="444454-44444"
                 name="tp-add-equipment-serial-number"
                 labelClasses="tp-add-equipment__field-label"
+                required="true"
         }}
+        <div class="error-msg">{{i18n key=i18nKeys.serialNumberErrorMsg}}</div>
     </div>
 </div>
 
@@ -39,76 +41,120 @@
         <div class="tp-add-equipment__details">
             <h2 class="tp-add-equipment__details-title">{{i18n key=i18nKeys.detailsTitle}}</h2>
             <p class="tp-add-equipment__details-subtitle">{{i18n key=i18nKeys.detailsSubtitle}}</p>
-            {{> atoms/dropdown/dropdown
-                    defaultValue=i18nKeys.dropdownPlaceholder
-                    options=country
-                    name="tp-add-equipment-country"
-                    labelText=i18nKeys.countryLabel
-                    wrapClasses="tp-add-equipment__field-wrapper"
-            }}
-            {{> atoms/dropdown/dropdown
-                    defaultValue=i18nKeys.dropdownPlaceholder
-                    options=site
-                    name="tp-add-equipment-site"
-                    labelText=i18nKeys.siteLabel
-                    wrapClasses="tp-add-equipment__field-wrapper"
-            }}
-            {{> atoms/dropdown/dropdown
-                    defaultValue=i18nKeys.dropdownPlaceholder
-                    options=line
-                    name="tp-add-equipment-line"
-                    labelText=i18nKeys.lineLabel
-                    wrapClasses="tp-add-equipment__field-wrapper"
-            }}
-            {{> atoms/input/input
-                    labelText=i18nKeys.positionLabel
-                    name="tp-add-equipment-position"
-                    labelClasses="tp-add-equipment__field-label"
-            }}
-            {{> atoms/dropdown/dropdown
-                    defaultValue=i18nKeys.dropdownPlaceholder
-                    options=equipmentStatus
-                    name="tp-add-equipment-equipment-status"
-                    labelText=i18nKeys.equipmentStatusLabel
-                    wrapClasses="tp-add-equipment__field-wrapper"
-            }}
-            {{> atoms/input/input
-                    labelText=i18nKeys.machineSystemLabel
-                    name="tp-add-equipment-machine-system"
-                    labelClasses="tp-add-equipment__field-label"
-            }}
-            {{> atoms/input/input
-                    labelText=i18nKeys.equipmentDescriptionLabel
-                    name="tp-add-equipment-equipment-description"
-                    labelClasses="tp-add-equipment__field-label"
-            }}
-            {{> atoms/input/input
-                    labelText=i18nKeys.manufactureModelNumberLabel
-                    name="tp-add-equipment-manufacture-model-number"
-                    labelClasses="tp-add-equipment__field-label"
-            }}
-            {{> atoms/input/input
-                    labelText=i18nKeys.manufactureOfAssetLabel
-                    name="tp-add-equipment-manufacture-of-asset"
-                    labelClasses="tp-add-equipment__field-label"
-            }}
-            {{> atoms/dropdown/dropdown
-                    defaultValue=i18nKeys.dropdownPlaceholder
-                    options=country
-                    name="tp-add-equipment-country-of-manufacture"
-                    labelText=i18nKeys.countryOfManufactureLabel
-                    wrapClasses="tp-add-equipment__field-wrapper"
-            }}
-            {{> atoms/input/input
-                    labelText=i18nKeys.constructionYearLabel
-                    name="tp-add-equipment-construction-year"
-                    labelClasses="tp-add-equipment__field-label"
-            }}
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/dropdown/dropdown
+                        defaultValue=i18nKeys.dropdownPlaceholder
+                        options=country
+                        name="tp-add-equipment-country"
+                        labelText=i18nKeys.countryLabel
+                        wrapClasses="tp-add-equipment__field-wrapper"
+                        required="true"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.countryErrorMsg}}</div>
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/dropdown/dropdown
+                        defaultValue=i18nKeys.dropdownPlaceholder
+                        options=site
+                        name="tp-add-equipment-site"
+                        labelText=i18nKeys.siteLabel
+                        wrapClasses="tp-add-equipment__field-wrapper"
+                        required="true"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.siteErrorMsg}}</div>
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/dropdown/dropdown
+                        defaultValue=i18nKeys.dropdownPlaceholder
+                        options=line
+                        name="tp-add-equipment-line"
+                        labelText=i18nKeys.lineLabel
+                        wrapClasses="tp-add-equipment__field-wrapper"
+                        required="true"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.lineErrorMsg}}</div>
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.positionLabel
+                        name="tp-add-equipment-position"
+                        labelClasses="tp-add-equipment__field-label"
+                        required="true"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.positionErrorMsg}}</div>
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/dropdown/dropdown
+                        defaultValue=i18nKeys.dropdownPlaceholder
+                        options=equipmentStatus
+                        name="tp-add-equipment-equipment-status"
+                        labelText=i18nKeys.equipmentStatusLabel
+                        wrapClasses="tp-add-equipment__field-wrapper"
+                        required="true"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.equipmentStatusErrorMsg}}</div>
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.machineSystemLabel
+                        name="tp-add-equipment-machine-system"
+                        labelClasses="tp-add-equipment__field-label"
+                }}
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.equipmentDescriptionLabel
+                        name="tp-add-equipment-equipment-description"
+                        labelClasses="tp-add-equipment__field-label"
+                        required="true"
+                        eleClasses="js-tp-add-equipment__toggle-mandatory"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.equipmentDescriptionErrorMsg}}</div>
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.manufactureModelNumberLabel
+                        name="tp-add-equipment-manufacture-model-number"
+                        labelClasses="tp-add-equipment__field-label"
+                }}
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.manufactureOfAssetLabel
+                        name="tp-add-equipment-manufacture-of-asset"
+                        labelClasses="tp-add-equipment__field-label"
+                        required="true"
+                        eleClasses="js-tp-add-equipment__toggle-mandatory"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.manufactureOfAssetErrorMsg}}</div>
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/dropdown/dropdown
+                        defaultValue=i18nKeys.dropdownPlaceholder
+                        options=country
+                        name="tp-add-equipment-country-of-manufacture"
+                        labelText=i18nKeys.countryOfManufactureLabel
+                        wrapClasses="tp-add-equipment__field-wrapper"
+                        required="true"
+                        eleClasses="js-tp-add-equipment__toggle-mandatory"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.countryOfManufactureErrorMsg}}</div>
+            </div>
+            <div class="js-tp-add-equipment__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.constructionYearLabel
+                        name="tp-add-equipment-construction-year"
+                        labelClasses="tp-add-equipment__field-label"
+                        required="true"
+                        eleClasses="js-tp-add-equipment__toggle-mandatory"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.constructionYearErrorMsg}}</div>
+            </div>
             {{> atoms/buttons/button/button
                     modifier="primary"
                     iconClass="icon-Chevron_Right"
                     text=i18nKeys.submitButtonLabel
-                    className="tp-add-equipment__submit"
+                    className="tp-add-equipment__submit js-tp-add-equipment__submit"
             }}
         </div>
     </div>
