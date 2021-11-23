@@ -294,7 +294,7 @@ public final class GlobalUtil {
         String marketPath = LinkUtils.getCountryPath(request.getPathInfo());
         final String country = StringUtils.substringAfterLast(marketPath, PWConstants.SLASH);
         if (country.equalsIgnoreCase(PWConstants.CHINA_COUNTRY_CODE)
-                || (request.getParameterMap().get(PWConstants.COUNTRY_TITLE)[0]).equalsIgnoreCase(PWConstants.CHINA)) {
+                || (request.getParameterMap().get(PWConstants.COUNTRY)[0]).equalsIgnoreCase(PWConstants.CHINA)) {
             isChina = Boolean.TRUE;
         }
         return isChina;

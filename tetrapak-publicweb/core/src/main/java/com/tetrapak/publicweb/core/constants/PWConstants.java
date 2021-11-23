@@ -487,8 +487,8 @@ public final class PWConstants {
     /** The CHINA. */
     public static final String CHINA = "China";
     
-    /** The COUNTRY_TITLE. */
-    public static final String COUNTRY_TITLE = "countryTitle";
+    /** The COUNTRY. */
+    public static final String COUNTRY = "country";
     
     /** The BASIC. */
     public static final String BASIC = "Basic";

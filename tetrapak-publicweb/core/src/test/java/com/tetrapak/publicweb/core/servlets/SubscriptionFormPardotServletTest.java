@@ -47,7 +47,7 @@ public class SubscriptionFormPardotServletTest {
         parameterMap.put("firstName", "firstName");
         parameterMap.put("lastName", "lastName");
         parameterMap.put("pardotUrl", "http://go.tetrapak.com/l/857883/2020-05-29/xttt");
-        parameterMap.put("countryTitle", "India");
+        parameterMap.put("country", "India");
         parameterMap.put("types-communication", "Press and Media Communication");
         parameterMap.put("types-communication", "Event Invitations");
         parameterMap.put("interestArea", "Packaging");
