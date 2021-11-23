@@ -310,7 +310,7 @@
                             </label>
                             <div class="pw-form__dropdown dropdown text-left">
                               <button
-                                class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                class="btn dropdown-toggle role-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
                                 auto_locator="roleSelectDropdown" aria-expanded="false">
                                 <span class="js-pw-form__dropdown__country-text">${'pw.form.label.chooseOneOptionText'
@@ -318,8 +318,7 @@
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
                               <sly data-sly-test="${data.TagProcessingRoles}">
-                                <div class="dropdown-menu pw-form__dropdown__menu"
-                                      data-sly-list.tagName="${data.TagProcessingRoles}">
+                                <div class="dropdown-menu pw-form__dropdown__menu role-dropdown-select" data-sly-list.tagName="${data.TagProcessingRoles}" data-dropdowntype="role">
                                   <a href="#" class="dropdown-item" data-roleKey="${tagName}" data-field-name="businessEnquiryProfile" data-field-title="roleTitle" data-title="${data.TagProcessingRoles[tagName]}" data-pardot-title= "${tagName}">
                                     ${data.TagProcessingRoles[tagName]}
                                   </a>
@@ -473,8 +472,7 @@
                                   @ i18n}</span>
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
-                              <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
-                                data-sly-list.country="${data.countryOptions}">
+                              <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select" data-sly-list.country="${data.countryOptions}" data-dropdowntype="country">
                                 <a href="#" class="dropdown-item" data-country="${country.key}" data-field-name="country" data-field-title="countryTitle" data-title="${country.value}" data-pardot-title="${country.value}">
                                   ${country.value}
                                 </a>
@@ -499,7 +497,7 @@
                               i18n}</label>
                             <div class="pw-form__dropdown dropdown text-left">
                               <button
-                                class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                class="btn dropdown-toggle position-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
                                 auto_locator="positionSelectDropdown" aria-expanded="false">
                                 <span class="js-pw-form__dropdown__country-text">${'pw.form.label.chooseOneOptionText'
@@ -507,8 +505,7 @@
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
                               <sly data-sly-test="${data.TagTitles}">
-                                <div class="dropdown-menu pw-form__dropdown__menu"
-                                      data-sly-list.tagName="${data.TagTitles}">
+                                <div class="dropdown-menu pw-form__dropdown__menu position-dropdown-select" data-sly-list.tagName="${data.TagTitles}" data-dropdowntype="position">
                                   <a href="#" class="dropdown-item" data-positionKey="${tagName}" data-field-name="position" data-field-title="positionTitle" data-title="${data.TagTitles[tagName]}" data-pardot-title="${tagName}">
                                     ${data.TagTitles[tagName]}
                                   </a>
@@ -529,7 +526,7 @@
                               i18n}</label>
                             <div class="pw-form__dropdown dropdown text-left">
                               <button
-                                class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                class="btn dropdown-toggle function-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
                                 auto_locator="functionSelectDropdown" aria-expanded="false">
                                 <span class="js-pw-form__dropdown__country-text">${'pw.form.label.chooseOneOptionText'
@@ -537,8 +534,7 @@
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
                               <sly data-sly-test="${data.TagFunctions}">
-                                <div class="dropdown-menu pw-form__dropdown__menu"
-                                      data-sly-list.tagName="${data.TagFunctions}">
+                                <div class="dropdown-menu pw-form__dropdown__menu function-dropdown-select" data-sly-list.tagName="${data.TagFunctions}" data-dropdowntype="function">
                                   <a href="#" class="dropdown-item" data-functionKey="${tagName}" data-field-name="function" data-field-title="functionTitle" data-title="${data.TagFunctions[tagName]}" data-pardot-title="${tagName}">
                                     ${data.TagFunctions[tagName]}
                                   </a>

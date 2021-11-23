@@ -45,6 +45,9 @@ class Businessinquiryform {
     this.cache.$inputEmail = $('form.pw-form-businessEnquiry input[type="email"]', this.root);
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.countryList = [];
+    this.cache.positionList = [];
+    this.cache.functionList = [];
+    this.cache.roleList = [];
     this.cache.$roleField = this.root.find('.formfield.role-field');
     this.cache.$countryField = this.root.find('.formfield.country-field');
     this.cache.$positionField = this.root.find('.formfield.position-field');
@@ -64,19 +67,46 @@ class Businessinquiryform {
     };
   }
 
-  onKeydown = (event, options) => {
+  onKeydown(event, options) {
     if ($('.dropdown-menu').hasClass('show')) {
       keyDownSearch.call(this, event, options);
     }
-  };
+  }
 
   getCountryList() {
     const self = this;
     $('.country-dropdown-select > a').map(function () {
       const datael = $(this)[0];
-      self.cache.countryList.push($(datael).data('countrytitle'));
+      self.cache.countryList.push($(datael).data('title'));
     });
     $('.country-dropdown, .country-dropdown-select').keydown(e => this.onKeydown(e, this.cache.countryList));
+  }
+
+  getPositionList() {
+    const self = this;
+    $('.position-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.positionList.push($(datael).data('title'));
+    });
+    $('.position-dropdown, .position-dropdown-select').keydown(e => this.onKeydown(e, this.cache.positionList));
+  }
+
+  getFunctionList() {
+    const self = this;
+    $('.function-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.functionList.push($(datael).data('title'));
+    });
+    $('.function-dropdown, .function-dropdown-select').keydown(e => this.onKeydown(e, this.cache.functionList));
+  }
+
+  getRoleList() {
+    const self = this;
+    $('.role-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.roleList.push($(datael).data('title'));
+    });
+    $('.role-dropdown, .role-dropdown-select').keydown(e => this.onKeydown(e, this.cache.roleList));
   }
 
   validateField(val) {
@@ -654,6 +684,9 @@ class Businessinquiryform {
     $('#bef-step-3 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
     $('#bef-step-3 label').slice(0, 1).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     this.getCountryList();
+    this.getPositionList();
+    this.getFunctionList();
+    this.getRoleList();
     this.analyticsFormstart(this.step1head, this.mainHead);
   }
 }
