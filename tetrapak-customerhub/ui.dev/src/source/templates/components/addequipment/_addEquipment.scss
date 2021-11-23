@@ -1,4 +1,6 @@
 $color-red: #ff0000;
+$color-green: #8dc63f;
+
 @mixin label {
     @include line-height($font-l, $font-baseline);
     @include margin-top($margin-md);
@@ -127,13 +129,16 @@ $color-red: #ff0000;
 
             &-icon {
                 @include margin-right($margin-sm);
-                @include font-size($font-normal);
 
                 &--file {
+                    @include line-height($font-l, $font-md);
+                    @include font-size($font-md);
                     color: $color-red;
                 }
 
                 &--trash {
+                    @include line-height($font-normal, $font-baseline);
+                    @include font-size($font-baseline);
                     color: $color-congress-blue;
                 }
             }
@@ -196,6 +201,48 @@ $color-red: #ff0000;
 
         span {
             @include line-height($font-l, $font-baseline);
+        }
+
+        &-title {
+            @include line-height($font-l, $font-baseline);
+            font-weight: 700;
+
+            &-wrapper {
+                @include margin-bottom($margin-md);
+                display: flex;
+                align-items: center;
+            }
+
+            &-icon {
+                @include font-size(48px);
+                @include line-height(48px, 48px);
+                @include margin-right($margin-md);
+                color: $color-green;
+            }
+        }
+
+        &-subtitle {
+            @include line-height($font-l, $font-baseline);
+            @include margin-bottom($margin-md);
+        }
+    }
+
+    &__add-another-equipment {
+        display: flex;
+        align-items: center;
+
+        span {
+            @include line-height($font-l, $font-baseline);
+        }
+    }
+
+    .error-msg {
+        @include font-size($font-sm);
+        display: none;
+        color: $color-alert;
+
+        &--active {
+            display: block;
         }
     }
 }

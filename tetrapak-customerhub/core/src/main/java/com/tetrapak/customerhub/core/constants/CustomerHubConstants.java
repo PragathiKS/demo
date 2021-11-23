@@ -318,8 +318,8 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_SUBTITLE. */
     public static final String NEW_EQUIPMENT_SUBTITLE = "subTitle";
 
-    /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER. */
-    public static final String NEW_EQUIPMENT_SERIAL_NUMBER = "serialNumberLabel";
+    /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER_LABEL. */
+    public static final String NEW_EQUIPMENT_SERIAL_NUMBER_LABEL = "serialNumberLabel";
 
     /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION. */
     public static final String NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION = "dragAndDropDescription";
@@ -392,6 +392,36 @@ public final class CustomerHubConstants {
 
     /** The Constant NEW_EQUIPMENT_ADD_ANOTHER_EQUIPMENT_LABEL. */
     public static final String NEW_EQUIPMENT_ADD_ANOTHER_EQUIPMENT_LABEL = "addAnotherEquipmentLabel";
+
+    /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_SERIAL_NUMBER_ERROR_MSG = "serialNumberErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_COUNTRY_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_COUNTRY_ERROR_MSG = "countryErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_SITE_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_SITE_ERROR_MSG = "siteErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_LINE_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_LINE_ERROR_MSG = "lineErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_POSITION_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_POSITION_ERROR_MSG = "positionErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_EQUIPMENT_STATUS_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_EQUIPMENT_STATUS_ERROR_MSG = "equipmentStatusErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_EQUIPMENT_DESCRIPTION_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_EQUIPMENT_DESCRIPTION_ERROR_MSG = "equipmentDescriptionErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_ERROR_MSG = "manufactureOfAssetErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_ERROR_MSG = "countryOfManufactureErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG = "constructionYearErrorMsg";
 
 }
 

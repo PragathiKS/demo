@@ -36,6 +36,12 @@
                                     fieldLabel="Serial number label (i18N key)"
                                     name="./serialNumber"
                                     required="true"/>
+                            <serialNumberErrorMsg
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Serial number error message (i18N key)"
+                                    name="./serialNumberErrorMsg"
+                                    required="true"/>
                             <dragAndDropDescription
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -105,11 +111,23 @@
                                         fieldLabel="Country label (i18N key)"
                                         name="./countryLabel"
                                         required="true"/>
+                                <countryErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Country error message (i18N key)"
+                                        name="./countryErrorMsg"
+                                        required="true"/>
                                 <siteLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel=" Site label (i18N key)"
                                         name="./siteLabel"
+                                        required="true"/>
+                                <siteErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Site error message (i18N key)"
+                                        name="./siteErrorMsg"
                                         required="true"/>
                                 <lineLabel
                                         jcr:primaryType="nt:unstructured"
@@ -117,17 +135,35 @@
                                         fieldLabel="Line label (i18N key)"
                                         name="./lineLabel"
                                         required="true"/>
+                                <lineErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Line error message (i18N key)"
+                                        name="./lineErrorMsg"
+                                        required="true"/>
                                 <positionLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Position label (i18N key)"
                                         name="./positionLabel"
                                         required="true"/>
+                                <positionErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Position error message (i18N key)"
+                                        name="./positionErrorMsg"
+                                        required="true"/>
                                 <equipmentStatusLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Equipment status label (i18N key)"
                                         name="./equipmentStatusLabel"
+                                        required="true"/>
+                                <equipmentStatusErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Equipment status error message (i18N key)"
+                                        name="./equipmentStatusErrorMsg"
                                         required="true"/>
                                 <machineSystemLabel
                                         jcr:primaryType="nt:unstructured"
@@ -141,6 +177,12 @@
                                         fieldLabel="Equipment description label (i18N key)"
                                         name="./equipmentDescriptionLabel"
                                         required="true"/>
+                                <equipmentDescriptionErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Equipment description error message (i18N key)"
+                                        name="./equipmentDescriptionErrorMsg"
+                                        required="true"/>
                                 <manufactureModelNumberLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -153,17 +195,35 @@
                                         fieldLabel="Manufacture of asset label (i18N key)"
                                         name="./manufactureOfAssetLabel"
                                         required="true"/>
+                                <manufactureOfAssetErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Manufacture of asset error message (i18N key)"
+                                        name="./manufactureOfAssetErrorMsg"
+                                        required="true"/>
                                 <countryOfManufactureLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Country of manufacture label (i18N key)"
                                         name="./countryOfManufactureLabel"
                                         required="true"/>
+                                <countryOfManufactureErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Country of manufacture error message (i18N key)"
+                                        name="./countryOfManufactureErrorMsg"
+                                        required="true"/>
                                 <constructionYearLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Construction year label (i18N key)"
                                         name="./constructionYearLabel"
+                                        required="true"/>
+                                <constructionYearErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Construction year error message (i18N key)"
+                                        name="./constructionYearErrorMsg"
                                         required="true"/>
                                 <commentsLabel
                                         jcr:primaryType="nt:unstructured"
