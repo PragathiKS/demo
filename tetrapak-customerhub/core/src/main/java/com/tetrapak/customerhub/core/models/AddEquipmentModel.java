@@ -6,6 +6,10 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.settings.SlingSettingsService;
+import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;myequipment-statuslist
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -21,6 +25,25 @@ public class AddEquipmentModel {
     /** The resource. */
     @Self
     private Resource resource;
+
+    /** The is publish environment. */
+    private boolean isPublishEnvironment = Boolean.FALSE;
+
+    /** The sling settings service. */
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
+    /** The service. */
+    @OSGiService
+    private APIGEEService service;
+
+    /** The country api. */
+    @Inject
+	private String countryApi;
+
+    /** The status api. */
+    @Inject
+    private String statusApi;
 
     /** The title label. */
     @Inject
@@ -173,6 +196,42 @@ public class AddEquipmentModel {
 
     /** The i 18 n keys. */
     private String i18nKeys;
+
+    /**
+     * Checks if is publish environment.
+     *
+     * @return true, if is publish environment
+     */
+    public boolean isPublishEnvironment() {
+        return isPublishEnvironment;
+    }
+
+    /**
+     * Gets the sling settings service.
+     *
+     * @return the sling settings service
+     */
+    public SlingSettingsService getSlingSettingsService() {
+        return slingSettingsService;
+    }
+
+    /**
+     * Gets the country api.
+     *
+     * @return the country api
+     */
+    public String getCountryApi() {
+        return countryApi;
+    }
+
+    /**
+     * Gets the status api.
+     *
+     * @return the status api
+     */
+    public String getStatusApi() {
+        return statusApi;
+    }
 
     /**
      * Gets the i 18 n keys.
@@ -506,5 +565,15 @@ public class AddEquipmentModel {
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+
+        if (slingSettingsService.getRunModes().contains("publish")) {
+            isPublishEnvironment = Boolean.TRUE;
+        }
+
+        countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-countrylist");
+
+        statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-statuslist");
     }
 }

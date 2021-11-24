@@ -1,21 +1,67 @@
 import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
+import auth from '../../../scripts/utils/auth';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods } from '../../../scripts/utils/constants';
 
-function _renderLayout() {
-  const $this = this;
+function _renderLayout($this) {
   render.fn({
     template: 'addEquipmentForm',
     target: '.js-tp-add-equipment__content-wrapper',
-    data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.country, line: $this.cache.line , site: $this.cache.site, equipmentStatus: $this.cache.equipmentStatus }
+    data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.countryData, line: $this.cache.lineData , site: $this.cache.siteData, equipmentStatus: $this.cache.statusData }
   }, () => {
     $this.cache.$contentWrapper.removeClass('d-none');
     $this.cache.$spinner.addClass('d-none');
   });
 }
+function _getDropdownData($this) {
+  auth.getToken(({ data: authData }) => {
+    $.when(ajaxWrapper
+      .getXhrObj({
+        url: $this.cache.countryApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }), ajaxWrapper
+      .getXhrObj({
+        url: $this.cache.statusApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      })).then((res1, res2) => {
+      $this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
+      $this.cache.statusData = res2[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
+      _renderLayout($this);
+    }).fail(() => {
+      $this.cache.$contentWrapper.removeClass('d-none');
+      $this.cache.$spinner.addClass('d-none');
+    });
+  });
+}
+function _renderForm() {
+  const $this = this;
+  if ($this.cache.countryData && $this.cache.countryData.length && $this.cache.statusData && $this.cache.statusData.length) {
+    _renderLayout($this);
+  } else {
+    _getDropdownData($this);
+  }
+}
 function _renderFiles() {
   const $this = this;
-  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: (obj.size / (1024 * 1024)).toFixed(2) + ' MB', removeFileLabel: $this.cache.i18nKeys.removeFileLabel }));
+  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.removeFileLabel }));
   render.fn({
     template: 'addEquipmentFiles',
     target: '.js-tp-add-equipment__drag-and-drop-files-container',
@@ -51,9 +97,12 @@ class AddEquipment {
       logger.error(e);
     }
     const dummyArray  = [ { key: 'A', desc: 'A' }, { key: 'B', desc: 'B'}, { key: 'C', desc: 'C'} ];
-    this.cache.country = dummyArray;
-    this.cache.site = dummyArray;
-    this.cache.line = dummyArray;
+    this.cache.countryApi = this.root.data('country-api');
+    this.cache.statusApi = this.root.data('status-api');
+    this.cache.countryData = [];
+    this.cache.statusData = [];
+    this.cache.siteData = dummyArray;
+    this.cache.lineData = dummyArray;
     this.cache.equipmentStatus = dummyArray;
   }
   bindEvents() {
@@ -100,7 +149,7 @@ class AddEquipment {
     $this.root.on('click', '.js-tp-add-equipment__add-another-equipment', () => {
       $this.cache.$contentWrapper.addClass('d-none');
       $this.cache.$spinner.removeClass('d-none');
-      $this.renderLayout();
+      $this.renderForm();
     });
   }
   removeFile(e) {
@@ -154,8 +203,8 @@ class AddEquipment {
       }
     });
   }
-  renderLayout() {
-    return _renderLayout.apply(this, arguments);
+  renderForm() {
+    return _renderForm.apply(this, arguments);
   }
   renderFiles() {
     return _renderFiles.apply(this, arguments);
@@ -165,7 +214,7 @@ class AddEquipment {
   }
   init() {
     this.initCache();
-    this.renderLayout();
+    this.renderForm();
     this.bindEvents();
   }
 }
