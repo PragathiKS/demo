@@ -41,9 +41,38 @@ function _getDropdownData($this) {
           jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         showLoader: true
-      })).then((res1, res2) => {
-      $this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
-      $this.cache.statusData = res2[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
+      }), ajaxWrapper
+      .getXhrObj({
+        url: $this.cache.siteApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }), ajaxWrapper
+      .getXhrObj({
+        url: $this.cache.lineApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      })
+
+    ).then((resCountry, resStatus, resSite, resLine) => {
+      $this.cache.countryData = resCountry[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
+      $this.cache.statusData = resStatus[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
+      $this.cache.siteData = resSite[0].data.map(item => ({ key: item.siteNumber, desc: item.siteName }));
+      $this.cache.lineData = resLine[0].data.map(item => ({ key: item.lineCode, desc: item.lineDescription }));
+
       _renderLayout($this);
     }).fail(() => {
       $this.cache.$contentWrapper.removeClass('d-none');
@@ -53,7 +82,10 @@ function _getDropdownData($this) {
 }
 function _renderForm() {
   const $this = this;
-  if ($this.cache.countryData && $this.cache.countryData.length && $this.cache.statusData && $this.cache.statusData.length) {
+  if ($this.cache.countryData && $this.cache.countryData.length &&
+      $this.cache.statusData && $this.cache.statusData.length &&
+      $this.cache.siteData && $this.cache.siteData.length &&
+      $this.cache.lineData && $this.cache.lineData.length) {
     _renderLayout($this);
   } else {
     _getDropdownData($this);
@@ -96,14 +128,14 @@ class AddEquipment {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
-    const dummyArray  = [ { key: 'A', desc: 'A' }, { key: 'B', desc: 'B'}, { key: 'C', desc: 'C'} ];
     this.cache.countryApi = this.root.data('country-api');
     this.cache.statusApi = this.root.data('status-api');
+    this.cache.siteApi = this.root.data('site-api');
+    this.cache.lineApi = this.root.data('line-api');
     this.cache.countryData = [];
     this.cache.statusData = [];
-    this.cache.siteData = dummyArray;
-    this.cache.lineData = dummyArray;
-    this.cache.equipmentStatus = dummyArray;
+    this.cache.siteData = [];
+    this.cache.lineData = [];
   }
   bindEvents() {
     const $this = this;
@@ -122,8 +154,12 @@ class AddEquipment {
       $this.addInputTypeFile();
     });
 
-    $this.root.on('click', '.js-tp-add-equipment__drag-and-drop-file-remove-container', event => {
-      $this.removeFile(event);
+    $this.root.on('change', '.js-tp-add-equipment__drag-and-drop-file-input', e => {
+      $this.dropFiles(e, $this);
+    });
+
+    $this.root.on('click', '.js-tp-add-equipment__drag-and-drop-file-remove-container', e => {
+      $this.removeFile(e);
     });
 
     $this.root.on('click', '.js-tp-add-equipment__submit', () => {
@@ -165,6 +201,12 @@ class AddEquipment {
     input.multiple = true;
     document.body.appendChild(input);
     input.addEventListener('change', (event) => this.dropFiles(event, this), false);
+    // $(input).trigger('click');
+    // if(document.createEvent) {
+    //   const evt = document.createEvent('MouseEvents');
+    //   evt.initEvent('click', true, false);
+    //   input.dispatchEvent(evt);
+    // }
     input.click();
     document.body.removeChild(input);
   }

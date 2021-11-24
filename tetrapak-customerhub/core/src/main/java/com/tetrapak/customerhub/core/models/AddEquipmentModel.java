@@ -9,7 +9,7 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.settings.SlingSettingsService;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;myequipment-statuslist
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -44,6 +44,14 @@ public class AddEquipmentModel {
     /** The status api. */
     @Inject
     private String statusApi;
+
+    /** The line api. */
+    @Inject
+    private String lineApi;
+
+    /** The site api. */
+    @Inject
+    private String siteApi;
 
     /** The title label. */
     @Inject
@@ -220,18 +228,28 @@ public class AddEquipmentModel {
      *
      * @return the country api
      */
-    public String getCountryApi() {
-        return countryApi;
-    }
+    public String getCountryApi() { return countryApi; }
 
     /**
      * Gets the status api.
      *
      * @return the status api
      */
-    public String getStatusApi() {
-        return statusApi;
-    }
+    public String getStatusApi() { return statusApi; }
+
+    /**
+     * Gets the line api.
+     *
+     * @return the line api
+     */
+    public String getLineApi() { return lineApi; }
+
+    /**
+     * Gets the site api.
+     *
+     * @return the site api
+     */
+    public String getSiteApi() { return siteApi; }
 
     /**
      * Gets the i 18 n keys.
@@ -575,5 +593,11 @@ public class AddEquipmentModel {
 
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, "myequipment-statuslist");
+
+        siteApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-siteslist");
+
+        lineApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, "myequipment-lineslist");
     }
 }
