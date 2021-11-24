@@ -4,8 +4,7 @@ import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
-import junit.framework.TestCase;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -18,12 +17,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.osgi.service.component.annotations.Reference;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -49,7 +46,7 @@ public class EquipmentDetailsServiceImplTest {
 
     @Before
     public void setUp() throws IOException {
-        String content = Files.readString(Path.of(BEAN_OK_FILE), StandardCharsets.UTF_8);
+        String content = readFileFromPath(BEAN_OK_FILE);
         Mockito.when(mockApigeeService.getApigeeServiceUrl()).thenReturn("mockurl");
         Mockito.when(mockClient.execute(Mockito.any(HttpPost.class)))
                 .thenReturn(response);
@@ -66,5 +63,10 @@ public class EquipmentDetailsServiceImplTest {
     public void testAddEquipmentResponseNotNull() {
         EquipmentResponse response = equipmentDetailsService.editEquipment(bean, StringUtils.EMPTY);
         assertNotNull("Should return non null", response);
+    }
+
+    private String readFileFromPath(String path) throws IOException {
+        FileInputStream fis = new FileInputStream(path);
+        return IOUtils.toString(fis, StandardCharsets.UTF_8);
     }
 }

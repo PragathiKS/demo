@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.servlets;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -17,12 +18,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.servlet.http.Cookie;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EquipmentDetailsServletTest {
@@ -62,7 +62,7 @@ public class EquipmentDetailsServletTest {
 
     @Test
     public void testDoPostOkFile() throws IOException {
-        String content = Files.readString(Path.of(BEAN_OK_FILE), StandardCharsets.UTF_8);
+        String content = readFileFromPath(BEAN_OK_FILE);
         Mockito.when(request.getReader()).thenReturn(new BufferedReader(new StringReader(content)));
         Mockito.when(response.getWriter()).thenReturn(mockPrintWriter);
         Mockito.when(equipmentDetailsService.editEquipment(
@@ -74,7 +74,7 @@ public class EquipmentDetailsServletTest {
 
     @Test
     public void testDoPostBadFile() throws IOException {
-        String content = Files.readString(Path.of(BEAN_BAD_FILE), StandardCharsets.UTF_8);
+        String content = readFileFromPath(BEAN_BAD_FILE);
         Mockito.when(request.getReader()).thenReturn(new BufferedReader(new StringReader(content)));
         Mockito.when(response.getWriter()).thenReturn(mockPrintWriter);
         Mockito.when(equipmentDetailsService.editEquipment(
@@ -86,7 +86,7 @@ public class EquipmentDetailsServletTest {
 
     @Test
     public void testDoPostNullResponse() throws IOException {
-        String content = Files.readString(Path.of(BEAN_BAD_FILE), StandardCharsets.UTF_8);
+        String content = readFileFromPath(BEAN_BAD_FILE);
         Mockito.when(request.getReader()).thenReturn(new BufferedReader(new StringReader(content)));
         Mockito.when(response.getWriter()).thenReturn(mockPrintWriter);
         Mockito.when(equipmentDetailsService.editEquipment(
@@ -94,5 +94,10 @@ public class EquipmentDetailsServletTest {
                 .thenReturn(null);
         servlet.doPost(request, response);
         Mockito.verify(response).getWriter();
+    }
+
+    private String readFileFromPath(String path) throws IOException {
+        FileInputStream fis = new FileInputStream(path);
+        return IOUtils.toString(fis, StandardCharsets.UTF_8);
     }
 }
