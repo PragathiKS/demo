@@ -3,7 +3,7 @@ package com.tetrapak.customerhub.core.beans.equipment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- *
+ * The Update Equipment response class.
  */
 public class EquipmentResponse {
 

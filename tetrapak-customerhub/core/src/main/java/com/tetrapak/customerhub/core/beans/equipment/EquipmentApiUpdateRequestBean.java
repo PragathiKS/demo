@@ -2,6 +2,9 @@ package com.tetrapak.customerhub.core.beans.equipment;
 
 import java.util.List;
 
+/**
+ * Bean class used to build json request to request update api.
+ */
 public class EquipmentApiUpdateRequestBean {
 
     private String serialNumber;

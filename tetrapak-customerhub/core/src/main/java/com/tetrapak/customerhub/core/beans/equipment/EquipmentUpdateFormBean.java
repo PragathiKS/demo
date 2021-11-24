@@ -3,7 +3,7 @@ package com.tetrapak.customerhub.core.beans.equipment;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * Bean that maps Edit equipment request json;
+ * Bean that maps Edit equipment form request to json;
  */
 public class EquipmentUpdateFormBean {
 
@@ -43,30 +43,65 @@ public class EquipmentUpdateFormBean {
         return !StringUtils.isAnyBlank(equipmentId);
     }
 
+    /**
+     * Creates metadata entry for Country.
+     *
+     * @return EquipmentMetaData bean.
+     */
     public EquipmentMetaData getCountryMetadata() {
         return new EquipmentMetaData("Country", oldCountry, country);
     }
 
+    /**
+     * Creates metadata entry for Location.
+     *
+     * @return EquipmentMetaData bean.
+     */
     public EquipmentMetaData getLocationMetadata() {
         return new EquipmentMetaData("Location", oldLocation, location);
     }
 
+    /**
+     * Creates metadata entry for Site.
+     *
+     * @return EquipmentMetaData bean.
+     */
     public EquipmentMetaData getSiteMetadata() {
         return new EquipmentMetaData("Site", oldSiteName, siteName);
     }
 
+    /**
+     * Creates metadata entry for Line.
+     *
+     * @return EquipmentMetaData bean.
+     */
     public EquipmentMetaData getLineMetadata() {
         return new EquipmentMetaData("Line", oldLineName, lineName);
     }
 
+    /**
+     * Creates metadata entry for Status.
+     *
+     * @return EquipmentMetaData bean.
+     */
     public EquipmentMetaData getStatusMetadata() {
         return new EquipmentMetaData("Status", oldEquipmentStatus, equipmentStatus);
     }
 
+    /**
+     * Creates metadata entry for Position.
+     *
+     * @return EquipmentMetaData bean.
+     */
     public EquipmentMetaData getPositionMetadata() {
         return new EquipmentMetaData("Position", oldPosition, position);
     }
 
+    /**
+     * Creates metadata entry for Description.
+     *
+     * @return EquipmentMetaData bean.
+     */
     public EquipmentMetaData getDescriptionMetadata() {
         return new EquipmentMetaData("Description", oldEquipmentTypeDesc, equipmentTypeDesc);
     }
