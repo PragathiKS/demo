@@ -11,7 +11,9 @@ import { logger } from './logger';
  * Generates a valid APIGEE token and ensures token validity
  */
 function generateToken() {
-  const env_var = $('.tp-financials').attr('data-src_ispublishenvironment') || $('.tp-my-equipment').attr('data-src_ispublishenvironment');
+  // eslint-disable-next-line no-debugger
+  debugger;
+  const env_var = $('.tp-financials').attr('data-src_ispublishenvironment') || $('.tp-my-equipment').attr('data-src_ispublishenvironment') || $('.tp-add-equipment').attr('data-src_ispublishenvironment');
   return (
     new Promise(function (resolve, reject) {
       const access_token = storageUtil.get(AUTH_TOKEN_COOKIE);
