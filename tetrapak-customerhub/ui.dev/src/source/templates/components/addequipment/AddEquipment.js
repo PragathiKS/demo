@@ -154,25 +154,21 @@ class AddEquipment {
       $this.addInputTypeFile();
     });
 
-    $this.root.on('change', '.js-tp-add-equipment__drag-and-drop-file-input', e => {
-      $this.dropFiles(e, $this);
-    });
-
     $this.root.on('click', '.js-tp-add-equipment__drag-and-drop-file-remove-container', e => {
       $this.removeFile(e);
     });
 
     $this.root.on('click', '.js-tp-add-equipment__submit', () => {
       let isFormValid = true;
-      $this.root.find('.error-msg--active').removeClass('error-msg--active');
+      $this.removeAllErrorMessages();
       const requiredFrmElements = $this.root.find('.js-tp-add-equipment__form-element [required]');
       requiredFrmElements.each(function () {
         if (!$(this).val()) {
           isFormValid = false;
-          $(this).closest('.js-tp-add-equipment__form-element').find('.error-msg').addClass('error-msg--active');
+          $this.addErrorMsg(this);
         }
       });
-      // isFormValid = true;
+
       if (isFormValid) {
         $this.cache.$contentWrapper.addClass('d-none');
         $this.cache.$spinner.removeClass('d-none');
@@ -188,6 +184,22 @@ class AddEquipment {
       $this.renderForm();
     });
   }
+  addErrorMsg(el) {
+    const formElement = $(el).closest('.js-tp-add-equipment__form-element');
+    formElement.addClass('tp-add-equipment__form-element--error');
+    formElement.find('.error-msg').addClass('error-msg--active');
+  }
+  removeAllErrorMessages() {
+    const $this = this;
+    const requiredFrmElements = $this.root.find('.error-msg--active');
+    requiredFrmElements.each(function () {
+      $this.removeErrorMsg(this);
+    });
+  }
+  removeErrorMsg(el) {
+    $(el).removeClass('error-msg--active');
+    $(el).closest('.js-tp-add-equipment__form-element').removeClass('tp-add-equipment__form-element--error');
+  }
   removeFile(e) {
     const index = $(e.currentTarget).data('index');
     this.cache.files.splice(index, 1);
@@ -201,13 +213,7 @@ class AddEquipment {
     input.multiple = true;
     document.body.appendChild(input);
     input.addEventListener('change', (event) => this.dropFiles(event, this), false);
-    // $(input).trigger('click');
-    // if(document.createEvent) {
-    //   const evt = document.createEvent('MouseEvents');
-    //   evt.initEvent('click', true, false);
-    //   input.dispatchEvent(evt);
-    // }
-    input.click();
+    $(input).trigger('click');
     document.body.removeChild(input);
   }
   dropFiles(e, $this, dropEvent) {
@@ -234,12 +240,13 @@ class AddEquipment {
     e.preventDefault();
   }
   setFieldsMandatory() {
-    const fields = this.root.find('.js-tp-add-equipment__toggle-mandatory');
-    const isFileUploaded = this.cache.files.length ? 1 : 0;
+    const $this = this;
+    const fields = $this.root.find('.js-tp-add-equipment__toggle-mandatory');
+    const isFileUploaded = $this.cache.files.length ? 1 : 0;
     fields.each(function () {
       if (isFileUploaded) {
-        $(this).removeAttr('required');
-        $(this).closest('.js-tp-add-equipment__form-element').find('.error-msg').removeClass('error-msg--active');
+        $(this).find('input, select').removeAttr('required');
+        $this.removeErrorMsg($(this).find('.error-msg'));
       } else {
         $(this).attr('required', true);
       }
