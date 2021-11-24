@@ -236,13 +236,24 @@ $color-green: #8dc63f;
         }
     }
 
-    .error-msg {
-        @include font-size($font-sm);
-        display: none;
-        color: $color-alert;
+    &__form-element {
+        &--error {
+            input {
+                border: 1px solid $color-alert;
+            }
 
-        &--active {
-            display: block;
+            select {
+                border: 1px solid $color-alert;
+            }
+        }
+        .error-msg {
+            @include font-size($font-sm);
+            display: none;
+            color: $color-alert;
+
+            &--active {
+                display: block;
+            }
         }
     }
 }

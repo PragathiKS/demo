@@ -2,7 +2,7 @@
 <p class="tp-add-equipment__subtitle">{{i18n key=i18nKeys.subTitle}}</p>
 
 <div class="row">
-    <div class="col-lg-3 tp-add-equipment__serial-number-wrapper js-tp-add-equipment__form-element">
+    <div class="col-lg-3 tp-add-equipment__serial-number-wrapper js-tp-add-equipment__form-element tp-add-equipment__form-element">
         {{> atoms/input/input
                 labelText=i18nKeys.serialNumberLabel
                 placeholder="444454-44444"
@@ -41,7 +41,7 @@
         <div class="tp-add-equipment__details">
             <h2 class="tp-add-equipment__details-title">{{i18n key=i18nKeys.detailsTitle}}</h2>
             <p class="tp-add-equipment__details-subtitle">{{i18n key=i18nKeys.detailsSubtitle}}</p>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                 {{> atoms/dropdown/dropdown
                         defaultValue=i18nKeys.dropdownPlaceholder
                         options=country
@@ -52,7 +52,7 @@
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.countryErrorMsg}}</div>
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                 {{> atoms/dropdown/dropdown
                         defaultValue=i18nKeys.dropdownPlaceholder
                         options=site
@@ -63,7 +63,7 @@
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.siteErrorMsg}}</div>
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                 {{> atoms/dropdown/dropdown
                         defaultValue=i18nKeys.dropdownPlaceholder
                         options=line
@@ -74,7 +74,7 @@
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.lineErrorMsg}}</div>
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                 {{> atoms/input/input
                         labelText=i18nKeys.positionLabel
                         name="tp-add-equipment-position"
@@ -83,7 +83,7 @@
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.positionErrorMsg}}</div>
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                 {{> atoms/dropdown/dropdown
                         defaultValue=i18nKeys.dropdownPlaceholder
                         options=equipmentStatus
@@ -94,41 +94,39 @@
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.equipmentStatusErrorMsg}}</div>
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                 {{> atoms/input/input
                         labelText=i18nKeys.machineSystemLabel
                         name="tp-add-equipment-machine-system"
                         labelClasses="tp-add-equipment__field-label"
                 }}
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
                 {{> atoms/input/input
                         labelText=i18nKeys.equipmentDescriptionLabel
                         name="tp-add-equipment-equipment-description"
                         labelClasses="tp-add-equipment__field-label"
                         required="true"
-                        eleClasses="js-tp-add-equipment__toggle-mandatory"
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.equipmentDescriptionErrorMsg}}</div>
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                 {{> atoms/input/input
                         labelText=i18nKeys.manufactureModelNumberLabel
                         name="tp-add-equipment-manufacture-model-number"
                         labelClasses="tp-add-equipment__field-label"
                 }}
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
                 {{> atoms/input/input
                         labelText=i18nKeys.manufactureOfAssetLabel
                         name="tp-add-equipment-manufacture-of-asset"
                         labelClasses="tp-add-equipment__field-label"
                         required="true"
-                        eleClasses="js-tp-add-equipment__toggle-mandatory"
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.manufactureOfAssetErrorMsg}}</div>
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
                 {{> atoms/dropdown/dropdown
                         defaultValue=i18nKeys.dropdownPlaceholder
                         options=country
@@ -136,17 +134,15 @@
                         labelText=i18nKeys.countryOfManufactureLabel
                         wrapClasses="tp-add-equipment__field-wrapper"
                         required="true"
-                        eleClasses="js-tp-add-equipment__toggle-mandatory"
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.countryOfManufactureErrorMsg}}</div>
             </div>
-            <div class="js-tp-add-equipment__form-element">
+            <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
                 {{> atoms/input/input
                         labelText=i18nKeys.constructionYearLabel
                         name="tp-add-equipment-construction-year"
                         labelClasses="tp-add-equipment__field-label"
                         required="true"
-                        eleClasses="js-tp-add-equipment__toggle-mandatory"
                 }}
                 <div class="error-msg">{{i18n key=i18nKeys.constructionYearErrorMsg}}</div>
             </div>
