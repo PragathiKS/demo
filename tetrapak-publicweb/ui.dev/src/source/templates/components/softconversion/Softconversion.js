@@ -13,6 +13,7 @@ class Softconversion {
   }
   cache = {};
   initCache() {
+
     this.cache.$modal = this.root.parent().find('.js-soft-modal');
     this.cache.$nextbtn = this.root.find('.tpatom-btn[type=button]');
     this.cache.$downloadbtn = this.root.find('.thankyouTarget');
@@ -29,12 +30,14 @@ class Softconversion {
     this.cache.$notmebtn = this.root.find(`.notmebtn-${this.cache.$componentName}[type=button]`);
     this.cache.$yesmebtn = this.root.find(`.yesmebtn-${this.cache.$componentName}[type=button]`);
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
+
     this.cache.softconversionapi = this.root.find(`form.pw-form-softconversion-${this.cache.$componentName}`);
     this.cache.$submitBtn = this.root.find('button[type="submit"]');
     this.cache.$countryField = this.root.find('.country-field');
     this.cache.$positionField = this.root.find('.position-field');
     this.cache.$functionField = this.root.find('.function-field');
     this.cache.$userType = 1;
+
     this.cache.requestPayload = {};
     this.cache.requestPayload['typeOfVisitor']='';
     this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
@@ -186,6 +189,7 @@ class Softconversion {
     this.cache.$userType = 1;
     storageUtil.setCookie('userType', '', -1);
     storageUtil.setCookie('visitor-mail', '', -1);
+    storageUtil.setCookie('countryValue', '', -1);
   }
 
   yesMeBtnHandler = () => {
@@ -222,12 +226,19 @@ class Softconversion {
 
       const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
       const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
+      const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
+      const countryCookie= storageUtil.getCookie('countryValue');
       const apiPayload =  {};
       apiPayload.email = storageUtil.getCookie('visitor-mail');
       apiPayload.language = this.root.find(`#site_language_${this.cache.$componentName}`).val();
       apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
       apiPayload.pardot_extra_field = '';
-      apiPayload.pardotUrl = pardotUrl;
+      if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
+        apiPayload.pardotUrl = chinapardotUrl;
+      }
+      else {
+        apiPayload.pardotUrl = pardotUrl;
+      }
       apiPayload.pageurl = this.cache.requestPayload['pageurl'];
       ajaxWrapper.getXhrObj({
         url: servletPath,
@@ -239,7 +250,7 @@ class Softconversion {
         }
       );
     }
-
+    
     // do the analytics call for yes its me
     changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
   }
@@ -247,16 +258,17 @@ class Softconversion {
   submitForm = () => {
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
     const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
-
+    const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
     const apiPayload =  {};
 
     const userType = parseInt(storageUtil.getCookie('userType'), 10);
     const visitorEmail = storageUtil.getCookie('visitor-mail');
+    const countryCookie= storageUtil.getCookie('countryValue');
 
     let dataObj = {};
 
     if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
-      apiPayload.marketingConsent = 'True';
+      apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
     }
 
     if(visitorEmail && userType === 1) {
@@ -264,6 +276,7 @@ class Softconversion {
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
       apiPayload.position = this.cache.requestPayload['position'];
       apiPayload.function = this.cache.requestPayload['function'];
+      apiPayload.country = countryCookie;
 
       dataObj = {
         'Company': apiPayload.company,
@@ -292,9 +305,14 @@ class Softconversion {
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
-    apiPayload.pardotUrl = pardotUrl;
+    if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
+      apiPayload.pardotUrl = chinapardotUrl;
+    }
+    else {
+      apiPayload.pardotUrl = pardotUrl;
+    }
     apiPayload.pageurl = this.cache.requestPayload['pageurl'];
-
+    
     // IF UTM fields in URL
     const params = {};
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
@@ -330,13 +348,13 @@ class Softconversion {
       storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
     }
     storageUtil.setCookie('userType', this.cache.$userType, 365);
-
+    storageUtil.setCookie('countryValue', this.cache.requestPayload['country'], 365);
     $(`.heading_${this.cache.$componentName}`, this.root).text('');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
     isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
 
-    // Analytics
+    // Analytics Tracking
     loadDownloadReady(this.mainHeading, dataObj, this.cache.$parentComponent);
   }
 
