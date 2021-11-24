@@ -22,178 +22,266 @@ import java.util.Map;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class EquipmentDetailsModel {
 
-    /** The resource. */
+    /**
+     * The resource.
+     */
     @Self
     private Resource resource;
 
-    /** The country. */
+    /**
+     * The country.
+     */
     @Inject
     private String country;
 
-    /** The equipment information. */
+    /**
+     * The equipment information.
+     */
     @Inject
     private String equipmentInformation;
 
-    /** The update equipment information. */
+    /**
+     * The update equipment information.
+     */
     @Inject
     private String updateEquipmentInformation;
 
-    /** The equipment details. */
+    /**
+     * The equipment details.
+     */
     @Inject
     private String equipmentDetails;
 
-    /** The additional details. */
+    /**
+     * The additional details.
+     */
     @Inject
     private String additionalDetails;
 
-    /** The location. */
+    /**
+     * The location.
+     */
     @Inject
     private String location;
 
-    /** The site. */
+    /**
+     * The site.
+     */
     @Inject
     private String site;
 
-    /** The line. */
+    /**
+     * The line.
+     */
     @Inject
     private String line;
 
-    /** The equipment status. */
+    /**
+     * The equipment status.
+     */
     @Inject
     private String equipmentStatus;
 
-    /** The position. */
+    /**
+     * The position.
+     */
     @Inject
     private String position;
 
-    /** The equipment description. */
+    /**
+     * The equipment description.
+     */
     @Inject
     private String equipmentDescription;
 
-    /** The equipment type. */
+    /**
+     * The equipment type.
+     */
     @Inject
     private String equipmentType;
 
-    /** The machine system. */
+    /**
+     * The machine system.
+     */
     @Inject
     private String machineSystem;
 
-    /** The material. */
+    /**
+     * The material.
+     */
     @Inject
     private String material;
 
-    /** The manufacturer model number. */
+    /**
+     * The manufacturer model number.
+     */
     @Inject
     private String manufacturerModelNumber;
 
-    /** The manufacturer serial number. */
+    /**
+     * The manufacturer serial number.
+     */
     @Inject
     private String manufacturerSerialNumber;
 
-    /** The superior equipment. */
+    /**
+     * The superior equipment.
+     */
     @Inject
     private String superiorEquipment;
 
-    /** The functional location desc. */
+    /**
+     * The functional location desc.
+     */
     @Inject
     private String functionalLocationDesc;
 
-    /** The manufacturer. */
+    /**
+     * The manufacturer.
+     */
     @Inject
     private String manufacturer;
 
-    /** The manufacturer country. */
+    /**
+     * The manufacturer country.
+     */
     @Inject
     private String manufacturerCountry;
 
-    /** The construction year. */
+    /**
+     * The construction year.
+     */
     @Inject
     private String constructionYear;
 
-    /** The customer warranty end date. */
+    /**
+     * The customer warranty end date.
+     */
     @Inject
     private String customerWarrantyEndDate;
 
-    /** The customer warranty start date. */
+    /**
+     * The customer warranty start date.
+     */
     @Inject
     private String customerWarrantyStartDate;
 
-    /** The business type. */
+    /**
+     * The business type.
+     */
     @Inject
     private String businessType;
 
-    /** The equipment category. */
+    /**
+     * The equipment category.
+     */
     @Inject
     private String equipmentCategory;
 
-    /** The eofs confirmation date. */
+    /**
+     * The eofs confirmation date.
+     */
     @Inject
     private String eofsConfirmationDate;
 
-    /** The eofs valid from date. */
+    /**
+     * The eofs valid from date.
+     */
     @Inject
     private String eofsValidFromDate;
 
-    /** The country api. */
-	@Inject
-	private String countryApi;
+    /**
+     * The country api.
+     */
+    @Inject
+    private String countryApi;
 
-    /** The equipment list api. */
+    /**
+     * The equipment list api.
+     */
     @Inject
     private String equipmentListApi;
 
-    /** The status api. */
+    /**
+     * The status api.
+     */
     @Inject
     private String statusApi;
 
-    /** The cancel. */
+    /**
+     * The cancel.
+     */
     @Inject
     private String cancel;
 
-    /** The request updates. */
+    /**
+     * The request updates.
+     */
     @Inject
     private String requestUpdates;
 
-    /** The make updates. */
+    /**
+     * The make updates.
+     */
     @Inject
     private String makeUpdates;
 
-    /** The i 18 n keys. */
+    /**
+     * The i 18 n keys.
+     */
     private String i18nKeys;
 
-    /** The thank you label. */
+    /**
+     * The thank you label.
+     */
     @Inject
     private String thankYouLabel;
 
-    /** The thank you text. */
+    /**
+     * The thank you text.
+     */
     @Inject
     private String thankYouDescription;
 
-    /** The Modal Confirm Header. */
+    /**
+     * The Modal Confirm Header.
+     */
     @Inject
     private String modalConfirmHeader;
 
-    /** The Modal Confirm Text. */
+    /**
+     * The Modal Confirm Text.
+     */
     @Inject
     private String modalConfirmText;
 
-    /** The Status Update Heading. */
+    /**
+     * The Status Update Heading.
+     */
     @Inject
     private String statusUpdateHeading;
 
-    /** The Status Update Description. */
+    /**
+     * The Status Update Description.
+     */
     @Inject
     private String statusUpdateDescription;
 
-    /** The sling settings service. */
+    /**
+     * The sling settings service.
+     */
     @OSGiService
     private SlingSettingsService slingSettingsService;
 
-    /** The service. */
+    /**
+     * The service.
+     */
     @OSGiService
     private APIGEEService service;
 
-    /** The is publish environment. */
+    /**
+     * The is publish environment.
+     */
     private boolean isPublishEnvironment = Boolean.FALSE;
 
     /**
@@ -278,22 +366,22 @@ public class EquipmentDetailsModel {
     }
 
     /**
-	 * Gets the country api.
-	 *
-	 * @return the country api
-	 */
-	public String getCountryApi() {
-		return countryApi;
-	}
+     * Gets the country api.
+     *
+     * @return the country api
+     */
+    public String getCountryApi() {
+        return countryApi;
+    }
 
     /**
-	 * Gets the status api.
-	 *
-	 * @return the status api
-	 */
-	public String getStatusApi() {
-		return statusApi;
-	}
+     * Gets the status api.
+     *
+     * @return the status api
+     */
+    public String getStatusApi() {
+        return statusApi;
+    }
 
     /**
      * Gets the equipment details.
@@ -568,8 +656,7 @@ public class EquipmentDetailsModel {
     /**
      * init method.
      */
-    @PostConstruct
-    protected void init() {
+    @PostConstruct protected void init() {
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_INFORMATION, getEquipmentInformation());
         i18KeyMap.put(CustomerHubConstants.UPDATE_EQUIPMENT_INFORMATION, getUpdateEquipmentInformation());
@@ -621,7 +708,7 @@ public class EquipmentDetailsModel {
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, "myequipment-statuslist");
 
-        equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-                + GlobalUtil.getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
+        equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
     }
 }
