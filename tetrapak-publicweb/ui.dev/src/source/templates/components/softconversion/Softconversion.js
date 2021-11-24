@@ -249,10 +249,10 @@ class Softconversion {
           $('.serviceError').removeClass('d-block');
         }
       );
-
-      // do the analytics call for yes its me
-      changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
     }
+    
+    // do the analytics call for yes its me
+    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
   }
 
   submitForm = () => {
@@ -265,12 +265,25 @@ class Softconversion {
     const visitorEmail = storageUtil.getCookie('visitor-mail');
     const countryCookie= storageUtil.getCookie('countryValue');
 
+    let dataObj = {};
+
+    if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
+      apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
+    }
+
     if(visitorEmail && userType === 1) {
       apiPayload.email = storageUtil.getCookie('visitor-mail');
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
       apiPayload.position = this.cache.requestPayload['position'];
       apiPayload.function = this.cache.requestPayload['function'];
       apiPayload.country = countryCookie;
+
+      dataObj = {
+        'Company': apiPayload.company,
+        'Position': apiPayload.position,
+        'Function': apiPayload.function,
+        'Marketing Consent': this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked') ? 'Checked':'Unchecked'
+      };
     } else {
       apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
       apiPayload.countryTitle = this.cache.requestPayload['countryTitle'];
@@ -278,6 +291,15 @@ class Softconversion {
       apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
       apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
       apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
+
+      dataObj = {
+        'E-mail': 'NA',
+        'First name': 'NA',
+        'Last name': 'NA',
+        'Country/Region': apiPayload.country,
+        'Purpose of visit': apiPayload.visitorType,
+        'Marketing Consent': this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked') ? 'Checked':'Unchecked'
+      };
     }
 
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
@@ -290,21 +312,7 @@ class Softconversion {
       apiPayload.pardotUrl = pardotUrl;
     }
     apiPayload.pageurl = this.cache.requestPayload['pageurl'];
-    if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
-      apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
-    }
-
-    const dataObj = {
-      'E-mail': 'NA',
-      'First name': 'NA',
-      'Last name': 'NA',
-      'Country/Region': apiPayload.country,
-      'Purpose of visit': apiPayload.visitorType,
-      'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked'
-    };
-
-    loadDownloadReady(this.mainHeading, dataObj, this.cache.$parentComponent);
-
+    
     // IF UTM fields in URL
     const params = {};
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
@@ -345,6 +353,9 @@ class Softconversion {
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
     isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
+
+    // Analytics Tracking
+    loadDownloadReady(this.mainHeading, dataObj, this.cache.$parentComponent);
   }
 
 
@@ -400,13 +411,13 @@ class Softconversion {
             isvalid = false;
             switch (fieldName) {
             case `company-${$componentName}`:
-              erLbl = $(`#cf-step-1-${$componentName} label`)[0].textContent;
+              erLbl = $(this).closest('.formfield').find('label').text();
               break;
-            case `position-${$componentName}`:
-              erLbl = $(`#cf-step-1-${$componentName} label`)[1].textContent;
+            case `positionTitle`:
+              erLbl = $(this).closest('.formfield').find('label').text();
               break;
-            case `function-${$componentName}`:
-              erLbl = $(`#cf-step-1-${$componentName} label`)[2].textContent;
+            case `functionTitle`:
+              erLbl = $(this).closest('.formfield').find('label').text();
               break;
             default:
               erLbl = fieldName;
@@ -431,6 +442,9 @@ class Softconversion {
               break;
             case `lastName-${$componentName}`:
               erLbl = $(`#cf-step-1-${$componentName} label`)[2].textContent;
+              break;
+            case `countryTitle`:
+              erLbl = $(this).closest('.formfield').find('label').text();
               break;
             default:
               erLbl = fieldName;
@@ -501,8 +515,6 @@ class Softconversion {
     this.bindEvents();
     this.mainHeading = $(`#heading_${this.cache.$componentName}`).val();
     this.step1heading = $(`#cf-step-1-${this.cache.$componentName} .radioHeading`).text().trim();
-    this.step2heading = $(`#cf-step-2-${this.cache.$componentName} .tab-content-steps`).find('h4').text();
-    this.step3heading = 'Company information';
     this.getCountryList();
     this.getPositionList();
     this.getFunctionList();
