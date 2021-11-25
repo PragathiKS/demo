@@ -93,7 +93,7 @@ function _renderForm() {
 }
 function _renderFiles() {
   const $this = this;
-  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.removeFileLabel }));
+  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.dragAndDropRemoveFileLabel }));
   render.fn({
     template: 'addEquipmentFiles',
     target: '.js-tp-add-equipment__drag-and-drop-files-container',
@@ -128,6 +128,7 @@ class AddEquipment {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+    this.cache.submitApi = this.root.data('submit-api');
     this.cache.countryApi = this.root.data('country-api');
     this.cache.statusApi = this.root.data('status-api');
     this.cache.siteApi = this.root.data('site-api');
@@ -158,7 +159,8 @@ class AddEquipment {
       $this.removeFile(e);
     });
 
-    $this.root.on('click', '.js-tp-add-equipment__submit', () => {
+    $this.root.on('click', '.js-tp-add-equipment__submit', e => {
+      e.preventDefault();
       let isFormValid = true;
       $this.removeAllErrorMessages();
       const requiredFrmElements = $this.root.find('.js-tp-add-equipment__form-element [required]');
@@ -172,9 +174,10 @@ class AddEquipment {
       if (isFormValid) {
         $this.cache.$contentWrapper.addClass('d-none');
         $this.cache.$spinner.removeClass('d-none');
-        setTimeout(() => {
-          $this.renderSubmit();
-        }, 5000);
+        $this.submitForm(e);
+        // setTimeout(() => {
+        //   $this.renderSubmit();
+        // }, 2000);
       }
     });
 
@@ -182,6 +185,39 @@ class AddEquipment {
       $this.cache.$contentWrapper.addClass('d-none');
       $this.cache.$spinner.removeClass('d-none');
       $this.renderForm();
+    });
+  }
+  submitForm(e) {
+    const $this = this;
+    const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
+    const formData = {
+      files: $this.cache.files,
+      ...data
+    };
+    auth.getToken(({ data: authData }) => {
+      ajaxWrapper
+        .getXhrObj({
+          url: $this.cache.submitApi,
+          method: ajaxMethods.POST,
+          cache: true,
+          dataType: 'json',
+          contentType: 'application/json',
+          data: JSON.stringify(formData),
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).done(res => {
+          // eslint-disable-next-line no-console
+          console.log(res);
+          $this.renderSubmit();
+        }).fail((error) => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+          $this.cache.$contentWrapper.removeClass('d-none');
+          $this.cache.$spinner.addClass('d-none');
+        });
     });
   }
   addErrorMsg(el) {
