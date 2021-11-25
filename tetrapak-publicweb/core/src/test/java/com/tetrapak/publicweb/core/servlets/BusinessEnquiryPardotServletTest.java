@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.Before;
@@ -52,8 +51,10 @@ public class BusinessEnquiryPardotServletTest {
         final Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("firstName", "firstName");
         parameterMap.put("lastName", "lastName");
-        parameterMap.put("befPardotURL", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
+        parameterMap.put("pardotUrl", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
+        parameterMap.put("country", "India");
         context.request().setParameterMap(parameterMap);
+        context.request().setPathInfo("/content/tetrapak/public-web/gb/en");
         context.request().setResource(context.currentResource(RESOURCE));
 
     }
