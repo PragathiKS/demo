@@ -74,7 +74,7 @@ class Subscriptionform {
 
     const dataObj = {};
     if($('input[name="consent"]').is(':checked')) {
-      dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
+      dataObj['marketingConsent'] = 'True';
     }
     dataObj['email'] = this.cache.requestPayload[`email-${this.cache.$componentName}`];
     dataObj['firstName'] = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
