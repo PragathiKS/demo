@@ -94,7 +94,7 @@ function _renderEquipmentDetails() {
         } else {
           data.equipData = data.data[0];
           data.i18nKeys = i18nKeys;
-          this.cache.id = id;
+          $this.cache.id = id;
           $this.cache.data = data;
         }
       }
