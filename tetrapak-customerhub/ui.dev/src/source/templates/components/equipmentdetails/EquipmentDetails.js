@@ -70,7 +70,7 @@ function _renderEquipmentDetails() {
     render.fn({
       template: 'equipmentDetails',
       url: {
-        path: `${$this.cache.detailsApi}/${id || '8000000930'}`
+        path: `${$this.cache.detailsApi}/${id}`
       },
       target: '.js-equipment-details__content',
       ajaxConfig: {
@@ -94,6 +94,7 @@ function _renderEquipmentDetails() {
         } else {
           data.equipData = data.data[0];
           data.i18nKeys = i18nKeys;
+          this.cache.id = id;
           $this.cache.data = data;
         }
       }
@@ -132,14 +133,6 @@ function  _renderEquipUpdateModal() {
   const $this = this;
   const { $modal, i18nKeys } = $this.cache;
   const $form = $this.cache.$contentWrapper.find('.js-equipment-details__form');
-  const $formInputs = $form.find('input');
-  // let formData = {};
-
-  // $formInputs.each((index, item) => {
-  //   const inputName = $(item).attr('name');
-  //   const inputVal = $(item).val();
-  //   formData[inputName] = inputVal;
-  // });
 
   render.fn({
     template: 'equipmentDetailsConfirm',
@@ -192,6 +185,7 @@ class EquipmentDetails {
     this.cache.$modal = this.root.parent().find('.js-update-modal');
     this.cache.countryData = [];
     this.cache.formData = {};
+    this.cache.id = '8000000930';
     this.cache.statuses = [];
     this.cache.$updateBtn = this.root.find('.js-equipment-details__req-make-update');
 
@@ -227,7 +221,7 @@ class EquipmentDetails {
       const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
       const { equipData } = this.cache.data;
       this.cache.formData = {
-        equipmentNumber: this.cache.id,
+        equipmentId: this.cache.id,
         oldCountry: equipData.countryName,
         oldLocation: equipData.location,
         oldSiteName: equipData.siteName,
