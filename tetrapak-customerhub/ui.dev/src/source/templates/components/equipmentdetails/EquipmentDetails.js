@@ -7,6 +7,52 @@ import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 
 
+/* eslint-disable */
+
+/**
+ * Fetch and render countries and statuses
+ */
+
+ function _renderEquipInfoCardWithData() {
+  this.cache.$spinner.removeClass('d-none');
+  auth.getToken(({ data: authData }) => {
+    $.when(ajaxWrapper
+      .getXhrObj({
+        url: this.cache.countryApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }), ajaxWrapper.getXhrObj({
+        url: this.cache.statusApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      })).then((res1, res2) => {
+        this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
+        this.cache.statuses = res2[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
+        this.cache.$spinner.addClass('d-none');
+        this.cache.$contentWrapper.removeClass('d-none');
+        this.renderEquipInfoCard({update: true});
+      }).fail(() => {
+        this.cache.$contentWrapper.removeClass('d-none');
+        this.cache.$spinner.addClass('d-none');
+      });
+  });
+  return params;
+};
+
 /**
  * Fetch and render the Equipment Details
  */
@@ -52,11 +98,12 @@ function _renderEquipmentDetails() {
 
 function  _renderEquipInfoCard(view) {
   const $this = this;
-  const { countryData, statuses, data, i18nKeys } = $this.cache;
+  const { countryData, id, statuses, data, i18nKeys } = this.cache;
 
   render.fn({
     template: 'equipmentDetailsInfoCard',
     data: {
+      equipmentNumber: id,
       ...data,
       statuses: statuses,
       countries: countryData,
