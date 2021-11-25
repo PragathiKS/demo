@@ -57,7 +57,6 @@ public class EquipmentDetailsServletTest {
     @Before
     public void setUp() {
         Mockito.when(request.getCookie(AUTH_TOKEN)).thenReturn(mockCookie);
-        Mockito.when(xssAPI.encodeForHTML(mockCookie.getValue())).thenReturn(AUTH_TOKEN);
     }
 
     @Test
