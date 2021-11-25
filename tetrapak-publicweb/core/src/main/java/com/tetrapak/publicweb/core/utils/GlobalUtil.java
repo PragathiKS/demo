@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.constants.FormConstants;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 
@@ -294,7 +295,7 @@ public final class GlobalUtil {
         String marketPath = LinkUtils.getCountryPath(request.getPathInfo());
         final String country = StringUtils.substringAfterLast(marketPath, PWConstants.SLASH);
         if (country.equalsIgnoreCase(PWConstants.CHINA_COUNTRY_CODE)
-                || (request.getParameterMap().get(PWConstants.COUNTRY)[0]).equalsIgnoreCase(PWConstants.CHINA)) {
+                || (request.getParameterMap().get(FormConstants.COUNTRY)[0]).equalsIgnoreCase(PWConstants.CHINA)) {
             isChina = Boolean.TRUE;
         }
         return isChina;
