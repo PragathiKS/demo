@@ -3,7 +3,6 @@ package com.tetrapak.publicweb.core.models;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;

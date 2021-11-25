@@ -23,12 +23,16 @@ public class BusinessEnquiryPardotServletTest {
     /** The context. */
     @Rule
     public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/gb";
 
-    private BusinessEnquiryPardotServlet businessEnquiryPardotServlet = new BusinessEnquiryPardotServlet();
+    /** The Constant TEST_RESOURCE_CONTENT. */
+    private static final String TEST_RESOURCE_CONTENT = "/businessinquiryform/test-content.json";
+
+    private static final String RESOURCE = "/content/tetrapak/publicweb/gb/en/contact-us/jcr:content/businessinquiryform";
 
     private PardotService pardotService;
-
-
+    private BusinessEnquiryPardotServlet businessEnquiryPardotServlet = new BusinessEnquiryPardotServlet();
     /**
      * Setup.
      *
@@ -36,10 +40,9 @@ public class BusinessEnquiryPardotServletTest {
      */
     @Before
     public void setup() throws IOException {
-
+        context.load().json(TEST_RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         pardotService = new PardotServiceImpl();
         final Map<String, Object> pardotConfig = new HashMap<>();
-        pardotConfig.put("pardotBusinessInquiryServiceUrl", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
         context.registerService(PardotService.class, pardotService);
         MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
@@ -48,10 +51,11 @@ public class BusinessEnquiryPardotServletTest {
         final Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("firstName", "firstName");
         parameterMap.put("lastName", "lastName");
-
+        parameterMap.put("pardotUrl", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt");
+        parameterMap.put("country", "India");
         context.request().setParameterMap(parameterMap);
-
-        context.request().setResource(context.currentResource());
+        context.request().setPathInfo("/content/tetrapak/public-web/gb/en");
+        context.request().setResource(context.currentResource(RESOURCE));
 
     }
 

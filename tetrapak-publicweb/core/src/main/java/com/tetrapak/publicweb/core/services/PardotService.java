@@ -1,10 +1,7 @@
 package com.tetrapak.publicweb.core.services;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.http.auth.AuthenticationException;
 
 import com.google.gson.JsonObject;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
