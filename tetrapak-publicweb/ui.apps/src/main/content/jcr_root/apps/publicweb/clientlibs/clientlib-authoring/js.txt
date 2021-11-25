@@ -1,5 +1,6 @@
 script.js
 image-path-display.js
 max-tags-limit.js
+hcf-listener.js
 //dropdown-enable-disable.js
 //touchui-dialog-validation.js
