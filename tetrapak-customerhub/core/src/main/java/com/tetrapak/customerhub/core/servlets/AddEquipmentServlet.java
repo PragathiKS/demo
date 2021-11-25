@@ -8,9 +8,12 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.servlet.Servlet;
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Class Equipment Servlet.
@@ -29,6 +32,10 @@ import java.io.IOException;
             throws IOException {
         LOGGER.debug("Start: Equipment details - Post");
         response.setStatus(HttpStatus.SC_OK);
-        response.getWriter().write("request recieved");
+
+        Map<String, String> resObj = new HashMap<>();
+        resObj.put("message", "request received");
+        Gson gson = new Gson();
+        response.getWriter().write(gson.toJson(resObj));
     }
 }
