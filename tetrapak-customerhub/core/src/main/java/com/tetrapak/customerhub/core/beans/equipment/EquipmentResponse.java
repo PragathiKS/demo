@@ -8,31 +8,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class EquipmentResponse {
 
     /** The status message. */
-    @JsonProperty("statusMessage")
-    private String statusMessage;
+    @JsonProperty("result")
+    private String result;
 
     /** The status code. */
-    @JsonProperty("statusCode")
-    private int statusCode;
+    @JsonProperty("status")
+    private int status;
 
     /**
      * Instantiates a Update Equipment response.
      *
-     * @param statusCode
+     * @param status
      *            the status code
-     * @param statusMessage
+     * @param result
      *            the status message
      */
-    public EquipmentResponse(String statusMessage, int statusCode) {
-        this.statusMessage = statusMessage;
-        this.statusCode = statusCode;
+    public EquipmentResponse(String result, int status) {
+        this.result = result;
+        this.status = status;
     }
 
-    public int getStatusCode() {
-        return statusCode;
+    public int getStatus() {
+        return status;
     }
 
-    public String getStatusMessage() {
-        return statusMessage;
+    public String getResult() {
+        return result;
     }
 }

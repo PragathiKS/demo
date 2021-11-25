@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
@@ -48,15 +49,10 @@ public class EquipmentDetailsServiceImplTest {
     public void setUp() throws IOException {
         String content = readFileFromPath(BEAN_OK_FILE);
         Mockito.when(mockApigeeService.getApigeeServiceUrl()).thenReturn("mockurl");
+        Mockito.when(mockApigeeService.getApiMappings()).thenReturn(new String[] {"myequipment-requestUpdate:installedbase/equipments/requestupdate"});
         Mockito.when(mockClient.execute(Mockito.any(HttpPost.class)))
                 .thenReturn(response);
         bean = (new Gson()).fromJson(content, EquipmentUpdateFormBean.class);
-    }
-
-    @Test
-    public void testAddEquipmentMissingToken() {
-        EquipmentResponse response = equipmentDetailsService.editEquipment(bean, StringUtils.EMPTY);
-        assertEquals("Should return bad request", HttpStatus.SC_BAD_REQUEST, response.getStatusCode());
     }
 
     @Test

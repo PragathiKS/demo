@@ -37,22 +37,21 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
     @Reference
     private EquipmentDetailsService equipmentDetailsService;
 
-    @Reference
-    protected XSSAPI xssAPI;
-
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
         LOGGER.debug("Start: Equipment details - Post");
 
         Gson gson = new Gson();
+
         EquipmentUpdateFormBean bean = gson.fromJson(request.getReader(), EquipmentUpdateFormBean.class);
-        if (bean.isValid()) {
-            final String token = getAuthTokenValue(request);
+        final String token = getAuthTokenValue(request);
+
+        if (bean != null && StringUtils.isNotEmpty(token)) {
             EquipmentResponse equipmentResponse = equipmentDetailsService.editEquipment(bean, token);
             if (equipmentResponse != null) {
-                response.setStatus(equipmentResponse.getStatusCode());
-                response.getWriter().write(equipmentResponse.getStatusMessage());
+                response.setStatus(equipmentResponse.getStatus());
+                response.getWriter().write(equipmentResponse.getStatus());
             } else {
                 response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
                 response.getWriter().write("request error");
@@ -67,6 +66,6 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
         if (null == request.getCookie(AUTH_TOKEN)) {
             return StringUtils.EMPTY;
         }
-        return xssAPI.encodeForHTML(request.getCookie(AUTH_TOKEN).getValue());
+        return request.getCookie(AUTH_TOKEN).getValue();
     }
 }
