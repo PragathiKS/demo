@@ -2,12 +2,7 @@
     $document.on("foundation-contentloaded", showSoftConversionForm);
 	$document.on("click", ".cq-dialog-submit", validatePardotURL);
  
- 	const listOfResourceTypes = [
-        "publicweb/components/content/textImage",
-        "publicweb/components/content/textVideo",
-        "publicweb/components/content/banner",
-        "publicweb/components/content/businessinquiryform"
-    ];
+ 	const listOfResourceTypes = ["publicweb/components/content/textImage", "publicweb/components/content/textVideo", "publicweb/components/content/banner"];
     function showSoftConversionForm(){
         var dialog = (gAuthor != null) ? gAuthor.DialogFrame.currentDialog : null,
             componentPath = (dialog != null) ? dialog.editable : null;
@@ -28,65 +23,51 @@
 	  }
     }
 	
-	function validatePardotURL(event) {
-        var $form = $(this).closest("form.foundation-form");
-        if(isTargetDialog($form, listOfResourceTypes)){
-            event.stopPropagation();
-            event.preventDefault();
+	function validatePardotURL(event){
+    var $form = $(this).closest("form.foundation-form");
+    if(isTargetDialog($form,listOfResourceTypes)){
+		event.stopPropagation();
+        event.preventDefault();
 
-            dropdownValue = $form.find('coral-select[name="./formType"]').val(),
-            pardotUrl = $form.find('input[name="./pardotUrl"]').val(),
-            pardotUrlSubscription = $form.find('input[name="./pardotUrlSubscription"]').val(),
-            patterns = {
-                pardotUrlRegex: /^(https:\/\/)?go+([\-\.]{1}tetrapak+)*\.[com]{2,5}(:[0-9]{1,5})?(\/.*)?$/
-            };
+        dropdownValue = $form.find('coral-select[name="./formType"]').val(),
+		pardotUrl = $form.find('input[name="./pardotUrl"]').val(),
+		pardotUrlSubscription = $form.find('input[name="./pardotUrlSubscription"]').val(),
+        patterns = {
+             pardotUrlRegex: /^(https:\/\/)?go+([\-\.]{1}tetrapak+)*\.[com]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+        };
 
-            if(dropdownValue==="enableSoftconversion" && !patterns.pardotUrlRegex.test(pardotUrl)) {
-                gAuthor.ui.helpers.prompt({
-                    title: "Invalid Pardot URL - Softconversion Form",
-                    message: "Pardot URL for softconversion form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
-                    actions: [{
-                        id: "CANCEL",
-                        text: "Ok",
-                        className: "coral-Button"
-                    }],
-                    callback: function (actionId) {
-                        if (actionId === "CANCEL") {
-                        }
-                    }
-                });
-            } else if(dropdownValue==="enableSubscription" && !patterns.pardotUrlRegex.test(pardotUrlSubscription)){
-                gAuthor.ui.helpers.prompt({
-                    title: "Invalid Pardot URL - Subscription Form",
-                    message: "Pardot URL for subscription form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
-                    actions: [{
-                        id: "CANCEL",
-                        text: "Ok",
-                        className: "coral-Button"
-                    }],
-                    callback: function (actionId) {
-                        if (actionId === "CANCEL") {
-                        }
-                    }
-                });
-            } else if(!patterns.pardotUrlRegex.test(pardotUrl)) {
-                gAuthor.ui.helpers.prompt({
-                    title: "Invalid Pardot URL - Business Inquiry Form",
-                    message: "Pardot URL for business inquiry form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
-                    actions: [{
-                        id: "CANCEL",
-                        text: "Ok",
-                        className: "coral-Button"
-                    }],
-                    callback: function (actionId) {
-                        if (actionId === "CANCEL") {
-                        }
-                    }
-                });
-            } else {
-                $form.submit();
-            }
+		if(dropdownValue==="enableSoftconversion" && !patterns.pardotUrlRegex.test(pardotUrl)) {
+            gAuthor.ui.helpers.prompt({
+                title: "Invalid Pardot URL - Softconversion Form",
+                message: "Pardot URL for softconversion form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
+                actions: [{
+                    id: "CANCEL",
+                    text: "Ok",
+                    className: "coral-Button"
+                }],
+				callback: function (actionId) {
+					if (actionId === "CANCEL") {
+					}
+				}
+			});
+        }else if(dropdownValue==="enableSubscription" && !patterns.pardotUrlRegex.test(pardotUrlSubscription)){
+			gAuthor.ui.helpers.prompt({
+				title: "Invalid Pardot URL - Subscription Form",
+				message: "Pardot URL for subscription form cannot be left blank and should start with <b>https://go.tetrapak.com</b>",
+				actions: [{
+					id: "CANCEL",
+					text: "Ok",
+					className: "coral-Button"
+				}],
+				callback: function (actionId) {
+					if (actionId === "CANCEL") {
+					}
+				}
+			});
+		}else{
+            $form.submit();
         }
+    }
 	}
 	
 	function isTargetDialog($formElement, dlgResourceType) {
