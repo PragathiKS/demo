@@ -266,7 +266,7 @@ class Softconversion {
       apiPayload.function = this.cache.requestPayload['function'];
 
       dataObj = {
-        'Company': apiPayload.company,
+        'Company': 'NA',
         'Position': apiPayload.position,
         'Function': apiPayload.function,
         'Marketing Consent': this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked') ? 'Checked':'Unchecked'
