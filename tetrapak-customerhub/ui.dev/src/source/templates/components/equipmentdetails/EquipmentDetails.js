@@ -225,8 +225,9 @@ class EquipmentDetails {
     this.root.on('click', '.js-equipment-details__req-update',  (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
-      const { equipData} = this.cache.data;
+      const { equipData } = this.cache.data;
       this.cache.formData = {
+        equipmentNumber: this.cache.id,
         oldCountry: equipData.countryName,
         oldLocation: equipData.location,
         oldSiteName: equipData.siteName,
