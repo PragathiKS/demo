@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
 import { isExternal } from '../../../scripts/utils/updateLink';
-import { validateFieldsForTags, isMobileMode, storageUtil } from '../../../scripts/common/common';
+import { validateFieldsForTags, isMobileMode, storageUtil, capitalizeFirstLetter } from '../../../scripts/common/common';
 import { makeLoad, changeStepNext, loadDownloadReady, downloadLinkTrack, changeStepError } from './softconversion.analytics.js';
 
 class Softconversion {
@@ -256,7 +256,7 @@ class Softconversion {
     let dataObj = {};
 
     if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
-      apiPayload.marketingConsent = 'True';
+      apiPayload.marketingConsent = capitalizeFirstLetter(String(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')));
     }
 
     if(visitorEmail && userType === 1) {
