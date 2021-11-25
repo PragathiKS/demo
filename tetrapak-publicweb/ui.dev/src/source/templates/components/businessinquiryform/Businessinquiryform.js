@@ -154,7 +154,7 @@ class Businessinquiryform {
     dataObj['site'] = countryCode;
     dataObj['befPardotURL'] = befPardotURL;
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
-      dataObj['marketingConsent'] = 'True';
+      dataObj['marketingConsent'] = capitalizeFirstLetter(String(this.root.find(`#befconsentcheckbox`).is(':checked')));
     }
     dataObj['pageurl'] = this.cache.requestPayload.pageurl;
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
