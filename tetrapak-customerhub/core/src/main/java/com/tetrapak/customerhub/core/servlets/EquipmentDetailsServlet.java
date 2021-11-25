@@ -46,7 +46,7 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
         EquipmentUpdateFormBean bean = gson.fromJson(request.getReader(), EquipmentUpdateFormBean.class);
         final String token = getAuthTokenValue(request);
 
-        if (bean != null && StringUtils.isNotEmpty(token)) {
+        if (bean != null && bean.isValid() && StringUtils.isNotEmpty(token)) {
             EquipmentResponse equipmentResponse = equipmentDetailsService.editEquipment(bean, token);
             if (equipmentResponse != null) {
                 response.setStatus(equipmentResponse.getStatus());
