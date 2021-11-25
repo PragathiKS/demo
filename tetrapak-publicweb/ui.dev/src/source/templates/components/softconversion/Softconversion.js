@@ -268,7 +268,7 @@ class Softconversion {
     let dataObj = {};
 
     if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
-      apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
+      apiPayload.marketingConsent = 'True';
     }
 
     if(visitorEmail && userType === 1) {
