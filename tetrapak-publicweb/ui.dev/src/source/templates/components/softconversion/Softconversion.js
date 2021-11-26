@@ -232,6 +232,7 @@ class Softconversion {
       apiPayload.email = storageUtil.getCookie('visitor-mail');
       apiPayload.language = this.root.find(`#site_language_${this.cache.$componentName}`).val();
       apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
+      apiPayload.country = countryCookie;
       apiPayload.pardot_extra_field = '';
       if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
         apiPayload.pardotUrl = chinapardotUrl;
@@ -270,7 +271,7 @@ class Softconversion {
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
       apiPayload.position = this.cache.requestPayload['position'];
       apiPayload.function = this.cache.requestPayload['function'];
-      apiPayload.country = countryCookie;
+      apiPayload.countryTitle = countryCookie;
     } else {
       apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
       apiPayload.countryTitle = this.cache.requestPayload['countryTitle'];
