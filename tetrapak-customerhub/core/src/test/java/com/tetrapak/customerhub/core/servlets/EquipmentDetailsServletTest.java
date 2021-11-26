@@ -1,12 +1,12 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
+import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.xss.XSSAPI;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import javax.jcr.Session;
 import javax.servlet.http.Cookie;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -52,11 +53,19 @@ public class EquipmentDetailsServletTest {
     private PrintWriter mockPrintWriter;
 
     @Mock
+    private Session mockSession;
+
+    @Mock
+    private ResourceResolver mockResResolver;
+
+    @Mock
     private XSSAPI xssAPI;
 
     @Before
     public void setUp() {
         Mockito.when(request.getCookie(AUTH_TOKEN)).thenReturn(mockCookie);
+        Mockito.when(request.getResourceResolver()).thenReturn(mockResResolver);
+        Mockito.when(mockResResolver.adaptTo(Session.class)).thenReturn(mockSession);
     }
 
     @Test
@@ -64,9 +73,9 @@ public class EquipmentDetailsServletTest {
         String content = readFileFromPath(BEAN_OK_FILE);
         Mockito.when(request.getReader()).thenReturn(new BufferedReader(new StringReader(content)));
         Mockito.when(response.getWriter()).thenReturn(mockPrintWriter);
-        Mockito.when(equipmentDetailsService.editEquipment(
+        Mockito.when(equipmentDetailsService.editEquipment(Mockito.eq(mockSession.getUserID()),
                 Mockito.any(EquipmentUpdateFormBean.class), Mockito.any(String.class)))
-                .thenReturn(new EquipmentResponse("200", HttpStatus.SC_OK));
+                .thenReturn(new JsonObject());
         servlet.doPost(request, response);
         Mockito.verify(response).getWriter();
     }
@@ -76,9 +85,9 @@ public class EquipmentDetailsServletTest {
         String content = readFileFromPath(BEAN_BAD_FILE);
         Mockito.when(request.getReader()).thenReturn(new BufferedReader(new StringReader(content)));
         Mockito.when(response.getWriter()).thenReturn(mockPrintWriter);
-        Mockito.when(equipmentDetailsService.editEquipment(
+        Mockito.when(equipmentDetailsService.editEquipment(Mockito.eq(mockSession.getUserID()),
                 Mockito.any(EquipmentUpdateFormBean.class), Mockito.any(String.class)))
-                .thenReturn(new EquipmentResponse("200", HttpStatus.SC_OK));
+                .thenReturn(new JsonObject());
         servlet.doPost(request, response);
         Mockito.verify(response).getWriter();
     }
@@ -88,7 +97,7 @@ public class EquipmentDetailsServletTest {
         String content = readFileFromPath(BEAN_BAD_FILE);
         Mockito.when(request.getReader()).thenReturn(new BufferedReader(new StringReader(content)));
         Mockito.when(response.getWriter()).thenReturn(mockPrintWriter);
-        Mockito.when(equipmentDetailsService.editEquipment(
+        Mockito.when(equipmentDetailsService.editEquipment(Mockito.eq(mockSession.getUserID()),
                 Mockito.any(EquipmentUpdateFormBean.class), Mockito.any(String.class)))
                 .thenReturn(null);
         servlet.doPost(request, response);

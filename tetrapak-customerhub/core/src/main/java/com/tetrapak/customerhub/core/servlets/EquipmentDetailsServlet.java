@@ -1,9 +1,10 @@
 package com.tetrapak.customerhub.core.servlets;
 
 import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
+import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
+import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -15,6 +16,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Session;
 import javax.servlet.Servlet;
 import java.io.IOException;
 
@@ -40,24 +42,30 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
         LOGGER.debug("Start: Equipment details - Post");
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        JsonObject jsonObject = new JsonObject();
+        if (null == session) {
+            LOGGER.error("Equipment Details servlet exception: session is null");
+            jsonObject = HttpUtil.setJsonResponse(jsonObject, "session is null", HttpStatus.SC_BAD_REQUEST);
+            HttpUtil.writeJsonResponse(response, jsonObject);
+            return;
+        }
 
         Gson gson = new Gson();
-
         EquipmentUpdateFormBean bean = gson.fromJson(request.getReader(), EquipmentUpdateFormBean.class);
         final String token = getAuthTokenValue(request);
 
         if (bean != null && bean.isValid() && StringUtils.isNotEmpty(token)) {
-            EquipmentResponse equipmentResponse = equipmentDetailsService.editEquipment(bean, token);
-            if (equipmentResponse != null) {
-                response.setStatus(equipmentResponse.getStatus());
-                response.getWriter().write(equipmentResponse.getStatus());
+            jsonObject = equipmentDetailsService.editEquipment(session.getUserID(), bean, token);
+            if (jsonObject != null) {
+                HttpUtil.writeJsonResponse(response, jsonObject);
             } else {
-                response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("request error");
+                jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+                HttpUtil.writeJsonResponse(response, jsonObject);
             }
         } else {
-            response.setStatus(HttpStatus.SC_BAD_REQUEST);
-            response.getWriter().write("bad request");
+            jsonObject = HttpUtil.setJsonResponse(jsonObject, "bad request", HttpStatus.SC_BAD_REQUEST);
+            HttpUtil.writeJsonResponse(response, jsonObject);
         }
     }
 

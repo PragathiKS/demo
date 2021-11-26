@@ -8,7 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 public class EquipmentUpdateFormBean {
 
     private String equipmentId;
+
+    private String serialNumber;
     private String comments;
+
+    private String reportedBy;
 
     private String country;
     private String oldCountry;
@@ -35,8 +39,16 @@ public class EquipmentUpdateFormBean {
         return equipmentId;
     }
 
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
     public String getComments() {
         return comments;
+    }
+
+    public String getReportedBy() {
+        return reportedBy;
     }
 
     public boolean isValid() {
