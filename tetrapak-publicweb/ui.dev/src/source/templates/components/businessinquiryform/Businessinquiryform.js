@@ -142,6 +142,7 @@ class Businessinquiryform {
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
     const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
+    const chinabefPardotURL = this.cache.businessformapi.data('china-bef-pardoturl');
     const dataObj = {};
     $.each( requestPayload, function( key, value ) {
       if(isInvalidBusinessAreaOption(key, requestPayload.businessArea)) {
@@ -152,7 +153,12 @@ class Businessinquiryform {
     
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    dataObj['befPardotURL'] = befPardotURL;
+    if(requestPayload.country === 'China' || countryCode ==='cn') {
+      dataObj['pardotUrl'] = chinabefPardotURL;
+    }
+    else {
+      dataObj['pardotUrl'] = befPardotURL;
+    }
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
       dataObj['marketingConsent'] = capitalizeFirstLetter(String(this.root.find(`#befconsentcheckbox`).is(':checked')));
     }
