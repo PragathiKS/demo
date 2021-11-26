@@ -66,11 +66,12 @@ export const getUrlQueryParams = (url) => {
 function _renderEquipmentDetails() {
   const $this = this;
   const { id } = getUrlQueryParams(window.location.href);
+  const equipId = id || this.cache.id;
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'equipmentDetails',
       url: {
-        path: `${$this.cache.detailsApi}/${id}`
+        path: `${$this.cache.detailsApi}/${equipId}`
       },
       target: '.js-equipment-details__content',
       ajaxConfig: {
@@ -94,7 +95,7 @@ function _renderEquipmentDetails() {
         } else {
           data.equipData = data.data[0];
           data.i18nKeys = i18nKeys;
-          $this.cache.id = id;
+          $this.cache.id = equipId;
           $this.cache.serialNumber = data.equipData.manufacturerSerialNumber;
           $this.cache.data = data;
         }
