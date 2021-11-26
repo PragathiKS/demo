@@ -74,9 +74,9 @@ function _getDropdownData($this) {
       $this.cache.lineData = resLine[0].data.map(item => ({ key: item.lineCode, desc: item.lineDescription }));
 
       _renderLayout($this);
-    }).fail(() => {
-      $this.cache.$contentWrapper.removeClass('d-none');
-      $this.cache.$spinner.addClass('d-none');
+    }).fail(e => {
+      logger.error(e);
+      _renderLayout($this);
     });
   });
 }
@@ -170,14 +170,10 @@ class AddEquipment {
           $this.addErrorMsg(this);
         }
       });
-
       if (isFormValid) {
         $this.cache.$contentWrapper.addClass('d-none');
         $this.cache.$spinner.removeClass('d-none');
         $this.submitForm(e);
-        // setTimeout(() => {
-        //   $this.renderSubmit();
-        // }, 2000);
       }
     });
 
@@ -281,10 +277,10 @@ class AddEquipment {
     const isFileUploaded = $this.cache.files.length ? 1 : 0;
     fields.each(function () {
       if (isFileUploaded) {
-        $(this).find('input, select').removeAttr('required');
+        $(this).find('input, select, textarea').removeAttr('required');
         $this.removeErrorMsg($(this).find('.error-msg'));
       } else {
-        $(this).attr('required', true);
+        $(this).find('input, select, textarea').attr('required', true);
       }
     });
   }
