@@ -56,12 +56,16 @@
   <meta data-sly-test="${properties['jcr:description']}" property="og:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="${digitalDataModel.currentPageURL}"/>
-  <meta data-sly-test="${thumbnailConfigModel.valid}" property="og:image" content="${thumbnailConfigModel.openGraphImagePath}"/>
   <meta data-sly-test="${properties['jcr:description']}" name="twitter:description" content="${properties['jcr:description'] @ context='scriptComment'}"/>
-    <meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
-    <meta name="twitter:site" content="@tetrapak" />
-    <meta name="twitter:card" content="summary" />
-    <meta data-sly-test="${thumbnailConfigModel.valid}" name="twitter:image" content="${thumbnailConfigModel.openGraphImagePath}"/>
+  <meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
+  <meta name="twitter:site" content="@tetrapak" />
+  <meta name="twitter:card" content="summary" />
+
+  <sly data-sly-test="${thumbnailConfigModel.valid}"
+       data-sly-use.dynamicMetaImage="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=thumbnailConfigModel.openGraphImagePath}">
+    <meta property="og:image" content="${dynamicMetaImage.desktopUrl}"/>
+    <meta name="twitter:image" content="${dynamicMetaImage.desktopUrl}"/>
+  </sly>
 
     <sly data-sly-include="customheaderlibs.html"></sly>
      <sly data-sly-call="${headlibRenderer.headlibs @
