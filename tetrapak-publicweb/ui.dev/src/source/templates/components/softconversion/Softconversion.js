@@ -230,6 +230,7 @@ class Softconversion {
       const countryCookie= storageUtil.getCookie('countryValue');
       const apiPayload =  {};
       apiPayload.email = storageUtil.getCookie('visitor-mail');
+      apiPayload.country = countryCookie;
       apiPayload.language = this.root.find(`#site_language_${this.cache.$componentName}`).val();
       apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
       apiPayload.pardot_extra_field = '';
