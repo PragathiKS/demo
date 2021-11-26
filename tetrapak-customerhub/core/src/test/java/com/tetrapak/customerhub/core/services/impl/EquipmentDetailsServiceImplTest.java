@@ -1,14 +1,12 @@
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
+import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.junit.Before;
@@ -23,7 +21,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -57,8 +54,8 @@ public class EquipmentDetailsServiceImplTest {
 
     @Test
     public void testAddEquipmentResponseNotNull() {
-        EquipmentResponse response = equipmentDetailsService.editEquipment(bean, StringUtils.EMPTY);
-        assertNotNull("Should return non null", response);
+        JsonObject jsonObject = equipmentDetailsService.editEquipment("mockUserId", bean, StringUtils.EMPTY);
+        assertNotNull("Should return non null", jsonObject);
     }
 
     private String readFileFromPath(String path) throws IOException {

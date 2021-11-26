@@ -1,6 +1,6 @@
 package com.tetrapak.customerhub.core.services;
 
-import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
+import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 
 /**
@@ -8,6 +8,6 @@ import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
  */
 public interface EquipmentDetailsService {
 
-    EquipmentResponse editEquipment(final EquipmentUpdateFormBean bean, String token);
+    JsonObject editEquipment(String userId, final EquipmentUpdateFormBean bean, String token);
 
 }

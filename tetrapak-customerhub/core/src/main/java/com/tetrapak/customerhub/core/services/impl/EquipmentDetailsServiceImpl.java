@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentApiUpdateRequestBean;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentMetaData;
-import com.tetrapak.customerhub.core.beans.equipment.EquipmentResponse;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
@@ -34,21 +33,21 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
     private APIGEEService apigeeService;
 
     @Override
-    public EquipmentResponse editEquipment(EquipmentUpdateFormBean bean, String token) {
+    public JsonObject editEquipment(String userId, EquipmentUpdateFormBean bean, String token) {
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REQUEST_UPDATE);
 
         Gson gson = new Gson();
-        String apiJsonBean = gson.toJson(convertFormToApiJson(bean));
-        JsonObject jsonResponse = HttpUtil.sendAPIGeePostWithEntity(url, token, apiJsonBean);
-        return gson.fromJson(jsonResponse, EquipmentResponse.class);
+        String apiJsonBean = gson.toJson(convertFormToApiJson(userId, bean));
+        return HttpUtil.sendAPIGeePostWithEntity(url, token, apiJsonBean);
     }
 
-    private EquipmentApiUpdateRequestBean convertFormToApiJson(EquipmentUpdateFormBean bean) {
+    private EquipmentApiUpdateRequestBean convertFormToApiJson(String userId, EquipmentUpdateFormBean bean) {
         EquipmentApiUpdateRequestBean requestBean = new EquipmentApiUpdateRequestBean();
-
+        requestBean.setReportedBy(userId);
         requestBean.setEquipmentNumber(bean.getEquipmentId());
+        requestBean.setSerialNumber(bean.getSerialNumber());
         requestBean.setComment(bean.getComments());
         requestBean.setSource("tetrapak-customerhub");
         requestBean.setMetaDatas(createCollectionOfMetadatas(bean));
