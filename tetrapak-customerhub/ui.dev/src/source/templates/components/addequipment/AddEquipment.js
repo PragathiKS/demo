@@ -5,6 +5,9 @@ import auth from '../../../scripts/utils/auth';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 
+/**
+ * Render form
+ */
 function _renderLayout($this) {
   render.fn({
     template: 'addEquipmentForm',
@@ -15,6 +18,9 @@ function _renderLayout($this) {
     $this.cache.$spinner.addClass('d-none');
   });
 }
+/**
+ * Fetch dropdown options
+ */
 function _getDropdownData($this) {
   auth.getToken(({ data: authData }) => {
     $.when(ajaxWrapper
@@ -80,6 +86,9 @@ function _getDropdownData($this) {
     });
   });
 }
+/**
+ * Render form or fetch dat for dropdowns
+ */
 function _renderForm() {
   const $this = this;
   if ($this.cache.countryData && $this.cache.countryData.length &&
@@ -91,6 +100,9 @@ function _renderForm() {
     _getDropdownData($this);
   }
 }
+/**
+ * Render files after upload
+ */
 function _renderFiles() {
   const $this = this;
   const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.dragAndDropRemoveFileLabel }));
@@ -100,6 +112,9 @@ function _renderFiles() {
     data: obj
   });
 }
+/**
+ * Render submit form
+ */
 function _renderSubmit() {
   const $this = this;
   render.fn({
@@ -181,6 +196,11 @@ class AddEquipment {
       $this.cache.$contentWrapper.addClass('d-none');
       $this.cache.$spinner.removeClass('d-none');
       $this.renderForm();
+    });
+
+    $this.root.on('blur', 'textarea', (e) => {
+      const sanitized = e.target.value.replace(/<\/?script>|[<>]/gm, '');
+      $(e.target).val(sanitized);
     });
   }
   submitForm(e) {
