@@ -5,12 +5,14 @@ import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -36,6 +38,9 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentDetailsServlet.class);
 
     @Reference
+    private transient XSSAPI xssAPI;
+
+    @Reference
     private EquipmentDetailsService equipmentDetailsService;
 
     @Override
@@ -51,8 +56,10 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
             return;
         }
 
+        String requestString = xssAPI.getValidJSON(IOUtils.toString(request.getReader()), StringUtils.EMPTY);
+
         Gson gson = new Gson();
-        EquipmentUpdateFormBean bean = gson.fromJson(request.getReader(), EquipmentUpdateFormBean.class);
+        EquipmentUpdateFormBean bean = gson.fromJson(requestString, EquipmentUpdateFormBean.class);
         final String token = getAuthTokenValue(request);
 
         if (bean != null && bean.isValid() && StringUtils.isNotEmpty(token)) {
