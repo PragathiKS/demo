@@ -2,13 +2,11 @@ package com.tetrapak.publicweb.core.models;
 
 import com.day.cq.commons.LanguageUtil;
 import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -23,9 +21,6 @@ public class ThumbnailConfigModel {
     private static final String IMAGE_PATH_PROPERTY_NAME = "imagePath";
     private static final String HASH_SIGN = "#";
 
-    @SlingObject
-    private SlingHttpServletRequest request;
-
     @Inject
     private Resource resource;
 
@@ -39,8 +34,7 @@ public class ThumbnailConfigModel {
 
     @PostConstruct
     private void init() {
-        String path = StringUtils.defaultString(resolvePathFromPageProperties(), resolvePathFromLanguagePage());
-        this.openGraphImagePath = LinkUtils.sanitizeLink(path, request);
+        this.openGraphImagePath = StringUtils.defaultString(resolvePathFromPageProperties(), resolvePathFromLanguagePage());
     }
 
     public boolean isValid() {
