@@ -324,13 +324,13 @@ pipeline {
                 }
     }
 
-    def precheck() {
+   // def precheck() {
 
-        if ((params.DeployCommons && ${Snapshot_Commons}="") || (params.DeployMyTetrapak && ${Snapshot_MyTetrapak}="") || (params.DeployPublicWeb && ${Snapshot_PublicWeb}=""))
+     //   if ((params.DeployCommons && ${Snapshot_Commons}="") || (params.DeployMyTetrapak && ${Snapshot_MyTetrapak}="") || (params.DeployPublicWeb && ${Snapshot_PublicWeb}=""))
 
-				{
-				echo "Please fill Snapshot Version field"
-				currentBuild.result = 'Failure'
-				error "Failed...Exiting now...."
-                }
-				}
+//				{
+//				echo "Please fill Snapshot Version field"
+//				currentBuild.result = 'Failure'
+//				error "Failed...Exiting now...."
+//                }
+//				}
