@@ -5,17 +5,25 @@ import auth from '../../../scripts/utils/auth';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 
+export const getUrlQueryParams = (url) => {
+  const params = {};
+  url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+    return params[key] = value;
+  });
+  return params;
+};
 
 /**
  * Fetch and render the Equipment Details
  */
 function _renderEquipmentDetails() {
   const $this = this;
+  const { id } = getUrlQueryParams(window.location.href);
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'equipmentDetails',
       url: {
-        path: $this.cache.detailsApi + '/8000000930' // TODO: id will be passed by URL param.
+        path: `${$this.cache.detailsApi}/${id || '8000000930'}`
       },
       target: '.js-equipment-details__content',
       ajaxConfig: {
