@@ -28,6 +28,14 @@
                     </column>
                 </items>
             </design>
+            <apiurl
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Pardot Config"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldDescription="Provide pardot businessInquiry form URL. Valid URL starts with - https://go.tetrapak.com/"
+                    fieldLabel="Pardot form handler URL"
+                    name="./befPardotURL"
+                    required="{Boolean}true"/>
         </items>
     </content>
 </jcr:root>

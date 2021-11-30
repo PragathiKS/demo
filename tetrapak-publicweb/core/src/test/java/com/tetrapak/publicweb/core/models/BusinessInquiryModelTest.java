@@ -79,13 +79,12 @@ public class BusinessInquiryModelTest {
 		pardotService = new PardotServiceImpl();
 		context.load().json(TEST_RESOURCE_CONTENT, TEST_CONTENT_ROOT);
 		context.load().json(TEST_RESOURCE_CFM, COUNTRIES_ROOT);
-		context.load().json("/businessinquiryform/tags.json", "/content/cq:tags/tetrapak");
+		context.load().json("/businessinquiryform/tags.json", "/content/cq:tags/pardot-system-config");
 
 		context.addModelsForClasses(modelClass);
 		context.registerService(PardotService.class, pardotService);
 		// context.registerInjectActivateService(countryDetailService);
 		final Map<String, Object> pardotConfig = new HashMap<>();
-		pardotConfig.put("pardotBusinessInquiryServiceUrl", "http://pardotURL");
 		MockOsgi.activate(context.getService(PardotService.class), context.bundleContext(), pardotConfig);
 
 		countryDetailService = new CountryDetailServiceImpl();
@@ -126,13 +125,25 @@ public class BusinessInquiryModelTest {
 				"/content/tetrapak/publicweb/gb/en/contact-us/jcr:content/businessinquiryform.pardotbusinessenquiry.json",
 				model.getApiUrl());
 		assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
-		assertEquals("Form", "tetrapak:job-title", model.getFormConfig().getProfileTags());
+		assertEquals("Form", "pardot-system-config:job-title", model.getFormConfig().getPardotSystemConfigTags()[0]);
+		assertEquals("Form", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt", model.getBefPardotURL());
 	}
 	
 	@Test
 	public void testTagTitles() {
-	    assertEquals("Form", true, model.getTagTitles().containsValue("Sustainability"));
+	    assertEquals("Form", true, model.getTagTitles().containsValue("Associate"));
 	}
+
+	@Test
+	public void testTagFunctions() {
+		assertEquals("Form", true, model.getTagFunctions().containsValue("Administrative"));
+	}
+
+	@Test
+	public void testTagProcessingRoles() {
+		assertEquals("Form", true, model.getTagProcessingRoles().containsValue("Consultant"));
+	}
+
 
 	/**
 	 * Test fetch language.

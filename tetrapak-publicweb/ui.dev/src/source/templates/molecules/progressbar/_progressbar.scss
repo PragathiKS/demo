@@ -48,6 +48,14 @@ ul.pw-progressbar_wrapper {
                     display: none;
                 }
             }
+
+            .stepname {
+                display: block;
+                color: $color-congress-blue;
+                font-size: $font-xs;
+                font-weight: 500;
+                margin-top: $margin-xss;
+            }
         }
 
         &.done {

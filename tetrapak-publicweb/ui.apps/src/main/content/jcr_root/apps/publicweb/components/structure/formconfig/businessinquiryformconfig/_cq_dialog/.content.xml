@@ -79,8 +79,8 @@
                                 name="./alt"/>
                             <tags
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldDescription="Position/Job titles displayed based on tag selected. Select 'Job Title' tag."
+                                sling:resourceType="cq/gui/components/common/tagspicker"
+                                fieldDescription="Position/Job titles, Function and Processing roles displayed based on tag selected. Select 'Job Title', 'Function' and 'Processing Roles' tag."
                                 fieldLabel="Tags"
                                 name="./tags"
                                 rootPath="/content/cq:tags/pardot-system-config"
