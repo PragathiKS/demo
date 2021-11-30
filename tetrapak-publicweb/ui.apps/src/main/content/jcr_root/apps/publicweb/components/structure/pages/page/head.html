@@ -62,7 +62,7 @@
   <meta name="twitter:card" content="summary" />
 
   <sly data-sly-test="${thumbnailConfigModel.valid}"
-       data-sly-use.dynamicMetaImage="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=thumbnailConfigModel.openGraphImagePath}">
+       data-sly-use.dynamicMetaImage="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=thumbnailConfigModel.openGraphImagePath, componentName='thumbnailConfig'}">
     <meta property="og:image" content="${dynamicMetaImage.desktopUrl}"/>
     <meta name="twitter:image" content="${dynamicMetaImage.desktopUrl}"/>
   </sly>
