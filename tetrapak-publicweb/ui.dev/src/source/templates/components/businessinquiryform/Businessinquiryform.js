@@ -235,11 +235,11 @@ class Businessinquiryform {
     if(checkedItems.length === 0) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
-      self.setRequestPayload('');
+      self.setRequestPayload('', '');
     } else if(checkedItems.length === 1) {
       $(step1Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
       $(step2Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
-      self.setRequestPayload(labelItems[0]);
+      self.setRequestPayload(labelItems[0] , checkedItems[0]);
       if(checkedItems[0].toLowerCase() === 'packaging' || checkedItems[0].toLowerCase() === 'services') {
         $('.summary-interest').addClass('show');
         $('.summary-packaging').removeClass('show');
@@ -248,11 +248,11 @@ class Businessinquiryform {
     } else if(checkedItems.length === 2) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
-      self.setRequestPayload(labelItems.join(' and '));
+      self.setRequestPayload(labelItems.join(' and '), checkedItems.join(' and '));
       $('.summary-packaging').removeClass('show');
       $('.summary-interest').removeClass('show');
     } else if(checkedItems.length === 3) {
-      self.setRequestPayload(labelItems.join(' , '));
+      self.setRequestPayload(labelItems.join(' , '), checkedItems.join(' , '));
       $('.summary-packaging').removeClass('show');
       $('.summary-interest').removeClass('show');
     }
@@ -267,14 +267,14 @@ class Businessinquiryform {
     }
   }
 
-  setRequestPayload = (val) => {
+  setRequestPayload = (lbl , val) => {
     const { requestPayload } = this.cache;
     if(val.indexOf(',') > 0){
       requestPayload['businessArea'] = 'All 3';
     } else {
       requestPayload['businessArea'] = val;
     }
-    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
+    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(lbl);
   }
 
   resetBusinessIntFields = () => {
