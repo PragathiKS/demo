@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
 import { isExternal } from '../../../scripts/utils/updateLink';
-import { validateFieldsForTags, isMobileMode, storageUtil, capitalizeFirstLetter } from '../../../scripts/common/common';
+import { validateFieldsForTags, isMobileMode, storageUtil, capitalizeFirstLetter, removeParams } from '../../../scripts/common/common';
 import { makeLoad, changeStepNext, loadDownloadReady, downloadLinkTrack, changeStepError } from './softconversion.analytics.js';
 
 class Softconversion {
@@ -312,7 +313,6 @@ class Softconversion {
     else {
       apiPayload.pardotUrl = pardotUrl;
     }
-    apiPayload.pageurl = this.cache.requestPayload['pageurl'];
     
     // IF UTM fields in URL
     const params = {};
@@ -323,14 +323,20 @@ class Softconversion {
     Object.keys(params).forEach(key => {
       if(key === 'utm_campaign') {
         apiPayload['utm_campaign'] = params[key];
+        apiPayload.pageurl = removeParams('utm_campaign');
       } else if(key === 'utm_content') {
         apiPayload['utm_content'] = params[key];
+        apiPayload.pageurl = removeParams('utm_content');
       } else if(key === 'utm_medium') {
         apiPayload['utm_medium'] = params[key];
+        apiPayload.pageurl = removeParams('utm_medium');
       } else if(key === 'utm_source') {
         apiPayload['utm_source'] = params[key];
+        apiPayload.pageurl = removeParams('utm_source');
       }
     });
+
+    console.log('Hiren Parmar Request Payload Softconversion', apiPayload);
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
