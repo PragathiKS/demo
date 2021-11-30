@@ -152,7 +152,7 @@ class Businessinquiryform {
     
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    dataObj['befPardotURL'] = befPardotURL;
+    dataObj['pardotUrl'] = befPardotURL;
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
       dataObj['marketingConsent'] = capitalizeFirstLetter(String(this.root.find(`#befconsentcheckbox`).is(':checked')));
     }
@@ -209,6 +209,7 @@ class Businessinquiryform {
     const self = this;
     const { $businessInterest } = this.cache;
     const checkedItems = [];
+    const labelItems = [];
     const step1Btn = $('#bef-step-1 .step1Btn');
     const step2Btn = $('#bef-step-2 .step2Btn');
     $('#businessEnquiryMessageText').attr('placeholder', $('#messageBoxDiv').attr('data-general-placeholder'));
@@ -216,21 +217,23 @@ class Businessinquiryform {
     $businessInterest.each(function() {
       if($(this).prop('checked')) {
         checkedItems.push($(this).val());
+        labelItems.push($(this).attr('data-baoi'));
       } else {
         const index = checkedItems.indexOf($(this).val());
         if (index > -1) {
           checkedItems.splice(index, 1);
+          labelItems.splice(index, 1);
         }
       }
     });
     if(checkedItems.length === 0) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
-      self.setRequestPayload('');
+      self.setRequestPayload('', '');
     } else if(checkedItems.length === 1) {
       $(step1Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
       $(step2Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
-      self.setRequestPayload(checkedItems[0]);
+      self.setRequestPayload(labelItems[0] , checkedItems[0]);
       if(checkedItems[0].toLowerCase() === 'packaging' || checkedItems[0].toLowerCase() === 'services') {
         $('.summary-interest').addClass('show');
         $('.summary-packaging').removeClass('show');
@@ -239,15 +242,15 @@ class Businessinquiryform {
     } else if(checkedItems.length === 2) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
-      self.setRequestPayload(checkedItems.join(' and '));
+      self.setRequestPayload(labelItems.join(' and '), checkedItems.join(' and '));
       $('.summary-packaging').removeClass('show');
       $('.summary-interest').removeClass('show');
     } else if(checkedItems.length === 3) {
-      self.setRequestPayload(checkedItems.join(' , '));
+      self.setRequestPayload(labelItems.join(' , '), checkedItems.join(' , '));
       $('.summary-packaging').removeClass('show');
       $('.summary-interest').removeClass('show');
     }
-    if(checkedItems.length === 1 && checkedItems[0].toLowerCase() === 'processing'){
+    if(checkedItems.length === 1 && checkedItems[0].toLowerCase() === 'processing') {
       $('#businessEnquiryMessageText').attr('placeholder', $('#processingCheckboxDiv').attr('data-processing-msg-placeholder-text'));
       $('.summary-packaging').addClass('show');
       $('.summary-interest').removeClass('show');
@@ -258,15 +261,14 @@ class Businessinquiryform {
     }
   }
 
-  setRequestPayload = (val) => {
+  setRequestPayload = (lbl , val) => {
     const { requestPayload } = this.cache;
     if(val.indexOf(',') > 0){
       requestPayload['businessArea'] = 'All 3';
     } else {
       requestPayload['businessArea'] = val;
-      val = val.replace('and',',');
     }
-    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
+    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(lbl);
   }
 
   resetBusinessIntFields = () => {
