@@ -14,13 +14,11 @@ export const getUrlQueryParams = (url) => {
   return params;
 };
 
-/* eslint-disable */
-
 /**
  * Fetch and render countries and statuses
  */
 
- function _renderEquipInfoCardWithData() {
+function _renderEquipInfoCardWithData() {
   this.cache.$spinner.removeClass('d-none');
   auth.getToken(({ data: authData }) => {
     $.when(ajaxWrapper
@@ -32,33 +30,31 @@ export const getUrlQueryParams = (url) => {
         contentType: 'application/json',
         beforeSend(jqXHR) {
           jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         showLoader: true
       }), ajaxWrapper.getXhrObj({
-        url: this.cache.statusApi,
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        },
-        showLoader: true
-      })).then((res1, res2) => {
-        this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
-        this.cache.statuses = res2[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
-        this.cache.$spinner.addClass('d-none');
-        this.cache.$contentWrapper.removeClass('d-none');
-        this.renderEquipInfoCard({update: true});
-      }).fail(() => {
-        this.cache.$contentWrapper.removeClass('d-none');
-        this.cache.$spinner.addClass('d-none');
-      });
+      url: this.cache.statusApi,
+      method: ajaxMethods.GET,
+      cache: true,
+      dataType: 'json',
+      contentType: 'application/json',
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      },
+      showLoader: true
+    })).then((res1, res2) => {
+      this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
+      this.cache.statuses = res2[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
+      this.cache.$spinner.addClass('d-none');
+      this.cache.$contentWrapper.removeClass('d-none');
+      this.renderEquipInfoCard({update: true});
+    }).fail(() => {
+      this.cache.$contentWrapper.removeClass('d-none');
+      this.cache.$spinner.addClass('d-none');
+    });
   });
-  return params;
-};
+}
 
 /**
  * Fetch and render the Equipment Details
@@ -66,19 +62,17 @@ export const getUrlQueryParams = (url) => {
 function _renderEquipmentDetails() {
   const $this = this;
   const { id } = getUrlQueryParams(window.location.href);
-  const equipId = id || this.cache.id;
   auth.getToken(({ data: authData }) => {
     render.fn({
       template: 'equipmentDetails',
       url: {
-        path: `${$this.cache.detailsApi}/${equipId}`
+        path: `${$this.cache.detailsApi}/${id}`
       },
       target: '.js-equipment-details__content',
       ajaxConfig: {
         method: ajaxMethods.GET,
         beforeSend(jqXHR) {
           jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         },
         cache: true,
         showLoader: true,
@@ -90,12 +84,14 @@ function _renderEquipmentDetails() {
         if (!data) {
           this.data = data = {
             isError: true,
+            message: 'couldn\'t fetch equipment due to no id passed. Please provide id param in url',
             i18nKeys
           };
+          data.isError = true;
         } else {
           data.equipData = data.data[0];
           data.i18nKeys = i18nKeys;
-          $this.cache.id = equipId;
+          $this.cache.id = id;
           $this.cache.serialNumber = data.equipData.manufacturerSerialNumber;
           $this.cache.data = data;
         }
@@ -132,9 +128,7 @@ function  _renderEquipInfoCard(view) {
 }
 
 function  _renderEquipUpdateModal() {
-  const $this = this;
-  const { $modal, i18nKeys } = $this.cache;
-  const $form = $this.cache.$contentWrapper.find('.js-equipment-details__form');
+  const { $modal, i18nKeys } = this.cache;
 
   render.fn({
     template: 'equipmentDetailsConfirm',
@@ -152,10 +146,10 @@ function _bindFormChangeEvents() {
   const $form = $this.cache.$contentWrapper.find('.js-equipment-details__form');
   const $formInputs = $form.find('input, textarea');
   const $updateBtn = $form.find('.js-equipment-details__req-update');
-  let initialFormData = $form.serialize();
+  const initialFormData = $form.serialize();
   let formData = '';
 
-  $formInputs.each((index, item) => {
+  $formInputs.each((_, item) => {
     const $input = $(item);
     $input.on('change input', () => {
       formData = $form.serialize();
@@ -166,8 +160,6 @@ function _bindFormChangeEvents() {
       }
     });
   });
-
-  console.log($form.serialize());
 }
 
 class EquipmentDetails {
@@ -187,7 +179,7 @@ class EquipmentDetails {
     this.cache.$modal = this.root.parent().find('.js-update-modal');
     this.cache.countryData = [];
     this.cache.formData = {};
-    this.cache.id = '8000000930';
+    this.cache.id;
     this.cache.statuses = [];
     this.cache.$updateBtn = this.root.find('.js-equipment-details__req-make-update');
 
@@ -200,23 +192,18 @@ class EquipmentDetails {
   }
 
   bindEvents() {
-    this.root.on('click', '.js-equipment-details__update',  (e) => {
+    this.root.on('click', '.js-equipment-details__update',  () => {
       this.renderEquipInfoCardWithData();
     });
 
-    this.root.on('click', '.js-equipment-details__cancel',  (e) => {
+    this.root.on('click', '.js-equipment-details__cancel',  () => {
       this.renderEquipInfoCard({view: true});
     });
 
-    // this.root.on('click', '.js-equipment-details__thanks',  (e) => {
-    //   this.renderEquipInfoCard({confirmed: true});
-    // });
-
     this.root.on('blur', 'textarea', (e) => {
-      console.log('blur textarea: ', e);
-      let sanitized = e.target.value.replace(/<\/?script>|[<>]/gm, "");
+      const sanitized = e.target.value.replace(/<\/?script>|[<>]/gm, '');
       $(e.target).val(sanitized);
-    })
+    });
 
     this.root.on('click', '.js-equipment-details__req-update',  (e) => {
       e.preventDefault();
@@ -224,7 +211,7 @@ class EquipmentDetails {
       const { equipData } = this.cache.data;
       this.cache.formData = {
         equipmentId: this.cache.id,
-        oldCountry: equipData.countryName,
+        oldCountry: this.cache.countryData.find(country => country.desc === equipData.countryName)?.key,
         oldLocation: equipData.location,
         oldSiteName: equipData.siteName,
         oldLineName: equipData.lineName,
@@ -233,11 +220,11 @@ class EquipmentDetails {
         oldEquipmentTypeDesc: equipData.equipmentTypeDesc,
         ...data,
         serialNumber: this.cache.serialNumber
-      }
+      };
       this.renderEquipUpdateModal();
     });
 
-    this.root.on('click', '.js-equipment-details__req-make-update',  (e) => {
+    this.root.on('click', '.js-equipment-details__req-make-update',  () => {
       this.cache.$spinner.removeClass('d-none');
       const submitApi = this.cache.submitApi;
       auth.getToken(({ data: authData }) => {
@@ -254,8 +241,10 @@ class EquipmentDetails {
             },
             showLoader: true
           }).done(res => {
-            console.log('res: ', res);
             this.cache.$spinner.addClass('d-none');
+            if(![200, 201].includes(res.status)) {
+              $('.js-equipment-details__error').removeClass('d-none');
+            }
             this.cache.$contentWrapper.removeClass('d-none');
             this.cache.$modal.modal('hide');
             this.renderEquipInfoCard({confirmed: true});
