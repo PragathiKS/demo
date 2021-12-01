@@ -12,6 +12,7 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.sling.xss.XSSFilter;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
@@ -33,6 +34,9 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
     @Reference
     private APIGEEService apigeeService;
 
+    @Reference
+    private XSSFilter xssFilter;
+
     @Override
     public JsonObject editEquipment(String userId, EquipmentUpdateFormBean bean, String token) {
 
@@ -47,9 +51,9 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
     private EquipmentApiUpdateRequestBean convertFormToApiJson(String userId, EquipmentUpdateFormBean bean) {
         EquipmentApiUpdateRequestBean requestBean = new EquipmentApiUpdateRequestBean();
         requestBean.setReportedBy(userId);
-        requestBean.setEquipmentNumber(bean.getEquipmentId());
-        requestBean.setSerialNumber(bean.getSerialNumber());
-        requestBean.setComment(bean.getComments());
+        requestBean.setEquipmentNumber(xssFilter.filter(bean.getEquipmentId()));
+        requestBean.setSerialNumber(xssFilter.filter(bean.getSerialNumber()));
+        requestBean.setComment(xssFilter.filter(bean.getComments()));
         requestBean.setSource(TETRAPAK_CUSTOMERHUB);
         requestBean.setMetaDatas(createCollectionOfMetadatas(bean));
 
@@ -60,14 +64,19 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
 
         List metadatas = new ArrayList();
 
-        metadatas.add(bean.getCountryMetadata());
-        metadatas.add(bean.getLocationMetadata());
-        metadatas.add(bean.getSiteMetadata());
-        metadatas.add(bean.getLineMetadata());
-        metadatas.add(bean.getStatusMetadata());
-        metadatas.add(bean.getPositionMetadata());
-        metadatas.add(bean.getDescriptionMetadata());
+        metadatas.add(filteredEquipmentMetadata(bean.getCountryMetadata()));
+        metadatas.add(filteredEquipmentMetadata(bean.getLocationMetadata()));
+        metadatas.add(filteredEquipmentMetadata(bean.getSiteMetadata()));
+        metadatas.add(filteredEquipmentMetadata(bean.getLineMetadata()));
+        metadatas.add(filteredEquipmentMetadata(bean.getStatusMetadata()));
+        metadatas.add(filteredEquipmentMetadata(bean.getPositionMetadata()));
+        metadatas.add(filteredEquipmentMetadata(bean.getDescriptionMetadata()));
 
         return metadatas;
+    }
+
+    private EquipmentMetaData filteredEquipmentMetadata(EquipmentMetaData metaData) {
+        return new EquipmentMetaData(metaData.getMetaDataName(), xssFilter.filter(metaData.getMetaDataActualValue()),
+                xssFilter.filter(metaData.getMetaDataRequestedValue()));
     }
 }
