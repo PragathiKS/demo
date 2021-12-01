@@ -242,7 +242,7 @@ class Businessinquiryform {
     } else if(checkedItems.length === 2) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
-      self.setRequestPayload(labelItems.join(' and '), checkedItems.join(' and '));
+      self.setRequestPayload(labelItems.join(' , '), checkedItems.join(' and '));
       $('.summary-packaging').removeClass('show');
       $('.summary-interest').removeClass('show');
     } else if(checkedItems.length === 3) {
