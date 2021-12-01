@@ -41,6 +41,10 @@
                 <div class="tp-equipment-details__info-cell-1">{{i18n key=i18nKeys.equipmentDescription}}</div>
                 <div class="tp-equipment-details__info-cell-2">{{formData.equipmentTypeDesc}}</div>
             </div>
+            <div class="js-equipment-details__error tp-equipment-details__error d-none">
+                {{i18n key="cuhu.error.message"}}
+                Failure of sent data, please try again
+            </div>
         </div>
         <div class="modal-footer tpmol-modal-footer">
             {{> atoms/buttons/button/button text=i18nKeys.makeUpdates modifier="primary" jsClass="js-equipment-details__req-make-update"}}

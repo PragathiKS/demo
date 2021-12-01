@@ -1,5 +1,9 @@
 <h1 class="tp-equipment-details__title" auto_locator="equipmentHeading">
-    {{equipData.equipmentName}} - {{equipData.manufacturerSerialNumber}}
+    {{#if isError}}
+        No equipment data fetched
+    {{else}}
+        {{equipData.equipmentName}} - {{equipData.manufacturerSerialNumber}}
+    {{/if}}
 </h1>
 <div class="row tp-equipment-details__info-card-row">
     <div class="col-lg-6 tp-equipment-details__info-card-col">
@@ -32,17 +36,24 @@
                 <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentDescription}}</div>
                 <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.equipmentTypeDesc}}</div>
             </div>
-            <div class="tp-equipment-details__action-wrap">
-                <button type="button" class="tp-equipment-details__btn js-equipment-details__update">
-                    <span>{{i18n key=i18nKeys.updateEquipmentInformation}}</span>
-                    <i class="icon icon-Edit"></i>
-                </button>
-            </div>
-            <div class="tp-equipment-details__note">
-                <span>Note: {{i18n key=i18nKeys.equipmentDetails-statusUpdateHeading}}</span>
-                {{i18n key=i18nKeys.equipmentDetails-statusUpdateDescription}}
-
-            </div>
+            {{#if isError}}
+                {{#if message}}
+                    {{> atoms/error/error error=true message=message}}
+                {{else}}
+                    {{> atoms/error/error error=true message="cuhu.error.message"}}
+                {{/if}}
+            {{else}}
+                <div class="tp-equipment-details__action-wrap">
+                    <button type="button" class="tp-equipment-details__btn js-equipment-details__update">
+                        <span>{{i18n key=i18nKeys.updateEquipmentInformation}}</span>
+                        <i class="icon icon-Edit"></i>
+                    </button>
+                </div>
+                <div class="tp-equipment-details__note">
+                    <span>{{i18n key=i18nKeys.equipmentDetails-statusUpdateHeading}}:</span>
+                    {{i18n key=i18nKeys.equipmentDetails-statusUpdateDescription}}
+                </div>
+            {{/if}}
         </div>
     </div>
 <!--    <div class="col-lg-6 tp-equipment-details__info-card-col">-->

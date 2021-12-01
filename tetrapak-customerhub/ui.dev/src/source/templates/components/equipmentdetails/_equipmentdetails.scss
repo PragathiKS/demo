@@ -94,7 +94,7 @@
     }
 
     &__note {
-        @include margin-top(18px);
+        @include margin-top($margin-md);
 
         span {
             font-weight: 700;
