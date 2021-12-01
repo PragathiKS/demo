@@ -14,20 +14,20 @@
                 <items jcr:primaryType="nt:unstructured">
                     <column1
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Drag and drop - i18n Keys"
+                        jcr:title="Drag and drop"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
                             <title
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="Title (i18N key)"
+                                    fieldLabel="Component title (i18N key)"
                                     name="./title"
                                     required="true"/>
                             <subtitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                    fieldLabel="Subtitle"
+                                    fieldLabel="Component subtitle"
                                     name="./subTitle"
                                     required="true"/>
                             <serialNumberLabel
@@ -72,24 +72,11 @@
                                     fieldLabel="Drag and drop - remove file label (i18N key)"
                                     name="./dragAndDropRemoveFileLabel"
                                     required="true"/>
-
-                            <dragAndDropRemoveFileLabel
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="Drag and drop - remove file label (i18N key)"
-                                    name="./dragAndDropRemoveFileLabel"
-                                    required="true"/>
-                            <dragAndDropRemoveFileLabel
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="Drag and drop - remove file label (i18N key)"
-                                    name="./dragAndDropRemoveFileLabel"
-                                    required="true"/>
                         </items>
                     </column1>
                     <column2
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="Details form - i18n Keys"
+                            jcr:title="Details form"
                             sling:resourceType="granite/ui/components/coral/foundation/container"
                             maximized="{Boolean}true">
                             <items jcr:primaryType="nt:unstructured">
@@ -120,7 +107,7 @@
                                 <siteLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel=" Site label (i18N key)"
+                                        fieldLabel="Site label (i18N key)"
                                         name="./siteLabel"
                                         required="true"/>
                                 <siteErrorMsg
@@ -247,7 +234,7 @@
                     </column2>
                     <column3
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="Submit form - i18n Keys"
+                            jcr:title="Submit form"
                             sling:resourceType="granite/ui/components/coral/foundation/container"
                             maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
