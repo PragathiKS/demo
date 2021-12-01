@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-import { getLinkClickAnalytics, validateFieldsForTags, capitalizeFirstLetter } from '../../../scripts/common/common';
+import { getLinkClickAnalytics, validateFieldsForTags, capitalizeFirstLetter, removeParams } from '../../../scripts/common/common';
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -84,7 +84,7 @@ class Subscriptionform {
     dataObj['site'] = countryCode;
     dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
     dataObj['country'] = this.cache.requestPayload['country'];
-    dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
+    // dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
     if(this.cache.requestPayload['country'] === 'China' || countryCode === 'cn') {
       dataObj['pardotUrl'] = chinapardotURL;
     }
@@ -108,17 +108,24 @@ class Subscriptionform {
       return params[key] = value;
     });
 
+    let pageURL = this.cache.requestPayload['pageurl'];
     Object.keys(params).forEach(key => {
       if(key === 'utm_campaign') {
         dataObj['utm_campaign'] = params[key];
+        pageURL = removeParams('utm_campaign', pageURL);
       } else if(key === 'utm_content') {
         dataObj['utm_content'] = params[key];
+        pageURL = removeParams('utm_content', pageURL);
       } else if(key === 'utm_medium') {
         dataObj['utm_medium'] = params[key];
+        pageURL = removeParams('utm_medium', pageURL);
       } else if(key === 'utm_source') {
         dataObj['utm_source'] = params[key];
+        pageURL = removeParams('utm_source', pageURL);
       }
     });
+
+    dataObj['pageurl'] = pageURL;
     
     ajaxWrapper.getXhrObj({
       url: servletPath,
