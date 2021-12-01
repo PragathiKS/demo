@@ -6,9 +6,12 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -22,6 +25,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -55,7 +59,20 @@ public final class HttpUtil {
     public static JsonObject setJsonResponse(JsonObject jsonResponse, HttpResponse httpResponse) throws IOException {
         String responseString = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
         jsonResponse.addProperty(CustomerHubConstants.RESULT, responseString);
-        jsonResponse.addProperty("status", httpResponse.getStatusLine().getStatusCode());
+        jsonResponse.addProperty(CustomerHubConstants.STATUS, httpResponse.getStatusLine().getStatusCode());
+        return jsonResponse;
+    }
+
+    /**
+     * Method to set json response with custom info.
+     *
+     * @param jsonResponse json response
+     * @param message message
+     * @return jsonResponse json response
+     */
+    public static JsonObject setJsonResponse(JsonObject jsonResponse, String message, int code) {
+        jsonResponse.addProperty(CustomerHubConstants.RESULT, message);
+        jsonResponse.addProperty(CustomerHubConstants.STATUS, code);
         return jsonResponse;
     }
 
@@ -173,6 +190,33 @@ public final class HttpUtil {
             LOGGER.error("InvalidKeyException", e);
         }
         return org.apache.commons.codec.binary.StringUtils.newStringUtf8(enc);
+    }
+
+    public static JsonObject sendAPIGeePostWithEntity(String url, String token, String entity) {
+
+        HttpPost apiRequest = new HttpPost(url);
+
+        apiRequest.addHeader("Authorization", "Bearer " + token);
+        apiRequest.addHeader("Content-Type", "application/json");
+        apiRequest.addHeader("accept", "*/*");
+        apiRequest.setEntity(new StringEntity(entity, StandardCharsets.UTF_8));
+        HttpClient client = HttpClientBuilder.create().build();
+        JsonObject jsonResponse = new JsonObject();
+        try {
+            HttpResponse res = client.execute(apiRequest);
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, res);
+            LOGGER.debug("request sent: " + res.getStatusLine());
+        } catch (UnsupportedEncodingException e) {
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, "Unsupported Encoding", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            LOGGER.error("Unsupported Encoding while sending post request" + e);
+        } catch (ClientProtocolException e) {
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, "ClientProtocolException Error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            LOGGER.error("ClientProtocolException Error while sending post request" + e);
+        } catch (IOException e) {
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, "IO Error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            LOGGER.error("IO Error while sending post request" + e);
+        }
+        return jsonResponse;
     }
 
 }

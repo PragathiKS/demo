@@ -1,7 +1,10 @@
 <sly data-sly-template.equipmentdetails_template="${@ data, flag}">
   <div data-sly-test="${data.isPublishEnvironment}" class="tp-card tp-equipment-details js-equipment-details"
        data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
+       data-country-api="${data.countryApi}"
        data-details-api="${data.equipmentListApi}"
+       data-status-api="${data.statusApi}"
+       data-submit-api="${resource.path}.equipment.json"
        data-module="EquipmentDetails">
 
     <code class="d-none js-equipment-details__config">${data.i18nKeys}</code>
@@ -16,8 +19,9 @@
         ${"cuhu.equipment.backToEquipList" @i18n}
       </a>
 
-      <div class="tp-equipment-details__content js-equipment-details__content"
-           data-list-api="${data.equipmentListApi}"></div>
+      <div class="tp-equipment-details__content js-equipment-details__content"></div>
     </div>
+
+    <div id="equipment-update-modal" class="modal js-update-modal tp-modal fade" tabindex="-1" aria-hidden="true" role="dialog"></div>
   </div>
 </sly>

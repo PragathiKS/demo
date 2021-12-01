@@ -5,13 +5,6 @@ package com.tetrapak.customerhub.core.constants;
  */
 public final class CustomerHubConstants {
 
-    /**
-     * Instantiates a new customer hub constants.
-     */
-    private CustomerHubConstants() {
-        throw new IllegalStateException("Utility class");
-    }
-
     /** The Constant DEFAULT_LOCALE. */
     public static final String DEFAULT_LOCALE = "en";
 
@@ -123,8 +116,8 @@ public final class CustomerHubConstants {
     /** The Constant SPACE. */
     public static final String SPACE = " ";
     
-    /** The Constant EQUALS. */
-    public static final String EQUALS = "=";
+    /** The Constant EQUALS_CHAR. */
+    public static final String EQUALS_CHAR = "=";
     
     /** The Constant QUESTION_MARK. */
     public static final String QUESTION_MARK = "?";
@@ -246,6 +239,15 @@ public final class CustomerHubConstants {
     /** The Constant VALID_FROM_DATE. */
     public static final String VALID_FROM_DATE = "eofsValidFromDate";
 
+    /** The Constant CANCEL. */
+    public static final String CANCEL = "cancel";
+
+    /** The Constant REQUEST_UPDATES. */
+    public static final String REQUEST_UPDATES = "requestUpdates";
+
+    /** The Constant MAKE_UPDATES. */
+    public static final String MAKE_UPDATES = "makeUpdates";
+
     /** The Constant FIRST. */
     public static final String FIRST = "first";
 
@@ -312,5 +314,29 @@ public final class CustomerHubConstants {
     /** The Constant EQUIPMENT_LIST_API. */
     public static final String EQUIPMENT_LIST_API = "myequipment-equipmentlist";
 
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_THANK_YOU_LABEL = "equipmentDetails-ThankYouHeading";
+
+    /** The Constant THANK_YOU_DESCRIPTION . */
+    public static final String EQUIPMENT_THANK_YOU_DESCRIPTION = "equipmentDetails-ThankYouDescription";
+
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_MODAL_CONFIRM_HEADER = "equipmentDetails-modalConfirmHeader";
+
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_MODAL_CONFIRM_TEXT = "equipmentDetails-modalConfirmText";
+
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_STATUS_UPDATE_HEADING = "equipmentDetails-statusUpdateHeading";
+
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_STATUS_UPDATE_DESCRIPTION = "equipmentDetails-statusUpdateDescription";
+
+    /**
+     * Instantiates a new customer hub constants.
+     */
+    private CustomerHubConstants() {
+        throw new IllegalStateException("Utility class");
+    }
 }
 
