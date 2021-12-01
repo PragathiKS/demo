@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
@@ -433,17 +434,17 @@ export const parseQueryString = () => {
 };
 
 // Remove Query Params from URL
-export const removeParams = (parameter) => {
-  var url = document.location.href;
-  var urlparts = url.split('?');
+export const removeParams = (parameter, pageURL) => {
+  console.log('Hiren Parmar Remove Params commons', parameter, pageURL);
+  let url = pageURL ? pageURL:document.location.href;
+  const urlparts = url.split('?');
 
   if (urlparts.length >= 2) {
-    var urlBase = urlparts.shift();
-    var queryString = urlparts.join('?');
-
-    var prefix = encodeURIComponent(parameter)+'=';
-    var pars = queryString.split(/[&;]/g);
-    for (var i = pars.length; i-- > 0;) {
+    const urlBase = urlparts.shift();
+    const queryString = urlparts.join('?');
+    const prefix = encodeURIComponent(parameter)+'=';
+    const pars = queryString.split(/[&;]/g);
+    for (let i = pars.length; i-- > 0;) {
       if (pars[i].lastIndexOf(prefix, 0) !== -1) {
         pars.splice(i, 1);
       }

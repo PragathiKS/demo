@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
@@ -172,24 +171,26 @@ class Businessinquiryform {
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
       return params[key] = value;
     });
+
+    let pageURL = this.cache.requestPayload.pageurl;
     
     Object.keys(params).forEach(key => {
       if(key === 'utm_campaign') {
         dataObj['utm_campaign'] = params[key];
-        dataObj['pageurl'] = removeParams('utm_campaign');
+        pageURL = removeParams('utm_campaign', pageURL);
       } else if(key === 'utm_content') {
         dataObj['utm_content'] = params[key];
-        dataObj['pageurl'] = removeParams('utm_content');
+        pageURL = removeParams('utm_content', pageURL);
       } else if(key === 'utm_medium') {
         dataObj['utm_medium'] = params[key];
-        dataObj['pageurl'] = removeParams('utm_medium');
+        pageURL = removeParams('utm_medium', pageURL);
       } else if(key === 'utm_source') {
         dataObj['utm_source'] = params[key];
-        dataObj['pageurl'] = removeParams('utm_source');
+        pageURL = removeParams('utm_source', pageURL);
       }
     });
 
-    console.log('Hiren Parmar Request Payload HCF', dataObj);
+    dataObj['pageurl'] = pageURL;
     
     ajaxWrapper.getXhrObj({
       url: servletPath,

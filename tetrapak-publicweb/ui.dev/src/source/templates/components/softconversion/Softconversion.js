@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
@@ -241,7 +240,19 @@ class Softconversion {
       else {
         apiPayload.pardotUrl = pardotUrl;
       }
-      apiPayload.pageurl = this.cache.requestPayload['pageurl'];
+      apiPayload.pageurl = this.getPageURL();
+      Object.keys(this.cache.requestPayload).forEach(key => {
+        if(key === 'utm_campaign') {
+          apiPayload['utm_campaign'] = this.cache.requestPayload[key];
+        } else if(key === 'utm_content') {
+          apiPayload['utm_content'] = this.cache.requestPayload[key];
+        } else if(key === 'utm_medium') {
+          apiPayload['utm_medium'] = this.cache.requestPayload[key];
+        } else if(key === 'utm_source') {
+          apiPayload['utm_source'] = this.cache.requestPayload[key];
+        }
+      });
+
       ajaxWrapper.getXhrObj({
         url: servletPath,
         method: ajaxMethods.POST,
@@ -314,29 +325,18 @@ class Softconversion {
       apiPayload.pardotUrl = pardotUrl;
     }
     
-    // IF UTM fields in URL
-    const params = {};
-    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
-      return params[key] = value;
-    });
-
-    Object.keys(params).forEach(key => {
+    apiPayload.pageurl = this.getPageURL();
+    Object.keys(this.cache.requestPayload).forEach(key => {
       if(key === 'utm_campaign') {
-        apiPayload['utm_campaign'] = params[key];
-        apiPayload.pageurl = removeParams('utm_campaign');
+        apiPayload['utm_campaign'] = this.cache.requestPayload[key];
       } else if(key === 'utm_content') {
-        apiPayload['utm_content'] = params[key];
-        apiPayload.pageurl = removeParams('utm_content');
+        apiPayload['utm_content'] = this.cache.requestPayload[key];
       } else if(key === 'utm_medium') {
-        apiPayload['utm_medium'] = params[key];
-        apiPayload.pageurl = removeParams('utm_medium');
+        apiPayload['utm_medium'] = this.cache.requestPayload[key];
       } else if(key === 'utm_source') {
-        apiPayload['utm_source'] = params[key];
-        apiPayload.pageurl = removeParams('utm_source');
+        apiPayload['utm_source'] = this.cache.requestPayload[key];
       }
     });
-
-    console.log('Hiren Parmar Request Payload Softconversion', apiPayload);
 
     ajaxWrapper.getXhrObj({
       url: servletPath,
@@ -365,7 +365,34 @@ class Softconversion {
     loadDownloadReady(this.mainHeading, dataObj, this.cache.$parentComponent);
   }
 
+  getPageURL() {
+    const { requestPayload } = this.cache;
+    const params = {};
+    let pageURL = this.cache.requestPayload['pageurl'];
 
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+      return params[key] = value;
+    });
+    
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        requestPayload['utm_campaign'] = params[key];
+        pageURL = removeParams('utm_campaign', pageURL);
+      } else if(key === 'utm_content') {
+        requestPayload['utm_content'] = params[key];
+        pageURL = removeParams('utm_content', pageURL);
+      } else if(key === 'utm_medium') {
+        requestPayload['utm_medium'] = params[key];
+        pageURL = removeParams('utm_medium', pageURL);
+      } else if(key === 'utm_source') {
+        requestPayload['utm_source'] = params[key];
+        pageURL = removeParams('utm_source', pageURL);
+      }
+    });
+
+    return pageURL;
+  }
+  
   bindEvents() {
     const {requestPayload, $radio, $submitBtn, $componentName, $parentComponent, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn, $dropItem, $partiallyUser } = this.cache;
     
