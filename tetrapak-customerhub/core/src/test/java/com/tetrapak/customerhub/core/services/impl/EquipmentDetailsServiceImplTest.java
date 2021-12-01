@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.sling.xss.XSSFilter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,6 +42,9 @@ public class EquipmentDetailsServiceImplTest {
 
     @Mock
     private HttpResponse response;
+
+    @Mock
+    private XSSFilter mockXssFilter;
 
     @Before
     public void setUp() throws IOException {
