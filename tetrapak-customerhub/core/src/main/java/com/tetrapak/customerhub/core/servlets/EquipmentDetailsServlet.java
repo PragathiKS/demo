@@ -26,7 +26,7 @@ import java.io.IOException;
  * The Class Equipment Servlet.
  */
 @Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-        "sling.servlet.selectors=" + "equipment", "sling.servlet.extensions=" + "json",
+        "sling.servlet.selectors=" + "equipment", "sling.servlet.extensions=" + "html",
         "sling.servlet.resourceTypes=" + "customerhub/components/content/equipmentdetails"
 })
 public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
