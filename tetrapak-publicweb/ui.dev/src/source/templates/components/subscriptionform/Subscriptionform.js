@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-import { getLinkClickAnalytics, validateFieldsForTags } from '../../../scripts/common/common';
+import { getLinkClickAnalytics, validateFieldsForTags, capitalizeFirstLetter, removeParams } from '../../../scripts/common/common';
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -67,13 +67,14 @@ class Subscriptionform {
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
     const pardotURL = this.cache.businessformapi.data('sf-pardot-url');
+    const chinapardotURL = this.cache.businessformapi.data('sf-china-pardot-url');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
     const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
     const langCode = this.cache.businessformapi.data('sf-langcode');
 
     const dataObj = {};
     if($('input[name="consent"]').is(':checked')) {
-      dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
+      dataObj['marketingConsent'] = capitalizeFirstLetter(String($('input[name="consent"]').is(':checked')));
     }
     dataObj['email'] = this.cache.requestPayload[`email-${this.cache.$componentName}`];
     dataObj['firstName'] = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
@@ -83,8 +84,13 @@ class Subscriptionform {
     dataObj['site'] = countryCode;
     dataObj['marketSiteSubscribed'] = marketSiteSubscribed;
     dataObj['country'] = this.cache.requestPayload['country'];
-    dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
-    dataObj['pardotUrl'] = pardotURL;
+    // dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
+    if(this.cache.requestPayload['country'] === 'China' || countryCode === 'cn') {
+      dataObj['pardotUrl'] = chinapardotURL;
+    }
+    else {
+      dataObj['pardotUrl'] = pardotURL;
+    }
     subscriptionAnalytics(
       this.cache.mainHead, {
         'E-mail': 'NA',
@@ -102,17 +108,24 @@ class Subscriptionform {
       return params[key] = value;
     });
 
+    let pageURL = this.cache.requestPayload['pageurl'];
     Object.keys(params).forEach(key => {
       if(key === 'utm_campaign') {
         dataObj['utm_campaign'] = params[key];
+        pageURL = removeParams('utm_campaign', pageURL);
       } else if(key === 'utm_content') {
         dataObj['utm_content'] = params[key];
+        pageURL = removeParams('utm_content', pageURL);
       } else if(key === 'utm_medium') {
         dataObj['utm_medium'] = params[key];
+        pageURL = removeParams('utm_medium', pageURL);
       } else if(key === 'utm_source') {
         dataObj['utm_source'] = params[key];
+        pageURL = removeParams('utm_source', pageURL);
       }
     });
+
+    dataObj['pageurl'] = pageURL;
     
     ajaxWrapper.getXhrObj({
       url: servletPath,

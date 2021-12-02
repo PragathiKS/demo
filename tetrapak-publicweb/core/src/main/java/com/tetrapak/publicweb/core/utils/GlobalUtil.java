@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -13,7 +14,6 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -22,18 +22,23 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.constants.FormConstants;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.DynamicMediaService;
 
 /**
- * This is a global util class to access globally common utility methods
+ * This is a global util class to access globally common utility methods.
  *
  * @author Nitin Kumar
  */
 public final class GlobalUtil {
 
+    /** The Constant LOG. */
     private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
 
+    /**
+     * Instantiates a new global util.
+     */
     private GlobalUtil() {
         /*
          * adding a private constructor to hide the implicit one
@@ -41,8 +46,10 @@ public final class GlobalUtil {
     }
 
     /**
-     * Method to get service
+     * Method to get service.
      *
+     * @param <T>
+     *            the generic type
      * @param clazz
      *            class type
      * @return T
@@ -59,11 +66,11 @@ public final class GlobalUtil {
         return (T) bundleContext.getService(serviceReference);
     }
 
-
-
     /**
-     * get scene 7 video url
+     * get scene 7 video url.
      *
+     * @param resourceResolver
+     *            the resource resolver
      * @param damVideoPath
      *            video path
      * @param dynamicMediaService
@@ -73,15 +80,18 @@ public final class GlobalUtil {
     public static String getVideoUrlFromScene7(final ResourceResolver resourceResolver, final String damVideoPath,
             final DynamicMediaService dynamicMediaService) {
         String path = damVideoPath;
-        if(StringUtils.isNotBlank(damVideoPath)) {
-            path = dynamicMediaService.getVideoServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damVideoPath);
+        if (StringUtils.isNotBlank(damVideoPath)) {
+            path = dynamicMediaService.getVideoServiceUrl() + PWConstants.SLASH
+                    + getScene7FileName(resourceResolver, damVideoPath);
         }
         return path;
     }
 
     /**
-     * get scene 7 image url
+     * get scene 7 image url.
      *
+     * @param resourceResolver
+     *            the resource resolver
      * @param damImagePath
      *            image path
      * @param dynamicMediaService
@@ -91,8 +101,9 @@ public final class GlobalUtil {
     public static String getImageUrlFromScene7(final ResourceResolver resourceResolver, final String damImagePath,
             final DynamicMediaService dynamicMediaService) {
         String path = damImagePath;
-        if(StringUtils.isNotBlank(damImagePath)) {
-            path = dynamicMediaService.getImageServiceUrl() + PWConstants.SLASH + getScene7FileName(resourceResolver, damImagePath);
+        if (StringUtils.isNotBlank(damImagePath)) {
+            path = dynamicMediaService.getImageServiceUrl() + PWConstants.SLASH
+                    + getScene7FileName(resourceResolver, damImagePath);
         }
         return path;
     }
@@ -100,8 +111,10 @@ public final class GlobalUtil {
     /**
      * Gets the scene 7 file name.
      *
-     * @param resourceResolver the resource resolver
-     * @param path the path
+     * @param resourceResolver
+     *            the resource resolver
+     * @param path
+     *            the path
      * @return the scene 7 file name
      */
     public static String getScene7FileName(final ResourceResolver resourceResolver, final String path) {
@@ -119,8 +132,6 @@ public final class GlobalUtil {
      *
      * @param resourceFactory
      *            ResourceResolverFactory
-     * @param paramMap
-     *            Java Util Map
      * @return sling resource resolver
      */
     public static ResourceResolver getResourceResolverFromSubService(final ResourceResolverFactory resourceFactory) {
@@ -137,15 +148,22 @@ public final class GlobalUtil {
     }
 
     /**
-     * Global function which provides DAM asset path for PXP integration
+     * Global function which provides DAM asset path for PXP integration.
      *
-     * @param productId
-     * @param categoryId
+     * @param damRootPath
+     *            the dam root path
      * @param sourceurl
-     * @return
+     *            the sourceurl
+     * @param categoryId
+     *            the category id
+     * @param productId
+     *            the product id
+     * @param videoTypes
+     *            the video types
+     * @return the DAM path
      */
-    public static String getDAMPath(final String damRootPath, final String sourceurl, final String categoryId, final String productId,
-            final String videoTypes) {
+    public static String getDAMPath(final String damRootPath, final String sourceurl, final String categoryId,
+            final String productId, final String videoTypes) {
         String finalDAMPath = null;
         final String assetType = getAssetType(sourceurl, videoTypes);
         final String fileName = getFileName(sourceurl);
@@ -165,21 +183,24 @@ public final class GlobalUtil {
     }
 
     /**
-     * Extract filename from given URL
+     * Extract filename from given URL.
      *
      * @param fileURL
-     * @return
+     *            the file URL
+     * @return the file name
      */
     public static String getFileName(final String fileURL) {
         return fileURL.substring(fileURL.lastIndexOf('/') + 1, fileURL.length());
     }
 
     /**
-     * Fetch Asset Type based on File extension depending on mapping
+     * Fetch Asset Type based on File extension depending on mapping.
      *
      * @param sourceurl
-     * @param videoTypes
-     * @return
+     *            the sourceurl
+     * @param contentTypeMapping
+     *            the content type mapping
+     * @return the asset content type
      */
     public static String getAssetContentType(final String sourceurl, final String[] contentTypeMapping) {
         String contenType = PWConstants.APPLICATION_OCTET_STREAM;
@@ -196,11 +217,13 @@ public final class GlobalUtil {
     }
 
     /**
-     * Fetch Asset Type based on File extension depending on mapping
+     * Fetch Asset Type based on File extension depending on mapping.
      *
      * @param sourceurl
+     *            the sourceurl
      * @param videoTypes
-     * @return
+     *            the video types
+     * @return the asset type
      */
     public static String getAssetType(final String sourceurl, final String videoTypes) {
         String assetType = PWConstants.IMAGE;
@@ -212,12 +235,11 @@ public final class GlobalUtil {
         return assetType;
     }
 
-
     /**
      * Fetch config resource.
      *
-     * @param request
-     *            the request
+     * @param resource
+     *            the resource
      * @param configPath
      *            the config path
      * @return the resource
@@ -244,18 +266,38 @@ public final class GlobalUtil {
     }
 
     /**
-     * This method is used to get the string value from string Array in format of
-     * {"key":"value","key1":"value1"}
+     * This method is used to get the string value from string Array in format of {"key":"value","key1":"value1"}.
+     *
      * @param stringArray
+     *            the string array
      * @param key
+     *            the key
      * @return String value
      */
-    public static String getKeyValueFromStringArray(final String stringArray, final String key){
+    public static String getKeyValueFromStringArray(final String stringArray, final String key) {
         try {
             return new JSONObject(stringArray).get(key).toString();
-        }catch (final JSONException exception) {
+        } catch (final JSONException exception) {
             LOG.error("JSONException while converting array string to json object: ", exception);
         }
         return StringUtils.EMPTY;
+    }
+
+    /**
+     * Checks if is china data flow.
+     *
+     * @param request
+     *            the request
+     * @return true, if is china data flow
+     */
+    public static boolean isChinaDataFlow(final SlingHttpServletRequest request) {
+        boolean isChina = Boolean.FALSE;
+        String marketPath = LinkUtils.getCountryPath(request.getPathInfo());
+        final String country = StringUtils.substringAfterLast(marketPath, PWConstants.SLASH);
+        if (country.equalsIgnoreCase(PWConstants.CHINA_COUNTRY_CODE)
+                || (request.getParameterMap().get(FormConstants.COUNTRY)[0]).equalsIgnoreCase(PWConstants.CHINA)) {
+            isChina = Boolean.TRUE;
+        }
+        return isChina;
     }
 }

@@ -54,10 +54,10 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 		JsonObject jsonResponse = new JsonObject();
 		final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
 				+ GlobalUtil.getSelectedApiMapping(apigeeService, "myequipment-equipmentlist")
-				+ CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS
+				+ CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS_CHAR
 				+ countryCode + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS + getNoOfRecordsCount();
+				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS_CHAR + getNoOfRecordsCount();
 		return HttpUtil.getJsonObject(token, jsonResponse, url);
 	}
 }

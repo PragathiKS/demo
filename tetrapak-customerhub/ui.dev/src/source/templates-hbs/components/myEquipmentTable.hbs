@@ -1,8 +1,11 @@
 <div class="tp-my-equipment__table custom-scrollbar-horizontal on">
     {{#if noDataMessage}}
-    <h3>{{i18n key=noDataFound}}</h3>
+        <h3>{{i18n key=noDataFound}}</h3>
     {{else}}
-    {{> molecules/table-sort/table-sort baseClass="tp-my-equipment__table-summary" jsClass="js-my-equipment__table-summary"
-    list=summary headings=summaryHeadings}}
+        {{> molecules/table-sort/table-sort baseClass="tp-my-equipment__table-summary" jsClass="js-my-equipment__table-summary"
+        list=summary headings=summaryHeadings}}
     {{/if}}
 </div>
+
+{{> molecules/table-pagination/table-pagination jsClass="js-my-equipment__table-summary"
+        paginationObj=paginationObj}}

@@ -4,8 +4,19 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError, newPage } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
-import { validateFieldsForTags } from '../../../scripts/common/common';
+import { validateFieldsForTags, removeParams } from '../../../scripts/common/common';
 
+function isInvalidBusinessAreaOption(key, businessArea) {
+  if(key === 'businessArea') {
+    return false;
+  }
+  const isInvalid = key.startsWith('businessArea') && !key.toLowerCase().includes(businessArea.toLowerCase());
+  return isInvalid;
+}
+
+function capitalizeFirstLetter([ first, ...rest ]) {
+  return [ first.toUpperCase(), ...rest ].join('');
+}
 class Businessinquiryform {
   constructor({ el }) {
     this.root = $(el);
@@ -34,6 +45,9 @@ class Businessinquiryform {
     this.cache.$inputEmail = $('form.pw-form-businessEnquiry input[type="email"]', this.root);
     this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.countryList = [];
+    this.cache.positionList = [];
+    this.cache.functionList = [];
+    this.cache.roleList = [];
     this.cache.$roleField = this.root.find('.formfield.role-field');
     this.cache.$countryField = this.root.find('.formfield.country-field');
     this.cache.$positionField = this.root.find('.formfield.position-field');
@@ -45,7 +59,7 @@ class Businessinquiryform {
       'firstName': '',
       'lastName': '',
       'email': '',
-      'message': '',
+      'businessEnquiryMessage': '',
       'phone': '',
       'workplaceCity': '',
       'company': '',
@@ -53,19 +67,46 @@ class Businessinquiryform {
     };
   }
 
-  onKeydown = (event, options) => {
+  onKeydown(event, options) {
     if ($('.dropdown-menu').hasClass('show')) {
       keyDownSearch.call(this, event, options);
     }
-  };
+  }
 
   getCountryList() {
     const self = this;
     $('.country-dropdown-select > a').map(function () {
       const datael = $(this)[0];
-      self.cache.countryList.push($(datael).data('countrytitle'));
+      self.cache.countryList.push($(datael).data('title'));
     });
     $('.country-dropdown, .country-dropdown-select').keydown(e => this.onKeydown(e, this.cache.countryList));
+  }
+
+  getPositionList() {
+    const self = this;
+    $('.position-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.positionList.push($(datael).data('title'));
+    });
+    $('.position-dropdown, .position-dropdown-select').keydown(e => this.onKeydown(e, this.cache.positionList));
+  }
+
+  getFunctionList() {
+    const self = this;
+    $('.function-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.functionList.push($(datael).data('title'));
+    });
+    $('.function-dropdown, .function-dropdown-select').keydown(e => this.onKeydown(e, this.cache.functionList));
+  }
+
+  getRoleList() {
+    const self = this;
+    $('.role-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.roleList.push($(datael).data('title'));
+    });
+    $('.role-dropdown, .role-dropdown-select').keydown(e => this.onKeydown(e, this.cache.roleList));
   }
 
   validateField(val) {
@@ -100,17 +141,28 @@ class Businessinquiryform {
     const servletPath = this.cache.businessformapi.data('bef-api-servlet');
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
+    const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
+    const chinabefPardotURL = this.cache.businessformapi.data('china-bef-pardoturl');
     const dataObj = {};
     $.each( requestPayload, function( key, value ) {
+      if(isInvalidBusinessAreaOption(key, requestPayload.businessArea)) {
+        return;
+      }
       dataObj[key] = value;
     });
     
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    if(this.root.find(`#befconsentcheckbox`).is(':checked')){
-      dataObj['marketingConsent'] = 'True';
+    if(requestPayload.country === 'China' || countryCode ==='cn') {
+      dataObj['pardotUrl'] = chinabefPardotURL;
     }
-    dataObj['pageurl'] = this.cache.requestPayload.pageurl;
+    else {
+      dataObj['pardotUrl'] = befPardotURL;
+    }
+    if(this.root.find(`#befconsentcheckbox`).is(':checked')){
+      dataObj['marketingConsent'] = capitalizeFirstLetter(String(this.root.find(`#befconsentcheckbox`).is(':checked')));
+    }
+    
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
 
@@ -119,18 +171,26 @@ class Businessinquiryform {
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
       return params[key] = value;
     });
+
+    let pageURL = this.cache.requestPayload.pageurl;
     
     Object.keys(params).forEach(key => {
       if(key === 'utm_campaign') {
         dataObj['utm_campaign'] = params[key];
+        pageURL = removeParams('utm_campaign', pageURL);
       } else if(key === 'utm_content') {
         dataObj['utm_content'] = params[key];
+        pageURL = removeParams('utm_content', pageURL);
       } else if(key === 'utm_medium') {
         dataObj['utm_medium'] = params[key];
+        pageURL = removeParams('utm_medium', pageURL);
       } else if(key === 'utm_source') {
         dataObj['utm_source'] = params[key];
+        pageURL = removeParams('utm_source', pageURL);
       }
     });
+
+    dataObj['pageurl'] = pageURL;
     
     ajaxWrapper.getXhrObj({
       url: servletPath,
@@ -163,34 +223,51 @@ class Businessinquiryform {
     const self = this;
     const { $businessInterest } = this.cache;
     const checkedItems = [];
+    const labelItems = [];
     const step1Btn = $('#bef-step-1 .step1Btn');
     const step2Btn = $('#bef-step-2 .step2Btn');
+    $('#businessEnquiryMessageText').attr('placeholder', $('#messageBoxDiv').attr('data-general-placeholder'));
     
     $businessInterest.each(function() {
       if($(this).prop('checked')) {
         checkedItems.push($(this).val());
+        labelItems.push($(this).attr('data-baoi'));
       } else {
         const index = checkedItems.indexOf($(this).val());
         if (index > -1) {
           checkedItems.splice(index, 1);
+          labelItems.splice(index, 1);
         }
       }
     });
-    
     if(checkedItems.length === 0) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
-      self.setRequestPayload('');
+      self.setRequestPayload('', '');
     } else if(checkedItems.length === 1) {
       $(step1Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
       $(step2Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
-      self.setRequestPayload(checkedItems[0]);
+      self.setRequestPayload(labelItems[0] , checkedItems[0]);
+      if(checkedItems[0].toLowerCase() === 'packaging' || checkedItems[0].toLowerCase() === 'services') {
+        $('.summary-interest').addClass('show');
+        $('.summary-packaging').removeClass('show');
+      }
+      
     } else if(checkedItems.length === 2) {
       $(step1Btn).attr('data-target', '#bef-step-2');
       $(step2Btn).attr('data-target', '#bef-step-1');
-      self.setRequestPayload(checkedItems.join(' and '));
+      self.setRequestPayload(labelItems.join(' , '), checkedItems.join(' and '));
+      $('.summary-packaging').removeClass('show');
+      $('.summary-interest').removeClass('show');
     } else if(checkedItems.length === 3) {
-      self.setRequestPayload('All 3');
+      self.setRequestPayload(labelItems.join(' , '), checkedItems.join(' , '));
+      $('.summary-packaging').removeClass('show');
+      $('.summary-interest').removeClass('show');
+    }
+    if(checkedItems.length === 1 && checkedItems[0].toLowerCase() === 'processing') {
+      $('#businessEnquiryMessageText').attr('placeholder', $('#processingCheckboxDiv').attr('data-processing-msg-placeholder-text'));
+      $('.summary-packaging').addClass('show');
+      $('.summary-interest').removeClass('show');
     }
 
     if(checkedItems.length > 0) {
@@ -198,11 +275,14 @@ class Businessinquiryform {
     }
   }
 
-  setRequestPayload = (val) => {
+  setRequestPayload = (lbl , val) => {
     const { requestPayload } = this.cache;
-    requestPayload['businessArea'] = val;
-    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(val);
-    this.resetBusinessIntFields();
+    if(val.indexOf(',') > 0){
+      requestPayload['businessArea'] = 'All 3';
+    } else {
+      requestPayload['businessArea'] = val;
+    }
+    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(lbl);
   }
 
   resetBusinessIntFields = () => {
@@ -265,7 +345,7 @@ class Businessinquiryform {
   checkMessageLength = () => {
     const msgBox = this.root.find('textarea#businessEnquiryMessageText');
     if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 204){
-      this.root.find('.message').text(`${msgBox.val().substring(0, 204)}...`);
+      this.root.find('.businessEnquiryMessage').text(`${msgBox.val().substring(0, 204)}...`);
     }
   }
 
@@ -364,7 +444,7 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step1head2;
               break;
-            case 'message':
+            case 'businessEnquiryMessage':
               erLbl = $('#bef-step-2 label')[3].textContent;
               break;
             case 'email':
@@ -504,7 +584,7 @@ class Businessinquiryform {
             case 'purposeOfInterestAreaEqTitle':
               erLbl = self.step1head2;
               break;
-            case 'message':
+            case 'businessEnquiryMessage':
               erLbl = $('#bef-step-2 label')[3].textContent;
               break;
             case 'email':
@@ -562,12 +642,14 @@ class Businessinquiryform {
     $dropItem.click(function (e) {
       e.preventDefault();
       const title = $(this).attr('data-title');
+      const finalValue = $(this).attr('data-pardot-title');
+      const pardtottitle = capitalizeFirstLetter(finalValue);
       const field = $(this).attr('data-field-name');
       const fieldtitle = $(this).attr('data-field-title');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(title);
       $('input', parentDrop).val(title);
-      requestPayload[field] = title;
+      requestPayload[field] = pardtottitle;
       if(field === 'country') {
         self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload[field];
         requestPayload[fieldtitle] = title;
@@ -618,6 +700,9 @@ class Businessinquiryform {
     $('#bef-step-3 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
     $('#bef-step-3 label').slice(0, 1).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     this.getCountryList();
+    this.getPositionList();
+    this.getFunctionList();
+    this.getRoleList();
     this.analyticsFormstart(this.step1head, this.mainHead);
   }
 }

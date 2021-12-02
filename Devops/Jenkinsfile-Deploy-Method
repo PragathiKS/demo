@@ -24,6 +24,14 @@ pipeline {
 
 
     stages {
+//        stage('Pre-check for deployment') {
+  //          steps {
+    //            script {
+//				precheck()
+ //                    }
+//}
+//}
+
         stage('Author and Publisher Deployment') {
             steps {
                 script {                
@@ -315,3 +323,14 @@ pipeline {
                 sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.1.35 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
                 }
     }
+
+   // def precheck() {
+
+     //   if ((params.DeployCommons && ${Snapshot_Commons}="") || (params.DeployMyTetrapak && ${Snapshot_MyTetrapak}="") || (params.DeployPublicWeb && ${Snapshot_PublicWeb}=""))
+
+//				{
+//				echo "Please fill Snapshot Version field"
+//				currentBuild.result = 'Failure'
+//				error "Failed...Exiting now...."
+//                }
+//				}

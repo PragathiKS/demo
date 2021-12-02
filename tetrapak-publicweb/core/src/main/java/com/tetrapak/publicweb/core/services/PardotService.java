@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.services;
 
 import java.util.List;
 import java.util.Map;
+
 import com.google.gson.JsonObject;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
 
@@ -9,13 +10,6 @@ import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
  * The Interface PardotService.
  */
 public interface PardotService {
-
-    /**
-	 * Gets the busines inquiry service URL.
-	 *
-	 * @return the busines inquiry service URL
-	 */
-    String getBusinesInquiryServiceURL();
 
     /**
 	 * Gets the subscription form pardot URL.
@@ -76,4 +70,21 @@ public interface PardotService {
 	 * @return the subscriber mail addresses
 	 */
     List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas);
+
+    /**
+     * Gets the bearer token for custom form service.
+     *
+     * @return the bearer token for custom form service
+     */
+    BearerToken getBearerTokenForCustomFormService();
+
+    /**
+     * Submit custom form service post response.
+     *
+     * @param parameters
+     *            the parameters
+     * @param url
+     *            the url
+     */
+    void submitcustomFormServicePostResponse(Map<String, String[]> parameters) throws Exception;
 }

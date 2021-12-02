@@ -1,0 +1,7 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}"
+       class="cq-placeholder"></p>
+	   <sly data-sly-use.model="com.tetrapak.publicweb.core.models.ThumbnailConfigModel">
+           <img src="${model.fileReference}"  alt=""/>
+	   </sly>
+</sly>

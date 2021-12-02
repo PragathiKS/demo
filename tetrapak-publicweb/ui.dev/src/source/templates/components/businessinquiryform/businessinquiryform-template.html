@@ -5,7 +5,7 @@
         id="pw-befUs" auto_locator="businessEnquiryStepsWrapper">
         <div class="tab-content">
           <form class="pw-form pw-form-businessEnquiry" accept-charset="UTF-8" data-bef-api-servlet="${data.apiUrl}"
-            data-bef-countryCode="${data.siteCountry}" data-bef-langCode="${data.siteLanguage}" autocomplete="off">
+            data-bef-countryCode="${data.siteCountry}" data-bef-langCode="${data.siteLanguage}" data-bef-pardotURL="${data.befPardotURL}" data-china-bef-pardotURL="${data.befChinaPardotURL}" autocomplete="off">
             <!--step1 start -->
             <div class="bef-tab-pane active" data-stepNumber="1" data-stepName="purposeOfContact" role="tabpanel"
               id="bef-step-1">
@@ -43,7 +43,7 @@
                       <div class="col-lg-10">
                         <sly
                           data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
+                          data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['pw.form.businessenq.stepTitles.purpose', 'pw.form.businessenq.stepTitles.request', 'pw.form.businessenq.stepTitles.contact']}">
                         </sly>
                       </div>
                     </div>
@@ -64,7 +64,7 @@
                         </sly>
                         <input type="hidden" name="purposeOfContactInBusinessEqTitle" class="form-control"
                           id="purposeOfContactInBusinessEqTitle" required>
-                        <div class="errorMsg purposeOfBusinessContactError">${'pw.form.errormsg.purposeofcontact' @i18n }
+                        <div class="errorMsg purposeOfBusinessContactError">${'pw.form.errormsg.selectOneOption' @i18n }
                         </div>
                       </div>
                     </div>
@@ -82,21 +82,21 @@
                       <div class="col-sm-12 formfield">
                         <div class="checkbox-field">
                           <label class="checkbox-label" for="baoiPackaging">
-                            <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiPackaging" name="purposeOfContactOptionsInInterestArea" value="${'pw.form.businessenq.packaging' @i18n}">
+                            <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiPackaging" name="purposeOfContactOptionsInInterestArea" value="Packaging" data-baoi="${'pw.form.businessenq.packaging' @i18n}">
                               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                               ${'pw.form.businessenq.packaging' @i18n}
                           </label>
                         </div>
-                        <div class="checkbox-field">
+                        <div class="checkbox-field" id="processingCheckboxDiv" data-processing-msg-placeholder-text="${'pw.form.businessenq.processing.messageBoxPlaceHolderText' @i18n}">
                           <label class="checkbox-label" for="baoiProcessing">
-                            <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiProcessing" name="purposeOfContactOptionsInInterestArea" value="${'pw.form.businessenq.processing' @i18n}">
+                            <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiProcessing" name="purposeOfContactOptionsInInterestArea" value="Processing" data-baoi="${'pw.form.businessenq.processing' @i18n}">
                               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                               ${'pw.form.businessenq.processing' @i18n}
                           </label>
                         </div>
                         <div class="checkbox-field mb-0">
                           <label class="checkbox-label" for="baoiServices">
-                            <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiServices" name="purposeOfContactOptionsInInterestArea" value="${'pw.form.businessenq.services' @i18n}">
+                            <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiServices" name="purposeOfContactOptionsInInterestArea" value="Services" data-baoi="${'pw.form.businessenq.services' @i18n}">
                               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                               ${'pw.form.businessenq.services' @i18n}
                           </label>
@@ -256,6 +256,18 @@
                       <div class="col-lg-5">${'pw.form.heading.businessarea' @i18n}</div>
                       <div class="col-lg-7 purposeOfInterestAreaEqTitle"></div>
                     </div>
+                   <div class="row no-gutters summary summary-interest">
+                      <div class="col-lg-5">${'pw.form.businessenq.specificAreaOfInterest' @i18n}</div>
+                      <div class="col-lg-7 specificInterestAreaPackagingEqTitle businessAreaInterestServicesEqTitle "></div>
+                    </div>
+                    <div class="row no-gutters summary summary-packaging">
+                      <div class="col-lg-5">${'pw.form.businessenq.scopeOfRequest' @i18n}</div>
+                      <div class="col-lg-7 businessAreaInterestProcessingSupportEqTitle"></div>
+                    </div>
+                    <div class="row no-gutters summary summary-packaging">
+                      <div class="col-lg-5">${'pw.form.businessenq.processing.foodCategory' @i18n}</div>
+                      <div class="col-lg-7 businessAreaProcessingCategoryFoodEqtitle"></div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep2">
@@ -264,7 +276,7 @@
                       <div class="col-lg-10">
                         <sly
                           data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template @ activeStep=2, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
+                          data-sly-call="${progressBar.progressbar_template @ activeStep=2, totalStep=[1,2,3], stepTitles=['pw.form.businessenq.stepTitles.purpose', 'pw.form.businessenq.stepTitles.request', 'pw.form.businessenq.stepTitles.contact']}">
                         </sly>
                       </div>
                     </div>
@@ -290,7 +302,7 @@
                           </div>
                         </div>
 
-                        <div class="role-field-wrapper col-sm-12 col-lg-6">
+                        <div class="role-field-wrapper formfield col-sm-12 col-lg-6">
                           <div class="formfield role-field country form-group"
                             data-role-name-label="${'pw.form.label.yourRole' @i18n}">
                             <label class="role-value" for="country">
@@ -298,7 +310,7 @@
                             </label>
                             <div class="pw-form__dropdown dropdown text-left">
                               <button
-                                class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                class="btn dropdown-toggle role-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
                                 auto_locator="roleSelectDropdown" aria-expanded="false">
                                 <span class="js-pw-form__dropdown__country-text">${'pw.form.label.chooseOneOptionText'
@@ -306,9 +318,8 @@
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
                               <sly data-sly-test="${data.TagProcessingRoles}">
-                                <div class="dropdown-menu pw-form__dropdown__menu"
-                                      data-sly-list.tagName="${data.TagProcessingRoles}">
-                                  <a href="#" class="dropdown-item" data-roleKey="${tagName}" data-field-name="businessEnquiryProfile" data-field-title="roleTitle" data-title="${data.TagProcessingRoles[tagName]}">
+                                <div class="dropdown-menu pw-form__dropdown__menu role-dropdown-select" data-sly-list.tagName="${data.TagProcessingRoles}" data-dropdowntype="role">
+                                  <a href="#" class="dropdown-item" data-roleKey="${tagName}" data-field-name="businessEnquiryProfile" data-field-title="roleTitle" data-title="${data.TagProcessingRoles[tagName]}" data-pardot-title= "${tagName}">
                                     ${data.TagProcessingRoles[tagName]}
                                   </a>
                                 </div>
@@ -321,13 +332,13 @@
                           </div>
                         </div>
 
-                        <div class="formfield">
+                        <div class="formfield" id="messageBoxDiv" data-general-placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}">
                           <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
-                            for="messageText">${'pw.form.label.message' @i18n}</label>
+                            for="businessEnquiryMessageText">${'pw.form.label.message' @i18n}</label>
                           <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
-                            id="businessEnquiryMessageText" rows="12" name="message" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
-                          <div data-error-msg="${'pw.form.errormsg.messagebox' @i18n}" class="errorMsg">
-                            ${'pw.form.errormsg.messagebox' @i18n}</div>
+                            id="businessEnquiryMessageText" rows="12" name="businessEnquiryMessage" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
+                          <div data-error-msg="${'pw.form.errormsg.enterthisfield' @i18n}" class="errorMsg">
+                            ${'pw.form.errormsg.enterthisfield' @i18n}</div>
                         </div>
                       </div>
                     </div>
@@ -375,8 +386,29 @@
                     </div>
                     <div class="row no-gutters summary">
                       <div class="col-lg-5">${'pw.form.label.message' @i18n}</div>
-                      <div class="col-lg-7 message"></div>
+                      <div class="col-lg-7 businessEnquiryMessage"></div>
                     </div>
+                    <div class="row no-gutters summary summary-interest">
+                      <div class="col-lg-5">${'pw.form.businessenq.specificAreaOfInterest' @i18n}</div>
+                      <div class="col-lg-7 specificInterestAreaPackagingEqTitle businessAreaInterestServicesEqTitle"></div>
+                    </div>
+                    <div class="row no-gutters summary summary-packaging">
+                      <div class="col-lg-5">${'pw.form.businessenq.scopeOfRequest' @i18n}</div>
+                      <div class="col-lg-7 businessAreaInterestProcessingSupportEqTitle"></div>
+                    </div>
+                    <div class="row no-gutters summary summary-packaging">
+                      <div class="col-lg-5">${'pw.form.businessenq.processing.foodCategory' @i18n}</div>
+                      <div class="col-lg-7 businessAreaProcessingCategoryFoodEqtitle"></div>
+                    </div>
+                    <div class="row no-gutters summary">
+                      <div class="col-lg-5">${'pw.form.businessenq.bestDescriptionText' @i18n}</div>
+                      <div class="col-lg-7 businessEnquiryNeedEqTitle"></div>
+                    </div>
+                    <div class="row no-gutters summary">
+                      <div class="col-lg-5">${'pw.form.label.yourRole' @i18n}</div>
+                      <div class="col-lg-7 businessEnquiryProfile"></div>
+                    </div>
+
                   </div>
                 </div>
                 <div class="col-lg-6" auto_locator="businessEnquiryRightContainerStep3">
@@ -385,7 +417,7 @@
                       <div class="col-lg-10">
                         <sly
                           data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template @ activeStep=3, totalStep=[1,2,3], stepTitles=['Purpose', 'Request', 'Contact']}">
+                          data-sly-call="${progressBar.progressbar_template @ activeStep=3, totalStep=[1,2,3], stepTitles=['pw.form.businessenq.stepTitles.purpose', 'pw.form.businessenq.stepTitles.request', 'pw.form.businessenq.stepTitles.contact']}">
                         </sly>
                       </div>
                     </div>
@@ -398,31 +430,31 @@
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='email', id='email', label='pw.form.label.email' , required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='email', id='email', label='pw.form.label.email' , required=true, error='pw.form.errormsg.invalidemail', autoLocatorInput='emailInput', autoLocatorLabel='emailHelpText', inputClass='validateForTags', placeholder='pw.form.label.emailPlaceholder'}">
                           </sly>
                         </div>
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='firstName', label='pw.form.label.firstName', error='pw.form.errormsg.firstname', required=true, autoLocatorInput='firstNameInput', autoLocatorLabel='firstNameHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='firstName', label='pw.form.label.firstName', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='firstNameInput', autoLocatorLabel='firstNameHelpText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='lastName', label='pw.form.label.lastName', error='pw.form.errormsg.lastname', required=true, autoLocatorInput='lastNameInput', autoLocatorLabel='lastNameHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='lastName', label='pw.form.label.lastName', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='lastNameInput', autoLocatorLabel='lastNameHelpText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='phone', inputClass='phoneInput', label='pw.form.label.phonenumber', error='Enter Valid Phone Number', placeholder='pw.form.label.phoneplaceholder', required=true,  autoLocatorInput='phoneInput', autoLocatorLabel='phoneText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='phone', inputClass='phoneInput', label='pw.form.label.phonenumber', error='pw.form.errormsg.enterthisfield', placeholder='pw.form.label.phoneplaceholder', required=true,  autoLocatorInput='phoneInput', autoLocatorLabel='phoneText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='workplaceCity', label='pw.form.label.cityWorkspaceText', error='Enter City of workplace', required=true, autoLocatorInput='cityOfWorkPlaceInput', autoLocatorLabel='cityOfWorkPlaceHelpText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='workplaceCity', label='pw.form.label.cityWorkspaceText', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='cityOfWorkPlaceInput', autoLocatorLabel='cityOfWorkPlaceHelpText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="country-field-wrapper col-sm-12">
@@ -440,9 +472,8 @@
                                   @ i18n}</span>
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
-                              <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select"
-                                data-sly-list.country="${data.countryOptions}">
-                                <a href="#" class="dropdown-item" data-country="${country.key}" data-field-name="country" data-field-title="countryTitle" data-title="${country.value}">
+                              <div class="dropdown-menu pw-form__dropdown__menu country-dropdown-select" data-sly-list.country="${data.countryOptions}" data-dropdowntype="country">
+                                <a href="#" class="dropdown-item" data-country="${country.key}" data-field-name="country" data-field-title="countryTitle" data-title="${country.value}" data-pardot-title="${country.value}">
                                   ${country.value}
                                 </a>
                               </div>
@@ -456,7 +487,7 @@
                         <div class="formfield">
                           <sly
                             data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html"
-                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='company', label='pw.form.label.company', error='pw.form.errormsg.company', required=true, autoLocatorInput='companyInput', autoLocatorLabel='companyText', inputClass='validateForTags'}">
+                            data-sly-call="${inputField.inputfield_template @ inputType='text', id='company', label='pw.form.label.company', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='companyInput', autoLocatorLabel='companyText', inputClass='validateForTags'}">
                           </sly>
                         </div>
                         <div class="position-field-wrapper col-sm-12">
@@ -466,7 +497,7 @@
                               i18n}</label>
                             <div class="pw-form__dropdown dropdown text-left">
                               <button
-                                class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                class="btn dropdown-toggle position-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
                                 auto_locator="positionSelectDropdown" aria-expanded="false">
                                 <span class="js-pw-form__dropdown__country-text">${'pw.form.label.chooseOneOptionText'
@@ -474,9 +505,8 @@
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
                               <sly data-sly-test="${data.TagTitles}">
-                                <div class="dropdown-menu pw-form__dropdown__menu"
-                                      data-sly-list.tagName="${data.TagTitles}">
-                                  <a href="#" class="dropdown-item" data-positionKey="${tagName}" data-field-name="position" data-field-title="positionTitle" data-title="${data.TagTitles[tagName]}">
+                                <div class="dropdown-menu pw-form__dropdown__menu position-dropdown-select" data-sly-list.tagName="${data.TagTitles}" data-dropdowntype="position">
+                                  <a href="#" class="dropdown-item" data-positionKey="${tagName}" data-field-name="position" data-field-title="positionTitle" data-title="${data.TagTitles[tagName]}" data-pardot-title="${tagName}">
                                     ${data.TagTitles[tagName]}
                                   </a>
                                 </div>
@@ -496,7 +526,7 @@
                               i18n}</label>
                             <div class="pw-form__dropdown dropdown text-left">
                               <button
-                                class="btn dropdown-toggle country-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
+                                class="btn dropdown-toggle function-dropdown js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
                                 auto_locator="functionSelectDropdown" aria-expanded="false">
                                 <span class="js-pw-form__dropdown__country-text">${'pw.form.label.chooseOneOptionText'
@@ -504,9 +534,8 @@
                                 <i class="icon icon-Arrow_Right_pw"></i></button>
                               </button>
                               <sly data-sly-test="${data.TagFunctions}">
-                                <div class="dropdown-menu pw-form__dropdown__menu"
-                                      data-sly-list.tagName="${data.TagFunctions}">
-                                  <a href="#" class="dropdown-item" data-functionKey="${tagName}" data-field-name="function" data-field-title="functionTitle" data-title="${data.TagFunctions[tagName]}">
+                                <div class="dropdown-menu pw-form__dropdown__menu function-dropdown-select" data-sly-list.tagName="${data.TagFunctions}" data-dropdowntype="function">
+                                  <a href="#" class="dropdown-item" data-functionKey="${tagName}" data-field-name="function" data-field-title="functionTitle" data-title="${data.TagFunctions[tagName]}" data-pardot-title="${tagName}">
                                     ${data.TagFunctions[tagName]}
                                   </a>
                                 </div> 
