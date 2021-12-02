@@ -116,6 +116,7 @@ function  _renderEquipInfoCard(view) {
       countries: countryData,
       i18nKeys: i18nKeys,
       isEquipUpdate: view && view.update,
+      isEquipView: view && view.view,
       isConfirmation: view && view.confirmed
     },
     target: '.js-equipment-details__info-card'
@@ -150,9 +151,9 @@ function _bindFormChangeEvents() {
   const $updateBtn = $form.find('.js-equipment-details__req-update');
   const initialFormData = $form.serialize();
 
-  $('input, textarea, select').each((_, item) => {
-    $(item).on('change input', () => {
-      if ($form.serialize() !== initialFormData) {
+  $('input, textarea, select', $form).each((_, item) => {
+    $(item).on('blur', () => {
+      if ($form.serialize() !== initialFormData && $('#position').val()) {
         $updateBtn.removeAttr('disabled');
       } else {
         $updateBtn.attr('disabled', 'disabled');
@@ -196,7 +197,7 @@ class EquipmentDetails {
     });
 
     this.root.on('click', '.js-equipment-details__cancel',  () => {
-      this.renderEquipmentDetails();
+      this.renderEquipInfoCard({view: true});
     });
 
     this.root.on('blur', 'textarea', (e) => {
