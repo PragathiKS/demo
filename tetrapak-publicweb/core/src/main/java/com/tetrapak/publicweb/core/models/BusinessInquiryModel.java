@@ -117,47 +117,45 @@ public class BusinessInquiryModel extends FormModel {
     }
 
     /**
-     * Gets the child tags.
-     *
-     * @param firstLevelTag
-     *            first level tag :: ardot-system-config:job-title - job-title
-     * @return tag values
-     */
-    private Map<String, String> getChildTags(final String firstLevelTag) {
-        final String[] pardotFieldTags = formConfig.getPardotSystemConfigTags();
-        final int firstLevelTagIndex = Arrays.asList(pardotFieldTags).indexOf(firstLevelTag);
-        final String rootTag = pardotFieldTags[firstLevelTagIndex];
-        final ResourceResolver resolver = resource.getResourceResolver();
-        final TagManager tagManager = resolver.adaptTo(TagManager.class);
-        final Tag tag = Objects.requireNonNull(tagManager).resolve(rootTag);
-        final Iterator<Tag> tagIterator = tag.listChildren();
-        final Map<String, String> tagsValues = new LinkedHashMap<>();
-        String otherTagName = StringUtils.EMPTY;
-        String otherTagTitle = StringUtils.EMPTY;
-        while (tagIterator.hasNext()) {
-            final Tag childtag = tagIterator.next();
-            final String defaultTagTitle = childtag.getTitle();
-            final String tagName = childtag.getName();
-            final String localizedTagTitle = childtag
-                    .getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
-            if (tagName.equalsIgnoreCase(FormConstants.OTHER)) {
-                if (null != localizedTagTitle) {
-                    otherTagTitle = localizedTagTitle;
-                } else {
-                    otherTagTitle = defaultTagTitle;
-                }
-                otherTagName = childtag.getName();
-            } else {
-                if (null != localizedTagTitle) {
-                    tagsValues.put(tagName, localizedTagTitle);
-                } else {
-                    tagsValues.put(tagName, defaultTagTitle);
-                }
-            }
-        }
-        tagsValues.put(otherTagName, otherTagTitle);
-        return tagsValues;
-    }
+	 * @param firstLevelTag
+	 * first level tag :: ardot-system-config:job-title - job-title
+	 * @return tag values
+	 */
+	private Map<String, String> getChildTags(final String firstLevelTag){
+		final String[] pardotFieldTags = formConfig.getPardotSystemConfigTags();
+		final int firstLevelTagIndex = Arrays.asList(pardotFieldTags).indexOf(firstLevelTag);
+		final String rootTag = pardotFieldTags[firstLevelTagIndex];
+		final ResourceResolver resolver = resource.getResourceResolver();
+		final TagManager tagManager = resolver.adaptTo(TagManager.class);
+		final Tag tag = Objects.requireNonNull(tagManager).resolve(rootTag);
+		final Iterator<Tag> tagIterator = tag.listChildren();
+		final Map<String, String> tagsValues = new LinkedHashMap<>();
+		String otherTagName = StringUtils.EMPTY;
+		String otherTagTitle = StringUtils.EMPTY;
+		while (tagIterator.hasNext()) {
+			final Tag childtag = tagIterator.next();
+			final String defaultTagTitle = childtag.getTitle();
+			final String tagName = childtag.getTitle();
+			final String localizedTagTitle = childtag
+					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
+			if (tagName.equalsIgnoreCase(FormConstants.OTHER)) {
+				if(null != localizedTagTitle){
+					otherTagTitle = localizedTagTitle;
+				} else {
+					otherTagTitle = defaultTagTitle;
+				}
+				otherTagName = childtag.getTitle();
+			} else {
+				if (null != localizedTagTitle) {
+					tagsValues.put(tagName, localizedTagTitle);
+				} else {
+					tagsValues.put(tagName, defaultTagTitle);
+				}
+			}
+		}
+		tagsValues.put(otherTagName, otherTagTitle);
+		return tagsValues;
+	}
 
     /**
      * Gets the api url.
