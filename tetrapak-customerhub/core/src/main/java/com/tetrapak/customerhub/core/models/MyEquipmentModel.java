@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 
+import com.day.cq.commons.LanguageUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -25,7 +26,7 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MyEquipmentModel {
 
-	public static final String EQUIPMENT_DETAILS_PATH = "/content/tetrapak/customerhub/global/en/equipment-details";
+	public static final String EQUIPMENT_DETAILS_PATH = "/equipment-details";
 
 	/** The resource. */
 	@Self
@@ -636,8 +637,7 @@ public class MyEquipmentModel {
 	 * @return mapped url.
 	 */
 	public String getMappedEquipmentDetailsUrl() {
-		return LinkUtil.getValidLink(resource, EQUIPMENT_DETAILS_PATH);
+		String fullPath = LanguageUtil.getLanguageRoot(resource.getPath()) + EQUIPMENT_DETAILS_PATH;
+		return LinkUtil.getValidLink(resource, fullPath);
 	}
-
-
 }
