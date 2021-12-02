@@ -45,7 +45,7 @@ function _renderEquipInfoCardWithData() {
       showLoader: true
     })).then((res1, res2) => {
       this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
-      this.cache.statuses = res2[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
+      this.cache.equipmentStatuses = res2[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
       this.cache.$spinner.addClass('d-none');
       this.cache.$contentWrapper.removeClass('d-none');
       this.renderEquipInfoCard({update: true});
@@ -105,18 +105,17 @@ function _renderEquipmentDetails() {
 
 function  _renderEquipInfoCard(view) {
   const $this = this;
-  const { countryData, id, statuses, data, i18nKeys } = this.cache;
+  const { countryData, id, equipmentStatuses, data, i18nKeys } = this.cache;
 
   render.fn({
     template: 'equipmentDetailsInfoCard',
     data: {
       equipmentNumber: id,
       ...data,
-      statuses: statuses,
+      statuses: equipmentStatuses,
       countries: countryData,
       i18nKeys: i18nKeys,
       isEquipUpdate: view && view.update,
-      isEquipView: view && view.view,
       isConfirmation: view && view.confirmed
     },
     target: '.js-equipment-details__info-card'
@@ -133,7 +132,11 @@ function  _renderEquipUpdateModal() {
   render.fn({
     template: 'equipmentDetailsConfirm',
     data: {
-      formData: this.cache.formData,
+      formData: {
+        ...this.cache.formData,
+        country: this.cache.countryData.find(country => country.key === this.cache.formData.country)?.desc,
+        equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === this.cache.formData.equipmentStatus)?.desc
+      },
       i18nKeys: i18nKeys
     },
     target: '.js-update-modal'
@@ -144,16 +147,12 @@ function  _renderEquipUpdateModal() {
 function _bindFormChangeEvents() {
   const $this = this;
   const $form = $this.cache.$contentWrapper.find('.js-equipment-details__form');
-  const $formInputs = $form.find('input, textarea');
   const $updateBtn = $form.find('.js-equipment-details__req-update');
   const initialFormData = $form.serialize();
-  let formData = '';
 
-  $formInputs.each((_, item) => {
-    const $input = $(item);
-    $input.on('change input', () => {
-      formData = $form.serialize();
-      if (formData !== initialFormData) {
+  $('input, textarea, select').each((_, item) => {
+    $(item).on('change input', () => {
+      if ($form.serialize() !== initialFormData) {
         $updateBtn.removeAttr('disabled');
       } else {
         $updateBtn.attr('disabled', 'disabled');
@@ -180,7 +179,7 @@ class EquipmentDetails {
     this.cache.countryData = [];
     this.cache.formData = {};
     this.cache.id;
-    this.cache.statuses = [];
+    this.cache.equipmentStatuses = [];
     this.cache.$updateBtn = this.root.find('.js-equipment-details__req-make-update');
 
     try {
