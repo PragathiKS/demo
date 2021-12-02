@@ -57,7 +57,7 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldLabel="Make Updates Button Label (i18N key)"
-                                            name="./requestUpdates"
+                                            name="./makeUpdates"
                                             required="true"/>
                                     <country
                                             jcr:primaryType="nt:unstructured"

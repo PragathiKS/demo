@@ -55,43 +55,6 @@
     </form>
 {{/if}}
 
-{{#if isEquipView}}
-    <div class="tp-equipment-details__info-line">
-        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.country}}</div>
-        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.countryName}}</div>
-    </div>
-    <div class="tp-equipment-details__info-line">
-        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.location}}</div>
-        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.location}}</div>
-    </div>
-    <div class="tp-equipment-details__info-line">
-        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.site}}</div>
-        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.siteName}}</div>
-    </div>
-    <div class="tp-equipment-details__info-line">
-        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.line}}</div>
-        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.lineName}}</div>
-    </div>
-    <div class="tp-equipment-details__info-line">
-        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentStatus}}</div>
-        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.equipmentStatus}}</div>
-    </div>
-    <div class="tp-equipment-details__info-line">
-        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.position}}</div>
-        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.position}}</div>
-    </div>
-    <div class="tp-equipment-details__info-line">
-        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentDescription}}</div>
-        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.equipmentTypeDesc}}</div>
-    </div>
-    <div class="tp-equipment-details__action-wrap">
-        <button type="button" class="tp-equipment-details__btn js-equipment-details__update">
-            <span>{{i18n key=i18nKeys.updateEquipmentInformation}}</span>
-            <i class="icon icon-Edit"></i>
-        </button>
-    </div>
-{{/if}}
-
 {{#if isConfirmation}}
     <p class="tp-equipment-details__conf-title">
         <i class="icon icon-Circle_filled_Tick"></i>{{i18n key=i18nKeys.equipmentDetails-ThankYouHeading}}
