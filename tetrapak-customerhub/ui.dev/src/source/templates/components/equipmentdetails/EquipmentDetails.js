@@ -197,7 +197,7 @@ class EquipmentDetails {
     });
 
     this.root.on('click', '.js-equipment-details__cancel',  () => {
-      this.renderEquipInfoCard({view: true});
+      this.renderEquipmentDetails();
     });
 
     this.root.on('blur', 'textarea', (e) => {
