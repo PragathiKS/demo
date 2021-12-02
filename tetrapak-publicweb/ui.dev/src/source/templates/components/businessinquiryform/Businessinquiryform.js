@@ -642,8 +642,7 @@ class Businessinquiryform {
     $dropItem.click(function (e) {
       e.preventDefault();
       const title = $(this).attr('data-title');
-      const finalValue = $(this).attr('data-pardot-title');
-      const pardtottitle = capitalizeFirstLetter(finalValue);
+      const pardtottitle = $(this).attr('data-pardot-title');
       const field = $(this).attr('data-field-name');
       const fieldtitle = $(this).attr('data-field-title');
       const parentDrop = $(this).closest('.dropdown');

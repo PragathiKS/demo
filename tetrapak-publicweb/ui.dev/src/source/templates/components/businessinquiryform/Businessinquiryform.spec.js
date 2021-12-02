@@ -137,7 +137,7 @@ describe('BusinessInquiryForm', function () {
 
   it('Should update payload with positionDropItem changes', function() {
     document.getElementById('pddtest').click();
-    expect(this.businessinquiry.cache.requestPayload['position']).to.equal('Associate');
+    expect(this.businessinquiry.cache.requestPayload['position']).to.equal('associate');
   });
 
   it('Should update payload with functionDropItem changes', function() {
