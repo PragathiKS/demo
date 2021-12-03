@@ -155,7 +155,7 @@ function _processKeys(keys, ob) {
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
-      }else if(i === 'siteName'){
+      }else if(i === 'siteDesc'){
         site = i;
       }else if(i === 'lineName'){
         line = i;
@@ -192,7 +192,7 @@ function _getKeyMap(key,i18nKeys){
       headerObj['tooltipText'] = i18nKeys['countryToolTip'];
       break;
     }
-    case 'siteName': {
+    case 'siteDesc': {
       headerObj['keyLabel'] = i18nKeys['site'];
       headerObj['showTooltip'] = i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['siteToolTip'];
@@ -388,7 +388,7 @@ class MyEquipment   {
     this.cache.currentPageNumber = 1;
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
-    this.cache.sortableKeys = ['siteName','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
+    this.cache.sortableKeys = ['siteDesc','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
     this.cache.activeSortData = null;
     this.cache.activePage = 1;
     this.cache.skipIndex = 0;
@@ -416,7 +416,7 @@ class MyEquipment   {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
     this.cache.customisableTableHeaders = [
       {key:'countryCode',option:'countryCode',optionDisplayText:i18nKeys['country'],isChecked:true,index:0},
-      {key:'siteName',option:'siteName',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
+      {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
       {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['siteDescription'],isChecked:false,index:2},
       {key:'lineName',option:'lineName',optionDisplayText:i18nKeys['line'],isChecked:true,index:3},
       {key:'equipmentNameSub',option:'equipmentNameSub',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
