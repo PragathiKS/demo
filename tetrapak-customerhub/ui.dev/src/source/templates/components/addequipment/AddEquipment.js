@@ -77,7 +77,7 @@ function _getDropdownData($this) {
       $this.cache.countryData = resCountry[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
       $this.cache.statusData = resStatus[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
       $this.cache.siteData = resSite[0].data.map(item => ({ key: item.siteNumber, desc: item.siteName }));
-      $this.cache.lineData = resLine[0].data.map(item => ({ key: item.lineCode, desc: item.lineDescription }));
+      $this.cache.lineData = resLine[0].data.map(item => ({ key: item.id, desc: item.lineCode }));
 
       _renderLayout($this);
     }).fail(e => {
