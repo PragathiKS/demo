@@ -24,7 +24,7 @@
 
                         <div class="tp-my-equipment-filter-options tp-my-equipment-group-filter-options">
                             {{#each this.options}}
-                                {{> atoms/checkbox/checkbox value=option text=option check=isChecked disabled=isDisabled
+                                {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
                                 uniqueKey=option
                                 autoLocatorCheckbox=@root.autoLocatorCheckbox
                                 autoLocatorCheckboxText=@root.autoLocatorCheckboxText
@@ -35,7 +35,7 @@
                     {{else}}
                         <div class="tp-my-equipment-filter-options">
                             {{#each formData}}
-                                {{> atoms/checkbox/checkbox value=option text=option check=isChecked disabled=isDisabled
+                                {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
                                 uniqueKey=option
                                 autoLocatorCheckbox=@root.autoLocatorCheckbox
                                 autoLocatorCheckboxText=@root.autoLocatorCheckboxText
