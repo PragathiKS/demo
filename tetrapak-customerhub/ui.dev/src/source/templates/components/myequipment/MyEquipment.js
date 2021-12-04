@@ -155,7 +155,7 @@ function _processKeys(keys, ob) {
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
-      }else if(i === 'siteDesc'){
+      }else if(i === 'site'){
         site = i;
       }else if(i === 'lineName'){
         line = i;
@@ -192,7 +192,7 @@ function _getKeyMap(key,i18nKeys){
       headerObj['tooltipText'] = i18nKeys['countryToolTip'];
       break;
     }
-    case 'siteDesc': {
+    case 'site': {
       headerObj['keyLabel'] = i18nKeys['site'];
       headerObj['showTooltip'] = i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['siteToolTip'];
@@ -290,67 +290,6 @@ function _remapFilterProperty(filterProperty) {
   }
 }
 
-function _renderCountryFilters() {
-  const $this = this;
-  this.cache.$spinner.removeClass('d-none');
-  const countryApi = this.cache.equipmentApi.data('country-api');
-  const equipmentApi = this.cache.equipmentApi.data('list-api');
-  auth.getToken(({ data: authData }) => {
-    ajaxWrapper
-      .getXhrObj({
-        url: countryApi,
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        },
-        showLoader: true
-      }).then(res => {
-        this.cache.countryData = _getFormattedData(res.data);
-        this.cache.authData = authData;
-        const { countryCode } = this.cache.countryData && this.cache.countryData[0];
-        const { itemsPerPage } = this.cache;
-
-        $this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers']);
-
-        ajaxWrapper
-          .getXhrObj({
-            url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`,
-            method: 'GET',
-            contentType: 'application/json',
-            dataType: 'json',
-            beforeSend(jqXHR) {
-              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            },
-            showLoader: true
-          }).then(response => {
-            this.cache.$spinner.addClass('d-none');
-            this.cache.$content.removeClass('d-none');
-            this.cache.tableData = response.data;
-            this.cache.tableData = this.cache.tableData.map((item) => ({
-              ...item,
-              equipmentStatus: item.equipmentStatus || ''
-            }));
-            this.cache.meta = response.meta;
-            this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
-
-            this.renderPaginationTableData(_processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta}),
-              {isCustomiseTableFilter: false });
-
-            this.renderSearchCount();
-            this.mapTableColumn();
-          }).fail(() => {
-            this.cache.$content.removeClass('d-none');
-            this.cache.$spinner.addClass('d-none');
-          });
-      });
-  });
-}
-
 class MyEquipment   {
   constructor({ el }) {
     this.root = $(el);
@@ -388,7 +327,7 @@ class MyEquipment   {
     this.cache.currentPageNumber = 1;
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
-    this.cache.sortableKeys = ['siteDesc','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
+    this.cache.sortableKeys = ['site','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
     this.cache.activeSortData = null;
     this.cache.activePage = 1;
     this.cache.skipIndex = 0;
@@ -416,7 +355,7 @@ class MyEquipment   {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
     this.cache.customisableTableHeaders = [
       {key:'countryCode',option:'countryCode',optionDisplayText:i18nKeys['country'],isChecked:true,index:0},
-      {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
+      {key:'site',option:'site',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
       {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['siteDescription'],isChecked:false,index:2},
       {key:'lineName',option:'lineName',optionDisplayText:i18nKeys['line'],isChecked:true,index:3},
       {key:'equipmentNameSub',option:'equipmentNameSub',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
@@ -720,12 +659,8 @@ class MyEquipment   {
             equipmentStatus: item.equipmentStatus || ''
           }));
           this.deleteAllFilters();
-
-          // TODO
-          this.renderPaginationTableData(
-            _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta}),
-            {isCustomiseTableFilter :label === 'customise-table' ? true : false });
-
+          const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+          this.renderPaginationTableData(tableData);
           this.renderSearchCount();
           this.updateFilterCountValue(label,1,$countryFilterLabel);
         }).fail(() => {
@@ -918,8 +853,8 @@ class MyEquipment   {
 
     // if show/hide columns
     if (activeFilterForm === 'customise-table') { // other type of filter change
-      this.renderPaginationTableData(_processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta}),
-        {isCustomiseTableFilter: true });
+      const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+      this.renderPaginationTableData(tableData);
       this.cache.$modal.modal('hide');
       return;
     }
@@ -1005,7 +940,7 @@ class MyEquipment   {
     $modal.modal('hide');
   }
 
-  renderFilterForm(data, formDetail, $filterBtn) {
+  renderFilterForm = (data, formDetail, $filterBtn) => {
     const { i18nKeys } = this.cache;
     if (formDetail.header === i18nKeys['country']) {
       data.forEach((item,index) => {
@@ -1039,11 +974,7 @@ class MyEquipment   {
     this.cache.$activeFilterBtn = $filterBtn;
   }
 
-  renderCountryFilters(){
-    return _renderCountryFilters.apply(this, arguments);
-  }
-
-  renderNewPage({resetSkip}) {
+  renderNewPage = ({resetSkip}) => {
     const {itemsPerPage, countryData, activeSortData} = this.cache;
     const equipmentApi = this.cache.equipmentApi.data('list-api');
     const activeCountry = countryData.filter(e => e.isChecked);
@@ -1092,10 +1023,8 @@ class MyEquipment   {
             equipmentStatus: item.equipmentStatus || ''
           }));
           this.cache.meta = response.meta;
-
-          this.renderPaginationTableData(_processTableData.call(this,
-            {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta}), {isCustomiseTableFilter: false });
-
+          const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+          this.renderPaginationTableData(tableData);
           this.renderSearchCount();
           this.mapTableColumn();
         }).fail(() => {
@@ -1105,11 +1034,69 @@ class MyEquipment   {
     });
   }
 
+  renderDefaultCountry = () => {
+    this.cache.$spinner.removeClass('d-none');
+    const countryApi = this.cache.equipmentApi.data('country-api');
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    auth.getToken(({ data: authData }) => {
+      ajaxWrapper
+        .getXhrObj({
+          url: countryApi,
+          method: ajaxMethods.GET,
+          cache: true,
+          dataType: 'json',
+          contentType: 'application/json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(res => {
+          this.cache.countryData = _getFormattedData(res.data);
+          this.cache.authData = authData;
+          const { countryCode } = this.cache.countryData && this.cache.countryData[0];
+          const { itemsPerPage } = this.cache;
+
+          this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers']);
+
+          ajaxWrapper
+            .getXhrObj({
+              url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`,
+              method: 'GET',
+              contentType: 'application/json',
+              dataType: 'json',
+              beforeSend(jqXHR) {
+                jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+                jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+              },
+              showLoader: true
+            }).then(response => {
+              this.cache.$spinner.addClass('d-none');
+              this.cache.$content.removeClass('d-none');
+              this.cache.tableData = response.data;
+              this.cache.tableData = this.cache.tableData.map((item) => ({
+                ...item,
+                equipmentStatus: item.equipmentStatus || ''
+              }));
+              this.cache.meta = response.meta;
+              this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
+              const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+              this.renderPaginationTableData(tableData);
+              this.renderSearchCount();
+              this.mapTableColumn();
+            }).fail(() => {
+              this.cache.$content.removeClass('d-none');
+              this.cache.$spinner.addClass('d-none');
+            });
+        });
+    });
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.renderCountryFilters();
+    this.renderDefaultCountry();
   }
 }
 
