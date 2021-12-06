@@ -1,10 +1,9 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.PostConstruct;
-
-import com.day.cq.commons.LanguageUtil;
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -14,10 +13,10 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
-import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Class MyEquipmentModel.
@@ -26,11 +25,13 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MyEquipmentModel {
 
-	public static final String EQUIPMENT_DETAILS_PATH = "/equipment-details";
-
 	/** The resource. */
 	@Self
 	private Resource resource;
+
+	/** The path to equipment details. */
+	@ValueMapValue
+	private String equipmentDetailsPath;
 	
 	/** The country. */
 	@ValueMapValue
@@ -637,7 +638,6 @@ public class MyEquipmentModel {
 	 * @return mapped url.
 	 */
 	public String getMappedEquipmentDetailsUrl() {
-		String fullPath = LanguageUtil.getLanguageRoot(resource.getPath()) + EQUIPMENT_DETAILS_PATH;
-		return LinkUtil.getValidLink(resource, fullPath);
+		return LinkUtil.getValidLink(resource, equipmentDetailsPath);
 	}
 }
