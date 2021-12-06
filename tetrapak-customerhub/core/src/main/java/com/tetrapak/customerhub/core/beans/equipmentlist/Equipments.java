@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.beans.equipmentlist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
 public class Equipments {
 
@@ -449,5 +450,18 @@ public class Equipments {
 
     public void setLocation (String location) {
         this.location = location;
+    }
+
+    @Override public String toString() {
+        return id + CustomerHubConstants.COMMA + countryCode + CustomerHubConstants.COMMA + countryName + CustomerHubConstants.COMMA + customer + CustomerHubConstants.COMMA + customerNumber + CustomerHubConstants.COMMA + customerName
+                + CustomerHubConstants.COMMA + location + CustomerHubConstants.COMMA + lineName + CustomerHubConstants.COMMA + equipmentStatus + CustomerHubConstants.COMMA + isSecondhand + CustomerHubConstants.COMMA + equipmentType
+                + CustomerHubConstants.COMMA + businessType + CustomerHubConstants.COMMA + equipmentTypeDesc + CustomerHubConstants.COMMA + functionalLocation + CustomerHubConstants.COMMA + functionalLocationDesc
+                + CustomerHubConstants.COMMA + serialNumber + CustomerHubConstants.COMMA + siteName + CustomerHubConstants.COMMA + CustomerHubConstants.COMMA + permanentVolumeConversion + CustomerHubConstants.COMMA + position + CustomerHubConstants.COMMA
+                + machineSystem + CustomerHubConstants.COMMA + material + CustomerHubConstants.COMMA + materialDesc + CustomerHubConstants.COMMA + manufacturerModelNumber + CustomerHubConstants.COMMA
+                + manufacturerSerialNumber + CustomerHubConstants.COMMA + superiorEquipment + CustomerHubConstants.COMMA + superiorEquipmentName + CustomerHubConstants.COMMA
+                + superiorEquipmentSerialNumber + CustomerHubConstants.COMMA + manufacturer + CustomerHubConstants.COMMA + manufacturerCountry + CustomerHubConstants.COMMA
+                + constructionYear + CustomerHubConstants.COMMA + customerWarrantyStartDate + CustomerHubConstants.COMMA + customerWarrantyEndDate + CustomerHubConstants.COMMA
+                + equipmentCategory + CustomerHubConstants.COMMA + equipmentCategoryDesc + CustomerHubConstants.COMMA + eofsConfirmationDate + CustomerHubConstants.COMMA + eofsValidFromDate
+                + CustomerHubConstants.NEWLINE;
     }
 }

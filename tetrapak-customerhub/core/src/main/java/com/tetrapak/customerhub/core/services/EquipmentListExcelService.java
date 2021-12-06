@@ -1,29 +1,14 @@
 package com.tetrapak.customerhub.core.services;
 
-import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
-import com.tetrapak.customerhub.core.beans.equipmentlist.Results;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
-
-import java.util.List;
-
 /**
  * Equipment List Excel Service
  */
 public interface EquipmentListExcelService {
 
 	/**
-	 * Method to generate Equipment List excel
+	 * Method to generate CSV file header array
 	 *
-	 * @param req        SlingHttpServletRequest the POST request call from the My
-	 *                   Equipment page frontend
-	 * @param response   SlingHttpServletResponse to send the excel file to the
-	 *                   browser
-	 * @param equipments data from the frontend got from the POST request regarding
-	 *                   the equipment details
-	 * @return true if successful in generation of the excel otherwise false
+	 * @return String[][] header array
 	 */
-	boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
-			List<Equipments> apiResponse);
-
+	String[][] getColumnHeaderArray();
 }

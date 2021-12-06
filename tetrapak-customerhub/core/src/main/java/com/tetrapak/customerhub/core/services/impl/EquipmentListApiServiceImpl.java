@@ -56,8 +56,9 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 
 		this.config = config;
 		int processors = Runtime.getRuntime().availableProcessors();
-		LOGGER.debug("Number of CPU processors : {}", String.valueOf(processors));
 		executor = Executors.newFixedThreadPool(processors - 1);
+		String numberOfProcessors = String.valueOf(processors);
+		LOGGER.debug("Number of CPU processors : {}", numberOfProcessors);
 	}
 
 	@Deactivate
@@ -86,7 +87,6 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 		// Make a call to first set of results to get the total number of results
 		parseAPIResponse(getEquipmentInitial).ifPresent(s -> {
 			Results equipmentsFirstSet = parseAPIResponse(getEquipmentInitial).get();
-			LOGGER.debug("meta object : " + equipmentsFirstSet.getMeta().toString());
 			int totalEquipmentCount = equipmentsFirstSet.getMeta().getTotal();
 			LOGGER.debug("Total equipment count is {}", String.valueOf(totalEquipmentCount));
 			LOGGER.debug("Number of records to fetch in single set is {}", getNoOfRecordsCount());
@@ -103,7 +103,7 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 		// Concurrently make call to API for fetching results in smaller sets
 		List<CompletableFuture<List<Equipments>>> apiCallFutures = skipElements.stream()
 				.map(skipElement -> CompletableFuture
-						.supplyAsync(() -> getAllEquipmentAPI(skipElement, token, countryCode), executor)
+						.supplyAsync(() -> getAllEquipmentAPI(skipElement, token, countryCode),executor)
 						.exceptionally(exception -> {
 							LOGGER.error("Error while executing API for index starting from {}", skipElement,
 									exception);
@@ -153,8 +153,8 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 		} else {
 			results = Optional.of(apiResponse.get(CustomerHubConstants.RESULT)).filter(StringUtils::isNotEmpty)
 					.map(s -> gson.fromJson(s, Results.class));
-			LOGGER.debug("Total results in API call starting with index {} are {}", results.get().getMeta().getSkip(),
-					results.get().getData().size());
+			results.ifPresent(s -> LOGGER.debug("Total results in API call starting with index {} are {}", s.getMeta().getSkip(),
+					s.getData().size()));
 		}
 		return results;
 	}
@@ -173,12 +173,10 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 		final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
 				+ GlobalUtil.getSelectedApiMapping(apigeeService, "myequipment-equipmentlist")
 				+ CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS
-				+ countryCode /*
-								 * + CustomerHubConstants.AMPERSAND +
-								 * CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER
-								 */ + CustomerHubConstants.AMPERSAND + CustomerHubConstants.SKIP
-				+ CustomerHubConstants.EQUALS + skip + CustomerHubConstants.AMPERSAND + CustomerHubConstants.COUNT
-				+ CustomerHubConstants.EQUALS + getNoOfRecordsCount();
+				+ countryCode + CustomerHubConstants.AMPERSAND
+				+ CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER + CustomerHubConstants.AMPERSAND
+				+ CustomerHubConstants.SKIP + CustomerHubConstants.EQUALS + skip + CustomerHubConstants.AMPERSAND
+				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS + getNoOfRecordsCount();
 		return HttpUtil.executeHttp(token, url);
 	}
 }
