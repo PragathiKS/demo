@@ -42,6 +42,15 @@ public final class CustomerHubConstants {
     /** The Constant EMPTY_STRING. */
     public static final String EMPTY_STRING = "";
 
+    /** The Constant EMPTY_STRING. */
+    public static final String COMMA = ",";
+
+    /** The Constant EMPTY_STRING. */
+    public static final String NEWLINE = "\n";
+
+    /** The Constant EMPTY_STRING. */
+    public static final String SEMI_COLON = ";";
+
     /** The Constant CQ_TEMPLATE. */
     public static final String CQ_TEMPLATE = "cq:template";
 
@@ -133,7 +142,7 @@ public final class CustomerHubConstants {
     public static final String AMPERSAND = "&";
     
     /** The Constant COUNTRY_CODE. */
-    public static final String COUNTRY_CODE = "countrycode";
+    public static final String COUNTRY_CODE = "countrycodes";
     
     /** The Constant EXCEL_DOWNLOAD_EXTENSION. */
     public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
