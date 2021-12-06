@@ -1,6 +1,5 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.day.cq.commons.LanguageUtil;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
@@ -27,13 +26,18 @@ public class EquipmentDetailsModel {
 
     private static final String MYEQUIPMENT_STATUSLIST_API = "myequipment-statuslist";
     private static final String MYEQUIPMENT_COUNTRYLIST_API = "myequipment-countrylist";
-    private static final String MYEQUIPMENT_PATH = "/equipment";
 
     /**
      * The resource.
      */
     @Self
     private Resource resource;
+
+    /**
+     * The path to my equipment.
+     */
+    @Inject
+    private String myEqipmentPath;
 
     /**
      * The country.
@@ -675,8 +679,7 @@ public class EquipmentDetailsModel {
 	 * @return mapped url.
 	 */
 	public String getMappedMyEquipmentUrl() {
-        String fullPath = LanguageUtil.getLanguageRoot(resource.getPath()) + MYEQUIPMENT_PATH;
-		return LinkUtil.getValidLink(resource, fullPath);
+		return LinkUtil.getValidLink(resource, myEqipmentPath);
 	}
 
     /**
