@@ -1,17 +1,22 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.beans.equipment.AddEquipmentFormBean;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.servlet.Servlet;
 import java.io.IOException;
-
-import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,15 +32,23 @@ import java.util.Map;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AddEquipmentServlet.class);
 
+    @Reference
+    private transient XSSAPI xssAPI;
+
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
         LOGGER.debug("Start: Equipment details - Post");
-        response.setStatus(HttpStatus.SC_OK);
 
+        String requestString = xssAPI.getValidJSON(IOUtils.toString(request.getReader()), StringUtils.EMPTY);
+        Gson gson = new Gson();
+        AddEquipmentFormBean bean = gson.fromJson(requestString, AddEquipmentFormBean.class);
+
+        bean.getEquipmentComments();
+
+        response.setStatus(HttpStatus.SC_OK);
         Map<String, String> resObj = new HashMap<>();
         resObj.put("message", "request received");
-        Gson gson = new Gson();
         response.getWriter().write(gson.toJson(resObj));
     }
 }
