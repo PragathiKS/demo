@@ -5,6 +5,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -654,6 +655,16 @@ public class EquipmentDetailsModel {
      */
     public String getStatusUpdateDescription() {
         return statusUpdateDescription;
+    }
+
+    /**
+     * Gets the Mapped Path of this resource.
+     *
+     * @return the mappedPath
+     */
+    public String getMappedResourcePath() {
+        ResourceResolver resolver = resource.getResourceResolver();
+        return resolver.map(resource.getPath());
     }
 
     /**
