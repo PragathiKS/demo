@@ -153,7 +153,16 @@ function _bindFormChangeEvents() {
 
   $('input, textarea, select', $form).each((_, item) => {
     $(item).on('blur', () => {
-      if ($form.serialize() !== initialFormData && $('#position').val()) {
+      let isEmptyField = false;
+      const isDifferentData = $form.serialize() !== initialFormData;
+      const inputs = $('input', $form);
+      for(let i = 0; i < inputs.length; i++) {
+        if(!inputs[i].value) {
+          isEmptyField = true;
+          break;
+        }
+      }
+      if (isDifferentData && !isEmptyField ) {
         $updateBtn.removeAttr('disabled');
       } else {
         $updateBtn.attr('disabled', 'disabled');
@@ -244,6 +253,7 @@ class EquipmentDetails {
             this.cache.$spinner.addClass('d-none');
             if(![200, 201].includes(res.status)) {
               $('.js-equipment-details__error').removeClass('d-none');
+              return;
             }
             this.cache.$contentWrapper.removeClass('d-none');
             this.cache.$modal.modal('hide');
