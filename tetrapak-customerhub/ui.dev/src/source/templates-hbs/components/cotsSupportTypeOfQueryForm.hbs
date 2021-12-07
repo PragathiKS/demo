@@ -1,0 +1,93 @@
+<h1 class="tp-cots-support__title">{{i18n key=i18nKeys.title}}</h1>
+<p class="tp-cots-support__subtitle">{{i18n key=i18nKeys.subTitle}}</p>
+
+<form class="tp-cots-support__form">
+    <h3>{{i18n key=i18nKeys.selectTypeOfLog}}</h3>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/radioButton/radioButton
+                labelText=i18nKeys.technicalIssues
+                name="logQueryType"
+                id="technicalIssues"
+                value="technicalIssues"
+                required="true"
+        }}
+        {{> atoms/radioButton/radioButton
+                labelText=i18nKeys.productSupport
+                name="logQueryType"
+                id="productSupport"
+                value="productSupport"
+                required="true"
+                labelClasses="mb-0"
+        }}
+    </div>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
+         data-for-log-query="technicalIssues">
+        {{> atoms/dropdown/dropdown
+                defaultValue=i18nKeys.dropdownPlaceholder
+                options=urgencyDictionary
+                labelText=i18nKeys.urgency
+                name="urgency"
+                required="true"
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.urgencyErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
+         data-for-log-query="technicalIssues">
+        {{> atoms/input/input
+                labelText=i18nKeys.affectedSystems
+                name="affectedSystems"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
+         data-for-log-query="technicalIssues">
+        {{> atoms/input/input
+                labelText=i18nKeys.softwareVersion
+                name="softwareVersion"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
+         data-for-log-query="technicalIssues">
+        {{> atoms/input/input
+                labelText=i18nKeys.description
+                name="description"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
+         data-for-log-query="both">
+        {{> atoms/textarea/textarea
+                labelText=i18nKeys.comments
+                name="comments"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.commentsErrorMsg}}</div>
+    </div>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
+         data-for-log-query="both">
+        {{> atoms/checkbox/checkbox
+                text=i18nKeys.marketingConsent
+                baseClass="tp-cots-support__checkbox"
+        }}
+    </div>
+
+    {{> atoms/buttons/button/button
+            buttonType="submit"
+            modifier="primary"
+            iconClass="icon-Chevron_Right"
+            text=i18nKeys.submitButtonLabel
+            className="tp-cots-support__submit js-tp-cots-support__submit-type-of-query d-none"
+    }}
+</form>
