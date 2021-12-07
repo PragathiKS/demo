@@ -6,158 +6,9 @@ import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 
-function _paginate(totalItems, currentPage, pageSize, maxPages) {
-  // calculate total pages
-  const totalPages = Math.ceil(totalItems / pageSize);
-  // ensure current page isn't out of range
-  if (currentPage < 1) {
-    currentPage = 1;
-  } else if (currentPage > totalPages) {
-    currentPage = totalPages;
-  }
-
-  let startPage, endPage;
-  if (totalPages <= maxPages) {
-    // total pages less than max so show all pages
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // total pages more than max so calculate start and end pages
-    const maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
-    const maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
-    if (currentPage <= maxPagesBeforeCurrentPage) {
-      // current page near the start
-      startPage = 1;
-      endPage = maxPages;
-    } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
-      // current page near the end
-      startPage = totalPages - maxPages + 1;
-      endPage = totalPages;
-    } else {
-      // current page somewhere in the middle
-      startPage = currentPage - maxPagesBeforeCurrentPage;
-      endPage = currentPage + maxPagesAfterCurrentPage;
-    }
-  }
-
-  // calculate start and end item indexes
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
-
-  // create an array of pages
-  const allPages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
-
-  const pagesHbsArr = [];
-  allPages.forEach(page => {
-    const pageObj = {
-      isPage: true,
-      isSelected: page === currentPage,
-      pageNumber: page,
-      skip: (page - 1) * pageSize
-    };
-    pagesHbsArr.push(pageObj);
-  });
-
-  return {
-    totalItems: totalItems,
-    currentPage: currentPage,
-    pageSize: pageSize,
-    totalPages: totalPages,
-    startPage: startPage,
-    endPage: endPage,
-    startIndex: startIndex,
-    endIndex: endIndex,
-    prevDisabled: currentPage === 1,
-    nextDisabled: currentPage === totalPages,
-    prevPage: currentPage - 1,
-    nextPage: currentPage + 1,
-    prevSkip: (currentPage - 2) * pageSize,
-    nextSkip: currentPage * pageSize,
-    lastSkip: (totalPages - 1) * pageSize,
-    pages: pagesHbsArr
-  };
-}
-
-function _buildTableRows(data, keys) {
-  const dataObject = {
-    row: []
-  };
-
-  keys.forEach((key, index) => {
-    const value = data[key];
-
-    if (key === 'serialNumber') {
-      const permanentVolumeConversion = data['permanentVolumeConversion'];
-      dataObject.row[index] = {
-        key,
-        value,
-        permanentVolumeConversion
-      };
-    } else {
-      dataObject.row[index] = {
-        key,
-        value
-      };
-    }
-
-    if (data['id']) {
-      dataObject.rowLink = data['id'];
-      dataObject.isClickable = true;
-    }
-  });
-
-  return dataObject;
-}
-
-function _getFormattedData(array){
-  array.forEach((item,index) => {
-    array[index] = {
-      option: item.countryName,
-      countryCode:item.countryCode,
-      isChecked: index === 0 || item.isChecked ? true: false
-    };
-  });
-  return array;
-}
-
-function _groupByBusinessType(filterOptionsArr) {
-  const businessTypeArr = [];
-  const groupedFilterOptions = [];
-  // get all unique business types
-  filterOptionsArr.forEach((item) => {
-    if (businessTypeArr.indexOf(item['businessType']) === -1) {
-      businessTypeArr.push(item['businessType']);
-    }
-  });
-
-  // create an object for each business type with it's corresponding items
-  businessTypeArr.forEach((businessType) => {
-    const optionsForBusinessType = filterOptionsArr.filter(filterOption => filterOption.businessType === businessType);
-
-    groupedFilterOptions.push({
-      businessTypeLabel: businessType,
-      options: optionsForBusinessType,
-      isChecked: !optionsForBusinessType.some(filterOption => filterOption.isChecked === false)
-    });
-  });
-
-  return groupedFilterOptions;
-}
-
-function _mapQueryParams(key) {
-  switch (key) {
-    case 'customer':
-      return 'customernumbers';
-    case 'equipmentStatus':
-      return 'equipment-statuses';
-    case 'equipmentType':
-      return 'equipment-types';
-    case 'lineName':
-      return 'linecodes';
-    default:
-      return key.toLowerCase();
-  }
-}
+import { _paginate } from './MyEquipment.paginate';
+import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
+import { _buildTableRows, _groupByBusinessType, _mapHeadings } from './MyEquipment.table';
 
 function _processKeys(keys, ob) {
   if(keys.length){
@@ -195,114 +46,21 @@ function _processKeys(keys, ob) {
   }
 }
 
-function _getKeyMap(key,i18nKeys){
-  const headerObj = {};
-  switch (key) {
-    case 'countryCode': {
-      headerObj['keyLabel'] = i18nKeys['country'];
-      headerObj['showTooltip'] = i18nKeys['countryToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['countryToolTip'];
-      break;
-    }
-    case 'site': {
-      headerObj['keyLabel'] = i18nKeys['site'];
-      headerObj['showTooltip'] = i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['siteToolTip'];
-      break;
-    }
-    case 'lineName': {
-      headerObj['keyLabel'] = i18nKeys['line'];
-      headerObj['showTooltip'] = i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['lineToolTip'];
-      break;
-    }
-    case 'equipmentNameSub': {
-      headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
-      headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
-      break;
-    }
-    case 'siteDesc': {
-      headerObj['keyLabel'] = i18nKeys['siteDescription'];
-      headerObj['showTooltip'] = i18nKeys['siteDescToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['siteDescToolTip'];
-      break;
-    }
-    case 'location': {
-      headerObj['keyLabel'] = i18nKeys['location'];
-      headerObj['showTooltip'] = i18nKeys['locationToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['locationToolTip'];
-      break;
-    }
-    case 'serialNumber': {
-      headerObj['keyLabel'] = i18nKeys['serialNumber'];
-      headerObj['showTooltip'] = i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
-      break;
-    }
-    case 'equipmentStatus': {
-      headerObj['keyLabel'] = i18nKeys['equipmentStatus'];
-      headerObj['showTooltip'] = i18nKeys['equipStatToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipStatToolTip'];
-      break;
-    }
-    case 'functionalLocation': {
-      headerObj['keyLabel'] = i18nKeys['functionalLocation'];
-      headerObj['showTooltip'] = i18nKeys['functionalLocationToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['functionalLocationToolTip'];
-      break;
-    }
-    default: {
-      break;
-    }
-  }
-  return headerObj;
-}
-
-function _mapHeadings(keys, i18nKeys, activeSortData) {
-  const sortByKey = activeSortData && activeSortData.sortedByKey;
-  const sortOrder = activeSortData && activeSortData.sortOrder;
-  return keys.map(key => ({
-    key,
-    myEquipment: true,
-    isSortable: this.cache.sortableKeys.includes(key),
-    isActiveSort: key === sortByKey,
-    sortOrder: sortOrder,
-    i18nKey: _getKeyMap(key,i18nKeys).keyLabel,
-    showTooltip: _getKeyMap(key,i18nKeys).showTooltip,
-    tooltipText: _getKeyMap(key,i18nKeys).tooltipText
-  }));
-}
-
 function _processTableData(data){
   let keys = [];
+  const { activeSortData, sortableKeys } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = _processKeys(keys, summary);
       this.cache.tableHeaders = keys;
       return _buildTableRows.call(this, summary, keys);
     });
-    data.summaryHeadings = _mapHeadings.call(this,keys,data.i18nKeys,this.cache.activeSortData);
+    data.summaryHeadings = _mapHeadings(keys,data.i18nKeys,activeSortData,sortableKeys);
   }
   return data;
 }
 
-function _remapFilterProperty(filterProperty) {
-  switch (filterProperty) {
-    case 'equipmentStatus':
-      return 'statuses';
-    case 'equipmentType':
-      return 'types';
-    case 'customer':
-      return 'customers';
-    case 'lineName':
-      return 'lines';
-    default:
-      return filterProperty;
-  }
-}
-
-class MyEquipment   {
+class MyEquipment {
   constructor({ el }) {
     this.root = $(el);
   }
@@ -570,9 +328,9 @@ class MyEquipment   {
   }
 
   getAvailableFilterValsForCurrentSet(filterValuesArr) {
-    const { authData } = this.cache;
+    const { authData, combinedFiltersObj } = this.cache;
     const equipmentApi = this.cache.equipmentApi.data('list-api');
-    const filtersQuery = this.buildQueryUrl();
+    const filtersQuery = _buildQueryUrl(combinedFiltersObj);
 
     filterValuesArr.forEach(filterVal => {
       let apiUrlRequest = `${equipmentApi}/${filterVal}?countrycodes=${this.getActiveCountryCode()}`;
@@ -680,17 +438,6 @@ class MyEquipment   {
           this.cache.$content.removeClass('d-none');
         });
     });
-  }
-
-  buildQueryUrl() {
-    const { combinedFiltersObj } = this.cache;
-    if (Object.keys(combinedFiltersObj).length) {
-      const queryString = Object.keys(combinedFiltersObj).map(key =>
-        `${_mapQueryParams(key)}=${combinedFiltersObj[key]}`).join('&');
-      return queryString;
-    } else {
-      return '';
-    }
   }
 
   isFilterCheckboxDisabled(filterProperty, filterPropertyKey, row, optionValueKey) {
@@ -987,12 +734,12 @@ class MyEquipment   {
   }
 
   renderNewPage = ({resetSkip}) => {
-    const {itemsPerPage, countryData, activeSortData} = this.cache;
+    const {itemsPerPage, countryData, activeSortData, combinedFiltersObj} = this.cache;
     const equipmentApi = this.cache.equipmentApi.data('list-api');
     const activeCountry = countryData.filter(e => e.isChecked);
     const countryCode = activeCountry[0].countryCode;
     let apiUrlRequest = '';
-    const filtersQuery = this.buildQueryUrl();
+    const filtersQuery = _buildQueryUrl(combinedFiltersObj);
     const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
 
     this.cache.$content.addClass('d-none');
@@ -1064,7 +811,7 @@ class MyEquipment   {
           },
           showLoader: true
         }).then(res => {
-          this.cache.countryData = _getFormattedData(res.data);
+          this.cache.countryData = _getFormattedCountryData(res.data);
           this.cache.authData = authData;
           const { countryCode } = this.cache.countryData && this.cache.countryData[0];
           const { itemsPerPage } = this.cache;
