@@ -1,0 +1,142 @@
+<h1 class="tp-cots-support__title">{{i18n key=i18nKeys.title}}</h1>
+
+<form class="tp-cots-support__form">
+    <h3>{{i18n key=i18nKeys.confirmYourDetailsHeader}}</h3>
+
+    <h4>{{i18n key=i18nKeys.customerSiteHeader}}</h4>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.companyName
+                name="companyName"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.streetName
+                name="streetName"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.city
+                name="city"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.country
+                name="country"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+
+    <h4>{{i18n key=i18nKeys.idHeader}}</h4>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.idName
+                name="idName"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+
+    <h4>{{i18n key=i18nKeys.supplierDetailsHeader}}</h4>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.supplierCompanyName
+                name="supplierCompanyName"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.supplierStreetName
+                name="supplierStreetName"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.supplierCity
+                name="supplierCity"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.supplierCountry
+                name="supplierCountry"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+
+    <h4>{{i18n key=i18nKeys.contactDetailsHeader}}</h4>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.name
+                name="name"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.emailAddress
+                name="emailAddress"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        <div class="error-msg js-tp-cots-support__error-msg-invalid-email">{{i18n key=i18nKeys.emailErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText=i18nKeys.telephone
+                name="telephone"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        <div class="error-msg js-tp-cots-support__error-msg-invalid-phone">{{i18n key=i18nKeys.phoneErrorMsg}}</div>
+    </div>
+
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/checkbox/checkbox
+                text=i18nKeys.marketingConsent
+                baseClass="tp-cots-support__checkbox"
+        }}
+    </div>
+
+    {{> atoms/buttons/button/button
+            buttonType="submit"
+            modifier="primary"
+            iconClass="icon-Chevron_Right"
+            text=i18nKeys.submitButtonLabel
+            className="tp-cots-support__submit js-tp-cots-support__submit-confirmation-details"
+    }}
+</form>

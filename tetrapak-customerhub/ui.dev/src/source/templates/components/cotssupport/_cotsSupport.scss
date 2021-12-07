@@ -1,0 +1,89 @@
+.tp-cots-support {
+    $color-success: #8dc63f;
+
+    &__title {
+        @include margin-bottom($margin-md);
+        @include line-height($font-xl, $font-l);
+        @include font-size($font-l);
+        font-weight: 400;
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+            @include line-height(40px, $font-xl);
+            @include font-size($font-xl);
+            font-weight: 700;
+        }
+    }
+
+    &__subtitle {
+        @include margin-bottom($margin-md);
+        max-width: 825px;
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    h3 {
+        @include margin-bottom($margin-md);
+    }
+
+    h4 {
+        @include margin-top($margin-l);
+    }
+
+    &__form {
+        max-width: 510px;
+        width: 100%;
+    }
+
+    &__form-element {
+        &--error {
+            input,
+            textarea,
+            select {
+                border: 1px solid $color-alert;
+            }
+        }
+        .error-msg {
+            @include font-size($font-sm);
+            display: none;
+            color: $color-alert;
+
+            &--active {
+                display: block;
+            }
+        }
+    }
+
+    &__checkbox {
+        @include margin-top($margin-md);
+    }
+
+    &__submit {
+        @include margin-top($margin-sm);
+    }
+
+    &__success-message {
+        display: flex;
+        font-weight: 700;
+        flex-direction: column;
+
+        @media #{$tablet} {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-bottom($margin-sm);
+            color: $color-success;
+
+            @media #{$tablet} {
+                @include margin-bottom($margin-zero);
+                @include margin-right($margin-md);
+            }
+        }
+    }
+}
