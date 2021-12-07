@@ -243,6 +243,20 @@
                             </column>
                         </items>
                     </content>
+                    <column1
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Path Configuration"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <myEqipmentPath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Path To My Equipment Page"
+                                name="./myEqipmentPath"
+                                required="true"/>
+                        </items>
+                    </column1>
                 </items>
             </tabs>
         </items>
