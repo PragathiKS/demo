@@ -117,7 +117,7 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet {
 				csvFileContent.append(columnHeading).append(CustomerHubConstants.COMMA);
 				LOGGER.debug("Equipment list CSV File Column heading : {}",columnHeading);
 			}
-			csvFileContent.append(CustomerHubConstants.SEMI_COLON);
+			csvFileContent.append(CustomerHubConstants.NEWLINE);
 			for (Equipments equipment : equipments) {
 				csvFileContent.append(equipment.toString());
 			}
