@@ -92,7 +92,7 @@ function _renderEquipmentDetails() {
           data.equipData = data.data[0];
           data.i18nKeys = i18nKeys;
           $this.cache.id = id;
-          $this.cache.serialNumber = data.equipData.manufacturerSerialNumber;
+          $this.cache.serialNumber = data.equipData.serialNumber;
           $this.cache.data = data;
         }
       }
