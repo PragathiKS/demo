@@ -195,6 +195,7 @@ class AddEquipment {
     $this.root.on('click', '.js-tp-add-equipment__add-another-equipment', () => {
       $this.cache.$contentWrapper.addClass('d-none');
       $this.cache.$spinner.removeClass('d-none');
+      $this.cache.files = [];
       $this.renderForm();
     });
 
@@ -205,32 +206,24 @@ class AddEquipment {
   }
   submitForm(e) {
     const $this = this;
-    const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
-    const formData = {
-      files: $this.cache.files,
-      ...data
-    };
+    const formData = new FormData(e.currentTarget.form);
+    formData.append('files', $this.cache.files);
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({
           url: $this.cache.submitApi,
           method: ajaxMethods.POST,
           cache: true,
-          dataType: 'json',
-          contentType: 'application/json',
-          data: JSON.stringify(formData),
+          processData: false,
+          contentType: false,
+          data: formData,
           beforeSend(jqXHR) {
             jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
           },
           showLoader: true
-        }).done(res => {
-          // eslint-disable-next-line no-console
-          console.log(res);
+        }).done(() => {
           $this.renderSubmit();
-        }).fail((error) => {
-          // eslint-disable-next-line no-console
-          console.log(error);
+        }).fail(() => {
           $this.cache.$contentWrapper.removeClass('d-none');
           $this.cache.$spinner.addClass('d-none');
         });
