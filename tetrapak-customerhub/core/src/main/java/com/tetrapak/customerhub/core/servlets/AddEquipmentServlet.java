@@ -2,8 +2,7 @@ package com.tetrapak.customerhub.core.servlets;
 
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.beans.equipment.AddEquipmentFormBean;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -39,10 +38,9 @@ import java.util.Map;
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
         LOGGER.debug("Start: Equipment details - Post");
-
-        String requestString = xssAPI.getValidJSON(IOUtils.toString(request.getReader()), StringUtils.EMPTY);
+        boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
         Gson gson = new Gson();
-        AddEquipmentFormBean bean = gson.fromJson(requestString, AddEquipmentFormBean.class);
+        AddEquipmentFormBean bean = gson.fromJson(request.getReader(), AddEquipmentFormBean.class);
 
         bean.getEquipmentComments();
 
