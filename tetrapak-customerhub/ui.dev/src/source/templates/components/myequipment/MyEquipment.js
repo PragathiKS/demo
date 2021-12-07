@@ -85,15 +85,27 @@ function _buildTableRows(data, keys) {
 
   keys.forEach((key, index) => {
     const value = data[key];
-    dataObject.row[index] = {
-      key,
-      value
-    };
+
+    if (key === 'serialNumber') {
+      const permanentVolumeConversion = data['permanentVolumeConversion'];
+      dataObject.row[index] = {
+        key,
+        value,
+        permanentVolumeConversion
+      };
+    } else {
+      dataObject.row[index] = {
+        key,
+        value
+      };
+    }
+
     if (data['id']) {
       dataObject.rowLink = data['id'];
       dataObject.isClickable = true;
     }
   });
+
   return dataObject;
 }
 
