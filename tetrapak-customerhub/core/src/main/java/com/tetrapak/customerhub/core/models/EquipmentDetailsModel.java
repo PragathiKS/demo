@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -31,6 +32,12 @@ public class EquipmentDetailsModel {
      */
     @Self
     private Resource resource;
+
+    /**
+     * The path to my equipment.
+     */
+    @Inject
+    private String myEqipmentPath;
 
     /**
      * The country.
@@ -666,6 +673,14 @@ public class EquipmentDetailsModel {
         ResourceResolver resolver = resource.getResourceResolver();
         return resolver.map(resource.getPath());
     }
+
+    /**
+	 * Get valid url to MyEquipment
+	 * @return mapped url.
+	 */
+	public String getMappedMyEquipmentUrl() {
+		return LinkUtil.getValidLink(resource, myEqipmentPath);
+	}
 
     /**
      * init method.

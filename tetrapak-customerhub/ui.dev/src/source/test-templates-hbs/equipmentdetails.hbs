@@ -1,49 +1,412 @@
 <div class="tp-card tp-equipment-details js-equipment-details" data-module="EquipmentDetails">
-    <code class="d-none js-equipment-details__config">
-        {
-            "equipmentDetails": "Equipment details",
-            "country": "Country",
-            "equipmentDescription": "Description",
-            "eofsValidFromDate": "PPO 4. EoFS date",
-            "constructionYear": "Construction year",
-            "line": "Line",
-            "manufacturerSerialNumber": "Manufacturer serial number",
-            "equipmentInformation": "Equipment information",
-            "equipmentType": "Equipment type",
-            "functionalLocationDesc": "Functional location description",
-            "manufacturer": "Manufacturer",
-            "manufacturerModelNumber": "Manufacturer model number",
-            "machineSystem": "Machine System",
-            "updateEquipmentInformation": "Update Equipment Information",
-            "customerWarrantyEndDate": "Warranty MC to cust end date",
-            "equipmentCategory": "Equipment category",
-            "eofsConfirmationDate": "PPO 3. confirmation of EoFS",
-            "additionalDetails": "Additional details",
-            "equipmentStatus": "Status",
-            "manufacturerCountry": "Country of manufacturer",
-            "customerWarrantyStartDate": "Warranty MC to cust start date",
-            "site": "Site",
-            "material": "Material",
-            "superiorEquipment": "Superior equipment",
-            "location": "Location",
-            "position": "Position",
-            "businessType": "Business type"
-        }
-    </code>
-
     <div class="tp-spinner">
         <div class="tpatom-loader js-loader">
-            <div class="tpatom-loading-anim"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="tpatom-loading-anim"></div>
         </div>
     </div>
-
-    <div class="tp-equipment-details__content-wrapper d-none">
+    <div class="tp-equipment-details__content-wrapper">
         <a href="#" class="tp-equipment-details__btn tp-equipment-details__back-btn" auto_locator="backToEquipmentList">
             <i class="icon icon-Chevron_Left"></i>
             Back to Equipment List
         </a>
 
-        <div class="tp-equipment-details__content js-equipment-details__content"></div>
+<!-- Second form view starts -->
+        <div class="tp-equipment-details__content">
+            <h1 class="tp-equipment-details__title" auto_locator="equipmentHeading">
+        Steriltank - DEP9000025
+            </h1>
+            <div class="row tp-equipment-details__info-card-row">
+                <div class="col-lg-6 tp-equipment-details__info-card-col">
+                    <div class="tp-equipment-details__info-card js-equipment-details__info-card">
+                        <h3 auto_locator="sectionTitle">cuhu.equipment.equipmentInformation</h3>
+                            <form class="tp-equipment-details__form js-equipment-details__form">
+                                <div class="tp-equipment-details__info-line">
+                                    <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Country</div>
+                                    <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                                        <div class="tpatom-dropdown ">
+                                        
+                                            <div class="d-block position-relative">
+                                                <select name="country" id="country" class="tpatom-dropdown__select-box ">
+                                                    <option value="AR">Argentina</option>
+                                                    <option value="AU">Australia</option>
+                                                    <option value="BE">Belgium</option>
+                                                    <option value="BR">Brazil</option>
+                                                    <option value="BG">Bulgaria</option>
+                                                    <option value="CM">Cameroon</option>
+                                                    <option value="CA">Canada</option>
+                                                    <option value="CL">Chile</option>
+                                                    <option value="CN">China</option>
+                                                    <option value="CO">Colombia</option>
+                                                    <option value="CG">Congo</option>
+                                                    <option value="CU">Cuba</option>
+                                                    <option value="DO">Dominican Rep.</option>
+                                                    <option value="EC">Ecuador</option>
+                                                    <option value="EG">Egypt</option>
+                                                    <option value="FI">Finland</option>
+                                                    <option value="FR">France</option>
+                                                    <option value="DE">Germany</option>
+                                                    <option value="GH">Ghana</option>
+                                                    <option value="GR">Greece</option>
+                                                    <option value="GT">Guatemala</option>
+                                                    <option value="HK">Hong Kong</option>
+                                                    <option value="IN">India</option>
+                                                    <option value="ID">Indonesia</option>
+                                                    <option value="IR">Iran</option>
+                                                    <option value="IE">Ireland</option>
+                                                    <option value="IL">Israel</option>
+                                                    <option value="IT">Italy</option>
+                                                    <option value="JM">Jamaica</option>
+                                                    <option value="JP">Japan</option>
+                                                    <option value="KZ">Kazakhstan</option>
+                                                    <option value="KE">Kenya</option>
+                                                    <option value="KR">Korea, Rep. of</option>
+                                                    <option value="MY">Malaysia</option>
+                                                    <option value="MX">Mexico</option>
+                                                    <option value="NL">Netherlands</option>
+                                                    <option value="NI">Nicaragua</option>
+                                                    <option value="NG">Nigeria</option>
+                                                    <option value="PK">Pakistan</option>
+                                                    <option value="PA">Panama</option>
+                                                    <option value="PG">Pap. New Guinea</option>
+                                                    <option value="PE">Peru</option>
+                                                    <option value="PH">Philippines</option>
+                                                    <option value="PL">Poland</option>
+                                                    <option value="PT">Portugal</option>
+                                                    <option value="RU">Russian Fed.</option>
+                                                    <option value="SA">Saudi Arabia</option>
+                                                    <option value="SN">Senegal</option>
+                                                    <option value="RS">Serbia</option>
+                                                    <option value="SG">Singapore</option>
+                                                    <option value="ZA">South Africa</option>
+                                                    <option value="ES">Spain</option>
+                                                    <option value="LK">Sri Lanka</option>
+                                                    <option value="CH">Switzerland</option>
+                                                    <option value="TH">Thailand</option>
+                                                    <option value="TT">Trinidad&amp;Tobago</option>
+                                                    <option value="TN">Tunisia</option>
+                                                    <option value="TR">Turkey</option>
+                                                    <option value="GB">United Kingdom</option>
+                                                    <option value="US">United States</option>
+                                                    <option value="AE">Utd.Arab Emir.</option>
+                                                    <option value="VE">Venezuela</option>
+                                                    <option value="VN">Viet Nam</option>
+                                                    <option value="ZW">Zimbabwe</option>
+                                                </select>
+                                                <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tp-equipment-details__info-line">
+                                    <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Location</div>
+                                    <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                                        <div class="tpatom-input-box">
+                                            <input type="text" name="location" id="location" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300" value="BIESSENHOFEN">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tp-equipment-details__info-line">
+                                    <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Site</div>
+                                    <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                                        <div class="tpatom-input-box">
+                                            <input type="text" name="siteName" id="siteName" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300" value="NESTLE   _BIE">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tp-equipment-details__info-line">
+                                    <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Line</div>
+                                    <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                                        <div class="tpatom-input-box">
+                                            <input type="text" name="lineName" id="lineName" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300" value="STT - Nestlé Deutschland AG-Biessenhofen-STT">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tp-equipment-details__info-line">
+                                    <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Equipment Status</div>
+                                    <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                                        <div class="tpatom-dropdown ">
+                                        
+                                            <div class="d-block position-relative">
+                                                <select name="equipmentStatus" id="equipmentStatus" class="tpatom-dropdown__select-box ">
+                                                        <option value="CUIN">At Customer for installation</option>
+                                                        <option value="EXPO">Exported</option>
+                                                        <option value="INPR">In Production</option>
+                                                        <option value="ISNS">In stock New: For Sale</option>
+                                                        <option value="ISNR">In stock New: Reserv Customer</option>
+                                                        <option value="ISUS">In stock Used: For Sale</option>
+                                                        <option value="PRNM">Produced New Machine</option>
+                                                        <option value="SCRA">Scrapped</option>
+                                                        <option value="STCU">Stopped at Customer</option>
+                                                        <option value="UNKN">Unknown Location</option>
+                                                </select>
+                                                <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tp-equipment-details__info-line">
+                                    <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Position</div>
+                                    <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                                        <div class="tpatom-input-box">
+                                            <input type="text" name="position" id="position" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tp-equipment-details__info-line">
+                                    <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Equipment Description</div>
+                                    <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                                        <div class="tpatom-input-box">
+                                            <input type="text" name="equipmentTypeDesc" id="equipmentTypeDesc" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300" value="PR Processing Equip">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tp-equipment-details__info-line">
+                                    <div class="tpatom-textarea-box">
+                                            <label class="tpatom-textarea-box__text" for="comments">Comment to Tetra Pak</label>
+                                    
+                                        <textarea name="comments" id="comments" class="tpatom-textarea-box__input js-tp-my-equipment-filter-input" maxlength="300"></textarea>
+                                    </div>
+                                </div>
+                                <div class="tp-equipment-details__action-wrap">
+                                    <button type="submit" class="tpatom-btn tpatom-btn--primary js-equipment-details__req-update">
+                                            <span class="tpatom-btn__text">cuhu.equipment.req</span>
+                                    </button>
+
+                                    <button type="button" class="tpatom-btn tpatom-btn--secondary js-equipment-details__cancel">
+                                            <span class="tpatom-btn__text">cuhu.equipment.cancel</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tp-equipment-details__info-line">
+                            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Country</div>
+                            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">Germany</div>
+                        </div>
+                        <div class="tp-equipment-details__info-line">
+                            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Location</div>
+                            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">BIESSENHOFEN</div>
+                        </div>
+                        <div class="tp-equipment-details__info-line">
+                            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Site</div>
+                            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">NESTLE   _BIE</div>
+                        </div>
+                        <div class="tp-equipment-details__info-line">
+                            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Line</div>
+                            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">STT - Nestlé Deutschland AG-Biessenhofen-STT</div>
+                        </div>
+                        <div class="tp-equipment-details__info-line">
+                            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Equipment Status</div>
+                            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">STCU</div>
+                        </div>
+                        <div class="tp-equipment-details__info-line">
+                            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Position</div>
+                            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue"></div>
+                        </div>
+                        <div class="tp-equipment-details__info-line">
+                            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Equipment Description</div>
+                            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">PR Processing Equip</div>
+                        </div>
+                        <div class="tp-equipment-details__action-wrap">
+                            <button type="button" class="tp-equipment-details__btn js-equipment-details__update">
+                                <span>cuhu.equipment.updateEquipmentInformation</span>
+                                <i class="icon icon-Edit"></i>
+                            </button>
+                        </div>
+                        <div class="tp-equipment-details__note">
+                            <span>Note:</span>
+                            Updates will take a few days. We will look at your latest sent update
+                        </div>
+                    </div>
+                </div>
+        <!--    <div class="col-lg-6 tp-equipment-details__info-card-col">-->
+        <!--        <div class="tp-equipment-details__info-card">-->
+        <!--            <h3 auto_locator="sectionTitle">Recently viewed documents</h3>-->
+        <!--            <div class="tp-equipment-details__info-line" auto_locator="documentName">Lorem ipsum dolor sit amet consectetur</div>-->
+        <!--            <div class="tp-equipment-details__info-line" auto_locator="documentName">Ut enim ad minim veniam, quis nostrud exercitation ullamco </div>-->
+        <!--            <div class="tp-equipment-details__info-line" auto_locator="documentName">Lorem ipsum dolor sit amet consectetur</div>-->
+        <!--            <div class="tp-equipment-details__info-line" auto_locator="documentName">Ut enim ad minim veniam, quis nostrud exercitation ullamco </div>-->
+        <!--            <div>-->
+        <!--                <a href="#" class="tp-equipment-details__btn" auto_locator="viewAllDocumentCTA">View all documents</a>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
+            </div>
+
+<!--<div class="row tp-equipment-details__info-card-row">-->
+<!--    <div class="col-lg-6 tp-equipment-details__info-card-col">-->
+<!--        <div class="tp-equipment-details__info-card">-->
+<!--            <h3 auto_locator="sectionTitle">Equipment comment</h3>-->
+<!--            <textarea name="" id="" cols="30" rows="4" auto_locator="commentBox"></textarea>-->
+
+<!--            <div class="tp-equipment-details__action-wrap">-->
+<!--                <button type="button" class="tp-equipment-details__btn" auto_locator="saveCommentCTA">Save comment</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="col-lg-6 tp-equipment-details__info-card-col">-->
+<!--        <div class="tp-equipment-details__info-card">-->
+<!--            <h3 auto_locator="sectionTitle">Maintenance events</h3>-->
+<!--            <div class="tp-equipment-details__info-line">-->
+<!--                <i class="icon icon-Calendar2" auto_locator="eventIcon"></i>-->
+<!--                <span auto_locator="eventName">Lorem ipsum dolor sit amet consectetur</span>-->
+<!--            </div>-->
+<!--            <div class="tp-equipment-details__info-line">-->
+<!--                <i class="icon icon-Calendar2" auto_locator="eventIcon"></i>-->
+<!--                <span auto_locator="eventName">Lorem ipsum dolor sit amet consectetur</span>-->
+<!--            </div>-->
+<!--            <div class="tp-equipment-details__info-line">-->
+<!--                <i class="icon icon-Calendar2" auto_locator="eventIcon"></i>-->
+<!--                <span auto_locator="eventName">Lorem ipsum dolor sit amet consectetur</span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <a href="#" class="tp-equipment-details__btn" auto_locator="viewAllEventCTA">View all events</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+            <!-- Second form view ends -->
+            <!-- First view starts -->
+            <div class="tp-equipment-details__details-row">
+                <h4 class="tp-equipment-details__details-row-title" auto_locator="subsectionTitle">cuhu.equipment.equipmentDetails</h4>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="subsectionTitle">Equipment Type</div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="subsectionTitle">PR.PROC</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.machineSystem</div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">PR Processing equip.(Non-TP)</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.material</div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">2618604-0100</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.manufacturerModelNumber </div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">Steriltank</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.manufacturerSerialNumber </div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">DEP9000025</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.superiorEquipment </div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue"></div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.functionalLocationDesc </div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">Nestlé Deutschland AG-Biessenhofen-STT</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.manufacturer</div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">Other</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.manufacturerCountry </div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">DE</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.constructionYear </div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">2002</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.customerWarrantyEndDate </div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue"></div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">cuhu.equipment.customerWarrantyStartDate </div>
+                    <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue"></div>
+                </div>
+            </div>
+
+            <div class="tp-equipment-details__details-row">
+                <h4 class="tp-equipment-details__details-row-title" auto_locator="subsectionTitle">cuhu.equipment.additionalDetails</h4>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell">cuhu.equipment.businessType </div>
+                    <div class="tp-equipment-details__details-cell">Processing</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell">cuhu.equipment.equipmentCategory </div>
+                    <div class="tp-equipment-details__details-cell">E</div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell">cuhu.equipment.eofsConfirmationDate </div>
+                    <div class="tp-equipment-details__details-cell"></div>
+                </div>
+                <div class="tp-equipment-details__details-line">
+                    <div class="tp-equipment-details__details-cell">cuhu.equipment.eofsValidFromDate </div>
+                    <div class="tp-equipment-details__details-cell"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- first view ends -->
+    <!-- Thank you page starts -->
+    <div class="tp-equipment-details__info-card js-equipment-details__info-card"><h3 auto_locator="sectionTitle">cuhu.equipment.equipmentInformation</h3>
+        <p class="tp-equipment-details__conf-title">
+            <i class="icon icon-Circle_filled_Tick"></i>Thank you
+        </p>
+        <p>
+            We are now processing your request update. It can take a few days, in the meanwhile you will still see the old data.
+        </p>
+    </div>
+    <!-- Thank you page ends -->
+    <!-- modal view starts -->
+    <div id="equipment-update-modal" class="modal js-update-modal tp-modal fade show" tabindex="-1" role="dialog" aria-modal="true" style="display: block; padding-left: 0px;"><div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="">
+        <div class="modal-content tp-my-equipment__modal-content tp-modal-content">
+            <div class="modal-header tpmol-modal-header">
+                <div class="tp-equipment-details__modal-header" auto_locator="headlineOverlay">
+                    <h2>Make sure updates are correct</h2>
+                    <p>
+                        Your updates will not be done instantly, it might take some days. If you make another update we will look at the latest one.
+                    </p>
+                </div>
+                <button type="button" auto_locator="closebtnOverlay" class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body tp-modal-body tp-my-equipment__modal-body">
+                <div class="tp-equipment-details__info-line">
+                    <div class="tp-equipment-details__info-cell-1">Country</div>
+                    <div class="tp-equipment-details__info-cell-2">AR</div>
+                </div>
+                <div class="tp-equipment-details__info-line">
+                    <div class="tp-equipment-details__info-cell-1">Location</div>
+                    <div class="tp-equipment-details__info-cell-2">BIESSENHOFEN</div>
+                </div>
+                <div class="tp-equipment-details__info-line">
+                    <div class="tp-equipment-details__info-cell-1">Site</div>
+                    <div class="tp-equipment-details__info-cell-2">NESTLE   _BIE</div>
+                </div>
+                <div class="tp-equipment-details__info-line">
+                    <div class="tp-equipment-details__info-cell-1">Line</div>
+                    <div class="tp-equipment-details__info-cell-2">STT - Nestlé Deutschland AG-Biessenhofen-STT</div>
+                </div>
+                <div class="tp-equipment-details__info-line">
+                    <div class="tp-equipment-details__info-cell-1">Equipment Status</div>
+                    <div class="tp-equipment-details__info-cell-2">CUIN</div>
+                </div>
+                <div class="tp-equipment-details__info-line">
+                    <div class="tp-equipment-details__info-cell-1">Position</div>
+                    <div class="tp-equipment-details__info-cell-2">test</div>
+                </div>
+                <div class="tp-equipment-details__info-line">
+                    <div class="tp-equipment-details__info-cell-1">Equipment Description</div>
+                    <div class="tp-equipment-details__info-cell-2">PR Processing Equip</div>
+                </div>
+                <div class="js-equipment-details__error tp-equipment-details__error d-none">
+                    Something Went Wrong
+                    Failure of sent data, please try again
+                </div>
+            </div>
+            <div class="modal-footer tpmol-modal-footer">
+                <button type="button" class="tpatom-btn tpatom-btn--primary js-equipment-details__req-make-update">
+                        <span class="tpatom-btn__text">cuhu.equipment.make</span>
+                </button>
+                <button type="button" class="tpatom-btn tpatom-btn--secondary js-equipment-details__conf-cancel">
+                        <span class="tpatom-btn__text">cuhu.equipment.cancel</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
-
+<!-- modal view ends -->
