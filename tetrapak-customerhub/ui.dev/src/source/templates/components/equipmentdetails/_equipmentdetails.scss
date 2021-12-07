@@ -9,6 +9,7 @@
 
     &__info-card {
         @include padding($padding-l);
+        @include min-height(280px);
         display: flex;
         background-color: $color-wild-sand;
         border-radius: $border-radius;
@@ -25,6 +26,7 @@
     &__info-line {
         @include margin-bottom($margin-xl);
         display: flex;
+        align-items: center;
         font-weight: 500;
 
         @media #{$mobile} {
@@ -42,6 +44,7 @@
     &__info-cell-1 {
         @include width(110px);
         @include margin-right($margin-xxl);
+        flex-shrink: 0;
 
         @media #{$mobile} {
             width: 100%;
@@ -50,6 +53,7 @@
 
     &__info-cell-2 {
         font-weight: 700;
+        width: 100%;
     }
 
     &__details-row {
@@ -85,7 +89,16 @@
     }
 
     &__action-wrap {
+        display: flex;
         margin-top: auto;
+    }
+
+    &__note {
+        @include margin-top($margin-md);
+
+        span {
+            font-weight: 700;
+        }
     }
 
     &__btn {
@@ -114,6 +127,27 @@
             display: inline-block;
             margin-left: 0;
             transform: translateY(2px);
+        }
+    }
+
+    &__conf-title {
+        @include margin-bottom($margin-md);
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-right($margin-md);
+            color: $color-success;
+        }
+    }
+
+    &__modal-header {
+        h2 {
+            @include margin-bottom($margin-md);
+            font-weight: 400;
         }
     }
 }

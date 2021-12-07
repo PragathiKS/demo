@@ -19,7 +19,11 @@ public class BannerModel {
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
-    
+
+    /** The headingTag. */
+    @ValueMapValue
+    private String headingTag;
+
     /** The title. */
     @ValueMapValue
     private String title;
@@ -82,6 +86,15 @@ public class BannerModel {
 
     /** The anchor linkType. */
     private String linkType;
+
+    /**
+     * Gets the headingTag.
+     *
+     * @return the headingTag
+     */
+    public String getHeadingTag() {
+        return headingTag;
+    }
 
     /**
      * Gets the title.

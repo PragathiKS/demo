@@ -172,11 +172,11 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 		LOGGER.debug("Current Thread name : {}", Thread.currentThread().getName());
 		final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
 				+ GlobalUtil.getSelectedApiMapping(apigeeService, "myequipment-equipmentlist")
-				+ CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS
+				+ CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS_CHAR
 				+ countryCode + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.SKIP + CustomerHubConstants.EQUALS + skip + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS + getNoOfRecordsCount();
+				+ CustomerHubConstants.SKIP + CustomerHubConstants.EQUALS_CHAR + skip + CustomerHubConstants.AMPERSAND
+				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS_CHAR + getNoOfRecordsCount();
 		return HttpUtil.executeHttp(token, url);
 	}
 }

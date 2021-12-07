@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
-import '@ashwanipahal/paginationjs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { tableSort,isMobile, getI18n } from '../../../scripts/common/common';
+import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
@@ -135,6 +134,97 @@ class Zapfilter {
   }
 }
 
+function paginate(totalItems, currentPage, pageSize, maxPages) {
+  // calculate total pages
+  const totalPages = Math.ceil(totalItems / pageSize);
+  // ensure current page isn't out of range
+  if (currentPage < 1) {
+    currentPage = 1;
+  } else if (currentPage > totalPages) {
+    currentPage = totalPages;
+  }
+
+  let startPage, endPage;
+  if (totalPages <= maxPages) {
+    // total pages less than max so show all pages
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // total pages more than max so calculate start and end pages
+    const maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
+    const maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
+    if (currentPage <= maxPagesBeforeCurrentPage) {
+      // current page near the start
+      startPage = 1;
+      endPage = maxPages;
+    } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+      // current page near the end
+      startPage = totalPages - maxPages + 1;
+      endPage = totalPages;
+    } else {
+      // current page somewhere in the middle
+      startPage = currentPage - maxPagesBeforeCurrentPage;
+      endPage = currentPage + maxPagesAfterCurrentPage;
+    }
+  }
+
+  // calculate start and end item indexes
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+
+  // create an array of pages
+  const allPages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+
+  const pagesHbsArr = [];
+  allPages.forEach(page => {
+    const pageObj = {
+      isPage: true,
+      isSelected: page === currentPage,
+      pageNumber: page,
+      skip: (page - 1) * pageSize
+    };
+    pagesHbsArr.push(pageObj);
+  });
+
+  return {
+    totalItems: totalItems,
+    currentPage: currentPage,
+    pageSize: pageSize,
+    totalPages: totalPages,
+    startPage: startPage,
+    endPage: endPage,
+    startIndex: startIndex,
+    endIndex: endIndex,
+    prevDisabled: currentPage === 1,
+    nextDisabled: currentPage === totalPages,
+    prevPage: currentPage - 1,
+    nextPage: currentPage + 1,
+    prevSkip: (currentPage - 2) * pageSize,
+    nextSkip: currentPage * pageSize,
+    lastSkip: (totalPages - 1) * pageSize,
+    pages: pagesHbsArr
+  };
+}
+
+function buildTableRows(data, keys) {
+  const dataObject = {
+    row: []
+  };
+
+  keys.forEach((key, index) => {
+    const value = data[key];
+    dataObject.row[index] = {
+      key,
+      value
+    };
+    if (data['id']) {
+      dataObject.rowLink = data['id'];
+      dataObject.isClickable = true;
+    }
+  });
+  return dataObject;
+}
+
 function getFormattedData(array){
   array.forEach((item,index) => {
     array[index] = {
@@ -242,7 +332,7 @@ function _renderCountryFilters() {
         const { countryCode } = this.cache.countryData && this.cache.countryData[0];
         ajaxWrapper
           .getXhrObj({
-            url: `${equipmentApi}?countrycode=${countryCode}`,
+            url: `${equipmentApi}?skip=0&count=25&version=preview&countrycodes=${countryCode}`,
             method: 'GET',
             contentType: 'application/json',
             dataType: 'json',
@@ -260,9 +350,9 @@ function _renderCountryFilters() {
               equipmentStatus: item.equipmentStatus || ''
             }));
             this.cache.filteredTableData = [...this.cache.tableData];
+            this.cache.meta = response.meta;
             this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
             this.renderFilterForm(this.cache.countryData,{ activeForm:'country',header:this.cache.i18nKeys['country']}, this.cache.$countryFilterLabel);
-            this.applyFilter();
             this.renderTableData();
             this.renderSearchCount();
             this.mapTableColumn();
@@ -376,8 +466,8 @@ function getKeyMap(key,i18nKeys){
 }
 
 function _mapHeadings(keys,i18nKeys,activeSortData) {
-  const sortByKey = activeSortData.sortedByKey;
-  const sortOrder = activeSortData.sortOrder;
+  const sortByKey = activeSortData && activeSortData.sortedByKey;
+  const sortOrder = activeSortData && activeSortData.sortOrder;
   return keys.map(key => ({
     key,
     myEquipment: true,
@@ -396,53 +486,36 @@ function _processTableData(data){
     data.summary = data.summary.map(summary => {
       keys = _processKeys(keys, summary);
       this.cache.tableHeaders = keys;
-      return tableSort.call(this, summary, keys);
+      return buildTableRows.call(this, summary, keys);
     });
     data.summaryHeadings = _mapHeadings.call(this,keys,data.i18nKeys,this.cache.activeSortData);
   }
   return data;
 }
 
-function renderPaginationTableData(list,options) {
-  const that = this;
-  const container = $('#pagination-container');
-  if(list.summary.length === 0) {
+function renderPaginationTableData(list) {
+  const $this = this;
+  const paginationObj = paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
+
+  if (list.summary.length === 0) {
     render.fn({
       template: 'myEquipmentTable',
-      data: { noDataMessage:true, noDataFound :that.cache.i18nKeys['noDataFound']  },
+      data: { noDataMessage: true, noDataFound: $this.cache.i18nKeys['noDataFound']  },
       target: '.tp-my-equipment__table_wrapper',
       hidden: false
     });
-    container.pagination('destroy');
   }
   else {
-    container.pagination({
-      dataSource: list.summary,
-      showFirst:true,
-      showLast:true,
-      showFirstOnEllipsisShow: false,
-      showLastOnEllipsisShow:false,
-      firstText:'',
-      lastText:'',
-      pageRange:1,
-      pageSize: 25,
-      pageNumber: (options.isCustomiseTableFilter && container.pagination('getSelectedPageNum')) ? container.pagination('getSelectedPageNum') : 1,
-      className: 'paginationjs-theme-tetrapak',
-      callback: function(data) {
-        render.fn({
-          template: 'myEquipmentTable',
-          data: {...list,summary:data},
-          target: '.tp-my-equipment__table_wrapper',
-          hidden: false
-        },() => {
-          that.hideShowColums();
-          that.insertFirstAndLastElement();
-          $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-          });
-        });
-
-      }
+    render.fn({
+      template: 'myEquipmentTable',
+      data: {...list, summary: list.summary, paginationObj: paginationObj },
+      target: '.tp-my-equipment__table_wrapper',
+      hidden: false
+    },() => {
+      $this.hideShowColums();
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
     });
   }
 }
@@ -469,6 +542,7 @@ class MyEquipment {
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$content = this.root.find('.tp-equipment-content');
+    this.cache.$pagination = this.root.find('.js-tbl-pagination');
     this.cache.equipmentApi = this.root.find('.js-equipment-api');
     this.cache.countryData = [];
     this.cache.activeFilterForm = 'country';
@@ -485,7 +559,10 @@ class MyEquipment {
     this.cache.combinedFiltersObj = {};
     this.cache.activeFiltersArr = [];
     this.cache.sortableKeys = ['siteName','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentTypeDesc'];
-    this.cache.activeSortData = {};
+    this.cache.activeSortData = null;
+    this.cache.activePage = 1;
+    this.cache.skipIndex = 0;
+    this.cache.itemsPerPage = 25;
   }
   bindEvents() {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
@@ -606,6 +683,13 @@ class MyEquipment {
       this.sortTableByKey($tHeadBtn);
     });
 
+    this.root.on('click', '.js-my-equipment__table-summary__row',  (e) => {
+      const id = $(e.currentTarget).attr('href');
+      const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
+      const url = `${equipmentDetailsUrl}?id=${id}`;
+      window.location.href = url;
+    });
+
     $modal.on('shown.bs.modal', () => {
       const $freeTextSearchInput = $modal.find('.js-tp-my-equipment-filter-input');
       if ($freeTextSearchInput.length) {
@@ -632,6 +716,19 @@ class MyEquipment {
         $thisGroupAllCheckbox.prop('checked', false);
       }
     });
+
+    this.root.on('click', '.js-page-number',  (e) => {
+      const $btn = $(e.currentTarget);
+      const $pagination = $btn.parents('.js-tbl-pagination');
+
+      if (!$btn.hasClass('active')) {
+        // stop pointer events until new page is rendered, in order to not send multiple AJAX calls
+        $pagination.addClass('pagination-lock');
+        this.cache.activePage = $btn.data('page-number');
+        this.cache.skipIndex = $btn.data('skip');
+        this.renderNewPage({'resetSkip': false});
+      }
+    });
   }
 
   mapTableColumn = () => {
@@ -646,23 +743,8 @@ class MyEquipment {
     }
   }
 
-  insertFirstAndLastElement = () => {
-    const { i18nKeys } = this.cache;
-    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span class="first">${getI18n(i18nKeys['first'])}</span></div>`;
-    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span class="last">${getI18n(i18nKeys['last'])}</span></div>`;
-    if(isMobile()){
-      gotToFirstButton = ('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i></div>');
-      gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i></div>';
-    }
-
-    $('.paginationjs-first > a').not('.paginationjs-page > a').prepend(gotToFirstButton);
-    $('.paginationjs-last > a').not('.paginationjs-page > a').prepend(gotToLastButton);
-    $('.paginationjs-next > a').replaceWith('<a><i class="icon icon-pagination left icon-Right_new"></i></a>');
-    $('.paginationjs-prev > a').replaceWith('<a><i class="icon icon-pagination icon-Right_new"></i></a>');
-  }
-
   renderSearchCount = () => {
-    this.cache.$searchResults.text(`${this.cache.filteredTableData.length} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
+    this.cache.$searchResults.text(`${this.cache.meta.total} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
   }
 
   renderTableData = (label,filterValues) => {
@@ -670,7 +752,7 @@ class MyEquipment {
     if(!label || label !== this.cache.i18nKeys['country']){
       renderPaginationTableData.call(
         this,
-        _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
+        _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta}),
         {isCustomiseTableFilter :label === 'customise-table' ? true : false });
     }
   }
@@ -705,7 +787,7 @@ class MyEquipment {
       auth.getToken(({ data: authData }) => {
         ajaxWrapper
           .getXhrObj({
-            url: `${equipmentApi}?countrycode=${filterValues[0].countryCode}`,
+            url: `${equipmentApi}?skip=0&count=25&version=preview&countrycodes=${filterValues[0].countryCode}`,
             method: 'GET',
             contentType: 'application/json',
             dataType: 'json',
@@ -718,6 +800,8 @@ class MyEquipment {
             this.cache.$spinner.addClass('d-none');
             this.cache.$content.removeClass('d-none');
             this.cache.tableData = response.data;
+            this.cache.meta = response.meta;
+            this.cache.activePage = 1;
             this.cache.tableData = this.cache.tableData.map((item) => ({
               ...item,
               equipmentStatus: item.equipmentStatus || ''
@@ -726,7 +810,7 @@ class MyEquipment {
             this.deleteAllFilters();
             renderPaginationTableData.call(
               this,
-              _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
+              _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta}),
               {isCustomiseTableFilter :label === 'customise-table' ? true : false });
             this.renderSearchCount();
             this.updateFilterCountValue(label,1,$countryFilterLabel);
@@ -865,7 +949,7 @@ class MyEquipment {
   deleteAllFilters = () => {
     const $filterBtns = this.root.find('.tp-my-equipment__filter-button:not(.tp-my-equipment__country-button-filter)');
     this.cache.combinedFiltersObj = {};
-    this.cache.activeSortData = {};
+    this.cache.activeSortData = null;
     this.updateActiveFiltersData();
 
     $filterBtns.each((index, item) => {
@@ -878,30 +962,14 @@ class MyEquipment {
     this.renderSearchCount();
   }
 
-  propComparator = (propName, reverse) => (a, b) => {
-    if (reverse) {
-      return a[propName] === b[propName] ? 0 : a[propName] > b[propName] ? -1 : 1;
-    } else {
-      return a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
-    }
-  };
-
   sortTableByKey = ($tHeadBtn) => {
     const sortedByKey = $tHeadBtn.data('key');
-    const currentSortOrder = this.cache.activeSortData.sortOrder;
+    const currentSortOrder = this.cache.activeSortData ? this.cache.activeSortData.sortOrder : '';
     this.cache.activeSortData = {
       'sortedByKey': sortedByKey,
       'sortOrder': currentSortOrder === 'asc' ? 'desc' : 'asc'
     };
-
-    this.cache.filteredTableData.sort(this.propComparator(sortedByKey, currentSortOrder === 'asc'));
-    renderPaginationTableData.call(
-      this,
-      _processTableData.call(this, {
-        summary: this.cache.filteredTableData,
-        i18nKeys: this.cache.i18nKeys
-      }),
-      {isCustomiseTableFilter: false});
+    this.renderNewPage({'resetSkip': true});
   }
 
   showHideAllFilters = () => {
@@ -999,6 +1067,57 @@ class MyEquipment {
           value: combinedFiltersObj[key]
         });
       }
+    });
+  }
+
+  renderNewPage({resetSkip}) {
+    const {itemsPerPage, skipIndex, countryData, activeSortData} = this.cache;
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    const activeCountry = countryData.filter(e => e.isChecked);
+    const countryCode = activeCountry[0].countryCode;
+    let apiUrlRequest = '';
+
+    this.cache.$content.addClass('d-none');
+    this.cache.$spinner.removeClass('d-none');
+
+    // if sorting for a column is enabled
+    // if resetSkip flag, go to 1st page
+    if (activeSortData) {
+      this.cache.activePage = resetSkip ? 1 : this.cache.activePage;
+      apiUrlRequest = `${equipmentApi}?skip=${resetSkip ? 0 : skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
+    } else {
+      apiUrlRequest = `${equipmentApi}?skip=${skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`;
+    }
+
+    auth.getToken(({ data: authData }) => {
+      ajaxWrapper
+        .getXhrObj({
+          url: apiUrlRequest,
+          method: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(response => {
+          this.cache.$spinner.addClass('d-none');
+          this.cache.$content.removeClass('d-none');
+          this.cache.tableData = response.data;
+          this.cache.tableData = this.cache.tableData.map((item) => ({
+            ...item,
+            equipmentStatus: item.equipmentStatus || ''
+          }));
+          this.cache.filteredTableData = [...this.cache.tableData];
+          this.cache.meta = response.meta;
+          this.renderTableData();
+          this.renderSearchCount();
+          this.mapTableColumn();
+        }).fail(() => {
+          this.cache.$content.removeClass('d-none');
+          this.cache.$spinner.addClass('d-none');
+        });
     });
   }
 

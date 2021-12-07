@@ -5,13 +5,14 @@
     *  eg: activeStep=1, totalStep=[1,2,3]
     *  will form a progress bar with 3 steps and with 1st as active
     */-->
-<sly data-sly-template.progressbar_template="${@ activeStep, totalStep, parentClass}">
-    <ul class="pw-progressbar_wrapper ${parentClass}" data-sly-list.step="${totalStep}">
+<sly data-sly-template.progressbar_template="${@ activeStep, totalStep, stepTitles}">
+    <ul class="pw-progressbar_wrapper" data-sly-list.step="${totalStep}">
         <sly data-sly-test.activeClass="${activeStep == step ? 'active' : ''}" />
         <sly data-sly-test.doneClass="${activeStep > step ? 'done' : ''}" />
         <li class="step1 step-box ${activeClass} ${doneClass}">
             <div class="steps">
                 <span class="circle"><span>${step}</span></span>
+                <span data-sly-test="${stepTitles}" class="stepname">${stepTitles[stepList.index] @i18n}</span></span>
             </div>
         </li>
     </ul>

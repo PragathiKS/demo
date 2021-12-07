@@ -69,8 +69,11 @@ public class BreadcrumbModel {
         Page languagePage = PageUtil.getLanguagePage(resourceResolver.resolve(rootPath));
         breadcrumbPages.put(NavigationUtil.getNavigationTitle(languagePage), languagePage.getPath());
 
+        String currentPagePath = rootPath;
         for (int i = 0; i < pages.size(); i++) {
-            breadcrumbPages.put(NavigationUtil.getNavigationTitle(currentPage), currentPage.getPath());
+            currentPagePath = new StringBuilder(currentPagePath).append(TLConstants.SLASH).append(pages.get(i)).toString();
+            Page page = resourceResolver.resolve(currentPagePath).adaptTo(Page.class);
+            breadcrumbPages.put(NavigationUtil.getNavigationTitle(page), page.getPath());
         }
 
         final List<String> alKeys = new ArrayList<>(breadcrumbPages.keySet());

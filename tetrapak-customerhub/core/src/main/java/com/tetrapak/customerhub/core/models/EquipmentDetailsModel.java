@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -22,134 +24,275 @@ import java.util.Map;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class EquipmentDetailsModel {
 
-    /** The resource. */
+    private static final String MYEQUIPMENT_STATUSLIST_API = "myequipment-statuslist";
+    private static final String MYEQUIPMENT_COUNTRYLIST_API = "myequipment-countrylist";
+
+    /**
+     * The resource.
+     */
     @Self
     private Resource resource;
 
-    /** The country. */
+    /**
+     * The path to my equipment.
+     */
+    @Inject
+    private String myEqipmentPath;
+
+    /**
+     * The country.
+     */
     @Inject
     private String country;
 
-    /** The equipment information. */
+    /**
+     * The equipment information.
+     */
     @Inject
     private String equipmentInformation;
 
-    /** The update equipment information. */
+    /**
+     * The update equipment information.
+     */
     @Inject
     private String updateEquipmentInformation;
 
-    /** The equipment details. */
+    /**
+     * The equipment details.
+     */
     @Inject
     private String equipmentDetails;
 
-    /** The additional details. */
+    /**
+     * The additional details.
+     */
     @Inject
     private String additionalDetails;
 
-    /** The location. */
+    /**
+     * The location.
+     */
     @Inject
     private String location;
 
-    /** The site. */
+    /**
+     * The site.
+     */
     @Inject
     private String site;
 
-    /** The line. */
+    /**
+     * The line.
+     */
     @Inject
     private String line;
 
-    /** The equipment status. */
+    /**
+     * The equipment status.
+     */
     @Inject
     private String equipmentStatus;
 
-    /** The position. */
+    /**
+     * The position.
+     */
     @Inject
     private String position;
 
-    /** The equipment description. */
+    /**
+     * The equipment description.
+     */
     @Inject
     private String equipmentDescription;
 
-    /** The equipment type. */
+    /**
+     * The equipment type.
+     */
     @Inject
     private String equipmentType;
 
-    /** The machine system. */
+    /**
+     * The machine system.
+     */
     @Inject
     private String machineSystem;
 
-    /** The material. */
+    /**
+     * The material.
+     */
     @Inject
     private String material;
 
-    /** The manufacturer model number. */
+    /**
+     * The manufacturer model number.
+     */
     @Inject
     private String manufacturerModelNumber;
 
-    /** The manufacturer serial number. */
+    /**
+     * The manufacturer serial number.
+     */
     @Inject
     private String manufacturerSerialNumber;
 
-    /** The superior equipment. */
+    /**
+     * The superior equipment.
+     */
     @Inject
     private String superiorEquipment;
 
-    /** The functional location desc. */
+    /**
+     * The functional location desc.
+     */
     @Inject
     private String functionalLocationDesc;
 
-    /** The manufacturer. */
+    /**
+     * The manufacturer.
+     */
     @Inject
     private String manufacturer;
 
-    /** The manufacturer country. */
+    /**
+     * The manufacturer country.
+     */
     @Inject
     private String manufacturerCountry;
 
-    /** The construction year. */
+    /**
+     * The construction year.
+     */
     @Inject
     private String constructionYear;
 
-    /** The customer warranty end date. */
+    /**
+     * The customer warranty end date.
+     */
     @Inject
     private String customerWarrantyEndDate;
 
-    /** The customer warranty start date. */
+    /**
+     * The customer warranty start date.
+     */
     @Inject
     private String customerWarrantyStartDate;
 
-    /** The business type. */
+    /**
+     * The business type.
+     */
     @Inject
     private String businessType;
 
-    /** The equipment category. */
+    /**
+     * The equipment category.
+     */
     @Inject
     private String equipmentCategory;
 
-    /** The eofs confirmation date. */
+    /**
+     * The eofs confirmation date.
+     */
     @Inject
     private String eofsConfirmationDate;
 
-    /** The eofs valid from date. */
+    /**
+     * The eofs valid from date.
+     */
     @Inject
     private String eofsValidFromDate;
 
-    /** The equipment list api. */
+    /**
+     * The country api.
+     */
+    @Inject
+    private String countryApi;
+
+    /**
+     * The equipment list api.
+     */
     @Inject
     private String equipmentListApi;
 
-    /** The i 18 n keys. */
+    /**
+     * The status api.
+     */
+    @Inject
+    private String statusApi;
+
+    /**
+     * The cancel.
+     */
+    @Inject
+    private String cancel;
+
+    /**
+     * The request updates.
+     */
+    @Inject
+    private String requestUpdates;
+
+    /**
+     * The make updates.
+     */
+    @Inject
+    private String makeUpdates;
+
+    /**
+     * The i 18 n keys.
+     */
     private String i18nKeys;
 
-    /** The sling settings service. */
+    /**
+     * The thank you label.
+     */
+    @Inject
+    private String thankYouLabel;
+
+    /**
+     * The thank you text.
+     */
+    @Inject
+    private String thankYouDescription;
+
+    /**
+     * The Modal Confirm Header.
+     */
+    @Inject
+    private String modalConfirmHeader;
+
+    /**
+     * The Modal Confirm Text.
+     */
+    @Inject
+    private String modalConfirmText;
+
+    /**
+     * The Status Update Heading.
+     */
+    @Inject
+    private String statusUpdateHeading;
+
+    /**
+     * The Status Update Description.
+     */
+    @Inject
+    private String statusUpdateDescription;
+
+    /**
+     * The sling settings service.
+     */
     @OSGiService
     private SlingSettingsService slingSettingsService;
 
-    /** The service. */
+    /**
+     * The service.
+     */
     @OSGiService
     private APIGEEService service;
 
-    /** The is publish environment. */
+    /**
+     * The is publish environment.
+     */
     private boolean isPublishEnvironment = Boolean.FALSE;
 
     /**
@@ -231,6 +374,24 @@ public class EquipmentDetailsModel {
      */
     public String getUpdateEquipmentInformation() {
         return updateEquipmentInformation;
+    }
+
+    /**
+     * Gets the country api.
+     *
+     * @return the country api
+     */
+    public String getCountryApi() {
+        return countryApi;
+    }
+
+    /**
+     * Gets the status api.
+     *
+     * @return the status api
+     */
+    public String getStatusApi() {
+        return statusApi;
     }
 
     /**
@@ -405,6 +566,33 @@ public class EquipmentDetailsModel {
     }
 
     /**
+     * Gets the cancel.
+     *
+     * @return the cancel
+     */
+    public String getCancel() {
+        return cancel;
+    }
+
+    /**
+     * Gets the request updates.
+     *
+     * @return the request updates
+     */
+    public String getRequestUpdates() {
+        return requestUpdates;
+    }
+
+    /**
+     * Gets the make updates.
+     *
+     * @return the make updates
+     */
+    public String getMakeUpdates() {
+        return makeUpdates;
+    }
+
+    /**
      * Gets the equipment list api.
      *
      * @return the equipment list api
@@ -423,10 +611,81 @@ public class EquipmentDetailsModel {
     }
 
     /**
+     * Gets the ThankYou label.
+     *
+     * @return the thankYouLabel
+     */
+    public String getThankYouLabel() {
+        return thankYouLabel;
+    }
+
+    /**
+     * Gets the ThankYou description.
+     *
+     * @return the thankYouDescription
+     */
+    public String getThankYouDescription() {
+        return thankYouDescription;
+    }
+
+    /**
+     * Gets the Modal Confirm Label
+     *
+     * @return the modalConfirmHeader.
+     */
+    public String getModalConfirmHeader() {
+        return modalConfirmHeader;
+    }
+
+    /**
+     * Gets the Modal Confirm Text.
+     *
+     * @return the modalConfirmText
+     */
+    public String getModalConfirmText() {
+        return modalConfirmText;
+    }
+
+    /**
+     * Gets the Status Update Heading.
+     *
+     * @return the statusUpdateHeading
+     */
+    public String getStatusUpdateHeading() {
+        return statusUpdateHeading;
+    }
+
+    /**
+     * Gets the Status Update Description.
+     *
+     * @return the statusUpdateDescription
+     */
+    public String getStatusUpdateDescription() {
+        return statusUpdateDescription;
+    }
+
+    /**
+     * Gets the Mapped Path of this resource.
+     *
+     * @return the mappedPath
+     */
+    public String getMappedResourcePath() {
+        ResourceResolver resolver = resource.getResourceResolver();
+        return resolver.map(resource.getPath());
+    }
+
+    /**
+	 * Get valid url to MyEquipment
+	 * @return mapped url.
+	 */
+	public String getMappedMyEquipmentUrl() {
+		return LinkUtil.getValidLink(resource, myEqipmentPath);
+	}
+
+    /**
      * init method.
      */
-    @PostConstruct
-    protected void init() {
+    @PostConstruct protected void init() {
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_INFORMATION, getEquipmentInformation());
         i18KeyMap.put(CustomerHubConstants.UPDATE_EQUIPMENT_INFORMATION, getUpdateEquipmentInformation());
@@ -455,6 +714,15 @@ public class EquipmentDetailsModel {
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_CATEGORY, getEquipmentCategory());
         i18KeyMap.put(CustomerHubConstants.CONFIRMATION_DATE, getEofsConfirmationDate());
         i18KeyMap.put(CustomerHubConstants.VALID_FROM_DATE, getEofsValidFromDate());
+        i18KeyMap.put(CustomerHubConstants.CANCEL, getCancel());
+        i18KeyMap.put(CustomerHubConstants.REQUEST_UPDATES, getRequestUpdates());
+        i18KeyMap.put(CustomerHubConstants.MAKE_UPDATES, getMakeUpdates());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_LABEL, getThankYouLabel());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_THANK_YOU_DESCRIPTION, getThankYouDescription());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_HEADER, getModalConfirmHeader());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_TEXT, getModalConfirmText());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_STATUS_UPDATE_HEADING, getStatusUpdateHeading());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_STATUS_UPDATE_DESCRIPTION, getStatusUpdateDescription());
 
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
@@ -463,7 +731,13 @@ public class EquipmentDetailsModel {
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
 
-        equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-                + GlobalUtil.getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
+        countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, MYEQUIPMENT_COUNTRYLIST_API);
+
+        statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, MYEQUIPMENT_STATUSLIST_API);
+
+        equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
     }
 }

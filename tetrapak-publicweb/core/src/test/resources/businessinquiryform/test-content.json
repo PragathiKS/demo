@@ -32,7 +32,11 @@
 			  "thankyouImage": "/content/dam/tetrapak/publicweb/contactus.PNG",
 			  "jcr:lastModified": "Tue Jun 23 2020 16:35:21 GMT+0530",
 			  "sling:resourceType": "publicweb/components/structure/formconfig/businessinquiryformconfig",
-			  "tags":"tetrapak:job-title"
+			   "tags": [
+							"pardot-system-config:job-title",
+							"pardot-system-config:function",
+				            "pardot-system-config:processing-roles"
+						]
 			},
 			"formconsenttextsconf" : {
 			  "jcr:primaryType": "nt:unstructured",
@@ -83,7 +87,8 @@
 					"anchorId": "test01",
 					"anchorTitle": "title",
 					"pwTheme": "grayscale-white",
-					"apiUrl":"API Url"
+					"befPardotURL":"http://go.tetrapak.com/l/857883/2020-05-29/w6xt",
+					"befChinaPardotURL":"go.tetrapak.com/l/857883/2020-05-29/w6xt"
 				},
 				"form": {
 					"jcr:primaryType": "nt:unstructured",

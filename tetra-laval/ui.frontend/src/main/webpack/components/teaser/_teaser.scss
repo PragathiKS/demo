@@ -63,6 +63,10 @@
             margin-left: auto;
             margin-right: auto;
         }
+        ul {
+            @include padding-left($margin-l);
+            list-style: unset;
+        }
         .teaserMargin {
             @include margin-bottom($margin-xl);
             @media #{$desktop} {
@@ -94,7 +98,7 @@
         .title {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
-            color: $color-tundora;
+            color: $color-emperor;
             font-size: $font-md;
             line-height: $line-height-body;
             font-style: normal;
@@ -102,8 +106,8 @@
 
         }
         .description {
-            color: $color-tundora;
             font-size: $font-baseline;
+            color: $color-emperor;
             font-style: normal;
             font-weight: normal;
             line-height: $line-height-body;

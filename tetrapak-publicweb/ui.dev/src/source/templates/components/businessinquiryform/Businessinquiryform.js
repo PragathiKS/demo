@@ -3,9 +3,20 @@ import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError, newPage } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-import { validateFieldsForTags } from '../../../scripts/common/common';
+import { ajaxMethods, REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
+import { validateFieldsForTags, removeParams } from '../../../scripts/common/common';
 
+function isInvalidBusinessAreaOption(key, businessArea) {
+  if(key === 'businessArea') {
+    return false;
+  }
+  const isInvalid = key.startsWith('businessArea') && !key.toLowerCase().includes(businessArea.toLowerCase());
+  return isInvalid;
+}
+
+function capitalizeFirstLetter([ first, ...rest ]) {
+  return [ first.toUpperCase(), ...rest ].join('');
+}
 class Businessinquiryform {
   constructor({ el }) {
     this.root = $(el);
@@ -20,52 +31,82 @@ class Businessinquiryform {
     }
     this.cache.businessformapi = this.root.find('form.pw-form-businessEnquiry');
     this.cache.$nextbtn = this.root.find('.pw-businessEnquiry-form .tpatom-btn[type=button]');
-    this.cache.$radioListFirst = this.root.find('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]');
-    this.cache.$radioListSecond = this.root.find('input[type=radio][name="purposeOfContactOptionsInInterestArea"]');
+    this.cache.$purposeContact = this.root.find('input[type=radio][name="purposeOfContactOptionsInBusinessEq"]');
+    this.cache.$baIntPackaging = this.root.find('input[type=radio][name="businessAreaInterestPackaging"]');
+    this.cache.$baIntProcessingSupport = this.root.find('input[type=radio][name="businessAreaInterestProcessingSupport"]');
+    this.cache.$baIntProcessingCategoryFood = this.root.find('input[type=radio][name="businessAreaProcessingCategoryFood"]');
+    this.cache.$subFoodCategory = $('.sub-food-data');
+    this.cache.$baIntServices = this.root.find('input[type=radio][name="businessAreaInterestServices"]');
+    this.cache.$businessInterest = this.root.find('input[type=checkbox][name="purposeOfContactOptionsInInterestArea"]');
+    this.cache.$businessEnqNeed = this.root.find('input[type=radio][name="businessEnquiryNeed"]');
     this.cache.$newRequestBtn = $('.newRequestBtn', this.root);
     this.cache.$submitBtn = $('form.pw-form-businessEnquiry button[type="submit"]', this.root);
-    this.cache.$inputText = $('form.pw-form-businessEnquiry  input[type="text"]', this.root);
-    this.cache.$inputEmail = $('form.pw-form-businessEnquiry  input[type="email"]', this.root);
-    this.cache.$dropItem = $('.country-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
-    this.cache.$positionDropItem = $('.position-field-wrapper .pw-form__dropdown a.dropdown-item', this.root);
+    this.cache.$inputText = $('form.pw-form-businessEnquiry input[type="text"]', this.root);
+    this.cache.$inputEmail = $('form.pw-form-businessEnquiry input[type="email"]', this.root);
+    this.cache.$dropItem = $('.pw-form__dropdown a.dropdown-item', this.root);
     this.cache.countryList = [];
+    this.cache.positionList = [];
+    this.cache.functionList = [];
+    this.cache.roleList = [];
+    this.cache.$roleField = this.root.find('.formfield.role-field');
     this.cache.$countryField = this.root.find('.formfield.country-field');
     this.cache.$positionField = this.root.find('.formfield.position-field');
+    this.cache.$functionField = this.root.find('.formfield.function-field');
     this.cache.$formInfo = this.root.find('form');
-    this.cache.$isFormStart = false;
+    this.cache.$isFormStart = false;    
     this.cache.requestPayload = {
       'domainURL': window.location.host,
-      'purposeOfContact': '',
-      'interestArea': '',
-      'firstNameField': '',
-      'lastNameField': '',
-      'emailBef': '',
-      'message': '',
-      'phoneField': '',
-      'purposeOfContactInBusinessEqTitle': '',
-      'purposeOfInterestAreaEqTitle': '',
+      'firstName': '',
+      'lastName': '',
+      'email': '',
+      'businessEnquiryMessage': '',
+      'phone': '',
+      'workplaceCity': '',
       'company': '',
-      'position': '',
-      'country': '',
-      'countryTitle': '',
-      'marketingConsent':'',
       'pageurl': window.location.href
     };
   }
 
-  onKeydown = (event, options) => {
+  onKeydown(event, options) {
     if ($('.dropdown-menu').hasClass('show')) {
       keyDownSearch.call(this, event, options);
     }
-  };
+  }
 
   getCountryList() {
     const self = this;
     $('.country-dropdown-select > a').map(function () {
       const datael = $(this)[0];
-      self.cache.countryList.push($(datael).data('countrytitle'));
+      self.cache.countryList.push($(datael).data('title'));
     });
     $('.country-dropdown, .country-dropdown-select').keydown(e => this.onKeydown(e, this.cache.countryList));
+  }
+
+  getPositionList() {
+    const self = this;
+    $('.position-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.positionList.push($(datael).data('title'));
+    });
+    $('.position-dropdown, .position-dropdown-select').keydown(e => this.onKeydown(e, this.cache.positionList));
+  }
+
+  getFunctionList() {
+    const self = this;
+    $('.function-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.functionList.push($(datael).data('title'));
+    });
+    $('.function-dropdown, .function-dropdown-select').keydown(e => this.onKeydown(e, this.cache.functionList));
+  }
+
+  getRoleList() {
+    const self = this;
+    $('.role-dropdown-select > a').map(function () {
+      const datael = $(this)[0];
+      self.cache.roleList.push($(datael).data('title'));
+    });
+    $('.role-dropdown, .role-dropdown-select').keydown(e => this.onKeydown(e, this.cache.roleList));
   }
 
   validateField(val) {
@@ -77,6 +118,10 @@ class Businessinquiryform {
 
   validEmail(email) {
     return REG_EMAIL.test(email);
+  }
+
+  validPhone(phone) {
+    return REG_NUM.test(phone);
   }
 
   reloadPage() {
@@ -91,31 +136,33 @@ class Businessinquiryform {
   }
 
   submitForm = () => {
+    const { requestPayload } = this.cache;
     const self = this;
     const servletPath = this.cache.businessformapi.data('bef-api-servlet');
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
+    const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
+    const chinabefPardotURL = this.cache.businessformapi.data('china-bef-pardoturl');
     const dataObj = {};
-    dataObj['purpose'] = this.cache.requestPayload.purposeOfContactTitle;
-    dataObj['businessArea'] = this.cache.requestPayload.areaOfInterestTitle;
-    dataObj['firstName'] = this.cache.requestPayload.firstNameField;
-    dataObj['lastName'] = this.cache.requestPayload.lastNameField;
-    dataObj['email'] = this.cache.requestPayload.emailBef;
-    if(this.cache.requestPayload.phoneField.trim()){
-      dataObj['phoneNumber'] = this.cache.requestPayload.phoneField;
-    }
-    dataObj['company'] = this.cache.requestPayload.company;
-    dataObj['businessEnquiryMessage'] = this.cache.requestPayload.message;
-    dataObj['position'] = this.cache.requestPayload.position;
-    dataObj['country'] = this.cache.requestPayload.country;
-    dataObj['countryTitle'] = this.cache.requestPayload.countryTitle;
+    $.each( requestPayload, function( key, value ) {
+      if(isInvalidBusinessAreaOption(key, requestPayload.businessArea)) {
+        return;
+      }
+      dataObj[key] = value;
+    });
+    
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    if(this.root.find(`#befconsentcheckbox`).is(':checked')){
-      dataObj['marketingConsent'] = this.root.find(`#befconsentcheckbox`).is(':checked');
+    if(requestPayload.country === 'China' || countryCode ==='cn') {
+      dataObj['pardotUrl'] = chinabefPardotURL;
     }
-    dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field;
-    dataObj['pageurl'] = this.cache.requestPayload.pageurl;
+    else {
+      dataObj['pardotUrl'] = befPardotURL;
+    }
+    if(this.root.find(`#befconsentcheckbox`).is(':checked')){
+      dataObj['marketingConsent'] = capitalizeFirstLetter(String(this.root.find(`#befconsentcheckbox`).is(':checked')));
+    }
+    
     loadThankYou(self.mainHead, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj2, 'Marketing Consent': 'Checked' });
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
 
@@ -124,19 +171,27 @@ class Businessinquiryform {
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
       return params[key] = value;
     });
+
+    let pageURL = this.cache.requestPayload.pageurl;
     
     Object.keys(params).forEach(key => {
       if(key === 'utm_campaign') {
         dataObj['utm_campaign'] = params[key];
+        pageURL = removeParams('utm_campaign', pageURL);
       } else if(key === 'utm_content') {
         dataObj['utm_content'] = params[key];
+        pageURL = removeParams('utm_content', pageURL);
       } else if(key === 'utm_medium') {
         dataObj['utm_medium'] = params[key];
+        pageURL = removeParams('utm_medium', pageURL);
       } else if(key === 'utm_source') {
         dataObj['utm_source'] = params[key];
+        pageURL = removeParams('utm_source', pageURL);
       }
     });
 
+    dataObj['pageurl'] = pageURL;
+    
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
@@ -156,61 +211,204 @@ class Businessinquiryform {
       }
     );
   }
-
-
-  onRadioChangeHandlerFirst = e => {
+  
+  onRadioClickHandler = (e, hiddenVal, rpVal) => {
     const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="purposeOfContactInBusinessEqTitle"]').val(labelValue);
-    requestPayload['purposeOfContact'] = id;
-    requestPayload['purposeOfContactTitle'] = value;
-    requestPayload['purposeOfContactInBusinessEqTitle'] = labelValue;
+    const labelValue = $('label[for="'+e.target.id+'"]').text().trim();
+    $('input[type=hidden][name="'+hiddenVal+'"]').val(labelValue);
+    requestPayload[rpVal] = e.target.value;
   }
 
-  onRadioChangeHandlerSecond = e => {
-    const { requestPayload } = this.cache;
-    const id = e.target.id;
-    const value = e.target.value;
-    const labelValue = $('label[for="'+id+'"]').text().trim();
-    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(labelValue);
-    requestPayload['areaOfInterest'] = id;
-    requestPayload['purposeOfInterestAreaEqTitle'] = labelValue;
-    requestPayload['areaOfInterestTitle'] = value;
-  }
+  onBusinessInterestChangeHandler = (e) => {
+    const self = this;
+    const { $businessInterest } = this.cache;
+    const checkedItems = [];
+    const labelItems = [];
+    const step1Btn = $('#bef-step-1 .step1Btn');
+    const step2Btn = $('#bef-step-2 .step2Btn');
+    $('#businessEnquiryMessageText').attr('placeholder', $('#messageBoxDiv').attr('data-general-placeholder'));
+    
+    $businessInterest.each(function() {
+      if($(this).prop('checked')) {
+        checkedItems.push($(this).val());
+        labelItems.push($(this).attr('data-baoi'));
+      } else {
+        const index = checkedItems.indexOf($(this).val());
+        if (index > -1) {
+          checkedItems.splice(index, 1);
+          labelItems.splice(index, 1);
+        }
+      }
+    });
+    if(checkedItems.length === 0) {
+      $(step1Btn).attr('data-target', '#bef-step-2');
+      $(step2Btn).attr('data-target', '#bef-step-1');
+      self.setRequestPayload('', '');
+    } else if(checkedItems.length === 1) {
+      $(step1Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
+      $(step2Btn).attr('data-target', '#businessInquiry_'+checkedItems[0].toLowerCase());
+      self.setRequestPayload(labelItems[0] , checkedItems[0]);
+      if(checkedItems[0].toLowerCase() === 'packaging' || checkedItems[0].toLowerCase() === 'services') {
+        $('.summary-interest').addClass('show');
+        $('.summary-packaging').removeClass('show');
+      }
+      
+    } else if(checkedItems.length === 2) {
+      $(step1Btn).attr('data-target', '#bef-step-2');
+      $(step2Btn).attr('data-target', '#bef-step-1');
+      self.setRequestPayload(labelItems.join(' , '), checkedItems.join(' and '));
+      $('.summary-packaging').removeClass('show');
+      $('.summary-interest').removeClass('show');
+    } else if(checkedItems.length === 3) {
+      self.setRequestPayload(labelItems.join(' , '), checkedItems.join(' , '));
+      $('.summary-packaging').removeClass('show');
+      $('.summary-interest').removeClass('show');
+    }
+    if(checkedItems.length === 1 && checkedItems[0].toLowerCase() === 'processing') {
+      $('#businessEnquiryMessageText').attr('placeholder', $('#processingCheckboxDiv').attr('data-processing-msg-placeholder-text'));
+      $('.summary-packaging').addClass('show');
+      $('.summary-interest').removeClass('show');
+    }
 
-  checkMessageLength = () => {
-    const msgBox = this.root.find('textarea#businessEnquiryMessageText');
-    if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 170){
-      this.root.find('.message').text(`${msgBox.val().substring(0, 170)}...`);
+    if(checkedItems.length > 0) {
+      $(e.currentTarget).closest('.formfield').removeClass('field-error');
     }
   }
 
+  setRequestPayload = (lbl , val) => {
+    const { requestPayload } = this.cache;
+    if(val.indexOf(',') > 0){
+      requestPayload['businessArea'] = 'All 3';
+    } else {
+      requestPayload['businessArea'] = val;
+    }
+    $('input[type=hidden][name="purposeOfInterestAreaEqTitle"]').val(lbl);
+  }
+
+  resetBusinessIntFields = () => {
+    const self = this;
+    $('input[type=hidden][name="specificInterestAreaPackagingEqTitle"]').val('');
+    $('input[type=hidden][name="businessAreaInterestProcessingSupportEqTitle"]').val('');
+    $('input[type=hidden][name="businessAreaProcessingCategoryFoodEqtitle"]').val('');
+    $('input[type=hidden][name="businessAreaInterestServicesEqTitle"]').val('');
+    self.resetSubFoodCategory();
+  }
+
+  resetSubFoodCategory = () => {
+    const { $subFoodCategory } = this.cache;
+    $subFoodCategory.hide();
+    $subFoodCategory.find('.formfield').removeClass('field-error');
+    $subFoodCategory.each(function() {
+      const inputHandler = $(this).find('.form-control.field-handler');
+      $(inputHandler).val('').removeAttr('required');
+      const $subFoodCategoryChecks = $(this).find('input');
+      $subFoodCategoryChecks.each(function() {
+        $(this).prop('checked', false);
+      });
+    });
+  }
+  
+  onBaIntProcessingCategoryFoodHandler = e => {
+    const self = this;
+    const { requestPayload } = this.cache;
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+
+    // Hide and Reset Sub food Categories
+    self.resetSubFoodCategory();
+    
+    $(e.currentTarget).parent().next('.sub-food-data').show().find('.form-control.field-handler').attr('required', true);
+    $('input[type=hidden][name="businessAreaProcessingCategoryFoodEqtitle"]').val(labelValue);
+    requestPayload['businessAreaProcessingCategoryFood'] = value;
+  }
+  
+  onBaIntSubCategoryFoodHandler = e => {
+    const { requestPayload } = this.cache;
+    const formField = $(e.currentTarget).closest('.formfield');
+    const inputHandler = $(formField).find('.form-control.field-handler');
+    const hiddenInput = $(inputHandler).attr('data-fieldname');
+    const id = e.target.id;
+    const value = e.target.value;
+    const labelValue = $('label[for="'+id+'"]').text().trim();
+    $(inputHandler).val(labelValue);
+    requestPayload[hiddenInput] = value;
+  }
+
+  resetErrorMsg = (e) => {
+    if($(this).attr('type') !== 'checkbox') {
+      $(e.currentTarget).closest('.formfield').removeClass('field-error');
+      $(e.currentTarget).closest('.form-group').removeClass('field-error');
+    }
+  }
+  
+  checkMessageLength = () => {
+    const msgBox = this.root.find('textarea#businessEnquiryMessageText');
+    if(msgBox.val() && msgBox.val().trim() && msgBox.val().trim().length > 204){
+      this.root.find('.businessEnquiryMessage').text(`${msgBox.val().substring(0, 204)}...`);
+    }
+  }
 
   bindEvents() {
-    const { requestPayload, $radioListFirst, $radioListSecond, $newRequestBtn, $nextbtn, $submitBtn, $dropItem, $positionDropItem } = this.cache;
+    const { businessformapi, requestPayload, $purposeContact, $baIntPackaging, $baIntProcessingSupport, $baIntProcessingCategoryFood, $subFoodCategory, $baIntServices, $businessInterest, $businessEnqNeed, $newRequestBtn, $nextbtn, $submitBtn, $dropItem } = this.cache;
+    
     const self = this;
-    $radioListFirst.on('change', this.onRadioChangeHandlerFirst);
-    $radioListSecond.on('change', this.onRadioChangeHandlerSecond);
+    $purposeContact.on('change', function(e) {
+      self.onRadioClickHandler(e, 'purposeOfContactInBusinessEqTitle', 'purpose');
+    });
+    $baIntPackaging.on('change', function(e) {
+      self.onRadioClickHandler(e, 'specificInterestAreaPackagingEqTitle', 'businessAreaInterestPackaging');
+    });
+    $baIntProcessingSupport.on('change', function(e) {
+      self.onRadioClickHandler(e, 'businessAreaInterestProcessingSupportEqTitle', 'businessAreaInterestProcessingSupport');
+    });
+    $baIntProcessingCategoryFood.on('change', function(e) {
+      self.resetSubFoodCategory();
+      $(e.currentTarget).parent().next('.sub-food-data').show().find('.form-control.field-handler').attr('required', true);
+      self.onRadioClickHandler(e, 'businessAreaProcessingCategoryFoodEqtitle', 'businessAreaProcessingCategoryFood');
+    });
+    $baIntServices.on('change', function(e) {
+      self.onRadioClickHandler(e, 'businessAreaInterestServicesEqTitle', 'businessAreaInterestServices');
+    });
+    $businessEnqNeed.on('change', function(e) {
+      self.onRadioClickHandler(e, 'businessEnquiryNeedEqTitle', 'businessEnquiryNeed');
+    });
+
+    $businessInterest.on('change', this.onBusinessInterestChangeHandler);
+    
+    // Sub Food Category
+    $subFoodCategory.each(function() {
+      const $subFoodCategoryChecks = $(this).find('input');
+      $subFoodCategoryChecks.each(function() {
+        $(this).on('change', self.onBaIntSubCategoryFoodHandler);
+      });
+    });
     $newRequestBtn.on('click', this.newRequestHanlder);
 
+    // Remove Error message on change
+    $('input, textarea', businessformapi).each(function () {
+      $(this).on('change', self.resetErrorMsg);
+    });
+    
     $nextbtn.click(function (e) {
       let isvalid = true;
-      const target = $(this).data('target'),  tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea'), errObj = [];
+      const target = $(this).attr('data-target'),  tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea'), errObj = [];
       if ($(this).hasClass('previousbtn')) {
         switch (target) {
         case '#bef-step-1':
           changeStepPrev(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
           break;
+        case '#businessInquiry_packaging':
+          changeStepPrev(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          break;
+        case '#businessInquiry_processing':
+          changeStepPrev(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          break;
+        case '#businessInquiry_services':
+          changeStepPrev(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          break;
         case '#bef-step-2':
           changeStepPrev(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
-          break;
-        case '#bef-step-3':
-          changeStepPrev(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
-          break;
-        case '#bef-step-4':
-          changeStepPrev(self.mainHead, 'Step 5', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
           break;
         default:
           break;
@@ -222,10 +420,18 @@ class Businessinquiryform {
           const fieldName = $(this).attr('name');
           $('div.' + fieldName).text($(this).val());
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
+          
           if (fieldName in self.cache.requestPayload) {
-            requestPayload[fieldName] = newSafeValues;
+            if($(this).attr('type') !== 'radio' && $(this).attr('type') !== 'checkbox') {
+              if(fieldName === 'businessEnquiryProfile') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else {
+                requestPayload[fieldName] = newSafeValues;
+              }
+            }
           }
-          if (($(this).prop('required') && $(this).val() === '') || self.validateField(requestPayload[fieldName]) || (fieldName === 'emailBef') && !self.validEmail($(this).val())) {
+          
+          if (($(this).prop('required') && $(this).val() === '') || self.validateField(requestPayload[fieldName]) || ((fieldName === 'email') && !self.validEmail($(this).val())) || (fieldName === 'phone') && !self.validPhone($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -236,25 +442,28 @@ class Businessinquiryform {
               erLbl = self.step1head;
               break;
             case 'purposeOfInterestAreaEqTitle':
-              erLbl = self.step2head;
+              erLbl = self.step1head2;
               break;
-            case 'message':
+            case 'businessEnquiryMessage':
+              erLbl = $('#bef-step-2 label')[3].textContent;
+              break;
+            case 'email':
               erLbl = $('#bef-step-3 label')[0].textContent;
               break;
-            case 'firstNameField':
-              erLbl = $('#bef-step-4 label')[0].textContent;
+            case 'firstName':
+              erLbl = $('#bef-step-3 label')[1].textContent;
               break;
-            case 'lastNameField':
-              erLbl = $('#bef-step-4 label')[1].textContent;
+            case 'lastName':
+              erLbl = $('#bef-step-3 label')[2].textContent;
               break;
-            case 'emailBef':
-              erLbl = $('#bef-step-4 label')[2].textContent;
+            case 'phone':
+              erLbl = $('#bef-step-3 label')[3].textContent;
+              break;
+            case 'workplaceCity':
+              erLbl = $('#bef-step-3 label')[4].textContent;
               break;
             case 'company':
-              erLbl = $('#bef-step-5 label')[0].textContent;
-              break;
-            case 'position':
-              erLbl = $('#bef-step-5 label')[1].textContent;
+              erLbl = $('#bef-step-3 label')[6].textContent;
               break;
             default:
               erLbl = fieldName;
@@ -272,7 +481,7 @@ class Businessinquiryform {
       }
       if (isvalid) {
         tab.find('.form-group, .formfield').removeClass('field-error');
-        if (!(self.cache.requestPayload['phoneField']).length > 0) {
+        if (!(self.cache.requestPayload['phone']).length > 0) {
           $('#phoneSummery').hide();
         }
         else {
@@ -284,17 +493,20 @@ class Businessinquiryform {
           $(target).addClass('active');
           if (!$(this).hasClass('previousbtn')) {
             switch (target) {
+            case '#businessInquiry_packaging':
+              changeStepNext(self.mainHead, 'Step 1', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step1head2]: self.cache.requestPayload['purposeOfContactInBusinessEqTitle'] });
+              break;
+            case '#businessInquiry_processing':
+              changeStepNext(self.mainHead, 'Step 1', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step1head2]: self.cache.requestPayload['purposeOfContactInBusinessEqTitle'] });
+              break;
+            case '#businessInquiry_services':
+              changeStepNext(self.mainHead, 'Step 1', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step1head2]: self.cache.requestPayload['purposeOfContactInBusinessEqTitle'] });
+              break;
             case '#bef-step-2':
               changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step1head]: self.cache.requestPayload['purposeOfContactInBusinessEqTitle'] });
               break;
             case '#bef-step-3':
               changeStepNext(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step2head]: self.cache.requestPayload['purposeOfInterestAreaEqTitle'] });
-              break;
-            case '#bef-step-4':
-              changeStepNext(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { [self.step3head]: 'NA' });
-              break;
-            case '#bef-step-5':
-              changeStepNext(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj });
               break;
             default:
               break;
@@ -303,20 +515,23 @@ class Businessinquiryform {
         }
       } else {
         switch (target) {
+        case '#businessInquiry_packaging':
+          changeStepError(self.mainHead, 'Step 1', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          break;
+        case '#businessInquiry_processing':
+          changeStepError(self.mainHead, 'Step 1', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          break;
+        case '#businessInquiry_services':
+          changeStepError(self.mainHead, 'Step 1', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          break;
         case '#bef-step-2':
           changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#bef-step-3':
           changeStepError(self.mainHead, 'Step 2', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
-        case '#bef-step-4':
-          changeStepError(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
-          break;
-        case '#bef-step-5':
-          changeStepError(self.mainHead, 'Step 4', self.step4head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
-          break;
         case '#bef-step-final':
-          changeStepError(self.mainHead, 'Step 5', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 3', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         default:
           break;
@@ -337,13 +552,25 @@ class Businessinquiryform {
           const newSafeValues = $(this).attr('type') !== 'hidden' ? validateFieldsForTags($(this).val()) : $(this).val();
 
           $('div.' + fieldName).text($(this).val());
+          
           if (fieldName in self.cache.requestPayload) {
-            requestPayload[fieldName] = newSafeValues;
+            if($(this).attr('type') !== 'radio' && $(this).attr('type') !== 'checkbox') {
+              if(fieldName === 'position') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else if(fieldName === 'function') {
+                requestPayload[fieldName] = self.cache.requestPayload[fieldName];
+              } else {
+                requestPayload[fieldName] = newSafeValues;
+              }
+            }
           }
-          if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'consent'){
-            requestPayload[fieldName] = $('input[name="consent"]:checked').length > 0;
+          
+          if($(this).attr('type') === 'checkbox' && $(this).attr('name') === 'marketingConsent') {
+            if($('input[name="marketingConsent"]:checked').length > 0) {
+              requestPayload[fieldName] = 'True';
+            }
           }
-          if (($(this).prop('required') && $(this).val() === '') || (fieldName === 'emailBef') && !self.validEmail($(this).val()) && !self.validEmail($(this).val())) {
+          if (($(this).prop('required') && $(this).val() === '') || ((fieldName === 'email') && !self.validEmail($(this).val())) || (fieldName === 'phone') && !self.validPhone($(this).val())) {
             isvalid = false;
             e.preventDefault();
             e.stopPropagation();
@@ -355,22 +582,28 @@ class Businessinquiryform {
               erLbl = self.step1head;
               break;
             case 'purposeOfInterestAreaEqTitle':
-              erLbl = self.step2head;
+              erLbl = self.step1head2;
               break;
-            case 'firstNameField':
-              erLbl = $('#bef-step-4 label')[0].textContent;
+            case 'businessEnquiryMessage':
+              erLbl = $('#bef-step-2 label')[3].textContent;
               break;
-            case 'lastNameField':
-              erLbl = $('#bef-step-4 label')[1].textContent;
+            case 'email':
+              erLbl = $('#bef-step-3 label')[0].textContent;
               break;
-            case 'emailBef':
-              erLbl = $('#bef-step-4 label')[2].textContent;
+            case 'firstName':
+              erLbl = $('#bef-step-3 label')[1].textContent;
+              break;
+            case 'lastName':
+              erLbl = $('#bef-step-3 label')[2].textContent;
+              break;
+            case 'phone':
+              erLbl = $('#bef-step-3 label')[3].textContent;
+              break;
+            case 'workplaceCity':
+              erLbl = $('#bef-step-3 label')[4].textContent;
               break;
             case 'company':
-              erLbl = $('#bef-step-5 label')[0].textContent;
-              break;
-            case 'position':
-              erLbl = $('#bef-step-5 label')[1].textContent;
+              erLbl = $('#bef-step-3 label')[6].textContent;
               break;
             default:
               erLbl = fieldName;
@@ -395,7 +628,7 @@ class Businessinquiryform {
       } else {
         switch (target) {
         case '#bef-step-final':
-          changeStepError(self.mainHead, 'Step 5', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 3', self.step5head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         default:
           break;
@@ -408,28 +641,30 @@ class Businessinquiryform {
 
     $dropItem.click(function (e) {
       e.preventDefault();
-      const countryTitle = $(this).data('countrytitle');
+      const title = $(this).attr('data-title');
+      const pardtottitle = $(this).attr('data-pardot-title');
+      const field = $(this).attr('data-field-name');
+      const fieldtitle = $(this).attr('data-field-title');
       const parentDrop = $(this).closest('.dropdown');
-      $('.dropdown-toggle span', parentDrop).text(countryTitle);
-      $('input', parentDrop).val(countryTitle);
-      requestPayload['country'] = countryTitle;
-      self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload['country'];
-      requestPayload['countryTitle'] = countryTitle;
+      $('.dropdown-toggle span', parentDrop).text(title);
+      $('input', parentDrop).val(title);
+      requestPayload[field] = pardtottitle;
+      if(field === 'country') {
+        self.restObj[self.cache.$countryField.data('country-name-label')] = requestPayload[field];
+        requestPayload[fieldtitle] = title;
+      }
+      if(field === 'position') {
+        self.restObj2[self.cache.$positionField.data('position-name-label')] = requestPayload[field];
+      }
+      if(field === 'function') {
+        self.restObj2[self.cache.$functionField.data('function-name-label')] = requestPayload[field];
+      }
+      if(field === 'businessEnquiryProfile') {
+        self.restObj2[self.cache.$roleField.data('role-name-label')] = requestPayload[field];
+      }
       $dropItem.removeClass('active');
       $(this).addClass('active');
-    });
-
-    $positionDropItem.click(function (e) {
-      e.preventDefault();
-      const positionTitle = $(this).data('positiontitle');
-      const positionKey = $(this).data('positionkey');
-      const parentDrop = $(this).closest('.dropdown');
-      $('.dropdown-toggle span', parentDrop).text(positionTitle);
-      $('input', parentDrop).val(positionKey);
-      requestPayload['position'] = positionKey;
-      self.restObj2[self.cache.$positionField.data('position-name-label')] = positionTitle;
-      $positionDropItem.removeClass('active');
-      $(this).addClass('active');
+      $(this).closest('.form-group').removeClass('field-error');
     });
   }
 
@@ -452,19 +687,21 @@ class Businessinquiryform {
     this.bindEvents();
     this.purposeLabel = $('.purposeOfBusinessContactError').text().trim();
     this.interestLabel = $('.purposeOfBusinessIntersetError').text().trim();
-    this.step1head = $('#bef-step-1').find('h4').text().trim();
+    this.step1head = $('#bef-step-1').find('h4').eq(0).text().trim();
+    this.step1head2 = $('#bef-step-1').find('h4').eq(1).text().trim();
     this.step2head = $('#bef-step-2 .tab-content-steps').find('h4').text();
     this.step3head = $('#bef-step-3 .tab-content-steps').find('h4').text();
-    this.step4head = $('#bef-step-4 .tab-content-steps').find('h4').text();
-    this.step5head = $('#bef-step-5 .tab-content-steps').find('h4').text();
     this.mainHead = $($('.pw-businessEnquiry-form .main-heading').find('h2')[0]).text().trim();
     this.restObj = {};
     this.restObj2 = {};
     this.linkTitle = this.root.find('.thankyou').find('h2').text().trim();
     this.linkText = this.root.find('.newRequestBtn').text().trim();
-    $('#bef-step-4 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
-    $('#bef-step-5 label').slice(0, 1).each((i, v) => this.restObj2[$(v).text()] = 'NA');
+    $('#bef-step-3 label:not(.country-value)').each((i, v) => this.restObj[$(v).text()] = 'NA');
+    $('#bef-step-3 label').slice(0, 1).each((i, v) => this.restObj2[$(v).text()] = 'NA');
     this.getCountryList();
+    this.getPositionList();
+    this.getFunctionList();
+    this.getRoleList();
     this.analyticsFormstart(this.step1head, this.mainHead);
   }
 }

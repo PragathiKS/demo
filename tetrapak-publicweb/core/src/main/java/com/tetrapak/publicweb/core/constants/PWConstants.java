@@ -453,6 +453,42 @@ public final class PWConstants {
     
     /** Constant TETRA_LAVAL_CONTENT_DAM_PATH */
     public static final String TETRA_LAVAL_CONTENT_DAM_PATH = "/content/dam/tetra-laval";
+    
+	/** The Constant DOT. */
+    public static final String DOT = ".";
+    
+	/** The Constant ACCEPT. */
+    public static final String ACCEPT = "Accept";
+    
+    /** The Constant APPLICATION_JSON. */
+    public static final String APPLICATION_JSON = "application/json";
+    
+    /** The Constant AUTHORIZATION. */
+    public static final String AUTHORIZATION = "Authorization";
+    
+    /** The Constant CONTENT_TYPE. */
+    public static final String CONTENT_TYPE = "Content-Type";
+    
+    /** The Constant GRANT_TYPE. */
+    public static final String GRANT_TYPE = "grant_type";
+    
+    /** The Constant CLIENT_CREDENTIALS. */
+    public static final String CLIENT_CREDENTIALS = "client_credentials";
+    
+    /** The Constant APPLICATION_ENCODING. */
+    public static final String APPLICATION_ENCODING = "application/x-www-form-urlencoded";
+    
+    /** The bearer. */
+    public static final String BEARER = "Bearer";
+    
+    /** The CHINA_COUNTRY_CODE. */
+    public static final String CHINA_COUNTRY_CODE = "cn";
+    
+    /** The CHINA. */
+    public static final String CHINA = "China";
+    
+    /** The BASIC. */
+    public static final String BASIC = "Basic";
 
     /**
      * Instantiates a new PW constants.

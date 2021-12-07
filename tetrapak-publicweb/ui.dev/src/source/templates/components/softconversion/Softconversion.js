@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { REG_EMAIL,ajaxMethods } from '../../../scripts/utils/constants';
 import { isExternal } from '../../../scripts/utils/updateLink';
-import { validateFieldsForTags, isMobileMode, storageUtil } from '../../../scripts/common/common';
+import { validateFieldsForTags, isMobileMode, storageUtil, capitalizeFirstLetter, removeParams } from '../../../scripts/common/common';
 import { makeLoad, changeStepNext, loadDownloadReady, downloadLinkTrack, changeStepError } from './softconversion.analytics.js';
 
 class Softconversion {
@@ -189,6 +189,7 @@ class Softconversion {
     this.cache.$userType = 1;
     storageUtil.setCookie('userType', '', -1);
     storageUtil.setCookie('visitor-mail', '', -1);
+    storageUtil.setCookie('countryValue', '', -1);
   }
 
   yesMeBtnHandler = () => {
@@ -225,14 +226,32 @@ class Softconversion {
 
       const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
       const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
+      const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
+      const countryCookie= storageUtil.getCookie('countryValue');
       const apiPayload =  {};
       apiPayload.email = storageUtil.getCookie('visitor-mail');
+      apiPayload.country = countryCookie;
       apiPayload.language = this.root.find(`#site_language_${this.cache.$componentName}`).val();
       apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
       apiPayload.pardot_extra_field = '';
-      apiPayload.pardotUrl = pardotUrl;
-      apiPayload.pageurl = this.cache.requestPayload['pageurl'];
-      apiPayload.marketingConsent = true;
+      if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
+        apiPayload.pardotUrl = chinapardotUrl;
+      }
+      else {
+        apiPayload.pardotUrl = pardotUrl;
+      }
+      apiPayload.pageurl = this.getPageURL();
+      Object.keys(this.cache.requestPayload).forEach(key => {
+        if(key === 'utm_campaign') {
+          apiPayload['utm_campaign'] = this.cache.requestPayload[key];
+        } else if(key === 'utm_content') {
+          apiPayload['utm_content'] = this.cache.requestPayload[key];
+        } else if(key === 'utm_medium') {
+          apiPayload['utm_medium'] = this.cache.requestPayload[key];
+        } else if(key === 'utm_source') {
+          apiPayload['utm_source'] = this.cache.requestPayload[key];
+        }
+      });
 
       ajaxWrapper.getXhrObj({
         url: servletPath,
@@ -243,26 +262,41 @@ class Softconversion {
           $('.serviceError').removeClass('d-block');
         }
       );
-
-      // do the analytics call for yes its me
-      changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
     }
+    
+    // do the analytics call for yes its me
+    changeStepNext(this.mainHeading, 'Step 1', 'welcome back', { customerType: $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
   }
 
   submitForm = () => {
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
     const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
-
+    const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
     const apiPayload =  {};
 
     const userType = parseInt(storageUtil.getCookie('userType'), 10);
     const visitorEmail = storageUtil.getCookie('visitor-mail');
+    const countryCookie= storageUtil.getCookie('countryValue');
+
+    let dataObj = {};
+
+    if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
+      apiPayload.marketingConsent = capitalizeFirstLetter(String(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')));
+    }
 
     if(visitorEmail && userType === 1) {
       apiPayload.email = storageUtil.getCookie('visitor-mail');
       apiPayload.company = this.cache.requestPayload[`company-${this.cache.$componentName}`];
       apiPayload.position = this.cache.requestPayload['position'];
       apiPayload.function = this.cache.requestPayload['function'];
+      apiPayload.country = countryCookie;
+
+      dataObj = {
+        'Company': 'NA',
+        'Position': apiPayload.position,
+        'Function': apiPayload.function,
+        'Marketing Consent': this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked') ? 'Checked':'Unchecked'
+      };
     } else {
       apiPayload.visitorType = this.cache.requestPayload['typeOfVisitorTitle'];
       apiPayload.countryTitle = this.cache.requestPayload['countryTitle'];
@@ -270,33 +304,37 @@ class Softconversion {
       apiPayload.firstName = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];
       apiPayload.lastName = this.cache.requestPayload[`lastName-${this.cache.$componentName}`];
       apiPayload.email = this.cache.requestPayload[`email-${this.cache.$componentName}`];
+
+      dataObj = {
+        'E-mail': 'NA',
+        'First name': 'NA',
+        'Last name': 'NA',
+        'Country/Region': apiPayload.country,
+        'Purpose of visit': apiPayload.visitorType,
+        'Marketing Consent': this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked') ? 'Checked':'Unchecked'
+      };
     }
 
     apiPayload.language = this.cache.requestPayload[`site_language_${this.cache.$componentName}`];
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
-    apiPayload.pardotUrl = pardotUrl;
-    apiPayload.pageurl = this.cache.requestPayload['pageurl'];
-    if(this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked')){
-      apiPayload.marketingConsent = this.root.find(`#market-consent-${this.cache.$componentName}`).is(':checked');
+    if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
+      apiPayload.pardotUrl = chinapardotUrl;
     }
-    loadDownloadReady(this.mainHeading, { 'Marketing Consent': apiPayload.marketingConsent ? 'Checked':'Unchecked' }, this.cache.$parentComponent);
-
-    // IF UTM fields in URL
-    const params = {};
-    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
-      return params[key] = value;
-    });
-
-    Object.keys(params).forEach(key => {
+    else {
+      apiPayload.pardotUrl = pardotUrl;
+    }
+    
+    apiPayload.pageurl = this.getPageURL();
+    Object.keys(this.cache.requestPayload).forEach(key => {
       if(key === 'utm_campaign') {
-        apiPayload['utm_campaign'] = params[key];
+        apiPayload['utm_campaign'] = this.cache.requestPayload[key];
       } else if(key === 'utm_content') {
-        apiPayload['utm_content'] = params[key];
+        apiPayload['utm_content'] = this.cache.requestPayload[key];
       } else if(key === 'utm_medium') {
-        apiPayload['utm_medium'] = params[key];
+        apiPayload['utm_medium'] = this.cache.requestPayload[key];
       } else if(key === 'utm_source') {
-        apiPayload['utm_source'] = params[key];
+        apiPayload['utm_source'] = this.cache.requestPayload[key];
       }
     });
 
@@ -317,14 +355,44 @@ class Softconversion {
       storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
     }
     storageUtil.setCookie('userType', this.cache.$userType, 365);
-
+    storageUtil.setCookie('countryValue', this.cache.requestPayload['country'], 365);
     $(`.heading_${this.cache.$componentName}`, this.root).text('');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
     isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
+
+    // Analytics Tracking
+    loadDownloadReady(this.mainHeading, dataObj, this.cache.$parentComponent);
   }
 
+  getPageURL() {
+    const { requestPayload } = this.cache;
+    const params = {};
+    let pageURL = this.cache.requestPayload['pageurl'];
 
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+      return params[key] = value;
+    });
+    
+    Object.keys(params).forEach(key => {
+      if(key === 'utm_campaign') {
+        requestPayload['utm_campaign'] = params[key];
+        pageURL = removeParams('utm_campaign', pageURL);
+      } else if(key === 'utm_content') {
+        requestPayload['utm_content'] = params[key];
+        pageURL = removeParams('utm_content', pageURL);
+      } else if(key === 'utm_medium') {
+        requestPayload['utm_medium'] = params[key];
+        pageURL = removeParams('utm_medium', pageURL);
+      } else if(key === 'utm_source') {
+        requestPayload['utm_source'] = params[key];
+        pageURL = removeParams('utm_source', pageURL);
+      }
+    });
+
+    return pageURL;
+  }
+  
   bindEvents() {
     const {requestPayload, $radio, $submitBtn, $componentName, $parentComponent, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn, $dropItem, $partiallyUser } = this.cache;
     
@@ -377,13 +445,13 @@ class Softconversion {
             isvalid = false;
             switch (fieldName) {
             case `company-${$componentName}`:
-              erLbl = $(`#cf-step-1-${$componentName} label`)[0].textContent;
+              erLbl = $(this).closest('.formfield').find('label').text();
               break;
-            case `position-${$componentName}`:
-              erLbl = $(`#cf-step-1-${$componentName} label`)[1].textContent;
+            case `positionTitle`:
+              erLbl = $(this).closest('.formfield').find('label').text();
               break;
-            case `function-${$componentName}`:
-              erLbl = $(`#cf-step-1-${$componentName} label`)[2].textContent;
+            case `functionTitle`:
+              erLbl = $(this).closest('.formfield').find('label').text();
               break;
             default:
               erLbl = fieldName;
@@ -409,6 +477,9 @@ class Softconversion {
             case `lastName-${$componentName}`:
               erLbl = $(`#cf-step-1-${$componentName} label`)[2].textContent;
               break;
+            case `countryTitle`:
+              erLbl = $(this).closest('.formfield').find('label').text();
+              break;
             default:
               erLbl = fieldName;
               break;
@@ -416,11 +487,6 @@ class Softconversion {
             $(this).closest('.form-group, .formfield').addClass('field-error');
           }
           
-          errObj.push({
-            formErrorMessage: errmsg,
-            formErrorField: erLbl
-          });
-
           errObj.push({
             formErrorMessage: errmsg,
             formErrorField: erLbl
@@ -439,12 +505,13 @@ class Softconversion {
     $dropItem.click(function (e) {
       e.preventDefault();
       const title = $(this).data('title');
+      const value = $(this).data('key');
       const field = $(this).data('field-name');
       const fieldtitle = $(this).data('field-title');
       const parentDrop = $(this).closest('.dropdown');
       $('.dropdown-toggle span', parentDrop).text(title);
       $('input', parentDrop).val(title);
-      requestPayload[field] = title;
+      requestPayload[field] = value || title;
       if(field === 'country') {
         requestPayload[fieldtitle] = title;
       }
@@ -482,8 +549,6 @@ class Softconversion {
     this.bindEvents();
     this.mainHeading = $(`#heading_${this.cache.$componentName}`).val();
     this.step1heading = $(`#cf-step-1-${this.cache.$componentName} .radioHeading`).text().trim();
-    this.step2heading = $(`#cf-step-2-${this.cache.$componentName} .tab-content-steps`).find('h4').text();
-    this.step3heading = 'Company information';
     this.getCountryList();
     this.getPositionList();
     this.getFunctionList();

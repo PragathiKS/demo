@@ -12,7 +12,7 @@
     z-index: 2147483646;
 
     h3 {
-        color: $color-tundora;
+        color: $color-emperor;
         font-weight: 600;
         font-size: 1rem;
         padding: 0 0 10px 25px;
@@ -66,5 +66,12 @@
     &.show {
         display: block;
         position: fixed;
+    }
+}
+
+.aem-AuthorLayer-Edit {
+    .pc-dark-filter,
+    .otFloatingRoundedCorner {
+        display: none;
     }
 }

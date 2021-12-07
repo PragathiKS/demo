@@ -15,7 +15,7 @@
           <ul class="d-flex justify-content-center" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
             <li
               class="${megaMenuItem.linkPath == data.solutionPage ? 'js-hover-menu-link' : 'js-main-menu-link-hover'} hover-menu-link">
-              <a class="js-tp-pw-header-logo-digital-data js-tp-pw-header-item js-tp-pw-header-item-desktop"
+              <a class="js-tp-pw-header-item js-tp-pw-header-item-desktop"
                 data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}" target="_self"
                 href="${megaMenuItem.linkPath}" ctype="header" ctypeone="header nav link"
                 ctitle="${megaMenuItem.linkText}">${megaMenuItem.linkText}</a>
@@ -31,7 +31,7 @@
         <div class="col-sm-3 col-lg-3 d-flex justify-content-end pw-header-icons">
           <div class="tp-pw-header__secondary-navigation js-tp-pw-header__secondary-navigation">
             <sly data-sly-test="${data.searchPage != '#'}">
-            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header-logo-digital-data js-tp-pw-header__search-box-toggle preview-search-icon"
+            <a class="tp-pw-header__secondary-navigation__link js-tp-pw-header__search-box-toggle preview-search-icon"
               data-link-section="Header Navigation" data-link-name="Internal Search icon" href="#">
               <i class="icon-Search_pw"></i></a>
             </sly>
@@ -63,7 +63,7 @@
       <ul class="tp-pw-mobile-navigation__primary" data-sly-list.megaMenuItem=${data.megaMenuLinksList}>
         <li class="">
           <a data-link-section="Header Menu Navigation" data-link-name="${megaMenuItem.linkText}"
-            class="d-flex justify-content-between js-tp-pw-header-item js-tp-pw-header-logo-digital-data nav-link ${megaMenuItem.linkPath == data.solutionPage ? 'js-click-menu-link' : ''}"
+            class="d-flex justify-content-between js-tp-pw-header-item nav-link ${megaMenuItem.linkPath == data.solutionPage ? 'js-click-menu-link' : ''}"
             href="${megaMenuItem.linkPath}">
             <span>
               ${megaMenuItem.linkText}

@@ -10,21 +10,6 @@ import com.day.cq.replication.TransportContext;
 public interface CDNCacheInvalidationService {
 
     /**
-     * Send test request to service insight via a GET request.
-     *
-     * service insight will respond with a 200 HTTP status code if the request was successfully submitted. The response
-     * will have information about the queue length, but we're simply interested in the fact that the request was
-     * authenticated.
-     *
-     * @param ctx
-     *            Transport Context
-     * @param tx
-     *            Replication Transaction
-     * @return ReplicationResult OK if 200 response from ServiceInsight
-     */
-    ReplicationResult doTest(TransportContext ctx, ReplicationTransaction tx);
-
-    /**
      * Send purge request to ServiceInsight via a POST request
      *
      * ServiceInsight will respond with a 201 HTTP status code if the purge request was successfully submitted.
