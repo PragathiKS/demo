@@ -13,15 +13,13 @@ export const makeLoad = function (label, formName, parentComponent, eventType='f
 };
 
 
-export const changeStepNext = function (formName, formStep, formType, dataObj, parentComponent) {
+export const changeStepNext = function (formName, dataObj, parentComponent) {
   const formObj = {
     formName: formName,
-    formStep: formStep,
-    formType: formType,
     formField: []
   };
   const eventObj = {
-    eventType: `${formStep} Next`,
+    eventType: `formreturn`,
     event: `${parentComponent} : Soft Conversion Form`
   };
   Object.keys(dataObj).forEach(i => {
