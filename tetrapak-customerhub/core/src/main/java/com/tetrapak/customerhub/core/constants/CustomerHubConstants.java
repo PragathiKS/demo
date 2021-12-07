@@ -35,14 +35,17 @@ public final class CustomerHubConstants {
     /** The Constant EMPTY_STRING. */
     public static final String EMPTY_STRING = "";
 
-    /** The Constant EMPTY_STRING. */
+    /** The Constant COMMA. */
     public static final String COMMA = ",";
 
-    /** The Constant EMPTY_STRING. */
+    /** The Constant NEWLINE. */
     public static final String NEWLINE = "\n";
 
-    /** The Constant EMPTY_STRING. */
+    /** The Constant SEMI_COLON. */
     public static final String SEMI_COLON = ";";
+    
+    /** The Constant QUOT_ESCAPED. */
+    public static final String QUOTE_ESCAPED = "\"";
 
     /** The Constant CQ_TEMPLATE. */
     public static final String CQ_TEMPLATE = "cq:template";
