@@ -391,6 +391,13 @@ class Businessinquiryform {
     });
     
     $nextbtn.click(function (e) {
+      // Analytics Form Start
+      const tabId = $(this).closest('.bef-tab-pane.active').attr('id');
+      if(tabId === 'bef-step-1') {
+        self.cache.$isFormStart = true;
+        makeLoad(self.step1head, self.mainHead);
+      }
+      
       let isvalid = true;
       const target = $(this).attr('data-target'),  tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea'), errObj = [];
       if ($(this).hasClass('previousbtn')) {
@@ -655,8 +662,7 @@ class Businessinquiryform {
     $dropItem.click(function (e) {
       e.preventDefault();
       const title = $(this).attr('data-title');
-      const finalValue = $(this).attr('data-pardot-title');
-      const pardtottitle = capitalizeFirstLetter(finalValue);
+      const pardtottitle = $(this).attr('data-pardot-title');
       const field = $(this).attr('data-field-name');
       const fieldtitle = $(this).attr('data-field-title');
       const parentDrop = $(this).closest('.dropdown');
@@ -681,7 +687,7 @@ class Businessinquiryform {
 
   analyticsFormstart(stepHead, mainHead) {
     const self = this;
-    const formElements = $(this.cache.$formInfo).find('input, button, select, textarea');
+    const formElements = $(this.cache.$formInfo).find('input, select, textarea');
     formElements.each(function(i, val) {
       $(val).on('click', function () {
         if (!self.cache.$isFormStart) {
