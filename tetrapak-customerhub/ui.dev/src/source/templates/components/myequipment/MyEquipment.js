@@ -306,37 +306,15 @@ class MyEquipment {
     return activeCountry[0].countryCode;
   }
 
-  getAllAvailableFilterVals(authData, filterValuesArr) {
+  getAllAvailableFilterVals(authData, filterValuesArr, newCountry) {
     const equipmentApi = this.cache.equipmentApi.data('list-api');
-
-    filterValuesArr.forEach(filterVal => {
-      ajaxWrapper
-        .getXhrObj({
-          url: `${equipmentApi}/${filterVal}?countrycodes=${this.getActiveCountryCode()}`,
-          method: 'GET',
-          contentType: 'application/json',
-          dataType: 'json',
-          beforeSend(jqXHR) {
-            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-          },
-          showLoader: true
-        }).then(res => {
-          this.cache.allFilterValsObj[filterVal] = res.data;
-        });
-    });
-  }
-
-  getAvailableFilterValsForCurrentSet(filterValuesArr) {
-    const { authData, combinedFiltersObj } = this.cache;
-    const equipmentApi = this.cache.equipmentApi.data('list-api');
-    const filtersQuery = _buildQueryUrl(combinedFiltersObj);
+    const { combinedFiltersObj } = this.cache;
 
     filterValuesArr.forEach(filterVal => {
       let apiUrlRequest = `${equipmentApi}/${filterVal}?countrycodes=${this.getActiveCountryCode()}`;
 
-      if (filtersQuery) {
-        apiUrlRequest += `&${filtersQuery}`;
+      if (!newCountry) {
+        apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj)}`;
       }
 
       ajaxWrapper
@@ -351,7 +329,11 @@ class MyEquipment {
           },
           showLoader: true
         }).then(res => {
-          this.cache.currentFilterValsObj[filterVal] = res.data;
+          if (newCountry) {
+            this.cache.allFilterValsObj[filterVal] = res.data;
+          } else {
+            this.cache.currentFilterValsObj[filterVal] = res.data;
+          }
         });
     });
   }
@@ -406,7 +388,7 @@ class MyEquipment {
     this.cache.$content.addClass('d-none');
 
     auth.getToken(({ data: authData }) => {
-      this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers']);
+      this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers'], true);
       ajaxWrapper
         .getXhrObj({
           url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${this.getActiveCountryCode()}`,
@@ -510,7 +492,7 @@ class MyEquipment {
   }
 
   applyFilter = (options) => {
-    const { activeFilterForm, $activeFilterBtn, i18nKeys } = this.cache;
+    const { activeFilterForm, $activeFilterBtn, i18nKeys, authData } = this.cache;
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
     let filterCount = 0;
@@ -621,7 +603,7 @@ class MyEquipment {
     // All other filters
     this.updateFilterCountValue(label,filterCount,$activeFilterBtn);
     this.renderNewPage({'resetSkip': true});
-    this.getAvailableFilterValsForCurrentSet(['statuses', 'types', 'lines', 'customers']);
+    this.getAllAvailableFilterVals(authData,  ['statuses', 'types', 'lines', 'customers'], false);
     this.cache.$modal.modal('hide');
   }
 
@@ -816,7 +798,7 @@ class MyEquipment {
           const { countryCode } = this.cache.countryData && this.cache.countryData[0];
           const { itemsPerPage } = this.cache;
 
-          this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers']);
+          this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers'], true);
 
           ajaxWrapper
             .getXhrObj({
