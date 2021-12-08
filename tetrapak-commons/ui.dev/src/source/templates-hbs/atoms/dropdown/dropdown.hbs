@@ -6,7 +6,11 @@
                 <option value="">{{i18n key=defaultValue}}</option>
             {{/if}}
             {{#each options}}
-                <option value="{{this.key}}">{{#each this.desc}}{{#unless @first}}, {{/unless}}{{this}}{{else}}{{this.desc}}{{/each}}</option>
+                <option 
+                {{#if this.selected}}
+                    selected="selected"
+                {{/if}}
+                value="{{this.key}}">{{#each this.desc}}{{#unless @first}}, {{/unless}}{{this}}{{else}}{{this.desc}}{{/each}}</option>
             {{/each}}
         </select>
         <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>
