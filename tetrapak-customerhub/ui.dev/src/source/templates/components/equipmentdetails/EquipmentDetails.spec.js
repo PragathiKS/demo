@@ -83,13 +83,6 @@ describe('EquipmentDetails', function () {
   });
 
   it('should submit form and open modal when required fields are not empty', function (done) {
-    $('#country').val('AR');
-    $('#location').val('BIESSENHOFEN');
-    $('#siteName').val('NESTLE_BIE');
-    $('#lineName').val('STT - Nestlé Deutschland AG-Biessenhofen-STT');
-    $('#position').val('Test');
-    $('#equipmentStatus').val('EXPO');
-    $('#equipmentTypeDesc').val('DescTest');
     $('#comments').val('Test');
     $('.js-equipment-details__req-update').trigger('click');
     expect(this.renderEquipUpdateModalSpy.called).to.be.true;
@@ -100,17 +93,17 @@ describe('EquipmentDetails', function () {
     expect($('#country').children).to.have.length(2);
   });
 
-  it('should show thank you page when api works', function (done) {
-    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 201 }));
-    $('.js-equipment-details__req-make-update').trigger('click');
-    expect($('.tp-equipment-details__conf-title')).to.exist;
-    done();
-  });
-
   it('should not show thank you page when api does not work', function (done) {
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 400 }), 'fail');
     $('.js-equipment-details__req-make-update').trigger('click');
     expect($('.js-equipment-details__error').hasClass('d-none')).to.be.true;
+    done();
+  });
+
+  it('should show thank you page when api works', function (done) {
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 201 }));
+    $('.js-equipment-details__req-make-update').trigger('click');
+    expect($('.tp-equipment-details__conf-title')).to.exist;
     done();
   });
 

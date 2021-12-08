@@ -2,7 +2,7 @@
     {{#if isError}}
         No equipment data fetched
     {{else}}
-        {{equipData.equipmentName}} - {{equipData.manufacturerSerialNumber}}
+        {{equipData.equipmentName}} - {{equipData.serialNumber}}
     {{/if}}
 </h1>
 <div class="row tp-equipment-details__info-card-row">
@@ -18,7 +18,7 @@
             </div>
             <div class="tp-equipment-details__info-line">
                 <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.site}}</div>
-                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.siteName}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.site}}</div>
             </div>
             <div class="tp-equipment-details__info-line">
                 <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.line}}</div>
@@ -26,7 +26,7 @@
             </div>
             <div class="tp-equipment-details__info-line">
                 <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentStatus}}</div>
-                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.equipmentStatus}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.equipmentStatusDesc}}</div>
             </div>
             <div class="tp-equipment-details__info-line">
                 <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.position}}</div>
@@ -139,7 +139,7 @@
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.manufacturerCountry}}</div>
-        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.manufacturerCountry}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.countryName}}</div>
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.constructionYear}}</div>
