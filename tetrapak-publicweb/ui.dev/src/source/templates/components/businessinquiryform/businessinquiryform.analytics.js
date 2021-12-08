@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
@@ -15,7 +16,6 @@ export const makeLoad = function (label, formName) {
   };
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
-
 
 export const changeStepNext = function (formName, formStep, formType, areaofInterest, dataObj) {
   const formObj = {
@@ -40,7 +40,6 @@ export const changeStepNext = function (formName, formStep, formType, areaofInte
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-
 export const changeStepPrev = function (formName, formStep, formType, areaofInterest) {
   const formObj = {
     formName: formName,
@@ -55,7 +54,6 @@ export const changeStepPrev = function (formName, formStep, formType, areaofInte
   };
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
-
 
 export const changeStepError = function (formName, formStep, formType, areaofInterest, dataObj, errorObj={}) {
   const formObj = {
@@ -81,13 +79,11 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-
-
-export const loadThankYou = function (formName, areaofInterest, dataObj) {
+export const loadThankYou = function (formName, formStep, areaofInterest, dataObj) {
   const formTitle = $('.heading-summary h4').text().trim();
   const formObj = {
     formName: formName,
-    formStep: 'Step 5',
+    formStep: formStep,
     formType: formTitle,
     areaofInterest: areaofInterest,
     formField: []
@@ -107,11 +103,7 @@ export const loadThankYou = function (formName, areaofInterest, dataObj) {
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
-
-
-
 export const newPage = function (linkTitle, linkName) {
-
   const linkClickObj = {
     linkType: 'internal',
     linkSection: 'Hard Conversion Form_button click',
