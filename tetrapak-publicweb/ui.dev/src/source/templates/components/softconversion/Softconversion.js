@@ -168,7 +168,7 @@ class Softconversion {
     $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
     
     // do the analytics call for not me
-    changeStepNext(this.mainHeading, { 'return Type': $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
+    changeStepNext('Welcome back', { 'return Type': $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
 
     // reset the input values for all fields
     this.cache.inputFields.each(function(){
@@ -265,7 +265,7 @@ class Softconversion {
     }
     
     // do the analytics call for yes its me
-    changeStepNext(this.mainHeading, { 'return Type': $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
+    changeStepNext('Welcome back', { 'return Type': $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
   }
 
   submitForm = () => {
