@@ -6,380 +6,25 @@ import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 
-// https://github.com/interstellarjay/zapfilter
-class Zapfilter {
-  constructor(dataSet, filters) {
-    this.filters = filters || [];
-    this.filteredSet = dataSet || [];
-    this.filterORBuffer = dataSet || [];
-  }
-
-  getAllFilters() {
-    return this.filters;
-  }
-
-  getTotalFilters() {
-    return this.filters.length;
-  }
-
-  setFilters(filters) {
-    return filters.forEach(f => this.filters.push(f));
-  }
-
-  clearFilters() {
-    this.filterORBuffer = [];
-    this.filteredSet = [];
-    return (this.filters = []);
-  }
-
-  applySingleFilter(x, f) {
-    return f.filter(x, f.onProperty, f.value);
-  }
-
-  applyZapFilters(x, f) {
-    return (x = this.applySingleFilter(x, f));
-  }
-
-  applyORFilters(i, x, f) {
-    // Used with this.filterOR(..)
-    return (this.filterORBuffer[i] = this.applySingleFilter(x, f));
-  }
-
-  combineResultsAndRemoveDuplicates(combinedDataSet) {
-    const buffer = combinedDataSet;
-    const isolateUniques = buffer.filter(
-      (value, index) => buffer.indexOf(value) === index
-    );
-    const isolateUniquesFlat = isolateUniques.map(x => x[0]);
-    return isolateUniquesFlat;
-  }
-
-  filterAND(dataSet) {
-    // Missing data set
-    if (!dataSet) {
-      throw new Error('ZapFilter error ===> No data set supplied!');
-    }
-    // Filter the data
-    this.filteredSet = dataSet;
-    // Filter the result
-    for (let i = 0; i < this.filters.length; i++) {
-      this.filteredSet = this.applyZapFilters(
-        this.filteredSet,
-        this.filters[i]
-      );
-    }
-    // Return the response
-    return this.filteredSet;
-  }
-
-  filter(dataSet) {
-    // Missing data set
-    if (!dataSet) {
-      throw new Error('ZapFilter error ===> No data set supplied!');
-    }
-    // Filter the data
-    this.filteredSet = dataSet;
-    // Filter the result
-    for (let i = 0; i < this.filters.length; i++) {
-      this.applyORFilters(i, this.filteredSet, this.filters[i]);
-    }
-    // Return the response
-    const flattenedResultsWithPotentialDuplicates = this.filterORBuffer;
-    const results = this.combineResultsAndRemoveDuplicates(
-      flattenedResultsWithPotentialDuplicates
-    );
-    return results;
-  }
-
-  filterEqualTo(data, property, value) {
-    return data.filter(item => {
-      if (typeof item[property] === 'string') {
-        return (
-          item[property].toUpperCase() === value.toUpperCase()
-        );
-      }
-      return item[property] === value;
-    });
-  }
-
-  filterEqualToArr(data, property, valueArr) {
-    return data.filter(item => {
-      if (typeof item[property] === 'string') {
-        return (
-          valueArr.includes(item[property])
-        );
-      }
-      return valueArr.includes(item[property]);
-    });
-  }
-
-  filterPartialMatch(data, property, value) {
-    return data.filter(item => {
-      if (typeof item[property] !== 'string') {
-        throw new Error(
-          'ZapFilter error ===> filterPartialMatch function must validate string value!'
-        );
-      }
-      // Parse value to uppercase and remove spaces, dashes and underscores.
-      const v = value.toUpperCase().replace(/\s|_|-/g, '');
-      return RegExp(v, 'g').test(
-        item[property].toUpperCase().replace(/\s|_|-/g, '')
-      );
-    });
-  }
-
-  removeDuplicates(dataSet) {
-    const flatData = dataSet.flat();
-    return this.combineResultsAndRemoveDuplicates(flatData);
-  }
-}
-
-function paginate(totalItems, currentPage, pageSize, maxPages) {
-  // calculate total pages
-  const totalPages = Math.ceil(totalItems / pageSize);
-  // ensure current page isn't out of range
-  if (currentPage < 1) {
-    currentPage = 1;
-  } else if (currentPage > totalPages) {
-    currentPage = totalPages;
-  }
-
-  let startPage, endPage;
-  if (totalPages <= maxPages) {
-    // total pages less than max so show all pages
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // total pages more than max so calculate start and end pages
-    const maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
-    const maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
-    if (currentPage <= maxPagesBeforeCurrentPage) {
-      // current page near the start
-      startPage = 1;
-      endPage = maxPages;
-    } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
-      // current page near the end
-      startPage = totalPages - maxPages + 1;
-      endPage = totalPages;
-    } else {
-      // current page somewhere in the middle
-      startPage = currentPage - maxPagesBeforeCurrentPage;
-      endPage = currentPage + maxPagesAfterCurrentPage;
-    }
-  }
-
-  // calculate start and end item indexes
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
-
-  // create an array of pages
-  const allPages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
-
-  const pagesHbsArr = [];
-  allPages.forEach(page => {
-    const pageObj = {
-      isPage: true,
-      isSelected: page === currentPage,
-      pageNumber: page,
-      skip: (page - 1) * pageSize
-    };
-    pagesHbsArr.push(pageObj);
-  });
-
-  return {
-    totalItems: totalItems,
-    currentPage: currentPage,
-    pageSize: pageSize,
-    totalPages: totalPages,
-    startPage: startPage,
-    endPage: endPage,
-    startIndex: startIndex,
-    endIndex: endIndex,
-    prevDisabled: currentPage === 1,
-    nextDisabled: currentPage === totalPages,
-    prevPage: currentPage - 1,
-    nextPage: currentPage + 1,
-    prevSkip: (currentPage - 2) * pageSize,
-    nextSkip: currentPage * pageSize,
-    lastSkip: (totalPages - 1) * pageSize,
-    pages: pagesHbsArr
-  };
-}
-
-function buildTableRows(data, keys) {
-  const dataObject = {
-    row: []
-  };
-
-  keys.forEach((key, index) => {
-    const value = data[key];
-    dataObject.row[index] = {
-      key,
-      value
-    };
-    if (data['id']) {
-      dataObject.rowLink = data['id'];
-      dataObject.isClickable = true;
-    }
-  });
-  return dataObject;
-}
-
-function getFormattedData(array){
-  array.forEach((item,index) => {
-    array[index] = {
-      option: item.countryName,
-      countryCode:item.countryCode,
-      isChecked: index === 0 || item.isChecked ? true: false
-    };
-  });
-  return array;
-}
-
-function groupByBusinessType(filterOptionsArr) {
-  const businessTypeArr = [];
-  const groupedFilterOptions = [];
-  // get all unique business types
-  filterOptionsArr.forEach((item) => {
-    if (businessTypeArr.indexOf(item['businessType']) === -1) {
-      businessTypeArr.push(item['businessType']);
-    }
-  });
-
-  // create an object for each business type with it's corresponding items
-  businessTypeArr.forEach((businessType) => {
-    const optionsForBusinessType = filterOptionsArr.filter(filterOption => filterOption.businessType === businessType);
-
-    groupedFilterOptions.push({
-      businessTypeLabel: businessType,
-      options: optionsForBusinessType,
-      isChecked: !optionsForBusinessType.some(filterOption => filterOption.isChecked === false)
-    });
-  });
-
-  return groupedFilterOptions;
-}
-
-function getFilterModalData(filterByProperty, array, combinedFiltersObj, filteredTableData) {
-  const filterOptionsArr = [];
-  const zapFilter = new Zapfilter();
-  // if a single filter is used, do not disable any of it's options in the modal
-  const isSingleFilterApplied = typeof combinedFiltersObj[filterByProperty] !== 'undefined' &&
-                                  Object.keys(combinedFiltersObj).length === 1;
-
-  array.forEach((row) => {
-    // do not push duplicates, only unique items
-    const isItemPresent = filterOptionsArr.some((o) => o.value === row[filterByProperty]);
-    if (!isItemPresent) {
-      filterOptionsArr.push({
-        value: row[filterByProperty],
-        businessType: row['businessType'] ? row['businessType'] : null
-      });
-    }
-  });
-
-  filterOptionsArr.forEach((item,index) => {
-    // check if filter option is available for current data set, otherwise mark it disabled
-    let itemFilteredTableData = [];
-    zapFilter.clearFilters();
-    zapFilter.setFilters([{
-      filter: zapFilter.filterEqualTo,
-      onProperty: filterByProperty,
-      value: item.value
-    }]);
-
-    itemFilteredTableData = zapFilter.filter(filteredTableData);
-
-    filterOptionsArr[index] = {
-      option: item.value,
-      isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(item.value) : false,
-      isDisabled: typeof itemFilteredTableData[0] === 'undefined' && !isSingleFilterApplied,
-      businessType: item.businessType
-    };
-  });
-
-  // sort options alphabetically
-  filterOptionsArr.sort(function(a, b) {
-    return a.option.localeCompare(b.option);
-  });
-
-  if (filterByProperty === 'equipmentType') {
-    return groupByBusinessType(filterOptionsArr);
-  } else {
-    return filterOptionsArr;
-  }
-}
-
-function _renderCountryFilters() {
-  this.cache.$spinner.removeClass('d-none');
-  const countryApi = this.cache.equipmentApi.data('country-api');
-  const equipmentApi = this.cache.equipmentApi.data('list-api');
-  auth.getToken(({ data: authData }) => {
-    ajaxWrapper
-      .getXhrObj({
-        url: countryApi,
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        },
-        showLoader: true
-      }).then(res => {
-        this.cache.countryData = getFormattedData(res.data);
-        const { countryCode } = this.cache.countryData && this.cache.countryData[0];
-        ajaxWrapper
-          .getXhrObj({
-            url: `${equipmentApi}?skip=0&count=25&version=preview&countrycodes=${countryCode}`,
-            method: 'GET',
-            contentType: 'application/json',
-            dataType: 'json',
-            beforeSend(jqXHR) {
-              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            },
-            showLoader: true
-          }).then(response => {
-            this.cache.$spinner.addClass('d-none');
-            this.cache.$content.removeClass('d-none');
-            this.cache.tableData = response.data;
-            this.cache.tableData = this.cache.tableData.map((item) => ({
-              ...item,
-              equipmentStatus: item.equipmentStatus || ''
-            }));
-            this.cache.filteredTableData = [...this.cache.tableData];
-            this.cache.meta = response.meta;
-            this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
-            this.renderFilterForm(this.cache.countryData,{ activeForm:'country',header:this.cache.i18nKeys['country']}, this.cache.$countryFilterLabel);
-            this.renderTableData();
-            this.renderSearchCount();
-            this.mapTableColumn();
-          }).fail(() => {
-            this.cache.$content.removeClass('d-none');
-            this.cache.$spinner.addClass('d-none');
-          });
-      });
-  });
-
-}
+import { _paginate } from './MyEquipment.paginate';
+import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
+import { _buildTableRows, _groupByBusinessType, _mapHeadings } from './MyEquipment.table';
 
 function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country,equipmentTypeDesc,site,line,serialNumber,equipmentStatus,functionalLocation,siteDescription,location;
+    let country,equipmentNameSub,site,line,serialNumber,equipmentStatus,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
-      }else if(i === 'siteName'){
+      }else if(i === 'site'){
         site = i;
       }else if(i === 'lineName'){
         line = i;
       }
-      else if(i === 'equipmentTypeDesc'){
-        equipmentTypeDesc = i;
+      else if(i === 'equipmentNameSub'){
+        equipmentNameSub = i;
       }
       else if(i === 'siteDesc'){
         siteDescription = i;
@@ -397,134 +42,31 @@ function _processKeys(keys, ob) {
         functionalLocation = i;
       }
     }
-    return [country, site, siteDescription, line, equipmentTypeDesc, serialNumber, equipmentStatus, location, functionalLocation];
+    return [country, site, siteDescription, line, equipmentNameSub, serialNumber, equipmentStatus, location, functionalLocation];
   }
-}
-
-function getKeyMap(key,i18nKeys){
-  const headerObj = {};
-  switch (key) {
-    case 'countryCode': {
-      headerObj['keyLabel'] = i18nKeys['country'];
-      headerObj['showTooltip'] = i18nKeys['countryToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['countryToolTip'];
-      break;
-    }
-    case 'siteName': {
-      headerObj['keyLabel'] = i18nKeys['site'];
-      headerObj['showTooltip'] = i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['siteToolTip'];
-      break;
-    }
-    case 'lineName': {
-      headerObj['keyLabel'] = i18nKeys['line'];
-      headerObj['showTooltip'] = i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['lineToolTip'];
-      break;
-    }
-    case 'equipmentTypeDesc': {
-      headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
-      headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
-      break;
-    }
-    case 'siteDesc': {
-      headerObj['keyLabel'] = i18nKeys['siteDescription'];
-      headerObj['showTooltip'] = i18nKeys['siteDescToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['siteDescToolTip'];
-      break;
-    }
-    case 'location': {
-      headerObj['keyLabel'] = i18nKeys['location'];
-      headerObj['showTooltip'] = i18nKeys['locationToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['locationToolTip'];
-      break;
-    }
-    case 'serialNumber': {
-      headerObj['keyLabel'] = i18nKeys['serialNumber'];
-      headerObj['showTooltip'] = i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
-      break;
-    }
-    case 'equipmentStatus': {
-      headerObj['keyLabel'] = i18nKeys['equipmentStatus'];
-      headerObj['showTooltip'] = i18nKeys['equipStatToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipStatToolTip'];
-      break;
-    }
-    case 'functionalLocation': {
-      headerObj['keyLabel'] = i18nKeys['functionalLocation'];
-      headerObj['showTooltip'] = i18nKeys['functionalLocationToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['functionalLocationToolTip'];
-      break;
-    }
-    default: {
-      break;
-    }
-  }
-  return headerObj;
-}
-
-function _mapHeadings(keys,i18nKeys,activeSortData) {
-  const sortByKey = activeSortData && activeSortData.sortedByKey;
-  const sortOrder = activeSortData && activeSortData.sortOrder;
-  return keys.map(key => ({
-    key,
-    myEquipment: true,
-    isSortable: this.cache.sortableKeys.includes(key),
-    isActiveSort: key === sortByKey,
-    sortOrder: sortOrder,
-    i18nKey: getKeyMap(key,i18nKeys).keyLabel,
-    showTooltip: getKeyMap(key,i18nKeys).showTooltip,
-    tooltipText: getKeyMap(key,i18nKeys).tooltipText
-  }));
 }
 
 function _processTableData(data){
   let keys = [];
+  const { activeSortData, sortableKeys } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = _processKeys(keys, summary);
       this.cache.tableHeaders = keys;
-      return buildTableRows.call(this, summary, keys);
+      return _buildTableRows.call(this, summary, keys);
     });
-    data.summaryHeadings = _mapHeadings.call(this,keys,data.i18nKeys,this.cache.activeSortData);
+    data.summaryHeadings = _mapHeadings(keys,data.i18nKeys,activeSortData,sortableKeys);
   }
   return data;
-}
-
-function renderPaginationTableData(list) {
-  const $this = this;
-  const paginationObj = paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
-
-  if (list.summary.length === 0) {
-    render.fn({
-      template: 'myEquipmentTable',
-      data: { noDataMessage: true, noDataFound: $this.cache.i18nKeys['noDataFound']  },
-      target: '.tp-my-equipment__table_wrapper',
-      hidden: false
-    });
-  }
-  else {
-    render.fn({
-      template: 'myEquipmentTable',
-      data: {...list, summary: list.summary, paginationObj: paginationObj },
-      target: '.tp-my-equipment__table_wrapper',
-      hidden: false
-    },() => {
-      $this.hideShowColums();
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-      });
-    });
-  }
 }
 
 class MyEquipment {
   constructor({ el }) {
     this.root = $(el);
   }
+
   cache = {};
+
   initCache() {
     this.cache.$modal = this.root.parent().find('.js-filter-modal');
     this.cache.$countryFilterLabel = this.root.find('.tp-my-equipment__country-button-filter');
@@ -550,32 +92,47 @@ class MyEquipment {
     this.cache.tableData = [];
     this.cache.customisableTableHeaders = [];
     this.cache.tableHeaders = [];
-    this.cache.filteredTableData = [];
     this.cache.hideColumns = []; // column index;
     this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     this.cache.currentPageNumber = 1;
-    this.cache.zapFilter = new Zapfilter();
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
-    this.cache.activeFiltersArr = [];
-    this.cache.sortableKeys = ['siteName','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentTypeDesc'];
+    this.cache.sortableKeys = ['site','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
     this.cache.activeSortData = null;
     this.cache.activePage = 1;
     this.cache.skipIndex = 0;
     this.cache.itemsPerPage = 25;
+    this.cache.authData = {};
+    // holds all possible filter values for the modals, WITHOUT any active filters
+    // populated at initial page load
+    this.cache.allFilterValsObj = {
+      'statuses': [],
+      'types': [],
+      'customers': [],
+      'lines': []
+    };
+    // holds all possible filter values for the modals, WITH active filters configured
+    // populated every time a filter is set
+    this.cache.currentFilterValsObj = {
+      'statuses': [],
+      'types': [],
+      'customers': [],
+      'lines': []
+    };
   }
+
   bindEvents() {
     const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
     this.cache.customisableTableHeaders = [
-      {key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
-      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
-      {key:'siteDesc',option:i18nKeys['siteDescription'],isChecked:false,index:2},
-      {key:'lineName',option:i18nKeys['line'],isChecked:true,index:3},
-      {key:'equipmentTypeDesc',option:i18nKeys['equipmentDescription'],isChecked:true,index:4},
-      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:5},
-      {key:'equipmentStatus',option:i18nKeys['equipmentStatus'],isChecked:true,index:6},
-      {key:'location',option:i18nKeys['location'],isChecked:false,index:7},
-      {key:'functionalLocation',option:i18nKeys['functionalLocation'],isChecked:false,index:8}
+      {key:'countryCode',option:'countryCode',optionDisplayText:i18nKeys['country'],isChecked:true,index:0},
+      {key:'site',option:'site',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
+      {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['siteDescription'],isChecked:false,index:2},
+      {key:'lineName',option:'lineName',optionDisplayText:i18nKeys['line'],isChecked:true,index:3},
+      {key:'equipmentNameSub',option:'equipmentNameSub',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
+      {key:'serialNumber',option:'serialNumber',optionDisplayText:i18nKeys['serialNumber'],isChecked:true,index:5},
+      {key:'equipmentStatus',option:'equipmentStatus',optionDisplayText:i18nKeys['equipmentStatus'],isChecked:true,index:6},
+      {key:'location',option:'location',optionDisplayText:i18nKeys['location'],isChecked:false,index:7},
+      {key:'functionalLocation',option:'functionalLocation',optionDisplayText:i18nKeys['functionalLocation'],isChecked:false,index:8}
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {
@@ -586,35 +143,35 @@ class MyEquipment {
 
     this.cache.$customerFilterLabel.on('click', () => {
       const formDetail = {activeForm:'customer',header:i18nKeys['customer']};
-      this.cache.filterModalData['customer'] = getFilterModalData('customer', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
+      this.cache.filterModalData['customer'] = this.getFilterModalData('customer');
       this.renderFilterForm(this.cache.filterModalData['customer'], formDetail, this.cache.$customerFilterLabel);
       $modal.modal();
     });
 
     this.cache.$lineFilterLabel.on('click', () => {
       const formDetail = {activeForm:'lineName',header:i18nKeys['line']};
-      this.cache.filterModalData['lineName'] = getFilterModalData('lineName', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
+      this.cache.filterModalData['lineName'] = this.getFilterModalData('lineName');
       this.renderFilterForm(this.cache.filterModalData['lineName'], formDetail, this.cache.$lineFilterLabel);
       $modal.modal();
     });
 
     this.cache.$statusFilterLabel.on('click', () => {
       const formDetail = {activeForm:'equipmentStatus',header:i18nKeys['equipmentStatus']};
-      this.cache.filterModalData['equipmentStatus'] = getFilterModalData('equipmentStatus', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
+      this.cache.filterModalData['equipmentStatus'] = this.getFilterModalData('equipmentStatus');
       this.renderFilterForm(this.cache.filterModalData['equipmentStatus'], formDetail, this.cache.$statusFilterLabel);
       $modal.modal();
     });
 
     this.cache.$equipmentDescFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'equipmentTypeDesc', header:i18nKeys['equipmentDescription'], isTextInput: true};
-      const activeEquipTypeDesc = this.cache.combinedFiltersObj['equipmentTypeDesc'] ? this.cache.combinedFiltersObj['equipmentTypeDesc'] : '';
+      const formDetail = {activeForm:'equipmentNameSub', header:i18nKeys['equipmentDescription'], isTextInput: true};
+      const activeEquipTypeDesc = this.cache.combinedFiltersObj['equipmentNameSub'] ? this.cache.combinedFiltersObj['equipmentNameSub'] : '';
       this.renderFilterForm(activeEquipTypeDesc, formDetail, this.cache.$equipmentDescFilterLabel);
       $modal.modal();
     });
 
     this.cache.$equipmentTypeFilterLabel.on('click', () => {
       const formDetail = {activeForm:'equipmentType',header:i18nKeys['equipmentType']};
-      this.cache.filterModalData['equipmentType'] = getFilterModalData('equipmentType', [...this.cache.tableData], this.cache.combinedFiltersObj, [...this.cache.filteredTableData]);
+      this.cache.filterModalData['equipmentType'] = this.getFilterModalData('equipmentType');
       this.renderFilterForm(this.cache.filterModalData['equipmentType'], formDetail, this.cache.$equipmentTypeFilterLabel);
       $modal.modal();
     });
@@ -743,17 +300,71 @@ class MyEquipment {
     }
   }
 
+  getActiveCountryCode = () => {
+    const { countryData } = this.cache;
+    const activeCountry = countryData.filter(e => e.isChecked);
+    return activeCountry[0].countryCode;
+  }
+
+  getAllAvailableFilterVals(authData, filterValuesArr, newCountry) {
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    const { combinedFiltersObj } = this.cache;
+
+    filterValuesArr.forEach(filterVal => {
+      let apiUrlRequest = `${equipmentApi}/${filterVal}?countrycodes=${this.getActiveCountryCode()}`;
+
+      if (!newCountry) {
+        apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj)}`;
+      }
+
+      ajaxWrapper
+        .getXhrObj({
+          url: apiUrlRequest,
+          method: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(res => {
+          if (newCountry) {
+            this.cache.allFilterValsObj[filterVal] = res.data;
+          } else {
+            this.cache.currentFilterValsObj[filterVal] = res.data;
+          }
+        });
+    });
+  }
+
   renderSearchCount = () => {
     this.cache.$searchResults.text(`${this.cache.meta.total} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
   }
 
-  renderTableData = (label,filterValues) => {
-    this.updateTable(label,filterValues);
-    if(!label || label !== this.cache.i18nKeys['country']){
-      renderPaginationTableData.call(
-        this,
-        _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta}),
-        {isCustomiseTableFilter :label === 'customise-table' ? true : false });
+  renderPaginationTableData = (list) => {
+    const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
+
+    if (list.summary.length === 0) {
+      render.fn({
+        template: 'myEquipmentTable',
+        data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
+        target: '.tp-my-equipment__table_wrapper',
+        hidden: false
+      });
+    }
+    else {
+      render.fn({
+        template: 'myEquipmentTable',
+        data: {...list, summary: list.summary, paginationObj: paginationObj },
+        target: '.tp-my-equipment__table_wrapper',
+        hidden: false
+      },() => {
+        this.hideShowColums();
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+      });
     }
   }
 
@@ -770,65 +381,118 @@ class MyEquipment {
     }
   }
 
-  updateTable = (label,filterValues) => {
-    const { i18nKeys, $countryFilterLabel } = this.cache;
-    const { tableData } = this.cache;
+  renderNewCountry = (label) => {
+    const { $countryFilterLabel, itemsPerPage } = this.cache;
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    this.cache.$spinner.removeClass('d-none');
+    this.cache.$content.addClass('d-none');
 
-    if (label === i18nKeys['country'] && filterValues.length === 0) {
-      this.cache.filteredTableData = tableData;
-      return;
+    auth.getToken(({ data: authData }) => {
+      this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers'], true);
+      ajaxWrapper
+        .getXhrObj({
+          url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${this.getActiveCountryCode()}`,
+          method: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(response => {
+          this.cache.$spinner.addClass('d-none');
+          this.cache.$content.removeClass('d-none');
+          this.cache.tableData = response.data;
+          this.cache.meta = response.meta;
+          this.cache.activePage = 1;
+          this.cache.tableData = this.cache.tableData.map((item) => ({
+            ...item,
+            equipmentStatus: item.equipmentStatus || ''
+          }));
+          this.deleteAllFilters();
+          const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+          this.renderPaginationTableData(tableData);
+          this.renderSearchCount();
+          this.updateFilterCountValue(label,1,$countryFilterLabel);
+        }).fail(() => {
+          this.cache.$spinner.addClass('d-none');
+          this.cache.$content.removeClass('d-none');
+        });
+    });
+  }
+
+  isFilterCheckboxDisabled(filterProperty, filterPropertyKey, row, optionValueKey) {
+    const filterPropertyRemap = _remapFilterProperty(filterProperty);
+    const { currentFilterValsObj } = this.cache;
+    const activeFiltersArr = currentFilterValsObj[filterPropertyRemap];
+
+    if (activeFiltersArr.length > 0) {
+      const result = activeFiltersArr.filter(activeFilter => activeFilter[filterPropertyKey] === row[optionValueKey]);
+      return result.length === 0;
+    } else {
+      return false;
+    }
+  }
+
+  getFilterModalData(filterByProperty) {
+    const { combinedFiltersObj, allFilterValsObj } = this.cache;
+    let alphabeticalSortKey;
+    let optionDisplayTextKey;
+    let optionValueKey;
+    let filterPropertyKey;
+    const filterOptionsArr = [];
+    const availableFilterCheckboxes = [...allFilterValsObj[_remapFilterProperty(filterByProperty)]];
+    // if a single filter is used, do not disable any of it's options in the modal
+    const isSingleFilterApplied = typeof combinedFiltersObj[filterByProperty] !== 'undefined' &&
+        Object.keys(combinedFiltersObj).length === 1;
+
+    // lineName uses 'lineCode' for filtering (as values), but should display and sort by 'lineDescription' in table
+    // customer uses 'customerNumber' for filtering (as values), but should display and sort by 'customer' in table
+    switch (filterByProperty) {
+      case 'lineName':
+        optionDisplayTextKey = 'lineDescription';
+        optionValueKey = 'lineCode';
+        filterPropertyKey = 'lineCode';
+        alphabeticalSortKey = 'optionDisplayText';
+        break;
+      case 'customer':
+        optionDisplayTextKey = 'customer';
+        optionValueKey = 'customerNumber';
+        filterPropertyKey = 'customerNumber';
+        alphabeticalSortKey = 'optionDisplayText';
+        break;
+      default:
+        optionDisplayTextKey = filterByProperty;
+        optionValueKey = filterByProperty;
+        filterPropertyKey = filterByProperty;
+        alphabeticalSortKey = 'option';
     }
 
-    // Country filter change
-    if (label === i18nKeys['country'] && filterValues.length > 0) {
-      const equipmentApi = this.cache.equipmentApi.data('list-api');
-      this.cache.$spinner.removeClass('d-none');
-      this.cache.$content.addClass('d-none');
-      auth.getToken(({ data: authData }) => {
-        ajaxWrapper
-          .getXhrObj({
-            url: `${equipmentApi}?skip=0&count=25&version=preview&countrycodes=${filterValues[0].countryCode}`,
-            method: 'GET',
-            contentType: 'application/json',
-            dataType: 'json',
-            beforeSend(jqXHR) {
-              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            },
-            showLoader: true
-          }).then(response => {
-            this.cache.$spinner.addClass('d-none');
-            this.cache.$content.removeClass('d-none');
-            this.cache.tableData = response.data;
-            this.cache.meta = response.meta;
-            this.cache.activePage = 1;
-            this.cache.tableData = this.cache.tableData.map((item) => ({
-              ...item,
-              equipmentStatus: item.equipmentStatus || ''
-            }));
-            this.cache.filteredTableData = [...this.cache.tableData];
-            this.deleteAllFilters();
-            renderPaginationTableData.call(
-              this,
-              _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta}),
-              {isCustomiseTableFilter :label === 'customise-table' ? true : false });
-            this.renderSearchCount();
-            this.updateFilterCountValue(label,1,$countryFilterLabel);
-          }).fail(() => {
-            this.cache.$spinner.addClass('d-none');
-            this.cache.$content.removeClass('d-none');
-          });
+    availableFilterCheckboxes.forEach((row) => {
+      filterOptionsArr.push({
+        option: row[optionValueKey],
+        optionDisplayText: row[optionDisplayTextKey],
+        isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(row[optionValueKey]) : false,
+        businessType: row['businessType'] ? row['businessType'] : null,
+        isDisabled: this.isFilterCheckboxDisabled(filterByProperty, filterPropertyKey, row, optionValueKey) && !isSingleFilterApplied
       });
-    }
+    });
 
-    if (label !== i18nKeys['country']) {
-      this.cache.zapFilter.setFilters(this.cache.activeFiltersArr);
-      this.cache.filteredTableData = this.cache.zapFilter.filterAND(this.cache.tableData);
+    // sort options alphabetically
+    filterOptionsArr.sort(function(a, b) {
+      return a[alphabeticalSortKey].localeCompare(b[alphabeticalSortKey]);
+    });
+
+    if (filterByProperty === 'equipmentType') {
+      return _groupByBusinessType(filterOptionsArr);
+    } else {
+      return filterOptionsArr;
     }
   }
 
   applyFilter = (options) => {
-    const { activeFilterForm, $activeFilterBtn, i18nKeys } = this.cache;
+    const { activeFilterForm, $activeFilterBtn, i18nKeys, authData } = this.cache;
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
     let filterCount = 0;
@@ -852,45 +516,38 @@ class MyEquipment {
       }
       case 'customer': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
-        this.updateActiveFiltersData();
         label = i18nKeys['customer'];
         break;
       }
       case 'lineName': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
-        this.updateActiveFiltersData();
         label = i18nKeys['line'];
         break;
       }
       case 'equipmentStatus': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
-        this.updateActiveFiltersData();
         label = i18nKeys['equipmentStatus'];
         break;
       }
       case 'equipmentType': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
-        this.updateActiveFiltersData();
         label = i18nKeys['equipmentType'];
         break;
       }
       case 'serialNumber': {
         this.cache.combinedFiltersObj['serialNumber'] = $freeTextFilterInput.val();
-        this.updateActiveFiltersData();
         filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
         label = i18nKeys['serialNumber'];
         break;
       }
-      case 'equipmentTypeDesc': {
-        this.cache.combinedFiltersObj['equipmentTypeDesc'] = $freeTextFilterInput.val();
-        this.updateActiveFiltersData();
+      case 'equipmentNameSub': {
+        this.cache.combinedFiltersObj['equipmentNameSub'] = $freeTextFilterInput.val();
         filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
         label = i18nKeys['equipmentDescription'];
         break;
       }
       case 'functionalLocation': {
         this.cache.combinedFiltersObj['functionalLocation'] = $freeTextFilterInput.val();
-        this.updateActiveFiltersData();
         filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
         label = i18nKeys['functionalLocation'];
         break;
@@ -919,7 +576,6 @@ class MyEquipment {
         delete this.cache.combinedFiltersObj[activeFilterForm];
       }
       filterCount = null;
-      this.updateActiveFiltersData();
     }
 
     if ($activeFilterBtn) {
@@ -930,27 +586,43 @@ class MyEquipment {
       }
     }
 
-    if (label === i18nKeys['country']) {
-      const countryFilterVal = filterData.filter((option) => {
-        if (option.isChecked) {
-          return option;
-        }
-      });
-      this.renderTableData(label,countryFilterVal);
-    } else {
-      this.renderTableData(label);
-      this.renderSearchCount();
-      this.updateFilterCountValue(label,filterCount,$activeFilterBtn);
+    // if Country filter change
+    if (activeFilterForm === 'country') {
+      this.renderNewCountry(label);
+      return;
     }
 
+    // if show/hide columns
+    if (activeFilterForm === 'customise-table') { // other type of filter change
+      const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+      this.renderPaginationTableData(tableData);
+      this.cache.$modal.modal('hide');
+      return;
+    }
+
+    // All other filters
+    this.updateFilterCountValue(label,filterCount,$activeFilterBtn);
+    this.renderNewPage({'resetSkip': true});
+    this.getAllAvailableFilterVals(authData,  ['statuses', 'types', 'lines', 'customers'], false);
     this.cache.$modal.modal('hide');
   }
 
   deleteAllFilters = () => {
     const $filterBtns = this.root.find('.tp-my-equipment__filter-button:not(.tp-my-equipment__country-button-filter)');
+    // if no filters are active
+    if (Object.keys(this.cache.combinedFiltersObj).length === 0) {
+      return;
+    }
+
     this.cache.combinedFiltersObj = {};
+    this.cache.currentFilterValsObj = {
+      'statuses': [],
+      'types': [],
+      'customers': [],
+      'lines': []
+    };
+
     this.cache.activeSortData = null;
-    this.updateActiveFiltersData();
 
     $filterBtns.each((index, item) => {
       const initialLabel = $(item).data('label');
@@ -958,8 +630,7 @@ class MyEquipment {
       $(item).text(initialLabel);
     });
 
-    this.renderTableData(null,[]);
-    this.renderSearchCount();
+    this.renderNewPage({'resetSkip': true});
   }
 
   sortTableByKey = ($tHeadBtn) => {
@@ -1010,12 +681,13 @@ class MyEquipment {
     $modal.modal('hide');
   }
 
-  renderFilterForm(data, formDetail, $filterBtn) {
+  renderFilterForm = (data, formDetail, $filterBtn) => {
     const { i18nKeys } = this.cache;
     if (formDetail.header === i18nKeys['country']) {
       data.forEach((item,index) => {
         data[index]= {
           ...item,
+          optionDisplayText: item.option,
           isCountry:true
         };
       });
@@ -1043,50 +715,32 @@ class MyEquipment {
     this.cache.$activeFilterBtn = $filterBtn;
   }
 
-  renderCountryFilters(){
-    return _renderCountryFilters.apply(this, arguments);
-  }
-
-  // maps all filters from combinedFiltersObj into an array that zapFilter uses
-  updateActiveFiltersData() {
-    const combinedFiltersObj = this.cache.combinedFiltersObj;
-    this.cache.zapFilter.clearFilters();
-    this.cache.activeFiltersArr = [];
-
-    Object.keys(combinedFiltersObj).forEach(key => {
-      if (typeof combinedFiltersObj[key] === 'string') {
-        this.cache.activeFiltersArr.push({
-          filter: this.cache.zapFilter.filterPartialMatch,
-          onProperty: key,
-          value: combinedFiltersObj[key]
-        });
-      } else {
-        this.cache.activeFiltersArr.push({
-          filter: this.cache.zapFilter.filterEqualToArr,
-          onProperty: key,
-          value: combinedFiltersObj[key]
-        });
-      }
-    });
-  }
-
-  renderNewPage({resetSkip}) {
-    const {itemsPerPage, skipIndex, countryData, activeSortData} = this.cache;
+  renderNewPage = ({resetSkip}) => {
+    const {itemsPerPage, countryData, activeSortData, combinedFiltersObj} = this.cache;
     const equipmentApi = this.cache.equipmentApi.data('list-api');
     const activeCountry = countryData.filter(e => e.isChecked);
     const countryCode = activeCountry[0].countryCode;
     let apiUrlRequest = '';
+    const filtersQuery = _buildQueryUrl(combinedFiltersObj);
+    const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
 
     this.cache.$content.addClass('d-none');
     this.cache.$spinner.removeClass('d-none');
 
-    // if sorting for a column is enabled
-    // if resetSkip flag, go to 1st page
+    if (resetSkip) {
+      // reset indexes when a filter is set/removed
+      this.cache.activePage = 1;
+      this.cache.skipIndex = 0;
+    }
+
+    apiUrlRequest = `${equipmentApi}?skip=${skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`;
+
+    if (filtersQuery) {
+      apiUrlRequest += `&${filtersQuery}`;
+    }
+
     if (activeSortData) {
-      this.cache.activePage = resetSkip ? 1 : this.cache.activePage;
-      apiUrlRequest = `${equipmentApi}?skip=${resetSkip ? 0 : skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
-    } else {
-      apiUrlRequest = `${equipmentApi}?skip=${skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`;
+      apiUrlRequest += `&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
     }
 
     auth.getToken(({ data: authData }) => {
@@ -1109,9 +763,9 @@ class MyEquipment {
             ...item,
             equipmentStatus: item.equipmentStatus || ''
           }));
-          this.cache.filteredTableData = [...this.cache.tableData];
           this.cache.meta = response.meta;
-          this.renderTableData();
+          const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+          this.renderPaginationTableData(tableData);
           this.renderSearchCount();
           this.mapTableColumn();
         }).fail(() => {
@@ -1121,11 +775,69 @@ class MyEquipment {
     });
   }
 
+  renderDefaultCountry = () => {
+    this.cache.$spinner.removeClass('d-none');
+    const countryApi = this.cache.equipmentApi.data('country-api');
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    auth.getToken(({ data: authData }) => {
+      ajaxWrapper
+        .getXhrObj({
+          url: countryApi,
+          method: ajaxMethods.GET,
+          cache: true,
+          dataType: 'json',
+          contentType: 'application/json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(res => {
+          this.cache.countryData = _getFormattedCountryData(res.data);
+          this.cache.authData = authData;
+          const { countryCode } = this.cache.countryData && this.cache.countryData[0];
+          const { itemsPerPage } = this.cache;
+
+          this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers'], true);
+
+          ajaxWrapper
+            .getXhrObj({
+              url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`,
+              method: 'GET',
+              contentType: 'application/json',
+              dataType: 'json',
+              beforeSend(jqXHR) {
+                jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+                jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+              },
+              showLoader: true
+            }).then(response => {
+              this.cache.$spinner.addClass('d-none');
+              this.cache.$content.removeClass('d-none');
+              this.cache.tableData = response.data;
+              this.cache.tableData = this.cache.tableData.map((item) => ({
+                ...item,
+                equipmentStatus: item.equipmentStatus || ''
+              }));
+              this.cache.meta = response.meta;
+              this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
+              const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+              this.renderPaginationTableData(tableData);
+              this.renderSearchCount();
+              this.mapTableColumn();
+            }).fail(() => {
+              this.cache.$content.removeClass('d-none');
+              this.cache.$spinner.addClass('d-none');
+            });
+        });
+    });
+  }
+
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.renderCountryFilters();
+    this.renderDefaultCountry();
   }
 }
 

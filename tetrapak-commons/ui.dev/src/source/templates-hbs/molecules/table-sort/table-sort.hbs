@@ -42,6 +42,9 @@
                 {{else}}
                     {{value}}
                 {{/if}}
+                {{#if permanentVolumeConversion}}
+                    <span class="tp-my-equipment__astrick">*</span>
+                {{/if}}
             </td>
             {{/each}}
         </tr>
