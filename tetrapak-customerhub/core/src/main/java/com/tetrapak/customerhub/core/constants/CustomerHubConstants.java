@@ -443,6 +443,9 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG. */
     public static final String NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG = "constructionYearErrorMsg";
 
+    /** TheConstant for Source name. */
+    public static final String TETRAPAK_CUSTOMERHUB = "tetrapak-customerhub";
+
     /**
      * Instantiates a new customer hub constants.
      */
