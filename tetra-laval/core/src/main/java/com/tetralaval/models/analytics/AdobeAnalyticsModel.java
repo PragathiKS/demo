@@ -1,5 +1,8 @@
 package com.tetralaval.models.analytics;
 
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagConstants;
+import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
 import com.google.gson.FieldNamingPolicy;
@@ -8,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.tetralaval.constants.TLConstants;
 import com.tetralaval.utils.PageUtil;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -25,6 +29,7 @@ import javax.annotation.PostConstruct;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -40,8 +45,6 @@ public class AdobeAnalyticsModel {
     /** LOGGER constant */
     private static final Logger LOGGER = LoggerFactory.getLogger(AdobeAnalyticsModel.class);
 
-    /** COLON constant */
-    private static final String COLON = ":";
     /** DEV_RUN_MODE constant */
     private static final String DEV_RUN_MODE = "dev";
     /** QA_RUN_MODE constant */
@@ -50,10 +53,18 @@ public class AdobeAnalyticsModel {
     private static final String STAGE_RUN_MODE = "stage";
     /** PROD_RUN_MODE constant */
     private static final String PROD_RUN_MODE = "prod";
+    /** SKIP_NUMBER constant */
+    private static final long SKIP_NUMBER = 2;
+    /** SITE_SECTIONS_LENGTH constant */
+    private static final long SITE_SECTIONS_LENGTH = 6;
     /** CONTENT_LOAD_EVENT constant */
     private static final String CONTENT_LOAD_EVENT = "content-load";
     /** LOGIN_STATUS constant */
     private static final String LOGIN_STATUS = "logged-in";
+    /** USER_LANGUAGE constant */
+    private static final String USER_LANGUAGE = "en";
+    /** USER_TYPE constant */
+    private static final String USER_TYPE = "customer";
     /** ERROR_PAGE_TEMPLATE_NAME constant */
     private static final String ERROR_PAGE_TEMPLATE_NAME = "error-page-template";
     /** ERROR_VALUE constant */
@@ -158,9 +169,10 @@ public class AdobeAnalyticsModel {
      * @return list of site sections
      */
     private List<String> generateSiteSections() {
-        String sectionPath = Text.getAbsoluteParent(resource.getPath(), TLConstants.SOLUTIONS_SECTION_MENU_PAGE_LEVEL);
-        String path = request.getPathInfo().replace(sectionPath, StringUtils.EMPTY).replace(TLConstants.HTML_EXTENSION, StringUtils.EMPTY);
-        return Arrays.stream(path.split(TLConstants.SLASH)).filter(s -> !s.equals(StringUtils.EMPTY)).collect(Collectors.toList());
+        String path = request.getPathInfo().replace(TLConstants.ROOT_PATH, StringUtils.EMPTY)
+                .replace(TLConstants.HTML_EXTENSION, StringUtils.EMPTY);
+        return Arrays.stream(path.split(TLConstants.SLASH)).filter(s -> !s.equals(StringUtils.EMPTY))
+                .skip(SKIP_NUMBER).collect(Collectors.toList());
     }
 
     /**
@@ -202,18 +214,17 @@ public class AdobeAnalyticsModel {
 
     /**
      * Set page name
-     * @param channel
      * @param errorCode
      * @return page name
      * @throws RepositoryException
      */
-    private String setPageName(String channel, String errorCode) throws RepositoryException {
+    private String setPageName(String errorCode) throws RepositoryException {
         siteLanguage = StringUtils.EMPTY;
         String pageName = null;
         if (isErrorPage()) {
-            pageName = String.join(COLON, new String[]{errorCode, ERROR_VALUE});
+            pageName = String.join(TLConstants.COLON, new String[]{errorCode, ERROR_VALUE});
         } else {
-            pageName = generateSiteSections().stream().collect(Collectors.joining(COLON));
+            pageName = generateSiteSections().stream().collect(Collectors.joining(TLConstants.COLON));
         }
 
         Page currentPage = PageUtil.getCurrentPage(resource);
@@ -223,7 +234,7 @@ public class AdobeAnalyticsModel {
                 siteLanguage = languagePage.getName();
             }
         }
-        return String.join(COLON, new String[]{"tl", siteLanguage, channel, pageName});
+        return String.join(TLConstants.COLON, new String[]{"tl", siteLanguage, pageName});
     }
 
     /**
@@ -240,6 +251,32 @@ public class AdobeAnalyticsModel {
     }
 
     /**
+     * Set page categories
+     * @return page categories
+     */
+    private String setPageCategories() {
+        TagManager tagManager = request.getResource().getResourceResolver().adaptTo(TagManager.class);
+        Page currentPage = PageUtil.getCurrentPage(resource);
+        if (currentPage != null) {
+            List<String> tagsList = new ArrayList<>();
+
+            final String[] tagValue = currentPage.getProperties().get(TagConstants.PN_TAGS, String[].class);
+            if (ArrayUtils.isNotEmpty(tagValue)) {
+                for (String tags : tagValue) {
+                    Tag tag = tagManager.resolve(tags);
+                    tagsList.add(tag.getTitle());
+                }
+
+                String[] tagsArray = new String[tagsList.size()];
+                return String.join(TLConstants.COMA, tagsList.toArray(tagsArray));
+            }
+        }
+
+
+        return StringUtils.EMPTY;
+    }
+
+    /**
      * Set site sections
      * @return list of site sections
      * @throws RepositoryException
@@ -249,8 +286,9 @@ public class AdobeAnalyticsModel {
             return new String[]{ERROR_VALUE};
         }
         List<String> sections = generateSiteSections();
-        String[] array = new String[sections.size()];
-        return sections.toArray(array);
+        List<String> subsections = sections.subList(1, sections.size());
+        String[] array = new String[subsections.size()];
+        return subsections.toArray(array);
     }
 
     /**
@@ -290,18 +328,22 @@ public class AdobeAnalyticsModel {
      * @throws RepositoryException
      */
     private void buildAnalyticsData() throws RepositoryException {
-        String channel = setChannel();
         String[] sections = setSiteSections();
         String errorCode = setErrorCode();
 
         JsonObject jsonData = new JsonObject();
         JsonObject pageInfo = new JsonObject();
-        pageInfo.addProperty("channel", channel);
-        pageInfo.addProperty("pageName", setPageName(channel, errorCode));
+        pageInfo.addProperty("channel", setChannel());
+        pageInfo.addProperty("pageName", setPageName(errorCode));
         pageInfo.addProperty("pageType", setPageType());
+        pageInfo.addProperty("pageCategories", setPageCategories());
 
-        for (int i = 0; i < sections.length; i++) {
-            pageInfo.addProperty(String.format("siteSection%s", i + 1), sections[i]);
+        for (int i = 0; i < SITE_SECTIONS_LENGTH; i++) {
+            String value = StringUtils.EMPTY;
+            if (i < sections.length) {
+                value = sections[i];
+            }
+            pageInfo.addProperty(String.format("siteSection%s", i + 1), value);
         }
         pageInfo.addProperty("siteCountry", siteLanguage);
         pageInfo.addProperty("siteLanguage", siteLanguage);
@@ -312,8 +354,8 @@ public class AdobeAnalyticsModel {
         userInfo.addProperty("userId", StringUtils.EMPTY);
         userInfo.addProperty("userRole", StringUtils.EMPTY);
         userInfo.addProperty("logInStatus", LOGIN_STATUS);
-        userInfo.addProperty("userLanguage", StringUtils.EMPTY);
-        userInfo.addProperty("userType", StringUtils.EMPTY);
+        userInfo.addProperty("userLanguage", USER_LANGUAGE);
+        userInfo.addProperty("userType", USER_TYPE);
 
         JsonObject errorData = new JsonObject();
         errorData.addProperty("errorcode", errorCode);
