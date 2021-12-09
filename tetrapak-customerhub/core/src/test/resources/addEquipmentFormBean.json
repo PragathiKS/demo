@@ -1,0 +1,16 @@
+{
+  "addEquipmentSerialNumber": "21e12e",
+  "addEquipmentCountry": "AU",
+  "addEquipmentSite": "ECUAJUGOS CAY",
+  "addEquipmentLine": "FIP-PULJONKI  JUU-HOM",
+  "addEquipmentPosition": "Position",
+  "addEquipmentEquipmentStatus": "CUIN",
+  "addEquipmentMachineSystem": "Machine system (Optional)",
+  "addEquipmentEquipmentDescription": "Equipment description",
+  "addEquipmentManufactureModelNumber": "Manufacture model number (Optional)",
+  "addEquipmentManufactureOfAsset": "Manufacture of asset",
+  "addEquipmentCountryOfManufacture": "FR",
+  "addEquipmentConstructionYear": "1999",
+  "addEquipmentComments": "Comments (Optional)",
+  "files": ""
+}

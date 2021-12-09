@@ -23,13 +23,13 @@ public class AddEquipmentFormBean {
     private String equipmentPosition;
 
     @SerializedName("addEquipmentEquipmentStatus")
-    private String equipmentEquipmentStatus;
+    private String equipmentStatus;
 
     @SerializedName("addEquipmentMachineSystem")
     private String equipmentMachineSystem;
 
     @SerializedName("addEquipmentEquipmentDescription")
-    private String equipmentEquipmentDescription;
+    private String equipmentDescription;
 
     @SerializedName("addEquipmentManufactureModelNumber")
     private String equipmentManufactureModelNumber;
@@ -66,16 +66,16 @@ public class AddEquipmentFormBean {
         return equipmentPosition;
     }
 
-    public String getEquipmentEquipmentStatus() {
-        return equipmentEquipmentStatus;
+    public String getEquipmentStatus() {
+        return equipmentStatus;
     }
 
     public String getEquipmentMachineSystem() {
         return equipmentMachineSystem;
     }
 
-    public String getEquipmentEquipmentDescription() {
-        return equipmentEquipmentDescription;
+    public String getEquipmentDescription() {
+        return equipmentDescription;
     }
 
     public String getEquipmentManufactureModelNumber() {
