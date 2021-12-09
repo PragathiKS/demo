@@ -171,10 +171,11 @@ class Businessinquiryform {
     else {
       dataObj['pardotUrl'] = befPardotURL;
     }
+    dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field || '';
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
       dataObj['marketingConsent'] = capitalizeFirstLetter(String(this.root.find(`#befconsentcheckbox`).is(':checked')));
     }
-    
+
     dataObj['pageurl'] = this.cache.requestPayload.pageurl;
 
     loadThankYou(self.mainHead, 'Step 4', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj, ...self.restObj2, 'Marketing Consent': 'Checked' });
@@ -412,7 +413,7 @@ class Businessinquiryform {
         self.cache.$isFormStart = true;
         makeLoad(self.step1head, self.mainHead);
       }
-      
+
       let isvalid = true;
       const target = $(this).attr('data-target'),  tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea'), errObj = [];
       if ($(this).hasClass('previousbtn')) {
