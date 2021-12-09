@@ -293,6 +293,9 @@ class Businessinquiryform {
         $(this).prop('checked', false);
       });
     });
+    if(this.cache.requestPayload[this.cache.subFoodCategoryKey]) {
+      delete this.cache.requestPayload[this.cache.subFoodCategoryKey];
+    }
   }
   
   onBaIntProcessingCategoryFoodHandler = e => {
@@ -320,6 +323,7 @@ class Businessinquiryform {
     const labelValue = $('label[for="'+id+'"]').text().trim();
     $(inputHandler).val(labelValue);
     requestPayload[hiddenInput] = value;
+    this.cache.subFoodCategoryKey = e.target.name;
   }
 
   resetErrorMsg = (e) => {
