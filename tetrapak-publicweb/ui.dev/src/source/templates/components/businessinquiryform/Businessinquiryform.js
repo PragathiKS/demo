@@ -153,6 +153,7 @@ class Businessinquiryform {
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
     dataObj['pardotUrl'] = befPardotURL;
+    dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field || '';
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
       dataObj['marketingConsent'] = capitalizeFirstLetter(String(this.root.find(`#befconsentcheckbox`).is(':checked')));
     }
