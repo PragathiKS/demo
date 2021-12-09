@@ -205,6 +205,11 @@ class Businessinquiryform {
       }
     });
 
+    pageURL = pageURL.split('?');
+    if(pageURL.length>1) {
+      pageURL = pageURL[0];
+    }
+
     dataObj['pageurl'] = pageURL;
 
     ajaxWrapper.getXhrObj({
