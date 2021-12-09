@@ -59,28 +59,22 @@ describe('AddEquipment', function () {
     this.tokenStub.restore();
     this.setRemoveErrorMsgSpy.restore();
     this.setFilterFilesSpy.restore();
-
   });
 
-  it('should initialize', function (done) {
-    expect(this.initSpy.called).to.be.true;
-    done();
-  });
+  it('should submit form', function (done) {
+    $("#addEquipmentSerialNumber").val('12345');
+    $("#addEquipmentCountry").val('PL');
+    $("#addEquipmentSite").val('DAIRY PLU_NSW');
+    $("#addEquipmentLine").val('MXP-NESTLELGS JAL-LIN0A');
+    $("#addEquipmentPosition").val('position');
+    $("#addEquipmentEquipmentStatus").val('EXPO');
+    $("#addEquipmentEquipmentDescription").val('desc');
+    $("#addEquipmentManufactureOfAsset").val('asset');
+    $("#addEquipmentCountryOfManufacture").val('PL');
+    $("#addEquipmentConstructionYear").val('2021');
+    $('.js-tp-add-equipment__submit').trigger('click');
 
-  it('should render add equipment form', function (done) {
-    expect(this.renderFormSpy.called).to.be.true;
-    done();
-  });
-
-  it('should open file picker', function (done) {
-    $('.js-tp-add-equipment__drag-and-drop-button').trigger('click');
-    expect(this.addInputTypeFileSpy.called).to.be.true;
-    done();
-  });
-
-  it('should remove file', function (done) {
-    $('.js-tp-add-equipment__drag-and-drop-file-remove-container').trigger('click');
-    expect(this.renderFilesSpy.called).to.be.true;
+    expect(this.submitFormSpy.called).to.be.true;
     done();
   });
 
@@ -100,23 +94,6 @@ describe('AddEquipment', function () {
   it('should prevent default on window drag enter', function (done) {
     $(window.document).trigger('dragenter');
     expect(this.dragAndDropPreventDefaultSpy.called).to.be.true;
-    done();
-  });
-
-  it('should submit form', function (done) {
-    $("#addEquipmentSerialNumber").val('12345');
-    $("#addEquipmentCountry").val('PL');
-    $("#addEquipmentSite").val('DAIRY PLU_NSW');
-    $("#addEquipmentLine").val('MXP-NESTLELGS JAL-LIN0A');
-    $("#addEquipmentPosition").val('position');
-    $("#addEquipmentEquipmentStatus").val('EXPO');
-    $("#addEquipmentEquipmentDescription").val('desc');
-    $("#addEquipmentManufactureOfAsset").val('asset');
-    $("#addEquipmentCountryOfManufacture").val('PL');
-    $("#addEquipmentConstructionYear").val('2021');
-    $('.js-tp-add-equipment__submit').trigger('click');
-
-    expect(this.submitFormSpy.called).to.be.true;
     done();
   });
 
@@ -153,6 +130,29 @@ describe('AddEquipment', function () {
     this.addEquipment.dropFiles(e, this.addEquipment);
     expect(this.setFilterFilesSpy.called).to.be.true;
 
+    done();
+  });
+
+  it('should remove file', function (done) {
+    console.log('remove file! - test');
+    $('.js-tp-add-equipment__drag-and-drop-file-remove-container').trigger('click');
+    expect(this.renderFilesSpy.called).to.be.true;
+    done();
+  });
+
+  it('should initialize', function (done) {
+    expect(this.initSpy.called).to.be.true;
+    done();
+  });
+
+  it('should render add equipment form', function (done) {
+    expect(this.renderFormSpy.called).to.be.true;
+    done();
+  });
+
+  it('should open file picker', function (done) {
+    $('.js-tp-add-equipment__drag-and-drop-button').trigger('click');
+    expect(this.addInputTypeFileSpy.called).to.be.true;
     done();
   });
 });
