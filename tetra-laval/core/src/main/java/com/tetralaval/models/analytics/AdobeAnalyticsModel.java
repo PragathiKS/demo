@@ -55,10 +55,16 @@ public class AdobeAnalyticsModel {
     private static final String PROD_RUN_MODE = "prod";
     /** SKIP_NUMBER constant */
     private static final long SKIP_NUMBER = 2;
+    /** SITE_SECTIONS_LENGTH constant */
+    private static final long SITE_SECTIONS_LENGTH = 6;
     /** CONTENT_LOAD_EVENT constant */
     private static final String CONTENT_LOAD_EVENT = "content-load";
     /** LOGIN_STATUS constant */
     private static final String LOGIN_STATUS = "logged-in";
+    /** USER_LANGUAGE constant */
+    private static final String USER_LANGUAGE = "en";
+    /** USER_TYPE constant */
+    private static final String USER_TYPE = "customer";
     /** ERROR_PAGE_TEMPLATE_NAME constant */
     private static final String ERROR_PAGE_TEMPLATE_NAME = "error-page-template";
     /** ERROR_VALUE constant */
@@ -332,8 +338,12 @@ public class AdobeAnalyticsModel {
         pageInfo.addProperty("pageType", setPageType());
         pageInfo.addProperty("pageCategories", setPageCategories());
 
-        for (int i = 0; i < sections.length; i++) {
-            pageInfo.addProperty(String.format("siteSection%s", i + 1), sections[i]);
+        for (int i = 0; i < SITE_SECTIONS_LENGTH; i++) {
+            String value = StringUtils.EMPTY;
+            if (i < sections.length) {
+                value = sections[i];
+            }
+            pageInfo.addProperty(String.format("siteSection%s", i + 1), value);
         }
         pageInfo.addProperty("siteCountry", siteLanguage);
         pageInfo.addProperty("siteLanguage", siteLanguage);
@@ -344,8 +354,8 @@ public class AdobeAnalyticsModel {
         userInfo.addProperty("userId", StringUtils.EMPTY);
         userInfo.addProperty("userRole", StringUtils.EMPTY);
         userInfo.addProperty("logInStatus", LOGIN_STATUS);
-        userInfo.addProperty("userLanguage", StringUtils.EMPTY);
-        userInfo.addProperty("userType", StringUtils.EMPTY);
+        userInfo.addProperty("userLanguage", USER_LANGUAGE);
+        userInfo.addProperty("userType", USER_TYPE);
 
         JsonObject errorData = new JsonObject();
         errorData.addProperty("errorcode", errorCode);
