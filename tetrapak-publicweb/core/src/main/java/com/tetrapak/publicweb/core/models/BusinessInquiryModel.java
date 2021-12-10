@@ -127,7 +127,7 @@ public class BusinessInquiryModel extends FormModel {
 		while (tagIterator.hasNext()) {
 			final Tag childtag = tagIterator.next();
 			final String defaultTagTitle = childtag.getTitle();
-			final String tagName = childtag.getName();
+			final String tagName = childtag.getTitle();
 			final String localizedTagTitle = childtag
 					.getLocalizedTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource)));
 			if (tagName.equalsIgnoreCase(FormConstants.OTHER)) {
@@ -136,7 +136,7 @@ public class BusinessInquiryModel extends FormModel {
 				} else {
 					otherTagTitle = defaultTagTitle;
 				}
-				otherTagName = childtag.getName();
+				otherTagName = childtag.getTitle();
 			} else {
 				if (null != localizedTagTitle) {
 					tagsValues.put(tagName, localizedTagTitle);
