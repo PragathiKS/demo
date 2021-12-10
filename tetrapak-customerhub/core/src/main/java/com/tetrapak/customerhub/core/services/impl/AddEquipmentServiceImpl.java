@@ -11,13 +11,15 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.AddEquipmentService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.sling.xss.XSSFilter;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * The Class AddEquipmentServiceImpl.
@@ -26,8 +28,7 @@ import org.slf4j.LoggerFactory;
 public class AddEquipmentServiceImpl implements AddEquipmentService {
 
     private static final String MYEQUIPMENT_REPORT_MISSING = "myequipment-reportmissing";
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AddEquipmentServiceImpl.class);
+    private static final String MYEQUIPMENT_REPORT_MISSING_ATTACHMENTS = "myequipment-reportmissing-attachments";
 
     @Reference
     private APIGEEService apigeeService;
@@ -36,7 +37,7 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
     private XSSFilter xssFilter;
 
     @Override
-    public JsonObject addEquipment(String userId, AddEquipmentFormBean bean, String token) {
+    public JsonObject addEquipment(String userId, AddEquipmentFormBean bean, String token, List<File> attachments) {
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING);
@@ -45,8 +46,17 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         String apiJsonBean = gson.toJson(convertFormToApiJson(userId, bean));
         JsonObject jsonObject = HttpUtil.sendAPIGeePostWithEntity(url, token, apiJsonBean);
 
-        String id = resolveIdFromResponse(jsonObject);
-        LOGGER.debug("created equipment with id: "+id);
+        if (CollectionUtils.isNotEmpty(attachments)) {
+            String id = resolveIdFromResponse(jsonObject);
+
+            String attachmentUrl = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
+                    + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING_ATTACHMENTS);
+            for (File attachment : attachments) {
+                JsonObject attachmentResponse = HttpUtil.sendAPIGeePostWithFiles(
+                        attachmentUrl.replace("{id}", id), token, attachment);
+                jsonObject.addProperty("file" + attachments.indexOf(attachment), attachmentResponse.get("result").toString());
+            }
+        }
 
         return jsonObject;
     }
