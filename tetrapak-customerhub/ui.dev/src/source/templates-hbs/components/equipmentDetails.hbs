@@ -1,10 +1,10 @@
-<h1 class="tp-equipment-details__title" auto_locator="equipmentHeading">
+<h2 class="tp-equipment-details__title" auto_locator="equipmentHeading">
     {{#if isError}}
         No equipment data fetched
     {{else}}
-        {{equipData.equipmentName}} - {{equipData.serialNumber}}
+        <span class="tp-equipment-details__title__bold">{{equipData.equipmentName}}</span>- {{equipData.serialNumber}}
     {{/if}}
-</h1>
+</h2>
 <div class="row tp-equipment-details__info-card-row">
     <div class="col-lg-6 tp-equipment-details__info-card-col">
         <div class="tp-equipment-details__info-card js-equipment-details__info-card">
@@ -44,7 +44,7 @@
                 {{/if}}
             {{else}}
                 <div class="tp-equipment-details__action-wrap">
-                    <button type="button" class="tp-equipment-details__btn js-equipment-details__update">
+                    <button type="button" class="tp-equipment-details__btn tp-equipment-details__update js-equipment-details__update">
                         <span>{{i18n key=i18nKeys.updateEquipmentInformation}}</span>
                         <i class="icon icon-Edit"></i>
                     </button>
