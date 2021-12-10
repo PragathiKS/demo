@@ -150,7 +150,7 @@ function _bindFormChangeEvents() {
   const initialFormData = $form.serialize();
 
   $('input, textarea, select', $form).each((_, item) => {
-    $(item).on('blur', () => {
+    $(item).on('input change', () => {
       if ($form.serialize() !== initialFormData) {
         $updateBtn.removeAttr('disabled');
       } else {
