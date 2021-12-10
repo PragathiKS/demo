@@ -73,6 +73,7 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
                 jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
             }
         } else {
+            jsonObject = new JsonObject();
             jsonObject = HttpUtil.setJsonResponse(jsonObject, "bad request", HttpStatus.SC_BAD_REQUEST);
         }
         HttpUtil.writeJsonResponse(response, jsonObject);
