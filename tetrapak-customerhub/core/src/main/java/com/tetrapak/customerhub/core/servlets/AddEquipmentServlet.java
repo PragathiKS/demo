@@ -5,11 +5,12 @@ import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.AddEquipmentFormBean;
 import com.tetrapak.customerhub.core.services.AddEquipmentService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
-import org.apache.commons.lang3.RegExUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.xss.XSSAPI;
@@ -20,13 +21,18 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.Session;
 import javax.servlet.Servlet;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The Class Equipment Servlet.
  */
 @Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-        "sling.servlet.selectors=" + "addequipment", "sling.servlet.extensions=" + "json",
+        "sling.servlet.selectors=" + "addequipment", "sling.servlet.extensions=" + "html",
         "sling.servlet.resourceTypes=" + "customerhub/components/content/addequipment"
 })
 public class AddEquipmentServlet extends SlingAllMethodsServlet {
@@ -42,12 +48,14 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
     @Reference
     private AddEquipmentService addEquipmentService;
 
+    private Gson gson = new Gson();
+
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
         LOGGER.debug("Start: Add Equipment - Post");
 
-        JsonObject jsonObject = new JsonObject();
+        JsonObject jsonObject = null;
         Session session = request.getResourceResolver().adaptTo(Session.class);
         if (null == session) {
             LOGGER.error("Equipment Details servlet exception: session is null");
@@ -60,7 +68,7 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
         AddEquipmentFormBean bean = createRequestAccessBean(request);
 
         if (bean != null && org.apache.commons.lang.StringUtils.isNotEmpty(token)) {
-            jsonObject = addEquipmentService.addEquipment(session.getUserID(), bean, token);
+            jsonObject = addEquipmentService.addEquipment(session.getUserID(), bean, token, prepareAttachments(request));
             if (jsonObject == null) {
                 jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
             }
@@ -70,15 +78,27 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
         HttpUtil.writeJsonResponse(response, jsonObject);
     }
 
-    private AddEquipmentFormBean createRequestAccessBean(SlingHttpServletRequest request) {
-        Gson gson = new Gson();
-        String jsonObject = gson.toJson(request.getParameterMap());
-        jsonObject = xssAPI.getValidJSON(jsonObject, StringUtils.EMPTY);
-        return gson.fromJson(clearJsonFromArrayBrackets(jsonObject), AddEquipmentFormBean.class);
+    private List<File> prepareAttachments(final SlingHttpServletRequest request) throws IOException {
+        List<File> files = new ArrayList<>();
+        Map<String, RequestParameter[]> requestParameters = request.getRequestParameterMap();
+        for (final Map.Entry<String, RequestParameter[]> entry : requestParameters.entrySet()) {
+            RequestParameter[] pArr = entry.getValue();
+            for (RequestParameter param : pArr) {
+                InputStream stream = param.getInputStream();
+                if (!param.isFormField()) {
+                    File f = File.createTempFile("attachment", null);
+                    FileUtils.copyInputStreamToFile(stream, f);
+                    files.add(f);
+                }
+            }
+        }
+        return files;
     }
 
-    private String clearJsonFromArrayBrackets(String jsonObject) {
-        return RegExUtils.removeAll(jsonObject, "[\\[\\]]");
+    private AddEquipmentFormBean createRequestAccessBean(SlingHttpServletRequest request) {
+        String jsonObject = gson.toJson(request.getParameterMap());
+        jsonObject = xssAPI.getValidJSON(jsonObject, StringUtils.EMPTY);
+        return gson.fromJson(jsonObject, AddEquipmentFormBean.class);
     }
 
     private String getAuthTokenValue(SlingHttpServletRequest request) {

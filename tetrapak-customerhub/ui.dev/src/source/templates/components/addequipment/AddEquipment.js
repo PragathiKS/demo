@@ -209,7 +209,7 @@ class AddEquipment {
     const formData = new FormData(e.currentTarget.form);
     if ($this.cache.files && $this.cache.files.length > 0) {
       for (let i = 0; i < $this.cache.files.length; i++) {
-        formData.append('files[]', $this.cache.files[i]);
+        formData.append('files', $this.cache.files[i]);
       }
     }
     auth.getToken(({ data: authData }) => {

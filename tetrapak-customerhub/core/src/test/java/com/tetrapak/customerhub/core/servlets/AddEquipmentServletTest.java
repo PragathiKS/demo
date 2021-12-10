@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -77,7 +78,7 @@ public class AddEquipmentServletTest {
         String content = readFileFromPath(TEST_FILE);
         Mockito.when(request.getParameterMap()).thenReturn(gson.fromJson(content, Map.class));
         Mockito.when(addEquipmentService.addEquipment(Mockito.eq(mockSession.getUserID()),
-                Mockito.any(AddEquipmentFormBean.class), Mockito.any(String.class)))
+                Mockito.any(AddEquipmentFormBean.class), Mockito.any(String.class), Mockito.any(List.class)))
                 .thenReturn(new JsonObject());
         servlet.doPost(request, response);
         Mockito.verify(response).getWriter();
@@ -87,7 +88,7 @@ public class AddEquipmentServletTest {
     public void testDoPostFailPayload() throws IOException {
         Mockito.when(request.getParameterMap()).thenReturn(null);
         Mockito.when(addEquipmentService.addEquipment(Mockito.eq(mockSession.getUserID()),
-                Mockito.any(AddEquipmentFormBean.class), Mockito.any(String.class)))
+                Mockito.any(AddEquipmentFormBean.class), Mockito.any(String.class), Mockito.any(List.class)))
                 .thenReturn(new JsonObject());
         servlet.doPost(request, response);
         Mockito.verify(response).getWriter();

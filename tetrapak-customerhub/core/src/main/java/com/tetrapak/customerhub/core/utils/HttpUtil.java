@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -12,6 +13,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -24,6 +26,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -39,6 +42,8 @@ import java.security.NoSuchAlgorithmException;
 public final class HttpUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpUtil.class);
+    public static final String AUTHORIZATION_HEADER_NAME = "Authorization";
+    public static final String BEARER_COOKIE_VALUE = "Bearer ";
 
     /**
      * private constructor
@@ -129,7 +134,7 @@ public final class HttpUtil {
      */
     public static JsonObject getJsonObject(String token, JsonObject jsonResponse, String url) {
         HttpGet getRequest = new HttpGet(url);
-        getRequest.addHeader("Authorization", "Bearer " + token);
+        getRequest.addHeader(AUTHORIZATION_HEADER_NAME, BEARER_COOKIE_VALUE + token);
         HttpClient httpClient = HttpClientBuilder.create().build();
 
         try {
@@ -196,12 +201,30 @@ public final class HttpUtil {
 
         HttpPost apiRequest = new HttpPost(url);
 
-        apiRequest.addHeader("Authorization", "Bearer " + token);
+        apiRequest.addHeader(AUTHORIZATION_HEADER_NAME, BEARER_COOKIE_VALUE + token);
         apiRequest.addHeader("Content-Type", "application/json");
         apiRequest.addHeader("accept", "*/*");
         apiRequest.setEntity(new StringEntity(entity, StandardCharsets.UTF_8));
-        HttpClient client = HttpClientBuilder.create().build();
+        return executeRequest(apiRequest);
+    }
+
+    public static JsonObject sendAPIGeePostWithFiles(String url, String token, File file) {
+        if (file == null) {
+            return null;
+        }
+        HttpPost apiRequest = new HttpPost(url);
+        apiRequest.addHeader(AUTHORIZATION_HEADER_NAME, BEARER_COOKIE_VALUE + token);
+        apiRequest.addHeader("Content-Type", "multipart/form-data");
+        apiRequest.addHeader("accept", "*/*");
+        HttpEntity requestEntity = MultipartEntityBuilder.create()
+                .addBinaryBody("file", file).build();
+        apiRequest.setEntity(requestEntity);
+        return executeRequest(apiRequest);
+    }
+
+    private static JsonObject executeRequest(HttpPost apiRequest) {
         JsonObject jsonResponse = new JsonObject();
+        HttpClient client = HttpClientBuilder.create().build();
         try {
             HttpResponse res = client.execute(apiRequest);
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, res);
