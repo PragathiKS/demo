@@ -47,7 +47,7 @@
           data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingOther',  required=true, label='pw.form.businessenq.other', name='businessAreaInterestPackaging', locale= 'en', value='Other'}">
         </sly>
         <input type="hidden" name="specificInterestAreaPackagingEqTitle" class="form-control"
-          id="specificInterestAreaPackagingEqTitle" required>
+          id="specificInterestAreaPackagingEqTitle" data-analyticsField="Specific area of interest" required>
         <div class="errorMsg specificInterestAreaError">
           ${'pw.form.errormsg.selectOneOption' @i18n}
         </div>
