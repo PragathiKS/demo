@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import $ from 'jquery';
 import 'bootstrap';
 import keyDownSearch from '../../../scripts/utils/searchDropDown';
@@ -555,28 +556,21 @@ class Businessinquiryform {
       } else {
         let formTypeTitle = '';
         let formStepNumber = '';
-        if(target === '#businessInquiry_packaging') {
+
+        if(target === '#bef-step-2') {
           formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
-          formStepNumber = 'Step 2';
-        } else if(target === '#businessInquiry_processing') {
-          formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
-          formStepNumber = 'Step 2';
-        } else if(target === '#businessInquiry_services') {
-          formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
-          formStepNumber = 'Step 2';
-        } else {
-          formTypeTitle = self.step1head;
-          formStepNumber = 'Step 1';
+          formStepNumber = $(this).closest('.bef-tab-pane').attr('id') === 'bef-step-1' ? 'Step 1':'Step 2';;
         }
+        
         switch (target) {
         case '#businessInquiry_packaging':
-          changeStepError(self.mainHead, 'Step 1', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#businessInquiry_processing':
-          changeStepError(self.mainHead, 'Step 1', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#businessInquiry_services':
-          changeStepError(self.mainHead, 'Step 1', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#bef-step-2':
           changeStepError(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
