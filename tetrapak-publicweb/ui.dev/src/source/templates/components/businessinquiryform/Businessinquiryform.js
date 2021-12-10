@@ -427,12 +427,14 @@ class Businessinquiryform {
       const target = $(this).attr('data-target'),  tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea'), errObj = [];
       if ($(this).hasClass('previousbtn')) {
         let formTypeTitle = '';
+        let formStepNumber = '';
         if(target === '#bef-step-1') {
           formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
+          formStepNumber = $(this).closest('.bef-tab-pane').attr('id') === 'bef-step-2' ? 'Step 3':'Step 2';
         }
         switch (target) {
         case '#bef-step-1':
-          changeStepPrev(self.mainHead, 'Step 2', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          changeStepPrev(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
           break;
         case '#businessInquiry_packaging':
           changeStepPrev(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
@@ -534,8 +536,10 @@ class Businessinquiryform {
 
           if (!$(this).hasClass('previousbtn')) {
             let formTypeTitle = '';
+            let formStepNumber = '';
             if(target === '#bef-step-2') {
               formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
+              formStepNumber = $(this).closest('.bef-tab-pane').attr('id') === 'bef-step-1' ? 'Step 1':'Step 2';
             }
             switch (target) {
             case '#businessInquiry_packaging':
@@ -548,7 +552,7 @@ class Businessinquiryform {
               changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
               break;
             case '#bef-step-2':
-              changeStepNext(self.mainHead, 'Step 2', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
+              changeStepNext(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
               break;
             case '#bef-step-3':
               changeStepNext(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
@@ -559,15 +563,19 @@ class Businessinquiryform {
           }
         }
       } else {
+        let formTypeTitle = '';
+        if(target === '#businessInquiry_packaging' || target === '#businessInquiry_processing' || target === '#businessInquiry_services') {
+          formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
+        }
         switch (target) {
         case '#businessInquiry_packaging':
-          changeStepError(self.mainHead, 'Step 1', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#businessInquiry_processing':
-          changeStepError(self.mainHead, 'Step 2', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#businessInquiry_services':
-          changeStepError(self.mainHead, 'Step 2', self.step1head2, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#bef-step-2':
           changeStepError(self.mainHead, 'Step 2', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
