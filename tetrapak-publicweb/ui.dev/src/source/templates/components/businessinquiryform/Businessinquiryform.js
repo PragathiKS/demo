@@ -564,8 +564,19 @@ class Businessinquiryform {
         }
       } else {
         let formTypeTitle = '';
-        if(target === '#businessInquiry_packaging' || target === '#businessInquiry_processing' || target === '#businessInquiry_services') {
+        let formStepNumber = '';
+        if(target === '#businessInquiry_packaging') {
           formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
+          formStepNumber = 'Step 2';
+        } else if(target === '#businessInquiry_processing') {
+          formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
+          formStepNumber = 'Step 2';
+        } else if(target === '#businessInquiry_services') {
+          formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
+          formStepNumber = 'Step 2';
+        } else {
+          formTypeTitle = self.step1head;
+          formStepNumber = 'Step 1';
         }
         switch (target) {
         case '#businessInquiry_packaging':
@@ -578,7 +589,7 @@ class Businessinquiryform {
           changeStepError(self.mainHead, 'Step 1', formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#bef-step-2':
-          changeStepError(self.mainHead, 'Step 2', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
           break;
         case '#bef-step-3':
           changeStepError(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
