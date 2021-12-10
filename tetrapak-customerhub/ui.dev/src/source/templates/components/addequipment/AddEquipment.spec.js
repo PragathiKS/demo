@@ -15,11 +15,15 @@ describe('AddEquipment', function () {
     pr.resolve(response, 'success', jqRef);
     return pr.promise();
   }
-  before(function () {
-    $(document.body).empty().html(addEquipmentTemplate());
-    this.addEquipment = new AddEquipment({
+  function setDom($this) {
+    $(document.body).empty().html($this.domHtml);
+    $this.addEquipment = new AddEquipment({
       el: document.body
     });
+  }
+  before(function () {
+    this.domHtml = addEquipmentTemplate();
+    setDom(this);
     this.initSpy = sinon.spy(this.addEquipment, 'init');
     this.bindEventsSpy = sinon.spy(this.addEquipment, 'bindEvents');
     this.renderFormSpy = sinon.spy(this.addEquipment, 'renderForm');
@@ -46,6 +50,7 @@ describe('AddEquipment', function () {
   });
   after(function () {
     $(document.body).empty();
+    this.domHtml = null;
     this.initSpy.restore();
     this.bindEventsSpy.restore();
     this.renderFormSpy.restore();
@@ -61,51 +66,14 @@ describe('AddEquipment', function () {
     this.setFilterFilesSpy.restore();
   });
 
-  it('should submit form', function (done) {
-    $("#addEquipmentSerialNumber").val('12345');
-    $("#addEquipmentCountry").val('PL');
-    $("#addEquipmentSite").val('DAIRY PLU_NSW');
-    $("#addEquipmentLine").val('MXP-NESTLELGS JAL-LIN0A');
-    $("#addEquipmentPosition").val('position');
-    $("#addEquipmentEquipmentStatus").val('EXPO');
-    $("#addEquipmentEquipmentDescription").val('desc');
-    $("#addEquipmentManufactureOfAsset").val('asset');
-    $("#addEquipmentCountryOfManufacture").val('PL');
-    $("#addEquipmentConstructionYear").val('2021');
-    $('.js-tp-add-equipment__submit').trigger('click');
-
-    expect(this.submitFormSpy.called).to.be.true;
-    done();
-  });
-
-  it('should prevent default on drag leave', function (done) {
-    $('.js-tp-add-equipment__drag-and-drop').trigger('dragleave');
-    expect(this.dragAndDropPreventDefaultSpy.called).to.be.true;
-    done();
-  });
-
-
-  it('should render add equipment form after submit', function (done) {
-    $('.js-tp-add-equipment__add-another-equipment').trigger('click');
-    expect(this.renderFormSpy.called).to.be.true;
-    done();
-  });
-
-  it('should prevent default on window drag enter', function (done) {
-    $(window.document).trigger('dragenter');
-    expect(this.dragAndDropPreventDefaultSpy.called).to.be.true;
-    done();
-  });
-
-  it('should sanitize textarea on blur', function (done) {
-    const $el = $('#addEquipmentComments');
-    $el.val('<script>test</script>');
-    $el.trigger('blur');
-    expect($el.val()).to.equal('test');
-    done();
-  });
 
   it('should remove error messages', function (done) {
+    // setDom(this);
+    // if (!this.addEquipment.cache || !this.addEquipment.cache.files) {
+    //   this.addEquipment.cache = {
+    //     files: []
+    //   }
+    // }
     this.addEquipment.cache.files.push('file');
     this.addEquipment.setFieldsMandatory();
     expect(this.setRemoveErrorMsgSpy.called).to.be.true;
@@ -133,26 +101,79 @@ describe('AddEquipment', function () {
     done();
   });
 
+
+  it('should prevent default on drag leave', function (done) {
+    setDom(this);
+    $('.js-tp-add-equipment__drag-and-drop').trigger('dragleave');
+    expect(this.dragAndDropPreventDefaultSpy.called).to.be.true;
+    done();
+  });
+
+
+  it('should render add equipment form after submit', function (done) {
+    setDom(this);
+    $('.js-tp-add-equipment__add-another-equipment').trigger('click');
+    expect(this.renderFormSpy.called).to.be.true;
+    done();
+  });
+
+  it('should prevent default on window drag enter', function (done) {
+    setDom(this);
+    $(window.document).trigger('dragenter');
+    expect(this.dragAndDropPreventDefaultSpy.called).to.be.true;
+    done();
+  });
+
+  it('should sanitize textarea on blur', function (done) {
+    setDom(this);
+    const $el = $('#addEquipmentComments');
+    $el.val('<script>test</script>');
+    $el.trigger('blur');
+    expect($el.val()).to.equal('test');
+    done();
+  });
+
   it('should remove file', function (done) {
-    console.log('remove file! - test');
+    setDom(this);
     $('.js-tp-add-equipment__drag-and-drop-file-remove-container').trigger('click');
     expect(this.renderFilesSpy.called).to.be.true;
     done();
   });
 
   it('should initialize', function (done) {
+    setDom(this);
     expect(this.initSpy.called).to.be.true;
     done();
   });
 
   it('should render add equipment form', function (done) {
+    setDom(this);
     expect(this.renderFormSpy.called).to.be.true;
     done();
   });
 
   it('should open file picker', function (done) {
+    setDom(this);
     $('.js-tp-add-equipment__drag-and-drop-button').trigger('click');
     expect(this.addInputTypeFileSpy.called).to.be.true;
+    done();
+  });
+
+  it('should submit form', function (done) {
+    setDom(this);
+    $("#addEquipmentSerialNumber").val('12345');
+    $("#addEquipmentCountry").val('PL');
+    $("#addEquipmentSite").val('DAIRY PLU_NSW');
+    $("#addEquipmentLine").val('MXP-NESTLELGS JAL-LIN0A');
+    $("#addEquipmentPosition").val('position');
+    $("#addEquipmentEquipmentStatus").val('EXPO');
+    $("#addEquipmentEquipmentDescription").val('desc');
+    $("#addEquipmentManufactureOfAsset").val('asset');
+    $("#addEquipmentCountryOfManufacture").val('PL');
+    $("#addEquipmentConstructionYear").val('2021');
+    $('.js-tp-add-equipment__submit').trigger('click');
+
+    expect(this.submitFormSpy.called).to.be.true;
     done();
   });
 });
