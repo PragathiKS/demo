@@ -568,7 +568,7 @@ class Businessinquiryform {
 
         if(target === '#bef-step-2') {
           formTypeTitle = $(this).closest('.tab-content-steps').find('h4').eq(0).text();
-          formStepNumber = $(this).closest('.bef-tab-pane').attr('id') === 'bef-step-1' ? 'Step 1':'Step 2';;
+          formStepNumber = $(this).closest('.bef-tab-pane').attr('id') === 'bef-step-1' ? 'Step 1':'Step 2';
         }
         
         switch (target) {
