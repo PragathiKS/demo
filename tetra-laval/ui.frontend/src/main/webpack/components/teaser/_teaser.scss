@@ -1,3 +1,5 @@
+@import '~tpPublic/templates/components/teaser/_teaser.scss';
+
 .pw-container {
     .teaser {
         padding-top: $padding-sm;
@@ -132,6 +134,16 @@
         }
         .teaser-image-link {
             width: 100%;
+        }
+    }
+    .owl-carousel {
+        .owl-nav {
+            .owl-prev, .owl-next {
+                color: #023f88;
+                &:hover {
+                    color: #1c3462
+                }
+            }
         }
     }
 }
