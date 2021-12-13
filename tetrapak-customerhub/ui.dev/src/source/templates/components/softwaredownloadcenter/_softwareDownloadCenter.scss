@@ -6,7 +6,7 @@
 
         @media #{$desktop} {
             @include font-size($font-xl);
-            @include line-height($font-xxl, $font-xl);
+            @include line-height(40px, $font-xl);
             @include margin-bottom($margin-l);
         }
     }
@@ -15,9 +15,10 @@
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
         @include margin-bottom($margin-md);
+        display: flex;
 
         @media #{$desktop} {
-            @include margin-bottom($margin-l);
+            max-width: 825px;
         }
     }
 
