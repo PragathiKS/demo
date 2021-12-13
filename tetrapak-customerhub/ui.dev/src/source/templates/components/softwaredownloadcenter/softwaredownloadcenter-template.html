@@ -1,0 +1,10 @@
+<sly data-sly-template.softwaredownloadcenter_template="${@data, flag}">
+    <div class="tp-card tp-download-center" data-module="SoftwareDownloadCenter">
+        <h2 data-sly-test="${data.title}" class="tp-download-center__heading"> ${data.title @ i18n}</h2>
+        <div class="tp-download-center__description">${data.descriptionI18n @ context='html'}</div> 
+        <sly data-sly-test.variant="${tab.linkType == 'button' ? 'primary' : 'transparent'}">
+            <sly data-sly-use.btnLink="/apps/commons/components/atoms/button-text/button-text.html"
+                data-sly-call="${btnLink.button_template @btnPath=data.linkURL, btnText=data.linkTextI18n ,btnTarget='true', variant=variant, customClasses='tp-download-center__link'}" />
+        </sly>       
+    </div>
+</sly>
