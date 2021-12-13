@@ -188,7 +188,8 @@
       "dashboard": [
         "source/templates/components/contactcard/",
         "source/templates/components/orderingcard/",
-        "source/templates/components/maintenancecard/"
+        "source/templates/components/maintenancecard/",
+        "source/templates/components/softwaredownloadcenter/"
       ],
       "financial": [
         "source/templates/components/financialstatement/",
