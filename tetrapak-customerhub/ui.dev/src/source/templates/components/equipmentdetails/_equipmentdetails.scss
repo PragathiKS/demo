@@ -1,20 +1,41 @@
 .tp-equipment-details {
+    &__container {
+        color: $color-congress-blue;
+    }
     &__title {
+        @include line-height($font-xxl, $font-l);
         @include margin-bottom($margin-l);
+        font-size: $font-xl;
+        font-weight: 400;
+
+        &__bold {
+            font-weight: 700;
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-md);
+        }
     }
 
     &__info-card-col {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-xxl);
+
+        @media #{mobile} {
+            @include margin-bottom($margin-l);
+        }
     }
 
     &__info-card {
         @include padding($padding-l);
-        @include min-height(280px);
         display: flex;
         background-color: $color-wild-sand;
         border-radius: $border-radius;
         height: 100%;
         flex-direction: column;
+
+        @media #{mobile} {
+            @include padding($padding-md);
+        }
 
         h3 {
             @include padding-bottom($padding-md);
@@ -24,14 +45,16 @@
     }
 
     &__info-line {
-        @include margin-bottom($margin-xl);
+        @include margin-bottom($margin-md);
         display: flex;
         align-items: center;
         font-weight: 500;
 
         @media #{$mobile} {
-            @include margin-bottom($margin-md);
             display: block;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
         }
 
         i {
@@ -39,19 +62,26 @@
             display: inline-block;
             color: $color-congress-blue;
         }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
     }
 
     &__info-cell-1 {
+        @include line-height($font-l, $font-baseline);
         @include width(110px);
         @include margin-right($margin-xxl);
         flex-shrink: 0;
 
         @media #{$mobile} {
+            @include line-height($font-l, $font-baseline);
             width: 100%;
         }
     }
 
     &__info-cell-2 {
+        @include line-height($font-l, $font-baseline);
         font-weight: 700;
         width: 100%;
     }
@@ -79,10 +109,14 @@
     }
 
     &__details-cell {
+        @include line-height($font-l, $font-baseline);
+        font-weight: 500;
         &:first-child {
             @include width(310px);
 
             @media #{$mobile} {
+                @include line-height($font-l, $font-baseline);
+                font-weight: 500;
                 width: 100%;
             }
         }
@@ -119,11 +153,18 @@
     }
 
     &__back-btn {
-        @include margin-bottom($margin-l);
+        @include line-height($font-l, $font-baseline);
+        @include margin-bottom(20px);
+        color: $color-congress-blue;
+
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-md);
+        }
 
         i {
             @include font-size($font-normal);
-            @include margin-right($margin-sm);
+            @include margin-right(12px);
             display: inline-block;
             margin-left: 0;
             transform: translateY(2px);
@@ -149,5 +190,24 @@
             @include margin-bottom($margin-md);
             font-weight: 400;
         }
+    }
+
+    &__update {
+        @include border-radius(4px);
+        @include padding($padding-sm $padding-md);
+        border: 1px solid $color-congress-blue;
+        display: flex;
+    
+        i {
+            @include margin-left($margin-sm);
+        }
+    }
+
+    &__req-make-update {
+        @include margin-right($margin-md);
+    }
+
+    &__conf-cancel {
+        background-color: inherit;
     }
 }
