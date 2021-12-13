@@ -14,6 +14,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -214,11 +215,13 @@ public final class HttpUtil {
         }
         HttpPost apiRequest = new HttpPost(url);
         apiRequest.addHeader(AUTHORIZATION_HEADER_NAME, BEARER_COOKIE_VALUE + token);
-        apiRequest.addHeader("Content-Type", "multipart/form-data");
         apiRequest.addHeader("accept", "*/*");
+
+        FileBody uploadFilePart = new FileBody(file);
         HttpEntity requestEntity = MultipartEntityBuilder.create()
-                .addBinaryBody("file", file).build();
+                .addPart("file", uploadFilePart).build();
         apiRequest.setEntity(requestEntity);
+
         return executeRequest(apiRequest);
     }
 
