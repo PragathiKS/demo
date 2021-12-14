@@ -1,4 +1,5 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import { getI18n } from '../../../scripts/common/common';
 
 export const _hideShowAllFiltersAnalytics = (label, eventType) => {
   const eventObj = {
@@ -83,4 +84,35 @@ export const _paginationAnalytics = ($targetBtn) => {
   };
 
   trackAnalytics(linkClickObj, 'linkClick', 'paginationClick', undefined, false, eventObj);
+};
+
+export const _customizeTableBtnAnalytics = ($targetBtn) => {
+  const eventObj = {
+    event: 'Customize Table',
+    eventType: 'Show/Hide Columns'
+  };
+
+  const linkClickObj = {
+    linkName: $targetBtn.find('.tp-my-equipment__header-action-text').text().replace(' +', ''),
+    linkType: 'internal',
+    linkSection: 'hyperlink click',
+    linkParentTitle: 'Text Hyperlink_My Equipment'
+  };
+
+  trackAnalytics(linkClickObj, 'linkClick', 'paginationClick', undefined, false, eventObj);
+};
+
+export const _addShowHideFilterAnalytics = (filterData) => {
+  const selectedCols = filterData.filter(colItem => colItem.isChecked);
+  const selectedColsLabels = selectedCols.map(colItem => getI18n(colItem.optionDisplayText, null, null));
+  const eventObj = {
+    event: 'Customize Table',
+    eventType: 'Show/Hide Columns'
+  };
+
+  const searchObj = {
+    searchFilters: selectedColsLabels.toString()
+  };
+
+  trackAnalytics(searchObj, 'search', 'internalFilter', undefined, false, eventObj);
 };

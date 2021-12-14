@@ -5,7 +5,7 @@ import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics } from './MyEquipment.analytics';
+import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics } from './MyEquipment.analytics';
 
 import { _paginate } from './MyEquipment.paginate';
 import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
@@ -195,6 +195,7 @@ class MyEquipment {
       this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:false });
       $('.tp-my-equipment__header-actions').removeClass('show');
       $modal.modal();
+      _customizeTableBtnAnalytics($myEquipmentCustomizeTableAction);
     });
 
     $mobileHeadersActions.on('click', () => {
@@ -611,6 +612,8 @@ class MyEquipment {
       const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
       this.renderPaginationTableData(tableData);
       this.cache.$modal.modal('hide');
+      _addShowHideFilterAnalytics(filterData);
+
       return;
     }
 
