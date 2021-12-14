@@ -128,7 +128,10 @@
     }
 
     &__note {
+        @include font-size(10px);
+        @include line-height($font-normal, 10px);
         @include margin-top($margin-md);
+        font-weight: 500;
 
         span {
             font-weight: 700;
@@ -209,5 +212,17 @@
 
     &__conf-cancel {
         background-color: inherit;
+    }
+
+    &-modal .tpmol-modal-footer {
+        padding-top: 0;
+
+        .tp-equipment-details__conf-cancel {
+            margin-left: 0;
+        }
+
+        .tp-equipment-details__req-make-update {
+            margin-right: 0;
+        }
     }
 }
