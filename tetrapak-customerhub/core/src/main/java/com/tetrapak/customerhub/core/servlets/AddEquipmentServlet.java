@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.servlets;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.AddEquipmentFormBean;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.AddEquipmentService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.io.FileUtils;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.Session;
 import javax.servlet.Servlet;
+import javax.servlet.http.Cookie;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -68,7 +70,7 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
         AddEquipmentFormBean bean = createRequestAccessBean(request);
 
         if (bean != null && org.apache.commons.lang.StringUtils.isNotEmpty(token)) {
-            jsonObject = addEquipmentService.addEquipment(session.getUserID(), bean, token, prepareAttachments(request));
+            jsonObject = addEquipmentService.addEquipment(resolveCustomerName(request), bean, token, prepareAttachments(request));
             if (jsonObject == null) {
                 jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
             }
@@ -77,6 +79,14 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
             jsonObject = HttpUtil.setJsonResponse(jsonObject, "bad request", HttpStatus.SC_BAD_REQUEST);
         }
         HttpUtil.writeJsonResponse(response, jsonObject);
+    }
+
+    private String resolveCustomerName(SlingHttpServletRequest request) {
+        Cookie aemCustomerName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME);
+        if (aemCustomerName != null) {
+            return aemCustomerName.getValue();
+        }
+        return null;
     }
 
     private List<File> prepareAttachments(final SlingHttpServletRequest request) throws IOException {

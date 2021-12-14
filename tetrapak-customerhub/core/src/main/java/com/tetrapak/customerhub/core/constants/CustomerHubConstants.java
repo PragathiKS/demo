@@ -458,6 +458,9 @@ public final class CustomerHubConstants {
     /** TheConstant for Source name. */
     public static final String TETRAPAK_CUSTOMERHUB = "tetrapak-customerhub";
 
+    /** TheConstant for Source name. */
+    public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";
+
     /**
      * Instantiates a new customer hub constants.
      */
