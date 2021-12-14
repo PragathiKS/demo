@@ -12,7 +12,7 @@
                 text="cuhu.pagination.first"}}
         {{> atoms/buttons/button/button
                 modifier="pagination"
-                className="tp-tbl-pagination__btn float-left"
+                className="tp-tbl-pagination__btn tp-tbl-pagination__prev float-left"
                 jsClass="js-page-number"
                 disabled=paginationObj.prevDisabled
                 data-page-number=paginationObj.prevPage
@@ -32,7 +32,7 @@
                 {{else}}
                     {{> atoms/buttons/button/button
                             modifier="pagination"
-                            className="tp-tbl-pagination__btn float-left"
+                            className="tp-tbl-pagination__btn tp-tbl-pagination__direct float-left"
                             jsClass="js-page-number"
                             data-page-number=pageNumber
                             data-skip=skip
@@ -45,7 +45,7 @@
         {{/each}}
         {{> atoms/buttons/button/button
                 modifier="pagination"
-                className="tp-tbl-pagination__btn float-left"
+                className="tp-tbl-pagination__btn tp-tbl-pagination__next float-left"
                 jsClass="js-page-number"
                 disabled=paginationObj.nextDisabled
                 data-page-number=paginationObj.nextPage
