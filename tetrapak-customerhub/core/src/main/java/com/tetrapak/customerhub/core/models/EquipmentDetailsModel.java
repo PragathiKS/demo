@@ -24,9 +24,6 @@ import java.util.Map;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class EquipmentDetailsModel {
 
-    private static final String MYEQUIPMENT_STATUSLIST_API = "myequipment-statuslist";
-    private static final String MYEQUIPMENT_COUNTRYLIST_API = "myequipment-countrylist";
-
     /**
      * The resource.
      */
@@ -732,10 +729,10 @@ public class EquipmentDetailsModel {
         i18nKeys = gson.toJson(i18KeyMap);
 
         countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, MYEQUIPMENT_COUNTRYLIST_API);
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
 
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, MYEQUIPMENT_STATUSLIST_API);
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_STATUSLIST_API);
 
         equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);
