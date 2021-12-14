@@ -43,8 +43,9 @@ import java.security.NoSuchAlgorithmException;
 public final class HttpUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpUtil.class);
-    public static final String AUTHORIZATION_HEADER_NAME = "Authorization";
-    public static final String BEARER_COOKIE_VALUE = "Bearer ";
+    private static final String AUTHORIZATION_HEADER_NAME = "Authorization";
+    private static final String BEARER_COOKIE_VALUE = "Bearer ";
+    private static final String FILE_PARAM_NAME = "file";
 
     /**
      * private constructor
@@ -219,7 +220,7 @@ public final class HttpUtil {
 
         FileBody uploadFilePart = new FileBody(file);
         HttpEntity requestEntity = MultipartEntityBuilder.create()
-                .addPart("file", uploadFilePart).build();
+                .addPart(FILE_PARAM_NAME, uploadFilePart).build();
         apiRequest.setEntity(requestEntity);
 
         return executeRequest(apiRequest);
