@@ -199,7 +199,7 @@ class AddEquipment {
       $this.renderForm();
     });
 
-    $this.root.on('blur', 'textarea', (e) => {
+    $this.root.on('blur', 'textarea, input', (e) => {
       const sanitized = e.target.value.replace(/<\/?script>|[<>]/gm, '');
       $(e.target).val(sanitized);
     });
