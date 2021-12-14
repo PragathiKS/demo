@@ -314,6 +314,18 @@ public final class CustomerHubConstants {
     /** The Constant EQUIPMENT_LIST_API. */
     public static final String EQUIPMENT_LIST_API = "myequipment-equipmentlist";
 
+    /** The Constant STATUS_LIST_API. */
+    public static final String EQUIPMENT_STATUSLIST_API = "myequipment-statuslist";
+
+    /** The Constant COUNTRY_LIST_API. */
+    public static final String EQUIPMENT_COUNTRYLIST_API = "myequipment-countrylist";
+
+    /** The Constant SITES_LIST_API. */
+    public static final String EQUIPMENT_SITESLIST_API = "myequipment-siteslist";
+
+    /** The Constant LINES_LIST_API. */
+    public static final String EQUIPMENT_LINESLIST_API = "myequipment-lineslist";
+
     /** The Constant THANK_YOU_LABEL . */
     public static final String EQUIPMENT_THANK_YOU_LABEL = "equipmentDetails-ThankYouHeading";
 

@@ -38,19 +38,15 @@ public class AddEquipmentModel {
     private APIGEEService service;
 
     /** The country api. */
-    @Inject
 	private String countryApi;
 
     /** The status api. */
-    @Inject
     private String statusApi;
 
     /** The line api. */
-    @Inject
     private String lineApi;
 
     /** The site api. */
-    @Inject
     private String siteApi;
 
     /** The title label. */
@@ -589,15 +585,15 @@ public class AddEquipmentModel {
         }
 
         countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, "myequipment-countrylist");
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
 
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, "myequipment-statuslist");
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_STATUSLIST_API);
 
         siteApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, "myequipment-siteslist");
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_SITESLIST_API);
 
         lineApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, "myequipment-lineslist");
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LINESLIST_API);
     }
 }

@@ -587,7 +587,7 @@ public class MyEquipmentModel {
 	 * @return the add new equipment url
 	 */
 	public String getAddNewEquipmentUrl() {
-		return addNewEquipmentUrl;
+		return LinkUtil.getValidLink(resource, addNewEquipmentUrl);
 	}
 	/**
 	 * Inits the.
