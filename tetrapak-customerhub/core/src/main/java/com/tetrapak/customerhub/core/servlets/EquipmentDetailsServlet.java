@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.servlets;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.equipment.EquipmentUpdateFormBean;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.io.IOUtils;
@@ -20,6 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.Session;
 import javax.servlet.Servlet;
+import javax.servlet.http.Cookie;
 import java.io.IOException;
 
 /**
@@ -63,7 +65,7 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
         final String token = getAuthTokenValue(request);
 
         if (bean != null && bean.isValid() && StringUtils.isNotEmpty(token)) {
-            jsonObject = equipmentDetailsService.editEquipment(session.getUserID(), bean, token);
+            jsonObject = equipmentDetailsService.editEquipment(resolveCustomerName(request), bean, token);
             if (jsonObject != null) {
                 HttpUtil.writeJsonResponse(response, jsonObject);
             } else {
@@ -74,6 +76,14 @@ public class EquipmentDetailsServlet extends SlingAllMethodsServlet {
             jsonObject = HttpUtil.setJsonResponse(jsonObject, "bad request", HttpStatus.SC_BAD_REQUEST);
             HttpUtil.writeJsonResponse(response, jsonObject);
         }
+    }
+
+    private String resolveCustomerName(SlingHttpServletRequest request) {
+        Cookie aemCustomerName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME);
+        if (aemCustomerName != null) {
+            return aemCustomerName.getValue();
+        }
+        return null;
     }
 
     private String getAuthTokenValue(SlingHttpServletRequest request) {
