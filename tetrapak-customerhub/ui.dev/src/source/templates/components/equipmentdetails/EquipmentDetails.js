@@ -151,7 +151,7 @@ function _bindFormChangeEvents() {
 
   $('input, textarea, select', $form).each((_, item) => {
     $(item).on('input change', () => {
-      if ($form.serialize() !== initialFormData) {
+      if ($form.serialize() !== initialFormData && $('#position').val()) {
         $updateBtn.removeAttr('disabled');
       } else {
         $updateBtn.attr('disabled', 'disabled');
@@ -211,11 +211,12 @@ class EquipmentDetails {
         equipmentId: this.cache.data.id,
         oldCountry: equipData.countryCode,
         oldLocation: equipData.location,
-        oldSiteName: equipData.siteName,
+        oldSiteName: equipData.site,
         oldLineName: equipData.lineName,
         oldEquipmentStatus: equipData.equipmentStatus,
         oldPosition: equipData.position,
         oldEquipmentTypeDesc: equipData.equipmentTypeDesc,
+        comments: data.comments,
         country: data.country || equipData.countryCode,
         location: data.location || equipData.location,
         siteName: data.siteName || equipData.siteName,
