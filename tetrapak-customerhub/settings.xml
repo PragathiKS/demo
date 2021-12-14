@@ -38,9 +38,9 @@
             		</repository>
                         <repository>
                                 <id>central</id>
-                                <releases>
+                                <snapshots>
                                     <enabled>true</enabled>
-                                </releases>
+                                </snapshots>
                                 <name>libs-release</name>
                                 <url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
                         </repository>
