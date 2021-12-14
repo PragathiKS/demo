@@ -793,8 +793,6 @@ class MyEquipment {
           if (analyticsAction && analyticsAction.action === 'addedFilter') {
             _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
           }
-
-          // _resultsAnalytics(this.cache.meta.total);
         }).fail(() => {
           this.cache.$content.removeClass('d-none');
           this.cache.$spinner.addClass('d-none');
@@ -852,8 +850,6 @@ class MyEquipment {
               this.renderPaginationTableData(tableData);
               this.renderSearchCount();
               this.mapTableColumn();
-
-              // _resultsAnalytics(this.cache.meta.total);
             }).fail(() => {
               this.cache.$content.removeClass('d-none');
               this.cache.$spinner.addClass('d-none');
