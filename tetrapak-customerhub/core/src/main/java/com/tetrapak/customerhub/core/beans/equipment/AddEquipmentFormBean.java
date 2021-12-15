@@ -7,82 +7,95 @@ import com.google.gson.annotations.SerializedName;
  */
 public class AddEquipmentFormBean {
 
-    @SerializedName("addEquipmentSerialNumber") private String[] equipmentSerialNumber;
+    @SerializedName("addEquipmentSerialNumber")
+    private String equipmentSerialNumber;
 
-    @SerializedName("addEquipmentCountry") private String[] equipmentCountry;
+    @SerializedName("addEquipmentCountry")
+    private String equipmentCountry;
 
-    @SerializedName("addEquipmentSite") private String[] equipmentSite;
+    @SerializedName("addEquipmentSite")
+    private String equipmentSite;
 
-    @SerializedName("addEquipmentLine") private String[] equipmentLine;
+    @SerializedName("addEquipmentLine")
+    private String equipmentLine;
 
-    @SerializedName("addEquipmentPosition") private String[] equipmentPosition;
+    @SerializedName("addEquipmentPosition")
+    private String equipmentPosition;
 
-    @SerializedName("addEquipmentEquipmentStatus") private String[] equipmentStatus;
+    @SerializedName("addEquipmentEquipmentStatus")
+    private String equipmentStatus;
 
-    @SerializedName("addEquipmentMachineSystem") private String[] equipmentMachineSystem;
+    @SerializedName("addEquipmentMachineSystem")
+    private String equipmentMachineSystem;
 
-    @SerializedName("addEquipmentEquipmentDescription") private String[] equipmentDescription;
+    @SerializedName("addEquipmentEquipmentDescription")
+    private String equipmentDescription;
 
-    @SerializedName("addEquipmentManufactureModelNumber") private String[] equipmentManufactureModelNumber;
+    @SerializedName("addEquipmentManufactureModelNumber")
+    private String equipmentManufactureModelNumber;
 
-    @SerializedName("addEquipmentManufactureOfAsset") private String[] equipmentManufactureOfAsset;
+    @SerializedName("addEquipmentManufactureOfAsset")
+    private String equipmentManufactureOfAsset;
 
-    @SerializedName("addEquipmentCountryOfManufacture") private String[] equipmentCountryOfManufacture;
+    @SerializedName("addEquipmentCountryOfManufacture")
+    private String equipmentCountryOfManufacture;
 
-    @SerializedName("addEquipmentConstructionYear") private String[] equipmentConstructionYear;
+    @SerializedName("addEquipmentConstructionYear")
+    private String equipmentConstructionYear;
 
-    @SerializedName("addEquipmentComments") private String[] equipmentComments;
+    @SerializedName("addEquipmentComments")
+    private String equipmentComments;
 
     public String getEquipmentSerialNumber() {
-        return equipmentSerialNumber[0];
+        return equipmentSerialNumber;
     }
 
     public String getEquipmentCountry() {
-        return equipmentCountry[0];
+        return equipmentCountry;
     }
 
     public String getEquipmentSite() {
-        return equipmentSite[0];
+        return equipmentSite;
     }
 
     public String getEquipmentLine() {
-        return equipmentLine[0];
+        return equipmentLine;
     }
 
     public String getEquipmentPosition() {
-        return equipmentPosition[0];
+        return equipmentPosition;
     }
 
     public String getEquipmentStatus() {
-        return equipmentStatus[0];
+        return equipmentStatus;
     }
 
     public String getEquipmentMachineSystem() {
-        return equipmentMachineSystem[0];
+        return equipmentMachineSystem;
     }
 
     public String getEquipmentDescription() {
-        return equipmentDescription[0];
+        return equipmentDescription;
     }
 
     public String getEquipmentManufactureModelNumber() {
-        return equipmentManufactureModelNumber[0];
+        return equipmentManufactureModelNumber;
     }
 
     public String getEquipmentManufactureOfAsset() {
-        return equipmentManufactureOfAsset[0];
+        return equipmentManufactureOfAsset;
     }
 
     public String getEquipmentCountryOfManufacture() {
-        return equipmentCountryOfManufacture[0];
+        return equipmentCountryOfManufacture;
     }
 
     public String getEquipmentConstructionYear() {
-        return equipmentConstructionYear[0];
+        return equipmentConstructionYear;
     }
 
     public String getEquipmentComments() {
-        return equipmentComments[0];
+        return equipmentComments;
     }
 
 }
