@@ -107,9 +107,19 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
     }
 
     private AddEquipmentFormBean createRequestAccessBean(SlingHttpServletRequest request) {
-        String jsonObject = gson.toJson(request.getParameterMap());
-        jsonObject = xssAPI.getValidJSON(jsonObject, StringUtils.EMPTY);
+        String jsonString = gson.toJson(request.getParameterMap());
+        jsonString = xssAPI.getValidJSON(jsonString, StringUtils.EMPTY);
+        JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
+        jsonObject.remove("files");
+        jsonObject = replaceArraysInJsonObject(jsonObject);
         return gson.fromJson(jsonObject, AddEquipmentFormBean.class);
+    }
+
+    private JsonObject replaceArraysInJsonObject(JsonObject jsonObject) {
+        for (String key : jsonObject.keySet()) {
+            jsonObject.addProperty(key, jsonObject.get(key).getAsString());
+        }
+        return jsonObject;
     }
 
     private String getAuthTokenValue(SlingHttpServletRequest request) {
