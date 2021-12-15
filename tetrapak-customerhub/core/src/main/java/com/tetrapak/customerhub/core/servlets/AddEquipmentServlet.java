@@ -77,11 +77,11 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
             } else {
                 jsonObject = HttpUtil.setJsonResponse(jsonObject, "bad request", HttpStatus.SC_BAD_REQUEST);
             }
-            HttpUtil.writeJsonResponse(response, jsonObject);
         } catch (Exception e) {
             jsonObject = HttpUtil.setJsonResponse(jsonObject, "invalid json request", HttpStatus.SC_BAD_REQUEST);
-            HttpUtil.writeJsonResponse(response, jsonObject);
         }
+        response.setStatus(jsonObject.get(CustomerHubConstants.STATUS).getAsInt());
+        HttpUtil.writeJsonResponse(response, jsonObject);
     }
 
     private String resolveCustomerName(SlingHttpServletRequest request) {
