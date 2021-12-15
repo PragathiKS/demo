@@ -1,41 +1,15 @@
 {
-  "addEquipmentSerialNumber": [
-    "123123"
-  ],
-  "addEquipmentCountry": [
-    "FI"
-  ],
-  "addEquipmentSite": [
-    "DREYERSSNESAL"
-  ],
-  "addEquipmentLine": [
-    "DEC-IMMI      SCH-LN 14"
-  ],
-  "addEquipmentPosition": [
-    "Position"
-  ],
-  "addEquipmentEquipmentStatus": [
-    "CUIN"
-  ],
-  "addEquipmentMachineSystem": [
-    "Machine system (Optional)"
-  ],
-  "addEquipmentEquipmentDescription": [
-    "Equipment description"
-  ],
-  "addEquipmentManufactureModelNumber": [
-    "Manufacture model number (Optional)"
-  ],
-  "addEquipmentManufactureOfAsset": [
-    "Manufacture of asset"
-  ],
-  "addEquipmentCountryOfManufacture": [
-    "FR"
-  ],
-  "addEquipmentConstructionYear": [
-    "21312"
-  ],
-  "addEquipmentComments": [
-    "333"
-  ]
+  "addEquipmentSerialNumber": "123123",
+  "addEquipmentCountry": "FI",
+  "addEquipmentSite": "DREYERSSNESAL",
+  "addEquipmentLine": "DEC-IMMI      SCH-LN 14",
+  "addEquipmentPosition": "Position",
+  "addEquipmentEquipmentStatus": "CUIN",
+  "addEquipmentMachineSystem": "Machine system (Optional)",
+  "addEquipmentEquipmentDescription": "Equipment description",
+  "addEquipmentManufactureModelNumber": "Manufacture model number (Optional)",
+  "addEquipmentManufactureOfAsset": "Manufacture of asset",
+  "addEquipmentCountryOfManufacture": "FR",
+  "addEquipmentConstructionYear": "21312",
+  "addEquipmentComments": "333"
 }
