@@ -91,6 +91,4 @@ public class BusinessEnquiryPardotServlet extends SlingAllMethodsServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write("Success");
     }
-
-
 }

@@ -1,0 +1,65 @@
+<sly data-sly-template.businessAreaPackaging_template>
+  <div class="tab-content tab-content-steps">
+    <div class="row no-gutters pw-progress" auto_locator="progressBarStep1">
+      <div class="col-lg-10">
+        <sly
+          data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
+          data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['pw.form.businessenq.stepTitles.purpose', 'pw.form.businessenq.stepTitles.request', 'pw.form.businessenq.stepTitles.contact']}">
+        </sly>
+      </div>
+    </div>
+
+    <div class="row no-gutters" data-sly-test="${'pw.form.businessenq.specificAreaOfInterest' @i18n}">
+      <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
+        <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.specificAreaOfInterest', variant='small'}" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep1">
+        <sly
+          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingAM', required=true, label='pw.form.businessenq.packaging.additionalMaterials', name='businessAreaInterestPackaging', locale= 'en', value='Additional Materials'}">
+        </sly>
+        <sly
+          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingMTL', required=true, label='pw.form.businessenq.packaging.multipacksTraysLogistic', name='businessAreaInterestPackaging', locale= 'en', value='Downstream Equipment'}">
+        </sly>
+        <sly
+          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingFM', required=true, label='pw.form.businessenq.packaging.fillingMachines', name='businessAreaInterestPackaging', locale= 'en', value='Filling Machines'}">
+        </sly>
+        <sly
+          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingIS', required=true, label='pw.form.businessenq.packaging.installationServices', name='businessAreaInterestPackaging', locale= 'en', value='Installation, Commissioning & Validation'}">
+        </sly>
+        <sly
+          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingPP', required=true, label='pw.form.businessenq.packaging.packagePortfolio', name='businessAreaInterestPackaging', locale= 'en', value='Packages'}">
+        </sly>
+        <sly
+          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingSUO', required=true, label='pw.form.businessenq.packaging.startUpOffering', name='businessAreaInterestPackaging', locale= 'en', value='Start-up Offering'}">
+        </sly>
+        <sly
+          data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingOther',  required=true, label='pw.form.businessenq.other', name='businessAreaInterestPackaging', locale= 'en', value='Other'}">
+        </sly>
+        <input type="hidden" name="specificInterestAreaPackagingEqTitle" class="form-control"
+          id="specificInterestAreaPackagingEqTitle" data-analyticsField="Specific area of interest" required>
+        <div class="errorMsg specificInterestAreaError">
+          ${'pw.form.errormsg.selectOneOption' @i18n}
+        </div>
+      </div>
+    </div>
+    
+    <div class="row no-gutters button-group">
+      <sly
+        data-sly-use.previousButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+        data-sly-call="${previousButton.tabbutton_template @ btnText='pw.form.button.previous', btnTarget='#bef-step-1', variant='secondary', customClasses='previousbtn', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormPreviousButtonStep1' }" />
+      <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
+        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-2', icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep1' }" />
+    </div>
+  </div>
+</sly>

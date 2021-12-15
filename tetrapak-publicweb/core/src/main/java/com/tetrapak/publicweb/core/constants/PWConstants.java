@@ -454,7 +454,10 @@ public final class PWConstants {
     /** Constant TETRA_LAVAL_CONTENT_DAM_PATH */
     public static final String TETRA_LAVAL_CONTENT_DAM_PATH = "/content/dam/tetra-laval";
     
-    /** The Constant ACCEPT. */
+	/** The Constant DOT. */
+    public static final String DOT = ".";
+    
+	/** The Constant ACCEPT. */
     public static final String ACCEPT = "Accept";
     
     /** The Constant APPLICATION_JSON. */

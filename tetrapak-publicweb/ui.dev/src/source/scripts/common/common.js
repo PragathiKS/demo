@@ -431,3 +431,8 @@ export const parseQueryString = () => {
     return data;
   }, {});
 };
+
+// Capitalize String
+export const capitalizeFirstLetter = ([ first, ...rest ]) => {
+  return [ first.toUpperCase(), ...rest ].join('');
+};

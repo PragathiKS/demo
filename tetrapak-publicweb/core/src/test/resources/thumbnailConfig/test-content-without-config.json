@@ -1,0 +1,45 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Fri Oct 15 2021 10:20:38 GMT+0200",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:createdBy": "admin",
+    "jcr:title": "English",
+    "jcr:versionHistory": "be80f0e9-c3f0-4709-98d1-517a359abd19",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+    "cq:lastReplicatedBy": "admin",
+    "jcr:baseVersion": "090afb21-deaf-4842-8ef8-e0ea4d40d395",
+    "sling:resourceType": "publicweb/components/structure/pages/languagepage",
+    "cq:allowedTemplates": [
+      "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+      "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+      "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
+    ],
+    "errorPages": "/content/tetrapak/public-web/lang-masters/en/error",
+    "cq:lastModifiedBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "cq:ReplicationStatus"
+        ],
+        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+      }
+    }
+  },
+  "page-without-thumbnail": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Fri Oct 15 2021 10:20:38 GMT+0200",
+    "jcr:content": {
+      "jcr:primaryType": "cq:PageContent",
+      "jcr:createdBy": "admin",
+      "jcr:title": "Page without thumbnail",
+      "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+      "sling:resourceType": "publicweb/components/structure/pages/landingpage"
+    }
+  }
+}

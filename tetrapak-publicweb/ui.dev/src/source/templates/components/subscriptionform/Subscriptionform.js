@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-import { getLinkClickAnalytics, validateFieldsForTags } from '../../../scripts/common/common';
+import { getLinkClickAnalytics, validateFieldsForTags, capitalizeFirstLetter } from '../../../scripts/common/common';
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -74,7 +74,7 @@ class Subscriptionform {
 
     const dataObj = {};
     if($('input[name="consent"]').is(':checked')) {
-      dataObj['marketingConsent'] = $('input[name="consent"]').is(':checked');
+      dataObj['marketingConsent'] = capitalizeFirstLetter(String($('input[name="consent"]').is(':checked')));
     }
     dataObj['email'] = this.cache.requestPayload[`email-${this.cache.$componentName}`];
     dataObj['firstName'] = this.cache.requestPayload[`firstName-${this.cache.$componentName}`];

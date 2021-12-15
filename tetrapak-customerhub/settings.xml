@@ -37,12 +37,12 @@
                			</snapshots>
             		</repository>
                         <repository>
-                                <id>snapshots</id>
+                                <id>central</id>
                                 <snapshots>
                                     <enabled>true</enabled>
                                 </snapshots>
-                                <name>libs-snapshot</name>
-                                <url>https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local</url>
+                                <name>libs-release</name>
+                                <url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
                         </repository>
          	</repositories>
          	<pluginRepositories>

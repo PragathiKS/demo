@@ -46,7 +46,7 @@
                                                             <sly data-sly-use.inputField="/apps/publicweb/components/molecules/inputfield/inputfield-template.html" data-sly-call="${inputField.inputfield_template @ inputType='text', id=lastnameid, label='pw.form.label.lastName', error='pw.form.errormsg.lastname', required=true, autoLocatorInput='scfLastNameBox', autoLocatorLabel='scfLastNameLabel', inputClass='validateForTags'}">
                                                             </sly>
                                                         </div>
-                                                        
+
                                                         <div class="country-field-wrapper col-lg-12 formfield">
                                                             <div class="form-group country-field country"
                                                                 data-name-label="${'pw.form.country' @i18n}">
@@ -117,7 +117,7 @@
                                                                 data-sly-call="${inputField.inputfield_template @ inputType='text', id=companyid, label='pw.form.label.company', error='pw.form.errormsg.company', autoLocatorInput='scfCompanyBox', autoLocatorLabel='scfCompanyLabel', inputClass='validateForTags'}">
                                                             </sly>
                                                         </div>
-                                                        
+
                                                         <div class="position-field-wrapper col-lg-12 formfield position-${componentName}">
                                                             <div class="form-group position-field position"
                                                                 data-name-label="${'pw.form.position' @i18n}">
@@ -138,7 +138,9 @@
                                                                         <a href="#" class="dropdown-item"
                                                                             data-field-name="position"
                                                                             data-field-title="positionTitle"
-                                                                            data-title="${position.key}">
+                                                                            data-title="${position.value}"
+                                                                            data-key="${position.key}"
+                                                                            >
                                                                             ${position.value}
                                                                         </a>
                                                                     </div>
@@ -169,9 +171,11 @@
                                                                     <div class="dropdown-menu pw-form__dropdown__menu function-dropdown-select"
                                                                         data-sly-list.function="${data.functionOptions}" data-dropdownType="function">
                                                                         <a href="#" class="dropdown-item"
+                                                                            data-key="${function.key}"
                                                                             data-field-name="function"
                                                                             data-field-title="functionTitle"
-                                                                            data-title="${function.key}">
+                                                                            data-title="${function.value}"
+                                                                            >
                                                                             ${function.value}
                                                                         </a>
                                                                     </div>

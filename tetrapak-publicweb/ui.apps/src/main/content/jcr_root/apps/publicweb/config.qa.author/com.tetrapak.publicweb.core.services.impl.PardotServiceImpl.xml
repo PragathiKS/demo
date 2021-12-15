@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="sling:OsgiConfig"
-          pardotBusinessInquiryServiceUrl="http://go.tetrapak.com/l/857883/2020-05-29/w6xt"
           pardotSubscriptionFormURL="http://go.tetrapak.com/l/857883/2020-05-29/w6z5"
           pardotTokenGenerationApiClientId="iyrBxL1yeztoTE3BXmkMOPe7ztl1B80X"
 		  pardotTokenGenerationApiClientSecret="I4r5fA1hGQtPzgCe"
-          pardotSubscribersApiURL="https://api-dev.tetrapak.com/experimental/externalnewsletters"
+          pardotSubscribersApiURL="https://api-dev.tetrapak.com/externalnewsletters"
           pardotTokenGenerationUrl="https://api-dev.tetrapak.com/oauth2/token"
 		  customTokenGenerationUrl="https://api-mig.tetrapak.com/oauth2/token"
 		  customFormServiceUrl="https://api-mig.tetrapak.com/cfe/pardotforms/mock/forms"

@@ -7,6 +7,8 @@
           <form class="pw-form pw-form-businessEnquiry" accept-charset="UTF-8" data-bef-api-servlet="${data.apiUrl}"
             data-bef-countryCode="${data.siteCountry}" data-bef-langCode="${data.siteLanguage}" data-bef-pardotURL="${data.befPardotURL}" data-china-bef-pardotURL="${data.befChinaPardotURL}" autocomplete="off">
             <!--step1 start -->
+            <input type="text" name="pardot_extra_field" id="pardot_extra_field_bef" class="d-none"
+            tabindex="-1" title="pardot business enquiry inpuut field" />
             <div class="bef-tab-pane active" data-stepNumber="1" data-stepName="purposeOfContact" role="tabpanel"
               id="bef-step-1">
               <div class="row no-gutters">
@@ -63,7 +65,7 @@
                           data-sly-call="${radioField.radiofieldinput_template @ id='requestAProductInfo',  required=true, label='pw.form.businessenq.requestforproductinfo', name='purposeOfContactOptionsInBusinessEq', locale= 'en', value='Request for Information', labelClass='mb-0'}">
                         </sly>
                         <input type="hidden" name="purposeOfContactInBusinessEqTitle" class="form-control"
-                          id="purposeOfContactInBusinessEqTitle" required>
+                          id="purposeOfContactInBusinessEqTitle" data-analyticsField="Purpose of contact" required>
                         <div class="errorMsg purposeOfBusinessContactError">${'pw.form.errormsg.selectOneOption' @i18n }
                         </div>
                       </div>
@@ -103,7 +105,7 @@
                         </div>
 
                         <input type="hidden" name="purposeOfInterestAreaEqTitle" class="form-control"
-                          id="purposeOfInterestAreaEqTitle" required>
+                          id="purposeOfInterestAreaEqTitle" data-analyticsField="Business area of interest" required>
                         <div class="errorMsg purposeOfBusinessIntersetError">
                           ${'pw.form.errormsg.businessareofinterest' @i18n}
                         </div>
@@ -297,7 +299,7 @@
                             data-sly-call="${radioField.radiofieldinput_template @ id='reqBESolution', required=true, label='pw.form.businessenq.lookingForAlternativeText', name='businessEnquiryNeed', locale= 'en', value='Looking for new alternatives or a new solution provider', labelClass='mb-0'}">
                           </sly>
                           <input type="hidden" name="businessEnquiryNeedEqTitle" class="form-control"
-                            id="businessEnquiryNeedEqTitle" required>
+                            id="businessEnquiryNeedEqTitle" data-analyticsField="${'pw.form.businessenq.bestDescriptionText' @i18n}" required>
                           <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}
                           </div>
                         </div>
@@ -305,7 +307,7 @@
                         <div class="role-field-wrapper formfield col-sm-12 col-lg-6">
                           <div class="formfield role-field country form-group"
                             data-role-name-label="${'pw.form.label.yourRole' @i18n}">
-                            <label class="role-value" for="country">
+                            <label class="non-title-field" for="country">
                               ${'pw.form.label.yourRole' @i18n}
                             </label>
                             <div class="pw-form__dropdown dropdown text-left">
@@ -324,8 +326,7 @@
                                   </a>
                                 </div>
                               </sly>
-                              <input type="hidden" name="businessEnquiryProfile" class="form-control validateForTags" id="role"
-                                required>
+                              <input type="hidden" name="businessEnquiryProfile" data-analyticsField="${'pw.form.label.yourRole' @i18n}" class="form-control validateForTags" id="role" required>
                             </div>
                             <div data-role-error-msg="${'pw.form.errormsg.selectOneOption' @i18n}" class="errorMsg">
                               ${'pw.form.errormsg.selectOneOption' @i18n}</div>
@@ -336,7 +337,7 @@
                           <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
                             for="businessEnquiryMessageText">${'pw.form.label.message' @i18n}</label>
                           <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
-                            id="businessEnquiryMessageText" rows="12" name="businessEnquiryMessage" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
+                            id="businessEnquiryMessageText" rows="12" name="businessEnquiryMessage" data-analyticsField="${'pw.form.label.message' @i18n}" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
                           <div data-error-msg="${'pw.form.errormsg.enterthisfield' @i18n}" class="errorMsg">
                             ${'pw.form.errormsg.enterthisfield' @i18n}</div>
                         </div>
@@ -459,8 +460,8 @@
                         </div>
                         <div class="country-field-wrapper col-sm-12">
                           <div class="formfield country-field country form-group"
-                            data-country-name-label="${'pw.form.country' @i18n}">
-                            <label class="country-value" for="country"
+                            data-country-name-label="${'pw.form.label.country' @i18n}">
+                            <label class="non-title-field" for="country"
                               auto_locator="businessContactUsCountrySelectorHelpText">${'pw.form.label.country' @
                               i18n}</label>
                             <div class="pw-form__dropdown dropdown text-left">
@@ -477,8 +478,7 @@
                                   ${country.value}
                                 </a>
                               </div>
-                              <input type="hidden" name="countryTitle" class="form-control validateForTags" id="country"
-                                required>
+                              <input type="hidden" name="countryTitle" class="form-control validateForTags" id="country" required>
                             </div>
                             <div data-country-error-msg="${'pw.form.errormsg.selectOneOption' @i18n}" class="errorMsg">
                               ${'pw.form.errormsg.selectOneOption' @i18n}</div>
@@ -493,7 +493,7 @@
                         <div class="position-field-wrapper col-sm-12">
                           <div class="formfield position-field country form-group"
                             data-position-name-label="${'pw.form.label.position' @i18n}">
-                            <label class="position-value" for="country">${'pw.form.label.position' @
+                            <label class="non-title-field" for="country">${'pw.form.label.position' @
                               i18n}</label>
                             <div class="pw-form__dropdown dropdown text-left">
                               <button
@@ -511,8 +511,7 @@
                                   </a>
                                 </div>
                               </sly>
-                              <input type="hidden" name="position" class="form-control validateForTags" id="position"
-                                required>
+                              <input type="hidden" name="position" class="form-control validateForTags" id="position" required>
                             </div>
                             <div data-position-error-msg="${'pw.form.errormsg.selectOneOption' @i18n}" class="errorMsg">
                               ${'pw.form.errormsg.selectOneOption' @i18n}</div>
@@ -522,7 +521,7 @@
                         <div class="function-field-wrapper col-sm-12">
                           <div class="formfield function-field country form-group"
                             data-function-name-label="${'pw.form.label.function' @i18n}">
-                            <label class="function-value" for="country">${'pw.form.label.function' @
+                            <label class="non-title-field" for="country">${'pw.form.label.function' @
                               i18n}</label>
                             <div class="pw-form__dropdown dropdown text-left">
                               <button
@@ -540,8 +539,7 @@
                                   </a>
                                 </div> 
                               </sly>      
-                              <input type="hidden" name="function" class="form-control validateForTags" id="function"
-                                required>
+                              <input type="hidden" name="function" class="form-control validateForTags" id="function" required>
                             </div>
                             <div data-function-error-msg="${'pw.form.errormsg.selectOneOption' @i18n}" class="errorMsg">
                               ${'pw.form.errormsg.selectOneOption' @i18n}</div>
@@ -554,7 +552,7 @@
                         <div class="formfield">
                           <div class="form-group formfield">
                             <div class="checkbox-field">
-                              <label class="checkbox-label" for="befconsentcheckbox">
+                              <label class="checkbox-label non-title-field" for="befconsentcheckbox">
                                 <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="befconsentcheckbox" name="marketingConsent">
                                   <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                                   ${data.consentConfig.marketingConsent @ context='html'}

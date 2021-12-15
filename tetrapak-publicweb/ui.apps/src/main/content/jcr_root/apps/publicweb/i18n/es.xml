@@ -15,14 +15,6 @@
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.findMyOffice.viewLargerMap"
         sling:message="Ver mapa más grande"/>
-    <pw.form.businessenq.contactme
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.businessenq.contactme"
-        sling:message="Contácteme"/>
-    <pw.form.businessenq.endtoendsolution
-        jcr:primaryType="sling:MessageEntry"
-        sling:key="pw.form.businessenq.endtoendsolution"
-        sling:message="Soluciones integrales"/>
     <pw.form.businessenq.packaging
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.businessenq.packaging"
@@ -98,7 +90,7 @@
     <pw.form.errormsg.country
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.country"
-        sling:message="Seleccione país"/>
+        sling:message="Seleccione país/región"/>
     <pw.form.errormsg.firstname
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.errormsg.firstname"
@@ -186,7 +178,7 @@
     <pw.form.label.countryPlaceholder
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.countryPlaceholder"
-        sling:message="Seleccionar país/ubicación"/>
+        sling:message="Seleccione su país/región"/>
     <pw.form.label.email
         jcr:primaryType="sling:MessageEntry"
         sling:key="pw.form.label.email"

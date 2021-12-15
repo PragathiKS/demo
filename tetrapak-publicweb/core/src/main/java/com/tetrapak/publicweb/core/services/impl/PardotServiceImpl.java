@@ -72,16 +72,6 @@ public class PardotServiceImpl implements PardotService {
     }
 
     /**
-     * Gets the busines inquiry service URL.
-     *
-     * @return the busines inquiry service URL
-     */
-    @Override
-    public String getBusinesInquiryServiceURL() {
-        return config.pardotBusinessInquiryServiceUrl();
-    }
-
-    /**
      * Submit pardot post respose.
      *
      * @param parameters the parameters
