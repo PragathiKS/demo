@@ -4,7 +4,7 @@ import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-
+import { trackFormStart, trackFormComplete, trackFormError, trackLinkClick } from './AddEquipment.analytics.js';
 /**
  * Render form
  */
@@ -134,6 +134,7 @@ class AddEquipment {
   cache = {};
   initCache() {
     this.cache.files = [];
+    this.cache.firstInteract = false;
     this.cache.$contentWrapper = this.root.find('.js-tp-add-equipment__content-wrapper');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.configJson = this.root.find('.js-tp-add-equipment__config').text();
@@ -178,17 +179,25 @@ class AddEquipment {
       e.preventDefault();
       let isFormValid = true;
       $this.removeAllErrorMessages();
+      const formErrors = [];
       const requiredFrmElements = $this.root.find('.js-tp-add-equipment__form-element [required]');
       requiredFrmElements.each(function () {
         if (!$(this).val()) {
           isFormValid = false;
           $this.addErrorMsg(this);
+          formErrors.push({
+            formErrorMessage: $(this).closest('.js-tp-add-equipment__form-element').find('.error-msg').text().trim(),
+            formErrorField: ($(this).is('input') || $(this).is('textarea')) ? $(this).closest('.js-tp-add-equipment__form-element').find('.tp-add-equipment__field-label').text().trim() : $(this).closest('.js-tp-add-equipment__form-element').find('.tpatom-dropdown__text').text().trim()
+          });
         }
       });
       if (isFormValid) {
         $this.cache.$contentWrapper.addClass('d-none');
         $this.cache.$spinner.removeClass('d-none');
         $this.submitForm(e);
+      } else {
+        const formName = this.root.find('.js-tp-add-equipment__title').text().trim();
+        trackFormError(formName, formErrors);
       }
     });
 
@@ -196,6 +205,7 @@ class AddEquipment {
       $this.cache.$contentWrapper.addClass('d-none');
       $this.cache.$spinner.removeClass('d-none');
       $this.cache.files = [];
+      $this.cache.firstInteract = false;
       $this.renderForm();
     });
 
@@ -203,6 +213,25 @@ class AddEquipment {
       const sanitized = e.target.value.replace(/<\/?script>|[<>]/gm, '');
       $(e.target).val(sanitized);
     });
+
+    $this.root.on('focus', 'textarea, input, select, button', () => {
+      if (!$this.cache.firstInteract) {
+        $this.cache.firstInteract = true;
+        $this.trackFormStart();
+      }
+    });
+    $this.root.on('click', 'button', (e) => {
+      $this.trackLinkClick(e);
+    });
+  }
+  trackLinkClick(e) {
+    const formName = this.root.find('.js-tp-add-equipment__title').text().trim();
+    const linkName = $(e.currentTarget).text().trim();
+    trackLinkClick(formName, linkName);
+  }
+  trackFormStart() {
+    const formName = this.root.find('.js-tp-add-equipment__title').text().trim();
+    trackFormStart(formName);
   }
   submitForm(e) {
     const $this = this;
@@ -226,6 +255,16 @@ class AddEquipment {
           },
           showLoader: true
         }).done(() => {
+          const formFields = [];
+          for(const data of formData.entries()) {
+            const $el = $('#' + data[0]);
+            formFields.push({
+              formFieldName: ($el.is('input') || $el.is('textarea')) ? $el.closest('.js-tp-add-equipment__form-element').find('.tp-add-equipment__field-label').text().trim() : $el.closest('.js-tp-add-equipment__form-element').find('.tpatom-dropdown__text').text().trim(),
+              formFieldValue: data[1]
+            });
+          }
+          const formName = this.root.find('.js-tp-add-equipment__title').text().trim();
+          trackFormComplete(formName, formFields);
           $this.renderSubmit();
         }).fail(() => {
           $this.cache.$contentWrapper.removeClass('d-none');

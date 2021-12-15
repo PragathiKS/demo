@@ -3,6 +3,7 @@ import AddEquipment from './AddEquipment';
 import addEquipmentTemplate from '../../../test-templates-hbs/addEquipment.hbs';
 import { ajaxWrapper } from "../../../scripts/utils/ajax";
 import auth from "../../../scripts/utils/auth";
+import {trackLinkClick} from "./AddEquipment.analytics";
 
 describe('AddEquipment', function () {
   const jqRef = {
@@ -35,6 +36,8 @@ describe('AddEquipment', function () {
     this.renderFilesSpy = sinon.spy(this.addEquipment, 'renderFiles');
     this.setRemoveErrorMsgSpy = sinon.spy(this.addEquipment, 'removeErrorMsg');
     this.setFilterFilesSpy = sinon.spy(this.addEquipment, 'filterFiles');
+    this.setTrackLinkClickSpy = sinon.spy(this.addEquipment, 'trackLinkClick');
+    this.setTrackFormStartSpy = sinon.spy(this.addEquipment, 'trackFormStart');
 
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({statusCode:'200'}));
@@ -64,16 +67,12 @@ describe('AddEquipment', function () {
     this.tokenStub.restore();
     this.setRemoveErrorMsgSpy.restore();
     this.setFilterFilesSpy.restore();
+    this.setTrackLinkClickSpy.restore();
+    this.setTrackFormStartSpy.restore();
   });
 
 
   it('should remove error messages', function (done) {
-    // setDom(this);
-    // if (!this.addEquipment.cache || !this.addEquipment.cache.files) {
-    //   this.addEquipment.cache = {
-    //     files: []
-    //   }
-    // }
     this.addEquipment.cache.files.push('file');
     this.addEquipment.setFieldsMandatory();
     expect(this.setRemoveErrorMsgSpy.called).to.be.true;
@@ -156,6 +155,20 @@ describe('AddEquipment', function () {
     setDom(this);
     $('.js-tp-add-equipment__drag-and-drop-button').trigger('click');
     expect(this.addInputTypeFileSpy.called).to.be.true;
+    done();
+  });
+
+  it('should button click track', function (done) {
+    setDom(this);
+    $('.js-tp-add-equipment__submit').trigger('click');
+    expect(this.setTrackLinkClickSpy.called).to.be.true;
+    done();
+  });
+
+  it('should form start track', function (done) {
+    setDom(this);
+    $('#addEquipmentSerialNumber').trigger('focus');
+    expect(this.setTrackFormStartSpy.called).to.be.true;
     done();
   });
 
