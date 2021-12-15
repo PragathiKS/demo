@@ -92,7 +92,6 @@ public final class HttpUtil {
      */
     public static void writeJsonResponse(SlingHttpServletResponse response, JsonObject jsonResponse) throws IOException {
         response.setContentType("application/json");
-        response.setStatus(jsonResponse.get("status").getAsInt());
         response.getWriter().write(jsonResponse.toString());
     }
 
