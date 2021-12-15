@@ -5,6 +5,7 @@ import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics } from './MyEquipment.analytics';
 
 import { _paginate } from './MyEquipment.paginate';
 import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
@@ -194,6 +195,7 @@ class MyEquipment {
       this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:false });
       $('.tp-my-equipment__header-actions').removeClass('show');
       $modal.modal();
+      _customizeTableBtnAnalytics($myEquipmentCustomizeTableAction);
     });
 
     $mobileHeadersActions.on('click', () => {
@@ -284,6 +286,7 @@ class MyEquipment {
         this.cache.activePage = $btn.data('page-number');
         this.cache.skipIndex = $btn.data('skip');
         this.renderNewPage({'resetSkip': false});
+        _paginationAnalytics($btn);
       }
     });
   }
@@ -381,7 +384,7 @@ class MyEquipment {
     }
   }
 
-  renderNewCountry = (label) => {
+  renderNewCountry = (label, analyticsAction) => {
     const { $countryFilterLabel, itemsPerPage } = this.cache;
     const equipmentApi = this.cache.equipmentApi.data('list-api');
     this.cache.$spinner.removeClass('d-none');
@@ -415,6 +418,10 @@ class MyEquipment {
           this.renderPaginationTableData(tableData);
           this.renderSearchCount();
           this.updateFilterCountValue(label,1,$countryFilterLabel);
+
+          if (analyticsAction && analyticsAction.action === 'addedFilter') {
+            _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
+          }
         }).fail(() => {
           this.cache.$spinner.addClass('d-none');
           this.cache.$content.removeClass('d-none');
@@ -498,6 +505,7 @@ class MyEquipment {
     let filterCount = 0;
     let filterData = [];
     let label;
+    let analyticsAction = {};
 
     switch (activeFilterForm) {
       case 'country':{
@@ -586,9 +594,16 @@ class MyEquipment {
       }
     }
 
+    analyticsAction = {
+      action: options && options.removeFilter ? 'removedFilter' : 'addedFilter',
+      targetFilter: $activeFilterBtn,
+      items: this.cache.combinedFiltersObj[activeFilterForm]
+    };
+
     // if Country filter change
     if (activeFilterForm === 'country') {
-      this.renderNewCountry(label);
+      analyticsAction.items = this.getActiveCountryCode();
+      this.renderNewCountry(label, analyticsAction);
       return;
     }
 
@@ -597,12 +612,14 @@ class MyEquipment {
       const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
       this.renderPaginationTableData(tableData);
       this.cache.$modal.modal('hide');
+      _addShowHideFilterAnalytics(filterData);
+
       return;
     }
 
     // All other filters
     this.updateFilterCountValue(label,filterCount,$activeFilterBtn);
-    this.renderNewPage({'resetSkip': true});
+    this.renderNewPage({'resetSkip': true, analyticsAction});
     this.getAllAvailableFilterVals(authData,  ['statuses', 'types', 'lines', 'customers'], false);
     this.cache.$modal.modal('hide');
   }
@@ -649,6 +666,9 @@ class MyEquipment {
     const hideLabel = this.cache.$showHideAllFiltersBtn.data('hide-label');
     const $label = this.cache.$showHideAllFiltersBtn.find('.tpatom-btn__text');
     const currentLabel = $.trim($label.text());
+
+    _hideShowAllFiltersAnalytics(currentLabel, currentLabel === showLabel ? 'filterShow' : 'filterHide');
+
     $allBtnFilters.toggle();
     $label.text(currentLabel === showLabel ? hideLabel : showLabel);
   }
@@ -715,7 +735,7 @@ class MyEquipment {
     this.cache.$activeFilterBtn = $filterBtn;
   }
 
-  renderNewPage = ({resetSkip}) => {
+  renderNewPage = ({resetSkip, analyticsAction}) => {
     const {itemsPerPage, countryData, activeSortData, combinedFiltersObj} = this.cache;
     const equipmentApi = this.cache.equipmentApi.data('list-api');
     const activeCountry = countryData.filter(e => e.isChecked);
@@ -768,6 +788,14 @@ class MyEquipment {
           this.renderPaginationTableData(tableData);
           this.renderSearchCount();
           this.mapTableColumn();
+
+          if (analyticsAction && analyticsAction.action === 'removedFilter') {
+            _removeFilterAnalytics(analyticsAction.targetFilter, response.meta.total);
+          }
+
+          if (analyticsAction && analyticsAction.action === 'addedFilter') {
+            _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
+          }
         }).fail(() => {
           this.cache.$content.removeClass('d-none');
           this.cache.$spinner.addClass('d-none');
