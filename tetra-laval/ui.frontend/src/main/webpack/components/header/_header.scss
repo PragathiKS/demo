@@ -193,6 +193,10 @@
                 margin-left: 20px;
                 margin-right: 0;
             }
+
+            > a {
+                text-transform: uppercase;
+            }
         }
 
         &-options {
