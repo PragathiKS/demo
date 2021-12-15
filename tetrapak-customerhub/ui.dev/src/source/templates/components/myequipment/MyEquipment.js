@@ -469,6 +469,18 @@ class MyEquipment {
         filterPropertyKey = 'customerNumber';
         alphabeticalSortKey = 'optionDisplayText';
         break;
+      case 'equipmentStatus':
+        optionDisplayTextKey = 'equipmentStatusDesc';
+        optionValueKey = 'equipmentStatus';
+        filterPropertyKey = 'equipmentStatus';
+        alphabeticalSortKey = 'optionDisplayText';
+        break;
+      case 'equipmentType':
+        optionDisplayTextKey = 'equipmentTypeDesc';
+        optionValueKey = 'equipmentType';
+        filterPropertyKey = 'equipmentType';
+        alphabeticalSortKey = 'optionDisplayText';
+        break;
       default:
         optionDisplayTextKey = filterByProperty;
         optionValueKey = filterByProperty;
