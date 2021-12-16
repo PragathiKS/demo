@@ -27,7 +27,6 @@ import java.util.List;
 public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
 
     private static final String MYEQUIPMENT_REQUEST_UPDATE = "myequipment-requestUpdate";
-    private static final String TETRAPAK_CUSTOMERHUB = "tetrapak-customerhub";
 
     private HttpClient client = HttpClientBuilder.create().build();
 
@@ -54,7 +53,7 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
         requestBean.setEquipmentNumber(xssFilter.filter(bean.getEquipmentId()));
         requestBean.setSerialNumber(xssFilter.filter(bean.getSerialNumber()));
         requestBean.setComment(xssFilter.filter(bean.getComments()));
-        requestBean.setSource(TETRAPAK_CUSTOMERHUB);
+        requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB);
         requestBean.setMetaDatas(createCollectionOfMetadatas(bean));
 
         return requestBean;

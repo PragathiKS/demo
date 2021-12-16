@@ -44,8 +44,8 @@ function _renderEquipInfoCardWithData() {
       },
       showLoader: true
     })).then((res1, res2) => {
-      this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
-      this.cache.equipmentStatuses = res2[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
+      this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName, selected: countryCode === this.cache.data.countryCode }));
+      this.cache.equipmentStatuses = res2[0].data.map(({ equipmentStatus, equipmentStatusDesc }) => ({ key: equipmentStatus, desc: equipmentStatusDesc, selected: equipmentStatus === this.cache.data.equipmentStatus }));
       this.cache.$spinner.addClass('d-none');
       this.cache.$contentWrapper.removeClass('d-none');
       this.renderEquipInfoCard({update: true});
@@ -91,9 +91,7 @@ function _renderEquipmentDetails() {
         } else {
           data.equipData = data.data[0];
           data.i18nKeys = i18nKeys;
-          $this.cache.id = id;
-          $this.cache.serialNumber = data.equipData.manufacturerSerialNumber;
-          $this.cache.data = data;
+          $this.cache.data = { id, ...data.equipData };
         }
       }
     }, () => {
@@ -105,12 +103,12 @@ function _renderEquipmentDetails() {
 
 function  _renderEquipInfoCard(view) {
   const $this = this;
-  const { countryData, id, equipmentStatuses, data, i18nKeys } = this.cache;
+  const { countryData, equipmentStatuses, data, i18nKeys } = this.cache;
 
   render.fn({
     template: 'equipmentDetailsInfoCard',
     data: {
-      equipmentNumber: id,
+      equipmentNumber: this.cache.data.id,
       ...data,
       statuses: equipmentStatuses,
       countries: countryData,
@@ -152,7 +150,7 @@ function _bindFormChangeEvents() {
   const initialFormData = $form.serialize();
 
   $('input, textarea, select', $form).each((_, item) => {
-    $(item).on('blur', () => {
+    $(item).on('input change', () => {
       if ($form.serialize() !== initialFormData && $('#position').val()) {
         $updateBtn.removeAttr('disabled');
       } else {
@@ -179,7 +177,7 @@ class EquipmentDetails {
     this.cache.$modal = this.root.parent().find('.js-update-modal');
     this.cache.countryData = [];
     this.cache.formData = {};
-    this.cache.id;
+    this.cache.data = {};
     this.cache.equipmentStatuses = [];
     this.cache.$updateBtn = this.root.find('.js-equipment-details__req-make-update');
 
@@ -207,19 +205,26 @@ class EquipmentDetails {
 
     this.root.on('click', '.js-equipment-details__req-update',  (e) => {
       e.preventDefault();
+      const { data: equipData } = this.cache;
       const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
-      const { equipData } = this.cache.data;
       this.cache.formData = {
-        equipmentId: this.cache.id,
-        oldCountry: this.cache.countryData.find(country => country.desc === equipData.countryName)?.key,
+        equipmentId: this.cache.data.id,
+        oldCountry: equipData.countryCode,
         oldLocation: equipData.location,
-        oldSiteName: equipData.siteName,
+        oldSiteName: equipData.site,
         oldLineName: equipData.lineName,
         oldEquipmentStatus: equipData.equipmentStatus,
         oldPosition: equipData.position,
         oldEquipmentTypeDesc: equipData.equipmentTypeDesc,
-        ...data,
-        serialNumber: this.cache.serialNumber
+        comments: data.comments,
+        country: data.country || equipData.countryCode,
+        location: data.location || equipData.location,
+        siteName: data.siteName || equipData.siteName,
+        lineName: data.lineName || equipData.lineName,
+        equipmentStatus: data.equipmentStatus || equipData.equipmentStatus,
+        position: data.position || equipData.position,
+        equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,
+        serialNumber: this.cache.data.serialNumber
       };
       this.renderEquipUpdateModal();
     });
@@ -244,6 +249,7 @@ class EquipmentDetails {
             this.cache.$spinner.addClass('d-none');
             if(![200, 201].includes(res.status)) {
               $('.js-equipment-details__error').removeClass('d-none');
+              return;
             }
             this.cache.$contentWrapper.removeClass('d-none');
             this.cache.$modal.modal('hide');

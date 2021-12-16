@@ -1,4 +1,3 @@
-
 package com.tetrapak.publicweb.core.models;
 
 import static org.junit.Assert.assertEquals;
