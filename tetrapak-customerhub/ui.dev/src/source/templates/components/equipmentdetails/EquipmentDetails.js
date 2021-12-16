@@ -47,10 +47,10 @@ function _renderEquipInfoCardWithData() {
       this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName, selected: countryCode === this.cache.data.countryCode }));
       this.cache.equipmentStatuses = res2[0].data.map(({ equipmentStatus, equipmentStatusDesc }) => ({ key: equipmentStatus, desc: equipmentStatusDesc, selected: equipmentStatus === this.cache.data.equipmentStatus }));
       this.cache.$spinner.addClass('d-none');
-      this.cache.$contentWrapper.removeClass('d-none');
+      this.cache.$content.removeClass('d-none');
       this.renderEquipInfoCard({update: true});
     }).fail(() => {
-      this.cache.$contentWrapper.removeClass('d-none');
+      this.cache.$content.removeClass('d-none');
       this.cache.$spinner.addClass('d-none');
     });
   });
@@ -68,7 +68,7 @@ function _renderEquipmentDetails() {
       url: {
         path: `${$this.cache.detailsApi}/${id}`
       },
-      target: '.js-equipment-details__content',
+      target: $this.cache.$content,
       ajaxConfig: {
         method: ajaxMethods.GET,
         beforeSend(jqXHR) {
@@ -95,7 +95,7 @@ function _renderEquipmentDetails() {
         }
       }
     }, () => {
-      $this.cache.$contentWrapper.removeClass('d-none');
+      $this.cache.$content.removeClass('d-none');
       $this.cache.$spinner.addClass('d-none');
     });
   });
@@ -145,13 +145,13 @@ function  _renderEquipUpdateModal() {
 
 function _bindFormChangeEvents() {
   const $this = this;
-  const $form = $this.cache.$contentWrapper.find('.js-equipment-details__form');
+  const $form = $this.cache.$content.find('.js-equipment-details__form');
   const $updateBtn = $form.find('.js-equipment-details__req-update');
   const initialFormData = $form.serialize();
 
   $('input, textarea, select', $form).each((_, item) => {
     $(item).on('input change', () => {
-      if ($form.serialize() !== initialFormData && $('#position').val()) {
+      if ($form.serialize() !== initialFormData) {
         $updateBtn.removeAttr('disabled');
       } else {
         $updateBtn.attr('disabled', 'disabled');
@@ -173,6 +173,7 @@ class EquipmentDetails {
     this.cache.statusApi = this.root.data('status-api');
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.$contentWrapper = this.root.find('.tp-equipment-details__content-wrapper');
+    this.cache.$content = this.root.find('.js-equipment-details__content');
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$modal = this.root.parent().find('.js-update-modal');
     this.cache.countryData = [];
@@ -205,6 +206,18 @@ class EquipmentDetails {
 
     this.root.on('click', '.js-equipment-details__req-update',  (e) => {
       e.preventDefault();
+      let isFormValid = true;
+      this.removeAllErrorMessages();
+      const requiredFormElements = this.root.find('input.js-equipment-details__form-element');
+      requiredFormElements.each(function () {
+        if (!$(this).val()) {
+          isFormValid = false;
+          this.addErrorMsg(this);
+        }
+      });
+      if (!isFormValid) {
+        return;
+      }
       const { data: equipData } = this.cache;
       const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
       this.cache.formData = {
@@ -251,11 +264,11 @@ class EquipmentDetails {
               $('.js-equipment-details__error').removeClass('d-none');
               return;
             }
-            this.cache.$contentWrapper.removeClass('d-none');
+            this.cache.$content.removeClass('d-none');
             this.cache.$modal.modal('hide');
             this.renderEquipInfoCard({confirmed: true});
           }).fail(() => {
-            this.cache.$contentWrapper.removeClass('d-none');
+            this.cache.$content.removeClass('d-none');
             this.cache.$spinner.addClass('d-none');
           });
       });
@@ -264,6 +277,25 @@ class EquipmentDetails {
     this.root.on('click', '.js-close-btn, .js-equipment-details__conf-cancel',  () => {
       this.cache.$modal.modal('hide');
     });
+  }
+
+  addErrorMsg(el) {
+    const formElement = $(el).closest('.js-equipment-details__form-element');
+    formElement.addClass('tp-equipment-details__info-line--error');
+    formElement.find('.error-msg').addClass('error-msg--active');
+  }
+
+  removeAllErrorMessages() {
+    const $this = this;
+    const requiredFrmElements = $this.root.find('.error-msg--active');
+    requiredFrmElements.each(function () {
+      $this.removeErrorMsg(this);
+    });
+  }
+
+  removeErrorMsg(el) {
+    $(el).removeClass('error-msg--active');
+    $(el).closest('.js-equipment-details__form-element').removeClass('tp-equipment-details__info-line--error');
   }
 
   renderEquipInfoCardWithData(){

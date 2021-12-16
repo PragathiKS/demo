@@ -82,8 +82,21 @@ describe('EquipmentDetails', function () {
     done();
   });
 
+  it('should not submit form when no required fields are provided', function (done) {
+    this.equipmentDetails.cache.$updateBtn.click();
+    $('#position').val('0070');
+    expect(this.renderEquipUpdateModalSpy.called).to.be.false;
+    expect($('.error-msg--active')).to.exist;
+    done();
+  });
+
   it('should submit form and open modal when required fields are not empty', function (done) {
+    $('#position').val('0070');
+    $('#siteName').val('Biesenhofen');
+    $('#location').val('DL');
+    $('#lineName').val('BASE');
     $('#comments').val('Test');
+
     $('.js-equipment-details__req-update').trigger('click');
     expect(this.renderEquipUpdateModalSpy.called).to.be.true;
     done();

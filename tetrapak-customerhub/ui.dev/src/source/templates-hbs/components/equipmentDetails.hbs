@@ -44,10 +44,7 @@
                 {{/if}}
             {{else}}
                 <div class="tp-equipment-details__action-wrap">
-                    <button type="button" class="tp-equipment-details__btn tp-equipment-details__update js-equipment-details__update">
-                        <span>{{i18n key=i18nKeys.updateEquipmentInformation}}</span>
-                        <i class="icon icon-Edit"></i>
-                    </button>
+                    {{> atoms/buttons/button/button iconClass="icon-Edit" modifier="transparent" text=i18nKeys.updateEquipmentInformation baseClass="tp-equipment-details__btn tp-equipment-details__update" jsClass="js-equipment-details__update"}}
                 </div>
                 <div class="tp-equipment-details__note">
                     <span>{{i18n key=i18nKeys.equipmentDetails-statusUpdateHeading}}:</span>
@@ -115,7 +112,7 @@
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.material}}</div>
-        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.material}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.material}} {{equipData.materialDesc}}</div>
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.manufacturerModelNumber}}</div>
@@ -139,7 +136,7 @@
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.manufacturerCountry}}</div>
-        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.countryName}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.manufacturerCountry}}</div>
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.constructionYear}}</div>
