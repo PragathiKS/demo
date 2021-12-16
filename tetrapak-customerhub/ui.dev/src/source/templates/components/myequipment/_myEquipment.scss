@@ -148,6 +148,7 @@
     &__show-hide-button {
         @include margin-right($margin-md);
         color: $color-congress-blue;
+        font-weight: 700;
 
         i {
             @include margin-right(3px);
