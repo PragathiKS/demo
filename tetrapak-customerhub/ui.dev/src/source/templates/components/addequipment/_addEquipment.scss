@@ -28,7 +28,7 @@ $color-green: #8dc63f;
     &__drag-and-drop {
         @include padding($padding-md);
         border-radius: $border-radius;
-        background-color: rgba($color-mercury, $opacity-mid);
+        background-color: $color-wild-sand;
 
         @media #{$desktop} {
             @include padding($padding-l);
