@@ -45,10 +45,14 @@
     }
 
     &__info-line {
-        @include margin-bottom($margin-md);
+        @include margin-bottom(2px);
         display: flex;
         align-items: center;
         font-weight: 500;
+
+        &--error {
+            border: 1px solid $color-alert;
+        }
 
         @media #{$mobile} {
             display: block;
@@ -200,7 +204,12 @@
         @include padding($padding-sm $padding-md);
         border: 1px solid $color-congress-blue;
         display: flex;
-    
+        transition: border $anim-speed-quick $anim-ease;
+
+        &:hover {
+            border-color: $color-sky-blue;
+        }
+        
         i {
             @include margin-left($margin-sm);
         }
@@ -224,5 +233,17 @@
         .tp-equipment-details__req-make-update {
             margin-right: 0;
         }
+    }
+
+    .error-msg {
+        @include font-size($font-sm);
+        @include margin-top(2px);
+        color: $color-alert;
+        visibility: hidden;
+
+        &--active {
+            visibility: visible;
+        }
+
     }
 }
