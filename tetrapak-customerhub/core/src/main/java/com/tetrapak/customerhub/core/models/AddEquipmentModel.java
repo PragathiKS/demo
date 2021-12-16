@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.models;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -532,6 +533,15 @@ public class AddEquipmentModel {
      */
     public String getConstructionYearErrorMsg() { return constructionYearErrorMsg; }
 
+    /**
+     * Gets the Mapped Path of this resource.
+     *
+     * @return the mappedPath
+     */
+    public String getMappedResourcePath() {
+        ResourceResolver resolver = resource.getResourceResolver();
+        return resolver.map(resource.getPath());
+    }
 
     /**
      * init method.
