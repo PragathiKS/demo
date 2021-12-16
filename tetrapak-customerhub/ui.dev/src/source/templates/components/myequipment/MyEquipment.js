@@ -82,6 +82,7 @@ class MyEquipment {
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
     this.cache.$mobileHeadersActions = this.root.find('.js-mobile-header-actions');
     this.cache.$showHideAllFiltersBtn = this.root.find('.js-tp-my-equipment__show-hide-all-button');
+    this.cache.$removeAllFiltersBtn = this.root.find('.js-tp-my-equipment__remove-all-button');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$content = this.root.find('.tp-equipment-content');
@@ -137,7 +138,7 @@ class MyEquipment {
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {
-      const formDetail = { activeForm:'country',header:i18nKeys['country'] };
+      const formDetail = { activeForm:'country',header:i18nKeys['country'], singleButton: true, isRadio: true, radioGroupName: 'countryRadio' };
       this.renderFilterForm(this.cache.countryData, formDetail, this.cache.$countryFilterLabel);
       $modal.modal();
     });
@@ -229,8 +230,9 @@ class MyEquipment {
       this.applyFilter({removeFilter:true});
     });
 
-    this.root.on('click', '.js-tp-my-equipment__remove-all-button',  () => {
+    this.cache.$removeAllFiltersBtn.on('click', () => {
       this.deleteAllFilters();
+      this.toggleRemoveAllFilters(false);
     });
 
     this.cache.$showHideAllFiltersBtn.on('click', () => {
@@ -510,9 +512,18 @@ class MyEquipment {
     }
   }
 
+  toggleRemoveAllFilters = (show) => {
+    if (show && Object.keys(this.cache.combinedFiltersObj).length > 0) {
+      this.cache.$removeAllFiltersBtn.removeAttr('hidden');
+    } else {
+      this.cache.$removeAllFiltersBtn.attr('hidden', 'hidden');
+    }
+  }
+
   applyFilter = (options) => {
     const { activeFilterForm, $activeFilterBtn, i18nKeys, authData } = this.cache;
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
+    const $filtersRadio = this.root.find('.js-tp-my-equipment-filter-radio');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
     let filterCount = 0;
     let filterData = [];
@@ -522,7 +533,7 @@ class MyEquipment {
     switch (activeFilterForm) {
       case 'country':{
         filterData = this.cache.countryData;
-        $filtersCheckbox.each(function(index) {
+        $filtersRadio.each(function(index) {
           if ($(this).is(':checked')) {
             filterCount++;
             filterData[index].isChecked = true;
@@ -634,6 +645,7 @@ class MyEquipment {
     this.renderNewPage({'resetSkip': true, analyticsAction});
     this.getAllAvailableFilterVals(authData,  ['statuses', 'types', 'lines', 'customers'], false);
     this.cache.$modal.modal('hide');
+    this.toggleRemoveAllFilters(true);
   }
 
   deleteAllFilters = () => {
@@ -732,8 +744,10 @@ class MyEquipment {
         formData: data,
         isEquipmentType: formDetail.header === i18nKeys['equipmentType'],
         ...i18nKeys,
-        singleButton: formDetail.singleButton === false ? false : true,
+        singleButton: formDetail.singleButton === true ? true : false,
         customiseTable: formDetail.activeForm === 'customise-table' ? true : false,
+        isRadio: formDetail.isRadio === true ? true : false,
+        radioGroupName: formDetail.radioGroupName,
         isTextInput: formDetail.isTextInput,
         autoLocatorModal: `${formDetail.activeForm}Overlay`,
         autoLocatorInput: `${formDetail.activeForm}InputBox`,
