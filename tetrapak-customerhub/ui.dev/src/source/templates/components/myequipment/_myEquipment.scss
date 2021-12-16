@@ -1,7 +1,32 @@
 .tp-my-equipment {
     &__modal-content {
-        max-height: 500px;
-        overflow: auto;
+        max-height: 640px;
+    }
+    &__modal-body {
+        overflow-y: auto;
+
+        .tpatom-checkbox {
+            &:last-child {
+                .tpatom-checkbox__label {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .tpatom-radio {
+            &:last-child {
+                .tpatom-radio__label {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    &__modal-footer {
+        @include padding($padding-md);
+
+        @media #{$desktop} {
+            @include padding($padding-md $padding-l $padding-l $padding-l);
+        }
     }
     &__header-wrapper {
         @include margin-bottom($margin-l);
@@ -171,6 +196,11 @@
     &__type-group-option {
         & + .tp-my-equipment-filter-options {
             @include margin-left($margin-md);
+            @include margin-bottom($margin-md);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -178,7 +208,8 @@
         @include margin-left($margin-l);
     }
 
-    .tpatom-checkbox__label {
+    .tpatom-checkbox__label,
+    .tpatom-radio__label {
         @include margin-bottom($margin-md);
     }
 

@@ -5,7 +5,7 @@ export const _mapQueryParams = (key) => {
   switch (key) {
     case 'customer':
       return 'customernumbers';
-    case 'equipmentStatus':
+    case 'equipmentStatusDesc':
       return 'equipment-statuses';
     case 'equipmentType':
       return 'equipment-types';
@@ -21,7 +21,7 @@ export const _mapQueryParams = (key) => {
  */
 export const _remapFilterProperty = (filterProperty) => {
   switch (filterProperty) {
-    case 'equipmentStatus':
+    case 'equipmentStatusDesc':
       return 'statuses';
     case 'equipmentType':
       return 'types';
