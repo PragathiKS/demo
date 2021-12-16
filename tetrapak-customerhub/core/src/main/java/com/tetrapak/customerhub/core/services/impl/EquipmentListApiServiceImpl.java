@@ -58,7 +58,7 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 		int processors = Runtime.getRuntime().availableProcessors();
 		executor = Executors.newFixedThreadPool(processors - 1);
 		String numberOfProcessors = String.valueOf(processors);
-		LOGGER.debug("Number of CPU processors : {}", numberOfProcessors);
+		LOGGER.error("Number of CPU processors : {}", numberOfProcessors);
 	}
 
 	@Deactivate
