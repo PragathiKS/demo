@@ -57,7 +57,7 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
             throws IOException {
         LOGGER.debug("Start: Add Equipment - Post");
 
-        JsonObject jsonObject = null;
+        JsonObject jsonObject = new JsonObject();
         Session session = request.getResourceResolver().adaptTo(Session.class);
         if (null == session) {
             LOGGER.error("Equipment Details servlet exception: session is null");
@@ -65,19 +65,22 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
             HttpUtil.writeJsonResponse(response, jsonObject);
             return;
         }
+        try {
+            final String token = getAuthTokenValue(request);
+            AddEquipmentFormBean bean = createRequestAccessBean(request);
 
-        final String token = getAuthTokenValue(request);
-        AddEquipmentFormBean bean = createRequestAccessBean(request);
-
-        if (bean != null && org.apache.commons.lang.StringUtils.isNotEmpty(token)) {
-            jsonObject = addEquipmentService.addEquipment(resolveCustomerName(request), bean, token, prepareAttachments(request));
-            if (jsonObject == null) {
-                jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            if (bean != null && org.apache.commons.lang.StringUtils.isNotEmpty(token)) {
+                jsonObject = addEquipmentService.addEquipment(resolveCustomerName(request), bean, token, prepareAttachments(request));
+                if (jsonObject == null) {
+                    jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+                }
+            } else {
+                jsonObject = HttpUtil.setJsonResponse(jsonObject, "bad request", HttpStatus.SC_BAD_REQUEST);
             }
-        } else {
-            jsonObject = new JsonObject();
-            jsonObject = HttpUtil.setJsonResponse(jsonObject, "bad request", HttpStatus.SC_BAD_REQUEST);
+        } catch (Exception e) {
+            jsonObject = HttpUtil.setJsonResponse(jsonObject, "invalid json request", HttpStatus.SC_BAD_REQUEST);
         }
+        response.setStatus(jsonObject.get(CustomerHubConstants.STATUS).getAsInt());
         HttpUtil.writeJsonResponse(response, jsonObject);
     }
 
@@ -107,9 +110,19 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
     }
 
     private AddEquipmentFormBean createRequestAccessBean(SlingHttpServletRequest request) {
-        String jsonObject = gson.toJson(request.getParameterMap());
-        jsonObject = xssAPI.getValidJSON(jsonObject, StringUtils.EMPTY);
+        String jsonString = gson.toJson(request.getParameterMap());
+        jsonString = xssAPI.getValidJSON(jsonString, StringUtils.EMPTY);
+        JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
+        jsonObject.remove("files");
+        jsonObject = replaceArraysInJsonObject(jsonObject);
         return gson.fromJson(jsonObject, AddEquipmentFormBean.class);
+    }
+
+    private JsonObject replaceArraysInJsonObject(JsonObject jsonObject) {
+        for (String key : jsonObject.keySet()) {
+            jsonObject.addProperty(key, jsonObject.get(key).getAsString());
+        }
+        return jsonObject;
     }
 
     private String getAuthTokenValue(SlingHttpServletRequest request) {

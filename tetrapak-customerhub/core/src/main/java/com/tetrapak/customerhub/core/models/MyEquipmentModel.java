@@ -587,7 +587,7 @@ public class MyEquipmentModel {
 	 * @return the add new equipment url
 	 */
 	public String getAddNewEquipmentUrl() {
-		return LinkUtil.getValidLink(resource, addNewEquipmentUrl);
+		return addNewEquipmentUrl;
 	}
 	/**
 	 * Inits the.
@@ -664,5 +664,13 @@ public class MyEquipmentModel {
 	 */
 	public String getMappedEquipmentDetailsUrl() {
 		return LinkUtil.getValidLink(resource, equipmentDetailsPath);
+	}
+
+	/**
+	 * Get valid url to Add Equipment
+	 * @return mapped url.
+	 */
+	public String getMappedAddNewEquipmentUrl() {
+		return LinkUtil.getValidLink(resource, addNewEquipmentUrl);
 	}
 }
