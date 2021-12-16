@@ -107,12 +107,13 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet {
 
 		if (Objects.nonNull(equipments)) {
 
-			response.setContentType("text/csv");
-			response.setHeader("Content-Disposition", "attachment; filename=" + CSV_FILE_NAME);
+			response.setContentType(CustomerHubConstants.TEXT_CSV);
+			response.setHeader(CustomerHubConstants.CONTENT_DISPOSITION, CustomerHubConstants.ATTACHMENT_FILENAME + CustomerHubConstants.EQUALS_CHAR + CSV_FILE_NAME);
 			ServletOutputStream csvFileOutputStream = response.getOutputStream();
 			StringBuilder csvFileContent = new StringBuilder();
 			String[][] headerRowArray = excelService.getColumnHeaderArray();
 			String[] headerRow = headerRowArray[0];
+			csvFileContent.append(CustomerHubConstants.CSV_COMMA_SEPARATOR).append(CustomerHubConstants.NEWLINE);
 			for (String columnHeading : headerRow) {
 				csvFileContent.append(columnHeading).append(CustomerHubConstants.COMMA);
 				LOGGER.debug("Equipment list CSV File Column heading : {}",columnHeading);

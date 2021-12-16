@@ -475,6 +475,18 @@ public final class CustomerHubConstants {
 
     /** TheConstant for Source name. */
     public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";
+    
+    /** TheConstant TEXT_CSV */
+    public static final String TEXT_CSV = "text/csv";
+    
+    /** TheConstant CONTENT_DISPOSITION */
+    public static final String CONTENT_DISPOSITION= "Content-Disposition";
+    
+    /** TheConstant ATTACHMENT_FILENAME */
+    public static final String ATTACHMENT_FILENAME = "attachment; filename";
+    
+    /** TheConstant CSV_COMMA_SEPARATOR */
+    public static final String CSV_COMMA_SEPARATOR= "sep=,";
 
     /**
      * Instantiates a new customer hub constants.
