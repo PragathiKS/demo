@@ -37,6 +37,8 @@ const libsBaseConfig = {
   jsProcessor: ['default:none', 'min:none']
 };
 
+console.log("__dirname", __dirname);
+
 // Config for `aem-clientlib-generator`
 module.exports = {
   context: BUILD_DIR,
@@ -81,7 +83,10 @@ module.exports = {
           files: [{
             src: path.join(__dirname, '../../tetrapak-commons/ui.dev/src/app/jcr_root/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/*.*'),
             dest: 'fonts/'
-          }]
+          }, {
+             src: path.join(__dirname, 'src/main/webpack/fonts/*.*'),
+             dest: 'fonts/'
+           }]
         }
       }
     }
