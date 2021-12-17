@@ -45,7 +45,7 @@
     }
 
     &__info-line {
-        @include margin-bottom(2px);
+        @include margin-bottom($margin-md);
         display: flex;
         align-items: center;
         font-weight: 500;
@@ -53,6 +53,31 @@
         &--error {
             border: 1px solid $color-alert;
         }
+
+        @media #{$mobile} {
+            display: block;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        i {
+            @include margin-right($margin-md);
+            display: inline-block;
+            color: $color-congress-blue;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__form-element {
+        @include margin-bottom($margin-md);
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        position: relative;
 
         @media #{$mobile} {
             display: block;
@@ -87,7 +112,25 @@
     &__info-cell-2 {
         @include line-height($font-l, $font-baseline);
         font-weight: 700;
-        width: 100%;
+        width: 64%;
+
+        .error-msg {
+            display: none;
+        }
+    }
+
+    &__form-element--error {
+        .tpatom-input-box__input {
+            border-color: $color-alert;
+        }
+
+        .error-msg {
+            @include font-size($font-xs);
+            display: block;
+            color: $color-alert;
+            font-weight: 500;
+            line-height: 16px;
+        }
     }
 
     &__details-row {
@@ -209,7 +252,6 @@
         &:hover {
             border-color: $color-sky-blue;
         }
-        
         i {
             @include margin-left($margin-sm);
         }
@@ -235,15 +277,4 @@
         }
     }
 
-    .error-msg {
-        @include font-size($font-sm);
-        @include margin-top(2px);
-        color: $color-alert;
-        visibility: hidden;
-
-        &--active {
-            visibility: visible;
-        }
-
-    }
 }
