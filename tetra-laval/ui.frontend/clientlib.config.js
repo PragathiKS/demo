@@ -37,8 +37,6 @@ const libsBaseConfig = {
   jsProcessor: ['default:none', 'min:none']
 };
 
-console.log("__dirname", __dirname);
-
 // Config for `aem-clientlib-generator`
 module.exports = {
   context: BUILD_DIR,
