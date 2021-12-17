@@ -1,7 +1,11 @@
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
-import com.tetrapak.customerhub.core.beans.equipmentlist.Results;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletOutputStream;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -12,12 +16,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.servlet.ServletOutputStream;
-
-import static org.junit.Assert.assertFalse;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
+import com.tetrapak.customerhub.core.mock.MockEquipmentListApiServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EquipmentListExcelServiceImplTest {
@@ -43,19 +43,18 @@ public class EquipmentListExcelServiceImplTest {
 		Mockito.doNothing().when(servletOutputStream).write(Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
 	}
 
-	/**
-	 * Test method for
-	 * {@link EquipmentListExcelServiceImpl#generateEquipmentListExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.equipmentlist.Results)}.
-	 */
 	@Test
-	public void testGenerateEquipmentListResultsExcelWithNullApiResp() {
-		Results apiResponse = null;
-		assertFalse(equipmentListExcelService.generateEquipmentListExcel(servletRequest, response, apiResponse));
+	public void testGetColumnHeaderArray() {
+		assertNotNull(equipmentListExcelService.getColumnHeaderArray());
 	}
-
+	
 	@Test
-	public void testGenerateEquipmentListExcel() {
-		Results apiResponse = new Results();
+	public void testGetEquipmentList() {
+		List<Equipments> sampleEquipments = getMockEquipmentList();
+		assertNotNull(equipmentListExcelService.getEquipmentsList(sampleEquipments));
+	}
+	
+	private List<Equipments> getMockEquipmentList() {
 		Equipments paramRequest = new Equipments();
 		paramRequest.setId("ID");
 		paramRequest.setCountryCode("Country");
@@ -91,6 +90,6 @@ public class EquipmentListExcelServiceImplTest {
 		paramRequest.setEofsValidFromDate("Eofs Valid From Date");
 		List<Equipments> equipments = new ArrayList<>();
 		equipments.add(paramRequest);
-		apiResponse.setData(equipments);
+		return equipments;
 	}
 }

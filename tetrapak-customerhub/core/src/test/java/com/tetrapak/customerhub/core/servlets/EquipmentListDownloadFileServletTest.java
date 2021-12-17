@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.servlets;
 
 import com.day.cq.wcm.api.Page;
 import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.MockEquipmentListApiServiceImpl;
@@ -22,7 +23,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.servlet.http.Cookie;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -57,11 +60,6 @@ public class EquipmentListDownloadFileServletTest {
 
 	@Before
 	public void setup() throws IOException {
-		JsonObject jsonResponse = new JsonObject();
-		jsonResponse.addProperty(CustomerHubConstants.RESULT, PARAM_STRING);
-		jsonResponse.addProperty("status", 200);
-		when(equipmentListApiService.getEquipmentList(any(), any())).thenReturn(jsonResponse);
-		when(equipmentListExcelService.generateEquipmentListExcel(any(), any(), any())).thenReturn(true);
 		aemContext.currentResource(COMPONENT_PATH);
 		aemContext.request().setServletPath(COMPONENT_PATH);
 		aemContext.request().setMethod(HttpConstants.METHOD_POST);

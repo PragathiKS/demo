@@ -35,6 +35,18 @@ public final class CustomerHubConstants {
     /** The Constant EMPTY_STRING. */
     public static final String EMPTY_STRING = "";
 
+    /** The Constant COMMA. */
+    public static final String COMMA = ",";
+
+    /** The Constant NEWLINE. */
+    public static final String NEWLINE = "\n";
+
+    /** The Constant SEMI_COLON. */
+    public static final String SEMI_COLON = ";";
+    
+    /** The Constant QUOT_ESCAPED. */
+    public static final String QUOTE_ESCAPED = "\"";
+
     /** The Constant CQ_TEMPLATE. */
     public static final String CQ_TEMPLATE = "cq:template";
 
@@ -126,10 +138,13 @@ public final class CustomerHubConstants {
     public static final String AMPERSAND = "&";
     
     /** The Constant COUNTRY_CODE. */
-    public static final String COUNTRY_CODE = "countrycode";
+    public static final String COUNTRY_CODE = "countrycodes";
     
     /** The Constant EXCEL_DOWNLOAD_EXTENSION. */
     public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
+
+    /** The Constant SKIP */
+    public static final String SKIP = "skip";
 
     /** The Constant COUNT. */
     public static final String COUNT = "count";
@@ -460,6 +475,18 @@ public final class CustomerHubConstants {
 
     /** TheConstant for Source name. */
     public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";
+    
+    /** TheConstant TEXT_CSV */
+    public static final String TEXT_CSV = "text/csv";
+    
+    /** TheConstant CONTENT_DISPOSITION */
+    public static final String CONTENT_DISPOSITION= "Content-Disposition";
+    
+    /** TheConstant ATTACHMENT_FILENAME */
+    public static final String ATTACHMENT_FILENAME = "attachment; filename";
+    
+    /** TheConstant CSV_COMMA_SEPARATOR */
+    public static final String CSV_COMMA_SEPARATOR= "sep=,";
 
     /**
      * Instantiates a new customer hub constants.
