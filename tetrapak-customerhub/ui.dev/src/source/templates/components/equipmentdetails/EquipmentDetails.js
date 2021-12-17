@@ -157,6 +157,16 @@ function _bindFormChangeEvents() {
         $updateBtn.attr('disabled', 'disabled');
       }
     });
+
+    if(['INPUT', 'TEXTAREA'].includes(item.nodeName)) {
+      $(item).on('blur', () => {
+        if($(item).val()) {
+          const sanitized = item.value.replace(/<\/?script>|[<>]/gm, '');
+          $(item).val(sanitized);
+          this.removeErrorMsg(item);
+        }
+      });
+    }
   });
 }
 
@@ -178,6 +188,7 @@ class EquipmentDetails {
     this.cache.$modal = this.root.parent().find('.js-update-modal');
     this.cache.countryData = [];
     this.cache.formData = {};
+    this.cache.isFormValid = true; 
     this.cache.data = {};
     this.cache.equipmentStatuses = [];
     this.cache.$updateBtn = this.root.find('.js-equipment-details__req-make-update');
@@ -199,25 +210,21 @@ class EquipmentDetails {
       this.renderEquipInfoCard({view: true});
     });
 
-    this.root.on('blur', 'textarea', (e) => {
-      const sanitized = e.target.value.replace(/<\/?script>|[<>]/gm, '');
-      $(e.target).val(sanitized);
-    });
-
     this.root.on('click', '.js-equipment-details__req-update',  (e) => {
       e.preventDefault();
       let isFormValid = true;
+      const requiredFormElements = this.root.find('input.js-equipment-details__input');
       this.removeAllErrorMessages();
-      const requiredFormElements = this.root.find('input.js-equipment-details__form-element');
-      requiredFormElements.each(function () {
-        if (!$(this).val()) {
+      requiredFormElements.each((_, item) => {
+        if (!$(item).val()) {
           isFormValid = false;
-          this.addErrorMsg(this);
+          this.addErrorMsg(item);
         }
       });
       if (!isFormValid) {
         return;
       }
+      this.removeAllErrorMessages();
       const { data: equipData } = this.cache;
       const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
       this.cache.formData = {
@@ -280,22 +287,18 @@ class EquipmentDetails {
   }
 
   addErrorMsg(el) {
-    const formElement = $(el).closest('.js-equipment-details__form-element');
-    formElement.addClass('tp-equipment-details__info-line--error');
-    formElement.find('.error-msg').addClass('error-msg--active');
+    $(el).closest('.js-equipment-details__form-element').addClass('tp-equipment-details__form-element--error');
   }
 
   removeAllErrorMessages() {
-    const $this = this;
-    const requiredFrmElements = $this.root.find('.error-msg--active');
-    requiredFrmElements.each(function () {
-      $this.removeErrorMsg(this);
+    const requiredFormElements = this.root.find('.js-equipment-details__form-element');
+    requiredFormElements.each((_, item) => {
+      this.removeErrorMsg(item);
     });
   }
 
   removeErrorMsg(el) {
-    $(el).removeClass('error-msg--active');
-    $(el).closest('.js-equipment-details__form-element').removeClass('tp-equipment-details__info-line--error');
+    $(el).closest('.js-equipment-details__form-element').removeClass('tp-equipment-details__form-element--error');
   }
 
   renderEquipInfoCardWithData(){
