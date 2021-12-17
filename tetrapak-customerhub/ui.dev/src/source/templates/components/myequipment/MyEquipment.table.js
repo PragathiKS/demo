@@ -107,7 +107,7 @@ export const _getKeyMap = (key, i18nKeys) => {
       headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
       break;
     }
-    case 'equipmentStatus': {
+    case 'equipmentStatusDesc': {
       headerObj['keyLabel'] = i18nKeys['equipmentStatus'];
       headerObj['showTooltip'] = i18nKeys['equipStatToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['equipStatToolTip'];

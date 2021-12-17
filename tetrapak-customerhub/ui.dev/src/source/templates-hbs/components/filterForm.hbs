@@ -34,18 +34,29 @@
                     {{/each}}
                     {{else}}
                         <div class="tp-my-equipment-filter-options">
-                            {{#each formData}}
-                                {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
-                                uniqueKey=option
-                                autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
-                            {{/each}}
+                            {{#if isRadio}}
+                                {{#each formData}}
+                                    {{> atoms/radio/radio value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            uniqueKey=option
+                                            name=@root.radioGroupName
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-radio"}}
+                                {{/each}}
+                            {{else}}
+                                {{#each formData}}
+                                    {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            uniqueKey=option
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                                {{/each}}
+                            {{/if}}
                         </div>
                 {{/if}}
             {{/if}}
         </div>
-        <div class="modal-footer tpmol-modal-footer">
+        <div class="modal-footer tpmol-modal-footer tp-my-equipment__modal-footer">
             <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button" auto_locator="confirmbtnOverlay">
                 <span class="tpatom-btn__text sly-text">
                     {{#if customiseTable}}
@@ -55,12 +66,12 @@
                     {{/if}}
                 </span>
             </button>
-            {{#if singleButton}}
+            {{#unless singleButton}}
             <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-button" auto_locator="removeAllOverlay">
                 <i class="icon icon-My_Euipment_Bin_X"></i>
                 <span class="tpatom-btn__text sly-text">{{i18n key=removeAll}}</span>
             </button>
-            {{/if}}
+            {{/unless}}
         </div>
     </div>
 </div>

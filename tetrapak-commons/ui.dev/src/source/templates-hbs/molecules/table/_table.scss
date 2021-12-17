@@ -6,7 +6,7 @@
         background: transparent;
 
         span {
-            @include margin-right(4px);
+            @include margin-left(4px);
         }
 
         .icon::before {

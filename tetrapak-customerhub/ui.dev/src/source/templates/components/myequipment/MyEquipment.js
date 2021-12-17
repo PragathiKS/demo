@@ -15,7 +15,7 @@ function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country,equipmentNameSub,site,line,serialNumber,equipmentStatus,functionalLocation,siteDescription,location;
+    let country,equipmentNameSub,site,line,serialNumber,equipmentStatusDesc,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
@@ -36,14 +36,14 @@ function _processKeys(keys, ob) {
       else if(i === 'serialNumber'){
         serialNumber = i;
       }
-      else if(i === 'equipmentStatus'){
-        equipmentStatus = i;
+      else if(i === 'equipmentStatusDesc'){
+        equipmentStatusDesc = i;
       }
       else if(i === 'functionalLocation'){
         functionalLocation = i;
       }
     }
-    return [country, site, siteDescription, line, equipmentNameSub, serialNumber, equipmentStatus, location, functionalLocation];
+    return [country, site, siteDescription, line, equipmentNameSub, serialNumber, equipmentStatusDesc, location, functionalLocation];
   }
 }
 
@@ -82,6 +82,7 @@ class MyEquipment {
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
     this.cache.$mobileHeadersActions = this.root.find('.js-mobile-header-actions');
     this.cache.$showHideAllFiltersBtn = this.root.find('.js-tp-my-equipment__show-hide-all-button');
+    this.cache.$removeAllFiltersBtn = this.root.find('.js-tp-my-equipment__remove-all-button');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$content = this.root.find('.tp-equipment-content');
@@ -98,7 +99,7 @@ class MyEquipment {
     this.cache.currentPageNumber = 1;
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
-    this.cache.sortableKeys = ['site','lineName','equipmentStatus','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
+    this.cache.sortableKeys = ['site','lineName','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
     this.cache.activeSortData = null;
     this.cache.activePage = 1;
     this.cache.skipIndex = 0;
@@ -131,13 +132,13 @@ class MyEquipment {
       {key:'lineName',option:'lineName',optionDisplayText:i18nKeys['line'],isChecked:true,index:3},
       {key:'equipmentNameSub',option:'equipmentNameSub',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
       {key:'serialNumber',option:'serialNumber',optionDisplayText:i18nKeys['serialNumber'],isChecked:true,index:5},
-      {key:'equipmentStatus',option:'equipmentStatus',optionDisplayText:i18nKeys['equipmentStatus'],isChecked:true,index:6},
+      {key:'equipmentStatusDesc',option:'equipmentStatusDesc',optionDisplayText:i18nKeys['equipmentStatus'],isChecked:true,index:6},
       {key:'location',option:'location',optionDisplayText:i18nKeys['location'],isChecked:false,index:7},
       {key:'functionalLocation',option:'functionalLocation',optionDisplayText:i18nKeys['functionalLocation'],isChecked:false,index:8}
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {
-      const formDetail = { activeForm:'country',header:i18nKeys['country'] };
+      const formDetail = { activeForm:'country',header:i18nKeys['country'], singleButton: true, isRadio: true, radioGroupName: 'countryRadio' };
       this.renderFilterForm(this.cache.countryData, formDetail, this.cache.$countryFilterLabel);
       $modal.modal();
     });
@@ -157,9 +158,9 @@ class MyEquipment {
     });
 
     this.cache.$statusFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'equipmentStatus',header:i18nKeys['equipmentStatus']};
-      this.cache.filterModalData['equipmentStatus'] = this.getFilterModalData('equipmentStatus');
-      this.renderFilterForm(this.cache.filterModalData['equipmentStatus'], formDetail, this.cache.$statusFilterLabel);
+      const formDetail = {activeForm:'equipmentStatusDesc',header:i18nKeys['equipmentStatus']};
+      this.cache.filterModalData['equipmentStatusDesc'] = this.getFilterModalData('equipmentStatusDesc');
+      this.renderFilterForm(this.cache.filterModalData['equipmentStatusDesc'], formDetail, this.cache.$statusFilterLabel);
       $modal.modal();
     });
 
@@ -229,8 +230,9 @@ class MyEquipment {
       this.applyFilter({removeFilter:true});
     });
 
-    this.root.on('click', '.js-tp-my-equipment__remove-all-button',  () => {
+    this.cache.$removeAllFiltersBtn.on('click', () => {
       this.deleteAllFilters();
+      this.toggleRemoveAllFilters(false);
     });
 
     this.cache.$showHideAllFiltersBtn.on('click', () => {
@@ -469,7 +471,7 @@ class MyEquipment {
         filterPropertyKey = 'customerNumber';
         alphabeticalSortKey = 'optionDisplayText';
         break;
-      case 'equipmentStatus':
+      case 'equipmentStatusDesc':
         optionDisplayTextKey = 'equipmentStatusDesc';
         optionValueKey = 'equipmentStatus';
         filterPropertyKey = 'equipmentStatus';
@@ -510,9 +512,18 @@ class MyEquipment {
     }
   }
 
+  toggleRemoveAllFilters = (show) => {
+    if (show && Object.keys(this.cache.combinedFiltersObj).length > 0) {
+      this.cache.$removeAllFiltersBtn.removeAttr('hidden');
+    } else {
+      this.cache.$removeAllFiltersBtn.attr('hidden', 'hidden');
+    }
+  }
+
   applyFilter = (options) => {
     const { activeFilterForm, $activeFilterBtn, i18nKeys, authData } = this.cache;
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
+    const $filtersRadio = this.root.find('.js-tp-my-equipment-filter-radio');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
     let filterCount = 0;
     let filterData = [];
@@ -522,7 +533,7 @@ class MyEquipment {
     switch (activeFilterForm) {
       case 'country':{
         filterData = this.cache.countryData;
-        $filtersCheckbox.each(function(index) {
+        $filtersRadio.each(function(index) {
           if ($(this).is(':checked')) {
             filterCount++;
             filterData[index].isChecked = true;
@@ -544,7 +555,7 @@ class MyEquipment {
         label = i18nKeys['line'];
         break;
       }
-      case 'equipmentStatus': {
+      case 'equipmentStatusDesc': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
         label = i18nKeys['equipmentStatus'];
         break;
@@ -634,6 +645,7 @@ class MyEquipment {
     this.renderNewPage({'resetSkip': true, analyticsAction});
     this.getAllAvailableFilterVals(authData,  ['statuses', 'types', 'lines', 'customers'], false);
     this.cache.$modal.modal('hide');
+    this.toggleRemoveAllFilters(true);
   }
 
   deleteAllFilters = () => {
@@ -732,8 +744,10 @@ class MyEquipment {
         formData: data,
         isEquipmentType: formDetail.header === i18nKeys['equipmentType'],
         ...i18nKeys,
-        singleButton: formDetail.singleButton === false ? false : true,
+        singleButton: formDetail.singleButton === true ? true : false,
         customiseTable: formDetail.activeForm === 'customise-table' ? true : false,
+        isRadio: formDetail.isRadio === true ? true : false,
+        radioGroupName: formDetail.radioGroupName,
         isTextInput: formDetail.isTextInput,
         autoLocatorModal: `${formDetail.activeForm}Overlay`,
         autoLocatorInput: `${formDetail.activeForm}InputBox`,
