@@ -13,6 +13,7 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.RegExUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.xss.XSSFilter;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -43,18 +44,19 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
                 + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING);
 
         Gson gson = new GsonBuilder().serializeNulls().create();
-        String apiJsonBean = gson.toJson(convertFormToApiJson(userId, bean));
+        String apiJsonBean = gson.toJson(convertFormToApiJson(userId, bean, attachments.size()));
         JsonObject jsonObject = HttpUtil.sendAPIGeePostWithEntity(url, token, apiJsonBean);
 
         if (CollectionUtils.isNotEmpty(attachments)) {
             String id = resolveIdFromResponse(jsonObject);
-
-            String attachmentUrl = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-                    + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING_ATTACHMENTS);
-            for (File attachment : attachments) {
-                JsonObject attachmentResponse = HttpUtil.sendAPIGeePostWithFiles(
-                        attachmentUrl.replace("{id}", id), token, attachment);
-                jsonObject.addProperty("file" + attachments.indexOf(attachment), attachmentResponse.get("result").toString());
+            if (StringUtils.isNotBlank(id)) {
+                String attachmentUrl = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
+                        + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING_ATTACHMENTS);
+                for (File attachment : attachments) {
+                    JsonObject attachmentResponse = HttpUtil.sendAPIGeePostWithFiles(
+                            attachmentUrl.replace("{id}", id), token, attachment);
+                    jsonObject.addProperty("file" + attachments.indexOf(attachment), attachmentResponse.get("result").toString());
+                }
             }
         }
 
@@ -73,7 +75,7 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         return toReturn;
     }
 
-    private AddEquipmentApiRequestBean convertFormToApiJson(String userId, AddEquipmentFormBean bean) {
+    private AddEquipmentApiRequestBean convertFormToApiJson(String userId, AddEquipmentFormBean bean, int noOfAttachments) {
         AddEquipmentApiRequestBean requestBean = new AddEquipmentApiRequestBean();
 
         requestBean.setReportedBy(userId);
@@ -83,7 +85,7 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         requestBean.setLine(xssFilter.filter(bean.getEquipmentLine()));
         requestBean.setPosition(xssFilter.filter(bean.getEquipmentPosition()));
         requestBean.setUserStatus(xssFilter.filter(bean.getEquipmentStatus()));
-        requestBean.setManufacture(xssFilter.filter(bean.getEquipmentMachineSystem()));
+        requestBean.setMachineSystem(xssFilter.filter(bean.getEquipmentMachineSystem()));
         requestBean.setEquipmentDesciption(xssFilter.filter(bean.getEquipmentDescription()));
         requestBean.setManufactureModelNumber(xssFilter.filter(bean.getEquipmentManufactureModelNumber()));
         requestBean.setManufacture(xssFilter.filter(bean.getEquipmentManufactureOfAsset()));
@@ -91,6 +93,7 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         requestBean.setManufactureYear(xssFilter.filter(bean.getEquipmentConstructionYear()));
         requestBean.setComment(xssFilter.filter(bean.getEquipmentComments()));
         requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB);
+        requestBean.setNumberOfAttachments(noOfAttachments);
 
         return requestBean;
     }
