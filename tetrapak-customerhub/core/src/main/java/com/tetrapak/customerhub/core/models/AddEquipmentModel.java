@@ -41,6 +41,9 @@ public class AddEquipmentModel {
     /** The country api. */
 	private String countryApi;
 
+    /** The all countries api. */
+    private String allCountriesApi;
+
     /** The status api. */
     private String statusApi;
 
@@ -226,6 +229,15 @@ public class AddEquipmentModel {
      * @return the country api
      */
     public String getCountryApi() { return countryApi; }
+
+    /**
+     * Gets the all countries api.
+     *
+     * @return the all countries api
+     */
+    public String getAllCountriesApi() {
+        return allCountriesApi;
+    }
 
     /**
      * Gets the status api.
@@ -597,6 +609,9 @@ public class AddEquipmentModel {
         countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
 
+        allCountriesApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
+
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_STATUSLIST_API);
 
@@ -606,4 +621,5 @@ public class AddEquipmentModel {
         lineApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LINESLIST_API);
     }
+
 }
