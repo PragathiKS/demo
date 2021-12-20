@@ -13,6 +13,7 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.RegExUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.xss.XSSFilter;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -48,13 +49,14 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
 
         if (CollectionUtils.isNotEmpty(attachments)) {
             String id = resolveIdFromResponse(jsonObject);
-
-            String attachmentUrl = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-                    + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING_ATTACHMENTS);
-            for (File attachment : attachments) {
-                JsonObject attachmentResponse = HttpUtil.sendAPIGeePostWithFiles(
-                        attachmentUrl.replace("{id}", id), token, attachment);
-                jsonObject.addProperty("file" + attachments.indexOf(attachment), attachmentResponse.get("result").toString());
+            if (StringUtils.isNotBlank(id)) {
+                String attachmentUrl = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
+                        + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING_ATTACHMENTS);
+                for (File attachment : attachments) {
+                    JsonObject attachmentResponse = HttpUtil.sendAPIGeePostWithFiles(
+                            attachmentUrl.replace("{id}", id), token, attachment);
+                    jsonObject.addProperty("file" + attachments.indexOf(attachment), attachmentResponse.get("result").toString());
+                }
             }
         }
 
