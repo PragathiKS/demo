@@ -1,5 +1,7 @@
 package com.tetrapak.customerhub.core.beans.equipment;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Metadata class used to create json for api request.
  */
@@ -25,5 +27,9 @@ public class EquipmentMetaData {
 
     public String getMetaDataRequestedValue() {
         return metaDataRequestedValue;
+    }
+
+    public boolean isChanged() {
+        return !StringUtils.equals(metaDataActualValue, metaDataRequestedValue);
     }
 }
