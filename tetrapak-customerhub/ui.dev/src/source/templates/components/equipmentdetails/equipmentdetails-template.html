@@ -1,7 +1,7 @@
 <sly data-sly-template.equipmentdetails_template="${@ data, flag}">
   <div data-sly-test="${data.isPublishEnvironment}" class="tp-card tp-equipment-details js-equipment-details"
        data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
-       data-country-api="${data.countryApi}"
+       data-country-api="${data.allCountriesApi}"
        data-details-api="${data.equipmentListApi}"
        data-status-api="${data.statusApi}"
        data-submit-api="${data.mappedResourcePath}.equipment.html"
