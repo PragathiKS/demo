@@ -1,4 +1,4 @@
-@import '~tpPublic/templates/components/teaser/_teaser.scss';
+@import '~tpPublic/templates/components/teaser/teaser';
 
 .pw-container {
     .teaser {
@@ -108,8 +108,8 @@
 
         }
         .description {
-            font-size: $font-baseline;
             color: $color-emperor;
+            font-size: $font-baseline;
             font-style: normal;
             font-weight: normal;
             line-height: $line-height-body;
@@ -138,7 +138,8 @@
     }
     .owl-carousel {
         .owl-nav {
-            .owl-prev, .owl-next {
+            .owl-prev,
+            .owl-next {
                 color: $color-congress-blue;
                 &:hover {
                     color: $color-dark-blue;
