@@ -204,6 +204,9 @@ public class EquipmentDetailsModel {
     @Inject
     private String countryApi;
 
+    /** The all countries api. */
+    private String allCountriesApi;
+
     /**
      * The equipment list api.
      */
@@ -380,6 +383,15 @@ public class EquipmentDetailsModel {
      */
     public String getCountryApi() {
         return countryApi;
+    }
+
+    /**
+     * Gets the all countries api.
+     *
+     * @return the all countries api
+     */
+    public String getAllCountriesApi() {
+        return allCountriesApi;
     }
 
     /**
@@ -729,6 +741,9 @@ public class EquipmentDetailsModel {
         i18nKeys = gson.toJson(i18KeyMap);
 
         countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
+
+        allCountriesApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
 
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
