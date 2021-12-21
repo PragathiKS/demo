@@ -133,8 +133,8 @@ function  _renderEquipUpdateModal() {
     data: {
       formData: {
         ...this.cache.formData,
-        country: this.cache.countryData.find(country => country.key === this.cache.formData.country)?.desc,
-        equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === this.cache.formData.equipmentStatus)?.desc
+        country: this.cache.formData.country,
+        equipmentStatus: this.cache.formData.equipmentStatus
       },
       i18nKeys: i18nKeys
     },
@@ -188,7 +188,7 @@ class EquipmentDetails {
     this.cache.$modal = this.root.parent().find('.js-update-modal');
     this.cache.countryData = [];
     this.cache.formData = {};
-    this.cache.isFormValid = true; 
+    this.cache.isFormValid = true;
     this.cache.data = {};
     this.cache.equipmentStatuses = [];
     this.cache.$updateBtn = this.root.find('.js-equipment-details__req-make-update');
@@ -229,19 +229,19 @@ class EquipmentDetails {
       const data = Object.fromEntries(new FormData(e.currentTarget.form).entries());
       this.cache.formData = {
         equipmentId: this.cache.data.id,
-        oldCountry: equipData.countryCode,
+        oldCountry: equipData.countryName,
         oldLocation: equipData.location,
         oldSiteName: equipData.site,
         oldLineName: equipData.lineName,
-        oldEquipmentStatus: equipData.equipmentStatus,
+        oldEquipmentStatus: equipData.equipmentStatusDesc,
         oldPosition: equipData.position,
         oldEquipmentTypeDesc: equipData.equipmentTypeDesc,
         comments: data.comments,
-        country: data.country || equipData.countryCode,
+        country: this.cache.countryData.find(country => country.key === data.country)?.desc || equipData.countryName,
         location: data.location || equipData.location,
         siteName: data.siteName || equipData.siteName,
         lineName: data.lineName || equipData.lineName,
-        equipmentStatus: data.equipmentStatus || equipData.equipmentStatus,
+        equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === data.equipmentStatus)?.desc || equipData.equipmentStatusDesc,
         position: data.position || equipData.position,
         equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,
         serialNumber: this.cache.data.serialNumber
