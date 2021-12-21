@@ -91,6 +91,9 @@ describe('EquipmentDetails', function () {
   });
 
   it('should submit form and open modal when required fields are not empty', function (done) {
+    $('#country').val('DE');
+    $('#equipmentStatus').val('STCU');
+    $('#equipmentTypeDesc').val('Steriltank');
     $('#position').val('0070');
     $('#siteName').val('Biesenhofen');
     $('#location').val('DL');
