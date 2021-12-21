@@ -1,6 +1,10 @@
 .tp-my-equipment {
     &__modal-content {
-        max-height: 640px;
+        max-height: 80vh;
+
+        @media #{$desktop} {
+            max-height: 640px;
+        }
     }
     &__modal-body {
         overflow-y: auto;
