@@ -33,6 +33,16 @@
         display: flex;
         justify-content: space-between;
     }
+    &__apply-button {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-sm $padding-md);
+
+        span {
+            vertical-align: baseline;
+        }
+    }
+
     &__filter-button {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
