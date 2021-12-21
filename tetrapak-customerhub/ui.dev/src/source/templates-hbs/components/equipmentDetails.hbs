@@ -6,7 +6,7 @@
     {{/if}}
 </h2>
 <div class="row tp-equipment-details__info-card-row">
-    <div class="col-lg-6 tp-equipment-details__info-card-col">
+    <div class="col-lg-8 col-md-9 col-sm-12 col-12 tp-equipment-details__info-card-col">
         <div class="tp-equipment-details__info-card js-equipment-details__info-card">
             <h3 auto_locator="sectionTitle">{{i18n key=i18nKeys.equipmentInformation}}</h3>
             <div class="tp-equipment-details__info-line">
@@ -105,7 +105,7 @@
     <h4 class="tp-equipment-details__details-row-title" auto_locator="subsectionTitle">{{i18n key=i18nKeys.equipmentDetails}}</h4>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="subsectionTitle">{{i18n key=i18nKeys.equipmentType}}</div>
-        <div class="tp-equipment-details__details-cell" auto_locator="subsectionTitle">{{equipData.equipmentType}}/{{equipData.equipmentTypeDesc}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="subsectionTitle">{{equipData.equipmentType}} | {{equipData.equipmentTypeDesc}}</div>
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.machineSystem}}</div>
@@ -113,7 +113,7 @@
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.material}}</div>
-        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.material}} {{equipData.materialDesc}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.material}} | {{equipData.materialDesc}}</div>
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.manufacturerModelNumber}}</div>
@@ -161,7 +161,7 @@
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell">{{i18n key=i18nKeys.equipmentCategory}}</div>
-        <div class="tp-equipment-details__details-cell">{{equipData.equipmentCategory}} - {{equipData.equipmentCategoryDesc}}</div>
+        <div class="tp-equipment-details__details-cell">{{equipData.equipmentCategory}} | {{equipData.equipmentCategoryDesc}}</div>
     </div>
     <div class="tp-equipment-details__details-line">
         <div class="tp-equipment-details__details-cell">{{i18n key=i18nKeys.eofsConfirmationDate}}</div>

@@ -99,8 +99,9 @@
 
     &__info-cell-1 {
         @include line-height($font-l, $font-baseline);
-        @include width(110px);
-        @include margin-right($margin-xxl);
+        @include width(166px);
+        @include margin-right($margin-l);
+        white-space: nowrap;
         flex-shrink: 0;
 
         @media #{$mobile} {
