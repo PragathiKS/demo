@@ -113,7 +113,11 @@
     &__info-cell-2 {
         @include line-height($font-l, $font-baseline);
         font-weight: 700;
-        width: 67%;
+        width: 71%;
+
+        @media #{$mobile} {
+            width: 64%;
+        }
 
         .error-msg {
             display: none;
