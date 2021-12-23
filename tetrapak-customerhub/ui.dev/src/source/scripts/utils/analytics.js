@@ -2,7 +2,15 @@ import $ from 'jquery';
 /**
  * Fire analytics
  */
-export const trackAnalytics = (objectData, objectName, trackingKey, objectKey, transformCase = true) => {
+export const trackAnalytics = (
+  objectData,
+  objectName,
+  trackingKey,
+  objectKey,
+  transformCase = true,
+  eventObject = undefined,
+  linkClickObject = undefined
+) => {
   window.digitalData = window.digitalData || {};
 
   if (objectName) {
@@ -16,6 +24,12 @@ export const trackAnalytics = (objectData, objectName, trackingKey, objectKey, t
       }
       window.digitalData[objectName][objectKey] = objectData;
     } else {
+      if (eventObject) {
+        window.digitalData['event'] = eventObject;
+      }
+      if (linkClickObject) {
+        window.digitalData['linkClick'] = linkClickObject;
+      }
       window.digitalData[objectName] = objectData;
     }
 

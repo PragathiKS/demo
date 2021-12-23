@@ -47,6 +47,20 @@ export const _removeFilterAnalytics = ($activeFilterBtn, searchResults) => {
   trackAnalytics(searchObj, 'search', 'internalFilter', undefined, false, eventObj);
 };
 
+export const _removeAllFiltersAnalytics = (items, searchResults) => {
+  const eventObj = {
+    event: 'Filter',
+    eventType: 'search filter removed'
+  };
+
+  const searchObj = {
+    searchResults: searchResults,
+    searchFilters: Object.keys(items).toString()
+  };
+
+  trackAnalytics(searchObj, 'search', 'internalFilter', undefined, false, eventObj);
+};
+
 export const _paginationAnalytics = ($targetBtn) => {
   let linkName;
   const pageNum = $targetBtn.data('page-number');
