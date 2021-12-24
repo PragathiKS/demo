@@ -23,7 +23,7 @@
 
     &__logo {
         @include width(156px);
-        @include top(30px);
+        @include top(0);
         @include left(36px);
         position: absolute;
 
