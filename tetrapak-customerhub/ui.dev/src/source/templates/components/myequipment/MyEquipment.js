@@ -233,7 +233,7 @@ class MyEquipment {
     this.root.on('click', '.js-my-equipment__export-excel-action',  (e) => {
       const countryCode = this.getActiveCountryCode();
       const ExportURL = $(e.currentTarget).attr('href');
-      const url = `${ExportURL}?countryCode=${countryCode}`;
+      const url = `${ExportURL}?countrycodes=${countryCode}`;
       window.location.href = url;
     });
 
