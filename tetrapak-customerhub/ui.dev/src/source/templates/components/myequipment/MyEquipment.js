@@ -230,6 +230,13 @@ class MyEquipment {
       this.applyFilter({removeFilter:true});
     });
 
+    this.root.on('click', '.js-my-equipment__export-excel-action',  (e) => {
+      const countryCode = this.getActiveCountryCode();
+      const ExportURL = $(e.currentTarget).attr('href');
+      const url = `${ExportURL}?countrycodes=${countryCode}`;
+      window.location.href = url;
+    });
+
     this.cache.$removeAllFiltersBtn.on('click', () => {
       this.deleteAllFilters();
       this.toggleRemoveAllFilters(false);
