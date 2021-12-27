@@ -65,13 +65,13 @@ $color-green: #8dc63f;
         }
 
         &-subtitle {
-            @include line-height($font-l, $font-baseline);
-            @include font-size($font-baseline);
-            @include margin-bottom($margin-md);
+            @include line-height($font-normal, $font-xs);
+            @include font-size($font-xs);
         }
 
         &-button {
             @include padding($padding-sm);
+            @include margin-bottom($margin-sm);
             border: 1px solid $color-congress-blue;
             display: flex;
             color: $color-congress-blue;
