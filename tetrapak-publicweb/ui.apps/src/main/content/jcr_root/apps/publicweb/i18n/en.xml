@@ -131,10 +131,6 @@
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.processing.fc.dairy.flavoredAndOrValueAddMilk"
             sling:message="Flavored and/or value-add milk"/>
-    <pw.form.businessenq.processing.fc.dairy.milkPowder
-            jcr:primaryType="sling:MessageEntry"
-            sling:key="pw.form.businessenq.processing.fc.dairy.milkPowder"
-            sling:message="Milk powder"/>
     <pw.form.businessenq.processing.fc.dairy.pasteurizedESLMilk
             jcr:primaryType="sling:MessageEntry"
             sling:key="pw.form.businessenq.processing.fc.dairy.pasteurizedESLMilk"

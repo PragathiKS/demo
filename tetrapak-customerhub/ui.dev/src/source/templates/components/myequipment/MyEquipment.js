@@ -5,7 +5,7 @@ import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics } from './MyEquipment.analytics';
+import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics } from './MyEquipment.analytics';
 
 import { _paginate } from './MyEquipment.paginate';
 import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
@@ -228,6 +228,13 @@ class MyEquipment {
 
     this.root.on('click', '.js-tp-my-equipment__remove-button',  () => {
       this.applyFilter({removeFilter:true});
+    });
+
+    this.root.on('click', '.js-my-equipment__export-excel-action',  (e) => {
+      const countryCode = this.getActiveCountryCode();
+      const ExportURL = $(e.currentTarget).attr('href');
+      const url = `${ExportURL}?countrycodes=${countryCode}`;
+      window.location.href = url;
     });
 
     this.cache.$removeAllFiltersBtn.on('click', () => {
@@ -655,6 +662,12 @@ class MyEquipment {
       return;
     }
 
+    const analyticsAction = {
+      action: 'removedAllFilters',
+      targetFilter: null,
+      items: this.cache.combinedFiltersObj
+    };
+
     this.cache.combinedFiltersObj = {};
     this.cache.currentFilterValsObj = {
       'statuses': [],
@@ -671,7 +684,7 @@ class MyEquipment {
       $(item).text(initialLabel);
     });
 
-    this.renderNewPage({'resetSkip': true});
+    this.renderNewPage({'resetSkip': true, analyticsAction});
   }
 
   sortTableByKey = ($tHeadBtn) => {
@@ -817,6 +830,10 @@ class MyEquipment {
 
           if (analyticsAction && analyticsAction.action === 'removedFilter') {
             _removeFilterAnalytics(analyticsAction.targetFilter, response.meta.total);
+          }
+
+          if (analyticsAction && analyticsAction.action === 'removedAllFilters') {
+            _removeAllFiltersAnalytics(analyticsAction.items, response.meta.total);
           }
 
           if (analyticsAction && analyticsAction.action === 'addedFilter') {

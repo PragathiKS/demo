@@ -34,7 +34,7 @@ $text-tags: ('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p', 'a', 'secti
 }
 
 body {
-    background: $color-mercury;
+    background: $color-wild-sand;
     color: $color-text;
     font-family: $font-monsterrat;
     -webkit-text-size-adjust: 100%;
@@ -170,7 +170,7 @@ td {
 
         @media #{$desktop} {
             @include margin-top(90px);
-            @include padding-left(248px);
+            @include padding-left(264px);
 
         }
 
