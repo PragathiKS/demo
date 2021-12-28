@@ -254,6 +254,51 @@ public final class CustomerHubConstants {
     /** The Constant VALID_FROM_DATE. */
     public static final String VALID_FROM_DATE = "eofsValidFromDate";
 
+    /** The Constant COUNTRY_CODE_EQUIPMENTS_API. */
+    public static final String COUNTRY_CODE_EQUIPMENTS_API = "countryCode";
+
+    /** The Constant CUSTOMER_NAME. */
+    public static final String CUSTOMER_NAME = "customerName";
+
+    /** The Constant SUPERIOR_EQUIPMENT_SERIAL_NUMBER. */
+    public static final String SUPERIOR_EQUIPMENT_SERIAL_NUMBER = "superiorEquipmentSerialNumber";
+
+    /** The Constant SUPERIOR_EQUIPMENT_NAME. */
+    public static final String SUPERIOR_EQUIPMENT_NAME = "superiorEquipmentName";
+
+    /** The Constant ID. */
+    public static final String ID = "ID";
+
+    /** The Constant IS_SECOND_HAND. */
+    public static final String IS_SECOND_HAND = "isSecondhand";
+
+    /** The Constant COUNTRY_NAME. */
+    public static final String COUNTRY_NAME = "countryName";
+
+    /** The Constant CUSTOMER_NUMBER. */
+    public static final String CUSTOMER_NUMBER = "customerNumber";
+
+    /** The Constant SITE_NAME. */
+    public static final String SITE_NAME = "siteName";
+
+    /** The Constant LINE_NAME. */
+    public static final String LINE_NAME = "lineName";
+
+    /** The Constant EQUIPMENT_TYPE_DESCRIPTION. */
+    public static final String EQUIPMENT_TYPE_DESCRIPTION = "equipmentTypeDesc";
+
+    /** The Constant MATERIAL_DESCRIPTION. */
+    public static final String MATERIAL_DESCRIPTION = "materialDesc";
+
+    /** The Constant EQUIPMENT_CATEGORY_DESCRIPTION. */
+    public static final String EQUIPMENT_CATEGORY_DESCRIPTION = "equipmentCategoryDesc";
+
+    /** The Constant FALSE. */
+    public static final String FALSE = "false";
+
+    /** The Constant X_UNAVAILABILITY_SYMBOL. */
+    public static final String X_UNAVAILABILITY_SYMBOL = "X";
+
     /** The Constant CANCEL. */
     public static final String CANCEL = "cancel";
 
