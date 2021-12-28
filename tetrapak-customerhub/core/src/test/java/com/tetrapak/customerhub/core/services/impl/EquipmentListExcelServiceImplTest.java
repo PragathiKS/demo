@@ -48,12 +48,6 @@ public class EquipmentListExcelServiceImplTest {
 		assertNotNull(equipmentListExcelService.getColumnHeaderArray());
 	}
 	
-	@Test
-	public void testGetEquipmentList() {
-		List<Equipments> sampleEquipments = getMockEquipmentList();
-		assertNotNull(equipmentListExcelService.getEquipmentsList(sampleEquipments));
-	}
-	
 	private List<Equipments> getMockEquipmentList() {
 		Equipments paramRequest = new Equipments();
 		paramRequest.setId("ID");

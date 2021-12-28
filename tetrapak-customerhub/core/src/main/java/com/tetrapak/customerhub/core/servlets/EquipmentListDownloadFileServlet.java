@@ -48,7 +48,6 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentListDownloadFileServlet.class);
 
 	private static final String AUTH_TOKEN = "authToken";
-	private static final String CSV_FILE_NAME = "List of Equipments.csv";
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
@@ -72,7 +71,7 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet {
 			} else {
 				StopWatch csvGenerationClock = new StopWatch();
 				csvGenerationClock.start();
-				flag = generateCSV(results, response);
+				flag = excelService.generateCSV(results,request,response);
 				csvGenerationClock.stop();
 				LOGGER.debug("Total Time taken for CSV generation : {}", csvGenerationClock.getTime());
 
@@ -94,41 +93,4 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet {
 		}
 		return request.getCookie(AUTH_TOKEN).getValue();
 	}
-
-	/**
-	 * This method returns the list of equipments in CSV format
-	 * 
-	 * @param equipments
-	 * @param response
-	 * @return list of equipment in CSV format
-	 * @throws IOException
-	 */
-	private boolean generateCSV(List<Equipments> equipments, SlingHttpServletResponse response) throws IOException {
-
-		if (Objects.nonNull(equipments)) {
-
-			response.setContentType(CustomerHubConstants.TEXT_CSV);
-			response.setHeader(CustomerHubConstants.CONTENT_DISPOSITION, CustomerHubConstants.ATTACHMENT_FILENAME + CustomerHubConstants.EQUALS_CHAR + CSV_FILE_NAME);
-			ServletOutputStream csvFileOutputStream = response.getOutputStream();
-			StringBuilder csvFileContent = new StringBuilder();
-			String[][] headerRowArray = excelService.getColumnHeaderArray();
-			String[] headerRow = headerRowArray[0];
-			csvFileContent.append(CustomerHubConstants.CSV_COMMA_SEPARATOR).append(CustomerHubConstants.NEWLINE);
-			for (String columnHeading : headerRow) {
-				csvFileContent.append(columnHeading).append(CustomerHubConstants.COMMA);
-				LOGGER.debug("Equipment list CSV File Column heading : {}",columnHeading);
-			}
-			csvFileContent.append(CustomerHubConstants.NEWLINE);
-			for (Equipments equipment : equipments) {
-				csvFileContent.append(equipment.toString());
-			}
-			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_8));
-			csvFileOutputStream.flush();
-			csvFileOutputStream.close();
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 }

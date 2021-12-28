@@ -1,12 +1,7 @@
 package com.tetrapak.customerhub.core.beans.equipmentlist;
 
-import java.util.Objects;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
 public class Equipments {
 
@@ -74,7 +69,7 @@ public class Equipments {
     @Expose
     private String serialNumber;
 
-    @SerializedName("siteName")
+    @SerializedName("site")
     @Expose
     private String siteName;
 
@@ -456,40 +451,4 @@ public class Equipments {
         this.location = location;
     }
 
-	@Override
-	public String toString() {
-		return tidyCSVOutput(id) + CustomerHubConstants.COMMA + tidyCSVOutput(countryCode) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(countryName) + CustomerHubConstants.COMMA + tidyCSVOutput(customer)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(customerNumber) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(customerName) + CustomerHubConstants.COMMA + tidyCSVOutput(location)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(lineName) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(equipmentStatus) + CustomerHubConstants.COMMA + tidyCSVOutput(isSecondhand)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(equipmentType) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(businessType) + CustomerHubConstants.COMMA + tidyCSVOutput(equipmentTypeDesc)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(functionalLocation) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(functionalLocationDesc) + CustomerHubConstants.COMMA + tidyCSVOutput(serialNumber)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(siteName) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(siteDesc) + CustomerHubConstants.COMMA + tidyCSVOutput(permanentVolumeConversion)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(position) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(machineSystem) + CustomerHubConstants.COMMA + tidyCSVOutput(material)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(materialDesc) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(manufacturerModelNumber) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(manufacturerSerialNumber) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(superiorEquipment) + CustomerHubConstants.COMMA + tidyCSVOutput(superiorEquipmentName)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(superiorEquipmentSerialNumber) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(manufacturer) + CustomerHubConstants.COMMA + tidyCSVOutput(manufacturerCountry)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(constructionYear) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(customerWarrantyStartDate) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(customerWarrantyEndDate) + CustomerHubConstants.COMMA + tidyCSVOutput(equipmentCategory)
-				+ CustomerHubConstants.COMMA + tidyCSVOutput(equipmentCategoryDesc) + CustomerHubConstants.COMMA
-				+ tidyCSVOutput(eofsConfirmationDate) + CustomerHubConstants.COMMA + tidyCSVOutput(eofsValidFromDate)
-				+ CustomerHubConstants.NEWLINE;
-	}
-
-	public String tidyCSVOutput(String field) {
-		if (Objects.isNull(field)) {
-			return StringUtils.EMPTY;
-		}
-		return CustomerHubConstants.QUOTE_ESCAPED + field + CustomerHubConstants.QUOTE_ESCAPED;
-	}
 }
