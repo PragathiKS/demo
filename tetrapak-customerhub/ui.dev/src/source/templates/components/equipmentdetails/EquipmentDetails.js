@@ -256,8 +256,10 @@ class EquipmentDetails {
         equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,
         serialNumber: this.cache.data.serialNumber
       };
-      const formFields = Object.keys(this.cache.data).map(key => ({ [key]: this.cache.data[key] }));
-      this.trackFormStepComplete(this.cache.formName,`${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, formFields);
+      const fields = Object.keys(this.cache.formData).filter(key => !key.startsWith('old'));
+      this.cache.formFields = fields.map(key => ({ [key]: this.cache.formData[key] }));
+
+      this.trackFormStepComplete(this.cache.formName,`${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
       this.renderEquipUpdateModal();
     });
 
@@ -283,16 +285,9 @@ class EquipmentDetails {
               $('.js-equipment-details__error').removeClass('d-none');
               return;
             }
-            const formFields = [];
-            for(const data of this.cache.formData.entries()) {
-              formFields.push({
-                formFieldName: data[0],
-                formFieldValue: data[1]
-              });
-            }
             this.cache.$content.removeClass('d-none');
             this.cache.$modal.modal('hide');
-            this.trackFormComplete(this.cache.formName,`${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, formFields);
+            this.trackFormComplete(this.cache.formName,`${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
             this.renderEquipInfoCard({confirmed: true});
           }).fail(() => {
             this.cache.$content.removeClass('d-none');
