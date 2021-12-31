@@ -8,7 +8,7 @@ export const trackFormStart = function (formName) {
     eventType: 'formstart',
     event: 'add new equipment form'
   };
-  trackAnalytics(formObj, 'form', 'form start', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 export const trackFormComplete = function (formName, formFields) {
@@ -20,7 +20,7 @@ export const trackFormComplete = function (formName, formFields) {
     eventType: 'formcomplete',
     event: 'add new equipment form'
   };
-  trackAnalytics(formObj, 'form', 'form complete', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 export const trackFormError = function (formName, formErrors) {
@@ -32,7 +32,7 @@ export const trackFormError = function (formName, formErrors) {
     eventType: 'formerror',
     event: 'add new equipment form'
   };
-  trackAnalytics(formObj, 'form', 'form error', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
 export const trackLinkClick = function (formName, linkName) {
@@ -46,5 +46,5 @@ export const trackLinkClick = function (formName, linkName) {
     eventType: 'linkclick',
     event: 'add new equipment form'
   };
-  trackAnalytics(formObj, 'linkClick', 'linkClicked', undefined, false, eventObj);
+  trackAnalytics(formObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 };

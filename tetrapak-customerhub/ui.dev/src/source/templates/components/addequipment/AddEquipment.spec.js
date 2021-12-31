@@ -26,7 +26,6 @@ describe('AddEquipment', function () {
     this.domHtml = addEquipmentTemplate();
     setDom(this);
     this.initSpy = sinon.spy(this.addEquipment, 'init');
-    this.bindEventsSpy = sinon.spy(this.addEquipment, 'bindEvents');
     this.renderFormSpy = sinon.spy(this.addEquipment, 'renderForm');
     this.addInputTypeFileSpy = sinon.spy(this.addEquipment, 'addInputTypeFile');
     this.dragAndDropPreventDefaultSpy = sinon.spy(this.addEquipment, 'dragAndDropPreventDefault');
@@ -55,7 +54,6 @@ describe('AddEquipment', function () {
     $(document.body).empty();
     this.domHtml = null;
     this.initSpy.restore();
-    this.bindEventsSpy.restore();
     this.renderFormSpy.restore();
     this.addInputTypeFileSpy.restore();
     this.dragAndDropPreventDefaultSpy.restore();
@@ -108,6 +106,12 @@ describe('AddEquipment', function () {
     done();
   });
 
+  it('should button click track', function (done) {
+    setDom(this);
+    $('.js-tp-add-equipment__add-another-equipment').trigger('click');
+    expect(this.setTrackLinkClickSpy.called).to.be.true;
+    done();
+  });
 
   it('should render add equipment form after submit', function (done) {
     setDom(this);
@@ -155,13 +159,6 @@ describe('AddEquipment', function () {
     setDom(this);
     $('.js-tp-add-equipment__drag-and-drop-button').trigger('click');
     expect(this.addInputTypeFileSpy.called).to.be.true;
-    done();
-  });
-
-  it('should button click track', function (done) {
-    setDom(this);
-    $('.js-tp-add-equipment__submit').trigger('click');
-    expect(this.setTrackLinkClickSpy.called).to.be.true;
     done();
   });
 
