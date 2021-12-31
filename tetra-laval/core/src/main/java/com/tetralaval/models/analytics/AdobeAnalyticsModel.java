@@ -286,9 +286,12 @@ public class AdobeAnalyticsModel {
             return new String[]{ERROR_VALUE};
         }
         List<String> sections = generateSiteSections();
-        List<String> subsections = sections.subList(1, sections.size());
-        String[] array = new String[subsections.size()];
-        return subsections.toArray(array);
+        if (!sections.isEmpty()) {
+            List<String> subsections = sections.subList(1, sections.size());
+            String[] array = new String[subsections.size()];
+            return subsections.toArray(array);
+        }
+        return new String[]{};
     }
 
     /**
