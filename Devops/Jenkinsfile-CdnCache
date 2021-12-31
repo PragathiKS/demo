@@ -1,0 +1,63 @@
+pipeline {
+    agent {
+       node {
+           label 'cfe-deploy'
+       }
+    }
+
+    parameters {
+        choice(name: 'Environment', choices: ['QA65', 'Stage65', 'DEV65'], description: 'Select the environment')
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete dev cache', name: 'DeleteDev'
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete QA cache', name: 'DeleteQA'
+        booleanParam defaultValue: true, description: 'Plese check in case you want to delete stage cache', name: 'DeleteStage'
+
+            }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+
+
+    stages {
+
+        stage('Delete Cdn Cache') {
+            steps {
+                script {
+                    if (params.Environment == "DEV65") {
+
+                            DEV65()
+                                                    
+                    }
+                    
+                    
+                    
+                }
+            }
+        }
+        
+    }
+}
+
+
+    def DEV65() {
+	          echo " Deleting CDN cache"
+			  sh '''#!/bin/bash			  
+username="kumar.rajeev2@publicissapient.com"
+apiKey="xxxxxxxxxxxxxxxxxxxxxxxxxx"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
+echo $password
+curl  -v --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://www-dev.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+			  '''
+        }
