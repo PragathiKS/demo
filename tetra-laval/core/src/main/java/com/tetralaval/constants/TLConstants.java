@@ -9,7 +9,7 @@ public final class TLConstants {
     public static final String SITE_NAME = "tetralaval";
 
     /** The Constant ROOT_PATH. */
-    public static final String ROOT_PATH = "/content/tetrapak/tetralaval";
+    public static final String ROOT_PATH = "/content/tetralaval";
 
     /** The Constant DAM_ROOT_PATH. */
     public static final String DAM_ROOT_PATH = "/content/dam/tetra-laval";
@@ -18,16 +18,16 @@ public final class TLConstants {
     public static final String EXPERIENCE_FRAGMENTS_PATH = "/content/experience-fragments/tetra-laval";
 
     /** The Constant LANGUAGE_MASTERS_PATH. */
-    public static final String LANGUAGE_MASTERS_PATH = "/content/tetrapak/tetralaval/lang-masters";
+    public static final String LANGUAGE_MASTERS_PATH = "/content/tetralaval/lang-masters";
 
     /** The Constant CHAPTER_LEVEL. */
-    public static final int CHAPTER_LEVEL = 5;
+    public static final int CHAPTER_LEVEL = 4;
 
     /** The Constant LANGUAGE_LEVEL. */
-    public static final int LANGUAGE_PAGE_LEVEL = 4;
+    public static final int LANGUAGE_PAGE_LEVEL = 3;
 
     /** The Constant SOLUTIONS_SECTION_MENU_PAGE_LEVEL. */
-    public static final int SOLUTIONS_SECTION_MENU_PAGE_LEVEL = 6;
+    public static final int SOLUTIONS_SECTION_MENU_PAGE_LEVEL = 5;
 
     /** The Constant SLASH. */
     public static final String SLASH = "/";
