@@ -44,7 +44,7 @@ pipeline {
 	          echo " Deleting CDN cache"
 			  sh '''#!/bin/bash			  
 username="kumar.rajeev2@publicissapient.com"
-apiKey="xxxxxxxxxxxxxxxxxxxxxxxxxx"
+apiKey="hteKgi4ZM2ytX#"
 date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
 password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
 echo $password
