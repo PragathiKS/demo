@@ -7,9 +7,9 @@ pipeline {
 
     parameters {
         choice(name: 'Environment', choices: ['QA65', 'Stage65', 'DEV65'], description: 'Select the environment')
-        booleanParam defaultValue: true, description: 'Please check in case you want to delete dev cache', name: 'DeleteDev'
-        booleanParam defaultValue: true, description: 'Please check in case you want to delete QA cache', name: 'DeleteQA'
-        booleanParam defaultValue: true, description: 'Plese check in case you want to delete stage cache', name: 'DeleteStage'
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete dev cache', name: 'Publicweb'
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete QA cache', name: 'Customerhub'
+       
 
             }
 
@@ -30,7 +30,16 @@ pipeline {
                                                     
                     }
                     
-                    
+                   if (params.Environment == "QA65") {
+
+                            QA65()
+                                                    
+                    }
+						if (params.Environment == "Stage65") {
+
+                            Stage65()
+                                                    
+                    }
                     
                 }
             }
@@ -42,6 +51,7 @@ pipeline {
 
     def DEV65() {
 	          echo " Deleting CDN cache"
+			  if (params.Publicweb) {
 			  sh '''#!/bin/bash			  
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
@@ -61,3 +71,116 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
 }'
 			  '''
         }
+		if (params.Customerhub) {
+			  sh '''#!/bin/bash			  
+username="kumar.rajeev2@publicissapient.com"
+apiKey="hteKgi4ZM2ytX#"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
+
+curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://mypages-dev.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+			  '''
+        }
+		
+		}
+
+def QA65() {
+	          echo " Deleting CDN cache"
+			  if (params.Publicweb) {
+			  sh '''#!/bin/bash			  
+username="kumar.rajeev2@publicissapient.com"
+apiKey="hteKgi4ZM2ytX#"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
+
+curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://www-qa.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+			  '''
+        }
+		if (params.Customerhub) {
+			  sh '''#!/bin/bash			  
+username="kumar.rajeev2@publicissapient.com"
+apiKey="hteKgi4ZM2ytX#"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
+
+curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://mypages-qa.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+			  '''
+        }
+		
+		}	
+		
+def Stage65() {
+	          echo " Deleting CDN cache"
+			  if (params.Publicweb) {
+			  sh '''#!/bin/bash			  
+username="kumar.rajeev2@publicissapient.com"
+apiKey="hteKgi4ZM2ytX#"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
+
+curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://www-stage.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+			  '''
+        }
+		if (params.Customerhub) {
+			  sh '''#!/bin/bash			  
+username="kumar.rajeev2@publicissapient.com"
+apiKey="hteKgi4ZM2ytX#"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
+
+curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://mypages-stage.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+			  '''
+        }
+		
+		}
+		
