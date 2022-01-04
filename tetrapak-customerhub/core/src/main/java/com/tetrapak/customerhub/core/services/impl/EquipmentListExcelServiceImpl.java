@@ -194,7 +194,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		equipmentPropertiesList
 				.add(tidyCSVOutput(formatPermanentVolumeConversion(equipment.getPermanentVolumeConversion())));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getMaterial()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentStatus()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentStatusDescription()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getConstructionYear()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getManufacturerSerialNumber()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getManufacturerModelNumber()));
