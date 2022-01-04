@@ -201,7 +201,8 @@ class AddEquipment {
       }
     });
 
-    $this.root.on('click', '.js-tp-add-equipment__add-another-equipment', () => {
+    $this.root.on('click', '.js-tp-add-equipment__add-another-equipment', (e) => {
+      $this.trackLinkClick(e);
       $this.cache.$contentWrapper.addClass('d-none');
       $this.cache.$spinner.removeClass('d-none');
       $this.cache.files = [];
@@ -214,14 +215,11 @@ class AddEquipment {
       $(e.target).val(sanitized);
     });
 
-    $this.root.on('focus', 'textarea, input, select, button', () => {
+    $this.root.on('focus', 'textarea, input, select', () => {
       if (!$this.cache.firstInteract) {
         $this.cache.firstInteract = true;
         $this.trackFormStart();
       }
-    });
-    $this.root.on('click', 'button', (e) => {
-      $this.trackLinkClick(e);
     });
   }
   trackLinkClick(e) {
