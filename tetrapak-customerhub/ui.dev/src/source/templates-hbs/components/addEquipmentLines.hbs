@@ -1,0 +1,12 @@
+<div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+    {{> atoms/dropdown/dropdown
+            defaultValue=i18nKeys.dropdownPlaceholder
+            options=line
+            name="addEquipmentLine"
+            labelText=i18nKeys.lineLabel
+            wrapClasses="tp-add-equipment__field-wrapper"
+            required="true"
+            disabled=isDisabled
+    }}
+    <div class="error-msg">{{i18n key=i18nKeys.lineErrorMsg}}</div>
+</div>
