@@ -277,6 +277,25 @@
             }
         }
     }
+    .tpatom-radio__icon {
+        @include width(20px);
+        @include height(20px);
+        @include border-radius(20px);
+        display: inline-block;
+        position: relative;
+
+        &::before {
+            @include width(8px);
+            @include height(8px);
+            @include border-radius(10px);
+            content: "";
+            background: $color-congress-blue;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
     .action-icon {
         display: none;
     }

@@ -1,7 +1,6 @@
 %default-btn {
     @include font-size($font-baseline);
-    @include padding(8px 16px);
-    @include letter-spacing($letter-spacing-sm);
+    @include padding(13px 12px);
     line-height: 1;
 
     .icon {
@@ -42,6 +41,7 @@
 
 %btn-colors-hover {
     background-color: $color-sky-blue;
+    color: $color-white;
 }
 
 %btn-secondary-colors-hover {

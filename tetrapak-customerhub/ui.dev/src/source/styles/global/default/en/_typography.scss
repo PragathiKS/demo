@@ -41,8 +41,8 @@ h4,
     @include line-height(28px, $font-m-baseline);
 
     @media #{$desktop} {
-        @include font-size($font-baseline);
-        @include line-height(24px, $font-baseline);
+        @include font-size($font-md);
+        @include line-height(24px, $font-md);
     }
 }
 
