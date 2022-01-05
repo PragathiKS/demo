@@ -100,7 +100,7 @@ public class AddEquipmentServlet extends SlingAllMethodsServlet {
             for (RequestParameter param : pArr) {
                 InputStream stream = param.getInputStream();
                 if (!param.isFormField()) {
-                    File f = File.createTempFile("attachment", null);
+                    File f = new File(param.getFileName());
                     FileUtils.copyInputStreamToFile(stream, f);
                     files.add(f);
                 }
