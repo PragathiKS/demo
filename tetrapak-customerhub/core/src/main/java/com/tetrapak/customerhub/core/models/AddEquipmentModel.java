@@ -613,7 +613,7 @@ public class AddEquipmentModel {
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
 
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_STATUSLIST_API);
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_USERSTATUSLIST_API);
 
         siteApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_SITESLIST_API);

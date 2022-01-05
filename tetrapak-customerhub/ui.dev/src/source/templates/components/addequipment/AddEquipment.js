@@ -12,12 +12,35 @@ function _renderLayout($this) {
   render.fn({
     template: 'addEquipmentForm',
     target: '.js-tp-add-equipment__content-wrapper',
-    data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.countryData, line: $this.cache.lineData , site: $this.cache.siteData, equipmentStatus: $this.cache.statusData }
+    data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.countryData, equipmentStatus: $this.cache.statusData }
   }, () => {
     $this.cache.$contentWrapper.removeClass('d-none');
     $this.cache.$spinner.addClass('d-none');
   });
 }
+
+/**
+ * Render sites dropdown
+ */
+function _renderSites($this, isDisabled) {
+  render.fn({
+    template: 'addEquipmentSites',
+    target: '.js-tp-add-equipment__site-wrapper',
+    data: { i18nKeys: $this.cache.i18nKeys, site: $this.cache.siteData, isDisabled: isDisabled ? true : false}
+  });
+}
+
+/**
+ * Render lines dropdown
+ */
+function _renderLines($this, isDisabled) {
+  render.fn({
+    template: 'addEquipmentLines',
+    target: '.js-tp-add-equipment__line-wrapper',
+    data: { i18nKeys: $this.cache.i18nKeys, line: $this.cache.lineData, isDisabled: isDisabled ? true : false}
+  });
+}
+
 /**
  * Fetch dropdown options
  */
@@ -48,36 +71,9 @@ function _getDropdownData($this) {
         },
         showLoader: true
       }), ajaxWrapper
-      .getXhrObj({
-        url: $this.cache.siteApi,
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        },
-        showLoader: true
-      }), ajaxWrapper
-      .getXhrObj({
-        url: $this.cache.lineApi,
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        },
-        showLoader: true
-      })
-
-    ).then((resCountry, resStatus, resSite, resLine) => {
+    ).then((resCountry, resStatus) => {
       $this.cache.countryData = resCountry[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
       $this.cache.statusData = resStatus[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
-      $this.cache.siteData = resSite[0].data.map(item => ({ key: item.id, desc: item.siteName }));
-      $this.cache.lineData = resLine[0].data.map(item => ({ key: item.id, desc: item.lineCode }));
 
       _renderLayout($this);
     }).fail(e => {
@@ -86,15 +82,71 @@ function _getDropdownData($this) {
     });
   });
 }
+
 /**
- * Render form or fetch dat for dropdowns
+ * Fetch Site dropdown options
+ */
+function _getSitesDropdownData($this, countryCode) {
+  const siteApi = $this.cache.siteApi;
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper
+      .getXhrObj({
+        url: `${siteApi}?countrycodes=${countryCode}`,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }).done(resSite => {
+        $this.cache.siteData = resSite.data.map(item => ({ key: item.id, desc: item.siteName }));
+        _renderSites($this, false);
+      }).fail((e) => {
+        logger.error(e);
+        _renderSites($this, false);
+      });
+  });
+}
+
+/**
+ * Fetch Line dropdown options
+ */
+function _getLinesDropdownData($this, siteCode) {
+  const lineApi = $this.cache.lineApi;
+  const countryCode = $this.cache.countryCode;
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper
+      .getXhrObj({
+        url: `${lineApi}?countrycodes=${countryCode}&sites=${siteCode}`,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }).done(resLine => {
+        $this.cache.lineData = resLine.data.map(item => ({ key: item.id, desc: item.lineDescription }));
+        _renderLines($this, false);
+      }).fail((e) => {
+        logger.error(e);
+        _renderLines($this, false);
+      });
+  });
+}
+
+/**
+ * Render form or fetch data for dropdowns
  */
 function _renderForm() {
   const $this = this;
   if ($this.cache.countryData && $this.cache.countryData.length &&
-      $this.cache.statusData && $this.cache.statusData.length &&
-      $this.cache.siteData && $this.cache.siteData.length &&
-      $this.cache.lineData && $this.cache.lineData.length) {
+      $this.cache.statusData && $this.cache.statusData.length) {
     _renderLayout($this);
   } else {
     _getDropdownData($this);
@@ -146,6 +198,7 @@ class AddEquipment {
     }
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.countryApi = this.root.data('country-api');
+    this.cache.countryCode = null;
     this.cache.statusApi = this.root.data('status-api');
     this.cache.siteApi = this.root.data('site-api');
     this.cache.lineApi = this.root.data('line-api');
@@ -220,6 +273,22 @@ class AddEquipment {
         $this.cache.firstInteract = true;
         $this.trackFormStart();
       }
+    });
+
+    $this.root.on('change', '#addEquipmentCountry', (e) => {
+      const countryCode = $(e.target).val();
+      this.cache.countryCode = countryCode;
+
+      // disabled Sites and Lines when changing country
+      _renderSites($this, true);
+      _renderLines($this, true);
+
+      _getSitesDropdownData($this, countryCode);
+    });
+
+    $this.root.on('change', '#addEquipmentSite', (e) => {
+      const siteCode = $(e.target).val();
+      _getLinesDropdownData($this, siteCode);
     });
   }
   trackLinkClick(e) {

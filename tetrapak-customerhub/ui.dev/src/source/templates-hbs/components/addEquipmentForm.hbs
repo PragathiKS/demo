@@ -52,27 +52,32 @@
                     }}
                     <div class="error-msg">{{i18n key=i18nKeys.countryErrorMsg}}</div>
                 </div>
-                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
-                    {{> atoms/dropdown/dropdown
-                            defaultValue=i18nKeys.dropdownPlaceholder
-                            options=site
-                            name="addEquipmentSite"
-                            labelText=i18nKeys.siteLabel
-                            wrapClasses="tp-add-equipment__field-wrapper"
-                            required="true"
-                    }}
-                    <div class="error-msg">{{i18n key=i18nKeys.siteErrorMsg}}</div>
+                <div class="js-tp-add-equipment__site-wrapper">
+                    <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                        {{> atoms/dropdown/dropdown
+                                defaultValue=i18nKeys.dropdownPlaceholder
+                                name="addEquipmentSite"
+                                labelText=i18nKeys.siteLabel
+                                wrapClasses="tp-add-equipment__field-wrapper"
+                                required="true"
+                                disabled="true"
+                        }}
+                        <div class="error-msg">{{i18n key=i18nKeys.siteErrorMsg}}</div>
+                    </div>
+
                 </div>
-                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
-                    {{> atoms/dropdown/dropdown
-                            defaultValue=i18nKeys.dropdownPlaceholder
-                            options=line
-                            name="addEquipmentLine"
-                            labelText=i18nKeys.lineLabel
-                            wrapClasses="tp-add-equipment__field-wrapper"
-                            required="true"
-                    }}
-                    <div class="error-msg">{{i18n key=i18nKeys.lineErrorMsg}}</div>
+                <div class="js-tp-add-equipment__line-wrapper">
+                    <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                        {{> atoms/dropdown/dropdown
+                                defaultValue=i18nKeys.dropdownPlaceholder
+                                name="addEquipmentLine"
+                                labelText=i18nKeys.lineLabel
+                                wrapClasses="tp-add-equipment__field-wrapper"
+                                required="true"
+                                disabled="true"
+                        }}
+                        <div class="error-msg">{{i18n key=i18nKeys.lineErrorMsg}}</div>
+                    </div>
                 </div>
                 <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                     {{> atoms/input/input

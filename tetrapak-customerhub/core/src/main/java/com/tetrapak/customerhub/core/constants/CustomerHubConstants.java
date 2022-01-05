@@ -332,6 +332,9 @@ public final class CustomerHubConstants {
     /** The Constant STATUS_LIST_API. */
     public static final String EQUIPMENT_STATUSLIST_API = "myequipment-statuslist";
 
+    /** The Constant USER_STATUS_LIST_API. */
+    public static final String EQUIPMENT_USERSTATUSLIST_API = "myequipment-userstatuslist";
+
     /** The Constant COUNTRY_LIST_API. */
     public static final String EQUIPMENT_COUNTRYLIST_API = "myequipment-countrylist";
 
