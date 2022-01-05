@@ -31,7 +31,9 @@
     &__link {
         height: 100%;
         & img {
-            height: 100%;
+            height: auto;
+            min-width: 156px;
+            width: 156px;
         }
     }
 
