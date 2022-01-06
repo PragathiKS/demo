@@ -15,7 +15,7 @@ pipeline {
         string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
         string(name: 'Snapshot_MyTetrapak', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
         string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
-
+        string(name: 'Snapshot_TetraLaval', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
     }
 
     options {
