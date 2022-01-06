@@ -72,7 +72,7 @@ function _getDropdownData($this) {
         showLoader: true
       }), ajaxWrapper
     ).then((resCountry, resStatus) => {
-      $this.cache.countryData = resCountry[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName }));
+      $this.cache.countryData = resCountry[0].data.map(({ countryCode, countryName }) => ({ key: countryName, desc: countryName, code: countryCode }));
       $this.cache.statusData = resStatus[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
 
       _renderLayout($this);
@@ -84,10 +84,20 @@ function _getDropdownData($this) {
 }
 
 /**
+ * Gets country code based on country name
+ */
+function _getCountryCode($this, countryName) {
+  const countryItem = $this.cache.countryData.find(country => country.key === countryName);
+
+  return countryItem.code;
+}
+
+/**
  * Fetch Site dropdown options
  */
-function _getSitesDropdownData($this, countryCode) {
+function _getSitesDropdownData($this, countryName) {
   const siteApi = $this.cache.siteApi;
+  const countryCode = _getCountryCode($this, countryName);
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
@@ -276,14 +286,14 @@ class AddEquipment {
     });
 
     $this.root.on('change', '#addEquipmentCountry', (e) => {
-      const countryCode = $(e.target).val();
-      this.cache.countryCode = countryCode;
+      const countryName = $(e.target).val();
+      this.cache.countryCode = _getCountryCode($this, countryName);
 
       // disabled Sites and Lines when changing country
       _renderSites($this, true);
       _renderLines($this, true);
 
-      _getSitesDropdownData($this, countryCode);
+      _getSitesDropdownData($this, countryName);
     });
 
     $this.root.on('change', '#addEquipmentSite', (e) => {
