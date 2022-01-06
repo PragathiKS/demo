@@ -5,6 +5,7 @@ import auth from '../../../scripts/utils/auth';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
+import { trackFormStart, trackFormStepComplete, trackFormComplete, trackFormCancel, trackFormError, trackLinkClick } from './EquipmentDetails.analytics';
 
 export const getUrlQueryParams = (url) => {
   const params = {};
@@ -97,6 +98,7 @@ function _renderEquipmentDetails() {
     }, () => {
       $this.cache.$content.removeClass('d-none');
       $this.cache.$spinner.addClass('d-none');
+      this.trackFormStart($this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
     });
   });
 }
@@ -186,6 +188,7 @@ class EquipmentDetails {
     this.cache.$content = this.root.find('.js-equipment-details__content');
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$modal = this.root.parent().find('.js-update-modal');
+    this.cache.formName = 'equipment information updation form';
     this.cache.countryData = [];
     this.cache.formData = {};
     this.cache.isFormValid = true;
@@ -203,25 +206,32 @@ class EquipmentDetails {
 
   bindEvents() {
     this.root.on('click', '.js-equipment-details__update',  () => {
+      this.trackFormStart(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
       this.renderEquipInfoCardWithData();
     });
 
     this.root.on('click', '.js-equipment-details__cancel',  () => {
+      this.trackFormCancel(this.cache.formName);
       this.renderEquipInfoCard({view: true});
     });
 
-    this.root.on('click', '.js-equipment-details__req-update',  (e) => {
-      e.preventDefault();
+    this.root.on('click', '.js-equipment-details__req-update', (e) => {
       let isFormValid = true;
-      const requiredFormElements = this.root.find('input.js-equipment-details__input');
+      const requiredFormElements = this.root.find('input.js-equipment-details__input[required]');
+      const formErrors = [];
       this.removeAllErrorMessages();
       requiredFormElements.each((_, item) => {
         if (!$(item).val()) {
           isFormValid = false;
           this.addErrorMsg(item);
+          formErrors.push({
+            formErrorMessage: $(item).closest('.js-equipment-details__form-element').find('.error-msg').text().trim(),
+            formErrorfield: $(this).closest('.js-equipment-details__form-element').find('.tp-equipment-details__info-cell-1').text().trim()
+          });
         }
       });
       if (!isFormValid) {
+        this.trackFormError(this.cache.formName, formErrors);
         return;
       }
       this.removeAllErrorMessages();
@@ -235,23 +245,33 @@ class EquipmentDetails {
         oldLineName: equipData.lineName,
         oldEquipmentStatus: equipData.equipmentStatusDesc,
         oldPosition: equipData.position,
-        oldEquipmentTypeDesc: equipData.equipmentTypeDesc,
+        oldEquipmentTypeDesc: equipData.equipmentNameSub,
         comments: data.comments,
         country: this.cache.countryData.find(country => country.key === data.country)?.desc || equipData.countryName,
         location: data.location || equipData.location,
         siteName: data.siteName || equipData.siteName,
         lineName: data.lineName || equipData.lineName,
         equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === data.equipmentStatus)?.desc || equipData.equipmentStatusDesc,
-        position: data.position || equipData.position,
+        position: data.position,
         equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,
         serialNumber: this.cache.data.serialNumber
       };
+      const fields = Object.keys(this.cache.formData).filter(key => !key.startsWith('old'));
+      this.cache.formFields = fields.map(key => ({ [key]: this.cache.formData[key] }));
+
+      this.trackFormStepComplete(this.cache.formName,`${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
       this.renderEquipUpdateModal();
     });
 
     this.root.on('click', '.js-equipment-details__req-make-update',  () => {
       this.cache.$spinner.removeClass('d-none');
       const submitApi = this.cache.submitApi;
+
+      // if position is empty, submit "null" as value
+      if (this.cache.formData.position === '') {
+        this.cache.formData.position = 'null';
+      }
+
       auth.getToken(({ data: authData }) => {
         ajaxWrapper
           .getXhrObj({
@@ -273,6 +293,7 @@ class EquipmentDetails {
             }
             this.cache.$content.removeClass('d-none');
             this.cache.$modal.modal('hide');
+            this.trackFormComplete(this.cache.formName,`${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
             this.renderEquipInfoCard({confirmed: true});
           }).fail(() => {
             this.cache.$content.removeClass('d-none');
@@ -282,8 +303,37 @@ class EquipmentDetails {
     });
 
     this.root.on('click', '.js-close-btn, .js-equipment-details__conf-cancel',  () => {
+      this.trackFormCancel(this.cache.formName);
       this.cache.$modal.modal('hide');
     });
+
+    this.root.on('click', 'button', (e) => {
+      this.trackLinkClick(this.cache.formName, e.target.textContent);
+    });
+  }
+
+  trackFormStart(formName, heading) {
+    trackFormStart(formName, heading);
+  }
+
+  trackFormStepComplete(formName, heading, formFields) {
+    trackFormStepComplete(formName, heading, formFields);
+  }
+
+  trackFormComplete(formName, heading, formFields) {
+    trackFormComplete(formName, heading, formFields);
+  }
+
+  trackLinkClick(formName, link) {
+    trackLinkClick(formName, link);
+  }
+
+  trackFormCancel(formName) {
+    trackFormCancel(formName);
+  }
+
+  trackFormError(formName, formErrors) {
+    trackFormError(formName, formErrors);
   }
 
   addErrorMsg(el) {
