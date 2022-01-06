@@ -29,7 +29,7 @@ import java.util.Objects;
         service = Filter.class,
         name = "Custom Aggregator List Redirecting Filter",
         property = {
-                "sling.filter.pattern=/content/tetrapak/tetralaval.*",
+                "sling.filter.pattern=/content/tetralaval.*",
                 "sling.filter.scope=REQUEST",
                 "service.ranking=-2"
         }
