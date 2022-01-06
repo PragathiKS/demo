@@ -10,6 +10,7 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetraPak Module', name: 'DeployMyTetrapak'
         booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
+	booleanParam defaultValue: true, description: 'Please check in case you want to build Tetralaval Module', name: 'DeployTetraLaval'
 
         string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
         string(name: 'Snapshot_MyTetrapak', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
@@ -167,7 +168,20 @@ pipeline {
                     }
                 )
             }             
-
+	 if (params.DeployTetraLaval) {
+                packageName = "tetrapak-tetralaval.all"
+                repoName = "tetrapak-tetralaval"
+                fileName = "1.0.0-DEV${Snapshot_TetraLaval}-SNAPSHOT"
+                devartifactdownload()
+                parallel (
+                    "Author TetraLaval" : {
+                authordeploy()
+                    },
+                    "Publisher Tetralaval" : {
+                publishdeploy()
+                    }
+                )
+        }
         }
     
     def stagedeployment65() {
