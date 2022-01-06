@@ -71,7 +71,8 @@
                                                 fieldDescription="Pick the most important areas/keywords"
                                                 fieldLabel="Tags"
                                                 multiple="{Boolean}true"
-                                                name="./cq:tags">
+                                                name="./cq:tags"
+                                                rootPath="/content/cq:tags/tetra-laval">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="cq:tags"/>
@@ -84,7 +85,8 @@
                                                 sling:resourceType="cq/gui/components/coral/common/form/tagfield"
                                                 fieldLabel="Tags"
                                                 multiple="{Boolean}true"
-                                                name="./cq:tags"/>
+                                                name="./cq:tags"
+                                                rootPath="/content/cq:tags/tetra-laval"/>
                                             <hideinnav
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"

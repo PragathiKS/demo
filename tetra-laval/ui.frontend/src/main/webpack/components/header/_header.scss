@@ -198,6 +198,10 @@
             &:last-child {
                 margin-left: 20px;
             }
+
+            > a {
+                text-transform: uppercase;
+            }
         }
 
         &-options {
