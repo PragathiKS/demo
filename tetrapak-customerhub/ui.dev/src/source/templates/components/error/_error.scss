@@ -1,20 +1,18 @@
 .tp-error {
-    margin-top: 0;
-
     &__heading {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
         color: $color-text;
     }
 
     &__code {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
         color: $color-text;
         font-family: $font-monsterrat;
         font-weight: 700;
     }
 
     &__description {
-        @include margin-bottom($margin-l);
+        @include margin-bottom($margin-md);
         color: $color-text;
         font-family: $font-monsterrat;
         font-weight: 700;
