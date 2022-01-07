@@ -92,7 +92,7 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         requestBean.setManufactureCountry(xssFilter.filter(bean.getEquipmentCountryOfManufacture()));
         requestBean.setManufactureYear(xssFilter.filter(bean.getEquipmentConstructionYear()));
         requestBean.setComment(xssFilter.filter(bean.getEquipmentComments()));
-        requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB);
+        requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB_SOURCENAME);
         requestBean.setNumberOfAttachments(noOfAttachments);
 
         return requestBean;
