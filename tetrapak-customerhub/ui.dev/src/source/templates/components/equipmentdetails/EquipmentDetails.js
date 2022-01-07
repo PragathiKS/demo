@@ -217,7 +217,7 @@ class EquipmentDetails {
 
     this.root.on('click', '.js-equipment-details__req-update', (e) => {
       let isFormValid = true;
-      const requiredFormElements = this.root.find('input.js-equipment-details__input');
+      const requiredFormElements = this.root.find('input.js-equipment-details__input[required]');
       const formErrors = [];
       this.removeAllErrorMessages();
       requiredFormElements.each((_, item) => {
@@ -245,14 +245,14 @@ class EquipmentDetails {
         oldLineName: equipData.lineName,
         oldEquipmentStatus: equipData.equipmentStatusDesc,
         oldPosition: equipData.position,
-        oldEquipmentTypeDesc: equipData.equipmentTypeDesc,
+        oldEquipmentTypeDesc: equipData.equipmentNameSub,
         comments: data.comments,
         country: this.cache.countryData.find(country => country.key === data.country)?.desc || equipData.countryName,
         location: data.location || equipData.location,
         siteName: data.siteName || equipData.siteName,
         lineName: data.lineName || equipData.lineName,
         equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === data.equipmentStatus)?.desc || equipData.equipmentStatusDesc,
-        position: data.position || equipData.position,
+        position: data.position,
         equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,
         serialNumber: this.cache.data.serialNumber
       };
@@ -266,6 +266,12 @@ class EquipmentDetails {
     this.root.on('click', '.js-equipment-details__req-make-update',  () => {
       this.cache.$spinner.removeClass('d-none');
       const submitApi = this.cache.submitApi;
+
+      // if position is empty, submit "null" as value
+      if (this.cache.formData.position === '') {
+        this.cache.formData.position = 'null';
+      }
+
       auth.getToken(({ data: authData }) => {
         ajaxWrapper
           .getXhrObj({
