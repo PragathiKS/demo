@@ -6,7 +6,7 @@ import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics } from './MyEquipment.analytics';
-
+import file from '../../../scripts/utils/file';
 import { _paginate } from './MyEquipment.paginate';
 import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
 import { _buildTableRows, _groupByBusinessType, _mapHeadings } from './MyEquipment.table';
@@ -121,6 +121,7 @@ class MyEquipment {
       'customers': [],
       'lines': []
     };
+    this.cache.downloadservletUrl = this.root.find('#downloadExcelServletUrl').val();
   }
 
   bindEvents() {
@@ -230,11 +231,8 @@ class MyEquipment {
       this.applyFilter({removeFilter:true});
     });
 
-    this.root.on('click', '.js-my-equipment__export-excel-action',  (e) => {
-      const countryCode = this.getActiveCountryCode();
-      const ExportURL = $(e.currentTarget).attr('href');
-      const url = `${ExportURL}?countrycodes=${countryCode}`;
-      window.location.href = url;
+    this.root.on('click', '.js-my-equipment__export-excel-action',  () => {
+      this.downloadExcel();        
     });
 
     this.cache.$removeAllFiltersBtn.on('click', () => {
@@ -310,6 +308,17 @@ class MyEquipment {
         };
       }
     }
+  }
+
+  downloadExcel = () => {
+    auth.getToken(() => {
+      const url = this.cache.downloadservletUrl;
+      file.get({
+        extension: 'csv',
+        url: `${url}?countrycodes=${this.getActiveCountryCode()}`,
+        method: ajaxMethods.GET
+      });
+    });
   }
 
   getActiveCountryCode = () => {
