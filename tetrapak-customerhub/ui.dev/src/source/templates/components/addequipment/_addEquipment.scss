@@ -198,11 +198,7 @@ $color-green: #8dc63f;
         @include margin-top($margin-md);
         display: flex;
         align-items: center;
-
-        span {
-            @include line-height($font-l, $font-baseline);
-        }
-
+        
         &-title {
             @include line-height($font-l, $font-baseline);
             font-weight: 700;

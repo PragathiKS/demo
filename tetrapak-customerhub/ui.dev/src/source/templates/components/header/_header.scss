@@ -22,10 +22,16 @@
 
     &__logo {
         display: flex;
-        flex: 1;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         height: 100%;
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding($padding-l);
+            flex: 1;
+            justify-content: flex-start;
+        }
     }
 
     &__link {
@@ -94,10 +100,10 @@
                 color: $color-sky-blue;
             }
         }
-
         &::before {
             @include font-size($font-normal);
-            @include padding-right(3px);
+            @include margin-top($margin-xss);
+            @include padding-right($padding-sm);
             color: $color-congress-blue;
         }
     }
