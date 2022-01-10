@@ -22,6 +22,7 @@
             </div>
             <div class="tp-add-equipment__drag-and-drop js-tp-add-equipment__drag-and-drop">
                 <h2 class="tp-add-equipment__drag-and-drop-title">{{i18n key=i18nKeys.dragAndDropTitle}}</h2>
+                <p class="tp-add-equipment__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropSubtitle}}</p>
                 {{> atoms/buttons/button/button
                         modifier="transparent"
                         jsClass="js-tp-add-equipment__drag-and-drop-button"
@@ -29,7 +30,9 @@
                         iconClass="icon-Plus"
                         text=i18nKeys.dragAndDropButton
                 }}
-                <p class="tp-add-equipment__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropSubtitle}}</p>
+                <div class="tp-add-equipment__file-error js-tp-add-equipment__file-error" hidden>
+                    {{i18n key=i18nKeys.fileExtensionErrorMsg}}
+                </div>
                 <div class="js-tp-add-equipment__drag-and-drop-files-container">
                 </div>
             </div>

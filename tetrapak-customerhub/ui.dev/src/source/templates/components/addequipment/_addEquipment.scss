@@ -256,4 +256,15 @@ $color-green: #8dc63f;
             }
         }
     }
+
+    &__file-error {
+        @include margin-top($margin-md);
+        @include padding($padding-md);
+        border: 1px solid $color-alert;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        background-color: $color-white;
+        border-radius: $border-radius;
+    }
 }

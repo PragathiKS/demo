@@ -180,12 +180,15 @@ function _renderForm() {
  */
 function _renderFiles() {
   const $this = this;
-  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.dragAndDropRemoveFileLabel }));
+  const $fileExtensionError = $this.root.find('.js-tp-add-equipment__file-error');
+  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.dragAndDropRemoveFileLabel, isError: true }));
   render.fn({
     template: 'addEquipmentFiles',
     target: '.js-tp-add-equipment__drag-and-drop-files-container',
     data: obj
   });
+
+  $fileExtensionError.attr('hidden', 'hidden');
 }
 /**
  * Render submit form
@@ -402,21 +405,34 @@ class AddEquipment {
   }
   dropFiles(e, $this, dropEvent) {
     let files;
+    const currentFilesCount = $this.cache.files.length;
     if (dropEvent) {
       files = e.originalEvent.dataTransfer.files;
     } else {
       files = e.target.files;
     }
     for (let i = 0; i < files.length; i++) {
-      if ($this.filterFiles(files[i])) {
+      if ($this.filterFiles(files[i], $this)) {
         $this.cache.files.push(files[i]);
       }
     }
-    $this.renderFiles();
-    $this.setFieldsMandatory();
+
+    if ($this.cache.files.length > currentFilesCount) {
+      $this.renderFiles();
+      $this.setFieldsMandatory();
+    }
   }
-  filterFiles(file) {
+  filterFiles(file, $this) {
     const maxFileSize = 10 * 1024 * 1024;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.JPG|\.JPEG|\.PNG|\.PDF)$/i;
+    const filePath = file.name;
+    const $fileExtensionError = $this.root.find('.js-tp-add-equipment__file-error');
+
+    if (!allowedExtensions.exec(filePath)) {
+      $fileExtensionError.removeAttr('hidden');
+      return false;
+    }
+
     return file.size < maxFileSize;
   }
   dragAndDropPreventDefault(e) {
