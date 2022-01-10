@@ -12,7 +12,7 @@ function _renderLayout($this) {
   render.fn({
     template: 'addEquipmentForm',
     target: '.js-tp-add-equipment__content-wrapper',
-    data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.countryData, equipmentStatus: $this.cache.statusData }
+    data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.countryData, equipmentStatus: $this.cache.statusData, allCountries:  $this.cache.allCountriesData}
   }, () => {
     $this.cache.$contentWrapper.removeClass('d-none');
     $this.cache.$spinner.addClass('d-none');
@@ -71,9 +71,22 @@ function _getDropdownData($this) {
         },
         showLoader: true
       }), ajaxWrapper
-    ).then((resCountry, resStatus) => {
+      .getXhrObj({
+        url: $this.cache.allCountriesApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }), ajaxWrapper
+    ).then((resCountry, resStatus, resAllCountries) => {
       $this.cache.countryData = resCountry[0].data.map(({ countryCode, countryName }) => ({ key: countryName, desc: countryName, code: countryCode }));
       $this.cache.statusData = resStatus[0].data.map(item => ({ key: item.equipmentStatus, desc: item.equipmentStatusDesc }));
+      $this.cache.allCountriesData = resAllCountries[0].data.map(({ countryCode, countryName }) => ({ key: countryName, desc: countryName, code: countryCode }));
 
       _renderLayout($this);
     }).fail(e => {
@@ -208,11 +221,13 @@ class AddEquipment {
     }
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.countryApi = this.root.data('country-api');
+    this.cache.allCountriesApi = this.root.data('all-countries-api');
     this.cache.countryCode = null;
     this.cache.statusApi = this.root.data('status-api');
     this.cache.siteApi = this.root.data('site-api');
     this.cache.lineApi = this.root.data('line-api');
     this.cache.countryData = [];
+    this.cache.allCountriesData = [];
     this.cache.statusData = [];
     this.cache.siteData = [];
     this.cache.lineData = [];
