@@ -267,11 +267,6 @@ class EquipmentDetails {
       this.cache.$spinner.removeClass('d-none');
       const submitApi = this.cache.submitApi;
 
-      // if position is empty, submit "null" as value
-      if (this.cache.formData.position === '') {
-        this.cache.formData.position = 'null';
-      }
-
       auth.getToken(({ data: authData }) => {
         ajaxWrapper
           .getXhrObj({

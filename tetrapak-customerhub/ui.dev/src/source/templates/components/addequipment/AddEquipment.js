@@ -331,9 +331,6 @@ class AddEquipment {
   submitForm(e) {
     const $this = this;
     const formData = new FormData(e.currentTarget.form);
-    // if Position is empty, populate value with null
-    const addEquipmentPositionValue = formData.get('addEquipmentPosition') !== '' ? formData.get('addEquipmentPosition') : 'null';
-    formData.set('addEquipmentPosition', addEquipmentPositionValue);
 
     if ($this.cache.files && $this.cache.files.length > 0) {
       for (let i = 0; i < $this.cache.files.length; i++) {
