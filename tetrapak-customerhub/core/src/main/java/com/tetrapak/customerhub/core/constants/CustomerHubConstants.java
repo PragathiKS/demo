@@ -177,7 +177,7 @@ public final class CustomerHubConstants {
     public static final String LINE = "line";
 
     /** The Constant EQUIPMENT_STATUS. */
-    public static final String EQUIPMENT_STATUS = "equipmentStatus";
+    public static final String EQUIPMENT_STATUS = "equipmentstatus";
 
     /** The Constant POSITION. */
     public static final String POSITION = "position";
@@ -234,7 +234,7 @@ public final class CustomerHubConstants {
     public static final String APPLY_FILTER = "applyFilter";
 
     /** The Constant SERIAL_NUMBER. */
-    public static final String SERIAL_NUMBER = "serialNumber";
+    public static final String SERIAL_NUMBER = "serialnumber";
 
     /** The Constant CUSTOMER. */
     public static final String CUSTOMER = "customer";
@@ -267,7 +267,7 @@ public final class CustomerHubConstants {
     public static final String SUPERIOR_EQUIPMENT_NAME = "superiorEquipmentName";
 
     /** The Constant ID. */
-    public static final String ID = "ID";
+    public static final String ID = "id";
 
     /** The Constant IS_SECOND_HAND. */
     public static final String IS_SECOND_HAND = "isSecondhand";
