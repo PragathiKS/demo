@@ -212,6 +212,12 @@
                                         fieldLabel="Construction year error message (i18N key)"
                                         name="./constructionYearErrorMsg"
                                         required="true"/>
+                                <fileExtensionErrorMsg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="File extensions error message (i18N key)"
+                                        name="./fileExtensionErrorMsg"
+                                        required="true"/>
                                 <commentsLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

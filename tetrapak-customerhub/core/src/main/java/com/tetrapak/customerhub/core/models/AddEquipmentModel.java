@@ -201,6 +201,9 @@ public class AddEquipmentModel {
     @Inject
     private String constructionYearErrorMsg;
 
+    /** The file extension error msg. */
+    @Inject
+    private String fileExtensionErrorMsg;
 
     /** The i 18 n keys. */
     private String i18nKeys;
@@ -546,6 +549,13 @@ public class AddEquipmentModel {
     public String getConstructionYearErrorMsg() { return constructionYearErrorMsg; }
 
     /**
+     * Gets the file extension error msg.
+     *
+     * @return the file extension error msg
+     */
+    public String getFileExtensionErrorMsg() { return fileExtensionErrorMsg; }
+
+    /**
      * Gets the Mapped Path of this resource.
      *
      * @return the mappedPath
@@ -598,6 +608,7 @@ public class AddEquipmentModel {
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_ERROR_MSG, getManufactureOfAssetErrorMsg());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_ERROR_MSG, getCountryOfManufactureErrorMsg());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG, getConstructionYearErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_FILE_EXTENSION_ERROR_MSG, getFileExtensionErrorMsg());
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
