@@ -456,7 +456,7 @@ public final class CustomerHubConstants {
     public static final String NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG = "constructionYearErrorMsg";
 
     /** TheConstant for Source name. */
-    public static final String TETRAPAK_CUSTOMERHUB = "tetrapak-customerhub";
+    public static final String TETRAPAK_CUSTOMERHUB_SOURCENAME = "MyTetraPak_App";
 
     /** TheConstant for Source name. */
     public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";

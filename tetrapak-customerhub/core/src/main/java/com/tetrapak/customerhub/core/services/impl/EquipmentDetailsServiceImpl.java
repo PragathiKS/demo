@@ -53,7 +53,7 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
         requestBean.setEquipmentNumber(xssFilter.filter(bean.getEquipmentId()));
         requestBean.setSerialNumber(xssFilter.filter(bean.getSerialNumber()));
         requestBean.setComment(xssFilter.filter(bean.getComments()));
-        requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB);
+        requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB_SOURCENAME);
         requestBean.setMetaDatas(createCollectionOfMetadatas(bean));
 
         return requestBean;
