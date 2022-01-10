@@ -456,6 +456,9 @@ public final class PWConstants {
     
     /** The Constant DOT. */
     public static final String DOT = ".";
+    
+    /** The Constant TL_LANGUAGE_LEVEL. */
+    public static final int TL_LANGUAGE_PAGE_LEVEL = 3;
 
     /**
      * Instantiates a new PW constants.

@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.utils;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -86,8 +87,12 @@ public final class PageUtil {
      */
     public static Page getLanguagePage(final Resource resource) {
         final Page currentPage = getCurrentPage(resource);
-        if (currentPage != null) {
-            return currentPage.getAbsoluteParent(PWConstants.LANGUAGE_PAGE_LEVEL);
+        if (Objects.nonNull(currentPage)) {
+            if (currentPage.getPath().startsWith(PWConstants.TETRA_LAVAL_CONTENT_PATH)) {
+                return currentPage.getAbsoluteParent(PWConstants.TL_LANGUAGE_PAGE_LEVEL);
+            } else {
+                return currentPage.getAbsoluteParent(PWConstants.LANGUAGE_PAGE_LEVEL);
+            }            
         }
         return null;
     }
