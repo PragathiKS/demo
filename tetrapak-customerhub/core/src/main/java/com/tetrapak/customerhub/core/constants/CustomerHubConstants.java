@@ -494,6 +494,9 @@ public final class CustomerHubConstants {
     /** TheConstant CSV_COMMA_SEPARATOR */
     public static final String CSV_COMMA_SEPARATOR= "sep=,";
 
+    /** TheConstant Not Applicable */
+    public static final String NOT_APPLICABLE= "n/a";
+
     /**
      * Instantiates a new customer hub constants.
      */
