@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.beans.equipment;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -106,7 +107,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getPositionMetadata() {
-        return new EquipmentMetaData("Position", oldPosition, position);
+        return new EquipmentMetaData("Position", oldPosition,
+                replaceBlankWithNotApplicableIfChanged(oldPosition, position));
     }
 
     /**
@@ -116,5 +118,12 @@ public class EquipmentUpdateFormBean {
      */
     public EquipmentMetaData getDescriptionMetadata() {
         return new EquipmentMetaData("Description", oldEquipmentTypeDesc, equipmentTypeDesc);
+    }
+
+    private String replaceBlankWithNotApplicableIfChanged(String oldValue, String newValue) {
+        if (!StringUtils.equals(oldValue, newValue) && StringUtils.isBlank(newValue)) {
+            return CustomerHubConstants.NOT_APPLICABLE;
+        }
+        return newValue;
     }
 }

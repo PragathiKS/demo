@@ -470,6 +470,9 @@ public final class CustomerHubConstants {
     /** TheConstant for Source name. */
     public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";
 
+    /** TheConstant Not Applicable */
+    public static final String NOT_APPLICABLE= "n/a";
+
     /**
      * Instantiates a new customer hub constants.
      */
