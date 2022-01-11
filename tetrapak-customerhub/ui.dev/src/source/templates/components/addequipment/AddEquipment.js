@@ -421,11 +421,11 @@ class AddEquipment {
   }
   filterFiles(file, $this) {
     const maxFileSize = 10 * 1024 * 1024;
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf|\.JPG|\.JPEG|\.PNG|\.PDF)$/i;
+    const blockedExtensions = /(\.exe|\.zip)$/i;
     const filePath = file.name;
     const $fileExtensionError = $this.root.find('.js-tp-add-equipment__file-error');
 
-    if (!allowedExtensions.exec(filePath)) {
+    if (blockedExtensions.exec(filePath)) {
       $fileExtensionError.removeAttr('hidden');
       return false;
     }

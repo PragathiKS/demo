@@ -125,6 +125,7 @@ $color-green: #8dc63f;
 
             &-remove-container {
                 cursor: pointer;
+                flex-shrink: 0;
             }
 
             &-icon {
@@ -132,8 +133,8 @@ $color-green: #8dc63f;
 
                 &--file {
                     @include line-height($font-l, $font-md);
-                    @include font-size($font-md);
-                    color: $color-red;
+                    @include font-size($font-l);
+                    color: $color-congress-blue;
                 }
 
                 &--trash {

@@ -77,6 +77,10 @@ public class AddEquipmentModel {
     @Inject
     private String dragAndDropSubtitle;
 
+    /** The file format subtitle. */
+    @Inject
+    private String fileFormatSubtitle;
+
     /** The drag and drop button label. */
     @Inject
     private String dragAndDropButtonLabel;
@@ -321,10 +325,19 @@ public class AddEquipmentModel {
     /**
      * Gets the drag and drop subtitle.
      *
-     * @return the drag and drop sybtitle
+     * @return the drag and drop subtitle
      */
     public String getDragAndDropSubtitle() {
         return dragAndDropSubtitle;
+    }
+
+    /**
+     * Gets the file format subtitle.
+     *
+     * @return the file format subtitle
+     */
+    public String getFileFormatSubtitle() {
+        return fileFormatSubtitle;
     }
 
     /**
@@ -577,6 +590,7 @@ public class AddEquipmentModel {
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION, getDragAndDropDescription());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_TITLE, getDragAndDropTitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE, getDragAndDropSubtitle());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_FILE_FORMAT_SUBTITLE, getFileFormatSubtitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON, getDragAndDropButtonLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_REMOVE_FILE_LABEL, getDragAndDropRemoveFileLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DETAILS_TITLE, getDetailsTitle());
