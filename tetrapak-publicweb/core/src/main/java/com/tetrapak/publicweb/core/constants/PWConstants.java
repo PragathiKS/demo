@@ -490,6 +490,9 @@ public final class PWConstants {
     /** The BASIC. */
     public static final String BASIC = "Basic";
 
+	/** The Constant TL_LANGUAGE_LEVEL. */
+    public static final int TL_LANGUAGE_PAGE_LEVEL = 3;
+
     /**
      * Instantiates a new PW constants.
      */
