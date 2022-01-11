@@ -31,10 +31,8 @@
             <span class="tpatom-btn__text tp-my-equipment__header-action-text">${"cuhu.equipment.customizetable" @i18n}</span>
           </div>
           <input type="hidden" id="downloadExcelServletUrl" name="downloadExcelServletUrl" value="${data.downloadExcelServletUrl}" />
-          <a data-sly-test="${data.downloadExcelServletUrl}" class="tp-my-equipment__action-button js-my-equipment__export-excel-action" href="#">
-            <i class="icon icon-Excel action-icon"></i>
-            <span class="tpatom-btn__text tp-my-equipment__header-action-text">${"cuhu.equipment.exporttoexcel" @i18n}</span>
-          </a>
+          <sly data-sly-use.btnRef="/apps/commons/components/atoms/buttonlink/buttonlink-template.html"
+               data-sly-call="${btnRef.buttonlink_template @text='cuhu.equipment.exporttoexcel',modifier='primary',baseClass='tp-button-link',iconClass='icon-Excel action-icon',className='tp-my-equipment__action-button',jsClass='js-my-equipment__export-excel-action'}" />
         </div>
       </div>
     </div>
