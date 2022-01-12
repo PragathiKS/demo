@@ -83,7 +83,7 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         requestBean.setCountry(xssFilter.filter(bean.getEquipmentCountry()));
         requestBean.setSite(xssFilter.filter(bean.getEquipmentSite()));
         requestBean.setLine(xssFilter.filter(bean.getEquipmentLine()));
-        requestBean.setPosition(xssFilter.filter(bean.getEquipmentPosition()));
+        requestBean.setPosition(xssFilter.filter(replaceBlankWithNotApplicable(bean.getEquipmentPosition())));
         requestBean.setUserStatus(xssFilter.filter(bean.getEquipmentStatus()));
         requestBean.setMachineSystem(xssFilter.filter(bean.getEquipmentMachineSystem()));
         requestBean.setEquipmentDesciption(xssFilter.filter(bean.getEquipmentDescription()));
@@ -96,5 +96,12 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         requestBean.setNumberOfAttachments(noOfAttachments);
 
         return requestBean;
+    }
+
+    private String replaceBlankWithNotApplicable(String value) {
+        if (StringUtils.isBlank(value)) {
+            return CustomerHubConstants.NOT_APPLICABLE;
+        }
+        return value;
     }
 }
