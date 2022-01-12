@@ -98,7 +98,6 @@ function _renderEquipmentDetails() {
     }, () => {
       $this.cache.$content.removeClass('d-none');
       $this.cache.$spinner.addClass('d-none');
-      this.trackFormStart($this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
     });
   });
 }
@@ -121,7 +120,7 @@ function  _renderEquipInfoCard(view) {
     },
     target: '.js-equipment-details__info-card'
   });
-
+  
   if (view && view.update) {
     $this.bindFormChangeEvents();
   }
@@ -188,7 +187,7 @@ class EquipmentDetails {
     this.cache.$content = this.root.find('.js-equipment-details__content');
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$modal = this.root.parent().find('.js-update-modal');
-    this.cache.formName = 'equipment information updation form';
+    this.cache.formName = '';
     this.cache.countryData = [];
     this.cache.formData = {};
     this.cache.isFormValid = true;
@@ -206,16 +205,21 @@ class EquipmentDetails {
 
   bindEvents() {
     this.root.on('click', '.js-equipment-details__update',  () => {
-      this.trackFormStart(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
+      const $this = this;
       this.renderEquipInfoCardWithData();
+      setTimeout(function() {
+        $this.cache.formName = $('.js-equipment-details__info-card h3').text().trim();
+        $this.trackFormStart($this.cache.formName, `${$this.cache.data.equipmentName} - ${$this.cache.data.serialNumber}`);
+      }, 700);
     });
 
     this.root.on('click', '.js-equipment-details__cancel',  () => {
-      this.trackFormCancel(this.cache.formName);
+      this.trackFormCancel(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
       this.renderEquipInfoCard({view: true});
     });
 
     this.root.on('click', '.js-equipment-details__req-update', (e) => {
+      const $this = this;
       let isFormValid = true;
       const requiredFormElements = this.root.find('input.js-equipment-details__input[required]');
       const formErrors = [];
@@ -226,12 +230,12 @@ class EquipmentDetails {
           this.addErrorMsg(item);
           formErrors.push({
             formErrorMessage: $(item).closest('.js-equipment-details__form-element').find('.error-msg').text().trim(),
-            formErrorfield: $(this).closest('.js-equipment-details__form-element').find('.tp-equipment-details__info-cell-1').text().trim()
+            formErrorfield: $(item).closest('.js-equipment-details__form-element').find('.tp-equipment-details__info-cell-1').text().trim()
           });
         }
       });
       if (!isFormValid) {
-        this.trackFormError(this.cache.formName, formErrors);
+        this.trackFormError(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, formErrors);
         return;
       }
       this.removeAllErrorMessages();
@@ -258,8 +262,20 @@ class EquipmentDetails {
       };
       const fields = Object.keys(this.cache.formData).filter(key => !key.startsWith('old'));
       this.cache.formFields = fields.map(key => ({ [key]: this.cache.formData[key] }));
-
-      this.trackFormStepComplete(this.cache.formName,`${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
+      // Set Analytics Tracking Form Fields
+      const $form = $this.cache.$content.find('.js-equipment-details__form');
+      const $formFields = [];
+      $('input, textarea, select', $form).each((_, item) => {
+        const closestEle = $(item).closest('.js-equipment-details__form-element');
+        const fieldLabel = $(closestEle).find('.tp-equipment-details__info-cell-1');
+        const formfield = fieldLabel.length > 0 ? $(fieldLabel).text().trim(): $(closestEle).find('label').text().trim();
+        const fieldValue = $(item).is('select') ? $(item).find('option:selected').text():$(item).val();
+        $formFields.push({
+          formFieldName: formfield,
+          formFieldValue: fieldValue
+        });
+      });
+      this.trackFormStepComplete(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, $formFields);
       this.renderEquipUpdateModal();
     });
 
@@ -293,7 +309,7 @@ class EquipmentDetails {
             }
             this.cache.$content.removeClass('d-none');
             this.cache.$modal.modal('hide');
-            this.trackFormComplete(this.cache.formName,`${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
+            this.trackFormComplete(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
             this.renderEquipInfoCard({confirmed: true});
           }).fail(() => {
             this.cache.$content.removeClass('d-none');
@@ -303,7 +319,7 @@ class EquipmentDetails {
     });
 
     this.root.on('click', '.js-close-btn, .js-equipment-details__conf-cancel',  () => {
-      this.trackFormCancel(this.cache.formName);
+      this.trackFormCancel(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
       this.cache.$modal.modal('hide');
     });
 
@@ -328,12 +344,12 @@ class EquipmentDetails {
     trackLinkClick(formName, link);
   }
 
-  trackFormCancel(formName) {
-    trackFormCancel(formName);
+  trackFormCancel(formName, heading) {
+    trackFormCancel(formName, heading);
   }
 
-  trackFormError(formName, formErrors) {
-    trackFormError(formName, formErrors);
+  trackFormError(formName, equipment, formErrors) {
+    trackFormError(formName, equipment, formErrors);
   }
 
   addErrorMsg(el) {

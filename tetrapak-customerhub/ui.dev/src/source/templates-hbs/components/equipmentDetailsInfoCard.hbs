@@ -30,7 +30,7 @@
                 <div class="error-msg">Please enter this field</div>
             </div>
         </div>
-        <div class="tp-equipment-details__form-element">
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
             <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentStatus}}</div>
             <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
                 {{> atoms/dropdown/dropdown options=statuses name="equipmentStatus" jsClass="js-tp-my-equipment-filter-dropdown"}}
@@ -50,7 +50,7 @@
                 <div class="error-msg">Please enter this field</div> 
             </div>
         </div>
-        <div class="tp-equipment-details__form-element">
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
             {{> atoms/textarea/textarea labelText="Comment to Tetra Pak" name="comments" eleClasses="js-equipment-details__input" maxlength=300}}
         </div>
         <div class="tp-equipment-details__action-wrap">

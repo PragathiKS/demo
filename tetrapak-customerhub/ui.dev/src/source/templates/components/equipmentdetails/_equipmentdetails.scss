@@ -177,6 +177,14 @@
     &__action-wrap {
         display: flex;
         margin-top: auto;
+
+        .tpatom-btn {
+            @include margin-left($margin-md);
+
+            &:first-child {
+                @include margin-left($margin-zero);
+            }
+        }
     }
 
     &__note {
@@ -219,7 +227,7 @@
 
         i {
             @include font-size($font-normal);
-            @include margin-right(12px);
+            @include margin-right($margin-xs);
             display: inline-block;
             margin-left: 0;
             transform: translateY(2px);
@@ -273,12 +281,13 @@
     &-modal .tpmol-modal-footer {
         padding-top: 0;
 
-        .tp-equipment-details__conf-cancel {
-            margin-left: 0;
-        }
+        .tpatom-btn {
+            @include margin($margin-zero);
+            @include margin-left($margin-md);
 
-        .tp-equipment-details__req-make-update {
-            margin-right: 0;
+            &:first-child {
+                @include margin-left($margin-zero);
+            }
         }
     }
 
