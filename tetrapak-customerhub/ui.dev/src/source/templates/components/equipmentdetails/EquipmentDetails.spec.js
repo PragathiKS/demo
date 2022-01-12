@@ -87,47 +87,15 @@ describe('EquipmentDetails', function () {
   });
 
   it('should call trackFormStart when form is rendered ', function(done) {
+    const $this = this;
     setDom(this);
-    $('.js-equipment-details__update').trigger('click')
-    expect(this.trackFormStartSpy.calledOnce).to.be.true;
+    $('.js-equipment-details__update').trigger('click');
+    setTimeout(function() {
+      expect($this.trackFormStartSpy.calledOnce).to.be.true;
+    }, 700);
     done();
   });
-
-  // it('should not submit form when no fields changed', function (done) {
-  //   setDom(this);
-  //   $('.js-equipment-details__req-update').trigger('click');
-  //   expect(this.removeAllErrorMessagesSpy.calledOnce).to.be.true;
-  //   // expect(this.trackFormErrorSpy.calledOnce).to.be.true;
-  //   expect(this.renderEquipUpdateModalSpy.called).to.be.false;
-  //   done();
-  // });
-
-  // it('should not submit form when no required fields are provided', function (done) {
-  //   setDom(this);
-  //   $('#comments').val('0070');
-  //   $('.js-equipment-details__req-update').trigger('click');
-  //   expect(this.removeAllErrorMessagesSpy.calledOnce).to.be.true;
-  //   expect(this.renderEquipUpdateModalSpy.called).to.be.false;
-  //   done();
-  // });
-
-  // it('should submit form and open modal when required fields are not empty', function (done) {
-  //   setDom(this);
-  //   $('#country').val('DE');
-  //   $('#equipmentStatus').val('STCU');
-  //   $('#equipmentTypeDesc').val('Steriltank');
-  //   $('#position').val('0070');
-  //   $('#siteName').val('Biesenhofen');
-  //   $('#location').val('DL');
-  //   $('#lineName').val('BASE');
-  //   $('#comments').val('Test');
-  //
-  //   $('.js-equipment-details__req-update').trigger('click');
-  //   // expect(this.trackFormStepCompleteSpy.calledOnce).to.be.true;
-  //   expect(this.renderEquipUpdateModalSpy.calledOnce).to.be.true;
-  //   done();
-  // });
-
+  
   it('should get country list and it should be equal to 2', function (done) {
     expect($('#country').children).to.have.length(2);
     done();
