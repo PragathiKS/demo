@@ -383,6 +383,9 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE. */
     public static final String NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE = "dragAndDropSubtitle";
 
+    /** The Constant NEW_EQUIPMENT_FILE_FORMAT_SUBTITLE. */
+    public static final String NEW_EQUIPMENT_FILE_FORMAT_SUBTITLE = "fileFormatSubtitle";
+
     /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON. */
     public static final String NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON = "dragAndDropButton";
 
