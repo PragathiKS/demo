@@ -1,4 +1,4 @@
-<sly data-sly-template.buttonlink_template="${@ text,baseClass,modifier,iconClass,className,jsClass,locale}">
+<sly data-sly-template.buttonlink_template="${@ text,baseClass,modifier,iconClass,className,jsClass,locale,auto_locator}">
     <sly data-sly-test.modifierClassWithSpace=" tpatom-btn--${modifier}" />
     <sly data-sly-test.baseClassWithSpace=" ${baseClass}" />
     <sly data-sly-test.iconClassWithSpace=" ${iconClass}" />
@@ -6,7 +6,8 @@
     <sly data-sly-test.jsClassNameWithSpace=" ${jsClass}" />
     <button
       data-sly-test="${text}"
-      class="tpatom-btn${baseClass ? baseClassWithSpace : 'tp-button-link' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-btn--primary'}${className ? classNameWithSpace : ''}">
+      class="tpatom-btn${baseClass ? baseClassWithSpace : 'tp-button-link' }${jsClass ? jsClassNameWithSpace : '' }${modifier ? modifierClassWithSpace : ' tpatom-btn--primary'}${className ? classNameWithSpace : ''}"
+      auto_locator="${auto_locator ? auto_locator : ''}">
         <sly data-sly-test="${iconClass}" >
           <i class="icon${iconClassWithSpace}"></i>
         </sly>
