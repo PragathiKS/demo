@@ -87,12 +87,9 @@ describe('EquipmentDetails', function () {
   });
 
   it('should call trackFormStart when form is rendered ', function(done) {
-    const $this = this;
     setDom(this);
     $('.js-equipment-details__update').trigger('click');
-    setTimeout(function() {
-      expect($this.trackFormStartSpy.calledOnce).to.be.true;
-    }, 700);
+    expect(this.trackFormStartSpy.calledOnce).to.be.true;
     done();
   });
   
