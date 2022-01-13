@@ -204,13 +204,9 @@ class EquipmentDetails {
   }
 
   bindEvents() {
-    this.root.on('click', '.js-equipment-details__update',  () => {
-      const $this = this;
+    this.root.on('click', '.js-equipment-details__update', () => {
       this.renderEquipInfoCardWithData();
-      setTimeout(function() {
-        $this.cache.formName = $('.js-equipment-details__info-card h3').text().trim();
-        $this.trackFormStart($this.cache.formName, `${$this.cache.data.equipmentName} - ${$this.cache.data.serialNumber}`);
-      }, 700);
+      this.trackFormStart();
     });
 
     this.root.on('click', '.js-equipment-details__cancel',  () => {
@@ -323,8 +319,13 @@ class EquipmentDetails {
     });
   }
 
-  trackFormStart(formName, heading) {
-    trackFormStart(formName, heading);
+  trackFormStart() {
+    const $this = this;
+    const { data } = $this.cache;
+    setTimeout(function() {
+      $this.cache.formName = $('.js-equipment-details__info-card').find('h3').text().trim();
+      trackFormStart($this.cache.formName, `${data.equipmentName} - ${data.serialNumber}`);
+    }, 700);
   }
 
   trackFormStepComplete(formName, heading, formFields) {
