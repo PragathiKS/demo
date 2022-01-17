@@ -295,7 +295,7 @@
             color: $color-sky-blue;
         }
         &.second {
-            @include margin-top($margin-md);
+            @include margin-top(12px);
             @include margin-bottom($margin-md);
             @media #{$desktop} {
                 @include margin-top($margin-zero);
