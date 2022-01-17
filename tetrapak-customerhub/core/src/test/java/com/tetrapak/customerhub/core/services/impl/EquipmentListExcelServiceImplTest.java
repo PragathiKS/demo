@@ -1,7 +1,9 @@
 package com.tetrapak.customerhub.core.services.impl;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,8 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
+import com.tetrapak.customerhub.core.beans.financials.results.Params;
+import com.tetrapak.customerhub.core.beans.financials.results.Results;
 import com.tetrapak.customerhub.core.mock.MockEquipmentListApiServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -43,10 +47,16 @@ public class EquipmentListExcelServiceImplTest {
 		Mockito.doNothing().when(servletOutputStream).write(Mockito.any(), Mockito.anyInt(), Mockito.anyInt());
 	}
 
-	@Test
-	public void testGetColumnHeaderArray() {
-		assertNotNull(equipmentListExcelService.getColumnHeaderArray());
-	}
+	/**
+     * Test method for
+     * {@link EquipmentListExcelServiceImpl#generateCSV(java.util.List, org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse)}.
+	 * @throws IOException 
+     */
+    @Test
+    public void testGenerateEquipmentsExcelWithNullApiResp() throws IOException {
+        List<Equipments> equipments = null;
+        assertFalse(equipmentListExcelService.generateCSV(equipments, servletRequest, response));
+    }
 	
 	private List<Equipments> getMockEquipmentList() {
 		Equipments paramRequest = new Equipments();

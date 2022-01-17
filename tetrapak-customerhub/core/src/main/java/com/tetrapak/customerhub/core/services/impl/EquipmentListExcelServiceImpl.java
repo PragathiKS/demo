@@ -119,9 +119,11 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 	}
 
 	/**
+	 * Method to generate CSV file header array
+	 * 
 	 * @return String array of header row
 	 */
-	public String[][] getColumnHeaderArray() {
+	private String[][] getColumnHeaderArray() {
 		String[][] columnNames = new String[1][csvHeaderMapping.size()];
 		int headerColumnIndex = 0;
 		Iterator<String> iterator = csvHeaderMapping.iterator();
@@ -151,7 +153,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 	 * @param List<Equipments> Unsorted Equipment list
 	 * @return List<Equipments> Sorted Equipment list
 	 */
-	public List<Equipments> sortEquipmentRecordsinCSV(List<Equipments> unsortedEquipments) {
+	private List<Equipments> sortEquipmentRecordsinCSV(List<Equipments> unsortedEquipments) {
 
 		Function<Equipments, String> getCustomerName = t -> {
 			String name = t.getCustomerName();
@@ -182,7 +184,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 	 * @param Equipments equipment
 	 * @return String
 	 */
-	public String convertToCSVRow(Equipments equipment) {
+	private String convertToCSVRow(Equipments equipment) {
 		List<String> equipmentPropertiesList = new ArrayList<>();
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCountryCode()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCustomerName()));
