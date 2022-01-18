@@ -14,6 +14,7 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
         booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak'
+	booleanParam defaultValue: true, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Pa11y_Execution'
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'ZAP_Run'
@@ -88,6 +89,13 @@ pipeline {
                         buildandsonar()
                     }
                 }
+		script {
+                    if (params.Build_Tetralaval) {
+                        appname = "tetra-laval"
+                        buildandsonarlaval()
+                    }
+                }
+
             }
         }
 
@@ -265,7 +273,22 @@ pipeline {
                 publishdeploy()  
                     }
                 )
-            }             
+            }
+	 if (params.Build_Tetralaval)  {
+                packageName = "tetrapak-tetralaval.all"
+                repoName = "tetrapak-tetralaval"
+                fileName = "1.0.0-DEV${build_id_number}-SNAPSHOT"
+                devartifactdownload()
+                parallel (
+                    "Author tetra-laval" : {
+                authordeploy()
+                    },
+                    "Publisher tetra-laval" : {
+                publishdeploy()
+                    }
+                )
+
+            }
 
         }
     
