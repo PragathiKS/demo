@@ -1,3 +1,5 @@
+$color-red: #ff0000;
+
 .tp-my-equipment {
     &__modal-content {
         max-height: 80vh;
@@ -27,6 +29,7 @@
     }
     &__modal-footer {
         @include padding($padding-md);
+        flex-wrap: wrap;
 
         @media #{$desktop} {
             @include padding($padding-md $padding-l $padding-l $padding-l);
@@ -218,8 +221,23 @@
         }
     }
 
-    .modal-footer > :not(:first-child) {
-        @include margin-left($margin-l);
+    &__filter-count, &__filter-count-err {
+        @include margin-top($margin-sm);
+        @include font-size($font-sm);
+        @include line-height(20px, $font-sm);
+        width: 100%;
+    }
+
+    &__filter-count-err {
+        color: $color-red;
+    }
+
+    .modal-footer {
+        > button {
+            &:not(:first-child) {
+                @include margin-left($margin-l);
+            }
+        }
     }
 
     .tpatom-checkbox__label,
@@ -255,12 +273,10 @@
         &.show {
             @media #{$mobile} {
                 @include padding($padding-l);
-                border: solid 1px $color-mercury;
                 display: flex;
                 position: absolute;
                 right: 0;
                 background: $color-wild-sand;
-                box-shadow: 0 4px 16px rgba($color-black, 0.1);
                 border-radius: 4px;
                 min-width: 256px;
             }
@@ -286,11 +302,30 @@
             }
         }
     }
-    .icon-Hide {
+    .tpatom-radio__icon {
+        @include width(20px);
+        @include height(20px);
+        @include border-radius(20px);
+        display: inline-block;
+        position: relative;
+
+        &::before {
+            @include width(8px);
+            @include height(8px);
+            @include border-radius(10px);
+            content: '';
+            background: $color-congress-blue;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .action-icon {
         display: none;
     }
 
-    &__customise-table-action {
+    &__action-button {
         display: flex;
         cursor: pointer;
         &:hover * {
@@ -427,14 +462,18 @@
         &__header-actions {
             display: flex;
         }
-        .icon-Hide {
+        .action-icon {
             @include padding-right($padding-sm);
             display: flex;
         }
-        &__customise-table-action {
+        &__action-button {
             display: flex;
             line-height: 40px;
             align-items: center;
+
+            &:not(:last-child) {
+                @include margin-right($margin-md);
+            }
         }
         &__flex-container {
             flex-direction: row;

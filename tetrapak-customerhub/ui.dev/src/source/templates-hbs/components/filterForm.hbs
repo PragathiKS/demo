@@ -72,6 +72,15 @@
                 <span class="tpatom-btn__text sly-text">{{i18n key=removeAll}}</span>
             </button>
             {{/unless}}
+            {{#if maxItemsNo}}
+                <p class="tp-my-equipment__filter-count js-tp-my-equipment__filter-count" data-max-filters="{{maxItemsNo}}">
+                    <span class="js-tp-my-equipment__filter-count-current">{{selectedItemsNo}}</span> {{i18n key=filtersOf}}
+                    <span class="js-tp-my-equipment__filter-count-total">{{maxItemsNo}}</span> {{i18n key=filtersSelected}}
+                </p>
+                <p class="tp-my-equipment__filter-count-err js-tp-my-equipment__filter-count-err" hidden>
+                    {{i18n key=maxLimitErrorPre}} {{maxItemsNo}} {{i18n key=maxLimitErrorAfter}}
+                </p>
+            {{/if}}
         </div>
     </div>
 </div>

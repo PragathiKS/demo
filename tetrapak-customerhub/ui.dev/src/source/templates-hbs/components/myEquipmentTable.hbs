@@ -7,5 +7,7 @@
     {{/if}}
 </div>
 
-{{> molecules/table-pagination/table-pagination jsClass="js-my-equipment__table-summary"
-        paginationObj=paginationObj}}
+{{#unless noDataMessage}}
+    {{> molecules/table-pagination/table-pagination jsClass="js-my-equipment__table-summary"
+            paginationObj=paginationObj}}
+{{/unless}}
