@@ -482,6 +482,18 @@ public final class CustomerHubConstants {
     /** The Constant FILE_EXTENSION_ERROR_MSG. */
     public static final String NEW_EQUIPMENT_FILE_EXTENSION_ERROR_MSG = "fileExtensionErrorMsg";
 
+    /** The Constant MAX_FILTERS_LIMIT_PRE. */
+    public static final String MAX_FILTERS_LIMIT_PRE = "maxLimitErrorPre";
+
+    /** The Constant MAX_FILTERS_LIMIT_AFTER. */
+    public static final String MAX_FILTERS_LIMIT_AFTER = "maxLimitErrorAfter";
+
+    /** The Constant FILTERS_OF. */
+    public static final String FILTERS_OF = "filtersOf";
+
+    /** The Constant FILTERS_SELECTED. */
+    public static final String FILTERS_SELECTED = "filtersSelected";
+
     /** TheConstant for Source name. */
     public static final String TETRAPAK_CUSTOMERHUB_SOURCENAME = "MyTetraPak_App";
 
