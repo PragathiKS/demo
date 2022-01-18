@@ -253,7 +253,7 @@ class MyEquipment {
       const id = $(e.currentTarget).attr('href');
       const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
       const url = `${equipmentDetailsUrl}?id=${id}`;
-      window.location.href = url;
+      window.open(url, '_blank');
     });
 
     $modal.on('shown.bs.modal', () => {
