@@ -208,6 +208,15 @@ class MyEquipment {
       }
     });
 
+    $('body').on('click', (e) => {
+      const $actionBtn = e.target;
+      if(!$($actionBtn).hasClass('icon-Three_Dot')){
+        if($('.tp-my-equipment__header-actions').hasClass('show')){
+          $('.tp-my-equipment__header-actions').removeClass('show');
+        }
+      } 
+    });
+
     this.root.on('change', '.country-equipment-list',  function() {
       $('input[type="checkbox"]').not(this).prop('checked', false);
     });
