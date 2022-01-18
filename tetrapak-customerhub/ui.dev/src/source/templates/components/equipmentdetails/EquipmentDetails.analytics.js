@@ -1,73 +1,73 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const trackFormStart = function (formName, equipment) {
+export const trackFormStart = function (formName, step, equipment) {
   const eventObj = {
     eventType: 'formstart',
-    event: 'Equipment Information Update'
+    event: 'Equipment Information Updation Form'
   };
   const formObj = {
     equipment: equipment,
-    formName: formName,
-    formStep: 'Step 1',
-    formType: 'Equipment Information Update'
+    formName: 'Equipment Information Updation Form',
+    formStep: step,
+    formType: formName
   };
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
-export const trackFormStepComplete = function (formName, equipment, formFields) {
+export const trackFormStepComplete = function (formName, step, equipment, formFields) {
   const eventObj = {
     eventType: 'step1complete',
-    event: 'Equipment Information Update'
+    event: 'Equipment Information Updation Form'
   };
   const formObj = {
     equipment: equipment,
-    formName: formName,
-    formStep: 'Step 1',
-    formType: 'Equipment Information Update',
+    formName: 'Equipment Information Updation Form',
+    formStep: step,
+    formType: formName,
     formField: formFields
   };
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
-export const trackFormComplete = function (formName, equipment, formFields) {
+export const trackFormComplete = function (formName, step, equipment, formFields) {
   const eventObj = {
     eventType: 'formcomplete',
-    event: 'Equipment Information Update'
+    event: 'Equipment Information Updation Form'
   };
   const formObj = {
     equipment: equipment,
-    formName: formName,
-    formStep: 'Step 1',
-    formType: 'Equipment Information Update',
+    formName: 'Equipment Information Updation Form',
+    formStep: step,
+    formType: formName,
     formField: formFields
   };
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
-export const trackFormCancel = function (formName, equipment) {
+export const trackFormCancel = function (formName, step, equipment) {
   const eventObj = {
     eventType: 'formcancel',
-    event: 'Equipment Information Update'
+    event: 'Equipment Information Updation Form'
   };
   const formObj = {
     equipment: equipment,
-    formName: formName,
-    formStep: 'Step 1',
-    formType: 'Equipment Information Update'
+    formName: 'Equipment Information Updation Form',
+    formStep: step,
+    formType: formName
   };
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const trackFormError = function (formName, equipment, formErrors) {
+export const trackFormError = function (formName, step, equipment, formErrors) {
   const eventObj = {
     eventType: 'formerror',
-    event: 'Equipment Information Update'
+    event: 'Equipment Information Updation Form'
   };
   const formObj = {
     equipment: equipment,
-    formName: formName,
-    formStep: 'Step 1',
-    formType: 'Equipment Information Update',
+    formName: 'Equipment Information Updation Form',
+    formStep: step,
+    formType: formName,
     formError: formErrors
   };
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
@@ -83,7 +83,7 @@ export const trackLinkClick = function (formName, linkName) {
     },
     event: {
       eventType: 'linkClick',
-      event: 'Equipment Information Update'
+      event: 'Equipment Information Updation Form'
     }
   };
   trackAnalytics(formObj, 'linkClick', 'linkClick', undefined, false);

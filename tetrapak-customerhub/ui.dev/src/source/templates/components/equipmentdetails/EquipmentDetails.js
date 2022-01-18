@@ -210,7 +210,7 @@ class EquipmentDetails {
     });
 
     this.root.on('click', '.js-equipment-details__cancel',  () => {
-      this.trackFormCancel(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
+      this.trackFormCancel(this.cache.formName, 'Step 1', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
       this.renderEquipInfoCard({view: true});
     });
 
@@ -231,7 +231,7 @@ class EquipmentDetails {
         }
       });
       if (!isFormValid) {
-        this.trackFormError(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, formErrors);
+        this.trackFormError(this.cache.formName, 'Step 1', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, formErrors);
         return;
       }
       this.removeAllErrorMessages();
@@ -271,7 +271,7 @@ class EquipmentDetails {
           formFieldValue: fieldValue
         });
       });
-      this.trackFormStepComplete(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, $formFields);
+      this.trackFormStepComplete(this.cache.formName, 'Step 1', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, $formFields);
       this.renderEquipUpdateModal();
     });
 
@@ -300,7 +300,8 @@ class EquipmentDetails {
             }
             this.cache.$content.removeClass('d-none');
             this.cache.$modal.modal('hide');
-            this.trackFormComplete(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
+            const $heading = $('.js-update-modal').find('.tp-equipment-details__modal-header').find('h2').text().trim();
+            this.trackFormComplete($heading, 'Step 2', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
             this.renderEquipInfoCard({confirmed: true});
           }).fail(() => {
             this.cache.$content.removeClass('d-none');
@@ -310,7 +311,8 @@ class EquipmentDetails {
     });
 
     this.root.on('click', '.js-close-btn, .js-equipment-details__conf-cancel',  () => {
-      this.trackFormCancel(this.cache.formName, `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
+      const $heading = $('.js-update-modal').find('.tp-equipment-details__modal-header').find('h2').text().trim();
+      this.trackFormCancel($heading, 'Step 2', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
       this.cache.$modal.modal('hide');
     });
 
@@ -324,28 +326,28 @@ class EquipmentDetails {
     const { data } = $this.cache;
     setTimeout(function() {
       $this.cache.formName = $('.js-equipment-details__info-card').find('h3').text().trim();
-      trackFormStart($this.cache.formName, `${data.equipmentName} - ${data.serialNumber}`);
+      trackFormStart($this.cache.formName, 'Step 1', `${data.equipmentName} - ${data.serialNumber}`);
     }, 700);
   }
 
-  trackFormStepComplete(formName, heading, formFields) {
-    trackFormStepComplete(formName, heading, formFields);
+  trackFormStepComplete(formName, step, heading, formFields) {
+    trackFormStepComplete(formName, step, heading, formFields);
   }
 
-  trackFormComplete(formName, heading, formFields) {
-    trackFormComplete(formName, heading, formFields);
+  trackFormComplete(formName, step, heading, formFields) {
+    trackFormComplete(formName, step, heading, formFields);
   }
 
   trackLinkClick(formName, link) {
     trackLinkClick(formName, link);
   }
 
-  trackFormCancel(formName, heading) {
-    trackFormCancel(formName, heading);
+  trackFormCancel(formName, step, heading) {
+    trackFormCancel(formName, step, heading);
   }
 
-  trackFormError(formName, equipment, formErrors) {
-    trackFormError(formName, equipment, formErrors);
+  trackFormError(formName, step, equipment, formErrors) {
+    trackFormError(formName, step, equipment, formErrors);
   }
 
   addErrorMsg(el) {
