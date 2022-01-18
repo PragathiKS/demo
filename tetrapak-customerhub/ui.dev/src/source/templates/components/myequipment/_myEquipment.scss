@@ -255,10 +255,12 @@
         &.show {
             @media #{$mobile} {
                 @include padding($padding-l);
+                border: solid 1px $color-mercury;
                 display: flex;
                 position: absolute;
                 right: 0;
                 background: $color-wild-sand;
+                box-shadow: 0 4px 16px rgba($color-black, 0.1);
                 border-radius: 4px;
                 min-width: 256px;
             }
