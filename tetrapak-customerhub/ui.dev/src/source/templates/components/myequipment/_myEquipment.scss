@@ -1,3 +1,5 @@
+$color-red: #ff0000;
+
 .tp-my-equipment {
     &__modal-content {
         max-height: 80vh;
@@ -27,6 +29,7 @@
     }
     &__modal-footer {
         @include padding($padding-md);
+        flex-wrap: wrap;
 
         @media #{$desktop} {
             @include padding($padding-md $padding-l $padding-l $padding-l);
@@ -218,8 +221,23 @@
         }
     }
 
-    .modal-footer > :not(:first-child) {
-        @include margin-left($margin-l);
+    &__filter-count, &__filter-count-err {
+        @include margin-top($margin-sm);
+        @include font-size($font-sm);
+        @include line-height(20px, $font-sm);
+        width: 100%;
+    }
+
+    &__filter-count-err {
+        color: $color-red;
+    }
+
+    .modal-footer {
+        > button {
+            &:not(:first-child) {
+                @include margin-left($margin-l);
+            }
+        }
     }
 
     .tpatom-checkbox__label,
@@ -297,7 +315,7 @@
             @include width(8px);
             @include height(8px);
             @include border-radius(10px);
-            content: "";
+            content: '';
             background: $color-congress-blue;
             position: absolute;
             top: 50%;

@@ -61,6 +61,26 @@ function _processTableData(data){
   return data;
 }
 
+function _limitFilterSelection($modal) {
+  const $countWrapper = $modal.find('.js-tp-my-equipment__filter-count');
+  const maxItems = parseInt($countWrapper.data('max-filters'), 10);
+  const $currentCountTxt = $modal.find('.js-tp-my-equipment__filter-count-current');
+  const $currentCountError = $modal.find('.js-tp-my-equipment__filter-count-err');
+  const checkedItemsNo = $modal.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)').filter(':checked').length;
+  const $applyBtn = $modal.find('.js-apply-filter-button');
+
+  if (checkedItemsNo <= maxItems) {
+    $currentCountTxt.text(checkedItemsNo);
+    $currentCountError.attr('hidden', 'hidden');
+    $countWrapper.removeAttr('hidden');
+    $applyBtn.removeAttr('disabled');
+  } else {
+    $countWrapper.attr('hidden', 'hidden');
+    $currentCountError.removeAttr('hidden');
+    $applyBtn.attr('disabled', 'disabled');
+  }
+}
+
 class MyEquipment {
   constructor({ el }) {
     this.root = $(el);
@@ -145,21 +165,21 @@ class MyEquipment {
     });
 
     this.cache.$customerFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'customer',header:i18nKeys['customer']};
+      const formDetail = {activeForm:'customer',header:i18nKeys['customer'],maxFiltersSelection:10};
       this.cache.filterModalData['customer'] = this.getFilterModalData('customer');
       this.renderFilterForm(this.cache.filterModalData['customer'], formDetail, this.cache.$customerFilterLabel);
       $modal.modal();
     });
 
     this.cache.$lineFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'lineName',header:i18nKeys['line']};
+      const formDetail = {activeForm:'lineName',header:i18nKeys['line'],maxFiltersSelection:10};
       this.cache.filterModalData['lineName'] = this.getFilterModalData('lineName');
       this.renderFilterForm(this.cache.filterModalData['lineName'], formDetail, this.cache.$lineFilterLabel);
       $modal.modal();
     });
 
     this.cache.$statusFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'equipmentStatusDesc',header:i18nKeys['equipmentStatus']};
+      const formDetail = {activeForm:'equipmentStatusDesc',header:i18nKeys['equipmentStatus'],maxFiltersSelection:10};
       this.cache.filterModalData['equipmentStatusDesc'] = this.getFilterModalData('equipmentStatusDesc');
       this.renderFilterForm(this.cache.filterModalData['equipmentStatusDesc'], formDetail, this.cache.$statusFilterLabel);
       $modal.modal();
@@ -173,7 +193,7 @@ class MyEquipment {
     });
 
     this.cache.$equipmentTypeFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'equipmentType',header:i18nKeys['equipmentType']};
+      const formDetail = {activeForm:'equipmentType',header:i18nKeys['equipmentType'],maxFiltersSelection:20};
       this.cache.filterModalData['equipmentType'] = this.getFilterModalData('equipmentType');
       this.renderFilterForm(this.cache.filterModalData['equipmentType'], formDetail, this.cache.$equipmentTypeFilterLabel);
       $modal.modal();
@@ -241,7 +261,7 @@ class MyEquipment {
     });
 
     this.root.on('click', '.js-my-equipment__export-excel-action',  () => {
-      this.downloadExcel();        
+      this.downloadExcel();
     });
 
     this.cache.$removeAllFiltersBtn.on('click', () => {
@@ -276,11 +296,13 @@ class MyEquipment {
     // Equipment Type filter - All Packaging , All processing
     this.root.on('change', '.js-tp-my-equipment-filter-group-checkbox', (e) => {
       const $currentTarget = $(e.target);
+      const $modal = $currentTarget.parents('.tp-my-equipment__modal-content');
       const $currentTargetWrapper = $currentTarget.parents('.tp-my-equipment__type-group-option');
       const $checkboxGroupInputs = $currentTargetWrapper.next().find('.tpatom-checkbox__input').not(':disabled');
       $checkboxGroupInputs.each((index, item) => {
         $(item).prop('checked', $currentTarget.is(':checked'));
       });
+      _limitFilterSelection($modal);
     });
 
     this.root.on('change', '.tp-my-equipment-group-filter-options .js-tp-my-equipment-filter-checkbox', (e) => {
@@ -290,6 +312,13 @@ class MyEquipment {
       if (!$currentTarget.is(':checked')) {
         $thisGroupAllCheckbox.prop('checked', false);
       }
+    });
+
+    // Limit selection of checkbox filters to a max number
+    this.root.on('change', '.tp-my-equipment-filter-options .js-tp-my-equipment-filter-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $modal = $currentTarget.parents('.tp-my-equipment__modal-content');
+      _limitFilterSelection($modal);
     });
 
     this.root.on('click', '.js-page-number',  (e) => {
@@ -758,6 +787,8 @@ class MyEquipment {
 
   renderFilterForm = (data, formDetail, $filterBtn) => {
     const { i18nKeys } = this.cache;
+    let selectedItemsNo = 0;
+
     if (formDetail.header === i18nKeys['country']) {
       data.forEach((item,index) => {
         data[index]= {
@@ -768,11 +799,26 @@ class MyEquipment {
       });
     }
 
+    // if checkbox type filter
+    if (formDetail.maxFiltersSelection) {
+      // Equipment Type has different data format, due to being grouped in Packaging or Processing
+      if (formDetail.header === i18nKeys['equipmentType']) {
+        data.forEach(dataItem => {
+          const selectedItems = dataItem.options.filter(item => item.isChecked).length;
+          selectedItemsNo += selectedItems;
+        });
+      } else {
+        selectedItemsNo = data.filter(item => item.isChecked).length;
+      }
+    }
+
     render.fn({
       template: 'filterForm',
       data: {
         header: formDetail.header,
         formData: data,
+        maxItemsNo: formDetail.maxFiltersSelection ? formDetail.maxFiltersSelection : null,
+        selectedItemsNo: selectedItemsNo ? selectedItemsNo : 0,
         isEquipmentType: formDetail.header === i18nKeys['equipmentType'],
         ...i18nKeys,
         singleButton: formDetail.singleButton === true ? true : false,
