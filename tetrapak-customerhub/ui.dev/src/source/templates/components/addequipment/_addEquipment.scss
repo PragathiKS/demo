@@ -67,7 +67,7 @@ $color-green: #8dc63f;
         &-subtitle {
             @include line-height($font-normal, $font-baseline);
             @include font-size($font-baseline);
-            @include margin-bottom($margin-md);
+            @include margin-top($margin-md);
         }
 
         &-button {
@@ -80,6 +80,12 @@ $color-green: #8dc63f;
 
             span {
                 @include line-height($font-l, $font-baseline);
+            }
+
+            i.icon {
+                &::before {
+                    @include font-size($font-sm);
+                }
             }
         }
 
@@ -199,7 +205,6 @@ $color-green: #8dc63f;
         @include margin-top($margin-md);
         display: flex;
         align-items: center;
-        
         &-title {
             @include line-height($font-l, $font-baseline);
             font-weight: 700;
@@ -256,12 +261,10 @@ $color-green: #8dc63f;
 
     &__file-error {
         @include margin-top($margin-md);
-        @include padding($padding-md);
-        border: 1px solid $color-alert;
+        @include font-size($font-sm);
         display: flex;
+        color: $color-alert;
         justify-content: space-between;
         flex-direction: column;
-        background-color: $color-white;
-        border-radius: $border-radius;
     }
 }
