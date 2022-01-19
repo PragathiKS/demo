@@ -36,8 +36,8 @@
     }
 
     ul {
+        @include padding-left($padding-xxl);
         ul {
-            @include padding-left($padding-md);
             @include padding-top($padding-xs);
 
             li {
@@ -49,7 +49,7 @@
     }
 
     li {
-        display: block;
+        display: table-row;
     }
 
     .tp-pw-richText-wrapper {
@@ -125,8 +125,9 @@
         li {
             &::before {
                 @include margin-right($margin-sm);
+                @include padding-right($padding-sm);
                 font-size: $bullet-size;
-                display: inline-block;
+                display: table-cell;
                 color: $color-emperor;
                 content: '\2022';
             }
@@ -136,7 +137,7 @@
             li {
                 &::before {
                     font-size: $bullet-size;
-                    display: inline-block;
+                    display: table-cell;
                     color: $color-emperor;
                     content: '\2022';
                 }
@@ -150,6 +151,7 @@
         li {
             &::before {
                 @include margin-right($margin-sm);
+                @include padding-right($padding-sm);
                 content: counters(section, '.') ' ';
                 counter-increment: section;
             }
@@ -160,7 +162,8 @@
     ul ul {
         li {
             &::before  {
-                @include margin-right($margin-m);
+                @include margin-right($margin-sm);
+                @include padding-right($padding-sm);
             }
         }
     }

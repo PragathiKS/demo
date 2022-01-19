@@ -47,13 +47,14 @@ public class SubscriptionFormPardotServletTest {
         parameterMap.put("firstName", "firstName");
         parameterMap.put("lastName", "lastName");
         parameterMap.put("pardotUrl", "http://go.tetrapak.com/l/857883/2020-05-29/xttt");
+        parameterMap.put("country", "India");
         parameterMap.put("types-communication", "Press and Media Communication");
         parameterMap.put("types-communication", "Event Invitations");
         parameterMap.put("interestArea", "Packaging");
         parameterMap.put("interestArea", "Services");
 
         context.request().setParameterMap(parameterMap);
-
+        context.request().setPathInfo("/content/tetrapak/public-web/in/en");
         context.request().setResource(context.currentResource());
 
     }
@@ -67,6 +68,6 @@ public class SubscriptionFormPardotServletTest {
     @Test
     public void doPost() throws IOException {
         subscriptionFormPardotServlet.doPost(context.request(), context.response());
-        assertEquals("Success", context.response().getOutputAsString());
+        assertEquals("success", context.response().getOutputAsString());
     }
 }

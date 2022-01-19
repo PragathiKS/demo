@@ -5,7 +5,7 @@
                  data-sly-call="${genericimage.genericimage_template @image=data.image,className='tp-get-started__details--image'}">
             </sly>
             <div class="tpmol-image-card__text">
-                <h3 class="tpmol-image-card__heading">${data.titleI18n @i18n}</h3>
+                <h4 class="tpmol-image-card__heading">${data.titleI18n @i18n}</h4>
                 <sly data-sly-test.description="${data.descriptionI18n}">
                     <div class="${className} font-style-sm">
                         ${description @ context='html'}

@@ -29,7 +29,7 @@
                                 fieldDescription="Where the logo should direct"
                                 fieldLabel="Logo Image link"
                                 name="./logoLink"
-                                rootPath="/content/tetrapak/tetralaval"/>
+                                rootPath="/content/tetralaval"/>
                             <logoalt
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -43,14 +43,14 @@
                                 fieldDescription="Where the contact icon should direct, if empty, contact icon will not appear"
                                 fieldLabel="Contact link"
                                 name="./contactLink"
-                                rootPath="/content/tetrapak/tetralaval"/>
+                                rootPath="/content/tetralaval"/>
                             <searchLink
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldDescription="Where the search icon should direct, if empty, search icon will not appear"
                                 fieldLabel="Search link"
                                 name="./searchLink"
-                                rootPath="/content/tetrapak/tetralaval"/>
+                                rootPath="/content/tetralaval"/>
                         </items>
                     </general>
                 </items>

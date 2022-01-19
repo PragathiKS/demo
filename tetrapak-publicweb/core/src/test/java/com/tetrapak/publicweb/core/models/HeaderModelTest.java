@@ -202,5 +202,22 @@ public class HeaderModelTest {
         assertEquals("Header", "Tetra Pak Global",
                 model.getMarketList().getGlobalMarketTitle());
     }
+    
+    @Test
+    public void testGetGlobalMarket() {
+        MockSlingHttpServletRequest request = context.request();
+        context.load().json(RESOURCE_CONTENT_TWO, TEST_CONTENT_ROOT_TWO); 
+        context.request().setPathInfo(RESOURCE_TWO);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_TWO));
+        resource = context.currentResource(RESOURCE_TWO);
+        context.addModelsForPackage("com.tetrapak.publicweb.core.models");
+        model = request.adaptTo(modelClass);
+        
+        marketBean.setMarketName("Tetra Pak Global");
+        marketBean.setCountryName("Global");
+       
+        assertEquals("Header", "Tetra Pak Global",
+                model.getMarketList().getGlobalMarket().getMarketName());
+    }
 
 }

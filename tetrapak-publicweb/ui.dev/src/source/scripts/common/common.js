@@ -431,3 +431,28 @@ export const parseQueryString = () => {
     return data;
   }, {});
 };
+
+// Remove Query Params from URL
+export const removeParams = (parameter, pageURL) => {
+  let url = pageURL ? pageURL:document.location.href;
+  const urlparts = url.split('?');
+
+  if (urlparts.length >= 2) {
+    const urlBase = urlparts.shift();
+    const queryString = urlparts.join('?');
+    const prefix = encodeURIComponent(parameter)+'=';
+    const pars = queryString.split(/[&;]/g);
+    for (let i = pars.length; i-- > 0;) {
+      if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+        pars.splice(i, 1);
+      }
+      url = urlBase+'?'+pars.join('&');
+    }
+  }
+  return url;
+};
+
+// Capitalize String
+export const capitalizeFirstLetter = ([first, ...rest]) => {
+  return [first.toUpperCase(), ...rest].join('');
+};

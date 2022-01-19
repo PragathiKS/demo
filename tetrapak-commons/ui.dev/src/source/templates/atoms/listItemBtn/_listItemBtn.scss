@@ -1,10 +1,10 @@
 .tpatom-list-item {
     &.active {
-        background: $color-denim;
+        background: $color-catalina-blue;
     }
 
     &:hover {
-        background: $color-tory-blue;
+        background: $color-catalina-blue;
     }
 
     &__link {
@@ -36,7 +36,7 @@
         }
 
         &[aria-expanded="true"] {
-            .icon-Chevron_Down {
+            .icon-Arrow_Down {
                 transform: rotate(-180deg);
             }
         }
@@ -68,21 +68,16 @@
         @include padding(0 $padding-md 0 $padding-l);
         @include font-size($font-sm);
         @include line-height(20px, $font-sm);
-        @include letter-spacing($letter-spacing-sm);
         display: inline-block;
         position: relative;
         width: 100%;
-
-        .tpmol-list-item__sublist & {
-            @include padding(0 $padding-md 0 $padding-sm);
-        }
     }
 
     &__external-link,
     &__arrow-down {
-        @include font-size($font-xxs);
-        @include width($spacing-small-half);
-        @include height($spacing-small-half);
+        @include font-size($font-sm);
+        @include width($spacing-big-half);
+        @include height($spacing-big-half);
         @include margin-top(-3px);
         position: absolute;
         top: 50%;

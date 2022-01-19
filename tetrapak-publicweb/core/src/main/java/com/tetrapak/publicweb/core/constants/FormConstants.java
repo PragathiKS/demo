@@ -1,7 +1,7 @@
 package com.tetrapak.publicweb.core.constants;
 
 /**
- * The Class PWConstants.
+ * The Class FormConstants.
  */
 public final class FormConstants {
 

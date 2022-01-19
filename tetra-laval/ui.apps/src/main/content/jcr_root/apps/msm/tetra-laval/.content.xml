@@ -8,7 +8,7 @@
         jcr:primaryType="nt:unstructured"
         jcr:title="Tetra Laval"
         sling:resourceType="wcm/msm/components/blueprint"
-        sitePath="/content/tetrapak/tetralaval/lang-masters">
+        sitePath="/content/tetralaval/lang-masters">
         <dialog/>
     </jcr:content>
 </jcr:root>

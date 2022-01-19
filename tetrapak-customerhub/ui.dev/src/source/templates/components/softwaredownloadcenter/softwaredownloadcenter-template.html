@@ -1,10 +1,14 @@
 <sly data-sly-template.softwaredownloadcenter_template="${@data, properties}">
     <div class="tp-card tp-download-center" data-module="SoftwareDownloadCenter">
-        <h2 data-sly-test="${properties.title}" class="tp-download-center__heading"> ${properties.title @ i18n}</h2>
-        <div class="tp-download-center__description">${properties.description @ context='html'}</div> 
-        <sly data-sly-test.variant="transparent">
-        <sly data-sly-use.btnLink="/apps/commons/components/atoms/button-text/button-text.html"
-             data-sly-call="${btnLink.button_template @btnPath=data.linkPath, btnText=properties.linkText ,btnTarget='true', variant=variant, customClasses='tp-download-center__link'}" />              
-            </sly>
+        <div class="row">
+            <div class="col-md-12 col-lg-9">
+                <h2 data-sly-test="${properties.title}" class="tp-download-center__heading"> ${properties.title @ i18n}</h2>
+                <div data-sly-test="${properties.description}" class="tp-download-center__description">${properties.description @ context='html'}</div> 
+                <sly data-sly-use.linkAtom="/apps/commons/components/atoms/link/link-template.html"
+                    data-sly-call="${linkAtom.link_template @url=data.linkPath,text=properties.linkText,baseClass='',isExternal=true,modifier='transparent',
+                        linkHeading=properties.linkText, iconClass='icon-Chevron_Right',className='tp-download-center__link'}">
+                </sly>
+            </div>
+        </div>        
     </div>
 </sly>

@@ -6,6 +6,12 @@
         {{#if dataLocator}}
             data-locator="{{dataLocator}}"
         {{/if}}
+        {{#if autoLocator}}
+            auto_locator="{{autoLocator}}"
+        {{/if}}
+        {{#if maxlength}}
+           maxlength="{{maxlength}}"
+        {{/if}}
         {{#if readonly}}
             readonly="readonly"
         {{/if}}
@@ -17,6 +23,9 @@
         {{/if}}
         {{#if placeholder}}
             placeholder="{{i18n key=placeholder}}"
+        {{/if}}
+        {{#if required}}
+           required
         {{/if}}
         {{#eachData this}}
             {{@key}}="{{this}}"

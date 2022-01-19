@@ -12,7 +12,7 @@
     <div class="row no-gutters" data-sly-test="${'pw.form.businessenq.scopeOfRequest' @i18n}">
       <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.scopeOfRequest', variant='small'}" />
+          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.scopeOfRequest', variant='small', auto_locator='scopeOfRequest'}" />
       </div>
     </div>
 
@@ -20,19 +20,19 @@
       <div class="col-sm-12 formfield form-group" auto_locator="businessEnquiryRightContainerStep1">
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingEquipment',  required=true, label='pw.form.businessenq.processing.scope.equipment', name='businessAreaInterestProcessingSupport', locale= 'en', value='Equipment'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingEquipment',  required=true, label='pw.form.businessenq.processing.scope.equipment', name='businessAreaInterestProcessingSupport', locale= 'en', value='Equipment', auto_locator='requestListOption'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingLine',  required=true, label='pw.form.businessenq.processing.scope.line', name='businessAreaInterestProcessingSupport', locale= 'en', value='Line'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingLine',  required=true, label='pw.form.businessenq.processing.scope.line', name='businessAreaInterestProcessingSupport', locale= 'en', value='Line', auto_locator='requestListOption'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingDontknow',  required=true, label='pw.form.businessenq.processing.scope.dontknow', name='businessAreaInterestProcessingSupport', locale= 'en', value='Don’t know'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingDontknow',  required=true, label='pw.form.businessenq.processing.scope.dontknow', name='businessAreaInterestProcessingSupport', locale= 'en', value='Don’t know', auto_locator='requestListOption'}">
         </sly>
 
         <div>
-          <input type="hidden" name="businessAreaInterestProcessingSupportEqTitle" class="form-control" id="businessAreaInterestProcessingSupportEqTitle" required>
+          <input type="hidden" name="businessAreaInterestProcessingSupportEqTitle" class="form-control" id="businessAreaInterestProcessingSupportEqTitle" data-analyticsField="Scope of request" required>
           <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}
           </div>
         </div>
@@ -42,13 +42,13 @@
     <div class="row no-gutters" data-sly-test="${'pw.form.businessenq.processing.foodCategory' @i18n}">
       <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.processing.foodCategory', variant='small'}" />
+          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.processing.foodCategory', variant='small', auto_locator='foodCategory'}" />
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep1">
-        <ul>
+        <ul auto_locator="foodCategoryListOptions">
           <li>
             <sly
               data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
@@ -72,7 +72,7 @@
                     </sly>
                   </li>
                 </ul>
-                <input type="hidden" name="foodBeveragesEqTitle" class="form-control field-handler" id="foodBeveragesEqTitle" data-fieldname="businessAreaProcessingNeedBeverage" />
+                <input type="hidden" name="foodBeveragesEqTitle" class="form-control field-handler" id="foodBeveragesEqTitle" data-fieldname="businessAreaProcessingNeedBeverage" data-analyticsField="Business Area Processing Need Beverage" />
                 <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}
                 </div>
               </div>
@@ -119,7 +119,7 @@
                     </sly>
                   </li>
                 </ul>
-                <input type="hidden" name="foodCheeseEqTitle" class="form-control field-handler" id="foodCheeseEqTitle" data-fieldname="businessAreaProcessingNeedCheese" />
+                <input type="hidden" name="foodCheeseEqTitle" class="form-control field-handler" id="foodCheeseEqTitle" data-fieldname="businessAreaProcessingNeedCheese" data-analyticsField="Business Area Processing Need Cheese" />
                 <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}
                 </div>
               </div>
@@ -148,7 +148,7 @@
                     </sly>
                     <sly
                       data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                      data-sly-call="${radioField.radiofieldinput_template @ id='foodDairyMilkPowder',  label='pw.form.businessenq.processing.fc.dairy.milkPowder', name='businessAreaProcessingNeedDairy', locale= 'en', value='Milk Powder'}">
+                      data-sly-call="${radioField.radiofieldinput_template @ id='foodDairyMilkPowder',  label='pw.form.businessenq.processing.fc.milkPowder', name='businessAreaProcessingNeedDairy', locale= 'en', value='Milk Powder'}">
                     </sly>
                     <sly
                       data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
@@ -172,7 +172,7 @@
                     </sly>
                   </li>
                 </ul>
-                <input type="hidden" name="foodDairyEqTitle" class="form-control field-handler" id="foodDairyEqTitle" data-fieldname="businessAreaProcessingNeedDairy" />
+                <input type="hidden" name="foodDairyEqTitle" class="form-control field-handler" id="foodDairyEqTitle" data-fieldname="businessAreaProcessingNeedDairy" data-analyticsField="Business Area Processing Need Dairy" />
                 <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}
                 </div>
               </div>
@@ -221,7 +221,7 @@
                     </sly>
                   </li>
                 </ul>
-                <input type="hidden" name="foodNeedPreparedEqTitle" class="form-control field-handler" id="foodNeedPreparedEqTitle" data-fieldname="businessAreaProcessingNeedPreparedFoods" />
+                <input type="hidden" name="foodNeedPreparedEqTitle" class="form-control field-handler" id="foodNeedPreparedEqTitle" data-fieldname="businessAreaProcessingNeedPreparedFoods" data-analyticsField="Business Area Processing Need Prepared Foods" />
                 <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}
                 </div>
               </div>
@@ -258,7 +258,7 @@
                     </sly>
                   </li>
                 </ul>
-                <input type="hidden" name="foodNeedPowderEqTitle" class="form-control field-handler" id="foodNeedPowderEqTitle" data-fieldname="businessAreaProcessingNeedPowder" />
+                <input type="hidden" name="foodNeedPowderEqTitle" class="form-control field-handler" id="foodNeedPowderEqTitle" data-fieldname="businessAreaProcessingNeedPowder" data-analyticsField="Business Area Processing Need Powder" />
                 <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}</div>
               </div>
             </div>
@@ -271,7 +271,7 @@
           </li>
         </ul>
         <div>
-          <input type="hidden" name="businessAreaProcessingCategoryFoodEqtitle" class="form-control" id="businessAreaProcessingCategoryFoodEqtitle" required>
+          <input type="hidden" name="businessAreaProcessingCategoryFoodEqtitle" class="form-control" id="businessAreaProcessingCategoryFoodEqtitle" data-analyticsField="Food category" required>
           <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}
           </div>
         </div>
