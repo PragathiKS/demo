@@ -5,7 +5,7 @@ import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics } from './MyEquipment.analytics';
+import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
 import file from '../../../scripts/utils/file';
 import { _paginate } from './MyEquipment.paginate';
 import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData, _remapFilterOptionKey } from './MyEquipment.utils';
@@ -286,6 +286,8 @@ class MyEquipment {
       const id = $(e.currentTarget).attr('href');
       const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
       const url = `${equipmentDetailsUrl}?id=${id}`;
+      const $linkName = $(e.currentTarget).find('td').eq(4).text().trim() + '-' + id;
+      _trackEquipmentLinkClick($linkName);
       window.open(url, '_blank');
     });
 

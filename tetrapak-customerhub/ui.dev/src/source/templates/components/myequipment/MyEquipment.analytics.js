@@ -134,3 +134,19 @@ export const _addShowHideFilterAnalytics = (filterData) => {
 
   trackAnalytics(searchObj, 'search', 'internalFilter', undefined, false, eventObj);
 };
+
+export const _trackEquipmentLinkClick = function (linkName) {
+  const formObj = {
+    linkClick: {
+      linkType: 'internal',
+      linkSection: 'hyperlink click',
+      linkParentTitle: '',
+      linkName: linkName
+    },
+    event: {
+      eventType: 'linkClick',
+      event: 'equipmentLink'
+    }
+  };
+  trackAnalytics(formObj, 'linkClick', 'linkClick', undefined, false);
+};
