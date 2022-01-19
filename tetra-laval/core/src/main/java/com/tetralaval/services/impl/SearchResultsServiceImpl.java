@@ -594,7 +594,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         try {
             size = Integer.parseInt(assetMetadataProperties.get(DamConstants.DAM_SIZE, StringUtils.EMPTY));
         } catch (NumberFormatException e) {
-            LOGGER.error("Invalid Asset Size", e.getMessage(), e);
+            LOGGER.error("Invalid Asset Size :{}", e.getMessage(), e);
         }
         double convertedSize = size / KILO_BYTES_VALUE;
         if (convertedSize > KILO_BYTES_VALUE) {
@@ -645,7 +645,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                     documentThumbnail = null;
                 }
             } catch (RepositoryException re) {
-                LOGGER.error("setAssetsProperties:: RepositoryException", re.getMessage(), re);
+                LOGGER.error("setAssetsProperties:: RepositoryException : {}", re.getMessage(), re);
             }
         }
     }
