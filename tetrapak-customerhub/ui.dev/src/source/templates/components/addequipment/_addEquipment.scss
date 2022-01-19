@@ -65,13 +65,13 @@ $color-green: #8dc63f;
         }
 
         &-subtitle {
-            @include line-height($font-normal, $font-xs);
-            @include font-size($font-xs);
+            @include line-height($font-normal, $font-baseline);
+            @include font-size($font-baseline);
+            @include margin-top($margin-md);
         }
 
         &-button {
             @include padding($padding-sm);
-            @include margin-bottom($margin-sm);
             border: 1px solid $color-congress-blue;
             display: flex;
             color: $color-congress-blue;
@@ -80,6 +80,12 @@ $color-green: #8dc63f;
 
             span {
                 @include line-height($font-l, $font-baseline);
+            }
+
+            i.icon {
+                &::before {
+                    @include font-size($font-sm);
+                }
             }
         }
 
@@ -199,11 +205,6 @@ $color-green: #8dc63f;
         @include margin-top($margin-md);
         display: flex;
         align-items: center;
-
-        span {
-            @include line-height($font-l, $font-baseline);
-        }
-
         &-title {
             @include line-height($font-l, $font-baseline);
             font-weight: 700;
@@ -260,12 +261,10 @@ $color-green: #8dc63f;
 
     &__file-error {
         @include margin-top($margin-md);
-        @include padding($padding-md);
-        border: 1px solid $color-alert;
+        @include font-size($font-sm);
         display: flex;
+        color: $color-alert;
         justify-content: space-between;
         flex-direction: column;
-        background-color: $color-white;
-        border-radius: $border-radius;
     }
 }
