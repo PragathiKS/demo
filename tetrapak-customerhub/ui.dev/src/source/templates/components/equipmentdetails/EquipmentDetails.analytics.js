@@ -79,7 +79,7 @@ export const trackLinkClick = function (formName, linkName) {
       linkType: 'internal',
       linkSection: 'button click',
       linkParentTitle: formName,
-      linkName
+      linkName: linkName
     },
     event: {
       eventType: 'linkClick',
@@ -87,4 +87,20 @@ export const trackLinkClick = function (formName, linkName) {
     }
   };
   trackAnalytics(formObj, 'linkClick', 'linkClick', undefined, false);
+};
+
+export const trackBreadcrumbLinkClick = function (linkName) {
+  const eventObj = {
+    linkClick: {
+      linkType:'internal',
+      linkSection:'hyperlink click',
+      linkParentTitle:'',
+      linkName: linkName
+    },
+    event:{
+      eventType:'linkClick',
+      event:'breadcrumb'
+    }
+  };
+  trackAnalytics(eventObj, 'linkClick', 'linkClick', undefined, false);
 };
