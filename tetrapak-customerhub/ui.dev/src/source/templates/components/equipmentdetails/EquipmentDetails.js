@@ -119,8 +119,7 @@ function  _renderEquipInfoCard(view) {
       isConfirmation: view && view.confirmed
     },
     target: '.js-equipment-details__info-card'
-  });
-  
+  });  
   if (view && view.update) {
     $this.bindFormChangeEvents();
   }
@@ -215,7 +214,6 @@ class EquipmentDetails {
     });
 
     this.root.on('click', '.js-equipment-details__req-update', (e) => {
-      const $this = this;
       let isFormValid = true;
       const requiredFormElements = this.root.find('input.js-equipment-details__input[required]');
       const formErrors = [];
@@ -226,7 +224,7 @@ class EquipmentDetails {
           this.addErrorMsg(item);
           formErrors.push({
             formErrorMessage: $(item).closest('.js-equipment-details__form-element').find('.error-msg').text().trim(),
-            formErrorfield: $(item).closest('.js-equipment-details__form-element').find('.tp-equipment-details__info-cell-1').text().trim()
+            formErrorField: $(item).closest('.js-equipment-details__form-element').find('.tp-equipment-details__info-cell-1').text().trim()
           });
         }
       });
@@ -258,20 +256,8 @@ class EquipmentDetails {
       };
       const fields = Object.keys(this.cache.formData).filter(key => !key.startsWith('old'));
       this.cache.formFields = fields.map(key => ({ [key]: this.cache.formData[key] }));
-      // Set Analytics Tracking Form Fields
-      const $form = $this.cache.$content.find('.js-equipment-details__form');
-      const $formFields = [];
-      $('input, textarea, select', $form).each((_, item) => {
-        const closestEle = $(item).closest('.js-equipment-details__form-element');
-        const fieldLabel = $(closestEle).find('.tp-equipment-details__info-cell-1');
-        const formfield = fieldLabel.length > 0 ? $(fieldLabel).text().trim(): $(closestEle).find('label').text().trim();
-        const fieldValue = $(item).is('select') ? $(item).find('option:selected').text():$(item).val();
-        $formFields.push({
-          formFieldName: formfield,
-          formFieldValue: fieldValue
-        });
-      });
-      this.trackFormStepComplete(this.cache.formName, 'Step 1', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, $formFields);
+      const trackingFormData = this.getFormFieldsArr(this.cache.formFields);
+      this.trackFormStepComplete(this.cache.formName, 'Step 1', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, trackingFormData);
       this.renderEquipUpdateModal();
     });
 
@@ -306,7 +292,8 @@ class EquipmentDetails {
             this.cache.$content.removeClass('d-none');
             this.cache.$modal.modal('hide');
             const $heading = $('.js-update-modal').find('.tp-equipment-details__modal-header').find('h2').text().trim();
-            this.trackFormComplete($heading, 'Step 2', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, this.cache.formFields);
+            const trackingFormData = this.getFormFieldsArr(this.cache.formFields);
+            this.trackFormComplete($heading, 'Step 2', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, trackingFormData);
             this.renderEquipInfoCard({confirmed: true});
           }).fail(() => {
             this.cache.$content.removeClass('d-none');
@@ -324,6 +311,24 @@ class EquipmentDetails {
     this.root.on('click', 'button', (e) => {
       this.trackLinkClick(this.cache.formName, e.target.textContent);
     });
+  }
+
+  // Get Analytics Tracking Form Fields
+  getFormFieldsArr() {
+    const $form = this.cache.$content.find('.js-equipment-details__form');
+    const $formFields = [];
+    $('input, textarea, select', $form).each((_, item) => {
+      const closestEle = $(item).closest('.js-equipment-details__form-element');
+      const fieldLabel = $(closestEle).find('.tp-equipment-details__info-cell-1');
+      const formfield = fieldLabel.length > 0 ? $(fieldLabel).text().trim(): $(closestEle).find('label').text().trim();
+      const fieldValue = $(item).is('select') ? $(item).find('option:selected').text():$(item).val();
+      $formFields.push({
+        formFieldName: formfield,
+        formFieldValue: fieldValue
+      });
+    });
+
+    return $formFields;
   }
 
   trackFormStart() {
