@@ -5,7 +5,7 @@ import auth from '../../../scripts/utils/auth';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
-import { trackFormStart, trackFormStepComplete, trackFormComplete, trackFormCancel, trackFormError, trackLinkClick } from './EquipmentDetails.analytics';
+import { trackFormStart, trackFormStepComplete, trackFormComplete, trackFormCancel, trackFormError, trackLinkClick, trackBreadcrumbLinkClick } from './EquipmentDetails.analytics';
 
 export const getUrlQueryParams = (url) => {
   const params = {};
@@ -209,9 +209,14 @@ class EquipmentDetails {
       this.trackFormStart();
     });
 
-    this.root.on('click', '.js-equipment-details__cancel',  () => {
+    this.root.on('click', '.js-equipment-details__cancel', () => {
       this.trackFormCancel(this.cache.formName, 'Step 1', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
       this.renderEquipInfoCard({view: true});
+    });
+
+    this.root.on('click', '.tp-equipment-details__back-btn', () => {
+      const $linkName = $(this).text().trim();
+      trackBreadcrumbLinkClick($linkName);
     });
 
     this.root.on('click', '.js-equipment-details__req-update', (e) => {
