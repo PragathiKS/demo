@@ -4,4 +4,4 @@
     jcr:description="Software download center Component"
     jcr:primaryType="cq:Component"
     jcr:title="Software download center"
-    componentGroup="tetrapak-global-components"/>
+    componentGroup="tetrapak-content-components"/>
