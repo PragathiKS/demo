@@ -43,7 +43,7 @@ public class SaveOnboardingStatusServlet extends SlingSafeMethodsServlet {
     private static final String USER_ONBOARDED = "onBoardingStatus";
 
     @Reference
-    private UserPreferenceService userPreferenceService;
+    private transient UserPreferenceService userPreferenceService;
 
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response)

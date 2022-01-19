@@ -1,9 +1,18 @@
 package com.tetrapak.customerhub.core.utils;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import org.apache.commons.compress.utils.Charsets;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -15,17 +24,9 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
 /**
  * Utility class for http methods
@@ -138,7 +139,7 @@ public final class HttpUtil {
     public static String decodeStr(String encodedStr) {
         org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
         byte[] base64DecodedByteArray = base64.decode(encodedStr);
-        return new String(base64DecodedByteArray, Charsets.UTF_8);
+        return new String(base64DecodedByteArray, StandardCharsets.UTF_8);
     }
 
     /**

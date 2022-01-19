@@ -40,6 +40,10 @@ import java.util.Set;
  * @author Nitin Kumar
  */
 public class GlobalUtil {
+	
+    private GlobalUtil() {
+        // Disallowed to create Object out of class
+    }
 
     /**
      * Method to get API GEE URL
