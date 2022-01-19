@@ -49,8 +49,6 @@ public class BreadcrumbModel {
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
 
-    private boolean exist;
-
     /**
      * Inits the.
      */
