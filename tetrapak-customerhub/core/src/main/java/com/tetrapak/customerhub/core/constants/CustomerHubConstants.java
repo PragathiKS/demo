@@ -177,7 +177,7 @@ public final class CustomerHubConstants {
     public static final String LINE = "line";
 
     /** The Constant EQUIPMENT_STATUS. */
-    public static final String EQUIPMENT_STATUS = "equipmentstatus";
+    public static final String EQUIPMENT_STATUS = "equipmentStatus";
 
     /** The Constant POSITION. */
     public static final String POSITION = "position";
@@ -234,7 +234,7 @@ public final class CustomerHubConstants {
     public static final String APPLY_FILTER = "applyFilter";
 
     /** The Constant SERIAL_NUMBER. */
-    public static final String SERIAL_NUMBER = "serialnumber";
+    public static final String SERIAL_NUMBER = "serialNumber";
 
     /** The Constant CUSTOMER. */
     public static final String CUSTOMER = "customer";
@@ -535,6 +535,12 @@ public final class CustomerHubConstants {
     
     /** TheConstant CSV_COMMA_SEPARATOR */
     public static final String CSV_COMMA_SEPARATOR= "sep=,";
+    
+    /** The Constant EQUIPMENT_STATUS_CSVHEADER. */
+    public static final String EQUIPMENT_STATUS_CSVHEADER = "equipmentstatus";
+    
+    /** The Constant SERIAL_NUMBER_CSVHEADER. */
+    public static final String SERIAL_NUMBER_CSVHEADER = "serialnumber";
 
     /**
      * Instantiates a new customer hub constants.

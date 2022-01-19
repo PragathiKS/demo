@@ -44,10 +44,10 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		csvHeaderMapping.add(CustomerHubConstants.FUNCTIONAL_LOCATION);
 		csvHeaderMapping.add(CustomerHubConstants.POSITION);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE);
-		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER);
+		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER_CSVHEADER);
 		csvHeaderMapping.add(CustomerHubConstants.PERMANENT_VOLUME_CONV);
 		csvHeaderMapping.add(CustomerHubConstants.MATERIAL);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS_CSVHEADER);
 		csvHeaderMapping.add(CustomerHubConstants.CONSTRUCTION_YEAR);
 		csvHeaderMapping.add(CustomerHubConstants.MANUFACTURER_SERIAL_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.MANUFACTURER_MODEL_NUMBER);
