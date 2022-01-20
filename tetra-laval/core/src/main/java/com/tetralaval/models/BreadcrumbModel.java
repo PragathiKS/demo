@@ -103,7 +103,7 @@ public class BreadcrumbModel {
 
     public boolean isExist() {
         WCMMode currentMode = WCMMode.fromRequest(request);
-        return breadcrumbSubpages != null && (WCMMode.EDIT == currentMode ||
-                (WCMMode.EDIT != currentMode && breadcrumbSubpages.size() > 1));
+        return WCMMode.EDIT == currentMode ||
+                (WCMMode.EDIT != currentMode && breadcrumbSubpages.size() > 1);
     }
 }
