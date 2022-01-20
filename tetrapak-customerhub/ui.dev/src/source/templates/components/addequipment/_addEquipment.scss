@@ -1,0 +1,270 @@
+$color-red: #ff0000;
+$color-green: #8dc63f;
+
+@mixin label {
+    @include line-height($font-l, $font-baseline);
+    @include margin-top($margin-md);
+    font-weight: 500;
+}
+
+.tp-add-equipment {
+    &__title {
+        @include margin-bottom($margin-md);
+        @include line-height($font-xl, $font-l);
+        @include font-size($font-l);
+        font-weight: 400;
+
+        @media #{$desktop} {
+            @include line-height(40px, $font-xl);
+            @include font-size($font-xl);
+            font-weight: 700;
+        }
+    }
+
+    &__subtitle {
+        @include line-height($font-l, $font-baseline);
+    }
+
+    &__drag-and-drop {
+        @include padding($padding-md);
+        border-radius: $border-radius;
+        background-color: $color-wild-sand;
+
+        @media #{$desktop} {
+            @include padding($padding-l);
+        }
+
+        &-wrapper {
+            @include margin-bottom($margin-md);
+
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+            }
+        }
+
+        &-description {
+            @include line-height($font-l, $font-baseline);
+            @include margin-right($margin-sm);
+            display: inline;
+
+            &-wrapper {
+                @include margin-top($margin-l);
+                @include margin-bottom($margin-md);
+
+                i {
+                    @include font-size($font-normal);
+                }
+            }
+        }
+
+        &-title {
+            @include line-height($font-l, $font-md);
+            @include font-size($font-md);
+            @include margin-bottom($margin-md);
+            color: $color-tundora;
+        }
+
+        &-subtitle {
+            @include line-height($font-normal, $font-baseline);
+            @include font-size($font-baseline);
+            @include margin-top($margin-md);
+        }
+
+        &-button {
+            @include padding($padding-sm);
+            border: 1px solid $color-congress-blue;
+            display: flex;
+            color: $color-congress-blue;
+            align-items: baseline;
+            border-radius: $border-radius;
+
+            span {
+                @include line-height($font-l, $font-baseline);
+            }
+
+            i.icon {
+                &::before {
+                    @include font-size($font-sm);
+                }
+            }
+        }
+
+        &-file {
+            &-container {
+                @include padding($padding-md);
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                background-color: $color-white;
+                border-radius: $border-radius;
+
+                &:first-child {
+                    @include margin-top($margin-md);
+                }
+
+                &:not(:last-child) {
+                    @include margin-bottom($margin-sm);
+                }
+
+                @media #{$desktop} {
+                    flex-direction: row;
+
+                    &:first-child {
+                        @include margin-top($margin-l);
+                    }
+                }
+            }
+
+            &-info-container,
+            &-remove-container {
+                display: flex;
+                align-items: center;
+
+                &:first-child {
+                    @include margin-bottom($margin-md);
+
+                    @media #{$desktop} {
+                        margin-bottom: unset;
+                    }
+                }
+            }
+
+            &-remove-container {
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+
+            &-icon {
+                @include margin-right($margin-sm);
+
+                &--file {
+                    @include line-height($font-l, $font-md);
+                    @include font-size($font-l);
+                    color: $color-congress-blue;
+                }
+
+                &--trash {
+                    @include line-height($font-normal, $font-baseline);
+                    @include font-size($font-baseline);
+                    color: $color-congress-blue;
+                }
+            }
+
+            &-name {
+                @include line-height($font-l, $font-baseline);
+                @include font-size($font-baseline);
+                font-weight: 400;
+            }
+
+            &-remove {
+                @include line-height($font-l, $font-baseline);
+                color: $color-congress-blue;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__details {
+        @include padding($padding-md);
+        border-radius: $border-radius;
+        background-color: $color-wild-sand;
+
+        @media #{$desktop} {
+            @include padding($padding-l);
+        }
+
+        &-title {
+            @include line-height($font-l, $font-md);
+            @include font-size($font-md);
+            @include margin-bottom($margin-md);
+            color: $color-tundora;
+        }
+
+        &-subtitle {
+            @include line-height($font-l, $font-baseline);
+
+            @media #{$desktop} {
+                @include margin-top($margin-zero);
+            }
+        }
+    }
+
+    &__field {
+        &-wrapper {
+            label {
+                @include label;
+            }
+        }
+
+        &-label {
+            @include label;
+        }
+    }
+
+    &__submit {
+        @include margin-top($margin-md);
+        display: flex;
+        align-items: center;
+        &-title {
+            @include line-height($font-l, $font-baseline);
+            font-weight: 700;
+
+            &-wrapper {
+                @include margin-bottom($margin-md);
+                display: flex;
+                align-items: center;
+            }
+
+            &-icon {
+                @include font-size(48px);
+                @include line-height(48px, 48px);
+                @include margin-right($margin-md);
+                color: $color-green;
+            }
+        }
+
+        &-subtitle {
+            @include line-height($font-l, $font-baseline);
+            @include margin-bottom($margin-md);
+        }
+    }
+
+    &__add-another-equipment {
+        display: flex;
+        align-items: center;
+
+        span {
+            @include line-height($font-l, $font-baseline);
+        }
+    }
+
+    &__form-element {
+        &--error {
+            input {
+                border: 1px solid $color-alert;
+            }
+
+            select {
+                border: 1px solid $color-alert;
+            }
+        }
+        .error-msg {
+            @include font-size($font-sm);
+            display: none;
+            color: $color-alert;
+
+            &--active {
+                display: block;
+            }
+        }
+    }
+
+    &__file-error {
+        @include margin-top($margin-md);
+        @include font-size($font-sm);
+        display: flex;
+        color: $color-alert;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}

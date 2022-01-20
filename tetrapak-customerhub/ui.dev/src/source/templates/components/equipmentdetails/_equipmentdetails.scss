@@ -1,0 +1,294 @@
+.tp-equipment-details {
+    &__container {
+        color: $color-congress-blue;
+    }
+    &__title {
+        @include line-height($font-xxl, $font-l);
+        @include margin-bottom($margin-l);
+        font-size: $font-xl;
+        font-weight: 400;
+
+        &__bold {
+            font-weight: 700;
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-md);
+        }
+    }
+
+    &__info-card-col {
+        @include margin-bottom($margin-xxl);
+
+        @media #{mobile} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__info-card {
+        @include padding($padding-l);
+        display: flex;
+        background-color: $color-wild-sand;
+        border-radius: $border-radius;
+        height: 100%;
+        flex-direction: column;
+
+        @media #{mobile} {
+            @include padding($padding-md);
+        }
+
+        h3 {
+            @include padding-bottom($padding-md);
+            @include margin-bottom($margin-l);
+            border-bottom: 1px solid $color-mercury;
+        }
+    }
+
+    &__info-line {
+        @include margin-bottom($margin-md);
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+
+        &--error {
+            border: 1px solid $color-alert;
+        }
+
+        @media #{$mobile} {
+            display: block;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        i {
+            @include margin-right($margin-md);
+            display: inline-block;
+            color: $color-congress-blue;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__form-element {
+        @include margin-bottom($margin-md);
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        position: relative;
+
+        @media #{$mobile} {
+            display: block;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        i {
+            @include margin-right($margin-md);
+            display: inline-block;
+            color: $color-congress-blue;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__info-cell-1 {
+        @include line-height($font-l, $font-baseline);
+        @include width(166px);
+        @include margin-right($margin-l);
+        white-space: nowrap;
+        flex-shrink: 0;
+
+        @media #{$mobile} {
+            @include line-height($font-l, $font-baseline);
+            width: 100%;
+        }
+    }
+
+    &__info-cell-2 {
+        @include line-height($font-l, $font-baseline);
+        font-weight: 700;
+        width: 71%;
+
+        @media #{$mobile} {
+            width: 64%;
+        }
+
+        .error-msg {
+            display: none;
+        }
+    }
+
+    &__form-element--error {
+        .tpatom-input-box__input {
+            border-color: $color-alert;
+        }
+
+        .error-msg {
+            @include font-size($font-xs);
+            display: block;
+            color: $color-alert;
+            font-weight: 500;
+            line-height: 16px;
+        }
+    }
+
+    &__details-row {
+        @include margin-bottom($margin-xl);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__details-row-title {
+        @include margin-bottom($margin-md);
+    }
+
+    &__details-line {
+        @include padding($padding-md);
+        display: flex;
+        border-bottom: 1px solid $color-mercury;
+
+        @media #{$mobile} {
+            display: block;
+        }
+    }
+
+    &__details-cell {
+        @include line-height($font-l, $font-baseline);
+        font-weight: 500;
+        &:first-child {
+            @include width(310px);
+
+            @media #{$mobile} {
+                @include line-height($font-l, $font-baseline);
+                font-weight: 500;
+                width: 100%;
+            }
+        }
+    }
+
+    &__action-wrap {
+        display: flex;
+        margin-top: auto;
+
+        .tpatom-btn {
+            @include margin-left($margin-md);
+
+            &:first-child {
+                @include margin-left($margin-zero);
+            }
+        }
+    }
+
+    &__note {
+        @include font-size(10px);
+        @include line-height($font-normal, 10px);
+        @include margin-top($margin-md);
+        font-weight: 500;
+
+        span {
+            font-weight: 700;
+        }
+    }
+
+    &__btn {
+        color: $color-congress-blue;
+        transition: color $anim-speed-quick $anim-ease;
+        font-weight: 500;
+
+        i {
+            @include font-size($font-sm);
+            @include margin-left(3px);
+            display: inline-block;
+            transform: translateY(1px);
+        }
+
+        &:hover {
+            color: $color-sky-blue;
+        }
+    }
+
+    &__back-btn {
+        @include line-height($font-l, $font-baseline);
+        @include margin-bottom(20px);
+        color: $color-congress-blue;
+
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-md);
+        }
+
+        i {
+            @include font-size($font-normal);
+            @include margin-right($margin-xs);
+            display: inline-block;
+            margin-left: 0;
+            transform: translateY(2px);
+        }
+    }
+
+    &__conf-title {
+        @include margin-bottom($margin-md);
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-right($margin-md);
+            color: $color-success;
+        }
+    }
+
+    &__modal-header {
+        h2 {
+            @include margin-bottom($margin-md);
+            font-weight: 400;
+        }
+    }
+
+    &__update {
+        @include border-radius(4px);
+        @include padding($padding-sm $padding-md);
+        border: 1px solid $color-congress-blue;
+        display: flex;
+        transition: border $anim-speed-quick $anim-ease;
+
+        &:hover {
+            border-color: $color-sky-blue;
+        }
+        i {
+            @include margin-left($margin-sm);
+        }
+    }
+
+    &__req-make-update {
+        @include margin-right($margin-md);
+    }
+
+    &__conf-cancel {
+        background-color: inherit;
+    }
+
+    &-modal .tpmol-modal-footer {
+        padding-top: 0;
+
+        .tpatom-btn {
+            @include margin($margin-zero);
+            @include margin-left($margin-md);
+
+            &:first-child {
+                @include margin-left($margin-zero);
+            }
+        }
+    }
+
+}

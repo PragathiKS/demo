@@ -1,0 +1,61 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Thu Apr 09 2020 01:29:23 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"hideContactFooterForm@Delete": "true",
+		"jcr:createdBy": "admin",
+		"jcr:title": "test4",
+		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+		"jcr:created": "Thu Apr 09 2020 01:29:23 GMT+0530",
+		"cq:lastModified": "Fri Apr 10 2020 01:27:57 GMT+0530",
+		"hideInSearch@Delete": "true",
+		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"stories": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"anchorTitle": "Anchor title",
+					"jcr:lastModifiedBy": "admin",
+					"anchorId": "anchorId",
+					"contentType": "automatic",
+					"jcr:created": "Mon Apr 13 2020 10:49:59 GMT+0530",
+					"linkLabel": "Load More",
+					"enableBlackGradient": "true",
+					"maxTeasers": "12",
+					"pwTheme": "grayscale-white",
+					"tags": [
+						"tetrapak:publicweb/product/type/product-a"
+					],
+					"jcr:lastModified": "Mon Apr 13 2020 15:48:16 GMT+0530",
+					"sling:resourceType": "publicweb/components/content/stories",
+					"manualList": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {						
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
+							"alt": "Alt",
+							"heading": "Title",
+							"linkTarget": "_blank",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
+							"alt": "Alt",
+							"heading": "Title",
+							"linkTarget": "_blank",
+							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions"
+						}
+					}
+				}
+			}
+		}
+	}
+}

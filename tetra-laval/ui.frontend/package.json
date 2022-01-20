@@ -10,8 +10,8 @@
   "main": "src/main/webpack/site/main.ts",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
-    "dev": "webpack -d --env dev --config ./webpack.dev.js && clientlib --verbose",
-    "prod": "webpack -p --config ./webpack.prod.js && clientlib --verbose",
+    "dev": "npm run sasslint && npm run eslint && webpack -d --env dev --config ./webpack.dev.js && clientlib --verbose",
+    "prod": "npm run sasslint && npm run eslint && webpack -p --config ./webpack.prod.js && clientlib --verbose",
     "start": "webpack-dev-server --open --config ./webpack.dev.js",
     "sync": "aemsync -d -p ../ui.apps/src/main/content",
     "test": "karma start karma.conf.js --color",

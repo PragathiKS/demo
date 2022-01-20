@@ -1,10 +1,10 @@
 .tp-pw-image {
     @include padding(0);
-    margin: 0 auto 16px auto;
+    @include margin(0 auto $margin-l auto);
 
     @media #{$desktop} {
         @include max-width($body-max-width);
-        margin: 0 auto 24px auto;
+        @include margin(0 auto $margin-l auto);
     }
 
     a {
@@ -16,9 +16,9 @@
     }
 
     .pw-margin--regular {
-        border-radius: 4px;
         @include padding($padding-md);
         @include margin(0 $margin-md);
+        border-radius: 4px;
         @media #{$desktop} {
             @include padding($padding-l $padding-xxxl);
             @include margin(0 $margin-xxxl);

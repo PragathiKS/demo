@@ -127,6 +127,9 @@
 													<Catalog jcr:primaryType="nt:unstructured"
                                                           text="Catalog"
                                                           value="icon-Catalog"/>
+                                                    <Automation_And_Digital jcr:primaryType="nt:unstructured"
+                                                                            text="Automation_And_Digital"
+                                                                            value="icon-Automation_And_Digital"/>
                                                     <Logout jcr:primaryType="nt:unstructured"
                                                             text="Logout"
                                                             value="icon-Logout"/>

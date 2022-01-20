@@ -1,9 +1,10 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.PostConstruct;
-
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -12,21 +13,25 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
-import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * @author ojaswarn
  * The Class MyEquipmentModel.
+ *
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MyEquipmentModel {
-	
+
 	/** The resource. */
 	@Self
 	private Resource resource;
+
+	/** The path to equipment details. */
+	@ValueMapValue
+	private String equipmentDetailsPath;
 	
 	/** The country. */
 	@ValueMapValue
@@ -43,6 +48,10 @@ public class MyEquipmentModel {
 	/** The site. */
 	@ValueMapValue
 	private String site;
+
+	/** The customer. */
+	@ValueMapValue
+	private String customer;
 	
 	/** The equipment description. */
 	@ValueMapValue
@@ -55,6 +64,10 @@ public class MyEquipmentModel {
 	/** The equipment status. */
 	@ValueMapValue
 	private String equipmentStatus;
+
+	/** The equipment type. */
+	@ValueMapValue
+	private String equipmentType;
 	
 	/** The my equipment. */
 	@ValueMapValue
@@ -104,6 +117,30 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String serialNumToolTip;
 
+	/** The functional location. */
+	@ValueMapValue
+	private String functionalLocation;
+
+	/** The functional location tool tip. */
+	@ValueMapValue
+	private String functionalLocationToolTip;
+
+	/** The site description. */
+	@ValueMapValue
+	private String siteDescription;
+
+	/** The site description tool tip. */
+	@ValueMapValue
+	private String siteDescToolTip;
+
+	/** The location. */
+	@ValueMapValue
+	private String location;
+
+	/** The location tool tip. */
+	@ValueMapValue
+	private String locationToolTip;
+
 	/** The sling settings service. */
 	@OSGiService
     private SlingSettingsService slingSettingsService;
@@ -128,6 +165,84 @@ public class MyEquipmentModel {
 	/** The service. */
 	@OSGiService
 	private APIGEEService service;
+	
+	/** The hide And Show Cta.*/
+	@ValueMapValue
+	private String hideAndShowCta;
+
+	/** The no Data Found.*/
+	@ValueMapValue
+	private String noDataFound;
+
+	/** The permanent volume conversion.*/
+	@ValueMapValue
+	private String permanentVolumeConversion;
+	
+	/** The show all filters. */
+	@ValueMapValue
+    private String showAllFilters;
+		
+	/** The hide all filters. */
+	@ValueMapValue
+    private String hideAllFilters;
+	
+	/** The remove all filters. */
+	@ValueMapValue
+    private String removeAllFilters;
+	
+	/** The download excel servlet url. */
+	private String downloadExcelServletUrl;
+
+	/** The add new equipment label. */
+	@ValueMapValue
+	private String addNewEquipmentLabel;
+
+	/** The add new equipment Url. */
+	@ValueMapValue
+	private String addNewEquipmentUrl;
+
+	/** The max filter limit error pre label. */
+	@ValueMapValue
+	private String maxLimitErrorPre;
+
+	/** The max filter limit error after label. */
+	@ValueMapValue
+	private String maxLimitErrorAfter;
+
+	/** The filters selected label. */
+	@ValueMapValue
+	private String filtersSelected;
+
+	/** The of label. */
+	@ValueMapValue
+	private String filtersOf;
+
+	/**
+	 * Gets the noDataFound.
+	 *
+	 * @return the noDataFound
+	 */
+	public String getNoDataFound() {
+		return noDataFound;
+	}
+
+	/**
+	 * Gets the Permanent Volume Conversion.
+	 *
+	 * @return the permanentVolumeConversion
+	 */
+	public String getPermanentVolumeConversion() {
+		return permanentVolumeConversion;
+	}
+
+	/**
+	 * Gets the hideAndShowCta.
+	 *
+	 * @return the hideAndShowCta
+	 */
+	public String getHideAndShowCta() {
+		return hideAndShowCta;
+	}
 	
 	/**
 	 * Gets the country api.
@@ -182,7 +297,7 @@ public class MyEquipmentModel {
 	public String getEquipStatToolTip() {
 		return evaluateToolTip(equipStatToolTip);
 	}
-	
+
 	/**
 	 * Gets the country tool tip.
 	 *
@@ -227,7 +342,62 @@ public class MyEquipmentModel {
 	public String getSerialNumToolTip() {
 		return evaluateToolTip(serialNumToolTip);
 	}
-	
+
+
+	/**
+	 * Gets the functional location.
+	 *
+	 * @return the functional location
+	 */
+	public String getFunctionalLocation() {
+		return functionalLocation;
+	}
+
+	/**
+	 * Gets the functional location tool tip.
+	 *
+	 * @return the functional location tool tip
+	 */
+	public String getFunctionalLocationToolTip() {
+		return functionalLocationToolTip;
+	}
+
+	/**
+	 * Gets the site description.
+	 *
+	 * @return the site description.
+	 */
+	public String getSiteDescription() {
+		return siteDescription;
+	}
+
+	/**
+	 * Gets the site description tool tip.
+	 *
+	 * @return the site description tool tip
+	 */
+	public String getSiteDescToolTip() {
+		return siteDescToolTip;
+	}
+
+	/**
+	 * Gets the location.
+	 *
+	 * @return the location
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * Gets the location tool tip.
+	 *
+	 * @return the location tool tip
+	 */
+	public String getLocationToolTip() {
+		return locationToolTip;
+	}
+
 	/**
 	 * Gets the i18n keys.
 	 *
@@ -274,6 +444,15 @@ public class MyEquipmentModel {
 	}
 
 	/**
+	 * Gets the customer.
+	 *
+	 * @return the customer
+	 */
+	public String getCustomer() {
+		return customer;
+	}
+
+	/**
 	 * Gets the equipment description.
 	 *
 	 * @return the equipment description
@@ -298,6 +477,15 @@ public class MyEquipmentModel {
 	 */
 	public String getEquipmentStatus() {
 		return equipmentStatus;
+	}
+
+	/**
+	 * Gets the equipment type.
+	 *
+	 * @return the equipment type
+	 */
+	public String getEquipmentType() {
+		return equipmentType;
 	}
 
 	/**
@@ -328,6 +516,33 @@ public class MyEquipmentModel {
 	}
 
 	/**
+	 * Gets the show all filters.
+	 *
+	 * @return the show all filters
+	 */
+	public String getShowAllFilters() {
+        return showAllFilters;
+    }
+
+    /**
+     * Gets the hide all filters.
+     *
+     * @return the hide all filters
+     */
+    public String getHideAllFilters() {
+        return hideAllFilters;
+    }
+
+    /**
+     * Gets the removes the all filters.
+     *
+     * @return the removes the all filters
+     */
+    public String getRemoveAllFilters() {
+        return removeAllFilters;
+    }
+
+    /**
 	 * Gets the sling settings service.
 	 *
 	 * @return the sling settings service
@@ -344,7 +559,7 @@ public class MyEquipmentModel {
 	public boolean isPublishEnvironment() {
 		return isPublishEnvironment;
 	}
-	
+
 
 	/**
 	 * Gets the tool tip class.
@@ -363,38 +578,121 @@ public class MyEquipmentModel {
 	public void setToolTipClass(String toolTipClass) {
 		this.toolTipClass = toolTipClass;
 	}
-	
+
+	/**
+	 * Gets the download excel servlet url.
+	 *
+	 * @return the download excel servlet url
+	 */
+	public String getDownloadExcelServletUrl() {
+		return downloadExcelServletUrl;
+	}
+
+	/**
+	 * Gets the add new equipment label.
+	 *
+	 * @return the add new equipment label
+	 */
+	public String getAddNewEquipmentLabel() {
+		return addNewEquipmentLabel;
+	}
+
+	/**
+	 * Gets the add new equipment label.
+	 *
+	 * @return the add new equipment url
+	 */
+	public String getAddNewEquipmentUrl() {
+		return addNewEquipmentUrl;
+	}
+
+	/**
+	 * Gets the max filter limit error label pre label.
+	 *
+	 * @return the max filter limit error label pre label
+	 */
+	public String getMaxLimitErrorPre() {
+		return maxLimitErrorPre;
+	}
+
+	/**
+	 * Gets the max filter limit error label after label.
+	 *
+	 * @return the max filter limit error label after label
+	 */
+	public String getMaxLimitErrorAfter() {
+		return maxLimitErrorAfter;
+	}
+
+	/**
+	 * Gets the filters selected label.
+	 *
+	 * @return the filters selected label
+	 */
+	public String getFiltersSelected() {
+		return filtersSelected;
+	}
+
+	/**
+	 * Gets the filters OF label.
+	 *
+	 * @return the filters OF label
+	 */
+	public String getFiltersOf() {
+		return filtersOf;
+	}
+
 	/**
 	 * Inits the.
 	 */
 	@PostConstruct
     protected void init() {
         Map<String, Object> i18KeyMap = new HashMap<>();
-        i18KeyMap.put("removeAll", getRemoveAll());
-        i18KeyMap.put("applyFilter", getApplyFilter());
-        i18KeyMap.put("myEquipment", getMyEquipment());
-        i18KeyMap.put("equipmentStatus", getEquipmentStatus());
-        i18KeyMap.put("serialNumber", getSerialNumber());
-        i18KeyMap.put("equipmentDescription", getEquipmentDescription());
-        i18KeyMap.put("site", getSite());
-        i18KeyMap.put("searchResults", getSearchResults());
-        i18KeyMap.put("line", getLine());
-        i18KeyMap.put("country", getCountry());
-        i18KeyMap.put("first", getFirst());
-        i18KeyMap.put("last", getLast());
-        i18KeyMap.put("customizeTable", getCustomizeTable());
-        i18KeyMap.put("serialNumToolTip", getSerialNumToolTip());
-        i18KeyMap.put("lineToolTip", getLineToolTip());
-        i18KeyMap.put("siteToolTip", getSiteToolTip());
-        i18KeyMap.put("countryToolTip", getCountryToolTip());
-        i18KeyMap.put("equipDescToolTip", getEquipDescToolTip());
-        i18KeyMap.put("equipStatToolTip", getEquipStatToolTip());
-        i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
+        i18KeyMap.put(CustomerHubConstants.REMOVE_ALL, getRemoveAll());
+        i18KeyMap.put(CustomerHubConstants.APPLY_FILTER, getApplyFilter());
+        i18KeyMap.put(CustomerHubConstants.MY_EQUIPMENT, getMyEquipment());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_STATUS, getEquipmentStatus());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_TYPE, getEquipmentType());
+        i18KeyMap.put(CustomerHubConstants.SERIAL_NUMBER, getSerialNumber());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_DESCRIPTION, getEquipmentDescription());
+        i18KeyMap.put(CustomerHubConstants.SITE, getSite());
+        i18KeyMap.put(CustomerHubConstants.CUSTOMER, getCustomer());
+        i18KeyMap.put(CustomerHubConstants.SEARCH_RESULTS, getSearchResults());
+        i18KeyMap.put(CustomerHubConstants.LINE, getLine());
+        i18KeyMap.put(CustomerHubConstants.COUNTRY, getCountry());
+        i18KeyMap.put(CustomerHubConstants.FIRST, getFirst());
+        i18KeyMap.put(CustomerHubConstants.LAST, getLast());
+        i18KeyMap.put(CustomerHubConstants.CUSTOMIZE_TABLE, getCustomizeTable());
+        i18KeyMap.put(CustomerHubConstants.SERIAL_NUM_TOOL_TIP, getSerialNumToolTip());
+        i18KeyMap.put(CustomerHubConstants.FUNCTIONAL_LOCATION, getFunctionalLocation());
+        i18KeyMap.put(CustomerHubConstants.SITE_DESCRIPTION, getSiteDescription());
+        i18KeyMap.put(CustomerHubConstants.LOCATION, getLocation());
+		i18KeyMap.put(CustomerHubConstants.LOCATION_TOOL_TIP, getLocationToolTip());
+		i18KeyMap.put(CustomerHubConstants.SITE_DESC_TOOL_TIP, getSiteDescToolTip());
+		i18KeyMap.put(CustomerHubConstants.FUNCTIONAL_LOCATION_TOOL_TIP, getFunctionalLocationToolTip());
+        i18KeyMap.put(CustomerHubConstants.LINE_TOOL_TIP, getLineToolTip());
+        i18KeyMap.put(CustomerHubConstants.SITE_TOOL_TIP, getSiteToolTip());
+        i18KeyMap.put(CustomerHubConstants.COUNTRY_TOOL_TIP, getCountryToolTip());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_DESC_TOOL_TIP, getEquipDescToolTip());
+        i18KeyMap.put(CustomerHubConstants.EQUIP_STAT_TOOL_TIP, getEquipStatToolTip());
+        i18KeyMap.put(CustomerHubConstants.API_ERROR_CODES, GlobalUtil.getApiErrorCodes(resource));
+		i18KeyMap.put(CustomerHubConstants.HIDE_AND_SHOW_CTA, getHideAndShowCta());
+		i18KeyMap.put(CustomerHubConstants.NO_DATA_FOUND, getNoDataFound());
+		i18KeyMap.put(CustomerHubConstants.PERMANENT_VOLUME_CONV, getPermanentVolumeConversion());
+		i18KeyMap.put(CustomerHubConstants.SHOW_ALL_FILTERS, getShowAllFilters());
+		i18KeyMap.put(CustomerHubConstants.HIDE_ALL_FILTERS, getHideAllFilters());
+		i18KeyMap.put(CustomerHubConstants.REMOVE_ALL_FILTERS, getRemoveAllFilters());
+		i18KeyMap.put(CustomerHubConstants.MAX_FILTERS_LIMIT_PRE, getMaxLimitErrorPre());
+		i18KeyMap.put(CustomerHubConstants.MAX_FILTERS_LIMIT_AFTER, getMaxLimitErrorAfter());
+		i18KeyMap.put(CustomerHubConstants.FILTERS_OF, getFiltersOf());
+		i18KeyMap.put(CustomerHubConstants.FILTERS_SELECTED, getFiltersSelected());
+
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+        downloadExcelServletUrl = resource.getPath() + CustomerHubConstants.EXCEL_DOWNLOAD_EXTENSION;
         
         countryApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, "myequipment-countrylist");
@@ -415,5 +713,21 @@ public class MyEquipmentModel {
 			return toolTipText;
 		}
 		return StringUtils.EMPTY;
+	}
+
+	/**
+	 * Get valid url to Equipment Details
+	 * @return mapped url.
+	 */
+	public String getMappedEquipmentDetailsUrl() {
+		return LinkUtil.getValidLink(resource, equipmentDetailsPath);
+	}
+
+	/**
+	 * Get valid url to Add Equipment
+	 * @return mapped url.
+	 */
+	public String getMappedAddNewEquipmentUrl() {
+		return LinkUtil.getValidLink(resource, addNewEquipmentUrl);
 	}
 }

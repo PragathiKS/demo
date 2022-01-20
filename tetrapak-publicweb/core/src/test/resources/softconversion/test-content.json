@@ -70,6 +70,7 @@
 					"heading": "Business Enquiry",
 					"descriptionText": "Description",
 					"pardotUrl": "http://pardotURL",
+					"pardotChinaUrl": "http://pardotChinaURL",
 					 "moreButtonAction":"/content/search",
 					 "moreButtonLabel":"More whitepapers"
 				}
