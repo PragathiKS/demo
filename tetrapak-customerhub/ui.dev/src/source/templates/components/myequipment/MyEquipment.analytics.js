@@ -136,17 +136,17 @@ export const _addShowHideFilterAnalytics = (filterData) => {
 };
 
 export const _trackEquipmentLinkClick = function (linkName) {
-  const formObj = {
-    linkClick: {
-      linkType: 'internal',
-      linkSection: 'hyperlink click',
-      linkParentTitle: '',
-      linkName: linkName
-    },
-    event: {
-      eventType: 'linkClick',
-      event: 'equipmentLink'
-    }
+  const eventObj = {
+    event: 'equipmentLink',
+    eventType: 'linkClick'
   };
-  trackAnalytics(formObj, 'linkClick', 'linkClick', undefined, false);
+
+  const linkClickObj = {
+    linkName: linkName,
+    linkType: 'internal',
+    linkSection: 'hyperlink click',
+    linkParentTitle: ''
+  };
+
+  trackAnalytics(linkClickObj, 'linkClick', 'equipmentClick', undefined, false, eventObj);
 };
