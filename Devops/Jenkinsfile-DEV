@@ -88,6 +88,11 @@ pipeline {
                         appname = "publicweb"
                         buildandsonar()
                     }
+		    else {
+                                            dir('tetrapak-publicweb') {
+                                                sh "npm install --prefix ui.dev/src"
+                                                }
+                                        }
                 }
 		script {
                     if (params.Build_Tetralaval) {
