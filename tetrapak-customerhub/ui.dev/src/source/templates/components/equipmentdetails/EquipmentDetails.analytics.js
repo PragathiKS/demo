@@ -91,16 +91,16 @@ export const trackLinkClick = function (formName, linkName) {
 
 export const trackBreadcrumbLinkClick = function (linkName) {
   const eventObj = {
-    linkClick: {
-      linkType:'internal',
-      linkSection:'hyperlink click',
-      linkParentTitle:'',
-      linkName: linkName
-    },
-    event:{
-      eventType:'linkClick',
-      event:'breadcrumb'
-    }
+    event: 'breadcrumb',
+    eventType: 'linkClick'
   };
-  trackAnalytics(eventObj, 'linkClick', 'linkClick', undefined, false);
+
+  const linkClickObj = {
+    linkName: linkName,
+    linkType: 'internal',
+    linkSection: 'hyperlink click',
+    linkParentTitle: ''
+  };
+
+  trackAnalytics(linkClickObj, 'linkClick', 'breadcrumbClick', undefined, false, eventObj);
 };
