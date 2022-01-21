@@ -53,8 +53,8 @@ public class DynamicImageModelTest {
         assertNotNull("root path is not null",rootPath);
         assertNotNull("image service URL is not null",imageServiceUrl);
         Assert.assertEquals("final path","/tetrapak/p2", finalPath);
-        Assert.assertEquals("root path",rootPath, "/tetrapak");
-        Assert.assertEquals("image service URL",imageServiceUrl, "http://s7g10.scene7.com/is/image");
+        Assert.assertEquals("root path", "/tetrapak",rootPath);
+        Assert.assertEquals("image service URL", "http://s7g10.scene7.com/is/image",imageServiceUrl);
         String[] dynamicMediaConfMap = dynamicImageModel.getDynamicMediaConfiguration();
         assertTrue("configuration map should not be empty",dynamicMediaConfMap.toString().length() > 0);
         Assert.assertEquals("default image URL","/content/dam/customerhub/cow-blue-background.png", dynamicImageModel.getDefaultImageUrl());
