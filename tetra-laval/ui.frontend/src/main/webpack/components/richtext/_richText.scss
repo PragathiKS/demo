@@ -26,7 +26,6 @@
 
 .tp-pw-richText {
     border-radius: 4px;
-    
     &.tp-pw-richText-container {
         @include margin-top(0);
         @include margin-left(16px);
@@ -43,15 +42,91 @@
             li {
                 &::before  {
                     @include margin-right($margin-sm);
+                    display: table-cell;
+                    color: $color-emperor;
+                    font-size: $bullet-size;
+                    content: '\2022';
                 }
+            }
+        }
+
+        li {
+            display: table-row;
+            &::before {
+                @include margin-right($margin-sm);
+                @include padding-right($padding-sm);
+                display: table-cell;
+                color: $color-emperor;
+                font-size: $bullet-size;
+                content: '\2022';
             }
         }
     }
 
-    li {
-        display: table-row;
+    ol,
+    ul {
+        @include margin-bottom(8px);
+        font-size: $font-baseline;
+        li {
+            font-size: $font-baseline;
+        }
     }
+    ol {
+        counter-reset: section;
+        list-style-type: none;
+        li {
+            &::before {
+                @include margin-right($margin-sm);
+                @include padding-right($padding-sm);
+                content: counters(section, '.') ' ';
+                counter-increment: section;
+            }
+        }
+    }
+    ol ol,
+    ul ul {
+        li {
+            &::before  {
+                @include margin-right($margin-sm);
+                @include padding-right($padding-sm);
+            }
+        }
+    }
+    ul > li > ul,
+    ol > li > ol {
+        @include padding-top($padding-xs);
+        @include margin-bottom(0);
+    }
+    ul > li > ul {
+        @include padding-left($padding-m);
+    }
+    ol > li > ol {
+        @include padding-left($padding-l);
+    }
+    ul li,
+    ol li {
+        @include padding-bottom(16px);
+        &::before {
+            color: $color-emperor;
+        }
+    }
+    ul ul ul {
+        li {
+            @include padding-left($padding-xs);
+            @include line-height($line-height-body, $font-m-sm);
 
+            &::before {
+                content: '\2012';
+                font-weight: 400;
+            }
+        }
+    }
+    ol ol ol {
+        @include padding-left($padding-xxl);
+        li {
+            @include padding-bottom(8px);
+        }
+    }
     .tp-pw-richText-wrapper {
         & a {
             @include padding(0);
@@ -82,22 +157,22 @@
     }
 
     h2 {
-        font-size: $font-xl;
         @include line-height($line-height-header-m, $font-xl);
         @include margin-bottom($margin-md);
+        font-size: $font-xl;
     }
 
     h3 {
-        font-size: $font-l;
-        font-weight: normal;
         @include line-height($line-height-header-s, $font-l);
         @include margin-bottom($margin-md);
+        font-size: $font-l;
+        font-weight: normal;
     }
 
     h4 {
-        font-size: $font-md;
         @include margin-bottom($margin-md);
         @include line-height($line-height-body, $font-md);
+        font-size: $font-md;
     }
 
     p {
@@ -111,105 +186,6 @@
         @include margin-bottom($margin-md);
         font-size: $font-baseline;
     }
-
-    ol,
-    ul {
-        @include margin-bottom(8px);
-        font-size: $font-baseline;
-        li {
-            font-size: $font-baseline;
-        }
-    }
-
-    ul {
-        li {
-            &::before {
-                @include margin-right($margin-sm);
-                @include padding-right($padding-sm);
-                font-size: $bullet-size;
-                display: table-cell;
-                color: $color-emperor;
-                content: '\2022';
-            }
-        }
-
-        ul {
-            li {
-                &::before {
-                    font-size: $bullet-size;
-                    display: table-cell;
-                    color: $color-emperor;
-                    content: '\2022';
-                }
-            }
-        }
-    }
-
-    ol {
-        counter-reset: section;
-        list-style-type: none;
-        li {
-            &::before {
-                @include margin-right($margin-sm);
-                @include padding-right($padding-sm);
-                content: counters(section, '.') ' ';
-                counter-increment: section;
-            }
-        }
-    }
-
-    ol ol,
-    ul ul {
-        li {
-            &::before  {
-                @include margin-right($margin-sm);
-                @include padding-right($padding-sm);
-            }
-        }
-    }
-
-
-    ul > li > ul,
-    ol > li > ol {
-        @include padding-top($padding-xs);
-        @include margin-bottom(0);
-    }
-
-    ul > li > ul {
-        @include padding-left($padding-m);
-    }
-
-    ol > li > ol {
-        @include padding-left($padding-l);
-    }
-
-    ul li,
-    ol li {
-        @include padding-bottom(16px);
-        &::before {
-            color: $color-emperor;
-        }
-    }
-
-    ul ul ul {
-        li {
-            @include padding-left($padding-xs);
-            @include line-height($line-height-body, $font-m-sm);
-
-            &::before {
-                content: '\2012';
-                font-weight: 400;
-            }
-        }
-    }
-
-    ol ol ol {
-        @include padding-left($padding-xxl);
-        li {
-            @include padding-bottom(8px);
-        }
-    }
-
     table {
         @media #{$mobile} {
             @include margin-bottom($margin-l);
@@ -290,21 +266,21 @@
             @include padding(48px);
         }
         h1 {
-            font-size: $font-xxl;
             @include line-height($line-height-header-l, $font-xxl);
+            font-size: $font-xxl;
         }
         h2 {
-            font-size: $font-xl;
             @include line-height($line-height-header-m, $font-xl);
+            font-size: $font-xl;
         }
         h3 {
+            @include line-height($line-height-header-s, $font-l);
             font-size: $font-l;
             font-weight: normal;
-            @include line-height($line-height-header-s, $font-l);
         }
         h4 {
-            font-size: $font-md;
             @include line-height($line-height-body, $font-md);
+            font-size: $font-md;
         }
         p {
             @include line-height($line-height-body, $font-baseline);
