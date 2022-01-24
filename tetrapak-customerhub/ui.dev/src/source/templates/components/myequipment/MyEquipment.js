@@ -214,7 +214,7 @@ class MyEquipment {
     });
 
     $myEquipmentCustomizeTableAction.on('click', () => {
-      this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:false });
+      this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:true });
       $('.tp-my-equipment__header-actions').removeClass('show');
       $modal.modal();
       _customizeTableBtnAnalytics($myEquipmentCustomizeTableAction);
