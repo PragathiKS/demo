@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -57,9 +58,9 @@ public class AddEquipmentModel {
     @Inject
     private String title;
 
-    /** The subtitle label. */
+    /** The subtitle reference. */
     @Inject
-    private String subTitle;
+    private String subTitleReference;
 
     /** The serial number label. */
     @Inject
@@ -89,9 +90,9 @@ public class AddEquipmentModel {
     @Inject
     private String detailsTitle;
 
-    /** The details subtitle. */
+    /** The details reference. */
     @Inject
-    private String detailsSubtitle;
+    private String detailsSubtitleReference;
 
     /** The country label. */
     @Inject
@@ -279,16 +280,6 @@ public class AddEquipmentModel {
     }
 
     /**
-     * Gets the subtitle.
-     *
-     * @return the subtitle
-     */
-    public String getSubTitle() {
-        return subTitle;
-    }
-
-
-    /**
      * Gets the serial number label.
      *
      * @return the serial number label
@@ -348,13 +339,6 @@ public class AddEquipmentModel {
      * @return the details title
      */
     public String getDetailsTitle() { return detailsTitle; }
-
-    /**
-     * Gets the details subtitle.
-     *
-     * @return the details subtitle
-     */
-    public String getDetailsSubtitle() { return detailsSubtitle; }
 
     /**
      * Gets the country label.
@@ -556,13 +540,41 @@ public class AddEquipmentModel {
     }
 
     /**
+     * Gets String subTitle from content reference.
+     *
+     * @return subTitle.
+     */
+    public String getSubTitle() {
+        return resolveDescriptionFromReference(subTitleReference);
+    }
+
+    /**
+     * Gets String detailsSubTitle from content reference.
+     *
+     * @return detailsSubTitle.
+     */
+    public String getDetailsSubtitle() {
+        return resolveDescriptionFromReference(detailsSubtitleReference);
+    }
+
+    private String resolveDescriptionFromReference(String referencePath) {
+        if (StringUtils.isNotBlank(referencePath)) {
+            GenericDescription description = resource.getResourceResolver().getResource(referencePath)
+                    .adaptTo(GenericDescription.class);
+            if(description != null) {
+                return description.getText();
+            }
+        }
+        return StringUtils.EMPTY;
+    }
+
+    /**
      * init method.
      */
     @PostConstruct
     protected void init() {
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_TITLE, getTitle());
-        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SUBTITLE, getSubTitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SERIAL_NUMBER_LABEL, getSerialNumberLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION, getDragAndDropDescription());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_TITLE, getDragAndDropTitle());
@@ -570,7 +582,6 @@ public class AddEquipmentModel {
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON, getDragAndDropButtonLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_REMOVE_FILE_LABEL, getDragAndDropRemoveFileLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DETAILS_TITLE, getDetailsTitle());
-        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DETAILS_SUBTITLE, getDetailsSubtitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_COUNTRY_LABEL, getCountryLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SITE_LABEL, getSiteLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_LINE_LABEL, getLineLabel());

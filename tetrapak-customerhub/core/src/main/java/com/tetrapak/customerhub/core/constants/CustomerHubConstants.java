@@ -347,9 +347,6 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_TITLE. */
     public static final String NEW_EQUIPMENT_TITLE = "title";
 
-    /** The Constant NEW_EQUIPMENT_SUBTITLE. */
-    public static final String NEW_EQUIPMENT_SUBTITLE = "subTitle";
-
     /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER_LABEL. */
     public static final String NEW_EQUIPMENT_SERIAL_NUMBER_LABEL = "serialNumberLabel";
 
@@ -370,9 +367,6 @@ public final class CustomerHubConstants {
 
     /** The Constant NEW_EQUIPMENT_DETAILS_TITLE. */
     public static final String NEW_EQUIPMENT_DETAILS_TITLE = "detailsTitle";
-
-    /** The Constant NEW_EQUIPMENT_DETAILS_SUBTITLE. */
-    public static final String NEW_EQUIPMENT_DETAILS_SUBTITLE = "detailsSubtitle";
 
     /** The Constant NEW_EQUIPMENT_COUNTRY_LABEL. */
     public static final String NEW_EQUIPMENT_COUNTRY_LABEL = "countryLabel";
