@@ -559,10 +559,12 @@ public class AddEquipmentModel {
 
     private String resolveDescriptionFromReference(String referencePath) {
         if (StringUtils.isNotBlank(referencePath)) {
-            GenericDescription description = resource.getResourceResolver().getResource(referencePath)
-                    .adaptTo(GenericDescription.class);
-            if(description != null) {
-                return description.getText();
+            Resource res = resource.getResourceResolver().getResource(referencePath);
+            if (res != null) {
+                GenericDescription description = res.adaptTo(GenericDescription.class);
+                if (description != null) {
+                    return description.getText();
+                }
             }
         }
         return StringUtils.EMPTY;
