@@ -378,6 +378,15 @@ class MyEquipment {
         apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj)}`;
       }
 
+      // for lines and customers, pass custom max count value
+      if (filterVal === 'customers') {
+        apiUrlRequest += '&count=1500';
+      }
+
+      if (filterVal === 'lines') {
+        apiUrlRequest += '&count=7000';
+      }
+
       ajaxWrapper
         .getXhrObj({
           url: apiUrlRequest,
@@ -738,10 +747,16 @@ class MyEquipment {
 
   sortTableByKey = ($tHeadBtn) => {
     const sortedByKey = $tHeadBtn.data('key');
-    const currentSortOrder = this.cache.activeSortData ? this.cache.activeSortData.sortOrder : '';
+    let sortOrder = 'asc';
+
+    // same table header clicked, change from asc to desc
+    if (this.cache.activeSortData && this.cache.activeSortData.sortedByKey === sortedByKey) {
+      sortOrder = 'asc' ? 'desc' : 'asc';
+    }
+
     this.cache.activeSortData = {
       'sortedByKey': sortedByKey,
-      'sortOrder': currentSortOrder === 'asc' ? 'desc' : 'asc'
+      'sortOrder': sortOrder
     };
     this.renderNewPage({'resetSkip': true});
   }
