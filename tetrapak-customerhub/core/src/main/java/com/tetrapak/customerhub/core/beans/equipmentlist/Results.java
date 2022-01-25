@@ -11,6 +11,10 @@ public class Results {
 	@Expose
 	private List<Equipments> data;
 
+	@SerializedName("meta")
+	@Expose
+	private Meta meta;
+
 	public List<Equipments> getData() {
 		return data;
 	}
@@ -18,5 +22,14 @@ public class Results {
 	public void setData(List<Equipments> data) {
 		this.data = data;
 	}
+
+	public Meta getMeta() {
+		return meta;
+	}
+
+	public void setMeta(Meta meta) {
+		this.meta = meta;
+	}
+
 
 }

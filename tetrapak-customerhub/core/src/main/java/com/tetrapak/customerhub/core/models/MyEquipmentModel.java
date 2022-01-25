@@ -201,6 +201,22 @@ public class MyEquipmentModel {
 	@ValueMapValue
 	private String addNewEquipmentUrl;
 
+	/** The max filter limit error pre label. */
+	@ValueMapValue
+	private String maxLimitErrorPre;
+
+	/** The max filter limit error after label. */
+	@ValueMapValue
+	private String maxLimitErrorAfter;
+
+	/** The filters selected label. */
+	@ValueMapValue
+	private String filtersSelected;
+
+	/** The of label. */
+	@ValueMapValue
+	private String filtersOf;
+
 	/**
 	 * Gets the noDataFound.
 	 *
@@ -589,6 +605,43 @@ public class MyEquipmentModel {
 	public String getAddNewEquipmentUrl() {
 		return addNewEquipmentUrl;
 	}
+
+	/**
+	 * Gets the max filter limit error label pre label.
+	 *
+	 * @return the max filter limit error label pre label
+	 */
+	public String getMaxLimitErrorPre() {
+		return maxLimitErrorPre;
+	}
+
+	/**
+	 * Gets the max filter limit error label after label.
+	 *
+	 * @return the max filter limit error label after label
+	 */
+	public String getMaxLimitErrorAfter() {
+		return maxLimitErrorAfter;
+	}
+
+	/**
+	 * Gets the filters selected label.
+	 *
+	 * @return the filters selected label
+	 */
+	public String getFiltersSelected() {
+		return filtersSelected;
+	}
+
+	/**
+	 * Gets the filters OF label.
+	 *
+	 * @return the filters OF label
+	 */
+	public String getFiltersOf() {
+		return filtersOf;
+	}
+
 	/**
 	 * Inits the.
 	 */
@@ -629,7 +682,11 @@ public class MyEquipmentModel {
 		i18KeyMap.put(CustomerHubConstants.SHOW_ALL_FILTERS, getShowAllFilters());
 		i18KeyMap.put(CustomerHubConstants.HIDE_ALL_FILTERS, getHideAllFilters());
 		i18KeyMap.put(CustomerHubConstants.REMOVE_ALL_FILTERS, getRemoveAllFilters());
-		
+		i18KeyMap.put(CustomerHubConstants.MAX_FILTERS_LIMIT_PRE, getMaxLimitErrorPre());
+		i18KeyMap.put(CustomerHubConstants.MAX_FILTERS_LIMIT_AFTER, getMaxLimitErrorAfter());
+		i18KeyMap.put(CustomerHubConstants.FILTERS_OF, getFiltersOf());
+		i18KeyMap.put(CustomerHubConstants.FILTERS_SELECTED, getFiltersSelected());
+
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }

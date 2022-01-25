@@ -1,19 +1,18 @@
 %default-btn {
     @include font-size($font-baseline);
-    @include padding(8px 16px);
-    @include letter-spacing($letter-spacing-sm);
+    @include padding(13px 12px);
     line-height: 1;
 
     .icon {
-        @include font-size($font-baseline);
-        @include line-height(12px, $font-baseline);
+        @include font-size($font-normal);
+        @include line-height(14px, $font-normal);
         display: inline-block;
         vertical-align: top;
 
         &::before {
-            @include font-size(12px);
-            @include height(12px);
-            @include margin-top(2px);
+            @include font-size($font-normal);
+            @include height($font-normal);
+            @include margin-left($margin-xs);
             display: inline-block;
         }
     }
@@ -42,6 +41,7 @@
 
 %btn-colors-hover {
     background-color: $color-sky-blue;
+    color: $color-white;
 }
 
 %btn-secondary-colors-hover {

@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -34,6 +35,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Utility class for http methods
@@ -244,6 +247,40 @@ public final class HttpUtil {
             LOGGER.error("IO Error while sending post request" + e);
         }
         return jsonResponse;
+    }
+    
+    /**
+     * 
+     * This method is a variation of getJsonObject provided in the same file. This method does not parse the API
+     * response into JSON Object; instead it returns the response AS IS in the form of a string.
+     * 
+     * @param token Authorisation TOken
+     * @param url HTTP End-point URL
+     * @return Map Map containing HTTP call response and HTTP call status code
+     */
+    public static Map<String, String> executeHttp(String token, String url) {
+        Map<String, String> responseMap = new HashMap<>();
+        HttpGet getRequest = new HttpGet(url);
+        getRequest.addHeader("Authorization", "Bearer " + token);
+        HttpClient httpClient = HttpClientBuilder.create().build();
+        try {
+            StopWatch watch = new StopWatch();
+            watch.start();
+            HttpResponse httpResponse = httpClient.execute(getRequest);
+            watch.stop();
+            LOGGER.debug("Http Post request status code: {}", httpResponse.getStatusLine().getStatusCode());
+            LOGGER.debug("Time taken for the call to URL : {} is {}", url, watch.getTime());
+            String responseString = StringUtils.EMPTY;
+            if (httpResponse.getEntity() != null) {
+                responseString = EntityUtils.toString(httpResponse.getEntity(), StandardCharsets.UTF_8);
+            }
+            responseMap.put(CustomerHubConstants.RESULT, responseString);
+            responseMap.put(CustomerHubConstants.STATUS, String.valueOf(httpResponse.getStatusLine().getStatusCode()));
+            
+        } catch (IOException e) {
+            LOGGER.error("Error while making HTTP call for the URL {}", url, e);
+        }
+        return responseMap;
     }
 
 }

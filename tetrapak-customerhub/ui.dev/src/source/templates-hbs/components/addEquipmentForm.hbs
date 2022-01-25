@@ -30,6 +30,14 @@
                         text=i18nKeys.dragAndDropButton
                 }}
                 <p class="tp-add-equipment__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropSubtitle}}</p>
+                {{#if i18nKeys.fileFormatSubtitle}}
+                    <p class="tp-add-equipment__drag-and-drop-subtitle">
+                        {{i18n key=i18nKeys.fileFormatSubtitle}}
+                    </p>
+                {{/if}}
+                <div class="tp-add-equipment__file-error js-tp-add-equipment__file-error" hidden>
+                    {{i18n key=i18nKeys.fileExtensionErrorMsg}}
+                </div>
                 <div class="js-tp-add-equipment__drag-and-drop-files-container">
                 </div>
             </div>
@@ -52,36 +60,39 @@
                     }}
                     <div class="error-msg">{{i18n key=i18nKeys.countryErrorMsg}}</div>
                 </div>
-                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
-                    {{> atoms/dropdown/dropdown
-                            defaultValue=i18nKeys.dropdownPlaceholder
-                            options=site
-                            name="addEquipmentSite"
-                            labelText=i18nKeys.siteLabel
-                            wrapClasses="tp-add-equipment__field-wrapper"
-                            required="true"
-                    }}
-                    <div class="error-msg">{{i18n key=i18nKeys.siteErrorMsg}}</div>
+                <div class="js-tp-add-equipment__site-wrapper">
+                    <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                        {{> atoms/dropdown/dropdown
+                                defaultValue=i18nKeys.dropdownPlaceholder
+                                name="addEquipmentSite"
+                                labelText=i18nKeys.siteLabel
+                                wrapClasses="tp-add-equipment__field-wrapper"
+                                required="true"
+                                disabled="true"
+                        }}
+                        <div class="error-msg">{{i18n key=i18nKeys.siteErrorMsg}}</div>
+                    </div>
+
                 </div>
-                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
-                    {{> atoms/dropdown/dropdown
-                            defaultValue=i18nKeys.dropdownPlaceholder
-                            options=line
-                            name="addEquipmentLine"
-                            labelText=i18nKeys.lineLabel
-                            wrapClasses="tp-add-equipment__field-wrapper"
-                            required="true"
-                    }}
-                    <div class="error-msg">{{i18n key=i18nKeys.lineErrorMsg}}</div>
+                <div class="js-tp-add-equipment__line-wrapper">
+                    <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                        {{> atoms/dropdown/dropdown
+                                defaultValue=i18nKeys.dropdownPlaceholder
+                                name="addEquipmentLine"
+                                labelText=i18nKeys.lineLabel
+                                wrapClasses="tp-add-equipment__field-wrapper"
+                                required="true"
+                                disabled="true"
+                        }}
+                        <div class="error-msg">{{i18n key=i18nKeys.lineErrorMsg}}</div>
+                    </div>
                 </div>
                 <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                     {{> atoms/input/input
                             labelText=i18nKeys.positionLabel
                             name="addEquipmentPosition"
                             labelClasses="tp-add-equipment__field-label"
-                            required="true"
                     }}
-                    <div class="error-msg">{{i18n key=i18nKeys.positionErrorMsg}}</div>
                 </div>
                 <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
                     {{> atoms/dropdown/dropdown
@@ -129,7 +140,7 @@
                 <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
                     {{> atoms/dropdown/dropdown
                             defaultValue=i18nKeys.dropdownPlaceholder
-                            options=country
+                            options=allCountries
                             name="addEquipmentCountryOfManufacture"
                             labelText=i18nKeys.countryOfManufactureLabel
                             wrapClasses="tp-add-equipment__field-wrapper"

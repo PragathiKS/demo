@@ -40,7 +40,7 @@ import java.util.Set;
  * @author Nitin Kumar
  */
 public class GlobalUtil {
-
+	
     /**
      * Method to get API GEE URL
      *

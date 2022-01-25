@@ -1,16 +1,15 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.beans.equipmentlist.Results;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.models.MyEquipmentModel;
-import com.tetrapak.customerhub.core.services.EquipmentListApiService;
-import com.tetrapak.customerhub.core.services.EquipmentListExcelService;
-import com.tetrapak.customerhub.core.utils.HttpUtil;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Objects;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletOutputStream;
+
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -21,10 +20,17 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Date;
+import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.models.MyEquipmentModel;
+import com.tetrapak.customerhub.core.services.EquipmentListApiService;
+import com.tetrapak.customerhub.core.services.EquipmentListExcelService;
+import com.tetrapak.customerhub.core.utils.HttpUtil;
 
-import javax.servlet.Servlet;
-
+/**
+ * This servlet is used to download list of equipments
+ *
+ */
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Excel Generator Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST, "sling.servlet.methods=" + HttpConstants.METHOD_GET,
 		"sling.servlet.resourceTypes=" + "customerhub/components/content/myequipment",
@@ -34,10 +40,10 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet {
 	private static final long serialVersionUID = -8769537523421118922L;
 
 	@Reference
-	private EquipmentListApiService equipmentListApiService;
+	private transient EquipmentListApiService equipmentListApiService;
 
 	@Reference
-	private EquipmentListExcelService excelService;
+	private transient EquipmentListExcelService excelService;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentListDownloadFileServlet.class);
 
@@ -47,32 +53,28 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet {
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
 		try {
 			boolean flag = false;
-			String countryCode = request.getParameter("countrycode");
-
-			GsonBuilder builder = new GsonBuilder();
-			Gson gson = builder.create();
+			String countryCode = request.getParameter(CustomerHubConstants.COUNTRY_CODE);
 
 			final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY : getAuthTokenValue(request);
 			LOGGER.debug("Got authToken from cookie : {}", token);
 
-			LOGGER.debug("In EquipmentListDownloadFileServlet.doPost(), start time of equipment list api is {}",
-					new Date());
-			JsonObject jsonResponse = equipmentListApiService.getEquipmentList(token, countryCode);
-			LOGGER.debug("In EquipmentListDownloadFileServlet.doPost(), end time of equipment list api is {}",
-					new Date());
-			JsonElement statusResponse = jsonResponse.get(CustomerHubConstants.STATUS);
+			StopWatch equipmentAPIClock = new StopWatch();
+			equipmentAPIClock.start();
+			List<Equipments> results = equipmentListApiService.getEquipmentList(token, countryCode);
+			equipmentAPIClock.stop();
+			LOGGER.debug("Total time taken for calling equipment list api is {} " ,equipmentAPIClock.getTime());
 
 			MyEquipmentModel myEquipmentModel = request.getResource().adaptTo(MyEquipmentModel.class);
 
 			if (null == myEquipmentModel) {
 				LOGGER.error("My Equipment Model is null!");
-			} else if (!CustomerHubConstants.RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
-				LOGGER.error("Unable to retrieve response from API got status code:{}", statusResponse);
 			} else {
-				JsonElement resultsResponse = jsonResponse.get(CustomerHubConstants.RESULT);
-				Results results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse),
-						Results.class);
-				flag = excelService.generateEquipmentListExcel(request, response, results);
+				StopWatch csvGenerationClock = new StopWatch();
+				csvGenerationClock.start();
+				flag = excelService.generateCSV(results,request,response);
+				csvGenerationClock.stop();
+				LOGGER.debug("Total Time taken for CSV generation : {}", csvGenerationClock.getTime());
+
 			}
 
 			if (!flag) {
@@ -91,5 +93,4 @@ public class EquipmentListDownloadFileServlet extends SlingAllMethodsServlet {
 		}
 		return request.getCookie(AUTH_TOKEN).getValue();
 	}
-
 }

@@ -2,51 +2,49 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 export const trackFormStart = function (formName) {
   const formObj = {
-    formName: formName,
-    event: {
-      eventType: 'formstart',
-      event: 'add new equipment form'
-    }
+    formName: formName
   };
-  trackAnalytics(formObj, 'form', 'form start', undefined, false);
+  const eventObj = {
+    eventType: 'formstart',
+    event: 'add new equipment form'
+  };
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 export const trackFormComplete = function (formName, formFields) {
   const formObj = {
     formName: formName,
-    event: {
-      eventType: 'formcomplete',
-      event: 'add new equipment form'
-    },
     formField: formFields
   };
-  trackAnalytics(formObj, 'form', 'form complete', undefined, false);
+  const eventObj = {
+    eventType: 'formcomplete',
+    event: 'add new equipment form'
+  };
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 export const trackFormError = function (formName, formErrors) {
   const formObj = {
     formName: formName,
-    event: {
-      eventType: 'formerror',
-      event: 'add new equipment form'
-    },
     formError: formErrors
   };
-  trackAnalytics(formObj, 'form', 'form error', undefined, false);
+  const eventObj = {
+    eventType: 'formerror',
+    event: 'add new equipment form'
+  };
+  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
 export const trackLinkClick = function (formName, linkName) {
   const formObj = {
-    linkClick: {
-      linkType: 'internal',
-      linkSection: 'button click',
-      linkParentTitle: formName,
-      linkName: linkName
-    },
-    event: {
-      eventType: 'linkclick',
-      event: 'add new equipment form'
-    }
+    linkType: 'internal',
+    linkSection: 'button click',
+    linkParentTitle: formName,
+    linkName: linkName
   };
-  trackAnalytics(formObj, 'linkClick', 'linkClicked', undefined, false);
+  const eventObj = {
+    eventType: 'linkclick',
+    event: 'add new equipment form'
+  };
+  trackAnalytics(formObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 };

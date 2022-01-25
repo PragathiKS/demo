@@ -49,8 +49,6 @@ public class BreadcrumbModel {
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
 
-    private boolean exist;
-
     /**
      * Inits the.
      */
@@ -64,21 +62,24 @@ public class BreadcrumbModel {
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo()).replace(TLConstants.HTML_EXTENSION, StringUtils.EMPTY);
         homePagePath = LinkUtils.sanitizeLink(rootPath, request);
         final String path = currentPage.getPath().replace(rootPath, StringUtils.EMPTY);
-        final List<String> pages = Arrays.stream(path.split("/")).filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList());
+        final List<String> pages = Arrays.stream(path.split(TLConstants.SLASH))
+                .filter(s -> !StringUtils.EMPTY.equals(s)).collect(Collectors.toList());
 
         Page languagePage = PageUtil.getLanguagePage(resourceResolver.resolve(rootPath));
-        breadcrumbPages.put(NavigationUtil.getNavigationTitle(languagePage), languagePage.getPath());
+        if (languagePage != null) {
+            breadcrumbPages.put(NavigationUtil.getNavigationTitle(languagePage), languagePage.getPath());
 
-        String currentPagePath = rootPath;
-        for (int i = 0; i < pages.size(); i++) {
-            currentPagePath = new StringBuilder(currentPagePath).append(TLConstants.SLASH).append(pages.get(i)).toString();
-            Page page = resourceResolver.resolve(currentPagePath).adaptTo(Page.class);
-            breadcrumbPages.put(NavigationUtil.getNavigationTitle(page), page.getPath());
-        }
+            String currentPagePath = rootPath;
+            for (int i = 0; i < pages.size(); i++) {
+                currentPagePath = new StringBuilder(currentPagePath).append(TLConstants.SLASH).append(pages.get(i)).toString();
+                Page page = resourceResolver.resolve(currentPagePath).adaptTo(Page.class);
+                breadcrumbPages.put(NavigationUtil.getNavigationTitle(page), page.getPath());
+            }
 
-        final List<String> alKeys = new ArrayList<>(breadcrumbPages.keySet());
-        for (final String key : alKeys) {
-            breadcrumbSubpages.put(key, LinkUtils.sanitizeLink(breadcrumbPages.get(key), request));
+            final List<String> alKeys = new ArrayList<>(breadcrumbPages.keySet());
+            for (final String key : alKeys) {
+                breadcrumbSubpages.put(key, LinkUtils.sanitizeLink(breadcrumbPages.get(key), request));
+            }
         }
     }
 
@@ -102,7 +103,7 @@ public class BreadcrumbModel {
 
     public boolean isExist() {
         WCMMode currentMode = WCMMode.fromRequest(request);
-        return breadcrumbSubpages != null && (WCMMode.EDIT == currentMode ||
-                (WCMMode.EDIT != currentMode && breadcrumbSubpages.size() > 1));
+        return WCMMode.EDIT == currentMode ||
+                (WCMMode.EDIT != currentMode && breadcrumbSubpages.size() > 1);
     }
 }

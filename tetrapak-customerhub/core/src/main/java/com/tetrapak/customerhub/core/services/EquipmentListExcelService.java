@@ -1,8 +1,11 @@
 package com.tetrapak.customerhub.core.services;
 
-import com.tetrapak.customerhub.core.beans.equipmentlist.Results;
+import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Equipment List Excel Service
@@ -10,17 +13,10 @@ import org.apache.sling.api.SlingHttpServletResponse;
 public interface EquipmentListExcelService {
 
 	/**
-	 * Method to generate Equipment List excel
+	 * Method to generate CSV file
 	 *
-	 * @param req        SlingHttpServletRequest the POST request call from the My
-	 *                   Equipment page frontend
-	 * @param response   SlingHttpServletResponse to send the excel file to the
-	 *                   browser
-	 * @param equipments data from the frontend got from the POST request regarding
-	 *                   the equipment details
-	 * @return true if successful in generation of the excel otherwise false
+	 * @return boolean result
 	 */
-	boolean generateEquipmentListExcel(SlingHttpServletRequest req, SlingHttpServletResponse response,
-			Results apiResponse);
-
+	boolean generateCSV(List<Equipments> equipments, SlingHttpServletRequest request, SlingHttpServletResponse response)
+			throws IOException;
 }

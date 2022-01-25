@@ -1,13 +1,11 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageFilter;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import com.tetrapak.customerhub.core.utils.PageUtil;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -17,12 +15,14 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageFilter;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.PageUtil;
 
 /**
  * Model class for left navigation component

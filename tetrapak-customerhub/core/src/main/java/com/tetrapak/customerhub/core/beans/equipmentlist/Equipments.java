@@ -41,6 +41,10 @@ public class Equipments {
     @Expose
     private String equipmentStatus;
 
+    @SerializedName("equipmentStatusDesc")
+    @Expose
+    private String equipmentStatusDescription;
+
     @SerializedName("isSecondhand")
     @Expose
     private String isSecondhand;
@@ -69,7 +73,7 @@ public class Equipments {
     @Expose
     private String serialNumber;
 
-    @SerializedName("siteName")
+    @SerializedName("site")
     @Expose
     private String siteName;
 
@@ -449,5 +453,13 @@ public class Equipments {
 
     public void setLocation (String location) {
         this.location = location;
+    }
+
+    public String getEquipmentStatusDescription() {
+        return equipmentStatusDescription;
+    }
+
+    public void setEquipmentStatusDescription(String equipmentStatusDescription) {
+        this.equipmentStatusDescription = equipmentStatusDescription;
     }
 }

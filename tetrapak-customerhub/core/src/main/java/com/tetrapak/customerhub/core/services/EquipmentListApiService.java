@@ -1,6 +1,8 @@
 package com.tetrapak.customerhub.core.services;
 
-import com.google.gson.JsonObject;
+import java.util.List;
+
+import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
 
 public interface EquipmentListApiService {
 
@@ -11,7 +13,13 @@ public interface EquipmentListApiService {
 	 * @param token         token
 	 * @return json object
 	 */
-	JsonObject getEquipmentList(String token, String countryCode);
+	List<Equipments> getEquipmentList(String token, String countryCode);
 
+	/**
+	 * 
+	 * Method to return total number of records
+	 * 
+	 * @return int
+	 */
 	int getNoOfRecordsCount();
 }

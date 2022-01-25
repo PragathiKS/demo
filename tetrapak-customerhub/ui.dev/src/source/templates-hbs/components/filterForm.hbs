@@ -24,7 +24,7 @@
 
                         <div class="tp-my-equipment-filter-options tp-my-equipment-group-filter-options">
                             {{#each this.options}}
-                                {{> atoms/checkbox/checkbox value=option text=option check=isChecked disabled=isDisabled
+                                {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
                                 uniqueKey=option
                                 autoLocatorCheckbox=@root.autoLocatorCheckbox
                                 autoLocatorCheckboxText=@root.autoLocatorCheckboxText
@@ -34,19 +34,30 @@
                     {{/each}}
                     {{else}}
                         <div class="tp-my-equipment-filter-options">
-                            {{#each formData}}
-                                {{> atoms/checkbox/checkbox value=option text=option check=isChecked disabled=isDisabled
-                                uniqueKey=option
-                                autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
-                            {{/each}}
+                            {{#if isRadio}}
+                                {{#each formData}}
+                                    {{> atoms/radio/radio value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            uniqueKey=option
+                                            name=@root.radioGroupName
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-radio"}}
+                                {{/each}}
+                            {{else}}
+                                {{#each formData}}
+                                    {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            uniqueKey=option
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                                {{/each}}
+                            {{/if}}
                         </div>
                 {{/if}}
             {{/if}}
         </div>
-        <div class="modal-footer tpmol-modal-footer">
-            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button" auto_locator="confirmbtnOverlay">
+        <div class="modal-footer tpmol-modal-footer tp-my-equipment__modal-footer">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button tp-my-equipment__apply-button" auto_locator="confirmbtnOverlay">
                 <span class="tpatom-btn__text sly-text">
                     {{#if customiseTable}}
                     {{i18n key=hideAndShowCta}}
@@ -55,11 +66,20 @@
                     {{/if}}
                 </span>
             </button>
-            {{#if singleButton}}
+            {{#unless singleButton}}
             <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-button" auto_locator="removeAllOverlay">
                 <i class="icon icon-My_Euipment_Bin_X"></i>
                 <span class="tpatom-btn__text sly-text">{{i18n key=removeAll}}</span>
             </button>
+            {{/unless}}
+            {{#if maxItemsNo}}
+                <p class="tp-my-equipment__filter-count js-tp-my-equipment__filter-count" data-max-filters="{{maxItemsNo}}">
+                    <span class="js-tp-my-equipment__filter-count-current">{{selectedItemsNo}}</span> {{i18n key=filtersOf}}
+                    <span class="js-tp-my-equipment__filter-count-total">{{maxItemsNo}}</span> {{i18n key=filtersSelected}}
+                </p>
+                <p class="tp-my-equipment__filter-count-err js-tp-my-equipment__filter-count-err" hidden>
+                    {{i18n key=maxLimitErrorPre}} {{maxItemsNo}} {{i18n key=maxLimitErrorAfter}}
+                </p>
             {{/if}}
         </div>
     </div>

@@ -11,7 +11,7 @@
         </a>
 
 <!-- Second form view starts -->
-        <div class="tp-equipment-details__content">
+        <div class="tp-equipment-details__content js-equipment-details__content">
             <h1 class="tp-equipment-details__title" auto_locator="equipmentHeading">
         Steriltank - DEP9000025
             </h1>
@@ -101,7 +101,7 @@
                                     <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Location</div>
                                     <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
                                         <div class="tpatom-input-box">
-                                            <input type="text" name="location" id="location" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300" value="BIESSENHOFEN">
+                                            <input type="text" name="location" id="location" class="tpatom-input-box__input js-equipment-details__input" maxlength="300" value="BIESSENHOFEN" required>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                     <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Site</div>
                                     <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
                                         <div class="tpatom-input-box">
-                                            <input type="text" name="siteName" id="siteName" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300" value="NESTLE   _BIE">
+                                            <input type="text" name="siteName" id="siteName" class="tpatom-input-box__input js-equipment-details__input" maxlength="300" value="NESTLE   _BIE" required>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                     <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Line</div>
                                     <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
                                         <div class="tpatom-input-box">
-                                            <input type="text" name="lineName" id="lineName" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300" value="STT - Nestlé Deutschland AG-Biessenhofen-STT">
+                                            <input type="text" name="lineName" id="lineName" class="tpatom-input-box__input js-equipment-details__input" maxlength="300" value="STT - Nestlé Deutschland AG-Biessenhofen-STT" required>
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@
                                     <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Position</div>
                                     <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
                                         <div class="tpatom-input-box">
-                                            <input type="text" name="position" id="position" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300">
+                                            <input type="text" name="position" id="position" class="tpatom-input-box__input js-equipment-details__input" maxlength="300">
                                         </div>
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                                     <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">Equipment Description</div>
                                     <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
                                         <div class="tpatom-input-box">
-                                            <input type="text" name="equipmentTypeDesc" id="equipmentTypeDesc" class="tpatom-input-box__input js-tp-my-equipment-filter-input" maxlength="300" value="PR Processing Equip">
+                                            <input type="text" name="equipmentTypeDesc" id="equipmentTypeDesc" class="tpatom-input-box__input js-equipment-details__input" maxlength="300" value="PR Processing Equip" required>
                                         </div>
                                     </div>
                                 </div>
@@ -164,11 +164,11 @@
                                     <div class="tpatom-textarea-box">
                                             <label class="tpatom-textarea-box__text" for="comments">Comment to Tetra Pak</label>
                                     
-                                        <textarea name="comments" id="comments" class="tpatom-textarea-box__input js-tp-my-equipment-filter-input" maxlength="300"></textarea>
+                                        <textarea name="comments" id="comments" class="tpatom-textarea-box__input js-equipment-details__input" maxlength="300"></textarea>
                                     </div>
                                 </div>
                                 <div class="tp-equipment-details__action-wrap">
-                                    <button type="submit" class="tpatom-btn tpatom-btn--primary js-equipment-details__req-update">
+                                    <button type="button" class="tpatom-btn tpatom-btn--primary js-equipment-details__req-update">
                                             <span class="tpatom-btn__text">cuhu.equipment.req</span>
                                     </button>
 
@@ -207,7 +207,7 @@
                             <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">PR Processing Equip</div>
                         </div>
                         <div class="tp-equipment-details__action-wrap">
-                            <button type="button" class="tp-equipment-details__btn js-equipment-details__update">
+                            <button type="button" class="tp-equipment-details__btn tp-equipment-details__update js-equipment-details__update">
                                 <span>cuhu.equipment.updateEquipmentInformation</span>
                                 <i class="icon icon-Edit"></i>
                             </button>
@@ -399,10 +399,10 @@
                 </div>
             </div>
             <div class="modal-footer tpmol-modal-footer">
-                <button type="button" class="tpatom-btn tpatom-btn--primary js-equipment-details__req-make-update">
+                <button type="button" class="tpatom-btn tpatom-btn--primary tp-equipment-details__req-make-update js-equipment-details__req-make-update">
                         <span class="tpatom-btn__text">cuhu.equipment.make</span>
                 </button>
-                <button type="button" class="tpatom-btn tpatom-btn--secondary js-equipment-details__conf-cancel">
+                <button type="button" class="tpatom-btn tpatom-btn--secondary tp-equipment-details__conf-cancel js-equipment-details__conf-cancel">
                         <span class="tpatom-btn__text">cuhu.equipment.cancel</span>
                 </button>
             </div>

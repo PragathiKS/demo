@@ -449,7 +449,7 @@ public final class PWConstants {
     public static final String NOINDEX_PROPERTY = "noIndex";
 
 	/** Constant TETRA_LAVAL_CONTENT_PATH */
-    public static final String TETRA_LAVAL_CONTENT_PATH = "/content/tetrapak/tetralaval";
+    public static final String TETRA_LAVAL_CONTENT_PATH = "/content/tetralaval";
     
     /** Constant TETRA_LAVAL_CONTENT_DAM_PATH */
     public static final String TETRA_LAVAL_CONTENT_DAM_PATH = "/content/dam/tetra-laval";
@@ -489,6 +489,9 @@ public final class PWConstants {
     
     /** The BASIC. */
     public static final String BASIC = "Basic";
+
+	/** The Constant TL_LANGUAGE_LEVEL. */
+    public static final int TL_LANGUAGE_PAGE_LEVEL = 3;
 
     /**
      * Instantiates a new PW constants.

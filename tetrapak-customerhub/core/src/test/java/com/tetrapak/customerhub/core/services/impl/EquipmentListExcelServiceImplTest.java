@@ -1,7 +1,13 @@
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
-import com.tetrapak.customerhub.core.beans.equipmentlist.Results;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletOutputStream;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -12,12 +18,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.servlet.ServletOutputStream;
-
-import static org.junit.Assert.assertFalse;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
+import com.tetrapak.customerhub.core.beans.financials.results.Params;
+import com.tetrapak.customerhub.core.beans.financials.results.Results;
+import com.tetrapak.customerhub.core.mock.MockEquipmentListApiServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EquipmentListExcelServiceImplTest {
@@ -44,18 +48,17 @@ public class EquipmentListExcelServiceImplTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link EquipmentListExcelServiceImpl#generateEquipmentListExcel(org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse, com.tetrapak.customerhub.core.beans.equipmentlist.Results)}.
-	 */
-	@Test
-	public void testGenerateEquipmentListResultsExcelWithNullApiResp() {
-		Results apiResponse = null;
-		assertFalse(equipmentListExcelService.generateEquipmentListExcel(servletRequest, response, apiResponse));
-	}
-
-	@Test
-	public void testGenerateEquipmentListExcel() {
-		Results apiResponse = new Results();
+     * Test method for
+     * {@link EquipmentListExcelServiceImpl#generateCSV(java.util.List, org.apache.sling.api.SlingHttpServletRequest, org.apache.sling.api.SlingHttpServletResponse)}.
+	 * @throws IOException 
+     */
+    @Test
+    public void testGenerateEquipmentsExcelWithNullApiResp() throws IOException {
+        List<Equipments> equipments = null;
+        assertFalse(equipmentListExcelService.generateCSV(equipments, servletRequest, response));
+    }
+	
+	private List<Equipments> getMockEquipmentList() {
 		Equipments paramRequest = new Equipments();
 		paramRequest.setId("ID");
 		paramRequest.setCountryCode("Country");
@@ -91,6 +94,6 @@ public class EquipmentListExcelServiceImplTest {
 		paramRequest.setEofsValidFromDate("Eofs Valid From Date");
 		List<Equipments> equipments = new ArrayList<>();
 		equipments.add(paramRequest);
-		apiResponse.setData(equipments);
+		return equipments;
 	}
 }

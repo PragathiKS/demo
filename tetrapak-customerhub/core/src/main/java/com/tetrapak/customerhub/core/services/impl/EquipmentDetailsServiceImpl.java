@@ -63,19 +63,22 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
 
         List metadatas = new ArrayList();
 
-        metadatas.add(filteredEquipmentMetadata(bean.getCountryMetadata()));
-        metadatas.add(filteredEquipmentMetadata(bean.getLocationMetadata()));
-        metadatas.add(filteredEquipmentMetadata(bean.getSiteMetadata()));
-        metadatas.add(filteredEquipmentMetadata(bean.getLineMetadata()));
-        metadatas.add(filteredEquipmentMetadata(bean.getStatusMetadata()));
-        metadatas.add(filteredEquipmentMetadata(bean.getPositionMetadata()));
-        metadatas.add(filteredEquipmentMetadata(bean.getDescriptionMetadata()));
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getCountryMetadata());
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getLocationMetadata());
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getSiteMetadata());
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getLineMetadata());
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getStatusMetadata());
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getPositionMetadata());
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getDescriptionMetadata());
 
         return metadatas;
     }
 
-    private EquipmentMetaData filteredEquipmentMetadata(EquipmentMetaData metaData) {
-        return new EquipmentMetaData(metaData.getMetaDataName(), xssFilter.filter(metaData.getMetaDataActualValue()),
+    private void addChangedAndfilteredEquipmentMetadata(List metadatas, EquipmentMetaData metaData) {
+        EquipmentMetaData metadata =  new EquipmentMetaData(metaData.getMetaDataName(), xssFilter.filter(metaData.getMetaDataActualValue()),
                 xssFilter.filter(metaData.getMetaDataRequestedValue()));
+        if (metadata.isChanged()) {
+            metadatas.add(metadata);
+        }
     }
 }

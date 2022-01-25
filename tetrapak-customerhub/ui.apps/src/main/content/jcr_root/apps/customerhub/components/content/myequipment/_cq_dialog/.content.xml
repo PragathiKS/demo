@@ -244,6 +244,38 @@
                                     required="true"/>
                         </items>
                     </column3>
+                    <column4
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Filter Limit Configuration"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <maxLimitErrorPre
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filter Limit Reached Pre Text (i18N key)"
+                                    required="true"
+                                    name="./maxLimitErrorPre"/>
+                            <maxLimitErrorAfter
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filter Limit Reached After Text (i18N key)"
+                                    required="true"
+                                    name="./maxLimitErrorAfter"/>
+                            <filtersOf
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filters OF Text (i18N key)"
+                                    required="true"
+                                    name="./filtersOf"/>
+                            <filtersSelected
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filters Selected Text (i18N key)"
+                                    required="true"
+                                    name="./filtersSelected"/>
+                        </items>
+                    </column4>
                 </items>
             </tabs>
         </items>

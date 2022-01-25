@@ -78,6 +78,10 @@ public class AddEquipmentModel {
     @Inject
     private String dragAndDropSubtitle;
 
+    /** The file format subtitle. */
+    @Inject
+    private String fileFormatSubtitle;
+
     /** The drag and drop button label. */
     @Inject
     private String dragAndDropButtonLabel;
@@ -202,6 +206,9 @@ public class AddEquipmentModel {
     @Inject
     private String constructionYearErrorMsg;
 
+    /** The file extension error msg. */
+    @Inject
+    private String fileExtensionErrorMsg;
 
     /** The i 18 n keys. */
     private String i18nKeys;
@@ -309,10 +316,19 @@ public class AddEquipmentModel {
     /**
      * Gets the drag and drop subtitle.
      *
-     * @return the drag and drop sybtitle
+     * @return the drag and drop subtitle
      */
     public String getDragAndDropSubtitle() {
         return dragAndDropSubtitle;
+    }
+
+    /**
+     * Gets the file format subtitle.
+     *
+     * @return the file format subtitle
+     */
+    public String getFileFormatSubtitle() {
+        return fileFormatSubtitle;
     }
 
     /**
@@ -530,6 +546,13 @@ public class AddEquipmentModel {
     public String getConstructionYearErrorMsg() { return constructionYearErrorMsg; }
 
     /**
+     * Gets the file extension error msg.
+     *
+     * @return the file extension error msg
+     */
+    public String getFileExtensionErrorMsg() { return fileExtensionErrorMsg; }
+
+    /**
      * Gets the Mapped Path of this resource.
      *
      * @return the mappedPath
@@ -581,6 +604,7 @@ public class AddEquipmentModel {
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_DESCRIPTION, getDragAndDropDescription());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_TITLE, getDragAndDropTitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE, getDragAndDropSubtitle());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_FILE_FORMAT_SUBTITLE, getFileFormatSubtitle());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON, getDragAndDropButtonLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DRAG_AND_DROP_REMOVE_FILE_LABEL, getDragAndDropRemoveFileLabel());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_DETAILS_TITLE, getDetailsTitle());
@@ -611,6 +635,7 @@ public class AddEquipmentModel {
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_MANUFACTURE_OF_ASSET_ERROR_MSG, getManufactureOfAssetErrorMsg());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_COUNTRY_OF_MANUFACTURE_ERROR_MSG, getCountryOfManufactureErrorMsg());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG, getConstructionYearErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_FILE_EXTENSION_ERROR_MSG, getFileExtensionErrorMsg());
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
@@ -623,10 +648,10 @@ public class AddEquipmentModel {
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
 
         allCountriesApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_COUNTRYLIST_API);
+                .getSelectedApiMapping(service, CustomerHubConstants.ALL_COUNTRY_LIST_API);
 
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_STATUSLIST_API);
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_USERSTATUSLIST_API);
 
         siteApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_SITESLIST_API);

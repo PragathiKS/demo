@@ -1,24 +1,23 @@
 .tpmol-list-item {
     width: 100%;
-    border-bottom: 1px solid $color-tory-blue;
+    border-bottom: 1px solid $color-catalina-blue;
     position: relative;
     background-color: $color-congress-blue;
+    font-weight: 500;
+
+    a, button {
+        font-weight: inherit;
+    }
 
     &:hover {
-        background-color: $color-tory-blue;
+        background-color: $color-catalina-blue;
     }
 
     &.active {
-        background-color: $color-denim;
-        border-bottom: 1px solid $color-denim;
-
-        &.has-submenu {
-            background-color: $color-tory-blue;
-        }
+        background-color: $color-catalina-blue;
 
         &:not(.has-submenu) {
-            border-top: 1px solid $color-denim;
-            margin-top: -1px;
+            font-weight: 700;
         }
     }
 
@@ -36,20 +35,24 @@
     }
 
     &__sublist & {
-        background-color: $color-tory-blue;
-        border-bottom: 1px solid $color-denim;
+        background-color: $color-catalina-blue;
+        border-bottom: 1px solid $color-catalina-blue;
         transition: all $anim-speed-quick ease;
         overflow: hidden;
         opacity: 1;
         height: auto;
 
         &:first-child {
-            border-top: 1px solid $color-denim;
+            border-top: 1px solid $color-catalina-blue;
+        }
+
+        &:last-child {
+            border-bottom: none;
         }
 
         &.active,
         &:hover {
-            background-color: $color-denim;
+            background-color: $color-blumine-blue;
         }
     }
 }
