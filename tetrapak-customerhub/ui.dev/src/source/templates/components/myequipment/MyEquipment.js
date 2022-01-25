@@ -749,7 +749,7 @@ class MyEquipment {
 
     // same table header clicked, change from asc to desc
     if (this.cache.activeSortData && this.cache.activeSortData.sortedByKey === sortedByKey) {
-      sortOrder = 'asc' ? 'desc' : 'asc';
+      sortOrder = this.cache.activeSortData.sortOrder === 'asc' ? 'desc' : 'asc';
     }
 
     this.cache.activeSortData = {
