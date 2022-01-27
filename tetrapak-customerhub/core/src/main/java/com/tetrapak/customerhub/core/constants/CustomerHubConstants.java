@@ -377,6 +377,9 @@ public final class CustomerHubConstants {
     /** The Constant STATUS_LIST_API. */
     public static final String EQUIPMENT_STATUSLIST_API = "myequipment-statuslist";
 
+    /** The Constant USER_STATUS_LIST_API. */
+    public static final String EQUIPMENT_USERSTATUSLIST_API = "myequipment-userstatuslist";
+
     /** The Constant COUNTRY_LIST_API. */
     public static final String EQUIPMENT_COUNTRYLIST_API = "myequipment-countrylist";
 
@@ -410,6 +413,9 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_TITLE. */
     public static final String NEW_EQUIPMENT_TITLE = "title";
 
+    /** The Constant NEW_EQUIPMENT_SUBTITLE. */
+    public static final String NEW_EQUIPMENT_SUBTITLE = "subTitle";
+
     /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER_LABEL. */
     public static final String NEW_EQUIPMENT_SERIAL_NUMBER_LABEL = "serialNumberLabel";
 
@@ -422,6 +428,9 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE. */
     public static final String NEW_EQUIPMENT_DRAG_AND_DROP_SUBTITLE = "dragAndDropSubtitle";
 
+    /** The Constant NEW_EQUIPMENT_FILE_FORMAT_SUBTITLE. */
+    public static final String NEW_EQUIPMENT_FILE_FORMAT_SUBTITLE = "fileFormatSubtitle";
+
     /** The Constant NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON. */
     public static final String NEW_EQUIPMENT_DRAG_AND_DROP_BUTTON = "dragAndDropButton";
 
@@ -430,6 +439,9 @@ public final class CustomerHubConstants {
 
     /** The Constant NEW_EQUIPMENT_DETAILS_TITLE. */
     public static final String NEW_EQUIPMENT_DETAILS_TITLE = "detailsTitle";
+
+    /** The Constant NEW_EQUIPMENT_DETAILS_SUBTITLE. */
+    public static final String NEW_EQUIPMENT_DETAILS_SUBTITLE = "detailsSubtitle";
 
     /** The Constant NEW_EQUIPMENT_COUNTRY_LABEL. */
     public static final String NEW_EQUIPMENT_COUNTRY_LABEL = "countryLabel";
@@ -512,8 +524,23 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG. */
     public static final String NEW_EQUIPMENT_CONTRUCTION_YEAR_ERROR_MSG = "constructionYearErrorMsg";
 
+    /** The Constant FILE_EXTENSION_ERROR_MSG. */
+    public static final String NEW_EQUIPMENT_FILE_EXTENSION_ERROR_MSG = "fileExtensionErrorMsg";
+
+    /** The Constant MAX_FILTERS_LIMIT_PRE. */
+    public static final String MAX_FILTERS_LIMIT_PRE = "maxLimitErrorPre";
+
+    /** The Constant MAX_FILTERS_LIMIT_AFTER. */
+    public static final String MAX_FILTERS_LIMIT_AFTER = "maxLimitErrorAfter";
+
+    /** The Constant FILTERS_OF. */
+    public static final String FILTERS_OF = "filtersOf";
+
+    /** The Constant FILTERS_SELECTED. */
+    public static final String FILTERS_SELECTED = "filtersSelected";
+
     /** TheConstant for Source name. */
-    public static final String TETRAPAK_CUSTOMERHUB = "tetrapak-customerhub";
+    public static final String TETRAPAK_CUSTOMERHUB_SOURCENAME = "MyTetraPak_App";
 
     /** TheConstant for Source name. */
     public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";
@@ -529,13 +556,22 @@ public final class CustomerHubConstants {
     
     /** TheConstant CSV_COMMA_SEPARATOR */
     public static final String CSV_COMMA_SEPARATOR= "sep=,";
-    
-    /** The Constant EQUIPMENT_STATUS_CSVHEADER. */
-    public static final String EQUIPMENT_STATUS_CSVHEADER = "equipmentstatus";
-    
-    /** The Constant SERIAL_NUMBER_CSVHEADER. */
-    public static final String SERIAL_NUMBER_CSVHEADER = "serialnumber";
 
+    /** TheConstant Not Applicable */
+    public static final String NOT_APPLICABLE= "N/A";
+    
+    /** TheConstant TAB */
+    public static final String TAB = "\t";
+    
+    /** TheConstant EQUIPMENT_NAME_SUB_CSVHEADER */
+    public static final String EQUIPMENT_DESC_CSVHEADER = "equipmentDesc";
+    
+    /** TheConstant EQUIPMENT_MACHINESYSTEMDESC_CSVHEADER */
+    public static final String EQUIPMENT_MACHINESYSTEMDESC_CSVHEADER = "machineSystemDesc";
+
+    /** TheConstant EQUIPMENT_STATUS_DESCRIPTION */
+    public static final String EQUIPMENT_STATUS_DESCRIPTION = "equipmentStatusDesc";
+    
     /**
      * Instantiates a new customer hub constants.
      */

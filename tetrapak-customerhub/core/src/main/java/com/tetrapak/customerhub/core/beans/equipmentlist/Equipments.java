@@ -156,6 +156,10 @@ public class Equipments {
     @SerializedName("eofsValidFromDate")
     @Expose
     private String eofsValidFromDate;
+    
+    @SerializedName("equipmentNameSub")
+    @Expose
+    private String equipmentNameSub;
 
 
     public String getId() {
@@ -462,4 +466,12 @@ public class Equipments {
     public void setEquipmentStatusDescription(String equipmentStatusDescription) {
         this.equipmentStatusDescription = equipmentStatusDescription;
     }
+
+	public String getEquipmentNameSub() {
+		return equipmentNameSub;
+	}
+
+	public void setEquipmentNameSub(String equipmentNameSub) {
+		this.equipmentNameSub = equipmentNameSub;
+	}
 }
