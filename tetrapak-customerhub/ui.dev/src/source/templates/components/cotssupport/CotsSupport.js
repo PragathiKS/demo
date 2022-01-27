@@ -11,10 +11,9 @@ function _renderTypeOfQueryForm() {
       data: {
         i18nKeys: this.cache.i18nKeys,
         // TODO remove hardcoded dictionary when api will be available
-        urgencyDictionary: [
-          { key: 'high', desc: 'High' },
-          { key: 'medium', desc: 'Medium' },
-          { key: 'low', desc: 'Low' }
+        affectedSystemsDictionary: [
+          { key: 'production-control', desc: 'Production Control' },
+          { key: 'mes', desc: 'MES' }
         ]
       }
     },
@@ -50,11 +49,23 @@ class CotsSupport {
   }
 
   cache = {};
+  // TODO remove hardcoded dictionary when api will be available
+  productInvolved = {
+    productionControldictionary: [
+      { key: 'TIA-portal', desc: 'TIA Portal' },
+      { key: 'control-logix', desc: 'Control Logix' },
+      { key: 'orion', desc: 'Orion' },
+      { key: 'archestra-system-platform', desc: 'Archestra System Platform' }
+    ],
+    MESDictionary: [
+      { key: 'production-integrator', desc: 'Production Integrator' },
+      { key: 'Aveva-MES-SI-Kit', desc: 'Aveva MES SI-Kit' }
+    ]
+  }
+  
 
   initCache() {
-    this.cache.$contentWrapper = this.root.find(
-      '.js-tp-cots-support__content-wrapper'
-    );
+    this.cache.$contentWrapper = this.root.find('.js-tp-cots-support__content-wrapper');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     try {
       const configJson = this.root.find('.js-tp-cots-support__config').text();
@@ -103,9 +114,7 @@ class CotsSupport {
     let isFormValid = true;
     this.removeAllErrorMessages();
 
-    const $requiredFormElements = this.root.find(
-      ':text[required]:visible, textarea[required]:visible, select[required]:visible'
-    );
+    const $requiredFormElements = this.root.find(':text[required]:visible, textarea[required]:visible, select[required]:visible');
     $requiredFormElements.each((idx, el) => {
       if (!$.trim($(el).val())) {
         isFormValid = false;
@@ -146,20 +155,27 @@ class CotsSupport {
     this.submitForm(e, () => this.renderSuccessMessage());
   };
 
-  handleTypeOfQueryChange = () => {
-    const logQueryType = this.root.find('[name=logQueryType]:checked').val();
 
-    this.root
-      .find('[data-for-log-query=technicalIssues]')
-      .toggleClass('d-none', logQueryType !== 'technicalIssues');
-
-    this.root.find('[data-for-log-query=both]').removeClass('d-none');
-
-    this.root.find('.js-tp-cots-support__submit-type-of-query').removeClass('d-none');
+  handleAffectedSystemChange = () => {
+    const affectedSystems = this.root.find('[name=affectedSystems]').val();
+    
+    if(affectedSystems === 'production-control'){
+      const productionControl = this.productInvolved.productionControlDictionary;
+      $('#productInvolved option[value !=""]').empty();
+      productionControl.forEach(product => {
+        $('#productInvolved').append($('<option>').text(product['desc']).attr('value', product['key']));        
+      });
+    }else if(affectedSystems === 'mes'){
+      const mes = this.productInvolved.MESDictionary;
+      $('#productInvolved option[value !=""]').empty();
+      mes.forEach(product => {
+        $('#productInvolved').append($('<option>').text(product['desc']).attr('value', product['key']));        
+      });
+    }
   };
 
   bindEvents() {
-    this.root.on('change', '[name=logQueryType]', this.handleTypeOfQueryChange);
+    this.root.on('change', '[name=affectedSystems]', this.handleAffectedSystemChange);
     this.root.on('click', '.js-tp-cots-support__submit-type-of-query', this.submitTypeOfQueryForm);
     this.root.on('click', '.js-tp-cots-support__submit-confirmation-details', this.submitConfirmationDetails);
   }

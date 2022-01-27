@@ -17,18 +17,9 @@ describe('CotsSupport', function () {
       el: document.body,
     });
     this.initSpy = sinon.spy(this.cotsSupport, 'init');
-    this.renderTypeOfQueryForm = sinon.spy(
-      this.cotsSupport,
-      'renderTypeOfQueryForm'
-    );
-    this.renderConfirmationDetailsFormSpy = sinon.spy(
-      this.cotsSupport,
-      'renderConfirmationDetailsForm'
-    );
-    this.renderSuccessMessageSpy = sinon.spy(
-      this.cotsSupport,
-      'renderSuccessMessage'
-    );
+    this.renderTypeOfQueryForm = sinon.spy(this.cotsSupport,'renderTypeOfQueryForm');
+    this.renderConfirmationDetailsFormSpy = sinon.spy(this.cotsSupport,'renderConfirmationDetailsForm');
+    this.renderSuccessMessageSpy = sinon.spy(this.cotsSupport,'renderSuccessMessage');
     this.addErrorMsgSpy = sinon.spy(this.cotsSupport, 'addErrorMsg');
     this.cotsSupport.init();
   });
@@ -61,20 +52,22 @@ describe('CotsSupport', function () {
 
   it('should render confirmation details form after type of query submit', function (done) {
     $('#technicalIssues[value=technicalIssues]').prop('checked', true);
-    $('#urgency option:eq(2)').prop('selected', true);
-    $('#affectedSystems').val('System 1');
+    $('#company').val('The Milk Company');
+    $('#customerSite').val('Test Data');
+    $('#affectedSystems option:eq(1)').prop('selected', true);
     $('#softwareVersion').val('1.0.0');
+    $('#licensenumber').val('123456');
     $('#description').val('Test description');
-    $('#comments').val('Test content');
+    $('#questions').val('Test content');
     $('.js-tp-cots-support__submit-type-of-query').trigger('click');
     expect(this.renderConfirmationDetailsFormSpy.called).to.be.true;
     done();
   });
 
   it('should render success message after confirmation detail submit', function (done) {
+    $('#name').val('Test name');
     $('#emailAddress').val('example@example.com');
     $('#telephone').val('461234567890');
-    helpers.fillEmptyInputs();
     $('.js-tp-cots-support__submit-confirmation-details').trigger('click');
     expect(this.renderSuccessMessageSpy.called).to.be.true;
     done();

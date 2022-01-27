@@ -21,62 +21,82 @@
                 labelClasses="mb-0"
         }}
     </div>
+    
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText="Company"
+                name="company"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText="Customer Site"
+                name="customerSite"
+                required="true"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
 
-    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
-         data-for-log-query="technicalIssues">
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
         {{> atoms/dropdown/dropdown
                 defaultValue=i18nKeys.dropdownPlaceholder
-                options=urgencyDictionary
-                labelText=i18nKeys.urgency
-                name="urgency"
+                options=affectedSystemsDictionary
+                labelText=i18nKeys.affectedSystems
+                name="affectedSystems"
                 required="true"
         }}
         <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.urgencyErrorMsg}}</div>
     </div>
-    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
-         data-for-log-query="technicalIssues">
-        {{> atoms/input/input
-                labelText=i18nKeys.affectedSystems
-                name="affectedSystems"
-                required="true"
-                maxlength=300
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/dropdown/dropdown
+                defaultValue=i18nKeys.dropdownPlaceholder         
+                labelText="Product Involved"
+                name="productInvolved"
         }}
-        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.urgencyErrorMsg}}</div>
     </div>
-    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
-         data-for-log-query="technicalIssues">
+   
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
         {{> atoms/input/input
                 labelText=i18nKeys.softwareVersion
                 name="softwareVersion"
-                required="true"
                 maxlength=300
         }}
         <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
     </div>
-    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
-         data-for-log-query="technicalIssues">
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
         {{> atoms/input/input
-                labelText=i18nKeys.description
+                labelText="Engineering License serial number"
+                name="licensenumber"
+                maxlength=300
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+    </div>
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+        {{> atoms/input/input
+                labelText="Description"
                 name="description"
                 required="true"
                 maxlength=300
         }}
         <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
     </div>
-
-    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
-         data-for-log-query="both">
+    
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
         {{> atoms/textarea/textarea
-                labelText=i18nKeys.comments
-                name="comments"
+                labelText="Questions"
+                name="questions"
                 required="true"
                 maxlength=300
         }}
         <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.commentsErrorMsg}}</div>
     </div>
 
-    <div class="js-tp-cots-support__form-element tp-cots-support__form-element d-none"
-         data-for-log-query="both">
+    <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
         {{> atoms/checkbox/checkbox
                 text=i18nKeys.marketingConsent
                 baseClass="tp-cots-support__checkbox"
@@ -88,6 +108,6 @@
             modifier="primary"
             iconClass="icon-Chevron_Right"
             text=i18nKeys.submitButtonLabel
-            className="tp-cots-support__submit js-tp-cots-support__submit-type-of-query d-none"
+            className="tp-cots-support__submit js-tp-cots-support__submit-type-of-query"
     }}
 </form>
