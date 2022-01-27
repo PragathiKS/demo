@@ -556,16 +556,22 @@ public final class CustomerHubConstants {
     
     /** TheConstant CSV_COMMA_SEPARATOR */
     public static final String CSV_COMMA_SEPARATOR= "sep=,";
-    
-    /** The Constant EQUIPMENT_STATUS_CSVHEADER. */
-    public static final String EQUIPMENT_STATUS_CSVHEADER = "equipmentstatus";
-    
-    /** The Constant SERIAL_NUMBER_CSVHEADER. */
-    public static final String SERIAL_NUMBER_CSVHEADER = "serialnumber";
 
     /** TheConstant Not Applicable */
     public static final String NOT_APPLICABLE= "N/A";
+    
+    /** TheConstant TAB */
+    public static final String TAB = "\t";
+    
+    /** TheConstant EQUIPMENT_NAME_SUB_CSVHEADER */
+    public static final String EQUIPMENT_DESC_CSVHEADER = "equipmentDesc";
+    
+    /** TheConstant EQUIPMENT_MACHINESYSTEMDESC_CSVHEADER */
+    public static final String EQUIPMENT_MACHINESYSTEMDESC_CSVHEADER = "machineSystemDesc";
 
+    /** TheConstant EQUIPMENT_STATUS_DESCRIPTION */
+    public static final String EQUIPMENT_STATUS_DESCRIPTION = "equipmentStatusDesc";
+    
     /**
      * Instantiates a new customer hub constants.
      */
