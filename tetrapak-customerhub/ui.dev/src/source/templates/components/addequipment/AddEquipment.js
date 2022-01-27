@@ -12,7 +12,7 @@ function _renderLayout($this) {
   render.fn({
     template: 'addEquipmentForm',
     target: '.js-tp-add-equipment__content-wrapper',
-    data: { i18nKeys: $this.cache.i18nKeys, country: $this.cache.countryData, equipmentStatus: $this.cache.statusData, allCountries:  $this.cache.allCountriesData}
+    data: { subTitle: $this.cache.subTitle, detailsSubtitle: $this.cache.detailsSubtitle, i18nKeys: $this.cache.i18nKeys, country: $this.cache.countryData, equipmentStatus: $this.cache.statusData, allCountries:  $this.cache.allCountriesData}
   }, () => {
     $this.cache.$contentWrapper.removeClass('d-none');
     $this.cache.$spinner.addClass('d-none');
@@ -229,6 +229,8 @@ class AddEquipment {
     this.cache.statusApi = this.root.data('status-api');
     this.cache.siteApi = this.root.data('site-api');
     this.cache.lineApi = this.root.data('line-api');
+    this.cache.subTitle = this.root.data('subtitle');
+    this.cache.detailsSubtitle = this.root.data('details-subtitle');
     this.cache.countryData = [];
     this.cache.allCountriesData = [];
     this.cache.statusData = [];
