@@ -228,7 +228,7 @@ class MyEquipment {
       }
     });
 
-    $('body').off().on('click', (e) => {
+    $('body').on('click', (e) => {
       const $actionBtn = e.target;
       if(!$($actionBtn).hasClass('icon-Three_Dot')){
         if($('.tp-my-equipment__header-actions').hasClass('show')){
