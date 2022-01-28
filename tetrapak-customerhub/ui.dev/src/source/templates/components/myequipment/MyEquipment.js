@@ -1,273 +1,223 @@
 import $ from 'jquery';
 import 'bootstrap';
-import '@ashwanipahal/paginationjs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { tableSort,isMobile, getI18n } from '../../../scripts/common/common';
+import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-
-function getFormattedData(array){
-  array.forEach((item,index) => {
-    array[index] = {
-      option: item.countryName,
-      countryCode:item.countryCode,
-      isChecked: index === 0 || item.isChecked ? true: false
-    };
-  });
-  return array;
-}
-
-function getFormattedSiteData(array){
-  const sitesFlatArray = [];
-  array.forEach((row) => {
-    if(sitesFlatArray.indexOf(row.siteName) === -1){
-      sitesFlatArray.push(row.siteName);
-    }
-  });
-  sitesFlatArray.forEach((item,index) => {
-    sitesFlatArray[index] = {
-      option: item,
-      isChecked: false
-    };
-  });
-  return sitesFlatArray;
-}
-
-function _renderCountryFilters() {
-  this.cache.$spinner.removeClass('d-none');
-  const countryApi = this.cache.equipmentApi.data('country-api');
-  const equipmentApi = this.cache.equipmentApi.data('list-api');
-  auth.getToken(({ data: authData }) => {
-    ajaxWrapper
-      .getXhrObj({
-        url: countryApi,
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        },
-        showLoader: true
-
-      }).then(res => {
-        this.cache.countryData = getFormattedData(res.data);
-        const { countryCode } = this.cache.countryData && this.cache.countryData[0];
-        ajaxWrapper
-          .getXhrObj({
-            url: `${equipmentApi}?countrycode=${countryCode}`,
-            method: 'GET',
-            contentType: 'application/json',
-            dataType: 'json',
-            beforeSend(jqXHR) {
-              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            },
-            showLoader: true
-          }).then(response => {
-            this.cache.$spinner.addClass('d-none');
-            this.cache.$content.removeClass('d-none');
-            this.cache.tableData = response.data;
-            this.cache.tableData = this.cache.tableData.map((item) => ({
-              ...item,
-              equipmentStatus: item.equipmentStatus || ''
-            }));
-            this.cache.filteredTableData = [...this.cache.tableData];
-            this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
-            this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:this.cache.i18nKeys['country'] });
-            this.applyFilter();
-            this.renderTableData();
-            this.renderSearchCount();
-            this.mapTableColumn();
-          }).fail(() => {
-            this.cache.$content.removeClass('d-none');
-            this.cache.$spinner.addClass('d-none');
-          });
-      });
-  });
-
-}
+import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
+import file from '../../../scripts/utils/file';
+import { _paginate } from './MyEquipment.paginate';
+import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
+import { _buildTableRows, _groupByBusinessType, _mapHeadings } from './MyEquipment.table';
 
 function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country, description,site,line,serialNumber,equipmentStatus;
+    let country,equipmentNameSub,site,line,serialNumber,equipmentStatusDesc,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
       }else if(i === 'site'){
         site = i;
-      }else if(i === 'line'){
+      }else if(i === 'lineName'){
         line = i;
       }
-      else if(i === 'equipmentDesc'){
-        description = i;
+      else if(i === 'equipmentNameSub'){
+        equipmentNameSub = i;
+      }
+      else if(i === 'siteDesc'){
+        siteDescription = i;
+      }
+      else if(i === 'location'){
+        location = i;
       }
       else if(i === 'serialNumber'){
         serialNumber = i;
       }
-      else if(i === 'equipmentStatus'){
-        equipmentStatus = i;
+      else if(i === 'equipmentStatusDesc'){
+        equipmentStatusDesc = i;
+      }
+      else if(i === 'functionalLocation'){
+        functionalLocation = i;
       }
     }
-    return [country, site,line, description,serialNumber,equipmentStatus];
+    return [country, site, siteDescription, line, equipmentNameSub, serialNumber, equipmentStatusDesc, location, functionalLocation];
   }
 }
-
-function getKeyMap(key,i18nKeys){
-  const headerObj = {};
-  switch (key) {
-    case 'countryCode': {
-      headerObj['keyLabel'] = i18nKeys['country'];
-      headerObj['showTooltip'] = i18nKeys['countryToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['countryToolTip'];
-      break;
-    }
-    case 'site': {
-      headerObj['keyLabel'] = i18nKeys['site'];
-      headerObj['showTooltip'] = i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['siteToolTip'];
-      break;
-    }
-    case 'line': {
-      headerObj['keyLabel'] = i18nKeys['line'];
-      headerObj['showTooltip'] = i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['lineToolTip'];
-      break;
-    }
-    case 'equipmentDesc': {
-      headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
-      headerObj['showTooltip'] = i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
-      break;
-    }
-    case 'serialNumber': {
-      headerObj['keyLabel'] = i18nKeys['serialNumber'];
-      headerObj['showTooltip'] = i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
-      break;
-    }
-    case 'equipmentStatus': {
-      headerObj['keyLabel'] = i18nKeys['equipmentStatus'];
-      headerObj['showTooltip'] = i18nKeys['equipmentStatus'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipmentStatus'];
-      break;
-    }
-    default: {
-      break;
-    }
-  }
-  return headerObj;
-}
-
-function _mapHeadings(keys,i18nKeys) {
-  return keys.map(key => ({
-    key,
-    myEquipment:true,
-    i18nKey: getKeyMap(key,i18nKeys).keyLabel,
-    showTooltip:getKeyMap(key,i18nKeys).showTooltip,
-    tooltipText:getKeyMap(key,i18nKeys).tooltipText
-  }));
-}
-
 
 function _processTableData(data){
   let keys = [];
+  const { activeSortData, sortableKeys } = this.cache;
   if (Array.isArray(data.summary)) {
     data.summary = data.summary.map(summary => {
       keys = _processKeys(keys, summary);
       this.cache.tableHeaders = keys;
-      return tableSort.call(this, summary, keys);
+      return _buildTableRows.call(this, summary, keys);
     });
-    data.summaryHeadings = _mapHeadings.call(this,keys,data.i18nKeys);
+    data.summaryHeadings = _mapHeadings(keys,data.i18nKeys,activeSortData,sortableKeys);
   }
   return data;
 }
 
-function renderPaginationTableData(list,options) {
-  const that = this;
-  const container = $('#pagination-container');
-  container.pagination({
-    dataSource: list.summary,
-    showFirst:true,
-    showLast:true,
-    showFirstOnEllipsisShow: false,
-    showLastOnEllipsisShow:false,
-    firstText:'',
-    lastText:'',
-    pageRange:1,
-    pageSize: 25,
-    pageNumber: options.isCustomiseTableFilter ? container.pagination('getSelectedPageNum') : 1,
-    className: 'paginationjs-theme-tetrapak',
-    callback: function(data) {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: {...list,summary:data},
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      },() => {
-        that.hideShowColums();
-        that.insertFirstAndLastElement();
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip();
-        });
-      });
+function _limitFilterSelection($modal) {
+  const $countWrapper = $modal.find('.js-tp-my-equipment__filter-count');
+  const maxItems = parseInt($countWrapper.data('max-filters'), 10);
+  const $currentCountTxt = $modal.find('.js-tp-my-equipment__filter-count-current');
+  const $currentCountError = $modal.find('.js-tp-my-equipment__filter-count-err');
+  const checkedItemsNo = $modal.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)').filter(':checked').length;
+  const $applyBtn = $modal.find('.js-apply-filter-button');
 
-    }
-  });
+  if (checkedItemsNo <= maxItems) {
+    $currentCountTxt.text(checkedItemsNo);
+    $currentCountError.attr('hidden', 'hidden');
+    $countWrapper.removeAttr('hidden');
+    $applyBtn.removeAttr('disabled');
+  } else {
+    $countWrapper.attr('hidden', 'hidden');
+    $currentCountError.removeAttr('hidden');
+    $applyBtn.attr('disabled', 'disabled');
+  }
 }
 
 class MyEquipment {
   constructor({ el }) {
     this.root = $(el);
   }
+
   cache = {};
+
   initCache() {
     this.cache.$modal = this.root.parent().find('.js-filter-modal');
     this.cache.$countryFilterLabel = this.root.find('.tp-my-equipment__country-button-filter');
-    this.cache.$siteFilterLabel = this.root.find('.tp-my-equipment__site-button-filter');
+    this.cache.$customerFilterLabel = this.root.find('.tp-my-equipment__customer-button-filter');
+    this.cache.$lineFilterLabel = this.root.find('.tp-my-equipment__line-button-filter');
+    this.cache.$statusFilterLabel = this.root.find('.tp-my-equipment__status-button-filter');
+    this.cache.$serialNumberFilterLabel = this.root.find('.tp-my-equipment__serial-button-filter');
+    this.cache.$equipmentDescFilterLabel = this.root.find('.tp-my-equipment__equip-desc-button-filter');
+    this.cache.$equipmentTypeFilterLabel = this.root.find('.tp-my-equipment__equip-type-button-filter');
+    this.cache.$functionalLocFilterLabel = this.root.find('.tp-my-equipment__functional-loc-button-filter');
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
     this.cache.$mobileHeadersActions = this.root.find('.js-mobile-header-actions');
+    this.cache.$showHideAllFiltersBtn = this.root.find('.js-tp-my-equipment__show-hide-all-button');
+    this.cache.$removeAllFiltersBtn = this.root.find('.js-tp-my-equipment__remove-all-button');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$content = this.root.find('.tp-equipment-content');
+    this.cache.$pagination = this.root.find('.js-tbl-pagination');
     this.cache.equipmentApi = this.root.find('.js-equipment-api');
     this.cache.countryData = [];
-    this.cache.siteData = [];
     this.cache.activeFilterForm = 'country';
+    this.cache.$activeFilterBtn = {};
     this.cache.tableData = [];
     this.cache.customisableTableHeaders = [];
     this.cache.tableHeaders = [];
-    this.cache.filteredTableData = [];
     this.cache.hideColumns = []; // column index;
     this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     this.cache.currentPageNumber = 1;
-
+    this.cache.filterModalData = {};
+    this.cache.combinedFiltersObj = {};
+    this.cache.sortableKeys = ['site','lineName','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
+    this.cache.activeSortData = null;
+    this.cache.activePage = 1;
+    this.cache.skipIndex = 0;
+    this.cache.itemsPerPage = 25;
+    this.cache.authData = {};
+    // holds all possible filter values for the modals, WITHOUT any active filters
+    // populated at initial page load
+    this.cache.allFilterValsObj = {
+      'statuses': [],
+      'types': [],
+      'customers': [],
+      'lines': []
+    };
+    // holds all possible filter values for the modals, WITH active filters configured
+    // populated every time a filter is set
+    this.cache.currentFilterValsObj = {
+      'statuses': [],
+      'types': [],
+      'customers': [],
+      'lines': []
+    };
+    this.cache.downloadservletUrl = this.root.find('#downloadExcelServletUrl').val();
   }
+
   bindEvents() {
-    const {$mobileHeadersActions, $modal,i18nKeys,$siteFilterLabel,$myEquipmentCustomizeTableAction } = this.cache;
-    $siteFilterLabel.text(`${i18nKeys['site']} +`);
-    this.cache.customisableTableHeaders = [{key:'countryCode',option:i18nKeys['country'],isChecked:true,index:0},
-      {key:'siteName',option:i18nKeys['site'],isChecked:true,index:1},
-      {key:'equipmentDescription',option:i18nKeys['equipmentDescription'],isChecked:true,index:3},
-      {key:'serialNumber',option:i18nKeys['serialNumber'],isChecked:true,index:4}];
+    const {$mobileHeadersActions, $modal,i18nKeys,$myEquipmentCustomizeTableAction } = this.cache;
+    this.cache.customisableTableHeaders = [
+      {key:'countryCode',option:'countryCode',optionDisplayText:i18nKeys['country'],isChecked:true,index:0},
+      {key:'site',option:'site',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
+      {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['siteDescription'],isChecked:false,index:2},
+      {key:'lineName',option:'lineName',optionDisplayText:i18nKeys['line'],isChecked:true,index:3},
+      {key:'equipmentNameSub',option:'equipmentNameSub',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
+      {key:'serialNumber',option:'serialNumber',optionDisplayText:i18nKeys['serialNumber'],isChecked:true,index:5},
+      {key:'equipmentStatusDesc',option:'equipmentStatusDesc',optionDisplayText:i18nKeys['equipmentStatus'],isChecked:true,index:6},
+      {key:'location',option:'location',optionDisplayText:i18nKeys['location'],isChecked:false,index:7},
+      {key:'functionalLocation',option:'functionalLocation',optionDisplayText:i18nKeys['functionalLocation'],isChecked:false,index:8}
+    ];
+
     this.cache.$countryFilterLabel.on('click', () => {
-      this.renderFilterForm(this.cache.countryData,{ activeFrom:'country',header:i18nKeys['country'] });
+      const formDetail = { activeForm:'country',header:i18nKeys['country'], singleButton: true, isRadio: true, radioGroupName: 'countryRadio' };
+      this.renderFilterForm(this.cache.countryData, formDetail, this.cache.$countryFilterLabel);
       $modal.modal();
     });
-    this.cache.$siteFilterLabel.on('click', () => {
-      this.cache.siteData = getFormattedSiteData([...this.cache.filteredTableData]);
-      this.renderFilterForm(this.cache.siteData, { activeFrom:'site',header:i18nKeys['site'] });
+
+    this.cache.$customerFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'customer',header:i18nKeys['customer'],maxFiltersSelection:10};
+      this.cache.filterModalData['customer'] = this.getFilterModalData('customer');
+      this.renderFilterForm(this.cache.filterModalData['customer'], formDetail, this.cache.$customerFilterLabel);
       $modal.modal();
     });
+
+    this.cache.$lineFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'lineName',header:i18nKeys['line'],maxFiltersSelection:10};
+      this.cache.filterModalData['lineName'] = this.getFilterModalData('lineName');
+      this.renderFilterForm(this.cache.filterModalData['lineName'], formDetail, this.cache.$lineFilterLabel);
+      $modal.modal();
+    });
+
+    this.cache.$statusFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'equipmentStatusDesc',header:i18nKeys['equipmentStatus'],maxFiltersSelection:10};
+      this.cache.filterModalData['equipmentStatusDesc'] = this.getFilterModalData('equipmentStatusDesc');
+      this.renderFilterForm(this.cache.filterModalData['equipmentStatusDesc'], formDetail, this.cache.$statusFilterLabel);
+      $modal.modal();
+    });
+
+    this.cache.$equipmentDescFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'equipmentNameSub', header:i18nKeys['equipmentDescription'], isTextInput: true};
+      const activeEquipTypeDesc = this.cache.combinedFiltersObj['equipmentNameSub'] ? this.cache.combinedFiltersObj['equipmentNameSub'] : '';
+      this.renderFilterForm(activeEquipTypeDesc, formDetail, this.cache.$equipmentDescFilterLabel);
+      $modal.modal();
+    });
+
+    this.cache.$equipmentTypeFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'equipmentType',header:i18nKeys['equipmentType'],maxFiltersSelection:20};
+      this.cache.filterModalData['equipmentType'] = this.getFilterModalData('equipmentType');
+      this.renderFilterForm(this.cache.filterModalData['equipmentType'], formDetail, this.cache.$equipmentTypeFilterLabel);
+      $modal.modal();
+    });
+
+    this.cache.$serialNumberFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'serialNumber',header:i18nKeys['serialNumber'], isTextInput: true};
+      const activeSerialNum = this.cache.combinedFiltersObj['serialNumber'] ? this.cache.combinedFiltersObj['serialNumber'] : '';
+      this.renderFilterForm(activeSerialNum, formDetail, this.cache.$serialNumberFilterLabel);
+      $modal.modal();
+    });
+
+    this.cache.$functionalLocFilterLabel.on('click', () => {
+      const formDetail = {activeForm:'functionalLocation',header:i18nKeys['functionalLocation'], isTextInput: true};
+      const activeSerialNum = this.cache.combinedFiltersObj['functionalLocation'] ? this.cache.combinedFiltersObj['functionalLocation'] : '';
+      this.renderFilterForm(activeSerialNum, formDetail, this.cache.$functionalLocFilterLabel);
+      $modal.modal();
+    });
+
     $myEquipmentCustomizeTableAction.on('click', () => {
-      this.renderFilterForm(this.cache.customisableTableHeaders, { activeFrom:'customise-table',header:i18nKeys['customizeTable'],singleButton:false });
+      this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:true });
       $('.tp-my-equipment__header-actions').removeClass('show');
       $modal.modal();
+      _customizeTableBtnAnalytics($myEquipmentCustomizeTableAction);
     });
 
     $mobileHeadersActions.on('click', () => {
@@ -276,12 +226,21 @@ class MyEquipment {
       } else {
         $('.tp-my-equipment__header-actions').addClass('show');
       }
+    });
 
+    $('body').on('click', (e) => {
+      const $actionBtn = e.target;
+      if(!$($actionBtn).hasClass('icon-Three_Dot')){
+        if($('.tp-my-equipment__header-actions').hasClass('show')){
+          $('.tp-my-equipment__header-actions').removeClass('show');
+        }
+      } 
     });
 
     this.root.on('change', '.country-equipment-list',  function() {
       $('input[type="checkbox"]').not(this).prop('checked', false);
     });
+
     this.root.on('click', '.js-close-btn',  () => {
       $modal.modal('hide');
     });
@@ -290,8 +249,92 @@ class MyEquipment {
       this.applyFilter();
     });
 
+    this.root.on('keydown', '.js-tp-my-equipment-filter-input',  (e) => {
+      const currentKeyCode = e.keyCode || e.which;
+      if (currentKeyCode === 13) {
+        this.applyFilter();
+      }
+    });
+
     this.root.on('click', '.js-tp-my-equipment__remove-button',  () => {
       this.applyFilter({removeFilter:true});
+    });
+
+    this.root.on('click', '.js-my-equipment__export-excel-action',  () => {
+      this.downloadExcel();
+    });
+
+    this.cache.$removeAllFiltersBtn.on('click', () => {
+      this.deleteAllFilters();
+      this.toggleRemoveAllFilters(false);
+    });
+
+    this.cache.$showHideAllFiltersBtn.on('click', () => {
+      this.showHideAllFilters();
+    });
+
+    this.root.on('click', '.js-my-equipment__table-summary__sort',  (e) => {
+      const $tHeadBtn = $(e.currentTarget).parent();
+      this.sortTableByKey($tHeadBtn);
+    });
+
+    this.root.on('click', '.js-my-equipment__table-summary__row',  (e) => {
+      const id = $(e.currentTarget).attr('href');
+      const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
+      const url = `${equipmentDetailsUrl}?id=${id}`;
+      const $linkName = $(e.currentTarget).find('td').eq(4).text().trim() + '-' + id;
+      _trackEquipmentLinkClick($linkName);
+      window.open(url, '_blank');
+    });
+
+    $modal.on('shown.bs.modal', () => {
+      const $freeTextSearchInput = $modal.find('.js-tp-my-equipment-filter-input');
+      if ($freeTextSearchInput.length) {
+        $freeTextSearchInput.focus();
+      }
+    });
+
+    // functionality to check/uncheck all inputs in a specific category
+    // Equipment Type filter - All Packaging , All processing
+    this.root.on('change', '.js-tp-my-equipment-filter-group-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $modal = $currentTarget.parents('.tp-my-equipment__modal-content');
+      const $currentTargetWrapper = $currentTarget.parents('.tp-my-equipment__type-group-option');
+      const $checkboxGroupInputs = $currentTargetWrapper.next().find('.tpatom-checkbox__input').not(':disabled');
+      $checkboxGroupInputs.each((index, item) => {
+        $(item).prop('checked', $currentTarget.is(':checked'));
+      });
+      _limitFilterSelection($modal);
+    });
+
+    this.root.on('change', '.tp-my-equipment-group-filter-options .js-tp-my-equipment-filter-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $thisGroupAllWrapper = $currentTarget.parents('.tp-my-equipment-group-filter-options').prev();
+      const $thisGroupAllCheckbox = $thisGroupAllWrapper.find('.js-tp-my-equipment-filter-group-checkbox');
+      if (!$currentTarget.is(':checked')) {
+        $thisGroupAllCheckbox.prop('checked', false);
+      }
+    });
+
+    // Limit selection of checkbox filters to a max number
+    this.root.on('change', '.tp-my-equipment-filter-options .js-tp-my-equipment-filter-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $modal = $currentTarget.parents('.tp-my-equipment__modal-content');
+      _limitFilterSelection($modal);
+    });
+
+    this.root.on('click', '.js-page-number',  (e) => {
+      const $btn = $(e.currentTarget);
+      const $pagination = $btn.parents('.js-tbl-pagination');
+
+      if (!$btn.hasClass('active')) {
+        // stop pointer events until new page is rendered, in order to not send multiple AJAX calls
+        $pagination.addClass('pagination-lock');
+        this.cache.activePage = $btn.data('page-number');
+        this.cache.skipIndex = $btn.data('skip');
+        this.renderNewPage({'resetSkip': false});
+        _paginationAnalytics($btn);
+      }
     });
   }
 
@@ -307,32 +350,91 @@ class MyEquipment {
     }
   }
 
-  insertFirstAndLastElement = () => {
-    const { i18nKeys } = this.cache;
-    let gotToFirstButton = `<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i><span>${getI18n(i18nKeys['first'])}</span></div>`;
-    let gotToLastButton = `<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i><span>${getI18n(i18nKeys['last'])}</span></div>`;
-    if(isMobile()){
-      gotToFirstButton = ('<div class="pagination-icon-wrapper icon-left"><i class="icon icon-pagination left icon-Right_new"></i><i class="icon icon-pagination left icon-Right_new"></i></div>');
-      gotToLastButton = '<div class="pagination-icon-wrapper icon-right"><i class="icon icon-pagination icon-Right_new"></i><i class="icon icon-pagination icon-Right_new"></i></div>';
-    }
+  downloadExcel = () => {
+    auth.getToken(() => {
+      const url = this.cache.downloadservletUrl;
+      file.get({
+        extension: 'csv',
+        url: `${url}?countrycodes=${this.getActiveCountryCode()}`,
+        method: ajaxMethods.GET
+      });
+    });
+  }
 
-    $('.paginationjs-first > a').not('.paginationjs-page > a').prepend(gotToFirstButton);
-    $('.paginationjs-last > a').not('.paginationjs-page > a').prepend(gotToLastButton);
-    $('.paginationjs-next > a').replaceWith('<a><i class="icon icon-pagination left icon-Right_new"></i></a>');
-    $('.paginationjs-prev > a').replaceWith('<a><i class="icon icon-pagination icon-Right_new"></i></a>');
+  getActiveCountryCode = () => {
+    const { countryData } = this.cache;
+    const activeCountry = countryData.filter(e => e.isChecked);
+    return activeCountry[0].countryCode;
+  }
+
+  getAllAvailableFilterVals(authData, filterValuesArr, newCountry) {
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    const { combinedFiltersObj } = this.cache;
+
+    filterValuesArr.forEach(filterVal => {
+      let apiUrlRequest = `${equipmentApi}/${filterVal}?countrycodes=${this.getActiveCountryCode()}`;
+
+      if (!newCountry) {
+        apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj)}`;
+      }
+
+      // for lines and customers, pass custom max count value
+      if (filterVal === 'customers') {
+        apiUrlRequest += '&count=1500';
+      }
+
+      if (filterVal === 'lines') {
+        apiUrlRequest += '&count=7000';
+      }
+
+      ajaxWrapper
+        .getXhrObj({
+          url: apiUrlRequest,
+          method: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(res => {
+          if (newCountry) {
+            this.cache.allFilterValsObj[filterVal] = res.data;
+          } else {
+            this.cache.currentFilterValsObj[filterVal] = res.data;
+          }
+        });
+    });
   }
 
   renderSearchCount = () => {
-    this.cache.$searchResults.text(`${this.cache.filteredTableData.length} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
+    this.cache.$searchResults.text(`${this.cache.meta.total} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
   }
 
-  renderTableData = (label,filterValues) => {
-    this.updateTable(label,filterValues);
-    if(!label || label !== this.cache.i18nKeys['country']){
-      renderPaginationTableData.call(
-        this,
-        _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
-        {isCustomiseTableFilter :label === 'customise-table' ? true : false });
+  renderPaginationTableData = (list) => {
+    const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
+
+    if (list.summary.length === 0) {
+      render.fn({
+        template: 'myEquipmentTable',
+        data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
+        target: '.tp-my-equipment__table_wrapper',
+        hidden: false
+      });
+    }
+    else {
+      render.fn({
+        template: 'myEquipmentTable',
+        data: {...list, summary: list.summary, paginationObj: paginationObj },
+        target: '.tp-my-equipment__table_wrapper',
+        hidden: false
+      },() => {
+        this.hideShowColums();
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+      });
     }
   }
 
@@ -349,22 +451,510 @@ class MyEquipment {
     }
   }
 
-  updateTable = (label,filterValues) => {
-    const { filteredTableData, i18nKeys,$countryFilterLabel } = this.cache;
-    const { tableData } = this.cache;
-    if(label === i18nKeys['country'] && filterValues.length === 0){
-      this.cache.filteredTableData = tableData;
+  renderNewCountry = (label, analyticsAction) => {
+    const { $countryFilterLabel, itemsPerPage } = this.cache;
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    this.cache.$spinner.removeClass('d-none');
+    this.cache.$content.addClass('d-none');
+
+    auth.getToken(({ data: authData }) => {
+      this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers'], true);
+      ajaxWrapper
+        .getXhrObj({
+          url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${this.getActiveCountryCode()}`,
+          method: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(response => {
+          this.cache.$spinner.addClass('d-none');
+          this.cache.$content.removeClass('d-none');
+          this.cache.tableData = response.data;
+          this.cache.meta = response.meta;
+          this.cache.activePage = 1;
+          this.cache.tableData = this.cache.tableData.map((item) => ({
+            ...item,
+            equipmentStatus: item.equipmentStatus || ''
+          }));
+          this.deleteAllFilters();
+          const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+          this.renderPaginationTableData(tableData);
+          this.renderSearchCount();
+          this.updateFilterCountValue(label,1,$countryFilterLabel);
+
+          if (analyticsAction && analyticsAction.action === 'addedFilter') {
+            _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
+          }
+        }).fail(() => {
+          this.cache.$spinner.addClass('d-none');
+          this.cache.$content.removeClass('d-none');
+        });
+    });
+  }
+
+  isFilterCheckboxDisabled(filterProperty, filterPropertyKey, row, optionValueKey) {
+    const filterPropertyRemap = _remapFilterProperty(filterProperty);
+    const { currentFilterValsObj } = this.cache;
+    const activeFiltersArr = currentFilterValsObj[filterPropertyRemap];
+
+    if (activeFiltersArr.length > 0) {
+      const result = activeFiltersArr.filter(activeFilter => activeFilter[filterPropertyKey] === row[optionValueKey]);
+      return result.length === 0;
+    } else {
+      return false;
+    }
+  }
+
+  getFilterModalData(filterByProperty) {
+    const { combinedFiltersObj, allFilterValsObj } = this.cache;
+    let alphabeticalSortKey;
+    let optionDisplayTextKey;
+    let optionValueKey;
+    let filterPropertyKey;
+    const filterOptionsArr = [];
+    const availableFilterCheckboxes = [...allFilterValsObj[_remapFilterProperty(filterByProperty)]];
+    // if a single filter is used, do not disable any of it's options in the modal
+    const isSingleFilterApplied = typeof combinedFiltersObj[filterByProperty] !== 'undefined' &&
+        Object.keys(combinedFiltersObj).length === 1;
+
+    // lineName uses 'lineCode' for filtering (as values), but should display and sort by 'lineDescription' in table
+    // customer uses 'customerNumber' for filtering (as values), but should display and sort by 'customer' in table
+    switch (filterByProperty) {
+      case 'lineName':
+        optionDisplayTextKey = 'lineDescription';
+        optionValueKey = 'lineCode';
+        filterPropertyKey = 'lineCode';
+        alphabeticalSortKey = 'optionDisplayText';
+        break;
+      case 'customer':
+        optionDisplayTextKey = 'customer';
+        optionValueKey = 'customerNumber';
+        filterPropertyKey = 'customerNumber';
+        alphabeticalSortKey = 'optionDisplayText';
+        break;
+      case 'equipmentStatusDesc':
+        optionDisplayTextKey = 'equipmentStatusDesc';
+        optionValueKey = 'equipmentStatus';
+        filterPropertyKey = 'equipmentStatus';
+        alphabeticalSortKey = 'optionDisplayText';
+        break;
+      case 'equipmentType':
+        optionDisplayTextKey = 'equipmentTypeDesc';
+        optionValueKey = 'equipmentType';
+        filterPropertyKey = 'equipmentType';
+        alphabeticalSortKey = 'optionDisplayText';
+        break;
+      default:
+        optionDisplayTextKey = filterByProperty;
+        optionValueKey = filterByProperty;
+        filterPropertyKey = filterByProperty;
+        alphabeticalSortKey = 'option';
+    }
+
+    availableFilterCheckboxes.forEach((row) => {
+      filterOptionsArr.push({
+        option: row[optionValueKey],
+        optionDisplayText: row[optionDisplayTextKey],
+        isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(row[optionValueKey]) : false,
+        businessType: row['businessType'] ? row['businessType'] : null,
+        isDisabled: this.isFilterCheckboxDisabled(filterByProperty, filterPropertyKey, row, optionValueKey) && !isSingleFilterApplied
+      });
+    });
+
+    // sort options alphabetically
+    filterOptionsArr.sort(function(a, b) {
+      return a[alphabeticalSortKey].localeCompare(b[alphabeticalSortKey]);
+    });
+
+    if (filterByProperty === 'equipmentType') {
+      return _groupByBusinessType(filterOptionsArr);
+    } else {
+      return filterOptionsArr;
+    }
+  }
+
+  toggleRemoveAllFilters = (show) => {
+    if (show && Object.keys(this.cache.combinedFiltersObj).length > 0) {
+      this.cache.$removeAllFiltersBtn.removeAttr('hidden');
+    } else {
+      this.cache.$removeAllFiltersBtn.attr('hidden', 'hidden');
+    }
+  }
+
+  applyFilter = (options) => {
+    const { activeFilterForm, $activeFilterBtn, i18nKeys, authData } = this.cache;
+    const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
+    const $filtersRadio = this.root.find('.js-tp-my-equipment-filter-radio');
+    const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
+    let filterCount = 0;
+    let filterData = [];
+    let label;
+    let analyticsAction = {};
+
+    switch (activeFilterForm) {
+      case 'country':{
+        filterData = this.cache.countryData;
+        $filtersRadio.each(function(index) {
+          if ($(this).is(':checked')) {
+            filterCount++;
+            filterData[index].isChecked = true;
+          } else {
+            filterData[index].isChecked = false;
+          }
+        });
+
+        label = i18nKeys['country'];
+        break;
+      }
+      case 'customer': {
+        filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
+        label = i18nKeys['customer'];
+        break;
+      }
+      case 'lineName': {
+        filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
+        label = i18nKeys['line'];
+        break;
+      }
+      case 'equipmentStatusDesc': {
+        filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
+        label = i18nKeys['equipmentStatus'];
+        break;
+      }
+      case 'equipmentType': {
+        filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
+        label = i18nKeys['equipmentType'];
+        break;
+      }
+      case 'serialNumber': {
+        this.cache.combinedFiltersObj['serialNumber'] = $freeTextFilterInput.val();
+        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        label = i18nKeys['serialNumber'];
+        break;
+      }
+      case 'equipmentNameSub': {
+        this.cache.combinedFiltersObj['equipmentNameSub'] = $freeTextFilterInput.val();
+        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        label = i18nKeys['equipmentDescription'];
+        break;
+      }
+      case 'functionalLocation': {
+        this.cache.combinedFiltersObj['functionalLocation'] = $freeTextFilterInput.val();
+        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        label = i18nKeys['functionalLocation'];
+        break;
+      }
+      case 'customise-table':{
+        filterData = this.cache.customisableTableHeaders;
+        $filtersCheckbox.each(function(index) {
+          if ($(this).is(':checked')) {
+            filterData[index].isChecked = true;
+          } else {
+            filterData[index].isChecked = false;
+          }
+        });
+
+        label = 'customise-table';
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
+    // if Remove all button pressed in current modal
+    if (options && options.removeFilter) {
+      if (this.cache.combinedFiltersObj[activeFilterForm]) {
+        delete this.cache.combinedFiltersObj[activeFilterForm];
+      }
+      filterCount = null;
+    }
+
+    if ($activeFilterBtn) {
+      if (filterCount) {
+        $activeFilterBtn.addClass('active');
+      } else {
+        $activeFilterBtn.removeClass('active');
+      }
+    }
+
+    analyticsAction = {
+      action: options && options.removeFilter ? 'removedFilter' : 'addedFilter',
+      targetFilter: $activeFilterBtn,
+      items: this.cache.combinedFiltersObj[activeFilterForm]
+    };
+
+    // if Country filter change
+    if (activeFilterForm === 'country') {
+      analyticsAction.items = this.getActiveCountryCode();
+      this.renderNewCountry(label, analyticsAction);
       return;
     }
-    switch (label) {
-      case i18nKeys['country']:{
-        const equipmentApi = this.cache.equipmentApi.data('list-api');
-        this.cache.$spinner.removeClass('d-none');
-        this.cache.$content.addClass('d-none');
-        auth.getToken(({ data: authData }) => {
+
+    // if show/hide columns
+    if (activeFilterForm === 'customise-table') { // other type of filter change
+      const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+      this.renderPaginationTableData(tableData);
+      this.cache.$modal.modal('hide');
+      _addShowHideFilterAnalytics(filterData);
+
+      return;
+    }
+
+    // All other filters
+    this.updateFilterCountValue(label,filterCount,$activeFilterBtn);
+    this.renderNewPage({'resetSkip': true, analyticsAction});
+    this.getAllAvailableFilterVals(authData,  ['statuses', 'types', 'lines', 'customers'], false);
+    this.cache.$modal.modal('hide');
+    this.toggleRemoveAllFilters(true);
+  }
+
+  deleteAllFilters = () => {
+    const $filterBtns = this.root.find('.tp-my-equipment__filter-button:not(.tp-my-equipment__country-button-filter)');
+    // if no filters are active
+    if (Object.keys(this.cache.combinedFiltersObj).length === 0) {
+      return;
+    }
+
+    const analyticsAction = {
+      action: 'removedAllFilters',
+      targetFilter: null,
+      items: this.cache.combinedFiltersObj
+    };
+
+    this.cache.combinedFiltersObj = {};
+    this.cache.currentFilterValsObj = {
+      'statuses': [],
+      'types': [],
+      'customers': [],
+      'lines': []
+    };
+
+    this.cache.activeSortData = null;
+
+    $filterBtns.each((index, item) => {
+      const initialLabel = $(item).data('label');
+      $(item).removeClass('active');
+      $(item).text(initialLabel);
+    });
+
+    this.renderNewPage({'resetSkip': true, analyticsAction});
+  }
+
+  sortTableByKey = ($tHeadBtn) => {
+    const sortedByKey = $tHeadBtn.data('key');
+    let sortOrder = 'asc';
+
+    // same table header clicked, change from asc to desc
+    if (this.cache.activeSortData && this.cache.activeSortData.sortedByKey === sortedByKey) {
+      sortOrder = this.cache.activeSortData.sortOrder === 'asc' ? 'desc' : 'asc';
+    }
+
+    this.cache.activeSortData = {
+      'sortedByKey': sortedByKey,
+      'sortOrder': sortOrder
+    };
+    this.renderNewPage({'resetSkip': true});
+  }
+
+  showHideAllFilters = () => {
+    const $allBtnFilters = this.root.find('.tp-my-equipment__filter-button-all');
+    const showLabel = this.cache.$showHideAllFiltersBtn.data('show-label');
+    const hideLabel = this.cache.$showHideAllFiltersBtn.data('hide-label');
+    const $label = this.cache.$showHideAllFiltersBtn.find('.tpatom-btn__text');
+    const currentLabel = $.trim($label.text());
+
+    _hideShowAllFiltersAnalytics(currentLabel, currentLabel === showLabel ? 'filterShow' : 'filterHide');
+
+    $allBtnFilters.toggle();
+    $label.text(currentLabel === showLabel ? hideLabel : showLabel);
+  }
+
+  addCombinedFilter = (activeFilterForm, $filtersCheckbox) => {
+    if ($filtersCheckbox.filter(':checked').length > 0) {
+      this.cache.combinedFiltersObj[activeFilterForm] = [];
+      $filtersCheckbox.each((index, item) => {
+        if ($(item).is(':checked')) {
+          this.cache.combinedFiltersObj[activeFilterForm].push($(item).val());
+        }
+      });
+      return this.cache.combinedFiltersObj[activeFilterForm].length;
+    } else {
+      delete this.cache.combinedFiltersObj[activeFilterForm];
+      return 0;
+    }
+  }
+
+  updateFilterCountValue = (label,filterCount,htmlUpdate) => {
+    const { $modal } = this.cache;
+
+    if (htmlUpdate) {
+      if (!filterCount) {
+        htmlUpdate.text(`${getI18n(label)} +`);
+      } else {
+        htmlUpdate.text(`${getI18n(label)}: ${filterCount}`);
+      }
+    }
+    $modal.modal('hide');
+  }
+
+  renderFilterForm = (data, formDetail, $filterBtn) => {
+    const { i18nKeys } = this.cache;
+    let selectedItemsNo = 0;
+
+    if (formDetail.header === i18nKeys['country']) {
+      data.forEach((item,index) => {
+        data[index]= {
+          ...item,
+          optionDisplayText: item.option,
+          isCountry:true
+        };
+      });
+    }
+
+    // if checkbox type filter
+    if (formDetail.maxFiltersSelection) {
+      // Equipment Type has different data format, due to being grouped in Packaging or Processing
+      if (formDetail.header === i18nKeys['equipmentType']) {
+        data.forEach(dataItem => {
+          const selectedItems = dataItem.options.filter(item => item.isChecked).length;
+          selectedItemsNo += selectedItems;
+        });
+      } else {
+        selectedItemsNo = data.filter(item => item.isChecked).length;
+      }
+    }
+
+    render.fn({
+      template: 'filterForm',
+      data: {
+        header: formDetail.header,
+        formData: data,
+        maxItemsNo: formDetail.maxFiltersSelection ? formDetail.maxFiltersSelection : null,
+        selectedItemsNo: selectedItemsNo ? selectedItemsNo : 0,
+        isEquipmentType: formDetail.header === i18nKeys['equipmentType'],
+        ...i18nKeys,
+        singleButton: formDetail.singleButton === true ? true : false,
+        customiseTable: formDetail.activeForm === 'customise-table' ? true : false,
+        isRadio: formDetail.isRadio === true ? true : false,
+        radioGroupName: formDetail.radioGroupName,
+        isTextInput: formDetail.isTextInput,
+        autoLocatorModal: `${formDetail.activeForm}Overlay`,
+        autoLocatorInput: `${formDetail.activeForm}InputBox`,
+        autoLocatorCheckbox: `${formDetail.activeForm}FilterCheckboxOverlay`,
+        autoLocatorCheckboxText: `${formDetail.activeForm}FilterItemOverlay`
+      },
+      target: '.tp-equipment__filter-form',
+      hidden: false
+    });
+    this.cache.activeFilterForm = formDetail.activeForm;
+    this.cache.$activeFilterBtn = $filterBtn;
+  }
+
+  renderNewPage = ({resetSkip, analyticsAction}) => {
+    const {itemsPerPage, countryData, activeSortData, combinedFiltersObj} = this.cache;
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    const activeCountry = countryData.filter(e => e.isChecked);
+    const countryCode = activeCountry[0].countryCode;
+    let apiUrlRequest = '';
+    const filtersQuery = _buildQueryUrl(combinedFiltersObj);
+    const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
+
+    this.cache.$content.addClass('d-none');
+    this.cache.$spinner.removeClass('d-none');
+
+    if (resetSkip) {
+      // reset indexes when a filter is set/removed
+      this.cache.activePage = 1;
+      this.cache.skipIndex = 0;
+    }
+
+    apiUrlRequest = `${equipmentApi}?skip=${skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`;
+
+    if (filtersQuery) {
+      apiUrlRequest += `&${filtersQuery}`;
+    }
+
+    if (activeSortData) {
+      apiUrlRequest += `&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
+    }
+
+    auth.getToken(({ data: authData }) => {
+      ajaxWrapper
+        .getXhrObj({
+          url: apiUrlRequest,
+          method: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(response => {
+          this.cache.$spinner.addClass('d-none');
+          this.cache.$content.removeClass('d-none');
+          this.cache.tableData = response.data;
+          this.cache.tableData = this.cache.tableData.map((item) => ({
+            ...item,
+            equipmentStatus: item.equipmentStatus || ''
+          }));
+          this.cache.meta = response.meta;
+          const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+          this.renderPaginationTableData(tableData);
+          this.renderSearchCount();
+          this.mapTableColumn();
+
+          if (analyticsAction && analyticsAction.action === 'removedFilter') {
+            _removeFilterAnalytics(analyticsAction.targetFilter, response.meta.total);
+          }
+
+          if (analyticsAction && analyticsAction.action === 'removedAllFilters') {
+            _removeAllFiltersAnalytics(analyticsAction.items, response.meta.total);
+          }
+
+          if (analyticsAction && analyticsAction.action === 'addedFilter') {
+            _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
+          }
+        }).fail(() => {
+          this.cache.$content.removeClass('d-none');
+          this.cache.$spinner.addClass('d-none');
+        });
+    });
+  }
+
+  renderDefaultCountry = () => {
+    this.cache.$spinner.removeClass('d-none');
+    const countryApi = this.cache.equipmentApi.data('country-api');
+    const equipmentApi = this.cache.equipmentApi.data('list-api');
+    auth.getToken(({ data: authData }) => {
+      ajaxWrapper
+        .getXhrObj({
+          url: countryApi,
+          method: ajaxMethods.GET,
+          cache: true,
+          dataType: 'json',
+          contentType: 'application/json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          },
+          showLoader: true
+        }).then(res => {
+          this.cache.countryData = _getFormattedCountryData(res.data);
+          this.cache.authData = authData;
+          const { countryCode } = this.cache.countryData && this.cache.countryData[0];
+          const { itemsPerPage } = this.cache;
+
+          this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers'], true);
+
           ajaxWrapper
             .getXhrObj({
-              url: `${equipmentApi}?countrycode=${filterValues[0].countryCode}`,
+              url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`,
               method: 'GET',
               contentType: 'application/json',
               dataType: 'json',
@@ -376,151 +966,30 @@ class MyEquipment {
             }).then(response => {
               this.cache.$spinner.addClass('d-none');
               this.cache.$content.removeClass('d-none');
-              this.cache.filteredTableData = response.data;
-              this.cache.filteredTableData = this.cache.filteredTableData.map((item) => ({
+              this.cache.tableData = response.data;
+              this.cache.tableData = this.cache.tableData.map((item) => ({
                 ...item,
                 equipmentStatus: item.equipmentStatus || ''
               }));
-              renderPaginationTableData.call(
-                this,
-                _processTableData.call(this, {summary:this.cache.filteredTableData,i18nKeys:this.cache.i18nKeys}),
-                {isCustomiseTableFilter :label === 'customise-table' ? true : false });
+              this.cache.meta = response.meta;
+              this.cache.countryData.splice(0,1,{...this.cache.countryData[0],isChecked:true});
+              const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+              this.renderPaginationTableData(tableData);
               this.renderSearchCount();
-              this.updateFilterCountValue(label,1,$countryFilterLabel);
+              this.mapTableColumn();
             }).fail(() => {
-              this.cache.$spinner.addClass('d-none');
               this.cache.$content.removeClass('d-none');
+              this.cache.$spinner.addClass('d-none');
             });
         });
-        break;
-      }
-      case i18nKeys['site']:{
-        this.cache.filteredTableData = filteredTableData.filter((row) => {
-          for(const i of filterValues){
-            return i.option === row.siteName;
-          }
-        });
-        break;
-      }
-      default: {
-        this.cache.filteredTableData= filteredTableData;
-        break;
-      }
-    }
-  }
-
-
-  applyFilter =(options) => {
-    const { activeFilterForm,$countryFilterLabel,$siteFilterLabel,i18nKeys } = this.cache;
-    const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox');
-    let filterCount = 0;
-    let filterData = [];
-    let label;
-    let htmlUpdate;
-    switch (activeFilterForm) {
-      case 'country':{
-        filterData = this.cache.countryData;
-        label = i18nKeys['country'];
-        htmlUpdate= $countryFilterLabel;
-        break;
-      }
-      case 'site':{
-        filterData = this.cache.siteData;
-        label = 'Site';
-        htmlUpdate= $siteFilterLabel;
-        break;
-      }
-      case 'customise-table':{
-        filterData = this.cache.customisableTableHeaders;
-        label = 'customise-table';
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-    if(options && options.removeFilter){
-      $filtersCheckbox.each(function(index){
-        $(this).prop('checked',false);
-        filterData[index].isChecked = false;
-      });
-    }else {
-      $filtersCheckbox.each(function(index){
-        if($(this).is(':checked')){
-          filterCount++;
-          filterData[index].isChecked = true;
-        }else {
-          filterData[index].isChecked = false;
-        }
-      });
-    }
-
-    if(htmlUpdate){
-      if(filterCount){
-        htmlUpdate.addClass('active');
-      }else{
-        htmlUpdate.removeClass('active');
-      }
-    }
-
-    const filterValues = filterData.filter((option) => {
-      if(option.isChecked){
-        return option;
-      }
     });
-
-    this.renderTableData(label,filterValues);
-    if(label !== i18nKeys['country']){
-      this.renderSearchCount();
-      this.updateFilterCountValue(label,filterCount,htmlUpdate);
-    }
-
-  }
-
-  updateFilterCountValue = (label,filterCount,htmlUpdate) => {
-    const { $modal } = this.cache;
-    if(htmlUpdate){
-      if(!filterCount){
-        htmlUpdate.text(`${getI18n(label)} +`);
-      }else {
-        htmlUpdate.text(`${getI18n(label)}: ${filterCount}`);
-      }
-    }
-    $modal.modal('hide');
-  }
-
-  renderFilterForm(data,formDetail) {
-    const { i18nKeys } = this.cache;
-    if(formDetail.header === i18nKeys['country']){
-      data.forEach((item,index) => {
-        data[index]= {
-          ...item,
-          isCountry:true
-        };
-      });
-    }
-    render.fn({
-      template: 'filterForm',
-      data: {
-        header:formDetail.header,
-        formData: data,...i18nKeys,
-        singleButton:formDetail.singleButton === false ? false : true
-      },
-      target: '.tp-equipment__filter-form',
-      hidden: false
-    });
-    this.cache.activeFilterForm = formDetail.activeFrom;
-  }
-
-  renderCountryFilters(){
-    return _renderCountryFilters.apply(this, arguments);
   }
 
   init() {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.renderCountryFilters();
+    this.renderDefaultCountry();
   }
 }
 

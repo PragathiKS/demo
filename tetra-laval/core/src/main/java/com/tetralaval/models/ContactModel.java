@@ -131,7 +131,7 @@ public class ContactModel {
                 contactDetailsModels.add(contactDetailsModel);
             }
         } catch (RepositoryException re) {
-            LOGGER.error("Exception in ContactModel#getContactDetails()", re.getMessage(), re);
+            LOGGER.error("Exception in ContactModel#getContactDetails():{} ", re.getMessage(), re);
             return new ArrayList<>();
         }
         return contactDetailsModels;

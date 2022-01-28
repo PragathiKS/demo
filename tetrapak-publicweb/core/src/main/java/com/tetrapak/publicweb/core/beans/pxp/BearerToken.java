@@ -22,6 +22,10 @@ public class BearerToken {
     /** The expires in. */
     @JsonProperty("expires_in")
     private String expiresIn;
+    
+    /** The scope. */
+    @JsonProperty("scope")
+    private String scope;
 
     /**
      * Gets the access token.
@@ -84,6 +88,24 @@ public class BearerToken {
     @JsonProperty("expires_in")
     public void setExpiresIn(String expiresIn) {
         this.expiresIn = expiresIn;
+    }
+
+    /**
+     * Gets the scope.
+     *
+     * @return the scope
+     */
+    public String getScope() {
+        return scope;
+    }
+
+    /**
+     * Sets the scope.
+     *
+     * @param scope the new scope
+     */
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 
 }

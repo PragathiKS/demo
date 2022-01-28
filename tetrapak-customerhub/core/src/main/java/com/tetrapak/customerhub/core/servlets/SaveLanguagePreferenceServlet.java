@@ -36,7 +36,7 @@ public class SaveLanguagePreferenceServlet extends SlingAllMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(SaveLanguagePreferenceServlet.class);
 
     @Reference
-    private UserPreferenceService userPreferenceService;
+    private transient UserPreferenceService userPreferenceService;
 
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)

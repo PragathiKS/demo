@@ -73,6 +73,7 @@
         @include margin-bottom($margin-sm);
         @include line-height($line-height-small, $font-sm);
         color: $color-boulder;
+        font-size: $font-sm;
         font-weight: 500;
         text-transform: uppercase;
     }
@@ -84,15 +85,23 @@
         a {
             font-size: $font-baseline;
         }
-        .tpatom-btn--primary, 
+        .tpatom-btn--primary,
         .tpatom-link--primary,
-        .tpatom-btn--secondary, 
-        .tpatom-link--secondary, 
-        .tpatom-btn--primary:hover:not([disabled]), 
-        .tpatom-link--primary:hover:not([disabled]) {
-            background-color: $color-white;
+        .tpatom-btn--secondary,
+        .tpatom-link--secondary {
             border: 1px solid $color-congress-blue;
             color: $color-congress-blue;
+            background-color: $color-white;
+        }
+        .tpatom-btn--primary,
+        .tpatom-link--primary {
+            &:hover {
+                &:not([disabled]) {
+                    border: 1px solid $color-congress-blue;
+                    color: $color-congress-blue;
+                    background-color: $color-white;
+                }
+            }
         }
     }
 
@@ -107,7 +116,8 @@
             @include line-height($line-height-header-m, $font-xl);
             font-size: $font-xl;
         }
-        h3, h2 {
+        h3,
+        h2 {
             font-size: $font-l;
             font-weight: bold;
             @media #{$desktop} {

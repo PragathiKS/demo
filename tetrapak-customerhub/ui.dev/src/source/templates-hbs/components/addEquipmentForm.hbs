@@ -1,0 +1,178 @@
+<h1 class="tp-add-equipment__title js-tp-add-equipment__title">{{i18n key=i18nKeys.title}}</h1>
+<p class="tp-add-equipment__subtitle">{{subTitle}}</p>
+<form class="tp-add-equipment__form" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-lg-3 tp-add-equipment__serial-number-wrapper js-tp-add-equipment__form-element tp-add-equipment__form-element">
+            {{> atoms/input/input
+                    labelText=i18nKeys.serialNumberLabel
+                    placeholder="444454-44444"
+                    name="addEquipmentSerialNumber"
+                    labelClasses="tp-add-equipment__field-label"
+                    required="true"
+            }}
+            <div class="error-msg">{{i18n key=i18nKeys.serialNumberErrorMsg}}</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 tp-add-equipment__drag-and-drop-wrapper">
+            <div class="tp-add-equipment__drag-and-drop-description-wrapper">
+                <p class="tp-add-equipment__drag-and-drop-description">{{i18n key=i18nKeys.dragAndDropDescription}}</p>
+                <i class="icon-Info"></i>
+            </div>
+            <div class="tp-add-equipment__drag-and-drop js-tp-add-equipment__drag-and-drop">
+                <h2 class="tp-add-equipment__drag-and-drop-title">{{i18n key=i18nKeys.dragAndDropTitle}}</h2>
+                {{> atoms/buttons/button/button
+                        modifier="transparent"
+                        jsClass="js-tp-add-equipment__drag-and-drop-button"
+                        className="tp-add-equipment__drag-and-drop-button"
+                        iconClass="icon-Plus"
+                        text=i18nKeys.dragAndDropButton
+                }}
+                <p class="tp-add-equipment__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropSubtitle}}</p>
+                {{#if i18nKeys.fileFormatSubtitle}}
+                    <p class="tp-add-equipment__drag-and-drop-subtitle">
+                        {{i18n key=i18nKeys.fileFormatSubtitle}}
+                    </p>
+                {{/if}}
+                <div class="tp-add-equipment__file-error js-tp-add-equipment__file-error" hidden>
+                    {{i18n key=i18nKeys.fileExtensionErrorMsg}}
+                </div>
+                <div class="js-tp-add-equipment__drag-and-drop-files-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 tp-add-equipment__details-wrapper">
+            <div class="tp-add-equipment__details">
+                <h2 class="tp-add-equipment__details-title">{{i18n key=i18nKeys.detailsTitle}}</h2>
+                <p class="tp-add-equipment__details-subtitle">{{detailsSubtitle}}</p>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                    {{> atoms/dropdown/dropdown
+                            defaultValue=i18nKeys.dropdownPlaceholder
+                            options=country
+                            name="addEquipmentCountry"
+                            labelText=i18nKeys.countryLabel
+                            wrapClasses="tp-add-equipment__field-wrapper"
+                            required="true"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.countryErrorMsg}}</div>
+                </div>
+                <div class="js-tp-add-equipment__site-wrapper">
+                    <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                        {{> atoms/dropdown/dropdown
+                                defaultValue=i18nKeys.dropdownPlaceholder
+                                name="addEquipmentSite"
+                                labelText=i18nKeys.siteLabel
+                                wrapClasses="tp-add-equipment__field-wrapper"
+                                required="true"
+                                disabled="true"
+                        }}
+                        <div class="error-msg">{{i18n key=i18nKeys.siteErrorMsg}}</div>
+                    </div>
+
+                </div>
+                <div class="js-tp-add-equipment__line-wrapper">
+                    <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                        {{> atoms/dropdown/dropdown
+                                defaultValue=i18nKeys.dropdownPlaceholder
+                                name="addEquipmentLine"
+                                labelText=i18nKeys.lineLabel
+                                wrapClasses="tp-add-equipment__field-wrapper"
+                                required="true"
+                                disabled="true"
+                        }}
+                        <div class="error-msg">{{i18n key=i18nKeys.lineErrorMsg}}</div>
+                    </div>
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                    {{> atoms/input/input
+                            labelText=i18nKeys.positionLabel
+                            name="addEquipmentPosition"
+                            labelClasses="tp-add-equipment__field-label"
+                    }}
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                    {{> atoms/dropdown/dropdown
+                            defaultValue=i18nKeys.dropdownPlaceholder
+                            options=equipmentStatus
+                            name="addEquipmentEquipmentStatus"
+                            labelText=i18nKeys.equipmentStatusLabel
+                            wrapClasses="tp-add-equipment__field-wrapper"
+                            required="true"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.equipmentStatusErrorMsg}}</div>
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                    {{> atoms/input/input
+                            labelText=i18nKeys.machineSystemLabel
+                            name="addEquipmentMachineSystem"
+                            labelClasses="tp-add-equipment__field-label"
+                    }}
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
+                    {{> atoms/input/input
+                            labelText=i18nKeys.equipmentDescriptionLabel
+                            name="addEquipmentEquipmentDescription"
+                            labelClasses="tp-add-equipment__field-label"
+                            required="true"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.equipmentDescriptionErrorMsg}}</div>
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                    {{> atoms/input/input
+                            labelText=i18nKeys.manufactureModelNumberLabel
+                            name="addEquipmentManufactureModelNumber"
+                            labelClasses="tp-add-equipment__field-label"
+                    }}
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
+                    {{> atoms/input/input
+                            labelText=i18nKeys.manufactureOfAssetLabel
+                            name="addEquipmentManufactureOfAsset"
+                            labelClasses="tp-add-equipment__field-label"
+                            required="true"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.manufactureOfAssetErrorMsg}}</div>
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
+                    {{> atoms/dropdown/dropdown
+                            defaultValue=i18nKeys.dropdownPlaceholder
+                            options=allCountries
+                            name="addEquipmentCountryOfManufacture"
+                            labelText=i18nKeys.countryOfManufactureLabel
+                            wrapClasses="tp-add-equipment__field-wrapper"
+                            required="true"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.countryOfManufactureErrorMsg}}</div>
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element js-tp-add-equipment__toggle-mandatory">
+                    {{> atoms/input/input
+                            type="number"
+                            labelText=i18nKeys.constructionYearLabel
+                            name="addEquipmentConstructionYear"
+                            labelClasses="tp-add-equipment__field-label"
+                            required="true"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.constructionYearErrorMsg}}</div>
+                </div>
+                <div class="js-tp-add-equipment__form-element tp-add-equipment__form-element">
+                    {{> atoms/textarea/textarea
+                            labelText=i18nKeys.commentsLabel
+                            name="addEquipmentComments"
+                            labelClasses="tp-add-equipment__field-label"
+                    }}
+                </div>
+                {{> atoms/buttons/button/button
+                        buttonType="submit"
+                        modifier="primary"
+                        iconClass="icon-Chevron_Right"
+                        text=i18nKeys.submitButtonLabel
+                        className="tp-add-equipment__submit js-tp-add-equipment__submit"
+                }}
+            </div>
+        </div>
+    </div>
+</form>

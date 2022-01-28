@@ -29,7 +29,7 @@
                                 fieldDescription="Where the logo should direct"
                                 fieldLabel="Logo Image link"
                                 name="./logoLink"
-                                rootPath="/content/tetrapak/tetralaval"/>
+                                rootPath="/content/tetralaval"/>
                             <logoalt
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -67,7 +67,7 @@
                                                     fieldLabel="Link Path"
                                                     name="./linkPath"
                                                     required="true"
-                                                    rootPath="/content/tetrapak/tetralaval"/>
+                                                    rootPath="/content/tetralaval"/>
                                             </items>
                                         </column>
                                     </items>
