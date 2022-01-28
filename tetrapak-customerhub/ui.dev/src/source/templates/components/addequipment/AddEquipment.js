@@ -427,7 +427,7 @@ class AddEquipment {
     const filePath = file.name;
     const $fileExtensionError = $this.root.find('.js-tp-add-equipment__file-error');
 
-    if (blockedExtensions.exec(filePath)) {
+    if (blockedExtensions.exec(filePath) || (file.size > maxFileSize)) {
       $fileExtensionError.removeAttr('hidden');
       return false;
     }
