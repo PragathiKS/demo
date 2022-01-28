@@ -30,7 +30,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 	private SlingHttpServletRequest request;
 	private String language;
 	private static final String CSV_FILE_NAME = "List of Equipments.csv";
-	private static final String I18N_PREFIX = "cuhu.equipment.";
+	private static final String I18N_PREFIX = "cuhu.myequipment.csvheader.";
 	private static final String POSITION_DEFAULT_VALUE = "0000";
 	private static final String POSITION_FORMATTER = "%04d";
 	// This is a mapping between i18n keys of CSV column headings to corresponding
@@ -44,37 +44,39 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		csvHeaderMapping.add(CustomerHubConstants.FUNCTIONAL_LOCATION);
 		csvHeaderMapping.add(CustomerHubConstants.POSITION);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE);
-		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER_CSVHEADER);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_DESC_CSVHEADER);
+		csvHeaderMapping.add(CustomerHubConstants.MACHINE_SYSTEM);
+		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.PERMANENT_VOLUME_CONV);
 		csvHeaderMapping.add(CustomerHubConstants.MATERIAL);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS_CSVHEADER);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS);
 		csvHeaderMapping.add(CustomerHubConstants.CONSTRUCTION_YEAR);
+		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_WARRANTY_START_DATE);
+		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_WARRANTY_END_DATE);
 		csvHeaderMapping.add(CustomerHubConstants.MANUFACTURER_SERIAL_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.MANUFACTURER_MODEL_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.MANUFACTURER);
 		csvHeaderMapping.add(CustomerHubConstants.MANUFACTURER_COUNTRY);
-		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_WARRANTY_START_DATE);
-		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_WARRANTY_END_DATE);
 		csvHeaderMapping.add(CustomerHubConstants.CONFIRMATION_DATE);
 		csvHeaderMapping.add(CustomerHubConstants.VALID_FROM_DATE);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_CATEGORY);
-		csvHeaderMapping.add(CustomerHubConstants.SUPERIOR_EQUIPMENT_SERIAL_NUMBER);
-		csvHeaderMapping.add(CustomerHubConstants.SUPERIOR_EQUIPMENT_NAME);
-		csvHeaderMapping.add(CustomerHubConstants.BUSINESS_TYPE);
 		csvHeaderMapping.add(CustomerHubConstants.ID);
-		csvHeaderMapping.add(CustomerHubConstants.IS_SECOND_HAND);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_CATEGORY);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE_DESCRIPTION);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_MACHINESYSTEMDESC_CSVHEADER);
+		csvHeaderMapping.add(CustomerHubConstants.MATERIAL_DESCRIPTION);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS_DESCRIPTION);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_CATEGORY_DESCRIPTION);
+		csvHeaderMapping.add(CustomerHubConstants.LINE);
+		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.SITE_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.SITE_DESCRIPTION);
-		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE_DESCRIPTION);
-		csvHeaderMapping.add(CustomerHubConstants.MACHINE_SYSTEM);
-		csvHeaderMapping.add(CustomerHubConstants.MATERIAL_DESCRIPTION);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_CATEGORY_DESCRIPTION);
+		csvHeaderMapping.add(CustomerHubConstants.BUSINESS_TYPE);
+		csvHeaderMapping.add(CustomerHubConstants.SUPERIOR_EQUIPMENT_SERIAL_NUMBER);
+		csvHeaderMapping.add(CustomerHubConstants.SUPERIOR_EQUIPMENT_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.SUPERIOR_EQUIPMENT);
-		csvHeaderMapping.add(CustomerHubConstants.FUNCTIONAL_LOCATION_DESC);
-		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER);
+		csvHeaderMapping.add(CustomerHubConstants.IS_SECOND_HAND);
 	}
 	private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentListExcelServiceImpl.class);
 
@@ -192,38 +194,40 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getFunctionalLocation()));
 		equipmentPropertiesList.add(tidyCSVOutput(formatPosition(equipment.getPosition())));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentType()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentNameSub()));
+		equipmentPropertiesList.add(tidyCSVOutput(""));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSerialNumber()));
 		equipmentPropertiesList
 				.add(tidyCSVOutput(formatPermanentVolumeConversion(equipment.getPermanentVolumeConversion())));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getMaterial()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentStatusDescription()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentStatus()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getConstructionYear()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCustomerWarrantyStartDate()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCustomerWarrantyEndDate()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getManufacturerSerialNumber()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getManufacturerModelNumber()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getManufacturer()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getManufacturerCountry()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCustomerWarrantyStartDate()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCustomerWarrantyEndDate()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEofsConfirmationDate()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEofsValidFromDate()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentCategory()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipmentSerialNumber()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipmentName()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getBusinessType()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getId()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getIsSecondhand()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentCategory()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentTypeDesc()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getMachineSystem()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getMaterialDesc()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentStatusDescription()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentCategoryDesc()));
+		equipmentPropertiesList.add(tidyCSVOutput(fetchLine(equipment.getFunctionalLocation())));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getFunctionalLocationDesc()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCountryName()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCustomerNumber()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSiteName()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSiteDesc()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getLineName()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentTypeDesc()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getMachineSystem()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getMaterialDesc()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentCategoryDesc()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getBusinessType()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipmentSerialNumber()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipmentName()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipment()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getFunctionalLocationDesc()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCustomer()));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getIsSecondhand()));
 		return equipmentPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.COMMA))
 				.concat(CustomerHubConstants.NEWLINE);
 	}
@@ -237,9 +241,9 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 
 	private String formatPosition(String position) {
 		if (StringUtils.isNotEmpty(position)) {
-			return formatNumber(Integer.parseInt(position), POSITION_FORMATTER);
+			return CustomerHubConstants.TAB + formatNumber(Integer.parseInt(position), POSITION_FORMATTER);
 		} else {
-			return POSITION_DEFAULT_VALUE;
+			return CustomerHubConstants.TAB + POSITION_DEFAULT_VALUE;
 		}
 	}
 
@@ -253,5 +257,9 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		} else {
 			return CustomerHubConstants.X_UNAVAILABILITY_SYMBOL;
 		}
+	}
+	
+	private String fetchLine(String functionalLocation) {
+		return StringUtils.substringAfterLast(functionalLocation, CustomerHubConstants.HYPHEN_STRING);
 	}
 }
