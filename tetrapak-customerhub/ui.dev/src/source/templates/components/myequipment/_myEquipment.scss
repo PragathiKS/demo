@@ -84,8 +84,8 @@
     &__search-count {
         @include padding($padding-md $padding-zero);
         @include margin($margin-md $margin-zero);
-        @include font-size($font-l);
-        @include line-height($font-xl, $font-l);
+        @include font-size($font-md);
+        @include line-height($font-xl, $font-md);
         color: $color-congress-blue;
         border-top: 1px solid $color-congress-blue;
         border-bottom: 1px solid $color-congress-blue;
@@ -106,9 +106,9 @@
             border-collapse: separate;
         }
         th {
+            @include padding($padding-md $padding-sm);
             position: sticky;
             top: 0;
-            padding: 16px;
             background: $color-white;
             border-bottom-color: $color-mercury;
             &.hide {
@@ -133,9 +133,9 @@
             }
         }
         td {
-            @include font-size($font-baseline);
-            @include line-height($font-l, $font-baseline);
-            padding: 16px;
+            @include font-size($font-sm);
+            @include line-height($font-l, $font-sm);
+            @include padding($padding-md $padding-sm);
             &.hide {
                 display: none;
             }
