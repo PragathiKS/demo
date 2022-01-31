@@ -9,6 +9,7 @@
         font-weight: 400;
 
         &__bold {
+            @include margin-right($margin-sm);
             font-weight: 700;
         }
 
