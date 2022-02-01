@@ -69,7 +69,6 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		csvHeaderMapping.add(CustomerHubConstants.MATERIAL_DESCRIPTION);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS_DESCRIPTION);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_CATEGORY_DESCRIPTION);
-		csvHeaderMapping.add(CustomerHubConstants.LINE);
 		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NUMBER);
@@ -220,7 +219,6 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getMaterialDesc()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentStatusDescription()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentCategoryDesc()));
-		equipmentPropertiesList.add(tidyCSVOutput(fetchLine(equipment.getFunctionalLocation())));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getFunctionalLocationDesc()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCountryName()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getCustomerNumber()));
@@ -259,10 +257,6 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		} else {
 			return CustomerHubConstants.X_UNAVAILABILITY_SYMBOL;
 		}
-	}
-	
-	private String fetchLine(String functionalLocation) {
-		return StringUtils.substringAfterLast(functionalLocation, CustomerHubConstants.HYPHEN_STRING);
 	}
 	
 	private String getCurrentDate() {
