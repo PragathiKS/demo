@@ -15,22 +15,26 @@
             {{else}}
                 {{#if isEquipmentType}}
                     {{#each formData}}
-                        {{> atoms/checkbox/checkbox value=this.businessTypeLabel text=this.businessTypeLabel check=isChecked disabled=isDisabled
-                        uniqueKey=this.businessTypeLabel
-                        baseClass="tp-my-equipment__type-group-option js-tp-my-equipment-type-group-option"
-                        autoLocatorCheckbox=@root.autoLocatorCheckbox
-                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                        jsMyEquipmentFilter="js-tp-my-equipment-filter-group-checkbox js-tp-my-equipment-filter-checkbox"}}
+                        {{#unless this.isDisabledGroup}}
+                            {{> atoms/checkbox/checkbox value=this.businessTypeLabel text=this.businessTypeLabel check=isChecked disabled=isDisabled
+                                    uniqueKey=this.businessTypeLabel
+                                    baseClass="tp-my-equipment__type-group-option js-tp-my-equipment-type-group-option"
+                                    autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                    jsMyEquipmentFilter="js-tp-my-equipment-filter-group-checkbox js-tp-my-equipment-filter-checkbox"}}
 
-                        <div class="tp-my-equipment-filter-options tp-my-equipment-group-filter-options">
-                            {{#each this.options}}
-                                {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
-                                uniqueKey=option
-                                autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
-                            {{/each}}
-                        </div>
+                            <div class="tp-my-equipment-filter-options tp-my-equipment-group-filter-options">
+                                {{#each this.options}}
+                                    {{#unless isDisabled}}
+                                        {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                                uniqueKey=option
+                                                autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                                autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                                    {{/unless}}
+                                {{/each}}
+                            </div>
+                        {{/unless}}
                     {{/each}}
                     {{else}}
                         <div class="tp-my-equipment-filter-options">
@@ -45,11 +49,13 @@
                                 {{/each}}
                             {{else}}
                                 {{#each formData}}
-                                    {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
-                                            uniqueKey=option
-                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                                    {{#unless isDisabled}}
+                                        {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                                uniqueKey=option
+                                                autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                                autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                                jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                                    {{/unless}}
                                 {{/each}}
                             {{/if}}
                         </div>
