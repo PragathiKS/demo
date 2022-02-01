@@ -2,6 +2,8 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -29,10 +31,11 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 
 	private SlingHttpServletRequest request;
 	private String language;
-	private static final String CSV_FILE_NAME = "List of Equipments.csv";
+	private static final String CSV_FILE_NAME = "List of Equipment.csv";
 	private static final String I18N_PREFIX = "cuhu.myequipment.csvheader.";
 	private static final String POSITION_DEFAULT_VALUE = "0000";
 	private static final String POSITION_FORMATTER = "%04d";
+	private static final String DATE_PATTERN = "uuuu MM dd";
 	// This is a mapping between i18n keys of CSV column headings to corresponding
 	// Equipments bean fields
 	static final List<String> csvHeaderMapping = new ArrayList<>();
@@ -76,7 +79,6 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		csvHeaderMapping.add(CustomerHubConstants.SUPERIOR_EQUIPMENT_SERIAL_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.SUPERIOR_EQUIPMENT_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.SUPERIOR_EQUIPMENT);
-		csvHeaderMapping.add(CustomerHubConstants.IS_SECOND_HAND);
 	}
 	private static final Logger LOGGER = LoggerFactory.getLogger(EquipmentListExcelServiceImpl.class);
 
@@ -96,7 +98,8 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			this.request = request;
 			response.setContentType(CustomerHubConstants.TEXT_CSV);
 			response.setHeader(CustomerHubConstants.CONTENT_DISPOSITION,
-					CustomerHubConstants.ATTACHMENT_FILENAME + CustomerHubConstants.EQUALS_CHAR + CSV_FILE_NAME);
+					CustomerHubConstants.ATTACHMENT_FILENAME + CustomerHubConstants.EQUALS_CHAR + 
+					getCurrentDate() + CustomerHubConstants.SPACE + CSV_FILE_NAME);
 			ServletOutputStream csvFileOutputStream = response.getOutputStream();
 			StringBuilder csvFileContent = new StringBuilder();
 			String[][] headerRowArray = getColumnHeaderArray();
@@ -195,7 +198,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		equipmentPropertiesList.add(tidyCSVOutput(formatPosition(equipment.getPosition())));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentType()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getEquipmentNameSub()));
-		equipmentPropertiesList.add(tidyCSVOutput(""));
+		equipmentPropertiesList.add(tidyCSVOutput(equipment.getMachineSystemCode()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSerialNumber()));
 		equipmentPropertiesList
 				.add(tidyCSVOutput(formatPermanentVolumeConversion(equipment.getPermanentVolumeConversion())));
@@ -227,7 +230,6 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipmentSerialNumber()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipmentName()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipment()));
-		equipmentPropertiesList.add(tidyCSVOutput(equipment.getIsSecondhand()));
 		return equipmentPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.COMMA))
 				.concat(CustomerHubConstants.NEWLINE);
 	}
@@ -261,5 +263,10 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 	
 	private String fetchLine(String functionalLocation) {
 		return StringUtils.substringAfterLast(functionalLocation, CustomerHubConstants.HYPHEN_STRING);
+	}
+	
+	private String getCurrentDate() {
+		DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern(DATE_PATTERN);
+		return dtfDate.format(LocalDate.now());
 	}
 }
