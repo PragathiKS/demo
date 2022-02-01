@@ -69,6 +69,10 @@ function _limitFilterSelection($modal) {
   const checkedItemsNo = $modal.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)').filter(':checked').length;
   const $applyBtn = $modal.find('.js-apply-filter-button');
 
+  if (!maxItems) {
+    return;
+  }
+
   if (checkedItemsNo <= maxItems) {
     $currentCountTxt.text(checkedItemsNo);
     $currentCountError.attr('hidden', 'hidden');
