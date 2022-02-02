@@ -17,8 +17,12 @@ describe('CotsSupport', function () {
       el: document.body,
     });
     this.initSpy = sinon.spy(this.cotsSupport, 'init');
-    this.renderTypeOfQueryForm = sinon.spy(this.cotsSupport,'renderTypeOfQueryForm');
-    this.renderConfirmationDetailsFormSpy = sinon.spy(this.cotsSupport,'renderConfirmationDetailsForm');
+    this.renderCotsSupportFormSpy = sinon.spy(this.cotsSupport,'renderCotsSupportForm');
+    this.renderFilesSpy = sinon.spy(this.cotsSupport,'renderFiles');
+    this.addInputTypeFileSpy = sinon.spy(this.cotsSupport, 'addInputTypeFile');
+    this.dragAndDropPreventDefaultSpy = sinon.spy(this.cotsSupport, 'dragAndDropPreventDefault');
+    this.dropFilesSpy = sinon.spy(this.cotsSupport, 'dropFiles');
+    this.setFilterFilesSpy = sinon.spy(this.cotsSupport, 'filterFiles');
     this.renderSuccessMessageSpy = sinon.spy(this.cotsSupport,'renderSuccessMessage');
     this.addErrorMsgSpy = sinon.spy(this.cotsSupport, 'addErrorMsg');
     this.cotsSupport.init();
@@ -27,8 +31,12 @@ describe('CotsSupport', function () {
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
-    this.renderTypeOfQueryForm.restore();
-    this.renderConfirmationDetailsFormSpy.restore();
+    this.renderCotsSupportFormSpy.restore();
+    this.renderFilesSpy.restore();
+    this.addInputTypeFileSpy.restore();
+    this.dragAndDropPreventDefaultSpy.restore();
+    this.dropFilesSpy.restore();
+    this.setFilterFilesSpy.restore();
     this.renderSuccessMessageSpy.restore();
     this.addErrorMsgSpy.restore();
   });
@@ -39,18 +47,66 @@ describe('CotsSupport', function () {
   });
 
   it('should render type of query form', function (done) {
-    expect(this.renderTypeOfQueryForm.called).to.be.true;
+    expect(this.renderCotsSupportFormSpy.called).to.be.true;
     done();
   });
 
   it('should render form validation errors', function (done) {
     $('.js-tp-cots-support__submit-type-of-query').trigger('click');
-    expect(this.renderConfirmationDetailsFormSpy.called).to.be.false;
+    expect(this.renderSuccessMessageSpy.called).to.be.false;
     expect(this.addErrorMsgSpy.called).to.be.true;
     done();
   });
 
-  it('should render confirmation details form after type of query submit', function (done) {
+  it('should open file picker', function (done) {
+    $('.js-tp-cots-support__drag-and-drop-button').trigger('click');
+    expect(this.addInputTypeFileSpy.called).to.be.true;
+    done();
+  });
+
+  it('should filter files', function (done) {
+    const e = {
+      target: {
+        files: [
+          {
+            name: 'file 1',
+            size: 1024
+          },
+          {
+            name: 'file 2',
+            size: 20971520
+          },
+        ]
+      }
+    }
+    this.cotsSupport.dropFiles(e, this.cotsSupport);
+    expect(this.setFilterFilesSpy.called).to.be.true;
+
+    done();
+  });
+
+
+  
+
+  it('should remove file', function (done) {
+    $('.js-tp-cots-support__drag-and-drop-file-remove-container').trigger('click');
+    expect(this.renderFilesSpy.called).to.be.true;
+    done();
+  });
+
+  it('should prevent default on drag leave', function (done) {
+    $('.js-tp-cots-support__drag-and-drop').trigger('dragleave');
+    expect(this.dragAndDropPreventDefaultSpy.called).to.be.true;
+    done();
+  });
+
+  it('should prevent default on window drag enter', function (done) {
+    $(window.document).trigger('dragenter');
+    expect(this.dragAndDropPreventDefaultSpy.called).to.be.true;
+    done();
+  });
+
+  it('should render Success Message page after form submit', function (done) {
     $('#technicalIssues[value=technicalIssues]').prop('checked', true);
     $('#company').val('The Milk Company');
     $('#customerSite').val('Test Data');
@@ -59,16 +115,10 @@ describe('CotsSupport', function () {
     $('#licensenumber').val('123456');
     $('#description').val('Test description');
     $('#questions').val('Test content');
+    $('#name').val('Test user');
+    $('#emailAddress').val('tetrapak@tetrapak.com');
+    $('#telephone').val('1234567');
     $('.js-tp-cots-support__submit-type-of-query').trigger('click');
-    expect(this.renderConfirmationDetailsFormSpy.called).to.be.true;
-    done();
-  });
-
-  it('should render success message after confirmation detail submit', function (done) {
-    $('#name').val('Test name');
-    $('#emailAddress').val('example@example.com');
-    $('#telephone').val('461234567890');
-    $('.js-tp-cots-support__submit-confirmation-details').trigger('click');
     expect(this.renderSuccessMessageSpy.called).to.be.true;
     done();
   });
