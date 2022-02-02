@@ -160,6 +160,10 @@ public class Equipments {
     @SerializedName("equipmentNameSub")
     @Expose
     private String equipmentNameSub;
+    
+    @SerializedName("machineSystemCode")
+    @Expose
+    private String machineSystemCode;
 
 
     public String getId() {
@@ -473,5 +477,13 @@ public class Equipments {
 
 	public void setEquipmentNameSub(String equipmentNameSub) {
 		this.equipmentNameSub = equipmentNameSub;
+	}
+
+	public String getMachineSystemCode() {
+		return machineSystemCode;
+	}
+
+	public void setMachineSystemCode(String machineSystemCode) {
+		this.machineSystemCode = machineSystemCode;
 	}
 }
