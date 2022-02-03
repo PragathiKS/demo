@@ -144,5 +144,5 @@ export const _trackEquipmentLinkClick = function (linkName) {
     linkParentTitle: ''
   };
 
-  trackAnalytics(linkClickObj, 'linkClick', 'equipmentClick', undefined, false, eventObj);
+  trackAnalytics(linkClickObj, 'equipmentClick', 'linkClick', undefined, false, eventObj);
 };
