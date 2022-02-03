@@ -52,8 +52,6 @@ export const _groupByBusinessType = (filterOptionsArr) => {
     groupedFilterOptions.push({
       businessTypeLabel: businessType,
       options: optionsForBusinessType,
-      // group checkbox should be disabled if all sub-items are disabled
-      isDisabledGroup: !optionsForBusinessType.some(filterOption => filterOption.isDisabled === false),
       isChecked: !optionsForBusinessType.some(filterOption => filterOption.isChecked === false)
     });
   });
