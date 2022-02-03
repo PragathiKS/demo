@@ -57,3 +57,16 @@ export const _getFormattedCountryData = (array) => {
   });
   return array;
 };
+
+export const _remapFilterOptionKey = (key) => {
+  switch (key) {
+    case 'lineName':
+      return 'lineCode';
+    case 'customer':
+      return 'customerNumber';
+    case 'equipmentStatusDesc':
+      return 'equipmentStatus';
+    default:
+      return key;
+  }
+};

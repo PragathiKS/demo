@@ -18,6 +18,10 @@ export const _hideShowAllFiltersAnalytics = (label, eventType) => {
 };
 
 export const _addFilterAnalytics = ($activeFilterBtn, searchResults, filterValues) => {
+  if (!filterValues) {
+    return;
+  }
+
   const addedFilter = $activeFilterBtn.data('label').replace(' +', '');
   const eventObj = {
     event: 'Filter',
