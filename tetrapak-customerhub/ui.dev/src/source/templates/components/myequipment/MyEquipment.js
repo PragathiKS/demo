@@ -8,7 +8,7 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics } from './MyEquipment.analytics';
 import file from '../../../scripts/utils/file';
 import { _paginate } from './MyEquipment.paginate';
-import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
+import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData, _remapFilterOptionKey } from './MyEquipment.utils';
 import { _buildTableRows, _groupByBusinessType, _mapHeadings } from './MyEquipment.table';
 
 function _processKeys(keys, ob) {
@@ -131,7 +131,7 @@ class MyEquipment {
     this.cache.authData = {};
     // holds all possible filter values for the modals, WITHOUT any active filters
     // populated at initial page load
-    this.cache.allFilterValsObj = {
+    this.cache.allApiFilterValsObj = {
       'statuses': [],
       'types': [],
       'customers': [],
@@ -139,7 +139,7 @@ class MyEquipment {
     };
     // holds all possible filter values for the modals, WITH active filters configured
     // populated every time a filter is set
-    this.cache.currentFilterValsObj = {
+    this.cache.currentApiFilterValsObj = {
       'statuses': [],
       'types': [],
       'customers': [],
@@ -238,7 +238,7 @@ class MyEquipment {
         if($('.tp-my-equipment__header-actions').hasClass('show')){
           $('.tp-my-equipment__header-actions').removeClass('show');
         }
-      } 
+      }
     });
 
     this.root.on('change', '.country-equipment-list',  function() {
@@ -402,9 +402,10 @@ class MyEquipment {
           showLoader: true
         }).then(res => {
           if (newCountry) {
-            this.cache.allFilterValsObj[filterVal] = res.data;
+            this.cache.allApiFilterValsObj[filterVal] = res.data;
           } else {
-            this.cache.currentFilterValsObj[filterVal] = res.data;
+            this.cache.currentApiFilterValsObj[filterVal] = res.data;
+            this.checkActiveFilterSets(filterVal, res.data);
           }
         });
     });
@@ -498,27 +499,15 @@ class MyEquipment {
     });
   }
 
-  isFilterCheckboxDisabled(filterProperty, filterPropertyKey, row, optionValueKey) {
-    const filterPropertyRemap = _remapFilterProperty(filterProperty);
-    const { currentFilterValsObj } = this.cache;
-    const activeFiltersArr = currentFilterValsObj[filterPropertyRemap];
-
-    if (activeFiltersArr.length > 0) {
-      const result = activeFiltersArr.filter(activeFilter => activeFilter[filterPropertyKey] === row[optionValueKey]);
-      return result.length === 0;
-    } else {
-      return false;
-    }
-  }
-
   getFilterModalData(filterByProperty) {
-    const { combinedFiltersObj, allFilterValsObj } = this.cache;
+    const { combinedFiltersObj, allApiFilterValsObj, currentApiFilterValsObj } = this.cache;
     let alphabeticalSortKey;
     let optionDisplayTextKey;
     let optionValueKey;
-    let filterPropertyKey;
     const filterOptionsArr = [];
-    const availableFilterCheckboxes = [...allFilterValsObj[_remapFilterProperty(filterByProperty)]];
+    let filterOptionsDatasource = [];
+    const allAvailableApiFilterCheckboxes = [...allApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
+    const currentSelectionApiFilterCheckboxes = [...currentApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
     // if a single filter is used, do not disable any of it's options in the modal
     const isSingleFilterApplied = typeof combinedFiltersObj[filterByProperty] !== 'undefined' &&
         Object.keys(combinedFiltersObj).length === 1;
@@ -529,41 +518,43 @@ class MyEquipment {
       case 'lineName':
         optionDisplayTextKey = 'lineDescription';
         optionValueKey = 'lineCode';
-        filterPropertyKey = 'lineCode';
         alphabeticalSortKey = 'optionDisplayText';
         break;
       case 'customer':
         optionDisplayTextKey = 'customer';
         optionValueKey = 'customerNumber';
-        filterPropertyKey = 'customerNumber';
         alphabeticalSortKey = 'optionDisplayText';
         break;
       case 'equipmentStatusDesc':
         optionDisplayTextKey = 'equipmentStatusDesc';
         optionValueKey = 'equipmentStatus';
-        filterPropertyKey = 'equipmentStatus';
         alphabeticalSortKey = 'optionDisplayText';
         break;
       case 'equipmentType':
         optionDisplayTextKey = 'equipmentTypeDesc';
         optionValueKey = 'equipmentType';
-        filterPropertyKey = 'equipmentType';
         alphabeticalSortKey = 'optionDisplayText';
         break;
       default:
         optionDisplayTextKey = filterByProperty;
         optionValueKey = filterByProperty;
-        filterPropertyKey = filterByProperty;
         alphabeticalSortKey = 'option';
     }
 
-    availableFilterCheckboxes.forEach((row) => {
+    // if only single filter is used, or no filters are set -> display all possible filter values
+    if (isSingleFilterApplied || Object.keys(combinedFiltersObj).length === 0) {
+      filterOptionsDatasource = allAvailableApiFilterCheckboxes;
+    } else {
+      // if multiple filters are set, only display available filter options
+      filterOptionsDatasource = currentSelectionApiFilterCheckboxes;
+    }
+
+    filterOptionsDatasource.forEach((row) => {
       filterOptionsArr.push({
         option: row[optionValueKey],
         optionDisplayText: row[optionDisplayTextKey],
         isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(row[optionValueKey]) : false,
-        businessType: row['businessType'] ? row['businessType'] : null,
-        isDisabled: this.isFilterCheckboxDisabled(filterByProperty, filterPropertyKey, row, optionValueKey) && !isSingleFilterApplied
+        businessType: row['businessType'] ? row['businessType'] : null
       });
     });
 
@@ -585,6 +576,69 @@ class MyEquipment {
     } else {
       this.cache.$removeAllFiltersBtn.attr('hidden', 'hidden');
     }
+  }
+
+  updateFilterBtnCount = (filterProperty, filterCount) => {
+    let label;
+    let $btnElem;
+    const { i18nKeys } = this.cache;
+
+    switch (filterProperty) {
+      case 'customer': {
+        label = i18nKeys['customer'];
+        $btnElem = this.cache.$customerFilterLabel;
+        break;
+      }
+      case 'lineName': {
+        label = i18nKeys['line'];
+        $btnElem = this.cache.$lineFilterLabel;
+        break;
+      }
+      case 'equipmentStatusDesc': {
+        label = i18nKeys['equipmentStatus'];
+        $btnElem = this.cache.$statusFilterLabel;
+        break;
+      }
+      case 'equipmentType': {
+        label = i18nKeys['equipmentType'];
+        $btnElem = this.cache.$equipmentTypeFilterLabel;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
+    $btnElem.text(`${getI18n(label)}: ${filterCount}`);
+  }
+
+  // Checks filter set of active filter, uf combination of filters is used
+  // e.g 4 Customers selected -> 4 Statuses available
+  // -> user selects only 1 status -> not all 4 Customers might be part of selection anymore
+  checkActiveFilterSets = (filterVal) => {
+    const { combinedFiltersObj, currentApiFilterValsObj } = this.cache;
+
+    // no active filters
+    if (Object.keys(combinedFiltersObj).length === 0) {
+      return;
+    }
+
+    Object.keys(combinedFiltersObj).forEach(enabledFilter => {
+      if (combinedFiltersObj[enabledFilter].length && filterVal === _remapFilterProperty(enabledFilter)) {
+        const filterPropertyRemap = _remapFilterProperty(enabledFilter);
+        const activeFilterItemsArr = currentApiFilterValsObj[filterPropertyRemap];
+
+        const availableFiltersInDataSet = activeFilterItemsArr.map(item => item[_remapFilterOptionKey(enabledFilter)]);
+
+        // if number of items differ between what's selected and what's available,
+        // e.g. 4 Customers previously selected, but after adding a new filter only 2 Customers are now available
+        // refresh filter buttons and their count
+        if (combinedFiltersObj[enabledFilter].length !== availableFiltersInDataSet.length) {
+          combinedFiltersObj[enabledFilter] = availableFiltersInDataSet;
+          this.updateFilterBtnCount(enabledFilter, availableFiltersInDataSet.length);
+        }
+      }
+    });
   }
 
   applyFilter = (options) => {
@@ -729,7 +783,7 @@ class MyEquipment {
     };
 
     this.cache.combinedFiltersObj = {};
-    this.cache.currentFilterValsObj = {
+    this.cache.currentApiFilterValsObj = {
       'statuses': [],
       'types': [],
       'customers': [],
