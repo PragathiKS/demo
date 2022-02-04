@@ -566,6 +566,9 @@ public final class CustomerHubConstants {
     /** TheConstant EQUIPMENT_STATUS_DESCRIPTION */
     public static final String EQUIPMENT_STATUS_DESCRIPTION = "equipmentStatusDesc";
     
+    /** TheConstant SORT */
+    public static final String EQUIPMENT_API_SORT = "sort";
+    
     /**
      * Instantiates a new customer hub constants.
      */
