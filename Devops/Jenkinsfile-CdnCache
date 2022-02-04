@@ -9,8 +9,8 @@ pipeline {
         choice(name: 'Environment', choices: ['QA65', 'Stage65', 'DEV65'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to delete Publicweb cache', name: 'Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to delete Customerhub cache', name: 'Customerhub'
-        booleanParam defaultValue: true, description: 'Please check in case you want to delete Customerhub cache', name: 'Brandsource'
-	booleanParam defaultValue: true, description: 'Please check in case you want to delete Customerhub cache', name: 'Tetralaval'
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete Brandsource cache', name: 'Brandsource'
+	booleanParam defaultValue: true, description: 'Please check in case you want to delete Tetralaval cache', name: 'Tetralaval'
 
             }
 
