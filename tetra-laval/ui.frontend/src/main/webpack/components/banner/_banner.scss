@@ -90,6 +90,10 @@
                 &.pw-banner__content--text-blue {
                     color: $color-congress-blue;
                 }
+
+                @media (max-width: $v-tablet-l - 1px) {
+                    color: $color-tundora;
+                }
             }
         }
 
@@ -106,7 +110,7 @@
             &.pw-banner__content--text-blue {
                 color: $color-congress-blue;
             }
-            @media (max-width: $v-tablet - 1px) {
+            @media (max-width: $v-tablet-l - 1px) {
                 color: $color-tundora;
             }
         }
