@@ -92,7 +92,9 @@
                 }
 
                 @media (max-width: $v-tablet-l - 1px) {
-                    color: $color-tundora;
+                    &.pw-banner__content--text-white {
+                        color: $color-tundora;
+                    }
                 }
             }
         }
@@ -111,7 +113,9 @@
                 color: $color-congress-blue;
             }
             @media (max-width: $v-tablet-l - 1px) {
-                color: $color-tundora;
+                &.pw-banner__content--text-white {
+                    color: $color-tundora;
+                }
             }
         }
 
