@@ -500,6 +500,9 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_LINE_ERROR_MSG. */
     public static final String NEW_EQUIPMENT_LINE_ERROR_MSG = "lineErrorMsg";
 
+    /** The Constant NEW_EQUIPMENT_NEWLINE_OPTION. */
+    public static final String NEW_EQUIPMENT_NEWLINE_OPTION = "newLineOption";
+
     /** The Constant NEW_EQUIPMENT_POSITION_ERROR_MSG. */
     public static final String NEW_EQUIPMENT_POSITION_ERROR_MSG = "positionErrorMsg";
 
