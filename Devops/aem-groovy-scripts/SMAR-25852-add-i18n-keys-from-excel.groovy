@@ -12,7 +12,7 @@ import groovy.transform.Field
 /**
  set DRY_RUN = false to actually make and save changes in crx.
  **/
-@Field final DRY_RUN = true
+@Field final DRY_RUN = true;
 
 /**
  *  IMPORTANT!
@@ -21,7 +21,7 @@ import groovy.transform.Field
  */
 @Field final PATHS = [
         TARGET_DICTIONARY_PATH      : "/apps/customerhub/i18n",
-        I18N_TRANSLATION_EXCEL_PATH_: "/content/dam/tetrapak/customerhub/english/My Tetra Pak Content translations (2).xlsx"
+        I18N_TRANSLATION_EXCEL_PATH : "/content/dam/tetrapak/customerhub/english/translation-file.xlsx"
 ]
 
 /**
@@ -41,13 +41,15 @@ import groovy.transform.Field
                 SLING_MESSAGE      : "sling:message",
                 JCR_LANGUAGE       : "jcr:language",
                 SLING_MESSAGE_ENTRY: "sling:MessageEntry",
-                SLING_FOLDER       : "sling:Folder"
+                SLING_FOLDER       : "sling:Folder",
+                NT_FOLDER          : "sling:Folder",
+                JCR_PRIMARY_TYPE   : "jcr:primaryType"
         ]
 ]
 
 languageCodes = getLanguageCodeSet(PATHS.TARGET_DICTIONARY_PATH);
 
-Resource excelFile = resourceResolver.getResource(PATHS.I18N_TRANSLATION_EXCEL_PATH_);
+Resource excelFile = resourceResolver.getResource(PATHS.I18N_TRANSLATION_EXCEL_PATH);
 Asset excelFileAsset = excelFile.adaptTo(Asset.class);
 Rendition rendition = excelFileAsset.getRendition(PROPS.NAME.ORIGINAL_RENDITION);
 
@@ -82,11 +84,11 @@ while (rowIterator.hasNext()) {
             headerList.add(extractLanguageCode(cellValue));
         } else if (colIndex > 0) {
             def languageCode = headerList[colIndex];
-            if (languageCode == null || languageCode.equals("")) {
-                continue;
-            }
             if (colIndex == enLanguageColumnPosition) {
                 languageCode = "en";
+            }
+            if (languageCode == null || languageCode.equals("")) {
+                continue;
             }
             // Create parent language folder if it does not exist
             if (resourceResolver.getResource(PATHS.TARGET_DICTIONARY_PATH + "/" + languageCode) == null) {
@@ -103,16 +105,37 @@ while (rowIterator.hasNext()) {
             // Create i18n node
             Resource languageDictionary = resourceResolver.getResource(PATHS.TARGET_DICTIONARY_PATH + "/" + languageCode);
             Node languageDictionaryNode = languageDictionary.adaptTo(javax.jcr.Node.class);
-            if (!languageDictionaryNode.hasNode(i18nKey)) {
 
+            if (!languageDictionaryNode.hasNode(i18nKey)) {
+                final def query = buildQuery(languageDictionary.getPath(), i18nKey);
+                final def result = query.execute();
+                result.nodes.each {
+                    node ->
+                        println 'Removing existing entry (as nt:folder) present at ' + node.path
+                        node.remove();
+                        if (!DRY_RUN) {
+                            session.save();
+                        }
+                }
                 Node i18nNode = languageDictionaryNode.addNode(i18nKey, PROPS.NAME.SLING_MESSAGE_ENTRY);
                 i18nNode.setProperty(PROPS.NAME.SLING_MESSAGE, cellValue);
                 println "ADDED node for key :" + i18nKey + " under language folder : " + languageCode;
-                if (!DRY_RUN) {
-                    session.save();
-                }
+
             } else {
-                println "The i18n key : " + i18nKey + " for language : " + languageCode + " already exists";
+                Node i18nNode = languageDictionaryNode.getNode(i18nKey);
+                if (i18nNode.getProperty(PROPS.NAME.JCR_PRIMARY_TYPE).getString().equals(PROPS.NAME.NT_FOLDER)) {
+                    i18nNode.remove();
+                    if (!DRY_RUN) {
+                        session.save();
+                    }
+                    i18nNode = languageDictionaryNode.addNode(i18nKey, PROPS.NAME.SLING_MESSAGE_ENTRY);
+                    println "Trasformed node for key :" + i18nKey + " under language folder : " + languageCode + " from nt:folder to sling:messageEntry";
+                }
+                i18nNode.setProperty(PROPS.NAME.SLING_MESSAGE, cellValue);
+                println "UPDATED value for key :" + i18nKey + " under language folder : " + languageCode;
+            }
+            if (!DRY_RUN) {
+                session.save();
             }
         }
     }
@@ -143,3 +166,10 @@ def getLanguageCodeSet(dictionaryPath) {
     }
     languageCodeSet
 }
+
+def buildQuery(path, term) {
+    def queryManager = session.workspace.queryManager;
+    def statement = 'select * from nt:folder as a where sling:key = \'' + term + '\' and isdescendantnode(a,\''+path+'\')';
+    queryManager.createQuery(statement, 'sql');
+}
+
