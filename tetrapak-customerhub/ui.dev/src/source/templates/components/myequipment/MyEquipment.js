@@ -15,7 +15,7 @@ function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country,equipmentNameSub,site,line,serialNumber,equipmentStatusDesc,functionalLocation,siteDescription,location;
+    let country,equipmentName,site,line,serialNumber,equipmentStatusDesc,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
@@ -24,8 +24,8 @@ function _processKeys(keys, ob) {
       }else if(i === 'lineName'){
         line = i;
       }
-      else if(i === 'equipmentNameSub'){
-        equipmentNameSub = i;
+      else if(i === 'equipmentName'){
+        equipmentName = i;
       }
       else if(i === 'siteDesc'){
         siteDescription = i;
@@ -43,7 +43,7 @@ function _processKeys(keys, ob) {
         functionalLocation = i;
       }
     }
-    return [country, site, siteDescription, line, equipmentNameSub, serialNumber, equipmentStatusDesc, location, functionalLocation];
+    return [country, site, siteDescription, line, equipmentName, serialNumber, equipmentStatusDesc, location, functionalLocation];
   }
 }
 
@@ -123,7 +123,7 @@ class MyEquipment {
     this.cache.currentPageNumber = 1;
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
-    this.cache.sortableKeys = ['site','lineName','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
+    this.cache.sortableKeys = ['site','lineName','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentName'];
     this.cache.activeSortData = null;
     this.cache.activePage = 1;
     this.cache.skipIndex = 0;
@@ -155,7 +155,7 @@ class MyEquipment {
       {key:'site',option:'site',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
       {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['siteDescription'],isChecked:false,index:2},
       {key:'lineName',option:'lineName',optionDisplayText:i18nKeys['line'],isChecked:true,index:3},
-      {key:'equipmentNameSub',option:'equipmentNameSub',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
+      {key:'equipmentName',option:'equipmentName',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
       {key:'serialNumber',option:'serialNumber',optionDisplayText:i18nKeys['serialNumber'],isChecked:true,index:5},
       {key:'equipmentStatusDesc',option:'equipmentStatusDesc',optionDisplayText:i18nKeys['equipmentStatus'],isChecked:true,index:6},
       {key:'location',option:'location',optionDisplayText:i18nKeys['location'],isChecked:false,index:7},
@@ -190,8 +190,8 @@ class MyEquipment {
     });
 
     this.cache.$equipmentDescFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'equipmentNameSub', header:i18nKeys['equipmentDescription'], isTextInput: true};
-      const activeEquipTypeDesc = this.cache.combinedFiltersObj['equipmentNameSub'] ? this.cache.combinedFiltersObj['equipmentNameSub'] : '';
+      const formDetail = {activeForm:'equipmentName', header:i18nKeys['equipmentDescription'], isTextInput: true};
+      const activeEquipTypeDesc = this.cache.combinedFiltersObj['equipmentName'] ? this.cache.combinedFiltersObj['equipmentName'] : '';
       this.renderFilterForm(activeEquipTypeDesc, formDetail, this.cache.$equipmentDescFilterLabel);
       $modal.modal();
     });
@@ -694,8 +694,8 @@ class MyEquipment {
         label = i18nKeys['serialNumber'];
         break;
       }
-      case 'equipmentNameSub': {
-        this.cache.combinedFiltersObj['equipmentNameSub'] = $freeTextFilterInput.val();
+      case 'equipmentName': {
+        this.cache.combinedFiltersObj['equipmentName'] = $freeTextFilterInput.val();
         filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
         label = i18nKeys['equipmentDescription'];
         break;
