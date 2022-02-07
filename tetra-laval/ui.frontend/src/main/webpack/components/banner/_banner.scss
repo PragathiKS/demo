@@ -78,21 +78,24 @@
                         line-height: 40px;
                     }
                 }
+            }
 
-                &.pw-banner__content--text-white {
-                    color: $color-white;
-                }
+            &.pw-banner {
+                &__content {
+                    &--text-white {
+                        color: $color-white;
+                        @media (max-width: ($v-tablet-l - 1px)) {
+                            color: $color-tundora;
+                        }
+                    }
 
-                &.pw-banner__content--text-black {
-                    color: $color-emperor;
-                }
+                    &--text-black {
+                        color: $color-emperor;
+                    }
 
-                &.pw-banner__content--text-blue {
-                    color: $color-congress-blue;
-                }
-
-                @media (max-width: $v-tablet-l - 1px) {
-                    color: $color-tundora;
+                    &--text-blue {
+                        color: $color-congress-blue;
+                    }
                 }
             }
         }
@@ -101,17 +104,23 @@
             @include margin-bottom($margin-xl);
             color: $color-white;
             font-size: $font-baseline;
-            &.pw-banner__content--text-white {
-                color: $color-white;
-            }
-            &.pw-banner__content--text-black {
-                color: $color-emperor;
-            }
-            &.pw-banner__content--text-blue {
-                color: $color-congress-blue;
-            }
-            @media (max-width: $v-tablet-l - 1px) {
-                color: $color-tundora;
+            &.pw-banner {
+                &__content {
+                    &--text-white {
+                        color: $color-white;
+                        @media (max-width: ($v-tablet-l - 1px)) {
+                            color: $color-tundora;
+                        }
+                    }
+
+                    &--text-black {
+                        color: $color-emperor;
+                    }
+
+                    &--text-blue {
+                        color: $color-congress-blue;
+                    }
+                }
             }
         }
 
