@@ -248,7 +248,7 @@ class EquipmentDetails {
         oldLineName: equipData.lineName,
         oldEquipmentStatus: equipData.equipmentStatusDesc,
         oldPosition: equipData.position,
-        oldEquipmentTypeDesc: equipData.equipmentNameSub,
+        oldEquipmentTypeDesc: equipData.equipmentName,
         comments: data.comments,
         country: this.cache.countryData.find(country => country.key === data.country)?.desc || equipData.countryName,
         location: data.location || equipData.location,
