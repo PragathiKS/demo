@@ -111,7 +111,8 @@ describe('EquipmentDetails', function () {
     $('#location').val('Berlin');
     $('#country').val('Germany');
     $('#siteName').val('Hannover');
-    $('#lineName').val('Test2');
+    $('#lineCode').val('Test2');
+    $('#functionalLocationDesc').val('Test2');
     $('#position').val('0080');
     $('#equipmentStatus').val('In Prod');
     $('#equipmentTypeDesc').val('In Prod');
