@@ -15,14 +15,12 @@ function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country,equipmentName,site,line,serialNumber,equipmentStatusDesc,functionalLocation,siteDescription,location;
+    let country,equipmentName,site,serialNumber,equipmentStatusDesc,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
-      }else if(i === 'site'){
+      }else if(i === 'site') {
         site = i;
-      }else if(i === 'lineName'){
-        line = i;
       }
       else if(i === 'equipmentName'){
         equipmentName = i;
@@ -43,7 +41,7 @@ function _processKeys(keys, ob) {
         functionalLocation = i;
       }
     }
-    return [country, site, siteDescription, line, equipmentName, serialNumber, equipmentStatusDesc, location, functionalLocation];
+    return [country, site, siteDescription, functionalLocation, equipmentName, serialNumber, equipmentStatusDesc, location];
   }
 }
 
@@ -123,7 +121,7 @@ class MyEquipment {
     this.cache.currentPageNumber = 1;
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
-    this.cache.sortableKeys = ['site','lineName','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentName'];
+    this.cache.sortableKeys = ['site','lineCode','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentName'];
     this.cache.activeSortData = null;
     this.cache.activePage = 1;
     this.cache.skipIndex = 0;
@@ -154,12 +152,9 @@ class MyEquipment {
       {key:'countryCode',option:'countryCode',optionDisplayText:i18nKeys['country'],isChecked:true,index:0},
       {key:'site',option:'site',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
       {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['siteDescription'],isChecked:false,index:2},
-      {key:'lineName',option:'lineName',optionDisplayText:i18nKeys['line'],isChecked:true,index:3},
-      {key:'equipmentName',option:'equipmentName',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
-      {key:'serialNumber',option:'serialNumber',optionDisplayText:i18nKeys['serialNumber'],isChecked:true,index:5},
+      {key:'functionalLocation',option:'functionalLocation',optionDisplayText:i18nKeys['functionalLocation'],isChecked:true,index:3},
       {key:'equipmentStatusDesc',option:'equipmentStatusDesc',optionDisplayText:i18nKeys['equipmentStatus'],isChecked:true,index:6},
-      {key:'location',option:'location',optionDisplayText:i18nKeys['location'],isChecked:false,index:7},
-      {key:'functionalLocation',option:'functionalLocation',optionDisplayText:i18nKeys['functionalLocation'],isChecked:false,index:8}
+      {key:'location',option:'location',optionDisplayText:i18nKeys['location'],isChecked:false,index:7}
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {
@@ -176,9 +171,9 @@ class MyEquipment {
     });
 
     this.cache.$lineFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'lineName',header:i18nKeys['line'],maxFiltersSelection:10};
-      this.cache.filterModalData['lineName'] = this.getFilterModalData('lineName');
-      this.renderFilterForm(this.cache.filterModalData['lineName'], formDetail, this.cache.$lineFilterLabel);
+      const formDetail = {activeForm:'lineCode',header:i18nKeys['line'],maxFiltersSelection:10};
+      this.cache.filterModalData['lineCode'] = this.getFilterModalData('lineCode');
+      this.renderFilterForm(this.cache.filterModalData['lineCode'], formDetail, this.cache.$lineFilterLabel);
       $modal.modal();
     });
 
@@ -514,14 +509,8 @@ class MyEquipment {
     const isSingleFilterApplied = typeof combinedFiltersObj[filterByProperty] !== 'undefined' &&
         Object.keys(combinedFiltersObj).length === 1;
 
-    // lineName uses 'lineCode' for filtering (as values), but should display and sort by 'lineDescription' in table
     // customer uses 'customerNumber' for filtering (as values), but should display and sort by 'customer' in table
     switch (filterByProperty) {
-      case 'lineName':
-        optionDisplayTextKey = 'lineDescription';
-        optionValueKey = 'lineCode';
-        alphabeticalSortKey = 'optionDisplayText';
-        break;
       case 'customer':
         optionDisplayTextKey = 'customer';
         optionValueKey = 'customerNumber';
@@ -591,7 +580,7 @@ class MyEquipment {
         $btnElem = this.cache.$customerFilterLabel;
         break;
       }
-      case 'lineName': {
+      case 'lineCode': {
         label = i18nKeys['line'];
         $btnElem = this.cache.$lineFilterLabel;
         break;
@@ -673,7 +662,7 @@ class MyEquipment {
         label = i18nKeys['customer'];
         break;
       }
-      case 'lineName': {
+      case 'lineCode': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
         label = i18nKeys['line'];
         break;

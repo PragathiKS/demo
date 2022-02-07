@@ -154,7 +154,7 @@ function _getLinesDropdownData($this, siteCode) {
         },
         showLoader: true
       }).done(resLine => {
-        $this.cache.lineData = resLine.data.map(item => ({ key: item.id, desc: item.lineDescription }));
+        $this.cache.lineData = resLine.data.map(item => ({ key: item.id, desc: item.lineCode }));
         _renderLines($this, false);
       }).fail((e) => {
         logger.error(e);
