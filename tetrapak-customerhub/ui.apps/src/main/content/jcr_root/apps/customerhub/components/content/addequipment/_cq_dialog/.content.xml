@@ -135,6 +135,12 @@
                                         fieldLabel="Line error message (i18N key)"
                                         name="./lineErrorMsg"
                                         required="true"/>
+                                <newLineOption
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="New line option text (i18N key)"
+                                        name="./newLineOption"
+                                        required="true"/>
                                 <positionLabel
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
