@@ -205,13 +205,6 @@ class MyEquipment {
       $modal.modal();
     });
 
-    this.cache.$functionalLocFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'functionalLocation',header:i18nKeys['functionalLocation'], isTextInput: true};
-      const activeSerialNum = this.cache.combinedFiltersObj['functionalLocation'] ? this.cache.combinedFiltersObj['functionalLocation'] : '';
-      this.renderFilterForm(activeSerialNum, formDetail, this.cache.$functionalLocFilterLabel);
-      $modal.modal();
-    });
-
     $myEquipmentCustomizeTableAction.on('click', () => {
       this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:true });
       $('.tp-my-equipment__header-actions').removeClass('show');
@@ -687,12 +680,6 @@ class MyEquipment {
         this.cache.combinedFiltersObj['equipmentName'] = $freeTextFilterInput.val();
         filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
         label = i18nKeys['equipmentDescription'];
-        break;
-      }
-      case 'functionalLocation': {
-        this.cache.combinedFiltersObj['functionalLocation'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
-        label = i18nKeys['functionalLocation'];
         break;
       }
       case 'customise-table':{
