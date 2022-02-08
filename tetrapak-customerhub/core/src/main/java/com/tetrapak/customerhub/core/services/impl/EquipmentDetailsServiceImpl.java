@@ -37,19 +37,19 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
     private XSSFilter xssFilter;
 
     @Override
-    public JsonObject editEquipment(String userId, EquipmentUpdateFormBean bean, String token) {
+    public JsonObject editEquipment(String emailId, EquipmentUpdateFormBean bean, String token) {
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REQUEST_UPDATE);
 
         Gson gson = new Gson();
-        String apiJsonBean = gson.toJson(convertFormToApiJson(userId, bean));
+        String apiJsonBean = gson.toJson(convertFormToApiJson(emailId, bean));
         return HttpUtil.sendAPIGeePostWithEntity(url, token, apiJsonBean);
     }
 
-    private EquipmentApiUpdateRequestBean convertFormToApiJson(String userId, EquipmentUpdateFormBean bean) {
+    private EquipmentApiUpdateRequestBean convertFormToApiJson(String emailId, EquipmentUpdateFormBean bean) {
         EquipmentApiUpdateRequestBean requestBean = new EquipmentApiUpdateRequestBean();
-        requestBean.setReportedBy(userId);
+        requestBean.setReportedBy(emailId);
         requestBean.setEquipmentNumber(xssFilter.filter(bean.getEquipmentId()));
         requestBean.setSerialNumber(xssFilter.filter(bean.getSerialNumber()));
         requestBean.setComment(xssFilter.filter(bean.getComments()));
