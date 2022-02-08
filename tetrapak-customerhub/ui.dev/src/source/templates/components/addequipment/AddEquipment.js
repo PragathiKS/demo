@@ -155,6 +155,8 @@ function _getLinesDropdownData($this, siteCode) {
         showLoader: true
       }).done(resLine => {
         $this.cache.lineData = resLine.data.map(item => ({ key: item.id, desc: item.lineCode }));
+        const newLine = {key : $this.cache.i18nKeys.newLineOption , desc: $this.cache.i18nKeys.newLineOption};
+        $this.cache.lineData.push(newLine);
         _renderLines($this, false);
       }).fail((e) => {
         logger.error(e);
