@@ -2,367 +2,306 @@ package com.tetrapak.customerhub.core.models;
 
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.servlets.CotsSupportEmailServlet;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CotsSupportModel {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CotsSupportModel.class);
+
+    public enum COTSSupportComponentDialog {
+        TITLE("title"),
+        SUBTITLE("subTitle"),
+        SELECT_REQUEST("selectRequest"),
+        TECHNICAL_ISSUES("technicalIssues"),
+        COMPANY("company"),
+        CUSTOMER_SITE("customerSite"),
+        AFFECTED_SYSTEMS_LABEL("affectedSystemsLabel"),
+        AFFECTED_SYSTEMS("affectedSystems"),
+        PRODUCT_INVOLVED("productInvolvedLabel"),
+        SOFTWARE_VERSION("softwareVersion"),
+        ENGINEERING_LICENSE_SERIAL_NUMBER("engineeringLicenseSerialNumber"),
+        SHORT_DESCRIPTION("shortDescription"),
+        SELECT_FILE("selectFile"),
+        QUESTION("question"),
+        NAME("name"),
+        EMAIL_ADDRESS("emailAddress"),
+        TELEPHONE("telephone"),
+        DROPDOWN_PLACEHOLDER("dropdownPlaceholder"),
+        INPUT_ERROR_MESSAGE("inputErrorMsg"),
+        SUCCESS_MESSAGE("successMessage"),
+        SALUTATION("salutation"),
+        BODY("body"),
+        CONTACT_DETAILS("contactDetails"),
+        RECIPIENT_EMAIL_ADDRESS("recipientEmailAddress");
+
+        public final String i18nJsonKey;
+
+        private COTSSupportComponentDialog(String jsonKey) {
+            this.i18nJsonKey = jsonKey;
+        }
+
+        private String getI18nJsonKey(){
+            return i18nJsonKey;
+        }
+
+    }
+
     /** The resource. */
     @Self
     private Resource resource;
-
-    /** The title label. */
+    
+    /** The title */
     @Inject
     private String title;
-
-    /** The subtitle label. */
+    
+    /** The subtitle */
     @Inject
     private String subTitle;
-
-    /** The select type of log label. */
+    
+    /** The select type of request label. */
     @Inject
-    private String selectTypeOfLog;
-
+    private String selectRequest;
+    
     /** The technical issues label. */
     @Inject
     private String technicalIssues;
-
-    /** The product support label. */
+    
+    /** The company field label. */
     @Inject
-    private String productSupport;
-
-    /** The dropdown placeholder. */
+    private String company;
+    
+    /** The customer site field label. */
     @Inject
-    private String dropdownPlaceholder;
-
-    /** The urgency label. */
+    private String customerSite;
+    
     @Inject
-    private String urgency;
-
-    /** The urgency error message. */
+    private String affectedSystemsLabel;
+    
+    /** The affected systems field label. */
     @Inject
-    private String urgencyErrorMsg;
-
-    /** The input error message. */
+    private List<AffectedSystemsModel> affectedSystems;
+    
     @Inject
-    private String inputErrorMsg;
-
-    /** The affected systems label. */
-    @Inject
-    private String affectedSystems;
-
-    /** The software version label. */
+    private String productInvolvedLabel;
+    
+    /** The Software Version field label. */
     @Inject
     private String softwareVersion;
-
-    /** The description label. */
+    
+    /** The Engineering License Serial Number field label. */
     @Inject
-    private String description;
-
-    /** The comments label. */
+    private String engineeringLicenseSerialNumber;
+    
+    /** The Short description field label. */
     @Inject
-    private String comments;
-
-    /** The comments error message. */
+    private String shortDescription;
+    
+    /** The Select File button field label */
     @Inject
-    private String commentsErrorMsg;
-
-    /** The marketing consent. */
+    private String selectFile;
+    
+    /** The question button label. */
     @Inject
-    private String marketingConsent;
-
-    /** The submit button label. */
-    @Inject
-    private String submitButtonLabel;
-
-    /** The confirm your details header. */
-    @Inject
-    private String confirmYourDetailsHeader;
-
-    /** The customer site header. */
-    @Inject
-    private String customerSiteHeader;
-
-    /** The company name label. */
-    @Inject
-    private String companyName;
-
-    /** The street name label. */
-    @Inject
-    private String streetName;
-
-    /** The city label. */
-    @Inject
-    private String city;
-
-    /** The country label. */
-    @Inject
-    private String country;
-
-    /** The id header. */
-    @Inject
-    private String idHeader;
-
-    /** The id name label. */
-    @Inject
-    private String idName;
-
-    /** The supplier details header. */
-    @Inject
-    private String supplierDetailsHeader;
-
-    /** The contact details header. */
-    @Inject
-    private String contactDetailsHeader;
-
-    /** The supplier company name label. */
-    @Inject
-    private String supplierCompanyName;
-
-    /** The supplier street name label. */
-    @Inject
-    private String supplierStreetName;
-
-    /** The supplier city label. */
-    @Inject
-    private String supplierCity;
-
-    /** The supplier country label. */
-    @Inject
-    private String supplierCountry;
-
-    /** The name label. */
+    private String question;
+    
+    /** The name label */
     @Inject
     private String name;
-
-    /** The email address label. */
+    
+    /** The email address label */
     @Inject
     private String emailAddress;
-
-    /** The email error message. */
-    @Inject
-    private String emailErrorMsg;
-
+    
     /** The telephone label. */
     @Inject
     private String telephone;
-
-    /** The phone error message. */
+    
+    /** The dropdown placeholder label. */
     @Inject
-    private String phoneErrorMsg;
-
-    /** The success message. */
+    private String dropdownPlaceholder;
+    
+    /** The input error message label. */
+    @Inject
+    private String inputErrorMsg;
+    
+    /** The success message */
     @Inject
     private String successMessage;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getSubTitle() {
-        return subTitle;
-    }
-
-    public String getSelectTypeOfLog() {
-        return selectTypeOfLog;
-    }
-
-    public String getTechnicalIssues() {
-        return technicalIssues;
-    }
-
-    public String getProductSupport() {
-        return productSupport;
-    }
-
-    public String getDropdownPlaceholder() {
-        return dropdownPlaceholder;
-    }
-
-    public String getUrgency() {
-        return urgency;
-    }
-
-    public String getUrgencyErrorMsg() {
-        return urgencyErrorMsg;
-    }
-
-    public String getInputErrorMsg() {
-        return inputErrorMsg;
-    }
-
-    public String getAffectedSystems() {
-        return affectedSystems;
-    }
-
-    public String getSoftwareVersion() {
-        return softwareVersion;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public String getCommentsErrorMsg() {
-        return commentsErrorMsg;
-    }
-
-    public String getMarketingConsent() {
-        return marketingConsent;
-    }
-
-    public String getSubmitButtonLabel() {
-        return submitButtonLabel;
-    }
-
-    public String getConfirmYourDetailsHeader() {
-        return confirmYourDetailsHeader;
-    }
-
-    public String getCustomerSiteHeader() {
-        return customerSiteHeader;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public String getStreetName() {
-        return streetName;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getIdHeader() {
-        return idHeader;
-    }
-
-    public String getIdName() {
-        return idName;
-    }
-
-    public String getSupplierDetailsHeader() {
-        return supplierDetailsHeader;
-    }
-
-    public String getSupplierCompanyName() {
-        return supplierCompanyName;
-    }
-
-    public String getSupplierStreetName() {
-        return supplierStreetName;
-    }
-
-    public String getSupplierCity() {
-        return supplierCity;
-    }
-
-    public String getSupplierCountry() {
-        return supplierCountry;
-    }
-
-    public String getContactDetailsHeader() {
-        return contactDetailsHeader;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public String getEmailErrorMsg() {
-        return emailErrorMsg;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public String getPhoneErrorMsg() {
-        return phoneErrorMsg;
-    }
-
-    public String getSuccessMessage() {
-        return successMessage;
-    }
-
-    /** The i18n keys. */
+    
+    /** The salutation text in email */
+    @Inject
+    private String salutation;
+    
+    /** The body text in email */
+    @Inject
+    private String body;
+    
+    /** The contact details text in email */
+    @Inject
+    private String contactDetails;
+    
+    @Inject
+    private String recipientEmailAddress;
+    
     private String i18nKeys;
-
-    /**
-     * Gets the i18n keys.
-     *
-     * @return the i18n keys
-     */
-    public String getI18nKeys() {
-        return i18nKeys;
-    }
-
+    
+    private String componentPath;
+    
+    private String componentPathExtension;
+    
     /**
      * init method.
      */
     @PostConstruct
     protected void init() {
         Map<String, Object> i18KeyMap = new HashMap<>();
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_TITLE, getTitle());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SUBTITLE, getSubTitle());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SELECT_TYPE_OF_LOG, getSelectTypeOfLog());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_TECHNICAL_ISSUES, getTechnicalIssues());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_PRODUCT_SUPPORT, getProductSupport());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_DROPDOWN_PLACEHOLDER, getDropdownPlaceholder());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_URGENCY, getUrgency());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_URGENCY_ERROR_MSG, getUrgencyErrorMsg());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_INPUT_ERROR_MSG, getInputErrorMsg());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_AFFECTED_SYSTEMS, getAffectedSystems());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SOFTWARE_VERSION, getSoftwareVersion());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_DESCRIPTION, getDescription());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_COMMENTS, getComments());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_COMMENTS_ERROR_MSG, getCommentsErrorMsg());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_MARKETING_CONSENT, getMarketingConsent());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SUBMIT_BUTTON_LABEL, getSubmitButtonLabel());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_CONFIRM_YOUR_DETAILS_HEADER, getConfirmYourDetailsHeader());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_CUSTOMER_SITE_HEADER, getCustomerSiteHeader());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_COMPANY_NAME, getCompanyName());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_STREET_NAME, getStreetName());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_CITY, getCity());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_COUNTRY, getCountry());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_ID_HEADER, getIdHeader());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_ID_NAME, getIdName());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SUPPLIER_DETAILS_HEADER, getSupplierDetailsHeader());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SUPPLIER_COMPANY_NAME, getSupplierCompanyName());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SUPPLIER_STREET_NAME, getSupplierStreetName());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SUPPLIER_CITY, getSupplierCity());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SUPPLIER_COUNTRY, getSupplierCountry());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_CONTACT_DETAILS_HEADER, getContactDetailsHeader());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_NAME, getName());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_EMAIL_ADDRESS, getEmailAddress());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_EMAIL_ERROR_MSG, getEmailErrorMsg());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_TELEPHONE, getTelephone());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_PHONE_ERROR_MSG, getPhoneErrorMsg());
-        i18KeyMap.put(CustomerHubConstants.COTS_SUPPORT_SUCCESS_MESSAGE, getSuccessMessage());
-
+        i18KeyMap.put(COTSSupportComponentDialog.TITLE.getI18nJsonKey(), getTitle());
+        i18KeyMap.put(COTSSupportComponentDialog.SUBTITLE.getI18nJsonKey(), getSubTitle());
+        i18KeyMap.put(COTSSupportComponentDialog.SELECT_REQUEST.getI18nJsonKey(), getSelectRequest());
+        i18KeyMap.put(COTSSupportComponentDialog.TECHNICAL_ISSUES.getI18nJsonKey(), getTechnicalIssues());
+        i18KeyMap.put(COTSSupportComponentDialog.COMPANY.getI18nJsonKey(), getCompany());
+        i18KeyMap.put(COTSSupportComponentDialog.CUSTOMER_SITE.getI18nJsonKey(), getCustomerSite());
+        i18KeyMap.put(COTSSupportComponentDialog.AFFECTED_SYSTEMS.getI18nJsonKey(), getAffectedSystems());
+        i18KeyMap.put(COTSSupportComponentDialog.SOFTWARE_VERSION.getI18nJsonKey(), getSoftwareVersion());
+        i18KeyMap.put(COTSSupportComponentDialog.ENGINEERING_LICENSE_SERIAL_NUMBER.getI18nJsonKey(),
+                getEngineeringLicenseSerialNumber());
+        i18KeyMap.put(COTSSupportComponentDialog.SHORT_DESCRIPTION.getI18nJsonKey(), getShortDescription());
+        i18KeyMap.put(COTSSupportComponentDialog.SELECT_FILE.getI18nJsonKey(), getSelectFile());
+        i18KeyMap.put(COTSSupportComponentDialog.QUESTION.getI18nJsonKey(), getQuestion());
+        i18KeyMap.put(COTSSupportComponentDialog.NAME.getI18nJsonKey(), getName());
+        i18KeyMap.put(COTSSupportComponentDialog.EMAIL_ADDRESS.getI18nJsonKey(), getEmailAddress());
+        i18KeyMap.put(COTSSupportComponentDialog.TELEPHONE.getI18nJsonKey(), getTelephone());
+        i18KeyMap.put(COTSSupportComponentDialog.DROPDOWN_PLACEHOLDER.getI18nJsonKey(), getDropdownPlaceholder());
+        i18KeyMap.put(COTSSupportComponentDialog.INPUT_ERROR_MESSAGE.getI18nJsonKey(), getInputErrorMsg());
+        i18KeyMap.put(COTSSupportComponentDialog.SUCCESS_MESSAGE.getI18nJsonKey(), getSuccessMessage());
+        
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
+        LOGGER.debug("================" + i18nKeys.toString());
+        
+        this.componentPath = this.resource.getPath();
+        this.componentPathExtension = "." + CotsSupportEmailServlet.SLING_SERVLET_SELECTOR + "."
+                + CotsSupportEmailServlet.SLING_SERVLET_EXTENSION;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+    
+    public String getSubTitle() {
+        return subTitle;
+    }
+    
+    public String getSelectRequest() {
+        return selectRequest;
+    }
+    
+    public String getTechnicalIssues() {
+        return technicalIssues;
+    }
+    
+    public String getCompany() {
+        return company;
+    }
+    
+    public String getCustomerSite() {
+        return customerSite;
+    }
+    
+    public String getAffectedSystemsLabel() {
+        return affectedSystemsLabel;
+    }
+    
+    public List<AffectedSystemsModel> getAffectedSystems() {
+        return affectedSystems;
+    }
+    
+    public String getProductInvolvedLabel() {
+        return productInvolvedLabel;
+    }
+    
+    public String getSoftwareVersion() {
+        return softwareVersion;
+    }
+    
+    public String getEngineeringLicenseSerialNumber() {
+        return engineeringLicenseSerialNumber;
+    }
+    
+    public String getShortDescription() {
+        return shortDescription;
+    }
+    
+    public String getSelectFile() {
+        return selectFile;
+    }
+    
+    public String getQuestion() {
+        return question;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+    
+    public String getTelephone() {
+        return telephone;
+    }
+    
+    public String getDropdownPlaceholder() {
+        return dropdownPlaceholder;
+    }
+    
+    public String getInputErrorMsg() {
+        return inputErrorMsg;
+    }
+    
+    public String getSuccessMessage() {
+        return successMessage;
+    }
+    
+    public String getI18nKeys() {
+        return i18nKeys;
+    }
+    
+    public String getComponentPath() {
+        return componentPath;
+    }
+    
+    public String getComponentPathExtension() {
+        return componentPathExtension;
+    }
+    
+    public String getSalutation() {
+        return salutation;
+    }
+    
+    public String getBody() {
+        return body;
+    }
+    
+    public String getContactDetails() {
+        return contactDetails;
+    }
+    
+    public String getRecipientEmailAddress() {
+        return recipientEmailAddress;
     }
 }
