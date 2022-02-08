@@ -803,7 +803,8 @@ class MyEquipment {
 
     this.cache.activeSortData = {
       'sortedByKey': sortedByKey,
-      'sortOrder': sortOrder
+      'sortOrder': sortOrder,
+      'sendPosition': sortedByKey === 'functionalLocation'
     };
     this.renderNewPage({'resetSkip': true});
   }
@@ -927,7 +928,14 @@ class MyEquipment {
     }
 
     if (activeSortData) {
-      apiUrlRequest += `&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
+      let sortingParam = `${activeSortData.sortedByKey.toLowerCase()} ${activeSortData.sortOrder}`;
+
+      // SMAR-25942 if sorting by functionalLocation, send position parameter as well
+      if (activeSortData.sendPosition) {
+        sortingParam = `${activeSortData.sortedByKey.toLowerCase()} ${activeSortData.sortOrder},position`;
+      }
+
+      apiUrlRequest += `&sort=${sortingParam}`;
     }
 
     auth.getToken(({ data: authData }) => {
