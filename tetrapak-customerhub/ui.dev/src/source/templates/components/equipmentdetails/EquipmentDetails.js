@@ -119,7 +119,7 @@ function  _renderEquipInfoCard(view) {
       isConfirmation: view && view.confirmed
     },
     target: '.js-equipment-details__info-card'
-  });  
+  });
   if (view && view.update) {
     $this.bindFormChangeEvents();
   }
@@ -143,6 +143,11 @@ function  _renderEquipUpdateModal() {
   $modal.modal();
 }
 
+// clear all text inputs when country dropdown value changes
+function _clearFieldsOnCountryChange($form) {
+  $form.find('input, textarea').val('');
+}
+
 function _bindFormChangeEvents() {
   const $this = this;
   const $form = $this.cache.$content.find('.js-equipment-details__form');
@@ -153,6 +158,9 @@ function _bindFormChangeEvents() {
     $(item).on('input change', () => {
       if ($form.serialize() !== initialFormData) {
         $updateBtn.removeAttr('disabled');
+        if (item.id === 'country') {
+          _clearFieldsOnCountryChange($form);
+        }
       } else {
         $updateBtn.attr('disabled', 'disabled');
       }
@@ -245,15 +253,17 @@ class EquipmentDetails {
         oldCountry: equipData.countryName,
         oldLocation: equipData.location,
         oldSiteName: equipData.site,
-        oldLineName: equipData.lineName,
+        oldLineCode: equipData.lineCode,
+        oldFunctionalLocationDesc: equipData.functionalLocationDesc,
         oldEquipmentStatus: equipData.equipmentStatusDesc,
         oldPosition: equipData.position,
-        oldEquipmentTypeDesc: equipData.equipmentNameSub,
+        oldEquipmentTypeDesc: equipData.equipmentName,
         comments: data.comments,
         country: this.cache.countryData.find(country => country.key === data.country)?.desc || equipData.countryName,
         location: data.location || equipData.location,
         siteName: data.siteName || equipData.siteName,
-        lineName: data.lineName || equipData.lineName,
+        lineCode: data.lineCode || equipData.lineCode,
+        functionalLocationDesc: data.functionalLocationDesc || equipData.functionalLocationDesc,
         equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === data.equipmentStatus)?.desc || equipData.equipmentStatusDesc,
         position: data.position,
         equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,

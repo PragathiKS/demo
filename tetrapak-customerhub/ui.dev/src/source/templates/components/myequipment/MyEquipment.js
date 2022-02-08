@@ -8,24 +8,22 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
 import file from '../../../scripts/utils/file';
 import { _paginate } from './MyEquipment.paginate';
-import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData } from './MyEquipment.utils';
+import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData, _remapFilterOptionKey } from './MyEquipment.utils';
 import { _buildTableRows, _groupByBusinessType, _mapHeadings } from './MyEquipment.table';
 
 function _processKeys(keys, ob) {
   if(keys.length){
     return keys;
   } else {
-    let country,equipmentNameSub,site,line,serialNumber,equipmentStatusDesc,functionalLocation,siteDescription,location;
+    let country,equipmentName,site,serialNumber,equipmentStatusDesc,functionalLocation,siteDescription,location;
     for(const i in ob){
       if(i === 'countryCode'){
         country = i;
-      }else if(i === 'site'){
+      }else if(i === 'site') {
         site = i;
-      }else if(i === 'lineName'){
-        line = i;
       }
-      else if(i === 'equipmentNameSub'){
-        equipmentNameSub = i;
+      else if(i === 'equipmentName'){
+        equipmentName = i;
       }
       else if(i === 'siteDesc'){
         siteDescription = i;
@@ -43,7 +41,7 @@ function _processKeys(keys, ob) {
         functionalLocation = i;
       }
     }
-    return [country, site, siteDescription, line, equipmentNameSub, serialNumber, equipmentStatusDesc, location, functionalLocation];
+    return [country, site, siteDescription, functionalLocation, equipmentName, serialNumber, equipmentStatusDesc, location];
   }
 }
 
@@ -68,6 +66,10 @@ function _limitFilterSelection($modal) {
   const $currentCountError = $modal.find('.js-tp-my-equipment__filter-count-err');
   const checkedItemsNo = $modal.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)').filter(':checked').length;
   const $applyBtn = $modal.find('.js-apply-filter-button');
+
+  if (!maxItems) {
+    return;
+  }
 
   if (checkedItemsNo <= maxItems) {
     $currentCountTxt.text(checkedItemsNo);
@@ -119,7 +121,7 @@ class MyEquipment {
     this.cache.currentPageNumber = 1;
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
-    this.cache.sortableKeys = ['site','lineName','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentNameSub'];
+    this.cache.sortableKeys = ['site','lineCode','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentName'];
     this.cache.activeSortData = null;
     this.cache.activePage = 1;
     this.cache.skipIndex = 0;
@@ -127,7 +129,7 @@ class MyEquipment {
     this.cache.authData = {};
     // holds all possible filter values for the modals, WITHOUT any active filters
     // populated at initial page load
-    this.cache.allFilterValsObj = {
+    this.cache.allApiFilterValsObj = {
       'statuses': [],
       'types': [],
       'customers': [],
@@ -135,7 +137,7 @@ class MyEquipment {
     };
     // holds all possible filter values for the modals, WITH active filters configured
     // populated every time a filter is set
-    this.cache.currentFilterValsObj = {
+    this.cache.currentApiFilterValsObj = {
       'statuses': [],
       'types': [],
       'customers': [],
@@ -150,12 +152,9 @@ class MyEquipment {
       {key:'countryCode',option:'countryCode',optionDisplayText:i18nKeys['country'],isChecked:true,index:0},
       {key:'site',option:'site',optionDisplayText:i18nKeys['site'],isChecked:true,index:1},
       {key:'siteDesc',option:'siteDesc',optionDisplayText:i18nKeys['siteDescription'],isChecked:false,index:2},
-      {key:'lineName',option:'lineName',optionDisplayText:i18nKeys['line'],isChecked:true,index:3},
-      {key:'equipmentNameSub',option:'equipmentNameSub',optionDisplayText:i18nKeys['equipmentDescription'],isChecked:true,index:4},
-      {key:'serialNumber',option:'serialNumber',optionDisplayText:i18nKeys['serialNumber'],isChecked:true,index:5},
+      {key:'functionalLocation',option:'functionalLocation',optionDisplayText:i18nKeys['functionalLocation'],isChecked:true,index:3},
       {key:'equipmentStatusDesc',option:'equipmentStatusDesc',optionDisplayText:i18nKeys['equipmentStatus'],isChecked:true,index:6},
-      {key:'location',option:'location',optionDisplayText:i18nKeys['location'],isChecked:false,index:7},
-      {key:'functionalLocation',option:'functionalLocation',optionDisplayText:i18nKeys['functionalLocation'],isChecked:false,index:8}
+      {key:'location',option:'location',optionDisplayText:i18nKeys['location'],isChecked:false,index:7}
     ];
 
     this.cache.$countryFilterLabel.on('click', () => {
@@ -172,9 +171,9 @@ class MyEquipment {
     });
 
     this.cache.$lineFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'lineName',header:i18nKeys['line'],maxFiltersSelection:10};
-      this.cache.filterModalData['lineName'] = this.getFilterModalData('lineName');
-      this.renderFilterForm(this.cache.filterModalData['lineName'], formDetail, this.cache.$lineFilterLabel);
+      const formDetail = {activeForm:'lineCode',header:i18nKeys['line'],maxFiltersSelection:10};
+      this.cache.filterModalData['lineCode'] = this.getFilterModalData('lineCode');
+      this.renderFilterForm(this.cache.filterModalData['lineCode'], formDetail, this.cache.$lineFilterLabel);
       $modal.modal();
     });
 
@@ -186,8 +185,8 @@ class MyEquipment {
     });
 
     this.cache.$equipmentDescFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'equipmentNameSub', header:i18nKeys['equipmentDescription'], isTextInput: true};
-      const activeEquipTypeDesc = this.cache.combinedFiltersObj['equipmentNameSub'] ? this.cache.combinedFiltersObj['equipmentNameSub'] : '';
+      const formDetail = {activeForm:'equipmentName', header:i18nKeys['equipmentDescription'], isTextInput: true};
+      const activeEquipTypeDesc = this.cache.combinedFiltersObj['equipmentName'] ? this.cache.combinedFiltersObj['equipmentName'] : '';
       this.renderFilterForm(activeEquipTypeDesc, formDetail, this.cache.$equipmentDescFilterLabel);
       $modal.modal();
     });
@@ -228,13 +227,13 @@ class MyEquipment {
       }
     });
 
-    $('body').off().on('click', (e) => {
+    $('body').on('click', (e) => {
       const $actionBtn = e.target;
       if(!$($actionBtn).hasClass('icon-Three_Dot')){
         if($('.tp-my-equipment__header-actions').hasClass('show')){
           $('.tp-my-equipment__header-actions').removeClass('show');
         }
-      } 
+      }
     });
 
     this.root.on('change', '.country-equipment-list',  function() {
@@ -378,6 +377,15 @@ class MyEquipment {
         apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj)}`;
       }
 
+      // for lines and customers, pass custom max count value
+      if (filterVal === 'customers') {
+        apiUrlRequest += '&count=1500';
+      }
+
+      if (filterVal === 'lines') {
+        apiUrlRequest += '&count=7000';
+      }
+
       ajaxWrapper
         .getXhrObj({
           url: apiUrlRequest,
@@ -391,9 +399,10 @@ class MyEquipment {
           showLoader: true
         }).then(res => {
           if (newCountry) {
-            this.cache.allFilterValsObj[filterVal] = res.data;
+            this.cache.allApiFilterValsObj[filterVal] = res.data;
           } else {
-            this.cache.currentFilterValsObj[filterVal] = res.data;
+            this.cache.currentApiFilterValsObj[filterVal] = res.data;
+            this.checkActiveFilterSets(filterVal, res.data);
           }
         });
     });
@@ -487,72 +496,56 @@ class MyEquipment {
     });
   }
 
-  isFilterCheckboxDisabled(filterProperty, filterPropertyKey, row, optionValueKey) {
-    const filterPropertyRemap = _remapFilterProperty(filterProperty);
-    const { currentFilterValsObj } = this.cache;
-    const activeFiltersArr = currentFilterValsObj[filterPropertyRemap];
-
-    if (activeFiltersArr.length > 0) {
-      const result = activeFiltersArr.filter(activeFilter => activeFilter[filterPropertyKey] === row[optionValueKey]);
-      return result.length === 0;
-    } else {
-      return false;
-    }
-  }
-
   getFilterModalData(filterByProperty) {
-    const { combinedFiltersObj, allFilterValsObj } = this.cache;
+    const { combinedFiltersObj, allApiFilterValsObj, currentApiFilterValsObj } = this.cache;
     let alphabeticalSortKey;
     let optionDisplayTextKey;
     let optionValueKey;
-    let filterPropertyKey;
     const filterOptionsArr = [];
-    const availableFilterCheckboxes = [...allFilterValsObj[_remapFilterProperty(filterByProperty)]];
+    let filterOptionsDatasource = [];
+    const allAvailableApiFilterCheckboxes = [...allApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
+    const currentSelectionApiFilterCheckboxes = [...currentApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
     // if a single filter is used, do not disable any of it's options in the modal
     const isSingleFilterApplied = typeof combinedFiltersObj[filterByProperty] !== 'undefined' &&
         Object.keys(combinedFiltersObj).length === 1;
 
-    // lineName uses 'lineCode' for filtering (as values), but should display and sort by 'lineDescription' in table
     // customer uses 'customerNumber' for filtering (as values), but should display and sort by 'customer' in table
     switch (filterByProperty) {
-      case 'lineName':
-        optionDisplayTextKey = 'lineDescription';
-        optionValueKey = 'lineCode';
-        filterPropertyKey = 'lineCode';
-        alphabeticalSortKey = 'optionDisplayText';
-        break;
       case 'customer':
         optionDisplayTextKey = 'customer';
         optionValueKey = 'customerNumber';
-        filterPropertyKey = 'customerNumber';
         alphabeticalSortKey = 'optionDisplayText';
         break;
       case 'equipmentStatusDesc':
         optionDisplayTextKey = 'equipmentStatusDesc';
         optionValueKey = 'equipmentStatus';
-        filterPropertyKey = 'equipmentStatus';
         alphabeticalSortKey = 'optionDisplayText';
         break;
       case 'equipmentType':
         optionDisplayTextKey = 'equipmentTypeDesc';
         optionValueKey = 'equipmentType';
-        filterPropertyKey = 'equipmentType';
         alphabeticalSortKey = 'optionDisplayText';
         break;
       default:
         optionDisplayTextKey = filterByProperty;
         optionValueKey = filterByProperty;
-        filterPropertyKey = filterByProperty;
         alphabeticalSortKey = 'option';
     }
 
-    availableFilterCheckboxes.forEach((row) => {
+    // if only single filter is used, or no filters are set -> display all possible filter values
+    if (isSingleFilterApplied || Object.keys(combinedFiltersObj).length === 0) {
+      filterOptionsDatasource = allAvailableApiFilterCheckboxes;
+    } else {
+      // if multiple filters are set, only display available filter options
+      filterOptionsDatasource = currentSelectionApiFilterCheckboxes;
+    }
+
+    filterOptionsDatasource.forEach((row) => {
       filterOptionsArr.push({
         option: row[optionValueKey],
         optionDisplayText: row[optionDisplayTextKey],
         isChecked: combinedFiltersObj[filterByProperty] ? combinedFiltersObj[filterByProperty].includes(row[optionValueKey]) : false,
-        businessType: row['businessType'] ? row['businessType'] : null,
-        isDisabled: this.isFilterCheckboxDisabled(filterByProperty, filterPropertyKey, row, optionValueKey) && !isSingleFilterApplied
+        businessType: row['businessType'] ? row['businessType'] : null
       });
     });
 
@@ -574,6 +567,69 @@ class MyEquipment {
     } else {
       this.cache.$removeAllFiltersBtn.attr('hidden', 'hidden');
     }
+  }
+
+  updateFilterBtnCount = (filterProperty, filterCount) => {
+    let label;
+    let $btnElem;
+    const { i18nKeys } = this.cache;
+
+    switch (filterProperty) {
+      case 'customer': {
+        label = i18nKeys['customer'];
+        $btnElem = this.cache.$customerFilterLabel;
+        break;
+      }
+      case 'lineCode': {
+        label = i18nKeys['line'];
+        $btnElem = this.cache.$lineFilterLabel;
+        break;
+      }
+      case 'equipmentStatusDesc': {
+        label = i18nKeys['equipmentStatus'];
+        $btnElem = this.cache.$statusFilterLabel;
+        break;
+      }
+      case 'equipmentType': {
+        label = i18nKeys['equipmentType'];
+        $btnElem = this.cache.$equipmentTypeFilterLabel;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
+    $btnElem.text(`${getI18n(label)}: ${filterCount}`);
+  }
+
+  // Checks filter set of active filter, uf combination of filters is used
+  // e.g 4 Customers selected -> 4 Statuses available
+  // -> user selects only 1 status -> not all 4 Customers might be part of selection anymore
+  checkActiveFilterSets = (filterVal) => {
+    const { combinedFiltersObj, currentApiFilterValsObj } = this.cache;
+
+    // no active filters
+    if (Object.keys(combinedFiltersObj).length === 0) {
+      return;
+    }
+
+    Object.keys(combinedFiltersObj).forEach(enabledFilter => {
+      if (combinedFiltersObj[enabledFilter].length && filterVal === _remapFilterProperty(enabledFilter)) {
+        const filterPropertyRemap = _remapFilterProperty(enabledFilter);
+        const activeFilterItemsArr = currentApiFilterValsObj[filterPropertyRemap];
+
+        const availableFiltersInDataSet = activeFilterItemsArr.map(item => item[_remapFilterOptionKey(enabledFilter)]);
+
+        // if number of items differ between what's selected and what's available,
+        // e.g. 4 Customers previously selected, but after adding a new filter only 2 Customers are now available
+        // refresh filter buttons and their count
+        if (combinedFiltersObj[enabledFilter].length !== availableFiltersInDataSet.length) {
+          combinedFiltersObj[enabledFilter] = availableFiltersInDataSet;
+          this.updateFilterBtnCount(enabledFilter, availableFiltersInDataSet.length);
+        }
+      }
+    });
   }
 
   applyFilter = (options) => {
@@ -606,7 +662,7 @@ class MyEquipment {
         label = i18nKeys['customer'];
         break;
       }
-      case 'lineName': {
+      case 'lineCode': {
         filterCount = this.addCombinedFilter(activeFilterForm, $filtersCheckbox);
         label = i18nKeys['line'];
         break;
@@ -627,8 +683,8 @@ class MyEquipment {
         label = i18nKeys['serialNumber'];
         break;
       }
-      case 'equipmentNameSub': {
-        this.cache.combinedFiltersObj['equipmentNameSub'] = $freeTextFilterInput.val();
+      case 'equipmentName': {
+        this.cache.combinedFiltersObj['equipmentName'] = $freeTextFilterInput.val();
         filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
         label = i18nKeys['equipmentDescription'];
         break;
@@ -718,7 +774,7 @@ class MyEquipment {
     };
 
     this.cache.combinedFiltersObj = {};
-    this.cache.currentFilterValsObj = {
+    this.cache.currentApiFilterValsObj = {
       'statuses': [],
       'types': [],
       'customers': [],
@@ -738,10 +794,16 @@ class MyEquipment {
 
   sortTableByKey = ($tHeadBtn) => {
     const sortedByKey = $tHeadBtn.data('key');
-    const currentSortOrder = this.cache.activeSortData ? this.cache.activeSortData.sortOrder : '';
+    let sortOrder = 'asc';
+
+    // same table header clicked, change from asc to desc
+    if (this.cache.activeSortData && this.cache.activeSortData.sortedByKey === sortedByKey) {
+      sortOrder = this.cache.activeSortData.sortOrder === 'asc' ? 'desc' : 'asc';
+    }
+
     this.cache.activeSortData = {
       'sortedByKey': sortedByKey,
-      'sortOrder': currentSortOrder === 'asc' ? 'desc' : 'asc'
+      'sortOrder': sortOrder
     };
     this.renderNewPage({'resetSkip': true});
   }

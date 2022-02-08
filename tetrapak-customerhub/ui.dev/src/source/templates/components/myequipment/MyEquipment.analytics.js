@@ -18,6 +18,10 @@ export const _hideShowAllFiltersAnalytics = (label, eventType) => {
 };
 
 export const _addFilterAnalytics = ($activeFilterBtn, searchResults, filterValues) => {
+  if (!filterValues) {
+    return;
+  }
+
   const addedFilter = $activeFilterBtn.data('label').replace(' +', '');
   const eventObj = {
     event: 'Filter',
@@ -144,5 +148,5 @@ export const _trackEquipmentLinkClick = function (linkName) {
     linkParentTitle: ''
   };
 
-  trackAnalytics(linkClickObj, 'linkClick', 'equipmentClick', undefined, false, eventObj);
+  trackAnalytics(linkClickObj, 'equipmentClick', 'linkClick', undefined, false, eventObj);
 };

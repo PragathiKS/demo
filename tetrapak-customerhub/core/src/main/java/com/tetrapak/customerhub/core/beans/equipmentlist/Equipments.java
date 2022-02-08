@@ -156,6 +156,14 @@ public class Equipments {
     @SerializedName("eofsValidFromDate")
     @Expose
     private String eofsValidFromDate;
+    
+    @SerializedName("equipmentNameSub")
+    @Expose
+    private String equipmentNameSub;
+    
+    @SerializedName("machineSystemCode")
+    @Expose
+    private String machineSystemCode;
 
 
     public String getId() {
@@ -462,4 +470,20 @@ public class Equipments {
     public void setEquipmentStatusDescription(String equipmentStatusDescription) {
         this.equipmentStatusDescription = equipmentStatusDescription;
     }
+
+	public String getEquipmentNameSub() {
+		return equipmentNameSub;
+	}
+
+	public void setEquipmentNameSub(String equipmentNameSub) {
+		this.equipmentNameSub = equipmentNameSub;
+	}
+
+	public String getMachineSystemCode() {
+		return machineSystemCode;
+	}
+
+	public void setMachineSystemCode(String machineSystemCode) {
+		this.machineSystemCode = machineSystemCode;
+	}
 }
