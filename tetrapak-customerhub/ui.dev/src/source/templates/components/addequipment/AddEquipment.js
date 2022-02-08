@@ -4,6 +4,7 @@ import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import { getI18n } from '../../../scripts/common/common';
 import { trackFormStart, trackFormComplete, trackFormError, trackLinkClick } from './AddEquipment.analytics.js';
 /**
  * Render form
@@ -155,7 +156,8 @@ function _getLinesDropdownData($this, siteCode) {
         showLoader: true
       }).done(resLine => {
         $this.cache.lineData = resLine.data.map(item => ({ key: item.id, desc: item.lineCode }));
-        const newLine = {key : $this.cache.i18nKeys.newLineOption , desc: $this.cache.i18nKeys.newLineOption};
+        const NewLineKey  = `${getI18n($this.cache.i18nKeys['newLineOption'])}`;
+        const newLine = {key : NewLineKey , desc: NewLineKey};
         $this.cache.lineData.push(newLine);
         _renderLines($this, false);
       }).fail((e) => {
