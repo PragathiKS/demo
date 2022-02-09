@@ -205,13 +205,6 @@ class MyEquipment {
       $modal.modal();
     });
 
-    this.cache.$functionalLocFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'functionalLocation',header:i18nKeys['functionalLocation'], isTextInput: true};
-      const activeSerialNum = this.cache.combinedFiltersObj['functionalLocation'] ? this.cache.combinedFiltersObj['functionalLocation'] : '';
-      this.renderFilterForm(activeSerialNum, formDetail, this.cache.$functionalLocFilterLabel);
-      $modal.modal();
-    });
-
     $myEquipmentCustomizeTableAction.on('click', () => {
       this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:true });
       $('.tp-my-equipment__header-actions').removeClass('show');
@@ -689,12 +682,6 @@ class MyEquipment {
         label = i18nKeys['equipmentDescription'];
         break;
       }
-      case 'functionalLocation': {
-        this.cache.combinedFiltersObj['functionalLocation'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
-        label = i18nKeys['functionalLocation'];
-        break;
-      }
       case 'customise-table':{
         filterData = this.cache.customisableTableHeaders;
         $filtersCheckbox.each(function(index) {
@@ -803,7 +790,8 @@ class MyEquipment {
 
     this.cache.activeSortData = {
       'sortedByKey': sortedByKey,
-      'sortOrder': sortOrder
+      'sortOrder': sortOrder,
+      'sendPosition': sortedByKey === 'functionalLocation'
     };
     this.renderNewPage({'resetSkip': true});
   }
@@ -927,7 +915,14 @@ class MyEquipment {
     }
 
     if (activeSortData) {
-      apiUrlRequest += `&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
+      let sortingParam = `${activeSortData.sortedByKey.toLowerCase()} ${activeSortData.sortOrder}`;
+
+      // SMAR-25942 if sorting by functionalLocation, send position parameter as well
+      if (activeSortData.sendPosition) {
+        sortingParam = `${activeSortData.sortedByKey.toLowerCase()} ${activeSortData.sortOrder},position`;
+      }
+
+      apiUrlRequest += `&sort=${sortingParam}`;
     }
 
     auth.getToken(({ data: authData }) => {
