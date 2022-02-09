@@ -12,7 +12,7 @@ import { logger } from './logger';
  */
 function generateToken() {
   const env_var = $('.tp-financials').attr('data-src_ispublishenvironment') 
-  || $('.tp-my-equipment').attr('data-src_ispublishenvironment') || $('.tp-equipment-details').attr('data-src_ispublishenvironment');
+  || $('.tp-my-equipment').attr('data-src_ispublishenvironment') || $('.tp-equipment-details').attr('data-src_ispublishenvironment') || $('.tp-add-equipment').attr('data-src_ispublishenvironment');
   return (
     new Promise(function (resolve, reject) {
       const access_token = storageUtil.get(AUTH_TOKEN_COOKIE);
