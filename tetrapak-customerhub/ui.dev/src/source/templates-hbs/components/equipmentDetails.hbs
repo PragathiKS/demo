@@ -1,0 +1,174 @@
+<h2 class="tp-equipment-details__title" auto_locator="equipmentHeading">
+    {{#if isError}}
+        No equipment data fetched
+    {{else}}
+        <span class="tp-equipment-details__title__bold">{{equipData.equipmentName}}</span>- {{equipData.serialNumber}}
+    {{/if}}
+</h2>
+<div class="row tp-equipment-details__info-card-row">
+    <div class="col-lg-8 col-md-9 col-sm-12 col-12 tp-equipment-details__info-card-col">
+        <div class="tp-equipment-details__info-card js-equipment-details__info-card">
+            <h3 auto_locator="sectionTitle">{{i18n key=i18nKeys.equipmentInformation}}</h3>
+            <div class="tp-equipment-details__info-line">
+                <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.country}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.countryName}}</div>
+            </div>
+            <div class="tp-equipment-details__info-line">
+                <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.location}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.location}}</div>
+            </div>
+            <div class="tp-equipment-details__info-line">
+                <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.site}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.site}}</div>
+            </div>
+            <div class="tp-equipment-details__info-line">
+                <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.line}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.lineName}}</div>
+            </div>
+            <div class="tp-equipment-details__info-line">
+                <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentStatus}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.equipmentStatusDesc}}</div>
+            </div>
+            <div class="tp-equipment-details__info-line">
+                <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.position}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.position}}</div>
+            </div>
+            <div class="tp-equipment-details__info-line">
+                <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentDescription}}</div>
+                <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipData.equipmentName}}</div>
+            </div>
+            {{#if isError}}
+                {{#if message}}
+                    {{> atoms/error/error error=true message=message}}
+                {{else}}
+                    {{> atoms/error/error error=true message="cuhu.error.message"}}
+                {{/if}}
+            {{else}}
+                <div class="tp-equipment-details__action-wrap">
+                    {{> atoms/buttons/button/button iconClass="icon-Edit" modifier="transparent" text=i18nKeys.updateEquipmentInformation baseClass="tp-equipment-details__btn tp-equipment-details__update" jsClass="js-equipment-details__update"}}
+                </div>
+                <div class="tp-equipment-details__note">
+                    <span>{{i18n key=i18nKeys.equipmentDetails-statusUpdateHeading}}:</span>
+                    {{i18n key=i18nKeys.equipmentDetails-statusUpdateDescription}}
+                </div>
+            {{/if}}
+        </div>
+    </div>
+<!--    <div class="col-lg-6 tp-equipment-details__info-card-col">-->
+<!--        <div class="tp-equipment-details__info-card">-->
+<!--            <h3 auto_locator="sectionTitle">Recently viewed documents</h3>-->
+<!--            <div class="tp-equipment-details__info-line" auto_locator="documentName">Lorem ipsum dolor sit amet consectetur</div>-->
+<!--            <div class="tp-equipment-details__info-line" auto_locator="documentName">Ut enim ad minim veniam, quis nostrud exercitation ullamco </div>-->
+<!--            <div class="tp-equipment-details__info-line" auto_locator="documentName">Lorem ipsum dolor sit amet consectetur</div>-->
+<!--            <div class="tp-equipment-details__info-line" auto_locator="documentName">Ut enim ad minim veniam, quis nostrud exercitation ullamco </div>-->
+<!--            <div>-->
+<!--                <a href="#" class="tp-equipment-details__btn" auto_locator="viewAllDocumentCTA">View all documents</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+<!--<div class="row tp-equipment-details__info-card-row">-->
+<!--    <div class="col-lg-6 tp-equipment-details__info-card-col">-->
+<!--        <div class="tp-equipment-details__info-card">-->
+<!--            <h3 auto_locator="sectionTitle">Equipment comment</h3>-->
+<!--            <textarea name="" id="" cols="30" rows="4" auto_locator="commentBox"></textarea>-->
+
+<!--            <div class="tp-equipment-details__action-wrap">-->
+<!--                <button type="button" class="tp-equipment-details__btn" auto_locator="saveCommentCTA">Save comment</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="col-lg-6 tp-equipment-details__info-card-col">-->
+<!--        <div class="tp-equipment-details__info-card">-->
+<!--            <h3 auto_locator="sectionTitle">Maintenance events</h3>-->
+<!--            <div class="tp-equipment-details__info-line">-->
+<!--                <i class="icon icon-Calendar2" auto_locator="eventIcon"></i>-->
+<!--                <span auto_locator="eventName">Lorem ipsum dolor sit amet consectetur</span>-->
+<!--            </div>-->
+<!--            <div class="tp-equipment-details__info-line">-->
+<!--                <i class="icon icon-Calendar2" auto_locator="eventIcon"></i>-->
+<!--                <span auto_locator="eventName">Lorem ipsum dolor sit amet consectetur</span>-->
+<!--            </div>-->
+<!--            <div class="tp-equipment-details__info-line">-->
+<!--                <i class="icon icon-Calendar2" auto_locator="eventIcon"></i>-->
+<!--                <span auto_locator="eventName">Lorem ipsum dolor sit amet consectetur</span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <a href="#" class="tp-equipment-details__btn" auto_locator="viewAllEventCTA">View all events</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="tp-equipment-details__details-row">
+    <h4 class="tp-equipment-details__details-row-title" auto_locator="subsectionTitle">{{i18n key=i18nKeys.equipmentDetails}}</h4>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="subsectionTitle">{{i18n key=i18nKeys.equipmentType}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="subsectionTitle">{{equipData.equipmentType}} | {{equipData.equipmentTypeDesc}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.machineSystem}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.machineSystem}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.material}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.material}} | {{equipData.materialDesc}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.manufacturerModelNumber}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.manufacturerModelNumber}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.manufacturerSerialNumber}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.manufacturerSerialNumber}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.superiorEquipment}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.superiorEquipment}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.functionalLocationDesc}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.functionalLocationDesc}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.manufacturer}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.manufacturer}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.manufacturerCountry}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.manufacturerCountry}} | {{equipData.manufacturerCountryName}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.constructionYear}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.constructionYear}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.customerWarrantyEndDate}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.customerWarrantyEndDate}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.customerWarrantyStartDate}}</div>
+        <div class="tp-equipment-details__details-cell" auto_locator="moreEquipmentDataValue">{{equipData.customerWarrantyStartDate}}</div>
+    </div>
+</div>
+
+<div class="tp-equipment-details__details-row">
+    <h4 class="tp-equipment-details__details-row-title" auto_locator="subsectionTitle">{{i18n key=i18nKeys.additionalDetails}}</h4>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell">{{i18n key=i18nKeys.businessType}}</div>
+        <div class="tp-equipment-details__details-cell">{{equipData.businessType}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell">{{i18n key=i18nKeys.equipmentCategory}}</div>
+        <div class="tp-equipment-details__details-cell">{{equipData.equipmentCategory}} | {{equipData.equipmentCategoryDesc}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell">{{i18n key=i18nKeys.eofsConfirmationDate}}</div>
+        <div class="tp-equipment-details__details-cell">{{equipData.eofsConfirmationDate}}</div>
+    </div>
+    <div class="tp-equipment-details__details-line">
+        <div class="tp-equipment-details__details-cell">{{i18n key=i18nKeys.eofsValidFromDate}}</div>
+        <div class="tp-equipment-details__details-cell">{{equipData.eofsValidFromDate}}</div>
+    </div>
+</div>

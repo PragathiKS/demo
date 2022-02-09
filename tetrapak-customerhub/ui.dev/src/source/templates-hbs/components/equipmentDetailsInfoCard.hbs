@@ -1,0 +1,114 @@
+<h3 auto_locator="sectionTitle">{{i18n key=i18nKeys.equipmentInformation}}</h3>
+
+{{#if isEquipUpdate}}
+    <form class="tp-equipment-details__form js-equipment-details__form">
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
+            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.country}}</div>
+            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                {{> atoms/dropdown/dropdown options=countries name="country" jsClass="js-tp-contacts-filtering__site"}}
+                <div class="error-msg">Please enter this field</div>
+            </div>
+        </div>
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
+            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.location}}</div>
+            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                {{> atoms/input/input defaultValue=location name="location" eleClasses="js-equipment-details__input" maxlength=300 required="true"}}
+                <div class="error-msg">Please enter this field</div>
+            </div>
+        </div>
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
+            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.site}}</div>
+            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                {{> atoms/input/input defaultValue=site name="siteName" eleClasses="js-equipment-details__input" maxlength=300 required="true"}}
+                <div class="error-msg">Please enter this field</div>
+            </div>
+        </div>
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
+            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.line}}</div>
+            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                {{> atoms/input/input defaultValue=lineName name="lineName" eleClasses="js-equipment-details__input" maxlength=300 required="true"}}
+                <div class="error-msg">Please enter this field</div>
+            </div>
+        </div>
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
+            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentStatus}}</div>
+            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                {{> atoms/dropdown/dropdown options=statuses name="equipmentStatus" jsClass="js-tp-my-equipment-filter-dropdown"}}
+                <div class="error-msg">Please enter this field</div>
+            </div>
+        </div>
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
+            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.position}}</div>
+            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                {{> atoms/input/input defaultValue=position name="position" eleClasses="js-equipment-details__input" maxlength=300}}
+            </div>
+        </div>
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
+            <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentDescription}}</div>
+            <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+                {{> atoms/input/input defaultValue=equipmentName name="equipmentTypeDesc" eleClasses="js-equipment-details__input" maxlength=300}}
+                <div class="error-msg">Please enter this field</div> 
+            </div>
+        </div>
+        <div class="tp-equipment-details__form-element js-equipment-details__form-element">
+            {{> atoms/textarea/textarea labelText="Comment to Tetra Pak" name="comments" eleClasses="js-equipment-details__input" maxlength=300}}
+        </div>
+        <div class="tp-equipment-details__action-wrap">
+            {{> atoms/buttons/button/button text=i18nKeys.requestUpdates modifier="primary" disabled=true jsClass="js-equipment-details__req-update"}}
+
+            {{> atoms/buttons/button/button text=i18nKeys.cancel modifier="secondary" jsClass="js-equipment-details__cancel"}}
+        </div>
+        <div class="js-equipment-details__error tp-equipment-details__error d-none">
+            {{i18n key="cuhu.error.message"}}
+        </div>
+    </form>
+{{/if}}
+
+{{#if isEquipView}}
+    <div class="tp-equipment-details__info-line">
+        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.country}}</div>
+        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{countryName}}</div>
+    </div>
+    <div class="tp-equipment-details__info-line">
+        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.location}}</div>
+        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">
+            {{location}}
+        </div>
+    </div>
+    <div class="tp-equipment-details__info-line">
+        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.site}}</div>
+        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{site}}</div>
+    </div>
+    <div class="tp-equipment-details__info-line">
+        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.line}}</div>
+        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{lineName}}</div>
+    </div>
+    <div class="tp-equipment-details__info-line">
+        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentStatus}}</div>
+        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipmentStatusDesc}}</div>
+    </div>
+    <div class="tp-equipment-details__info-line">
+        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.position}}</div>
+        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{position}}</div>
+    </div>
+    <div class="tp-equipment-details__info-line">
+        <div class="tp-equipment-details__info-cell-1" auto_locator="equipmentDataKey">{{i18n key=i18nKeys.equipmentDescription}}</div>
+        <div class="tp-equipment-details__info-cell-2" auto_locator="equipmentDataValue">{{equipmentName}}</div>
+    </div>
+    <div class="tp-equipment-details__action-wrap">
+        {{> atoms/buttons/button/button iconClass="icon-Edit" modifier="transparent" text=i18nKeys.updateEquipmentInformation baseClass="tp-equipment-details__btn tp-equipment-details__update" jsClass="js-equipment-details__update"}}
+    </div>
+    <div class="tp-equipment-details__note">
+        <span>{{i18n key=i18nKeys.equipmentDetails-statusUpdateHeading}}:</span>
+        {{i18n key=i18nKeys.equipmentDetails-statusUpdateDescription}}
+    </div>
+{{/if}}
+
+{{#if isConfirmation}}
+    <p class="tp-equipment-details__conf-title">
+        <i class="icon icon-Circle_filled_Tick"></i>{{i18n key=i18nKeys.equipmentDetails-ThankYouHeading}}
+    </p>
+    <p>
+        {{i18n key=i18nKeys.equipmentDetails-ThankYouDescription}}
+    </p>
+{{/if}}

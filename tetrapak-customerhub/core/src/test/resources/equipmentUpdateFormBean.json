@@ -1,0 +1,18 @@
+{
+  "equipmentId": "8000000930",
+  "comments": "test",
+  "country": "AR",
+  "oldCountry": "Germany",
+  "equipmentStatus": "CUIN",
+  "oldEquipmentStatus": "STCU",
+  "equipmentTypeDesc": "PR Processing Equip",
+  "oldEquipmentTypeDesc": "PR Processing Equip",
+  "lineName": "STT - Nestlé Deutschland AG-Biessenhofen-STT",
+  "oldLineName": "STT - Nestlé Deutschland AG-Biessenhofen-STT",
+  "location": "BIESSENHOFEN",
+  "oldLocation": "BIESSENHOFEN",
+  "position": "",
+  "oldPosition": "",
+  "siteName": "NESTLE   _BIE",
+  "oldSiteName": "NESTLE   _BIE"
+}

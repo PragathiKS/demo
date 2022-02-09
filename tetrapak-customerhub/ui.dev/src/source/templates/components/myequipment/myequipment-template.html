@@ -4,7 +4,8 @@
       ${data.i18nKeys}
     </code>
   <div class="d-none js-equipment-api" data-country-api="${data.countryApi}"
-    data-list-api="${data.equipmentListApi}"></div>
+       data-equip-details-url="${data.mappedEquipmentDetailsUrl}"
+       data-list-api="${data.equipmentListApi}"></div>
   <div class="tp-spinner d-none">
     <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html" data-sly-call="${loading.loader_template}" />
   </div>
@@ -21,32 +22,78 @@
           </button>
         </div>
         <div class="tp-my-equipment__header-actions">
-          <div class="tp-my-equipment__customise-table-action js-my-equipment__customise-table-action">
-            <i class="icon icon-Hide"></i>
-            <span class="tpatom-btn__text tp-my-equipment__header-action-text">${"cuhu.equipment.customizetable" @i18n} +</span>
-          </div>
+          <div class="tp-my-equipment__header-actionicons">
+            <a data-sly-test="${data.mappedAddNewEquipmentUrl}" class="tp-my-equipment__action-button js-my-equipment__add-new-equipment-action" href="${data.mappedAddNewEquipmentUrl}">
+              <i class="icon icon-Circle_Plus action-icon"></i>
+              <span class="tpatom-btn__text tp-my-equipment__header-action-text">${data.addNewEquipmentLabel @i18n}</span>
+            </a>
+            <div class="tp-my-equipment__action-button second js-my-equipment__customise-table-action">
+              <i class="icon icon-Hide action-icon"></i>
+              <span class="tpatom-btn__text tp-my-equipment__header-action-text">${"cuhu.equipment.customizetable" @i18n}</span>
+            </div>
+            <input type="hidden" id="downloadExcelServletUrl" name="downloadExcelServletUrl" value="${data.downloadExcelServletUrl}" />
+            <sly data-sly-use.btnRef="/apps/commons/components/atoms/buttonlink/buttonlink-template.html"
+                 data-sly-call="${btnRef.buttonlink_template @text='cuhu.equipment.exporttoexcel',modifier='primary',baseClass='tp-button-link',iconClass='icon-Excel action-icon',className='tp-my-equipment__action-button',jsClass='js-my-equipment__export-excel-action'}" />
+            </div>
         </div>
       </div>
     </div>
     <div class="tp-my-equipment__filter-wrapper">
-      <button type="button" data-toggle="modal" data-target="#equipment-filter-modal" class="tp-my-equipment__country-button-filter tp-my-equipment__filter-button">
-        ${"cuhu.equipment.country" @i18n} +
-      </button>
-      <!-- <button class="tp-my-equipment__site-button-filter tp-my-equipment__filter-button">
-            ${"cuhu.equipment.site" @i18n}
-      </button> -->
+      <div class="tp-my-equipment__filter-chips">
+        <button type="button" data-label="${'cuhu.equipment.country' @i18n} +" class="tp-my-equipment__country-button-filter tp-my-equipment__filter-button active" auto_locator="countryFilter">
+          ${"cuhu.equipment.country" @i18n}: 1
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.customer' @i18n} +" class="tp-my-equipment__customer-button-filter tp-my-equipment__filter-button" auto_locator="customerFilter">
+          ${"cuhu.equipment.customer" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.line' @i18n} +" class="tp-my-equipment__line-button-filter tp-my-equipment__filter-button" auto_locator="lineFilter">
+          ${"cuhu.equipment.line" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.equipmentstatus' @i18n} +" class="tp-my-equipment__status-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="statusFilter">
+          ${"cuhu.equipment.equipmentstatus" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.equipmentType' @i18n} +" class="tp-my-equipment__equip-type-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="typeFilter">
+          ${"cuhu.equipment.equipmentType" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.equipmentdescription' @i18n} +" class="tp-my-equipment__equip-desc-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="descriptionFilter">
+          ${"cuhu.equipment.equipmentdescription" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.serialnumber' @i18n} +" class="tp-my-equipment__serial-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="serialNoFilter">
+          ${"cuhu.equipment.serialnumber" @i18n} +
+        </button>
+
+        <button type="button" data-label="${'cuhu.equipment.functionalLocation' @i18n} +" class="tp-my-equipment__functional-loc-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="functionalLocFilter">
+          ${"cuhu.equipment.functionalLocation" @i18n} +
+        </button>
+      </div>
+      <div>
+        <button data-show-label="${'cuhu.equipment.showallfilters' @i18n}" data-hide-label="${'cuhu.equipment.hideallfilters' @i18n}" class="tpatom-btn tp-my-equipment__show-hide-button js-tp-my-equipment__show-hide-all-button" auto_locator="hideFilter">
+          <i class="icon icon-Filter"></i>
+          <span class="tpatom-btn__text sly-text">${"cuhu.equipment.showallfilters" @i18n}</span>
+        </button>
+        <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-all-button" auto_locator="removeFilter" hidden>
+          <i class="icon icon-My_Euipment_Bin_X"></i>
+          <span class="tpatom-btn__text sly-text">${"cuhu.equipment.removeallfilters" @i18n}</span>
+        </button>
+      </div>
     </div>
 
-    <div class="tp-my-equipment__search-count">
-    </div>
+    <div class="tp-my-equipment__search-count"></div>
 
     <div id="equipment-filter-modal" class="modal js-filter-modal tp-modal fade tp-equipment__filter-form" tabindex="-1" aria-hidden="true" role="dialog">
     </div>
 
-    <div class="tp-my-equipment__table_wrapper">
-
-    </div>
-    <div class="tp-my-equipment__pagination-container" id="pagination-container"></div>
+    <div class="tp-my-equipment__table_wrapper"></div>
+    <div class="tp-my-equipment__flex-container">
+      <div class="tp-my-equipment__pagination-container" id="pagination-container"></div>
+      <div class="tp-my-equipment__serial-desc"><span class="tp-my-equipment__astrick">*</span> ${"cuhu.equipment.permanentVolumeConversion" @i18n}</div>
+  </div>
   </div>
   </div>
 </sly>

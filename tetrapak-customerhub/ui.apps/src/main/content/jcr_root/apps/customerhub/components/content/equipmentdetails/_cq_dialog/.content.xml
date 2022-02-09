@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured" jcr:title="Equipment Details"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    size="L"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                <items jcr:primaryType="nt:unstructured">
+                    <content
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Equipment Details configurations"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    maximized="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <equipmentInformation
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="equipmentInformation Label (i18N key)"
+                                            name="./equipmentInformation"
+                                            required="true"/>
+                                    <updateEquipmentInformation
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="updateEquipmentInformation Label (i18N key)"
+                                            name="./updateEquipmentInformation"
+                                            required="true"/>
+                                    <equipmentDetails
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="equipmentDetails Label (i18N key)"
+                                            name="./equipmentDetails"
+                                            required="true"/>
+                                    <cancel
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Cancel Button Label (i18N key)"
+                                            name="./cancel"
+                                            required="true"/>
+                                    <requestUpdates
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Request Updates Button Label (i18N key)"
+                                            name="./requestUpdates"
+                                            required="true"/>
+                                    <makeUpdates
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Make Updates Button Label (i18N key)"
+                                            name="./makeUpdates"
+                                            required="true"/>
+                                    <country
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Country Label (i18N key)"
+                                            name="./country"
+                                            required="true"/>
+                                    <location
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Location (i18N key)"
+                                            name="./location"
+                                            required="true"/>
+                                    <site
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Site Label (i18N key)"
+                                            name="./site"
+                                            required="true"/>
+                                    <line
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Line Label (i18N key)"
+                                            name="./line"
+                                            required="true"/>
+                                    <equipmentstatus
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Equipment Status Label (i18N key)"
+                                            name="./equipmentstatus"
+                                            required="true"/>
+                                    <position
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Position (i18N key)"
+                                            name="./position"
+                                            required="true"/>
+                                    <equipmentDescription
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Equipment Description Label (i18N key)"
+                                            name="./equipmentDescription"
+                                            required="true"/>
+                                    <equipmentType
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Equipment Type Label (i18N key)"
+                                            name="./equipmentType"
+                                            required="true"/>
+                                    <machineSystem
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="machineSystem Label (i18N key)"
+                                            name="./machineSystem"
+                                            required="true"/>
+                                    <material
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="material Label (i18N key)"
+                                            name="./material"
+                                            required="true"/>
+                                    <manufacturerModelNumber
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="manufacturerModelNumber Label (i18N key)"
+                                            name="./manufacturerModelNumber"
+                                            required="true"/>
+                                    <manufacturerSerialNumber
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="manufacturerSerialNumber Label (i18N key)"
+                                            name="./manufacturerSerialNumber"
+                                            required="true"/>
+                                    <superiorEquipment
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="superiorEquipment Label (i18N key)"
+                                            name="./superiorEquipment"
+                                            required="true"/>
+                                    <functionalLocationDesc
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="functionalLocationDesc Label (i18N key)"
+                                            name="./functionalLocationDesc"
+                                            required="true"/>
+                                    <manufacturer
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="manufacturer Label (i18N key)"
+                                            name="./manufacturer"
+                                            required="true"/>
+                                    <manufacturerCountry
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="manufacturerCountry Label (i18N key)"
+                                            name="./manufacturerCountry"
+                                            required="true"/>
+                                    <constructionYear
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="constructionYear Label (i18N key)"
+                                            name="./constructionYear"
+                                            required="true"/>
+                                    <customerWarrantyEndDate
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="customerWarrantyEndDate Label (i18N key)"
+                                            name="./customerWarrantyEndDate"
+                                            required="true"/>
+                                    <customerWarrantyStartDate
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="customerWarrantyStartDate Label (i18N key)"
+                                            name="./customerWarrantyStartDate"
+                                            required="true"/>
+                                    <additionalDetails
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="additionalDetails Label (i18N key)"
+                                            name="./additionalDetails"
+                                            required="true"/>
+                                    <businessType
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="businessType Label (i18N key)"
+                                            name="./businessType"
+                                            required="true"/>
+                                    <equipmentCategory
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="equipmentCategory Label (i18N key)"
+                                            name="./equipmentCategory"
+                                            required="true"/>
+                                    <eofsConfirmationDate
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="eofsConfirmationDate Label (i18N key)"
+                                            name="./eofsConfirmationDate"
+                                            required="true"/>
+                                    <eofsValidFromDate
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="eofsValidFromDate Label (i18N key)"
+                                            name="./eofsValidFromDate"
+                                            required="true"/>
+                                    <thankYouLabel 
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="thankYou Label (i18N key)"
+                                            name="./thankYouLabel"
+                                            required="true"/>
+                                    <thankYouDescription
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="thankYou Description (i18N key)"
+                                            name="./thankYouDescription"
+                                            required="true"/>
+                                    <modalConfirmHeader
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Modal Confirm Header (i18N key)"
+                                            name="./modalConfirmHeader"
+                                            required="true"/>
+                                    <modalConfirmText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Modal Confirm Text (i18N key)"
+                                            name="./modalConfirmText"
+                                            required="true"/>
+                                    <statusUpdateHeading
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Status Update Header (i18N key)"
+                                            name="./statusUpdateHeading"
+                                            required="true"/>
+                                    <statusUpdateDescription
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Status Update Description  (i18N key)"
+                                            name="./statusUpdateDescription"
+                                            required="true"/>
+                                </items>
+                            </column>
+                        </items>
+                    </content>
+                    <column1
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Path Configuration"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <myEqipmentPath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Path To My Equipment Page"
+                                name="./myEqipmentPath"
+                                required="true"/>
+                        </items>
+                    </column1>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

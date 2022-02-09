@@ -1,34 +1,83 @@
+$color-red: #ff0000;
+
 .tp-my-equipment {
     &__modal-content {
-        max-height: 500px;
-        overflow: scroll;
+        max-height: 80vh;
+
+        @media #{$desktop} {
+            max-height: 640px;
+        }
+    }
+    &__modal-body {
+        @include padding($padding-zero $padding-l);
+        overflow-y: auto;
+
+        .tpatom-checkbox {
+            &:last-child {
+                .tpatom-checkbox__label {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .tpatom-radio {
+            &:last-child {
+                .tpatom-radio__label {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    &__modal-footer {
+        @include padding($padding-md);
+        flex-wrap: wrap;
+
+        @media #{$desktop} {
+            @include padding($padding-md $padding-l $padding-l $padding-l);
+        }
     }
     &__header-wrapper {
         @include margin-bottom($margin-l);
         display: flex;
         justify-content: space-between;
     }
+    &__apply-button {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-sm $padding-md);
+
+        span {
+            vertical-align: baseline;
+        }
+    }
+
     &__filter-button {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
-        @include padding($padding-md);
+        @include padding($padding-sm $padding-md);
         @include margin-right($margin-sm);
+        @include margin-bottom($margin-md);
         border: 1px solid $color-congress-blue;
         color: $color-congress-blue;
         box-sizing: border-box;
         border-radius: 22px;
+        font-weight: 500;
         &:hover {
-            border: 2px solid $color-congress-blue;
-            font-weight: 500;
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
             &.active {
-                border-width: 2px;
                 font-weight: 700;
+                background-color: $color-wild-sand;
             }
         }
         &.active {
-            border-width: 2px;
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
             font-weight: 700;
+            background-color: $color-wild-sand;
         }
+    }
+
+    &__filter-button-all {
+        display: none;
     }
 
     &__heading {
@@ -39,44 +88,53 @@
     &__search-count {
         @include padding($padding-md $padding-zero);
         @include margin($margin-md $margin-zero);
-        @include font-size($font-l);
-        @include line-height($font-xl, $font-l);
+        @include font-size($font-md);
+        @include line-height($font-xl, $font-md);
         color: $color-congress-blue;
         border-top: 1px solid $color-congress-blue;
         border-bottom: 1px solid $color-congress-blue;
     }
 
-    &__filter-wrapper {
+    &__filter-chips {
         display: flex;
+        flex-wrap: wrap;
     }
-
-    &__modal-body {
-        @include padding($padding-zero $padding-l);
-    }
-
     &__table {
-        overflow: scroll;
         table {
             position: relative;
             border-collapse: separate;
         }
         th {
+            @include padding($padding-md $padding-sm);
             position: sticky;
             top: 0;
-            padding: 16px;
             background: $color-white;
             border-bottom-color: $color-mercury;
             &.hide {
                 display: none;
             }
+            &.sorted {
+                padding: 16px 2px 16px 30px;
+            }
             button {
                 font-weight: 500;
             }
+            .icon {
+                color: inherit;
+                &:hover {
+                    color: $color-congress-blue;
+                }
+            }
+            .icon-Chevron_Down {
+                width: 12px;
+                position: absolute;
+                left: 16px;
+            }
         }
         td {
-            @include font-size($font-baseline);
-            @include line-height($font-l, $font-baseline);
-            padding: 16px;
+            @include font-size($font-sm);
+            @include line-height($font-l, $font-sm);
+            @include padding($padding-md $padding-sm);
             &.hide {
                 display: none;
             }
@@ -93,6 +151,16 @@
             text-decoration-style: dashed;
         }
     }
+
+    &__table-summary__row {
+        &:not(.tp-my-equipment__table-summary__rowheading) {
+            &:hover {
+                background-color: $color-wild-sand;
+                cursor: pointer;
+            }
+        }
+    }
+
     input[type='checkbox'] {
         &:checked ~ .tpatom-checkbox__icon {
             border: 1px solid $color-congress-blue;
@@ -104,13 +172,75 @@
 
     &__remove-button {
         color: $color-congress-blue;
+
+        &:hover {
+            color: $color-sky-blue;
+            .icon {
+                color: $color-sky-blue;
+            }
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-sm);
+        }
     }
 
-    .modal-footer > :not(:first-child) {
-        @include margin-left($margin-l);
+    &__show-hide-button {
+        @include margin-right($margin-md);
+        color: $color-congress-blue;
+        font-weight: 700;
+
+        i {
+            @include margin-right(3px);
+            display: inline-block;
+            transform: translateY(1px);
+        }
+
+        &:hover {
+            color: $color-sky-blue;
+            .icon {
+                color: $color-sky-blue;
+            }
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-sm);
+        }
     }
 
-    .tpatom-checkbox__label {
+    &__type-group-option {
+        & + .tp-my-equipment-filter-options {
+            @include margin-left($margin-md);
+            @include margin-bottom($margin-md);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__filter-count,
+    &__filter-count-err {
+        @include margin-top($margin-sm);
+        @include font-size($font-sm);
+        @include line-height(20px, $font-sm);
+        width: 100%;
+    }
+
+    &__filter-count-err {
+        color: $color-red;
+    }
+
+    .modal-footer {
+        > button {
+            &:not(:first-child) {
+                @include margin-left($margin-l);
+            }
+        }
+    }
+
+    .tpatom-checkbox__label,
+    .tpatom-radio__label {
         @include margin-bottom($margin-md);
     }
 
@@ -140,19 +270,26 @@
     &__header-actions {
         display: none;
         &.show {
-            @include padding($padding-l);
-            display: flex;
-            position: absolute;
-            right: 0;
-            background: $color-wild-sand;
-            border-radius: 4px;
-            min-width: 256px;
+            @media #{$mobile} {
+                @include padding($padding-l);
+                display: flex;
+                position: absolute;
+                right: 0;
+                background: $color-wild-sand;
+                border-radius: 4px;
+                min-width: 256px;
+            }
             span {
                 color: $color-tundora;
             }
         }
     }
-
+    &__header-actionicons {
+        position: relative;
+        @media #{$desktop} {
+            display: flex;
+        }
+    }
     .icon {
         color: $color-congress-blue;
         &.left {
@@ -164,20 +301,57 @@
             }
         }
     }
-    .icon-Hide {
+    .tpatom-radio__icon {
+        @include width(20px);
+        @include height(20px);
+        @include border-radius(20px);
+        display: inline-block;
+        position: relative;
+
+        &::before {
+            @include width(8px);
+            @include height(8px);
+            @include border-radius(10px);
+            content: '';
+            background: $color-congress-blue;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .action-icon {
         display: none;
     }
 
-    &__customise-table-action {
+    &__action-button {
         display: flex;
         cursor: pointer;
         &:hover * {
             color: $color-sky-blue;
         }
+        &.second {
+            @include margin-top(12px);
+            @include margin-bottom($margin-md);
+            @media #{$desktop} {
+                @include margin-top($margin-zero);
+                @include margin-bottom($margin-zero);
+            }
+        }
     }
 
-    &__pagination-container {
+    &__flex-container {
         @include padding-top($padding-md);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__serial-desc {
+        @include margin-top($margin-md);
+    }
+
+    &__astrick {
+        color: $color-secondary-orange;
     }
 
     .pagination-icon-wrapper {
@@ -207,24 +381,16 @@
                 align-items: center;
             }
 
-            li.paginationjs-ellipsis {
-                a {
-                    min-width: 24px;
-                }
-            }
-
             li.paginationjs-prev,
             li.paginationjs-next {
                 width: 24px;
                 text-align: center;
                 a {
-                    min-width: 24px;
                     cursor: pointer;
                 }
             }
 
             li.paginationjs-prev {
-                @include margin-left($margin-l);
                 i {
                     &::before {
                         transform: rotate(-180deg);
@@ -235,16 +401,29 @@
             li {
                 border: 0;
                 a {
+                    @include padding($padding-zero 9px);
                     color: $color-congress-blue;
                     height: 24px;
+                    min-width: auto;
                     line-height: 24px;
                     &:hover {
                         background-color: transparent;
                     }
                 }
                 &.paginationjs-next {
-                    @include margin-right($margin-l);
+                    @include margin-right($margin-xs);
+                    @media #{$desktop} {
+                        @include margin-right($margin-l);
+                    }
+
                     border-right: 0;
+                }
+                &.paginationjs-prev {
+                    @include margin-left($margin-xs);
+                    @media #{$desktop} {
+                        @include margin-left($margin-l);
+                    }
+
                 }
                 &:last-child {
                     border-right: 0;
@@ -255,9 +434,7 @@
                 a {
                     color: $color-congress-blue;
                     height: 24px;
-                    width: 24px;
                     border-radius: 4px;
-                    min-width: 24px;
                     line-height: 24px;
                 }
 
@@ -269,6 +446,12 @@
                 }
             }
         }
+        @media #{$mobile} {
+            .first,
+            .last {
+                display: none;
+            }
+        }
     }
 
     @media #{$desktop} {
@@ -278,14 +461,26 @@
         &__header-actions {
             display: flex;
         }
-        .icon-Hide {
+        .action-icon {
             @include padding-right($padding-sm);
             display: flex;
         }
-        &__customise-table-action {
+        &__action-button {
             display: flex;
             line-height: 40px;
             align-items: center;
+
+            &:not(:last-child) {
+                @include margin-right($margin-md);
+            }
+        }
+        &__flex-container {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &__serial-desc {
+            @include margin-top($margin-zero);
         }
     }
 }
@@ -323,11 +518,13 @@
     @include padding($padding-l);
     border: 1px solid $color-mercury;
     color: $color-tundora;
+    font-family: $font-monsterrat;
     font-size: $font-sm;
     max-width: 246px;
     text-align: left;
     background-color: $color-wild-sand;
     border-radius: 4px;
+    font-weight: 500;
 }
 
 .tooltip-header {
