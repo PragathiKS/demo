@@ -571,6 +571,9 @@ public final class CustomerHubConstants {
     
     /** TheConstant SORT */
     public static final String EQUIPMENT_API_SORT = "sort";
+
+	/** The Constant for Email ID. */
+    public static final String CUSTOMER_EMAIL_ID = "emailId";
     
     /**
      * Instantiates a new customer hub constants.
