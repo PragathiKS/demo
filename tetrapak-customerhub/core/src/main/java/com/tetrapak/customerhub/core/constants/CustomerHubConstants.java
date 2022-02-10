@@ -25,6 +25,9 @@ public final class CustomerHubConstants {
 
     /** The Constant PATH_SEPARATOR. */
     public static final String PATH_SEPARATOR = "/";
+    
+    /** The Constant DOT. */
+    public static final String DOT = ".";
 
     /** The Constant ROOT_NODE. */
     public static final String ROOT_NODE = "root";
@@ -413,9 +416,6 @@ public final class CustomerHubConstants {
     /** The Constant NEW_EQUIPMENT_TITLE. */
     public static final String NEW_EQUIPMENT_TITLE = "title";
 
-    /** The Constant NEW_EQUIPMENT_SUBTITLE. */
-    public static final String NEW_EQUIPMENT_SUBTITLE = "subTitle";
-
     /** The Constant NEW_EQUIPMENT_SERIAL_NUMBER_LABEL. */
     public static final String NEW_EQUIPMENT_SERIAL_NUMBER_LABEL = "serialNumberLabel";
 
@@ -439,9 +439,6 @@ public final class CustomerHubConstants {
 
     /** The Constant NEW_EQUIPMENT_DETAILS_TITLE. */
     public static final String NEW_EQUIPMENT_DETAILS_TITLE = "detailsTitle";
-
-    /** The Constant NEW_EQUIPMENT_DETAILS_SUBTITLE. */
-    public static final String NEW_EQUIPMENT_DETAILS_SUBTITLE = "detailsSubtitle";
 
     /** The Constant NEW_EQUIPMENT_COUNTRY_LABEL. */
     public static final String NEW_EQUIPMENT_COUNTRY_LABEL = "countryLabel";
@@ -505,6 +502,9 @@ public final class CustomerHubConstants {
 
     /** The Constant NEW_EQUIPMENT_LINE_ERROR_MSG. */
     public static final String NEW_EQUIPMENT_LINE_ERROR_MSG = "lineErrorMsg";
+
+    /** The Constant NEW_EQUIPMENT_NEWLINE_OPTION. */
+    public static final String NEW_EQUIPMENT_NEWLINE_OPTION = "newLineOption";
 
     /** The Constant NEW_EQUIPMENT_POSITION_ERROR_MSG. */
     public static final String NEW_EQUIPMENT_POSITION_ERROR_MSG = "positionErrorMsg";
@@ -571,6 +571,12 @@ public final class CustomerHubConstants {
 
     /** TheConstant EQUIPMENT_STATUS_DESCRIPTION */
     public static final String EQUIPMENT_STATUS_DESCRIPTION = "equipmentStatusDesc";
+    
+    /** TheConstant SORT */
+    public static final String EQUIPMENT_API_SORT = "sort";
+
+	/** The Constant for Email ID. */
+    public static final String CUSTOMER_EMAIL_ID = "emailId";
     
     /**
      * Instantiates a new customer hub constants.
