@@ -1,5 +1,8 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import com.day.cq.i18n.I18n;
+import com.day.cq.wcm.api.LanguageManager;
+import com.day.cq.wcm.api.Page;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
@@ -7,6 +10,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.CotsSupportModel;
 import com.tetrapak.customerhub.core.services.CotsSupportService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
+import com.tetrapak.customerhub.core.utils.PageUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
@@ -29,7 +33,9 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 @Component(service = Servlet.class, property = {
         "sling.servlet.methods=" + HttpConstants.METHOD_POST,
@@ -54,6 +60,9 @@ public class CotsSupportEmailServlet extends SlingAllMethodsServlet {
     
     @Reference
     private transient XSSAPI xssAPI;
+
+    @Reference
+    private LanguageManager languageManager;
     
     private Gson gson = new Gson();
     
@@ -61,6 +70,11 @@ public class CotsSupportEmailServlet extends SlingAllMethodsServlet {
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
         LOGGER.debug("Inside CotsSupportEmailServlet servlet : Post method");
+        LOGGER.debug(request.getResource().getPath());
+        LOGGER.debug(request.getResource().getName());
+      //  Page currentPage = PageUtil.getCurrentPage(request.getResource());
+        I18n i18n = getI18n(request);
+      //  LOGGER.debug("????????"+i18n.get("cuhu.aip.company"));
         JsonObject jsonResponse = new JsonObject();
         Session session = request.getResourceResolver().adaptTo(Session.class);
         if (null == session) {
@@ -76,7 +90,7 @@ public class CotsSupportEmailServlet extends SlingAllMethodsServlet {
                 List<Map<String, String>> requestFilePayload = extractRequestFilePayload(request);
                 CotsSupportModel model = request.getResourceResolver()
                         .getResource(request.getParameter("componentPath")).adaptTo(CotsSupportModel.class);
-                cotsSupportService.sendEmail(requestFilePayload, model, bean);
+                cotsSupportService.sendEmail(requestFilePayload, model, bean,i18n);
                 jsonResponse = HttpUtil.setJsonResponse(jsonResponse, "Success", HttpStatus.SC_ACCEPTED);
             } else {
                 LOGGER.debug("Empty bean");
@@ -137,6 +151,16 @@ public class CotsSupportEmailServlet extends SlingAllMethodsServlet {
             jsonObject.addProperty(key, jsonObject.get(key).getAsString());
         }
         return jsonObject;
+    }
+
+    public I18n getI18n(SlingHttpServletRequest request){
+        Locale locale = languageManager.getLanguage(request.getResource());
+        if(locale == null){
+            locale = new Locale("en");
+        }
+        LOGGER.debug("===?????????"+locale.getLanguage());
+        ResourceBundle resourceBundle = request.getResourceBundle(locale);
+        return new I18n(resourceBundle);
     }
     
 }

@@ -1,10 +1,13 @@
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.adobe.acs.commons.email.EmailService;
+import com.day.cq.i18n.I18n;
+import com.day.cq.wcm.api.LanguageManager;
 import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.models.CotsSupportModel;
 import com.tetrapak.customerhub.core.services.config.CotsSupportServiceConfig;
+import com.tetrapak.customerhub.core.servlets.CotsSupportEmailServlet;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import junitx.util.PrivateAccessor;
 import org.apache.sling.event.jobs.JobManager;
@@ -19,9 +22,12 @@ import org.osgi.service.component.annotations.Reference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 public class CotsSupportServiceImplTest {
@@ -35,6 +41,9 @@ public class CotsSupportServiceImplTest {
 
     @Mock
     private CotsSupportServiceConfig cotsSupportServiceConfig;
+
+    @Mock
+    private LanguageManager languageManager;
 
 
     private static final String RESOURCE_JSON = "cotsSupportComponent.json";
@@ -52,6 +61,7 @@ public class CotsSupportServiceImplTest {
         MockitoAnnotations.initMocks(this);
         aemContext.registerService(JobManager.class,jobManager);
         aemContext.registerService(EmailService.class,emailService);
+        aemContext.registerService(LanguageManager.class,languageManager);
         aemContext.registerService(CotsSupportServiceConfig.class,cotsSupportServiceConfig);
         when(cotsSupportServiceConfig.emailTemplatePath()).thenReturn(templatePath);
         when(cotsSupportServiceConfig.recipientAddresses()).thenReturn(new String[]{recipientEmail});
@@ -62,6 +72,9 @@ public class CotsSupportServiceImplTest {
         List<Map<String,String>> attachments = new ArrayList<>();
         CotsSupportModel model = new CotsSupportModel();
         CotsSupportFormBean cotsSupportFormBean = new CotsSupportFormBean();
-        assertEquals(true,cotsSupportServiceImpl.sendEmail(attachments,model,cotsSupportFormBean));
+        Locale locale = languageManager.getLanguage(aemContext.currentResource());
+        ResourceBundle resourceBundle = aemContext.request().getResourceBundle(locale);
+        I18n i18n = new I18n(resourceBundle);
+        assertEquals(true,cotsSupportServiceImpl.sendEmail(attachments,model,cotsSupportFormBean,i18n));
     }
 }
