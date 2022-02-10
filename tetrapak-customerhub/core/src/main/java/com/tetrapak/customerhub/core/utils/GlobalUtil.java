@@ -583,8 +583,8 @@ public class GlobalUtil {
                 return emailId;
             }
             ValueMap vMap = userResource.getValueMap();
-            if (vMap.containsKey("emailId")) {
-                emailId = (String) vMap.get("emailId");
+            if (vMap.containsKey(CustomerHubConstants.CUSTOMER_EMAIL_ID)) {
+                emailId = (String) vMap.get(CustomerHubConstants.CUSTOMER_EMAIL_ID);
             }
         } catch (RepositoryException e) {
             LOGGER.error("RepositoryException in getting email address in GlobalUtil", e);
