@@ -579,15 +579,15 @@ public class GlobalUtil {
         try {
             user = userManager.getAuthorizable(session.getUserID());
             Resource userResource = resourceResolver.getResource(user.getPath());
-            if (userResource == null) {
+            if (Objects.isNull(userResource)) {
                 return emailId;
             }
             ValueMap vMap = userResource.getValueMap();
-            if (vMap.containsKey("mail")) {
-                emailId = (String) vMap.get("bpnumber");
+            if (vMap.containsKey(CustomerHubConstants.CUSTOMER_EMAIL_ID)) {
+                emailId = (String) vMap.get(CustomerHubConstants.CUSTOMER_EMAIL_ID);
             }
         } catch (RepositoryException e) {
-            LOGGER.error("RepositoryException in getting BP number in AnalyticsGlobalTagsModel", e);
+            LOGGER.error("RepositoryException in getting email address in GlobalUtil", e);
         }
         return emailId;
     }

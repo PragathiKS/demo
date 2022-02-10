@@ -9,7 +9,7 @@
 	serviceProviderEntityId="MyTetraPakDev"
 	assertionConsumerServiceURL=""
 	spPrivateKeyAlias=""
-	keyStorePassword="Admin@123"
+	keyStorePassword="unmodified"
 	defaultRedirectUrl="/dashboard.html"
 	userIDAttribute="uid"
 	useEncryption="{Boolean}false"
