@@ -45,7 +45,17 @@ public class CotsSupportModel {
         SALUTATION("salutation"),
         BODY("body"),
         CONTACT_DETAILS("contactDetails"),
-        RECIPIENT_EMAIL_ADDRESS("recipientEmailAddress");
+        RECIPIENT_EMAIL_ADDRESS("recipientEmailAddress"),
+        SUBMIT_BUTTON("submitButtonLabel"),
+        COMMENTS_ERROR_MESSAGE("commentsErrorMsg"),
+        EMAIL_ERROR_MESSAGE("emailErrorMsg"),
+        PHONE_ERROR_MESSAGE("phoneErrorMsg"),
+        SELECT_ERROR_MESSAGE("selectErrorMsg"),
+        INVALID_FILE_ERROR_MESSAGE("invalidFileErrorMsg"),
+        OPTIONAL("optional"),
+        REMOVE_FILE_LABEL("removeFileLabel"),
+        DRAG_DROP_TITLE("dragAndDropTitle"),
+        DRAG_DROP_SUBTITLE("dragAndDropSubtitle");
 
         public final String i18nJsonKey;
 
@@ -155,7 +165,37 @@ public class CotsSupportModel {
     
     @Inject
     private String recipientEmailAddress;
-    
+
+    @Inject
+    private String submitButtonLabel;
+
+    @Inject
+    private String commentsErrorMsg;
+
+    @Inject
+    private String emailErrorMsg;
+
+    @Inject
+    private String phoneErrorMsg;
+
+    @Inject
+    private String selectErrorMsg;
+
+    @Inject
+    private String invalidFileErrorMsg;
+
+    @Inject
+    private String optional;
+
+    @Inject
+    private String removeFileLabel;
+
+    @Inject
+    private String dragAndDropTitle;
+
+    @Inject
+    private String dragAndDropSubtitle;
+
     private String i18nKeys;
     
     private String componentPath;
@@ -187,7 +227,17 @@ public class CotsSupportModel {
         i18KeyMap.put(COTSSupportComponentDialog.DROPDOWN_PLACEHOLDER.getI18nJsonKey(), getDropdownPlaceholder());
         i18KeyMap.put(COTSSupportComponentDialog.INPUT_ERROR_MESSAGE.getI18nJsonKey(), getInputErrorMsg());
         i18KeyMap.put(COTSSupportComponentDialog.SUCCESS_MESSAGE.getI18nJsonKey(), getSuccessMessage());
-        
+        i18KeyMap.put(COTSSupportComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
+        i18KeyMap.put(COTSSupportComponentDialog.COMMENTS_ERROR_MESSAGE.getI18nJsonKey(), getCommentsErrorMsg());
+        i18KeyMap.put(COTSSupportComponentDialog.EMAIL_ERROR_MESSAGE.getI18nJsonKey(), getEmailErrorMsg());
+        i18KeyMap.put(COTSSupportComponentDialog.PHONE_ERROR_MESSAGE.getI18nJsonKey(), getPhoneErrorMsg());
+        i18KeyMap.put(COTSSupportComponentDialog.SELECT_ERROR_MESSAGE.getI18nJsonKey(), getSelectErrorMsg());
+        i18KeyMap.put(COTSSupportComponentDialog.INVALID_FILE_ERROR_MESSAGE.getI18nJsonKey(), getInvalidFileErrorMsg());
+        i18KeyMap.put(COTSSupportComponentDialog.OPTIONAL.getI18nJsonKey(), getOptional());
+        i18KeyMap.put(COTSSupportComponentDialog.REMOVE_FILE_LABEL.getI18nJsonKey(), getRemoveFileLabel());
+        i18KeyMap.put(COTSSupportComponentDialog.DRAG_DROP_TITLE.getI18nJsonKey(), getDragAndDropTitle());
+        i18KeyMap.put(COTSSupportComponentDialog.DRAG_DROP_SUBTITLE.getI18nJsonKey(), getDragAndDropSubtitle());
+
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("================" + i18nKeys.toString());
@@ -303,5 +353,45 @@ public class CotsSupportModel {
     
     public String getRecipientEmailAddress() {
         return recipientEmailAddress;
+    }
+
+    public String getSubmitButtonLabel() {
+        return submitButtonLabel;
+    }
+
+    public String getCommentsErrorMsg() {
+        return commentsErrorMsg;
+    }
+
+    public String getEmailErrorMsg() {
+        return emailErrorMsg;
+    }
+
+    public String getPhoneErrorMsg() {
+        return phoneErrorMsg;
+    }
+
+    public String getSelectErrorMsg() {
+        return selectErrorMsg;
+    }
+
+    public String getInvalidFileErrorMsg() {
+        return invalidFileErrorMsg;
+    }
+
+    public String getOptional() {
+        return optional;
+    }
+
+    public String getRemoveFileLabel() {
+        return removeFileLabel;
+    }
+
+    public String getDragAndDropTitle() {
+        return dragAndDropTitle;
+    }
+
+    public String getDragAndDropSubtitle() {
+        return dragAndDropSubtitle;
     }
 }

@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.services.impl;
 
+import com.day.cq.i18n.I18n;
 import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.jobs.CotsSupportEmailJob;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -59,7 +61,7 @@ public class CotsSupportServiceImpl implements CotsSupportService {
     
     @Override
     public boolean sendEmail(List<Map<String, String>> attachments, CotsSupportModel model,
-            CotsSupportFormBean cotsSupportFormBean) {
+            CotsSupportFormBean cotsSupportFormBean, I18n i18n) {
         LOGGER.debug("Inside sendEmail method of CotsSupportServiceImpl");
         boolean isSuccess = false;
         String[] recipientEmailFromOsgiConfig = config.recipientAddresses();
@@ -67,7 +69,7 @@ public class CotsSupportServiceImpl implements CotsSupportService {
             Map<String, String> emailParams = new HashMap<>();
             // emailParams.put(SENDER_EMAIL_ADDRESS,config.senderEmailAddress());
             // emailParams.put(SENDER_NAME,config.senderName());
-            extractCotsSupportModelProps(emailParams, model);
+            extractCotsSupportModelProps(emailParams, model,i18n);
             Map<String, Object> properties = new HashMap<>();
             properties.put(TEMPLATE_PATH, config.emailTemplatePath());
             properties.put(EMAIL_PARAMS, emailParams);
@@ -91,30 +93,30 @@ public class CotsSupportServiceImpl implements CotsSupportService {
         return isSuccess;
     }
     
-    public void extractCotsSupportModelProps(Map<String, String> emailParams, CotsSupportModel model) {
-        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SALUTATION.i18nJsonKey, model.getSalutation());
-        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.BODY.i18nJsonKey, model.getBody());
+    public void extractCotsSupportModelProps(Map<String, String> emailParams, CotsSupportModel model, I18n i18n) {
+        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SALUTATION.i18nJsonKey, i18n.get(model.getSalutation()));
+        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.BODY.i18nJsonKey, i18n.get(model.getBody()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.CONTACT_DETAILS.i18nJsonKey,
-                model.getContactDetails());
+                i18n.get(model.getContactDetails()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SELECT_REQUEST.i18nJsonKey,
-                model.getSelectRequest());
-        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.COMPANY.i18nJsonKey, model.getCompany());
-        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.CUSTOMER_SITE.i18nJsonKey, model.getCustomerSite());
+                i18n.get(model.getSelectRequest()));
+        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.COMPANY.i18nJsonKey, i18n.get(model.getCompany()));
+        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.CUSTOMER_SITE.i18nJsonKey, i18n.get(model.getCustomerSite()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.AFFECTED_SYSTEMS_LABEL.i18nJsonKey,
-                model.getAffectedSystemsLabel());
+                i18n.get(model.getAffectedSystemsLabel()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.PRODUCT_INVOLVED.i18nJsonKey,
-                model.getProductInvolvedLabel());
+                i18n.get(model.getProductInvolvedLabel()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SOFTWARE_VERSION.i18nJsonKey,
-                model.getSoftwareVersion());
+                i18n.get(model.getSoftwareVersion()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.ENGINEERING_LICENSE_SERIAL_NUMBER.i18nJsonKey,
-                model.getEngineeringLicenseSerialNumber());
+                i18n.get(model.getEngineeringLicenseSerialNumber()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SHORT_DESCRIPTION.i18nJsonKey,
-                model.getShortDescription());
+                i18n.get(model.getShortDescription()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.CONTACT_DETAILS.i18nJsonKey,
-                model.getContactDetails());
-        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.QUESTION.i18nJsonKey, model.getQuestion());
+                i18n.get(model.getContactDetails()));
+        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.QUESTION.i18nJsonKey, i18n.get(model.getQuestion()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.RECIPIENT_EMAIL_ADDRESS.i18nJsonKey,
-                model.getRecipientEmailAddress());
+                i18n.get(model.getRecipientEmailAddress()));
         
     }
     

@@ -1,5 +1,7 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import com.day.cq.i18n.I18n;
+import com.day.cq.wcm.api.LanguageManager;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
@@ -69,6 +71,9 @@ public class CotsSupportEmailServletTest {
     @Mock
     private Session mockSession;
 
+    @Mock
+    private LanguageManager languageManager;
+
     @Rule
     public final AemContext context = CuhuCoreAemContext.getAemContext(RESOURCE_JSON,RESOURCE_PATH);
 
@@ -84,10 +89,11 @@ public class CotsSupportEmailServletTest {
         Gson gson = new Gson();
         String content = readFileFromPath(TEST_FILE);
         when(cotsSupportService.sendEmail(anyList(), any(CotsSupportModel.class),
-                        any(CotsSupportFormBean.class)))
+                        any(CotsSupportFormBean.class),any(I18n.class)))
                 .thenReturn(true);
         when(xssAPI.getValidJSON(anyString(), anyString())).thenReturn(content);
         context.request().setParameterMap(gson.fromJson(content, Map.class));
+        context.request().setResource(context.resourceResolver().getResource(RESOURCE_PATH));
         servlet.doPost(context.request(), context.response());
         assertEquals("status should be ok", HttpStatus.SC_OK, context.response().getStatus());
     }
