@@ -88,8 +88,8 @@ public class CotsSupportEmailServletTest {
 
         Gson gson = new Gson();
         String content = readFileFromPath(TEST_FILE);
-        when(cotsSupportService.sendEmail(anyList(), any(CotsSupportModel.class),
-                        any(CotsSupportFormBean.class),any(I18n.class)))
+        when(cotsSupportService.sendEmail(anyList(),
+                        any(CotsSupportFormBean.class),any(SlingHttpServletRequest.class)))
                 .thenReturn(true);
         when(xssAPI.getValidJSON(anyString(), anyString())).thenReturn(content);
         context.request().setParameterMap(gson.fromJson(content, Map.class));
