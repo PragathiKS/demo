@@ -2,6 +2,10 @@ import $ from 'jquery';
 import { logger } from '../../../scripts/utils/logger';
 import { render } from '../../../scripts/utils/render';
 import { REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
+import { getI18n } from '../../../scripts/common/common';
+import auth from '../../../scripts/utils/auth';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods } from '../../../scripts/utils/constants';
 
 function _renderCotsSupportForm() {
   render.fn(
@@ -10,11 +14,9 @@ function _renderCotsSupportForm() {
       target: this.cache.$contentWrapper,
       data: {
         i18nKeys: this.cache.i18nKeys,
-        // TODO remove hardcoded dictionary when api will be available
-        affectedSystemsDictionary: [
-          { key: 'production-control', desc: 'Production Control' },
-          { key: 'mes', desc: 'MES' }
-        ]
+        affectedSystemsDictionary: this.cache.affectedSystem,
+        userName: this.cache.username,
+        userEmail: this.cache.userEmailAddress
       }
     },
     this.showContent
@@ -23,12 +25,15 @@ function _renderCotsSupportForm() {
 
 function _renderFiles() {
   const $this = this;
-  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.dragAndDropRemoveFileLabel }));
+  const $fileExtensionError = $this.root.find('.js-tp-cots-support__file-error');
+  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.dragAndDropRemoveFileLabel, isError: true }));
   render.fn({
     template: 'cotsSupportFiles',
     target: '.js-tp-cots-support__drag-and-drop-files-container',
     data: obj
   });
+
+  $fileExtensionError.attr('hidden', 'hidden');
 }
 
 
@@ -49,24 +54,16 @@ class CotsSupport {
   }
 
   cache = {};
-  // TODO remove hardcoded dictionary when api will be available
-  productInvolved = {
-    productionControlDictionary: [
-      { key: 'TIA-portal', desc: 'TIA Portal' },
-      { key: 'control-logix', desc: 'Control Logix' },
-      { key: 'orion', desc: 'Orion' },
-      { key: 'archestra-system-platform', desc: 'Archestra System Platform' }
-    ],
-    MESDictionary: [
-      { key: 'production-integrator', desc: 'Production Integrator' },
-      { key: 'Aveva-MES-SI-Kit', desc: 'Aveva MES SI-Kit' }
-    ]
-  }
 
   initCache() {
     this.cache.$contentWrapper = this.root.find('.js-tp-cots-support__content-wrapper');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
+    this.cache.submitApi = this.root.data('submit-api');
+    this.cache.username = this.root.data('username');
+    this.cache.userEmailAddress = this.root.data('email');
     this.cache.files = [];
+    this.cache.affectedSystem = [];
+    this.cache.productInvolved = [];
     try {
       const configJson = this.root.find('.js-tp-cots-support__config').text();
       this.cache.i18nKeys = JSON.parse(configJson);
@@ -74,6 +71,23 @@ class CotsSupport {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+  }
+
+  setAffectedSystem = () => {
+    const affectedSystemdata = this.cache.i18nKeys['affectedSystems'] ? this.cache.i18nKeys['affectedSystems'] : {};
+    Object.keys(affectedSystemdata).forEach(key => {
+      const datalabel = `${getI18n(affectedSystemdata[key].label)}`;
+      const affectedSysObj = {'key' : datalabel, 'desc' : datalabel};
+      this.cache.affectedSystem.push(affectedSysObj);
+      const productInvolvedData = [];
+      const productInvolvedArr= affectedSystemdata[key].productsInvolved ? affectedSystemdata[key].productsInvolved :[];
+      productInvolvedArr.forEach(productRow => {
+        const productRowlabel = `${getI18n(productRow.product)}`;
+        const productObj = {'key' : productRowlabel, 'desc' : productRowlabel};
+        productInvolvedData.push(productObj);
+      });
+      this.cache.productInvolved[`${datalabel}`] = productInvolvedData;
+    });
   }
 
   isEmailValid(email) {
@@ -115,7 +129,7 @@ class CotsSupport {
     this.renderFiles();
   }
 
-  submitForm = (e, onSuccess) => {
+  submitForm = (e) => {
     e.preventDefault();
     let isFormValid = true;
     this.removeAllErrorMessages();
@@ -150,35 +164,44 @@ class CotsSupport {
         }
       }
       this.showSpinner();
-      // TODO create submit request when api will be available
+
+      auth.getToken(({ data: authData }) => {
+        ajaxWrapper
+          .getXhrObj({
+            url: this.cache.submitApi,
+            method: ajaxMethods.POST,
+            cache: true,
+            processData: false,
+            contentType: false,
+            data: formData,
+            beforeSend(jqXHR) {
+              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+            },
+            showLoader: true
+          }).done(() => {
+            this.renderSuccessMessage();
+          }).fail(() => {
+            this.cache.$contentWrapper.removeClass('d-none');
+            this.cache.$spinner.addClass('d-none');
+          });
+      });
       // eslint-disable-next-line
       console.log(formData);
-      onSuccess();
     }
   };
 
-  submitTypeOfQueryForm = (e) => {
-    this.submitForm(e, () => this.renderSuccessMessage());
+  submitRequestForm = (e) => {
+    this.submitForm(e);
   };
 
 
   handleAffectedSystemChange = () => {
     const affectedSystems = this.root.find('[name=affectedSystems]').val();
-    const productionInv = this.productInvolved;
-    if(affectedSystems === 'production-control'){
-      const productionControl = productionInv.productionControlDictionary;
-      $('#productInvolved option[value !=""]').remove();
-      productionControl.forEach(product => {
-        $('#productInvolved').append($('<option>').text(product['desc']).attr('value', product['key']));
-      });
-    }else if(affectedSystems === 'mes'){
-      const mes = productionInv.MESDictionary;
-      $('#productInvolved option[value !=""]').remove();
-      mes.forEach(product => {
-        $('#productInvolved').append($('<option>').text(product['desc']).attr('value', product['key']));
-      });
-    }
-
+    const productionInv = this.cache.productInvolved;
+    $('#productInvolved option[value !=""]').remove();
+    productionInv[`${affectedSystems}`].forEach(product => {
+      $('#productInvolved').append($('<option>').text(product['desc']).attr('value', product['key']));
+    });
     this.setFieldsMandatory();
   };
 
@@ -197,6 +220,7 @@ class CotsSupport {
 
   dropFiles(e, $this, dropEvent) {
     let files;
+    const currentFilesCount = $this.cache.files.length;
     if (dropEvent) {
       files = e.originalEvent.dataTransfer.files;
     } else {
@@ -207,11 +231,22 @@ class CotsSupport {
         $this.cache.files.push(files[i]);
       }
     }
-    $this.renderFiles();
+    if ($this.cache.files.length > currentFilesCount) {
+      $this.renderFiles();
+    }
   }
 
   filterFiles(file) {
     const maxFileSize = 10 * 1024 * 1024;
+    const blockedExtensions = /(\.exe|\.zip)$/i;
+    const filePath = file.name;
+    const $fileExtensionError = this.root.find('.js-tp-cots-support__file-error');
+
+    if (blockedExtensions.exec(filePath) || (file.size > maxFileSize)) {
+      $fileExtensionError.removeAttr('hidden');
+      return false;
+    }
+
     return file.size < maxFileSize;
   }
 
@@ -242,7 +277,12 @@ class CotsSupport {
 
     this.root.on('change', '[name=affectedSystems]', this.handleAffectedSystemChange);
     this.root.on('click', '.js-tp-cots-support__drag-and-drop-button', this.addInputTypeFile);
-    this.root.on('click', '.js-tp-cots-support__submit-type-of-query', this.submitTypeOfQueryForm);
+    this.root.on('click', '.js-tp-cots-support__submit', this.submitRequestForm);
+
+    this.root.on('click', '.js-tp-cots-support__drag-and-drop-file-remove-container', e => {
+      this.removeFile(e);
+    });
+
   }
 
   renderCotsSupportForm() {
@@ -259,6 +299,7 @@ class CotsSupport {
 
   init() {
     this.initCache();
+    this.setAffectedSystem();
     this.renderCotsSupportForm();
     this.bindEvents();
   }
