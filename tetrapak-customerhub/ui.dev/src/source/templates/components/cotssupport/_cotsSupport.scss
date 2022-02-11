@@ -203,4 +203,13 @@
             }
         }
     }
+
+    &__file-error {
+        @include margin-top($margin-md);
+        @include font-size($font-sm);
+        display: flex;
+        color: $color-alert;
+        justify-content: space-between;
+        flex-direction: column;
+    }
 }

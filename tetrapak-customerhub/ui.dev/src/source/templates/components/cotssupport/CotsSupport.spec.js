@@ -25,6 +25,7 @@ describe('CotsSupport', function () {
     this.setFilterFilesSpy = sinon.spy(this.cotsSupport, 'filterFiles');
     this.renderSuccessMessageSpy = sinon.spy(this.cotsSupport,'renderSuccessMessage');
     this.addErrorMsgSpy = sinon.spy(this.cotsSupport, 'addErrorMsg');
+    this.submitFormSpy = sinon.spy(this.cotsSupport, 'submitForm');
     this.cotsSupport.init();
   });
 
@@ -38,6 +39,7 @@ describe('CotsSupport', function () {
     this.dropFilesSpy.restore();
     this.setFilterFilesSpy.restore();
     this.renderSuccessMessageSpy.restore();
+    this.submitFormSpy.restore();
     this.addErrorMsgSpy.restore();
   });
 
@@ -52,7 +54,7 @@ describe('CotsSupport', function () {
   });
 
   it('should render form validation errors', function (done) {
-    $('.js-tp-cots-support__submit-type-of-query').trigger('click');
+    $('.js-tp-cots-support__submit').trigger('click');
     expect(this.renderSuccessMessageSpy.called).to.be.false;
     expect(this.addErrorMsgSpy.called).to.be.true;
     done();
@@ -118,8 +120,8 @@ describe('CotsSupport', function () {
     $('#name').val('Test user');
     $('#emailAddress').val('tetrapak@tetrapak.com');
     $('#telephone').val('1234567');
-    $('.js-tp-cots-support__submit-type-of-query').trigger('click');
-    expect(this.renderSuccessMessageSpy.called).to.be.true;
+    $('.js-tp-cots-support__submit').trigger('click');
+    expect(this.submitFormSpy.called).to.be.true;
     done();
   });
 

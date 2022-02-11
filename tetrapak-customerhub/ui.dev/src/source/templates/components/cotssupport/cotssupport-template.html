@@ -1,5 +1,8 @@
 <sly data-sly-template.cotssupport_template="${@data, flag}">
-    <div class="tp-cots-support tp-card" data-module="CotsSupport">
+    <div class="tp-cots-support tp-card" data-module="CotsSupport"
+    data-submit-api="${data.componentPath}${data.componentPathExtension}"
+    data-username="${data.userName}"
+    data-email="${data.userEmailAddress}">
         <code class="d-none js-tp-cots-support__config">${data.i18nKeys}</code>
         <div class="tp-spinner js-tp-spinner">
             <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html"
