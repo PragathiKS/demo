@@ -20,8 +20,9 @@ public class CotsSupportModelTest {
 
     @Before
     public void setup() {
-        Resource currentResource = aemContext.currentResource(RESOURCE_PATH);
-        cotsSupportModel = currentResource.adaptTo(CotsSupportModel.class);
+        Resource currentResource = aemContext.resourceResolver().getResource(RESOURCE_PATH);
+        aemContext.request().setResource(currentResource);
+        cotsSupportModel = aemContext.request().adaptTo(CotsSupportModel.class);
     }
 
     @Test

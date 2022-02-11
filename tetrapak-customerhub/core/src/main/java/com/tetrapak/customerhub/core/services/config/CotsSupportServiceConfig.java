@@ -26,20 +26,4 @@ public @interface CotsSupportServiceConfig {
      */
     @AttributeDefinition(name = "Email Template Path", description = "Email Template Path", type = AttributeType.STRING)
     String emailTemplatePath();
-
-    /**
-     * Sender name
-     *
-     * @return Sender name
-     */
-    @AttributeDefinition(name = "Sender name", description = "Sender name", type = AttributeType.STRING)
-    String senderName();
-
-    /**
-     * Sender email address
-     *
-     * @return Sender email address
-     */
-    @AttributeDefinition(name = "Sender email address", description = "Sender email address", type = AttributeType.STRING)
-    String senderEmailAddress();
 }

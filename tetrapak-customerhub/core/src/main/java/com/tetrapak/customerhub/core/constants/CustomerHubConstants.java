@@ -25,6 +25,9 @@ public final class CustomerHubConstants {
 
     /** The Constant PATH_SEPARATOR. */
     public static final String PATH_SEPARATOR = "/";
+    
+    /** The Constant DOT. */
+    public static final String DOT = ".";
 
     /** The Constant ROOT_NODE. */
     public static final String ROOT_NODE = "root";

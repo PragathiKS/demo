@@ -3,10 +3,14 @@ package com.tetrapak.customerhub.core.models;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.servlets.CotsSupportEmailServlet;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CotsSupportModel {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CotsSupportModel.class);
@@ -26,6 +30,7 @@ public class CotsSupportModel {
         SUBTITLE("subTitle"),
         SELECT_REQUEST("selectRequest"),
         TECHNICAL_ISSUES("technicalIssues"),
+        PRODUCT_SUPPORT("productSupport"),
         COMPANY("company"),
         CUSTOMER_SITE("customerSite"),
         AFFECTED_SYSTEMS_LABEL("affectedSystemsLabel"),
@@ -59,7 +64,7 @@ public class CotsSupportModel {
 
         public final String i18nJsonKey;
 
-        private COTSSupportComponentDialog(String jsonKey) {
+        COTSSupportComponentDialog(String jsonKey) {
             this.i18nJsonKey = jsonKey;
         }
 
@@ -70,130 +75,147 @@ public class CotsSupportModel {
     }
 
     /** The resource. */
-    @Self
+    @SlingObject
     private Resource resource;
+
+    @SlingObject
+    private SlingHttpServletRequest request;
     
     /** The title */
-    @Inject
+    @ValueMapValue
     private String title;
     
     /** The subtitle */
-    @Inject
+    @ValueMapValue
     private String subTitle;
     
     /** The select type of request label. */
-    @Inject
+    @ValueMapValue
     private String selectRequest;
     
     /** The technical issues label. */
-    @Inject
+    @ValueMapValue
     private String technicalIssues;
+
+    /** The technical issues label. */
+    @ValueMapValue
+    private String productSupport;
     
     /** The company field label. */
-    @Inject
+    @ValueMapValue
     private String company;
     
     /** The customer site field label. */
-    @Inject
+    @ValueMapValue
     private String customerSite;
     
-    @Inject
+    @ValueMapValue
     private String affectedSystemsLabel;
     
-    /** The affected systems field label. */
-    @Inject
+    @Inject @Via("resource")
     private List<AffectedSystemsModel> affectedSystems;
     
-    @Inject
+    @ValueMapValue
     private String productInvolvedLabel;
     
     /** The Software Version field label. */
-    @Inject
+    @ValueMapValue
     private String softwareVersion;
     
     /** The Engineering License Serial Number field label. */
-    @Inject
+    @ValueMapValue
     private String engineeringLicenseSerialNumber;
     
     /** The Short description field label. */
-    @Inject
+    @ValueMapValue
     private String shortDescription;
     
     /** The Select File button field label */
-    @Inject
+    @ValueMapValue
     private String selectFile;
     
     /** The question button label. */
-    @Inject
+    @ValueMapValue
     private String question;
     
     /** The name label */
-    @Inject
+    @ValueMapValue
     private String name;
     
     /** The email address label */
-    @Inject
+    @ValueMapValue
     private String emailAddress;
     
     /** The telephone label. */
-    @Inject
+    @ValueMapValue
     private String telephone;
     
     /** The dropdown placeholder label. */
-    @Inject
+    @ValueMapValue
     private String dropdownPlaceholder;
     
     /** The input error message label. */
-    @Inject
+    @ValueMapValue
     private String inputErrorMsg;
     
     /** The success message */
-    @Inject
+    @ValueMapValue
     private String successMessage;
     
     /** The salutation text in email */
-    @Inject
+    @ValueMapValue
     private String salutation;
     
     /** The body text in email */
-    @Inject
+    @ValueMapValue
     private String body;
     
     /** The contact details text in email */
-    @Inject
+    @ValueMapValue
     private String contactDetails;
     
-    @Inject
+    /** The recipient email address in email */
+    @ValueMapValue
     private String recipientEmailAddress;
 
-    @Inject
+    /** The submit button label */
+    @ValueMapValue
     private String submitButtonLabel;
 
-    @Inject
+    /** The comments field error message */
+    @ValueMapValue
     private String commentsErrorMsg;
 
-    @Inject
+    /** The email Error message */
+    @ValueMapValue
     private String emailErrorMsg;
 
-    @Inject
+    /** The phone field Error message */
+    @ValueMapValue
     private String phoneErrorMsg;
 
-    @Inject
+    /** The select field Error message */
+    @ValueMapValue
     private String selectErrorMsg;
 
-    @Inject
+    /** The invalid file Error message */
+    @ValueMapValue
     private String invalidFileErrorMsg;
 
-    @Inject
+    /** The optional field Error message */
+    @ValueMapValue
     private String optional;
 
-    @Inject
+    /** The remove File Label Error message */
+    @ValueMapValue
     private String removeFileLabel;
 
-    @Inject
+    /** The drag and drop title */
+    @ValueMapValue
     private String dragAndDropTitle;
 
-    @Inject
+    /** The drag and drop subtitle */
+    @ValueMapValue
     private String dragAndDropSubtitle;
 
     private String i18nKeys;
@@ -201,6 +223,10 @@ public class CotsSupportModel {
     private String componentPath;
     
     private String componentPathExtension;
+
+    private String userName;
+
+    private String userEmailAddress;
     
     /**
      * init method.
@@ -212,9 +238,12 @@ public class CotsSupportModel {
         i18KeyMap.put(COTSSupportComponentDialog.SUBTITLE.getI18nJsonKey(), getSubTitle());
         i18KeyMap.put(COTSSupportComponentDialog.SELECT_REQUEST.getI18nJsonKey(), getSelectRequest());
         i18KeyMap.put(COTSSupportComponentDialog.TECHNICAL_ISSUES.getI18nJsonKey(), getTechnicalIssues());
+        i18KeyMap.put(COTSSupportComponentDialog.PRODUCT_SUPPORT.getI18nJsonKey(), getProductSupport());
         i18KeyMap.put(COTSSupportComponentDialog.COMPANY.getI18nJsonKey(), getCompany());
         i18KeyMap.put(COTSSupportComponentDialog.CUSTOMER_SITE.getI18nJsonKey(), getCustomerSite());
+        i18KeyMap.put(COTSSupportComponentDialog.AFFECTED_SYSTEMS_LABEL.getI18nJsonKey(), getAffectedSystemsLabel());
         i18KeyMap.put(COTSSupportComponentDialog.AFFECTED_SYSTEMS.getI18nJsonKey(), getAffectedSystems());
+        i18KeyMap.put(COTSSupportComponentDialog.PRODUCT_INVOLVED.getI18nJsonKey(), getProductInvolvedLabel());
         i18KeyMap.put(COTSSupportComponentDialog.SOFTWARE_VERSION.getI18nJsonKey(), getSoftwareVersion());
         i18KeyMap.put(COTSSupportComponentDialog.ENGINEERING_LICENSE_SERIAL_NUMBER.getI18nJsonKey(),
                 getEngineeringLicenseSerialNumber());
@@ -240,13 +269,21 @@ public class CotsSupportModel {
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
-        LOGGER.debug("================" + i18nKeys.toString());
+        LOGGER.debug("i18nKeys : " + i18nKeys);
         
         this.componentPath = this.resource.getPath();
-        this.componentPathExtension = "." + CotsSupportEmailServlet.SLING_SERVLET_SELECTOR + "."
-                + CotsSupportEmailServlet.SLING_SERVLET_EXTENSION;
+        this.componentPathExtension = CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_SELECTOR
+                + CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_EXTENSION;
+        this.setUserEmailAddress();
+        if (request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME) != null) {
+            this.userName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
+        }
     }
-    
+
+    public void setUserEmailAddress() {
+        this.userEmailAddress = GlobalUtil.getCustomerEmailAddress(this.request);
+    }
+
     public String getTitle() {
         return title;
     }
@@ -262,7 +299,11 @@ public class CotsSupportModel {
     public String getTechnicalIssues() {
         return technicalIssues;
     }
-    
+
+    public String getProductSupport() {
+        return productSupport;
+    }
+
     public String getCompany() {
         return company;
     }
@@ -393,5 +434,13 @@ public class CotsSupportModel {
 
     public String getDragAndDropSubtitle() {
         return dragAndDropSubtitle;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getUserEmailAddress() {
+        return userEmailAddress;
     }
 }
