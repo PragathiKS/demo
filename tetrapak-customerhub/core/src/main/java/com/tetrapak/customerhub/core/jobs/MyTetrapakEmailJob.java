@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.activation.DataSource;
 import javax.mail.util.ByteArrayDataSource;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.consumer.JobConsumer;
 import org.osgi.service.component.annotations.Component;
@@ -59,7 +60,7 @@ public class MyTetrapakEmailJob implements JobConsumer {
                                 attachment.get(CotsSupportEmailServlet.CONTENT_TYPE)));
             }
         }
-        if (recipients != null) {
+        if (ArrayUtils.isNotEmpty(recipients)) {
             emailService.sendEmail(job.getProperty(TEMPLATE_PATH).toString(),
                     (Map<String, String>) job.getProperty(EMAIL_PARAMS), attachments, recipients);
         } else {
