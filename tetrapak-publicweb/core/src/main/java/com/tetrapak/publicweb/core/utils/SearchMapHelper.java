@@ -117,8 +117,8 @@ public final class SearchMapHelper {
             map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
         }
         map.put("p.guessTotal", String.valueOf(guessTotal));
-        map.put("104_orderby", "@jcr:content/articleDate");
-        map.put("105_orderby", "@jcr:content/cq:lastModified");
+        map.put("104_orderby", "@jcr:score");
+        map.put("105_orderby", "@jcr:content/articleDate");
         map.put("104_orderby.sort", "desc");
         map.put("105_orderby.sort", "desc");
 
