@@ -5,6 +5,10 @@
 ##        : /foo/bar[./]* -> all pages below and /foo/bar itself
 ##        : *.html        -> all .html files
 ## Default allow all items to cache
+/0005 {
+    /glob "*403.html"
+    /type "deny"
+  }
 /0006 {
         /glob "*"
         /type "allow"
@@ -32,5 +36,4 @@
     /glob "*.nocache.html*"
     /type "deny"
   }
-
 
