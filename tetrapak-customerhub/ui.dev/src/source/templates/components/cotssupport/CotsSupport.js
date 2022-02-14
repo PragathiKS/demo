@@ -3,7 +3,6 @@ import { logger } from '../../../scripts/utils/logger';
 import { render } from '../../../scripts/utils/render';
 import { REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
 import { getI18n } from '../../../scripts/common/common';
-import auth from '../../../scripts/utils/auth';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 
@@ -61,11 +60,11 @@ class CotsSupport {
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.username = this.root.data('username');
     this.cache.userEmailAddress = this.root.data('email');
+    const configJson = this.root.find('.js-tp-cots-support__config').text();
     this.cache.files = [];
     this.cache.affectedSystem = [];
     this.cache.productInvolved = [];
     try {
-      const configJson = this.root.find('.js-tp-cots-support__config').text();
       this.cache.i18nKeys = JSON.parse(configJson);
     } catch (e) {
       this.cache.i18nKeys = {};
@@ -165,28 +164,21 @@ class CotsSupport {
       }
       this.showSpinner();
 
-      auth.getToken(({ data: authData }) => {
-        ajaxWrapper
-          .getXhrObj({
-            url: this.cache.submitApi,
-            method: ajaxMethods.POST,
-            cache: true,
-            processData: false,
-            contentType: false,
-            data: formData,
-            beforeSend(jqXHR) {
-              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-            },
-            showLoader: true
-          }).done(() => {
-            this.renderSuccessMessage();
-          }).fail(() => {
-            this.cache.$contentWrapper.removeClass('d-none');
-            this.cache.$spinner.addClass('d-none');
-          });
-      });
-      // eslint-disable-next-line
-      console.log(formData);
+      ajaxWrapper
+        .getXhrObj({
+          url: this.cache.submitApi,
+          method: ajaxMethods.POST,
+          cache: true,
+          processData: false,
+          contentType: false,
+          data: formData,
+          showLoader: true
+        }).done(() => {
+          this.renderSuccessMessage();
+        }).fail(() => {
+          this.cache.$contentWrapper.removeClass('d-none');
+          this.cache.$spinner.addClass('d-none');
+        });
     }
   };
 
@@ -256,8 +248,7 @@ class CotsSupport {
   }
 
   setFieldsMandatory() {
-    const $this = this;
-    const fields = $this.root.find('.js-tp-cots-support__toggle-mandatory');
+    const fields = this.root.find('.js-tp-cots-support__toggle-mandatory');
     fields.each(function () {
       $(this).find('input, select, textarea').attr('required', true);
     });

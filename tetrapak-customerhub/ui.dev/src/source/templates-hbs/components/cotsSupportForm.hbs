@@ -2,7 +2,7 @@
 <p class="tp-cots-support__subtitle">{{i18n key=i18nKeys.subTitle}}</p>
 
 <form class="tp-cots-support__form" enctype="multipart/form-data">
--  <div class="row">
+  <div class="row">
       <div class="col-lg-6 tp-cots-support__form-element">
         <h3>{{i18n key=i18nKeys.selectRequest}}</h3>
 
@@ -90,7 +90,7 @@
         </div>
         <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
             <div class="tp-cots-support__drag-and-drop-description-wrapper">
-                <label class="tpatom-input-box__text tp-cots-support__drag-and-drop-description">{{i18n key=i18nKeys.dragAndDropDescription}}</label>
+                <label class="tpatom-input-box__text tp-cots-support__drag-and-drop-description">{{i18n key=i18nKeys.selectFile}}</label>
             </div>
             <div class="tp-cots-support__drag-and-drop js-tp-cots-support__drag-and-drop">
                 {{> atoms/buttons/button/button
@@ -98,7 +98,7 @@
                         jsClass="js-tp-cots-support__drag-and-drop-button"
                         className="tp-cots-support__drag-and-drop-button"
                         iconClass="icon-Plus"
-                        text="Select a File"
+                        text=i18nKeys.selectFile
                 }}
                 <p class="tp-cots-support__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropTitle}}</p>
                 <p class="tp-cots-support__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropSubtitle}}</p>
@@ -126,7 +126,7 @@
                 required="true"
                 maxlength=300
                 readonly="true"
-                value=userName
+                defaultValue=userName
         }}
         <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
         </div>
@@ -137,7 +137,7 @@
                         required="true"
                         maxlength=300
                         readonly="true"
-                        value=userEmail
+                        defaultValue=userEmail
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 <div class="error-msg js-tp-cots-support__error-msg-invalid-email">{{i18n key=i18nKeys.emailErrorMsg}}</div>
