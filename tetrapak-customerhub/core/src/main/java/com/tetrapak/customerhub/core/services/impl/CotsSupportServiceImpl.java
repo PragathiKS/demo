@@ -16,7 +16,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
-import com.adobe.acs.commons.email.EmailService;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,9 +43,6 @@ public class CotsSupportServiceImpl implements CotsSupportService {
     private JobManager jobMgr;
     
     @Reference
-    private EmailService emailService;
-    
-    @Reference
     private XSSAPI xssAPI;
     
     /** The config. */
@@ -67,6 +63,7 @@ public class CotsSupportServiceImpl implements CotsSupportService {
         LOGGER.debug("Inside sendEmail method of CotsSupportServiceImpl");
         CotsSupportModel model = request.adaptTo(CotsSupportModel.class);
         boolean isSuccess = false;
+        boolean isFeatureEnabled = config.isCotsSupportEmailEnabled();
         String[] recipientEmailFromOsgiConfig = config.recipientAddresses();
         if (Objects.nonNull(recipientEmailFromOsgiConfig)) {
             Map<String, String> emailParams = new HashMap<>();
@@ -75,22 +72,14 @@ public class CotsSupportServiceImpl implements CotsSupportService {
             Map<String, Object> properties = new HashMap<>();
             properties.put(CotsSupportEmailJob.TEMPLATE_PATH, config.emailTemplatePath());
             properties.put(CotsSupportEmailJob.EMAIL_PARAMS, emailParams);
-            // If author has specified recipient email address in dialog, then OSGI value will be overwritten
-            String recipientAddressFromDialog = emailParams
-                    .get(CotsSupportModel.COTSSupportComponentDialog.RECIPIENT_EMAIL_ADDRESS.i18nJsonKey);
-            if (recipientAddressFromDialog == null || recipientAddressFromDialog.equals(StringUtils.EMPTY)) {
-                properties.put(CotsSupportEmailJob.RECIPIENTS_ARRAY, recipientEmailFromOsgiConfig);
-            } else {
-                properties.put(CotsSupportEmailJob.RECIPIENTS_ARRAY, new String[] {
-                        recipientAddressFromDialog
-                });
-            }
+            properties.put(CotsSupportEmailJob.RECIPIENTS_ARRAY, recipientEmailFromOsgiConfig);
             properties.put(CotsSupportEmailJob.ATTACHMENTS, attachments);
-            if (jobMgr != null) {
+            if (jobMgr != null && isFeatureEnabled && recipientEmailFromOsgiConfig != null) {
+                LOGGER.debug("Email feature enabled");
                 jobMgr.addJob(CotsSupportEmailJob.JOB_TOPIC_NAME, properties);
                 isSuccess = true;
             } else {
-                LOGGER.error("JobManager Reference null");
+                LOGGER.error("Error in setting up pre-requisites for Email job.");
             }
         }
         return isSuccess;
@@ -131,9 +120,6 @@ public class CotsSupportServiceImpl implements CotsSupportService {
                 getI18nValue(request, prefix, model.getContactDetails()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.QUESTION.i18nJsonKey,
                 getI18nValue(request, prefix, model.getQuestion()));
-        emailParams.put(CotsSupportModel.COTSSupportComponentDialog.RECIPIENT_EMAIL_ADDRESS.i18nJsonKey,
-                getI18nValue(request, prefix, model.getRecipientEmailAddress()));
-        
     }
     
     

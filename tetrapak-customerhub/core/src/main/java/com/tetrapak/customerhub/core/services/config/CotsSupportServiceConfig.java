@@ -26,4 +26,12 @@ public @interface CotsSupportServiceConfig {
      */
     @AttributeDefinition(name = "Email Template Path", description = "Email Template Path", type = AttributeType.STRING)
     String emailTemplatePath();
+    
+    /**
+     * Enable COTS Support Email functionality
+     * @return Enable COTS Support Email functionality
+     */
+    @AttributeDefinition(name = "Enable COTS Support Email functionality",
+            description = "Enable COTS Support Email functionality", type = AttributeType.BOOLEAN)
+    boolean isCotsSupportEmailEnabled();
 }

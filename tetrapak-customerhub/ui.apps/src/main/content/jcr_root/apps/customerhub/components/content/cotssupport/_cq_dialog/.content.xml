@@ -212,12 +212,6 @@
                                 fieldLabel="Input File error message (i18N key)"
                                 name="./invalidFileErrorMsg"
                                 required="true"/>
-                            <optional
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Option field label (i18N key)"
-                                name="./optional"
-                                required="true"/>
                             <removeFileLabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -259,12 +253,6 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Contact details text (i18N key)"
                                 name="./contactDetails"/>
-                            <recipientEmailAddresss
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                emptyText="Email Address"
-                                fieldLabel="Recipient Email Addresses"
-                                name="./recipientEmailAddress"/>
                         </items>
                     </column2>
                 </items>
