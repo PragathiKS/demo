@@ -50,14 +50,12 @@ public class CotsSupportModel {
         SALUTATION("salutation"),
         BODY("body"),
         CONTACT_DETAILS("contactDetails"),
-        RECIPIENT_EMAIL_ADDRESS("recipientEmailAddress"),
         SUBMIT_BUTTON("submitButtonLabel"),
         COMMENTS_ERROR_MESSAGE("commentsErrorMsg"),
         EMAIL_ERROR_MESSAGE("emailErrorMsg"),
         PHONE_ERROR_MESSAGE("phoneErrorMsg"),
         SELECT_ERROR_MESSAGE("selectErrorMsg"),
         INVALID_FILE_ERROR_MESSAGE("invalidFileErrorMsg"),
-        OPTIONAL("optional"),
         REMOVE_FILE_LABEL("removeFileLabel"),
         DRAG_DROP_TITLE("dragAndDropTitle"),
         DRAG_DROP_SUBTITLE("dragAndDropSubtitle");
@@ -174,10 +172,6 @@ public class CotsSupportModel {
     @ValueMapValue
     private String contactDetails;
     
-    /** The recipient email address in email */
-    @ValueMapValue
-    private String recipientEmailAddress;
-
     /** The submit button label */
     @ValueMapValue
     private String submitButtonLabel;
@@ -201,10 +195,6 @@ public class CotsSupportModel {
     /** The invalid file Error message */
     @ValueMapValue
     private String invalidFileErrorMsg;
-
-    /** The optional field Error message */
-    @ValueMapValue
-    private String optional;
 
     /** The remove File Label Error message */
     @ValueMapValue
@@ -262,14 +252,13 @@ public class CotsSupportModel {
         i18KeyMap.put(COTSSupportComponentDialog.PHONE_ERROR_MESSAGE.getI18nJsonKey(), getPhoneErrorMsg());
         i18KeyMap.put(COTSSupportComponentDialog.SELECT_ERROR_MESSAGE.getI18nJsonKey(), getSelectErrorMsg());
         i18KeyMap.put(COTSSupportComponentDialog.INVALID_FILE_ERROR_MESSAGE.getI18nJsonKey(), getInvalidFileErrorMsg());
-        i18KeyMap.put(COTSSupportComponentDialog.OPTIONAL.getI18nJsonKey(), getOptional());
         i18KeyMap.put(COTSSupportComponentDialog.REMOVE_FILE_LABEL.getI18nJsonKey(), getRemoveFileLabel());
         i18KeyMap.put(COTSSupportComponentDialog.DRAG_DROP_TITLE.getI18nJsonKey(), getDragAndDropTitle());
         i18KeyMap.put(COTSSupportComponentDialog.DRAG_DROP_SUBTITLE.getI18nJsonKey(), getDragAndDropSubtitle());
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
-        LOGGER.debug("i18nKeys : " + i18nKeys);
+        LOGGER.debug("i18nKeys : {}",i18nKeys);
         
         this.componentPath = this.resource.getPath();
         this.componentPathExtension = CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_SELECTOR
@@ -391,10 +380,6 @@ public class CotsSupportModel {
     public String getContactDetails() {
         return contactDetails;
     }
-    
-    public String getRecipientEmailAddress() {
-        return recipientEmailAddress;
-    }
 
     public String getSubmitButtonLabel() {
         return submitButtonLabel;
@@ -418,10 +403,6 @@ public class CotsSupportModel {
 
     public String getInvalidFileErrorMsg() {
         return invalidFileErrorMsg;
-    }
-
-    public String getOptional() {
-        return optional;
     }
 
     public String getRemoveFileLabel() {

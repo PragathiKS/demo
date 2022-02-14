@@ -76,6 +76,7 @@ public class CotsSupportServiceImplTest {
         aemContext.registerService(CotsSupportServiceConfig.class,cotsSupportServiceConfig);
         when(cotsSupportServiceConfig.emailTemplatePath()).thenReturn(templatePath);
         when(cotsSupportServiceConfig.recipientAddresses()).thenReturn(new String[]{recipientEmail});
+        when(cotsSupportServiceConfig.isCotsSupportEmailEnabled()).thenReturn(true);
         aemContext.registerService( CotsSupportServiceImpl.class,cotsSupportServiceImpl);
         when(cotsSupportServiceImpl.getI18nValue(any(),any(),any())).thenReturn("");
 

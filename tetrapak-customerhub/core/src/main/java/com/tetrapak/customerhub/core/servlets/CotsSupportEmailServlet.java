@@ -107,8 +107,8 @@ public class CotsSupportEmailServlet extends SlingAllMethodsServlet {
                 InputStream stream = param.getInputStream();
                 if (!param.isFormField()) {
                     Map<String, String> attachment = new HashMap<>();
-                    LOGGER.debug("file detected");
-                    LOGGER.debug(param.getFileName() + "=========" + param.getContentType());
+                    LOGGER.debug("File detected with name : {} and content type : {}", param.getFileName(),
+                            param.getContentType());
                     attachment.put(CONTENT_TYPE, param.getContentType());
                     attachment.put(FILE_NAME, param.getFileName());
                     byte[] bytes = IOUtils.toByteArray(stream);
