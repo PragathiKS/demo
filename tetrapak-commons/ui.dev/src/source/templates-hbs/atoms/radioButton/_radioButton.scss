@@ -21,7 +21,7 @@
     border: 1px solid $color-tundora;
     height: 20px;
     width: 20px;
-    z-index: 2;
+    z-index: $zindex-s;
     display: block;
     border-radius: 100%;
     position: absolute;
