@@ -1,6 +1,7 @@
 
 package com.tetrapak.customerhub.core.jobs;
 
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -23,16 +24,16 @@ import com.tetrapak.customerhub.core.servlets.CotsSupportEmailServlet;
  * Sling job to send email.
  */
 @Component(immediate = true, service = JobConsumer.class, property = {
-        JobConsumer.PROPERTY_TOPICS + "=" + CotsSupportEmailJob.JOB_TOPIC_NAME
+        JobConsumer.PROPERTY_TOPICS + "=" + MyTetrapakEmailJob.JOB_TOPIC_NAME
 })
-public class CotsSupportEmailJob implements JobConsumer {
+public class MyTetrapakEmailJob implements JobConsumer {
     
     public static final String JOB_TOPIC_NAME = "customerhub/jobs/sendEmailJob";
     public static final String TEMPLATE_PATH = "templatePath";
     public static final String EMAIL_PARAMS = "emailParams";
     public static final String RECIPIENTS_ARRAY = "receipientsArray";
     public static final String ATTACHMENTS = "attachments";
-    private static final Logger LOGGER = LoggerFactory.getLogger(CotsSupportEmailJob.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyTetrapakEmailJob.class);
     
     /** The email service. */
     @Reference
@@ -45,10 +46,11 @@ public class CotsSupportEmailJob implements JobConsumer {
      */
     @Override
     public JobResult process(final Job job) {
-        LOGGER.debug("Inside process method of CotsSupportEmailJob");
+        LOGGER.debug("Inside process method of MyTetrapakEmailJob class");
         List<Map<String, String>> listOfAttachments = (List<Map<String, String>>) job.getProperty(ATTACHMENTS);
         Map<String, DataSource> attachments = new HashMap<>();
         String[] recipients = (String[]) job.getProperty(RECIPIENTS_ARRAY);
+        LOGGER.debug("Sending email to : {}",Arrays.toString(recipients));
         if (listOfAttachments != null) {
             for (Map<String, String> attachment : listOfAttachments) {
                 attachments.put(attachment.get(CotsSupportEmailServlet.FILE_NAME),
