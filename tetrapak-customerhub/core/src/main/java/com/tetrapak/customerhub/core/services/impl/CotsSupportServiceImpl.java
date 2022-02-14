@@ -3,10 +3,10 @@ package com.tetrapak.customerhub.core.services.impl;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
-import com.tetrapak.customerhub.core.jobs.CotsSupportEmailJob;
+import com.tetrapak.customerhub.core.jobs.MyTetrapakEmailJob;
 import com.tetrapak.customerhub.core.models.CotsSupportModel;
 import com.tetrapak.customerhub.core.services.CotsSupportService;
-import com.tetrapak.customerhub.core.services.config.CotsSupportServiceConfig;
+import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -29,7 +29,7 @@ import java.util.Objects;
  * The Class CotsSupportService Implementation.
  */
 @Component(service = CotsSupportService.class, immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
-@Designate(ocd = CotsSupportServiceConfig.class)
+@Designate(ocd = AIPEmailConfiguration.class)
 public class CotsSupportServiceImpl implements CotsSupportService {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(CotsSupportServiceImpl.class);
@@ -46,14 +46,14 @@ public class CotsSupportServiceImpl implements CotsSupportService {
     private XSSAPI xssAPI;
     
     /** The config. */
-    private CotsSupportServiceConfig config;
+    private AIPEmailConfiguration config;
     
     /**
      * Activate.
      * @param config the config
      */
     @Activate
-    public void activate(final CotsSupportServiceConfig config) {
+    public void activate(final AIPEmailConfiguration config) {
         this.config = config;
     }
     
@@ -70,13 +70,13 @@ public class CotsSupportServiceImpl implements CotsSupportService {
             extractCotsSupportModelProps(emailParams, model, request, I18N_PREFIX);
             extractFormData(emailParams, cotsSupportFormBean);
             Map<String, Object> properties = new HashMap<>();
-            properties.put(CotsSupportEmailJob.TEMPLATE_PATH, config.emailTemplatePath());
-            properties.put(CotsSupportEmailJob.EMAIL_PARAMS, emailParams);
-            properties.put(CotsSupportEmailJob.RECIPIENTS_ARRAY, recipientEmailFromOsgiConfig);
-            properties.put(CotsSupportEmailJob.ATTACHMENTS, attachments);
+            properties.put(MyTetrapakEmailJob.TEMPLATE_PATH, config.emailTemplatePath());
+            properties.put(MyTetrapakEmailJob.EMAIL_PARAMS, emailParams);
+            properties.put(MyTetrapakEmailJob.RECIPIENTS_ARRAY, recipientEmailFromOsgiConfig);
+            properties.put(MyTetrapakEmailJob.ATTACHMENTS, attachments);
             if (jobMgr != null && isFeatureEnabled && recipientEmailFromOsgiConfig != null) {
                 LOGGER.debug("Email feature enabled");
-                jobMgr.addJob(CotsSupportEmailJob.JOB_TOPIC_NAME, properties);
+                jobMgr.addJob(MyTetrapakEmailJob.JOB_TOPIC_NAME, properties);
                 isSuccess = true;
             } else {
                 LOGGER.error("Error in setting up pre-requisites for Email job.");

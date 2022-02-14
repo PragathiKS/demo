@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
-public class CotsSupportEmailJobTest {
+public class MyTetrapakEmailJobTest {
 
     @Mock
     private EmailService emailService;
@@ -28,7 +28,7 @@ public class CotsSupportEmailJobTest {
     private Job job;
 
     @InjectMocks
-    private final CotsSupportEmailJob sendMailJob = new CotsSupportEmailJob();
+    private final MyTetrapakEmailJob sendMailJob = new MyTetrapakEmailJob();
 
     @Rule
     public final AemContext aemContext = new AemContext();
