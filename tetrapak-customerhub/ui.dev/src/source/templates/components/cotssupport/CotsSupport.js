@@ -25,7 +25,7 @@ function _renderCotsSupportForm() {
 function _renderFiles() {
   const $this = this;
   const $fileExtensionError = $this.root.find('.js-tp-cots-support__file-error');
-  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.dragAndDropRemoveFileLabel, isError: true }));
+  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.removeFileLabel, isError: true }));
   render.fn({
     template: 'cotsSupportFiles',
     target: '.js-tp-cots-support__drag-and-drop-files-container',
