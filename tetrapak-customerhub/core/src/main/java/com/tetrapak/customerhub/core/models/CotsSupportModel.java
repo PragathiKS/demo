@@ -6,9 +6,11 @@ import com.tetrapak.customerhub.core.servlets.CotsSupportEmailServlet;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
@@ -78,6 +80,9 @@ public class CotsSupportModel {
 
     @SlingObject
     private SlingHttpServletRequest request;
+
+    @ScriptVariable
+    private ResourceResolver resolver;
     
     /** The title */
     @ValueMapValue
@@ -260,7 +265,8 @@ public class CotsSupportModel {
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("i18nKeys : {}",i18nKeys);
         
-        this.componentPath = this.resource.getPath();
+        this.componentPath = resolver.map(this.resource.getPath());
+        LOGGER.debug("Resource mapped url : {}",this.componentPath);
         this.componentPathExtension = CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_SELECTOR
                 + CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_EXTENSION;
         this.setUserEmailAddress();
