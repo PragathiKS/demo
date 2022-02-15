@@ -25,6 +25,9 @@ public final class CustomerHubConstants {
 
     /** The Constant PATH_SEPARATOR. */
     public static final String PATH_SEPARATOR = "/";
+    
+    /** The Constant DOT. */
+    public static final String DOT = ".";
 
     /** The Constant ROOT_NODE. */
     public static final String ROOT_NODE = "root";
@@ -571,6 +574,9 @@ public final class CustomerHubConstants {
     
     /** TheConstant SORT */
     public static final String EQUIPMENT_API_SORT = "sort";
+
+	/** The Constant for Email ID. */
+    public static final String CUSTOMER_EMAIL_ID = "emailId";
     
     /**
      * Instantiates a new customer hub constants.

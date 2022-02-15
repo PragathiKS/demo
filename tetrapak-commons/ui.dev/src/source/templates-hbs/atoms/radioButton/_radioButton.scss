@@ -1,0 +1,43 @@
+.tpatom-radio-button {
+  position: relative;
+  &__input {
+    visibility: hidden;
+    position: absolute;
+    &:checked ~ .form-check-radio {
+      &::before {
+        background: $color-congress-blue;
+      }
+    }
+  }
+  &__label {
+    @include margin-bottom($margin-md);
+    @include line-height($spacing-big, $font-baseline);
+    @include padding-left($padding-xl);
+    font-size: $font-baseline;
+    z-index: 3;
+    position: relative;
+  }
+  .form-check-radio {
+    border: 1px solid $color-tundora;
+    height: 20px;
+    width: 20px;
+    z-index: $zindex-s;
+    display: block;
+    border-radius: 100%;
+    position: absolute;
+    top: 2px;
+    left: 0;
+
+    &::before {
+      height: 8px;
+      width: 8px;
+      top: 5px;
+      left: 5px;
+      display: block;
+      position: absolute;
+      content: '';
+      border-radius: 100%;
+      margin: auto;
+    }
+  }
+}

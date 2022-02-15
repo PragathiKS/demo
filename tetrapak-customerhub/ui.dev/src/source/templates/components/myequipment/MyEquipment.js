@@ -205,13 +205,6 @@ class MyEquipment {
       $modal.modal();
     });
 
-    this.cache.$functionalLocFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'functionalLocation',header:i18nKeys['functionalLocation'], isTextInput: true};
-      const activeSerialNum = this.cache.combinedFiltersObj['functionalLocation'] ? this.cache.combinedFiltersObj['functionalLocation'] : '';
-      this.renderFilterForm(activeSerialNum, formDetail, this.cache.$functionalLocFilterLabel);
-      $modal.modal();
-    });
-
     $myEquipmentCustomizeTableAction.on('click', () => {
       this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:true });
       $('.tp-my-equipment__header-actions').removeClass('show');
@@ -366,7 +359,7 @@ class MyEquipment {
     return activeCountry[0].countryCode;
   }
 
-  getAllAvailableFilterVals(authData, filterValuesArr, newCountry) {
+  getAllAvailableFilterVals(filterValuesArr, newCountry) {
     const equipmentApi = this.cache.equipmentApi.data('list-api');
     const { combinedFiltersObj } = this.cache;
 
@@ -385,26 +378,27 @@ class MyEquipment {
       if (filterVal === 'lines') {
         apiUrlRequest += '&count=7000';
       }
-
-      ajaxWrapper
-        .getXhrObj({
-          url: apiUrlRequest,
-          method: 'GET',
-          contentType: 'application/json',
-          dataType: 'json',
-          beforeSend(jqXHR) {
-            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-            jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-          },
-          showLoader: true
-        }).then(res => {
-          if (newCountry) {
-            this.cache.allApiFilterValsObj[filterVal] = res.data;
-          } else {
-            this.cache.currentApiFilterValsObj[filterVal] = res.data;
-            this.checkActiveFilterSets(filterVal, res.data);
-          }
-        });
+      auth.getToken(({ data: authData }) => {
+        ajaxWrapper
+          .getXhrObj({
+            url: apiUrlRequest,
+            method: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend(jqXHR) {
+              jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            },
+            showLoader: true
+          }).then(res => {
+            if (newCountry) {
+              this.cache.allApiFilterValsObj[filterVal] = res.data;
+            } else {
+              this.cache.currentApiFilterValsObj[filterVal] = res.data;
+              this.checkActiveFilterSets(filterVal, res.data);
+            }
+          });
+      });
     });
   }
 
@@ -458,7 +452,7 @@ class MyEquipment {
     this.cache.$content.addClass('d-none');
 
     auth.getToken(({ data: authData }) => {
-      this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers'], true);
+      this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], true);
       ajaxWrapper
         .getXhrObj({
           url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${this.getActiveCountryCode()}`,
@@ -633,7 +627,7 @@ class MyEquipment {
   }
 
   applyFilter = (options) => {
-    const { activeFilterForm, $activeFilterBtn, i18nKeys, authData } = this.cache;
+    const { activeFilterForm, $activeFilterBtn, i18nKeys } = this.cache;
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
     const $filtersRadio = this.root.find('.js-tp-my-equipment-filter-radio');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
@@ -689,12 +683,6 @@ class MyEquipment {
         label = i18nKeys['equipmentDescription'];
         break;
       }
-      case 'functionalLocation': {
-        this.cache.combinedFiltersObj['functionalLocation'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
-        label = i18nKeys['functionalLocation'];
-        break;
-      }
       case 'customise-table':{
         filterData = this.cache.customisableTableHeaders;
         $filtersCheckbox.each(function(index) {
@@ -748,14 +736,13 @@ class MyEquipment {
       this.renderPaginationTableData(tableData);
       this.cache.$modal.modal('hide');
       _addShowHideFilterAnalytics(filterData);
-
       return;
     }
 
     // All other filters
     this.updateFilterCountValue(label,filterCount,$activeFilterBtn);
     this.renderNewPage({'resetSkip': true, analyticsAction});
-    this.getAllAvailableFilterVals(authData,  ['statuses', 'types', 'lines', 'customers'], false);
+    this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], false);
     this.cache.$modal.modal('hide');
     this.toggleRemoveAllFilters(true);
   }
@@ -803,7 +790,8 @@ class MyEquipment {
 
     this.cache.activeSortData = {
       'sortedByKey': sortedByKey,
-      'sortOrder': sortOrder
+      'sortOrder': sortOrder,
+      'sendPosition': sortedByKey === 'functionalLocation'
     };
     this.renderNewPage({'resetSkip': true});
   }
@@ -927,7 +915,14 @@ class MyEquipment {
     }
 
     if (activeSortData) {
-      apiUrlRequest += `&sortby=${activeSortData.sortedByKey.toLowerCase()}&sortdirection=${activeSortData.sortOrder}`;
+      let sortingParam = `${activeSortData.sortedByKey.toLowerCase()} ${activeSortData.sortOrder}`;
+
+      // SMAR-25942 if sorting by functionalLocation, send position parameter as well
+      if (activeSortData.sendPosition) {
+        sortingParam = `${activeSortData.sortedByKey.toLowerCase()} ${activeSortData.sortOrder},position`;
+      }
+
+      apiUrlRequest += `&sort=${sortingParam}`;
     }
 
     auth.getToken(({ data: authData }) => {
@@ -997,7 +992,7 @@ class MyEquipment {
           const { countryCode } = this.cache.countryData && this.cache.countryData[0];
           const { itemsPerPage } = this.cache;
 
-          this.getAllAvailableFilterVals(authData, ['statuses', 'types', 'lines', 'customers'], true);
+          this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], true);
 
           ajaxWrapper
             .getXhrObj({
