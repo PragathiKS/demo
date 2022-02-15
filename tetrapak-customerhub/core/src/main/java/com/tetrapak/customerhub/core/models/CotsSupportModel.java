@@ -81,9 +81,6 @@ public class CotsSupportModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
-    @ScriptVariable
-    private ResourceResolver resolver;
-    
     /** The title */
     @ValueMapValue
     private String title;
@@ -265,7 +262,7 @@ public class CotsSupportModel {
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("i18nKeys : {}",i18nKeys);
         
-        this.componentPath = resolver.map(this.resource.getPath());
+        this.componentPath = resource.getResourceResolver().map(this.resource.getPath());
         LOGGER.debug("Resource mapped url : {}",this.componentPath);
         this.componentPathExtension = CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_SELECTOR
                 + CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_EXTENSION;
