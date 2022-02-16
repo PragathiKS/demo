@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface AddEquipmentService {
 
-    JsonObject addEquipment(String userId, final AddEquipmentFormBean bean, String token, List<File> attachments);
+    JsonObject addEquipment(String emailId, final AddEquipmentFormBean bean, String token, List<File> attachments);
 
 }

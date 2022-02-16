@@ -38,13 +38,13 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
     private XSSFilter xssFilter;
 
     @Override
-    public JsonObject addEquipment(String userId, AddEquipmentFormBean bean, String token, List<File> attachments) {
+    public JsonObject addEquipment(String emailId, AddEquipmentFormBean bean, String token, List<File> attachments) {
 
         final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                 + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING);
 
         Gson gson = new GsonBuilder().serializeNulls().create();
-        String apiJsonBean = gson.toJson(convertFormToApiJson(userId, bean, attachments.size()));
+        String apiJsonBean = gson.toJson(convertFormToApiJson(emailId, bean, attachments.size()));
         JsonObject jsonObject = HttpUtil.sendAPIGeePostWithEntity(url, token, apiJsonBean);
 
         if (CollectionUtils.isNotEmpty(attachments)) {
@@ -75,10 +75,10 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         return toReturn;
     }
 
-    private AddEquipmentApiRequestBean convertFormToApiJson(String userId, AddEquipmentFormBean bean, int noOfAttachments) {
+    private AddEquipmentApiRequestBean convertFormToApiJson(String emailId, AddEquipmentFormBean bean, int noOfAttachments) {
         AddEquipmentApiRequestBean requestBean = new AddEquipmentApiRequestBean();
 
-        requestBean.setReportedBy(userId);
+        requestBean.setReportedBy(emailId);
         requestBean.setSerialNumber(xssFilter.filter(bean.getEquipmentSerialNumber()));
         requestBean.setCountry(xssFilter.filter(bean.getEquipmentCountry()));
         requestBean.setSite(xssFilter.filter(bean.getEquipmentSite()));

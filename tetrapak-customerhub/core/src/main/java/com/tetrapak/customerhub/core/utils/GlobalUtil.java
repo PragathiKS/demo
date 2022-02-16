@@ -1,5 +1,34 @@
 package com.tetrapak.customerhub.core.utils;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.http.Cookie;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.jackrabbit.api.security.user.Authorizable;
+import org.apache.jackrabbit.api.security.user.UserManager;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.PersistenceException;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceUtil;
+import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.settings.SlingSettingsService;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.commons.jcr.JcrUtil;
 import com.day.cq.i18n.I18n;
@@ -11,38 +40,20 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
-import org.apache.commons.lang.StringUtils;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.PersistenceException;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceUtil;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.settings.SlingSettingsService;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
 
-import javax.jcr.Session;
-import javax.servlet.http.Cookie;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
 
 /**
- * This is a global util class to access globally common utility methods
+ * This is a global util class to access globally common utility methods.
  *
  * @author Nitin Kumar
  */
 public class GlobalUtil {
+    
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
-     * Method to get API GEE URL
+     * Method to get API GEE URL.
      *
      * @param apigeeService API GEE Service
      * @param defaultJson   default json
@@ -53,7 +64,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to get API Mappings
+     * Method to get API Mappings.
      *
      * @param apigeeService API GEE Service
      * @return String array
@@ -84,7 +95,7 @@ public class GlobalUtil {
 
     /**
      * Method to check the run mode development to execute the launch js for
-     * development environment -r dev
+     * development environment -r dev.
      *
      * @return boolean
      */
@@ -93,7 +104,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to check the run mode QA to execute the launch js for QA environment -r test
+     * Method to check the run mode QA to execute the launch js for QA environment -r test.
      *
      * @return boolean
      */
@@ -102,6 +113,8 @@ public class GlobalUtil {
     }
 
     /**
+     * Checks if is run mode staging.
+     *
      * @return boolean
      */
     public static boolean isRunModeStaging() {
@@ -110,7 +123,7 @@ public class GlobalUtil {
 
     /**
      * Method to check the run mode staging to execute the launch js for production
-     * environment -r prod
+     * environment -r prod.
      *
      * @return boolean
      */
@@ -119,7 +132,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to check rum mode available - if available return true else false
+     * Method to check rum mode available - if available return true else false.
      *
      * @param key String
      * @return boolean
@@ -138,7 +151,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to get all available run modes
+     * Method to get all available run modes.
      *
      * @return Set<String>
      */
@@ -151,8 +164,9 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to get service
+     * Method to get service.
      *
+     * @param <T> the generic type
      * @param clazz class type
      * @return T
      */
@@ -270,7 +284,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to set page reference
+     * Method to set page reference.
      *
      * @param resourceResolver    resource resolver
      * @param componentsReference component reference
@@ -292,7 +306,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to set component references
+     * Method to set component references.
      *
      * @param resourceResolver    resource resolver
      * @param componentsReference component reference
@@ -310,7 +324,7 @@ public class GlobalUtil {
     }
 
     /**
-     * This method is used to get language page for the current resource
+     * This method is used to get language page for the current resource.
      *
      * @param request               current request
      * @param userPreferenceService user preference service
@@ -334,7 +348,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to get selected language
+     * Method to get selected language.
      *
      * @param request               sling request
      * @param userPreferenceService user preference service
@@ -353,7 +367,7 @@ public class GlobalUtil {
     }
 
     /**
-     * This method prepares image bean from image resource
+     * This method prepares image bean from image resource.
      *
      * @param imageResource image resource
      * @return image bean
@@ -374,7 +388,7 @@ public class GlobalUtil {
     }
 
     /**
-     * This method is used to get image resource from inside a child element of a multi-field
+     * This method is used to get image resource from inside a child element of a multi-field.
      *
      * @param res       Current Resource from a multi-field
      * @param imageName image node name
@@ -393,6 +407,12 @@ public class GlobalUtil {
         return tabResource.getChild(imageName);
     }
 
+    /**
+     * Gets the global config node.
+     *
+     * @param childResource the child resource
+     * @return the global config node
+     */
     private static Resource getGlobalConfigNode(Resource childResource) {
         Resource res = childResource.getChild("globalconfiguration");
         if (null != res) {
@@ -410,7 +430,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to get global config resource for a request
+     * Method to get global config resource for a request.
      *
      * @param request sling request
      * @return global config resource
@@ -425,7 +445,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to get global config resource for a resource
+     * Method to get global config resource for a resource.
      *
      * @param resource sling resource
      * @return global config resource
@@ -440,7 +460,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Method to get language from cookie
+     * Method to get language from cookie.
      *
      * @param request sling request
      * @return language
@@ -454,6 +474,8 @@ public class GlobalUtil {
     }
 
     /**
+     * Gets the site improve script.
+     *
      * @return site improve script
      */
     public static String getSiteImproveScript() {
@@ -465,7 +487,7 @@ public class GlobalUtil {
     }
 
     /**
-     * get scene 7 video url
+     * get scene 7 video url.
      *
      * @param damVideoPath        video path
      * @param dynamicMediaService dynamic media service
@@ -480,7 +502,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Get a name with special characters replaced by underscore
+     * Get a name with special characters replaced by underscore.
      *
      * @param name tab title
      * @return valid name
@@ -490,7 +512,7 @@ public class GlobalUtil {
     }
 
     /**
-     * Removes images which are no longer attached to any tab
+     * Removes images which are no longer attached to any tab.
      *
      * @param resource  resource
      * @param listName  list name the node which is not to be removed
@@ -537,5 +559,36 @@ public class GlobalUtil {
             apiErrorCodes.put((String) vMap.get("errorCode"), (String) vMap.get("errorMessage"));
         }
         return apiErrorCodes;
+    }
+    
+    /**
+     * Gets the customer email address.
+     *
+     * @param request the request
+     * @return the customer email address
+     */
+    public static String getCustomerEmailAddress(SlingHttpServletRequest request) {
+        String emailId = StringUtils.EMPTY;
+        ResourceResolver resourceResolver = request.getResourceResolver();
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        Session session = resourceResolver.adaptTo(Session.class);
+        if (Objects.isNull(session) || Objects.isNull(userManager)) {
+            return emailId;
+        }
+        Authorizable user;
+        try {
+            user = userManager.getAuthorizable(session.getUserID());
+            Resource userResource = resourceResolver.getResource(user.getPath());
+            if (Objects.isNull(userResource)) {
+                return emailId;
+            }
+            ValueMap vMap = userResource.getValueMap();
+            if (vMap.containsKey(CustomerHubConstants.CUSTOMER_EMAIL_ID)) {
+                emailId = (String) vMap.get(CustomerHubConstants.CUSTOMER_EMAIL_ID);
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException in getting email address in GlobalUtil", e);
+        }
+        return emailId;
     }
 }
