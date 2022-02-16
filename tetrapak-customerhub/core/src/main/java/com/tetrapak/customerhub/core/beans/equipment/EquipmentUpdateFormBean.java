@@ -100,7 +100,7 @@ public class EquipmentUpdateFormBean {
     }
 
     /**
-     * Creates metadata entry for Line Code.
+     * Creates metadata entry for Functional Description.
      *
      * @return EquipmentMetaData bean.
      */
