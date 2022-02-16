@@ -60,6 +60,9 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
     /** The Constant CQ_CT_TRANSLATED. */
     private static final String CQ_CT_TRANSLATED = "cq:ctTranslated";
 
+    /** The Constant GL_SERVICE. */
+    private static final String GL_SERVICE = "gl-service";
+
     /** The Constant LB_TRANSLATED_PAGES. */
     public static final String LB_TRANSLATED_PAGES = "lbtranslatedpages";
 
@@ -122,7 +125,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
             final Resource jcrResource = resolver.getResource(changePath);
             LOGGER.info("jcr resource path : {}", jcrResource.getPath());
             final ValueMap valueMap = jcrResource.getValueMap();
-            if ((valueMap.containsKey(CQ_CT_TRANSLATED) || "gl-service".equalsIgnoreCase(Objects.requireNonNull(change.getUserId()) ))
+            if ((valueMap.containsKey(CQ_CT_TRANSLATED) || GL_SERVICE.equalsIgnoreCase(Objects.requireNonNull(change.getUserId()) ))
                     && valueMap.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
                 LOGGER.info("LionBridgeTranslationListener inside if");
                 Calendar lastModified = valueMap.get(PWConstants.CQ_LAST_MODIFIED, Calendar.class);
@@ -132,7 +135,7 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
                     LOGGER.info("time comparision :: {}", ctTranslated.before(lastModified));
                     translationReceived = Boolean.TRUE;
                 }
-                if ("gl-service".equalsIgnoreCase(Objects.requireNonNull(change.getUserId()))){
+                if (GL_SERVICE.equalsIgnoreCase(Objects.requireNonNull(change.getUserId()))){
                     LOGGER.info("Translation received by TransPerfect :: ");
                     translationReceived = Boolean.TRUE;
                 }
