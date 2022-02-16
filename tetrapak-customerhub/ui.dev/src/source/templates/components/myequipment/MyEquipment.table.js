@@ -77,7 +77,7 @@ export const _getKeyMap = (key, i18nKeys) => {
       headerObj['tooltipText'] = i18nKeys['siteToolTip'];
       break;
     }
-    case 'lineName': {
+    case 'lineCode': {
       headerObj['keyLabel'] = i18nKeys['line'];
       headerObj['showTooltip'] = i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['lineToolTip'];
