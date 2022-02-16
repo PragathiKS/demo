@@ -66,6 +66,9 @@ public class LionBridgeTranslationListnerTest {
     /** The payload path. */
     private final String PAYLOAD_PATH = "/content/tetrapak/publicweb/lang-masters/en/home/jcr:content";
 
+    /** The gla user. */
+    private final String GLA_USER = "gl-service";
+
     private final String VAR_COMMERCE = "/var/commerce";
 
     /** The payload resource content. */
@@ -111,6 +114,7 @@ public class LionBridgeTranslationListnerTest {
         addedProps.add(PWConstants.JCR_LAST_MODIFIED);
         Mockito.when(change.getAddedPropertyNames()).thenReturn(addedProps);
         Mockito.when(change.getPath()).thenReturn(PAYLOAD_PATH);
+        Mockito.when(change.getUserId()).thenReturn(GLA_USER);
         Mockito.when(valueMap.containsKey(PWConstants.CQ_LAST_MODIFIED)).thenReturn(true);
 
     }
