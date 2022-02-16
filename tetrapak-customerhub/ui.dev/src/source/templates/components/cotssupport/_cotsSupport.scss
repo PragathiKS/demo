@@ -128,6 +128,12 @@
             span {
                 @include line-height($font-l, $font-baseline);
             }
+
+            i.icon {
+                &::before {
+                    @include font-size($font-sm);
+                }
+            }
         }
 
         &-file {
