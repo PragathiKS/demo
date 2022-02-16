@@ -65,15 +65,8 @@
                 word-wrap: break-word;
                 font-size: $font-xl;
                 line-height: $line-height-header-m;
-                @media #{$tablet} {
-                    color: $color-white;
-                    font-weight: bold;
-                    font-size: 78px;
-                    line-height: 96px;
-                word-wrap: break-word;
-                font-size: $font-xl;
-                line-height: $line-height-header-m;
                 @media #{$tablet-large} {
+                    color: $color-white;
                     font-weight: bold;
 
                     &.h1 {
@@ -85,48 +78,14 @@
                         line-height: 40px;
                     }
                 }
-                &.pw-banner__content--text-black {
-                    color: $color-tundora;
-                }
-
-                &.pw-banner {
-                    &__content {
-                        &--text-white {
-                            color: $color-white;
-                            @media (max-width: $v-tablet-l - 1px) {
-                                color: $color-emperor
-                            }
-                        }
-
-                        &--text-black {
-                            color: $color-emperor;
-                        }
-
-                        &--text-blue {
-                            color: $color-congress-blue;
-                        }
-                    }
-                }
             }
-        }
-
-        &__description {
-            @include margin-bottom($margin-xl);
-            color: $color-white;
-            font-size: $font-baseline;
-            &.pw-banner__content--text-black {
-                color: $color-tundora;
-            }
-            &.pw-banner__content--text-blue {
-                color: $color-congress-blue;
-            font-size: $font-baseline;
 
             &.pw-banner {
                 &__content {
                     &--text-white {
                         color: $color-white;
-                        @media (max-width: $v-tablet-l - 1px) {
-                            color: $color-emperor
+                        @media (max-width: ($v-tablet-l - 1px)) {
+                            color: $color-tundora;
                         }
                     }
 
@@ -139,8 +98,29 @@
                     }
                 }
             }
-            @media (max-width: $v-tablet - 1px) {
-                color: $color-tundora;
+        }
+
+        &__description {
+            @include margin-bottom($margin-xl);
+            color: $color-white;
+            font-size: $font-baseline;
+            &.pw-banner {
+                &__content {
+                    &--text-white {
+                        color: $color-white;
+                        @media (max-width: ($v-tablet-l - 1px)) {
+                            color: $color-tundora;
+                        }
+                    }
+
+                    &--text-black {
+                        color: $color-emperor;
+                    }
+
+                    &--text-blue {
+                        color: $color-congress-blue;
+                    }
+                }
             }
         }
 
@@ -149,7 +129,6 @@
                 @include padding($padding-sm $padding-md);
                 color: $color-white;
                 background: $color-congress-blue;
-                color: $color-white;
                 border-radius: 4px;
                 font-weight: 500;
                 font-size: $font-baseline;

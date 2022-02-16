@@ -110,17 +110,11 @@
     &__title {
         @include margin-bottom($padding-md);
         @include line-height($line-height-header-s, $font-m-xl);
-        color: $color-tundora;
-        font-size: $font-l;
-        font-weight: bold;
-        @include line-height($line-height-header-s, $font-m-xl);
         color: $color-emperor;
         font-size: $font-l;
         font-weight: bold;
         @media #{$desktop} {
             @include margin-bottom($padding-md);
-            @include line-height($line-height-header-m, $font-xl);
-            font-size: $font-xl;
             @include line-height($line-height-header-m, $font-xl);
             font-size: $font-xl;
         }
@@ -136,8 +130,6 @@
 
     &__description {
         @include margin-bottom($margin-zero);
-        @include line-height($line-height-body, $font-baseline);
-        @include line-height(24px, $font-baseline);
         @include line-height($line-height-body, $font-baseline);
         font-size: $font-baseline;
         ul {

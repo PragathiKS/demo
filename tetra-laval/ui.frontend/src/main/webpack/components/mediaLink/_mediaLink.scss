@@ -27,10 +27,8 @@
 
     h4 {
         @include margin-bottom($margin-md);
-        color: $color-tundora;
-        font-size: $font-md;
-
         color: $color-emperor;
+        font-size: $font-md;
         font-weight: 500;
 
         @media #{$desktop} {
@@ -62,8 +60,6 @@
             font-weight: 400;
             @media #{$desktop} {
                 @include line-height($line-height-header-m, $font-xl);
-                @include line-height(40px, $font-xl);
-                font-size: $font-xl;
                 @include line-height($line-height-header-m, $font-xl);
                 font-size: $font-xl;
                 font-weight: 700;
@@ -89,8 +85,6 @@
     &__link.tpatom-link--transparent {
         @include min-height(56px);
         @include line-height($line-height-body, $font-baseline);
-        @include line-height(24px, 14px);
-        @include line-height($line-height-body, $font-baseline);
         display: flex;
         font-size: $font-baseline;
         justify-content: space-between;
@@ -115,10 +109,6 @@
             }
         }
         .icon.icon-Circle_Arrow_Right_pw {
-            @include margin-top($margin-md);
-            @include padding-right($padding-md);
-            line-height: $line-height-body;
-            line-height: 24px;
             @include margin-top($margin-md);
             @include padding-right($padding-md);
             line-height: $line-height-body;

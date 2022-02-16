@@ -122,8 +122,6 @@
         @media #{$desktop} {
             @include line-height($line-height-body, $font-baseline);
             font-size: $font-baseline;
-            @include line-height($line-height-body, $font-baseline);
-            font-size: $font-baseline;
         }
         a {
             &:hover {

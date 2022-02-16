@@ -34,8 +34,6 @@
             font-size: $font-l;
             font-weight: bold;
             line-height: $line-height-header-s;
-            line-height: 32px;
-            line-height: $line-height-header-s;
             @media #{$desktop} {
                 font-size: $font-xl;
                 line-height: $line-height-header-m;
@@ -102,10 +100,6 @@
         .title {
             @include margin-top($margin-zero);
             @include margin-bottom($margin-md);
-            color: $color-tundora;
-            font-size: $font-md;
-            line-height: $line-height-body;
-            line-height: 24px;
             color: $color-emperor;
             font-size: $font-md;
             line-height: $line-height-body;
@@ -114,13 +108,11 @@
 
         }
         .description {
-            color: $color-tundora;
-            font-size: $font-baseline;
             color: $color-emperor;
+            line-height: $line-height-body;
             font-size: $font-baseline;
             font-style: normal;
             font-weight: normal;
-            line-height: $line-height-body;
         }
         .link {
             @include margin-top($margin-md);
