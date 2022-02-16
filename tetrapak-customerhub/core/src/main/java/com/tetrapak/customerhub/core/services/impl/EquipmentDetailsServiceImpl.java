@@ -70,6 +70,7 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
         addChangedAndfilteredEquipmentMetadata(metadatas, bean.getStatusMetadata());
         addChangedAndfilteredEquipmentMetadata(metadatas, bean.getPositionMetadata());
         addChangedAndfilteredEquipmentMetadata(metadatas, bean.getDescriptionMetadata());
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getFunctionalDescMetadata());
 
         return metadatas;
     }

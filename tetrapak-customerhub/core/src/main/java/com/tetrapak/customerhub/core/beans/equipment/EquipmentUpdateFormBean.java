@@ -24,8 +24,11 @@ public class EquipmentUpdateFormBean {
     private String equipmentTypeDesc;
     private String oldEquipmentTypeDesc;
 
-    private String lineName;
-    private String oldLineName;
+    private String lineCode;
+    private String oldLineCode;
+
+    private String functionalLocationDesc;
+    private String oldFunctionalLocationDesc;
 
     private String location;
     private String oldLocation;
@@ -84,12 +87,22 @@ public class EquipmentUpdateFormBean {
     }
 
     /**
-     * Creates metadata entry for Line.
+     * Creates metadata entry for Line Code.
      *
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getLineMetadata() {
-        return new EquipmentMetaData("Line", oldLineName, lineName);
+        return new EquipmentMetaData("lineCode", oldLineCode, lineCode);
+    }
+
+    /**
+     * Creates metadata entry for Functional Description.
+     *
+     * @return EquipmentMetaData bean.
+     */
+    public EquipmentMetaData getFunctionalDescMetadata() {
+        return new EquipmentMetaData("functionalLocationDesc ", oldFunctionalLocationDesc,
+                replaceBlankWithNotApplicableIfChanged(oldFunctionalLocationDesc, functionalLocationDesc));
     }
 
     /**
