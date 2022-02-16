@@ -266,7 +266,7 @@ class EquipmentDetails {
         functionalLocationDesc: data.functionalLocationDesc || equipData.functionalLocationDesc,
         equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === data.equipmentStatus)?.desc || equipData.equipmentStatusDesc,
         position: data.position,
-        equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,
+        equipmentTypeDesc: data.equipmentTypeDesc,
         serialNumber: this.cache.data.serialNumber
       };
       const fields = Object.keys(this.cache.formData).filter(key => !key.startsWith('old'));
