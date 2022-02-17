@@ -277,9 +277,10 @@ public class PlantMasterTrainingsModel {
         if (request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME) != null) {
             this.userName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
         }
-        String automationTrainingsApiURL = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-                + GlobalUtil.getSelectedApiMapping(apigeeService, CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
-        trainingDetailsApi = GlobalUtil.getAIPEndpointURL(automationTrainingsApiURL, aipCategoryService.getAutomationTrainingsId());
+        String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+                CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
+        trainingDetailsApi = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
+                aipCategoryService.getAutomationTrainingsId());
     }
 
     /**
@@ -287,33 +288,6 @@ public class PlantMasterTrainingsModel {
      */
     public void setUserEmailAddress() {
         this.userEmailAddress = GlobalUtil.getCustomerEmailAddress(this.request);
-    }
-
-    /**
-     * Gets the logger.
-     *
-     * @return the logger
-     */
-    public static Logger getLogger() {
-        return LOGGER;
-    }
-
-    /**
-     * Gets the resource.
-     *
-     * @return the resource
-     */
-    public Resource getResource() {
-        return resource;
-    }
-
-    /**
-     * Gets the request.
-     *
-     * @return the request
-     */
-    public SlingHttpServletRequest getRequest() {
-        return request;
     }
 
     /**

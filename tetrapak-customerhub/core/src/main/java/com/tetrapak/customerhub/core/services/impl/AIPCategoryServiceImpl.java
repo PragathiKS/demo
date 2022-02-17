@@ -6,7 +6,6 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
 
 import com.tetrapak.customerhub.core.services.AIPCategoryService;
-import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.config.AIPCategoryServiceConfig;
 
 /**
