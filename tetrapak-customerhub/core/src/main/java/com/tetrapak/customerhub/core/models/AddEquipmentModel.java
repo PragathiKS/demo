@@ -182,6 +182,10 @@ public class AddEquipmentModel {
     @Inject
     private String lineErrorMsg;
 
+    /** The new line option text. */
+    @Inject
+    private String newLineOption;
+
     /** The position error msg. */
     @Inject
     private String positionErrorMsg;
@@ -504,6 +508,13 @@ public class AddEquipmentModel {
     public String getLineErrorMsg() { return lineErrorMsg; }
 
     /**
+     * Gets the new line option text.
+     *
+     * @return new line option text
+     */
+    public String getNewLineOption() { return newLineOption; }
+
+    /**
      * Gets the position error msg.
      *
      * @return the position error msg
@@ -629,6 +640,7 @@ public class AddEquipmentModel {
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_COUNTRY_ERROR_MSG, getCountryErrorMsg());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_SITE_ERROR_MSG, getSiteErrorMsg());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_LINE_ERROR_MSG, getLineErrorMsg());
+        i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_NEWLINE_OPTION, getNewLineOption());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_POSITION_ERROR_MSG, getPositionErrorMsg());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_EQUIPMENT_STATUS_ERROR_MSG, getEquipmentStatusErrorMsg());
         i18KeyMap.put(CustomerHubConstants.NEW_EQUIPMENT_EQUIPMENT_DESCRIPTION_ERROR_MSG, getEquipmentDescriptionErrorMsg());
