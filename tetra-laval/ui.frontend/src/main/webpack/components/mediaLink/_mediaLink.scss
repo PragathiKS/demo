@@ -60,6 +60,7 @@
             font-weight: 400;
             @media #{$desktop} {
                 @include line-height($line-height-header-m, $font-xl);
+                @include line-height($line-height-header-m, $font-xl);
                 font-size: $font-xl;
                 font-weight: 700;
             }
