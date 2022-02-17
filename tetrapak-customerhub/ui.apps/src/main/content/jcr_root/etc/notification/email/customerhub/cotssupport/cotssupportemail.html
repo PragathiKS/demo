@@ -1,4 +1,4 @@
-Subject: ${affectedSystemsValue}-${productInvolvedValue}
+Subject: ${affectedSystemsValue}&nbsp;-&nbsp;${productInvolvedValue}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
@@ -129,13 +129,8 @@ Subject: ${affectedSystemsValue}-${productInvolvedValue}
             width: 100% !important;
         }
 
-        .preheader {
-            display: none !important;
-            visibility: hidden;
-            opacity: 0;
-            color: transparent;
-            height: 0;
-            width: 0;
+        .label-text {
+            font-weight: 700;
         }
 
         .hide {
@@ -269,53 +264,53 @@ body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
          <table border="0" cellpadding="0" cellspacing="0" class="w500-500 w414-414 w375-375 w360-360" id="templateContainer" role="presentation" style="width: 920px; mso-cellspacing: 0px;" width="920">
             <tbody>
 			<tr>
-               <td align="left" colspan="2">Dear Support</td>
+               <td align="left" colspan="2">${salutation}</td>
             </tr>
 			<tr><td colspan="2">&nbsp;</td></tr>
 			<tr>
-               <td align="left" colspan="2">Can you please log a query with the following details</td>
+               <td align="left" colspan="2">${body}</td>
             </tr>
 			<tr><td colspan="2">&nbsp;</td></tr>
             <tr>
-               <td align="left" width="30%">${selectRequest}</td>
+               <td align="left" width="30%" class="label-text">${selectRequest}</td>
 			   <td align="left">${logQueryTypeValue}</td>
             </tr>
 			<tr>
-				<td align="left" width="30%">${company}</td>
+				<td align="left" width="30%" class="label-text">${company}</td>
 				<td align="left">${companyValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%">${customerSite}</td>
+				<td align="left" width="30%" class="label-text">${customerSite}</td>
 				<td align="left">${customerSiteValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%">${affectedSystemsLabel}</td>
+				<td align="left" width="30%" class="label-text">${affectedSystemslabel-text}</td>
 				<td align="left">${affectedSystemsValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%">${productInvolvedLabel}</td>
+				<td align="left" width="30%" class="label-text">${productInvolvedlabel-text}</td>
 				<td align="left">${productInvolvedValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%">${softwareVersion}</td>
+				<td align="left" width="30%" class="label-text">${softwareVersion}</td>
 				<td align="left">${softwareVersionValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%">${engineeringLicenseSerialNumber}</td>
+				<td align="left" width="30%" class="label-text">${engineeringLicenseSerialNumber}</td>
 				<td align="left">${licensenumberValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%">${shortDescription}</td>
+				<td align="left" width="30%" class="label-text">${shortDescription}</td>
 				<td align="left">${descriptionValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%">${question}</td>
+				<td align="left" width="30%" class="label-text">${question}</td>
 				<td align="left">${questionsValue}</td>
 			</tr>
             <tr><td colspan="2">&nbsp;</td></tr>
 			<tr>
-				<td align="left" width="30%">${contactDetails}</td>
-				<td align="left">${nameValue}&nbsp;,&nbsp;${emailAddressValue}&nbsp;,&nbsp; ${telephoneValue}</td>
+				<td align="left" width="30%" class="label-text">${contactDetails}</td>
+				<td align="left">${nameValue},&nbsp;${emailAddressValue},&nbsp; ${telephoneValue}</td>
 			</tr>
             <!-- END FOOTER -->
             </tbody>
