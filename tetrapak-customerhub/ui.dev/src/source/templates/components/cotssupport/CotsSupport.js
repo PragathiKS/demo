@@ -58,7 +58,7 @@ class CotsSupport {
     this.cache.$contentWrapper = this.root.find('.js-tp-cots-support__content-wrapper');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.submitApi = this.root.data('submit-api');
-    this.cache.username = this.root.data('username');
+    this.cache.username = decodeURI(this.root.data('username'));
     this.cache.userEmailAddress = this.root.data('email');
     const configJson = this.root.find('.js-tp-cots-support__config').text();
     this.cache.files = [];
