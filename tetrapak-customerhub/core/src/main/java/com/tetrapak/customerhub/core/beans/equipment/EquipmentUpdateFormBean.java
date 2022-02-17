@@ -105,8 +105,7 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getFunctionalDescMetadata() {
-        return new EquipmentMetaData("functionalLocationDesc ", oldFunctionalLocationDesc,
-                replaceBlankWithNotApplicableIfChanged(oldFunctionalLocationDesc, functionalLocationDesc));
+        return new EquipmentMetaData("functionalLocationDesc ", oldFunctionalLocationDesc, functionalLocationDesc);
     }
 
     /**
@@ -135,7 +134,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getDescriptionMetadata() {
-        return new EquipmentMetaData("Description", oldEquipmentTypeDesc, equipmentTypeDesc);
+        return new EquipmentMetaData("Description", oldEquipmentTypeDesc,
+                replaceBlankWithNotApplicableIfChanged(oldEquipmentTypeDesc, equipmentTypeDesc));
     }
 
     private String replaceBlankWithNotApplicableIfChanged(String oldValue, String newValue) {
