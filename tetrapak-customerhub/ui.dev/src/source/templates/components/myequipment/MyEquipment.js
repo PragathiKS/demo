@@ -369,8 +369,7 @@ class MyEquipment {
       let apiUrlRequest = `${equipmentApi}/${filterVal}?countrycodes=${this.getActiveCountryCode()}`;
 
       if (!newCountry) {
-        apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj, 
-          {skipFilterVal: appliedFilterApiKey === filterVal ? appliedFilter : false})}`;
+        apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj, filterVal)}`;
       }
 
       // for lines and customers, pass custom max count value
@@ -620,7 +619,7 @@ class MyEquipment {
         // if number of items differ between what's selected and what's available,
         // e.g. 4 Customers previously selected, but after adding a new filter only 2 Customers are now available
         // refresh filter buttons and their count
-        if (combinedFiltersObj[enabledFilter].length !== availableFiltersInDataSet.length) {
+        if (combinedFiltersObj[enabledFilter].length > availableFiltersInDataSet.length) {
           combinedFiltersObj[enabledFilter] = availableFiltersInDataSet;
           this.updateFilterBtnCount(enabledFilter, availableFiltersInDataSet.length);
         }
