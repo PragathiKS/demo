@@ -1,0 +1,55 @@
+<div class="tp-aip__acc-item-form">
+    <h6>Form description</h6>
+    <form class="tp-aip-trainings__form" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6 tp-aip-trainings__form-element">
+                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                    {{> atoms/input/input
+                            labelText="Number of participants"
+                            name="participants"
+                            required="true"
+                            maxlength=300
+                    }}
+                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                </div>
+
+                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                    {{> atoms/input/input
+                            labelText="Preferred location"
+                            name="location"
+                            required="true"
+                            maxlength=300
+                    }}
+                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                </div>
+
+                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                    {{> atoms/input/input
+                            labelText="Preferred date"
+                            name="date"
+                            required="true"
+                            maxlength=300
+                    }}
+                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                </div>
+
+                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                    {{> atoms/textarea/textarea
+                            labelText="Comments"
+                            name="addEquipmentComments"
+                            labelClasses="tp-add-equipment__field-label"
+                    }}
+                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                </div>
+
+                {{> atoms/buttons/button/button
+                        buttonType="submit"
+                        modifier="primary"
+                        iconClass="icon-Chevron_Right"
+                        text="Submit"
+                        className="tp-aip-trainings__submit js-tp-aip-trainings__submit"
+                }}
+            </div>
+        </div>
+    </form>
+</div>
