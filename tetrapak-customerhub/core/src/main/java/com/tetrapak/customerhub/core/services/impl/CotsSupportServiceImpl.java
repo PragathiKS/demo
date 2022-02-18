@@ -94,10 +94,16 @@ public class CotsSupportServiceImpl implements CotsSupportService {
      */
     private void extractCotsSupportModelProps(Map<String, String> emailParams, CotsSupportModel model,
             SlingHttpServletRequest request, String prefix) {
+        String salutation = StringUtils.isNotEmpty(model.getSalutation()) ?
+                getI18nValue(request, prefix, model.getSalutation()) :
+                StringUtils.EMPTY;
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SALUTATION.i18nJsonKey,
-                getI18nValue(request, prefix, model.getSalutation()));
+                getI18nValue(request, prefix, salutation));
+        String body = StringUtils.isNotEmpty(model.getBody()) ?
+                getI18nValue(request, prefix, model.getBody()) :
+                StringUtils.EMPTY;
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.BODY.i18nJsonKey,
-                getI18nValue(request, prefix, model.getBody()));
+                getI18nValue(request, prefix, body));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.CONTACT_DETAILS.i18nJsonKey,
                 getI18nValue(request, prefix, model.getContactDetails()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SELECT_REQUEST.i18nJsonKey,
