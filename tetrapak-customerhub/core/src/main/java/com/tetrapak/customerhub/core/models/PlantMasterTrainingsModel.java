@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -12,6 +11,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -132,91 +132,91 @@ public class PlantMasterTrainingsModel {
     private SlingHttpServletRequest request;
 
     /** The title. */
-    @Inject
+    @ValueMapValue
     private String title;
 
     /** The available trainings. */
-    @Inject
+    @ValueMapValue
     private String availableTrainings;
 
     /** The learning history. */
-    @Inject
+    @ValueMapValue
     private String learningHistory;
 
     /** The training material handouts. */
-    @Inject
+    @ValueMapValue
     private String trainingMaterialHandouts;
 
     /** The course description. */
-    @Inject
+    @ValueMapValue
     private String courseDescription;
 
     /** The principle objectives. */
-    @Inject
+    @ValueMapValue
     private String principleObjectives;
 
     /** The target groups. */
-    @Inject
+    @ValueMapValue
     private String targetGroups;
 
     /** The duration. */
-    @Inject
+    @ValueMapValue
     private String duration;
 
     /** The max participants. */
-    @Inject
+    @ValueMapValue
     private String maxParticipants;
 
     /** The knowledge requirements. */
-    @Inject
+    @ValueMapValue
     private String knowledgeRequirements;
 
     /** The no of participants. */
-    @Inject
+    @ValueMapValue
     private String noOfParticipants;
 
     /** The preferred location. */
-    @Inject
+    @ValueMapValue
     private String preferredLocation;
 
     /** The preferred date. */
-    @Inject
+    @ValueMapValue
     private String preferredDate;
 
     /** The comments. */
-    @Inject
+    @ValueMapValue
     private String comments;
 
     /** The confirmation text. */
-    @Inject
+    @ValueMapValue
     private String confirmationText;
 
     /** The submit button label. */
-    @Inject
+    @ValueMapValue
     private String submitButtonLabel;
 
     /** The input error message label. */
-    @Inject
+    @ValueMapValue
     private String inputErrorMsg;
 
     /** The success message. */
-    @Inject
+    @ValueMapValue
     private String successMessage;
 
     /** The subject. */
-    @Inject
+    @ValueMapValue
     private String subject;
 
     /** The salutation text in email. */
-    @Inject
+    @ValueMapValue
     private String salutation;
 
     /** The body text in email. */
-    @Inject
+    @ValueMapValue
     private String body;
 
     /** The training details api. */
-    @Inject
+    @ValueMapValue
     private String trainingDetailsApi;
 
     /** The apigee service. */
@@ -281,6 +281,7 @@ public class PlantMasterTrainingsModel {
                 CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
         trainingDetailsApi = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
                 aipCategoryService.getAutomationTrainingsId());
+        LOGGER.debug("Engineering Trainings API : {}", trainingDetailsApi);
     }
 
     /**
