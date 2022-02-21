@@ -1,9 +1,11 @@
 package com.tetrapak.publicweb.core.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.day.cq.search.PredicateGroup;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -23,9 +25,6 @@ public final class SearchMapHelper {
 
     /** The Constant GROUP. */
     private static final String GROUP = "_group.";
-
-    /** The Constant GROUP_2. */
-    private static final String GROUP_102 = "102_group.";
 
     /** The Constant GROUP_3. */
     private static final String GROUP_101 = "101_group.";
@@ -118,8 +117,8 @@ public final class SearchMapHelper {
             map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
         }
         map.put("p.guessTotal", String.valueOf(guessTotal));
-        map.put("104_orderby", "@jcr:content/articleDate");
-        map.put("105_orderby", "@jcr:content/cq:lastModified");
+        map.put("104_orderby", "@jcr:score");
+        map.put("105_orderby", "@jcr:content/articleDate");
         map.put("104_orderby.sort", "desc");
         map.put("105_orderby.sort", "desc");
 
@@ -138,25 +137,25 @@ public final class SearchMapHelper {
      * @param map            the map
      * @param searchResultsModel the search results model
      */
-    public static void setThemesMap(String[] themes, Map<String, String> map, Map<String, String> themeMap) {
+    public static void setThemesPredicates(String[] themes, PredicateGroup tagsPredicateGroup , Map<String, String> themeMap) {
         if (themes != null && themes.length > 0) {
-            map.put("102_group.p.or", "true");
-            int index = 1;
             for (int i = 0; i < themes.length; i++) {
                 String tag = themeMap.get(themes[i]);
                 if (StringUtils.isNotBlank(tag)) {
-                    map.put(GROUP_102 + (i + 1) + "_group.property", "jcr:content/cq:tags");
-                    map.put(GROUP_102 + (i + 1) + "_group.property.value", tag);
-                    index++;
+                    Map<String, String> tagMap = new HashMap<>();
+                    tagMap.put("tagid.property", "jcr:content/cq:tags");
+                    tagMap.put("tagid", tag);
+                    tagsPredicateGroup.add(PredicateGroup.create(tagMap));
                 }
             }
             for (int i = 0; i < themes.length; i++) {
                 String tag = themeMap.get(themes[i]);
                 if (StringUtils.isNotBlank(tag)) {
-                    map.put(GROUP_102 + (index) + "_group.property", "jcr:content/metadata/cq:tags");
-                    map.put(GROUP_102 + (index) + "_group.property.value", tag);
+                    Map<String, String> tagMap = new HashMap<>();
+                    tagMap.put("tagid.property", "jcr:content/metadata/cq:tags");
+                    tagMap.put("tagid", tag);
+                    tagsPredicateGroup.add(PredicateGroup.create(tagMap));
                 }
-                index++;
             }
         }
     }
