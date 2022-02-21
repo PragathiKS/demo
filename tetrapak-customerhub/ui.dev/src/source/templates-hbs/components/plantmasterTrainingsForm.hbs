@@ -5,7 +5,7 @@
             <div class="col-lg-6 tp-aip-trainings__form-element">
                 <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
                     {{> atoms/input/input
-                            labelText="Number of participants"
+                            labelText=i18nKeys.noOfParticipants
                             name="participants"
                             required="true"
                             maxlength=300
@@ -15,7 +15,7 @@
 
                 <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
                     {{> atoms/input/input
-                            labelText="Preferred location"
+                            labelText=i18nKeys.preferredLocation
                             name="location"
                             required="true"
                             maxlength=300
@@ -25,7 +25,7 @@
 
                 <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
                     {{> atoms/input/input
-                            labelText="Preferred date"
+                            labelText=i18nKeys.preferredDate
                             name="date"
                             required="true"
                             maxlength=300
@@ -35,18 +35,27 @@
 
                 <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
                     {{> atoms/textarea/textarea
-                            labelText="Comments"
+                            labelText=i18nKeys.comments
                             name="addEquipmentComments"
                             labelClasses="tp-add-equipment__field-label"
                     }}
                     <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
+                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                    {{> atoms/checkbox/checkbox
+                            value=i18nKeys.confirmationText
+                            text=i18nKeys.confirmationText
+                            check="false"
+                            uniqueKey="confirm-training"
+                    }}
+                </div>
+
                 {{> atoms/buttons/button/button
                         buttonType="submit"
                         modifier="primary"
                         iconClass="icon-Chevron_Right"
-                        text="Submit"
+                        text=i18nKeys.submitButtonLabel
                         className="tp-aip-trainings__submit js-tp-aip-trainings__submit"
                 }}
             </div>
