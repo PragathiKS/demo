@@ -105,7 +105,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getFunctionalDescMetadata() {
-        return new EquipmentMetaData("functionalLocationDesc ", oldFunctionalLocationDesc, functionalLocationDesc);
+        return new EquipmentMetaData("functionalLocationDesc ", oldFunctionalLocationDesc,
+                replaceBlankWithNotApplicableIfChanged(oldFunctionalLocationDesc, functionalLocationDesc));
     }
 
     /**
