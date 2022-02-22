@@ -62,7 +62,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getCountryMetadata() {
-        return new EquipmentMetaData("Country", oldCountry, country);
+        return new EquipmentMetaData("Country", oldCountry,
+                replaceBlankWithNotApplicableIfChanged(oldCountry, country));
     }
 
     /**
@@ -71,7 +72,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getLocationMetadata() {
-        return new EquipmentMetaData("Location", oldLocation, location);
+        return new EquipmentMetaData("Location", oldLocation,
+                replaceBlankWithNotApplicableIfChanged(oldLocation, location));
     }
 
     /**
@@ -80,7 +82,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getSiteMetadata() {
-        return new EquipmentMetaData("Site", oldSiteName, siteName);
+        return new EquipmentMetaData("Site", oldSiteName,
+                replaceBlankWithNotApplicableIfChanged(oldSiteName, siteName));
     }
 
     /**
@@ -89,7 +92,18 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getLineMetadata() {
-        return new EquipmentMetaData("Line", oldLineName, lineName);
+        return new EquipmentMetaData("lineCode", oldLineCode,
+                replaceBlankWithNotApplicableIfChanged(oldLineCode, lineCode));
+    }
+
+    /**
+     * Creates metadata entry for Functional Description.
+     *
+     * @return EquipmentMetaData bean.
+     */
+    public EquipmentMetaData getFunctionalDescMetadata() {
+        return new EquipmentMetaData("functionalLocationDesc ", oldFunctionalLocationDesc,
+                replaceBlankWithNotApplicableIfChanged(oldFunctionalLocationDesc, functionalLocationDesc));
     }
 
     /**
@@ -98,7 +112,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getStatusMetadata() {
-        return new EquipmentMetaData("Status", oldEquipmentStatus, equipmentStatus);
+        return new EquipmentMetaData("Status", oldEquipmentStatus,
+                replaceBlankWithNotApplicableIfChanged(oldEquipmentStatus, equipmentStatus));
     }
 
     /**
