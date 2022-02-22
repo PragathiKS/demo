@@ -10,7 +10,7 @@
             "sling:resourceType":"wcm/foundation/components/responsivegrid",
             "plantmastertrainings":{
                "jcr:primaryType":"nt:unstructured",
-               "title":"cuhu.plantmastertrainings.searchresults",
+               "title":"cuhu.plantmastertrainings.title",
                "availableTrainings":"cuhu.plantmastertrainings.availableTrainings",
                "learningHistory":"cuhu.plantmastertrainings.learningHistory",
                "courseDescription":"cuhu.plantmastertrainings.courseDescription",
