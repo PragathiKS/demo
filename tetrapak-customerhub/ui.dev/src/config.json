@@ -176,6 +176,12 @@
         "enforce": true,
         "chunks": "all",
         "minSize": 0
+      },
+      "cotssupport": {
+        "testMultiple": true,
+        "name": "cotssupport",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -223,6 +229,9 @@
       ],
       "plantmastertrainings": [
         "source/templates/components/plantmastertrainings/"
+      ],
+      "cotssupport": [
+        "source/templates/components/cotssupport/"
       ]
     },
     "handlebars": {

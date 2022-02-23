@@ -1,0 +1,164 @@
+<h1 class="tp-cots-support__title">{{i18n key=i18nKeys.title}}</h1>
+<p class="tp-cots-support__subtitle">{{i18n key=i18nKeys.subTitle}}</p>
+
+<form class="tp-cots-support__form" enctype="multipart/form-data">
+  <div class="row">
+      <div class="col-lg-6 tp-cots-support__form-element">
+        <h3>{{i18n key=i18nKeys.selectRequest}}</h3>
+
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/radioButton/radioButton
+                        labelText=i18nKeys.technicalIssues
+                        name="logQueryType"
+                        id="technicalIssues"
+                        value=i18nKeys.technicalIssues
+                        required="true"
+                        checked="true"
+                }}
+                {{> atoms/radioButton/radioButton
+                        labelText=i18nKeys.productSupport
+                        name="logQueryType"
+                        id="productSupport"
+                        value=i18nKeys.productSupport
+                        required="true"
+                        labelClasses="mb-0"
+                }}
+        </div>
+        
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.company
+                        name="company"
+                        required="true"
+                        maxlength=300
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        </div>
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.customerSite
+                        name="customerSite"
+                        required="true"
+                        maxlength=300
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        </div>
+
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/dropdown/dropdown
+                        defaultValue=i18nKeys.dropdownPlaceholder
+                        options=affectedSystemsDictionary
+                        labelText=i18nKeys.affectedSystemsLabel
+                        name="affectedSystems"
+                        required="true"
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.selectErrorMsg}}</div>
+        </div>
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element js-tp-cots-support__toggle-mandatory">
+                {{> atoms/dropdown/dropdown
+                        defaultValue=i18nKeys.dropdownPlaceholder         
+                        labelText=i18nKeys.productInvolvedLabel
+                        name="productInvolved"
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.selectErrorMsg}}</div>
+        </div>
+        
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.softwareVersion
+                        name="softwareVersion"
+                        maxlength=300
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        </div>
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.engineeringLicenseSerialNumber
+                        name="licensenumber"
+                        maxlength=300
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        </div>
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.shortDescription
+                        name="description"
+                        required="true"
+                        maxlength=300
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        </div>
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+            <div class="tp-cots-support__drag-and-drop-description-wrapper">
+                <label class="tpatom-input-box__text tp-cots-support__drag-and-drop-description">{{i18n key=i18nKeys.selectFile}}</label>
+            </div>
+            <div class="tp-cots-support__drag-and-drop js-tp-cots-support__drag-and-drop">
+                {{> atoms/buttons/button/button
+                        modifier="transparent"
+                        jsClass="js-tp-cots-support__drag-and-drop-button"
+                        className="tp-cots-support__drag-and-drop-button"
+                        iconClass="icon-Plus"
+                        text=i18nKeys.selectFileButton
+                }}
+                <p class="tp-cots-support__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropTitle}}</p>
+                <p class="tp-cots-support__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropSubtitle}}</p>
+                <div class="tp-cots-support__file-error js-tp-cots-support__file-error" hidden>
+                    {{i18n key=i18nKeys.invalidFileErrorMsg}}
+                </div>
+                <div class="js-tp-cots-support__drag-and-drop-files-container">
+                </div>
+            </div>
+        </div>
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/textarea/textarea
+                        labelText=i18nKeys.question
+                        name="questions"
+                        required="true"
+                        maxlength=300
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.commentsErrorMsg}}</div>
+        </div>
+
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element tp-cots-support__form-element-readonly">
+        {{> atoms/input/input
+                labelText=i18nKeys.name
+                name="name"
+                required="true"
+                maxlength=300
+                readonly="true"
+                defaultValue=userName
+        }}
+        <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+        </div>
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element tp-cots-support__form-element-readonly">
+                {{> atoms/input/input
+                        labelText=i18nKeys.emailAddress
+                        name="emailAddress"
+                        required="true"
+                        maxlength=300
+                        readonly="true"
+                        defaultValue=userEmail
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                <div class="error-msg js-tp-cots-support__error-msg-invalid-email">{{i18n key=i18nKeys.emailErrorMsg}}</div>
+        </div>
+        <div class="js-tp-cots-support__form-element tp-cots-support__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.telephone
+                        name="telephone"
+                        maxlength=300
+                }}
+                <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                <div class="error-msg js-tp-cots-support__error-msg-invalid-phone">{{i18n key=i18nKeys.phoneErrorMsg}}</div>
+        </div>
+
+        {{> atoms/buttons/button/button
+                buttonType="submit"
+                modifier="primary"
+                iconClass="icon-Chevron_Right"
+                text=i18nKeys.submitButtonLabel
+                className="tp-cots-support__submit js-tp-cots-support__submit"
+        }}
+      </div>
+  </div>    
+</form>

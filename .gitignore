@@ -4,3 +4,5 @@
 /tetrapak-commons/ui.dev/.flattened-pom.xml
 /tetrapak-commons/core/.flattened-pom.xml
 .idea/
+.m2/
+.DS_Store
