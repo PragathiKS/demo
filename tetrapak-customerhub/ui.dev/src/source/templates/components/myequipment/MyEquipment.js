@@ -359,15 +359,17 @@ class MyEquipment {
     return activeCountry[0].countryCode;
   }
 
-  getAllAvailableFilterVals(filterValuesArr, newCountry) {
+  getAllAvailableFilterVals(filterValuesArr, newCountry, appliedFilter) {
     const equipmentApi = this.cache.equipmentApi.data('list-api');
     const { combinedFiltersObj } = this.cache;
 
     filterValuesArr.forEach(filterVal => {
+      const appliedFilterApiKey = _remapFilterProperty(appliedFilter);
+
       let apiUrlRequest = `${equipmentApi}/${filterVal}?countrycodes=${this.getActiveCountryCode()}`;
 
       if (!newCountry) {
-        apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj)}`;
+        apiUrlRequest += `&${_buildQueryUrl(combinedFiltersObj, filterVal)}`;
       }
 
       // for lines and customers, pass custom max count value
@@ -395,7 +397,9 @@ class MyEquipment {
               this.cache.allApiFilterValsObj[filterVal] = res.data;
             } else {
               this.cache.currentApiFilterValsObj[filterVal] = res.data;
-              this.checkActiveFilterSets(filterVal, res.data);
+              if (appliedFilterApiKey !== filterVal) {
+                this.checkActiveFilterSets(filterVal, res.data);
+              }
             }
           });
       });
@@ -499,9 +503,6 @@ class MyEquipment {
     let filterOptionsDatasource = [];
     const allAvailableApiFilterCheckboxes = [...allApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
     const currentSelectionApiFilterCheckboxes = [...currentApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
-    // if a single filter is used, do not disable any of it's options in the modal
-    const isSingleFilterApplied = typeof combinedFiltersObj[filterByProperty] !== 'undefined' &&
-        Object.keys(combinedFiltersObj).length === 1;
 
     // customer uses 'customerNumber' for filtering (as values), but should display and sort by 'customer' in table
     switch (filterByProperty) {
@@ -527,7 +528,7 @@ class MyEquipment {
     }
 
     // if only single filter is used, or no filters are set -> display all possible filter values
-    if (isSingleFilterApplied || Object.keys(combinedFiltersObj).length === 0) {
+    if (Object.keys(combinedFiltersObj).length === 0) {
       filterOptionsDatasource = allAvailableApiFilterCheckboxes;
     } else {
       // if multiple filters are set, only display available filter options
@@ -618,7 +619,7 @@ class MyEquipment {
         // if number of items differ between what's selected and what's available,
         // e.g. 4 Customers previously selected, but after adding a new filter only 2 Customers are now available
         // refresh filter buttons and their count
-        if (combinedFiltersObj[enabledFilter].length !== availableFiltersInDataSet.length) {
+        if (combinedFiltersObj[enabledFilter].length > availableFiltersInDataSet.length) {
           combinedFiltersObj[enabledFilter] = availableFiltersInDataSet;
           this.updateFilterBtnCount(enabledFilter, availableFiltersInDataSet.length);
         }
@@ -742,7 +743,7 @@ class MyEquipment {
     // All other filters
     this.updateFilterCountValue(label,filterCount,$activeFilterBtn);
     this.renderNewPage({'resetSkip': true, analyticsAction});
-    this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], false);
+    this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], false, activeFilterForm);
     this.cache.$modal.modal('hide');
     this.toggleRemoveAllFilters(true);
   }

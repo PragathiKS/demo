@@ -12,16 +12,15 @@
         var digitalData = ${digitalDataModel.digitalData @ context="unsafe"};
     </script>
 
-    <sly data-sly-test="${pageHeadModel.baiduMapkey}">
-      <script src="https://api.map.baidu.com/api?v=3.0&ak=${pageHeadModel.baiduMapkey}"></script>
-    </sly>
-
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
       <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${digitalDataModel.dataDomainScript}" ></script>
       <script type="text/javascript">
         function OptanonWrapper() { }
       </script>
+    </sly>
+    <sly data-sly-test="${pageHeadModel.baiduMapkey}">
+        <script type="text/plain" class="optanon-category-4" src="https://api.map.baidu.com/api?v=3.0&ak=${pageHeadModel.baiduMapkey}"></script>
     </sly>
      <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
         <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>

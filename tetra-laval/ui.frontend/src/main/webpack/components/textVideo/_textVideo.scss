@@ -72,6 +72,8 @@
     &__subTitle {
         @include margin-bottom($margin-sm);
         @include line-height($line-height-small, $font-sm);
+        @include line-height(16px, $font-sm);
+        @include line-height($line-height-small, $font-sm);
         color: $color-boulder;
         font-size: $font-sm;
         font-weight: 500;

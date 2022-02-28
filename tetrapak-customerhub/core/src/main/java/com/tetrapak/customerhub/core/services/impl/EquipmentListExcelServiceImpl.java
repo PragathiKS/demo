@@ -97,6 +97,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			response.setHeader(CustomerHubConstants.CONTENT_DISPOSITION,
 					CustomerHubConstants.ATTACHMENT_FILENAME + CustomerHubConstants.EQUALS_CHAR + 
 					getCurrentDate() + CustomerHubConstants.SPACE + CSV_FILE_NAME);
+			response.setCharacterEncoding("UTF-8");
 			ServletOutputStream csvFileOutputStream = response.getOutputStream();
 			StringBuilder csvFileContent = new StringBuilder();
 			String[][] headerRowArray = getColumnHeaderArray();
@@ -110,7 +111,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			for (Equipments equipment : equipments) {
 				csvFileContent.append(convertToCSVRow(equipment));
 			}
-			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_8));
+			csvFileOutputStream.write(csvFileContent.toString().getBytes());
 			csvFileOutputStream.flush();
 			csvFileOutputStream.close();
 			return true;

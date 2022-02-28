@@ -42,6 +42,7 @@ public class CotsSupportModel {
         ENGINEERING_LICENSE_SERIAL_NUMBER("engineeringLicenseSerialNumber"),
         SHORT_DESCRIPTION("shortDescription"),
         SELECT_FILE("selectFile"),
+        SELECT_FILE_BUTTON("selectFileButton"),
         QUESTION("question"),
         NAME("name"),
         EMAIL_ADDRESS("emailAddress"),
@@ -81,9 +82,6 @@ public class CotsSupportModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
-    @ScriptVariable
-    private ResourceResolver resolver;
-    
     /** The title */
     @ValueMapValue
     private String title;
@@ -133,9 +131,13 @@ public class CotsSupportModel {
     @ValueMapValue
     private String shortDescription;
     
-    /** The Select File button field label */
+    /** The Select File label */
     @ValueMapValue
     private String selectFile;
+
+    /** The Select File button text */
+    @ValueMapValue
+    private String selectFileButton;
     
     /** The question button label. */
     @ValueMapValue
@@ -244,6 +246,7 @@ public class CotsSupportModel {
                 getEngineeringLicenseSerialNumber());
         i18KeyMap.put(COTSSupportComponentDialog.SHORT_DESCRIPTION.getI18nJsonKey(), getShortDescription());
         i18KeyMap.put(COTSSupportComponentDialog.SELECT_FILE.getI18nJsonKey(), getSelectFile());
+        i18KeyMap.put(COTSSupportComponentDialog.SELECT_FILE_BUTTON.getI18nJsonKey(), getSelectFileButton());
         i18KeyMap.put(COTSSupportComponentDialog.QUESTION.getI18nJsonKey(), getQuestion());
         i18KeyMap.put(COTSSupportComponentDialog.NAME.getI18nJsonKey(), getName());
         i18KeyMap.put(COTSSupportComponentDialog.EMAIL_ADDRESS.getI18nJsonKey(), getEmailAddress());
@@ -265,7 +268,7 @@ public class CotsSupportModel {
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("i18nKeys : {}",i18nKeys);
         
-        this.componentPath = resolver.map(this.resource.getPath());
+        this.componentPath = resource.getResourceResolver().map(this.resource.getPath());
         LOGGER.debug("Resource mapped url : {}",this.componentPath);
         this.componentPathExtension = CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_SELECTOR
                 + CustomerHubConstants.DOT + CotsSupportEmailServlet.SLING_SERVLET_EXTENSION;
@@ -334,7 +337,11 @@ public class CotsSupportModel {
     public String getSelectFile() {
         return selectFile;
     }
-    
+
+    public String getSelectFileButton() {
+        return selectFileButton;
+    }
+
     public String getQuestion() {
         return question;
     }
