@@ -85,9 +85,7 @@ function _getTrainingsData() {
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: 'http://localhost:3000/trainings',
-        // url: this.cache.trainingsApi,
-        // const trainingsApi = 'http://localhost:3000/trainings';
+        url: this.cache.trainingsApi,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
