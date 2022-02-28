@@ -1,52 +1,54 @@
 <div class="tp-aip__acc-item-form">
     <h6>Form description</h6>
-    <form class="tp-aip-trainings__form" enctype="multipart/form-data">
+    <form class="tp-aip-trainings__form js-aip-trainings__form" enctype="multipart/form-data" novalidate>
         <div class="row">
-            <div class="col-lg-6 tp-aip-trainings__form-element">
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+            <div class="col-lg-6">
+                <div class="js-aip__form-element tp-aip__form-element">
                     {{> atoms/input/input
                             labelText=i18nKeys.noOfParticipants
                             name="participants"
                             required="true"
+                            type="number"
                             maxlength=300
                     }}
-                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                <div class="js-aip__form-element tp-aip__form-element">
                     {{> atoms/input/input
                             labelText=i18nKeys.preferredLocation
                             name="location"
                             required="true"
                             maxlength=300
                     }}
-                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                <div class="js-aip__form-element tp-aip__form-element">
                     {{> atoms/input/input
                             labelText=i18nKeys.preferredDate
                             name="date"
                             required="true"
-                            maxlength=300
+                            type="date"
                     }}
-                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                <div class="js-aip__form-element tp-aip__form-element">
                     {{> atoms/textarea/textarea
                             labelText=i18nKeys.comments
-                            name="addEquipmentComments"
+                            name="comments"
                             labelClasses="tp-add-equipment__field-label"
                     }}
-                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                <div class="js-aip__form-element tp-aip__form-element tp-aip__form-checkbox-group">
                     {{> atoms/checkbox/checkbox
                             value=i18nKeys.confirmationText
                             text=i18nKeys.confirmationText
                             check="false"
+                            required="true"
                             uniqueKey="confirm-training"
                     }}
                 </div>
@@ -56,7 +58,7 @@
                         modifier="primary"
                         iconClass="icon-Chevron_Right"
                         text=i18nKeys.submitButtonLabel
-                        className="tp-aip-trainings__submit js-tp-aip-trainings__submit"
+                        className="tp-aip-trainings__submit js-aip__submit"
                 }}
             </div>
         </div>

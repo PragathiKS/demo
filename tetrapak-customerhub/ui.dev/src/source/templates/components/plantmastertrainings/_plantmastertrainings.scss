@@ -127,10 +127,6 @@
         }
     }
 
-    //&__acc-item-body {
-    //    @include padding(0 $padding-md $padding-md $padding-md);
-    //}
-
     &__acc-txt-block {
         @include margin-bottom($margin-l);
 
@@ -144,5 +140,30 @@
         @include padding-top($padding-l);
         @include margin-top($padding-l);
         border-top: 1px solid $color-mercury;
+    }
+
+    &__form-element {
+        &--error {
+            input,
+            textarea,
+            select,
+            .tpatom-checkbox__icon {
+                border: 1px solid $color-alert;
+            }
+        }
+        .error-msg {
+            @include font-size($font-sm);
+            display: none;
+            color: $color-alert;
+
+            &--active {
+                display: block;
+            }
+        }
+    }
+
+    &__form-checkbox-group {
+        @include margin-top($margin-md);
+        @include margin-bottom($margin-md);
     }
 }

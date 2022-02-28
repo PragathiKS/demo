@@ -26,6 +26,57 @@ function _processTrainingsData(data) {
   return processedDataArr;
 }
 
+function _addErrorMsg(el, errorMsgSelector) {
+  $(el)
+    .closest('.js-aip__form-element')
+    .addClass('tp-aip__form-element--error')
+    .find(errorMsgSelector)
+    .addClass('error-msg--active');
+}
+
+function _removeAllErrorMessages($form) {
+  $form.find('.error-msg--active').removeClass('error-msg--active');
+  $form.find('.tp-aip__form-element--error').removeClass('tp-aip__form-element--error');
+}
+
+function _handleFormSubmit(formEl) {
+  const $form = $(formEl);
+  const $this = this;
+  let isFormValid = true;
+  const $requiredFormElements = $form.find('input[required], :checkbox');
+
+  _removeAllErrorMessages($form);
+
+  $requiredFormElements.each((idx, el) => {
+    const $el = $(el);
+
+    if ((['text', 'number'].includes($el.attr('type')) && !$.trim($el.val())) || $el.attr('type') === 'checkbox' && !$el.is(':checked')) {
+      isFormValid = false;
+      _addErrorMsg(el, '.js-aip__error-msg-required');
+    }
+  });
+
+  if (isFormValid) {
+    const formData = new FormData(formEl);
+    $this.cache.$spinner.removeClass('d-none');
+
+    ajaxWrapper
+      .getXhrObj({
+        url: this.cache.submitApi,
+        method: ajaxMethods.POST,
+        cache: true,
+        processData: false,
+        contentType: false,
+        data: formData,
+        showLoader: true
+      }).done(() => {
+        $this.cache.$spinner.removeClass('d-none');
+      }).fail(() => {
+        $this.cache.$spinner.addClass('d-none');
+      });
+  }
+}
+
 /**
  * Fetch and process the Trainings data
  */
@@ -34,7 +85,9 @@ function _getTrainingsData() {
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: this.cache.trainingsApi,
+        url: 'http://localhost:3000/trainings',
+        // url: this.cache.trainingsApi,
+        // const trainingsApi = 'http://localhost:3000/trainings';
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -82,9 +135,19 @@ class PlantMasterTrainings {
       logger.error(e);
     }
     this.cache.trainingsApi = this.root.data('trainings-api');
+    this.cache.submitApi = this.root.data('submit-api');
     this.cache.$contentWrapper = this.root.find('.js-aip-trainings__wrapper');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
+    this.cache.$formSpinner = this.root.find('.js-aip-trainings__form-spinner');
+    this.cache.$formWrapper = this.root.find('.js-aip-trainings__form-content');
     this.cache.$tabPaneAvailableTrainings = this.root.find('.js-aip-trainings__accordion');
+  }
+
+  bindEvents() {
+    this.root.on('submit', '.js-aip-trainings__form', e => {
+      e.preventDefault();
+      this.handleFormSubmit(e.target);
+    });
   }
 
   renderTrainings() {
@@ -95,9 +158,14 @@ class PlantMasterTrainings {
     return _getTrainingsData.apply(this, arguments);
   }
 
+  handleFormSubmit() {
+    return _handleFormSubmit.apply(this, arguments);
+  }
+
   init() {
     this.initCache();
     this.getTrainingsData();
+    this.bindEvents();
   }
 }
 
