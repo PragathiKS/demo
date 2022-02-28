@@ -263,12 +263,14 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Software version label (i18N key)"
-                                name="./softwareVersionEmailLabel"/>
+                                name="./softwareVersionEmailLabel"
+                                required="true"/>
                             <engineeringLicenseSerialNumber
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Engineering License Serial Number label (i18N key)"
-                                name="./licenseNumberEmailLabel"/>
+                                name="./licenseNumberEmailLabel"
+                                required="true"/>
                         </items>
                     </column2>
                 </items>
