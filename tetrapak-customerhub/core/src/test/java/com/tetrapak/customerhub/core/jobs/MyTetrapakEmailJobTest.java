@@ -34,22 +34,28 @@ public class MyTetrapakEmailJobTest {
     public final AemContext aemContext = new AemContext();
 
     private final String templatePath = "/etc/notification/email/customerhub/cotssupport/cotssupportemail.html";
+    private static final String OK_ERROR_MESSAGE = "Jobresult should be OK.";
+    private static final String FAIL_ERROR_MESSAGE = "Jobresult should be CANCEL";
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
+        List<Map<String,String>> listOfAttachments = new ArrayList<>();
+        final Map<String, Object> emailParams = new HashMap<>();
+        when(job.getProperty("templatePath")).thenReturn(templatePath);
+        when(job.getProperty("emailParams")).thenReturn(emailParams);
+        when(job.getProperty("attachments")).thenReturn(listOfAttachments);
     }
 
     @Test
-    public void testProcess() {
-        List<Map<String,String>> listOfAttachments = new ArrayList<>();
-        final Map<String, Object> emailParams = new HashMap<>();
+    public void testProcessSuccess() {
         final String[] receipientsArray = { "mikesmith@tetrapak.com" };
-        when(job.getProperty("templatePath")).thenReturn(templatePath);
-        when(job.getProperty("emailParams")).thenReturn(emailParams);
         when(job.getProperty("receipientsArray")).thenReturn(receipientsArray);
-        when(job.getProperty("attachments")).thenReturn(listOfAttachments);
+        assertEquals(OK_ERROR_MESSAGE, JobConsumer.JobResult.OK, sendMailJob.process(job));
+    }
 
-        assertEquals("ProductAssetImportJob", JobConsumer.JobResult.OK, sendMailJob.process(job));
+    @Test
+    public void testProcessFail(){
+        assertEquals(FAIL_ERROR_MESSAGE, JobConsumer.JobResult.CANCEL, sendMailJob.process(job));
     }
 }
