@@ -178,6 +178,14 @@ public class CotsSupportModel {
     /** The contact details text in email */
     @ValueMapValue
     private String contactDetails;
+
+    /** The software version field label in email */
+    @ValueMapValue
+    private String softwareVersionEmailLabel;
+
+    /** The license number field label in email */
+    @ValueMapValue
+    private String licenseNumberEmailLabel;
     
     /** The submit button label */
     @ValueMapValue
@@ -392,6 +400,14 @@ public class CotsSupportModel {
     
     public String getContactDetails() {
         return contactDetails;
+    }
+
+    public String getSoftwareVersionEmailLabel() {
+        return softwareVersionEmailLabel;
+    }
+
+    public String getLicenseNumberEmailLabel() {
+        return licenseNumberEmailLabel;
     }
 
     public String getSubmitButtonLabel() {
