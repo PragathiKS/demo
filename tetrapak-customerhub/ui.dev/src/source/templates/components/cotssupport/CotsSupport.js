@@ -240,6 +240,7 @@ class CotsSupport {
 
     if (blockedExtensions.exec(filePath) || (file.size > maxFileSize) || (this.cache.filesMaxSize > TotalmaxFileSize)) {
       $fileExtensionError.removeAttr('hidden');
+      this.cache.filesMaxSize = this.cache.filesMaxSize - file.size;
       return false;
     }
 
