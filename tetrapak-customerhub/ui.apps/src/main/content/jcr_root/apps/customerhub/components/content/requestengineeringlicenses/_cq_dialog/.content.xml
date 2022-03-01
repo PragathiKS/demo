@@ -18,11 +18,11 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <userDeailsSectionTitle
+                            <userDetailsSectionTitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="User details section title (i18N key)"
-                                name="./userDeailsSectionTitle"
+                                name="./userDetailsSectionTitle"
                                 required="true"/>
                             <name
                                 jcr:primaryType="nt:unstructured"
@@ -96,7 +96,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Subject (i18N key)"
-                                name="subject"/>
+                                name="./subject"/>
                             <salutation
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -107,12 +107,6 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Body text (i18N key)"
                                 name="./body"/>
-                            <contactDetails
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Contact details text (i18N key)"
-                                name="./contactDetails"
-                                required="true"/>
                             <nameping
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
