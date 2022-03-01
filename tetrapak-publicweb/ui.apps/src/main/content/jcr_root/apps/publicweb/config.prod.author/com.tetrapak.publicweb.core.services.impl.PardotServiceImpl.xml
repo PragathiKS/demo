@@ -7,6 +7,6 @@
           pardotSubscribersApiURL="https://api.tetrapak.com/externalnewsletters"
           pardotTokenGenerationUrl="https://api.tetrapak.com/oauth2/token"
 		  customTokenGenerationUrl="https://api.tetrapak.com/oauth2/token"
-		  customFormServiceUrl="https://api.tetrapak.com/cfe/pardotforms/forms"
+		  customFormServiceUrl="https://api.tetrapak.com/p2p/cfe/pardotforms/forms"
 		  customFormServiceClientID="XtIWqA1ENydfGULLJBOSDmmdaYeVxZTC"
 		  customFormServiceClientSecret="jJVvnYEGQEar8lFl"/>
