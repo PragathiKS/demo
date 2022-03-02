@@ -69,8 +69,8 @@
 			});
 		}else if(dropdownValue==="enableSoftconversion" && !patterns.pardotChinaUrlRegex.test(pardotChinaUrl)) {
             gAuthor.ui.helpers.prompt({
-                title: "Invalid China BU form handler URL - Softconversion Form",
-                message: "China BU form handler URL for softconversion form cannot be left blank and should start with either <b>https://go.demo.pardot.com</b> or <b>https://go-cn.tetrapak.com</b>",
+                title: "Invalid China Pardot URL - Softconversion Form",
+                message: "China Pardot URL for softconversion form cannot be left blank and should start with either <b>https://go.demo.pardot.com</b> or <b>https://go-cn.tetrapak.com</b>",
                 actions: [{
                     id: "CANCEL",
                     text: "Ok",
@@ -83,8 +83,8 @@
 			});
         }else if(dropdownValue==="enableSubscription" && !patterns.pardotChinaUrlRegex.test(pardotChinaUrlSubscription)){
 			gAuthor.ui.helpers.prompt({
-				title: "Invalid China BU form handler URL - Subscription Form",
-				message: "China BU form handler URL for subscription form cannot be left blank and should start with either <b>https://go.demo.pardot.com</b> or <b>https://go-cn.tetrapak.com</b>",
+				title: "Invalid China Pardot URL - Subscription Form",
+				message: "China Pardot URL for subscription form cannot be left blank and should start with either <b>https://go.demo.pardot.com</b> or <b>https://go-cn.tetrapak.com</b>",
 				actions: [{
 					id: "CANCEL",
 					text: "Ok",
