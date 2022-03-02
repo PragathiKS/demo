@@ -160,11 +160,11 @@ public class PardotServiceImpl implements PardotService {
      * @param locale the locale
      * @param interestAreas the interest areas
      * @return the subscriber mail addresses
+     * @throws JSONException 
      */
-    public List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas) {
+    public List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas) throws JSONException {
         LOGGER.debug("Inside Get SubscriberMailAddresses method");
         List<String> mailAddresses = null;
-        try {
             String apiUrl = config.pardotSubscribersApiURL() + "/subscribers?";
             BearerToken token = getBearerToken();
             String areas = StringUtils.EMPTY;
@@ -185,9 +185,6 @@ public class PardotServiceImpl implements PardotService {
                     mailAddresses = getMailAddresses(jsonObject);
                 }
             }
-        } catch (JSONException e) {
-            LOGGER.error("Error while fetching Subscriber data {}", e.getMessage());
-        }
         return mailAddresses;
     }
 
