@@ -162,6 +162,18 @@
         }
     }
 
+    &__form-element-sm {
+        .tpatom-input-box__input {
+            @include max-width(120px);
+        }
+    }
+
+    &__form-element-md {
+        .tpatom-input-box__input {
+            @include max-width(285px);
+        }
+    }
+
     &__form-checkbox-group {
         @include margin-top($margin-md);
         @include margin-bottom($margin-md);

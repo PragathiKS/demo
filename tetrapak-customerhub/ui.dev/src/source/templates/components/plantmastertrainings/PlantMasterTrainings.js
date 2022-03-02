@@ -45,14 +45,14 @@ function _handleFormSubmit(formEl) {
   let isFormValid = true;
   const $requiredFormElements = $form.find('input[required], :checkbox');
 
-  _removeAllErrorMessages($form);
+  this.removeAllErrorMessages($form);
 
   $requiredFormElements.each((idx, el) => {
     const $el = $(el);
 
-    if ((['text', 'number'].includes($el.attr('type')) && !$.trim($el.val())) || $el.attr('type') === 'checkbox' && !$el.is(':checked')) {
+    if ((['text', 'number', 'date'].includes($el.attr('type')) && !$.trim($el.val())) || $el.attr('type') === 'checkbox' && !$el.is(':checked')) {
       isFormValid = false;
-      _addErrorMsg(el, '.js-aip__error-msg-required');
+      this.addErrorMsg(el, '.js-aip__error-msg-required');
     }
   });
 
@@ -158,6 +158,14 @@ class PlantMasterTrainings {
 
   handleFormSubmit() {
     return _handleFormSubmit.apply(this, arguments);
+  }
+
+  addErrorMsg() {
+    return _addErrorMsg.apply(this, arguments);
+  }
+
+  removeAllErrorMessages() {
+    return _removeAllErrorMessages.apply(this, arguments);
   }
 
   init() {
