@@ -6,6 +6,7 @@ import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
 import com.tetrapak.customerhub.core.services.impl.CotsSupportServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.request.RequestParameter;
@@ -49,75 +50,76 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CotsSupportEmailServletTest {
-
+    
     private static final String TEST_FILE = "src/test/resources/cotsSupportFormBean.json";
-    private static final String RESOURCE_JSON = "cotsSupportComponent.json";
+    private static final String RESOURCE_JSON = "/cotsSupportComponent.json";
     private static final String RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/automation-digital/cots-support/jcr:content/root/responsivegrid/cotssupport";
-
+    private static final String SAMPLE_STRING = "sample";
+    
     private CotsSupportEmailServlet cotsSupportEmailServlet;
-
+    
     @Mock
     private PrintWriter mockPrintWriter;
-
+    
     @Mock
     private XSSAPI xssAPI;
-
+    
     @Mock
     private ResourceResolver mockResResolver;
-
+    
     @Mock
     private Session mockSession;
-
+    
     @Mock
     private LanguageManager languageManager;
-
+    
     @Mock
     private JobManager jobManager;
-
+    
     @Mock
     private EmailService emailService;
-
+    
     @Mock
     private AIPEmailConfiguration AIPEmailConfiguration;
-
+    
     @Rule
     public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
-
+    
     @Spy
     @InjectMocks
-    private CotsSupportServiceImpl cotsSupportServiceImpl = new CotsSupportServiceImpl() ;
-
+    private CotsSupportServiceImpl cotsSupportServiceImpl = new CotsSupportServiceImpl();
+    
     private String content;
-
+    
     private MockSlingHttpServletResponse response = context.response();
-
+    
     @Spy
     private MockSlingHttpServletRequest request = context.request();
-
+    
     @Spy
     private ResourceResolver resourceResolver = context.resourceResolver();
-
+    
     @Before
     public void setUp() throws Exception {
-
+        
         MockitoAnnotations.initMocks(this);
-        context.load().json("/cotsSupportComponent.json",RESOURCE_PATH);
-        context.registerService(XSSAPI.class,xssAPI);
+        context.load().json(RESOURCE_JSON, RESOURCE_PATH);
+        context.registerService(XSSAPI.class, xssAPI);
         content = readFileFromPath(TEST_FILE);
         when(xssAPI.getValidJSON(anyString(), anyString())).thenReturn(content);
-        context.registerService(JobManager.class,jobManager);
-        context.registerService(EmailService.class,emailService);
-        context.registerService(LanguageManager.class,languageManager);
+        context.registerService(JobManager.class, jobManager);
+        context.registerService(EmailService.class, emailService);
+        context.registerService(LanguageManager.class, languageManager);
         context.registerService(AIPEmailConfiguration.class, AIPEmailConfiguration);
         Map<String, Object> props = new HashMap<>();
-        context.registerInjectActivateService(cotsSupportServiceImpl,props);
-        when(cotsSupportServiceImpl.getI18nValue(any(),any(),any())).thenReturn("");
+        context.registerInjectActivateService(cotsSupportServiceImpl, props);
+        when(cotsSupportServiceImpl.getI18nValue(any(), any(), any())).thenReturn(StringUtils.EMPTY);
         SlingHttpServletResponse response = spy(context.response());
         doReturn(mockPrintWriter).when(response).getWriter();
-        cotsSupportEmailServlet = context.registerInjectActivateService(new CotsSupportEmailServlet(),props);
+        cotsSupportEmailServlet = context.registerInjectActivateService(new CotsSupportEmailServlet(), props);
         request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
     }
-
+    
     @Test
     public void testSessionNull() throws IOException {
         doReturn(resourceResolver).when(request).getResourceResolver();
@@ -125,76 +127,90 @@ public class CotsSupportEmailServletTest {
         cotsSupportEmailServlet.doPost(request, response);
         assertEquals("status should be ok", HttpStatus.SC_OK, context.response().getStatus());
     }
-
-
+    
     @Test
     public void testDoPost() throws IOException, URISyntaxException {
         RequestParameterMap map = new RequestParameterMap() {
-            @Override public RequestParameter[] getValues(String s) {
+            @Override
+            public RequestParameter[] getValues(String s) {
                 return new RequestParameter[0];
             }
-
-            @Override public RequestParameter getValue(String s) {
+            
+            @Override
+            public RequestParameter getValue(String s) {
                 return null;
             }
-
-            @Override public int size() {
+            
+            @Override
+            public int size() {
                 return 0;
             }
-
-            @Override public boolean isEmpty() {
+            
+            @Override
+            public boolean isEmpty() {
                 return false;
             }
-
-            @Override public boolean containsKey(Object key) {
+            
+            @Override
+            public boolean containsKey(Object key) {
                 return false;
             }
-
-            @Override public boolean containsValue(Object value) {
+            
+            @Override
+            public boolean containsValue(Object value) {
                 return false;
             }
-
-            @Override public RequestParameter[] get(Object key) {
+            
+            @Override
+            public RequestParameter[] get(Object key) {
                 return new RequestParameter[0];
             }
-
-            @Override public RequestParameter[] put(String key, RequestParameter[] value) {
+            
+            @Override
+            public RequestParameter[] put(String key, RequestParameter[] value) {
                 return new RequestParameter[0];
             }
-
-            @Override public RequestParameter[] remove(Object key) {
+            
+            @Override
+            public RequestParameter[] remove(Object key) {
                 return new RequestParameter[0];
             }
-
-            @Override public void putAll(Map<? extends String, ? extends RequestParameter[]> m) {
-
+            
+            @Override
+            public void putAll(Map<? extends String, ? extends RequestParameter[]> m) {
+                
             }
-
-            @Override public void clear() {
-
+            
+            @Override
+            public void clear() {
+                
             }
-
-            @Override public Set<String> keySet() {
+            
+            @Override
+            public Set<String> keySet() {
                 return null;
             }
-
-            @Override public Collection<RequestParameter[]> values() {
+            
+            @Override
+            public Collection<RequestParameter[]> values() {
                 return null;
             }
-
-            @Override public Set<Entry<String, RequestParameter[]>> entrySet() {
+            
+            @Override
+            public Set<Entry<String, RequestParameter[]>> entrySet() {
                 List<RequestParameter> params = new ArrayList<>();
                 RequestParameter param = mock(RequestParameter.class);
-                when(param.getFileName()).thenReturn("test.pdf");
-                when(param.getContentType()).thenReturn("application/pdf");
+                when(param.getFileName()).thenReturn(SAMPLE_STRING);
+                when(param.getContentType()).thenReturn(SAMPLE_STRING);
                 when(param.isFormField()).thenReturn(false);
                 try {
-                    when(param.getInputStream()).thenReturn(new ByteArrayInputStream("Test".getBytes()));
+                    when(param.getInputStream()).thenReturn(new ByteArrayInputStream(SAMPLE_STRING.getBytes()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 params.add(param);
-                Entry<String,RequestParameter[]> entry = new AbstractMap.SimpleEntry<>("sample",params.toArray(new RequestParameter[0]));
+                Entry<String, RequestParameter[]> entry = new AbstractMap.SimpleEntry<>(SAMPLE_STRING,
+                        params.toArray(new RequestParameter[0]));
                 Set<Entry<String, RequestParameter[]>> set = new HashSet<>();
                 set.add(entry);
                 return set;
@@ -205,10 +221,10 @@ public class CotsSupportEmailServletTest {
         cotsSupportEmailServlet.doPost(request, response);
         assertEquals("Status should be accepted", HttpStatus.SC_ACCEPTED, context.response().getStatus());
     }
-
+    
     private String readFileFromPath(String path) throws IOException {
         FileInputStream fis = new FileInputStream(path);
         return IOUtils.toString(fis, StandardCharsets.UTF_8);
     }
-
+    
 }
