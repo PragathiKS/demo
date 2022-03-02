@@ -25,4 +25,11 @@ public class AffectedSystemsModel {
         return productsInvolved;
     }
 
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public void setProductsInvolved(List<ProductsInvolvedModel> productsInvolved) {
+        this.productsInvolved = productsInvolved;
+    }
 }

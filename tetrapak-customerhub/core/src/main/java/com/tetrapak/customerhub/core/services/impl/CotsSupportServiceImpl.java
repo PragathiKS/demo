@@ -117,9 +117,9 @@ public class CotsSupportServiceImpl implements CotsSupportService {
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.PRODUCT_INVOLVED.i18nJsonKey,
                 getI18nValue(request, prefix, model.getProductInvolvedLabel()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SOFTWARE_VERSION.i18nJsonKey,
-                getI18nValue(request, prefix, model.getSoftwareVersion()));
+                getI18nValue(request, prefix, model.getSoftwareVersionEmailLabel()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.ENGINEERING_LICENSE_SERIAL_NUMBER.i18nJsonKey,
-                getI18nValue(request, prefix, model.getEngineeringLicenseSerialNumber()));
+                getI18nValue(request, prefix, model.getLicenseNumberEmailLabel()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.SHORT_DESCRIPTION.i18nJsonKey,
                 getI18nValue(request, prefix, model.getShortDescription()));
         emailParams.put(CotsSupportModel.COTSSupportComponentDialog.CONTACT_DETAILS.i18nJsonKey,
