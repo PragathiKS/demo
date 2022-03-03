@@ -96,7 +96,7 @@ function _getTrainingsData() {
         },
         showLoader: true
       }).done(res => {
-        $this.cache.trainingsData = _processTrainingsData(res.data[0]);
+        $this.cache.trainingsData = _processTrainingsData(res.data);
         $this.renderTrainings();
         $this.cache.$contentWrapper.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
