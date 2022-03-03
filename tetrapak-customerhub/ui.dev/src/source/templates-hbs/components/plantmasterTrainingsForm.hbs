@@ -8,6 +8,7 @@
                             labelText=item.i18nKeys.noOfParticipants
                             name=(concat "participants-" index)
                             required="true"
+                            min="1"
                             type="number"
                     }}
                     <div class="error-msg js-aip__error-msg-required">{{i18n key=item.i18nKeys.inputErrorMsg}}</div>
@@ -62,4 +63,9 @@
             </div>
         </div>
     </form>
+</div>
+
+<div class="tp-aip__acc-item-confirm d-none">
+    <i class="icon icon-Circle_filled_Tick"></i>
+    {{i18n key=item.i18nKeys.successMessage}}
 </div>

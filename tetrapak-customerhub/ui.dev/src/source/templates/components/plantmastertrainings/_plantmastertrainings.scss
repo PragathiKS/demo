@@ -142,6 +142,19 @@
         border-top: 1px solid $color-mercury;
     }
 
+    &__acc-item-confirm {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-right($margin-md);
+            color: $color-success;
+        }
+    }
+
     &__form-element {
         &--error {
             input,

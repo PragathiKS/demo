@@ -52,12 +52,16 @@ function _handleFormSubmit(formEl) {
 
     if ((['text', 'number', 'date'].includes($el.attr('type')) && !$.trim($el.val())) || $el.attr('type') === 'checkbox' && !$el.is(':checked')) {
       isFormValid = false;
-      this.addErrorMsg(el, '.js-aip__error-msg-required');
+      $this.addErrorMsg(el, '.js-aip__error-msg-required');
     }
   });
 
   if (isFormValid) {
     const formData = new FormData(formEl);
+    const $formWrapper = $form.parent();
+    const $trainingBody = $formWrapper.prev();
+    const $confirmationTxt = $formWrapper.next();
+    $this.cache.$contentWrapper.addClass('d-none');
     $this.cache.$spinner.removeClass('d-none');
 
     ajaxWrapper
@@ -70,9 +74,14 @@ function _handleFormSubmit(formEl) {
         data: formData,
         showLoader: true
       }).done(() => {
-        $this.cache.$spinner.removeClass('d-none');
+        $this.cache.$spinner.addClass('d-none');
+        $formWrapper.addClass('d-none');
+        $trainingBody.addClass('d-none');
+        $this.cache.$contentWrapper.removeClass('d-none');
+        $confirmationTxt.removeClass('d-none');
       }).fail(() => {
         $this.cache.$spinner.addClass('d-none');
+        $this.cache.$contentWrapper.removeClass('d-none');
       });
   }
 }
