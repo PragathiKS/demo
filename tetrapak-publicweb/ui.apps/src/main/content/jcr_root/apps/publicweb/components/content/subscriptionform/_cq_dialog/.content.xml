@@ -52,7 +52,7 @@
 							<chinaapiurl
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Provide China BU form handler URL"
+                                fieldDescription="Provide China BU form handler URL. Valid URL starts with either - https://go.demo.pardot.com/ or https://go-cn.tetrapak.com/""
                                 fieldLabel="China BU form handler URL"
                                 name="./pardotChinaUrlSubscription"/>								
                             <thankyou
