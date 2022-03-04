@@ -167,7 +167,15 @@
         "testMultiple": true,
         "name": "addequipment",
         "enforce": true,
-        "chunks": "all"
+        "chunks": "all",
+        "minSize": 0
+      },
+      "plantmastertrainings": {
+        "testMultiple": true,
+        "name": "plantmastertrainings",
+        "enforce": true,
+        "chunks": "all",
+        "minSize": 0
       },
       "cotssupport": {
         "testMultiple": true,
@@ -222,6 +230,9 @@
       ],
       "cotssupport": [
         "source/templates/components/cotssupport/"
+      ],
+      "plantmastertrainings": [
+        "source/templates/components/plantmastertrainings/"
       ]
     },
     "handlebars": {
