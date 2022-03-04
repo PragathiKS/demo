@@ -1,6 +1,9 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -17,9 +20,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class RequestEngineeringLicensesModel {
+public class EngineeringLicensesModel {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RequestEngineeringLicensesModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EngineeringLicensesModel.class);
 
     public enum requestEngineeringLicenseComponentDialog {
         USER_DETAILS_SECTION_TITLE("userDetailsSectionTitle"),
@@ -51,65 +54,77 @@ public class RequestEngineeringLicensesModel {
 
     /** The resource. */
     @SlingObject
+    @Expose(serialize = false)
     private Resource resource;
 
     @SlingObject
+    @Expose(serialize = false)
     private SlingHttpServletRequest request;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String userDetailsSectionTitle;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String name;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String namePlaceholder;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String activationDate;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String activationDatePlaceholder;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String licenseSelectionSectionTitle;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String addUser;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String comments;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String submitButton;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String licenseDescriptions;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String description;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String subject;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String salutation;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String body;
 
-    private String i18nKeys;
 
-    private String userName;
-
-    private String userEmailAddress;
 
     /**
      * init method.
      */
     @PostConstruct
     protected void init() {
-        Map<String, Object> i18KeyMap = new HashMap<>();
+      /*  Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(requestEngineeringLicenseComponentDialog.USER_DETAILS_SECTION_TITLE.getI18nJsonKey(), getUserDetailsSectionTitle());
         i18KeyMap.put(requestEngineeringLicenseComponentDialog.NAME.getI18nJsonKey(), getName());
         i18KeyMap.put(requestEngineeringLicenseComponentDialog.NAME_PLACEHOLDER.getI18nJsonKey(), getNamePlaceholder());
@@ -134,12 +149,10 @@ public class RequestEngineeringLicensesModel {
         this.setUserEmailAddress();
         if (request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME) != null) {
             this.userName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
-        }
+        }*/
     }
 
-    public void setUserEmailAddress() {
-        this.userEmailAddress = GlobalUtil.getCustomerEmailAddress(this.request);
-    }
+
 
 
     public String getUserDetailsSectionTitle() {
@@ -198,9 +211,6 @@ public class RequestEngineeringLicensesModel {
         return body;
     }
 
-    public String getI18nKeys() {
-        return i18nKeys;
-    }
 }
 
 
