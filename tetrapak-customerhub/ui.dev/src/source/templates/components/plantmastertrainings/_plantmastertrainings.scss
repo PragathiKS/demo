@@ -129,11 +129,11 @@
 
     &__acc-txt-block {
         @include margin-bottom($margin-l);
+    }
 
-        h6 {
-            @include margin-bottom($margin-xs);
-            font-weight: 700;
-        }
+    &__acc-block-title {
+        @include margin-bottom($margin-xs);
+        font-weight: 700;
     }
 
     &__acc-item-form {
