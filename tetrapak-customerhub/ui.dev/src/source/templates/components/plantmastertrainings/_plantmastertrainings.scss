@@ -1,0 +1,194 @@
+// Generic AIP Tabs and Accordion styling
+.tp-aip {
+    $this: &;
+
+    &__header-wrapper {
+        @include margin-bottom($margin-l);
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__heading {
+        @include font-size($font-xl);
+        @include line-height(40px, $font-xl);
+    }
+
+    &__acc-item {
+        border-bottom: 1px solid $color-mercury;
+    }
+
+    &__nav-tabs {
+        border: 0;
+        flex-wrap: nowrap;
+
+        #{$this}__nav-link {
+            border: 0;
+
+            &.active {
+                color: $color-congress-blue;
+                //text-shadow: 0 0 .65px $color-congress-blue, 0 0 .65px $color-congress-blue;
+            }
+        }
+    }
+
+    &__nav {
+        @include margin-bottom($margin-l);
+        overflow-y: hidden;
+        overflow-x: auto;
+        position: relative;
+        width: 100%;
+
+        @media #{$mobile} {
+            width: calc(100% + #{$padding-md});
+        }
+
+        &::after {
+            display: block;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $color-mercury;
+        }
+    }
+
+    &__nav-link {
+        @include padding($padding-sm $padding-md);
+        color: $color-text;
+        font-weight: 500;
+        flex-shrink: 0;
+        position: relative;
+
+        &::after {
+            display: block;
+            content: '';
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+            width: 100%;
+            border-bottom: 2px solid $color-mercury;
+            z-index: 10;
+        }
+
+        &.active {
+            &::after {
+                border-bottom: 2px solid $color-congress-blue;
+                z-index: 20;
+            }
+        }
+
+        &:hover {
+            color: $color-congress-blue;
+        }
+    }
+
+    &__collapse {
+        @include padding(0 $padding-md $padding-md $padding-md);
+    }
+
+    &__btn-link {
+        @include padding($padding-md);
+        display: flex;
+        color: $color-text;
+        width: 100%;
+        text-align: left;
+        font-weight: 500;
+        text-decoration: none;
+        border-radius: 0;
+
+        span {
+            @include padding-right($padding-md);
+        }
+
+        i {
+            transition: transform $anim-speed-quick $anim-ease;
+            margin-left: auto;
+        }
+
+        &[aria-expanded='true'] {
+            font-weight: 700;
+            background-color: $color-wild-sand;
+
+            i {
+                transform: rotate(180deg);
+            }
+
+            & + .tp-aip__collapse {
+                background-color: $color-wild-sand;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            color: $color-congress-blue;
+            text-decoration: none;
+        }
+    }
+
+    &__acc-txt-block {
+        @include margin-bottom($margin-l);
+
+        h6 {
+            @include margin-bottom($margin-xs);
+            font-weight: 700;
+        }
+    }
+
+    &__acc-item-form {
+        @include padding-top($padding-l);
+        @include margin-top($padding-l);
+        border-top: 1px solid $color-mercury;
+    }
+
+    &__acc-item-confirm {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-right($margin-md);
+            color: $color-success;
+        }
+    }
+
+    &__form-element {
+        &--error {
+            input,
+            textarea,
+            select,
+            .tpatom-checkbox__icon {
+                border: 1px solid $color-alert;
+            }
+        }
+        .error-msg {
+            @include font-size($font-sm);
+            display: none;
+            color: $color-alert;
+
+            &--active {
+                display: block;
+            }
+        }
+    }
+
+    &__form-element-sm {
+        .tpatom-input-box__input {
+            @include max-width(120px);
+        }
+    }
+
+    &__form-element-md {
+        .tpatom-input-box__input {
+            @include max-width(285px);
+        }
+    }
+
+    &__form-checkbox-group {
+        @include margin-top($margin-md);
+        @include margin-bottom($margin-md);
+    }
+}
