@@ -12,6 +12,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -127,6 +128,13 @@ public class PlantMasterTrainingsModel {
     @SlingObject
     private Resource resource;
 
+    /** The is publish environment. */
+    private boolean isPublishEnvironment = Boolean.FALSE;
+
+    /** The sling settings service. */
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
+
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
@@ -237,6 +245,15 @@ public class PlantMasterTrainingsModel {
     private String userEmailAddress;
 
     /**
+     * Checks if is publish environment.
+     *
+     * @return true, if is publish environment
+     */
+    public boolean isPublishEnvironment() {
+        return isPublishEnvironment;
+    }
+
+    /**
      * init method.
      */
     @PostConstruct
@@ -272,6 +289,10 @@ public class PlantMasterTrainingsModel {
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("i18nKeys : {}", i18nKeys);
+
+        if (slingSettingsService.getRunModes().contains("publish")) {
+            isPublishEnvironment = Boolean.TRUE;
+        }
 
         this.setUserEmailAddress();
         if (request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME) != null) {
