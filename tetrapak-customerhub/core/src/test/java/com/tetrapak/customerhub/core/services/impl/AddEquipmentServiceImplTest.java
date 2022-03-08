@@ -51,7 +51,7 @@ public class AddEquipmentServiceImplTest {
     public void setUp() throws IOException {
         String content = readFileFromPath(TEST_FILE);
         Mockito.when(mockApigeeService.getApigeeServiceUrl()).thenReturn("mockurl");
-        Mockito.when(mockApigeeService.getApiMappings()).thenReturn(new String[] {"myequipment-reportmissing:installedbase/equipments/reportmissing?version=preview"});
+        Mockito.when(mockApigeeService.getApiMappings()).thenReturn(new String[] {"myequipment-reportmissing:installedbase/equipments/reportmissing"});
         Mockito.when(mockClient.execute(Mockito.any(HttpPost.class)))
                 .thenReturn(response);
         bean = (new Gson()).fromJson(content, AddEquipmentFormBean.class);
