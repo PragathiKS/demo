@@ -459,7 +459,7 @@ class MyEquipment {
       this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], true);
       ajaxWrapper
         .getXhrObj({
-          url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${this.getActiveCountryCode()}`,
+          url: `${equipmentApi}?skip=0&count=${itemsPerPage}&countrycodes=${this.getActiveCountryCode()}`,
           method: 'GET',
           contentType: 'application/json',
           dataType: 'json',
@@ -909,7 +909,7 @@ class MyEquipment {
       this.cache.skipIndex = 0;
     }
 
-    apiUrlRequest = `${equipmentApi}?skip=${skipIndex}&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`;
+    apiUrlRequest = `${equipmentApi}?skip=${skipIndex}&count=${itemsPerPage}&countrycodes=${countryCode}`;
 
     if (filtersQuery) {
       apiUrlRequest += `&${filtersQuery}`;
@@ -997,7 +997,7 @@ class MyEquipment {
 
           ajaxWrapper
             .getXhrObj({
-              url: `${equipmentApi}?skip=0&count=${itemsPerPage}&version=preview&countrycodes=${countryCode}`,
+              url: `${equipmentApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}`,
               method: 'GET',
               contentType: 'application/json',
               dataType: 'json',
