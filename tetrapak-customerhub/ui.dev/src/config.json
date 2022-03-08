@@ -168,6 +168,12 @@
         "name": "addequipment",
         "enforce": true,
         "chunks": "all"
+      },
+      "cotssupport": {
+        "testMultiple": true,
+        "name": "cotssupport",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -213,6 +219,9 @@
       ],
       "addequipment": [
         "source/templates/components/addequipment/"
+      ],
+      "cotssupport": [
+        "source/templates/components/cotssupport/"
       ]
     },
     "handlebars": {

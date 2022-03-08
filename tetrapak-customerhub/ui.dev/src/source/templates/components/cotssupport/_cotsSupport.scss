@@ -1,0 +1,240 @@
+.tp-cots-support {
+    $color-success: #8dc63f;
+
+    &__title {
+        @include margin-bottom($margin-md);
+        @include line-height($font-xl, $font-l);
+        @include font-size($font-l);
+        font-weight: 400;
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+            @include line-height(40px, $font-xl);
+            @include font-size($font-xl);
+            font-weight: 700;
+        }
+    }
+
+    &__subtitle {
+        @include margin-bottom($margin-md);
+        max-width: 825px;
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    h3 {
+        @include margin-bottom($margin-md);
+    }
+
+    h4 {
+        @include margin-top($margin-l);
+    }
+
+    &__form {
+        width: 100%;
+    }
+
+    &__form-element {
+        .tpatom-input-box {
+            &__input {
+                border: 1px solid $color-tundora;
+            }
+        }
+
+        label {
+            @include line-height($font-l, $font-baseline);
+            @include margin-top($margin-md);
+            font-weight: 500;
+            color: $color-text;
+        }
+
+        .tpatom-radio-button {
+            &__label {
+                margin-top: 0;
+            }
+        }
+
+        &--error {
+            input,
+            textarea,
+            select {
+                border: 1px solid $color-alert;
+            }
+        }
+        .error-msg {
+            @include font-size($font-sm);
+            display: none;
+            color: $color-alert;
+
+            &--active {
+                display: block;
+            }
+        }
+
+        &-readonly {
+            label {
+                opacity: 0.5;
+            }
+
+            .tpatom-input-box__input {
+                border-color: $color-mercury;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &__checkbox {
+        @include margin-top($margin-md);
+    }
+
+    &__submit {
+        @include margin-top($margin-md);
+    }
+
+    &__success-message {
+        display: flex;
+        font-weight: 700;
+        flex-direction: column;
+
+        @media #{$tablet} {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-bottom($margin-sm);
+            color: $color-success;
+
+            @media #{$tablet} {
+                @include margin-bottom($margin-zero);
+                @include margin-right($margin-md);
+            }
+        }
+    }
+
+    &__drag-and-drop {
+
+        &-wrapper {
+            @include margin-bottom($margin-md);
+
+            @media #{$desktop} {
+                @include margin-bottom($margin-l);
+            }
+        }
+
+        &-subtitle {
+            @include line-height($font-normal, $font-baseline);
+            @include font-size($font-xs);
+            @include padding-top($padding-xxs);
+            @include padding-bottom($padding-xxs);
+            font-weight: 500;
+        }
+
+        &-button {
+            @include padding($padding-sm);
+            @include margin-top($margin-sm);
+            @include margin-bottom($margin-sm);
+            border: 1px solid $color-congress-blue;
+            display: flex;
+            color: $color-congress-blue;
+            align-items: baseline;
+            border-radius: $border-radius;
+
+            span {
+                @include line-height($font-l, $font-baseline);
+            }
+
+            i.icon {
+                &::before {
+                    @include font-size($font-sm);
+                }
+            }
+        }
+
+        &-file {
+            &-container {
+                @include padding($padding-md);
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                background-color: $color-wild-sand;
+                border-radius: $border-radius;
+
+                &:first-child {
+                    @include margin-top($margin-md);
+                }
+
+                &:not(:last-child) {
+                    @include margin-bottom($margin-sm);
+                }
+
+                @media #{$desktop} {
+                    flex-direction: row;
+
+                    &:first-child {
+                        @include margin-top($margin-l);
+                    }
+                }
+            }
+
+            &-info-container,
+            &-remove-container {
+                display: flex;
+                align-items: center;
+
+                &:first-child {
+                    @include margin-bottom($margin-md);
+
+                    @media #{$desktop} {
+                        margin-bottom: unset;
+                    }
+                }
+            }
+
+            &-remove-container {
+                cursor: pointer;
+            }
+
+            &-icon {
+                @include margin-right($margin-sm);
+
+                &--file {
+                    @include line-height($font-l, $font-md);
+                    @include font-size($font-md);
+                    color: $color-congress-blue;
+                }
+
+                &--trash {
+                    @include line-height($font-normal, $font-baseline);
+                    @include font-size($font-baseline);
+                    color: $color-congress-blue;
+                }
+            }
+
+            &-name {
+                @include line-height($font-l, $font-baseline);
+                @include font-size($font-baseline);
+                font-weight: 400;
+            }
+
+            &-remove {
+                @include line-height($font-l, $font-baseline);
+                color: $color-congress-blue;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__file-error {
+        @include margin-top($margin-md);
+        @include font-size($font-sm);
+        display: flex;
+        color: $color-alert;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}

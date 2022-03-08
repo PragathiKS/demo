@@ -1,0 +1,72 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "subTitle": "subtitle",
+  "jcr:createdBy": "admin",
+  "productSupport": "Product Support",
+  "selectFile": "Select FIle",
+  "productInvolvedLabel": "Product Involved",
+  "salutation": "Hi Sir,",
+  "engineeringLicenseSerialNumber": "Engineering License Serial Number",
+  "jcr:lastModifiedBy": "admin",
+  "question": "Questions",
+  "emailAddress": "Email Address",
+  "technicalIssues": "Technical Issues",
+  "jcr:created": "Sun Feb 06 2022 02:14:24 GMT+0100",
+  "body": "This is a sample body text",
+  "name": "Name",
+  "title": "Title",
+  "softwareVersion": "Software version",
+  "affectedSystemsLabel": "Affected Systems",
+  "telephone": "Telephone",
+  "customerSite": "Customer Site",
+  "company": "Company",
+  "jcr:lastModified": "Sun Feb 06 2022 15:03:42 GMT+0100",
+  "contactDetails": "Contact details",
+  "dropdownPlaceholder": "Select value",
+  "successMessage": "Success!",
+  "sling:resourceType": "customerhub/components/content/cotssupport",
+  "selectRequest": "select request",
+  "inputErrorMsg": "Required Field",
+  "shortDescription": "Short Description",
+  "affectedSystems": {
+    "jcr:primaryType": "nt:unstructured",
+    "item0": {
+      "jcr:primaryType": "nt:unstructured",
+      "label": "Production Control",
+      "productsInvolved": {
+        "jcr:primaryType": "nt:unstructured",
+        "item0": {
+          "jcr:primaryType": "nt:unstructured",
+          "product": "TIA Portal"
+        },
+        "item1": {
+          "jcr:primaryType": "nt:unstructured",
+          "product": "Control Logix"
+        },
+        "item2": {
+          "jcr:primaryType": "nt:unstructured",
+          "product": "Orion"
+        },
+        "item3": {
+          "jcr:primaryType": "nt:unstructured",
+          "product": "Archestra System Platform"
+        }
+      }
+    },
+    "item1": {
+      "jcr:primaryType": "nt:unstructured",
+      "label": "MES",
+      "productsInvolved": {
+        "jcr:primaryType": "nt:unstructured",
+        "item0": {
+          "jcr:primaryType": "nt:unstructured",
+          "product": "Production Integrator"
+        },
+        "item1": {
+          "jcr:primaryType": "nt:unstructured",
+          "product": "Aveva MES SI Kit"
+        }
+      }
+    }
+  }
+}
