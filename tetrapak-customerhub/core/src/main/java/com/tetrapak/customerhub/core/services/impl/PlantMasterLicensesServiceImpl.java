@@ -77,6 +77,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         boolean isSuccess = false;
         if (Objects.nonNull(recipients)) {
             EngineeringLicenseFormBean bean = createEngineeringLicenseFormBean(request);
+            LOGGER.debug("form object :"+bean.toString());
             Map<String, String> emailParams = new HashMap<>();
             extractEngineeringLicenseModelProps(emailParams, model, request, I18N_PREFIX);
             extractEngineeringLicenseFormData(emailParams,bean);
@@ -91,6 +92,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         boolean isSuccess = false;
         if (Objects.nonNull(recipients)) {
             SiteLicenseFormBean bean = createSiteLicenseFormBean(request);
+            LOGGER.debug("form object :"+bean.toString());
             Map<String, String> emailParams = new HashMap<>();
             extractSiteLicenseModelProps(emailParams, model, request, I18N_PREFIX);
             extractSiteLicenseFormData(emailParams,bean);
@@ -140,6 +142,9 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     }
     private boolean addEmailJob( String[] recipients,Map<String, String> emailParams){
         LOGGER.debug("Email job added");
+        for(String param: emailParams.keySet()){
+            LOGGER.debug(param +" === "+emailParams.get(param));
+        }
         boolean isSuccess = false;
 /*        Map<String, Object> properties = new HashMap<>();
         properties.put(MyTetrapakEmailJob.TEMPLATE_PATH, config.emailTemplatePath());
