@@ -55,6 +55,11 @@
         - name: PlantMaster access
           memberOf: everyone
           path: /home/groups/cuhugroups
+          
+    - cuhu_aem_my_equip:
+        - name: My Equipments access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
 
 - ace_config:
 
@@ -230,6 +235,7 @@
           permission: allow
           actions: read
           privileges:
+          
     - cuhu_aem_fin_soa:
 
         - path: /content/tetrapak/customerhub/global/en/financials
@@ -239,5 +245,11 @@
     - cuhu_tppm_access:
 
         - path: /content/tetrapak/customerhub/global/en/automation-digital
+          permission: allow
+          privileges: jcr:read
+              
+    - cuhu_aem_my_equip:
+    
+        - path: /content/tetrapak/customerhub/global/en/equipments
           permission: allow
           privileges: jcr:read
