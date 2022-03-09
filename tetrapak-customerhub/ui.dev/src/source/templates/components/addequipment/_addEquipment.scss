@@ -66,8 +66,8 @@ $color-green: #8dc63f;
 
         &-subtitle {
             @include line-height($font-normal, $font-baseline);
-            @include font-size($font-sm);
-            @include margin-top($margin-md);
+            @include font-size($font-baseline);
+            @include margin-bottom($margin-md);
         }
 
         &-button {
@@ -205,6 +205,7 @@ $color-green: #8dc63f;
         @include margin-top($margin-md);
         display: flex;
         align-items: center;
+
         &-title {
             @include line-height($font-l, $font-baseline);
             font-weight: 700;
