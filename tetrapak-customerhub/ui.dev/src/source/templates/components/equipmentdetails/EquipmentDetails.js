@@ -145,7 +145,10 @@ function  _renderEquipUpdateModal() {
 
 // clear all text inputs when country dropdown value changes
 function _clearFieldsOnCountryChange($form) {
-  $form.find('input, textarea').val('');
+  $form.find('input:not([id="equipmentTypeDesc"]), textarea').val('');
+  if($form.find('#equipmentStatus option[value="EXPO"]').length > 0){
+    $form.find('select[id="equipmentStatus"]').val('EXPO'); 
+  }
 }
 
 function _bindFormChangeEvents() {
@@ -260,15 +263,18 @@ class EquipmentDetails {
         oldEquipmentTypeDesc: equipData.equipmentName,
         comments: data.comments,
         country: this.cache.countryData.find(country => country.key === data.country)?.desc || equipData.countryName,
-        location: data.location || equipData.location,
-        siteName: data.siteName || equipData.siteName,
-        lineCode: data.lineCode || equipData.lineCode,
-        functionalLocationDesc: data.functionalLocationDesc || equipData.functionalLocationDesc,
+        location: data.location,
+        siteName: data.siteName,
+        lineCode: data.lineCode,
+        functionalLocationDesc: data.functionalLocationDesc,
         equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === data.equipmentStatus)?.desc || equipData.equipmentStatusDesc,
         position: data.position,
-        equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,
+        equipmentTypeDesc: data.equipmentTypeDesc,
         serialNumber: this.cache.data.serialNumber
       };
+
+      /* eslint-disable no-console */
+      console.log(this.cache.equipmentStatuses);
       const fields = Object.keys(this.cache.formData).filter(key => !key.startsWith('old'));
       this.cache.formFields = fields.map(key => ({ [key]: this.cache.formData[key] }));
       const trackingFormData = this.getFormFieldsArr(this.cache.formFields);

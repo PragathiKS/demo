@@ -37,10 +37,15 @@ export const _remapFilterProperty = (filterProperty) => {
 /**
  * Build string of query parameters based on currently active filters
  */
-export const _buildQueryUrl = (combinedFiltersObj) => {
+export const _buildQueryUrl = (combinedFiltersObj, filterVal) => {
   if (Object.keys(combinedFiltersObj).length) {
-    const queryString = Object.keys(combinedFiltersObj).map(key =>
-      `${_mapQueryParams(key)}=${combinedFiltersObj[key]}`).join('&');
+    const queryString = Object.keys(combinedFiltersObj).map(key => {
+      const appliedFilterApiKey = _remapFilterProperty(key);
+      if (appliedFilterApiKey !== filterVal) {
+        return `${_mapQueryParams(key)}=${combinedFiltersObj[key]}`;
+      }
+    }).join('&');
+
     return queryString;
   } else {
     return '';
