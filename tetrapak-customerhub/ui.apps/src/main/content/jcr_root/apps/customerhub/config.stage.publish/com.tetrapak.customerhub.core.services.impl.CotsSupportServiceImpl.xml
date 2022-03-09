@@ -3,4 +3,4 @@
     jcr:primaryType="sling:OsgiConfig"
     emailTemplatePath="/etc/notification/email/customerhub/cotssupport/cotssupportemail.html"
     isCotsSupportEmailEnabled="{Boolean}true"
-    recipientAddresses="[AS_Technical.Support_Processing@tetrapak.com]"/>
+    recipientAddresses="[]"/>
