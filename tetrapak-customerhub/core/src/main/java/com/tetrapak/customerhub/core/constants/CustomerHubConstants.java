@@ -546,7 +546,7 @@ public final class CustomerHubConstants {
     public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";
     
     /** TheConstant TEXT_CSV */
-    public static final String TEXT_CSV = "text/csv; charset=UTF-8";
+    public static final String TEXT_CSV = "text/csv";
     
     /** TheConstant CONTENT_DISPOSITION */
     public static final String CONTENT_DISPOSITION= "Content-Disposition";
