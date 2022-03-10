@@ -272,10 +272,12 @@ $color-red: #ff0000;
         &.show {
             @media #{$mobile} {
                 @include padding($padding-l);
+                border: solid 1px $color-mercury;
                 display: flex;
                 position: absolute;
                 right: 0;
                 background: $color-wild-sand;
+                box-shadow: 0 4px 16px rgba($color-black, 0.1);
                 border-radius: 4px;
                 min-width: 256px;
             }
@@ -322,8 +324,26 @@ $color-red: #ff0000;
     }
     .action-icon {
         display: none;
-    }
+        .tpatom-radio__icon {
+            @include width(20px);
+            @include height(20px);
+            @include border-radius(20px);
+            display: inline-block;
+            position: relative;
 
+            &::before {
+                @include width(8px);
+                @include height(8px);
+                @include border-radius(10px);
+                content: '';
+                background: $color-congress-blue;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
     &__action-button {
         display: flex;
         cursor: pointer;
