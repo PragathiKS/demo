@@ -51,11 +51,17 @@ public class PlantMasterLicensesModel {
 
     private String userEmailAddress;
 
+    private Map<String, Object> i18nKeysMap;
+
     /**
      * init method.
      */
     @PostConstruct
     protected void init() {
+
+        i18nKeysMap = new HashMap<>();
+        i18nKeysMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
+        i18nKeysMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME,siteLicenseModel);
 
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
@@ -107,5 +113,9 @@ public class PlantMasterLicensesModel {
 
     public String getUserEmailAddress() {
         return userEmailAddress;
+    }
+
+    public Map<String, Object> getI18nKeysMap() {
+        return i18nKeysMap;
     }
 }

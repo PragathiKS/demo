@@ -7,6 +7,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
@@ -67,10 +68,9 @@ public class SiteLicenseModel {
     @SerializedName(APPLICATION_JSON_KEY)
     private String application;
 
-    @ValueMapValue
     @Expose(serialize = true)
     @SerializedName(APPLICATION_DROPDOWN_JSON_KEY)
-    @Inject @Via("resource")
+    @ChildResource
     private List<SiteLicenseApplication> applicationDropdown;
 
     @ValueMapValue
