@@ -1,3 +1,76 @@
 <sly data-sly-template.plantmasterlicenses_site_template="${@ data, flag}">
-    <h1>Site</h1>
+    <div>
+        <div class="row">
+            <div class="tp-aip-licenses-site__form-wrapper">
+                <h2 class="tp-aip-licenses-site__form-title">${data.title @ i18n}</h2>
+                <form class="tp-aip-licenses-site__form" enctype="multipart/form-data">
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='nameOfSite', labelText=data.nameOfSite, error=data.inputFieldError, required=true, autoLocatorInput='nameOfSiteInput', autoLocatorLabel='nameOfSiteText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='locationOfSite', labelText=data.locationOfSite, error=data.inputFieldError, required=true, autoLocatorInput='locationOfSiteInput', autoLocatorLabel='locationOfSiteText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        
+                    </div>
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='plc-type', labelText=data.plcType, error=data.inputFieldError, autoLocatorInput='plc-typeInput', autoLocatorLabel='plc-typeText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='hmi-type', labelText=data.hmiType, error=data.inputFieldError, autoLocatorInput='hmi-typeInput', autoLocatorLabel='hmi-typeText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='mes-type', labelText=data.mesType, error=data.inputFieldError, autoLocatorInput='mes-typeInput', autoLocatorLabel='mes-typeText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='basic-unit', labelText=data.numberOfBasicUnit, error=data.inputFieldError, required=true, autoLocatorInput='basic-unitInput', autoLocatorLabel='basic-unitText', tooltiptitle='${data.basicUnitToolTipHeading}', tooltipText='${data.basicUnitToolTipDescription}'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='advanced-unit', labelText='${data.numberOfAdvancedUnit}', error='${data.inputFieldError}', required=true, autoLocatorInput='advanced-unitInput', autoLocatorLabel='advanced-unitText', tooltiptitle='${data.advancedUnitToolTipHeading}', tooltipText='${data.advancedUnitToolTipDescription}'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
+                        <sly data-sly-use.btn="/apps/commons/components/atoms/button/button-template.html"
+                            data-sly-call="${btn.button_template @text='${data.submitButtonLabel}',modifier='primary',baseClass='tp-aip-licenses-site__btn',jsClass='js-tp-aip-licenses-site__btn',iconClass='icon-Chevron_Right'}" >
+                        </sly>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="tp-aip-licenses-site__information">
+                <h2 class="tp-aip-licenses-site__information-title">${data.impInformationTitle @ i18n}</h2>
+                <p class="tp-aip-licenses-site__information-desc">${data.impInformationDescription @ i18n}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="tp-aip-licenses-site__description">
+                <h2 class="tp-aip-licenses-site__description-title">${data.siteLicensesDescriptionHeading @ i18n}</h2>
+                <p class="tp-aip-licenses-site__description-desc">Lorem ipsum
+                    Mus mauris vitae ultricies leo integer malesuada nunc. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In nisl nisi scelerisque eu ultrices vitae. At tellus at urna condimentum mattis pellentesque id nibh. Ut pharetra sit amet aliquam. Massa eget egestas purus viverra accumsan in nisl nisi. Integer feugiat scelerisque varius morbi. Dictum varius duis at consectetur lorem donec. Consequat nisl vel pretium lectus. Pellentesque pulvinar pellentesque habitant morbi. Convallis aenean et tortor at. Cras pulvinar mattis nunc sed blandit libero volutpat sed cras.
+                    
+                    Felis imperdiet proin fermentum leo vel orci porta non pulvinar. Semper feugiat nibh sed pulvinar proin gravida hendrerit lectus. Accumsan in nisl nisi scelerisque eu ultrices vitae. Congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Convallis tellus id interdum velit. Quis varius quam quisque id diam vel quam.</p>
+            </div>
+        </div>
+    </div>
 </sly>

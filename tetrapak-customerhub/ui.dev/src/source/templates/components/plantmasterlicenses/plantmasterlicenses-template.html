@@ -7,11 +7,11 @@
 
         <code class="d-none js-aip-licenses__config">${data.i18nKeys}</code>
 
-        <div class="tp-spinner js-tp-spinner">
+        <div class="tp-spinner js-tp-spinner d-none">
             <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html" data-sly-call="${loading.loader_template}" />
         </div>
 
-        <div class="js-aip-licenses__wrapper d-none">
+        <div class="js-aip-licenses__wrapper">
             <div class="tp-aip__header-wrapper">
                 <h2 class="tp-aip__heading">
                     ${"cuhu.plantmastertrainings.title" @i18n}
@@ -31,9 +31,9 @@
                          data-sly-call="${engineering.plantmasterlicenses_engineering_template}" />
                 </div>
 
-                <div class="tab-pane fade" id="nav-site-licenses" role="tabpanel" aria-labelledby="nav-site-licenses-tab">
+                <div class="tab-pane fade tp-aip-licenses-site" id="nav-site-licenses" role="tabpanel" aria-labelledby="nav-site-licenses-tab">
                     <sly data-sly-use.site="/apps/customerhub/components/content/plantmasterlicenses/plantmasterlicenses-site-template.html"
-                         data-sly-call="${site.plantmasterlicenses_site_template}" />
+                         data-sly-call="${site.plantmasterlicenses_site_template @ data=data.i18nKeysMap.siteLicense}" />
                 </div>
             </div>
         </div>
