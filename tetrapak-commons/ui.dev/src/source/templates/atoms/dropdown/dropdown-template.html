@@ -1,0 +1,11 @@
+<sly data-sly-template.dropdown_template="${@ selectClass, id, defaultValue, options, required, autoLocatorInput}">
+    <select name="${id}" id="${id}" class="tpatom-dropdown__select-box ${selectClass}" auto_locator="${autoLocatorInput}" required="${required}">
+        <sly data-sly-test="${defaultValue}">
+            <option value="">${defaultValue}</option>
+        </sly>
+        <sly data-sly-list.listitem="${options}">
+            <option value="${listitem.key}">${listitem.desc}</option>
+        </sly>
+    </select>
+    <i class="tpatom-dropdown__icon icon-Chevron_Down"></i>   
+</sly>

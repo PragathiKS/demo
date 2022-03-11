@@ -1,9 +1,9 @@
 <sly
-    data-sly-template.inputfield_template="${@ inputType, inputClass, id, placeholder, label, error, required, autoLocatorInput, autoLocatorLabel, labelClass}">
+    data-sly-template.inputfield_template="${@ inputType, inputClass, id, placeholder, labelText, error, required, autoLocatorInput, autoLocatorLabel, labelClass}">
     <sly data-sly-test.placeholderVal="${placeholder ? placeholder : ''}"></sly>
     <div data-sly-test="${inputType}" class="form-group">
         <sly data-sly-use.label="/apps/commons/components/atoms/label/label-template.html"
-            data-sly-call="${label.label_template @label=label, id=id, autoLocatorLabel=autoLocatorLabel, labelClass=labelClass}">
+            data-sly-call="${label.label_template @label=labelText, id=id, autoLocatorLabel=autoLocatorLabel, labelClass=labelClass}">
         </sly>
         <sly data-sly-use.inputbox="/apps/commons/components/atoms/inputbox/inputbox-template.html"
             data-sly-call="${inputbox.inputbox_template @inputType=inputType, inputClass=inputClass, id=id, placeholder=placeholder, required=required, autoLocatorInput=autoLocatorInput}">

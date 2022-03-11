@@ -1,0 +1,32 @@
+.tp-aip-licenses-site {
+    &__form-wrapper {
+        @include padding($padding-md);
+        background-color: $color-wild-sand;
+
+        h2 {
+            @include font-size($font-md);
+            @include line-height($font-l, $font-baseline);
+            @include padding-bottom($padding-md);
+            @include margin-bottom(20px);
+            border-bottom: 1px solid $color-mercury;
+            color: $color-tundora;
+        }
+    }
+
+    &__form {
+        &-element {
+            label {
+                @include font-size($font-baseline);
+                @include line-height($font-l, $font-baseline);
+                font-weight: 700;
+                margin-bottom: 0;
+            }
+
+            input {
+                @include padding($padding-sm);
+                border: 1px solid $color-tundora;
+                border-radius: $border-radius;
+            }
+        }
+    }
+}

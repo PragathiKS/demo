@@ -1,0 +1,13 @@
+<sly
+    data-sly-template.inputfield_template="${@ label, id, autoLocatorLabel, labelClass, selectClass, defaultValue, options, required, autoLocatorInput, error }">
+    <sly data-sly-test.defaultValue="${defaultValue ? defaultValue : ''}"></sly>
+    <div data-sly-test="${inputType}" class="form-group">
+        <sly data-sly-use.label="/apps/commons/components/atoms/label/label-template.html"
+            data-sly-call="${label.label_template @label=label, id=id, autoLocatorLabel=autoLocatorLabel, labelClass=labelClass}">
+        </sly>
+        <sly data-sly-use.dropdown="/apps/commons/components/atoms/dropdown/dropdown-template.html"
+            data-sly-call="${dropdown.dropdown_template @selectClass=selectClass, defaultValue=defaultValue, id=id, options=options, required=required, autoLocatorInput=autoLocatorInput}">
+        </sly>
+        <div data-sly-test="${error}" data-error-msg="${error @ i18n}" class="errorMsg">${error @ i18n}</div>
+    </div>
+</sly>
