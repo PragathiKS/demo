@@ -20,6 +20,27 @@ import java.util.List;
 public class SiteLicenseModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(SiteLicenseModel.class);
 
+    public static final String TITLE_JSON_KEY = "title";
+    public static final String NAME_OF_SITE_JSON_KEY = "nameOfSite";
+    public static final String LOCATION_OF_SITE_JSON_KEY = "locationOfSite";
+    public static final String APPLICATION_JSON_KEY = "application";
+    public static final String APPLICATION_DROPDOWN_JSON_KEY = "applicationDropDown";
+    public static final String APPLICATION_DROPDOWN_PLACEHOLDER_JSON_KEY = "dropdownPlaceholder";
+    public static final String PLC_TYPE_JSON_KEY = "plcType";
+    public static final String HMI_TYPE_JSON_KEY = "HMIType";
+    public static final String MES_TYPE_JSON_KEY = "mesType";
+    public static final String NUMBER_OF_BASIC_UNIT_JSON_KEY = "numberOfBasicUnit";
+    public static final String BASIC_UNIT_TOOLTIP_HEADING_JSON_KEY = "basicUnitToolTipHeading";
+    public static final String BASIC_UNIT_TOOLTIP_DESCRIPTION_JSON_KEY = "basicUnitToolTipDescription";
+    public static final String NUMBER_OF_ADVANCED_UNIT_JSON_KEY = "numberOfAdvancedUnit";
+    public static final String ADVANCED_UNIT_TOOLTIP_HEADING_JSON_KEY = "advancedUnitToolTipHeading";
+    public static final String ADVANCED_UNIT_TOOLTIP_DESCRIPTION_JSON_KEY = "advancedUnitToolTipDescription";
+    public static final String SUBMIT_BUTTON_LABEL_JSON_KEY = "submitButtonLabel";
+    public static final String SUCCESS_MESSAGE_JSON_KEY = "successMessage";
+    public static final String IMPORTANT_INFORMATION_TITLE_JSON_KEY = "impInformationTitle";
+    public static final String IMPORTANT_INFORMATION_DESCRIPTION_JSON_KEY = "impInformationDescription";
+    public static final String SITE_LICENSE_DESCRIPTION_HEADING_JSON_KEY = "siteLicensesDescriptionHeading";
+
     /** The resource. */
     @SlingObject
     private Resource resource;
