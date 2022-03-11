@@ -7,13 +7,13 @@
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='nameOfSite', labelText='Name of site', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='nameOfSiteInput', autoLocatorLabel='nameOfSiteText', inputClass='test'}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='nameOfSite', labelText='${data.nameOfSite}', error='${data.inputFieldError}', required=true, autoLocatorInput='nameOfSiteInput', autoLocatorLabel='nameOfSiteText'}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='locationOfSite', labelText='Location Of Site', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='locationOfSiteInput', autoLocatorLabel='locationOfSiteText', inputClass='test'}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='locationOfSite', labelText='${data.locationOfSite}', error='${data.inputFieldError}', required=true, autoLocatorInput='locationOfSiteInput', autoLocatorLabel='locationOfSiteText'}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
@@ -22,36 +22,36 @@
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='plc-type', labelText='PLC type (Optional)', error='pw.form.errormsg.enterthisfield', autoLocatorInput='plc-typeInput', autoLocatorLabel='plc-typeText', inputClass='test'}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='plc-type', labelText='${data.plcType}', error='${data.inputFieldError}', autoLocatorInput='plc-typeInput', autoLocatorLabel='plc-typeText'}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='hmi-type', labelText='HMI type (Optional)', error='pw.form.errormsg.enterthisfield', autoLocatorInput='hmi-typeInput', autoLocatorLabel='hmi-typeText', inputClass='test'}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='hmi-type', labelText='${data.hmiType}', error='${data.inputFieldError}', autoLocatorInput='hmi-typeInput', autoLocatorLabel='hmi-typeText'}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='mes-type', labelText='MES type (Optional)', error='pw.form.errormsg.enterthisfield', autoLocatorInput='mes-typeInput', autoLocatorLabel='mes-typeText', inputClass='test'}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='mes-type', labelText='${data.mesType}', error='${data.inputFieldError}', autoLocatorInput='mes-typeInput', autoLocatorLabel='mes-typeText'}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='basic-unit', labelText='Number of basic units', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='basic-unitInput', autoLocatorLabel='basic-unitText', inputClass='test'}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='basic-unit', labelText='${data.numberOfBasicUnit}', error='${data.inputFieldError}', required=true, autoLocatorInput='basic-unitInput', autoLocatorLabel='basic-unitText'}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='advanced-unit', labelText='Number of advanced units', error='pw.form.errormsg.enterthisfield', required=true, autoLocatorInput='advanced-unitInput', autoLocatorLabel='advanced-unitText', inputClass='test'}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', id='advanced-unit', labelText='${data.numberOfAdvancedUnit}', error='${data.inputFieldError}', required=true, autoLocatorInput='advanced-unitInput', autoLocatorLabel='advanced-unitText'}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses-site__form-element tp-aip-licenses-site__form-element">
                         <sly data-sly-use.btn="/apps/commons/components/atoms/button/button-template.html"
-                            data-sly-call="${btn.button_template @text='Submit Request',modifier='primary',baseClass='tp-aip-licenses-site__btn',jsClass='js-tp-aip-licenses-site__btn',iconClass='icon-Chevron_Right'}" >
+                            data-sly-call="${btn.button_template @text='${data.submitButtonLabel}',modifier='primary',baseClass='tp-aip-licenses-site__btn',jsClass='js-tp-aip-licenses-site__btn',iconClass='icon-Chevron_Right'}" >
                         </sly>
                     </div>
                 </form>
@@ -65,7 +65,7 @@
         </div>
         <div class="row">
             <div class="tp-aip-licenses-site__description">
-                <h2 class="tp-aip-licenses-site__description-title">Site license description</h2>
+                <h2 class="tp-aip-licenses-site__description-title">${data.siteLicensesDescriptionHeading @ i18n}</h2>
                 <p class="tp-aip-licenses-site__description-desc">Lorem ipsum
                     Mus mauris vitae ultricies leo integer malesuada nunc. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In nisl nisi scelerisque eu ultrices vitae. At tellus at urna condimentum mattis pellentesque id nibh. Ut pharetra sit amet aliquam. Massa eget egestas purus viverra accumsan in nisl nisi. Integer feugiat scelerisque varius morbi. Dictum varius duis at consectetur lorem donec. Consequat nisl vel pretium lectus. Pellentesque pulvinar pellentesque habitant morbi. Convallis aenean et tortor at. Cras pulvinar mattis nunc sed blandit libero volutpat sed cras.
                     
