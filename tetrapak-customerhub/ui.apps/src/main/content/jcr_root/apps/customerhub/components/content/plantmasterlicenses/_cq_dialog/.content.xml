@@ -12,298 +12,334 @@
                 sling:resourceType="granite/ui/components/coral/foundation/tabs"
                 size="L">
                 <items jcr:primaryType="nt:unstructured">
-                    <column1
+                    <engineeringLicenseTab
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Engineering Licenses i18n Keys Configuration"
+                        jcr:title="Engineering Licenses Configuration"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <userDetailsSectionTitle
+                            <fieldSetContainer
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="User details section title (i18N key)"
-                                name="./engineeringLicense/userDetailsSectionTitle"
-                                required="true"/>
-                            <name
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Name field label (i18N key)"
-                                name="./engineeringLicense/name"
-                                required="true"/>
-                            <namePlaceholder
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Name field placeholder text (i18N key)"
-                                name="./engineeringLicense/namePlaceholder"
-                                required="true"/>
-                            <activationDate
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Activation date field label (i18N key)"
-                                name="./engineeringLicense/activationDate"
-                                required="true"/>
-                            <activationDatePlaceholder
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Activation date field placeholder (i18N key)"
-                                name="./engineeringLicense/activationDatePlaceholder"
-                                required="true"/>
-                            <licenseSelectionSectionTitle
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="License selection section title (i18N key)"
-                                name="./engineeringLicense/licenseSelectionSectionTitle"
-                                required="true"/>
-                            <addUser
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Add user button label (i18N key)"
-                                name="./engineeringLicense/addUser"
-                                required="true"/>
-                            <comments
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Comments field label (i18N key)"
-                                name="./engineeringLicense/comments"
-                                required="true"/>
-                            <submitButton
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Submit button label (i18N key)"
-                                name="./engineeringLicense/submitButton"
-                                required="true"/>
-                            <licenseDescriptions
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="License descriptions label (i18N key)"
-                                name="./engineeringLicense/licenseDescriptions"
-                                required="true"/>
-                            <successMessageHeading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Success message heading text (i18N key)"
-                                name="./engineeringLicense/successMessageHeading"
-                                required="true"/>
-                            <successMessageDescription
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Success message description text (i18N key)"
-                                name="./engineeringLicense/successMessageDescription"
-                                required="true"/>
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <editor
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="i18n Keys Configuration"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <userDetailsSectionTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="User details section title (i18N key)"
+                                                name="./engineeringLicense/userDetailsSectionTitle"
+                                                required="true"/>
+                                            <name
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Name field label (i18N key)"
+                                                name="./engineeringLicense/name"
+                                                required="true"/>
+                                            <namePlaceholder
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Name field placeholder text (i18N key)"
+                                                name="./engineeringLicense/namePlaceholder"
+                                                required="true"/>
+                                            <activationDate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Activation date field label (i18N key)"
+                                                name="./engineeringLicense/activationDate"
+                                                required="true"/>
+                                            <activationDatePlaceholder
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Activation date field placeholder (i18N key)"
+                                                name="./engineeringLicense/activationDatePlaceholder"
+                                                required="true"/>
+                                            <licenseSelectionSectionTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="License selection section title (i18N key)"
+                                                name="./engineeringLicense/licenseSelectionSectionTitle"
+                                                required="true"/>
+                                            <addUser
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Add user button label (i18N key)"
+                                                name="./engineeringLicense/addUser"
+                                                required="true"/>
+                                            <comments
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Comments field label (i18N key)"
+                                                name="./engineeringLicense/comments"
+                                                required="true"/>
+                                            <submitButton
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Submit button label (i18N key)"
+                                                name="./engineeringLicense/submitButton"
+                                                required="true"/>
+                                            <licenseDescriptions
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="License descriptions label (i18N key)"
+                                                name="./engineeringLicense/licenseDescriptions"
+                                                required="true"/>
+                                            <successMessageHeading
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Success message heading text (i18N key)"
+                                                name="./engineeringLicense/successMessageHeading"
+                                                required="true"/>
+                                            <successMessageDescription
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Success message description text (i18N key)"
+                                                name="./engineeringLicense/successMessageDescription"
+                                                required="true"/>
+                                        </items>
+                                    </editor>
+                                    <email
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Email Configuration"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <subject
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Subject (i18N key)"
+                                                name="./engineeringLicense/subject"/>
+                                            <salutation
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Salutation text (i18N key)"
+                                                name="./engineeringLicense/salutation"/>
+                                            <body
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Body text (i18N key)"
+                                                name="./engineeringLicense/body"/>
+                                            <name
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Name field label (i18N key)"
+                                                name="./engineeringLicense/name"
+                                                required="true"/>
+                                            <email
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Email field label (i18N key)"
+                                                name="./engineeringLicense/name"
+                                                required="true"/>
+                                        </items>
+                                    </email>
+                                </items>
+                            </fieldSetContainer>
                         </items>
-                    </column1>
-                    <column2
+                    </engineeringLicenseTab>
+                    <siteLicenseTab
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Engineering Licenses Email Configuration"
+                        jcr:title="Site Licenses Configuration"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <subject
+                            <fieldSetContainer
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Subject (i18N key)"
-                                name="./engineeringLicense/subject"/>
-                            <salutation
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Salutation text (i18N key)"
-                                name="./engineeringLicense/salutation"/>
-                            <body
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Body text (i18N key)"
-                                name="./engineeringLicense/body"/>
-                            <name
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Name field label (i18N key)"
-                                name="./engineeringLicense/name"
-                                required="true"/>
-                            <email
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Email field label (i18N key)"
-                                name="./engineeringLicense/name"
-                                required="true"/>
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <editor
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="i18n Keys Configuration"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <title
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Title field label (i18N key)"
+                                                name="./siteLicense/title"
+                                                required="true"/>
+                                            <nameOfSite
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Name of site field label (i18N key)"
+                                                name="./siteLicense/nameOfSite"
+                                                required="true"/>
+                                            <locationOfSite
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Location of site field label (i18N key)"
+                                                name="./siteLicense/locationOfSite"
+                                                required="true"/>
+                                            <application
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Application field label (i18N key)"
+                                                name="./siteLicense/application"
+                                                required="true"/>
+                                            <applicationDropdown
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                composite="{Boolean}true"
+                                                fieldLabel="Application dropdown configuration"
+                                                required="true">
+                                                <field
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                    name="./siteLicense/applicationDropdown">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <label
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            emptyText="Application name (i18N key)"
+                                                            fieldLabel="Application name (i18N key)"
+                                                            name="./applicationName"/>
+                                                    </items>
+                                                </field>
+                                            </applicationDropdown>
+                                            <applicationDropdownPlaceholder
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Application dropdown placeholder (i18N key)"
+                                                name="./siteLicense/applicationDropdownPlaceholder"
+                                                required="true"/>
+                                            <plcType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="PLC Type field label (i18N key)"
+                                                name="./siteLicense/plcType"
+                                                required="true"/>
+                                            <hmiType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="HMI Type field label (i18N key)"
+                                                name="./siteLicense/hmiType"
+                                                required="true"/>
+                                            <mesType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="MES Type field label (i18N key)"
+                                                name="./siteLicense/mesType"
+                                                required="true"/>
+                                            <numberOfBasicUnit
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Number of Basic Unit field label (i18N key)"
+                                                name="./siteLicense/numberOfBasicUnit"
+                                                required="true"/>
+                                            <basicUnitToolTipHeading
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Number of basic unit tooltip heading (i18N key)"
+                                                name="./siteLicense/basicUnitToolTipHeading"
+                                                required="true"/>
+                                            <basicUnitToolTipDescription
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Number of basic unit tooltip description (i18N key)"
+                                                name="./siteLicense/basicUnitToolTipDescription"
+                                                required="true"/>
+                                            <numberOfAdvancedUnit
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Number of Advanced Unit field label (i18N key)"
+                                                name="./siteLicense/numberOfAdvancedUnit"
+                                                required="true"/>
+                                            <advancedUnitToolTipHeading
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Number of advanced unit tooltip heading (i18N key)"
+                                                name="./siteLicense/advancedUnitToolTipHeading"
+                                                required="true"/>
+                                            <advancedUnitToolTipDescription
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Number of advanced unit tooltip description (i18N key)"
+                                                name="./siteLicense/advancedUnitToolTipDescription"
+                                                required="true"/>
+                                            <submitButtonLabel
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Submit button label (i18N key)"
+                                                name="./siteLicense/submitButtonLabel"
+                                                required="true"/>
+                                            <successMessage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Success message text (i18N key)"
+                                                name="./siteLicense/successMessage"
+                                                required="true"/>
+                                            <impInformationTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Important information section heading (i18N key)"
+                                                name="./siteLicense/impInformationTitle"
+                                                required="true"/>
+                                            <impInformationDescription
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Important information section description (i18N key)"
+                                                name="./siteLicense/impInformationDescription"
+                                                required="true"/>
+                                            <siteLicensesDescriptionHeading
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Site Licenses Description section heading (i18N key)"
+                                                name="./siteLicense/siteLicensesDescriptionHeading"
+                                                required="true"/>
+                                            <inputFieldError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Input field error text (i18N key)"
+                                                name="./siteLicense/inputFieldError"
+                                                required="true"/>
+                                            <selectFieldError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Select field error text (i18N key)"
+                                                name="./siteLicense/selectFieldError"
+                                                required="true"/>
+                                        </items>
+                                    </editor>
+                                    <email
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Email Configuration"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <subject
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Subject (i18N key)"
+                                                name="./siteLicense/subject"/>
+                                            <salutation
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Salutation text (i18N key)"
+                                                name="./siteLicense/salutation"/>
+                                            <body
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Body text (i18N key)"
+                                                name="./siteLicense/body"/>
+                                            <name
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Name field label (i18N key)"
+                                                name="./siteLicense/name"
+                                                required="true"/>
+                                            <email
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Email field label (i18N key)"
+                                                name="./siteLicense/email"
+                                                required="true"/>
+                                        </items>
+                                    </email>
+                                </items>
+                            </fieldSetContainer>
                         </items>
-                    </column2>
-                    <column3
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Site Licenses i18n Keys Configuration"
-                        sling:resourceType="granite/ui/components/coral/foundation/container"
-                        maximized="{Boolean}true">
-                        <items jcr:primaryType="nt:unstructured">
-                            <title
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Title field label (i18N key)"
-                                name="./siteLicense/title"
-                                required="true"/>
-                            <nameOfSite
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Name of site field label (i18N key)"
-                                name="./siteLicense/nameOfSite"
-                                required="true"/>
-                            <locationOfSite
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Location of site field label (i18N key)"
-                                name="./siteLicense/locationOfSite"
-                                required="true"/>
-                            <application
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Application field label (i18N key)"
-                                name="./siteLicense/application"
-                                required="true"/>
-                            <applicationDropdown
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldLabel="Application dropdown configuration"
-                                required="true">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./siteLicense/applicationDropdown">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <label
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                            emptyText="Application name (i18N key)"
-                                            fieldLabel="Application name (i18N key)"
-                                            name="./applicationName"/>
-                                    </items>
-                                </field>
-                            </applicationDropdown>
-                            <applicationDropdownPlaceholder
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Application dropdown placeholder (i18N key)"
-                                name="./siteLicense/applicationDropdownPlaceholder"
-                                required="true"/>
-                            <plcType
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="PLC Type field label (i18N key)"
-                                name="./siteLicense/plcType"
-                                required="true"/>
-                            <hmiType
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="HMI Type field label (i18N key)"
-                                name="./siteLicense/hmiType"
-                                required="true"/>
-                            <mesType
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="MES Type field label (i18N key)"
-                                name="./siteLicense/mesType"
-                                required="true"/>
-                            <numberOfBasicUnit
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Number of Basic Unit field label (i18N key)"
-                                name="./siteLicense/numberOfBasicUnit"
-                                required="true"/>
-                            <basicUnitToolTipHeading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Number of basic unit tooltip heading (i18N key)"
-                                name="./siteLicense/basicUnitToolTipHeading"
-                                required="true"/>
-                            <basicUnitToolTipDescription
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Number of basic unit tooltip description (i18N key)"
-                                name="./siteLicense/basicUnitToolTipDescription"
-                                required="true"/>
-                            <numberOfAdvancedUnit
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Number of Advanced Unit field label (i18N key)"
-                                name="./siteLicense/numberOfAdvancedUnit"
-                                required="true"/>
-                            <advancedUnitToolTipHeading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Number of advanced unit tooltip heading (i18N key)"
-                                name="./siteLicense/advancedUnitToolTipHeading"
-                                required="true"/>
-                            <advancedUnitToolTipDescription
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Number of advanced unit tooltip description (i18N key)"
-                                name="./siteLicense/advancedUnitToolTipDescription"
-                                required="true"/>
-                            <submitButtonLabel
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Submit button label (i18N key)"
-                                name="./siteLicense/submitButtonLabel"
-                                required="true"/>
-                            <successMessage
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Success message text (i18N key)"
-                                name="./siteLicense/successMessage"
-                                required="true"/>
-                            <impInformationTitle
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Important information section heading (i18N key)"
-                                name="./siteLicense/impInformationTitle"
-                                required="true"/>
-                            <impInformationDescription
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Important information section description (i18N key)"
-                                name="./siteLicense/impInformationDescription"
-                                required="true"/>
-                            <siteLicensesDescriptionHeading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Site Licenses Description section heading (i18N key)"
-                                name="./siteLicense/siteLicensesDescriptionHeading"
-                                required="true"/>
-                        </items>
-                    </column3>
-                    <column4
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Site Licenses Email Configuration"
-                        sling:resourceType="granite/ui/components/coral/foundation/container"
-                        maximized="{Boolean}true">
-                        <items jcr:primaryType="nt:unstructured">
-                            <subject
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Subject (i18N key)"
-                                name="./siteLicense/subject"/>
-                            <salutation
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Salutation text (i18N key)"
-                                name="./siteLicense/salutation"/>
-                            <body
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Body text (i18N key)"
-                                name="./siteLicense/body"/>
-                            <name
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Name field label (i18N key)"
-                                name="./siteLicense/name"
-                                required="true"/>
-                            <email
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Email field label (i18N key)"
-                                name="./siteLicense/email"
-                                required="true"/>
-                        </items>
-                    </column4>
+                    </siteLicenseTab>
                 </items>
             </tabs>
         </items>

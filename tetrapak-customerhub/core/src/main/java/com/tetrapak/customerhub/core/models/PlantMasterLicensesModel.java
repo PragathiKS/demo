@@ -3,6 +3,8 @@ package com.tetrapak.customerhub.core.models;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.AIPCategoryService;
+import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.servlets.PlantMasterLicensesEmailServlet;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -10,6 +12,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +27,8 @@ public class PlantMasterLicensesModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterLicensesModel.class);
     private static final String ENGINEERING_LICENSE_CHILD_RESOURCE_NAME = "engineeringLicense";
     private static final String SITE_LICENSE_CHILD_RESOURCE_NAME = "siteLicense";
+    private static final String PLANT_MASTER_SITE_LICENSE_API_MAPPING_KEY = "";
+    private static final String PLANT_MASTER_ENGINEERING_LICENSE_API_MAPPING_KEY = "";
 
 
     /** The resource. */
@@ -53,6 +58,14 @@ public class PlantMasterLicensesModel {
 
     private Map<String, Object> i18nKeysMap;
 
+    /** The apigee service. */
+    @OSGiService
+    private APIGEEService apigeeService;
+
+    /** The aip category service. */
+    @OSGiService
+    private AIPCategoryService aipCategoryService;
+
     /**
      * init method.
      */
@@ -76,6 +89,15 @@ public class PlantMasterLicensesModel {
         String componentPathExtension = CustomerHubConstants.DOT + PlantMasterLicensesEmailServlet.SLING_SERVLET_SELECTOR
                 + CustomerHubConstants.DOT + PlantMasterLicensesEmailServlet.SLING_SERVLET_EXTENSION;
         this.emailApiUrl = componentPath + componentPathExtension;
+
+        String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+                CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
+        engineeringLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
+                aipCategoryService.getEngineeringLicensesId());
+        this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
+                aipCategoryService.getSiteLicensesId());
+        LOGGER.debug(this.siteLicenseApiUrl);
+        LOGGER.debug(this.engineeringLicenseApiUrl);
 
     }
 
