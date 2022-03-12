@@ -180,6 +180,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         path = getLanguagePagePath(request);
 
         Map<String, String> map = new HashMap<>();
+        map.put("104_orderby", "@jcr:content/articleDate");
+        map.put("105_orderby", "@jcr:content/cq:lastModified");
+        map.put("106_orderby", "@jcr:content/jcr:lastModified");
+        map.put("104_orderby.sort", "desc");
+        map.put("105_orderby.sort", "desc");
+        map.put("106_orderby.sort", "desc");
         List<FilterModel> filterModelList = getTags(request, params);
         String[] articleTypes = getArticleTypes(params);
         boolean isMediaChecked = false;
@@ -283,7 +289,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 LOGGER.error("[performSearch] There was an issue getting the resource", e);
             }
         }
-        resource.sort((o1, o2) -> o2.getSortDate().compareTo(o1.getSortDate()));
         resultModel.setSearchResults(resource);
         return resultModel;
     }
@@ -514,7 +519,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 setContentFields(resultItem, hit);
             }
             resultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), request));
-            resultItem.setSortDate(getSortDate(hit, Calendar.class));
         }
         return resultItem;
     }
@@ -593,7 +597,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         try {
             size = Integer.parseInt(assetMetadataProperties.get(DamConstants.DAM_SIZE, StringUtils.EMPTY));
         } catch (NumberFormatException e) {
-            LOGGER.error("Invalid Asset Size :{}", e.getMessage(), e);
+            LOGGER.error("Invalid Asset Size {} {}", e.getMessage(), e);
         }
         double convertedSize = size / KILO_BYTES_VALUE;
         if (convertedSize > KILO_BYTES_VALUE) {
@@ -619,12 +623,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         if (resource.adaptTo(Node.class) != null) {
             Node node = resource.adaptTo(Node.class);
             try {
-	                mediaLabel = node.hasProperty(MEDIA_LABEL_PROP) ? node.getProperty(MEDIA_LABEL_PROP).getString() : null;
-	                mediaId = setMediaId(mediaLabel);
-	                assetsPath = node.hasProperty(ASSETS_PATH_PROP) ? node.getProperty(ASSETS_PATH_PROP).getString() : TLConstants.DAM_ROOT_PATH;
-	                videoThumbnail = node.hasProperty(VIDEO_THUMBNAIL_PROP) ? node.getProperty(VIDEO_THUMBNAIL_PROP).getString() : null;
-	                documentThumbnail = node.hasProperty(DOCUMENT_THUMBNAIL_PROP) ? node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString() : null;
-                } catch (RepositoryException re) {
+                mediaLabel = node.hasProperty(MEDIA_LABEL_PROP) ? node.getProperty(MEDIA_LABEL_PROP).getString() : null;
+                mediaId = setMediaId(mediaLabel);
+                assetsPath = node.hasProperty(ASSETS_PATH_PROP) ? node.getProperty(ASSETS_PATH_PROP).getString() : TLConstants.DAM_ROOT_PATH;
+                videoThumbnail = node.hasProperty(VIDEO_THUMBNAIL_PROP) ? node.getProperty(VIDEO_THUMBNAIL_PROP).getString() : null;
+                documentThumbnail = node.hasProperty(DOCUMENT_THUMBNAIL_PROP) ? node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString() : null;
+            } catch (RepositoryException re) {
                 LOGGER.error("setAssetsProperties:: RepositoryException : {}", re.getMessage(), re);
             }
         }
