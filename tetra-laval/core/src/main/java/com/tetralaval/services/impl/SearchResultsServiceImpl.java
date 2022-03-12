@@ -181,6 +181,12 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         path = getLanguagePagePath(request);
 
         Map<String, String> map = new HashMap<>();
+        map.put("104_orderby", "@jcr:content/articleDate");
+        map.put("105_orderby", "@jcr:content/cq:lastModified");
+        map.put("106_orderby", "@jcr:content/jcr:lastModified");
+        map.put("104_orderby.sort", "desc");
+        map.put("105_orderby.sort", "desc");
+        map.put("106_orderby.sort", "desc");
         List<FilterModel> filterModelList = getTags(request, params);
         String[] articleTypes = getArticleTypes(params);
         boolean isMediaChecked = false;
@@ -284,7 +290,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 LOGGER.error("[performSearch] There was an issue getting the resource", e);
             }
         }
-        resource.sort((o1, o2) -> o2.getSortDate().compareTo(o1.getSortDate()));
         resultModel.setSearchResults(resource);
         return resultModel;
     }
@@ -515,7 +520,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                 setContentFields(resultItem, hit);
             }
             resultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), request));
-            resultItem.setSortDate(getSortDate(hit, Calendar.class));
         }
         return resultItem;
     }
@@ -594,7 +598,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         try {
             size = Integer.parseInt(assetMetadataProperties.get(DamConstants.DAM_SIZE, StringUtils.EMPTY));
         } catch (NumberFormatException e) {
-            LOGGER.error("Invalid Asset Size", e.getMessage(), e);
+            LOGGER.error("Invalid Asset Size {} {}", e.getMessage(), e);
         }
         double convertedSize = size / KILO_BYTES_VALUE;
         if (convertedSize > KILO_BYTES_VALUE) {
@@ -617,7 +621,6 @@ public class SearchResultsServiceImpl implements SearchResultsService {
     private void setAssetsProperties(SlingHttpServletRequest request) {
         Resource resource = request.getResource().getResourceResolver()
                 .resolve(String.format("%s%s", request.getResource().getPath(), "/root/responsivegrid/searchresults"));
-        if (resource != null && resource.adaptTo(Node.class) != null) {
             Node node = resource.adaptTo(Node.class);
             try {
                 if (node.hasProperty(MEDIA_LABEL_PROP)) {
@@ -645,9 +648,8 @@ public class SearchResultsServiceImpl implements SearchResultsService {
                     documentThumbnail = null;
                 }
             } catch (RepositoryException re) {
-                LOGGER.error("setAssetsProperties:: RepositoryException", re.getMessage(), re);
+                LOGGER.error("setAssetsProperties:: RepositoryException {} {}", re.getMessage(), re);
             }
-        }
     }
 
     /**
