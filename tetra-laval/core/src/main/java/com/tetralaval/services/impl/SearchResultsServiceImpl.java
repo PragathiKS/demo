@@ -48,7 +48,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -621,6 +620,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
     private void setAssetsProperties(SlingHttpServletRequest request) {
         Resource resource = request.getResource().getResourceResolver()
                 .resolve(String.format("%s%s", request.getResource().getPath(), "/root/responsivegrid/searchresults"));
+        if (resource.adaptTo(Node.class) != null) {
             Node node = resource.adaptTo(Node.class);
             try {
                 if (node.hasProperty(MEDIA_LABEL_PROP)) {
@@ -650,6 +650,7 @@ public class SearchResultsServiceImpl implements SearchResultsService {
             } catch (RepositoryException re) {
                 LOGGER.error("setAssetsProperties:: RepositoryException {} {}", re.getMessage(), re);
             }
+        }
     }
 
     /**
