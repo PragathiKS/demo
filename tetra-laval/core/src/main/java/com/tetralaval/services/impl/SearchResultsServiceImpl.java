@@ -623,32 +623,13 @@ public class SearchResultsServiceImpl implements SearchResultsService {
         if (resource.adaptTo(Node.class) != null) {
             Node node = resource.adaptTo(Node.class);
             try {
-                if (node.hasProperty(MEDIA_LABEL_PROP)) {
-                    mediaLabel = node.getProperty(MEDIA_LABEL_PROP).getString();
-                } else {
-                    mediaLabel = null;
-                }
+                mediaLabel = node.hasProperty(MEDIA_LABEL_PROP) ? node.getProperty(MEDIA_LABEL_PROP).getString() : null;
                 mediaId = setMediaId(mediaLabel);
-
-                if (node.hasProperty(ASSETS_PATH_PROP)) {
-                    assetsPath = node.getProperty(ASSETS_PATH_PROP).getString();
-                } else {
-                    assetsPath = TLConstants.DAM_ROOT_PATH;
-                }
-
-                if (node.hasProperty(VIDEO_THUMBNAIL_PROP)) {
-                    videoThumbnail = node.getProperty(VIDEO_THUMBNAIL_PROP).getString();
-                } else {
-                    videoThumbnail = null;
-                }
-
-                if (node.hasProperty(DOCUMENT_THUMBNAIL_PROP)) {
-                    documentThumbnail = node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString();
-                } else {
-                    documentThumbnail = null;
-                }
+                assetsPath = node.hasProperty(ASSETS_PATH_PROP) ? node.getProperty(ASSETS_PATH_PROP).getString() : TLConstants.DAM_ROOT_PATH;
+                videoThumbnail = node.hasProperty(VIDEO_THUMBNAIL_PROP) ? node.getProperty(VIDEO_THUMBNAIL_PROP).getString() : null;
+                documentThumbnail = node.hasProperty(DOCUMENT_THUMBNAIL_PROP) ? node.getProperty(DOCUMENT_THUMBNAIL_PROP).getString() : null;
             } catch (RepositoryException re) {
-                LOGGER.error("setAssetsProperties:: RepositoryException {} {}", re.getMessage(), re);
+                LOGGER.error("setAssetsProperties:: RepositoryException : {}", re.getMessage(), re);
             }
         }
     }
