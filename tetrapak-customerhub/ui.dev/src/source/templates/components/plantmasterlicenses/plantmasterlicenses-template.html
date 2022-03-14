@@ -1,37 +1,37 @@
 <sly data-sly-template.plantmasterlicenses_template="${@data, flag}">
     <div class="tp-card tp-aip tp-aip-licenses"
-         data-trainings-api="${data.trainingDetailsApi}"
-         data-submit-api="${data.trainingDetailsApi}"
-         data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
+         data-engineeringLicense-api="${data.engineeringLicenseApiUrl}"
+         data-siteLicense-api="${data.siteLicenseApiUrl}"
+         data-submit-api="${data.emailApiUrl}"
          data-module="PlantMasterLicenses">
 
         <code class="d-none js-aip-licenses__config">${data.i18nKeys}</code>
 
-        <div class="tp-spinner js-tp-spinner d-none">
-            <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html" data-sly-call="${loading.loader_template}" />
-        </div>
-
         <div class="js-aip-licenses__wrapper">
             <div class="tp-aip__header-wrapper">
                 <h2 class="tp-aip__heading">
-                    ${"cuhu.plantmastertrainings.title" @i18n}
+                    ${data.i18nKeysMap.heading.title}
                 </h2>
             </div>
 
             <nav class="tp-aip__nav">
                 <div class="nav nav-tabs tp-aip__nav-tabs" role="tablist">
-                    <a class="tp-aip__nav-link nav-item nav-link active" id="nav-engineering-licenses-tab" data-toggle="tab" href="#nav-engineering-licenses" role="tab" aria-controls="nav-engineering-licenses" aria-selected="true">Request annual engineering licenses</a>
-                    <a class="tp-aip__nav-link nav-item nav-link" id="nav-site-licenses-tab" data-toggle="tab" href="#nav-site-licenses" role="tab" aria-controls="nav-site-licenses" aria-selected="false">Request site licenses</a>
+                    <a class="tp-aip__nav-link nav-item nav-link active" id="nav-engineering-licenses-tab" data-toggle="tab" href="#nav-engineering-licenses" role="tab" aria-controls="nav-engineering-licenses" aria-selected="true">${data.i18nKeysMap.engineeringLicense.title @ i18n}</a>
+                    <a class="tp-aip__nav-link nav-item nav-link" id="nav-site-licenses-tab" data-toggle="tab" href="#nav-site-licenses" role="tab" aria-controls="nav-site-licenses" aria-selected="false">${data.i18nKeysMap.siteLicense.title @ i18n}</a>
                 </div>
             </nav>
 
-            <div class="tp-aip__tab-content tab-content" id="nav-tabContent">
+            <div class="tp-spinner js-tp-spinner d-none">
+                <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html" data-sly-call="${loading.loader_template}" />
+            </div>
+
+            <div class="tp-aip__tab-content tab-content js-aip-licenses__contentWrapper" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-engineering-licenses" role="tabpanel" aria-labelledby="nav-engineering-licenses-tab">
                     <sly data-sly-use.engineering="/apps/customerhub/components/content/plantmasterlicenses/plantmasterlicenses-engineering-template.html"
                          data-sly-call="${engineering.plantmasterlicenses_engineering_template}" />
                 </div>
 
-                <div class="tab-pane fade tp-aip-licenses-site" id="nav-site-licenses" role="tabpanel" aria-labelledby="nav-site-licenses-tab">
+                <div class="tab-pane fade tp-aip-licenses__site js-tp-aip-licenses__site" id="nav-site-licenses" role="tabpanel" aria-labelledby="nav-site-licenses-tab">
                     <sly data-sly-use.site="/apps/customerhub/components/content/plantmasterlicenses/plantmasterlicenses-site-template.html"
                          data-sly-call="${site.plantmasterlicenses_site_template @ data=data.i18nKeysMap.siteLicense}" />
                 </div>
