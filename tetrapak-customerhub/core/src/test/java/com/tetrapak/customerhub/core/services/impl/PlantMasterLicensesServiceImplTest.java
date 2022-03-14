@@ -4,6 +4,8 @@ import com.adobe.acs.commons.email.EmailService;
 import com.day.cq.wcm.api.LanguageManager;
 import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
+import com.tetrapak.customerhub.core.services.AIPCategoryService;
+import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import io.wcm.testing.mock.aem.junit.AemContext;
@@ -41,7 +43,12 @@ public class PlantMasterLicensesServiceImplTest {
     @Mock
     private LanguageManager languageManager;
 
-    @Spy GlobalUtil globalUtil;
+    @Mock
+    private APIGEEService apigeeService;
+
+    @Mock
+    private AIPCategoryService aipCategoryService;
+
 
     private static final String RESOURCE_JSON = "plantMasterLicensesComponent.json";
     private static final String RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/automation-digital/licenses/jcr:content/root/responsivegrid/plantmasterlicenses";
@@ -67,6 +74,9 @@ public class PlantMasterLicensesServiceImplTest {
         when(AIPEmailConfiguration.siteLicenseEmailTemplatePath()).thenReturn(templatePath);
         when(AIPEmailConfiguration.recipientAddresses()).thenReturn(new String[]{recipientEmail});
         when(AIPEmailConfiguration.isLicensesEmailEnabled()).thenReturn(true);
+        aemContext.registerService(APIGEEService.class, apigeeService);
+        when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-product-details:productinformation/categories/{id}/products"});
+        aemContext.registerService(AIPCategoryService.class, aipCategoryService);
         aemContext.registerService( PlantMasterLicensesServiceImpl.class,plantMasterLicensesServiceImpl);
         when(plantMasterLicensesServiceImpl.getI18nValue(any(),any(),any())).thenReturn("");
 

@@ -16,7 +16,7 @@ public class SiteLicenseFormBean {
     private String mesType;
     @SerializedName("basic-unit")
     private String numberOfBasicUnit;
-    @SerializedName("advanced-units")
+    @SerializedName("advanced-unit")
     private String numberOfAdvancedUnit;
 
     public String getNameOfSite() {

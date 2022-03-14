@@ -27,7 +27,7 @@ public class SiteLicenseModel {
     public static final String APPLICATION_DROPDOWN_JSON_KEY = "applicationDropDown";
     public static final String APPLICATION_DROPDOWN_PLACEHOLDER_JSON_KEY = "dropdownPlaceholder";
     public static final String PLC_TYPE_JSON_KEY = "plcType";
-    public static final String HMI_TYPE_JSON_KEY = "HMIType";
+    public static final String HMI_TYPE_JSON_KEY = "hmiType";
     public static final String MES_TYPE_JSON_KEY = "mesType";
     public static final String NUMBER_OF_BASIC_UNIT_JSON_KEY = "numberOfBasicUnit";
     public static final String BASIC_UNIT_TOOLTIP_HEADING_JSON_KEY = "basicUnitToolTipHeading";
@@ -146,12 +146,6 @@ public class SiteLicenseModel {
     @ValueMapValue
     private String body;
 
-    @ValueMapValue
-    private String name;
-
-    @ValueMapValue
-    private String email;
-
     public String getTitle() {
         return title;
     }
@@ -238,14 +232,6 @@ public class SiteLicenseModel {
 
     public String getBody() {
         return body;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getApplication() {
