@@ -87,7 +87,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             Map<String, String> emailParams = new HashMap<>();
             extractEngineeringLicenseModelProps(emailParams, model, request, I18N_PREFIX);
             extractEngineeringLicenseFormData(emailParams,bean);
-            isSuccess = addEmailJob(recipients,emailParams);
+            isSuccess = addEmailJob(recipients,emailParams,config.engineeringLicenseEmailTemplatePath());
         }
         return isSuccess;
 
@@ -103,7 +103,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             Map<String, String> emailParams = new HashMap<>();
             extractSiteLicenseModelProps(emailParams, model, request, I18N_PREFIX);
             extractSiteLicenseFormData(emailParams,bean);
-            isSuccess = addEmailJob(recipients,emailParams);
+            isSuccess = addEmailJob(recipients,emailParams,config.siteLicenseEmailTemplatePath());
         }
         return isSuccess;
     }
@@ -165,7 +165,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         jsonObject = replaceArraysInJsonObject(jsonObject);
         return jsonObject;
     }
-    private boolean addEmailJob( String[] recipients,Map<String, String> emailParams){
+    private boolean addEmailJob( String[] recipients,Map<String, String> emailParams,String templatePath){
         LOGGER.debug("Email job added");
         for(String param: emailParams.keySet()){
             LOGGER.debug(param +" === "+emailParams.get(param));
@@ -176,7 +176,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         LOGGER.debug("templatepath : "+config.isLicensesEmailEnabled());
         boolean isSuccess = false;
         Map<String, Object> properties = new HashMap<>();
-        properties.put(MyTetrapakEmailJob.TEMPLATE_PATH, config.emailTemplatePath());
+        properties.put(MyTetrapakEmailJob.TEMPLATE_PATH, templatePath);
         properties.put(MyTetrapakEmailJob.EMAIL_PARAMS, emailParams);
         properties.put(MyTetrapakEmailJob.RECIPIENTS_ARRAY, recipients);
         if (jobMgr != null && config.isLicensesEmailEnabled() && config.recipientAddresses() != null) {
