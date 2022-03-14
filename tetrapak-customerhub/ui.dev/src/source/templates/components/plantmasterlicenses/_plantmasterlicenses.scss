@@ -8,7 +8,7 @@ $form-grp-margin: 12px;
 
         h2 {
             @include font-size($font-md);
-            @include line-height($font-l, $font-baseline);            
+            @include line-height($font-l, $font-baseline);
             @include margin-bottom($margin-l);
             color: $color-tundora;
         }
@@ -36,7 +36,6 @@ $form-grp-margin: 12px;
             label {
                 @include font-size($font-baseline);
                 @include line-height($font-l, $font-baseline);
-                font-weight: 700;
                 margin-bottom: 0;
             }
 
@@ -52,6 +51,17 @@ $form-grp-margin: 12px;
                 @include margin-top($margin-xs);
             }
 
+            .tpatom-dropdown {
+                &__text {
+                    margin-top: 0;
+                }
+
+                &__select-box {
+                    @include padding($padding-sm $padding-md);
+                    border: 1px solid $color-tundora;
+                }
+            }
+
             &--error {
                 input,
                 textarea,
@@ -63,7 +73,7 @@ $form-grp-margin: 12px;
                 @include font-size($font-sm);
                 display: none;
                 color: $color-alert;
-        
+
                 &--active {
                     display: block;
                 }
