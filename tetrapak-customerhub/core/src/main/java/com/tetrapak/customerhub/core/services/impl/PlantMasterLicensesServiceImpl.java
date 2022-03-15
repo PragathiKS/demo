@@ -6,6 +6,7 @@ import com.tetrapak.customerhub.core.beans.licenses.EngineeringLicenseFormBean;
 import com.tetrapak.customerhub.core.beans.licenses.SiteLicenseFormBean;
 import com.tetrapak.customerhub.core.jobs.MyTetrapakEmailJob;
 import com.tetrapak.customerhub.core.models.EngineeringLicenseModel;
+import com.tetrapak.customerhub.core.models.PlantMasterLicensesModel;
 import com.tetrapak.customerhub.core.models.SiteLicenseModel;
 import com.tetrapak.customerhub.core.services.PlantMasterLicensesService;
 import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
@@ -67,7 +68,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         boolean isSuccess = false;
         boolean isFeatureEnabled = config.isCotsSupportEmailEnabled();
         String[] recipients = config.recipientAddresses();
-        if(request.getHeader("licenseType").equals("engineering")){
+        if(request.getHeader("licenseType")!= null && request.getHeader("licenseType").equals("engineering")){
             isSuccess = sendEmailEngineeringLicense(request,isFeatureEnabled,recipients);
         }
         else{
@@ -87,7 +88,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             Map<String, String> emailParams = new HashMap<>();
             extractEngineeringLicenseModelProps(emailParams, model, request, I18N_PREFIX);
             extractEngineeringLicenseFormData(emailParams,bean);
-            isSuccess = addEmailJob(recipients,emailParams);
+            isSuccess = addEmailJob(recipients,emailParams,config.engineeringLicenseEmailTemplatePath());
         }
         return isSuccess;
 
@@ -103,7 +104,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             Map<String, String> emailParams = new HashMap<>();
             extractSiteLicenseModelProps(emailParams, model, request, I18N_PREFIX);
             extractSiteLicenseFormData(emailParams,bean);
-            isSuccess = addEmailJob(recipients,emailParams);
+            isSuccess = addEmailJob(recipients,emailParams,config.siteLicenseEmailTemplatePath());
         }
         return isSuccess;
     }
@@ -111,14 +112,53 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private void extractEngineeringLicenseModelProps(Map<String, String> emailParams, EngineeringLicenseModel model,
             SlingHttpServletRequest request, String prefix){
 
+        PlantMasterLicensesModel plantMasterLicensesModel = request.adaptTo(PlantMasterLicensesModel.class);
         emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY,
                 getI18nValue(request, prefix, model.getComments()));
+        emailParams.put("users",
+                getI18nValue(request, prefix, model.getUsers()));
+        emailParams.put("name",
+                getI18nValue(request, prefix, plantMasterLicensesModel.getUserName()));
+        emailParams.put("email",
+                getI18nValue(request, prefix, plantMasterLicensesModel.getUserEmailAddress()));
+        emailParams.put("subject",
+                getI18nValue(request, prefix, model.getSubject()));
+        emailParams.put("salutation",
+                getI18nValue(request, prefix, model.getSalutation()));
+        emailParams.put("body",
+                getI18nValue(request, prefix, model.getBody()));
+
 
     }
     private void extractSiteLicenseModelProps(Map<String, String> emailParams, SiteLicenseModel model,
             SlingHttpServletRequest request, String prefix){
+        PlantMasterLicensesModel plantMasterLicensesModel = request.adaptTo(PlantMasterLicensesModel.class);
+        emailParams.put("name",
+                getI18nValue(request, prefix, plantMasterLicensesModel.getUserName()));
+        emailParams.put("email",
+                getI18nValue(request, prefix, plantMasterLicensesModel.getUserEmailAddress()));
+        emailParams.put(SiteLicenseModel.NAME_OF_SITE_JSON_KEY,
+                getI18nValue(request, prefix, model.getNameOfSite()));
+        emailParams.put(SiteLicenseModel.LOCATION_OF_SITE_JSON_KEY,
+                getI18nValue(request, prefix, model.getLocationOfSite()));
         emailParams.put(SiteLicenseModel.APPLICATION_JSON_KEY,
                 getI18nValue(request, prefix, model.getApplication()));
+        emailParams.put(SiteLicenseModel.PLC_TYPE_JSON_KEY,
+                getI18nValue(request, prefix, model.getPlcType()));
+        emailParams.put(SiteLicenseModel.HMI_TYPE_JSON_KEY,
+                getI18nValue(request, prefix, model.getHmiType()));
+        emailParams.put(SiteLicenseModel.MES_TYPE_JSON_KEY,
+                getI18nValue(request, prefix, model.getMesType()));
+        emailParams.put(SiteLicenseModel.NUMBER_OF_BASIC_UNIT_JSON_KEY,
+                getI18nValue(request, prefix, model.getNumberOfBasicUnit()));
+        emailParams.put(SiteLicenseModel.NUMBER_OF_ADVANCED_UNIT_JSON_KEY,
+                getI18nValue(request, prefix, model.getNumberOfAdvancedUnit()));
+        emailParams.put("subject",
+                getI18nValue(request, prefix, model.getSubject()));
+        emailParams.put("salutation",
+                getI18nValue(request, prefix, model.getSalutation()));
+        emailParams.put("body",
+                getI18nValue(request, prefix, model.getBody()));
     }
     private void extractEngineeringLicenseFormData(Map<String, String> emailParams, EngineeringLicenseFormBean engineeringLicenseFormBean){
         emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY + VALUE, engineeringLicenseFormBean.getComments());
@@ -165,7 +205,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         jsonObject = replaceArraysInJsonObject(jsonObject);
         return jsonObject;
     }
-    private boolean addEmailJob( String[] recipients,Map<String, String> emailParams){
+    private boolean addEmailJob( String[] recipients,Map<String, String> emailParams,String templatePath){
         LOGGER.debug("Email job added");
         for(String param: emailParams.keySet()){
             LOGGER.debug(param +" === "+emailParams.get(param));
@@ -176,7 +216,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         LOGGER.debug("templatepath : "+config.isLicensesEmailEnabled());
         boolean isSuccess = false;
         Map<String, Object> properties = new HashMap<>();
-        properties.put(MyTetrapakEmailJob.TEMPLATE_PATH, config.emailTemplatePath());
+        properties.put(MyTetrapakEmailJob.TEMPLATE_PATH, templatePath);
         properties.put(MyTetrapakEmailJob.EMAIL_PARAMS, emailParams);
         properties.put(MyTetrapakEmailJob.RECIPIENTS_ARRAY, recipients);
         if (jobMgr != null && config.isLicensesEmailEnabled() && config.recipientAddresses() != null) {

@@ -18,6 +18,7 @@ public class EngineeringLicenseModel {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EngineeringLicenseModel.class);
 
+    public static final String TITLE_JSON_KEY = "title";
     public static final String USER_DETAILS_SECTION_TITLE_JSON_KEY = "userDetailsSectionTitle";
     public static final String NAME_JSON_KEY = "name";
     public static final String NAME_PLACEHOLDER_JSON_KEY = "namePlaceholder";
@@ -39,6 +40,11 @@ public class EngineeringLicenseModel {
     @SlingObject
     @Expose(serialize = false)
     private SlingHttpServletRequest request;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    @SerializedName(TITLE_JSON_KEY)
+    private String title;
 
     @ValueMapValue
     @Expose(serialize = true)
@@ -109,12 +115,19 @@ public class EngineeringLicenseModel {
     @ValueMapValue
     private String body;
 
+    @ValueMapValue
+    private String users;
+
     /**
      * init method.
      */
     @PostConstruct
     protected void init() {
         LOGGER.debug("Engineering License Model created");
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public String getUserDetailsSectionTitle() {
@@ -169,6 +182,17 @@ public class EngineeringLicenseModel {
         return body;
     }
 
+    public String getSuccessMessageHeading() {
+        return successMessageHeading;
+    }
+
+    public String getSuccessMessageDescription() {
+        return successMessageDescription;
+    }
+
+    public String getUsers() {
+        return users;
+    }
 }
 
 
