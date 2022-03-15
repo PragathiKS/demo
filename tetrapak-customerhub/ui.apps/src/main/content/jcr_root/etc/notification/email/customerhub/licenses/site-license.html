@@ -1,4 +1,4 @@
-Subject: ${affectedSystemsValue} - ${productInvolvedValue}
+Subject: ${subject}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
@@ -22,18 +22,6 @@ Subject: ${affectedSystemsValue} - ${productInvolvedValue}
             padding: 0;
         }
 
-        /* Force Outlook to display view in browser link */
-
-        span.MsoHyperlink {
-            mso-style-priority: 99;
-            color: inherit;
-        }
-
-        span.MsoHyperlinkFollowed {
-            mso-style-priority: 99;
-            color: inherit;
-        }
-
         /* Force Outlook to display clicked links in correct colors */
 
         body {
@@ -44,30 +32,6 @@ Subject: ${affectedSystemsValue} - ${productInvolvedValue}
             height: 100% !important;
             margin: 0 !important;
             padding: 0;
-        }
-
-
-        /* Stop Wekbit and Windows Phone changing the font size */
-
-        .ReadMsgBody {
-            width: 100%;
-        }
-
-        /* Force hotmail/outlook.com to display at full width (outer div) */
-
-        .ExternalClass {
-            width: 100%;
-        }
-
-        /* Force hotmail/outlook.com to display at full width (inner div) */
-
-        .ExternalClass,
-        .ExternalClass p,
-        .ExternalClass span,
-        .ExternalClass font,
-        .ExternalClass td,
-        .ExternalClass div {
-            line-height: 100%;
         }
 
         /* Force Hotmail to display normal line spacing */
@@ -88,39 +52,11 @@ Subject: ${affectedSystemsValue} - ${productInvolvedValue}
             mso-table-rspace: 0pt !important;
         }
 
-        /* Remove spacing between tables in Outlook 2007 and up */
-
-        img {
-            -ms-interpolation-mode: bicubic;
-        }
-
         /* Allow smoother rendering of resized image in Internet Explorer */
         /* RESET STYLES */
 
         div[style*="margin: 16px 0"] {
             margin: 0 !important;
-        }
-
-        img {
-            border: 0;
-            height: auto;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-        }
-
-        table {
-            border-collapse: collapse !important;
-        }
-
-        a[x-apple-data-detectors] {
-            /* Fix for unwanted styling of links in ios */
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
         }
 
         /* Force Samsung mail to show email 100% of viewport */
@@ -137,95 +73,7 @@ Subject: ${affectedSystemsValue} - ${productInvolvedValue}
             display: none !important;
         }
 
-        @media only screen and (max-width: 500px) {
-
-            .autoh {
-                height: auto !important;
-            }
-
-            .break {
-                display: block !important;
-                clear: both !important;
-            }
-
-            .show {
-                overflow: visible !important;
-                float: none !important;
-                line-height: 100% !important;
-                display: block !important;
-            }
-
-            .h24-500 {
-                height: 24px !important;
-            }
-
-            .w436-500 {
-                width: 436px !important;
-            }
-
-            .w500-500 {
-                width: 500px !important;
-            }
-
-            /* PADDING */
-
-            .padding-bottom-24 {
-                padding-bottom: 24px !important;
-            }
-
-            .padding-top-24 {
-                padding-top: 24px !important;
-            }
-
-            .padding-hori-16 {
-                padding-right: 16px !important;
-                padding-left: 16px !important;
-            }
-
-            .padding-vert-24 {
-                padding-top: 24px !important;
-                padding-bottom: 24px !important;
-            }
-
-            .padding-32 {
-                padding: 32px !important;
-            }
-        }
-
-        @media only screen and (max-width: 414px) {
-
-            .w382-414 {
-                width: 382px !important;
-            }
-
-            .w414-414 {
-                width: 414px !important;
-            }
-
-        }
-
-        @media only screen and (max-width: 375px) {
-
-            .w343-375 {
-                width: 343px !important;
-            }
-
-            .w375-375 {
-                width: 375px !important;
-            }
-        }
-
-        /* Ekstra media queries for nogle Samsung telefoner */
-        @media screen and (device-width: 360px) and (-webkit-device-pixel-ratio: 4) {
-
-            .w328-360 {
-                width: 328px !important;
-            }
-
-            .w360-360 {
-                width: 360px !important;
-            }
-        }
+       
     </style>
    <!--[if mso]>
    <style>
@@ -272,45 +120,44 @@ body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
             </tr>
 			<tr><td colspan="2">&nbsp;</td></tr>
             <tr>
-               <td align="left" width="30%" class="label-text">${selectRequest}</td>
-			   <td align="left">${logQueryTypeValue}</td>
+               <td align="left" width="30%" class="label-text">${nameOfSite}</td>
+			   <td align="left">${nameOfSiteValue}</td>
             </tr>
 			<tr>
-				<td align="left" width="30%" class="label-text">${company}</td>
-				<td align="left">${companyValue}</td>
+				<td align="left" width="30%" class="label-text">${locationOfSite}</td>
+				<td align="left">${locationOfSiteValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%" class="label-text">${customerSite}</td>
-				<td align="left">${customerSiteValue}</td>
+				<td align="left" width="30%" class="label-text">${application}</td>
+				<td align="left">${applicationValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%" class="label-text">${affectedSystemsLabel}</td>
-				<td align="left">${affectedSystemsValue}</td>
+				<td align="left" width="30%" class="label-text">${mesType}</td>
+				<td align="left">${mesTypeValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%" class="label-text">${productInvolvedLabel}</td>
-				<td align="left">${productInvolvedValue}</td>
+				<td align="left" width="30%" class="label-text">${plcType}</td>
+				<td align="left">${plcTypeValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%" class="label-text">${softwareVersion}</td>
-				<td align="left">${softwareVersionValue}</td>
+				<td align="left" width="30%" class="label-text">${hmiType}</td>
+				<td align="left">${hmiTypeValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%" class="label-text">${engineeringLicenseSerialNumber}</td>
-				<td align="left">${licensenumberValue}</td>
+				<td align="left" width="30%" class="label-text">${numberOfBasicUnit}</td>
+				<td align="left">${numberOfBasicUnitValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%" class="label-text">${shortDescription}</td>
-				<td align="left">${descriptionValue}</td>
+				<td align="left" width="30%" class="label-text">${numberOfAdvancedUnit}</td>
+				<td align="left">${numberOfAdvancedUnitValue}</td>
 			</tr>
 			<tr>
-				<td align="left" width="30%" class="label-text">${question}</td>
-				<td align="left">${questionsValue}</td>
+				<td align="left" width="30%" class="label-text">Name</td>
+				<td align="left">${name}</td>
 			</tr>
-            <tr><td colspan="2">&nbsp;</td></tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${contactDetails}</td>
-				<td align="left">${nameValue},&nbsp;${emailAddressValue},&nbsp; ${telephoneValue}</td>
+            <tr>
+				<td align="left" width="30%" class="label-text">Email address</td>
+				<td align="left">${email}</td>
 			</tr>
             <!-- END FOOTER -->
             </tbody>

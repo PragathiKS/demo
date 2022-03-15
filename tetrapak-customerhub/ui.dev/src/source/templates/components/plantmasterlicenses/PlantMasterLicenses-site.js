@@ -1,4 +1,3 @@
-/* eslint-disable */
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
@@ -13,21 +12,20 @@ function _processSiteLicensesData(data) {
 
 
 function _renderSiteLicensesData() {
-  const $this = this;
-  const {siteLicensesData} = $this.cache;
-
   render.fn({
     template: 'plantMasterLicenses-site',
     target: '.js-tp-aip-licenses__site-description',
-    data: { i18nKeys: this.cache.i18nKeys.siteLicense, siteLicensesDataArr: siteLicensesData}
+    data: {
+      i18nKeys: this.cache.i18nKeys.siteLicense,
+      siteLicensesDataArr: this.cache.siteLicensesData
+    }
   });
 }
 
-  /**
+/**
  * Fetch and process the Site Licenses data
  */
 function _getSiteLicensesData() {
-  const $this = this;
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
@@ -42,40 +40,30 @@ function _getSiteLicensesData() {
         },
         showLoader: true
       }).done(res => {
-        $this.cache.siteLicensesData = _processSiteLicensesData(res.data[0]);
-        $this.renderSiteLicensesData();
-        $this.cache.$sitecontentWrapper.removeClass('d-none');
+        this.cache.siteLicensesData = _processSiteLicensesData(res.data[0]);
+        this.renderSiteLicensesData();
+        this.cache.$sitecontentWrapper.removeClass('d-none');
       }).fail((e) => {
         logger.error(e);
       });
   });
 }
 
-function _renderSuccessMessage() {
-  render.fn(
-    {
-      template: 'plantMasterLicensesSuccessMessage',
-      target: this.cache.$contentWrapper,
-      data: { i18nKeys: this.cache.i18nKeys }
-    },
-    this.showContent
-  );
-}
-
 class PlantMasterLicensesSite {
-  constructor(el) {
-    this.root = el;
+  constructor({ el }) {
+    this.root = $(el);
   }
 
   cache = {};
 
   initCache() {
-    this.cache.siteLicensesApi = this.root.prevObject.data('sitelicense-api');
-    this.cache.$spinner = this.root.prevObject.find('.js-tp-spinner');
     this.cache.$sitecontentWrapper = this.root.find('.js-tp-aip-licenses__site-description');
-    this.cache.$contentWrapper = this.root.prevObject.find('.js-aip-licenses__contentWrapper');
-    this.cache.submitApi = this.root.prevObject.data('submit-api');
-    const configJson = this.root.prevObject.find('.js-aip-licenses__config').text();
+    const aipLicenseObj = $('.tp-aip-licenses');
+    this.cache.siteLicensesApi = aipLicenseObj.data('sitelicense-api');
+    this.cache.$spinner = aipLicenseObj.find('.js-tp-spinner');
+    this.cache.$contentWrapper = aipLicenseObj.find('.js-aip-licenses__contentWrapper');
+    this.cache.submitApi = aipLicenseObj.data('submit-api');
+    const configJson = aipLicenseObj.find('.js-aip-licenses__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(configJson);
     } catch (e) {
@@ -93,6 +81,17 @@ class PlantMasterLicensesSite {
     this.cache.$contentWrapper.addClass('d-none');
     this.cache.$spinner.removeClass('d-none');
   };
+
+  renderSuccessMessage() {
+    render.fn(
+      {
+        template: 'plantMasterLicensesSuccessMessage',
+        target: this.cache.$contentWrapper,
+        data: { i18nKeys: this.cache.i18nKeys }
+      },
+      this.showContent
+    );
+  }
 
   addErrorMsg(el, errorMsgSelector) {
     $(el)
@@ -126,14 +125,18 @@ class PlantMasterLicensesSite {
       const formData = new FormData(e.currentTarget.form);
       this.showSpinner();
 
+      const object = {};
+      formData.forEach((value, key) => object[key] = value);
+      const siteJson = JSON.stringify(object);
+
       ajaxWrapper
         .getXhrObj({
           url: this.cache.submitApi,
           method: ajaxMethods.POST,
           cache: true,
-          processData: false,
-          contentType: false,
-          data: formData,
+          contentType: 'application/json; charset=utf-8',
+          dataType:'json',
+          data: siteJson,
           showLoader: true
         }).done(() => {
           this.renderSuccessMessage();
@@ -142,7 +145,7 @@ class PlantMasterLicensesSite {
           this.cache.$spinner.addClass('d-none');
         });
     }
-  };
+  }
 
   bindEvents() {
     this.root.on('click', '.js-tp-aip-licenses-site__btn', this.submitRequestForm);
@@ -154,10 +157,6 @@ class PlantMasterLicensesSite {
 
   getSiteLicensesData() {
     return _getSiteLicensesData.apply(this, arguments);
-  }
-
-  renderSuccessMessage() {
-    return _renderSuccessMessage.apply(this, arguments);
   }
 
   showTooltip(){
