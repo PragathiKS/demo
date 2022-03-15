@@ -22,7 +22,6 @@ import com.tetrapak.customerhub.core.beans.aip.PlantMasterTrainingsFormBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.jobs.MyTetrapakEmailJob;
 import com.tetrapak.customerhub.core.models.PlantMasterTrainingsModel;
-import com.tetrapak.customerhub.core.services.CotsSupportService;
 import com.tetrapak.customerhub.core.services.PlantMasterTrainingsService;
 import com.tetrapak.customerhub.core.services.config.PlantMasterEmailConfiguration;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
