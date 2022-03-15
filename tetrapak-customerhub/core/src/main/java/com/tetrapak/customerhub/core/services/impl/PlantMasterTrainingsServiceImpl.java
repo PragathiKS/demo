@@ -30,7 +30,7 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 /**
  * The Class CotsSupportService Implementation.
  */
-@Component(service = CotsSupportService.class, immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
+@Component(service = PlantMasterTrainingsService.class, immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @Designate(ocd = PlantMasterEmailConfiguration.class)
 public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsService {
 
