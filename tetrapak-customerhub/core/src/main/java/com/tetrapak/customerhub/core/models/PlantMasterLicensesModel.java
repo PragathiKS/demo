@@ -14,22 +14,25 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+/**
+ * Model class for Plant Master licenses component.
+ */
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PlantMasterLicensesModel {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterLicensesModel.class);
     private static final String ENGINEERING_LICENSE_CHILD_RESOURCE_NAME = "engineeringLicense";
     private static final String SITE_LICENSE_CHILD_RESOURCE_NAME = "siteLicense";
-    private static final String PLANT_MASTER_SITE_LICENSE_API_MAPPING_KEY = "";
-    private static final String PLANT_MASTER_ENGINEERING_LICENSE_API_MAPPING_KEY = "";
-
 
     /** The resource. */
     @SlingObject
@@ -43,6 +46,9 @@ public class PlantMasterLicensesModel {
 
     @ChildResource(name = SITE_LICENSE_CHILD_RESOURCE_NAME)
     SiteLicenseModel siteLicenseModel;
+
+    @ValueMapValue
+    private String heading;
 
     private String i18nKeys;
 
@@ -58,6 +64,8 @@ public class PlantMasterLicensesModel {
 
     private Map<String, Object> i18nKeysMap;
 
+    private boolean isPublishEnvironment = Boolean.FALSE;
+
     /** The apigee service. */
     @OSGiService
     private APIGEEService apigeeService;
@@ -65,6 +73,9 @@ public class PlantMasterLicensesModel {
     /** The aip category service. */
     @OSGiService
     private AIPCategoryService aipCategoryService;
+
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
 
     /**
      * init method.
@@ -76,33 +87,43 @@ public class PlantMasterLicensesModel {
         i18nKeysMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
         i18nKeysMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME,siteLicenseModel);
 
-        Map<String, Object> i18KeyMap = new HashMap<>();
+/*        Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
         i18KeyMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME,siteLicenseModel);
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
         i18nKeys = gson.toJson(i18KeyMap);
-        LOGGER.debug("i18nKeys : {}",i18nKeys);
+        LOGGER.debug("i18nKeys : {}",i18nKeys);*/
 
         String componentPath = resource.getResourceResolver().map(this.resource.getPath());
         String componentPathExtension = CustomerHubConstants.DOT + PlantMasterLicensesEmailServlet.SLING_SERVLET_SELECTOR
                 + CustomerHubConstants.DOT + PlantMasterLicensesEmailServlet.SLING_SERVLET_EXTENSION;
         this.emailApiUrl = componentPath + componentPathExtension;
 
-        String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
-                CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
-        engineeringLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
-                aipCategoryService.getEngineeringLicensesId());
-        this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
-                aipCategoryService.getSiteLicensesId());
-        LOGGER.debug(this.siteLicenseApiUrl);
-        LOGGER.debug(this.engineeringLicenseApiUrl);
+
+        if (slingSettingsService.getRunModes().contains("publish")) {
+            isPublishEnvironment = Boolean.TRUE;
+            String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+                    CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
+            this.engineeringLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
+                    aipCategoryService.getEngineeringLicensesId());
+            this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
+                    aipCategoryService.getSiteLicensesId());
+        }
+        this.setUserEmailAddress();
+        this.setUserName();
 
     }
 
     public void setUserEmailAddress() {
         this.userEmailAddress = GlobalUtil.getCustomerEmailAddress(this.request);
+    }
+
+    public void setUserName(){
+        if (Objects.nonNull(request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME))) {
+            this.userName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
+        }
     }
 
     public String getI18nKeys() {
@@ -139,5 +160,13 @@ public class PlantMasterLicensesModel {
 
     public Map<String, Object> getI18nKeysMap() {
         return i18nKeysMap;
+    }
+
+    public String getHeading() {
+        return heading;
+    }
+
+    public boolean isPublishEnvironment() {
+        return isPublishEnvironment;
     }
 }

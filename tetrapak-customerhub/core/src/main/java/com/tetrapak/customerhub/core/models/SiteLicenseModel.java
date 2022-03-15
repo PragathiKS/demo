@@ -16,6 +16,9 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * Model class for Site licenses child node of PlantMaster Licenses component.
+ */
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SiteLicenseModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(SiteLicenseModel.class);
@@ -135,7 +138,6 @@ public class SiteLicenseModel {
     @ValueMapValue
     @Expose(serialize = true)
     private String selectFieldError;
-
 
     @ValueMapValue
     private String subject;

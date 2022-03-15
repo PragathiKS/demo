@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * Model class for Engineering licenses child node of PlantMaster Licenses component.
+ */
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class EngineeringLicenseModel {
 
