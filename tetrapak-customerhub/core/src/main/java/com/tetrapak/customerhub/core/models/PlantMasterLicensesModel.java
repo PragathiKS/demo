@@ -87,14 +87,14 @@ public class PlantMasterLicensesModel {
         i18nKeysMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
         i18nKeysMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME,siteLicenseModel);
 
-/*        Map<String, Object> i18KeyMap = new HashMap<>();
+        Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
         i18KeyMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME,siteLicenseModel);
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
         i18nKeys = gson.toJson(i18KeyMap);
-        LOGGER.debug("i18nKeys : {}",i18nKeys);*/
+        LOGGER.debug("i18nKeys : {}",i18nKeys);
 
         String componentPath = resource.getResourceResolver().map(this.resource.getPath());
         String componentPathExtension = CustomerHubConstants.DOT + PlantMasterLicensesEmailServlet.SLING_SERVLET_SELECTOR
