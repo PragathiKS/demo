@@ -42,10 +42,10 @@ public class PlantMasterLicensesModel {
     private SlingHttpServletRequest request;
 
     @ChildResource(name = ENGINEERING_LICENSE_CHILD_RESOURCE_NAME)
-    EngineeringLicenseModel engineeringLicenseModel;
+    private EngineeringLicenseModel engineeringLicenseModel;
 
     @ChildResource(name = SITE_LICENSE_CHILD_RESOURCE_NAME)
-    SiteLicenseModel siteLicenseModel;
+    private SiteLicenseModel siteLicenseModel;
 
     @ValueMapValue
     private String heading;

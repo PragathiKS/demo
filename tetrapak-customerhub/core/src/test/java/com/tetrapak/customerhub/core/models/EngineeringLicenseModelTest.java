@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 public class EngineeringLicenseModelTest {
@@ -66,6 +67,10 @@ public class EngineeringLicenseModelTest {
         assertEquals("Unexpected value","Subject",engineeringLicenseModel.getSubject());
         assertEquals("Unexpected value","Salutation",engineeringLicenseModel.getSalutation());
         assertEquals("Unexpected value","Body",engineeringLicenseModel.getBody());
+        assertEquals("Unexpected value","Success Message description",engineeringLicenseModel.getSuccessMessageDescription());
+        assertEquals("Unexpected value","Success Message Heading",engineeringLicenseModel.getSuccessMessageHeading());
+        assertEquals("Unexpected value","Users",engineeringLicenseModel.getUsers());
+        assertEquals("Unexpected value","Title",engineeringLicenseModel.getTitle());
     }
 
 }

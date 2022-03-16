@@ -2,8 +2,11 @@
   "jcr:primaryType": "nt:unstructured",
   "jcr:createdBy": "admin",
   "sling:resourceType": "customerhub/components/content/plantmasterlicenses",
+  "heading": "heading",
   "engineeringLicense": {
     "jcr:primaryType": "nt:unstructured",
+    "users":"Users",
+    "title": "Title",
     "subject": "Subject",
     "description": "Description 1",
     "activationDate": "Date",
