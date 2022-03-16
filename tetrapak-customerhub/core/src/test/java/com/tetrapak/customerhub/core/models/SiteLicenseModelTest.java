@@ -79,8 +79,8 @@ public class SiteLicenseModelTest {
 
     @Test
     public void testPlantMasterLicenseModelProps(){
-        assertEquals("Unexpected value","",plantMasterLicensesModel.getUserEmailAddress());
-        assertEquals("Unexpected value","",plantMasterLicensesModel.getUserEmailAddress());
+        assertEquals("Unexpected value","",plantMasterLicensesModel.getEmailAddressValue());
+        assertEquals("Unexpected value","",plantMasterLicensesModel.getEmailAddressValue());
         assertEquals("Unexpected value","/content/tetrapak/customerhub/global/en/automation-digital/licenses/_jcr_content/root/responsivegrid/plantmasterlicenses.email.html",plantMasterLicensesModel.getEmailApiUrl());
         assertEquals("Unexpected value","",plantMasterLicensesModel.getSiteLicenseApiUrl());
         assertEquals("Unexpected value","",plantMasterLicensesModel.getEngineeringLicenseApiUrl());

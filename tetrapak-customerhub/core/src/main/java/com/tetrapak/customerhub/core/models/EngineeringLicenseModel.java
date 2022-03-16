@@ -34,6 +34,7 @@ public class EngineeringLicenseModel {
     public static final String LICENSE_DESCRIPTIONS_JSON_KEY = "licenseDescriptions";
     public static final String SUCCESS_MESSAGE_HEADING_JSON_KEY = "successMessageHeading";
     public static final String SUCCESS_MESSAGE_DESCRIPTION_JSON_KEY = "successMessageDescription";
+    public static final String USERS = "users";
 
     /** The resource. */
     @SlingObject

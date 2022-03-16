@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -46,7 +47,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String VALUE = "Value";
     private static final String LICENSE_TYPE_ENGINEERING = "engineering";
     private static final String LICENSE_TYPE_REQUEST_PARAMETER = "licenseType";
-    
+
     /** The job mgr. */
     @Reference
     private JobManager jobMgr;
@@ -82,13 +83,12 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     
     private Boolean sendEmailEngineeringLicense(SlingHttpServletRequest request, String[] recipients)
             throws IOException {
-        EngineeringLicenseModel model = request.adaptTo(EngineeringLicenseModel.class);
         boolean isSuccess = false;
         if (Objects.nonNull(recipients)) {
             EngineeringLicenseFormBean bean = createEngineeringLicenseFormBean(request);
             LOGGER.debug("form object : {}", bean.toString());
             Map<String, String> emailParams = new HashMap<>();
-            extractEngineeringLicenseModelProps(emailParams, model, request, I18N_PREFIX);
+            extractEngineeringLicenseModelProps(emailParams, request, I18N_PREFIX);
             extractEngineeringLicenseFormData(emailParams, bean);
             isSuccess = addEmailJob(recipients, emailParams, config.engineeringLicenseEmailTemplatePath());
         }
@@ -97,37 +97,46 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     }
     
     private Boolean sendEmailSiteLicense(SlingHttpServletRequest request, String[] recipients) throws IOException {
-        SiteLicenseModel model = request.adaptTo(SiteLicenseModel.class);
         boolean isSuccess = false;
         if (Objects.nonNull(recipients)) {
             SiteLicenseFormBean bean = createSiteLicenseFormBean(request);
             Map<String, String> emailParams = new HashMap<>();
-            extractSiteLicenseModelProps(emailParams, model, request, I18N_PREFIX);
+            extractSiteLicenseModelProps(emailParams, request, I18N_PREFIX);
             extractSiteLicenseFormData(emailParams, bean);
             isSuccess = addEmailJob(recipients, emailParams, config.siteLicenseEmailTemplatePath());
         }
         return isSuccess;
     }
     
-    private void extractEngineeringLicenseModelProps(Map<String, String> emailParams, EngineeringLicenseModel model,
+    private void extractEngineeringLicenseModelProps(Map<String, String> emailParams,
             SlingHttpServletRequest request, String prefix) {
         
         PlantMasterLicensesModel plantMasterLicensesModel = request.adaptTo(PlantMasterLicensesModel.class);
+        EngineeringLicenseModel model = plantMasterLicensesModel.getEngineeringLicenseModel();
         emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY, getI18nValue(request, prefix, model.getComments()));
-        emailParams.put("users", getI18nValue(request, prefix, model.getUsers()));
-        emailParams.put("name", getI18nValue(request, prefix, plantMasterLicensesModel.getUserName()));
-        emailParams.put("email", getI18nValue(request, prefix, plantMasterLicensesModel.getUserEmailAddress()));
-        emailParams.put("subject", getI18nValue(request, prefix, model.getSubject()));
-        emailParams.put("salutation", getI18nValue(request, prefix, model.getSalutation()));
-        emailParams.put("body", getI18nValue(request, prefix, model.getBody()));
+        emailParams.put(EngineeringLicenseModel.USERS, getI18nValue(request, prefix, model.getUsers()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME, getI18nValue(request, prefix, plantMasterLicensesModel.getUsername()));
+        emailParams.put(
+                PlantMasterLicensesModel.EMAIL_USERNAME+VALUE, getI18nValue(request, prefix, plantMasterLicensesModel.getUserNameValue()));
+        emailParams.put(
+                PlantMasterLicensesModel.EMAIL_ADDRESS+VALUE, getI18nValue(request, prefix, plantMasterLicensesModel.getEmailAddressValue()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_ADDRESS, getI18nValue(request, prefix, plantMasterLicensesModel.getEmailaddress()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_SUBJECT, getI18nValue(request, prefix, model.getSubject()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION, getI18nValue(request, prefix, model.getSalutation()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(request, prefix, model.getBody()));
         
     }
     
-    private void extractSiteLicenseModelProps(Map<String, String> emailParams, SiteLicenseModel model,
+    private void extractSiteLicenseModelProps(Map<String, String> emailParams,
             SlingHttpServletRequest request, String prefix) {
         PlantMasterLicensesModel plantMasterLicensesModel = request.adaptTo(PlantMasterLicensesModel.class);
-        emailParams.put("name", getI18nValue(request, prefix, plantMasterLicensesModel.getUserName()));
-        emailParams.put("email", getI18nValue(request, prefix, plantMasterLicensesModel.getUserEmailAddress()));
+        SiteLicenseModel model = plantMasterLicensesModel.getSiteLicenseModel();
+        emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME, getI18nValue(request, prefix, plantMasterLicensesModel.getUsername()));
+        emailParams.put(
+                PlantMasterLicensesModel.EMAIL_USERNAME+VALUE, getI18nValue(request, prefix, plantMasterLicensesModel.getUserNameValue()));
+        emailParams.put(
+                PlantMasterLicensesModel.EMAIL_ADDRESS+VALUE, getI18nValue(request, prefix, plantMasterLicensesModel.getEmailAddressValue()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_ADDRESS, getI18nValue(request, prefix, plantMasterLicensesModel.getEmailaddress()));
         emailParams.put(SiteLicenseModel.NAME_OF_SITE_JSON_KEY, getI18nValue(request, prefix, model.getNameOfSite()));
         emailParams.put(SiteLicenseModel.LOCATION_OF_SITE_JSON_KEY,
                 getI18nValue(request, prefix, model.getLocationOfSite()));
@@ -139,15 +148,15 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
                 getI18nValue(request, prefix, model.getNumberOfBasicUnit()));
         emailParams.put(SiteLicenseModel.NUMBER_OF_ADVANCED_UNIT_JSON_KEY,
                 getI18nValue(request, prefix, model.getNumberOfAdvancedUnit()));
-        emailParams.put("subject", getI18nValue(request, prefix, model.getSubject()));
-        emailParams.put("salutation", getI18nValue(request, prefix, model.getSalutation()));
-        emailParams.put("body", getI18nValue(request, prefix, model.getBody()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_SUBJECT, getI18nValue(request, prefix, model.getSubject()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION, getI18nValue(request, prefix, model.getSalutation()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(request, prefix, model.getBody()));
     }
     
     private void extractEngineeringLicenseFormData(Map<String, String> emailParams,
             EngineeringLicenseFormBean engineeringLicenseFormBean) {
         emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY + VALUE, engineeringLicenseFormBean.getComments());
-        emailParams.put("users", getUsersForEmail());
+        emailParams.put(EngineeringLicenseModel.USERS+VALUE, getUsersForEmail(engineeringLicenseFormBean.getUsers()));
     }
     
     private void extractSiteLicenseFormData(Map<String, String> emailParams, SiteLicenseFormBean siteLicenseFormBean) {
@@ -222,11 +231,19 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     }
     
     public String getI18nValue(SlingHttpServletRequest request, String i18nKey, String prefix) {
+        LOGGER.debug("i18n key : "+i18nKey);
         return GlobalUtil.getI18nValue(request, prefix, i18nKey);
     }
     
-    private String getUsersForEmail() {
-        
-        return "<h1>TODO</h1>";
+    private String getUsersForEmail(List<EngineeringLicenseFormBean.Users> users) {
+        String usersHTMLasString = "<h1>TODO</h1>";
+        StringBuilder outputHtml = new StringBuilder();
+        for(EngineeringLicenseFormBean.Users user : users){
+            usersHTMLasString.replace("NAME",user.getName());
+            usersHTMLasString.replace("DATE",user.getDate());
+            usersHTMLasString.replace("LICENSES",user.getLicenses().toString());
+            outputHtml.append(usersHTMLasString);
+        }
+        return outputHtml.toString();
     }
 }

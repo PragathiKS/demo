@@ -33,6 +33,11 @@ public class PlantMasterLicensesModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterLicensesModel.class);
     private static final String ENGINEERING_LICENSE_CHILD_RESOURCE_NAME = "engineeringLicense";
     private static final String SITE_LICENSE_CHILD_RESOURCE_NAME = "siteLicense";
+    public static final String EMAIL_USERNAME="username";
+    public static final String EMAIL_ADDRESS="emailaddress";
+    public static final String EMAIL_SALUTATION="salutation";
+    public static final String EMAIL_SUBJECT="subject";
+    public static final String EMAIL_BODY ="body";
 
     /** The resource. */
     @SlingObject
@@ -48,6 +53,12 @@ public class PlantMasterLicensesModel {
     private SiteLicenseModel siteLicenseModel;
 
     @ValueMapValue
+    private String username;
+
+    @ValueMapValue
+    private String emailaddress;
+
+    @ValueMapValue
     private String heading;
 
     private String i18nKeys;
@@ -58,9 +69,9 @@ public class PlantMasterLicensesModel {
 
     private String siteLicenseApiUrl;
 
-    private String userName;
+    private String userNameValue;
 
-    private String userEmailAddress;
+    private String emailAddressValue;
 
     private Map<String, Object> i18nKeysMap;
 
@@ -111,18 +122,18 @@ public class PlantMasterLicensesModel {
             this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
                     aipCategoryService.getSiteLicensesId());
         }
-        this.setUserEmailAddress();
-        this.setUserName();
+        this.setEmailAddressValue();
+        this.setUserNameValue();
 
     }
 
-    public void setUserEmailAddress() {
-        this.userEmailAddress = GlobalUtil.getCustomerEmailAddress(this.request);
+    public void setEmailAddressValue() {
+        this.emailAddressValue = GlobalUtil.getCustomerEmailAddress(this.request);
     }
 
-    public void setUserName(){
+    public void setUserNameValue(){
         if (Objects.nonNull(request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME))) {
-            this.userName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
+            this.userNameValue = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
         }
     }
 
@@ -150,12 +161,12 @@ public class PlantMasterLicensesModel {
         return siteLicenseApiUrl;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public String getUserEmailAddress() {
-        return userEmailAddress;
+    public String getEmailAddressValue() {
+        return emailAddressValue;
     }
 
     public Map<String, Object> getI18nKeysMap() {
@@ -168,5 +179,13 @@ public class PlantMasterLicensesModel {
 
     public boolean isPublishEnvironment() {
         return isPublishEnvironment;
+    }
+
+    public String getEmailaddress() {
+        return emailaddress;
+    }
+
+    public String getUserNameValue() {
+        return userNameValue;
     }
 }

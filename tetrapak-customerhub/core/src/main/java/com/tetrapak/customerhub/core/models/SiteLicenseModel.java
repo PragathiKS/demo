@@ -111,7 +111,11 @@ public class SiteLicenseModel {
 
     @ValueMapValue
     @Expose(serialize = true)
-    private String successMessage;
+    private String successMessageHeading;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    private String successMessageDescription;
 
     @ValueMapValue
     @Expose(serialize = true)
@@ -202,8 +206,12 @@ public class SiteLicenseModel {
         return submitButtonLabel;
     }
 
-    public String getSuccessMessage() {
-        return successMessage;
+    public String getSuccessMessageHeading() {
+        return successMessageHeading;
+    }
+
+    public String getSuccessMessageDescription() {
+        return successMessageDescription;
     }
 
     public String getImpInformationTitle() {

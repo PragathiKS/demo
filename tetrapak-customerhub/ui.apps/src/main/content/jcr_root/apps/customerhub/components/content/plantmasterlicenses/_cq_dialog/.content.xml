@@ -310,12 +310,6 @@
                                                 fieldLabel="Submit button label (i18N key)"
                                                 name="./siteLicense/submitButtonLabel"
                                                 required="true"/>
-                                            <successMessage
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Success message text (i18N key)"
-                                                name="./siteLicense/successMessage"
-                                                required="true"/>
                                             <impInformationTitle
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -345,6 +339,18 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Select field error text (i18N key)"
                                                 name="./siteLicense/selectFieldError"
+                                                required="true"/>
+                                            <successMessageHeading
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Success message heading text (i18N key)"
+                                                name="./siteLicense/successMessageHeading"
+                                                required="true"/>
+                                            <successMessageDescription
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Success message description text (i18N key)"
+                                                name="./siteLicense/successMessageDescription"
                                                 required="true"/>
                                         </items>
                                     </editor>

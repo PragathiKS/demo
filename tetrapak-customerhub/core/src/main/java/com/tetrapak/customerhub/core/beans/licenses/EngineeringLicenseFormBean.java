@@ -14,6 +14,10 @@ public class EngineeringLicenseFormBean {
         return comments;
     }
 
+    public List<Users> getUsers() {
+        return users;
+    }
+
     public String toString(){
         return new ToStringBuilder(this).
                 append("comments", comments).
@@ -21,7 +25,7 @@ public class EngineeringLicenseFormBean {
                 toString();
     }
 
-    private class Users{
+    public class Users{
         private String name;
         private String date;
         private List<String> licenses;
