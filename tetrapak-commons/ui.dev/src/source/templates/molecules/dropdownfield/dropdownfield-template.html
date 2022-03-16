@@ -1,4 +1,4 @@
-<sly data-sly-template.dropdownfield_template="${@ labelText, id, autoLocatorLabel, labelClass, selectClass, defaultValue, options, required, autoLocatorInput, error }">
+<sly data-sly-template.dropdownfield_template="${@ labelText, id, autoLocatorLabel, labelClass, selectClass, defaultValue, options, required, autoLocatorInput, error, errorJSClass }">
     <div class="tpatom-dropdown form-group">
         <sly data-sly-use.label="/apps/commons/components/atoms/label/label-template.html"
             data-sly-call="${label.label_template @label=labelText, id=id, autoLocatorLabel=autoLocatorLabel, labelClass=labelClass}">

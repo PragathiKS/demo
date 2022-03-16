@@ -16,7 +16,7 @@ function _renderSiteLicensesData() {
     template: 'plantMasterLicenses-site',
     target: '.js-tp-aip-licenses__site-description',
     data: {
-      i18nKeys: this.cache.i18nKeys.siteLicense,
+      i18nKeys: this.cache.i18nKeys,
       siteLicensesDataArr: this.cache.siteLicensesData
     }
   });
@@ -50,7 +50,7 @@ function _getSiteLicensesData() {
 }
 
 class PlantMasterLicensesSite {
-  constructor({ el }) {
+  constructor(el) {
     this.root = $(el);
   }
 
@@ -93,11 +93,11 @@ class PlantMasterLicensesSite {
     );
   }
 
-  addErrorMsg(el, errorMsgSelector) {
-    $(el)
+  addErrorMsg(ele) {
+    $(ele)
       .closest('.js-tp-aip-licenses__form-element')
       .addClass('tp-aip-licenses__form-element--error')
-      .find(errorMsgSelector)
+      .find('.js-tp-aip-licenses__error-msg-required')
       .addClass('error-msg--active');
   }
 
@@ -114,10 +114,10 @@ class PlantMasterLicensesSite {
     this.removeAllErrorMessages();
 
     const $requiredFormElements = this.root.find(':text[required]:visible, select[required]:visible');
-    $requiredFormElements.each((idx, el) => {
-      if (!$.trim($(el).val())) {
+    $requiredFormElements.each((idx, ele) => {
+      if (!$(ele).val()) {
         isFormValid = false;
-        this.addErrorMsg(el, '.js-tp-aip-licenses__error-msg-required');
+        this.addErrorMsg(ele);
       }
     });
 

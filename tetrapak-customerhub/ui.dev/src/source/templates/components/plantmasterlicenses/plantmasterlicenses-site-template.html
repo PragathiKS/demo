@@ -19,7 +19,7 @@
                     <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
                         <sly 
                         data-sly-use.dropdownfield="/apps/commons/components/molecules/dropdownfield/dropdownfield-template.html" 
-                        data-sly-call="${dropdownfield.dropdownfield_template @ defaultValue=data.applicationDropdownPlaceholder, id='application', labelText=data.application, error=data.selectFieldError, required=true, autoLocatorInput='applicationInput', options=data.applicationDropdown, autoLocatorLabel='applicationText'}">
+                        data-sly-call="${dropdownfield.dropdownfield_template @ defaultValue=data.applicationDropdownPlaceholder, id='application', labelText=data.application, error=data.selectFieldError, errorJSClass='js-tp-aip-licenses__error-msg-required', required=true, autoLocatorInput='applicationInput', options=data.applicationDropdown, autoLocatorLabel='applicationText'}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">

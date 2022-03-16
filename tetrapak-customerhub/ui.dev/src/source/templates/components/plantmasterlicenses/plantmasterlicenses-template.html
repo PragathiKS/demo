@@ -1,6 +1,6 @@
 <sly data-sly-template.plantmasterlicenses_template="${@data, flag}">
     <div class="tp-card tp-aip tp-aip-licenses"
-         data-src_isPublishEnvironment="true"
+         data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
          data-engineeringLicense-api="${data.engineeringLicenseApiUrl}"
          data-siteLicense-api="${data.siteLicenseApiUrl}"
          data-submit-api="${data.emailApiUrl}"
