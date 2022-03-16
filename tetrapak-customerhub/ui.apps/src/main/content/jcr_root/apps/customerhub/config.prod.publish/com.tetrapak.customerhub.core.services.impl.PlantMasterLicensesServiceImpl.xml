@@ -3,5 +3,5 @@
     jcr:primaryType="sling:OsgiConfig"
     engineeringLicenseEmailTemplatePath="/etc/notification/email/customerhub/licenses/engineering-license.html"
     isLicensesEmailEnabled="{Boolean}true"
-    recipientAddresses="[]"
+    recipientAddresses="[AS_Technical.Support_Processing@tetrapak.com]"
     siteLicenseEmailTemplatePath="/etc/notification/email/customerhub/licenses/site-license.html"/>

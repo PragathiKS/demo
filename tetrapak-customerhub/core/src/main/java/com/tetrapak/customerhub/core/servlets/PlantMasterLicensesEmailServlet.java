@@ -54,7 +54,7 @@ public class PlantMasterLicensesEmailServlet extends SlingAllMethodsServlet {
         
         try {
             if (null == session) {
-                LOGGER.error("CotsSupportEmailServlet exception: session is null");
+                LOGGER.error("PlantMasterLicensesEmailServlet exception: session is null");
                 jsonResponse = HttpUtil.setJsonResponse(jsonResponse, SESSION_NULL_MESSAGE, HttpStatus.SC_BAD_REQUEST);
                 HttpUtil.writeJsonResponse(response, jsonResponse);
                 return;
