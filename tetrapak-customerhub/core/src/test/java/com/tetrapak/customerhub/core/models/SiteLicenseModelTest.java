@@ -65,7 +65,8 @@ public class SiteLicenseModelTest {
         assertEquals("Unexpected value","Advanced unit tooltip heading",siteLicenseModel.getAdvancedUnitToolTipHeading());
         assertEquals("Unexpected value","Advanced unit tooltip description",siteLicenseModel.getAdvancedUnitToolTipDescription());
         assertEquals("Unexpected value","submit",siteLicenseModel.getSubmitButtonLabel());
-        assertEquals("Unexpected value","success",siteLicenseModel.getSuccessMessage());
+        assertEquals("Unexpected value","Success heading",siteLicenseModel.getSuccessMessageHeading());
+        assertEquals("Unexpected value","Success description",siteLicenseModel.getSuccessMessageDescription());
         assertEquals("Unexpected value","Important information",siteLicenseModel.getImpInformationTitle());
         assertEquals("Unexpected value","important information description",siteLicenseModel.getImpInformationDescription());
         assertEquals("Unexpected value","Subject",siteLicenseModel.getSubject());

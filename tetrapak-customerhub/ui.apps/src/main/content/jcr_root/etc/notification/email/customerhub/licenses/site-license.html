@@ -2,19 +2,19 @@ Subject: ${subject}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
-   <!--[if gte mso 9]><xml>
-   <o:OfficeDocumentSettings>
-      <o:AllowPNG/>
-      <o:PixelsPerInch>96</o:PixelsPerInch>
-   </o:OfficeDocumentSettings>
+	<!--[if gte mso 9]><xml>
+	<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+	</o:OfficeDocumentSettings>
 </xml><![endif]-->
 
-   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-   <meta content="telephone=no" name="format-detection">
-   <meta content="width=device-width" name="viewport">
-   <meta name="x-apple-disable-message-reformatting">
-   <title>${title}</title>
-   <style type="text/css">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="width=device-width" name="viewport">
+	<meta name="x-apple-disable-message-reformatting">
+	<title>${title}</title>
+	<style type="text/css">
         /* FONTS */
 
 
@@ -75,8 +75,8 @@ Subject: ${subject}
 
        
     </style>
-   <!--[if mso]>
-   <style>
+	<!--[if mso]>
+	<style>
 
     .mso-headline {
         font-weight: bold !important;
@@ -91,79 +91,79 @@ Subject: ${subject}
       line-height: 115% !important;
       }
       </style>
-   <![endif]-->
+	<![endif]-->
 
-   <!--[if (gte mso 9)|(IE)]>
-   <style type="text/css">
+	<!--[if (gte mso 9)|(IE)]>
+	<style type="text/css">
 body, table, td, a, h1, p, div {font-family: Verdana, sans-serif !important;}
 .mso-headline {
         font-weight: bold !important;
     }
 </style>
-   <![endif]-->
+	<![endif]-->
 </head>
 
 <body style="margin: 0px; padding: 0px; background-color: #ffffff;" data-new-gr-c-s-check-loaded="14.1005.0" data-gr-ext-installed="">
 <!-- START HEADER -->
 <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-cellspacing: 0px;" width="100%">
-   <tbody>
-   <tr>
-      <td align="left">
-         <table border="0" cellpadding="0" cellspacing="0" class="w500-500 w414-414 w375-375 w360-360" id="templateContainer" role="presentation" style="width: 920px; mso-cellspacing: 0px;" width="920">
-            <tbody>
-			<tr>
-               <td align="left" colspan="2">${salutation}</td>
-            </tr>
-			<tr><td colspan="2">&nbsp;</td></tr>
-			<tr>
-               <td align="left" colspan="2">${body}</td>
-            </tr>
-			<tr><td colspan="2">&nbsp;</td></tr>
-            <tr>
-               <td align="left" width="30%" class="label-text">${nameOfSite}</td>
-			   <td align="left">${nameOfSiteValue}</td>
-            </tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${locationOfSite}</td>
-				<td align="left">${locationOfSiteValue}</td>
-			</tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${application}</td>
-				<td align="left">${applicationValue}</td>
-			</tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${mesType}</td>
-				<td align="left">${mesTypeValue}</td>
-			</tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${plcType}</td>
-				<td align="left">${plcTypeValue}</td>
-			</tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${hmiType}</td>
-				<td align="left">${hmiTypeValue}</td>
-			</tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${numberOfBasicUnit}</td>
-				<td align="left">${numberOfBasicUnitValue}</td>
-			</tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${numberOfAdvancedUnit}</td>
-				<td align="left">${numberOfAdvancedUnitValue}</td>
-			</tr>
-			<tr>
-				<td align="left" width="30%" class="label-text">${username}</td>
-				<td align="left">${usernameValue}</td>
-			</tr>
-            <tr>
-				<td align="left" width="30%" class="label-text">${emailaddress}</td>
-				<td align="left">${emailaddressValue}</td>
-			</tr>
-            <!-- END FOOTER -->
-            </tbody>
-         </table>
-      </td>
-   </tr>
-   </tbody>
+	<tbody>
+	<tr>
+		<td align="left">
+			<table border="0" cellpadding="0" cellspacing="0" class="w500-500 w414-414 w375-375 w360-360" id="templateContainer" role="presentation" style="width: 920px; mso-cellspacing: 0px;" width="920">
+				<tbody>
+				<tr class="${salutationHideClass}">
+					<td align="left" colspan="2">${salutation}</td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr class="${bodyHideClass}">
+					<td align="left" colspan="2">${body}</td>
+				</tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr>
+					<td align="left" width="30%" class="label-text">${nameOfSite}</td>
+					<td align="left">${nameOfSiteValue}</td>
+				</tr>
+				<tr>
+					<td align="left" width="30%" class="label-text">${locationOfSite}</td>
+					<td align="left">${locationOfSiteValue}</td>
+				</tr>
+				<tr>
+					<td align="left" width="30%" class="label-text">${application}</td>
+					<td align="left">${applicationValue}</td>
+				</tr>
+				<tr class="${mesTypeHideClass}">
+					<td align="left" width="30%" class="label-text">${mesType}</td>
+					<td align="left">${mesTypeValue}</td>
+				</tr>
+				<tr class="${plcTypeHideClass}">
+					<td align="left" width="30%" class="label-text">${plcType}</td>
+					<td align="left">${plcTypeValue}</td>
+				</tr>
+				<tr class="${hmiTypeHideClass}">
+					<td align="left" width="30%" class="label-text">${hmiType}</td>
+					<td align="left">${hmiTypeValue}</td>
+				</tr>
+				<tr>
+					<td align="left" width="30%" class="label-text">${numberOfBasicUnit}</td>
+					<td align="left">${numberOfBasicUnitValue}</td>
+				</tr>
+				<tr>
+					<td align="left" width="30%" class="label-text">${numberOfAdvancedUnit}</td>
+					<td align="left">${numberOfAdvancedUnitValue}</td>
+				</tr>
+				<tr>
+					<td align="left" width="30%" class="label-text">${username}</td>
+					<td align="left">${usernameValue}</td>
+				</tr>
+				<tr>
+					<td align="left" width="30%" class="label-text">${emailaddress}</td>
+					<td align="left">${emailaddressValue}</td>
+				</tr>
+				<!-- END FOOTER -->
+				</tbody>
+			</table>
+		</td>
+	</tr>
+	</tbody>
 </table>
 </body></html>
