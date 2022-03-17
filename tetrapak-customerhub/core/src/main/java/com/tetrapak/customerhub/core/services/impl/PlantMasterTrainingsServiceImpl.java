@@ -173,9 +173,9 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
                 plantMasterTrainingsFormBean.getComments());
         emailParams.put(PlantMasterTrainingsFormBean.CONSENT_PARAMETER + CustomerHubConstants.VALUE,
                 plantMasterTrainingsFormBean.getConsent());
-        emailParams.put(CotsSupportFormBean.NAME_PARAMETER + CustomerHubConstants.VALUE,
+        emailParams.put(PlantMasterTrainingsFormBean.NAME_PARAMETER + CustomerHubConstants.VALUE,
                 plantMasterTrainingsFormBean.getName());
-        emailParams.put(CotsSupportFormBean.EMAIL_ADDRESS_PARAMETER + CustomerHubConstants.VALUE,
+        emailParams.put(PlantMasterTrainingsFormBean.EMAIL_ADDRESS_PARAMETER + CustomerHubConstants.VALUE,
                 plantMasterTrainingsFormBean.getEmailAddress());
     }
 
