@@ -139,6 +139,16 @@ public class EquipmentUpdateFormBean {
                 replaceBlankWithNotApplicableIfChanged(oldEquipmentTypeDesc, equipmentTypeDesc));
     }
 
+    /**
+     * Creates metadata entry for Comment.
+     *
+     * @return EquipmentMetaData bean.
+     */
+    public EquipmentMetaData getCommentsMetadata() {
+        return new EquipmentMetaData("Comment", "",
+                replaceBlankWithNotApplicableIfChanged("", comments));
+    }
+
     private String replaceBlankWithNotApplicableIfChanged(String oldValue, String newValue) {
         if (!StringUtils.equals(oldValue, newValue) && StringUtils.isBlank(newValue)) {
             return CustomerHubConstants.NOT_APPLICABLE;

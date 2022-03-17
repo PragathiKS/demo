@@ -52,7 +52,7 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
         requestBean.setReportedBy(emailId);
         requestBean.setEquipmentNumber(xssFilter.filter(bean.getEquipmentId()));
         requestBean.setSerialNumber(xssFilter.filter(bean.getSerialNumber()));
-        requestBean.setComment(xssFilter.filter(bean.getComments()));
+        requestBean.setComment(xssFilter.filter(""));
         requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB_SOURCENAME);
         requestBean.setMetaDatas(createCollectionOfMetadatas(bean));
 
@@ -71,6 +71,7 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
         addChangedAndfilteredEquipmentMetadata(metadatas, bean.getPositionMetadata());
         addChangedAndfilteredEquipmentMetadata(metadatas, bean.getDescriptionMetadata());
         addChangedAndfilteredEquipmentMetadata(metadatas, bean.getFunctionalDescMetadata());
+        addChangedAndfilteredEquipmentMetadata(metadatas, bean.getCommentsMetadata());
 
         return metadatas;
     }
