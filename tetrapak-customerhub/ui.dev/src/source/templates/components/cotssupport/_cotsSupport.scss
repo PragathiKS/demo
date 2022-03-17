@@ -37,6 +37,25 @@
     }
 
     &__form-element {
+        .tpatom-input-box {
+            &__input {
+                border: 1px solid $color-tundora;
+            }
+        }
+
+        label {
+            @include line-height($font-l, $font-baseline);
+            @include margin-top($margin-md);
+            font-weight: 500;
+            color: $color-text;
+        }
+
+        .tpatom-radio-button {
+            &__label {
+                margin-top: 0;
+            }
+        }
+
         &--error {
             input,
             textarea,
@@ -128,6 +147,12 @@
             span {
                 @include line-height($font-l, $font-baseline);
             }
+
+            i.icon {
+                &::before {
+                    @include font-size($font-sm);
+                }
+            }
         }
 
         &-file {
@@ -172,6 +197,12 @@
 
             &-remove-container {
                 cursor: pointer;
+            }
+
+            &-info-container {
+                @media #{$desktop} {
+                    max-width: 75%;
+                }
             }
 
             &-icon {

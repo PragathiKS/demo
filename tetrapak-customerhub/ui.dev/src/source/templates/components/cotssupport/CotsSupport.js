@@ -58,8 +58,9 @@ class CotsSupport {
     this.cache.$contentWrapper = this.root.find('.js-tp-cots-support__content-wrapper');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.submitApi = this.root.data('submit-api');
-    this.cache.username = this.root.data('username');
+    this.cache.username = decodeURI(this.root.data('username'));
     this.cache.userEmailAddress = this.root.data('email');
+    this.cache.filesMaxSize = 0;
     const configJson = this.root.find('.js-tp-cots-support__config').text();
     this.cache.files = [];
     this.cache.affectedSystem = [];
@@ -223,6 +224,7 @@ class CotsSupport {
         $this.cache.files.push(files[i]);
       }
     }
+    
     if ($this.cache.files.length > currentFilesCount) {
       $this.renderFiles();
     }
@@ -230,12 +232,15 @@ class CotsSupport {
 
   filterFiles(file) {
     const maxFileSize = 10 * 1024 * 1024;
+    const TotalmaxFileSize = 20 * 1024 * 1024;
     const blockedExtensions = /(\.exe|\.zip)$/i;
     const filePath = file.name;
+    this.cache.filesMaxSize = this.cache.filesMaxSize + file.size;
     const $fileExtensionError = this.root.find('.js-tp-cots-support__file-error');
 
-    if (blockedExtensions.exec(filePath) || (file.size > maxFileSize)) {
+    if (blockedExtensions.exec(filePath) || (file.size > maxFileSize) || (this.cache.filesMaxSize > TotalmaxFileSize)) {
       $fileExtensionError.removeAttr('hidden');
+      this.cache.filesMaxSize = this.cache.filesMaxSize - file.size;
       return false;
     }
 

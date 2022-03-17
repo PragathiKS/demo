@@ -105,6 +105,8 @@
 
     &__description {
         @include line-height(28px, $font-normal);
+        @include line-height(28px, 16px);
+        @include line-height(28px, $font-normal);
         font-size: $font-baseline;
         ul {
             li {
@@ -132,6 +134,8 @@
         @include margin-bottom(0);
         @include margin-top($margin-md);
         @include padding($padding-zero);
+        @include line-height(28px, $font-normal);
+
         @include line-height(28px, $font-normal);
 
         @media #{$desktop} {

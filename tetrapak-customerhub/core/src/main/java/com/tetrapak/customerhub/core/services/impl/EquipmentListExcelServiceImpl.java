@@ -110,7 +110,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			for (Equipments equipment : equipments) {
 				csvFileContent.append(convertToCSVRow(equipment));
 			}
-			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_8));
+			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_16BE));
 			csvFileOutputStream.flush();
 			csvFileOutputStream.close();
 			return true;

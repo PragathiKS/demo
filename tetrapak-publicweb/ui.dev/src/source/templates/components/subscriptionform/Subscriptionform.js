@@ -87,6 +87,7 @@ class Subscriptionform {
     // dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
     if(this.cache.requestPayload['country'] === 'China' || countryCode === 'cn') {
       dataObj['pardotUrl'] = chinapardotURL;
+      dataObj['route_country'] = 'China';
     }
     else {
       dataObj['pardotUrl'] = pardotURL;

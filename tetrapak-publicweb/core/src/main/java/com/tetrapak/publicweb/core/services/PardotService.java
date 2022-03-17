@@ -3,6 +3,8 @@ package com.tetrapak.publicweb.core.services;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONException;
+
 import com.google.gson.JsonObject;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
 
@@ -68,8 +70,9 @@ public interface PardotService {
 	 * @param locale        the locale
 	 * @param interestAreas the interest areas
 	 * @return the subscriber mail addresses
+     * @throws JSONException 
 	 */
-    List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas);
+    List<String> getSubscriberMailAddresses(String locale, List<String> interestAreas) throws JSONException;
 
     /**
      * Gets the bearer token for custom form service.

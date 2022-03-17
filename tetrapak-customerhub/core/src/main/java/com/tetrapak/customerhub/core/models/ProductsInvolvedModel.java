@@ -16,4 +16,8 @@ public class ProductsInvolvedModel {
     public String getProduct() {
         return product;
     }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
 }

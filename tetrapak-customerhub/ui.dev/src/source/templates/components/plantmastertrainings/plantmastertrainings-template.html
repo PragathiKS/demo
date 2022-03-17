@@ -1,0 +1,37 @@
+<sly data-sly-template.plantmastertrainings_template="${@data, flag}">
+    <div class="tp-card tp-aip tp-aip-trainings"
+         data-trainings-api="${data.trainingDetailsApi}"
+         data-submit-api="${data.trainingDetailsApi}"
+         data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
+         data-module="PlantMasterTrainings">
+
+        <code class="d-none js-aip-trainings__config">${data.i18nKeys}</code>
+
+        <div class="tp-spinner js-tp-spinner">
+            <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html" data-sly-call="${loading.loader_template}" />
+        </div>
+
+        <div class="js-aip-trainings__wrapper d-none">
+            <div class="tp-aip__header-wrapper">
+                <h2 class="tp-aip__heading">
+                    ${"cuhu.plantmastertrainings.title" @i18n}
+                </h2>
+            </div>
+
+            <nav class="tp-aip__nav">
+                <div class="nav nav-tabs tp-aip__nav-tabs" role="tablist">
+                    <a class="tp-aip__nav-link nav-item nav-link active" id="nav-available-trainings-tab" data-toggle="tab" href="#nav-available-trainings" role="tab" aria-controls="nav-available-trainings" aria-selected="true">${"cuhu.plantmastertrainings.availableTrainings" @i18n}</a>
+<!--                    <a class="tp-aip__nav-link nav-item nav-link" id="nav-learning-tab" data-toggle="tab" href="#nav-learning-history" role="tab" aria-controls="nav-learning-history" aria-selected="false">${"cuhu.plantmastertrainings.learningHistory" @i18n}</a>-->
+                </div>
+            </nav>
+
+            <div class="tp-aip__tab-content tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-available-trainings" role="tabpanel" aria-labelledby="nav-available-trainings-tab">
+                    <div class="js-aip-trainings__accordion"></div>
+                </div>
+
+<!--                <div class="tab-pane fade" id="nav-learning-history" role="tabpanel" aria-labelledby="nav-learning-tab"></div>-->
+            </div>
+        </div>
+    </div>
+</sly>
