@@ -578,18 +578,6 @@ public final class CustomerHubConstants {
 	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
     
-    /** The Constant AIP_PRODUCT_DETAILS_API. */
-    public static final String AIP_PRODUCT_DETAILS_API = "aip-product-details";
-    
-    /** The Constant INCLUDE_CHILDREN. */
-    public static final String INCLUDE_CHILDREN = "includechildren";
-    
-    /** The Constant DETAILS. */
-    public static final String DETAILS = "details";
-    
-    /** The Constant TRUE. */
-    public static final String TRUE = "true";
-    
     /**
      * Instantiates a new customer hub constants.
      */
