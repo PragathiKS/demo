@@ -145,8 +145,7 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getCommentsMetadata() {
-        return new EquipmentMetaData("Comment", "",
-                replaceBlankWithNotApplicableIfChanged("", comments));
+        return new EquipmentMetaData("Comment", "", replaceBlankWithNotApplicableIfChanged("", comments));
     }
 
     private String replaceBlankWithNotApplicableIfChanged(String oldValue, String newValue) {
