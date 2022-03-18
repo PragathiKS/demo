@@ -79,6 +79,12 @@
                                                 fieldLabel="Title field label (i18N key)"
                                                 name="./engineeringLicense/title"
                                                 required="true"/>
+                                            <description
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Description field label (i18N key)"
+                                                name="./engineeringLicense/description"
+                                                required="true"/>
                                             <userDetailsSectionTitle
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -374,6 +380,24 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Body text (i18N key)"
                                                 name="./siteLicense/body"/>
+                                            <plcType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="PLC Type Email field label (i18N key)"
+                                                name="./siteLicense/plcTypeEmail"
+                                                required="true"/>
+                                            <hmiType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="HMI Type Email field label (i18N key)"
+                                                name="./siteLicense/hmiTypeEmail"
+                                                required="true"/>
+                                            <mesType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="MES Type Email field label (i18N key)"
+                                                name="./siteLicense/mesTypeEmail"
+                                                required="true"/>
                                         </items>
                                     </email>
                                 </items>

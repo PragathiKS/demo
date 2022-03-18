@@ -110,6 +110,11 @@ public class EngineeringLicenseModel {
     @Expose(serialize = true)
     @SerializedName(SUCCESS_MESSAGE_DESCRIPTION_JSON_KEY)
     private String successMessageDescription;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    @SerializedName(SUCCESS_MESSAGE_DESCRIPTION_JSON_KEY)
+    private String description;
     
     @ValueMapValue
     private String subject;
@@ -197,5 +202,9 @@ public class EngineeringLicenseModel {
     
     public String getUsers() {
         return users;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

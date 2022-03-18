@@ -135,6 +135,15 @@ public class SiteLicenseModel {
     
     @ValueMapValue
     private String body;
+
+    @ValueMapValue
+    private String plcTypeEmail;
+
+    @ValueMapValue
+    private String hmiTypeEmail;
+
+    @ValueMapValue
+    private String mesTypeEmail;
     
     public String getTitle() {
         return title;
@@ -238,5 +247,16 @@ public class SiteLicenseModel {
     
     public String getSelectFieldError() {
         return selectFieldError;
+    }
+    public String getPlcTypeEmail() {
+        return plcTypeEmail;
+    }
+
+    public String getHmiTypeEmail() {
+        return hmiTypeEmail;
+    }
+
+    public String getMesTypeEmail() {
+        return mesTypeEmail;
     }
 }

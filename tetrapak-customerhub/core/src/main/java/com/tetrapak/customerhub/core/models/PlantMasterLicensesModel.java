@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -167,9 +168,9 @@ public class PlantMasterLicensesModel {
     public String getUsername() {
         return username;
     }
-    
+
     public String getEmailAddressValue() {
-        return emailAddressValue;
+        return emailAddressValue!=null?emailAddressValue: StringUtils.EMPTY;
     }
     
     public Map<String, Object> getI18nKeysMap() {
@@ -187,8 +188,8 @@ public class PlantMasterLicensesModel {
     public String getEmailaddress() {
         return emailaddress;
     }
-    
+
     public String getUserNameValue() {
-        return userNameValue;
+        return userNameValue!=null?userNameValue: StringUtils.EMPTY;
     }
 }
