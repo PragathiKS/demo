@@ -77,7 +77,8 @@ public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
     }
 
     private void addChangedAndfilteredEquipmentMetadata(List metadatas, EquipmentMetaData metaData) {
-        EquipmentMetaData metadata =  new EquipmentMetaData(metaData.getMetaDataName(), xssFilter.filter(metaData.getMetaDataActualValue()),
+        EquipmentMetaData metadata = new EquipmentMetaData(metaData.getMetaDataName(),
+                xssFilter.filter(metaData.getMetaDataActualValue()),
                 xssFilter.filter(metaData.getMetaDataRequestedValue()));
         if (metadata.isChanged()) {
             metadatas.add(metadata);
