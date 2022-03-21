@@ -182,6 +182,12 @@
         "name": "cotssupport",
         "enforce": true,
         "chunks": "all"
+      },
+      "cotssupport": {
+        "testMultiple": true,
+        "name": "cotssupport",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {

@@ -108,8 +108,6 @@ public class NewsEventPageActivationListener implements EventHandler {
      *            the path
      * @param resource
      *            the resource
-     * @param valueMap
-     *            the value map
      * @throws PersistenceException
      *             the persistence exception
      * @throws JSONException 
