@@ -128,7 +128,30 @@
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Success page message (i18N key)"
 										name="./successMessage"
-										required="true"/>                           
+										required="true"/>
+									<formTitle
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Form Title label (i18N key)"
+										name="./formTitle"
+										required="true"/>
+									<consentLabel
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Consent label (i18N key)"
+										name="./consentLabel"
+										required="true"/>	
+									<trainingNameLabel
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Training Name label (i18N key)"
+										name="./trainingNameLabel"
+										required="true"/>	
+									<trainingIdLabel
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Training Id label (i18N key)"
+										name="./trainingIdLabel"/>									
 								</items>
 							</content>
 						</items>
@@ -158,6 +181,11 @@
 											sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
 											fieldLabel="Body text"
 											name="./body"/>
+										<contactDetails
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="Contact Details label (i18N key)"
+											name="./contactDetails"/>
 									</items>
 							</content>
                         </items>

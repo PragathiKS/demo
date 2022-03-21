@@ -100,7 +100,22 @@ public class PlantMasterTrainingsModel {
         BODY("body"),
 
         /** The submit button. */
-        SUBMIT_BUTTON("submitButtonLabel");
+        SUBMIT_BUTTON("submitButtonLabel"),
+
+        /** The consent label. */
+        CONSENT_LABEL("consentLabel"),
+
+        /** The contact details. */
+        CONTACT_DETAILS("contactDetails"),
+
+        /** The training id. */
+        TRAINING_ID_LABEL("trainingIdLabel"),
+
+        /** The training name. */
+        TRAINING_NAME_LABEL("trainingNameLabel"),
+
+        /** The form title. */
+        FORM_TITLE("formTitle");
 
         /** The i18n json key. */
         public final String i18nJsonKey;
@@ -217,6 +232,26 @@ public class PlantMasterTrainingsModel {
     @ValueMapValue
     private String body;
 
+    /** The consent label. */
+    @ValueMapValue
+    private String consentLabel;
+
+    /** The contact details. */
+    @ValueMapValue
+    private String contactDetails;
+
+    /** The training id label. */
+    @ValueMapValue
+    private String trainingIdLabel;
+
+    /** The training name label. */
+    @ValueMapValue
+    private String trainingNameLabel;
+
+    /** The form title. */
+    @ValueMapValue
+    private String formTitle;
+
     /** The training details api. */
     @ValueMapValue
     private String trainingDetailsApi;
@@ -264,9 +299,12 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.MAX_PARTICIPANTS.getI18nJsonKey(), getMaxParticipants());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.KNOWLEDGE_REQUIREMENTS.getI18nJsonKey(),
                 getKnowledgeRequirements());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.NO_OF_PARTICIPANTS_LABEL.getI18nJsonKey(), getNoOfParticipantsLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_LOCATION_LABEL.getI18nJsonKey(), getPreferredLocationLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_LABEL.getI18nJsonKey(), getPreferredDateLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.NO_OF_PARTICIPANTS_LABEL.getI18nJsonKey(),
+                getNoOfParticipantsLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_LOCATION_LABEL.getI18nJsonKey(),
+                getPreferredLocationLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_LABEL.getI18nJsonKey(),
+                getPreferredDateLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.COMMENTS_LABEL.getI18nJsonKey(), getCommentsLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_TEXT.getI18nJsonKey(), getConfirmationText());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
@@ -276,6 +314,10 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBJECT.getI18nJsonKey(), getSubject());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SALUTATION.getI18nJsonKey(), getSalutation());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.BODY.getI18nJsonKey(), getBody());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONTACT_DETAILS.getI18nJsonKey(), getContactDetails());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_ID_LABEL.getI18nJsonKey(), getTrainingIdLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_NAME_LABEL.getI18nJsonKey(), getTrainingNameLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.FORM_TITLE.getI18nJsonKey(), getFormTitle());
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
@@ -493,6 +535,51 @@ public class PlantMasterTrainingsModel {
      */
     public String getBody() {
         return body;
+    }
+
+    /**
+     * Gets the consent label.
+     *
+     * @return the consent label
+     */
+    public String getConsentLabel() {
+        return consentLabel;
+    }
+
+    /**
+     * Gets the contact details.
+     *
+     * @return the contact details
+     */
+    public String getContactDetails() {
+        return contactDetails;
+    }
+
+    /**
+     * Gets the training id label.
+     *
+     * @return the training id label
+     */
+    public String getTrainingIdLabel() {
+        return trainingIdLabel;
+    }
+
+    /**
+     * Gets the training name label.
+     *
+     * @return the training name label
+     */
+    public String getTrainingNameLabel() {
+        return trainingNameLabel;
+    }
+
+    /**
+     * Gets the form title.
+     *
+     * @return the form title
+     */
+    public String getFormTitle() {
+        return formTitle;
     }
 
     /**

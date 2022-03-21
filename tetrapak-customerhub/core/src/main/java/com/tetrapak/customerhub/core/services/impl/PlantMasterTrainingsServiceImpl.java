@@ -147,6 +147,21 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
 
         emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.COMMENTS_LABEL.i18nJsonKey,
                 getI18nValue(request, prefix, model.getCommentsLabel()));
+        
+        emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.CONTACT_DETAILS.i18nJsonKey,
+                getI18nValue(request, prefix, model.getContactDetails()));
+        
+        emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.CONSENT_LABEL.i18nJsonKey,
+                getI18nValue(request, prefix, model.getConsentLabel()));
+        
+        emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.FORM_TITLE.i18nJsonKey,
+                getI18nValue(request, prefix, model.getFormTitle()));
+        
+        emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.TRAINING_ID_LABEL.i18nJsonKey,
+                getI18nValue(request, prefix, model.getTrainingIdLabel()));
+        
+        emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.TRAINING_NAME_LABEL.i18nJsonKey,
+                getI18nValue(request, prefix, model.getTrainingNameLabel()));
     }
 
     /**
