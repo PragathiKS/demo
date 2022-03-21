@@ -591,4 +591,27 @@ public class GlobalUtil {
         }
         return emailId;
     }
+    
+    
+    /**
+     * Gets the AIP endpoint URL.
+     *
+     * @param apiServiceUrl
+     *            the api service url
+     * @param apiMapping
+     *            the api mapping
+     * @param categoryId
+     *            the category id
+     * @return the AIP endpoint URL
+     */
+    public static String getAIPEndpointURL(String apiServiceUrl, String apiMapping, String categoryId) {
+        String aipEndpointURL = StringUtils.EMPTY;
+        if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping) && Objects.nonNull(categoryId)) {
+            aipEndpointURL = (apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping).replace("{id}",
+                    categoryId) + CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.INCLUDE_CHILDREN
+                    + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE + CustomerHubConstants.AMPERSAND
+                    + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
+        }
+        return aipEndpointURL;
+    }
 }
