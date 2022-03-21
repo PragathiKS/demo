@@ -10,8 +10,6 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.EquipmentDetailsService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.sling.xss.XSSFilter;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -27,8 +25,6 @@ import java.util.List;
 public class EquipmentDetailsServiceImpl implements EquipmentDetailsService {
 
     private static final String MYEQUIPMENT_REQUEST_UPDATE = "myequipment-requestUpdate";
-
-    private HttpClient client = HttpClientBuilder.create().build();
 
     @Reference
     private APIGEEService apigeeService;
