@@ -6,3 +6,4 @@
 .idea/
 .m2/
 .DS_Store
+*.iml
