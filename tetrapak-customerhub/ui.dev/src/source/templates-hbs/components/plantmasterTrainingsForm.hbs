@@ -5,59 +5,72 @@
             <div class="col-lg-6">
                 <div class="js-aip__form-element tp-aip__form-element tp-aip__form-element-sm">
                     {{> atoms/input/input
-                            labelText=item.i18nKeys.noOfParticipants
-                            name=(concat "participants-" index)
+                            labelText=i18nKeys.noOfParticipantsLabel
+                            name=(concat "noOfParticipants-" index)
                             required="true"
                             min="1"
                             type="number"
                     }}
-                    <div class="error-msg js-aip__error-msg-required">{{i18n key=item.i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
                 <div class="js-aip__form-element tp-aip__form-element tp-aip__form-element-md">
                     {{> atoms/input/input
-                            labelText=item.i18nKeys.preferredLocation
-                            name=(concat "location-" index)
+                            labelText=i18nKeys.preferredLocationLabel
+                            name=(concat "preferredLocation-" index)
                             required="true"
                             maxlength=300
                     }}
-                    <div class="error-msg js-aip__error-msg-required">{{i18n key=item.i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
                 <div class="js-aip__form-element tp-aip__form-element tp-aip__form-element-md">
                     {{> atoms/input/input
-                            labelText=item.i18nKeys.preferredDate
-                            name=(concat "date-" index)
+                            labelText=i18nKeys.preferredDateLabel
+                            name=(concat "preferredDate-" index)
                             required="true"
                             type="date"
                     }}
-                    <div class="error-msg js-aip__error-msg-required">{{i18n key=item.i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
                 <div class="js-aip__form-element tp-aip__form-element">
                     {{> atoms/textarea/textarea
-                            labelText=item.i18nKeys.comments
+                            labelText=i18nKeys.commentsLabel
                             name=(concat "comments-" index)
                             labelClasses="tp-add-equipment__field-label"
                     }}
-                    <div class="error-msg js-aip__error-msg-required">{{i18n key=item.i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
                 <div class="js-aip__form-element tp-aip__form-element tp-aip__form-checkbox-group">
                     {{> atoms/checkbox/checkbox
-                            value=item.i18nKeys.confirmationText
-                            text=item.i18nKeys.confirmationText
+                            value="true"
+                            text=i18nKeys.confirmationText
                             check="false"
                             required="true"
-                            uniqueKey=(concat "confirm-training-" index)
+                            jsClass="js-aip-trainings__consent-cb"
+                            uniqueKey=(concat "consent-" index)
                     }}
                 </div>
+
+                {{> atoms/input/input
+                        defaultValue=item.name
+                        name=(concat "trainingName-" index)
+                        type="hidden"
+                }}
+
+                {{> atoms/input/input
+                        defaultValue=item.id
+                        name=(concat "trainingId-" index)
+                        type="hidden"
+                }}
 
                 {{> atoms/buttons/button/button
                         buttonType="submit"
                         modifier="primary"
                         iconClass="icon-Chevron_Right"
-                        text=item.i18nKeys.submitButtonLabel
+                        text=i18nKeys.submitButtonLabel
                         className="tp-aip-trainings__submit js-aip__submit"
                 }}
             </div>
@@ -67,5 +80,5 @@
 
 <div class="tp-aip__acc-item-confirm d-none">
     <i class="icon icon-Circle_filled_Tick"></i>
-    {{i18n key=item.i18nKeys.successMessage}}
+    {{i18n key=i18nKeys.successMessage}}
 </div>
