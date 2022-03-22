@@ -13,6 +13,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -143,6 +144,13 @@ public class PlantMasterTrainingsModel {
     /** The resource. */
     @SlingObject
     private Resource resource;
+
+    /** The is publish environment. */
+    private boolean isPublishEnvironment = Boolean.FALSE;
+
+    /** The sling settings service. */
+    @OSGiService
+    private SlingSettingsService slingSettingsService;
 
     /** The request. */
     @SlingObject
@@ -280,6 +288,15 @@ public class PlantMasterTrainingsModel {
     private String componentPathExtension;
 
     /**
+     * Checks if is publish environment.
+     *
+     * @return true, if is publish environment
+     */
+    public boolean isPublishEnvironment() {
+        return isPublishEnvironment;
+    }
+
+    /**
      * init method.
      */
     @PostConstruct
@@ -335,6 +352,11 @@ public class PlantMasterTrainingsModel {
         if (Objects.nonNull(request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME))) {
             this.userName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
         }
+
+        if (slingSettingsService.getRunModes().contains("publish")) {
+            isPublishEnvironment = Boolean.TRUE;
+        }
+
         String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
                 CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
         trainingDetailsApi = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
