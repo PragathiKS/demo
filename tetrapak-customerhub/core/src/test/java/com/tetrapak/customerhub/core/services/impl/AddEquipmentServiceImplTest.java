@@ -93,10 +93,12 @@ public class AddEquipmentServiceImplTest {
 
         JsonObject jsonObject = addEquipmentService.addEquipment("mockUserId", bean, StringUtils.EMPTY,
                 Arrays.asList(new File("file-1"), new File("file-2")));
-        String attachement1Url = "\"mockurl/installedbase/equipments/reportmissing/127/attachments?filenumber=1\"";
-        String attachement2Url = "\"mockurl/installedbase/equipments/reportmissing/127/attachments?filenumber=2\"";
-        assertEquals("Url should have id and file number 1", attachement1Url, jsonObject.get("file0").getAsString());
-        assertEquals("Url should have id and file number 2", attachement2Url, jsonObject.get("file1").getAsString());
+        String expectedAttachment1Url = "\"mockurl/installedbase/equipments/reportmissing/127/attachments?filenumber=1\"";
+        String expectedAttachment2Url = "\"mockurl/installedbase/equipments/reportmissing/127/attachments?filenumber=2\"";
+        assertEquals("Url should have id and file number 1", expectedAttachment1Url,
+                jsonObject.get("file0").getAsString());
+        assertEquals("Url should have id and file number 2", expectedAttachment2Url,
+                jsonObject.get("file1").getAsString());
     }
 
     private String readFileFromPath(String path) throws IOException {
