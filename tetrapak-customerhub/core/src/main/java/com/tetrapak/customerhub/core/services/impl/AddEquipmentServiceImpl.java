@@ -52,10 +52,13 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
             if (StringUtils.isNotBlank(id)) {
                 String attachmentUrl = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                         + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING_ATTACHMENTS);
-                for (File attachment : attachments) {
+                for (int i = 0; i < attachments.size(); i++) {
+                    final File attachment = attachments.get(i);
                     JsonObject attachmentResponse = HttpUtil.sendAPIGeePostWithFiles(
-                            attachmentUrl.replace("{id}", id), token, attachment);
-                    jsonObject.addProperty("file" + attachments.indexOf(attachment), attachmentResponse.get("result").toString());
+                            attachmentUrl.replace("{id}", id).replace("{filenumber}", String.valueOf(i + 1)), token,
+                            attachment);
+                    jsonObject.addProperty("file" + attachments.indexOf(attachment),
+                            attachmentResponse.get("result").toString());
                 }
             }
         }
@@ -65,8 +68,7 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
 
     private String resolveIdFromResponse(JsonObject jsonObject) {
         Gson gson = new Gson();
-        Equipments result = gson.fromJson(
-                RegExUtils.removeAll(jsonObject.get("result").getAsString(), "[\\n]"),
+        Equipments result = gson.fromJson(RegExUtils.removeAll(jsonObject.get("result").getAsString(), "[\\n]"),
                 Equipments.class);
         String toReturn = null;
         if (result != null) {
@@ -75,7 +77,8 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
         return toReturn;
     }
 
-    private AddEquipmentApiRequestBean convertFormToApiJson(String emailId, AddEquipmentFormBean bean, int noOfAttachments) {
+    private AddEquipmentApiRequestBean convertFormToApiJson(String emailId, AddEquipmentFormBean bean,
+            int noOfAttachments) {
         AddEquipmentApiRequestBean requestBean = new AddEquipmentApiRequestBean();
 
         requestBean.setReportedBy(emailId);
