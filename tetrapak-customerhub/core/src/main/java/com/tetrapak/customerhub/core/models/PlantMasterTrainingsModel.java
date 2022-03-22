@@ -318,6 +318,7 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_ID_LABEL.getI18nJsonKey(), getTrainingIdLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_NAME_LABEL.getI18nJsonKey(), getTrainingNameLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.FORM_TITLE.getI18nJsonKey(), getFormTitle());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONSENT_LABEL.getI18nJsonKey(), getConsentLabel());
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
