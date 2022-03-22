@@ -39,7 +39,7 @@ public class PlantMasterTrainingsEmailServlet extends SlingAllMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterTrainingsEmailServlet.class);
 
     @Reference
-    private PlantMasterTrainingsService plantMasterTrainingsService;
+    private transient PlantMasterTrainingsService plantMasterTrainingsService;
 
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)

@@ -205,8 +205,7 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
         Gson gson = new Gson();
         String jsonString = gson.toJson(request.getParameterMap());
         jsonString = xssAPI.getValidJSON(jsonString, StringUtils.EMPTY);
-        JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
-        jsonObject = replaceArraysInJsonObject(jsonObject);
+        JsonObject jsonObject = replaceArraysInJsonObject(gson.fromJson(jsonString, JsonObject.class));
         LOGGER.debug("JSON Object {}", jsonObject);
         return gson.fromJson(jsonObject, PlantMasterTrainingsFormBean.class);
     }
