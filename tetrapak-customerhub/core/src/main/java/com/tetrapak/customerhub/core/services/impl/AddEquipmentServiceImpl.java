@@ -52,11 +52,11 @@ public class AddEquipmentServiceImpl implements AddEquipmentService {
             if (StringUtils.isNotBlank(id)) {
                 String attachmentUrl = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
                         + GlobalUtil.getSelectedApiMapping(apigeeService, MYEQUIPMENT_REPORT_MISSING_ATTACHMENTS);
+                attachmentUrl = attachmentUrl.replace("{id}", id);
                 for (int i = 0; i < attachments.size(); i++) {
                     final File attachment = attachments.get(i);
                     JsonObject attachmentResponse = HttpUtil.sendAPIGeePostWithFiles(
-                            attachmentUrl.replace("{id}", id).replace("{filenumber}", String.valueOf(i + 1)), token,
-                            attachment);
+                            attachmentUrl.replace("{filenumber}", String.valueOf(i + 1)), token, attachment);
                     jsonObject.addProperty("file" + attachments.indexOf(attachment),
                             attachmentResponse.get("result").toString());
                 }
