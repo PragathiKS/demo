@@ -50,7 +50,7 @@ function _getSiteLicensesData() {
 }
 
 class PlantMasterLicensesSite {
-  constructor(el) {
+  constructor( el ) {
     this.root = $(el);
   }
 
@@ -129,14 +129,17 @@ class PlantMasterLicensesSite {
       formData.forEach((value, key) => object[key] = value);
       const siteJson = JSON.stringify(object);
 
-      ajaxWrapper
-        .getXhrObj({
+      auth.getToken(({ data: authData }) => {
+        ajaxWrapper.getXhrObj({
           url: this.cache.submitApi,
           method: ajaxMethods.POST,
           cache: true,
           contentType: 'application/json; charset=utf-8',
           dataType:'json',
           data: siteJson,
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          },
           showLoader: true
         }).done(() => {
           this.renderSuccessMessage();
@@ -144,6 +147,7 @@ class PlantMasterLicensesSite {
           this.cache.$contentWrapper.removeClass('d-none');
           this.cache.$spinner.addClass('d-none');
         });
+      });
     }
   }
 
