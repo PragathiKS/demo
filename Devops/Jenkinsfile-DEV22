@@ -238,7 +238,7 @@ pipeline {
                 echo "Build ${appname}"
                 dir("${appname}") {
                 sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
-		sh "chmod -r 775 ui.apps/"
+		sh "chmod 775 ui.apps/ -R"
                 sh "npm cache clean --force"
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {
