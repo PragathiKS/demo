@@ -61,8 +61,22 @@ function _handleFormSubmit(formEl) {
     const $formWrapper = $form.parent();
     const $trainingBody = $formWrapper.prev();
     const $confirmationTxt = $formWrapper.next();
+    const { username, userEmailAddress } = this.cache;
+    const $consentInput = $formWrapper.find('.js-aip-trainings__consent-cb input');
+    const processedFormData = new FormData();
+
     $this.cache.$contentWrapper.addClass('d-none');
     $this.cache.$spinner.removeClass('d-none');
+
+    // due to multiple forms on page, input fields are suffixed with index that is removed before submitting
+    for (const [key, value] of formData) {
+      const updatedKey = key.split('-')[0];
+      processedFormData.set(updatedKey, value);
+    }
+
+    processedFormData.set('name', username);
+    processedFormData.set('emailAddress', userEmailAddress);
+    processedFormData.set('consent', $consentInput.is(':checked'));
 
     ajaxWrapper
       .getXhrObj({
@@ -71,7 +85,7 @@ function _handleFormSubmit(formEl) {
         cache: true,
         processData: false,
         contentType: false,
-        data: formData,
+        data: processedFormData,
         showLoader: true
       }).done(() => {
         $this.cache.$spinner.addClass('d-none');
@@ -143,6 +157,8 @@ class PlantMasterTrainings {
     }
     this.cache.trainingsApi = this.root.data('trainings-api');
     this.cache.submitApi = this.root.data('submit-api');
+    this.cache.username = decodeURI(this.root.data('username'));
+    this.cache.userEmailAddress = this.root.data('email');
     this.cache.$contentWrapper = this.root.find('.js-aip-trainings__wrapper');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.$formSpinner = this.root.find('.js-aip-trainings__form-spinner');

@@ -20,10 +20,12 @@
                "duration":"cuhu.plantmastertrainings.duration",
                "maxParticipants":"cuhu.plantmastertrainings.maxParticipants",
                "knowledgeRequirements":"cuhu.plantmastertrainings.knowledgeRequirements",
-               "noOfParticipants":"cuhu.plantmastertrainings.noOfParticipants",
-               "preferredLocation":"cuhu.plantmastertrainings.preferredLocation",
-               "preferredDate":"cuhu.plantmastertrainings.preferredDate",
-               "comments":"cuhu.plantmastertrainings.comments",
+               "noOfParticipantsLabel":"cuhu.plantmastertrainings.noOfParticipants",
+               "preferredLocationLabel":"cuhu.plantmastertrainings.preferredLocation",
+               "preferredDateLabel":"cuhu.plantmastertrainings.preferredDate",
+               "commentsLabel":"cuhu.plantmastertrainings.comments",
+               "consentLabel":"cuhu.plantmastertrainings.consent",
+               "formTitle":"cuhu.plantmastertrainings.formTitle",
                "confirmationText":"cuhu.plantmastertrainings.confirmationText",
                "submitButtonLabel":"cuhu.plantmastertrainings.submitButtonLabel",
                "sling:resourceType":"customerhub/components/content/plantmastertrainings",
@@ -31,7 +33,8 @@
                "successMessage":"cuhu.plantmastertrainings.successMessage",
                "subject":"cuhu.plantmastertrainings.subject",
                "salutation":"cuhu.plantmastertrainings.salutation",
-               "body":"cuhu.plantmastertrainings.body"
+               "body":"cuhu.plantmastertrainings.body",
+               "contactDetails":"cuhu.plantmastertrainings.contactDetails"
             }
          }
       }

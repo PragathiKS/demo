@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
@@ -12,7 +13,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.AIPCategoryService;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.servlets.PlantMasterTrainingsEmailServlet;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
@@ -69,16 +70,16 @@ public class PlantMasterTrainingsModel {
         KNOWLEDGE_REQUIREMENTS("knowledgeRequirements"),
 
         /** The no of participants. */
-        NO_OF_PARTICIPANTS("noOfParticipants"),
+        NO_OF_PARTICIPANTS_LABEL("noOfParticipantsLabel"),
 
         /** The preferred location. */
-        PREFERRED_LOCATION("preferredLocation"),
+        PREFERRED_LOCATION_LABEL("preferredLocationLabel"),
 
         /** The preferred date. */
-        PREFERRED_DATE("preferredDate"),
+        PREFERRED_DATE_LABEL("preferredDateLabel"),
 
         /** The comments. */
-        COMMENTS("comments"),
+        COMMENTS_LABEL("commentsLabel"),
 
         /** The confirmation text. */
         CONFIRMATION_TEXT("confirmationText"),
@@ -99,7 +100,22 @@ public class PlantMasterTrainingsModel {
         BODY("body"),
 
         /** The submit button. */
-        SUBMIT_BUTTON("submitButtonLabel");
+        SUBMIT_BUTTON("submitButtonLabel"),
+
+        /** The consent label. */
+        CONSENT_LABEL("consentLabel"),
+
+        /** The contact details. */
+        CONTACT_DETAILS("contactDetails"),
+
+        /** The training id. */
+        TRAINING_ID_LABEL("trainingIdLabel"),
+
+        /** The training name. */
+        TRAINING_NAME_LABEL("trainingNameLabel"),
+
+        /** The form title. */
+        FORM_TITLE("formTitle");
 
         /** The i18n json key. */
         public final String i18nJsonKey;
@@ -127,13 +143,6 @@ public class PlantMasterTrainingsModel {
     /** The resource. */
     @SlingObject
     private Resource resource;
-
-    /** The is publish environment. */
-    private boolean isPublishEnvironment = Boolean.FALSE;
-
-    /** The sling settings service. */
-    @OSGiService
-    private SlingSettingsService slingSettingsService;
 
     /** The request. */
     @SlingObject
@@ -179,21 +188,21 @@ public class PlantMasterTrainingsModel {
     @ValueMapValue
     private String knowledgeRequirements;
 
-    /** The no of participants. */
+    /** The no of participants label. */
     @ValueMapValue
-    private String noOfParticipants;
+    private String noOfParticipantsLabel;
 
-    /** The preferred location. */
+    /** The preferred location label. */
     @ValueMapValue
-    private String preferredLocation;
+    private String preferredLocationLabel;
 
-    /** The preferred date. */
+    /** The preferred date label. */
     @ValueMapValue
-    private String preferredDate;
+    private String preferredDateLabel;
 
-    /** The comments. */
+    /** The comments label. */
     @ValueMapValue
-    private String comments;
+    private String commentsLabel;
 
     /** The confirmation text. */
     @ValueMapValue
@@ -223,6 +232,26 @@ public class PlantMasterTrainingsModel {
     @ValueMapValue
     private String body;
 
+    /** The consent label. */
+    @ValueMapValue
+    private String consentLabel;
+
+    /** The contact details. */
+    @ValueMapValue
+    private String contactDetails;
+
+    /** The training id label. */
+    @ValueMapValue
+    private String trainingIdLabel;
+
+    /** The training name label. */
+    @ValueMapValue
+    private String trainingNameLabel;
+
+    /** The form title. */
+    @ValueMapValue
+    private String formTitle;
+
     /** The training details api. */
     @ValueMapValue
     private String trainingDetailsApi;
@@ -244,14 +273,11 @@ public class PlantMasterTrainingsModel {
     /** The user email address. */
     private String userEmailAddress;
 
-    /**
-     * Checks if is publish environment.
-     *
-     * @return true, if is publish environment
-     */
-    public boolean isPublishEnvironment() {
-        return isPublishEnvironment;
-    }
+    /** The component path. */
+    private String componentPath;
+
+    /** The component path extension. */
+    private String componentPathExtension;
 
     /**
      * init method.
@@ -273,10 +299,13 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.MAX_PARTICIPANTS.getI18nJsonKey(), getMaxParticipants());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.KNOWLEDGE_REQUIREMENTS.getI18nJsonKey(),
                 getKnowledgeRequirements());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.NO_OF_PARTICIPANTS.getI18nJsonKey(), getNoOfParticipants());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_LOCATION.getI18nJsonKey(), getPreferredLocation());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE.getI18nJsonKey(), getPreferredDate());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.COMMENTS.getI18nJsonKey(), getComments());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.NO_OF_PARTICIPANTS_LABEL.getI18nJsonKey(),
+                getNoOfParticipantsLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_LOCATION_LABEL.getI18nJsonKey(),
+                getPreferredLocationLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_LABEL.getI18nJsonKey(),
+                getPreferredDateLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.COMMENTS_LABEL.getI18nJsonKey(), getCommentsLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_TEXT.getI18nJsonKey(), getConfirmationText());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.INPUT_ERROR_MESSAGE.getI18nJsonKey(), getInputErrorMsg());
@@ -285,17 +314,25 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBJECT.getI18nJsonKey(), getSubject());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SALUTATION.getI18nJsonKey(), getSalutation());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.BODY.getI18nJsonKey(), getBody());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONTACT_DETAILS.getI18nJsonKey(), getContactDetails());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_ID_LABEL.getI18nJsonKey(), getTrainingIdLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_NAME_LABEL.getI18nJsonKey(), getTrainingNameLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.FORM_TITLE.getI18nJsonKey(), getFormTitle());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONSENT_LABEL.getI18nJsonKey(), getConsentLabel());
 
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("i18nKeys : {}", i18nKeys);
 
-        if (slingSettingsService.getRunModes().contains("publish")) {
-            isPublishEnvironment = Boolean.TRUE;
-        }
+        this.componentPath = resource.getResourceResolver().map(this.resource.getPath());
+        LOGGER.debug("Resource mapped url : {}", this.componentPath);
+
+        this.componentPathExtension = CustomerHubConstants.DOT + PlantMasterTrainingsEmailServlet.SLING_SERVLET_SELECTOR
+                + CustomerHubConstants.DOT + PlantMasterTrainingsEmailServlet.SLING_SERVLET_EXTENSION;
 
         this.setUserEmailAddress();
-        if (request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME) != null) {
+
+        if (Objects.nonNull(request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME))) {
             this.userName = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
         }
         String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
@@ -403,39 +440,39 @@ public class PlantMasterTrainingsModel {
     }
 
     /**
-     * Gets the no of participants.
+     * Gets the no of participants label.
      *
-     * @return the no of participants
+     * @return the no of participants label
      */
-    public String getNoOfParticipants() {
-        return noOfParticipants;
+    public String getNoOfParticipantsLabel() {
+        return noOfParticipantsLabel;
     }
 
     /**
-     * Gets the preferred location.
+     * Gets the preferred location label.
      *
-     * @return the preferred location
+     * @return the preferred location label
      */
-    public String getPreferredLocation() {
-        return preferredLocation;
+    public String getPreferredLocationLabel() {
+        return preferredLocationLabel;
     }
 
     /**
-     * Gets the preferred date.
+     * Gets the preferred date label.
      *
-     * @return the preferred date
+     * @return the preferred date label
      */
-    public String getPreferredDate() {
-        return preferredDate;
+    public String getPreferredDateLabel() {
+        return preferredDateLabel;
     }
 
     /**
-     * Gets the comments.
+     * Gets the comments label.
      *
-     * @return the comments
+     * @return the comments label
      */
-    public String getComments() {
-        return comments;
+    public String getCommentsLabel() {
+        return commentsLabel;
     }
 
     /**
@@ -502,6 +539,51 @@ public class PlantMasterTrainingsModel {
     }
 
     /**
+     * Gets the consent label.
+     *
+     * @return the consent label
+     */
+    public String getConsentLabel() {
+        return consentLabel;
+    }
+
+    /**
+     * Gets the contact details.
+     *
+     * @return the contact details
+     */
+    public String getContactDetails() {
+        return contactDetails;
+    }
+
+    /**
+     * Gets the training id label.
+     *
+     * @return the training id label
+     */
+    public String getTrainingIdLabel() {
+        return trainingIdLabel;
+    }
+
+    /**
+     * Gets the training name label.
+     *
+     * @return the training name label
+     */
+    public String getTrainingNameLabel() {
+        return trainingNameLabel;
+    }
+
+    /**
+     * Gets the form title.
+     *
+     * @return the form title
+     */
+    public String getFormTitle() {
+        return formTitle;
+    }
+
+    /**
      * Gets the training details api.
      *
      * @return the training details api
@@ -535,6 +617,24 @@ public class PlantMasterTrainingsModel {
      */
     public String getUserEmailAddress() {
         return userEmailAddress;
+    }
+
+    /**
+     * Gets the component path.
+     *
+     * @return the component path
+     */
+    public String getComponentPath() {
+        return componentPath;
+    }
+
+    /**
+     * Gets the component path extension.
+     *
+     * @return the component path extension
+     */
+    public String getComponentPathExtension() {
+        return componentPathExtension;
     }
 
 }
