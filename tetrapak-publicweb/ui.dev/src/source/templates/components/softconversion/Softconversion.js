@@ -340,6 +340,12 @@ class Softconversion {
       }
     });
 
+    // Send Visitor Params
+    const visitorId = storageUtil.getCookie('visitor_id857883');
+    if(visitorId) {
+      apiPayload['cookie_policy_id'] = visitorId;
+    }
+
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
