@@ -54,6 +54,8 @@ function _getEngineeringLicensesData() {
         this.cache.engLicensesDataArr = res.data;
         this.renderEngLicensesDesc();
         this.renderLicenseHolders({removable: false});
+        this.cache.$contentWrapper.removeClass('d-none');
+        this.cache.$spinner.addClass('d-none');
       }).fail((e) => {
         logger.error(e);
       });
@@ -79,7 +81,8 @@ class PlantMasterLicensesEngineering {
     this.cache.submitApi = aipLicenseObj.data('submit-api');
     this.cache.engineeringLicensesApi = aipLicenseObj.data('engineeringlicense-api');
     this.cache.$spinner = aipLicenseObj.find('.js-tp-spinner');
-    this.cache.$contentWrapper = aipLicenseObj.find('.js-tp-aip-licenses__eng');
+    this.cache.$contentWrapper = aipLicenseObj.find('.js-aip-licenses__wrapper');
+    this.cache.$engContentWrapper = aipLicenseObj.find('.js-tp-aip-licenses__eng');
     this.cache.$addUserBtn = this.root.find('.js-tp-aip-licenses-eng__add-user');
     this.cache.$licenseHoldersEl = this.root.find('.js-tp-aip-licenses-eng__holders-wrap');
     this.cache.$engLicensesDesc = this.root.find('.js-tp-aip-licenses-eng__description');
@@ -101,7 +104,7 @@ class PlantMasterLicensesEngineering {
     render.fn(
       {
         template: 'plantMasterLicensesSuccessMessage',
-        target: this.cache.$contentWrapper,
+        target: this.cache.$engContentWrapper,
         data: { i18nKeys: this.cache.i18nKeys, template: 'engineering' }
       },
       this.showContent
@@ -168,8 +171,7 @@ class PlantMasterLicensesEngineering {
       }).done(() => {
         this.renderSuccessMessage();
       }).fail(() => {
-        this.cache.$contentWrapper.removeClass('d-none');
-        this.cache.$spinner.addClass('d-none');
+        this.showContent();
       });
   }
 

@@ -61,7 +61,7 @@ class PlantMasterLicensesSite {
     const aipLicenseObj = $('.tp-aip-licenses');
     this.cache.siteLicensesApi = aipLicenseObj.data('sitelicense-api');
     this.cache.$spinner = aipLicenseObj.find('.js-tp-spinner');
-    this.cache.$contentWrapper = aipLicenseObj.find('.js-tp-aip-licenses__site');
+    this.cache.$contentWrapper = aipLicenseObj.find('.js-aip-licenses__wrapper');
     this.cache.submitApi = aipLicenseObj.data('submit-api');
     const configJson = aipLicenseObj.find('.js-aip-licenses__config').text();
     try {
@@ -86,7 +86,7 @@ class PlantMasterLicensesSite {
     render.fn(
       {
         template: 'plantMasterLicensesSuccessMessage',
-        target: this.cache.$contentWrapper,
+        target: '.js-tp-aip-licenses__site',
         data: { i18nKeys: this.cache.i18nKeys, template: 'site' }
       },
       this.showContent
@@ -144,8 +144,7 @@ class PlantMasterLicensesSite {
         }).done(() => {
           this.renderSuccessMessage();
         }).fail(() => {
-          this.cache.$contentWrapper.removeClass('d-none');
-          this.cache.$spinner.addClass('d-none');
+          this.showContent();
         });
       });
     }
