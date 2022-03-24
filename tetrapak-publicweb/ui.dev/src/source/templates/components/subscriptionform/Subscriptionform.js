@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-import { getLinkClickAnalytics, validateFieldsForTags, capitalizeFirstLetter, removeParams } from '../../../scripts/common/common';
+import { getLinkClickAnalytics, validateFieldsForTags, capitalizeFirstLetter, removeParams, storageUtil } from '../../../scripts/common/common';
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -132,6 +132,12 @@ class Subscriptionform {
     }
 
     dataObj['pageurl'] = pageURL;
+
+    // Send Visitor Params
+    const visitorId = storageUtil.getCookie('visitor_id857883');
+    if(visitorId) {
+      dataObj['cookie_policy_id'] = visitorId;
+    }
     
     ajaxWrapper.getXhrObj({
       url: servletPath,
