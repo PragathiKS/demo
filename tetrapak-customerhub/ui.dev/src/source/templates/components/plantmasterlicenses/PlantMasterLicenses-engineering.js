@@ -1,4 +1,3 @@
-/* eslint-disable */
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
@@ -6,6 +5,9 @@ import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 
+/**
+ * Render Engineering Licenses data
+ */
 function _renderEngLicensesDesc() {
   render.fn({
     template: 'plantmasterLicensesEngDesc',
@@ -17,19 +19,22 @@ function _renderEngLicensesDesc() {
   });
 }
 
+/**
+ * Build obj containing licenses checkbox data
+ */
 function _getLicenseCheckboxData(licensesDataArr) {
   const licenseCheckboxesArr = licensesDataArr.map(license => {
     return {
       value: license.id,
       name: license.name
-    }
+    };
   });
 
   return licenseCheckboxesArr;
 }
 
 /**
- * Fetch and process the Engineering Licenses data
+ * Fetch Engineering Licenses data
  */
 function _getEngineeringLicensesData() {
   auth.getToken(({ data: authData }) => {
@@ -49,9 +54,9 @@ function _getEngineeringLicensesData() {
         this.cache.engLicensesDataArr = res.data;
         this.renderEngLicensesDesc();
         this.renderLicenseHolders({removable: false});
-    }).fail((e) => {
-      logger.error(e);
-    });
+      }).fail((e) => {
+        logger.error(e);
+      });
   });
 }
 
@@ -108,7 +113,7 @@ class PlantMasterLicensesEngineering {
       const $requiredFormElements = $newHolderForm.find('input[required]:visible');
       const $licensesCheckboxGroup = $newHolderForm.find('.js-tp-aip-licenses__checkbox-group');
       const $selectedLicenses = $licensesCheckboxGroup.find('input:checked');
-      let user = {
+      const user = {
         licenses: []
       };
 
@@ -138,14 +143,13 @@ class PlantMasterLicensesEngineering {
         showLoader: true
       }).done(() => {
       // this.renderSuccessMessage();
-    }).fail(() => {
-      // this.cache.$contentWrapper.removeClass('d-none');
-      // this.cache.$spinner.addClass('d-none');
-    });
+      }).fail(() => {
+        // this.cache.$contentWrapper.removeClass('d-none');
+        // this.cache.$spinner.addClass('d-none');
+      });
   }
 
   bindEvents() {
-    //todo move out
     this.cache.$addUserBtn.on('click', () => {
       this.cache.licenseHoldersCount++;
       this.renderLicenseHolders({removable: true});

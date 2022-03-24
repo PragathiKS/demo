@@ -84,12 +84,12 @@ $form-grp-margin: 12px;
 
     &__success-message {
         @include line-height($font-l, $font-baseline);
-        display: flex;        
+        display: flex;
         flex-direction: column;
 
         &-title {
-            font-weight: 700;
             display: flex;
+            font-weight: 700;
             align-items: flex-start;
             flex-direction: column;
         }

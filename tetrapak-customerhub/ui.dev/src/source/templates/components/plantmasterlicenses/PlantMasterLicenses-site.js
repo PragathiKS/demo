@@ -13,7 +13,7 @@ function _processSiteLicensesData(data) {
 
 function _renderSiteLicensesData() {
   render.fn({
-    template: 'plantMasterLicenses-site',
+    template: 'plantMasterLicensesSite',
     target: '.js-tp-aip-licenses__site-description',
     data: {
       i18nKeys: this.cache.i18nKeys,

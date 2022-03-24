@@ -93,8 +93,10 @@
             }
         }
 
-        input[type=date] {
-            @include max-width(224px);
+        input {
+            &[type="date"] {
+                @include max-width(224px);
+            }
         }
     }
 }
