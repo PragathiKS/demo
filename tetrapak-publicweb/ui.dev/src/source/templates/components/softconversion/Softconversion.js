@@ -343,7 +343,7 @@ class Softconversion {
     // Send Visitor Params
     const visitorId = storageUtil.getCookie('visitor_id857883');
     if(visitorId) {
-      apiPayload['cookie_policy_id'] = visitorId;
+      apiPayload['pardot_cookie_id'] = visitorId;
     }
 
     ajaxWrapper.getXhrObj({

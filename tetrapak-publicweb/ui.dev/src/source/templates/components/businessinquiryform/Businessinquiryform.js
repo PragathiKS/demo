@@ -216,7 +216,7 @@ class Businessinquiryform {
     // Send Visitor Params
     const visitorId = storageUtil.getCookie('visitor_id857883');
     if(visitorId) {
-      dataObj['cookie_policy_id'] = visitorId;
+      dataObj['pardot_cookie_id'] = visitorId;
     }
 
     ajaxWrapper.getXhrObj({
