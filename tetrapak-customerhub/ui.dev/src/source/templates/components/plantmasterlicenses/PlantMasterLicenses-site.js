@@ -61,7 +61,7 @@ class PlantMasterLicensesSite {
     const aipLicenseObj = $('.tp-aip-licenses');
     this.cache.siteLicensesApi = aipLicenseObj.data('sitelicense-api');
     this.cache.$spinner = aipLicenseObj.find('.js-tp-spinner');
-    this.cache.$contentWrapper = aipLicenseObj.find('.js-aip-licenses__contentWrapper');
+    this.cache.$contentWrapper = aipLicenseObj.find('.js-tp-aip-licenses__site');
     this.cache.submitApi = aipLicenseObj.data('submit-api');
     const configJson = aipLicenseObj.find('.js-aip-licenses__config').text();
     try {
@@ -87,7 +87,7 @@ class PlantMasterLicensesSite {
       {
         template: 'plantMasterLicensesSuccessMessage',
         target: this.cache.$contentWrapper,
-        data: { i18nKeys: this.cache.i18nKeys }
+        data: { i18nKeys: this.cache.i18nKeys, template: 'site' }
       },
       this.showContent
     );

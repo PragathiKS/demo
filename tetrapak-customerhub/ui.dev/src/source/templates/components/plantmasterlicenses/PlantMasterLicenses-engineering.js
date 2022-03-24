@@ -79,11 +79,33 @@ class PlantMasterLicensesEngineering {
     this.cache.submitApi = aipLicenseObj.data('submit-api');
     this.cache.engineeringLicensesApi = aipLicenseObj.data('engineeringlicense-api');
     this.cache.$spinner = aipLicenseObj.find('.js-tp-spinner');
+    this.cache.$contentWrapper = aipLicenseObj.find('.js-tp-aip-licenses__eng');
     this.cache.$addUserBtn = this.root.find('.js-tp-aip-licenses-eng__add-user');
     this.cache.$licenseHoldersEl = this.root.find('.js-tp-aip-licenses-eng__holders-wrap');
     this.cache.$engLicensesDesc = this.root.find('.js-tp-aip-licenses-eng__description');
     this.cache.engLicensesDataArr = [];
     this.cache.licenseHoldersCount = 1;
+  }
+
+  showContent = () => {
+    this.cache.$contentWrapper.removeClass('d-none');
+    this.cache.$spinner.addClass('d-none');
+  };
+
+  showSpinner = () => {
+    this.cache.$contentWrapper.addClass('d-none');
+    this.cache.$spinner.removeClass('d-none');
+  };
+
+  renderSuccessMessage() {
+    render.fn(
+      {
+        template: 'plantMasterLicensesSuccessMessage',
+        target: this.cache.$contentWrapper,
+        data: { i18nKeys: this.cache.i18nKeys, template: 'engineering' }
+      },
+      this.showContent
+    );
   }
 
   submitRequestForm = (e) => {
@@ -107,6 +129,8 @@ class PlantMasterLicensesEngineering {
     if (!allFormsValid) {
       return;
     }
+
+    this.showSpinner();
 
     $newHolderForms.each((idx, formEl) => {
       const $newHolderForm = $(formEl);
@@ -142,10 +166,10 @@ class PlantMasterLicensesEngineering {
         data: JSON.stringify(formObj),
         showLoader: true
       }).done(() => {
-      // this.renderSuccessMessage();
+        this.renderSuccessMessage();
       }).fail(() => {
-        // this.cache.$contentWrapper.removeClass('d-none');
-        // this.cache.$spinner.addClass('d-none');
+        this.cache.$contentWrapper.removeClass('d-none');
+        this.cache.$spinner.addClass('d-none');
       });
   }
 
