@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import PlantMasterLicensesSite from './PlantMasterLicenses-site';
 import PlantMasterSiteLicensesData from './data/plantMasterLicenses-site.json';
-import PlantMasterSiteLicensesTemplate from '../../../test-templates-hbs/PlantMasterSiteLicenses.hbs';
+import PlantMasterSiteLicensesTemplate from '../../../test-templates-hbs/PlantMasterLicenses.hbs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
@@ -17,13 +17,13 @@ describe('PlantMasterLicensesSite', function () {
         pr.resolve(response, 'success', jqRef);
         return pr.promise();
     };
-      
+
     before(function () {
         $(document.body).empty().html(PlantMasterSiteLicensesTemplate());
         this.siteLicenses = new PlantMasterLicensesSite(
             document.body,
         );
-      
+
         this.initSpy = sinon.spy(this.siteLicenses, 'init');
         this.getSiteLicensesDataSpy = sinon.spy(this.siteLicenses, 'getSiteLicensesData');
         this.renderSiteLicensesDataSpy = sinon.spy(this.siteLicenses, 'renderSiteLicensesData');
@@ -39,9 +39,9 @@ describe('PlantMasterLicensesSite', function () {
           });
         this.submitRequestFormSpy = sinon.spy(this.siteLicenses, 'submitRequestForm');
         this.siteLicenses.init();
-  
+
     });
-  
+
     after(function () {
       $(document.body).empty();
       this.initSpy.restore();
@@ -52,7 +52,7 @@ describe('PlantMasterLicensesSite', function () {
       this.ajaxStub.restore();
       this.tokenStub.restore();
     });
-  
+
     it('should initialize', function (done) {
       expect(this.initSpy.called).to.be.true;
       done();
@@ -85,4 +85,3 @@ describe('PlantMasterLicensesSite', function () {
         done();
       });
 })
- 

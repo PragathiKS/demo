@@ -1,4 +1,3 @@
-/* eslint-disable */
 import $ from 'jquery';
 import PlantMasterLicensesEngineering from './PlantMasterLicenses-engineering';
 import PlantMasterLicensesSite from './PlantMasterLicenses-site';

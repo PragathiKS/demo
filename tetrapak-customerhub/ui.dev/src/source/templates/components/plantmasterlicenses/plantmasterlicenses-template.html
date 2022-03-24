@@ -27,9 +27,9 @@
             </div>
 
             <div class="tp-aip__tab-content tab-content js-aip-licenses__contentWrapper" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-engineering-licenses" role="tabpanel" aria-labelledby="nav-engineering-licenses-tab">
+                <div class="tab-pane fade show active js-tp-aip-licenses__eng" id="nav-engineering-licenses" role="tabpanel" aria-labelledby="nav-engineering-licenses-tab">
                     <sly data-sly-use.engineering="/apps/customerhub/components/content/plantmasterlicenses/plantmasterlicenses-engineering-template.html"
-                         data-sly-call="${engineering.plantmasterlicenses_engineering_template}" />
+                         data-sly-call="${engineering.plantmasterlicenses_engineering_template @ data=data.i18nKeysMap.engineeringLicense}" />
                 </div>
 
                 <div class="tab-pane fade tp-aip-licenses__site js-tp-aip-licenses__site" id="nav-site-licenses" role="tabpanel" aria-labelledby="nav-site-licenses-tab">
