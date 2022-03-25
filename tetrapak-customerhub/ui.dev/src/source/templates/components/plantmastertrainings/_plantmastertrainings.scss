@@ -156,6 +156,19 @@
     }
 
     &__form-element {
+        .tpatom-input-box {
+            &__input {
+                border: 1px solid $color-tundora;
+            }
+        }
+
+        label {
+            @include line-height($font-l, $font-baseline);
+            @include margin-top($margin-md);
+            font-weight: 500;
+            color: $color-text;
+        }
+
         &--error {
             input,
             textarea,
@@ -164,6 +177,7 @@
                 border: 1px solid $color-alert;
             }
         }
+        
         .error-msg {
             @include font-size($font-sm);
             display: none;
