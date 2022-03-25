@@ -63,6 +63,9 @@ public class PlantMasterTrainingsModel {
 
         /** The duration. */
         DURATION("duration"),
+        
+        /** The hours. */
+        HOURS("hours"),
 
         /** The max participants. */
         MAX_PARTICIPANTS("maxParticipants"),
@@ -187,6 +190,10 @@ public class PlantMasterTrainingsModel {
     /** The duration. */
     @ValueMapValue
     private String duration;
+    
+    /** The hours. */
+    @ValueMapValue
+    private String hours;
 
     /** The max participants. */
     @ValueMapValue
@@ -313,6 +320,7 @@ public class PlantMasterTrainingsModel {
                 getPrincipleObjectives());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TARGET_GROUPS.getI18nJsonKey(), getTargetGroups());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.DURATION.getI18nJsonKey(), getDuration());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.HOURS.getI18nJsonKey(), getHours());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.MAX_PARTICIPANTS.getI18nJsonKey(), getMaxParticipants());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.KNOWLEDGE_REQUIREMENTS.getI18nJsonKey(),
                 getKnowledgeRequirements());
@@ -441,6 +449,15 @@ public class PlantMasterTrainingsModel {
      */
     public String getDuration() {
         return duration;
+    }
+
+    /**
+     * Gets the hours.
+     *
+     * @return the hours
+     */
+    public String getHours() {
+        return hours;
     }
 
     /**
