@@ -67,6 +67,7 @@
                "sling:resourceType": "publicweb/components/content/businessinquiryform",
                "headingSubscription": "Business Enquiry",
                "pardotUrlSubscription": "http://pardotURL",
+               "pardotChinaUrlSubscription": "http://pardotChinaURL",
                "moreButtonActionSubscription":"/content/search",
                "moreButtonLabelSubscription":"More Insights"
             }

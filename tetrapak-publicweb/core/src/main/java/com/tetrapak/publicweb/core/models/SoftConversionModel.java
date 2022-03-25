@@ -3,7 +3,6 @@ package com.tetrapak.publicweb.core.models;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -55,6 +54,10 @@ public class SoftConversionModel extends FormModel {
     /** The pardot url. */
     @ValueMapValue
     private String pardotUrl;
+    
+    /** The pardot China url. */
+    @ValueMapValue
+    private String pardotChinaUrl;
 
     /** The form config. */
     private SoftConversionFormConfigModel formConfig;
@@ -153,6 +156,15 @@ public class SoftConversionModel extends FormModel {
     }
 
     /**
+     * Gets the pardot china url.
+     *
+     * @return the pardot china url
+     */
+    public String getPardotChinaUrl() {
+        return LinkUtils.getUrlWithoutProtocol(pardotChinaUrl);
+    }
+
+    /**
      * Gets the form config.
      *
      * @return the form config
@@ -205,6 +217,12 @@ public class SoftConversionModel extends FormModel {
     	return fetchTags(formConfig.getFunctionTagsPath());
     }
     
+    /**
+     * Fetch tags.
+     *
+     * @param tagPath the tag path
+     * @return the list
+     */
     private List<DropdownOption> fetchTags(String tagPath){
     	final List<DropdownOption> tagOptions = new ArrayList<>();
     	if(StringUtils.isNotEmpty(tagPath)) {
@@ -215,8 +233,8 @@ public class SoftConversionModel extends FormModel {
 		    	while(childTagsIterator.hasNext()) {
 		    		DropdownOption option = new DropdownOption();
 		    		final Tag tag = childTagsIterator.next();
-		    		option.setKey(tag.getTitle());
-		    		option.setValue(tag.getTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource))));
+                    option.setKey(tag.getTitle());
+                    option.setValue(tag.getTitle(PageUtil.getPageLocale(PageUtil.getCurrentPage(resource))));
 		    		tagOptions.add(option);
 		    	}
 	    	}	
