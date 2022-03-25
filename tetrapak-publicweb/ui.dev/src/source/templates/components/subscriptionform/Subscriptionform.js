@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { subscriptionAnalytics } from './subscriptionform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL } from '../../../scripts/utils/constants';
-import { getLinkClickAnalytics, validateFieldsForTags, capitalizeFirstLetter, removeParams } from '../../../scripts/common/common';
+import { getLinkClickAnalytics, validateFieldsForTags, capitalizeFirstLetter, removeParams, storageUtil } from '../../../scripts/common/common';
 class Subscriptionform {
   constructor({ el }) {
     this.root = $(el);
@@ -87,6 +87,7 @@ class Subscriptionform {
     // dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
     if(this.cache.requestPayload['country'] === 'China' || countryCode === 'cn') {
       dataObj['pardotUrl'] = chinapardotURL;
+      dataObj['route_country'] = 'China';
     }
     else {
       dataObj['pardotUrl'] = pardotURL;
@@ -131,6 +132,12 @@ class Subscriptionform {
     }
 
     dataObj['pageurl'] = pageURL;
+
+    // Send Visitor Params
+    const visitorId = storageUtil.getCookie('visitor_id857883');
+    if(visitorId) {
+      dataObj['pardot_cookie_id'] = visitorId;
+    }
     
     ajaxWrapper.getXhrObj({
       url: servletPath,

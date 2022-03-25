@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +51,12 @@ public class MyTetrapakEmailJobTest {
     @Test
     public void testProcessSuccess() {
         final String[] receipientsArray = { "mikesmith@tetrapak.com" };
-        when(job.getProperty("receipientsArray")).thenReturn(receipientsArray);
+        when(job.getProperty(MyTetrapakEmailJob.RECIPIENTS_ARRAY)).thenReturn(receipientsArray);
+        List<Map<String, String>> listOfAttachments = new ArrayList<>();
+        Map<String, String> attachment = new HashMap<>();
+        attachment.put("stream", Base64.getEncoder().encodeToString("Test".getBytes()));
+        listOfAttachments.add(attachment);
+        when(job.getProperty(MyTetrapakEmailJob.ATTACHMENTS)).thenReturn(listOfAttachments);
         assertEquals(OK_ERROR_MESSAGE, JobConsumer.JobResult.OK, sendMailJob.process(job));
     }
 

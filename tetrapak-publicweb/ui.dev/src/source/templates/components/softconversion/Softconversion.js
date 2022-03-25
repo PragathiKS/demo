@@ -236,6 +236,7 @@ class Softconversion {
       apiPayload.pardot_extra_field = '';
       if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
         apiPayload.pardotUrl = chinapardotUrl;
+        apiPayload.route_country = 'China';
       }
       else {
         apiPayload.pardotUrl = pardotUrl;
@@ -320,6 +321,7 @@ class Softconversion {
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
       apiPayload.pardotUrl = chinapardotUrl;
+      apiPayload.route_country = 'China';
     }
     else {
       apiPayload.pardotUrl = pardotUrl;
@@ -337,6 +339,12 @@ class Softconversion {
         apiPayload['utm_source'] = this.cache.requestPayload[key];
       }
     });
+
+    // Send Visitor Params
+    const visitorId = storageUtil.getCookie('visitor_id857883');
+    if(visitorId) {
+      apiPayload['pardot_cookie_id'] = visitorId;
+    }
 
     ajaxWrapper.getXhrObj({
       url: servletPath,

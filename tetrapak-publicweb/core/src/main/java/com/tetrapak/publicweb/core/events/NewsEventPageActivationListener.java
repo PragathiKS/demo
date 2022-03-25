@@ -12,6 +12,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
+import org.json.JSONException;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -93,7 +94,7 @@ public class NewsEventPageActivationListener implements EventHandler {
                 }
             }
         } catch (Exception ex) {
-            LOGGER.error("Error in NewsEventPageActivationListener {}", ex.getMessage());
+            LOGGER.error("Error in NewsEventPageActivationListener", ex);
         }
 
     }
@@ -107,13 +108,12 @@ public class NewsEventPageActivationListener implements EventHandler {
      *            the path
      * @param resource
      *            the resource
-     * @param valueMap
-     *            the value map
      * @throws PersistenceException
      *             the persistence exception
+     * @throws JSONException 
      */
     private void processData(final ResourceResolver resourceResolver, String path, Resource resource)
-            throws PersistenceException {
+            throws PersistenceException, JSONException {
         ValueMap valueMap = resource.getValueMap();
         if (Objects.isNull(valueMap.get(PWConstants.EVENT_PUBLISHED_PROPERTY))
                 && PRESS_TEMPLATES.contains(valueMap.get(PWConstants.CQ_TEMPLATE, String.class))) {
@@ -124,8 +124,12 @@ public class NewsEventPageActivationListener implements EventHandler {
                 String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
                 if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
                     updatePageActivationProperty(resource);
-                }
-            }
+				} else {
+					LOGGER.error("Mail sending is fail hence not updating the property on page path {} ", path);
+				}
+			} else {
+				updatePageActivationProperty(resource);
+			}
         }
     }
 

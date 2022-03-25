@@ -546,7 +546,7 @@ public final class CustomerHubConstants {
     public static final String CUSTOMER_COOKIE_NAME = "AEMCustomerName";
     
     /** TheConstant TEXT_CSV */
-    public static final String TEXT_CSV = "text/csv; charset=UTF-8";
+    public static final String TEXT_CSV = "text/csv";
     
     /** TheConstant CONTENT_DISPOSITION */
     public static final String CONTENT_DISPOSITION= "Content-Disposition";
@@ -556,6 +556,9 @@ public final class CustomerHubConstants {
     
     /** TheConstant CSV_COMMA_SEPARATOR */
     public static final String CSV_COMMA_SEPARATOR= "sep=,";
+
+    /** The constant for BOM to force Excel to read unicode characters */
+    public static final String CSV_BYTE_ORDER_MARK = "\ufeff";
 
     /** TheConstant Not Applicable */
     public static final String NOT_APPLICABLE= "N/A";
@@ -578,6 +581,36 @@ public final class CustomerHubConstants {
 	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
     
+    /** The Constant AIP_PRODUCT_DETAILS_API. */
+    public static final String AIP_PRODUCT_DETAILS_API = "aip-product-details";
+    
+    /** The Constant INCLUDE_CHILDREN. */
+    public static final String INCLUDE_CHILDREN = "includechildren";
+    
+    /** The Constant DETAILS. */
+    public static final String DETAILS = "details";
+    
+    /** The Constant TRUE. */
+    public static final String TRUE = "true";
+    
+    /** The Constant SUCCESS_MESSAGE. */
+    public static final String SUCCESS_MESSAGE = "Success";
+    
+    /** The Constant BAD_REQUEST_MESSAGE. */
+    public static final String BAD_REQUEST_MESSAGE = "Bad Request";
+    
+    /** The Constant INVALID_JSON_REQUEST_MESSAGE. */
+    public static final String INVALID_JSON_REQUEST_MESSAGE = "Invalid JSON request";
+    
+    /** The Constant SESSION_NULL_MESSAGE. */
+    public static final String SESSION_NULL_MESSAGE = "Session is null";
+    
+    /** The Constant TRAINING_NAME. */
+    public static final String TRAINING_NAME = "trainingName";
+
+    /** The Constant VALUE. */
+    public static final String VALUE = "Value";
+    
     /**
      * Instantiates a new customer hub constants.
      */
@@ -585,4 +618,3 @@ public final class CustomerHubConstants {
         throw new IllegalStateException("Utility class");
     }
 }
-

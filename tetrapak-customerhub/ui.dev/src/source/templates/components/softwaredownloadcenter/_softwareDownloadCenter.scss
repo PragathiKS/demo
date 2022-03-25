@@ -16,6 +16,9 @@
         @include line-height($font-l, $font-baseline);
         @include margin-bottom($margin-md);
         display: flex;
+        @media #{$desktop} {
+            max-width: 825px;
+        }
     }
 
     &__link {

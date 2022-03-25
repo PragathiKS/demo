@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError, newPage } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
-import { validateFieldsForTags, removeParams } from '../../../scripts/common/common';
+import { validateFieldsForTags, removeParams, storageUtil } from '../../../scripts/common/common';
 
 function isInvalidBusinessAreaOption(key, businessArea) {
   if(key === 'businessArea') {
@@ -167,6 +167,7 @@ class Businessinquiryform {
     dataObj['site'] = countryCode;
     if(requestPayload.country === 'China' || countryCode ==='cn') {
       dataObj['pardotUrl'] = chinabefPardotURL;
+      dataObj['route_country'] = 'China';
     }
     else {
       dataObj['pardotUrl'] = befPardotURL;
@@ -211,6 +212,12 @@ class Businessinquiryform {
     }
 
     dataObj['pageurl'] = pageURL;
+
+    // Send Visitor Params
+    const visitorId = storageUtil.getCookie('visitor_id857883');
+    if(visitorId) {
+      dataObj['pardot_cookie_id'] = visitorId;
+    }
 
     ajaxWrapper.getXhrObj({
       url: servletPath,

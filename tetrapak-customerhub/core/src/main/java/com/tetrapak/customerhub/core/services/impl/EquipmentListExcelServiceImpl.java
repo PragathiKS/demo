@@ -97,12 +97,14 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			response.setHeader(CustomerHubConstants.CONTENT_DISPOSITION,
 					CustomerHubConstants.ATTACHMENT_FILENAME + CustomerHubConstants.EQUALS_CHAR + 
 					getCurrentDate() + CustomerHubConstants.SPACE + CSV_FILE_NAME);
-			response.setCharacterEncoding("UTF-8");
 			ServletOutputStream csvFileOutputStream = response.getOutputStream();
 			StringBuilder csvFileContent = new StringBuilder();
 			String[][] headerRowArray = getColumnHeaderArray();
 			String[] headerRow = headerRowArray[0];
-			csvFileContent.append(CustomerHubConstants.CSV_COMMA_SEPARATOR).append(CustomerHubConstants.NEWLINE);
+			csvFileContent
+					.append(CustomerHubConstants.CSV_BYTE_ORDER_MARK)
+					.append(CustomerHubConstants.CSV_COMMA_SEPARATOR)
+					.append(CustomerHubConstants.NEWLINE);
 			for (String columnHeading : headerRow) {
 				csvFileContent.append(columnHeading).append(CustomerHubConstants.COMMA);
 				LOGGER.debug("Equipment list CSV File Column heading : {}", columnHeading);
@@ -111,7 +113,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			for (Equipments equipment : equipments) {
 				csvFileContent.append(convertToCSVRow(equipment));
 			}
-			csvFileOutputStream.write(csvFileContent.toString().getBytes());
+			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_16LE));
 			csvFileOutputStream.flush();
 			csvFileOutputStream.close();
 			return true;
