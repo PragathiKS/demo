@@ -18,6 +18,7 @@
                "principleObjectives":"cuhu.plantmastertrainings.principleObjectives",
                "targetGroups":"cuhu.plantmastertrainings.targetGroups",
                "duration":"cuhu.plantmastertrainings.duration",
+               "hours":"cuhu.plantmastertrainings.hours",
                "maxParticipants":"cuhu.plantmastertrainings.maxParticipants",
                "knowledgeRequirements":"cuhu.plantmastertrainings.knowledgeRequirements",
                "noOfParticipantsLabel":"cuhu.plantmastertrainings.noOfParticipants",
