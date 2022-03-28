@@ -165,8 +165,12 @@
         label {
             @include line-height($font-l, $font-baseline);
             @include margin-top($margin-md);
-            font-weight: 500;
             color: $color-text;
+            font-weight: 500;
+
+            &.tpatom-checkbox__label {
+                font-weight: 400;
+            }
         }
 
         &--error {
