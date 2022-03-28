@@ -54,8 +54,7 @@ function _getEngineeringLicensesData() {
         this.cache.engLicensesDataArr = res.data;
         this.renderEngLicensesDesc();
         this.renderLicenseHolders({removable: false});
-        this.cache.$contentWrapper.removeClass('d-none');
-        this.cache.$spinner.addClass('d-none');
+        this.showContent();
       }).fail((e) => {
         logger.error(e);
       });
