@@ -380,7 +380,7 @@ class EquipmentDetails {
   showDisabledButton(){
     const buttonName = this.root.find('.js-equipment-details__req-make-update');
     buttonName.attr('disabled','disabled');
-    buttonName.append('<i class="icon icon-Chevron_Right"></i>');
+    buttonName.append('<i class="icon icon-Loader"></i>');
   }
 
   removeDisabledButton(){
