@@ -139,7 +139,7 @@ class PlantMasterLicensesEngineering {
 
     $newHolderForms.each((idx, formEl) => {
       const $newHolderForm = $(formEl);
-      const $requiredFormElements = $newHolderForm.find('input[required]:visible');
+      const $requiredFormElements = $newHolderForm.find('input[required]');
       const $licensesCheckboxGroup = $newHolderForm.find('.js-tp-aip-licenses__checkbox-group');
       const $selectedLicenses = $licensesCheckboxGroup.find('input:checked');
       const user = {

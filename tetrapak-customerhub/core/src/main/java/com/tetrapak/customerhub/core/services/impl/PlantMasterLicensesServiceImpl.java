@@ -305,8 +305,8 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         String usersHTMLasString = "<h1>TODO</h1>";
         StringBuilder outputHtml = new StringBuilder();
         for (EngineeringLicenseFormBean.Users user : users) {
-            String substitutedHML = usersHTMLasString.replace("NAME", user.getName());
-            substitutedHML = substitutedHML.replace("DATE", user.getDate());
+            String substitutedHML = usersHTMLasString.replace("NAME", user.getLicenseHolderName());
+            substitutedHML = substitutedHML.replace("DATE", user.getActivationDate());
             substitutedHML = substitutedHML.replace("LICENSES", user.getLicenses().toString());
             outputHtml.append(substitutedHML);
         }
