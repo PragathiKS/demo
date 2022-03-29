@@ -273,8 +273,6 @@ class EquipmentDetails {
         serialNumber: this.cache.data.serialNumber
       };
 
-      /* eslint-disable no-console */
-      console.log(this.cache.equipmentStatuses);
       const fields = Object.keys(this.cache.formData).filter(key => !key.startsWith('old'));
       this.cache.formFields = fields.map(key => ({ [key]: this.cache.formData[key] }));
       const trackingFormData = this.getFormFieldsArr(this.cache.formFields);
@@ -285,6 +283,7 @@ class EquipmentDetails {
     this.root.on('click', '.js-equipment-details__req-make-update',  () => {
       this.cache.$spinner.removeClass('d-none');
       const submitApi = this.cache.submitApi;
+      this.showDisabledButton();
 
       auth.getToken(({ data: authData }) => {
         ajaxWrapper
@@ -310,8 +309,10 @@ class EquipmentDetails {
             const $heading = $('.js-update-modal').find('.tp-equipment-details__modal-header').find('h2').text().trim();
             const trackingFormData = this.getFormFieldsArr(this.cache.formFields);
             this.trackFormComplete($heading, 'Step 2', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, trackingFormData);
+            this.removeDisabledButton();
             this.renderEquipInfoCard({confirmed: true});
           }).fail(() => {
+            this.removeDisabledButton();
             this.cache.$content.removeClass('d-none');
             this.cache.$spinner.addClass('d-none');
           });
@@ -374,6 +375,17 @@ class EquipmentDetails {
 
   trackFormError(formName, step, equipment, formErrors) {
     trackFormError(formName, step, equipment, formErrors);
+  }
+
+  showDisabledButton(){
+    const buttonName = this.root.find('.js-equipment-details__req-make-update');
+    buttonName.attr('disabled','disabled');
+    buttonName.append('<i class="icon icon-Loader"></i>');
+  }
+
+  removeDisabledButton(){
+    this.root.find('.js-equipment-details__req-make-update').removeAttr('disabled');
+    this.root.find('.js-equipment-details__req-make-update i').remove();
   }
 
   addErrorMsg(el) {
