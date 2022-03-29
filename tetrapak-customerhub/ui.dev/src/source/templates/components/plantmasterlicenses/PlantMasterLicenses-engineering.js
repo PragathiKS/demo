@@ -83,6 +83,7 @@ class PlantMasterLicensesEngineering {
     this.cache.$contentWrapper = aipLicenseObj.find('.js-aip-licenses__wrapper');
     this.cache.$engContentWrapper = aipLicenseObj.find('.js-tp-aip-licenses__eng');
     this.cache.$addUserBtn = this.root.find('.js-tp-aip-licenses-eng__add-user');
+    this.cache.$submitBtn = this.root.find('.js-tp-aip-licenses-eng__btn');
     this.cache.$licenseHoldersEl = this.root.find('.js-tp-aip-licenses-eng__holders-wrap');
     this.cache.$engLicensesDesc = this.root.find('.js-tp-aip-licenses-eng__description');
     this.cache.engLicensesDataArr = [];
@@ -115,6 +116,7 @@ class PlantMasterLicensesEngineering {
     const { $licenseHoldersEl } = this.cache;
     const $newHolderForms = $licenseHoldersEl.find('.js-tp-aip-licenses-eng__new-holder');
     const $commentsInput = this.root.find('#engineeringLicensesComments');
+    const $submitBtnWrapper = this.cache.$submitBtn.parent();
     let allFormsValid = true;
     const formObj = {};
     const users = [];
@@ -129,6 +131,7 @@ class PlantMasterLicensesEngineering {
     });
 
     if (!allFormsValid) {
+      this.addErrorMsg($submitBtnWrapper);
       return;
     }
 
@@ -162,6 +165,7 @@ class PlantMasterLicensesEngineering {
       .getXhrObj({
         url: this.cache.submitApi,
         method: ajaxMethods.POST,
+        headers: { 'licenseType': 'engineering' },
         cache: true,
         contentType: 'application/json; charset=utf-8',
         dataType:'json',
@@ -186,7 +190,7 @@ class PlantMasterLicensesEngineering {
       $holderForm.remove();
     });
 
-    this.root.on('click', '.js-tp-aip-licenses-eng__btn', this.submitRequestForm);
+    this.cache.$submitBtn.on('click', this.submitRequestForm);
   }
 
   validateLicenseHolder($newHolderForm) {
@@ -198,6 +202,7 @@ class PlantMasterLicensesEngineering {
     const selectedLicenses = $licensesCheckboxGroup.find('input:checked');
 
     if (!selectedLicenses.length) {
+      isFormValid = false;
       this.addErrorMsg($licensesCheckboxGroup);
     }
 

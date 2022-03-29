@@ -36,12 +36,8 @@
             background-color: $color-wild-sand;
         }
 
-        &__acc-btn {
-            @include font-size($font-md);
-            @include line-height($font-l, $font-md);
-            @include margin-top($margin-sm);
-            background-color: $color-wild-sand;
-            font-weight: 500;
+        &__btn {
+            @include margin-bottom($margin-sm);
         }
 
         &__col-title {
@@ -53,7 +49,7 @@
         }
 
         &__subheading {
-            @include margin-bottom($margin-md);
+            @include margin-bottom($margin-l);
         }
 
         &__info-card {
@@ -94,7 +90,7 @@
         }
 
         input {
-            &[type="date"] {
+            &[type='date'] {
                 @include max-width(224px);
             }
         }

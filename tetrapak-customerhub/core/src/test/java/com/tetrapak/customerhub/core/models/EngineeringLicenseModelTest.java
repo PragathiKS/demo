@@ -61,6 +61,7 @@ public class EngineeringLicenseModelTest {
         assertEquals("Unexpected value","Placeholder",engineeringLicenseModel.getActivationDatePlaceholder());
         assertEquals("Unexpected value","License selection title",engineeringLicenseModel.getLicenseSelectionSectionTitle());
         assertEquals("Unexpected value","Add user",engineeringLicenseModel.getAddUser());
+        assertEquals("Unexpected value","Remove user",engineeringLicenseModel.getRemoveUser());
         assertEquals("Unexpected value","Comments",engineeringLicenseModel.getComments());
         assertEquals("Unexpected value","Submit",engineeringLicenseModel.getSubmitButton());
         assertEquals("Unexpected value","License",engineeringLicenseModel.getLicenseDescriptions());
@@ -71,6 +72,9 @@ public class EngineeringLicenseModelTest {
         assertEquals("Unexpected value","Success Message Heading",engineeringLicenseModel.getSuccessMessageHeading());
         assertEquals("Unexpected value","Users",engineeringLicenseModel.getUsers());
         assertEquals("Unexpected value","Title",engineeringLicenseModel.getTitle());
+        assertEquals("Unexpected value","Input field error",engineeringLicenseModel.getInputFieldError());
+        assertEquals("Unexpected value","Checkbox field error",engineeringLicenseModel.getCheckboxFieldError());
+        assertEquals("Unexpected value","Correct forms error",engineeringLicenseModel.getCorrectFormsError());
     }
 
 }

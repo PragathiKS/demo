@@ -24,6 +24,7 @@ public class EngineeringLicenseModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(EngineeringLicenseModel.class);
     
     public static final String TITLE_JSON_KEY = "title";
+    public static final String DESCRIPTION_JSON_KEY = "description";
     public static final String USER_DETAILS_SECTION_TITLE_JSON_KEY = "userDetailsSectionTitle";
     public static final String NAME_JSON_KEY = "name";
     public static final String NAME_PLACEHOLDER_JSON_KEY = "namePlaceholder";
@@ -31,6 +32,7 @@ public class EngineeringLicenseModel {
     public static final String ACTIVATION_DATE_PLACEHOLDER_JSON_KEY = "activationDatePlaceholder";
     public static final String LICENSE_SELECTION_SECTION_TITLE_JSON_KEY = "licenseSelectionSectionTitle";
     public static final String ADD_USER_JSON_KEY = "addUser";
+    public static final String REMOVE_USER_JSON_KEY = "removeUser";
     public static final String COMMENTS_JSON_KEY = "comments";
     public static final String SUBMIT_BUTTON_JSON_KEY = "submitButton";
     public static final String LICENSE_DESCRIPTIONS_JSON_KEY = "licenseDescriptions";
@@ -85,6 +87,11 @@ public class EngineeringLicenseModel {
     @Expose(serialize = true)
     @SerializedName(ADD_USER_JSON_KEY)
     private String addUser;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    @SerializedName(REMOVE_USER_JSON_KEY)
+    private String removeUser;
     
     @ValueMapValue
     @Expose(serialize = true)
@@ -113,8 +120,20 @@ public class EngineeringLicenseModel {
 
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(SUCCESS_MESSAGE_DESCRIPTION_JSON_KEY)
+    @SerializedName(DESCRIPTION_JSON_KEY)
     private String description;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    private String inputFieldError;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    private String checkboxFieldError;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    private String correctFormsError;
     
     @ValueMapValue
     private String subject;
@@ -167,6 +186,10 @@ public class EngineeringLicenseModel {
     public String getAddUser() {
         return addUser;
     }
+
+    public String getRemoveUser() {
+        return removeUser;
+    }
     
     public String getComments() {
         return comments;
@@ -206,5 +229,17 @@ public class EngineeringLicenseModel {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getInputFieldError() {
+        return inputFieldError;
+    }
+
+    public String getCheckboxFieldError() {
+        return checkboxFieldError;
+    }
+
+    public String getCorrectFormsError() {
+        return correctFormsError;
     }
 }

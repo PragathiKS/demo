@@ -127,6 +127,12 @@
                                                 fieldLabel="Add user button label (i18N key)"
                                                 name="./engineeringLicense/addUser"
                                                 required="true"/>
+                                            <removeUser
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Remove user button label (i18N key)"
+                                                name="./engineeringLicense/removeUser"
+                                                required="true"/>
                                             <comments
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -156,6 +162,24 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Success message description text (i18N key)"
                                                 name="./engineeringLicense/successMessageDescription"
+                                                required="true"/>
+                                            <inputFieldError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Input field error text (i18N key)"
+                                                name="./engineeringLicense/inputFieldError"
+                                                required="true"/>
+                                            <checkboxFieldError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Checkbox field error text (i18N key)"
+                                                name="./engineeringLicense/checkboxFieldError"
+                                                required="true"/>
+                                            <correctFormsError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Correct forms error text (i18N key)"
+                                                name="./engineeringLicense/correctFormsError"
                                                 required="true"/>
                                         </items>
                                     </editor>

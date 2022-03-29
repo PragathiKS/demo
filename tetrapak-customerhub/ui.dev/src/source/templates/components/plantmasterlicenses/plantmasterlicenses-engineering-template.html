@@ -1,9 +1,7 @@
 <sly data-sly-template.plantmasterlicenses_engineering_template="${@ data, flag}">
     <div class="tp-aip-licenses-eng">
         <div class="tp-aip-licenses-eng__subheading">
-            <p>
-                Please remember that the users specified who will be working in engineering projects must have completed first the relevant training in the PLC, HMI or MES platforms they have a license for. Information about the licenses
-            </p>
+            <p>${data.description @ i18n}</p>
         </div>
 
         <div class="tp-aip-licenses-eng__form js-tp-aip-licenses-eng__form">
@@ -25,8 +23,10 @@
 
                         <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
                             <sly data-sly-use.btn="/apps/commons/components/atoms/button/button-template.html"
-                                 data-sly-call="${btn.button_template @text=data.submitButton,modifier='primary',baseClass='tp-aip-licenses-site__btn',jsClass='js-tp-aip-licenses-eng__btn',iconClass='icon-Chevron_Right'}" >
+                                 data-sly-call="${btn.button_template @text=data.submitButton,modifier='primary',baseClass='tp-aip-licenses-eng__btn',jsClass='js-tp-aip-licenses-eng__btn',iconClass='icon-Chevron_Right'}" >
                             </sly>
+
+                            <div class="error-msg js-tp-aip-licenses__error-msg-required">${data.correctFormsError @ i18n}</div>
                         </div>
                     </div>
                 </div>

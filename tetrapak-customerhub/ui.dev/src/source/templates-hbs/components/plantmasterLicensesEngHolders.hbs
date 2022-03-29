@@ -29,7 +29,7 @@
         <div class="col-lg-6 tp-aip-licenses-eng__holder-col">
             <p class="tp-aip-licenses-eng__col-title">{{i18n key=i18nKeys.licenseSelectionSectionTitle}}</p>
 
-            <div class="tp-aip-licenses__form-element js-tp-aip-licenses__checkbox-group js-tp-aip-licenses__form-element">
+            <div class="tp-aip-licenses__form-element tp-aip-licenses-eng__checkbox-group js-tp-aip-licenses__checkbox-group js-tp-aip-licenses__form-element">
                 {{#each licenses}}
                     <div class="tp-aip__form-checkbox-group">
                         {{> atoms/checkbox/checkbox
@@ -42,7 +42,7 @@
 
                     </div>
                 {{/each}}
-                <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.inputFieldError}}</div>
+                <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.checkboxFieldError}}</div>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
     {{#if removable}}
         <div class="tp-aip-licenses-eng__remove">
             <button type="button" class="tpatom-btn tpatom-btn--transparent tp-aip-licenses-eng__remove-user js-tp-aip-licenses-eng__remove-user">
-                <span class="tpatom-btn__text">${data.removeUser @ i18n}</span><i class="icon icon-My_Euipment_Bin_X"></i>
+                <span class="tpatom-btn__text">{{i18n key=i18nKeys.removeUser}}</span><i class="icon icon-My_Euipment_Bin_X"></i>
             </button>
         </div>
     {{/if}}
