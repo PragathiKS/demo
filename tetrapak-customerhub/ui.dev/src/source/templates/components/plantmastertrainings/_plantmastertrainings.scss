@@ -9,8 +9,15 @@
     }
 
     &__heading {
-        @include font-size($font-xl);
-        @include line-height(40px, $font-xl);
+        @include line-height($font-xl, $font-l);
+        @include font-size($font-l);
+        font-weight: 400;
+
+        @media #{$desktop} {
+            @include line-height(40px, $font-xl);
+            @include font-size($font-xl);
+            font-weight: 700;
+        }
     }
 
     &__acc-item {
