@@ -26,7 +26,7 @@
 
             &.active {
                 color: $color-congress-blue;
-                //text-shadow: 0 0 .65px $color-congress-blue, 0 0 .65px $color-congress-blue;
+                font-weight: 700;
             }
         }
     }
@@ -110,6 +110,7 @@
         &[aria-expanded='true'] {
             font-weight: 700;
             background-color: $color-wild-sand;
+            color: inherit;
 
             i {
                 transform: rotate(180deg);
@@ -120,9 +121,14 @@
             }
         }
 
+        &[aria-expanded='false'] {
+            &:hover {
+                color: $color-congress-blue;
+            }
+        }
+
         &:hover,
         &:focus {
-            color: $color-congress-blue;
             text-decoration: none;
         }
     }

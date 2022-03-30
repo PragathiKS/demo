@@ -1,5 +1,6 @@
 <sly data-sly-template.plantmastertrainings_template="${@data, flag}">
     <div class="tp-card tp-aip tp-aip-trainings"
+         data-sly-test="${data.isPublishEnvironment}"
          data-trainings-api="${data.trainingDetailsApi}"
          data-submit-api="${data.componentPath}${data.componentPathExtension}"
          data-email="${data.userEmailAddress}"
