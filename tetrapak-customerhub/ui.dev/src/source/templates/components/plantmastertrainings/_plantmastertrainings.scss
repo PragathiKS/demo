@@ -129,6 +129,12 @@
 
     &__acc-txt-block {
         @include margin-bottom($margin-l);
+
+        p {
+            &:not(.tp-aip__acc-block-title) {
+                @include margin-bottom($margin-sm);
+            }
+        }
     }
 
     &__acc-block-title {

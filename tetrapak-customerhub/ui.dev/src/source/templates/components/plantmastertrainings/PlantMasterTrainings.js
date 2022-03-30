@@ -10,7 +10,7 @@ function _processTrainingsData(data) {
 
   data.forEach((item) => {
     const {learningItemDetail, name, id} = item;
-    const {itemGoals, audience, duration, maximumEnrollments} = learningItemDetail;
+    const {itemGoals, audience, duration, maximumEnrollments, comments} = learningItemDetail;
 
     processedDataArr.push({
       name,
@@ -19,6 +19,7 @@ function _processTrainingsData(data) {
       itemGoals,
       audience,
       duration,
+      comments,
       maximumEnrollments
     });
   });
