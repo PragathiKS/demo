@@ -108,9 +108,9 @@
         }
 
         &[aria-expanded='true'] {
+            color: inherit;
             font-weight: 700;
             background-color: $color-wild-sand;
-            color: inherit;
 
             i {
                 transform: rotate(180deg);
