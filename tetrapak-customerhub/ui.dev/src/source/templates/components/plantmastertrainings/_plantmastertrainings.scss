@@ -1,6 +1,7 @@
 // Generic AIP Tabs and Accordion styling
 .tp-aip {
     $this: &;
+    $color-success: #8dc63f;
 
     &__header-wrapper {
         @include margin-bottom($margin-l);
