@@ -67,6 +67,7 @@ class CotsSupport {
     this.cache.files = [];
     this.cache.affectedSystem = [];
     this.cache.productInvolved = [];
+    this.cache.formData = {};
     try {
       this.cache.i18nKeys = JSON.parse(configJson);
     } catch (e) {
@@ -170,6 +171,8 @@ class CotsSupport {
         }
       }
 
+      this.cache.formData = formData;
+
       this.showSpinner();
 
       ajaxWrapper
@@ -179,10 +182,10 @@ class CotsSupport {
           cache: true,
           processData: false,
           contentType: false,
-          data: formData,
+          data: this.cache.formData,
           showLoader: true
         }).done(() => {          
-          this.trackFormComplete(formData);
+          this.trackFormComplete();
           this.renderSuccessMessage();
         }).fail(() => {
           this.cache.$contentWrapper.removeClass('d-none');
@@ -190,7 +193,7 @@ class CotsSupport {
         });
     }else {
       const formName = this.root.find('.js-tp-cots-support__title').text().trim();   
-      trackFormError(formName, formErrors);
+      this.trackFormError(formName, formErrors);
     }
   };
 
@@ -275,8 +278,13 @@ class CotsSupport {
     trackFormStart(formName);
   }
 
-  trackFormComplete(formData) {
+  trackFormError (formName, formErrors){
+    trackFormError(formName, formErrors);
+  }
+
+  trackFormComplete() {
     const formFields = [];
+    const formData = this.cache.formData;
     for(const data of formData.entries()) {
       let formFieldName, formFieldValue;
       const $el = $('#' + data[0]);
