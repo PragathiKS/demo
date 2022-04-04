@@ -25,6 +25,8 @@ describe('CotsSupport', function () {
     this.setFilterFilesSpy = sinon.spy(this.cotsSupport, 'filterFiles');
     this.renderSuccessMessageSpy = sinon.spy(this.cotsSupport,'renderSuccessMessage');
     this.addErrorMsgSpy = sinon.spy(this.cotsSupport, 'addErrorMsg');
+    this.trackFormStartSpy = sinon.spy(this.cotsSupport, 'trackFormStart');
+    this.trackFormErrorSpy = sinon.spy(this.cotsSupport, 'trackFormError');
     this.submitFormSpy = sinon.spy(this.cotsSupport, 'submitForm');
     this.cotsSupport.init();
   });
@@ -41,10 +43,18 @@ describe('CotsSupport', function () {
     this.renderSuccessMessageSpy.restore();
     this.submitFormSpy.restore();
     this.addErrorMsgSpy.restore();
+    this.trackFormStartSpy.restore();
+    this.trackFormErrorSpy.restore();
   });
 
   it('should initialize', function (done) {
     expect(this.initSpy.called).to.be.true;
+    done();
+  });
+
+  it('should form start track', function (done) {
+    $('#company').trigger('focus');
+    expect(this.trackFormStartSpy.called).to.be.true;
     done();
   });
 
@@ -56,6 +66,7 @@ describe('CotsSupport', function () {
   it('should render form validation errors', function (done) {
     $('.js-tp-cots-support__submit').trigger('click');
     expect(this.renderSuccessMessageSpy.called).to.be.false;
+    expect(this.trackFormErrorSpy.called).to.be.true;
     expect(this.addErrorMsgSpy.called).to.be.true;
     done();
   });
@@ -123,7 +134,7 @@ describe('CotsSupport', function () {
     $('.js-tp-cots-support__submit').trigger('click');
     expect(this.submitFormSpy.called).to.be.true;
     done();
-  });
+  });  
 
   it('should handle config read error', function () {
     $(document.body).empty().html(cotsSupportTemplate());
