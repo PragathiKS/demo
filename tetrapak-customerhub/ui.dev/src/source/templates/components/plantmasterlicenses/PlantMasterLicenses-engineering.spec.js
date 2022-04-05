@@ -4,7 +4,6 @@ import PlantMasterEngLicensesData from './data/plantMasterLicenses-engineering.j
 import PlantMasterLicensesTemplate from '../../../test-templates-hbs/PlantMasterLicenses.hbs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
-import plantMasterTrainingsTemplate from "../../../test-templates-hbs/plantMasterTrainings.hbs";
 import {render} from "../../../scripts/utils/render";
 
 describe('PlantMasterLicensesEngineering', function () {
@@ -54,7 +53,7 @@ describe('PlantMasterLicensesEngineering', function () {
   });
 
   after(function () {
-    $(document.body).empty().html(plantMasterTrainingsTemplate());
+    $(document.body).empty();
     this.initSpy.restore();
     this.bindEventsSpy.restore();
     this.getEngineeringLicensesDataSpy.restore();
