@@ -94,6 +94,9 @@ public class PlantMasterTrainingsModel {
         /** The input error message. */
         INPUT_ERROR_MESSAGE("inputErrorMsg"),
 
+        /** The input format error message. */
+        INPUT_FORMAT_ERROR_MESSAGE("inputFormatErrorMsg"),
+
         /** The confirmation error message. */
         CONFIRMATION_ERROR_MESSAGE("confirmationErrorMsg"),
 
@@ -245,6 +248,10 @@ public class PlantMasterTrainingsModel {
     @ValueMapValue
     private String confirmationErrorMsg;
 
+    /** The input format error message label. */
+    @ValueMapValue
+    private String inputFormatErrorMsg;
+
     /** The success message. */
     @ValueMapValue
     private String successMessage;
@@ -350,6 +357,7 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_TEXT.getI18nJsonKey(), getConfirmationText());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.INPUT_ERROR_MESSAGE.getI18nJsonKey(), getInputErrorMsg());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.INPUT_FORMAT_ERROR_MESSAGE.getI18nJsonKey(), getInputFormatErrorMsg());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_ERROR_MESSAGE.getI18nJsonKey(), getConfirmationErrorMsg());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUCCESS_MESSAGE.getI18nJsonKey(), getSuccessMessage());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
@@ -574,6 +582,15 @@ public class PlantMasterTrainingsModel {
      */
     public String getConfirmationErrorMsg() {
         return confirmationErrorMsg;
+    }
+
+    /**
+     * Gets the input format error msg.
+     *
+     * @return the format input error msg
+     */
+    public String getInputFormatErrorMsg() {
+        return inputFormatErrorMsg;
     }
 
     /**

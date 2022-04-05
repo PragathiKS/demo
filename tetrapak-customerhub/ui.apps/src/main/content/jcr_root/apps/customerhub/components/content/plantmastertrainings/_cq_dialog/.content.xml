@@ -141,6 +141,12 @@
 										fieldLabel="Confirmation checkbox error message (i18N key)"
 										name="./confirmationErrorMsg"
 										required="true"/>
+									<inputFormatErrorMsg
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Input format error message (i18N key)"
+										name="./inputFormatErrorMsg"
+										required="true"/>
 									<successMessage
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

@@ -28,10 +28,12 @@
                     {{> atoms/input/input
                             labelText=i18nKeys.preferredDateLabel
                             placeholder=i18nKeys.preferredDatePlaceholder
+                            eleClasses="js-aip-trainings__date-input"
                             name=(concat "preferredDate-" index)
                             required="true"
                     }}
                     <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-format">{{i18n key=i18nKeys.inputFormatErrorMsg}}</div>
                 </div>
 
                 <div class="js-aip__form-element tp-aip__form-element">

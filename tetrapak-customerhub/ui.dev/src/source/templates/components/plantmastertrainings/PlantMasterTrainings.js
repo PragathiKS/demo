@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
+import moment from 'moment';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
@@ -51,7 +52,20 @@ function _handleFormSubmit(formEl) {
   $requiredFormElements.each((idx, el) => {
     const $el = $(el);
 
-    if ((['text', 'number', 'date'].includes($el.attr('type')) && !$.trim($el.val())) || $el.attr('type') === 'checkbox' && !$el.is(':checked')) {
+    if (['text', 'number'].includes($el.attr('type')) && !$.trim($el.val())) {
+      isFormValid = false;
+      $this.addErrorMsg(el, '.js-aip__error-msg-required');
+    }
+
+    if ($el.hasClass('js-aip-trainings__date-input') && $.trim($el.val())) {
+      const date = moment($el.val(), 'YYYY-MM-DD', true);
+      if (!date.isValid()) {
+        isFormValid = false;
+        $this.addErrorMsg(el, '.js-aip__error-msg-format');
+      }
+    }
+
+    if ($el.attr('type') === 'checkbox' && !$el.is(':checked')) {
       isFormValid = false;
       $this.addErrorMsg(el, '.js-aip__error-msg-required');
     }
