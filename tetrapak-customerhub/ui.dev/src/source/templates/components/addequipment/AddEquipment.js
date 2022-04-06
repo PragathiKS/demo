@@ -343,6 +343,11 @@ class AddEquipment {
         formData.append('files', $this.cache.files[i]);
       }
     }
+
+    const statusId = formData.get('addEquipmentEquipmentStatus');
+    const statusDesc = $this.cache.statusData.find(el => statusId === el.key)?.desc;
+    formData.set('addEquipmentEquipmentStatus', statusDesc);
+
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({

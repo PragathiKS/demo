@@ -1,6 +1,7 @@
 // Generic AIP Tabs and Accordion styling
 .tp-aip {
     $this: &;
+    $color-success: #8dc63f;
 
     &__header-wrapper {
         @include margin-bottom($margin-l);
@@ -9,8 +10,15 @@
     }
 
     &__heading {
-        @include font-size($font-xl);
-        @include line-height(40px, $font-xl);
+        @include line-height($font-xl, $font-l);
+        @include font-size($font-l);
+        font-weight: 400;
+
+        @media #{$desktop} {
+            @include line-height(40px, $font-xl);
+            @include font-size($font-xl);
+            font-weight: 700;
+        }
     }
 
     &__acc-item {
@@ -26,7 +34,7 @@
 
             &.active {
                 color: $color-congress-blue;
-                //text-shadow: 0 0 .65px $color-congress-blue, 0 0 .65px $color-congress-blue;
+                font-weight: 700;
             }
         }
     }
@@ -108,6 +116,7 @@
         }
 
         &[aria-expanded='true'] {
+            color: inherit;
             font-weight: 700;
             background-color: $color-wild-sand;
 
@@ -120,15 +129,26 @@
             }
         }
 
+        &[aria-expanded='false'] {
+            &:hover {
+                color: $color-congress-blue;
+            }
+        }
+
         &:hover,
         &:focus {
-            color: $color-congress-blue;
             text-decoration: none;
         }
     }
 
     &__acc-txt-block {
         @include margin-bottom($margin-l);
+
+        p {
+            &:not(.tp-aip__acc-block-title) {
+                @include margin-bottom($margin-sm);
+            }
+        }
     }
 
     &__acc-block-title {
@@ -165,8 +185,12 @@
         label {
             @include line-height($font-l, $font-baseline);
             @include margin-top($margin-md);
-            font-weight: 500;
             color: $color-text;
+            font-weight: 500;
+
+            &.tpatom-checkbox__label {
+                font-weight: 400;
+            }
         }
 
         &--error {

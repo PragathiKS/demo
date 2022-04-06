@@ -1,5 +1,6 @@
 <sly data-sly-template.plantmastertrainings_template="${@data, flag}">
     <div class="tp-card tp-aip tp-aip-trainings"
+         data-sly-test="${data.isPublishEnvironment}"
          data-trainings-api="${data.trainingDetailsApi}"
          data-submit-api="${data.componentPath}${data.componentPathExtension}"
          data-email="${data.userEmailAddress}"
@@ -15,9 +16,9 @@
 
         <div class="js-aip-trainings__wrapper d-none">
             <div class="tp-aip__header-wrapper">
-                <h2 class="tp-aip__heading">
+                <h1 class="tp-aip__heading">
                     ${"cuhu.plantmastertrainings.title" @i18n}
-                </h2>
+                </h1>
             </div>
 
             <nav class="tp-aip__nav">

@@ -27,9 +27,9 @@
                 <div class="js-aip__form-element tp-aip__form-element tp-aip__form-element-md">
                     {{> atoms/input/input
                             labelText=i18nKeys.preferredDateLabel
+                            placeholder=i18nKeys.preferredDatePlaceholder
                             name=(concat "preferredDate-" index)
                             required="true"
-                            type="date"
                     }}
                     <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
@@ -52,6 +52,7 @@
                             jsClass="js-aip-trainings__consent-cb"
                             uniqueKey=(concat "consent-" index)
                     }}
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.confirmationErrorMsg}}</div>
                 </div>
 
                 {{> atoms/input/input

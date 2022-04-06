@@ -82,6 +82,9 @@ public class PlantMasterTrainingsModel {
         /** The preferred date. */
         PREFERRED_DATE_LABEL("preferredDateLabel"),
 
+        /** The preferred date. */
+        PREFERRED_DATE_PLACEHOLDER("preferredDatePlaceholder"),
+
         /** The comments. */
         COMMENTS_LABEL("commentsLabel"),
 
@@ -90,6 +93,9 @@ public class PlantMasterTrainingsModel {
 
         /** The input error message. */
         INPUT_ERROR_MESSAGE("inputErrorMsg"),
+
+        /** The confirmation error message. */
+        CONFIRMATION_ERROR_MESSAGE("confirmationErrorMsg"),
 
         /** The success message. */
         SUCCESS_MESSAGE("successMessage"),
@@ -215,6 +221,10 @@ public class PlantMasterTrainingsModel {
     @ValueMapValue
     private String preferredDateLabel;
 
+    /** The preferred date placeholder. */
+    @ValueMapValue
+    private String preferredDatePlaceholder;
+
     /** The comments label. */
     @ValueMapValue
     private String commentsLabel;
@@ -230,6 +240,10 @@ public class PlantMasterTrainingsModel {
     /** The input error message label. */
     @ValueMapValue
     private String inputErrorMsg;
+
+    /** The confirmation error message label. */
+    @ValueMapValue
+    private String confirmationErrorMsg;
 
     /** The success message. */
     @ValueMapValue
@@ -330,10 +344,13 @@ public class PlantMasterTrainingsModel {
                 getPreferredLocationLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_LABEL.getI18nJsonKey(),
                 getPreferredDateLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_PLACEHOLDER.getI18nJsonKey(),
+                getPreferredDatePlaceholder());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.COMMENTS_LABEL.getI18nJsonKey(), getCommentsLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_TEXT.getI18nJsonKey(), getConfirmationText());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.INPUT_ERROR_MESSAGE.getI18nJsonKey(), getInputErrorMsg());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_ERROR_MESSAGE.getI18nJsonKey(), getConfirmationErrorMsg());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUCCESS_MESSAGE.getI18nJsonKey(), getSuccessMessage());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBJECT.getI18nJsonKey(), getSubject());
@@ -506,6 +523,15 @@ public class PlantMasterTrainingsModel {
     }
 
     /**
+     * Gets the preferred date placeholder.
+     *
+     * @return the preferred date placeholder
+     */
+    public String getPreferredDatePlaceholder() {
+        return preferredDatePlaceholder;
+    }
+
+    /**
      * Gets the comments label.
      *
      * @return the comments label
@@ -539,6 +565,15 @@ public class PlantMasterTrainingsModel {
      */
     public String getInputErrorMsg() {
         return inputErrorMsg;
+    }
+
+    /**
+     * Gets the confirmation error msg.
+     *
+     * @return the confirmation error msg
+     */
+    public String getConfirmationErrorMsg() {
+        return confirmationErrorMsg;
     }
 
     /**

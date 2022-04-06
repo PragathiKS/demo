@@ -5,6 +5,7 @@ import { REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
 import { getI18n } from '../../../scripts/common/common';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import { trackFormStart, trackFormComplete, trackFormError } from './CotsSupport.analytics.js';
 
 function _renderCotsSupportForm() {
   render.fn(
@@ -60,11 +61,13 @@ class CotsSupport {
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.username = decodeURI(this.root.data('username'));
     this.cache.userEmailAddress = this.root.data('email');
+    this.cache.firstInteract = false;
     this.cache.filesMaxSize = 0;
     const configJson = this.root.find('.js-tp-cots-support__config').text();
     this.cache.files = [];
     this.cache.affectedSystem = [];
     this.cache.productInvolved = [];
+    this.cache.formData = {};
     try {
       this.cache.i18nKeys = JSON.parse(configJson);
     } catch (e) {
@@ -133,12 +136,16 @@ class CotsSupport {
     e.preventDefault();
     let isFormValid = true;
     this.removeAllErrorMessages();
-
+    const formErrors = [];
     const $requiredFormElements = this.root.find(':text[required]:visible, textarea[required]:visible, select[required]:visible');
     $requiredFormElements.each((idx, el) => {
       if (!$.trim($(el).val())) {
         isFormValid = false;
         this.addErrorMsg(el, '.js-tp-cots-support__error-msg-required');
+        formErrors.push({
+          formErrorMessage: $(el).closest('.js-tp-cots-support__form-element').find('.error-msg').text().trim(),
+          formErrorField: $(el).closest('.js-tp-cots-support__form-element').find('label').text().trim()
+        });
       }
     });
 
@@ -163,6 +170,9 @@ class CotsSupport {
           formData.append('files', this.cache.files[i]);
         }
       }
+
+      this.cache.formData = formData;
+
       this.showSpinner();
 
       ajaxWrapper
@@ -172,14 +182,18 @@ class CotsSupport {
           cache: true,
           processData: false,
           contentType: false,
-          data: formData,
+          data: this.cache.formData,
           showLoader: true
-        }).done(() => {
+        }).done(() => {          
+          this.trackFormComplete();
           this.renderSuccessMessage();
         }).fail(() => {
           this.cache.$contentWrapper.removeClass('d-none');
           this.cache.$spinner.addClass('d-none');
         });
+    }else {
+      const formName = this.root.find('.js-tp-cots-support__title').text().trim();   
+      this.trackFormError(formName, formErrors);
     }
   };
 
@@ -259,6 +273,50 @@ class CotsSupport {
     });
   }
 
+  trackFormStart() {
+    const formName = this.root.find('.js-tp-cots-support__title').text().trim();
+    trackFormStart(formName);
+  }
+
+  trackFormError (formName, formErrors){
+    trackFormError(formName, formErrors);
+  }
+
+  trackFormComplete() {
+    const formFields = [];
+    const formData = this.cache.formData;
+    for(const data of formData.entries()) {
+      let formFieldName, formFieldValue;
+      const $el = $('#' + data[0]);
+
+      if($el.length === 0){
+        if(data[0] === 'logQueryType'){
+          formFieldName = 'Request Type';
+          formFieldValue = data[1];
+        }else {
+          formFieldName = 'Files';
+          formFieldValue = 'Yes';
+        }
+      }else {
+        formFieldValue = $el.hasClass('analytiscField') ? data[1] : 'NA';
+      }
+      
+      formFields.push({
+        formFieldName: formFieldName ? formFieldName : $el.closest('.js-tp-cots-support__form-element').find('label').text().trim(),
+        formFieldValue: formFieldValue
+      });
+    }
+
+    if(this.cache.files.length === 0){
+      formFields.push({
+        formFieldName: 'Files',
+        formFieldValue: 'No'
+      });
+    }
+    const formName = this.root.find('.js-tp-cots-support__title').text().trim();
+    trackFormComplete(formName, formFields);
+  }
+
   bindEvents() {
     $(window.document).on('dragenter dragover drop', e => {
       this.dragAndDropPreventDefault(e);
@@ -277,6 +335,13 @@ class CotsSupport {
 
     this.root.on('click', '.js-tp-cots-support__drag-and-drop-file-remove-container', e => {
       this.removeFile(e);
+    });
+
+    this.root.on('focus', 'textarea, input, select', () => {
+      if (!this.cache.firstInteract) {
+        this.cache.firstInteract = true;
+        this.trackFormStart();
+      }
     });
 
   }

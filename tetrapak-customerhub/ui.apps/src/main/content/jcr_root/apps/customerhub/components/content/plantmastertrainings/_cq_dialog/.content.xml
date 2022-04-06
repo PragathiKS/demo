@@ -106,6 +106,12 @@
 										fieldLabel="Preferred Date label (i18N key)"
 										name="./preferredDateLabel"
 										required="true"/>
+									<preferreddateplaceholder
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Preferred Date placeholder (i18N key)"
+										name="./preferredDatePlaceholder"
+										required="true"/>
 									<comments
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -128,6 +134,12 @@
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Input error message (i18N key)"
 										name="./inputErrorMsg"
+										required="true"/>
+									<confirmationErrorMsg
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Confirmation checkbox error message (i18N key)"
+										name="./confirmationErrorMsg"
 										required="true"/>
 									<successMessage
 										jcr:primaryType="nt:unstructured"
