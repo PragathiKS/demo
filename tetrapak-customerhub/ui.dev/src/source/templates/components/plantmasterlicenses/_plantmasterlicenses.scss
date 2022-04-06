@@ -2,6 +2,17 @@
 $form-grp-margin: 12px;
 
 .tp-aip-licenses {
+    &__txt-block {
+        @include margin-bottom($margin-l);
+
+        h3 {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    }
+    
     &__info-card {
         @include padding($padding-md);
         @include margin-bottom($margin-l);

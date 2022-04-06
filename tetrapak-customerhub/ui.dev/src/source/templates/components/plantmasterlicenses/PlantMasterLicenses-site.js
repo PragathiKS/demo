@@ -5,11 +5,6 @@ import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 
-function _processSiteLicensesData(data) {
-  const processedDataArr = data.descriptions[0].body;
-  return processedDataArr;
-}
-
 
 function _renderSiteLicensesData() {
   render.fn({
@@ -40,7 +35,7 @@ function _getSiteLicensesData() {
         },
         showLoader: true
       }).done(res => {
-        this.cache.siteLicensesData = _processSiteLicensesData(res.data[0]);
+        this.cache.siteLicensesData = res.data;
         this.renderSiteLicensesData();
         this.cache.$sitecontentWrapper.removeClass('d-none');
       }).fail((e) => {
