@@ -25,7 +25,7 @@ function _renderEngLicensesDesc() {
 function _getLicenseCheckboxData(licensesDataArr) {
   const licenseCheckboxesArr = licensesDataArr.map(license => {
     return {
-      value: license.id,
+      value: license.name,
       name: license.name
     };
   });

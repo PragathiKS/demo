@@ -50,6 +50,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String LICENSE_TYPE_REQUEST_PARAMETER = "licenseType";
     private static final String HIDE_SUFFIX = "HideClass";
     private static final String HIDE_CSS_CLASS = "hide";
+    private static final String USERS_HTML_AS_STRING = "- NAME DATE <br/> \tLICENSES";
     
     /** The job mgr. */
     @Reference
@@ -205,6 +206,8 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private void extractEngineeringLicenseFormData(Map<String, String> emailParams,
             EngineeringLicenseFormBean engineeringLicenseFormBean) {
         emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY + VALUE, engineeringLicenseFormBean.getComments());
+        emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY + HIDE_SUFFIX,
+                StringUtils.isBlank(engineeringLicenseFormBean.getComments()) ? HIDE_CSS_CLASS : StringUtils.EMPTY);
         emailParams.put(EngineeringLicenseModel.USERS_EMAIL_LABEL + VALUE, getUsersForEmail(engineeringLicenseFormBean.getUsers()));
     }
     
@@ -302,14 +305,17 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
      * @return
      */
     private String getUsersForEmail(List<EngineeringLicenseFormBean.Users> users) {
-        String usersHTMLasString = "<h1>TODO</h1>";
         StringBuilder outputHtml = new StringBuilder();
         for (EngineeringLicenseFormBean.Users user : users) {
-            String substitutedHML = usersHTMLasString.replace("NAME", user.getLicenseHolderName());
+            String substitutedHML = USERS_HTML_AS_STRING.replace("NAME", user.getLicenseHolderName());
             substitutedHML = substitutedHML.replace("DATE", user.getActivationDate());
-            substitutedHML = substitutedHML.replace("LICENSES", user.getLicenses().toString());
+            substitutedHML = substitutedHML.replace("LICENSES", getLicensesForUser(user) + "<br/>");
             outputHtml.append(substitutedHML);
         }
         return outputHtml.toString();
+    }
+
+    private String getLicensesForUser(EngineeringLicenseFormBean.Users user) {
+        return user.getLicenses().stream().collect(Collectors.joining("|"));
     }
 }
