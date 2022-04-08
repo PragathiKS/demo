@@ -8,5 +8,5 @@
           pardotTokenGenerationUrl="https://api.tetrapak.com/oauth2/token"
 		  customTokenGenerationUrl="https://api.tetrapak.com/oauth2/token"
 		  customFormServiceUrl="https://api.tetrapak.com/p2p/cfe/pardotforms/forms"
-		  customFormServiceClientID="XtIWqA1ENydfGULLJBOSDmmdaYeVxZTC"
-		  customFormServiceClientSecret="jJVvnYEGQEar8lFl"/>
+		  customFormServiceClientID="7t8uKhy54GOi9AINfwDxnFSr52O12zOK"
+		  customFormServiceClientSecret="Kz51vswBfFC3A36V"/>
