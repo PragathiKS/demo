@@ -50,7 +50,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String LICENSE_TYPE_REQUEST_PARAMETER = "licenseType";
     private static final String HIDE_SUFFIX = "HideClass";
     private static final String HIDE_CSS_CLASS = "hide";
-    private static final String USERS_HTML_AS_STRING = "- NAME DATE <br/> \tLICENSES";
+    private static final String USERS_HTML_AS_STRING = "<tr><td class='license-list'> NAME </td><td class='license-list'> DATE </td> <td class='license-list'> \tLICENSES </td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
     
     /** The job mgr. */
     @Reference
@@ -316,6 +316,6 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     }
 
     private String getLicensesForUser(EngineeringLicenseFormBean.Users user) {
-        return user.getLicenses().stream().collect(Collectors.joining("|"));
+        return user.getLicenses().stream().collect(Collectors.joining("<br/>"));
     }
 }
