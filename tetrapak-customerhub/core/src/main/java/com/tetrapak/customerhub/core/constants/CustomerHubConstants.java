@@ -577,6 +577,9 @@ public final class CustomerHubConstants {
 
 	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
+
+    /** The Constant for user groups */
+    public static final String CUSTOMER_GROUPS = "groups";
     
     /** The Constant AIP_PRODUCT_DETAILS_API. */
     public static final String AIP_PRODUCT_DETAILS_API = "aip-product-details";
