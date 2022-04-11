@@ -53,7 +53,6 @@ public class SiteLicenseModelTest {
         assertEquals("Unexpected value","Title",siteLicenseModel.getTitle());
         assertEquals("Unexpected value","Name of site",siteLicenseModel.getNameOfSite());
         assertEquals("Unexpected value","Location of site",siteLicenseModel.getLocationOfSite());
-    //    assertEquals("Unexpected value","Title",siteLicenseModel.getApplicationDropdown());
         assertEquals("Unexpected value","Application dropdown placeholder",siteLicenseModel.getApplicationDropdownPlaceholder());
         assertEquals("Unexpected value","PLC Type",siteLicenseModel.getPlcType());
         assertEquals("Unexpected value","HMI Type",siteLicenseModel.getHmiType());
