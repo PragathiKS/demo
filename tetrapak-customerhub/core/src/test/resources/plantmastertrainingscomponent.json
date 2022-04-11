@@ -26,6 +26,7 @@
   "contactDetails":"Contact Details",
   "submitButtonLabel":"Submit",
   "inputErrorMsg":"Unexpected value",
+  "inputFormatErrorMsg":"Unexpected value",
   "successMessage":"Your request has been submitted",
   "subject":"Test Subject",
   "salutation":"Hi, Sir",
