@@ -39,6 +39,9 @@ public class EngineeringLicenseModel {
     public static final String SUCCESS_MESSAGE_HEADING_JSON_KEY = "successMessageHeading";
     public static final String SUCCESS_MESSAGE_DESCRIPTION_JSON_KEY = "successMessageDescription";
     public static final String USERS_EMAIL_LABEL = "users";
+    public static final String LICENSE_TABLE_USER_NAME = "licenseTableUserName";
+    public static final String LICENSE_TABLE_ACTIVATION_DATE = "licenseTableActivationDate";
+    public static final String LICENSE_TABLE_LIST_OF_LICENSES = "licenseTableListOfLicenses";
     
     @SlingObject
     @Expose(serialize = false)
@@ -146,6 +149,15 @@ public class EngineeringLicenseModel {
     
     @ValueMapValue
     private String users;
+
+    @ValueMapValue
+    private String licenseTableUserName;
+
+    @ValueMapValue
+    private String licenseTableActivationDate;
+
+    @ValueMapValue
+    private String licenseTableListOfLicenses;
     
     /**
      * init method.
@@ -241,5 +253,17 @@ public class EngineeringLicenseModel {
 
     public String getCorrectFormsError() {
         return correctFormsError;
+    }
+
+    public String getLicenseTableUserName() {
+        return licenseTableUserName;
+    }
+
+    public String getLicenseTableActivationDate() {
+        return licenseTableActivationDate;
+    }
+
+    public String getLicenseTableListOfLicenses() {
+        return licenseTableListOfLicenses;
     }
 }

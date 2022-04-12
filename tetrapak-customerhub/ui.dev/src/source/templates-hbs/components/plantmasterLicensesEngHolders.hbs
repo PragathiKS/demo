@@ -5,7 +5,7 @@
 
             <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
                 {{> atoms/input/input
-                        labelText="Name"
+                        labelText=i18nKeys.name
                         name=(concat "licenseHolderName-" idx)
                         placeholder=i18nKeys.namePlaceholder
                         required="true"
@@ -17,7 +17,8 @@
 
             <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
                 {{> atoms/input/input
-                        labelText="date"
+                        labelText=i18nKeys.activationDate
+                        placeholder=i18nKeys.activationDatePlaceholder
                         name=(concat "activationDate-" idx)
                         required="true"
                         type="date"

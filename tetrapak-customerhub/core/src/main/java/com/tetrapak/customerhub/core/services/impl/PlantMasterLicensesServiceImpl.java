@@ -136,11 +136,16 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
      */
     private void extractEngineeringLicenseModelProps(Map<String, String> emailParams, SlingHttpServletRequest request,
             String prefix) {
-        
         PlantMasterLicensesModel plantMasterLicensesModel = request.adaptTo(PlantMasterLicensesModel.class);
         EngineeringLicenseModel model = plantMasterLicensesModel.getEngineeringLicenseModel();
         emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY, getI18nValue(request, prefix, model.getComments()));
         emailParams.put(EngineeringLicenseModel.USERS_EMAIL_LABEL, getI18nValue(request, prefix, model.getUsers()));
+        emailParams.put(EngineeringLicenseModel.LICENSE_TABLE_USER_NAME,
+                getI18nValue(request, prefix, model.getLicenseTableUserName()));
+        emailParams.put(EngineeringLicenseModel.LICENSE_TABLE_ACTIVATION_DATE,
+                getI18nValue(request, prefix, model.getLicenseTableActivationDate()));
+        emailParams.put(EngineeringLicenseModel.LICENSE_TABLE_LIST_OF_LICENSES,
+                getI18nValue(request, prefix, model.getLicenseTableListOfLicenses()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME,
                 getI18nValue(request, prefix, plantMasterLicensesModel.getUsername()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME + VALUE,
@@ -153,7 +158,6 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION,
                 getI18nValue(request, prefix, model.getSalutation()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(request, prefix, model.getBody()));
-        
     }
     
     /**
