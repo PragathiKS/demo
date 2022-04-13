@@ -38,53 +38,30 @@ import static org.mockito.Mockito.*;
 
 public class PlantMasterLicensesEmailServletTest {
 
- //   private static final String TEST_FILE = "src/test/resources/cotsSupportFormBean.json";
     private static final String RESOURCE_JSON = "plantMasterLicensesComponent.json";
     private static final String RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/automation-digital/licenses/jcr:content/root/responsivegrid/plantmasterlicenses";
-    private static final String SAMPLE_STRING = "sample";
-
-    private PlantMasterLicensesEmailServlet plantMasterLicensesEmailServlet;
-
-    @Mock
-    private PrintWriter mockPrintWriter;
-
-    @Mock
-    private XSSAPI xssAPI;
-
-    @Mock
-    private ResourceResolver mockResResolver;
-
-    @Mock
-    private Session mockSession;
-
-    @Mock
-    private LanguageManager languageManager;
-
-    @Mock
-    private JobManager jobManager;
-
-    @Mock
-    private EmailService emailService;
-
-    @Mock
-    private AIPEmailConfiguration AIPEmailConfiguration;
-
-    @Mock
-    private APIGEEService apigeeService;
-
-    @Mock
-    private AIPCategoryService aipCategoryService;
-
-/*    @Rule
-    public final AemContext context = CuhuCoreAemContext.getAemContext(RESOURCE_JSON,RESOURCE_PATH);*/
     @Rule
     public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
-
+    private PlantMasterLicensesEmailServlet plantMasterLicensesEmailServlet;
+    @Mock
+    private PrintWriter mockPrintWriter;
+    @Mock
+    private XSSAPI xssAPI;
+    @Mock
+    private LanguageManager languageManager;
+    @Mock
+    private JobManager jobManager;
+    @Mock
+    private EmailService emailService;
+    @Mock
+    private AIPEmailConfiguration AIPEmailConfiguration;
+    @Mock
+    private APIGEEService apigeeService;
+    @Mock
+    private AIPCategoryService aipCategoryService;
     @Spy
     @InjectMocks
     private PlantMasterLicensesServiceImpl plantMasterLicensesServiceImpl = new PlantMasterLicensesServiceImpl();
-
-    private String content;
 
     private MockSlingHttpServletResponse response = context.response();
 
@@ -96,12 +73,9 @@ public class PlantMasterLicensesEmailServletTest {
 
     @Before
     public void setUp() throws Exception {
-
         MockitoAnnotations.initMocks(this);
-        context.load().json("/"+RESOURCE_JSON, RESOURCE_PATH);
+        context.load().json("/" + RESOURCE_JSON, RESOURCE_PATH);
         context.registerService(XSSAPI.class, xssAPI);
-       // content = readFileFromPath(TEST_FILE);
-       // when(xssAPI.getValidJSON(anyString(), anyString())).thenReturn(content);
         context.registerService(JobManager.class, jobManager);
         context.registerService(EmailService.class, emailService);
         context.registerService(LanguageManager.class, languageManager);
@@ -110,11 +84,13 @@ public class PlantMasterLicensesEmailServletTest {
         context.registerInjectActivateService(plantMasterLicensesServiceImpl, props);
         when(plantMasterLicensesServiceImpl.getI18nValue(any(), any(), any())).thenReturn(StringUtils.EMPTY);
         context.registerService(APIGEEService.class, apigeeService);
-        when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-product-details:productinformation/categories/{id}/products"});
+        when(apigeeService.getApiMappings()).thenReturn(
+                new String[] { "aip-product-details:productinformation/categories/{id}/products" });
         context.registerService(AIPCategoryService.class, aipCategoryService);
         SlingHttpServletResponse response = spy(context.response());
         doReturn(mockPrintWriter).when(response).getWriter();
-        plantMasterLicensesEmailServlet = context.registerInjectActivateService(new PlantMasterLicensesEmailServlet(), props);
+        plantMasterLicensesEmailServlet = context.registerInjectActivateService(new PlantMasterLicensesEmailServlet(),
+                props);
         request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
     }
 
@@ -127,19 +103,18 @@ public class PlantMasterLicensesEmailServletTest {
     }
 
     @Test
-    public void testDoPost() throws IOException, URISyntaxException {
-
+    public void testDoPost() throws IOException {
         request.setMethod("POST");
-        request.setHeader("licenseType","engineering");
-        String requestBody = "{\n" + "\t\"users\": [{\n" + "\t\t\t\"name\": \"name1\",\n"
-                + "\t\t\t\"date\": \"date1\",\n" + "\t\t\t\"licenses\": [\n" + "\t\t\t\t\"licensename1\",\n"
-                + "\t\t\t\t\"licensename2\"\n" + "\t\t\t]\n" + "\t\t},\n" + "\t\t{\n" + "\t\t\t\"name\": \"name2\",\n"
-                + "\t\t\t\"date\": \"date2\",\n" + "\t\t\t\"licenses\": [\n" + "\t\t\t\t\"licensename3\",\n"
-                + "\t\t\t\t\"licensename4\"\n" + "\t\t\t]\n" + "\t\t}\n" + "\t],\n" + "\t\"comments\": \"text\"\n" + "}";
+        request.setHeader("licenseType", "engineering");
+        String requestBody = "{\n" + "\t\"users\": [{\n" + "\t\t\t\"licenseHolderName\": \"name1\",\n"
+                + "\t\t\t\"activationDate\": \"date1\",\n" + "\t\t\t\"licenses\": [\n" + "\t\t\t\t\"licensename1\",\n"
+                + "\t\t\t\t\"licensename2\"\n" + "\t\t\t]\n" + "\t\t},\n" + "\t\t{\n"
+                + "\t\t\t\"licenseHolderName\": \"name2\",\n" + "\t\t\t\"activationDate\": \"date2\",\n"
+                + "\t\t\t\"licenses\": [\n" + "\t\t\t\t\"licensename3\",\n" + "\t\t\t\t\"licensename4\"\n" + "\t\t\t]\n"
+                + "\t\t}\n" + "\t],\n" + "\t\"comments\": \"text\"\n" + "}";
         request.setContent(requestBody.getBytes(StandardCharsets.UTF_8));
         plantMasterLicensesEmailServlet.doPost(request, response);
         assertEquals("Status incorrect", HttpStatus.SC_ACCEPTED, context.response().getStatus());
-
     }
 
 }

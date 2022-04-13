@@ -18,7 +18,7 @@ class PlantMasterLicenses {
   init() {
     
     ajaxWrapper.getXhrObj({
-      url: this.root.data('pinggroup-url'),
+      url: this.root.data('group-servlet-url'),
       method: ajaxMethods.GET,
       cache: true,
       async: false,

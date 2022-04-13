@@ -36,7 +36,6 @@ public class PlantMasterLicensesEmailServlet extends SlingAllMethodsServlet {
     public static final String SLING_SERVLET_SELECTOR = "email";
     
     public static final String SUCCESS_MESSAGE = "Success";
-    public static final String BAD_REQUEST_MESSAGE = "Bad Request";
     public static final String INVALID_JSON_REQUEST_MESSAGE = "Invalid JSON request";
     public static final String SESSION_NULL_MESSAGE = "Session is null";
     
@@ -48,21 +47,18 @@ public class PlantMasterLicensesEmailServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
-        
         JsonObject jsonResponse = new JsonObject();
         Session session = request.getResourceResolver().adaptTo(Session.class);
-        
+
         try {
             if (null == session) {
-                LOGGER.error("PlantMasterLicensesEmailServlet exception: session is null");
+                LOGGER.error("PlantMasterLicensesEmailServlet exception: " + SESSION_NULL_MESSAGE);
                 jsonResponse = HttpUtil.setJsonResponse(jsonResponse, SESSION_NULL_MESSAGE, HttpStatus.SC_BAD_REQUEST);
                 HttpUtil.writeJsonResponse(response, jsonResponse);
                 return;
             }
-            
             plantMasterLicensesService.sendEmail(request);
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, SUCCESS_MESSAGE, HttpStatus.SC_ACCEPTED);
-            
         } catch (Exception e) {
             LOGGER.error("Error : ", e);
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, INVALID_JSON_REQUEST_MESSAGE,

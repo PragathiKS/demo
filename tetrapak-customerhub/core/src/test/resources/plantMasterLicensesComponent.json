@@ -13,9 +13,13 @@
     "salutation": "Salutation",
     "activationDatePlaceholder": "Placeholder",
     "addUser": "Add user",
+    "removeUser": "Remove user",
     "successMessageHeading": "Success Message Heading",
     "comments": "Comments",
     "successMessageDescription": "Success Message description",
+    "inputFieldError": "Input field error",
+    "checkboxFieldError": "Checkbox field error",
+    "correctFormsError": "Correct forms error",
     "body": "Body",
     "name": [
       "Name",

@@ -84,21 +84,19 @@ public class PlantMasterLicensesServiceImplTest {
 
     @Test
     public void testSendEngineeringLicenseEmail() throws IOException {
-        List<Map<String,String>> attachments = new ArrayList<>();
         aemContext.request().setResource(aemContext.resourceResolver().getResource(RESOURCE_PATH));
         aemContext.request().setHeader("licenseType","engineering");
-        String requestBody = "{\n" + "\t\"users\": [{\n" + "\t\t\t\"name\": \"name1\",\n"
-                + "\t\t\t\"date\": \"date1\",\n" + "\t\t\t\"licenses\": [\n" + "\t\t\t\t\"licensename1\",\n"
-                + "\t\t\t\t\"licensename2\"\n" + "\t\t\t]\n" + "\t\t},\n" + "\t\t{\n" + "\t\t\t\"name\": \"name2\",\n"
-                + "\t\t\t\"date\": \"date2\",\n" + "\t\t\t\"licenses\": [\n" + "\t\t\t\t\"licensename3\",\n"
+        String requestBody = "{\n" + "\t\"users\": [{\n" + "\t\t\t\"licenseHolderName\": \"name1\",\n"
+                + "\t\t\t\"activationDate\": \"date1\",\n" + "\t\t\t\"licenses\": [\n" + "\t\t\t\t\"licensename1\",\n"
+                + "\t\t\t\t\"licensename2\"\n" + "\t\t\t]\n" + "\t\t},\n" + "\t\t{\n" + "\t\t\t\"licenseHolderName\": \"name2\",\n"
+                + "\t\t\t\"activationDate\": \"date2\",\n" + "\t\t\t\"licenses\": [\n" + "\t\t\t\t\"licensename3\",\n"
                 + "\t\t\t\t\"licensename4\"\n" + "\t\t\t]\n" + "\t\t}\n" + "\t],\n" + "\t\"comments\": \"text\"\n" + "}";
         aemContext.request().setContent(requestBody.getBytes(StandardCharsets.UTF_8));
-        assertEquals(ERROR_MESSAGE,true,plantMasterLicensesServiceImpl.sendEmail(aemContext.request()));
+        assertEquals(ERROR_MESSAGE,true, plantMasterLicensesServiceImpl.sendEmail(aemContext.request()));
     }
 
     @Test
     public void testSendSiteLicenseEmail() throws IOException {
-        List<Map<String,String>> attachments = new ArrayList<>();
         aemContext.request().setResource(aemContext.resourceResolver().getResource(RESOURCE_PATH));
         aemContext.request().setHeader("licenseType","site");
         String requestBody = "{\n" + "\t\"nameOfSite\": \"nameOfSite\",\n"

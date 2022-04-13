@@ -209,6 +209,21 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Body text (i18N key)"
                                                 name="./engineeringLicense/body"/>
+                                            <licenseTableUserName
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Licenses Table - User Name column label (i18N key)"
+                                                    name="./engineeringLicense/licenseTableUserName"/>
+                                            <licenseTableActivationDate
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Licenses Table - Activation Date column label (i18N key)"
+                                                    name="./engineeringLicense/licenseTableActivationDate"/>
+                                            <licenseTableListOfLicenses
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Licenses Table - List of licenses column label (i18N key)"
+                                                    name="./engineeringLicense/licenseTableListOfLicenses"/>
                                         </items>
                                     </email>
                                 </items>

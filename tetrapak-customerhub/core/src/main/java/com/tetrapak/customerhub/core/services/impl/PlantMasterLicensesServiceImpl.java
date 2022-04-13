@@ -1,14 +1,15 @@
 package com.tetrapak.customerhub.core.services.impl;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import javax.servlet.ServletRequest;
-
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.beans.licenses.EngineeringLicenseFormBean;
+import com.tetrapak.customerhub.core.beans.licenses.SiteLicenseFormBean;
+import com.tetrapak.customerhub.core.jobs.MyTetrapakEmailJob;
+import com.tetrapak.customerhub.core.models.EngineeringLicenseModel;
+import com.tetrapak.customerhub.core.models.PlantMasterLicensesModel;
+import com.tetrapak.customerhub.core.models.SiteLicenseModel;
+import com.tetrapak.customerhub.core.services.PlantMasterLicensesService;
+import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -22,16 +23,13 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.beans.licenses.EngineeringLicenseFormBean;
-import com.tetrapak.customerhub.core.beans.licenses.SiteLicenseFormBean;
-import com.tetrapak.customerhub.core.jobs.MyTetrapakEmailJob;
-import com.tetrapak.customerhub.core.models.EngineeringLicenseModel;
-import com.tetrapak.customerhub.core.models.PlantMasterLicensesModel;
-import com.tetrapak.customerhub.core.models.SiteLicenseModel;
-import com.tetrapak.customerhub.core.services.PlantMasterLicensesService;
-import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import javax.servlet.ServletRequest;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * The Class PlantMasterLicensesService Implementation.
@@ -76,8 +74,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         LOGGER.debug("Inside sendEmail method of PlantMasterLicensesServiceImpl");
         boolean isSuccess = false;
         String[] recipients = config.recipientAddresses();
-        if (request.getHeader(LICENSE_TYPE_REQUEST_PARAMETER) != null
-                && request.getHeader(LICENSE_TYPE_REQUEST_PARAMETER).equals(LICENSE_TYPE_ENGINEERING)) {
+        if (LICENSE_TYPE_ENGINEERING.equals(request.getHeader(LICENSE_TYPE_REQUEST_PARAMETER))) {
             isSuccess = sendEmailEngineeringLicense(request, recipients);
         } else {
             isSuccess = sendEmailSiteLicense(request, recipients);
@@ -102,7 +99,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             extractEngineeringLicenseModelProps(emailParams, request, I18N_PREFIX);
             extractEngineeringLicenseFormData(emailParams, bean);
             isSuccess = addEmailJob(emailParams, config.engineeringLicenseEmailTemplatePath());
-        }else {
+        } else {
             LOGGER.debug("Recipient email address missing in configuration!");
         }
         return isSuccess;
@@ -139,11 +136,16 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
      */
     private void extractEngineeringLicenseModelProps(Map<String, String> emailParams, SlingHttpServletRequest request,
             String prefix) {
-        
         PlantMasterLicensesModel plantMasterLicensesModel = request.adaptTo(PlantMasterLicensesModel.class);
         EngineeringLicenseModel model = plantMasterLicensesModel.getEngineeringLicenseModel();
         emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY, getI18nValue(request, prefix, model.getComments()));
         emailParams.put(EngineeringLicenseModel.USERS_EMAIL_LABEL, getI18nValue(request, prefix, model.getUsers()));
+        emailParams.put(EngineeringLicenseModel.LICENSE_TABLE_USER_NAME,
+                getI18nValue(request, prefix, model.getLicenseTableUserName()));
+        emailParams.put(EngineeringLicenseModel.LICENSE_TABLE_ACTIVATION_DATE,
+                getI18nValue(request, prefix, model.getLicenseTableActivationDate()));
+        emailParams.put(EngineeringLicenseModel.LICENSE_TABLE_LIST_OF_LICENSES,
+                getI18nValue(request, prefix, model.getLicenseTableListOfLicenses()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME,
                 getI18nValue(request, prefix, plantMasterLicensesModel.getUsername()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME + VALUE,
@@ -156,7 +158,6 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION,
                 getI18nValue(request, prefix, model.getSalutation()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(request, prefix, model.getBody()));
-        
     }
     
     /**
@@ -234,33 +235,21 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         emailParams.put(SiteLicenseModel.NUMBER_OF_ADVANCED_UNIT_KEY + VALUE,
                 siteLicenseFormBean.getNumberOfAdvancedUnit());
     }
-    /*
-     * public EngineeringLicenseFormBean createEngineeringLicenseFormBean(SlingHttpServletRequest request) { JsonObject
-     * requestParameterJson = convertToJson(request.getParameterMap()); LOGGER.debug(requestParameterJson.toString());
-     * Gson gson = new Gson(); return gson.fromJson(requestParameterJson,EngineeringLicenseFormBean.class ); }
-     */
     
-    public EngineeringLicenseFormBean createEngineeringLicenseFormBean(ServletRequest request) throws IOException {
+    private EngineeringLicenseFormBean createEngineeringLicenseFormBean(ServletRequest request) throws IOException {
         String requestData = request.getReader().lines().collect(Collectors.joining());
         LOGGER.debug("Request data json : {}", requestData);
         Gson gson = new Gson();
         return gson.fromJson(requestData, EngineeringLicenseFormBean.class);
     }
     
-    public SiteLicenseFormBean createSiteLicenseFormBean(ServletRequest request) throws IOException {
-        // JsonObject requestParameterJson = convertToJson(request.getParameterMap());
+    private SiteLicenseFormBean createSiteLicenseFormBean(ServletRequest request) throws IOException {
         String requestData = request.getReader().lines().collect(Collectors.joining());
         LOGGER.debug("Request data json : {}", requestData);
         Gson gson = new Gson();
         return gson.fromJson(requestData, SiteLicenseFormBean.class);
     }
     
-    /*
-     * public JsonObject convertToJson(Map<String, String[]> requestParameterMap) { Gson gson = new Gson(); String
-     * jsonString = gson.toJson(requestParameterMap); jsonString = xssAPI.getValidJSON(jsonString, StringUtils.EMPTY);
-     * JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class); jsonObject =
-     * replaceArraysInJsonObject(jsonObject); return jsonObject; }
-     */
     /**
      * Create sling job to send email.
      * @param recipients
@@ -276,7 +265,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         properties.put(MyTetrapakEmailJob.EMAIL_PARAMS, emailParams);
         properties.put(MyTetrapakEmailJob.RECIPIENTS_ARRAY, recipients);
         LOGGER.debug(" Email properties : Template path = {}, Recipients = {}, Is Email Enabled = {}", templatePath,
-                ArrayUtils.toString(config.recipientAddresses()), String.valueOf(config.isLicensesEmailEnabled()));
+                ArrayUtils.toString(config.recipientAddresses()), config.isLicensesEmailEnabled());
         for (Map.Entry<String, String> entry : emailParams.entrySet()) {
             LOGGER.debug("Email Parameters '{}' = {}", entry.getKey(), entry.getValue());
         }
@@ -289,11 +278,6 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         }
         return isSuccess;
     }
-    
-    /*
-     * private JsonObject replaceArraysInJsonObject(JsonObject jsonObject) { for (String key : jsonObject.keySet()) {
-     * jsonObject.addProperty(key, jsonObject.get(key).getAsString()); } return jsonObject; }
-     */
     
     public String getI18nValue(SlingHttpServletRequest request, String i18nKey, String prefix) {
         return GlobalUtil.getI18nValue(request, prefix, i18nKey);
