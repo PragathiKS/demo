@@ -65,7 +65,7 @@ public class PlantMasterGroupsServletTest {
         plantMasterGroupsServlet.doGet(request, response);
         assertEquals("Response status", HttpStatus.SC_OK, context.response().getStatus());
         assertEquals("List of groups",
-                "{\"groups\":[{\"groupName\":\"cuhu_tppm_product_common\",\"trainingId\":\"CT-29001\"},{\"groupName\":\"cuhu_tppm_product_siemenstiaplatform\",\"trainingId\":\"CT-29002\",\"engLicenseId\":\"479535-0100TIA\",\"siteLicenseId\":\"3479532-0100TIA\"}]}",
+                "{\"groups\":[{\"groupName\":\"cuhu_tppm_product_common\",\"trainingId\":\"CT-29001\"},{\"groupName\":\"cuhu_tppm_product_siemenstiaplatform\",\"trainingId\":\"CT-29002\",\"engLicenseId\":\"3479535-0100TIA\",\"siteLicenseId\":\"3479532-0100TIA\"}]}",
                 context.response().getOutputAsString());
     }
 
