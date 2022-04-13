@@ -1,0 +1,179 @@
+@import 'plantmasterlicenses-engineering';
+$form-grp-margin: 12px;
+
+.tp-aip-licenses {
+    &__txt-block {
+        @include margin-bottom($margin-l);
+
+        h3 {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    }
+    
+    &__info-card {
+        @include padding($padding-md);
+        @include margin-bottom($margin-l);
+        background-color: $color-wild-sand;
+
+        h2 {
+            @include font-size($font-md);
+            @include line-height($font-l, $font-baseline);
+            @include margin-bottom($margin-l);
+            color: $color-tundora;
+        }
+
+        p {
+            @include line-height($font-l, $font-baseline);
+            @include margin-bottom($margin-l);
+            font-weight: 500;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__form {
+
+        h2 {
+            @include padding-bottom($padding-md);
+            @include margin-bottom(20px);
+            border-bottom: 1px solid $color-mercury;
+        }
+
+        &-element {
+            label {
+                @include font-size($font-baseline);
+                @include line-height($font-l, $font-baseline);
+                margin-bottom: 0;
+            }
+
+            input {
+                border: 1px solid $color-tundora;
+            }
+
+            .form-group {
+                @include margin-bottom($form-grp-margin);
+            }
+
+            .tpatom-btn {
+                @include margin-top($margin-xs);
+            }
+
+            .tpatom-dropdown {
+                &__text {
+                    margin-top: 0;
+                }
+
+                &__select-box {
+                    @include padding($padding-sm $padding-md);
+                    border: 1px solid $color-tundora;
+                }
+            }
+
+            &--error {
+                input,
+                textarea,
+                select {
+                    border: 1px solid $color-alert;
+                }
+            }
+            .error-msg {
+                @include font-size($font-sm);
+                display: none;
+                color: $color-alert;
+
+                &--active {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    &__success-message {
+        @include line-height($font-l, $font-baseline);
+        display: flex;
+        flex-direction: column;
+
+        &-title {
+            display: flex;
+            font-weight: 700;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        &-desc {
+            @include margin-top($margin-l);
+        }
+
+        @media #{$tablet} {
+            &-title {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-bottom($margin-sm);
+            color: $color-success-icon;
+
+            @media #{$tablet} {
+                @include margin-bottom($margin-zero);
+                @include margin-right($margin-md);
+            }
+        }
+    }
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+.bs-tooltip-bottom {
+    @include padding($padding-sm $padding-zero);
+    .arrow {
+        &::before {
+            border-width: 0 8px 8px;
+            border-bottom-color: $color-wild-sand;
+        }
+    }
+}
+
+.tooltip {
+    .arrow {
+        width: 16px;
+        height: 16px;
+        border-top: 1px solid $color-mercury;
+        border-left: 1px solid $color-mercury;
+        background: $color-wild-sand;
+        transform: rotate(45deg);
+        &::before {
+            display: none;
+        }
+    }
+
+}
+.tooltip-inner {
+    @include font-size($font-baseline);
+    @include line-height($font-l, $font-baseline);
+    @include padding($padding-l);
+    border: 1px solid $color-mercury;
+    color: $color-tundora;
+    font-family: $font-monsterrat;
+    font-size: $font-sm;
+    max-width: 246px;
+    text-align: left;
+    background-color: $color-wild-sand;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.tooltip-header {
+    @include margin-bottom($margin-sm);
+    display: block;
+    font-weight: 700;
+}

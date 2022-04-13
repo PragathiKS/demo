@@ -19,7 +19,7 @@
 	groupMembershipAttribute="group"
 	defaultGroups="cuhu_aem_default"
 	nameIdFormat="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
-	synchronizeAttributes="[BusinessPartnerID\=bpnumber,mail\=emailId]"
+	synchronizeAttributes="[BusinessPartnerID\=bpnumber,mail\=emailId,group\=groups]"
 	handleLogout="{Boolean}false"
 	logoutUrl=""
 	clockTolerance="60"

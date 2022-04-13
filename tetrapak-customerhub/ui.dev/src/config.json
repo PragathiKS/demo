@@ -176,18 +176,30 @@
         "enforce": true,
         "chunks": "all",
         "minSize": 0
+<<<<<<< HEAD
       },
       "cotssupport": {
         "testMultiple": true,
         "name": "cotssupport",
         "enforce": true,
         "chunks": "all"
+=======
+>>>>>>> feature/SMAR-19532-engineering-licenses
       },
       "cotssupport": {
         "testMultiple": true,
         "name": "cotssupport",
         "enforce": true,
         "chunks": "all"
+<<<<<<< HEAD
+=======
+      },
+      "plantmasterlicenses": {
+        "testMultiple": true,
+        "name": "plantmasterlicenses",
+        "enforce": true,
+        "chunks": "all"
+>>>>>>> feature/SMAR-19532-engineering-licenses
       }
     },
     "componentGroups": {
@@ -234,11 +246,14 @@
       "addequipment": [
         "source/templates/components/addequipment/"
       ],
+      "plantmastertrainings": [
+        "source/templates/components/plantmastertrainings/"
+      ],
       "cotssupport": [
         "source/templates/components/cotssupport/"
       ],
-      "plantmastertrainings": [
-        "source/templates/components/plantmastertrainings/"
+      "plantmasterlicenses": [
+        "source/templates/components/plantmasterlicenses/"
       ]
     },
     "handlebars": {

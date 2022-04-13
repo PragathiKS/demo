@@ -1,18 +1,16 @@
 package com.tetrapak.customerhub.core.utils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import javax.servlet.http.Cookie;
-
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.commons.jcr.JcrUtil;
+import com.day.cq.i18n.I18n;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.customerhub.core.beans.ImageBean;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.DynamicMediaService;
+import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -29,18 +27,12 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.commons.jcr.JcrUtil;
-import com.day.cq.i18n.I18n;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.customerhub.core.beans.ImageBean;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.DynamicMediaService;
-import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
-import com.tetrapak.customerhub.core.services.UserPreferenceService;
-
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.http.Cookie;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -48,8 +40,10 @@ import com.tetrapak.customerhub.core.services.UserPreferenceService;
  * @author Nitin Kumar
  */
 public class GlobalUtil {
-    
-    /** The Constant LOGGER. */
+
+    /**
+     * The Constant LOGGER.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
@@ -91,7 +85,6 @@ public class GlobalUtil {
         }
         return mappingValue;
     }
-
 
     /**
      * Method to check the run mode development to execute the launch js for
@@ -166,7 +159,7 @@ public class GlobalUtil {
     /**
      * Method to get service.
      *
-     * @param <T> the generic type
+     * @param <T>   the generic type
      * @param clazz class type
      * @return T
      */
@@ -291,16 +284,16 @@ public class GlobalUtil {
      * @param locale              locale
      * @param pageContentPath     page component path
      */
-    public static void setPageReferences(ResourceResolver resourceResolver, List<String> componentsReference,
-                                         String locale, String pageContentPath) {
+    public static void setPageReferences(ResourceResolver resourceResolver, List<String> componentsReference, String locale, String pageContentPath) {
         locale = StringUtils.isNotBlank(locale) ? locale : CustomerHubConstants.DEFAULT_LOCALE;
         String pagePath = String.valueOf(pageContentPath);
         pagePath = pagePath.replace(CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE,
                 CustomerHubConstants.PATH_SEPARATOR + locale);
         String resGridPathWithoutJcrContent = CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.ROOT_NODE
                 + CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.RESPONSIVE_GRID_NODE;
-        String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT) ? resGridPathWithoutJcrContent
-                : CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
+        String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT) ?
+                resGridPathWithoutJcrContent :
+                CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
         pagePath = pagePath + resGridPath;
         GlobalUtil.pageReferenceComponents(resourceResolver, componentsReference, pagePath);
     }
@@ -313,7 +306,7 @@ public class GlobalUtil {
      * @param path                path
      */
     private static void pageReferenceComponents(ResourceResolver resourceResolver, List<String> componentsReference,
-                                                String path) {
+            String path) {
         Resource componentResources = resourceResolver.getResource(path);
         if (Objects.nonNull(componentResources)) {
             Iterator<Resource> iterators = componentResources.listChildren();
@@ -339,8 +332,7 @@ public class GlobalUtil {
         if (null == checkResource || ResourceUtil.isNonExistingResource(checkResource)) {
             language = CustomerHubConstants.DEFAULT_LOCALE;
         }
-        Resource languagePageResource = request.getResourceResolver().getResource
-                ("/content/tetrapak/customerhub/content-components/" + language);
+        Resource languagePageResource = request.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/" + language);
         if (null == languagePageResource) {
             return null;
         }
@@ -451,8 +443,7 @@ public class GlobalUtil {
      * @return global config resource
      */
     private static Resource getGlobalConfigResource(Resource resource) {
-        Resource childResource = resource.getResourceResolver().getResource(
-                GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
+        Resource childResource = resource.getResourceResolver().getResource(GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
             return getGlobalConfigNode(childResource);
         }
@@ -560,7 +551,32 @@ public class GlobalUtil {
         }
         return apiErrorCodes;
     }
-    
+
+    /**
+     * Gets the customer resource value map.
+     *
+     * @param request the request
+     * @return the customer reso value map
+     */
+    private static ValueMap getUserResourceValueMap(SlingHttpServletRequest request) throws RepositoryException {
+        ValueMap valueMap = ValueMap.EMPTY;
+        ResourceResolver resourceResolver = request.getResourceResolver();
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        Session session = resourceResolver.adaptTo(Session.class);
+        if (Objects.isNull(session) || Objects.isNull(userManager)) {
+            return valueMap;
+        }
+        Authorizable user;
+
+        user = userManager.getAuthorizable(session.getUserID());
+        Resource userResource = resourceResolver.getResource(user.getPath());
+        if (Objects.isNull(userResource)) {
+            return valueMap;
+        }
+        valueMap = userResource.getValueMap();
+        return valueMap;
+    }
+
     /**
      * Gets the customer email address.
      *
@@ -569,20 +585,8 @@ public class GlobalUtil {
      */
     public static String getCustomerEmailAddress(SlingHttpServletRequest request) {
         String emailId = StringUtils.EMPTY;
-        ResourceResolver resourceResolver = request.getResourceResolver();
-        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
-        Session session = resourceResolver.adaptTo(Session.class);
-        if (Objects.isNull(session) || Objects.isNull(userManager)) {
-            return emailId;
-        }
-        Authorizable user;
         try {
-            user = userManager.getAuthorizable(session.getUserID());
-            Resource userResource = resourceResolver.getResource(user.getPath());
-            if (Objects.isNull(userResource)) {
-                return emailId;
-            }
-            ValueMap vMap = userResource.getValueMap();
+            ValueMap vMap = getUserResourceValueMap(request);
             if (vMap.containsKey(CustomerHubConstants.CUSTOMER_EMAIL_ID)) {
                 emailId = (String) vMap.get(CustomerHubConstants.CUSTOMER_EMAIL_ID);
             }
@@ -591,26 +595,43 @@ public class GlobalUtil {
         }
         return emailId;
     }
-    
-    
+
+    /**
+     * Gets the groups for customer from resource/request
+     *
+     * @param request the request
+     * @return the customer's groups
+     */
+    public static List<String> getCustomerGroups(SlingHttpServletRequest request) {
+        List<String> groups = Collections.EMPTY_LIST;
+        try {
+            ValueMap vMap = getUserResourceValueMap(request);
+            if (vMap.containsKey(CustomerHubConstants.CUSTOMER_GROUPS)) {
+                String groupsString = (String) vMap.get(CustomerHubConstants.CUSTOMER_GROUPS);
+                groups = Arrays.stream(groupsString.split("[\\]\\[, ]")).filter(s -> !s.isEmpty())
+                        .collect(Collectors.toList());
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException in getting groups from the user resource", e);
+        }
+        return groups;
+    }
+
     /**
      * Gets the AIP endpoint URL.
      *
-     * @param apiServiceUrl
-     *            the api service url
-     * @param apiMapping
-     *            the api mapping
-     * @param categoryId
-     *            the category id
+     * @param apiServiceUrl the api service url
+     * @param apiMapping    the api mapping
+     * @param categoryId    the category id
      * @return the AIP endpoint URL
      */
     public static String getAIPEndpointURL(String apiServiceUrl, String apiMapping, String categoryId) {
         String aipEndpointURL = StringUtils.EMPTY;
         if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping) && Objects.nonNull(categoryId)) {
-            aipEndpointURL = (apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping).replace("{id}",
-                    categoryId) + CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.INCLUDE_CHILDREN
-                    + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE + CustomerHubConstants.AMPERSAND
-                    + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
+            aipEndpointURL =
+                    (apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping).replace("{id}", categoryId) + CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.INCLUDE_CHILDREN
+                            + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE + CustomerHubConstants.AMPERSAND
+                            + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
         }
         return aipEndpointURL;
     }
