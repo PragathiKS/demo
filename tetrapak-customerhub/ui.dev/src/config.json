@@ -176,30 +176,18 @@
         "enforce": true,
         "chunks": "all",
         "minSize": 0
-<<<<<<< HEAD
       },
       "cotssupport": {
         "testMultiple": true,
         "name": "cotssupport",
         "enforce": true,
         "chunks": "all"
-=======
->>>>>>> feature/SMAR-19532-engineering-licenses
-      },
-      "cotssupport": {
-        "testMultiple": true,
-        "name": "cotssupport",
-        "enforce": true,
-        "chunks": "all"
-<<<<<<< HEAD
-=======
       },
       "plantmasterlicenses": {
         "testMultiple": true,
         "name": "plantmasterlicenses",
         "enforce": true,
         "chunks": "all"
->>>>>>> feature/SMAR-19532-engineering-licenses
       }
     },
     "componentGroups": {
