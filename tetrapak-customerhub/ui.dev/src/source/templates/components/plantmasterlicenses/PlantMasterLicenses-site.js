@@ -17,6 +17,19 @@ function _renderSiteLicensesData() {
   });
 }
 
+function _processLicensesData(data,pingUserGroup) {
+  const processedDataArr = [];
+  const siteUserGroup = pingUserGroup ? pingUserGroup :[];
+  data.forEach((item) => {
+    if(siteUserGroup.length > 0){
+      if(siteUserGroup.includes(item.extRef.material.number)){
+        processedDataArr.push(item);
+      }
+    }
+  });
+  return processedDataArr;
+}
+
 /**
  * Fetch and process the Site Licenses data
  */
@@ -35,7 +48,7 @@ function _getSiteLicensesData() {
         },
         showLoader: true
       }).done(res => {
-        this.cache.siteLicensesData = res.data;
+        this.cache.siteLicensesData =  _processLicensesData(res.data,this.cache.siteLicenseUerGroup);
         this.renderSiteLicensesData();
         this.cache.$sitecontentWrapper.removeClass('d-none');
       }).fail((e) => {
@@ -45,8 +58,9 @@ function _getSiteLicensesData() {
 }
 
 class PlantMasterLicensesSite {
-  constructor( el ) {
+  constructor( el , siteLicenseUerGroup) {
     this.root = $(el);
+    this.siteLicenseUerGroup = siteLicenseUerGroup;
   }
 
   cache = {};
@@ -59,6 +73,7 @@ class PlantMasterLicensesSite {
     this.cache.$contentWrapper = aipLicenseObj.find('.js-aip-licenses__wrapper');
     this.cache.submitApi = aipLicenseObj.data('submit-api');
     const configJson = aipLicenseObj.find('.js-aip-licenses__config').text();
+    this.cache.siteLicenseUerGroup = this.siteLicenseUerGroup;
     try {
       this.cache.i18nKeys = JSON.parse(configJson);
     } catch (e) {
@@ -66,6 +81,7 @@ class PlantMasterLicensesSite {
       logger.error(e);
     }
   }
+
 
   showContent = () => {
     this.cache.$contentWrapper.removeClass('d-none');

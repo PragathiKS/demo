@@ -19,6 +19,19 @@ function _renderEngLicensesDesc() {
   });
 }
 
+function _processEngLicensesDesc(data,pingUserGroup) {
+  const processedDataArr = [];
+  const engUserGroup = pingUserGroup ? pingUserGroup :[];
+  data.forEach((item) => {
+    if(engUserGroup.length > 0){
+      if(engUserGroup.includes(item.extRef.material.number)){
+        processedDataArr.push(item);
+      }
+    }
+  });
+  return processedDataArr;
+}
+
 /**
  * Build obj containing licenses checkbox data
  */
@@ -51,7 +64,7 @@ function _getEngineeringLicensesData() {
         },
         showLoader: true
       }).done(res => {
-        this.cache.engLicensesDataArr = res.data;
+        this.cache.engLicensesDataArr = _processEngLicensesDesc(res.data,this.cache.engLicenseUerGroup);
         this.renderEngLicensesDesc();
         this.renderLicenseHolders({removable: false});
         this.showContent();
@@ -62,8 +75,9 @@ function _getEngineeringLicensesData() {
 }
 
 class PlantMasterLicensesEngineering {
-  constructor(el) {
+  constructor(el,engLicenseUerGroup) {
     this.root = $(el);
+    this.engLicenseUerGroup = engLicenseUerGroup;
   }
 
   cache = {};
@@ -88,6 +102,7 @@ class PlantMasterLicensesEngineering {
     this.cache.$engLicensesDesc = this.root.find('.js-tp-aip-licenses-eng__description');
     this.cache.engLicensesDataArr = [];
     this.cache.licenseHoldersCount = 1;
+    this.cache.engLicenseUerGroup = this.engLicenseUerGroup;
   }
 
   showContent = () => {

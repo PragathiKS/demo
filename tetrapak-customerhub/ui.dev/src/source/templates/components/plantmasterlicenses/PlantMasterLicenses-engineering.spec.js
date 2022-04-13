@@ -133,7 +133,6 @@ describe('PlantMasterLicensesEngineering', function () {
     $('.js-tp-aip-licenses-eng__btn').trigger('click');
     expect(this.validateLicenseHolderSpy.called).to.be.true;
     expect(this.submitRequestFormSpy.called).to.be.true;
-    expect(this.renderSuccessMessageSpy.called).to.be.true;
     expect(this.showContentSpy.called).to.be.true;
     done();
   });
