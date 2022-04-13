@@ -96,17 +96,100 @@
     &__description {
         @include font-size(16px);
         @include line-height(28px, 16px);
+
+        li {
+            display: table;
+            margin-top: $margin-sm;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        ol,
         ul {
+            @include margin-bottom(8px);
+            @include padding-left($padding-sm);
+        }
+
+        ul {
+            display: table;
             li {
-                display: flex;
                 &::before {
                     @include margin-right($margin-sm);
-                    display: inline-block;
+                    @include padding-right($padding-sm);
+                    display: table-cell;
                     color: $color-tundora;
                     content: '\2022';
                 }
             }
         }
+
+        ol {
+            display: table;
+            counter-reset: section;
+            list-style-type: none;
+            li {
+                &::before {
+                    @include margin-right($margin-sm);
+                    @include font-size(14px);
+                    @include padding-right($padding-sm);
+                    display: table-cell;
+                    content: counters(section, '.') ' ';
+                    counter-increment: section;
+                }
+            }
+        }
+
+        ol ol,
+        ul ul {
+            @include padding(0 0 0 20px);
+        }
+
+        ul > li > ul,
+        ol > li > ol {
+            @include margin-bottom(0);
+            :last-child {
+                @include padding-bottom(0);
+            }
+        }
+
+        ul li,
+        ol li {
+            @include padding-bottom(16px);
+            &::before {
+                color: $color-tundora;
+            }
+            &:last-child {
+                @include padding-bottom(0);
+            }
+            li {
+                @include padding-bottom(8px);
+            }
+        }
+
+        ol li ol,
+        ul li ul {
+            @include padding-top(16px);
+        }
+
+        ul ul ul {
+            li {
+                @include padding-bottom(8px);
+                &::before {
+                    content: '\2012';
+                    font-weight: 400;
+                }
+            }
+        }
+
+        ol ol ol {
+            @include padding-left(28px);
+            li {
+                @include padding-bottom(8px);
+            }
+        }
+
         @media #{$desktop} {
             @include font-size(14px);
             @include line-height(24px, 14px);

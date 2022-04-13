@@ -144,7 +144,8 @@
     &__acc-txt-block {
         @include margin-bottom($margin-l);
 
-        p {
+        p,
+        div {
             &:not(.tp-aip__acc-block-title) {
                 @include margin-bottom($margin-sm);
             }
