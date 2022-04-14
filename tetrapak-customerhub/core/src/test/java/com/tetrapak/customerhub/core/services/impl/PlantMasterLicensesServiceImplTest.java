@@ -2,12 +2,10 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import com.adobe.acs.commons.email.EmailService;
 import com.day.cq.wcm.api.LanguageManager;
-import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.services.AIPCategoryService;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.services.config.PlantMasterLicensesEmailConfiguration;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.event.jobs.JobManager;
 import org.junit.Before;
@@ -20,11 +18,8 @@ import org.mockito.Spy;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
@@ -38,7 +33,7 @@ public class PlantMasterLicensesServiceImplTest {
     private EmailService emailService;
 
     @Mock
-    private AIPEmailConfiguration AIPEmailConfiguration;
+    private PlantMasterLicensesEmailConfiguration configuration;
 
     @Mock
     private LanguageManager languageManager;
@@ -69,11 +64,11 @@ public class PlantMasterLicensesServiceImplTest {
         aemContext.registerService(JobManager.class,jobManager);
         aemContext.registerService(EmailService.class,emailService);
         aemContext.registerService(LanguageManager.class,languageManager);
-        aemContext.registerService(com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration.class, AIPEmailConfiguration);
-        when(AIPEmailConfiguration.engineeringLicenseEmailTemplatePath()).thenReturn(templatePath);
-        when(AIPEmailConfiguration.siteLicenseEmailTemplatePath()).thenReturn(templatePath);
-        when(AIPEmailConfiguration.recipientAddresses()).thenReturn(new String[]{recipientEmail});
-        when(AIPEmailConfiguration.isLicensesEmailEnabled()).thenReturn(true);
+        aemContext.registerService(PlantMasterLicensesEmailConfiguration.class, configuration);
+        when(configuration.engineeringLicenseEmailTemplatePath()).thenReturn(templatePath);
+        when(configuration.siteLicenseEmailTemplatePath()).thenReturn(templatePath);
+        when(configuration.recipientAddresses()).thenReturn(new String[]{recipientEmail});
+        when(configuration.isLicensesEmailEnabled()).thenReturn(true);
         aemContext.registerService(APIGEEService.class, apigeeService);
         when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-product-details:productinformation/categories/{id}/products"});
         aemContext.registerService(AIPCategoryService.class, aipCategoryService);

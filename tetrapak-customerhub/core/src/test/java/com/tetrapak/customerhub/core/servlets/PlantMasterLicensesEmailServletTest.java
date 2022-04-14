@@ -4,7 +4,7 @@ import com.adobe.acs.commons.email.EmailService;
 import com.day.cq.wcm.api.LanguageManager;
 import com.tetrapak.customerhub.core.services.AIPCategoryService;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
+import com.tetrapak.customerhub.core.services.config.CotsSupportEmailConfiguration;
 import com.tetrapak.customerhub.core.services.impl.PlantMasterLicensesServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +27,6 @@ import org.mockito.Spy;
 import javax.jcr.Session;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +53,7 @@ public class PlantMasterLicensesEmailServletTest {
     @Mock
     private EmailService emailService;
     @Mock
-    private AIPEmailConfiguration AIPEmailConfiguration;
+    private CotsSupportEmailConfiguration AIPEmailConfiguration;
     @Mock
     private APIGEEService apigeeService;
     @Mock
@@ -79,7 +78,7 @@ public class PlantMasterLicensesEmailServletTest {
         context.registerService(JobManager.class, jobManager);
         context.registerService(EmailService.class, emailService);
         context.registerService(LanguageManager.class, languageManager);
-        context.registerService(AIPEmailConfiguration.class, AIPEmailConfiguration);
+        context.registerService(CotsSupportEmailConfiguration.class, AIPEmailConfiguration);
         Map<String, Object> props = new HashMap<>();
         context.registerInjectActivateService(plantMasterLicensesServiceImpl, props);
         when(plantMasterLicensesServiceImpl.getI18nValue(any(), any(), any())).thenReturn(StringUtils.EMPTY);

@@ -35,7 +35,6 @@ public class PlantMasterLicensesEmailServlet extends SlingAllMethodsServlet {
     public static final String SLING_SERVLET_EXTENSION = "html";
     public static final String SLING_SERVLET_SELECTOR = "email";
     
-    public static final String SUCCESS_MESSAGE = "Success";
     public static final String INVALID_JSON_REQUEST_MESSAGE = "Invalid JSON request";
     public static final String SESSION_NULL_MESSAGE = "Session is null";
     
@@ -58,7 +57,7 @@ public class PlantMasterLicensesEmailServlet extends SlingAllMethodsServlet {
                 return;
             }
             plantMasterLicensesService.sendEmail(request);
-            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, SUCCESS_MESSAGE, HttpStatus.SC_ACCEPTED);
+            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, CustomerHubConstants.RESPONSE_STATUS_SUCCESS, HttpStatus.SC_ACCEPTED);
         } catch (IOException e) {
             LOGGER.error("Error : ", e);
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, INVALID_JSON_REQUEST_MESSAGE,
