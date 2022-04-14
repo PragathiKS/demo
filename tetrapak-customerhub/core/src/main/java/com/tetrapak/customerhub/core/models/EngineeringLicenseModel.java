@@ -8,10 +8,6 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Model class for Engineering licenses child node of PlantMaster Licenses component.
@@ -20,8 +16,6 @@ import javax.annotation.PostConstruct;
         Resource.class, SlingHttpServletRequest.class
 }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class EngineeringLicenseModel {
-    
-    private static final Logger LOGGER = LoggerFactory.getLogger(EngineeringLicenseModel.class);
     
     public static final String TITLE_JSON_KEY = "title";
     public static final String DESCRIPTION_JSON_KEY = "description";
@@ -158,15 +152,7 @@ public class EngineeringLicenseModel {
 
     @ValueMapValue
     private String licenseTableListOfLicenses;
-    
-    /**
-     * init method.
-     */
-    @PostConstruct
-    protected void init() {
-        LOGGER.debug("Engineering License Model created");
-    }
-    
+
     public String getTitle() {
         return title;
     }

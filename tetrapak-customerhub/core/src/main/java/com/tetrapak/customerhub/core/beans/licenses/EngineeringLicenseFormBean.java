@@ -5,6 +5,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
+/**
+ * Engineering License Form Bean
+ *
+ * @author Pathak Ankit
+ */
 public class EngineeringLicenseFormBean {
     
     private static final String COMMENTS_FIELD = "comments";
