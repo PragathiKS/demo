@@ -67,7 +67,6 @@ public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
             Object obj = parser.parse(new InputStreamReader(io, "UTF-8"));
             jsonGroups = (JsonObject) obj;
         } catch (IOException e) {
-            e.printStackTrace();
             LOGGER.error("Cannot read file with mapping PING Group <-> License/Training ID", e);
         }
         return jsonGroups;
