@@ -59,7 +59,7 @@ public class PlantMasterLicensesEmailServlet extends SlingAllMethodsServlet {
             }
             plantMasterLicensesService.sendEmail(request);
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, SUCCESS_MESSAGE, HttpStatus.SC_ACCEPTED);
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOGGER.error("Error : ", e);
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, INVALID_JSON_REQUEST_MESSAGE,
                     HttpStatus.SC_BAD_REQUEST);

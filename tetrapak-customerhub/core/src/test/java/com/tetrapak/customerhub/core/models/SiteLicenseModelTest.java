@@ -49,7 +49,7 @@ public class SiteLicenseModelTest {
 
     @Test
     public void testGetProperties(){
-        assertNotNull(siteLicenseModel);
+        assertNotNull("Site license cannot be null", siteLicenseModel);
         assertEquals("Unexpected value","Title",siteLicenseModel.getTitle());
         assertEquals("Unexpected value","Name of site",siteLicenseModel.getNameOfSite());
         assertEquals("Unexpected value","Location of site",siteLicenseModel.getLocationOfSite());
@@ -85,7 +85,7 @@ public class SiteLicenseModelTest {
         assertEquals("Unexpected value","",plantMasterLicensesModel.getSiteLicenseApiUrl());
         assertEquals("Unexpected value","",plantMasterLicensesModel.getEngineeringLicenseApiUrl());
         assertEquals("Unexpected value",true,plantMasterLicensesModel.isPublishEnvironment());
-        assertNotNull(plantMasterLicensesModel.getI18nKeysMap());
+        assertNotNull("i18 map cannot be null", plantMasterLicensesModel.getI18nKeysMap());
         assertEquals("Unexpected value","heading",plantMasterLicensesModel.getHeading());
     }
 

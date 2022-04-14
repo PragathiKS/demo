@@ -14,7 +14,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.event.jobs.JobManager;
-import org.apache.sling.xss.XSSAPI;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -48,14 +47,13 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String LICENSE_TYPE_REQUEST_PARAMETER = "licenseType";
     private static final String HIDE_SUFFIX = "HideClass";
     private static final String HIDE_CSS_CLASS = "hide";
-    private static final String USERS_HTML_AS_STRING = "<tr><td class='license-list'> NAME </td><td class='license-list'> DATE </td> <td class='license-list'> \tLICENSES </td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
+    private static final String USERS_HTML_NAME = "<tr><td class='license-list'> NAME </td>";
+    private static final String USERS_HTML_DATE = "<td class='license-list'> DATE </td> ";
+    private static final String USERS_HTML_LICENSES = "<td class='license-list'> \tLICENSES </td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
     
     /** The job mgr. */
     @Reference
     private JobManager jobMgr;
-    
-    @Reference
-    private XSSAPI xssAPI;
     
     /** The config. */
     private AIPEmailConfiguration config;
@@ -192,11 +190,9 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         emailParams.put(PlantMasterLicensesModel.EMAIL_SUBJECT, getI18nValue(request, prefix, model.getSubject()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION,
                 getI18nValue(request, prefix, model.getSalutation()));
-        emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION + HIDE_SUFFIX,
-                StringUtils.isBlank(model.getSalutation()) ? HIDE_CSS_CLASS : StringUtils.EMPTY);
+        emailParams.putAll(cssHideIfEmpty(PlantMasterLicensesModel.EMAIL_SALUTATION, model.getSalutation()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(request, prefix, model.getBody()));
-        emailParams.put(PlantMasterLicensesModel.EMAIL_BODY + HIDE_SUFFIX,
-                StringUtils.isBlank(model.getBody()) ? HIDE_CSS_CLASS : StringUtils.EMPTY);
+        emailParams.putAll(cssHideIfEmpty(PlantMasterLicensesModel.EMAIL_BODY, model.getBody()));
     }
     
     /**
@@ -207,8 +203,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private void extractEngineeringLicenseFormData(Map<String, String> emailParams,
             EngineeringLicenseFormBean engineeringLicenseFormBean) {
         emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY + VALUE, engineeringLicenseFormBean.getComments());
-        emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY + HIDE_SUFFIX,
-                StringUtils.isBlank(engineeringLicenseFormBean.getComments()) ? HIDE_CSS_CLASS : StringUtils.EMPTY);
+        emailParams.putAll(cssHideIfEmpty(EngineeringLicenseModel.COMMENTS_JSON_KEY, engineeringLicenseFormBean.getComments()));
         emailParams.put(EngineeringLicenseModel.USERS_EMAIL_LABEL + VALUE, getUsersForEmail(engineeringLicenseFormBean.getUsers()));
     }
     
@@ -222,18 +217,25 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         emailParams.put(SiteLicenseModel.LOCATION_OF_SITE_KEY + VALUE, siteLicenseFormBean.getLocationOfSite());
         emailParams.put(SiteLicenseModel.APPLICATION_KEY + VALUE, siteLicenseFormBean.getApplication());
         emailParams.put(SiteLicenseModel.PLC_TYPE_KEY + VALUE, siteLicenseFormBean.getPlcType());
-        emailParams.put(SiteLicenseModel.PLC_TYPE_KEY + HIDE_SUFFIX,
-                StringUtils.isBlank(siteLicenseFormBean.getPlcType()) ? HIDE_CSS_CLASS : StringUtils.EMPTY);
+        emailParams.putAll(cssHideIfEmpty(SiteLicenseModel.PLC_TYPE_KEY, siteLicenseFormBean.getPlcType()));
         emailParams.put(SiteLicenseModel.HMI_TYPE_KEY + VALUE, siteLicenseFormBean.getHmiType());
-        emailParams.put(SiteLicenseModel.HMI_TYPE_KEY + HIDE_SUFFIX,
-                StringUtils.isBlank(siteLicenseFormBean.getHmiType()) ? HIDE_CSS_CLASS : StringUtils.EMPTY);
+        emailParams.putAll(cssHideIfEmpty(SiteLicenseModel.HMI_TYPE_KEY, siteLicenseFormBean.getHmiType()));
         emailParams.put(SiteLicenseModel.MES_TYPE_KEY + VALUE, siteLicenseFormBean.getMesType());
-        emailParams.put(SiteLicenseModel.MES_TYPE_KEY + HIDE_SUFFIX,
-                StringUtils.isBlank(siteLicenseFormBean.getMesType()) ? HIDE_CSS_CLASS : StringUtils.EMPTY);
+        emailParams.putAll(cssHideIfEmpty(SiteLicenseModel.MES_TYPE_KEY, siteLicenseFormBean.getMesType()));
         emailParams.put(SiteLicenseModel.NUMBER_OF_BASIC_UNIT_KEY + VALUE,
                 siteLicenseFormBean.getNumberOfBasicUnit());
         emailParams.put(SiteLicenseModel.NUMBER_OF_ADVANCED_UNIT_KEY + VALUE,
                 siteLicenseFormBean.getNumberOfAdvancedUnit());
+    }
+
+    private Map<String, String> cssHideIfEmpty(final String key, final String value) {
+        Map<String, String> entry;
+        if (StringUtils.isBlank(value)) {
+            entry = Map.of(key + HIDE_SUFFIX, HIDE_CSS_CLASS);
+        } else {
+            entry = Map.of(key + HIDE_SUFFIX, StringUtils.EMPTY);
+        }
+        return entry;
     }
     
     private EngineeringLicenseFormBean createEngineeringLicenseFormBean(ServletRequest request) throws IOException {
@@ -290,8 +292,9 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
      */
     private String getUsersForEmail(List<EngineeringLicenseFormBean.Users> users) {
         StringBuilder outputHtml = new StringBuilder();
+        String usersTableHtml = USERS_HTML_NAME + USERS_HTML_DATE + USERS_HTML_LICENSES;
         for (EngineeringLicenseFormBean.Users user : users) {
-            String substitutedHML = USERS_HTML_AS_STRING.replace("NAME", user.getLicenseHolderName());
+            String substitutedHML = usersTableHtml.replace("NAME", user.getLicenseHolderName());
             substitutedHML = substitutedHML.replace("DATE", user.getActivationDate());
             substitutedHML = substitutedHML.replace("LICENSES", getLicensesForUser(user) + "<br/>");
             outputHtml.append(substitutedHML);

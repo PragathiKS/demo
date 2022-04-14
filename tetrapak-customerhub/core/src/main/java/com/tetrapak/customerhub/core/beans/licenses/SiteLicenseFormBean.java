@@ -3,6 +3,11 @@ package com.tetrapak.customerhub.core.beans.licenses;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+/**
+ * Site License Form Bean
+ *
+ * @author Pathak Ankit
+ */
 public class SiteLicenseFormBean {
 
     private String nameOfSite;

@@ -1,11 +1,13 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
-
+import com.day.cq.commons.Externalizer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.AIPCategoryService;
+import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.servlets.PlantMasterLicensesEmailServlet;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -19,14 +21,10 @@ import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.Externalizer;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.AIPCategoryService;
-import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.servlets.PlantMasterLicensesEmailServlet;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Model class for Plant Master licenses component.
@@ -171,7 +169,7 @@ public class PlantMasterLicensesModel {
     }
 
     public String getEmailAddressValue() {
-        return emailAddressValue!=null?emailAddressValue: StringUtils.EMPTY;
+        return StringUtils.defaultIfEmpty(emailAddressValue, StringUtils.EMPTY);
     }
     
     public Map<String, Object> getI18nKeysMap() {
@@ -191,7 +189,7 @@ public class PlantMasterLicensesModel {
     }
 
     public String getUserNameValue() {
-        return userNameValue!=null?userNameValue: StringUtils.EMPTY;
+        return StringUtils.defaultIfEmpty(userNameValue, StringUtils.EMPTY);
     }
 
     public String getGroupServletUrl() {
