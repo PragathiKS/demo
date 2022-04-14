@@ -61,7 +61,7 @@ public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
     }
 
     private JsonObject getJsonGroups() throws IOException {
-        JsonObject jsonGroups = null;
+        JsonObject jsonGroups = new JsonObject();
         JsonParser parser = new JsonParser();
         try (InputStream io = this.getClass().getClassLoader().getResourceAsStream(STATIC_GROUPS_DEFINITION_JSON)) {
             Object obj = parser.parse(new InputStreamReader(io, "UTF-8"));

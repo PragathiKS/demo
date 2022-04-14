@@ -8,7 +8,7 @@ import com.tetrapak.customerhub.core.models.EngineeringLicenseModel;
 import com.tetrapak.customerhub.core.models.PlantMasterLicensesModel;
 import com.tetrapak.customerhub.core.models.SiteLicenseModel;
 import com.tetrapak.customerhub.core.services.PlantMasterLicensesService;
-import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
+import com.tetrapak.customerhub.core.services.config.PlantMasterLicensesEmailConfiguration;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  */
 @Component(service = PlantMasterLicensesService.class, immediate = true,
         configurationPolicy = ConfigurationPolicy.OPTIONAL)
-@Designate(ocd = AIPEmailConfiguration.class)
+@Designate(ocd = PlantMasterLicensesEmailConfiguration.class)
 public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesService {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterLicensesServiceImpl.class);
@@ -56,14 +56,14 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private JobManager jobMgr;
     
     /** The config. */
-    private AIPEmailConfiguration config;
+    private PlantMasterLicensesEmailConfiguration config;
     
     /**
      * Activate.
      * @param config the config
      */
     @Activate
-    public void activate(final AIPEmailConfiguration config) {
+    public void activate(final PlantMasterLicensesEmailConfiguration config) {
         this.config = config;
     }
     

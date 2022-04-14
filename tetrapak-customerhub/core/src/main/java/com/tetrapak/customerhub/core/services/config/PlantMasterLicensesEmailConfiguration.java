@@ -5,10 +5,10 @@ import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 /**
- * OSGi configuration for AIP Emails
+ * OSGi configuration for Licenses Emails
  */
-@ObjectClassDefinition(name = "AIP Email Configuration", description = "AIP Email Configuration")
-public @interface AIPEmailConfiguration {
+@ObjectClassDefinition(name = "Plant Master Licenses Email Configuration", description = "Plant Master Licenses Email Configuration")
+public @interface PlantMasterLicensesEmailConfiguration {
     
     /**
      * Recipient Email Address
@@ -18,14 +18,6 @@ public @interface AIPEmailConfiguration {
             type = AttributeType.STRING)
     String[] recipientAddresses();
     
-    /**
-     * Email Template Path
-     * @return Email Template Path
-     */
-    @AttributeDefinition(name = "COTS Support Email Template Path", description = "COTS Support Email Template Path",
-            type = AttributeType.STRING)
-    String emailTemplatePath();
-
     /**
      * Engineering License Email Template Path
      * @return Engineering License Email Template Path
@@ -42,14 +34,6 @@ public @interface AIPEmailConfiguration {
             type = AttributeType.STRING)
     String siteLicenseEmailTemplatePath();
     
-    /**
-     * Enable sending of email
-     * @return Enable sending of email
-     */
-    @AttributeDefinition(name = "Enable sending of email", description = "Enable sending of email",
-            type = AttributeType.BOOLEAN)
-    boolean isCotsSupportEmailEnabled();
-
     /**
      * Enable sending of email
      * @return Enable sending of email

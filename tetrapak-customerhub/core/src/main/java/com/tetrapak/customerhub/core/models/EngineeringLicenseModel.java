@@ -16,22 +16,8 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
         Resource.class, SlingHttpServletRequest.class
 }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class EngineeringLicenseModel {
-    
-    public static final String TITLE_JSON_KEY = "title";
-    public static final String DESCRIPTION_JSON_KEY = "description";
-    public static final String USER_DETAILS_SECTION_TITLE_JSON_KEY = "userDetailsSectionTitle";
-    public static final String NAME_JSON_KEY = "name";
-    public static final String NAME_PLACEHOLDER_JSON_KEY = "namePlaceholder";
-    public static final String ACTIVATION_DATE_JSON_KEY = "activationDate";
-    public static final String ACTIVATION_DATE_PLACEHOLDER_JSON_KEY = "activationDatePlaceholder";
-    public static final String LICENSE_SELECTION_SECTION_TITLE_JSON_KEY = "licenseSelectionSectionTitle";
-    public static final String ADD_USER_JSON_KEY = "addUser";
-    public static final String REMOVE_USER_JSON_KEY = "removeUser";
+
     public static final String COMMENTS_JSON_KEY = "comments";
-    public static final String SUBMIT_BUTTON_JSON_KEY = "submitButton";
-    public static final String LICENSE_DESCRIPTIONS_JSON_KEY = "licenseDescriptions";
-    public static final String SUCCESS_MESSAGE_HEADING_JSON_KEY = "successMessageHeading";
-    public static final String SUCCESS_MESSAGE_DESCRIPTION_JSON_KEY = "successMessageDescription";
     public static final String USERS_EMAIL_LABEL = "users";
     public static final String LICENSE_TABLE_USER_NAME = "licenseTableUserName";
     public static final String LICENSE_TABLE_ACTIVATION_DATE = "licenseTableActivationDate";
@@ -47,47 +33,38 @@ public class EngineeringLicenseModel {
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(TITLE_JSON_KEY)
     private String title;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(USER_DETAILS_SECTION_TITLE_JSON_KEY)
     private String userDetailsSectionTitle;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(NAME_JSON_KEY)
     private String name;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(NAME_PLACEHOLDER_JSON_KEY)
     private String namePlaceholder;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(ACTIVATION_DATE_JSON_KEY)
     private String activationDate;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(ACTIVATION_DATE_PLACEHOLDER_JSON_KEY)
     private String activationDatePlaceholder;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(LICENSE_SELECTION_SECTION_TITLE_JSON_KEY)
     private String licenseSelectionSectionTitle;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(ADD_USER_JSON_KEY)
     private String addUser;
 
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(REMOVE_USER_JSON_KEY)
     private String removeUser;
     
     @ValueMapValue
@@ -97,27 +74,22 @@ public class EngineeringLicenseModel {
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(SUBMIT_BUTTON_JSON_KEY)
     private String submitButton;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(LICENSE_DESCRIPTIONS_JSON_KEY)
     private String licenseDescriptions;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(SUCCESS_MESSAGE_HEADING_JSON_KEY)
     private String successMessageHeading;
     
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(SUCCESS_MESSAGE_DESCRIPTION_JSON_KEY)
     private String successMessageDescription;
 
     @ValueMapValue
     @Expose(serialize = true)
-    @SerializedName(DESCRIPTION_JSON_KEY)
     private String description;
 
     @ValueMapValue
