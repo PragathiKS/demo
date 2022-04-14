@@ -16,7 +16,7 @@ class PlantMasterLicenses {
   cache = {};
 
   init() {
-    
+
     ajaxWrapper.getXhrObj({
       url: this.root.data('group-servlet-url'),
       method: ajaxMethods.GET,
@@ -51,7 +51,7 @@ class PlantMasterLicenses {
 
     }).fail((e) => {
       logger.error(e);
-    });    
+    });
   }
 }
 
