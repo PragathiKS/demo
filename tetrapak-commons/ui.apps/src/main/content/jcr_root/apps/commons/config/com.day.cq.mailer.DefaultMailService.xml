@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="sling:OsgiConfig"
-    smtp.password="6ca7+w\=Gr2wK3YT8a6dA"
+    smtp.password="{61cc8393b1ca7502b4d2a02e298c01cfddd12acefd6076b16b026f3afe3bf5129c3b78632c54fe2dc3549a7e0aa199ff}"
 	debug.email="true"
 	smtp.user="SRVSECFE@TETRAPAK.COM"
 	smtp.port="587"
