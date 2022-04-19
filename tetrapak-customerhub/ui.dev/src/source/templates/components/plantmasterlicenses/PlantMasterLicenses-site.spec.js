@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import PlantMasterLicensesSite from './PlantMasterLicenses-site';
 import PlantMasterSiteLicensesData from './data/plantMasterLicenses-site.json';
-import PlantMasterSiteLicensesTemplate from '../../../test-templates-hbs/PlantMasterLicenses.hbs';
+import PlantMasterSiteLicensesTemplate from '../../../test-templates-hbs/plantMasterLicenses.hbs';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 
