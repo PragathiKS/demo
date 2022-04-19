@@ -1,7 +1,6 @@
 package com.tetrapak.customerhub.core.beans.licenses;
 
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Site License Form Bean
@@ -54,18 +53,5 @@ public class SiteLicenseFormBean {
 
     public String getNumberOfAdvancedUnit() {
         return numberOfAdvancedUnit;
-    }
-
-    public String toString(){
-        return new ToStringBuilder(this).
-                append("nameOfSite", nameOfSite).
-                append("locationOfSite", locationOfSite).
-                append("application", application).
-                append("plcType", plcType).
-                append("hmiType", hmiType).
-                append("mesType", mesType).
-                append("numberOfBasicUnit", numberOfBasicUnit).
-                append("numberOfAdvancedUnit", numberOfAdvancedUnit).
-                toString();
     }
 }

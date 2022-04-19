@@ -31,7 +31,6 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.http.Cookie;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -226,6 +225,19 @@ public class GlobalUtil {
      */
     public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key) {
         I18n i18n = new I18n(request);
+        return i18n.get(prefix + key);
+    }
+
+    /**
+     * The method provides the i18n value provided the following parameters.
+     *
+     * @param resourceBundle bundle request
+     * @param prefix  prefix
+     * @param key     key
+     * @return value
+     */
+    public static String getI18nValue(ResourceBundle resourceBundle, String prefix, String key) {
+        I18n i18n = new I18n(resourceBundle);
         return i18n.get(prefix + key);
     }
 

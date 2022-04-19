@@ -19,22 +19,6 @@ public @interface PlantMasterLicensesEmailConfiguration {
     String[] recipientAddresses();
     
     /**
-     * Engineering License Email Template Path
-     * @return Engineering License Email Template Path
-     */
-    @AttributeDefinition(name = "Engineering License Email Template Path", description = "Engineering License Email Template Path",
-            type = AttributeType.STRING)
-    String engineeringLicenseEmailTemplatePath();
-
-    /**
-     * Site License Email Template Path
-     * @return Site License Email Template Path
-     */
-    @AttributeDefinition(name = "Site License Email Template Path", description = "Site License Email Template Path",
-            type = AttributeType.STRING)
-    String siteLicenseEmailTemplatePath();
-    
-    /**
      * Enable sending of email
      * @return Enable sending of email
      */
