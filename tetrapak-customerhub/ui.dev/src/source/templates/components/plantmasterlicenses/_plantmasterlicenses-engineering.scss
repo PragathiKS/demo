@@ -1,0 +1,98 @@
+.tp-aip-licenses {
+    &-eng {
+        $this: &;
+
+        &__holder {
+            @include padding($padding-l);
+            @include margin-bottom($margin-l);
+            background-color: $color-wild-sand;
+        }
+
+        &__add-user {
+            @include padding($padding-md);
+            @include margin-bottom($margin-md);
+            border: 1px dashed $color-congress-blue;
+            color: $color-congress-blue;
+            width: 100%;
+            text-align: left;
+            font-weight: 700;
+
+            .icon {
+                @include margin-right($margin-xs);
+
+                &::before {
+                    @include font-size($font-baseline);
+                }
+            }
+
+            @media #{$desktop} {
+                @include margin-top($margin-xs);
+            }
+        }
+
+        &__desc {
+            @include margin-top($margin-l);
+            @include padding($padding-l);
+            background-color: $color-wild-sand;
+        }
+
+        &__btn {
+            @include margin-bottom($margin-sm);
+        }
+
+        &__col-title {
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
+            @include padding-bottom($padding-md);
+            font-weight: 700;
+            border-bottom: 1px solid $color-mercury;
+        }
+
+        &__subheading {
+            @include margin-bottom($margin-l);
+        }
+
+        &__info-card {
+            h2 {
+                @include margin-bottom($margin-md);
+            }
+
+            p {
+                @include margin-bottom($margin-md);
+            }
+
+            #{$this}__txt-block-title {
+                @include margin-bottom($margin-md);
+                font-weight: 700;
+            }
+
+            &:last-child {
+                @include padding-bottom($padding-zero);
+            }
+        }
+
+        &__txt-block {
+            @include margin-bottom($margin-l);
+        }
+
+        &__form {
+            @include margin-bottom($margin-md);
+        }
+
+        &__remove {
+            @include margin-top($margin-l);
+            @include padding-top($padding-md);
+            border-top: 1px solid $color-mercury;
+
+            .icon {
+                @include margin-left($margin-xs);
+            }
+        }
+
+        input {
+            &[type='date'] {
+                @include max-width(224px);
+            }
+        }
+    }
+}

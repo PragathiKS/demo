@@ -2,7 +2,7 @@ package com.tetrapak.customerhub.core.servlets;
 
 import com.adobe.acs.commons.email.EmailService;
 import com.day.cq.wcm.api.LanguageManager;
-import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
+import com.tetrapak.customerhub.core.services.config.CotsSupportEmailConfiguration;
 import com.tetrapak.customerhub.core.services.impl.CotsSupportServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.commons.io.IOUtils;
@@ -80,7 +80,7 @@ public class CotsSupportEmailServletTest {
     private EmailService emailService;
     
     @Mock
-    private AIPEmailConfiguration AIPEmailConfiguration;
+    private CotsSupportEmailConfiguration AIPEmailConfiguration;
     
     @Rule
     public final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
@@ -110,7 +110,7 @@ public class CotsSupportEmailServletTest {
         context.registerService(JobManager.class, jobManager);
         context.registerService(EmailService.class, emailService);
         context.registerService(LanguageManager.class, languageManager);
-        context.registerService(AIPEmailConfiguration.class, AIPEmailConfiguration);
+        context.registerService(CotsSupportEmailConfiguration.class, AIPEmailConfiguration);
         Map<String, Object> props = new HashMap<>();
         context.registerInjectActivateService(cotsSupportServiceImpl, props);
         when(cotsSupportServiceImpl.getI18nValue(any(), any(), any())).thenReturn(StringUtils.EMPTY);

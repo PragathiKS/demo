@@ -6,7 +6,7 @@ import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
 import com.tetrapak.customerhub.core.jobs.MyTetrapakEmailJob;
 import com.tetrapak.customerhub.core.models.CotsSupportModel;
 import com.tetrapak.customerhub.core.services.CotsSupportService;
-import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
+import com.tetrapak.customerhub.core.services.config.CotsSupportEmailConfiguration;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -29,7 +29,7 @@ import java.util.Objects;
  * The Class CotsSupportService Implementation.
  */
 @Component(service = CotsSupportService.class, immediate = true, configurationPolicy = ConfigurationPolicy.OPTIONAL)
-@Designate(ocd = AIPEmailConfiguration.class)
+@Designate(ocd = CotsSupportEmailConfiguration.class)
 public class CotsSupportServiceImpl implements CotsSupportService {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(CotsSupportServiceImpl.class);
@@ -46,14 +46,14 @@ public class CotsSupportServiceImpl implements CotsSupportService {
     private XSSAPI xssAPI;
     
     /** The config. */
-    private AIPEmailConfiguration config;
+    private CotsSupportEmailConfiguration config;
     
     /**
      * Activate.
      * @param config the config
      */
     @Activate
-    public void activate(final AIPEmailConfiguration config) {
+    public void activate(final CotsSupportEmailConfiguration config) {
         this.config = config;
     }
     
