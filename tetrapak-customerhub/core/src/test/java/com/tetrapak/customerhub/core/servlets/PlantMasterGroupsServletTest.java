@@ -51,6 +51,8 @@ public class PlantMasterGroupsServletTest {
 
     @Before
     public void setUp() throws RepositoryException {
+        context.load().json("/" + "aipTrainingsAndLicenseGroupsStatic.json",
+                "/content/dam/customerhub/aip/aipTrainingsAndLicenseGroupsStatic.json");
         context.registerAdapter(ResourceResolver.class, UserManager.class, userManager);
         when(userManager.getAuthorizable(anyString())).thenReturn(mockUser);
         Map<String, Object> props = new HashMap<>();

@@ -1,15 +1,11 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.adobe.acs.commons.email.EmailService;
-import com.adobe.cq.gfx.Plan;
-import com.day.cq.wcm.api.LanguageManager;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.services.AIPCategoryService;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
+import com.tetrapak.customerhub.core.services.config.CotsSupportEmailConfiguration;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.event.jobs.JobManager;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,7 +24,7 @@ public class EngineeringLicenseModelTest {
     private static final String RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/automation-digital/licenses/jcr:content/root/responsivegrid/plantmasterlicenses";
 
     @Mock
-    private AIPEmailConfiguration AIPEmailConfiguration;
+    private CotsSupportEmailConfiguration AIPEmailConfiguration;
 
     @Mock
     private APIGEEService apigeeService;
@@ -44,7 +40,7 @@ public class EngineeringLicenseModelTest {
         MockitoAnnotations.initMocks(this);
         Resource currentResource = aemContext.resourceResolver().getResource(RESOURCE_PATH);
         aemContext.request().setResource(currentResource);
-        aemContext.registerService(AIPEmailConfiguration.class, AIPEmailConfiguration);
+        aemContext.registerService(CotsSupportEmailConfiguration.class, AIPEmailConfiguration);
         aemContext.registerService(APIGEEService.class, apigeeService);
         when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-product-details:productinformation/categories/{id}/products"});
         aemContext.registerService(AIPCategoryService.class, aipCategoryService);

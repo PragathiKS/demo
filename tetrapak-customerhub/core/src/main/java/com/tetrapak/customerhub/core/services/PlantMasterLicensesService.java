@@ -1,17 +1,22 @@
 package com.tetrapak.customerhub.core.services;
 
-import org.apache.sling.api.SlingHttpServletRequest;
+import com.tetrapak.customerhub.core.models.PlantMasterLicensesModel;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public interface PlantMasterLicensesService {
-    
+
     /**
      * Send email to configured mailbox
-     * 
-     * @param request
+     *
+     *  resourceBundle
+     *  licenseTypeHeader
+     *  requestData
+     *  masterLicensesModel
      * @return operation result
      * @throws IOException
      */
-    boolean sendEmail(SlingHttpServletRequest request) throws IOException;
+    boolean sendEmail(ResourceBundle resourceBundle, String licenseTypeHeader, String requestData,
+            PlantMasterLicensesModel masterLicensesModel) throws IOException;
 }
