@@ -178,9 +178,8 @@ class PlantMasterLicensesEngineering {
 
     ajaxWrapper
       .getXhrObj({
-        url: this.cache.submitApi,
+        url: this.cache.submitApi + '&licenseType=engineering',
         method: ajaxMethods.POST,
-        headers: { 'licenseType': 'engineering' },
         cache: true,
         contentType: 'application/json; charset=utf-8',
         dataType:'json',
