@@ -1,0 +1,16 @@
+.form-group {
+    .errorMsg {
+        color: $color-alert;
+        font-size: $font-sm;
+        display: none;
+    }
+}
+.field-error {
+    input[type=text],
+    input[type=email] {
+        border: 1px solid $color-alert;
+    }
+    .errorMsg {
+        display: block;
+    }
+}

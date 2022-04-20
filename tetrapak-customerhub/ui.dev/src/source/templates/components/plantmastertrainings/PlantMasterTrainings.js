@@ -6,25 +6,30 @@ import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 
-function _processTrainingsData(data) {
+function _processTrainingsData(data,pingUserGroup) {
+  data = data ? data : [];
   const processedDataArr = [];
+  const trainingUserGroup = pingUserGroup ? pingUserGroup : [];
 
   data.forEach((item) => {
-    const {learningItemDetail, name, id} = item;
-    const {itemGoals, audience, duration, maximumEnrollments, comments} = learningItemDetail;
+    if(trainingUserGroup.length > 0){
+      if(trainingUserGroup.includes(item.extRef.material.number)){
+        const {learningItemDetail, name, id} = item;
+        const {itemGoals, audience, duration, maximumEnrollments, comments} = learningItemDetail;
 
-    processedDataArr.push({
-      name,
-      id,
-      description: item.descriptions[0].body,
-      itemGoals,
-      audience,
-      duration,
-      comments,
-      maximumEnrollments
-    });
+        processedDataArr.push({
+          name,
+          id,
+          description: item.descriptions[0].body,
+          itemGoals,
+          audience,
+          duration,
+          comments,
+          maximumEnrollments
+        });
+      }
+    }
   });
-
   return processedDataArr;
 }
 
@@ -134,13 +139,42 @@ function _getTrainingsData() {
         },
         showLoader: true
       }).done(res => {
-        $this.cache.trainingsData = _processTrainingsData(res.data);
+        $this.cache.trainingsData = _processTrainingsData(res.data,this.cache.trainingUerGroup);
         $this.renderTrainings();
         $this.cache.$contentWrapper.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
       }).fail((e) => {
         logger.error(e);
       });
+  });
+}
+
+
+/**
+ * Fetch ping user data 
+ */
+
+function _getUserGroup() {
+  ajaxWrapper.getXhrObj({
+    url: this.cache.usergroupurl,
+    method: ajaxMethods.GET,
+    cache: true,
+    async: false,
+    dataType: 'json',
+    contentType: 'application/json',
+    beforeSend(jqXHR) {
+      jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    },
+    showLoader: true
+  }).done(res => {
+    const userGroup = res.groups;
+    if(userGroup){
+      userGroup.forEach(group => {
+        if(group.trainingId === '' || group.trainingId !== undefined){
+          this.cache.trainingUerGroup.push(group.trainingId);
+        }
+      });
+    }
   });
 }
 
@@ -179,6 +213,8 @@ class PlantMasterTrainings {
     this.cache.$formSpinner = this.root.find('.js-aip-trainings__form-spinner');
     this.cache.$formWrapper = this.root.find('.js-aip-trainings__form-content');
     this.cache.$tabPaneAvailableTrainings = this.root.find('.js-aip-trainings__accordion');
+    this.cache.usergroupurl = this.root.data('group-servlet-url');
+    this.cache.trainingUerGroup = [];
   }
 
   bindEvents() {
@@ -196,6 +232,10 @@ class PlantMasterTrainings {
     return _getTrainingsData.apply(this, arguments);
   }
 
+  getUserGroup() {
+    return _getUserGroup.apply(this, arguments);
+  }
+
   handleFormSubmit() {
     return _handleFormSubmit.apply(this, arguments);
   }
@@ -210,6 +250,7 @@ class PlantMasterTrainings {
 
   init() {
     this.initCache();
+    this.getUserGroup();
     this.getTrainingsData();
     this.bindEvents();
   }

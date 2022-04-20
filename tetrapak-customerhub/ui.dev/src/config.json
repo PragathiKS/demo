@@ -183,9 +183,9 @@
         "enforce": true,
         "chunks": "all"
       },
-      "cotssupport": {
+      "plantmasterlicenses": {
         "testMultiple": true,
-        "name": "cotssupport",
+        "name": "plantmasterlicenses",
         "enforce": true,
         "chunks": "all"
       }
@@ -234,11 +234,14 @@
       "addequipment": [
         "source/templates/components/addequipment/"
       ],
+      "plantmastertrainings": [
+        "source/templates/components/plantmastertrainings/"
+      ],
       "cotssupport": [
         "source/templates/components/cotssupport/"
       ],
-      "plantmastertrainings": [
-        "source/templates/components/plantmastertrainings/"
+      "plantmasterlicenses": [
+        "source/templates/components/plantmasterlicenses/"
       ]
     },
     "handlebars": {

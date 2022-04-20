@@ -1,0 +1,388 @@
+{
+    "meta":{
+        "total":4,
+        "version":"1"
+    },
+    "data":[
+        {
+            "id":"00035013",
+            "name":"Tetra Pak® PlantMaster - AVEVA MES SI-kit, Engineering License",
+            "ref":{
+                "id":"00035013",
+                "name":"Tetra Pak® PlantMaster - AVEVA MES SI-kit, Engineering License"
+            },
+            "extRef":{
+                "material":{
+                    "number":"3479536-0100AVV"
+                },
+                "tsso":null,
+                "qsv":null
+            },
+            "descriptions":[
+                {
+                    "body":"<p><strong>Description</strong></p>\n<p>The solution builds on AVEVA model-driven MES approach, a digital and graphical modelling of work processes and operational activities. The result is a new level of sustainability and reusability which is a key enabler for sharing best project practices and standardisation of processes across lines, plants and multi-site enterprises.</p>\n<p>Tetra Pak AVEVA MES SI-Kit is a library of configurable templates assembled from both solutions developed from Tetra Pak, and solutions available from AVEVA Model Driven MES best practices, for example interfacing to ERP, CIP, reception, etc. Using the templates reduces engineering efforts, and lowers cost of ownership by reducing customized coding.</p>\n<p>Included in this release is an installable package with Reception and CIP templates, with the possibility to also use AVEVA Recipe Management. The package consists of ready to use UI forms and Skelta workflows to enable an efficient implementation.</p>\n<p><strong>Key benefits</strong></p>\n<ul>\n\t<li>Maximise profitability, quality, and compliance in manufacturing by digitally managing the business rules and capturing information for all operational activities and plant events in real time.</li>\n\t<li>Work process-centric and Model-Driven approach further reduces the time to value and cost of ownership of manufacturing execution system (MES) deployments and multi-site roll outs through operational processes for standardisation to continuously improve operational efficiency and the return on MES investment.</li>\n</ul>\n"
+                }
+            ],
+            "summary":null,
+            "contacts":[
+                {
+                    "username":"SETSAIG",
+                    "role":"Product Manager"
+                }
+            ],
+            "featureBenefits":[
+
+            ],
+            "options":[
+
+            ],
+            "images":[
+
+            ],
+            "specifications":[
+
+            ],
+            "relationships":[
+
+            ],
+            "capDetail":null,
+            "packageDetail":null,
+            "utilityUsageDetail":null,
+            "packagingEquipmentDetail":{
+                "packageCapacities":[
+
+                ],
+                "packageCategories":[
+
+                ]
+            },
+            "strawDetail":null,
+            "learningItemDetail":null,
+            "categories":[
+                {
+                    "ref":{
+                        "id":"4820",
+                        "name":"Engineering Licenses"
+                    },
+                    "parent":{
+                        "id":"4468",
+                        "name":null
+                    },
+                    "description":null,
+                    "images":[
+
+                    ],
+                    "specifications":[
+
+                    ],
+                    "subCategories":[
+
+                    ],
+                    "userNavigable":false,
+                    "options":[
+
+                    ],
+                    "packageCategoryDetail":{
+                        "printingMethods":[
+
+                        ],
+                        "packagingMaterialEffects":[
+
+                        ]
+                    },
+                    "openingDetail":{
+                        "packagingMaterials":[
+
+                        ]
+                    }
+                }
+            ],
+            "status":null
+        },
+        {
+            "id":"00035011",
+            "name":"Tetra Pak® PlantMaster - Production Control - Siemens TIA Platform SI-kit, Engineering License",
+            "ref":{
+                "id":"00035011",
+                "name":"Tetra Pak® PlantMaster - Production Control - Siemens TIA Platform SI-kit, Engineering License"
+            },
+            "extRef":{
+                "material":{
+                    "number":"3479535-0100TIA"
+                },
+                "tsso":null,
+                "qsv":null
+            },
+            "descriptions":[
+                {
+                    "body":"<p><strong>Description</strong></p>\n<p>Process Control - Siemens TIA Platform SI-kit is&nbsp;<em>Tetra Pak PlantMaster libraries implemented in Siemens TIA standard automation platform&nbsp;</em><strong>&nbsp;</strong></p>\n<p><strong>Key Benefit</strong></p>\n<ul>\n\t<li>Full&nbsp;control of your operational parameters throughout your plant</li>\n\t<li>Processing know-how included in equipment and plant automation solutions</li>\n\t<li>Standard structure of code enables easier maintenance &amp; troubleshooting</li>\n\t<li>Increase process stability and reliability by reducing risk of human error</li>\n\t<li>Increase production flexibility with optimized utilization of your production lines</li>\n\t<li>Collect correct and relevant data through our expertise in process design</li>\n</ul>\n"
+                }
+            ],
+            "summary":null,
+            "contacts":[
+                {
+                    "username":"SELIJ",
+                    "role":"Product Manager"
+                }
+            ],
+            "featureBenefits":[
+
+            ],
+            "options":[
+
+            ],
+            "images":[
+
+            ],
+            "specifications":[
+
+            ],
+            "relationships":[
+
+            ],
+            "capDetail":null,
+            "packageDetail":null,
+            "utilityUsageDetail":null,
+            "packagingEquipmentDetail":{
+                "packageCapacities":[
+
+                ],
+                "packageCategories":[
+
+                ]
+            },
+            "strawDetail":null,
+            "learningItemDetail":null,
+            "categories":[
+                {
+                    "ref":{
+                        "id":"4820",
+                        "name":"Engineering Licenses"
+                    },
+                    "parent":{
+                        "id":"4468",
+                        "name":null
+                    },
+                    "description":null,
+                    "images":[
+
+                    ],
+                    "specifications":[
+
+                    ],
+                    "subCategories":[
+
+                    ],
+                    "userNavigable":false,
+                    "options":[
+
+                    ],
+                    "packageCategoryDetail":{
+                        "printingMethods":[
+
+                        ],
+                        "packagingMaterialEffects":[
+
+                        ]
+                    },
+                    "openingDetail":{
+                        "packagingMaterials":[
+
+                        ]
+                    }
+                }
+            ],
+            "status":null
+        },
+        {
+            "id":"00035014",
+            "name":"Tetra Pak® PlantMaster - Production Integrator SI-kit, Engineering License",
+            "ref":{
+                "id":"00035014",
+                "name":"Tetra Pak® PlantMaster - Production Integrator SI-kit, Engineering License"
+            },
+            "extRef":{
+                "material":{
+                    "number":"3479536-0100PI"
+                },
+                "tsso":null,
+                "qsv":null
+            },
+            "descriptions":[
+                {
+                    "body":"<p><strong>Description</strong></p>\n<p>Production Integrator is a platform for the MES layer and is therefore prepared for communicating both with the Production Control layer and the ERP layer.</p>\n<p>It consists of 6 modules, Production Management, Quality Control, Reports, Traceability, Integration and Environment. 4 of these (Production Management, Quality Control, Reports and Traceability) are very close to each other because they all take data from the same databases and are presented in the same application.</p>\n<p><strong>Key benefits</strong></p>\n<ul>\n\t<li>One integrated solution designed for Food and Beverage industry with wide installed base.</li>\n\t<li>It is easy to implement with years of Tetra Pak automation and production experience.&nbsp;</li>\n</ul>\n"
+                }
+            ],
+            "summary":null,
+            "contacts":[
+                {
+                    "username":"SETSAIG",
+                    "role":"Product Manager"
+                }
+            ],
+            "featureBenefits":[
+
+            ],
+            "options":[
+
+            ],
+            "images":[
+
+            ],
+            "specifications":[
+
+            ],
+            "relationships":[
+
+            ],
+            "capDetail":null,
+            "packageDetail":null,
+            "utilityUsageDetail":null,
+            "packagingEquipmentDetail":{
+                "packageCapacities":[
+
+                ],
+                "packageCategories":[
+
+                ]
+            },
+            "strawDetail":null,
+            "learningItemDetail":null,
+            "categories":[
+                {
+                    "ref":{
+                        "id":"4820",
+                        "name":"Engineering Licenses"
+                    },
+                    "parent":{
+                        "id":"4468",
+                        "name":null
+                    },
+                    "description":null,
+                    "images":[
+
+                    ],
+                    "specifications":[
+
+                    ],
+                    "subCategories":[
+
+                    ],
+                    "userNavigable":false,
+                    "options":[
+
+                    ],
+                    "packageCategoryDetail":{
+                        "printingMethods":[
+
+                        ],
+                        "packagingMaterialEffects":[
+
+                        ]
+                    },
+                    "openingDetail":{
+                        "packagingMaterials":[
+
+                        ]
+                    }
+                }
+            ],
+            "status":null
+        },
+        {
+            "id":"00035012",
+            "name":"Tetra Pak® PlantMaster - User Interface for Aveva System Platform SI-kit, Engineering License",
+            "ref":{
+                "id":"00035012",
+                "name":"Tetra Pak® PlantMaster - User Interface for Aveva System Platform SI-kit, Engineering License"
+            },
+            "extRef":{
+                "material":{
+                    "number":"3479534-0100ASP"
+                },
+                "tsso":null,
+                "qsv":null
+            },
+            "descriptions":[
+                {
+                    "body":"<p><strong>Description</strong></p>\n<p>User Interface for Aveva System Platform SI-kit is&nbsp;<em>Tetra Pak PlantMaster user interface implemented in Aveva System platform software</em></p>\n<p><strong>Key Benefit</strong></p>\n<ul>\n\t<li>Intuitive, task-based navigation allows for safe operation and quick response time</li>\n\t<li>Easy to learn and understand makes it easy for new operators to work with the system</li>\n\t<li>Right information at the right time secures that the correct decision is taken</li>\n</ul>\n"
+                }
+            ],
+            "summary":null,
+            "contacts":[
+                {
+                    "username":"SELIJ",
+                    "role":"Product Manager"
+                }
+            ],
+            "featureBenefits":[
+
+            ],
+            "options":[
+
+            ],
+            "images":[
+
+            ],
+            "specifications":[
+
+            ],
+            "relationships":[
+
+            ],
+            "capDetail":null,
+            "packageDetail":null,
+            "utilityUsageDetail":null,
+            "packagingEquipmentDetail":{
+                "packageCapacities":[
+
+                ],
+                "packageCategories":[
+
+                ]
+            },
+            "strawDetail":null,
+            "learningItemDetail":null,
+            "categories":[
+                {
+                    "ref":{
+                        "id":"4820",
+                        "name":"Engineering Licenses"
+                    },
+                    "parent":{
+                        "id":"4468",
+                        "name":null
+                    },
+                    "description":null,
+                    "images":[
+
+                    ],
+                    "specifications":[
+
+                    ],
+                    "subCategories":[
+
+                    ],
+                    "userNavigable":false,
+                    "options":[
+
+                    ],
+                    "packageCategoryDetail":{
+                        "printingMethods":[
+
+                        ],
+                        "packagingMaterialEffects":[
+
+                        ]
+                    },
+                    "openingDetail":{
+                        "packagingMaterials":[
+
+                        ]
+                    }
+                }
+            ],
+            "status":null
+        }
+    ]
+}

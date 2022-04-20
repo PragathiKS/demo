@@ -238,7 +238,7 @@ pipeline {
                 echo "Build ${appname}"
                 dir("${appname}") {
                 sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
-		sh "chmod 775 ui.apps/ -R"
+		sh "chmod 777 ./* -R"
                 sh "npm cache clean --force"
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {
@@ -247,7 +247,7 @@ pipeline {
                 if (!params.Sonar_Analysis) {
                         echo "Skipping Sonar execution for customerhub module"
                     } else {
-		        sh "chmod 775 ./* -R"
+		        sh "chmod 777 ./* -R"
                         sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
                     }
                 }

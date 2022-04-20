@@ -1,0 +1,56 @@
+<div class="tp-aip-licenses-eng__holder js-tp-aip-licenses-eng__new-holder" data-index="{{idx}}">
+    <div class="row">
+        <div class="col-lg-6 tp-aip-licenses-eng__holder-col">
+
+            <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.name
+                        name=(concat "licenseHolderName-" idx)
+                        placeholder=i18nKeys.namePlaceholder
+                        required="true"
+                        maxlength=300
+                        defaultValue=this.name
+                }}
+                <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.inputFieldError}}</div>
+            </div>
+
+            <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                {{> atoms/input/input
+                        labelText=i18nKeys.activationDate
+                        placeholder=i18nKeys.activationDatePlaceholder
+                        name=(concat "activationDate-" idx)
+                        required="true"
+                        type="date"
+                        defaultValue=this.date
+                }}
+                <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.inputFieldError}}</div>
+            </div>
+        </div>
+        <div class="col-lg-6 tp-aip-licenses-eng__holder-col">
+
+            <div class="tp-aip-licenses__form-element tp-aip-licenses-eng__checkbox-group js-tp-aip-licenses__checkbox-group js-tp-aip-licenses__form-element">
+                {{#each licenses}}
+                    <div class="tp-aip__form-checkbox-group">
+                        {{> atoms/checkbox/checkbox
+                                value=this.value
+                                text=this.name
+                                check="false"
+                                required="true"
+                                uniqueKey=(concat this.value ../idx)
+                        }}
+
+                    </div>
+                {{/each}}
+                <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.checkboxFieldError}}</div>
+            </div>
+        </div>
+    </div>
+
+    {{#if removable}}
+        <div class="tp-aip-licenses-eng__remove">
+            <button type="button" class="tpatom-btn tpatom-btn--transparent tp-aip-licenses-eng__remove-user js-tp-aip-licenses-eng__remove-user">
+                <span class="tpatom-btn__text">{{i18n key=i18nKeys.removeUser}}</span><i class="icon icon-My_Euipment_Bin_X"></i>
+            </button>
+        </div>
+    {{/if}}
+</div>
