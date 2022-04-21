@@ -48,7 +48,7 @@ $form-grp-margin: 12px;
             label {
                 @include font-size($font-baseline);
                 @include line-height($font-l, $font-baseline);
-                margin-bottom: 0;
+                font-weight: 500;
             }
 
             input {
@@ -88,6 +88,23 @@ $form-grp-margin: 12px;
 
                 &--active {
                     display: block;
+                }
+            }
+            .tpatom-checkbox {
+                &__input {
+                    &:checked {
+                        &+.icon {
+                            color: $color-congress-blue;
+                            border-color: $color-congress-blue;
+                        }
+                    }
+                }
+            }
+
+            @media #{$mobile} {
+                margin-top: $margin-sm;
+                &:first-child {
+                    margin-top: 0;
                 }
             }
         }
