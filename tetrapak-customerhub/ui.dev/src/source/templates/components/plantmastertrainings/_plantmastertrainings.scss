@@ -1,6 +1,7 @@
 // Generic AIP Tabs and Accordion styling
 .tp-aip {
     $this: &;
+    $color-success: #8dc63f;
 
     &__header-wrapper {
         @include margin-bottom($margin-l);
@@ -9,8 +10,15 @@
     }
 
     &__heading {
-        @include font-size($font-xl);
-        @include line-height(40px, $font-xl);
+        @include line-height($font-xl, $font-l);
+        @include font-size($font-l);
+        font-weight: 400;
+
+        @media #{$desktop} {
+            @include line-height(40px, $font-xl);
+            @include font-size($font-xl);
+            font-weight: 700;
+        }
     }
 
     &__acc-item {
@@ -26,7 +34,7 @@
 
             &.active {
                 color: $color-congress-blue;
-                //text-shadow: 0 0 .65px $color-congress-blue, 0 0 .65px $color-congress-blue;
+                font-weight: 700;
             }
         }
     }
@@ -108,6 +116,7 @@
         }
 
         &[aria-expanded='true'] {
+            color: inherit;
             font-weight: 700;
             background-color: $color-wild-sand;
 
@@ -120,29 +129,104 @@
             }
         }
 
+        &[aria-expanded='false'] {
+            &:hover {
+                color: $color-congress-blue;
+            }
+        }
+
         &:hover,
         &:focus {
-            color: $color-congress-blue;
             text-decoration: none;
         }
     }
 
-    //&__acc-item-body {
-    //    @include padding(0 $padding-md $padding-md $padding-md);
-    //}
-
     &__acc-txt-block {
         @include margin-bottom($margin-l);
 
-        h6 {
-            @include margin-bottom($margin-xs);
-            font-weight: 700;
+        p,
+        div {
+            &:not(.tp-aip__acc-block-title) {
+                @include margin-bottom($margin-sm);
+            }
         }
+    }
+
+    &__acc-block-title {
+        @include margin-bottom($margin-xs);
+        font-weight: 700;
     }
 
     &__acc-item-form {
         @include padding-top($padding-l);
         @include margin-top($padding-l);
         border-top: 1px solid $color-mercury;
+    }
+
+    &__acc-item-confirm {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-right($margin-md);
+            color: $color-success;
+        }
+    }
+
+    &__form-element {
+        .tpatom-input-box {
+            &__input {
+                border: 1px solid $color-tundora;
+            }
+        }
+
+        label {
+            @include line-height($font-l, $font-baseline);
+            @include margin-top($margin-md);
+            color: $color-text;
+            font-weight: 500;
+
+            &.tpatom-checkbox__label {
+                font-weight: 400;
+            }
+        }
+
+        &--error {
+            input,
+            textarea,
+            select,
+            .tpatom-checkbox__icon {
+                border: 1px solid $color-alert;
+            }
+        }
+        .error-msg {
+            @include font-size($font-sm);
+            display: none;
+            color: $color-alert;
+
+            &--active {
+                display: block;
+            }
+        }
+    }
+
+    &__form-element-sm {
+        .tpatom-input-box__input {
+            @include max-width(120px);
+        }
+    }
+
+    &__form-element-md {
+        .tpatom-input-box__input {
+            @include max-width(285px);
+        }
+    }
+
+    &__form-checkbox-group {
+        @include margin-top($margin-md);
+        @include margin-bottom($margin-md);
     }
 }

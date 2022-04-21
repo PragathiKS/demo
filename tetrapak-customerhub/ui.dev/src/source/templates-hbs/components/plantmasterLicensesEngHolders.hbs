@@ -14,7 +14,18 @@
                 <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.inputFieldError}}</div>
             </div>
 
-            <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+            <div class="js-aip__form-element tp-aip__form-element tp-aip__form-element-md">
+                {{> atoms/input/input
+                        labelText=i18nKeys.activationDate
+                        placeholder=i18nKeys.activationDatePlaceholder
+                        eleClasses="js-aip-activationDate__date-input"
+                        name=(concat "activationDate-" index)
+                        required="true"
+                }}
+                <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.inputFieldError}}</div>
+                <div class="error-msg js-date-formate__error">{{i18n key=i18nKeys.inputLicensesFormatErrorMsg}}</div>
+            </div>
+            {{!-- <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
                 {{> atoms/input/input
                         labelText=i18nKeys.activationDate
                         placeholder=i18nKeys.activationDatePlaceholder
@@ -24,7 +35,7 @@
                         defaultValue=this.date
                 }}
                 <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.inputFieldError}}</div>
-            </div>
+            </div> --}}
         </div>
         <div class="col-lg-6 tp-aip-licenses-eng__holder-col">
 
