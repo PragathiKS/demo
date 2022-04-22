@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import moment from 'moment';
@@ -148,7 +147,7 @@ class PlantMasterLicensesEngineering {
     });
 
     if (!allFormsValid) {
-      this.addErrorMsg($submitBtnWrapper);
+      this.addErrorMsg($submitBtnWrapper,'.js-tp-aip-licenses__error-msg-required');
       return;
     }
 
@@ -219,20 +218,20 @@ class PlantMasterLicensesEngineering {
 
     if (!selectedLicenses.length) {
       isFormValid = false;
-      this.addErrorMsg($licensesCheckboxGroup);
+      this.addErrorMsg($licensesCheckboxGroup,'.js-tp-aip-licenses__error-msg-required');
     }
 
     $requiredFormElements.each((idx, ele) => {
-      console.log('Hiren Parmar Element', ele, $(ele));
       if (!$(ele).val()) {
         isFormValid = false;
-        this.addErrorMsg(ele);
-      } else if($(ele).hasClass('js-aip-activationDate__date-input')) {
-        console.log('Hiren Parmar Date Format', $(ele));
+        this.addErrorMsg(ele,'.js-tp-aip-licenses__error-msg-required');
+      }
+
+      if ($(ele).hasClass('js-aip-license__date-input') && $.trim($(ele).val())) {
         const date = moment($(ele).val(), 'YYYY-MM-DD', true);
         if (!date.isValid()) {
           isFormValid = false;
-          this.addErrorMsg(ele, '.js-aip__error-msg-format');
+          this.addErrorMsg(ele,'.js-date-formate__error');
         }
       }
     });
@@ -257,20 +256,12 @@ class PlantMasterLicensesEngineering {
     });
   }
 
-  addErrorMsg(ele, errEle) {
-    if(errEle) {
-      $(ele)
-        .closest('.js-tp-aip-licenses__form-element')
-        .addClass('tp-aip-licenses__form-element--error')
-        .find(errEle)
-        .addClass('error-msg--active');
-    } else {
-      $(ele)
-        .closest('.js-tp-aip-licenses__form-element')
-        .addClass('tp-aip-licenses__form-element--error')
-        .find('.js-tp-aip-licenses__error-msg-required')
-        .addClass('error-msg--active');
-    }
+  addErrorMsg(el, errorMsgSelector) {
+    $(el)
+      .closest('.js-tp-aip-licenses__form-element')
+      .addClass('tp-aip-licenses__form-element--error')
+      .find(errorMsgSelector)
+      .addClass('error-msg--active');
   }
 
   removeAllErrorMessages($form) {

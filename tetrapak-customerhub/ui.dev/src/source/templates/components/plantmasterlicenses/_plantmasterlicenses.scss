@@ -56,6 +56,12 @@ $form-grp-margin: 12px;
                 border: 1px solid $color-tundora;
             }
 
+            &-md {
+                .tpatom-input-box__input {
+                    @include max-width(285px);
+                }
+            }
+
             .tpatom-input-box {
                 &__input {
                     &--sm {
@@ -106,6 +112,7 @@ $form-grp-margin: 12px;
             }
             .tpatom-checkbox {
                 &__input {
+                    border-color: $color-tundora;
                     &:checked {
                         &+.icon {
                             color: $color-congress-blue;
