@@ -43,13 +43,13 @@
                     <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input', id='basic-unit', labelText=data.numberOfBasicUnit, error=data.inputFieldError, required=true, autoLocatorInput='basic-unitInput', errorJSClass='js-tp-aip-licenses__error-msg-required', autoLocatorLabel='basic-unitText', tooltiptitle=data.basicUnitToolTipHeading, tooltipText=data.basicUnitToolTipDescription}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input tpatom-input-box__input--sm', id='basic-unit', labelText=data.numberOfBasicUnit, error=data.inputFieldError, required=true, autoLocatorInput='basic-unitInput', errorJSClass='js-tp-aip-licenses__error-msg-required', autoLocatorLabel='basic-unitText', tooltiptitle=data.basicUnitToolTipHeading, tooltipText=data.basicUnitToolTipDescription}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
                         <sly
                         data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
-                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input', id='advanced-unit', labelText=data.numberOfAdvancedUnit, error=data.inputFieldError, required=true, autoLocatorInput='advanced-unitInput', errorJSClass='js-tp-aip-licenses__error-msg-required', autoLocatorLabel='advanced-unitText', tooltiptitle=data.advancedUnitToolTipHeading, tooltipText=data.advancedUnitToolTipDescription}">
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input tpatom-input-box__input--sm', id='advanced-unit', labelText=data.numberOfAdvancedUnit, error=data.inputFieldError, required=true, autoLocatorInput='advanced-unitInput', errorJSClass='js-tp-aip-licenses__error-msg-required', autoLocatorLabel='advanced-unitText', tooltiptitle=data.advancedUnitToolTipHeading, tooltipText=data.advancedUnitToolTipDescription}">
                         </sly>
                     </div>
                     <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
@@ -65,7 +65,7 @@
         <div class="row">
             <div class="col-lg-9">
                 <h2>${data.impInformationTitle @ i18n}</h2>
-                <p>${data.impInformationDescription @ i18n}</p>
+                <p>${data.impInformationDescription @ i18n, context='html'}</p>
             </div>
         </div>
     </div>
