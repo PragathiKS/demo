@@ -49,11 +49,21 @@ $form-grp-margin: 12px;
                 @include font-size($font-baseline);
                 @include line-height($font-l, $font-baseline);
                 margin-bottom: 0;
+                font-weight: 500;
             }
 
             input {
                 border: 1px solid $color-tundora;
             }
+
+            .tpatom-input-box {
+                &__input {
+                    &--sm {
+                        @include max-width(100px);
+                        display: flex;
+                    }
+                }
+           }
 
             .form-group {
                 @include margin-bottom($form-grp-margin);
@@ -71,6 +81,10 @@ $form-grp-margin: 12px;
                 &__select-box {
                     @include padding($padding-sm $padding-md);
                     border: 1px solid $color-tundora;
+                }
+
+                .d-block {
+                    @include max-width(320px);
                 }
             }
 
