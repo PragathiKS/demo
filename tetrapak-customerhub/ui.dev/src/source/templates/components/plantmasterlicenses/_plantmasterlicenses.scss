@@ -104,6 +104,23 @@ $form-grp-margin: 12px;
                     display: block;
                 }
             }
+            .tpatom-checkbox {
+                &__input {
+                    &:checked {
+                        &+.icon {
+                            color: $color-congress-blue;
+                            border-color: $color-congress-blue;
+                        }
+                    }
+                }
+            }
+
+            @media #{$mobile} {
+                margin-top: $margin-sm;
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
         }
     }
 

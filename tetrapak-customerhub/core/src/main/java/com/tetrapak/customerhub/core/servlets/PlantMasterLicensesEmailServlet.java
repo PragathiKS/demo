@@ -60,7 +60,7 @@ public class PlantMasterLicensesEmailServlet extends SlingAllMethodsServlet {
             ResourceBundle resourceBundle = request.getResourceBundle(request.getLocale());
             String requestData = request.getReader().lines().collect(Collectors.joining());
             PlantMasterLicensesModel masterLicensesModel = request.adaptTo(PlantMasterLicensesModel.class);
-            plantMasterLicensesService.sendEmail(resourceBundle, request.getHeader(LICENSE_TYPE_REQUEST_PARAMETER),
+            plantMasterLicensesService.sendEmail(resourceBundle, request.getParameter(LICENSE_TYPE_REQUEST_PARAMETER),
                     requestData, masterLicensesModel);
             jsonResponse = HttpUtil.setJsonResponse(jsonResponse, CustomerHubConstants.RESPONSE_STATUS_SUCCESS,
                     HttpStatus.SC_ACCEPTED);

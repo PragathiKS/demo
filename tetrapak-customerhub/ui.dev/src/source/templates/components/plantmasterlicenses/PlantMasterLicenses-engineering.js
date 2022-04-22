@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
+import moment from 'moment';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
@@ -178,9 +180,8 @@ class PlantMasterLicensesEngineering {
 
     ajaxWrapper
       .getXhrObj({
-        url: this.cache.submitApi,
+        url: this.cache.submitApi + '?licenseType=engineering',
         method: ajaxMethods.POST,
-        headers: { 'licenseType': 'engineering' },
         cache: true,
         contentType: 'application/json; charset=utf-8',
         dataType:'json',
@@ -222,9 +223,17 @@ class PlantMasterLicensesEngineering {
     }
 
     $requiredFormElements.each((idx, ele) => {
+      console.log('Hiren Parmar Element', ele, $(ele));
       if (!$(ele).val()) {
         isFormValid = false;
         this.addErrorMsg(ele);
+      } else if($(ele).hasClass('js-aip-activationDate__date-input')) {
+        console.log('Hiren Parmar Date Format', $(ele));
+        const date = moment($(ele).val(), 'YYYY-MM-DD', true);
+        if (!date.isValid()) {
+          isFormValid = false;
+          this.addErrorMsg(ele, '.js-aip__error-msg-format');
+        }
       }
     });
 
@@ -248,12 +257,20 @@ class PlantMasterLicensesEngineering {
     });
   }
 
-  addErrorMsg(ele) {
-    $(ele)
-      .closest('.js-tp-aip-licenses__form-element')
-      .addClass('tp-aip-licenses__form-element--error')
-      .find('.js-tp-aip-licenses__error-msg-required')
-      .addClass('error-msg--active');
+  addErrorMsg(ele, errEle) {
+    if(errEle) {
+      $(ele)
+        .closest('.js-tp-aip-licenses__form-element')
+        .addClass('tp-aip-licenses__form-element--error')
+        .find(errEle)
+        .addClass('error-msg--active');
+    } else {
+      $(ele)
+        .closest('.js-tp-aip-licenses__form-element')
+        .addClass('tp-aip-licenses__form-element--error')
+        .find('.js-tp-aip-licenses__error-msg-required')
+        .addClass('error-msg--active');
+    }
   }
 
   removeAllErrorMessages($form) {
