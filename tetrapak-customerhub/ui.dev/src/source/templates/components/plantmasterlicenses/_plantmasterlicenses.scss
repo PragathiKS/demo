@@ -159,6 +159,10 @@ $form-grp-margin: 12px;
             }
         }
     }
+
+    &__hidden {
+        visibility: hidden;
+    }
 }
 
 .tooltip.show {

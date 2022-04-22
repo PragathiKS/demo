@@ -11,6 +11,7 @@ class PlantMasterLicenses {
     this.root = $(el);
     this.$engineeringLicensesEl = this.root.find('#nav-engineering-licenses');
     this.$siteLicensesEl = this.root.find('#nav-site-licenses');
+    this.$siteLicensesTab = this.root.find('#nav-site-licenses-tab');
   }
 
   cache = {};
@@ -32,6 +33,8 @@ class PlantMasterLicenses {
       const userGroup = res.groups;
       const siteLicenseUerGroup = [];
       const engLicenseUerGroup = [];
+      const showSiteLicenseTab = res.siteLicenseGroup;
+
       if(userGroup){
         userGroup.forEach(group => {
           if(group.siteLicenseId === '' || group.siteLicenseId !== undefined){
@@ -48,6 +51,10 @@ class PlantMasterLicenses {
 
       this.pmLicensesEngineering.init();
       this.pmLicensesSite.init();
+
+      if(showSiteLicenseTab === true) {
+        this.$siteLicensesTab.removeClass('tp-aip-licenses__hidden');
+      }
 
     }).fail((e) => {
       logger.error(e);
