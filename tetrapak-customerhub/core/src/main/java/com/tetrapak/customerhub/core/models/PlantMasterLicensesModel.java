@@ -22,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -133,10 +135,11 @@ public class PlantMasterLicensesModel {
     public void setEmailAddressValue() {
         this.emailAddressValue = GlobalUtil.getCustomerEmailAddress(this.request);
     }
-    
+
     public void setUserNameValue() {
         if (Objects.nonNull(request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME))) {
-            this.userNameValue = request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue();
+            this.userNameValue = URLDecoder.decode(
+                    request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue(), StandardCharsets.UTF_8);
         }
     }
     
