@@ -53,7 +53,7 @@ class PlantMasterLicenses {
       this.pmLicensesSite.init();
 
       if(showSiteLicenseTab === true) {
-        this.$siteLicensesTab.removeClass('tp-aip-licenses__hidden');
+        this.$siteLicensesTab.removeClass('d-none');
       }
 
     }).fail((e) => {
