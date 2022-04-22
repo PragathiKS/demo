@@ -44,7 +44,7 @@ public class PlantMasterLicensesModel {
     public static final String EMAIL_SALUTATION = "salutation";
     public static final String EMAIL_SUBJECT = "subject";
     public static final String EMAIL_BODY = "body";
-    public static final String GROUP_SERVLET_URL= "/bin/customerhub/plant-master-groups";
+    public static final String GROUP_SERVLET_URL= "/bin/customerhub/plant-master-groups?json";
     
     /** The resource. */
     @SlingObject
