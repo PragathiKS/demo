@@ -42,6 +42,8 @@ public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 533258111248160710L;
     private static final String GROUPS_EL = "groups";
+    private static final String SITE_LICENSE_EL = "siteLicenseGroup";
+    private static final String SITE_LICENSE_GROUP = "cuhu_tppm_role_customerkey";
     private static final String DISPATCHER_HEADER = "Dispatcher";
     private static final String NO_CACHE = "no-cache";
     private static final String STATIC_GROUPS_DEFINITION_JSON = "/content/dam/customerhub/aip/aipTrainingsAndLicenseGroupsStatic.json";
@@ -64,6 +66,10 @@ public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
         resultJson.add(GROUPS_EL, new JsonArray());
 
         List<String> userGroups = GlobalUtil.getCustomerGroups(request);
+
+        if (userGroups.contains(SITE_LICENSE_GROUP)) {
+            resultJson.addProperty(SITE_LICENSE_EL, true);
+        }
 
         Optional.ofNullable(getJsonGroups(request.getResourceResolver()))
                 .map(jsonGroups -> jsonGroups.getAsJsonArray(GROUPS_EL)).orElse(new JsonArray())
