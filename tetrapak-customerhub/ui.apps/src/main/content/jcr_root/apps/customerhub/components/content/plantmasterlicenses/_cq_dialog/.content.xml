@@ -169,6 +169,12 @@
                                                 fieldLabel="Input field error text (i18N key)"
                                                 name="./engineeringLicense/inputFieldError"
                                                 required="true"/>
+                                            <inputLicensesFormatErrorMsg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Input field format error text (i18N key)"
+                                                name="./engineeringLicense/inputLicensesFormatErrorMsg"
+                                                required="true"/>
                                             <checkboxFieldError
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
