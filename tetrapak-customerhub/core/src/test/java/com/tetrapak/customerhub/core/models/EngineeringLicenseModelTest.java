@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 public class EngineeringLicenseModelTest {
@@ -69,6 +68,7 @@ public class EngineeringLicenseModelTest {
         assertEquals("Unexpected value","Users",engineeringLicenseModel.getUsers());
         assertEquals("Unexpected value","Title",engineeringLicenseModel.getTitle());
         assertEquals("Unexpected value","Input field error",engineeringLicenseModel.getInputFieldError());
+        assertEquals("Unexpected value","Please enter date in YYYY-DD-MM format",engineeringLicenseModel.getInputLicensesFormatErrorMsg());
         assertEquals("Unexpected value","Checkbox field error",engineeringLicenseModel.getCheckboxFieldError());
         assertEquals("Unexpected value","Correct forms error",engineeringLicenseModel.getCorrectFormsError());
     }

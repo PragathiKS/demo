@@ -97,6 +97,9 @@ public class EngineeringLicenseModel {
     private String inputFieldError;
 
     @ValueMapValue
+    private String inputLicensesFormatErrorMsg;
+
+    @ValueMapValue
     @Expose(serialize = true)
     private String checkboxFieldError;
 
@@ -203,6 +206,10 @@ public class EngineeringLicenseModel {
 
     public String getInputFieldError() {
         return inputFieldError;
+    }
+
+    public String getInputLicensesFormatErrorMsg() {
+        return inputLicensesFormatErrorMsg;
     }
 
     public String getCheckboxFieldError() {
