@@ -90,12 +90,10 @@
             border-top: 1px solid $color-mercury;
 
             .tpatom-btn__text {
-                @include line-height($font-l, $font-baseline);
                 font-weight: 500;
             }
 
             .icon {
-                @include line-height($font-l, $font-baseline);
                 @include margin-left($margin-xs);
             }
         }

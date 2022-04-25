@@ -107,7 +107,7 @@ $form-grp-margin: 12px;
                 }
             }
             .error-msg {
-                @include font-size($font-xs);
+                @include font-size($font-sm);
                 @include line-height($font-normal, $font-baseline);
                 display: none;
                 color: $color-red;
