@@ -17,6 +17,7 @@ $form-grp-margin: 12px;
         @include padding($padding-md);
         @include margin-bottom($margin-l);
         background-color: $color-wild-sand;
+        border-radius: $border-radius;
 
         h2 {
             @include font-size($font-md);
@@ -28,7 +29,6 @@ $form-grp-margin: 12px;
         p {
             @include line-height($font-l, $font-baseline);
             @include margin-bottom($margin-l);
-            font-weight: 500;
         }
 
         &:last-child {
@@ -50,6 +50,11 @@ $form-grp-margin: 12px;
                 @include line-height($font-l, $font-baseline);
                 margin-bottom: 0;
                 font-weight: 500;
+
+                &.tpatom-input-box__text {
+                    color: $color-text;
+                    margin-top: 0;
+                }
             }
 
             input {
@@ -102,9 +107,11 @@ $form-grp-margin: 12px;
                 }
             }
             .error-msg {
-                @include font-size($font-sm);
+                @include font-size($font-xs);
+                @include line-height($font-normal, $font-baseline);
                 display: none;
-                color: $color-alert;
+                color: $color-red;
+                font-weight: 500;
 
                 &--active {
                     display: block;
