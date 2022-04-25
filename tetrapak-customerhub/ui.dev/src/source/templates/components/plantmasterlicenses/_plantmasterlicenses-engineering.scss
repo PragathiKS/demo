@@ -4,8 +4,9 @@
 
         &__holder {
             @include padding($padding-l);
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-md);
             background-color: $color-wild-sand;
+            border-radius: $border-radius;
         }
 
         &__add-user {
@@ -13,6 +14,7 @@
             @include margin-bottom($margin-md);
             border: 1px dashed $color-congress-blue;
             color: $color-congress-blue;
+            border-radius: $border-radius;
             width: 100%;
             text-align: left;
             font-weight: 700;
@@ -50,6 +52,9 @@
 
         &__subheading {
             @include margin-bottom($margin-l);
+            a {
+                font-weight: 500;
+            }
         }
 
         &__info-card {
@@ -84,7 +89,13 @@
             @include padding-top($padding-md);
             border-top: 1px solid $color-mercury;
 
+            .tpatom-btn__text {
+                @include line-height($font-l, $font-baseline);
+                font-weight: 500;
+            }
+
             .icon {
+                @include line-height($font-l, $font-baseline);
                 @include margin-left($margin-xs);
             }
         }

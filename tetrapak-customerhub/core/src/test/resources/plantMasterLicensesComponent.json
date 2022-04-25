@@ -18,6 +18,7 @@
     "comments": "Comments",
     "successMessageDescription": "Success Message description",
     "inputFieldError": "Input field error",
+    "inputLicensesFormatErrorMsg": "Please enter date in YYYY-DD-MM format",
     "checkboxFieldError": "Checkbox field error",
     "correctFormsError": "Correct forms error",
     "body": "Body",
