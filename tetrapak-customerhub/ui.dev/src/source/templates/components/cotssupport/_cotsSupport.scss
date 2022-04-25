@@ -61,11 +61,16 @@
             select {
                 border: 1px solid $color-alert;
             }
+
+            .tpatom-input-box__input {
+                border: 1px solid $color-alert;                
+            }
         }
         .error-msg {
             @include font-size($font-sm);
             display: none;
-            color: $color-alert;
+            color: $color-red;
+            font-weight: 500;
 
             &--active {
                 display: block;
