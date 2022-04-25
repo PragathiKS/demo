@@ -32,7 +32,7 @@ public class PlantMasterTrainingsModel {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterTrainingsModel.class);
-    private static final String GROUP_SERVLET_URL= "/bin/customerhub/plant-master-groups";
+    private static final String GROUP_SERVLET_URL= "/bin/customerhub/plant-master-groups?json";
 
     /**
      * The Enum PlantMasterTrainingsComponentDialog.
