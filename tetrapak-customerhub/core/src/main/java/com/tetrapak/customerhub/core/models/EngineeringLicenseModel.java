@@ -97,6 +97,7 @@ public class EngineeringLicenseModel {
     private String inputFieldError;
 
     @ValueMapValue
+    @Expose(serialize = true)
     private String inputLicensesFormatErrorMsg;
 
     @ValueMapValue
