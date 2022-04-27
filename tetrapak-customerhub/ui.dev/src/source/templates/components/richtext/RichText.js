@@ -1,11 +1,3 @@
-/* eslint-disable no-console */
-import RichText from 'tpPublic/templates/components/richtext/RichText.js';
-class RichTextComponent extends RichText {}
-
-console.log('RichText component Extend', RichTextComponent);
-
-export default RichTextComponent;
-/*
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { isExternal } from '../../../scripts/utils/updateLink';
@@ -55,10 +47,10 @@ class RichText {
   };
 
   init() {
+    /* Mandatory method */
     this.initCache();
     this.bindEvents();
   }
 }
 
 export default RichText;
-*/

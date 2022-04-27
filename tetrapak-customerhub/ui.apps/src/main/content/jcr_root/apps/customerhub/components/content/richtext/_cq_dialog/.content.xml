@@ -117,41 +117,6 @@
                     </column>
                 </items>
             </rte>
-            <design
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Design"
-                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <pwThemes
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                                    path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
-                            <padding
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/padding"/>
-                            <topmargin
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/topmargin"/>
-                            <testCustomField
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="This is a test of custom field"
-                                name="./testCustomField"
-                                required="true"/>
-                        </items>
-                    </column>
-                </items>
-            </design>
-            <anchor
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                    path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
         </items>
     </content>
 </jcr:root>
