@@ -57,7 +57,9 @@ $form-grp-margin: 12px;
                 }
             }
 
-            input {
+            input,
+            textarea,
+            select {
                 border: 1px solid $color-tundora;
             }
 
@@ -91,7 +93,6 @@ $form-grp-margin: 12px;
 
                 &__select-box {
                     @include padding($padding-sm $padding-md);
-                    border: 1px solid $color-tundora;
                 }
 
                 .d-block {
@@ -108,7 +109,6 @@ $form-grp-margin: 12px;
             }
             .error-msg {
                 @include font-size($font-sm);
-                @include line-height($font-normal, $font-baseline);
                 display: none;
                 color: $color-red;
                 font-weight: 500;
