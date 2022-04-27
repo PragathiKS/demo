@@ -14,7 +14,7 @@ $form-grp-margin: 12px;
     }
 
     &__info-card {
-        @include padding($padding-md);
+        @include padding($padding-l);
         @include margin-bottom($margin-l);
         background-color: $color-wild-sand;
         border-radius: $border-radius;
