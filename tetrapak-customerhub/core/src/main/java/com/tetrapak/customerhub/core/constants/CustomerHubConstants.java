@@ -581,6 +581,30 @@ public final class CustomerHubConstants {
 	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
     
+    /** The Constant CONTENT_DAM_PATH. */
+    public static final String CONTENT_DAM_PATH = "/content/dam/";
+    
+    /** The Constant CONTENT_PATH . */
+    public static final String CONTENT_PATH = "/content/";
+    
+    /** The Constant INTERNAL_LINK. */
+    public static final String INTERNAL_LINK = "internal";
+
+    /** The Constant EXTERNAL_LINK. */
+    public static final String EXTERNAL_LINK = "external";
+
+    /** The Constant DOWNLOAD_LINK. */
+    public static final String DOWNLOAD_LINK = "download";
+    
+    /** The Constant DOWNLOAD_LINK. */
+    public static final String EXTERNAL_DOWNLOAD_LINK = "externalDownload";
+    
+    /** The Constant HTTP. */
+    public static final String HTTP = "http";
+    
+    /** The Constant WWW. */
+    public static final String WWW = "www";
+    
     /**
      * Instantiates a new customer hub constants.
      */
