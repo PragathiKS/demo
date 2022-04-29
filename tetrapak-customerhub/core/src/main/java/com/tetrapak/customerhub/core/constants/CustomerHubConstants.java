@@ -580,6 +580,9 @@ public final class CustomerHubConstants {
 
 	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
+
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_LINK = "linkPath";
     
     /**
      * Instantiates a new customer hub constants.

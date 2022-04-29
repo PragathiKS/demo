@@ -1,18 +1,16 @@
 package com.tetrapak.customerhub.core.utils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import javax.servlet.http.Cookie;
-
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.commons.jcr.JcrUtil;
+import com.day.cq.i18n.I18n;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.customerhub.core.beans.ImageBean;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.DynamicMediaService;
+import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -29,17 +27,17 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.commons.jcr.JcrUtil;
-import com.day.cq.i18n.I18n;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.customerhub.core.beans.ImageBean;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.DynamicMediaService;
-import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
-import com.tetrapak.customerhub.core.services.UserPreferenceService;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.http.Cookie;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 
 /**
@@ -590,5 +588,18 @@ public class GlobalUtil {
             LOGGER.error("RepositoryException in getting email address in GlobalUtil", e);
         }
         return emailId;
+    }
+
+    /**
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
+    public static boolean isPublish() {
+        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (slingSettingsService == null) {
+            return false;
+        }
+        return slingSettingsService.getRunModes().contains("publish");
     }
 }

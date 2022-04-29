@@ -1,12 +1,16 @@
 package com.tetrapak.publicweb.core.models;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.jcr.Session;
-
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.AggregatorService;
+import com.tetrapak.publicweb.core.services.impl.AggregatorServiceImpl;
+import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -18,18 +22,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.AggregatorService;
-import com.tetrapak.publicweb.core.services.impl.AggregatorServiceImpl;
+import javax.jcr.Session;
+import java.util.ArrayList;
+import java.util.List;
 
-import io.wcm.testing.mock.aem.junit.AemContext;
+import static org.junit.Assert.assertEquals;
 
 /**
  * The Class TeaserModelTest.
@@ -122,8 +119,6 @@ public class TeaserModelTest {
     /**
      * Sets the up.
      *
-     * @param context
-     *            the new up
      * @throws Exception
      *             the exception
      */
@@ -133,9 +128,9 @@ public class TeaserModelTest {
         aggregatorService = new AggregatorServiceImpl();
         context.registerService(AggregatorService.class, aggregatorService);
 
-        context.load().json(RESOURCE_LANG, LANG_PAGE);
-        context.load().json(RESOURCE_HOME, HOME_PAGE);
-        context.load().json(RESOURCE_SOLUTIONS, SOLUTIONS_PAGE);
+//        context.load().json(RESOURCE_LANG, LANG_PAGE);
+//        context.load().json(RESOURCE_HOME, HOME_PAGE);
+//        context.load().json(RESOURCE_SOLUTIONS, SOLUTIONS_PAGE);
 
         context.addModelsForClasses(modelClass);
 
