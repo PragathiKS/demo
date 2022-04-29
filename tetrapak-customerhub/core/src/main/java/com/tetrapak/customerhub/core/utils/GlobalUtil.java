@@ -32,6 +32,15 @@ import javax.jcr.Session;
 import javax.servlet.http.Cookie;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -609,6 +618,7 @@ public class GlobalUtil {
     }
 
     /**
+<<<<<<< HEAD
      * Gets the groups for customer from resource/request
      *
      * @param request the request
@@ -646,5 +656,17 @@ public class GlobalUtil {
                             + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
         }
         return aipEndpointURL;
+=======
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
+    public static boolean isPublish() {
+        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (slingSettingsService == null) {
+            return false;
+        }
+        return slingSettingsService.getRunModes().contains("publish");
+>>>>>>> 6e1b339ff (smar-27091 backend code for teaser component)
     }
 }
