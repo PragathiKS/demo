@@ -39,6 +39,7 @@ public class PlantMasterLicensesModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterLicensesModel.class);
     private static final String ENGINEERING_LICENSE_CHILD_RESOURCE_NAME = "engineeringLicense";
     private static final String SITE_LICENSE_CHILD_RESOURCE_NAME = "siteLicense";
+    private static final String ACTIVE_LICENSE_CHILD_RESOURCE_NAME = "activeLicense";
     public static final String EMAIL_USERNAME = "username";
     public static final String EMAIL_ADDRESS = "emailaddress";
     public static final String EMAIL_SALUTATION = "salutation";
@@ -58,6 +59,9 @@ public class PlantMasterLicensesModel {
     
     @ChildResource(name = SITE_LICENSE_CHILD_RESOURCE_NAME)
     private SiteLicenseModel siteLicenseModel;
+
+    @ChildResource(name = ACTIVE_LICENSE_CHILD_RESOURCE_NAME)
+    private ActiveLicenseModel activeLicenseModel;
     
     @ValueMapValue
     private String username;
@@ -75,7 +79,9 @@ public class PlantMasterLicensesModel {
     private String engineeringLicenseApiUrl;
     
     private String siteLicenseApiUrl;
-    
+
+    private String activeLicenseApiUrl;
+
     private String userNameValue;
     
     private String emailAddressValue;
@@ -104,10 +110,12 @@ public class PlantMasterLicensesModel {
         i18nKeysMap = new HashMap<>();
         i18nKeysMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
         i18nKeysMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME, siteLicenseModel);
-        
+        i18nKeysMap.put(ACTIVE_LICENSE_CHILD_RESOURCE_NAME, activeLicenseModel);
+
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
         i18KeyMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME, siteLicenseModel);
+        i18KeyMap.put(ACTIVE_LICENSE_CHILD_RESOURCE_NAME, activeLicenseModel);
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("i18nKeys : {}", i18nKeys);
@@ -126,6 +134,8 @@ public class PlantMasterLicensesModel {
                     apiMapping, aipCategoryService.getEngineeringLicensesId());
             this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
                     aipCategoryService.getSiteLicensesId());
+            this.activeLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(),
+                    apiMapping, aipCategoryService.getEngineeringLicensesId());
         }
         this.setEmailAddressValue();
         this.setUserNameValue();
@@ -154,7 +164,11 @@ public class PlantMasterLicensesModel {
     public SiteLicenseModel getSiteLicenseModel() {
         return siteLicenseModel;
     }
-    
+
+    public ActiveLicenseModel getActiveLicenseModel() {
+        return activeLicenseModel;
+    }
+
     public String getEmailApiUrl() {
         return emailApiUrl;
     }
@@ -166,7 +180,11 @@ public class PlantMasterLicensesModel {
     public String getSiteLicenseApiUrl() {
         return siteLicenseApiUrl;
     }
-    
+
+    public String getActiveLicenseApiUrl() {
+        return activeLicenseApiUrl;
+    }
+
     public String getUsername() {
         return username;
     }

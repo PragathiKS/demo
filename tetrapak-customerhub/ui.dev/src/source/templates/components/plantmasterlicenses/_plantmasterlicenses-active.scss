@@ -1,0 +1,231 @@
+// generic AIP table
+.tp-aip {
+    &__table-wrap {
+        overflow-x: auto;
+    }
+
+    &__table {
+        th,
+        td {
+            @include padding($padding-md);
+            border-bottom: 1px solid $color-mercury;
+            font-weight: 500;
+        }
+    }
+}
+
+.tp-aip-licenses {
+    &-active {
+        $this: &;
+
+        &__btn {
+            @include border-radius(4px);
+            @include padding($padding-sm $padding-md);
+            border: 1px solid $color-congress-blue;
+            display: flex;
+            transition: border $anim-speed-quick $anim-ease;
+
+            &:hover {
+                border-color: $color-sky-blue;
+            }
+
+            .tpatom-btn__text {
+                @include line-height($font-l, $font-baseline);
+                font-weight: 500;
+            }
+        }
+
+        &__info-line {
+            @include margin-bottom($margin-md);
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+
+            &--error {
+                border: 1px solid $color-alert;
+            }
+
+            @media #{$mobile} {
+                display: block;
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+
+            i {
+                @include margin-right($margin-md);
+                display: inline-block;
+                color: $color-congress-blue;
+            }
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        &__form-element {
+            @include margin-bottom($margin-md);
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            position: relative;
+
+            @media #{$mobile} {
+                display: block;
+            }
+
+            .tpatom-textarea-box__text {
+                @include margin-top($margin-zero);
+                @include margin-bottom($margin-xs);
+            }
+        }
+
+        &__info-cell-1 {
+            @include line-height($font-l, $font-baseline);
+            @include width(166px);
+            @include margin-right($margin-l);
+            flex-shrink: 0;
+
+            @media #{$mobile} {
+                @include line-height($font-l, $font-baseline);
+                width: 100%;
+            }
+        }
+
+        &__info-cell-2 {
+            @include line-height($font-l, $font-baseline);
+            font-weight: 700;
+            width: 71%;
+
+            @media #{$mobile} {
+                width: 64%;
+            }
+
+            .error-msg {
+                display: none;
+            }
+        }
+
+        &__form-element--error {
+            .tpatom-input-box__input {
+                border-color: $color-alert;
+            }
+
+            .error-msg {
+                @include font-size($font-xs);
+                display: block;
+                color: $color-alert;
+                font-weight: 500;
+                line-height: 16px;
+            }
+        }
+
+        &__details-row {
+            @include margin-bottom($margin-xl);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &__details-row-title {
+            @include margin-bottom($margin-md);
+        }
+
+        &__details-line {
+            @include padding($padding-md);
+            display: flex;
+            border-bottom: 1px solid $color-mercury;
+
+            @media #{$mobile} {
+                display: block;
+            }
+        }
+
+        &__details-cell {
+            @include line-height($font-l, $font-baseline);
+            font-weight: 500;
+            &:first-child {
+                @include width(310px);
+
+                @media #{$mobile} {
+                    @include line-height($font-l, $font-baseline);
+                    font-weight: 500;
+                    width: 100%;
+                }
+            }
+        }
+
+        &__conf-title {
+            @include margin-bottom($margin-md);
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+
+            i {
+                @include font-size($font-xxl);
+                @include line-height($font-xxl, $font-xxl);
+                @include margin-right($margin-md);
+                color: $color-success-icon;
+            }
+        }
+
+        &__modal-header {
+            h2 {
+                font-weight: 400;
+            }
+        }
+
+        &__update {
+            @include border-radius(4px);
+            @include padding($padding-sm $padding-md);
+            border: 1px solid $color-congress-blue;
+            display: flex;
+            transition: border $anim-speed-quick $anim-ease;
+
+            &:hover {
+                border-color: $color-sky-blue;
+            }
+            i {
+                @include margin-left($margin-sm);
+            }
+        }
+
+        &__confirm {
+            @include margin-right($margin-md);
+        }
+
+        &__cancel {
+            background-color: inherit;
+        }
+
+        &__back {
+            background-color: inherit;
+            padding: 0;
+            letter-spacing: normal;
+
+            .tpatom-btn__text {
+                @include line-height($font-l, $font-baseline);
+                font-weight: 500;
+            }
+        }
+
+        .tpmol-modal-header {
+            @include padding-bottom($padding-md);
+        }
+
+        .tpmol-modal-footer {
+            @include padding-top($padding-md);
+            @include padding-bottom($padding-l);
+
+            .tpatom-btn {
+                @include margin($margin-zero);
+                @include margin-left($margin-md);
+
+                &:first-child {
+                    @include margin-left($margin-zero);
+                }
+            }
+        }
+    }
+}
