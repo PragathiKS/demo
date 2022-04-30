@@ -10,6 +10,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
@@ -30,14 +31,6 @@ public class MediaLinkModel {
     @ValueMapValue
     private String heading;
 
-    /** The anchor id. */
-    @ValueMapValue
-    private String anchorId;
-
-    /** The anchor title. */
-    @ValueMapValue
-    private String anchorTitle;
-
     /** The column one title. */
     @ValueMapValue
     private String columnOneTitle;
@@ -51,18 +44,15 @@ public class MediaLinkModel {
     private String columnThreeTitle;
 
     /** The column one list. */
-    @Inject
-    @Via("resource")
+    @ChildResource
     private List<LinkModel> columnOneList;
 
     /** The column two list. */
-    @Inject
-    @Via("resource")
+    @ChildResource
     private List<LinkModel> columnTwoList;
 
     /** The column three list. */
-    @Inject
-    @Via("resource")
+    @ChildResource
     private List<LinkModel> columnThreeList;
 
     /**
@@ -72,24 +62,6 @@ public class MediaLinkModel {
      */
     public String getHeading() {
         return heading;
-    }
-
-    /**
-     * Gets the anchor id.
-     *
-     * @return the anchor id
-     */
-    public String getAnchorId() {
-        return anchorId;
-    }
-
-    /**
-     * Gets the anchor title.
-     *
-     * @return the anchor title
-     */
-    public String getAnchorTitle() {
-        return anchorTitle;
     }
 
     /**
