@@ -124,7 +124,7 @@ class PlantMasterLicensesSite {
     let isFormValid = true;
     this.removeAllErrorMessages();
 
-    const $requiredFormElements = this.root.find(':text[required]:visible, select[required]:visible');
+    const $requiredFormElements = this.root.find(':input[required]:visible, select[required]:visible');
     $requiredFormElements.each((idx, ele) => {
       if (!$(ele).val()) {
         isFormValid = false;

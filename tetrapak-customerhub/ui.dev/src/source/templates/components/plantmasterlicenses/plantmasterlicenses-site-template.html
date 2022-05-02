@@ -1,4 +1,7 @@
 <sly data-sly-template.plantmasterlicenses_site_template="${@ data, flag}">
+    <div data-sly-test="${data.description}" class="tp-aip-licenses__subheading">
+        <p>${data.description @ i18n, context='html'}</p>
+    </div>
     <div class="tp-aip-licenses__info-card">
         <div class="row">
             <div class="col-lg-6 tp-aip-licenses__form">
@@ -61,7 +64,7 @@
             </div>
         </div>
     </div>
-    <div class="tp-aip-licenses__info-card">
+    <div class="tp-aip-licenses__info-card" id="sitelicensesInfo">
         <div class="row">
             <div class="col-lg-9">
                 <h2>${data.impInformationTitle @ i18n}</h2>

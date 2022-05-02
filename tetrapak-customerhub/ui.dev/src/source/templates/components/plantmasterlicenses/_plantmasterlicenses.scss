@@ -13,6 +13,13 @@ $form-grp-margin: 12px;
         }
     }
 
+    &__subheading {
+        @include margin-bottom($margin-l);
+        a {
+            font-weight: 500;
+        }
+    }
+
     &__info-card {
         @include padding($padding-l);
         @include margin-bottom($margin-l);
