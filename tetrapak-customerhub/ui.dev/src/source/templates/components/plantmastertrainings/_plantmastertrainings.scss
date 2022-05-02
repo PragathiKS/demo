@@ -131,7 +131,7 @@
 
         &[aria-expanded='false'] {
             &:hover {
-                color: $color-congress-blue;
+                color: $color-sky-blue;
             }
         }
 
@@ -199,14 +199,18 @@
             textarea,
             select,
             .tpatom-checkbox__icon {
+                border: 1px solid $color-red;
+            }
+
+            .tpatom-input-box__input {
                 border: 1px solid $color-alert;
             }
         }
-        
         .error-msg {
             @include font-size($font-sm);
             display: none;
-            color: $color-alert;
+            color: $color-red;
+            font-weight: 500;
 
             &--active {
                 display: block;

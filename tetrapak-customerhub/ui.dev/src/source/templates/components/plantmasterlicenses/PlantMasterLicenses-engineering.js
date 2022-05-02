@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
+import moment from 'moment';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
@@ -146,7 +147,7 @@ class PlantMasterLicensesEngineering {
     });
 
     if (!allFormsValid) {
-      this.addErrorMsg($submitBtnWrapper);
+      this.addErrorMsg($submitBtnWrapper,'.js-tp-aip-licenses__error-msg-required');
       return;
     }
 
@@ -217,13 +218,21 @@ class PlantMasterLicensesEngineering {
 
     if (!selectedLicenses.length) {
       isFormValid = false;
-      this.addErrorMsg($licensesCheckboxGroup);
+      this.addErrorMsg($licensesCheckboxGroup,'.js-tp-aip-licenses__error-msg-required');
     }
 
     $requiredFormElements.each((idx, ele) => {
       if (!$(ele).val()) {
         isFormValid = false;
-        this.addErrorMsg(ele);
+        this.addErrorMsg(ele,'.js-tp-aip-licenses__error-msg-required');
+      }
+
+      if ($(ele).hasClass('js-aip-license__date-input') && $.trim($(ele).val())) {
+        const date = moment($(ele).val(), 'YYYY-MM-DD', true);
+        if (!date.isValid()) {
+          isFormValid = false;
+          this.addErrorMsg(ele,'.js-date-formate__error');
+        }
       }
     });
 
@@ -247,11 +256,11 @@ class PlantMasterLicensesEngineering {
     });
   }
 
-  addErrorMsg(ele) {
-    $(ele)
+  addErrorMsg(el, errorMsgSelector) {
+    $(el)
       .closest('.js-tp-aip-licenses__form-element')
       .addClass('tp-aip-licenses__form-element--error')
-      .find('.js-tp-aip-licenses__error-msg-required')
+      .find(errorMsgSelector)
       .addClass('error-msg--active');
   }
 

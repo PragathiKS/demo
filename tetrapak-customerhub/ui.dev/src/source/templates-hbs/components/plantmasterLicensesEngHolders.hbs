@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-6 tp-aip-licenses-eng__holder-col">
 
-            <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+            <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element form-group">
                 {{> atoms/input/input
                         labelText=i18nKeys.name
                         name=(concat "licenseHolderName-" idx)
@@ -14,16 +14,17 @@
                 <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.inputFieldError}}</div>
             </div>
 
-            <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+            <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element tp-aip-licenses__form-element-md">
                 {{> atoms/input/input
                         labelText=i18nKeys.activationDate
                         placeholder=i18nKeys.activationDatePlaceholder
                         name=(concat "activationDate-" idx)
                         required="true"
-                        type="date"
+                        eleClasses="js-aip-license__date-input"
                         defaultValue=this.date
                 }}
                 <div class="error-msg js-tp-aip-licenses__error-msg-required">{{i18n key=i18nKeys.inputFieldError}}</div>
+                <div class="error-msg js-date-formate__error">{{i18n key=i18nKeys.inputLicensesFormatErrorMsg}}</div>
             </div>
         </div>
         <div class="col-lg-6 tp-aip-licenses-eng__holder-col">

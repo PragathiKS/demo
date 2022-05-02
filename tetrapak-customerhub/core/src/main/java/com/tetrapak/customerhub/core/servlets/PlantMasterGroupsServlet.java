@@ -42,6 +42,10 @@ public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 533258111248160710L;
     private static final String GROUPS_EL = "groups";
+    private static final String SITE_LICENSE_EL = "siteLicenseGroup";
+    private static final String SITE_LICENSE_GROUP = "cuhu_tppm_role_customerkey";
+    private static final String DISPATCHER_HEADER = "Dispatcher";
+    private static final String NO_CACHE = "no-cache";
     private static final String STATIC_GROUPS_DEFINITION_JSON = "/content/dam/customerhub/aip/aipTrainingsAndLicenseGroupsStatic.json";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterGroupsServlet.class);
@@ -57,10 +61,15 @@ public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
         LOGGER.debug("HTTP GET request from PlantMasterGroupsServlet");
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType(JSONResponse.RESPONSE_CONTENT_TYPE);
+        response.setHeader(DISPATCHER_HEADER, NO_CACHE);
         JsonObject resultJson = new JsonObject();
         resultJson.add(GROUPS_EL, new JsonArray());
 
         List<String> userGroups = GlobalUtil.getCustomerGroups(request);
+
+        if (userGroups.contains(SITE_LICENSE_GROUP)) {
+            resultJson.addProperty(SITE_LICENSE_EL, true);
+        }
 
         Optional.ofNullable(getJsonGroups(request.getResourceResolver()))
                 .map(jsonGroups -> jsonGroups.getAsJsonArray(GROUPS_EL)).orElse(new JsonArray())

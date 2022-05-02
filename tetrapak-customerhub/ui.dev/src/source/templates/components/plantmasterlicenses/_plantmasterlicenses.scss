@@ -14,9 +14,10 @@ $form-grp-margin: 12px;
     }
 
     &__info-card {
-        @include padding($padding-md);
+        @include padding($padding-l);
         @include margin-bottom($margin-l);
         background-color: $color-wild-sand;
+        border-radius: $border-radius;
 
         h2 {
             @include font-size($font-md);
@@ -28,7 +29,6 @@ $form-grp-margin: 12px;
         p {
             @include line-height($font-l, $font-baseline);
             @include margin-bottom($margin-l);
-            font-weight: 500;
         }
 
         &:last-child {
@@ -49,11 +49,34 @@ $form-grp-margin: 12px;
                 @include font-size($font-baseline);
                 @include line-height($font-l, $font-baseline);
                 margin-bottom: 0;
+                font-weight: 500;
+
+                &.tpatom-input-box__text {
+                    color: $color-text;
+                    margin-top: 0;
+                }
             }
 
-            input {
+            input,
+            textarea,
+            select {
                 border: 1px solid $color-tundora;
             }
+
+            &-md {
+                .tpatom-input-box__input {
+                    @include max-width(285px);
+                }
+            }
+
+            .tpatom-input-box {
+                &__input {
+                    &--sm {
+                        @include max-width(100px);
+                        display: flex;
+                    }
+                }
+           }
 
             .form-group {
                 @include margin-bottom($form-grp-margin);
@@ -70,7 +93,10 @@ $form-grp-margin: 12px;
 
                 &__select-box {
                     @include padding($padding-sm $padding-md);
-                    border: 1px solid $color-tundora;
+                }
+
+                .d-block {
+                    @include max-width(320px);
                 }
             }
 
@@ -84,10 +110,29 @@ $form-grp-margin: 12px;
             .error-msg {
                 @include font-size($font-sm);
                 display: none;
-                color: $color-alert;
+                color: $color-red;
+                font-weight: 500;
 
                 &--active {
                     display: block;
+                }
+            }
+            .tpatom-checkbox {
+                &__input {
+                    border-color: $color-tundora;
+                    &:checked {
+                        &+.icon {
+                            color: $color-congress-blue;
+                            border-color: $color-congress-blue;
+                        }
+                    }
+                }
+            }
+
+            @media #{$mobile} {
+                margin-top: $margin-sm;
+                &:first-child {
+                    margin-top: 0;
                 }
             }
         }
