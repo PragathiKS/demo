@@ -1,0 +1,214 @@
+.tp-teaser {
+    @include padding($padding-l $padding-md);
+    @include margin($margin-md);
+
+    @media #{$desktop} {
+        @include padding($padding-xxxl $padding-l $padding-zero $padding-l);
+        @include margin($margin-zero $margin-xxxl);
+    }
+
+    &__heading {
+        @include padding-bottom($padding-md);
+        @media #{$desktop} {
+            @include padding-left($padding-l);
+            @include padding-bottom($padding-l);
+            font-weight: 700;
+        }
+        h2,
+        h3 {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            @media #{$desktop} {
+                @include font-size($font-xl);
+                line-height: 40px;
+                font-weight: 700;
+            }
+        }
+    }
+    &__link {
+        @include margin-left($margin-md);
+        @include margin-bottom($margin-md);
+        @media #{$desktop} {
+            @include margin-left($margin-l);
+            @include margin-bottom($margin-l);
+        }
+        .nowrap-text {
+            @include margin-left($margin-sm);
+        }
+    }
+
+    &__details {
+        &__details.row {
+            @media #{$desktop} {
+                @include margin-left($margin-zero);
+                @include margin-right($margin-zero);
+            }
+        }
+
+        h5 {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            font-weight: 700;
+        }
+        ul {
+            li {
+                display: flex;
+                &::before {
+                    @include margin-right($margin-sm);
+                    display: inline-block;
+                    color: $color-tundora;
+                    content: '\2022';
+                }
+            }
+        }
+        img {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .teaserMargin {
+            @include margin-bottom($margin-xxxl);
+            @media #{$desktop} {
+                @include margin-bottom($margin-xxxl);
+                @include padding-left($margin-l);
+                @include padding-right($margin-l);
+            }
+        }
+        .teaserMarginL {
+            &:last-child {
+                @include margin-bottom($margin-l);
+                @media #{$desktop} {
+                    @include margin-bottom($margin-xxxl);
+                }
+            }
+            @include margin-bottom($margin-xxxl);
+            @media #{$desktop} {
+                @include padding-left($margin-l);
+                @include padding-right($margin-l);
+            }
+        }
+        .rightbar {
+            border: 0 solid $color-mercury;
+            @media #{$desktop} {
+                border-right-width: 1px;
+            }
+        }
+        .image {
+            @include margin-top(0);
+            @include margin-bottom($margin-md);
+            width: 100%;
+            @media #{$desktop} {
+                @include margin-top(0);
+            }
+        }
+        .noTopPad {
+            @include margin-top($margin-zero);
+        }
+        .tilte {
+            @include margin-top($margin-zero);
+            @include margin-bottom($margin-md);
+            @include font-size($font-md);
+            line-height: 24px;
+        }
+        .link {
+            @include margin-top($margin-md);
+            @include margin-bottom($margin-zero);
+        }
+        .teaser-image-link {
+            width: 100%;
+        }
+    }
+
+    &__seeAllLink {
+        @include margin(0);
+        border-top: 1px solid $color-mercury;
+        a {
+            @include margin-top($margin-l);
+            @include margin-bottom(0);
+        }
+        @media #{$desktop} {
+            @include margin(0 $margin-l);
+            a {
+                @include margin-bottom($margin-xxxl);
+            }
+        }
+    }
+    .owl-carousel {
+        .owl-nav {
+            color: $color-congress-blue;
+            .owl-prev,
+            .owl-next {
+                position: absolute;
+                cursor: pointer;
+
+                &:hover {
+                    color: $color-sky-blue;
+                }
+            }
+            .owl-prev {
+                transform: rotate(-180deg);
+                left: 0;
+            }
+            .owl-next {
+                right: 0;
+            }
+            .icon {
+                &::before {
+                    font-size: $font-l;
+                    vertical-align: top;
+                }
+            }
+        }
+        .teaserMargin,
+        .teaserMarginL {
+            @include margin-bottom($margin-zero);
+            @include padding-bottom($padding-zero);
+            max-width: 100%;
+        }
+        .owl-stage {
+            @include margin-bottom($margin-l);
+            display: flex;
+        }
+        .carousal-wrapper {
+            height: 100%;
+        }
+        .rightbar {
+            border: 0;
+        }
+        @media #{$desktop} {
+            @include padding($padding-zero $padding-l);
+            margin: 0 auto;
+            width: calc(100% - 48px);
+            .owl-stage {
+                @include margin-bottom($margin-xxxl);
+                & > .active {
+                    .carousal-wrapper {
+                        border: 0 solid $color-mercury;
+                    }
+                    & ~ .active {
+                        .carousal-wrapper {
+                            border-left-width: 1px;
+                        }
+                    }
+                }
+            }
+        }
+        @media #{$mobile} {
+            .owl-nav {
+                display: none;
+            }
+            .carousal-wrapper {
+                border: 0 solid $color-mercury;
+                padding-right: 0;
+
+            }
+            .active {
+                .carousal-wrapper {
+                    border-right-width: 1px;
+                    padding-left: 0;
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+}
