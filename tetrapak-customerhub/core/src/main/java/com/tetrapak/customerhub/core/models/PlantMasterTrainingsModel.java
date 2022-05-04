@@ -733,6 +733,6 @@ public class PlantMasterTrainingsModel {
      * @return the component path extension
      */
     public String getGroupServletUrl() {
-        return resource.getParent() + GROUP_SERVLET_URL_POSTFIX;
+        return resource.getPath() + GROUP_SERVLET_URL_POSTFIX;
     }
 }
