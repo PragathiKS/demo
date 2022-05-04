@@ -36,7 +36,10 @@ import java.util.Optional;
  */
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Plant Master Groups Servlet",
         "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-        "sling.servlet.paths=" + "/bin/customerhub/plant-master-groups"
+        "sling.servlet.resourceTypes=" + "customerhub/components/content/plantmasterlicenses",
+        "sling.servlet.resourceTypes=" + "customerhub/components/content/plantmastertrainings",
+        "sling.servlet.selectors=" + "plantmaster",
+        "sling.servlet.extensions=" + "json"
 })
 public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
 

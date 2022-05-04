@@ -44,7 +44,7 @@ public class PlantMasterLicensesModel {
     public static final String EMAIL_SALUTATION = "salutation";
     public static final String EMAIL_SUBJECT = "subject";
     public static final String EMAIL_BODY = "body";
-    public static final String GROUP_SERVLET_URL= "/bin/customerhub/plant-master-groups?json";
+    public static final String GROUP_SERVLET_URL_POSTFIX= ".plantmaster.json";
     
     /** The resource. */
     @SlingObject
@@ -196,6 +196,6 @@ public class PlantMasterLicensesModel {
     }
 
     public String getGroupServletUrl() {
-        return GROUP_SERVLET_URL;
+        return resource.getPath() + GROUP_SERVLET_URL_POSTFIX;
     }
 }
