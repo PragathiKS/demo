@@ -1,11 +1,11 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
-
+import com.google.gson.Gson;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.AIPCategoryService;
+import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.servlets.PlantMasterTrainingsEmailServlet;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -17,12 +17,10 @@ import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.AIPCategoryService;
-import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.servlets.PlantMasterTrainingsEmailServlet;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * The Class PlantMasterTrainingsModel.
@@ -34,6 +32,7 @@ public class PlantMasterTrainingsModel {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterTrainingsModel.class);
+    private static final String GROUP_SERVLET_URL= "/bin/customerhub/plant-master-groups?json";
 
     /**
      * The Enum PlantMasterTrainingsComponentDialog.
@@ -728,4 +727,12 @@ public class PlantMasterTrainingsModel {
         return componentPathExtension;
     }
 
+    /**
+     * Gets the groups servlet path to read permissions for user
+     *
+     * @return the component path extension
+     */
+    public String getGroupServletUrl() {
+        return GROUP_SERVLET_URL;
+    }
 }
