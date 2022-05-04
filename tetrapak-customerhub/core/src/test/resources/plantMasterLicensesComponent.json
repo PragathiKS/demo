@@ -52,6 +52,7 @@
     "name": "name",
     "email": "email",
     "title": "Title",
+    "description": "Desc",
     "submitButtonLabel": "submit",
     "advancedUnitToolTipDescription": "Advanced unit tooltip description",
     "selectFieldError": "select field error",
