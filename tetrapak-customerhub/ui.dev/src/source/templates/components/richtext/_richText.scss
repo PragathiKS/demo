@@ -37,16 +37,9 @@
     }
 
     .tp-pw-richText-wrapper a {
-        @include padding(0);
-        border: 0;
-        color: $color-congress-blue;
-        background: none;
-        cursor: pointer;
-
-        &:hover {
-            color: $color-sky-blue;
-            background-color: transparent;
-        }
+        display: inline-flex;
+        align-items: center;
+        font-weight: 500;
         & > .icon {
             @include padding-left(6px);
         }
