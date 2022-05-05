@@ -1,16 +1,8 @@
 .tp-teaser {
-    @include padding($padding-l $padding-md);
-    @include margin($margin-md);
-
-    @media #{$desktop} {
-        @include padding($padding-xxxl $padding-l $padding-zero $padding-l);
-        @include margin($margin-zero $margin-xxxl);
-    }
 
     &__heading {
         @include padding-bottom($padding-md);
         @media #{$desktop} {
-            @include padding-left($padding-l);
             @include padding-bottom($padding-l);
             font-weight: 700;
         }
@@ -25,6 +17,11 @@
             }
         }
     }
+
+    &__description {
+        @include margin-bottom($margin-l);
+    }
+
     &__link {
         @include margin-left($margin-md);
         @include margin-bottom($margin-md);
@@ -70,7 +67,6 @@
             @include margin-bottom($margin-xxxl);
             @media #{$desktop} {
                 @include margin-bottom($margin-xxxl);
-                @include padding-left($margin-l);
                 @include padding-right($margin-l);
             }
         }
@@ -87,11 +83,8 @@
                 @include padding-right($margin-l);
             }
         }
-        .rightbar {
-            border: 0 solid $color-mercury;
-            @media #{$desktop} {
-                border-right-width: 1px;
-            }
+        .teaserpad {
+            @include padding-right($margin-l);
         }
         .image {
             @include margin-top(0);
@@ -130,84 +123,6 @@
             @include margin(0 $margin-l);
             a {
                 @include margin-bottom($margin-xxxl);
-            }
-        }
-    }
-    .owl-carousel {
-        .owl-nav {
-            color: $color-congress-blue;
-            .owl-prev,
-            .owl-next {
-                position: absolute;
-                cursor: pointer;
-
-                &:hover {
-                    color: $color-sky-blue;
-                }
-            }
-            .owl-prev {
-                transform: rotate(-180deg);
-                left: 0;
-            }
-            .owl-next {
-                right: 0;
-            }
-            .icon {
-                &::before {
-                    font-size: $font-l;
-                    vertical-align: top;
-                }
-            }
-        }
-        .teaserMargin,
-        .teaserMarginL {
-            @include margin-bottom($margin-zero);
-            @include padding-bottom($padding-zero);
-            max-width: 100%;
-        }
-        .owl-stage {
-            @include margin-bottom($margin-l);
-            display: flex;
-        }
-        .carousal-wrapper {
-            height: 100%;
-        }
-        .rightbar {
-            border: 0;
-        }
-        @media #{$desktop} {
-            @include padding($padding-zero $padding-l);
-            margin: 0 auto;
-            width: calc(100% - 48px);
-            .owl-stage {
-                @include margin-bottom($margin-xxxl);
-                & > .active {
-                    .carousal-wrapper {
-                        border: 0 solid $color-mercury;
-                    }
-                    & ~ .active {
-                        .carousal-wrapper {
-                            border-left-width: 1px;
-                        }
-                    }
-                }
-            }
-        }
-        @media #{$mobile} {
-            .owl-nav {
-                display: none;
-            }
-            .carousal-wrapper {
-                border: 0 solid $color-mercury;
-                padding-right: 0;
-
-            }
-            .active {
-                .carousal-wrapper {
-                    border-right-width: 1px;
-                    padding-left: 0;
-                    padding-right: 15px;
-                }
             }
         }
     }
