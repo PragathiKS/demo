@@ -3,7 +3,7 @@
 }
 
 .pw-container.pw-margin--regular.reference-class {
-    @include margin-top(16px);
+    @include margin-top($margin-md);
 }
 
 .pw-container.pw-margin--zero.reference-class {
@@ -26,9 +26,9 @@
 .tp-pw-richText {
     &.tp-pw-richText-container {
         @include margin-top(0);
-        @include margin-left(16px);
-        @include margin-right(16px);
-        @include padding(24px 16px);
+        @include margin-left($margin-md);
+        @include margin-right($margin-md);
+        @include padding($padding-l $padding-md);
         width: auto;
     }
 
@@ -37,11 +37,18 @@
     }
 
     .tp-pw-richText-wrapper a {
+        @include line-height($font-baseline, $font-l);
+        @include padding(10px $padding-md);
         display: inline-flex;
         align-items: center;
         font-weight: 500;
+        
         & > .icon {
             @include padding-left(6px);
+            @include padding-top($padding-xxs);
+            &::before {
+                @include font-size($font-sm);
+            }
         }
     }
 
@@ -58,36 +65,36 @@
     }
 
     h2 {
-        @include font-size(18px);
-        @include line-height(24px, 18px);
+        @include font-size($font-md);
+        @include line-height($font-l, $font-md);
         @include margin-bottom($margin-md);
     }
 
     h3 {
         @include font-size($font-l);
-        @include line-height(32px, $font-l);
+        @include line-height($font-xl, $font-l);
         @include margin-bottom($margin-md);
         font-weight: 400;
     }
 
     h4 {
-        @include font-size(20px);
+        @include font-size($font-m-md);
         @include margin-bottom($margin-md);
-        @include line-height(28px, 20px);
+        @include line-height($font-m-xl, $font-m-md);
         font-weight: 500;
     }
 
     p {
-        @include font-size(16px);
-        @include line-height(28px, 16px);
-        @include margin-bottom(24px);
+        @include font-size($font-normal);
+        @include line-height($font-m-xl, $font-normal);
+        @include margin-bottom($margin-md);
         font-weight: 400;
     }
 
     small {
-        @include font-size(14px);
-        @include line-height(24px, 14px);
-        @include margin-bottom(16px);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include margin-bottom($margin-md);
         font-weight: 500;
     }
 
@@ -116,7 +123,7 @@
         li {
             &::before {
                 @include margin-right($margin-sm);
-                @include font-size(14px);
+                @include font-size($font-baseline);
                 @include padding-right($padding-sm);
                 display: table-cell;
                 content: counters(section, '.') ' ';
@@ -132,36 +139,36 @@
 
     ul > li > ul,
     ol > li > ol {
-        @include margin-bottom(0);
+        @include margin-bottom($margin-zero);
         :last-child {
-            @include padding-bottom(0);
+            @include padding-bottom($padding-zero);
         }
     }
 
     ul li,
     ol li {
-        @include font-size(14px);
-        @include padding-bottom(16px);
+        @include font-size($font-baseline);
+        @include padding-bottom($padding-md);
         &::before {
             color: $color-tundora;
         }
         &:last-child {
-            @include padding-bottom(0);
+            @include padding-bottom($padding-zero);
         }
         li {
-            @include padding-bottom(8px);
+            @include padding-bottom($padding-sm);
         }
     }
 
     ol li ol,
     ul li ul {
-        @include padding-top(16px);
+        @include padding-top($padding-md);
     }
 
     ul ul ul {
         li {
-            @include font-size(12px);
-            @include padding-bottom(8px);
+            @include font-size($font-sm);
+            @include padding-bottom($padding-sm);
             &::before {
                 content: '\2012';
                 font-weight: 400;
@@ -172,8 +179,8 @@
     ol ol ol {
         @include padding-left(28px);
         li {
-            @include font-size(12px);
-            @include padding-bottom(8px);
+            @include font-size($font-sm);
+            @include padding-bottom($padding-sm);
         }
     }
 
@@ -224,7 +231,7 @@
 
         td,
         th {
-            @include padding-left(8px);
+            @include padding-left($padding-sm);
             @include padding-right(14px);
             white-space: pre-wrap;
         }
@@ -232,9 +239,9 @@
     @media #{$desktop} {
         &.tp-pw-richText-container {
             @include margin-top(0);
-            @include margin-left(48px);
-            @include margin-right(48px);
-            @include padding(48px);
+            @include margin-left($margin-xxxl);
+            @include margin-right($margin-xxxl);
+            @include padding($padding-xxxl);
         }
         h1 {
             @include font-size($font-xl);
@@ -256,15 +263,15 @@
             font-weight: 500;
         }
         p {
-            @include font-size(14px);
-            @include line-height(24px, 14px);
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
             font-weight: 400;
         }
 
         small {
-            @include font-size(12px);
-            @include line-height(20px, 12px);
-            @include margin-bottom(24px);
+            @include font-size($font-sm);
+            @include line-height($font-m-md, $font-sm);
+            @include margin-bottom($margin-l);
         }
         ol,
         ul {
@@ -273,7 +280,7 @@
 
         table,
         p {
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-md);
         }
     }
 }
