@@ -32,8 +32,17 @@
             </div>
         </div>
         <div class="modal-footer tpmol-modal-footer">
-            {{> atoms/buttons/button/button text=i18nKeys.activeLicense.modalConfirmBtn modifier="primary" baseClass="tp-aip-licenses-active__confirm" jsClass="js-tp-aip-licenses-active__confirm"}}
+            {{> atoms/buttons/button/button text=i18nKeys.activeLicense.modalConfirmBtn
+                    data-first-name=licenseDetails.firstName
+                    data-surname=licenseDetails.surname
+                    data-platform=licenseDetails.platform
+                    modifier="primary"
+                    baseClass="tp-aip-licenses-active__confirm"
+                    jsClass="js-tp-aip-licenses-active__confirm"}}
             {{> atoms/buttons/button/button text=i18nKeys.activeLicense.modalCancelBtn modifier="secondary" baseClass="tp-aip-licenses-active__cancel" jsClass="js-tp-aip-licenses-active__cancel"}}
+        </div>
+        <div class="tpatom-loader js-loader js-tp-aip-licenses-active__modal-spinner d-none">
+            {{> atoms/loader/tpLoader}}
         </div>
     </div>
 </div>
