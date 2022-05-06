@@ -36,13 +36,13 @@
 
     .tp-pw-richText-wrapper a {
         @include line-height($font-baseline, $font-l);
-        @include padding(10px $padding-md);
+        @include padding($padding-zero);
         display: inline-flex;
         align-items: center;
-        font-weight: 500;
+        font-weight: 400;
         
         & > .icon {
-            @include padding-left(6px);
+            @include padding-left($padding-xs);
             @include padding-top($padding-xxs);
             &::before {
                 @include font-size($font-sm);
