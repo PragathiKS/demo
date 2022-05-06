@@ -6,7 +6,7 @@
               data-sly-call="${heading.heading_h3_template @ headingText=data.heading}"/>
         </div>
 
-        <div data-sly-test="${data.description}" class="tp-teaser__description">
+        <div data-sly-test="${data.description}" class="tp-teaser__description col-lg-10">
           ${data.description  @ context='html'}
         </div>
 
@@ -57,14 +57,14 @@
                   data-paren-link-title="${data.heading}:${child.title}"
                   data-anchor-type="Text Hyperlink"
                   >
-                  <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Circle_Arrow_Right_pw"></i></span>
+                  <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right"></i></span>
               </a>
             </div>
           </div>
         </div>
         <div data-sly-test="${data.linkPath && data.linkPath!='#'}" class="tp-teaser__seeAllLink text-center">
           <a href="${data.linkPath}" class="tpatom-link tpatom-link--transparent">
-            <span class="tpatom-link__text sly-text">${data.linkLabel}</span><span class="nowrap-text">&#8288;<i class="icon icon-Circle_Arrow_Right_pw"></i></span>
+            <span class="tpatom-link__text sly-text">${data.linkLabel}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right"></i></span>
           </a>
         </div>
       </section>
