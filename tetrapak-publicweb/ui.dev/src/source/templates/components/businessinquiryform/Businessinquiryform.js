@@ -4,7 +4,7 @@ import keyDownSearch from '../../../scripts/utils/searchDropDown';
 import { makeLoad, changeStepNext, loadThankYou, changeStepPrev, changeStepError, newPage } from './businessinquiryform.analytics.js';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods, REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
-import { validateFieldsForTags } from '../../../scripts/common/common';
+import { validateFieldsForTags, removeParams, storageUtil } from '../../../scripts/common/common';
 
 function isInvalidBusinessAreaOption(key, businessArea) {
   if(key === 'businessArea') {
@@ -154,6 +154,7 @@ class Businessinquiryform {
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
     const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
+    const chinabefPardotURL = this.cache.businessformapi.data('china-bef-pardoturl');
     const dataObj = {};
     $.each( requestPayload, function( key, value ) {
       if(isInvalidBusinessAreaOption(key, requestPayload.businessArea)) {
@@ -164,11 +165,18 @@ class Businessinquiryform {
     
     dataObj['language'] = langCode;
     dataObj['site'] = countryCode;
-    dataObj['pardotUrl'] = befPardotURL;
+    if(requestPayload.country === 'China' || countryCode ==='cn') {
+      dataObj['pardotUrl'] = chinabefPardotURL;
+      dataObj['route_country'] = 'China';
+    }
+    else {
+      dataObj['pardotUrl'] = befPardotURL;
+    }
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field || '';
     if(this.root.find(`#befconsentcheckbox`).is(':checked')){
       dataObj['marketingConsent'] = capitalizeFirstLetter(String(this.root.find(`#befconsentcheckbox`).is(':checked')));
     }
+
     dataObj['pageurl'] = this.cache.requestPayload.pageurl;
 
     loadThankYou(self.mainHead, 'Step 4', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj, ...self.restObj2, 'Marketing Consent': 'Checked' });
@@ -179,19 +187,38 @@ class Businessinquiryform {
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
       return params[key] = value;
     });
-    
+
+    let pageURL = this.cache.requestPayload.pageurl;
+
     Object.keys(params).forEach(key => {
       if(key === 'utm_campaign') {
         dataObj['utm_campaign'] = params[key];
+        pageURL = removeParams('utm_campaign', pageURL);
       } else if(key === 'utm_content') {
         dataObj['utm_content'] = params[key];
+        pageURL = removeParams('utm_content', pageURL);
       } else if(key === 'utm_medium') {
         dataObj['utm_medium'] = params[key];
+        pageURL = removeParams('utm_medium', pageURL);
       } else if(key === 'utm_source') {
         dataObj['utm_source'] = params[key];
+        pageURL = removeParams('utm_source', pageURL);
       }
     });
-    
+
+    pageURL = pageURL.split('?');
+    if(pageURL.length>1) {
+      pageURL = pageURL[0];
+    }
+
+    dataObj['pageurl'] = pageURL;
+
+    // Send Visitor Params
+    const visitorId = storageUtil.getCookie('visitor_id857883');
+    if(visitorId) {
+      dataObj['pardot_cookie_id'] = visitorId;
+    }
+
     ajaxWrapper.getXhrObj({
       url: servletPath,
       method: ajaxMethods.POST,
@@ -402,7 +429,7 @@ class Businessinquiryform {
         self.cache.$isFormStart = true;
         makeLoad(self.step1head, self.mainHead);
       }
-      
+
       let isvalid = true;
       const target = $(this).attr('data-target'),  tab = $(this).closest('.tab-content-steps'), input = tab.find('input'), textarea = tab.find('textarea'), errObj = [];
       if ($(this).hasClass('previousbtn')) {
@@ -513,7 +540,7 @@ class Businessinquiryform {
 
           // Get Analytics
           const $objAnalytics = self.getAnalyticsObject(tab);
-            
+
           if (!$(this).hasClass('previousbtn')) {
             let formTypeTitle = '';
             let formStepNumber = '';

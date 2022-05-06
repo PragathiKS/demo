@@ -126,6 +126,7 @@ public class SoftConversionModelTest {
         assertEquals("Form", "Yes, I am", model.getFormConfig().getYesButtonLabel());
         assertEquals("Form", "No, I am not", model.getFormConfig().getNoButtonLabel());
         assertEquals("form", "http://pardotURL", model.getPardotUrl());
+        assertEquals("form", "pardotChinaURL", model.getPardotChinaUrl());
         assertEquals("Form", "/content/cq:tags/pardot-system-config/job-title", model.getFormConfig().getPositionTagsPath());
         assertEquals("Form", "/content/cq:tags/pardot-system-config/function", model.getFormConfig().getFunctionTagsPath());
 

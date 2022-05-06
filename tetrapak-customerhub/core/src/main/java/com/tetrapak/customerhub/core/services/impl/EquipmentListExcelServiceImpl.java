@@ -103,9 +103,10 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			StringBuilder csvFileContent = new StringBuilder();
 			String[][] headerRowArray = getColumnHeaderArray();
 			String[] headerRow = headerRowArray[0];
-			csvFileContent.append(CustomerHubConstants.CSV_COMMA_SEPARATOR).append(CustomerHubConstants.NEWLINE);
+			csvFileContent
+					.append(CustomerHubConstants.CSV_BYTE_ORDER_MARK);
 			for (String columnHeading : headerRow) {
-				csvFileContent.append(columnHeading).append(CustomerHubConstants.COMMA);
+				csvFileContent.append(columnHeading).append(CustomerHubConstants.TAB);
 				LOGGER.debug("Equipment list CSV File Column heading : {}", columnHeading);
 			}
 			csvFileContent.append(CustomerHubConstants.NEWLINE);
@@ -113,7 +114,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			for (Equipments equipment : sortedEquipments) {
 				csvFileContent.append(convertToCSVRow(equipment));
 			}
-			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_8));
+			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_16LE));
 			csvFileOutputStream.flush();
 			csvFileOutputStream.close();
 			return true;
@@ -228,7 +229,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipmentSerialNumber()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipmentName()));
 		equipmentPropertiesList.add(tidyCSVOutput(equipment.getSuperiorEquipment()));
-		return equipmentPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.COMMA))
+		return equipmentPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.TAB))
 				.concat(CustomerHubConstants.NEWLINE);
 	}
 

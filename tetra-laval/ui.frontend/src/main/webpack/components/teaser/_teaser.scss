@@ -109,10 +109,10 @@
         }
         .description {
             color: $color-emperor;
+            line-height: $line-height-body;
             font-size: $font-baseline;
             font-style: normal;
             font-weight: normal;
-            line-height: $line-height-body;
         }
         .link {
             @include margin-top($margin-md);

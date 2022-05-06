@@ -557,6 +557,9 @@ public final class CustomerHubConstants {
     /** TheConstant CSV_COMMA_SEPARATOR */
     public static final String CSV_COMMA_SEPARATOR= "sep=,";
 
+    /** The constant for BOM to force Excel to read unicode characters */
+    public static final String CSV_BYTE_ORDER_MARK = "\ufeff";
+
     /** TheConstant Not Applicable */
     public static final String NOT_APPLICABLE= "N/A";
     

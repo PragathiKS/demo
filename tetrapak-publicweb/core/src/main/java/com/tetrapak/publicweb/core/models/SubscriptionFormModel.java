@@ -65,6 +65,10 @@ public class SubscriptionFormModel extends FormModel {
     /** The pardot url. */
     @ValueMapValue
     private String pardotUrlSubscription;
+    
+    /** The pardot China url. */
+    @ValueMapValue
+    private String pardotChinaUrlSubscription;
 
     /** The heading. */
     @ValueMapValue
@@ -175,6 +179,15 @@ public class SubscriptionFormModel extends FormModel {
      */
     public String getPardotUrlSubscription() {
         return pardotUrlSubscription;
+    }
+
+    /**
+     * Gets the pardot china url subscription.
+     *
+     * @return the pardot china url subscription
+     */
+    public String getPardotChinaUrlSubscription() {
+        return LinkUtils.getUrlWithoutProtocol(pardotChinaUrlSubscription);
     }
 
     /**

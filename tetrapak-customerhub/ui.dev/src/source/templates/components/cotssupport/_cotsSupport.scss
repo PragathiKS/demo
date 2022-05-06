@@ -203,6 +203,12 @@
                 cursor: pointer;
             }
 
+            &-info-container {
+                @media #{$desktop} {
+                    max-width: 75%;
+                }
+            }
+
             &-icon {
                 @include margin-right($margin-sm);
 
