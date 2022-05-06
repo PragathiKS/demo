@@ -85,7 +85,7 @@
     }
 
     @media #{$desktop} {
-        @include margin($margin-xxxl);
+        @include margin($margin-l $margin-xxxl $margin-zero);
         .gradient-class {
             bottom: 0;
         }
