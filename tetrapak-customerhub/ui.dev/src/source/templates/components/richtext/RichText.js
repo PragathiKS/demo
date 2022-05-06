@@ -13,7 +13,7 @@ class RichText {
   }
   bindEvents() {
     const { $anchorLink } = this.cache;
-    $anchorLink.addClass('tpatom-btn tpatom-btn--primary');
+    $anchorLink.addClass('tpatom-link tpatom-link--transparent');
     const $icon = '<i class="icon"></i>';
     $anchorLink.append($icon);
     
