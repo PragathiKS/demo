@@ -112,7 +112,6 @@
         <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>uber-jar</artifactId>
-            <classifier>apis</classifier>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>
@@ -170,6 +169,10 @@
 			<version>2.8.2</version>
 			<scope>provided</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.adobe.acs</groupId>
+            <artifactId>acs-aem-commons-bundle</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.powermock</groupId>

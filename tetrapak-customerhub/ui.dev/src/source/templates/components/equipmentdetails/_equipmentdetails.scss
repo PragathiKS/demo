@@ -102,7 +102,6 @@
         @include line-height($font-l, $font-baseline);
         @include width(166px);
         @include margin-right($margin-l);
-        white-space: nowrap;
         flex-shrink: 0;
 
         @media #{$mobile} {

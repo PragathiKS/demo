@@ -124,9 +124,8 @@ export default {
       if (!this.tokenPromise) {
         this.tokenPromise = generateToken();
       }
-      return Promise.all([
-        this.tokenPromise
-      ]).then(response => execCallback.apply(this, getArgs(callback, response)))
+      return this.tokenPromise
+        .then(response => execCallback.apply(this, getArgs(callback, response)))
         .catch(error => handleRejection.apply(this, getArgs(callback, error)));
     });
   },

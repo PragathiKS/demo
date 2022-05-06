@@ -9,7 +9,7 @@ export const _mapQueryParams = (key) => {
       return 'equipment-statuses';
     case 'equipmentType':
       return 'equipment-types';
-    case 'lineName':
+    case 'lineCode':
       return 'linecodes';
     default:
       return key.toLowerCase();
@@ -27,7 +27,7 @@ export const _remapFilterProperty = (filterProperty) => {
       return 'types';
     case 'customer':
       return 'customers';
-    case 'lineName':
+    case 'lineCode':
       return 'lines';
     default:
       return filterProperty;
@@ -37,10 +37,15 @@ export const _remapFilterProperty = (filterProperty) => {
 /**
  * Build string of query parameters based on currently active filters
  */
-export const _buildQueryUrl = (combinedFiltersObj) => {
+export const _buildQueryUrl = (combinedFiltersObj, filterVal) => {
   if (Object.keys(combinedFiltersObj).length) {
-    const queryString = Object.keys(combinedFiltersObj).map(key =>
-      `${_mapQueryParams(key)}=${combinedFiltersObj[key]}`).join('&');
+    const queryString = Object.keys(combinedFiltersObj).map(key => {
+      const appliedFilterApiKey = _remapFilterProperty(key);
+      if (appliedFilterApiKey !== filterVal) {
+        return `${_mapQueryParams(key)}=${combinedFiltersObj[key]}`;
+      }
+    }).join('&');
+
     return queryString;
   } else {
     return '';
@@ -60,7 +65,7 @@ export const _getFormattedCountryData = (array) => {
 
 export const _remapFilterOptionKey = (key) => {
   switch (key) {
-    case 'lineName':
+    case 'lineCode':
       return 'lineCode';
     case 'customer':
       return 'customerNumber';

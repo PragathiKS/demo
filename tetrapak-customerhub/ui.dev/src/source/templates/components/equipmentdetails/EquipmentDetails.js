@@ -119,7 +119,7 @@ function  _renderEquipInfoCard(view) {
       isConfirmation: view && view.confirmed
     },
     target: '.js-equipment-details__info-card'
-  });  
+  });
   if (view && view.update) {
     $this.bindFormChangeEvents();
   }
@@ -143,6 +143,14 @@ function  _renderEquipUpdateModal() {
   $modal.modal();
 }
 
+// clear all text inputs when country dropdown value changes
+function _clearFieldsOnCountryChange($form) {
+  $form.find('input:not([id="equipmentTypeDesc"]), textarea').val('');
+  if($form.find('#equipmentStatus option[value="EXPO"]').length > 0){
+    $form.find('select[id="equipmentStatus"]').val('EXPO'); 
+  }
+}
+
 function _bindFormChangeEvents() {
   const $this = this;
   const $form = $this.cache.$content.find('.js-equipment-details__form');
@@ -153,6 +161,9 @@ function _bindFormChangeEvents() {
     $(item).on('input change', () => {
       if ($form.serialize() !== initialFormData) {
         $updateBtn.removeAttr('disabled');
+        if (item.id === 'country') {
+          _clearFieldsOnCountryChange($form);
+        }
       } else {
         $updateBtn.attr('disabled', 'disabled');
       }
@@ -245,20 +256,23 @@ class EquipmentDetails {
         oldCountry: equipData.countryName,
         oldLocation: equipData.location,
         oldSiteName: equipData.site,
-        oldLineName: equipData.lineName,
+        oldLineCode: equipData.lineCode,
+        oldFunctionalLocationDesc: equipData.functionalLocationDesc,
         oldEquipmentStatus: equipData.equipmentStatusDesc,
         oldPosition: equipData.position,
         oldEquipmentTypeDesc: equipData.equipmentName,
         comments: data.comments,
         country: this.cache.countryData.find(country => country.key === data.country)?.desc || equipData.countryName,
-        location: data.location || equipData.location,
-        siteName: data.siteName || equipData.siteName,
-        lineName: data.lineName || equipData.lineName,
+        location: data.location,
+        siteName: data.siteName,
+        lineCode: data.lineCode,
+        functionalLocationDesc: data.functionalLocationDesc,
         equipmentStatus: this.cache.equipmentStatuses.find(status => status.key === data.equipmentStatus)?.desc || equipData.equipmentStatusDesc,
         position: data.position,
-        equipmentTypeDesc: data.equipmentTypeDesc || equipData.equipmentTypeDesc,
+        equipmentTypeDesc: data.equipmentTypeDesc,
         serialNumber: this.cache.data.serialNumber
       };
+
       const fields = Object.keys(this.cache.formData).filter(key => !key.startsWith('old'));
       this.cache.formFields = fields.map(key => ({ [key]: this.cache.formData[key] }));
       const trackingFormData = this.getFormFieldsArr(this.cache.formFields);
@@ -269,6 +283,7 @@ class EquipmentDetails {
     this.root.on('click', '.js-equipment-details__req-make-update',  () => {
       this.cache.$spinner.removeClass('d-none');
       const submitApi = this.cache.submitApi;
+      this.showDisabledButton();
 
       auth.getToken(({ data: authData }) => {
         ajaxWrapper
@@ -294,8 +309,10 @@ class EquipmentDetails {
             const $heading = $('.js-update-modal').find('.tp-equipment-details__modal-header').find('h2').text().trim();
             const trackingFormData = this.getFormFieldsArr(this.cache.formFields);
             this.trackFormComplete($heading, 'Step 2', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, trackingFormData);
+            this.removeDisabledButton();
             this.renderEquipInfoCard({confirmed: true});
           }).fail(() => {
+            this.removeDisabledButton();
             this.cache.$content.removeClass('d-none');
             this.cache.$spinner.addClass('d-none');
           });
@@ -358,6 +375,17 @@ class EquipmentDetails {
 
   trackFormError(formName, step, equipment, formErrors) {
     trackFormError(formName, step, equipment, formErrors);
+  }
+
+  showDisabledButton(){
+    const buttonName = this.root.find('.js-equipment-details__req-make-update');
+    buttonName.attr('disabled','disabled');
+    buttonName.append('<i class="icon icon-Loader"></i>');
+  }
+
+  removeDisabledButton(){
+    this.root.find('.js-equipment-details__req-make-update').removeAttr('disabled');
+    this.root.find('.js-equipment-details__req-make-update i').remove();
   }
 
   addErrorMsg(el) {

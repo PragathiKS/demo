@@ -176,6 +176,12 @@
         "enforce": true,
         "chunks": "all",
         "minSize": 0
+      },
+      "cotssupport": {
+        "testMultiple": true,
+        "name": "cotssupport",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -196,7 +202,8 @@
       "dashboard": [
         "source/templates/components/contactcard/",
         "source/templates/components/orderingcard/",
-        "source/templates/components/maintenancecard/"
+        "source/templates/components/maintenancecard/",
+        "source/templates/components/softwaredownloadcenter/"
       ],
       "financial": [
         "source/templates/components/financialstatement/",
@@ -223,6 +230,9 @@
       ],
       "plantmastertrainings": [
         "source/templates/components/plantmastertrainings/"
+      ],
+      "cotssupport": [
+        "source/templates/components/cotssupport/"
       ]
     },
     "handlebars": {

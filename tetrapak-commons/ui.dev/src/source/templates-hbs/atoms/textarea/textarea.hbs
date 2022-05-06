@@ -16,6 +16,9 @@
         {{#if readonly}}
           readonly="readonly"
         {{/if}}
+        {{#if required}}
+          required
+        {{/if}}
         {{#if defaultValue}}
           value="{{i18n key=defaultValue}}"
         {{/if}}

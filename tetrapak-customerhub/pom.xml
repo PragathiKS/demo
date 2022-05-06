@@ -668,8 +668,7 @@
             <dependency>
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>uber-jar</artifactId>
-                <version>6.5.5</version>
-                <classifier>apis</classifier>
+                <version>6.5.12</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -711,6 +710,11 @@
                 <artifactId>cq-wcm-taglib</artifactId>
                 <version>5.7.4</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.adobe.acs</groupId>
+                <artifactId>acs-aem-commons-bundle</artifactId>
+                <version>4.8.6</version>
             </dependency>
 
             <!-- Testing -->

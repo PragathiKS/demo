@@ -24,8 +24,11 @@ public class EquipmentUpdateFormBean {
     private String equipmentTypeDesc;
     private String oldEquipmentTypeDesc;
 
-    private String lineName;
-    private String oldLineName;
+    private String lineCode;
+    private String oldLineCode;
+
+    private String functionalLocationDesc;
+    private String oldFunctionalLocationDesc;
 
     private String location;
     private String oldLocation;
@@ -62,7 +65,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getCountryMetadata() {
-        return new EquipmentMetaData("Country", oldCountry, country);
+        return new EquipmentMetaData("Country", oldCountry,
+                replaceBlankWithNotApplicableIfChanged(oldCountry, country));
     }
 
     /**
@@ -71,7 +75,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getLocationMetadata() {
-        return new EquipmentMetaData("Location", oldLocation, location);
+        return new EquipmentMetaData("Location", oldLocation,
+                replaceBlankWithNotApplicableIfChanged(oldLocation, location));
     }
 
     /**
@@ -80,16 +85,28 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getSiteMetadata() {
-        return new EquipmentMetaData("Site", oldSiteName, siteName);
+        return new EquipmentMetaData("Site", oldSiteName,
+                replaceBlankWithNotApplicableIfChanged(oldSiteName, siteName));
     }
 
     /**
-     * Creates metadata entry for Line.
+     * Creates metadata entry for Line Code.
      *
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getLineMetadata() {
-        return new EquipmentMetaData("Line", oldLineName, lineName);
+        return new EquipmentMetaData("lineCode", oldLineCode,
+                replaceBlankWithNotApplicableIfChanged(oldLineCode, lineCode));
+    }
+
+    /**
+     * Creates metadata entry for Functional Description.
+     *
+     * @return EquipmentMetaData bean.
+     */
+    public EquipmentMetaData getFunctionalDescMetadata() {
+        return new EquipmentMetaData("functionalLocationDesc ", oldFunctionalLocationDesc,
+                replaceBlankWithNotApplicableIfChanged(oldFunctionalLocationDesc, functionalLocationDesc));
     }
 
     /**
@@ -98,7 +115,8 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getStatusMetadata() {
-        return new EquipmentMetaData("Status", oldEquipmentStatus, equipmentStatus);
+        return new EquipmentMetaData("Status", oldEquipmentStatus,
+                replaceBlankWithNotApplicableIfChanged(oldEquipmentStatus, equipmentStatus));
     }
 
     /**
@@ -117,7 +135,17 @@ public class EquipmentUpdateFormBean {
      * @return EquipmentMetaData bean.
      */
     public EquipmentMetaData getDescriptionMetadata() {
-        return new EquipmentMetaData("Description", oldEquipmentTypeDesc, equipmentTypeDesc);
+        return new EquipmentMetaData("Description", oldEquipmentTypeDesc,
+                replaceBlankWithNotApplicableIfChanged(oldEquipmentTypeDesc, equipmentTypeDesc));
+    }
+
+    /**
+     * Creates metadata entry for Comment.
+     *
+     * @return EquipmentMetaData bean.
+     */
+    public EquipmentMetaData getCommentsMetadata() {
+        return new EquipmentMetaData("Comment", "", replaceBlankWithNotApplicableIfChanged("", comments));
     }
 
     private String replaceBlankWithNotApplicableIfChanged(String oldValue, String newValue) {

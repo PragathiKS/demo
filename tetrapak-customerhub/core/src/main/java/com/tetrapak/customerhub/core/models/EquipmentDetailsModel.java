@@ -747,7 +747,7 @@ public class EquipmentDetailsModel {
                 .getSelectedApiMapping(service, CustomerHubConstants.ALL_COUNTRY_LIST_API);
 
         statusApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
-                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_STATUSLIST_API);
+                .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_USERSTATUSLIST_API);
 
         equipmentListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.EQUIPMENT_LIST_API);

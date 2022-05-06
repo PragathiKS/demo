@@ -591,8 +591,7 @@ public class GlobalUtil {
         }
         return emailId;
     }
-    
-    
+
     /**
      * Gets the AIP endpoint URL.
      *
