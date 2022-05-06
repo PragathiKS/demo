@@ -1,5 +1,4 @@
 import $ from 'jquery';
-
 const myDomainAdobe = 'adobecqms.net';
 const componentList = [
   '.medialink',
@@ -15,7 +14,6 @@ const componentList = [
   '.tp-pw-richText',
   '.pw-navigation'
 ];
-
 const isInternalUrl = url => {
   let isInternal = false;
   const setOfInternalUrl = [
@@ -24,7 +22,6 @@ const isInternalUrl = url => {
     'https://mypages-stage.tetrapak.com/',
     'https://mypages.tetrapak.com/'
   ];
-
   for (var i = 0; i < setOfInternalUrl.length; i++) {
     if (setOfInternalUrl[i] && url.indexOf(setOfInternalUrl[i]) !== -1) {
       isInternal = true;
@@ -33,7 +30,6 @@ const isInternalUrl = url => {
   }
   return isInternal;
 };
-
 export const isExternal = function(url) {
   if (url && (url.includes('http://') || url.includes('https://'))) {
     return isInternalUrl(url) || url.includes(myDomainAdobe) ? false : true;
@@ -41,7 +37,6 @@ export const isExternal = function(url) {
     return false;
   }
 };
-
 export const isDownloable = function(url) {
   const fileList = [
     '.pdf',
@@ -58,7 +53,6 @@ export const isDownloable = function(url) {
   ];
   let flag = false;
   const endPart = url && url.split('/').pop();
-
   for (let i = 0; i < fileList.length; i++) {
     if (endPart && endPart.includes(fileList[i])) {
       flag = true;
@@ -66,7 +60,6 @@ export const isDownloable = function(url) {
   }
   return flag;
 };
-
 export default () => {
   componentList.forEach(item => {
     $(item).find('a').each(function () {

@@ -20,6 +20,7 @@
 
     &__description {
         @include margin-bottom($margin-l);
+        padding: 0;
     }
 
     &__link {
@@ -31,6 +32,10 @@
         }
         .nowrap-text {
             @include margin-left($margin-sm);
+        }
+
+        a {
+            font-weight: 500;
         }
     }
 
