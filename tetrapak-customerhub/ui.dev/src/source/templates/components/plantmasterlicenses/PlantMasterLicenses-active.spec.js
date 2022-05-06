@@ -41,6 +41,8 @@ describe('PlantMasterLicensesActive', function () {
     this.getActiveLicensesDataSpy = sinon.spy(this.activeLicenses, 'getActiveLicensesData');
     this.renderActiveLicensesSpy = sinon.spy(this.activeLicenses, 'renderActiveLicenses');
     this.renderLicenseWithdrawModalSpy = sinon.spy(this.activeLicenses, 'renderLicenseWithdrawModal');
+    this.submitLicenseWithdrawSpy = sinon.spy(this.activeLicenses, 'submitLicenseWithdraw');
+    this.renderLicenseWithdrawSuccessSpy = sinon.spy(this.activeLicenses, 'renderLicenseWithdrawSuccess');
     this.activeLicenses.init();
   });
 
@@ -54,6 +56,8 @@ describe('PlantMasterLicensesActive', function () {
     this.getActiveLicensesDataSpy.restore();
     this.renderActiveLicensesSpy.restore();
     this.renderLicenseWithdrawModalSpy.restore();
+    this.submitLicenseWithdrawSpy.restore();
+    this.renderLicenseWithdrawSuccessSpy.restore();
   });
 
   it('should initialize', function (done) {
@@ -66,6 +70,13 @@ describe('PlantMasterLicensesActive', function () {
   it('should get data before rendering Active License sections', function (done) {
     expect(this.getActiveLicensesDataSpy.called).to.be.true;
     expect(this.renderActiveLicensesSpy.called).to.be.true;
+    done();
+  });
+
+  it('should submit data and show success message when confirming withdraw', function (done) {
+    $('.js-tp-aip-licenses-active__confirm').trigger('click');
+    expect(this.submitLicenseWithdrawSpy.called).to.be.true;
+    expect(this.renderLicenseWithdrawSuccessSpy.called).to.be.true;
     done();
   });
 })
