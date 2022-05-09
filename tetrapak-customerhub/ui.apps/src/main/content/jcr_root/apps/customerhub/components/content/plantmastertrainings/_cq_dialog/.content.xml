@@ -14,7 +14,7 @@
                 <items jcr:primaryType="nt:unstructured">
 					<column1
                             jcr:primaryType="nt:unstructured"
-							jcr:title="Plant Master Trainings Email Configuration"
+							jcr:title="Plant Master Trainings Configuration"
 							maximized="{Boolean}true"
                             sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                         <items jcr:primaryType="nt:unstructured">
@@ -69,7 +69,13 @@
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Duration label (i18N key)"
 										name="./duration"
-										required="true"/>                           
+										required="true"/>
+									<hours
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Hours label (i18N key)"
+										name="./hours"
+										required="true"/> 	
 									<maxparticipants
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -86,25 +92,31 @@
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Number of Participants label (i18N key)"
-										name="./noOfParticipants"
+										name="./noOfParticipantsLabel"
 										required="true"/>
 									<preferredlocation
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Preferred Location label (i18N key)"
-										name="./preferredLocation"
+										name="./preferredLocationLabel"
 										required="true"/>
 									<preferreddate
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Preferred Date label (i18N key)"
-										name="./preferredDate"
+										name="./preferredDateLabel"
+										required="true"/>
+									<preferreddateplaceholder
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Preferred Date placeholder (i18N key)"
+										name="./preferredDatePlaceholder"
 										required="true"/>
 									<comments
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Comments label (i18N key)"
-										name="./comments"/>
+										name="./commentsLabel"/>
 									<confirmationtext
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -123,19 +135,54 @@
 										fieldLabel="Input error message (i18N key)"
 										name="./inputErrorMsg"
 										required="true"/>
+									<confirmationErrorMsg
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Confirmation checkbox error message (i18N key)"
+										name="./confirmationErrorMsg"
+										required="true"/>
+									<inputFormatErrorMsg
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Input format error message (i18N key)"
+										name="./inputFormatErrorMsg"
+										required="true"/>
 									<successMessage
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Success page message (i18N key)"
 										name="./successMessage"
-										required="true"/>                           
+										required="true"/>
+									<formTitle
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Form Title label (i18N key)"
+										name="./formTitle"
+										required="true"/>
+									<consentLabel
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Consent label (i18N key)"
+										name="./consentLabel"
+										required="true"/>	
+									<trainingNameLabel
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Training Name label (i18N key)"
+										name="./trainingNameLabel"
+										required="true"/>	
+									<trainingIdLabel
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Training Id label (i18N key)"
+										name="./trainingIdLabel"/>									
 								</items>
 							</content>
 						</items>
                     </column1>
 					<column2
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Plant Master Trainings Email Configuration"
+                        jcr:title="Email Configuration"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
 						<items jcr:primaryType="nt:unstructured">
@@ -158,6 +205,11 @@
 											sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
 											fieldLabel="Body text"
 											name="./body"/>
+										<contactDetails
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="Contact Details label (i18N key)"
+											name="./contactDetails"/>
 									</items>
 							</content>
                         </items>

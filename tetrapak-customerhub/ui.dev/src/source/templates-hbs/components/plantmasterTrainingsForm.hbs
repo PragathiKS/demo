@@ -1,64 +1,87 @@
 <div class="tp-aip__acc-item-form">
-    <h6>Form description</h6>
-    <form class="tp-aip-trainings__form" enctype="multipart/form-data">
+    <p class="tp-aip__acc-block-title">{{i18n key=i18nKeys.formTitle}}</p>
+    <form class="tp-aip-trainings__form js-aip-trainings__form" enctype="multipart/form-data" novalidate>
         <div class="row">
-            <div class="col-lg-6 tp-aip-trainings__form-element">
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+            <div class="col-lg-6">
+                <div class="js-aip__form-element tp-aip__form-element tp-aip__form-element-sm">
                     {{> atoms/input/input
-                            labelText=i18nKeys.noOfParticipants
-                            name="participants"
+                            labelText=i18nKeys.noOfParticipantsLabel
+                            name=(concat "noOfParticipants-" index)
+                            required="true"
+                            minValue="1"
+                            type="number"
+                    }}
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                </div>
+
+                <div class="js-aip__form-element tp-aip__form-element tp-aip__form-element-md">
+                    {{> atoms/input/input
+                            labelText=i18nKeys.preferredLocationLabel
+                            name=(concat "preferredLocation-" index)
                             required="true"
                             maxlength=300
                     }}
-                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                <div class="js-aip__form-element tp-aip__form-element tp-aip__form-element-md">
                     {{> atoms/input/input
-                            labelText=i18nKeys.preferredLocation
-                            name="location"
+                            labelText=i18nKeys.preferredDateLabel
+                            placeholder=i18nKeys.preferredDatePlaceholder
+                            eleClasses="js-aip-trainings__date-input"
+                            name=(concat "preferredDate-" index)
                             required="true"
-                            maxlength=300
                     }}
-                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-format">{{i18n key=i18nKeys.inputFormatErrorMsg}}</div>
                 </div>
 
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
-                    {{> atoms/input/input
-                            labelText=i18nKeys.preferredDate
-                            name="date"
-                            required="true"
-                            maxlength=300
-                    }}
-                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
-                </div>
-
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                <div class="js-aip__form-element tp-aip__form-element">
                     {{> atoms/textarea/textarea
-                            labelText=i18nKeys.comments
-                            name="addEquipmentComments"
+                            labelText=i18nKeys.commentsLabel
+                            name=(concat "comments-" index)
                             labelClasses="tp-add-equipment__field-label"
                     }}
-                    <div class="error-msg js-tp-aip-trainings__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
                 </div>
 
-                <div class="js-tp-aip-trainings__form-element tp-aip-trainings__form-element">
+                <div class="js-aip__form-element tp-aip__form-element tp-aip__form-checkbox-group">
                     {{> atoms/checkbox/checkbox
-                            value=i18nKeys.confirmationText
+                            value="true"
                             text=i18nKeys.confirmationText
                             check="false"
-                            uniqueKey="confirm-training"
+                            required="true"
+                            jsClass="js-aip-trainings__consent-cb"
+                            uniqueKey=(concat "consent-" index)
                     }}
+                    <div class="error-msg js-aip__error-msg-required">{{i18n key=i18nKeys.confirmationErrorMsg}}</div>
                 </div>
+
+                {{> atoms/input/input
+                        defaultValue=item.name
+                        name=(concat "trainingName-" index)
+                        type="hidden"
+                }}
+
+                {{> atoms/input/input
+                        defaultValue=item.id
+                        name=(concat "trainingId-" index)
+                        type="hidden"
+                }}
 
                 {{> atoms/buttons/button/button
                         buttonType="submit"
                         modifier="primary"
                         iconClass="icon-Chevron_Right"
                         text=i18nKeys.submitButtonLabel
-                        className="tp-aip-trainings__submit js-tp-aip-trainings__submit"
+                        className="tp-aip-trainings__submit js-aip__submit"
                 }}
             </div>
         </div>
     </form>
+</div>
+
+<div class="tp-aip__acc-item-confirm d-none">
+    <i class="icon icon-Circle_filled_Tick"></i>
+    {{i18n key=i18nKeys.successMessage}}
 </div>

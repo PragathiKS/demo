@@ -631,7 +631,6 @@ public class GlobalUtil {
         return groups;
     }
 
-
     /**
      * Gets the AIP endpoint URL.
      *
