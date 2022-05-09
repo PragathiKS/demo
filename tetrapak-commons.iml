@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
-  <component name="SonarLintModuleSettings">
-    <option name="idePathPrefix" value="integration/src/main/java/com/tetrapak/commons/integration" />
-    <option name="sqPathPrefix" value="core/src/main/java/com/tetrapak/commons/core" />
-  </component>
-</module>
