@@ -1,6 +1,6 @@
 import Image from './Image';
 import $ from 'jquery';
-import imageTemplate from '../../../test-templates-hbs/image.hbs';
+import imageTemplate from '../../../test-templates-hbs/fulbleedimage.hbs';
 
 describe('Image', function () {
   before(function () {
