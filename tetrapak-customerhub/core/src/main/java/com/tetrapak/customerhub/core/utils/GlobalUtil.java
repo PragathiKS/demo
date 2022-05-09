@@ -1,18 +1,16 @@
 package com.tetrapak.customerhub.core.utils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import javax.servlet.http.Cookie;
-
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.commons.jcr.JcrUtil;
+import com.day.cq.i18n.I18n;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.customerhub.core.beans.ImageBean;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.DynamicMediaService;
+import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -29,18 +27,11 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.commons.jcr.JcrUtil;
-import com.day.cq.i18n.I18n;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.customerhub.core.beans.ImageBean;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.DynamicMediaService;
-import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
-import com.tetrapak.customerhub.core.services.UserPreferenceService;
-
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.http.Cookie;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -48,7 +39,7 @@ import com.tetrapak.customerhub.core.services.UserPreferenceService;
  * @author Nitin Kumar
  */
 public class GlobalUtil {
-    
+
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
 
@@ -233,6 +224,19 @@ public class GlobalUtil {
      */
     public static String getI18nValue(SlingHttpServletRequest request, String prefix, String key) {
         I18n i18n = new I18n(request);
+        return i18n.get(prefix + key);
+    }
+
+    /**
+     * The method provides the i18n value provided the following parameters.
+     *
+     * @param resourceBundle bundle request
+     * @param prefix  prefix
+     * @param key     key
+     * @return value
+     */
+    public static String getI18nValue(ResourceBundle resourceBundle, String prefix, String key) {
+        I18n i18n = new I18n(resourceBundle);
         return i18n.get(prefix + key);
     }
 
@@ -560,7 +564,32 @@ public class GlobalUtil {
         }
         return apiErrorCodes;
     }
-    
+
+    /**
+     * Gets the customer resource value map.
+     *
+     * @param request the request
+     * @return the customer reso value map
+     */
+    private static ValueMap getUserResourceValueMap(SlingHttpServletRequest request) throws RepositoryException {
+        ValueMap valueMap = ValueMap.EMPTY;
+        ResourceResolver resourceResolver = request.getResourceResolver();
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        Session session = resourceResolver.adaptTo(Session.class);
+        if (Objects.isNull(session) || Objects.isNull(userManager)) {
+            return valueMap;
+        }
+        Authorizable user;
+
+        user = userManager.getAuthorizable(session.getUserID());
+        Resource userResource = resourceResolver.getResource(user.getPath());
+        if (Objects.isNull(userResource)) {
+            return valueMap;
+        }
+        valueMap = userResource.getValueMap();
+        return valueMap;
+    }
+
     /**
      * Gets the customer email address.
      *
@@ -569,20 +598,8 @@ public class GlobalUtil {
      */
     public static String getCustomerEmailAddress(SlingHttpServletRequest request) {
         String emailId = StringUtils.EMPTY;
-        ResourceResolver resourceResolver = request.getResourceResolver();
-        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
-        Session session = resourceResolver.adaptTo(Session.class);
-        if (Objects.isNull(session) || Objects.isNull(userManager)) {
-            return emailId;
-        }
-        Authorizable user;
         try {
-            user = userManager.getAuthorizable(session.getUserID());
-            Resource userResource = resourceResolver.getResource(user.getPath());
-            if (Objects.isNull(userResource)) {
-                return emailId;
-            }
-            ValueMap vMap = userResource.getValueMap();
+            ValueMap vMap = getUserResourceValueMap(request);
             if (vMap.containsKey(CustomerHubConstants.CUSTOMER_EMAIL_ID)) {
                 emailId = (String) vMap.get(CustomerHubConstants.CUSTOMER_EMAIL_ID);
             }
@@ -590,5 +607,49 @@ public class GlobalUtil {
             LOGGER.error("RepositoryException in getting email address in GlobalUtil", e);
         }
         return emailId;
+    }
+
+    /**
+     * Gets the groups for customer from resource/request
+     *
+     * @param request the request
+     * @return the customer's groups
+     */
+    public static List<String> getCustomerGroups(SlingHttpServletRequest request) {
+        List<String> groups = Collections.EMPTY_LIST;
+        try {
+            ValueMap vMap = getUserResourceValueMap(request);
+            if (vMap.containsKey(CustomerHubConstants.CUSTOMER_GROUPS)) {
+                String groupsString = (String) vMap.get(CustomerHubConstants.CUSTOMER_GROUPS);
+                groups = Arrays.stream(groupsString.split("[\\]\\[, ]"))
+                        .filter(s -> !s.isEmpty())
+                        .collect(Collectors.toList());
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException in getting groups from the user resource", e);
+        }
+        return groups;
+    }
+
+    /**
+     * Gets the AIP endpoint URL.
+     *
+     * @param apiServiceUrl
+     *            the api service url
+     * @param apiMapping
+     *            the api mapping
+     * @param categoryId
+     *            the category id
+     * @return the AIP endpoint URL
+     */
+    public static String getAIPEndpointURL(String apiServiceUrl, String apiMapping, String categoryId) {
+        String aipEndpointURL = StringUtils.EMPTY;
+        if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping) && Objects.nonNull(categoryId)) {
+            aipEndpointURL = (apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping).replace("{id}",
+                    categoryId) + CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.INCLUDE_CHILDREN
+                    + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE + CustomerHubConstants.AMPERSAND
+                    + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
+        }
+        return aipEndpointURL;
     }
 }

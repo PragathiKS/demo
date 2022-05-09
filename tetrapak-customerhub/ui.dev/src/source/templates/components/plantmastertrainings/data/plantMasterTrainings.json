@@ -1,0 +1,602 @@
+{
+  "meta":{
+    "total":6,
+    "version":"1"
+  },
+  "data":[
+    {
+      "id":"00035006",
+      "name":"Tetra Pak® PlantMaster Common Structure",
+      "ref":{
+        "id":"00035006",
+        "name":"Tetra Pak® PlantMaster Common Structure"
+      },
+      "extRef":{
+        "material":{
+          "number":"CT-29001"
+        },
+        "tsso":null,
+        "qsv":null
+      },
+      "descriptions":[
+        {
+          "body":"The Common Structure universal language provides a set of rules for building the basic frame, and for simplifying the design of a plant. It affects all systems and functions in the plant and brings standardization at any level of automation.\n\nCourse Contents:\n\n•  Benefits of the Common Structure\n•  Standards followed\n•  Procedural, Physical and Process model\n•  Control and functional hierarchy\n•  Phase Logic Interface (PLI) and State Diagram"
+        }
+      ],
+      "summary":null,
+      "contacts":[
+        {
+          "username":"productmanager",
+          "role":"Product Manager"
+        }
+      ],
+      "featureBenefits":[
+
+      ],
+      "options":[
+
+      ],
+      "images":[
+
+      ],
+      "specifications":[
+
+      ],
+      "relationships":[
+
+      ],
+      "capDetail":null,
+      "packageDetail":null,
+      "utilityUsageDetail":null,
+      "packagingEquipmentDetail":{
+        "packageCapacities":[
+
+        ],
+        "packageCategories":[
+
+        ]
+      },
+      "strawDetail":null,
+      "learningItemDetail":{
+        "audience":"Automation engineers (system integrators)",
+        "comments":null,
+        "duration":4,
+        "itemGoals":"On completion of this training, the participant will be able to:\n•  Understand the benefits of Common Structure.\n•  Recognize Common Structure key standards and elements.\n•  Understand Common Structure control and functional hierarchy, along with its Phase Logic Interface (PLI).\n",
+        "maximumEnrollments":8,
+        "portfolio":null,
+        "portfolioDescription":null,
+        "businessArea":null,
+        "businessAreaDescription":null
+      },
+      "categories":[
+        {
+          "ref":{
+            "id":"4466",
+            "name":"Automation Training"
+          },
+          "parent":{
+            "id":"4458",
+            "name":null
+          },
+          "description":null,
+          "images":[
+
+          ],
+          "specifications":[
+
+          ],
+          "subCategories":[
+
+          ],
+          "userNavigable":false,
+          "options":[
+
+          ],
+          "packageCategoryDetail":{
+            "printingMethods":[
+
+            ],
+            "packagingMaterialEffects":[
+
+            ]
+          }
+        }
+      ],
+      "status":null
+    },
+    {
+      "id":"00042019",
+      "name":"Tetra Pak® PlantMaster MES Suite AVEVA MES Platform",
+      "ref":{
+        "id":"00042019",
+        "name":"Tetra Pak® PlantMaster MES Suite AVEVA MES Platform"
+      },
+      "extRef":{
+        "material":{
+          "number":"CT-29004"
+        },
+        "tsso":null,
+        "qsv":null
+      },
+      "descriptions":[
+        {
+          "body":"The training provides a fundamental understanding of the concept, scope, and functionalities of the Tetra Pak PlantMaster AVEVA MES System Integration Kit. \n\nCourse Contents:\n\n•  Tetra Pak PlantMaster Aveva MES concept\n•   Prerequisites, scope and specifications of the Tetra Pak PlantMaster Aveva MES SI-Kit deliverables\n•   Package installation and engineering of an example solution using the Tetra Pak PlantMaster Aveva MES SI-Kit\n•   Integration of Aveva MES with Tetra Pak PlantMaster Production Control"
+        }
+      ],
+      "summary":null,
+      "contacts":[
+
+      ],
+      "featureBenefits":[
+
+      ],
+      "options":[
+
+      ],
+      "images":[
+
+      ],
+      "specifications":[
+
+      ],
+      "relationships":[
+
+      ],
+      "capDetail":null,
+      "packageDetail":null,
+      "utilityUsageDetail":null,
+      "packagingEquipmentDetail":{
+        "packageCapacities":[
+
+        ],
+        "packageCategories":[
+
+        ]
+      },
+      "strawDetail":null,
+      "learningItemDetail":{
+        "audience":"Automation engineers (system integrators)",
+        "comments":"• AVEVA System Platform, AVEVA MES Operations, Wonderware Skelta BPM, AVEVA Model Driven MES, AVEVA Recipe Manager\n• CT-29001Tetra Pak® PlantMaster Common Structure",
+        "duration":24,
+        "itemGoals":"On completion of this training, the participant will be able to:\n•  Understand the Tetra Pak PlantMaster System Integration-Kit for AVEVA MES Platform, what it consists of, how it is handled and how to use it in the best way. The course will guide through the process of engineering the example solution with use of AVEVA MES and Tetra Pak PlantMaster System Integration Kit.\n",
+        "maximumEnrollments":8,
+        "portfolio":null,
+        "portfolioDescription":null,
+        "businessArea":null,
+        "businessAreaDescription":null
+      },
+      "categories":[
+        {
+          "ref":{
+            "id":"4466",
+            "name":"Automation Training"
+          },
+          "parent":{
+            "id":"4458",
+            "name":null
+          },
+          "description":null,
+          "images":[
+
+          ],
+          "specifications":[
+
+          ],
+          "subCategories":[
+
+          ],
+          "userNavigable":false,
+          "options":[
+
+          ],
+          "packageCategoryDetail":{
+            "printingMethods":[
+
+            ],
+            "packagingMaterialEffects":[
+
+            ]
+          }
+        }
+      ],
+      "status":null
+    },
+    {
+      "id":"00035010",
+      "name":"Tetra Pak® PlantMaster MES Suite Production Integrator Platform",
+      "ref":{
+        "id":"00035010",
+        "name":"Tetra Pak® PlantMaster MES Suite Production Integrator Platform"
+      },
+      "extRef":{
+        "material":{
+          "number":"CT-29005"
+        },
+        "tsso":null,
+        "qsv":null
+      },
+      "descriptions":[
+        {
+          "body":"This training will go through technologies used to create a project according to Tetra Pak PlantMasster Common Structure, the Tetra Pak PlantMaster templates and how to use them.\n\nCourse Contents:\n\n•  Tetra Pak PlantMaster (TPM) Common Structure\n•  Production Integrator platform system overview\n•  TPM Production Track & Trace concept \n•  Database set up and structure \n•  IT architecture \n•  Traceability module\n•  Reports module - Quality Control module - Production Management module"
+        }
+      ],
+      "summary":null,
+      "contacts":[
+        {
+          "username":"productmanager",
+          "role":"Product Manager"
+        }
+      ],
+      "featureBenefits":[
+
+      ],
+      "options":[
+
+      ],
+      "images":[
+
+      ],
+      "specifications":[
+
+      ],
+      "relationships":[
+
+      ],
+      "capDetail":null,
+      "packageDetail":null,
+      "utilityUsageDetail":null,
+      "packagingEquipmentDetail":{
+        "packageCapacities":[
+
+        ],
+        "packageCategories":[
+
+        ]
+      },
+      "strawDetail":null,
+      "learningItemDetail":{
+        "audience":"Automation engineers (system integrators)",
+        "comments":"• CT-29001 Tetra Pak® PlantMaster Common Structure",
+        "duration":24,
+        "itemGoals":"On completion of this training the participant will be able to: \nUnderstand the System Integration Kit for the Production Integrator platform, what it consists of, how it is handled and how to use it in the best way. The course will guide through the process of engineering the example solution with the use of the Tetra Pak PlantMaster System Integration Kit.",
+        "maximumEnrollments":8,
+        "portfolio":null,
+        "portfolioDescription":null,
+        "businessArea":null,
+        "businessAreaDescription":null
+      },
+      "categories":[
+        {
+          "ref":{
+            "id":"4466",
+            "name":"Automation Training"
+          },
+          "parent":{
+            "id":"4458",
+            "name":null
+          },
+          "description":null,
+          "images":[
+
+          ],
+          "specifications":[
+
+          ],
+          "subCategories":[
+
+          ],
+          "userNavigable":false,
+          "options":[
+
+          ],
+          "packageCategoryDetail":{
+            "printingMethods":[
+
+            ],
+            "packagingMaterialEffects":[
+
+            ]
+          }
+        }
+      ],
+      "status":null
+    },
+    {
+      "id":"00042018",
+      "name":"Tetra Pak® PlantMaster Production Control Rockwell Control Logix Platform",
+      "ref":{
+        "id":"00042018",
+        "name":"Tetra Pak® PlantMaster Production Control Rockwell Control Logix Platform"
+      },
+      "extRef":{
+        "material":{
+          "number":"CT-29006"
+        },
+        "tsso":null,
+        "qsv":null
+      },
+      "descriptions":[
+        {
+          "body":"The training will go through technologies used to create a project with the Control Logix platform, according to the Tetra Pak PlantMaster Common Structure and templates.\n\nCourse Contents:\n\n• Identify the different version and components in the PLC code\n• Start a project using the SI-Kit\n• Customize the system using the templates in the SI-Kit\n• Build and configure a Control Module\n• Build and configure a Phase\n• Create Tank Units, Line Units, and Transfers in a Process Cell.\n• Create and use the different Buses according to specifications.\n• Build a CIP Station, and the cleaning circuits.\n• Identify the data collection and event logging logic\n• Configure the Material Interlock for food safety\n• How to set and use the PID loop\n• Prepare the code to work with Production Integrator and Production Control HMI Platforms. \n• Use and configure the PID loop"
+        }
+      ],
+      "summary":null,
+      "contacts":[
+
+      ],
+      "featureBenefits":[
+
+      ],
+      "options":[
+
+      ],
+      "images":[
+
+      ],
+      "specifications":[
+
+      ],
+      "relationships":[
+
+      ],
+      "capDetail":null,
+      "packageDetail":null,
+      "utilityUsageDetail":null,
+      "packagingEquipmentDetail":{
+        "packageCapacities":[
+
+        ],
+        "packageCategories":[
+
+        ]
+      },
+      "strawDetail":null,
+      "learningItemDetail":{
+        "audience":"Automation engineers (system integrators)",
+        "comments":"• CT-29001Tetra Pak® PlantMaster Common Structure\n• Rockwell RD 5000, Rockwell RS 500 emulate, RS Linx ",
+        "duration":24,
+        "itemGoals":"On completion of this training, the participant will be able to:\n• Start developing a new project or upgrade, maintain and expand existing ones in Tetra Pak PlantMaster Common Structure. \n• Work in parallel with Production control platforms and MES Suite platforms enabling efficiency. \n• Read and write PLC code according to Tetra Pak PlantMaster Common Structure and reusable designs. ",
+        "maximumEnrollments":8,
+        "portfolio":null,
+        "portfolioDescription":null,
+        "businessArea":null,
+        "businessAreaDescription":null
+      },
+      "categories":[
+        {
+          "ref":{
+            "id":"4466",
+            "name":"Automation Training"
+          },
+          "parent":{
+            "id":"4458",
+            "name":null
+          },
+          "description":null,
+          "images":[
+
+          ],
+          "specifications":[
+
+          ],
+          "subCategories":[
+
+          ],
+          "userNavigable":false,
+          "options":[
+
+          ],
+          "packageCategoryDetail":{
+            "printingMethods":[
+
+            ],
+            "packagingMaterialEffects":[
+
+            ]
+          }
+        }
+      ],
+      "status":null
+    },
+    {
+      "id":"00035007",
+      "name":"Tetra Pak® PlantMaster Production Control Siemens TIA Platform",
+      "ref":{
+        "id":"00035007",
+        "name":"Tetra Pak® PlantMaster Production Control Siemens TIA Platform"
+      },
+      "extRef":{
+        "material":{
+          "number":"CT-29002"
+        },
+        "tsso":null,
+        "qsv":null
+      },
+      "descriptions":[
+        {
+          "body":"The training will go through technologies used to create a project with Siemens TIA Platform, according to Tetra Pak Common Structure and the Tetra Pak PlantMaster (TPM) templates and how to use them.\n\nCourse Contents:\n\n•  Tetra Pak PlantMaster Common Structure\n•  System Integrator Kit, versioning and release handling\n•  System Integration-Kit, basic functions\n•  System Integration-Kit, structure\n•  Units, Phases and Control Modules\n•  Tank-Line-Tank concept\n•  Integration of Tetra Pak/Non Tetra Pak equipment\n•  Cleaning In Place (CIP) concept"
+        }
+      ],
+      "summary":null,
+      "contacts":[
+        {
+          "username":"productmanager",
+          "role":"Product Manager"
+        }
+      ],
+      "featureBenefits":[
+
+      ],
+      "options":[
+
+      ],
+      "images":[
+
+      ],
+      "specifications":[
+
+      ],
+      "relationships":[
+
+      ],
+      "capDetail":null,
+      "packageDetail":null,
+      "utilityUsageDetail":null,
+      "packagingEquipmentDetail":{
+        "packageCapacities":[
+
+        ],
+        "packageCategories":[
+
+        ]
+      },
+      "strawDetail":null,
+      "learningItemDetail":{
+        "audience":"Automation engineers (system integrators)",
+        "comments":"• Siemens Step7 TIA Portal environment\n• CT-29001 Tetra Pak® PlantMaster Common Structure",
+        "duration":32,
+        "itemGoals":"On completion of this training, the participant will be able to:\n•  Understand the Tetra Pak® PlantMaster System Integration-Kit for Tetra Pak® PlantMaster \n- Process Control \n- Siemens TIA Platform, what it consists of, how it is handled and how to use it in the best way.\n•  Get a deeper understanding of the interactions with other Tetra Pak® PlantMaster modules, such as the User Interface.\n•  Provide skill set to understand the structure to better facilitate fault finding in projects.",
+        "maximumEnrollments":8,
+        "portfolio":null,
+        "portfolioDescription":null,
+        "businessArea":null,
+        "businessAreaDescription":null
+      },
+      "categories":[
+        {
+          "ref":{
+            "id":"4466",
+            "name":"Automation Training"
+          },
+          "parent":{
+            "id":"4458",
+            "name":null
+          },
+          "description":null,
+          "images":[
+
+          ],
+          "specifications":[
+
+          ],
+          "subCategories":[
+
+          ],
+          "userNavigable":false,
+          "options":[
+
+          ],
+          "packageCategoryDetail":{
+            "printingMethods":[
+
+            ],
+            "packagingMaterialEffects":[
+
+            ]
+          }
+        }
+      ],
+      "status":null
+    },
+    {
+      "id":"00035008",
+      "name":"Tetra Pak® PlantMaster User Interface AVEVA System Platform",
+      "ref":{
+        "id":"00035008",
+        "name":"Tetra Pak® PlantMaster User Interface AVEVA System Platform"
+      },
+      "extRef":{
+        "material":{
+          "number":"CT-29003"
+        },
+        "tsso":null,
+        "qsv":null
+      },
+      "descriptions":[
+        {
+          "body":"The training will go through technologies used to create a project with AVEVA System Platform, according to Tetra Pak® PlantMaster Common Structure and the Tetra Pak® PlantMaster templates and how to use them.\n\nCourse Contents:\n\n•  Common Structure in Tetra Pak PlantMaster (TPM)\n•  System overview\n•  System Integrator-Kit templates\n•  Creating TPM phases and Process cells\n•  Installation from System Integrator-Kit (SI-kit)\n•  Interactions with other Tetra Pak PlantMaster modules\n•  Efficient structuring of UI code in a comprehensible way for easy reproduction and maintenance"
+        }
+      ],
+      "summary":null,
+      "contacts":[
+        {
+          "username":"productmanager",
+          "role":"Product Manager"
+        }
+      ],
+      "featureBenefits":[
+
+      ],
+      "options":[
+
+      ],
+      "images":[
+
+      ],
+      "specifications":[
+
+      ],
+      "relationships":[
+
+      ],
+      "capDetail":null,
+      "packageDetail":null,
+      "utilityUsageDetail":null,
+      "packagingEquipmentDetail":{
+        "packageCapacities":[
+
+        ],
+        "packageCategories":[
+
+        ]
+      },
+      "strawDetail":null,
+      "learningItemDetail":{
+        "audience":"Automation engineers (system integrators)",
+        "comments":"• AVEVA SystemPlatform HMI environment such as AVEVA IDE, Archestra Graphics and SMC. \n• Basic skills in Visual Basic \n• Microsoft SQL \n• CT-29001 Tetra Pak® PlantMaster Common Structure\n",
+        "duration":32,
+        "itemGoals":"On completion of this training, the participant will be able to:\n•  Understand the Tetra Pak PlantMaster System Integration-Kit for AVEVA System Platform, what it consists of, how it is handled and how to use it in the best way. The User Interface application (UI) structure recommended by AVEVA System Platform reference package intends to structure UI code in a comprehensible and systematic way to ensure easy reproduction and maintenance.\n\n\n",
+        "maximumEnrollments":8,
+        "portfolio":null,
+        "portfolioDescription":null,
+        "businessArea":null,
+        "businessAreaDescription":null
+      },
+      "categories":[
+        {
+          "ref":{
+            "id":"4466",
+            "name":"Automation Training"
+          },
+          "parent":{
+            "id":"4458",
+            "name":null
+          },
+          "description":null,
+          "images":[
+
+          ],
+          "specifications":[
+
+          ],
+          "subCategories":[
+
+          ],
+          "userNavigable":false,
+          "options":[
+
+          ],
+          "packageCategoryDetail":{
+            "printingMethods":[
+
+            ],
+            "packagingMaterialEffects":[
+
+            ]
+          }
+        }
+      ],
+      "status":null
+    }
+  ]
+}
