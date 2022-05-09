@@ -1,0 +1,12 @@
+<sly data-sly-template.richtext_template="${@data, flag}">
+  <div id="${data.anchorId}" data-module='RichText' title="${data.anchorTitle}"
+    class="pw-container reference-class">
+    <div
+      class='tp-pw-richText-container tp-pw-richText col-sm-12 col-lg-12 pw-padding--regular'>
+      <div data-link-section='RTE_Text Hyperlink' data-link-name=''
+        class='col-sm-12 fullBleed tp-pw-richText-wrapper'>
+        ${data.text @context='html'}
+      </div>
+    </div>
+  </div>
+</sly>
