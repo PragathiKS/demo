@@ -157,7 +157,6 @@
 
         @media #{$tablet} {
             border-radius: 4px;
-            min-height: 620px;
         }
     }
 
@@ -165,9 +164,6 @@
         &__content_wrapper .col-lg-7 {
             flex: 0 0 100%;
             max-width: 696px;
-        }
-        &__image {
-            min-height: 457px;
         }
     }
 
