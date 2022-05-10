@@ -1,4 +1,4 @@
-import Image from './Image';
+import Image from './fullbleedimage';
 import $ from 'jquery';
 import imageTemplate from '../../../test-templates-hbs/fulbleedimage.hbs';
 
