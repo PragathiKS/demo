@@ -618,7 +618,6 @@ public class GlobalUtil {
     }
 
     /**
-<<<<<<< HEAD
      * Gets the groups for customer from resource/request
      *
      * @param request the request
@@ -656,7 +655,9 @@ public class GlobalUtil {
                             + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
         }
         return aipEndpointURL;
-=======
+    }
+
+    /**
      * Checks if it is publish.
      *
      * @return true, if is publish
@@ -667,6 +668,5 @@ public class GlobalUtil {
             return false;
         }
         return slingSettingsService.getRunModes().contains("publish");
->>>>>>> 6e1b339ff (smar-27091 backend code for teaser component)
     }
 }
