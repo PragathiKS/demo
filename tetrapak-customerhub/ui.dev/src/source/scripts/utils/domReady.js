@@ -11,6 +11,7 @@ import { isFirefox, isIE, isEdge } from './browserDetect';
 import { isTablet, isMobile, isCurrentPageIframe } from '../common/common';
 import { responsive } from './responsive';
 import { customDropdown } from './customDropdown';
+import updateLink from './updateLink';
 import videoAnalytics from './videoAnalytics';
 import customEvents from './customEvents';
 import feedback from './feedback';
@@ -34,6 +35,8 @@ export default {
     responsive.init();
     // Custom dropdown
     customDropdown.init();
+    // add relevent classes in links
+    updateLink();
     // Video analytics
     videoAnalytics.init();
     // Body events

@@ -1,18 +1,7 @@
 import $ from 'jquery';
 const myDomainAdobe = 'adobecqms.net';
 const componentList = [
-  '.medialink',
-  '.textImage',
-  '.pw-megamenu',
-  '.tp-pw-footer',
-  '.pw-megamenu',
-  '.pw-tablist',
-  '.tp-teaser',
-  '.pw-text-image',
-  '.pw-text-video',
-  '.pw-banner',
-  '.tp-pw-richText',
-  '.pw-navigation'
+  '.tp-teaser'
 ];
 const isInternalUrl = url => {
   let isInternal = false;
@@ -20,7 +9,8 @@ const isInternalUrl = url => {
     'https://mypages-dev.tetrapak.com/',
     'https://mypages-qa.tetrapak.com/',
     'https://mypages-stage.tetrapak.com/',
-    'https://mypages.tetrapak.com/'
+    'https://mypages.tetrapak.com/',
+    'https://tetrapak.com/'
   ];
   for (var i = 0; i < setOfInternalUrl.length; i++) {
     if (setOfInternalUrl[i] && url.indexOf(setOfInternalUrl[i]) !== -1) {
@@ -68,12 +58,12 @@ export default () => {
         const iconEl = $(this).find('i.icon')[0];
         // external link flag
         const iconExternal = $(this).find('i.icon.is-external')[0];
-        $(iconEl).removeClass('icon-Circle_Arrow_Right_pw');
+        $(iconEl).removeClass('icon-Chevron_Right');
         if (isDownloable(thisHref)) {
           $(iconEl).addClass('icon-Download');
           $(this).attr('target', '_blank');
         } else if (isExternal(thisHref) || iconExternal) {
-          $(iconEl).addClass('icon-Union');
+          $(iconEl).addClass('icon-External_Link');
           $(this).attr('target', '_blank');
         } else if($(iconEl).hasClass('with-arrow')){
           $(iconEl).addClass('icon-Navigation_Right_pw');
@@ -82,9 +72,9 @@ export default () => {
           $(iconEl).addClass('');
         } else {
           if ($(this).hasClass('tpatom-link--primary')) {
-            $(iconEl).addClass('icon-Arrow_Right_pw');
+            $(iconEl).addClass('icon-Chevron_Right');
           } else {
-            $(iconEl).addClass('icon-Circle_Arrow_Right_pw');
+            $(iconEl).addClass('icon-Chevron_Right');
           }
           $(this).attr('target', '_self');
         }
