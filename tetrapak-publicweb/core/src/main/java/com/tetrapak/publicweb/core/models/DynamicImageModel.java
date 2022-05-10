@@ -78,6 +78,10 @@ public class DynamicImageModel {
 	 */
 	@RequestAttribute
 	private String altText;
+	
+	/** The video path. */
+	@RequestAttribute
+	private String videoPath;
 
 	/** The final path. */
 	@Inject
@@ -183,6 +187,7 @@ public class DynamicImageModel {
 	protected void postConstruct() {
 		String dynamicMediaUrl = getImageServiceURL();
 		Resource imageRes = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
+		final String currentComponentName = getComponentName(request.getResource());
 		if (Objects.nonNull(imageRes)) {
 			final ValueMap vMap = imageRes.getValueMap();
 			String fileFormat = vMap.get("dam:Fileformat", StringUtils.EMPTY);
@@ -191,6 +196,12 @@ public class DynamicImageModel {
 				dynamicMediaUrl = getVideoServiceUrl();
 			}
 		}
+		
+		if(StringUtils.isEmpty(imagePath) && videoPath != null && (currentComponentName.equalsIgnoreCase("textVideo")
+				|| currentComponentName.equalsIgnoreCase("video"))) {
+			imagePath = videoPath;
+		}
+		
 		if (imagePath != null) {
 			finalPath = PWConstants.SLASH + GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
 		}
