@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { isExternal } from '../../../scripts/utils/updateLink';
+import { addLinkAttr,getLinkClickAnalytics } from '../../../scripts/common/common';
 
 
 class Teaser {
@@ -9,15 +9,11 @@ class Teaser {
   cache = {};
   initCache() {
     this.cache.$teaserLink = this.root.find('.js-teaser-analytics');
-    this.cache.$teaserImage = this.root.find('.carousal-wrapper img');
     this.cache.option = {
       loop: true,
       nav: true,
       onResize: this.onResize,
       onInitialized: this.onInitialized,
-      navText:[
-        '<i class="icon icon-Navigation_Right_pw"></i>',
-        '<i class="icon icon-Navigation_Right_pw"></i>'],
       responsive: {
         0: {
           items: 1
@@ -49,10 +45,16 @@ class Teaser {
      this.cache.option['stagePaddingRight'] = widthOnResize > 1023 ? 0 : 62;
    }
 
+   trackAnalytics = (e) => {
+     e.preventDefault();
+     getLinkClickAnalytics(e,'paren-link-title','Teaser','.js-teaser-analytics');
+   }
+
    init() {
-       this.initCache();
-       this.bindEvents();
-    }
+     this.initCache();
+     this.bindEvents();
+     addLinkAttr('.js-teaser-analytics');
+   }
 }
 
 export default Teaser;

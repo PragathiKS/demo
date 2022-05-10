@@ -59,14 +59,14 @@
                   data-paren-link-title="${data.heading}:${child.title}"
                   data-anchor-type="Text Hyperlink"
                   >
-                  <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right"></i></span>
+                  <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}<span class="nowrap-text">&#8288;<i class="icon"></i></span></span>
               </a>
             </div>
           </div>
         </div>
         <div data-sly-test="${data.linkPath && data.linkPath!='#'}" class="tp-teaser__seeAllLink text-center">
           <a href="${data.linkPath}" class="tpatom-link tpatom-link--transparent">
-            <span class="tpatom-link__text sly-text">${data.linkLabel}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right"></i></span>
+            <span class="tpatom-link__text sly-text">${data.linkLabel}</span><span class="nowrap-text">&#8288;<i class="icon"></i></span>
           </a>
         </div>
       </section>
