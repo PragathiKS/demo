@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
@@ -31,7 +30,6 @@ public class ManualModel {
 
     /** The link path. */
     @Inject
-    @Via("resource")
     private LinkModel link;
 
     /** The file reference. */
