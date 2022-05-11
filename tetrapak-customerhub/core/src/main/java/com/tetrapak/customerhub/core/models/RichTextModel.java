@@ -17,6 +17,18 @@ public class RichTextModel {
     @ValueMapValue
     private String text;
 
+    /** The pw theme. */
+    @ValueMapValue
+    private String pwTheme;
+
+    /** The pw padding. */
+    @ValueMapValue
+    private String pwPadding;
+
+    /** The top spacing. */
+    @ValueMapValue
+    private String topSpacing;
+
     /**
      * Gets the text.
      *
@@ -24,5 +36,32 @@ public class RichTextModel {
      */
     public String getText() {
         return text;
+    }
+
+    /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
+    public String getPwTheme() {
+        return pwTheme;
+    }
+
+    /**
+     * Gets the pw padding.
+     *
+     * @return the pw padding
+     */
+    public String getPwPadding() {
+        return pwPadding;
+    }
+
+    /**
+     * Gets the top spacing.
+     *
+     * @return the top spacing
+     */
+    public String getTopSpacing() {
+        return topSpacing;
     }
 }
