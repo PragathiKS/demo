@@ -1,0 +1,104 @@
+<sly data-sly-template.textImage_template="${@ data, componentName, flag}"
+  data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <div class="pw-container" id="${data.anchorId}" title="${data.anchorTitle}">
+    <div data-sly-test="${data.title || data.imagePath}" class="pw-text-image pw-theme--${data.pwTheme}"
+      data-locator="text-image" data-module="TextImage" data-textImage-contentName="${data.subTitle}"
+      data-textImage-title="${data.title}" data-textImage-linkName="${data.linkText}"
+      data-textImage-linkType="${data.linkType}">
+      <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay}">
+	  <sly data-sly-test.isFormTypeAuthored="${data.formType != ''}"/>
+	  <sly data-sly-test.isSoftConvEnabled="${data.enableSoftcoversion != ''}"/>
+        <div class="row no-gutters">
+          <div class="col-md-12 col-lg-6 leftPad">
+            <div data-sly-test="${data.subTitle}" class="pw-text-image__subTitle font-fixing">
+              <sly data-sly-use.subheading="/apps/commons/components/atoms/heading/heading.html"
+                data-sly-call="${subheading.subheading_template @ headingText=data.subTitle}" />
+            </div>
+            <div data-sly-test="${data.title}" class="pw-text-image__title">
+              <sly data-sly-test="${data.headingTag == 'h1'}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                data-sly-call="${heading.heading_h1_template @ headingText=data.title, variant='regular'}" />
+              <sly data-sly-test="${data.headingTag == 'h2'}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                data-sly-call="${heading.heading_h2_template @ headingText=data.title, variant='regular'}" />
+              <sly data-sly-test="${data.headingTag != 'h2' && data.headingTag != 'h1'}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                data-sly-call="${heading.heading_h3_template @ headingText=data.title, variant='regular'}" />
+            </div>
+            <div class="pw-text-image__description">${data.description @context='html'}</div>
+            <div class="pw-text-image__link">
+              <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
+              <sly data-sly-test.dataLinkSectionDownloadHyper="${data.pwLinkTheme == 'download' ? '_Download' : ''}" />
+              <a data-sly-test="${(data.linkText && data.linkURL) && (!isFormTypeAuthored && !isSoftConvEnabled)}" href="${data.linkURL}"
+                class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
+                title="${data.linkText}" target="${data.targetBlank}"
+                data-link-section="Text & Image_${dataLinkSectionCTAText}"
+                data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
+                data-asset-name="${data.assetName}"
+                data-image-title="${data.title}"
+                data-anchor-type="${dataLinkSectionCTAText}"
+                >
+                <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
+              </a>
+              <input type="hidden" class="componentNameTextImage" name="componentName" value="${resource.name}">
+              <button data-sly-test="${data.linkURL && ((isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled))}" class="tpatom-link tpatom-link--primary js-softconversion-pw text-left"
+                data-link-section="button click"
+                data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
+                data-asset-name="${data.assetName}"
+                data-image-title="${data.title}"
+                data-anchor-type="CTA"
+                title="${'pw.form.button.download' @ i18n}">
+                  <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
+              </button>
+              <button data-sly-test="${isFormTypeAuthored && data.formType == 'enableSubscription'}" class="tpatom-link tpatom-link--primary js-subscription-pw text-left"
+                data-link-section="button click"
+                data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
+                data-asset-name="${data.assetName}"
+                data-image-title="${data.title}"
+                data-anchor-type="CTA"
+                title="${'pw.form.button.download' @ i18n}">
+                  <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-6 rightPad">
+            <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
+            <a data-sly-test="${data.linkURL && data.linkURL!='#' && (!isFormTypeAuthored && !isSoftConvEnabled)}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
+               target="${data.targetBlank}"
+              data-link-section="Text & Image_imageClick"
+              data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
+              data-asset-name="${data.assetName}"
+              data-image-title="${data.title}"
+              data-anchor-type="imageClick"
+              >
+              <sly data-sly-test="${!wcmmode.edit}">
+                <sly
+                  data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                  data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltText, className='pw-text-image__image'}" />
+              </sly>
+              <sly data-sly-test="${wcmmode.edit}">
+                <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
+              </sly>
+            </a>
+            <span data-sly-test="${!data.linkURL  || data.linkURL=='#' || (isFormTypeAuthored || isSoftConvEnabled)}">
+              <sly data-sly-test="${!wcmmode.edit}">
+                <sly
+                  data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                  data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.imagePath, altText=data.imageAltText, className='pw-text-image__image'}" />
+              </sly>
+              <sly data-sly-test="${wcmmode.edit}">
+                <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
+              </sly>
+            </span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <sly data-sly-test="${(isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled)}" data-sly-use.softconversion="/apps/publicweb/components/content/softconversion/softconversion-template.html"
+      data-sly-call="${softconversion.softconversion_template @ data=data.softConversionData, componentName=resource.name, downloadPath=data.linkURL, assetName=data.assetName, parentComponent='Text & Image'}" />
+    <sly data-sly-test="${isFormTypeAuthored && data.formType == 'enableSubscription'}" data-sly-use.subscriptionform="/apps/publicweb/components/content/subscriptionform/subscriptionform-template.html"
+         data-sly-call="${subscriptionform.subscriptionform_template @ data=data.subscriptionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Text & Image'}" />
+  </div>
+
+  <sly data-sly-test="${!data.title && !data.imagePath}"
+    data-sly-call="${templates.placeholder @ isEmpty = (!data.title && !data.imagePath)}"></sly>
+</sly>
