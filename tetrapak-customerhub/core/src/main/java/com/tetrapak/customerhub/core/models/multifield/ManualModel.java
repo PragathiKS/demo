@@ -1,11 +1,15 @@
 package com.tetrapak.customerhub.core.models.multifield;
 
+import com.tetrapak.customerhub.core.models.LinkModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+import javax.inject.Inject;
 
 /**
  * The Class ManualModel.
@@ -25,13 +29,10 @@ public class ManualModel {
     @ValueMapValue
     private String description;
 
-    /** The link text. */
-    @ValueMapValue
-    private String linkText;
-
     /** The link path. */
-    @ValueMapValue
-    private String linkPath;
+    @Inject
+    @Via("resource")
+    private LinkModel link;
 
     /** The file reference. */
     @ValueMapValue
@@ -66,31 +67,21 @@ public class ManualModel {
     }
 
     /**
-     * Gets the link text.
+     * Gets the link.
      *
      * @return the link text
      */
-    public String getLinkText() {
-        return linkText;
+    public LinkModel getLink() {
+        return link;
     }
 
     /**
-     * Gets the link path.
+     * Sets the link.
      *
-     * @return the link path
+     * @param link the new link
      */
-    public String getLinkPath() {
-        return linkPath;
-    }
-
-    /**
-     * Sets the link path.
-     *
-     * @param linkPath
-     *            the new link path
-     */
-    public void setLinkPath(String linkPath) {
-        this.linkPath = linkPath;
+    public void setLink(LinkModel link) {
+        this.link = link;
     }
 
     /**
@@ -118,8 +109,8 @@ public class ManualModel {
      */
     public String getAssetName() {
         assetName = StringUtils.EMPTY;
-        if (StringUtils.isNotEmpty(linkPath)) {
-            assetName = StringUtils.substringAfterLast(linkPath, FORWARD_SLASH);
+        if (link != null) {
+            assetName = StringUtils.substringAfterLast(link.getLinkUrl(), FORWARD_SLASH);
         }
         return assetName;
     }
