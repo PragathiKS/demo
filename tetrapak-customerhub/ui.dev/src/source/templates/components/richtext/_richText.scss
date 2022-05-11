@@ -1,5 +1,5 @@
 .pw-container.reference-class {
-    @include margin-top(0);
+    @include margin-top($margin-zero);
 }
 
 .pw-container.pw-margin--regular.reference-class {
@@ -7,7 +7,7 @@
 }
 
 .pw-container.pw-margin--zero.reference-class {
-    @include margin-bottom(0);
+    @include margin-bottom($margin-zero);
     .tp-pw-richText.tp-pw-richText-container {
         @include padding-bottom($padding-l);
     }
