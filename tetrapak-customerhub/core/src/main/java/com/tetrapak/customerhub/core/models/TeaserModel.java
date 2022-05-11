@@ -1,7 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.models.multifield.ManualModel;
-import com.tetrapak.customerhub.core.utils.LinkUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -32,13 +31,10 @@ public class TeaserModel {
     @ValueMapValue
     private String description;
 
-    /** The link label. */
-    @ValueMapValue
-    private String linkLabel;
-
-    /** The link path. */
-    @ValueMapValue
-    private String linkPath;
+    /** The link. */
+    @Inject
+    @Via("resource")
+    private LinkModel viewAllLink;
 
     /** The manual list. */
     @Inject
@@ -54,9 +50,9 @@ public class TeaserModel {
     @PostConstruct
     protected void init() {
         if (manualList != null && !manualList.isEmpty()) {
-            manualList.stream()
-                    .forEach(model -> model.setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)));
-            teaserList.addAll(manualList);
+//            manualList.stream().forEach(
+//                      model -> model.getLink().setLinkUrl(LinkUtils.sanitizeLink(model.getLink().getLinkUrl(), request)));
+//            teaserList.addAll(manualList);
         }
     }
 
@@ -79,21 +75,12 @@ public class TeaserModel {
     }
 
     /**
-     * Gets the link label.
+     * Gets the view all link .
      *
-     * @return the link label
+     * @return the vew all link
      */
-    public String getLinkLabel() {
-        return linkLabel;
-    }
-
-    /**
-     * Gets the link path.
-     *
-     * @return the link path
-     */
-    public String getLinkPath() {
-        return LinkUtils.sanitizeLink(linkPath, request);
+    public LinkModel getLinkLabel() {
+        return viewAllLink;
     }
 
     /**
