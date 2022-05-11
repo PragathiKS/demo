@@ -1,7 +1,7 @@
 <sly data-sly-template.image_template="${@data, flag}">
   <div id="${data.anchorId}" title="${data.anchorTitle}" class="tp-pw-image tp-pw-image__${data.pwPadding}" data-module="Image">
   <div class="pw-padding--${data.pwPadding} pw-margin--regular pw-theme--${data.pwTheme}">
-  <div class="col-lg-8 col-sm-12 tp-pw-image__center-align">
+  <div class="col-sm-12 tp-pw-image__center-align">
     <sly data-sly-test = "${data.linkURL && data.linkURL!='#'}">
       <a class="js-tp-pw-image" href="${data.linkURL}" data-link-name="Image text banner not present">  
       <sly data-sly-test = "${!wcmmode.edit}">
