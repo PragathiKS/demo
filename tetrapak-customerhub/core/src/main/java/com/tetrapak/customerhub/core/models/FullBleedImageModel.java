@@ -8,6 +8,8 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.tetrapak.customerhub.core.beans.ImageBean;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 
 /**
@@ -35,12 +37,16 @@ public class FullBleedImageModel {
     @ValueMapValue
     private String linkURL;
 
+    /** The bean for Dynamic Media Image **/
+    private ImageBean image;
+
     /**
-     * Inits the.
+     * Inits the Model.
      */
     @PostConstruct
     protected void init() {
-        linkURL = LinkUtil.getValidLink(resource, linkURL);
+	linkURL = LinkUtil.getValidLink(resource, linkURL);
+	image = GlobalUtil.getImageBean(resource);
     }
 
     /**
@@ -49,7 +55,7 @@ public class FullBleedImageModel {
      * @return the file reference
      */
     public String getFileReference() {
-        return fileReference;
+	return fileReference;
     }
 
     /**
@@ -58,7 +64,7 @@ public class FullBleedImageModel {
      * @return the alt
      */
     public String getAlt() {
-        return alt;
+	return alt;
     }
 
     /**
@@ -67,6 +73,15 @@ public class FullBleedImageModel {
      * @return the link URL
      */
     public String getLinkURL() {
-        return linkURL;
+	return linkURL;
+    }
+
+    /**
+     * Gets the Image for Dynamic Media
+     * 
+     * @return the Image
+     */
+    public ImageBean getImage() {
+	return image;
     }
 }

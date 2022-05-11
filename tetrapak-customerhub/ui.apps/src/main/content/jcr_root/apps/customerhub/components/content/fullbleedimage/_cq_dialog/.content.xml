@@ -60,6 +60,7 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Textual alternative of the meaning or function of the image, for visually impaired readers."
                                                 fieldLabel="Alternative Text"
+                                                required="true"
                                                 name="./alt"/>
                                         </items>
                                     </alternativeGroup>
