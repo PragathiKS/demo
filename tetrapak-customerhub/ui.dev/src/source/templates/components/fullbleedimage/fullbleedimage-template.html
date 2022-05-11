@@ -1,13 +1,13 @@
-<sly data-sly-template.image_template="${@data, flag}">
-  <div id="${data.anchorId}" title="${data.anchorTitle}" class="tp-pw-image tp-pw-image__${data.pwPadding}" data-module="Image">
-  <div class="pw-padding--${data.pwPadding} pw-margin--regular pw-theme--${data.pwTheme}">
-  <div class="col-lg-8 col-sm-12 tp-pw-image__center-align">
+<sly data-sly-template.fullbleedimage_template="${@data, flag}">
+  <div class="" data-module="Image">
+  <div class="">
+  <div class="col-sm-12 tp-pw-image__center-align">
     <sly data-sly-test = "${data.linkURL && data.linkURL!='#'}">
-      <a class="js-tp-pw-image" href="${data.linkURL}" data-link-name="Image text banner not present">  
+      <a class="js-tp-pw-image" href="${data.linkURL}">  
       <sly data-sly-test = "${!wcmmode.edit}">
-            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-             data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, className='img-responsive'}" >
-        </sly>
+         <sly data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html"
+                 data-sly-call="${dynamicMediaImage.dynamicimage_template @image=data.fileReference, altText=data.alt, className=className}">
+         </sly>
       </sly>
       <sly data-sly-test = "${wcmmode.edit}">
             <img class="img-responsive" src="${data.fileReference}"  alt="${data.alt}"/> 
@@ -17,9 +17,9 @@
 
     <sly data-sly-test = "${!data.linkURL || data.linkURL=='#'}">        
         <sly data-sly-test = "${!wcmmode.edit}">
-            <sly data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
-                 data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=data.fileReference, altText=data.alt, className='img-responsive'}" >
-            </sly>
+           <sly data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html"
+                 data-sly-call="${dynamicMediaImage.dynamicimage_template @image=data.fileReference, altText=data.alt, className=className}">
+         </sly>
           </sly>
           <sly data-sly-test = "${wcmmode.edit}">
                 <img class="img-responsive" src="${data.fileReference}"  alt="${data.alt}"/> 
