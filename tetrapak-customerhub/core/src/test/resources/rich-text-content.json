@@ -27,7 +27,10 @@
           "text": "<p>test content</p>\r\n",
           "jcr:lastModified": "Tue Mar 31 2020 12:21:13 GMT+0530",
           "sling:resourceType": "customerhub/components/content/richtext",
-          "textIsRich": "true"
+          "textIsRich": "true",
+          "pwTheme": "grayscale-white",
+          "pwPadding": "Regular Padding",
+          "topSpacing": "topmargins"
         }
       }
     }
