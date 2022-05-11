@@ -128,14 +128,15 @@ public class PlantMasterLicensesModel {
         
         if (slingSettingsService.getRunModes().contains(Externalizer.PUBLISH)) {
             isPublishEnvironment = Boolean.TRUE;
-            String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+            final String productDetailsApiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
                     CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
+            final String activeLicensesApiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+                    CustomerHubConstants.AIP_ACTIVE_LICENSES);
             this.engineeringLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(),
-                    apiMapping, aipCategoryService.getEngineeringLicensesId());
-            this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
+                    productDetailsApiMapping, aipCategoryService.getEngineeringLicensesId());
+            this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), productDetailsApiMapping,
                     aipCategoryService.getSiteLicensesId());
-            this.activeLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(),
-                    apiMapping, aipCategoryService.getEngineeringLicensesId());
+            this.activeLicenseApiUrl = apigeeService.getApigeeServiceUrl()+ CustomerHubConstants.PATH_SEPARATOR + activeLicensesApiMapping;
         }
         this.setEmailAddressValue();
         this.setUserNameValue();
