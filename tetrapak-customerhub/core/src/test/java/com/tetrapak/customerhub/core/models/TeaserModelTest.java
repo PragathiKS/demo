@@ -66,16 +66,16 @@ public class TeaserModelTest {
 
         assertEquals("Heading Test", model.getHeading());
         assertEquals("Description Test", model.getDescription());
-        assertEquals("View All Test", model.getLinkLabel());
+        assertEquals("View All Test", model.getViewAllLink().getLinkText());
+        assertEquals("grayscale-white", model.getPwTheme());
 
         assertEquals("Title 2 test", model.getTeaserList().get(1).getTitle());
         assertEquals("Body 2 test", model.getTeaserList().get(1).getDescription());
         assertEquals("/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/camp-fire.jpg",
                 model.getTeaserList().get(1).getFileReference());
         assertEquals("Alt 2 test", model.getTeaserList().get(1).getAlt());
-//        assertEquals("Link 2 Text test", model.getTeaserList().get(1).getLinkText()); TODO
-//        assertEquals("https://test2.com",
-//                model.getTeaserList().get(1).getLinkPath());
+        assertEquals("Link 2 Text test", model.getTeaserList().get(1).getLink().getLinkText());
+        assertEquals("https://test2.com", model.getTeaserList().get(1).getLink().getLinkUrl());
     }
 
     /**

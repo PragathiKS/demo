@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.models.multifield.ManualModel;
+import com.tetrapak.customerhub.core.utils.LinkUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -36,6 +37,10 @@ public class TeaserModel {
     @Via("resource")
     private LinkModel viewAllLink;
 
+    /** The pw theme. */
+    @ValueMapValue
+    private String pwTheme;
+
     /** The manual list. */
     @Inject
     @Via("resource")
@@ -50,9 +55,11 @@ public class TeaserModel {
     @PostConstruct
     protected void init() {
         if (manualList != null && !manualList.isEmpty()) {
-//            manualList.stream().forEach(
-//                      model -> model.getLink().setLinkUrl(LinkUtils.sanitizeLink(model.getLink().getLinkUrl(), request)));
-//            teaserList.addAll(manualList);
+            manualList.stream()
+                    .filter(model -> model.getLink() != null)
+                    .forEach(
+                      model -> model.getLink().setLinkUrl(LinkUtils.sanitizeLink(model.getLink().getLinkUrl(), request)));
+            teaserList.addAll(manualList);
         }
     }
 
@@ -75,11 +82,20 @@ public class TeaserModel {
     }
 
     /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
+    public String getPwTheme() {
+        return pwTheme;
+    }
+
+    /**
      * Gets the view all link .
      *
      * @return the vew all link
      */
-    public LinkModel getLinkLabel() {
+    public LinkModel getViewAllLink() {
         return viewAllLink;
     }
 

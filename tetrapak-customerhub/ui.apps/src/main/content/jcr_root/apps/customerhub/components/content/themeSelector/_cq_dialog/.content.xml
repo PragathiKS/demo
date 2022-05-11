@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+            <design
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Design"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <pwThemes
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Background Themes"
+                                    name="./pwTheme">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <grayscaleWhite
+                                            jcr:primaryType="nt:unstructured"
+                                            selected="true"
+                                            text="White"
+                                            value="grayscale-white"/>
+                                    <grayscaleLighter
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Grey"
+                                            value="grayscale-lighter"/>
+                                </items>
+                            </pwThemes>
+                            <pwButtonThemes
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Link Type"
+                                name="./pwButtonTheme">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <linkButton
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Link Text"
+                                            value="link"/>
+                                    <button
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Button"
+                                            value="secondary"/>
+                                </items>
+                            </pwButtonThemes>
+                            <pwLinkThemes
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Link behavior"
+                                name="./pwLinkTheme">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <hyperlink
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Hyper Link"
+                                        value="hyperlink"/>
+                                    <download
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Download"
+                                        value="download"/>
+                                </items>
+                            </pwLinkThemes>
+                            <pwImageBackground
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Image background"
+                                name="./pwImgBackground">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Default"
+                                        value=""/>
+                                    <white
+                                        jcr:primaryType="nt:unstructured"
+                                        text="White"
+                                        value="bg-white"/>
+                                    <gray
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Grey"
+                                        value="bg-gray"/>
+                                </items>
+                            </pwImageBackground>
+                            <padding
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Inner Padding"
+                                    name="./pwPadding">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <regularPadding
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Regular Padding"
+                                            value="regular"/>
+                                    <zeroPadding
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Remove Padding"
+                                            value="zero"/>
+                                </items>
+                            </padding>
+                            <topmargin
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Top Spacing"
+                                name="./topSpacing">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <topMargin
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Top Margin"
+                                        value="topmargin"/>
+                                    <noMargin
+                                        jcr:primaryType="nt:unstructured"
+                                        text="No Top Margin"
+                                        value="nomargin"/>
+                                </items>
+                            </topmargin>
+                            <display
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="Select to align text left or right"
+                                fieldLabel="Card Alignment"
+                                name="./pwDisplay">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <rowLeftToRight
+                                            jcr:primaryType="nt:unstructured"
+                                            selected="true"
+                                            text="Row - Left to right"
+                                            value="display-row"/>
+                                    <rowRightToLeft
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Row - Right to Left"
+                                            value="display-row-reversed"/>
+                                </items>
+                            </display>
+							<pwCardTheme
+                                granite:class="bannerType-disable-enable-target"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="For Top Banner Display Mode, only sky blue is selected"
+                                fieldLabel="Card Background Theme"
+                                name="./pwCardTheme">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <gray
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="true"
+                                        text="Grey"
+                                        value="gray"/>
+                                    <skyblue
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Bright Blue"
+                                        value="sky-blue"/>
+									<black
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Black Gradient"
+                                        value="black"/>
+                                </items>
+                            </pwCardTheme>
+                        </items>
+                    </column>
+                </items>
+            </design>
+        </items>
+    </content>
+</jcr:root>
