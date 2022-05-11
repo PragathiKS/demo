@@ -13,6 +13,7 @@
                 <div class="nav nav-tabs tp-aip__nav-tabs" role="tablist">
                     <a class="tp-aip__nav-link nav-item nav-link" id="nav-engineering-licenses-tab" data-toggle="tab" href="#nav-engineering-licenses" role="tab" aria-controls="nav-engineering-licenses" aria-selected="false"></a>
                     <a class="tp-aip__nav-link nav-item nav-link active" id="nav-site-licenses-tab" data-toggle="tab" href="#nav-site-licenses" role="tab" aria-controls="nav-site-licenses" aria-selected="true">Request site license</a>
+                    <a class="tp-aip__nav-link nav-item nav-link active" id="nav-active-licenses-tab" data-toggle="tab" href="#nav-active-licenses" role="tab" aria-controls="nav-active-licenses" aria-selected="true">Active licenses</a>
                 </div>
             </nav>
 
@@ -349,6 +350,149 @@ Exception: Tetra Pak Branded Equipment(e.g.Tetra Pak Filling Machine A3, Tetra P
         </div>
     </div>
 </div></div>
+
+                </div>
+
+                <div class="tab-pane fade tp-aip-licenses__site js-tp-aip-licenses__active active show" id="nav-active-licenses" role="tabpanel" aria-labelledby="nav-active-licenses-tab">
+
+                    <div class="tp-aip-licenses-active">
+                        <div class="tp-aip__accordion" id="tp-aip-licenses__accordion">
+                            <div class="tp-aip__acc-item">
+                                <button class="tp-aip__btn-link btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#tp-aip-licenses__acc1" aria-expanded="false" aria-controls="collapseOne">
+                                    <span>Annual engineering licenses1</span>
+                                    <i class="icon icon-Arrow_Down"></i>
+                                </button>
+                                <div id="tp-aip-licenses__acc1" class="tp-aip__collapse collapse" aria-labelledby="headingOne" data-parent="#tp-aip-licenses__accordion" style="">
+                                    <div class="js-tp-aip-licenses-active__eng"><div class="tp-aip__acc-item-body">
+                                        <div class="tp-aip__table-wrap">
+                                            <table class="tp-aip__table">
+                                                <thead class="tp-aip__thead-primary">
+                                                <tr>
+                                                    <th>First Name1</th>
+                                                    <th>Surname1</th>
+                                                    <th>Licence Key	1</th>
+                                                    <th>Platform1</th>
+                                                    <th>Start date	1</th>
+                                                    <th>End date1</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Andreas</td>
+                                                    <td>Grönwall-Mikkelsen</td>
+                                                    <td>1234567890000</td>
+                                                    <td>A123456-0123456</td>
+                                                    <td>2020-01-01</td>
+                                                    <td>2020-01-01</td>
+                                                    <td>
+                                                        <button type="button" class="tpatom-btn tpatom-btn--transparent tp-aip-licenses-active__btn js-tp-aip-licenses-active__withdraw" data-platform="A123456-0123456" data-surname="Grönwall-Mikkelsen" data-first-name="Andreas">
+                                                            <span class="tpatom-btn__text tp-aip-licenses-active__btn__text">Withdraw1</span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+
+
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tp-aip__acc-item">
+                                <button class="tp-aip__btn-link btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#tp-aip-licenses__acc2" aria-expanded="false" aria-controls="collapseOne">
+                                    <span>Site licenses1</span>
+                                    <i class="icon icon-Arrow_Down"></i>
+                                </button>
+                                <div id="tp-aip-licenses__acc2" class="tp-aip__collapse collapse" aria-labelledby="headingOne" data-parent="#tp-aip-licenses__accordion" style="">
+                                    <div class="js-tp-aip-licenses-active__site"><div class="tp-aip__acc-item-body">
+                                        <div class="tp-aip__table-wrap">
+                                            <table class="tp-aip__table">
+                                                <thead class="tp-aip__thead-primary">
+                                                <tr>
+                                                    <th>Licence Key	1</th>
+                                                    <th>Platform1</th>
+                                                    <th>Country1</th>
+                                                    <th>Site1</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>1234567890000</td>
+                                                    <td>A123456-0123456</td>
+                                                    <td>Sweden</td>
+                                                    <td>Lorem ipsum dolor</td>
+                                                    <td>2020-01-01</td>
+                                                </tr>
+
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tp-aip-licenses-active__modal" class="modal js-tp-aip-licenses-active__modal tp-modal fade" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true"><div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="">
+                            <div class="modal-content tp-my-equipment__modal-content tp-modal-content js-tp-aip-licenses-active__modal-content">
+                                <div class="modal-header tpmol-modal-header">
+                                    <div class="tp-aip-licenses-active__modal-header" auto_locator="headlineOverlay">
+                                        <h2>Confirm license  withdrawal1</h2>
+                                    </div>
+                                    <button type="button" auto_locator="closebtnOverlay" class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body tp-modal-body tp-my-equipment__modal-body">
+                                    <div class="tp-aip-licenses-active__info-line">
+                                        <div class="tp-aip-licenses-active__info-cell-1">First Name1</div>
+                                        <div class="tp-aip-licenses-active__info-cell-2">Andreas</div>
+                                    </div>
+                                    <div class="tp-aip-licenses-active__info-line">
+                                        <div class="tp-aip-licenses-active__info-cell-1">Surname1</div>
+                                        <div class="tp-aip-licenses-active__info-cell-2">Grönwall-Mikkelsen</div>
+                                    </div>
+                                    <div class="tp-aip-licenses-active__info-line">
+                                        <div class="tp-aip-licenses-active__info-cell-1">Platform1</div>
+                                        <div class="tp-aip-licenses-active__info-cell-2">A123456-0123456</div>
+                                    </div>
+                                    <div class="tp-aip-licenses-active__form-element">
+                                        <div class="tpatom-textarea-box">
+                                            <label class="tpatom-textarea-box__text" for="comments">Comment to Tetra Pak (Optional)1</label>
+
+                                            <textarea name="comments" id="comments" class="tpatom-textarea-box__input js-tp-aip-licenses-active__input" maxlength="300"></textarea>
+                                        </div>
+                                    </div>
+                                    <p>Are you sure you want to withdraw this license?1</p>
+                                    <div class="js-equipment-details__error tp-aip-licenses-active__error d-none">
+                                        Something Went Wrong
+                                        Failure of sent data, please try again
+                                    </div>
+                                </div>
+                                <div class="modal-footer tpmol-modal-footer">
+                                    <button type="button" class="tpatom-btn tpatom-btn--primary tp-aip-licenses-active__confirm js-tp-aip-licenses-active__confirm" data-platform="A123456-0123456" data-surname="Grönwall-Mikkelsen" data-first-name="Andreas">
+                                        <span class="tpatom-btn__text tp-aip-licenses-active__confirm__text">Yes - Confirm withdrawal</span>
+                                    </button>
+                                    <button type="button" class="tpatom-btn tpatom-btn--secondary tp-aip-licenses-active__cancel js-tp-aip-licenses-active__cancel">
+                                        <span class="tpatom-btn__text tp-aip-licenses-active__cancel__text">No - Go back to listing</span>
+                                    </button>
+                                </div>
+                                <div class="tpatom-loader js-loader js-tp-aip-licenses-active__modal-spinner d-none">
+                                    <div class="tpatom-loading-anim"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

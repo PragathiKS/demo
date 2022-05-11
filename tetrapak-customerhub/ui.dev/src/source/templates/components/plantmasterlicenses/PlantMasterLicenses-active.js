@@ -79,10 +79,36 @@ function _getActiveLicensesData() {
         showLoader: true
       }).done(res => {
         this.renderActiveLicenses(res);
-        this.showContent();
       }).fail((e) => {
         logger.error(e);
       });
+  });
+}
+
+/**
+ * Submit License withdraw
+ */
+function _submitLicenseWithdraw(licenseDetails) {
+  const { submitApi } = this.cache;
+  this.showModalSpinner();
+
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper.getXhrObj({
+      url: submitApi,
+      method: ajaxMethods.POST,
+      cache: true,
+      contentType: 'application/json; charset=utf-8',
+      dataType:'json',
+      data: licenseDetails,
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+      },
+      showLoader: true
+    }).done(() => {
+      this.renderLicenseWithdrawSuccess();
+    }).fail(() => {
+      this.showModalContent();
+    });
   });
 }
 
@@ -96,6 +122,7 @@ class PlantMasterLicensesActive {
 
   initCache() {
     const aipLicenseObj = $('.tp-aip-licenses');
+    this.cache.$aipLicenseObj = aipLicenseObj;
     const configJson = aipLicenseObj.find('.js-aip-licenses__config').text();
     try {
       this.cache.i18nKeys = JSON.parse(configJson);
@@ -104,8 +131,7 @@ class PlantMasterLicensesActive {
       logger.error(e);
     }
     this.cache.activeLicensesApi = aipLicenseObj.data('activelicense-api');
-    this.cache.$spinner = aipLicenseObj.find('.js-tp-spinner');
-    this.cache.$contentWrapper = aipLicenseObj.find('.js-aip-licenses__wrapper');
+    this.cache.submitApi = aipLicenseObj.data('submit-api');
     this.cache.$activeEngLicensesWrapper = aipLicenseObj.find('.js-tp-aip-licenses-active__eng');
     this.cache.$activeSiteLicensesWrapper = aipLicenseObj.find('.js-tp-aip-licenses-active__site');
     this.cache.$activeLicensesModal = aipLicenseObj.find('.js-tp-aip-licenses-active__modal');
@@ -113,14 +139,22 @@ class PlantMasterLicensesActive {
     this.cache.engLicenseUerGroup = this.engLicenseUerGroup;
   }
 
-  showContent = () => {
-    this.cache.$contentWrapper.removeClass('d-none');
-    this.cache.$spinner.addClass('d-none');
+  showModalContent = () => {
+    const { $aipLicenseObj } = this.cache;
+    const $modalContentWrapper = $aipLicenseObj.find('.js-tp-aip-licenses-active__modal-content');
+    const $modalSpinner = $modalContentWrapper.find('.js-tp-aip-licenses-active__modal-spinner');
+
+    $modalContentWrapper.find('.modal-header, .modal-body, .modal-footer').removeClass('d-none');
+    $modalSpinner.addClass('d-none');
   };
 
-  showSpinner = () => {
-    this.cache.$contentWrapper.addClass('d-none');
-    this.cache.$spinner.removeClass('d-none');
+  showModalSpinner = () => {
+    const { $aipLicenseObj } = this.cache;
+    const $modalContentWrapper = $aipLicenseObj.find('.js-tp-aip-licenses-active__modal-content');
+    const $modalSpinner = $modalContentWrapper.find('.js-tp-aip-licenses-active__modal-spinner');
+
+    $modalContentWrapper.find('.modal-header, .modal-body, .modal-footer').addClass('d-none');
+    $modalSpinner.removeClass('d-none');
   };
 
   bindEvents() {
@@ -141,8 +175,20 @@ class PlantMasterLicensesActive {
       $activeLicensesModal.modal('hide');
     });
 
-    this.root.on('click', '.js-tp-aip-licenses-active__confirm',  () => {
-      this.renderLicenseWithdrawSuccess();
+    this.root.on('click', '.js-tp-aip-licenses-active__confirm',  (e) => {
+      const $btn = $(e.currentTarget);
+      const { $aipLicenseObj } = this.cache;
+      const $modalContentWrapper = $aipLicenseObj.find('.js-tp-aip-licenses-active__modal-content');
+      const comments = $modalContentWrapper.find('.js-tp-aip-licenses-active__input').val();
+
+      const licenseDetails = {
+        firstName: $btn.data('firstName'),
+        surname: $btn.data('surname'),
+        platform: $btn.data('platform'),
+        comments
+      };
+
+      this.submitLicenseWithdraw(licenseDetails);
     });
   }
 
@@ -160,6 +206,10 @@ class PlantMasterLicensesActive {
 
   renderLicenseWithdrawModal(licenseDetails) {
     return _renderLicenseWithdrawModal.call(this, licenseDetails);
+  }
+
+  submitLicenseWithdraw(licenseDetails) {
+    return _submitLicenseWithdraw.call(this, licenseDetails);
   }
 
   init() {
