@@ -1,7 +1,6 @@
 import LZStorage from 'lzstorage';
 import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
-import { isExternal, isDownloable } from '../utils/updateLink';
 import { trackAnalytics } from '../utils/analytics';
 import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
@@ -157,26 +156,6 @@ export const getI18n = (key, replaceList, hash) => {
     return window.Granite.I18n.get(key, replaceList);
   }
   return key;
-};
-
-/**
- * added attribute for internal and external link.
- * @param {string} jsonData JSON string
- */
-export const addLinkAttr = (linkClass) => {
-  $(linkClass).each(function() {
-    const thisHref = $(this).attr('href');
-    if (thisHref) {
-      $(this).attr('target', '_self');
-      if (isExternal(thisHref)) {
-        $(this).attr('target', '_blank');
-      }
-      if (isDownloable(thisHref)) {
-        $(this).data('download-type', 'download');
-        $(this).attr('target', '_blank');
-      }
-    }
-  });
 };
 
 export const getDocType = (url) => {
