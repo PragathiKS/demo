@@ -48,6 +48,15 @@ public class PlantMasterTrainingsModel {
         /** The learning history. */
         LEARNING_HISTORY("learningHistory"),
 
+        /** The diploma. */
+        DIPLOMA("diploma"),
+
+        /** The accredited. */
+        ACCREDITED("accredited"),
+
+        /** The authenticated. */
+        AUTHENTICATED("authenticated"),
+
         /** The training material handouts. */
         TRAINING_MATERIAL_HANDOUTS("trainingMaterialHandouts"),
 
@@ -181,6 +190,18 @@ public class PlantMasterTrainingsModel {
     /** The learning history. */
     @ValueMapValue
     private String learningHistory;
+
+    /** The diploma. */
+    @ValueMapValue
+    private String diploma;
+
+    /** The accredited. */
+    @ValueMapValue
+    private String accredited;
+
+    /** The authenticated. */
+    @ValueMapValue
+    private String authenticated;
 
     /** The training material handouts. */
     @ValueMapValue
@@ -340,6 +361,9 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.AVAILABLE_TRAININGS.getI18nJsonKey(),
                 getAvailableTrainings());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.LEARNING_HISTORY.getI18nJsonKey(), getLearningHistory());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.DIPLOMA.getI18nJsonKey(), getDiploma());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.ACCREDITED.getI18nJsonKey(), getAccredited());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.AUTHENTICATED.getI18nJsonKey(), getAuthenticated());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_MATERIAL_HANDOUTS.getI18nJsonKey(),
                 getTrainingMaterialHandouts());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.COURSE_DESCRIPTION.getI18nJsonKey(), getCourseDescription());
@@ -436,6 +460,33 @@ public class PlantMasterTrainingsModel {
      */
     public String getLearningHistory() {
         return learningHistory;
+    }
+
+    /**
+     * Gets the diploma.
+     *
+     * @return the diploma
+     */
+    public String getDiploma() {
+        return diploma;
+    }
+
+    /**
+     * Gets the accredited.
+     *
+     * @return the accredited
+     */
+    public String getAccredited() {
+        return accredited;
+    }
+
+    /**
+     * Gets the authenticated.
+     *
+     * @return the authenticated
+     */
+    public String getAuthenticated() {
+        return authenticated;
     }
 
     /**
