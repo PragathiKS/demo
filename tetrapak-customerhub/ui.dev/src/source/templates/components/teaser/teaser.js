@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { addLinkAttr,getLinkClickAnalytics } from '../../../scripts/common/common';
+import { getLinkClickAnalytics } from '../../../scripts/common/common';
 
 
 class Teaser {
@@ -53,7 +53,6 @@ class Teaser {
    init() {
      this.initCache();
      this.bindEvents();
-     addLinkAttr('.js-teaser-analytics');
    }
 }
 
