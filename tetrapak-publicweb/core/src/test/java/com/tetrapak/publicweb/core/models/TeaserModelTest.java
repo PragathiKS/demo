@@ -119,6 +119,8 @@ public class TeaserModelTest {
     /**
      * Sets the up.
      *
+     * @param context
+     *            the new up
      * @throws Exception
      *             the exception
      */
@@ -128,9 +130,9 @@ public class TeaserModelTest {
         aggregatorService = new AggregatorServiceImpl();
         context.registerService(AggregatorService.class, aggregatorService);
 
-//        context.load().json(RESOURCE_LANG, LANG_PAGE);
-//        context.load().json(RESOURCE_HOME, HOME_PAGE);
-//        context.load().json(RESOURCE_SOLUTIONS, SOLUTIONS_PAGE);
+        context.load().json(RESOURCE_LANG, LANG_PAGE);
+        context.load().json(RESOURCE_HOME, HOME_PAGE);
+        context.load().json(RESOURCE_SOLUTIONS, SOLUTIONS_PAGE);
 
         context.addModelsForClasses(modelClass);
 
