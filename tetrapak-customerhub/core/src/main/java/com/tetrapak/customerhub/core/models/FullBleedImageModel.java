@@ -12,6 +12,7 @@ import com.tetrapak.customerhub.core.beans.ImageBean;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 
+
 /**
  * This is a model class for Full Bleed Image component.
  * 
@@ -32,6 +33,14 @@ public class FullBleedImageModel {
     /** The alt. */
     @ValueMapValue
     private String alt;
+    
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
+
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
 
     /** The link URL. */
     @ValueMapValue
@@ -39,6 +48,14 @@ public class FullBleedImageModel {
 
     /** The bean for Dynamic Media Image **/
     private ImageBean image;
+    
+    /** The pw padding. */
+    @ValueMapValue
+    private String pwPadding;
+    
+    /** The pw theme. */
+    @ValueMapValue
+    private String pwTheme;
 
     /**
      * Inits the Model.
@@ -66,6 +83,24 @@ public class FullBleedImageModel {
     public String getAlt() {
 	return alt;
     }
+    
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
+    }
 
     /**
      * Gets the link URL.
@@ -83,5 +118,23 @@ public class FullBleedImageModel {
      */
     public ImageBean getImage() {
 	return image;
+    }
+    
+    /**
+     * Gets the pw padding.
+     *
+     * @return the pw padding
+     */
+    public String getPwPadding() {
+        return pwPadding;
+    }
+    
+    /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
+    public String getPwTheme() {
+        return pwTheme;
     }
 }
