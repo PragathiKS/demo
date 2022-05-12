@@ -1,4 +1,10 @@
 .tp-teaser {
+    @include padding($padding-l $padding-md);
+    @include margin-top($margin-l);
+
+    @media #{$desktop} {
+        @include padding($padding-l $padding-l $padding-zero $padding-l);
+    }
 
     &__heading {
         @include padding-bottom($padding-md);

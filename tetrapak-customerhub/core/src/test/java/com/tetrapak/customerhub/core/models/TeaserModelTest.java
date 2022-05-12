@@ -67,7 +67,7 @@ public class TeaserModelTest {
         assertEquals("Heading Test", model.getHeading());
         assertEquals("Description Test", model.getDescription());
         assertEquals("View All Test", model.getViewAllLink().getLinkText());
-        assertEquals("grayscale-white", model.getPwTheme());
+        assertEquals("grayscale-white", model.getMtpTheme());
 
         assertEquals("Title 2 test", model.getTeaserList().get(1).getTitle());
         assertEquals("Body 2 test", model.getTeaserList().get(1).getDescription());

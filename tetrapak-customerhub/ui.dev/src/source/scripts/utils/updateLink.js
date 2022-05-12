@@ -1,8 +1,4 @@
-import $ from 'jquery';
 const myDomainAdobe = 'adobecqms.net';
-const componentList = [
-  '.tp-teaser'
-];
 const isInternalUrl = url => {
   let isInternal = false;
   const setOfInternalUrl = [
@@ -49,36 +45,4 @@ export const isDownloable = function(url) {
     }
   }
   return flag;
-};
-export default () => {
-  componentList.forEach(item => {
-    $(item).find('a').each(function () {
-      const thisHref = $(this).attr('href');
-      if (thisHref) {
-        const iconEl = $(this).find('i.icon')[0];
-        // external link flag
-        const iconExternal = $(this).find('i.icon.is-external')[0];
-        $(iconEl).removeClass('icon-Chevron_Right');
-        if (isDownloable(thisHref)) {
-          $(iconEl).addClass('icon-Download');
-          $(this).attr('target', '_blank');
-        } else if (isExternal(thisHref) || iconExternal) {
-          $(iconEl).addClass('icon-External_Link');
-          $(this).attr('target', '_blank');
-        } else if($(iconEl).hasClass('with-arrow')){
-          $(iconEl).addClass('icon-Navigation_Right_pw');
-          $(this).attr('target', '_self');
-        } else if($(iconEl).hasClass('without-arrow')){
-          $(iconEl).addClass('');
-        } else {
-          if ($(this).hasClass('tpatom-link--primary')) {
-            $(iconEl).addClass('icon-Chevron_Right');
-          } else {
-            $(iconEl).addClass('icon-Chevron_Right');
-          }
-          $(this).attr('target', '_self');
-        }
-      }
-    });
-  });
 };

@@ -16,11 +16,11 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <pwThemes
+                            <mtpThemes
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                     fieldLabel="Background Themes"
-                                    name="./pwTheme">
+                                    name="./mtpTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <grayscaleWhite
                                             jcr:primaryType="nt:unstructured"
@@ -32,13 +32,13 @@
                                             text="Grey"
                                             value="grayscale-lighter"/>
                                 </items>
-                            </pwThemes>
-                            <pwButtonThemes
+                            </mtpThemes>
+                            <mtpButtonThemes
                                 cq:showOnCreate="{Boolean}true"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldLabel="Link Type"
-                                name="./pwButtonTheme">
+                                name="./mtpButtonTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <linkButton
                                             jcr:primaryType="nt:unstructured"
@@ -49,13 +49,13 @@
                                             text="Button"
                                             value="secondary"/>
                                 </items>
-                            </pwButtonThemes>
-                            <pwLinkThemes
+                            </mtpButtonThemes>
+                            <mtpLinkThemes
                                 cq:showOnCreate="{Boolean}true"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldLabel="Link behavior"
-                                name="./pwLinkTheme">
+                                name="./mtpLinkTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <hyperlink
                                         jcr:primaryType="nt:unstructured"
@@ -66,13 +66,13 @@
                                         text="Download"
                                         value="download"/>
                                 </items>
-                            </pwLinkThemes>
-                            <pwImageBackground
+                            </mtpLinkThemes>
+                            <mtpImageBackground
                                 cq:showOnCreate="{Boolean}true"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldLabel="Image background"
-                                name="./pwImgBackground">
+                                name="./mtpImgBackground">
                                 <items jcr:primaryType="nt:unstructured">
                                     <default
                                         jcr:primaryType="nt:unstructured"
@@ -87,12 +87,12 @@
                                         text="Grey"
                                         value="bg-gray"/>
                                 </items>
-                            </pwImageBackground>
+                            </mtpImageBackground>
                             <padding
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                     fieldLabel="Inner Padding"
-                                    name="./pwPadding">
+                                    name="./mtpPadding">
                                 <items jcr:primaryType="nt:unstructured">
                                     <regularPadding
                                             jcr:primaryType="nt:unstructured"
@@ -125,7 +125,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldDescription="Select to align text left or right"
                                 fieldLabel="Card Alignment"
-                                name="./pwDisplay">
+                                name="./mtpDisplay">
                                 <items jcr:primaryType="nt:unstructured">
                                     <rowLeftToRight
                                             jcr:primaryType="nt:unstructured"
@@ -138,13 +138,13 @@
                                             value="display-row-reversed"/>
                                 </items>
                             </display>
-							<pwCardTheme
+							<mtpCardTheme
                                 granite:class="bannerType-disable-enable-target"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                 fieldDescription="For Top Banner Display Mode, only sky blue is selected"
                                 fieldLabel="Card Background Theme"
-                                name="./pwCardTheme">
+                                name="./mtpCardTheme">
                                 <items jcr:primaryType="nt:unstructured">
                                     <gray
                                         jcr:primaryType="nt:unstructured"
@@ -160,7 +160,7 @@
                                         text="Black Gradient"
                                         value="black"/>
                                 </items>
-                            </pwCardTheme>
+                            </mtpCardTheme>
                         </items>
                     </column>
                 </items>
