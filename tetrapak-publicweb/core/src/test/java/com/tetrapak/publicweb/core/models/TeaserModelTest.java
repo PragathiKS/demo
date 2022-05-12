@@ -1,16 +1,12 @@
 package com.tetrapak.publicweb.core.models;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.services.AggregatorService;
-import com.tetrapak.publicweb.core.services.impl.AggregatorServiceImpl;
-import io.wcm.testing.mock.aem.junit.AemContext;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jcr.Session;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -22,11 +18,18 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import javax.jcr.Session;
-import java.util.ArrayList;
-import java.util.List;
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.services.AggregatorService;
+import com.tetrapak.publicweb.core.services.impl.AggregatorServiceImpl;
 
-import static org.junit.Assert.assertEquals;
+import io.wcm.testing.mock.aem.junit.AemContext;
 
 /**
  * The Class TeaserModelTest.
