@@ -197,8 +197,8 @@ public class DynamicImageModel {
 			}
 		}
 		
-		if(StringUtils.isEmpty(imagePath) && videoPath != null && (currentComponentName.equalsIgnoreCase("textVideo")
-				|| currentComponentName.equalsIgnoreCase("video"))) {
+		if(StringUtils.isEmpty(imagePath) && videoPath != null && (currentComponentName.equalsIgnoreCase(PWConstants.TEXT_VIDEO)
+				|| currentComponentName.equalsIgnoreCase(PWConstants.VIDEO))) {
 			imagePath = videoPath;
 		}
 		
