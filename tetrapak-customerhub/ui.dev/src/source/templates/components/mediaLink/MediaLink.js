@@ -21,12 +21,12 @@ class MediaLink {
     let linkParentTitle = '';
     let trackingObj = {};
     let eventObj = {};
-    const linkType = $this.find('i.icon').is('.icon-Union, .icon-Download') ? 'external':'internal';
+    const linkType = $this.find('i.icon').is('.icon-External_Link, .icon-PDF') ? 'external':'internal';
     const linkName = $this.data('link-name');
     const dwnDocName = $this.data('asset-name');
     const dwnType = 'ungated';
     const eventType = 'download';
-    const downloadtype = $this.find('i.icon').hasClass('icon-Download') ? 'download':'_download';
+    const downloadtype = $this.find('i.icon').hasClass('icon-PDF') ? 'download':'_download';
     const sectionTitle = $this.data('section-name');
     let linkSection = $this.data('link-section');
     if(downloadtype ==='download') {
