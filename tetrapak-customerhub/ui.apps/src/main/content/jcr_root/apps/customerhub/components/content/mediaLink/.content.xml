@@ -4,4 +4,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Media &amp; Link"
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-global-components"/>
+    componentGroup="tetrapak-content-components"/>

@@ -54,12 +54,12 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                             <items jcr:primaryType="nt:unstructured">
-                                                <linkLabel
+                                                <linkText
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldDescription="Link text"
                                                     fieldLabel="Link label"
-                                                    name="./linkLabel"/>
+                                                    name="./linkText"/>
                                                 <linkUrl
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
@@ -105,12 +105,12 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                             <items jcr:primaryType="nt:unstructured">
-                                                <linkLabel
+                                                <linkText
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldDescription="Link text"
                                                     fieldLabel="Link label"
-                                                    name="./linkLabel"/>
+                                                    name="./linkText"/>
                                                 <linkUrl
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"

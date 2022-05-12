@@ -1,7 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.sling.api.resource.Resource;
@@ -12,7 +13,6 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.customerhub.core.utils.LinkUtil;
-
 
 /**
  * The Class MediaLinkModel.
@@ -52,13 +52,26 @@ public class MediaLinkModel {
     @ChildResource
     private List<LinkModel> columnThreeList;
 
+    @PostConstruct
+    protected void init() {
+	if (CollectionUtils.isNotEmpty(columnOneList)) {
+	    columnOneList.forEach(link -> link.setLinkUrl(LinkUtil.getValidLink(resource, link.getLinkUrl())));
+	}
+	if (CollectionUtils.isNotEmpty(columnTwoList)) {
+	    columnTwoList.forEach(link -> link.setLinkUrl(LinkUtil.getValidLink(resource, link.getLinkUrl())));
+	}
+	if (CollectionUtils.isNotEmpty(columnThreeList)) {
+	    columnThreeList.forEach(link -> link.setLinkUrl(LinkUtil.getValidLink(resource, link.getLinkUrl())));
+	}
+    }
+
     /**
      * Gets the heading.
      *
      * @return the heading
      */
     public String getHeading() {
-        return heading;
+	return heading;
     }
 
     /**
@@ -67,7 +80,7 @@ public class MediaLinkModel {
      * @return the column one title
      */
     public String getColumnOneTitle() {
-        return columnOneTitle;
+	return columnOneTitle;
     }
 
     /**
@@ -76,7 +89,7 @@ public class MediaLinkModel {
      * @return the column two title
      */
     public String getColumnTwoTitle() {
-        return columnTwoTitle;
+	return columnTwoTitle;
     }
 
     /**
@@ -85,7 +98,7 @@ public class MediaLinkModel {
      * @return the column three title
      */
     public String getColumnThreeTitle() {
-        return columnThreeTitle;
+	return columnThreeTitle;
     }
 
     /**
@@ -94,14 +107,7 @@ public class MediaLinkModel {
      * @return the column one list
      */
     public List<LinkModel> getColumnOneList() {
-        final List<LinkModel> lists = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(columnOneList)) {
-            columnOneList.forEach(f -> {
-                f.setLinkUrl(LinkUtil.getValidLink(resource, f.getLinkUrl()));
-                lists.add(f);
-            });
-        }
-        return lists;
+	return columnOneList;
     }
 
     /**
@@ -110,14 +116,7 @@ public class MediaLinkModel {
      * @return the column two list
      */
     public List<LinkModel> getColumnTwoList() {
-        final List<LinkModel> lists = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(columnTwoList)) {
-            columnTwoList.forEach(f -> {
-                f.setLinkUrl(LinkUtil.getValidLink(resource, f.getLinkUrl()));
-                lists.add(f);
-            });
-        }
-        return lists;
+	return columnTwoList;
     }
 
     /**
@@ -126,14 +125,7 @@ public class MediaLinkModel {
      * @return the column three list
      */
     public List<LinkModel> getColumnThreeList() {
-        final List<LinkModel> lists = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(columnThreeList)) {
-            columnThreeList.forEach(f -> {
-                f.setLinkUrl(LinkUtil.getValidLink(resource, f.getLinkUrl()));
-                lists.add(f);
-            });
-        }
-        return lists;
+	return columnThreeList;
     }
 
 }
