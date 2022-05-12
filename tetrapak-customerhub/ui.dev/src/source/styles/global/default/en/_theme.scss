@@ -10,8 +10,6 @@ a {
         color: $color-sky-blue;
     }
 }
-
-
 .pw-theme {
     $self: &;
     &--grayscale-white {
@@ -19,5 +17,22 @@ a {
     }
     &--grayscale-lighter {
         background-color: $color-wild-sand;
+    }
+}
+.pw-margin {
+    &--zero {
+        margin: 0;
+    }
+}
+.pw-padding {
+    &--zero {
+        @include padding($padding-zero);
+    }
+
+    &--regular {
+        @include padding($padding-l $padding-l $padding-zero $padding-l);
+        @media #{$desktop} {
+            @include padding($padding-l $padding-l $padding-zero $padding-l);
+        }
     }
 }

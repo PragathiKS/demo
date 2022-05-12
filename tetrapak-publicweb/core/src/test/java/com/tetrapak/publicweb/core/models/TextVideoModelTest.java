@@ -132,6 +132,7 @@ public class TextVideoModelTest {
         assertEquals("youtube", model.getVideoSource());
         assertEquals("1X7zhVCIUtg", model.getYoutubeVideoID());
         assertEquals("https://s7g10.scene7.com/is/content/tetrapak/Video", model.getDamVideoPath());
+        assertEquals("/content/dam/publicweb/Video.mp4", model.getOriginalDamVideoPath());
         assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailPath());
         assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailAltText());
         assertEquals("secondary", model.getPwButtonTheme());

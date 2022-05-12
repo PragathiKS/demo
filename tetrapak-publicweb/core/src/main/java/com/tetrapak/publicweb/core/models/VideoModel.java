@@ -69,12 +69,16 @@ public class VideoModel {
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
+    
+    /** The original DAM video path. */
+    private String originalDamVideoPath;
 
     /**
      * Inits the.
      */
     @PostConstruct
     protected void init() {
+    	originalDamVideoPath = damVideoPath;
         if (youtubeVideoID != null) {
             youtubeEmbedURL = "https://www.youtube.com/embed/"
                     + (youtubeVideoID.contains("?") ? (youtubeVideoID + "&" + PWConstants.ENABLE_JS_API)
@@ -176,4 +180,13 @@ public class VideoModel {
     public String getVideoName() {
         return LinkUtils.getAssetName(damVideoPath);
     }
+
+    /**
+     * Gets the original video path.
+     *
+     * @return the original video path
+     */
+	public String getOriginalDamVideoPath() {
+		return originalDamVideoPath;
+	}
 }
