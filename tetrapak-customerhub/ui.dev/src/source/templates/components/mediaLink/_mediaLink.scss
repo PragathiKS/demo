@@ -5,9 +5,9 @@
     @include padding-top($padding-l);
     @include margin(0 $margin-md);
     @media #{$desktop} {
-        @include padding($padding-xxxl);
-        @include padding-left($padding-xxxl);
-        @include padding-right($padding-xxxl);
+        @include padding($padding-l);
+        @include padding-left($padding-l);
+        @include padding-right($padding-l);
         @include margin($margin-l $margin-l $margin-zero);
     }
 
