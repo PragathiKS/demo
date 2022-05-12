@@ -1,5 +1,5 @@
-<sly data-sly-template.inputbox_template="${@ inputType, inputClass, id, placeholderVal, required, autoLocatorInput, error, errorJSClass}">
-    <input type="${inputType}" class="${inputClass}" id="${id}" name="${id}"
+<sly data-sly-template.inputbox_template="${@ inputType, minValue, maxValue, inputClass, id, placeholderVal, required, autoLocatorInput, error, errorJSClass}">
+    <input type="${inputType}" class="${inputClass}" id="${id}" name="${id}" min="${minValue}" max="${maxValue}"
      placeholder="${placeholderVal @i18n}" required="${required}" auto_locator="${autoLocatorInput}">
     <div data-sly-test="${error}" data-error-msg="${error @ i18n}" class="error-msg ${errorJSClass}">${error @ i18n}</div>
 </sly>

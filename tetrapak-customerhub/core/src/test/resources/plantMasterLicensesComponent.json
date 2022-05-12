@@ -3,6 +3,8 @@
   "jcr:createdBy": "admin",
   "sling:resourceType": "customerhub/components/content/plantmasterlicenses",
   "heading": "heading",
+  "username": "usernamelabel",
+  "emailaddress": "emailaddresslabel",
   "engineeringLicense": {
     "jcr:primaryType": "nt:unstructured",
     "users":"Users",
@@ -52,6 +54,7 @@
     "name": "name",
     "email": "email",
     "title": "Title",
+    "description": "Desc",
     "submitButtonLabel": "submit",
     "advancedUnitToolTipDescription": "Advanced unit tooltip description",
     "selectFieldError": "select field error",

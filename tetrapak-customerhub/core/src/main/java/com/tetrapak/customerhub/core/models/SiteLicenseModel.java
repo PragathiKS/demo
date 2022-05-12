@@ -1,7 +1,6 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.List;
-
+import com.google.gson.annotations.Expose;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -10,7 +9,7 @@ import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import com.google.gson.annotations.Expose;
+import java.util.List;
 
 /**
  * Model class for Site licenses child node of PlantMaster Licenses component.
@@ -38,6 +37,10 @@ public class SiteLicenseModel {
     @ValueMapValue
     @Expose(serialize = true)
     private String title;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    private String description;
     
     @ValueMapValue
     @Expose(serialize = true)
@@ -147,6 +150,10 @@ public class SiteLicenseModel {
     
     public String getTitle() {
         return title;
+    }
+
+    public String getDescription() {
+        return description;
     }
     
     public String getNameOfSite() {
