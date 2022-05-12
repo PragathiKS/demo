@@ -24,9 +24,21 @@ public class MediaLinkModel {
     @Self
     private Resource resource;
 
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
+    
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+    
     /** The heading. */
     @ValueMapValue
     private String heading;
+    
+    /** The pw theme. */
+    @ValueMapValue
+    private String pwTheme;
 
     /** The column one title. */
     @ValueMapValue
@@ -72,6 +84,33 @@ public class MediaLinkModel {
      */
     public String getHeading() {
 	return heading;
+    }
+    
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
+    }
+    
+    /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
+    public String getPwTheme() {
+        return pwTheme;
     }
 
     /**
