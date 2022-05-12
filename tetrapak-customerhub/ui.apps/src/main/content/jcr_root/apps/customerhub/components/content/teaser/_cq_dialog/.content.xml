@@ -109,10 +109,10 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <mtpThemes
+                            <pwThemes
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/include"
-                                    path="customerhub/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/mtpThemes"/>
+                                    path="customerhub/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
                         </items>
                     </column>
                 </items>
