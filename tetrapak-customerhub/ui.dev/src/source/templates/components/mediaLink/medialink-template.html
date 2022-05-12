@@ -19,11 +19,11 @@
                         <div data-sly-list.child="${data.columnOneList}">
                             <a href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}" data-asset-name="${child.assetName}"
+                                title="${child.linkText}" data-asset-name="${child.assetName}"
                                 data-section-name="${data.columnOneTitle || data.heading}"
                                 data-link-section="Related links and downloads_Text Hyperlink"
-                                data-link-name="${child.linkLabel}">
-                                <span class="tpatom-link__text sly-text">${child.linkLabel @ context='html'}</span><i class="icon icon-link"></i>
+                                data-link-name="${child.linkText}">
+                                <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><i class="icon icon-link ${child.linkType}"></i>
                             </a>
                         </div>
                     </div>
@@ -34,14 +34,14 @@
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnTwoList}">
-                            <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                            <a data-sly-test="${child.linkText}" href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}"
+                                title="${child.linkText}"
                                 data-asset-name="${child.assetName}"
                                 data-link-section="Related links and downloads_Text Hyperlink"
                                 data-section-name="${data.columnTwoTitle || data.heading}"
-                                data-link-name="${child.linkLabel}">
-                                <span class="tpatom-link__text sly-text">${child.linkLabel @ context='html'}</span><i class="icon icon-link"></i>
+                                data-link-name="${child.linkText}">
+                                <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><i class="icon icon-link"></i>
                             </a>
                         </div>
                     </div>
@@ -52,14 +52,14 @@
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnThreeTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnThreeList}">
-                            <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                            <a data-sly-test="${child.linkText}" href="${child.linkUrl}"
                                 class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}"
+                                title="${child.linkText}"
                                 data-link-section="Related links and downloads_Text Hyperlink"
                                 data-section-name="${data.columnThreeTitle || data.heading}"
                                 data-asset-name="${child.assetName}"
-                                data-link-name="${child.linkLabel}">
-                                <span class="tpatom-link__text sly-text">${child.linkLabel @ context='html'}</span><i class="icon icon-link"></i>
+                                data-link-name="${child.linkText}">
+                                <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><i class="icon icon-link"></i>
                             </a>
                         </div>
                     </div>

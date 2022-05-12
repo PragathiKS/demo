@@ -30,10 +30,10 @@ public class LinkModel {
 
     @PostConstruct
     protected void init() {
-        if (StringUtils.isNotEmpty(linkUrl)) {
-            linkType = LinkUtil.checkLinkType(linkUrl);
+	if (StringUtils.isNotEmpty(linkUrl)) {
+	    linkType = LinkUtil.checkLinkType(linkUrl);
 
-        }
+	}
     }
 
     /**
@@ -42,7 +42,7 @@ public class LinkModel {
      * @return the link text
      */
     public String getLinkText() {
-        return linkText;
+	return linkText;
     }
 
     /**
@@ -51,26 +51,33 @@ public class LinkModel {
      * @return the link url
      */
     public String getLinkUrl() {
-        return linkUrl;
+	return linkUrl;
     }
 
     /**
      * Sets the linkUrl.
      *
-     * @param linkUrl
-     *            the new linkUrl
+     * @param linkUrl the new linkUrl
      */
     public void setLinkUrl(String linkUrl) {
-        this.linkUrl = linkUrl;
+	this.linkUrl = linkUrl;
+    }
+
+    /**
+     * Gets the link type.
+     * 
+     * @return the link type
+     */
+    public String getLinkType() {
+	return linkType;
     }
 
     /**
      * Sets the link type.
      *
-     * @param linkType
-     *            the new link type
+     * @param linkType the new link type
      */
     public void setLinkType(String linkType) {
-        this.linkType = linkType;
+	this.linkType = linkType;
     }
 }
