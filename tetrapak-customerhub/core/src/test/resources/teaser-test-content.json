@@ -1,0 +1,59 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:title": "Test page",
+    "showTitle": "false",
+    "cq:template": "/conf/customerhub/settings/wcm/templates/content-page",
+    "sling:resourceType": "customerhub/components/structure/page",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "teaser": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "description": "Description Test",
+          "viewAllLink": {
+            "linkText": "View All Test",
+            "linkUrl": "https://google.com"
+          },
+          "jcr:lastModifiedBy": "admin",
+          "jcr:created": "Thu Apr 28 2022 13:48:46 GMT+0200",
+          "heading": "Heading Test",
+          "pwTheme": "grayscale-white",
+          "jcr:lastModified": "Thu Apr 28 2022 14:25:15 GMT+0200",
+          "linkPath": "/content/tetrapak/customerhub/global/en/dashboard",
+          "sling:resourceType": "customerhub/components/content/teaser",
+          "manualList": {
+            "jcr:primaryType": "nt:unstructured",
+            "item0": {
+              "jcr:primaryType": "nt:unstructured",
+              "description": "Body Test",
+              "fileReference": "/content/dam/we-retail/en/experiences/steelhead-and-spines-in-alaska/steelhead-and-spines-in-alaska-1.jpg",
+              "alt": "Alt Test",
+              "title": "Title Test",
+              "link": {
+                "linkUrl": "/content/dam/we-retail/en/abc.pdf",
+                "linkText": "Link Text Test"
+              }
+            },
+            "item1": {
+              "jcr:primaryType": "nt:unstructured",
+              "description": "Body 2 test",
+              "fileReference": "/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/camp-fire.jpg",
+              "alt": "Alt 2 test",
+              "title": "Title 2 test",
+              "link": {
+                "linkUrl": "https://test2.com",
+                "linkText": "Link 2 Text test"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
