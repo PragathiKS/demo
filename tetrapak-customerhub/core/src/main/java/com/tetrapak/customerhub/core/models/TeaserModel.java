@@ -39,7 +39,7 @@ public class TeaserModel {
 
     /** The pw theme. */
     @ValueMapValue
-    private String mtpTheme;
+    private String pwTheme;
 
     /** The manual list. */
     @Inject
@@ -86,8 +86,8 @@ public class TeaserModel {
      *
      * @return the pw theme
      */
-    public String getMtpTheme() {
-        return mtpTheme;
+    public String getPwTheme() {
+        return pwTheme;
     }
 
     /**
