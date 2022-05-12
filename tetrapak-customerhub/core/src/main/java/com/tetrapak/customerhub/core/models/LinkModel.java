@@ -54,6 +54,15 @@ public class LinkModel {
     }
 
     /**
+     * Gets the link type.
+     *
+     * @return the link type
+     */
+    public String getLinkType() {
+        return linkType;
+    }
+
+    /**
      * Sets the linkUrl.
      *
      * @param linkUrl

@@ -76,6 +76,7 @@ public class TeaserModelTest {
         assertEquals("Alt 2 test", model.getTeaserList().get(1).getAlt());
         assertEquals("Link 2 Text test", model.getTeaserList().get(1).getLink().getLinkText());
         assertEquals("https://test2.com", model.getTeaserList().get(1).getLink().getLinkUrl());
+        assertEquals("external", model.getTeaserList().get(1).getLink().getLinkType());
     }
 
     /**
