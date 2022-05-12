@@ -40,6 +40,24 @@
 										fieldLabel="Learning History label (i18N key)"
 										name="./learningHistory"
 										required="true"/>
+									<diploma
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Diploma label (i18N key)"
+										name="./diploma"
+										required="true"/>
+									<accredited
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Accredited label (i18N key)"
+										name="./accredited"
+										required="true"/>
+									<authenticated
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Authenticated label (i18N key)"
+										name="./authenticated"
+										required="true"/>
 									<trainingmaterialhandouts
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

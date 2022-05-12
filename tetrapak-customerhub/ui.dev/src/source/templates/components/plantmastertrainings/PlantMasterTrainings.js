@@ -149,7 +149,6 @@ function _getTrainingsData() {
   });
 }
 
-
 /**
  * Fetch ping user data 
  */
@@ -175,6 +174,9 @@ function _getUserGroup() {
         }
       });
     }
+
+    // TODO check right user group
+    this.getLearningHistoryData();
   });
 }
 
@@ -185,6 +187,44 @@ function _renderTrainings() {
   render.fn({
     template: 'plantmasterTrainingsTab',
     target: '.js-aip-trainings__accordion',
+    data: { i18nKeys: $this.cache.i18nKeys, trainingsDataArr: trainingsData}
+  });
+}
+
+/**
+ * Fetch the Learning History data
+ */
+function _getLearningHistoryData() {
+  const $this = this;
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper
+      .getXhrObj({
+        url: $this.cache.learningHistoryApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }).done(res => {
+        $this.renderLearningHistory(res);
+        //TODO SHOW TAB
+      }).fail((e) => {
+        logger.error(e);
+      });
+  });
+}
+
+function _renderLearningHistory() {
+  const $this = this;
+  const {trainingsData} = $this.cache;
+
+  render.fn({
+    template: 'plantmasterTrainingsLearningTab',
+    target: '.js-aip-trainings__accordion-learning',
     data: { i18nKeys: $this.cache.i18nKeys, trainingsDataArr: trainingsData}
   });
 }
@@ -205,6 +245,7 @@ class PlantMasterTrainings {
       logger.error(e);
     }
     this.cache.trainingsApi = this.root.data('trainings-api');
+    this.cache.learningHistoryApi = this.root.data('learning-history-api');
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.username = decodeURI(this.root.data('username'));
     this.cache.userEmailAddress = this.root.data('email');
@@ -246,6 +287,14 @@ class PlantMasterTrainings {
 
   removeAllErrorMessages() {
     return _removeAllErrorMessages.apply(this, arguments);
+  }
+
+  getLearningHistoryData() {
+    return _getLearningHistoryData.apply(this, arguments);
+  }
+
+  renderLearningHistory() {
+    return _renderLearningHistory.apply(this, arguments);
   }
 
   init() {
