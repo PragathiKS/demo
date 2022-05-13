@@ -32,10 +32,26 @@ public class LinkUtils extends WCMUsePojo {
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
                 return request.getResourceResolver().map(link) + ".html";
+                return request.getResourceResolver().map(link);
             }
             return link + ".html";
         }
         return link;
+    }
+
+    /**
+     * Gets the asset name.
+     *
+     * @param path
+     *            the asset path.
+     * @return the asset name.
+     */
+    public static String getAssetName(final String path) {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotBlank(path)) {
+            assetName = getSubstringAfterLast(path);
+        }
+        return assetName;
     }
 
     /**

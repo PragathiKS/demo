@@ -94,6 +94,7 @@ public class GlobalUtil {
         return mappingValue;
     }
 
+
     /**
      * Method to check the run mode development to execute the launch js for
      * development environment -r dev.

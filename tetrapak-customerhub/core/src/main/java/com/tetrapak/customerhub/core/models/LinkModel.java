@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import javax.annotation.PostConstruct;
 
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -9,8 +10,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.utils.LinkUtil;
-
 /**
  * The Class LinkModel.
  */
@@ -49,6 +48,12 @@ public class LinkModel {
      */
     public String getAssetName() {
 	return assetName;
+    @PostConstruct
+    protected void init() {
+        if (StringUtils.isNotEmpty(linkUrl)) {
+            linkType = LinkUtil.checkLinkType(linkUrl);
+
+        }
     }
 
     /**
@@ -57,7 +62,7 @@ public class LinkModel {
      * @return the link text
      */
     public String getLinkText() {
-	return linkText;
+        return linkText;
     }
 
     /**
@@ -66,7 +71,27 @@ public class LinkModel {
      * @return the link url
      */
     public String getLinkUrl() {
-	return linkUrl;
+        return linkUrl;
+    }
+
+    /**
+     * Gets the link type.
+     *
+     * @return the link type
+     */
+    public String getLinkType() {
+        return linkType;
+    }
+
+    /**
+     * Sets the linkUrl.
+     *
+     * @param linkUrl
+     *            the new linkUrl
+     */
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
+	    return linkUrl;
     }
 
     /**
@@ -80,7 +105,7 @@ public class LinkModel {
 
     /**
      * Gets the link type.
-     * 
+     *
      * @return the link type
      */
     public String getLinkType() {
@@ -94,5 +119,4 @@ public class LinkModel {
      */
     public void setLinkType(String linkType) {
 	this.linkType = linkType;
-    }
 }
