@@ -2,18 +2,7 @@ import $ from 'jquery';
 
 const myDomainAdobe = 'adobecqms.net';
 const componentList = [
-  '.medialink',
-  '.textImage',
-  '.pw-megamenu',
-  '.tp-pw-footer',
-  '.pw-megamenu',
-  '.pw-tablist',
-  '.tp-teaser',
-  '.pw-text-image',
-  '.pw-text-video',
-  '.pw-banner',
   '.tp-pw-richText',
-  '.pw-navigation'
 ];
 
 const isInternalUrl = url => {
