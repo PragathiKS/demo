@@ -1,4 +1,8 @@
 const myDomainAdobe = 'adobecqms.net';
+const componentList = [
+  '.tp-pw-richText',
+];
+
 const isInternalUrl = url => {
   let isInternal = false;
   const setOfInternalUrl = [
