@@ -3,7 +3,7 @@
   <div class="pw-theme--${data.pwTheme}">
   <div class="col-sm-12 tp-pw-image__center-align">
     <sly data-sly-test = "${data.linkURL && data.linkURL!='#'}">
-      <a class="js-tp-pw-image" href="${data.linkURL}">  
+      <a class="js-tp-pw-image" href="${data.linkURL}" data-linktype="${data.linkType}">  
       <sly data-sly-test = "${!wcmmode.edit}">
          <sly data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html"
                  data-sly-call="${dynamicMediaImage.dynamicimage_template @image=data.image, className=className}">
