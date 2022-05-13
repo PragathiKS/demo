@@ -95,6 +95,7 @@
             @include margin-top(0);
             @include margin-bottom($margin-md);
             width: 100%;
+            border-radius: $border-radius-sm;
             @media #{$desktop} {
                 @include margin-top(0);
             }
