@@ -45,6 +45,10 @@ public class FullBleedImageModel {
     /** The link URL. */
     @ValueMapValue
     private String linkURL;
+    
+    /** The link type. */
+    @ValueMapValue
+    private String linkType;
 
     /** The bean for Dynamic Media Image **/
     private ImageBean image;
@@ -64,6 +68,7 @@ public class FullBleedImageModel {
     protected void init() {
 	linkURL = LinkUtil.getValidLink(resource, linkURL);
 	image = GlobalUtil.getImageBean(resource);
+	linkType = LinkUtil.checkLinkType(linkURL);
     }
 
     /**
@@ -109,6 +114,15 @@ public class FullBleedImageModel {
      */
     public String getLinkURL() {
 	return linkURL;
+    }
+    
+    /**
+     * Gets the link type.
+     *
+     * @return the link type
+     */
+    public String getLinkType() {
+        return linkType;
     }
 
     /**
