@@ -2,50 +2,24 @@
     <div class="tp-aip__table-wrap">
         <table class="tp-aip__table">
             <thead class="tp-aip__thead-primary">
-            <tr>
-                <th>{{i18n key=i18nKeys.activeLicense.licenceKey}}</th>
-                <th>{{i18n key=i18nKeys.activeLicense.platform}}</th>
-                <th>{{i18n key=i18nKeys.activeLicense.country}}</th>
-                <th>{{i18n key=i18nKeys.activeLicense.site}}</th>
-                <th>Date</th>
-            </tr>
+                <tr>
+                    <th>{{i18n key=i18nKeys.activeLicense.licenceKey}}</th>
+                    <th>{{i18n key=i18nKeys.activeLicense.platform}}</th>
+                    <th>{{i18n key=i18nKeys.activeLicense.country}}</th>
+                    <th>{{i18n key=i18nKeys.activeLicense.site}}</th>
+                    <th>{{i18n key=i18nKeys.activeLicense.startDate}}</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>Sweden</td>
-                <td>Lorem ipsum dolor</td>
-                <td>2020-01-01</td>
-            </tr>
-            <tr>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>Sweden</td>
-                <td>Lorem ipsum dolor</td>
-                <td>2020-01-01</td>
-            </tr>
-            <tr>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>Sweden</td>
-                <td>Lorem ipsum dolor</td>
-                <td>2020-01-01</td>
-            </tr>
-            <tr>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>Sweden</td>
-                <td>Lorem ipsum dolor</td>
-                <td>2020-01-01</td>
-            </tr>
-            <tr>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>Sweden</td>
-                <td>Lorem ipsum dolor</td>
-                <td>2020-01-01</td>
-            </tr>
+                {{#each siteLicenses}}
+                    <tr>
+                        <td>{{this.licenseKey}}</td>
+                        <td>{{this.platform}}</td>
+                        <td>{{this.countryName}}</td>
+                        <td>{{this.site}}</td>
+                        <td>{{this.validFromDate}}</td>
+                    </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

@@ -39,11 +39,7 @@ public class ActiveLicenseModel {
 
     @ValueMapValue
     @Expose(serialize = true)
-    private String firstName;
-
-    @ValueMapValue
-    @Expose(serialize = true)
-    private String surname;
+    private String name;
 
     @ValueMapValue
     @Expose(serialize = true)
@@ -126,12 +122,8 @@ public class ActiveLicenseModel {
         return siteLicenseTitle;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getSurname() {
-        return surname;
+    public String getName() {
+        return name;
     }
 
     public String getLicenceKey() {

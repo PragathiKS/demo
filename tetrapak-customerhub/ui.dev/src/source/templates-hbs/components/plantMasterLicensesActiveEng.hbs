@@ -3,8 +3,7 @@
         <table class="tp-aip__table">
             <thead class="tp-aip__thead-primary">
             <tr>
-                <th>{{i18n key=i18nKeys.activeLicense.firstName}}</th>
-                <th>{{i18n key=i18nKeys.activeLicense.surname}}</th>
+                <th>{{i18n key=i18nKeys.activeLicense.name}}</th>
                 <th>{{i18n key=i18nKeys.activeLicense.licenceKey}}</th>
                 <th>{{i18n key=i18nKeys.activeLicense.platform}}</th>
                 <th>{{i18n key=i18nKeys.activeLicense.startDate}}</th>
@@ -12,70 +11,24 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Andreas</td>
-                <td>Grönwall-Mikkelsen</td>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>2020-01-01</td>
-                <td>2020-01-01</td>
-                <td>
-                    {{> atoms/buttons/button/button
-                            modifier="transparent"
-                            data-first-name="Andreas"
-                            data-surname="Grönwall-Mikkelsen"
-                            data-platform="A123456-0123456"
-                            text=i18nKeys.activeLicense.withdrawBtn
-                            baseClass="tp-aip-licenses-active__btn"
-                            jsClass="js-tp-aip-licenses-active__withdraw"}}
-                </td>
-            </tr>
-
-
-            <tr>
-                <td>Andreas</td>
-                <td>Grönwall-Mikkelsen</td>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>2020-01-01</td>
-                <td>2020-01-01</td>
-                <td>
-                    {{> atoms/buttons/button/button modifier="transparent" text="Withdraw" baseClass="tp-aip-licenses-active__btn" jsClass="js-tp-aip-licenses-active__withdraw"}}
-                </td>
-            </tr>
-            <tr>
-                <td>Andreas</td>
-                <td>Grönwall-Mikkelsen</td>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>2020-01-01</td>
-                <td>2020-01-01</td>
-                <td>
-                    {{> atoms/buttons/button/button modifier="transparent" text="Withdraw" baseClass="tp-aip-licenses-active__btn" jsClass="js-tp-aip-licenses-active__withdraw"}}
-                </td>
-            </tr>
-            <tr>
-                <td>Andreas</td>
-                <td>Grönwall-Mikkelsen</td>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>2020-01-01</td>
-                <td>2020-01-01</td>
-                <td>
-                    {{> atoms/buttons/button/button modifier="transparent" text="Withdraw" baseClass="tp-aip-licenses-active__btn" jsClass="js-tp-aip-licenses-active__withdraw"}}
-                </td>
-            </tr>
-            <tr>
-                <td>Andreas</td>
-                <td>Grönwall-Mikkelsen</td>
-                <td>1234567890000</td>
-                <td>A123456-0123456</td>
-                <td>2020-01-01</td>
-                <td>2020-01-01</td>
-                <td>
-                    {{> atoms/buttons/button/button modifier="transparent" text="Withdraw" baseClass="tp-aip-licenses-active__btn" jsClass="js-tp-aip-licenses-active__withdraw"}}
-                </td>
-            </tr>
+                {{#each engLicenses}}
+                    <tr>
+                        <td>{{this.contactPerson}}</td>
+                        <td>{{this.licenseKey}}</td>
+                        <td>{{this.platform}}</td>
+                        <td>{{this.validFromDate}}</td>
+                        <td>{{this.validToDate}}</td>
+                        <td>
+                            {{> atoms/buttons/button/button
+                                    modifier="transparent"
+                                    data-name=this.contactPerson
+                                    data-platform=this.platform
+                                    text=../i18nKeys.activeLicense.withdrawBtn
+                                    baseClass="tp-aip-licenses-active__btn"
+                                    jsClass="js-tp-aip-licenses-active__withdraw"}}
+                        </td>
+                    </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

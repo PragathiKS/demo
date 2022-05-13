@@ -8,14 +8,16 @@ import {render} from '../../../scripts/utils/render';
 /**
  * Render Active Licenses data
  */
-function _renderActiveLicenses() {
+function _renderActiveLicenses(licensesObj) {
   const { i18nKeys } = this.cache;
+  const { engLicenses, siteLicenses } = licensesObj;
 
   render.fn({
     template: 'plantMasterLicensesActiveEng',
     target: this.cache.$activeEngLicensesWrapper,
     data: {
-      i18nKeys
+      i18nKeys,
+      engLicenses
     }
   });
 
@@ -23,7 +25,8 @@ function _renderActiveLicenses() {
     template: 'plantMasterLicensesActiveSite',
     target: this.cache.$activeSiteLicensesWrapper,
     data: {
-      i18nKeys
+      i18nKeys,
+      siteLicenses
     }
   });
 }
@@ -60,6 +63,19 @@ function _renderLicenseWithdrawSuccess() {
   });
 }
 
+function _processLicenseData(licenseArr) {
+  const engLicenseKey = 'T-PM ENG';
+  const siteLicenseKey = 'T-PM SITE';
+
+  const engLicensesArr = licenseArr.filter(item => item.licenseType === engLicenseKey);
+  const siteLicensesArr = licenseArr.filter(item => item.licenseType === siteLicenseKey);
+
+  return {
+    engLicenses: engLicensesArr,
+    siteLicenses: siteLicensesArr
+  };
+}
+
 /**
  * Fetch Active Licenses data
  */
@@ -78,7 +94,8 @@ function _getActiveLicensesData() {
         },
         showLoader: true
       }).done(res => {
-        this.renderActiveLicenses(res);
+        const groupedLicenseData = _processLicenseData(res.data);
+        this.renderActiveLicenses(groupedLicenseData);
       }).fail((e) => {
         logger.error(e);
       });
@@ -162,8 +179,7 @@ class PlantMasterLicensesActive {
       const $btn = $(e.currentTarget);
 
       const licenseDetails = {
-        firstName: $btn.data('firstName'),
-        surname: $btn.data('surname'),
+        name: $btn.data('name'),
         platform: $btn.data('platform')
       };
 
@@ -182,8 +198,7 @@ class PlantMasterLicensesActive {
       const comments = $modalContentWrapper.find('.js-tp-aip-licenses-active__input').val();
 
       const licenseDetails = {
-        firstName: $btn.data('firstName'),
-        surname: $btn.data('surname'),
+        name: $btn.data('name'),
         platform: $btn.data('platform'),
         comments
       };

@@ -488,17 +488,11 @@
                                                 fieldLabel="Site License Title label (i18N key)"
                                                 name="./activeLicense/siteLicenseTitle"
                                                 required="true"/>
-                                            <firstName
+                                            <name
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="First Name label (i18N key)"
-                                                name="./activeLicense/firstName"
-                                                required="true"/>
-                                            <surname
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Surname label (i18N key)"
-                                                name="./activeLicense/surname"
+                                                fieldLabel="Name label (i18N key)"
+                                                name="./activeLicense/name"
                                                 required="true"/>
                                             <licenceKey
                                                 jcr:primaryType="nt:unstructured"
