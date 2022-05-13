@@ -11,12 +11,8 @@
         </div>
         <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
             <div class="tp-aip-licenses-active__info-line">
-                <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.firstName}}</div>
-                <div class="tp-aip-licenses-active__info-cell-2">{{licenseDetails.firstName}}</div>
-            </div>
-            <div class="tp-aip-licenses-active__info-line">
-                <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.surname}}</div>
-                <div class="tp-aip-licenses-active__info-cell-2">{{licenseDetails.surname}}</div>
+                <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.name}}</div>
+                <div class="tp-aip-licenses-active__info-cell-2">{{licenseDetails.name}}</div>
             </div>
             <div class="tp-aip-licenses-active__info-line">
                 <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.platform}}</div>
@@ -33,8 +29,7 @@
         </div>
         <div class="modal-footer tpmol-modal-footer">
             {{> atoms/buttons/button/button text=i18nKeys.activeLicense.modalConfirmBtn
-                    data-first-name=licenseDetails.firstName
-                    data-surname=licenseDetails.surname
+                    data-name=licenseDetails.name
                     data-platform=licenseDetails.platform
                     modifier="primary"
                     baseClass="tp-aip-licenses-active__confirm"
