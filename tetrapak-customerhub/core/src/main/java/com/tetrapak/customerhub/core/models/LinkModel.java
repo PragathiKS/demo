@@ -8,6 +8,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 
 /**
@@ -28,12 +29,26 @@ public class LinkModel {
     @ValueMapValue
     private String linkType;
 
+    /** The asset name. */
+    private String assetName;
+
     @PostConstruct
     protected void init() {
 	if (StringUtils.isNotEmpty(linkUrl)) {
 	    linkType = LinkUtil.checkLinkType(linkUrl);
-
+	    if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
+		assetName = LinkUtil.getAssetName(linkUrl);
+	    }
 	}
+    }
+
+    /**
+     * Gets the asset name.
+     *
+     * @return the asset name
+     */
+    public String getAssetName() {
+	return assetName;
     }
 
     /**

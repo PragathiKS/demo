@@ -17,6 +17,9 @@ public final class LinkUtil {
     /** The Constant DOWNLOADABLE_ASSETS. */
     private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|eps|png|tif|ppt|pptx|xml)$";
 
+    /** The Constant FORWARD_SLASH. */
+    private static final String FORWARD_SLASH = "/";
+    
     private LinkUtil() {
         throw new IllegalStateException("Utility class");
     }
@@ -87,5 +90,31 @@ public final class LinkUtil {
             linkType = CustomerHubConstants.EXTERNAL_LINK;
         }
         return linkType;
+    }
+    
+    /**
+     * Gets the asset name.
+     *
+     * @param path
+     *            the asset path.
+     * @return the asset name.
+     */
+    public static String getAssetName(final String path) {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotBlank(path)) {
+            assetName = getSubstringAfterLast(path);
+        }
+        return assetName;
+    }
+
+    /**
+     * Gets the substring after last.
+     *
+     * @param path
+     *            the path
+     * @return the substring after last
+     */
+    private static String getSubstringAfterLast(final String path) {
+        return StringUtils.substringAfterLast(path, FORWARD_SLASH);
     }
 }
