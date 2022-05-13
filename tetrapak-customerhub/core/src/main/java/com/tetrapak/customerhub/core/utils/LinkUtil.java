@@ -49,7 +49,7 @@ public final class LinkUtil {
      */
 
     private static boolean isInternalLink(String path) {
-        return StringUtils.isNotBlank(path) && path.startsWith("/content");
+        return StringUtils.isNotBlank(path) && path.startsWith("/content") && !path.startsWith("/content/dam/") && !path.endsWith(".html");
     }
 
     /**
