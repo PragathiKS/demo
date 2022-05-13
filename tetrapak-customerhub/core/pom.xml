@@ -54,10 +54,8 @@
                         <!-- Allow the processing of SCR annotations via 
                             a bnd plugin -->
                         <_plugin>org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin;destdir=${project.build.outputDirectory}</_plugin>
-
                         <Embed-Dependency>bcprov-jdk15on,bcmail-jdk15on,bcpkix-jdk15on,itextpdf;scope=compile|runtime;inline=true</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
-
                     </instructions>
                 </configuration>
                 <dependencies>
@@ -90,7 +88,7 @@
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
         </dependency>
-		<dependency>	
+		<dependency>
 			<groupId>org.apache.servicemix.bundles</groupId>
 			<artifactId>org.apache.servicemix.bundles.azure-storage</artifactId>
 			<version>5.0.0_1</version>
@@ -229,6 +227,10 @@
 		<dependency>
 			<groupId>com.openpojo</groupId>
 			<artifactId>openpojo</artifactId>
-		</dependency>	
+		</dependency>
+        <dependency>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bndlib</artifactId>
+        </dependency>
     </dependencies>
 </project>

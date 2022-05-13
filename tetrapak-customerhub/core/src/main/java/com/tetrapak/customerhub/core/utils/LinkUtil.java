@@ -1,9 +1,11 @@
 package com.tetrapak.customerhub.core.utils;
 
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
 /**
  * This is a Link util class to access link utility methods
@@ -11,6 +13,9 @@ import org.apache.sling.api.resource.ResourceResolver;
  * @author Ruhee sharma
  */
 public final class LinkUtil {
+
+    /** The Constant DOWNLOADABLE_ASSETS. */
+    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|eps|png|tif|ppt|pptx|xml)$";
 
     private LinkUtil() {
         throw new IllegalStateException("Utility class");
@@ -45,5 +50,42 @@ public final class LinkUtil {
 
     private static boolean isInternalLink(String path) {
         return StringUtils.isNotBlank(path) && path.startsWith("/content");
+    }
+
+    /**
+     * Checks if is external link.
+     *
+     * @param link
+     *            the link
+     * @return the boolean
+     */
+    public static Boolean isExternalLink(final String link) {
+        return (!StringUtils.isEmpty(link) && !link.startsWith(CustomerHubConstants.CONTENT_PATH)
+                && (link.startsWith(CustomerHubConstants.HTTP) || link.startsWith(CustomerHubConstants.WWW)));
+    }
+
+    /**
+     * Check link type.
+     *
+     * @param link
+     *            the link
+     * @return the string
+     */
+    public static String checkLinkType(final String link) {
+        String linkType = StringUtils.EMPTY;
+        if (StringUtils.isBlank(link)) {
+            linkType = "#";
+        } else if (link.startsWith(CustomerHubConstants.CONTENT_DAM_PATH)
+                && FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)) {
+            linkType = CustomerHubConstants.DOWNLOAD_LINK;
+        } else if (Boolean.TRUE.equals(isExternalLink(link))
+                && FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)) {
+            linkType = CustomerHubConstants.EXTERNAL_DOWNLOAD_LINK;
+        } else if (Boolean.TRUE.equals(isInternalLink(link))) {
+            linkType = CustomerHubConstants.INTERNAL_LINK;
+        } else if (Boolean.TRUE.equals(isExternalLink(link))) {
+            linkType = CustomerHubConstants.EXTERNAL_LINK;
+        }
+        return linkType;
     }
 }
