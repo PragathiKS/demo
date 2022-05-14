@@ -1,5 +1,5 @@
 .pw-container.reference-class {
-    @include margin-top(0);
+    @include margin-top($margin-zero);
 }
 
 .pw-container.pw-margin--regular.reference-class {
@@ -7,7 +7,7 @@
 }
 
 .pw-container.pw-margin--zero.reference-class {
-    @include margin-bottom(0);
+    @include margin-bottom($margin-zero);
     .tp-pw-richText.tp-pw-richText-container {
         @include padding-bottom($padding-l);
     }
@@ -25,8 +25,6 @@
 
 .tp-pw-richText {
     &.tp-pw-richText-container {
-        @include margin($margin-zero);
-        @include padding($padding-zero);
         width: auto;
     }
 
@@ -234,10 +232,6 @@
         }
     }
     @media #{$desktop} {
-        &.tp-pw-richText-container {
-            @include margin($margin-zero);
-            @include padding($padding-zero);
-        }
         h1 {
             @include font-size($font-xl);
             @include line-height($font-d-xl, $font-xl);

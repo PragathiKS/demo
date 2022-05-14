@@ -583,6 +583,32 @@ public final class CustomerHubConstants {
 
     /** The Constant for user groups */
     public static final String CUSTOMER_GROUPS = "groups";
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_LINK = "linkPath";
+
+    /** The Constant CONTENT_DAM_PATH. */
+    public static final String CONTENT_DAM_PATH = "/content/dam/";
+
+    /** The Constant CONTENT_PATH . */
+    public static final String CONTENT_PATH = "/content/";
+
+    /** The Constant INTERNAL_LINK. */
+    public static final String INTERNAL_LINK = "internal";
+
+    /** The Constant EXTERNAL_LINK. */
+    public static final String EXTERNAL_LINK = "external";
+
+    /** The Constant DOWNLOAD_LINK. */
+    public static final String DOWNLOAD_LINK = "download";
+
+    /** The Constant DOWNLOAD_LINK. */
+    public static final String EXTERNAL_DOWNLOAD_LINK = "externalDownload";
+
+    /** The Constant HTTP. */
+    public static final String HTTP = "http";
+
+    /** The Constant WWW. */
+    public static final String WWW = "www";
     
     /** The Constant AIP_PRODUCT_DETAILS_API. */
     public static final String AIP_PRODUCT_DETAILS_API = "aip-product-details";
