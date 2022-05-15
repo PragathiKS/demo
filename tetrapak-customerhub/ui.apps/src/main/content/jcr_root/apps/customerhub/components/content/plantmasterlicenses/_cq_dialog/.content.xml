@@ -536,6 +536,12 @@
                                                 fieldLabel="Site label (i18N key)"
                                                 name="./activeLicense/site"
                                                 required="true"/>
+                                            <siteDate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Site Date (i18N key)"
+                                                name="./activeLicense/siteDate"
+                                                required="true"/>
                                             <modalConfirmTitle
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
