@@ -3,7 +3,9 @@ package com.tetrapak.customerhub.core.services.impl;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.beans.licenses.EngineeringLicenseFormBean;
 import com.tetrapak.customerhub.core.beans.licenses.SiteLicenseFormBean;
+import com.tetrapak.customerhub.core.beans.licenses.WithdrawalLicenseFormBean;
 import com.tetrapak.customerhub.core.jobs.MyTetrapakEmailJob;
+import com.tetrapak.customerhub.core.models.ActiveLicenseModel;
 import com.tetrapak.customerhub.core.models.EngineeringLicenseModel;
 import com.tetrapak.customerhub.core.models.PlantMasterLicensesModel;
 import com.tetrapak.customerhub.core.models.SiteLicenseModel;
@@ -43,6 +45,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String I18N_PREFIX = StringUtils.EMPTY;
     private static final String VALUE = "Value";
     private static final String LICENSE_TYPE_ENGINEERING = "engineering";
+    private static final String LICENSE_TYPE_ACTIVE_WITHDRAWAL = "activeWithdrawal";
     private static final String HIDE_SUFFIX = "HideClass";
     private static final String HIDE_CSS_CLASS = "hide";
     private static final String USERS_HTML_NAME = "<tr><td class='license-list'> NAME </td>";
@@ -50,6 +53,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String USERS_HTML_LICENSES = "<td class='license-list'> \tLICENSES </td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
     private static final String ENG_LICENSE_EMAIL_TEMPLATE = "/etc/notification/email/customerhub/licenses/engineering-license.html";
     private static final String SITELICENSE_EMAIL_TEMPLATE = "/etc/notification/email/customerhub/licenses/site-license.html";
+    private static final String WITHDRAWALLICENSE_EMAIL_TEMPLATE = "/etc/notification/email/customerhub/licenses/active-license-withdraw.html";
 
     /** The job mgr. */
     @Reference
@@ -73,12 +77,39 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         LOGGER.debug("Inside sendEmail method of PlantMasterLicensesServiceImpl");
         boolean isSuccess = false;
         String[] recipients = config.recipientAddresses();
-        if (LICENSE_TYPE_ENGINEERING.equals(licenseTypeHeader)) {
+        String [] withdrawalRequestRecipientAddresses = config.withdrawalRequestRecipientAddresses();
+        if (LICENSE_TYPE_ACTIVE_WITHDRAWAL.equals(licenseTypeHeader)) {
+            isSuccess = sendEmailWithdrawlLicense(bundle, withdrawalRequestRecipientAddresses, requestData, masterLicensesModel);
+        } else if(LICENSE_TYPE_ENGINEERING.equals(licenseTypeHeader)){
             isSuccess = sendEmailEngineeringLicense(bundle, recipients, requestData, masterLicensesModel);
         } else {
             isSuccess = sendEmailSiteLicense(bundle, recipients, requestData, masterLicensesModel);
         }
         return isSuccess;
+    }
+
+    /**
+     * Send email for active license withdrawal request
+     * @param bundle
+     * @param recipients
+     * @return operation result
+     * @throws IOException
+     */
+    private Boolean sendEmailWithdrawlLicense(ResourceBundle bundle, String[] recipients,
+                                                String requestData, PlantMasterLicensesModel plantMasterLicensesModel) {
+        boolean isSuccess = false;
+        if (Objects.nonNull(recipients)) {
+            WithdrawalLicenseFormBean bean = createWithdrawalLicenseFormBean(requestData);
+            LOGGER.debug("Submitted form data object : {}", bean.toString());
+            Map<String, String> emailParams = new HashMap<>();
+            extractWithdrawalLicenseModelProps(emailParams, bundle, I18N_PREFIX, plantMasterLicensesModel);
+            extractWithdrawalLicenseFormData(emailParams, bean);
+            isSuccess = addEmailJob(emailParams, ENG_LICENSE_EMAIL_TEMPLATE);
+        } else {
+            LOGGER.debug("Recipient email address missing in configuration!");
+        }
+        return isSuccess;
+
     }
 
     /**
@@ -128,6 +159,30 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         }
         return isSuccess;
     }
+
+    /**
+     * Extract labels to be used in email for withdrawal Request
+     * @param emailParams
+     * @param bundle
+     * @param prefix
+     */
+    private void extractWithdrawalLicenseModelProps(Map<String, String> emailParams, ResourceBundle bundle,
+                                                     String prefix, PlantMasterLicensesModel plantMasterLicensesModel) {
+        ActiveLicenseModel model = plantMasterLicensesModel.getActiveLicenseModel();
+        emailParams.put(PlantMasterLicensesModel.EMAIL_SUBJECT, getI18nValue(bundle, prefix, model.getSubject()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION, getI18nValue(bundle, prefix, model.getSalutation()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_BODY,
+                getI18nValue(bundle, prefix, model.getBody()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME,
+                getI18nValue(bundle, prefix, plantMasterLicensesModel.getUsername()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME + VALUE,
+                getI18nValue(bundle, prefix, plantMasterLicensesModel.getUserNameValue()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_ADDRESS + VALUE,
+                getI18nValue(bundle, prefix, plantMasterLicensesModel.getEmailAddressValue()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_ADDRESS,
+                getI18nValue(bundle, prefix, plantMasterLicensesModel.getEmailaddress()));
+    }
+
 
     /**
      * Extract labels to be used in email for engineering license type
@@ -197,6 +252,18 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     }
 
     /**
+     * Extract values from submitted form for withdrawal License type
+     * @param emailParams
+     * @param withdrawalLicenseFormBean
+     */
+    private void extractWithdrawalLicenseFormData(Map<String, String> emailParams,
+                                                   WithdrawalLicenseFormBean withdrawalLicenseFormBean) {
+        emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY + VALUE, withdrawalLicenseFormBean.getComments());
+        emailParams.putAll(cssHideIfEmpty(EngineeringLicenseModel.COMMENTS_JSON_KEY, withdrawalLicenseFormBean.getComments()));
+        emailParams.put(EngineeringLicenseModel.USERS_EMAIL_LABEL + VALUE, withdrawalLicenseFormBean.getUserName());
+    }
+
+    /**
      * Extract values from submitted form for Engineering License type
      * @param emailParams
      * @param engineeringLicenseFormBean
@@ -237,6 +304,12 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             entry = Map.of(key + HIDE_SUFFIX, StringUtils.EMPTY);
         }
         return entry;
+    }
+
+    private WithdrawalLicenseFormBean createWithdrawalLicenseFormBean(String requestData) {
+        LOGGER.debug("Request data json : {}", requestData);
+        Gson gson = new Gson();
+        return gson.fromJson(requestData, WithdrawalLicenseFormBean.class);
     }
 
     private EngineeringLicenseFormBean createEngineeringLicenseFormBean(String requestData) {
