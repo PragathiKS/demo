@@ -15,7 +15,6 @@
         "teaser": {
           "jcr:primaryType": "nt:unstructured",
           "jcr:createdBy": "admin",
-          "description": "Description Test",
           "viewAllLink": {
             "linkText": "View All Test",
             "linkUrl": "https://google.com"
