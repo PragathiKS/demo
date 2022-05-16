@@ -111,12 +111,12 @@ function _submitLicenseWithdraw(licenseDetails) {
 
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
-      url: submitApi,
+      url: submitApi + '?licenseType=activeWithdrawal',
       method: ajaxMethods.POST,
       cache: true,
       contentType: 'application/json; charset=utf-8',
       dataType:'json',
-      data: licenseDetails,
+      data: JSON.stringify(licenseDetails),
       beforeSend(jqXHR) {
         jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
       },
@@ -180,7 +180,8 @@ class PlantMasterLicensesActive {
 
       const licenseDetails = {
         name: $btn.data('name'),
-        platform: $btn.data('platform')
+        platform: $btn.data('platform'),
+        licenseKey: $btn.data('licenseKey')
       };
 
       this.renderLicenseWithdrawModal(licenseDetails);
@@ -200,6 +201,7 @@ class PlantMasterLicensesActive {
       const licenseDetails = {
         name: $btn.data('name'),
         platform: $btn.data('platform'),
+        licenseKey: $btn.data('licenseKey'),
         comments
       };
 
