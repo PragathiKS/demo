@@ -54,6 +54,7 @@ public class TeaserModel {
      */
     @PostConstruct
     protected void init() {
+        viewAllLink.setLinkUrl(LinkUtils.sanitizeLink(viewAllLink.getLinkUrl(), request));
         if (manualList != null && !manualList.isEmpty()) {
             manualList.stream()
                     .filter(model -> model.getLink() != null)
