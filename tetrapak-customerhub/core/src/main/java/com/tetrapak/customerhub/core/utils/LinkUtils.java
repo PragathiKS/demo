@@ -31,7 +31,7 @@ public class LinkUtils extends WCMUsePojo {
         } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
-                return request.getResourceResolver().map(link);
+                return request.getResourceResolver().map(link) + ".html";
             }
             return link + ".html";
         }
