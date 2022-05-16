@@ -18,6 +18,10 @@
                 <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.platform}}</div>
                 <div class="tp-aip-licenses-active__info-cell-2">{{licenseDetails.platform}}</div>
             </div>
+            <div class="tp-aip-licenses-active__info-line">
+                <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.licenceKey}}</div>
+                <div class="tp-aip-licenses-active__info-cell-2">{{licenseDetails.licenseKey}}</div>
+            </div>
             <div class="tp-aip-licenses-active__form-element">
                 {{> atoms/textarea/textarea labelText=i18nKeys.activeLicense.modalComments name="comments" eleClasses="js-tp-aip-licenses-active__input" maxlength=300}}
             </div>
@@ -31,6 +35,7 @@
             {{> atoms/buttons/button/button text=i18nKeys.activeLicense.modalConfirmBtn
                     data-name=licenseDetails.name
                     data-platform=licenseDetails.platform
+                    data-license-key=licenseDetails.licenseKey
                     modifier="primary"
                     baseClass="tp-aip-licenses-active__confirm"
                     jsClass="js-tp-aip-licenses-active__confirm"}}
