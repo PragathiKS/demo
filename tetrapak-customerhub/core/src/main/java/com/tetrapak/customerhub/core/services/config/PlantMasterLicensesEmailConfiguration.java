@@ -17,6 +17,14 @@ public @interface PlantMasterLicensesEmailConfiguration {
     @AttributeDefinition(name = "Recipient Email Address", description = "Recipient Email Address",
             type = AttributeType.STRING)
     String[] recipientAddresses();
+
+    /**
+     * Active License Withdrawal Recipient Email Address
+     * @return Recipient Email Address
+     */
+    @AttributeDefinition(name = "Recipient Email Address", description = "Recipient Email Address",
+            type = AttributeType.STRING)
+    String[] withdrawalRequestRecipientAddresses();
     
     /**
      * Enable sending of email

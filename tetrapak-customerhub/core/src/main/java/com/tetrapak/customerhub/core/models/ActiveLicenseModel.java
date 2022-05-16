@@ -5,11 +5,8 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
-import java.util.List;
 
 /**
  * Model class for Active licenses child node of PlantMaster Licenses component.
@@ -18,6 +15,10 @@ import java.util.List;
         Resource.class, SlingHttpServletRequest.class
 }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ActiveLicenseModel {
+
+    public static final String COMMENTS_JSON_KEY = "comments";
+    public static final String CONTACT_PERSON = "contactPerson";
+
     
     @SlingObject
     private Resource resource;
@@ -52,6 +53,10 @@ public class ActiveLicenseModel {
     @ValueMapValue
     @Expose(serialize = true)
     private String startDate;
+
+    @ValueMapValue
+    @Expose(serialize = true)
+    private String siteDate;
 
     @ValueMapValue
     @Expose(serialize = true)
@@ -196,5 +201,9 @@ public class ActiveLicenseModel {
 
     public String getBody() {
         return body;
+    }
+
+    public String getSiteDate() {
+        return siteDate;
     }
 }
