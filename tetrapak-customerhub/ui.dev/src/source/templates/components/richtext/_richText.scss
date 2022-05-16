@@ -38,14 +38,6 @@
         display: inline-flex;
         align-items: center;
         font-weight: 400;
-        
-        & > .icon {
-            @include padding-left($padding-xs);
-            @include padding-top($padding-xxs);
-            &::before {
-                @include font-size($font-sm);
-            }
-        }
     }
 
     .fullBleed {
