@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 import $ from 'jquery';
-import { isExternal } from '../../../scripts/utils/updateLink';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Image {
@@ -18,7 +18,9 @@ class Image {
   trackAnalytics = (e) => {
     e.preventDefault();
     const $target = $(e.target);
+    console.log('Hiren Parmar', $target);
     const $this = $target.closest('.js-tp-pw-image');
+    console.log('Hiren Parmar This Item', $this);
     const linkType = $this.attr('data-linktype') === 'external' ? 'external' : 'internal';
 
     const trackingObj = {
@@ -33,10 +35,12 @@ class Image {
     };
 
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-
-    if (isExternal($($this).attr('href'))) {
+    console.log('Hiren Parmar LinkType', linkType);
+    if (linkType === 'external') {
+      console.log('Hiren Parmar External Link');
       window.open($this.attr('href'), '_blank');
     } else {
+      console.log('Hiren Parmar Internal Link');
       window.open($this.attr('href'), '_self');
     }
   }
