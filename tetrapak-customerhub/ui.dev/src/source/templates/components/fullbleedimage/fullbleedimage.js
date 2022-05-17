@@ -19,7 +19,7 @@ class Image {
     e.preventDefault();
     const $target = $(e.target);
     const $this = $target.closest('.js-tp-pw-image');
-    const linkType = $this.attr('target') === '_blank' ? 'external' : 'internal';
+    const linkType = $this.attr('data-linktype') === 'external' ? 'external' : 'internal';
 
     const trackingObj = {
       linkType,
