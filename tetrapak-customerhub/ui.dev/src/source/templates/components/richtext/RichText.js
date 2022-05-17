@@ -13,21 +13,6 @@ class RichText {
   bindEvents() {
     const { $anchorLink } = this.cache;
     $anchorLink.addClass('tpatom-link tpatom-link--transparent');
-    const $icon = '<i class="icon"></i>';
-    $anchorLink.append($icon);
-    
-    // Setup icon based on linkType
-    $($anchorLink).each(function(index, ele) {
-      const $href = $(ele).attr('href');
-      const $iconEle = $(ele).find('.icon');
-      
-      if(isExternal($href)) {
-        $($iconEle).addClass('icon-External_Link');
-      } else {
-        $($iconEle).addClass('icon-Circle_Arrow_Right');
-      }
-    });
-
     $anchorLink.on('click', this.trackAnalytics);
   }
 
