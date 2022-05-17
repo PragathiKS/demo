@@ -123,6 +123,9 @@ public class TextVideoModel {
     /** The enable softconversion. */
     @ValueMapValue
     private String enableSoftcoversion;
+    
+    /** The original DAM video path. */
+    private String originalDamVideoPath;
 
     /**
      * The init method.
@@ -130,6 +133,7 @@ public class TextVideoModel {
     @PostConstruct
     protected void init() {
         resource = request.getResource();
+        originalDamVideoPath = damVideoPath;
         final ValueMap vMap = resource.getValueMap();
         enableSoftcoversion = vMap.get("enableSoftcoversion", StringUtils.EMPTY);
         formType = vMap.get("formType", StringUtils.EMPTY);
@@ -366,6 +370,15 @@ public class TextVideoModel {
      */
     public String getEnableSoftcoversion() {
         return enableSoftcoversion;
+    }
+    
+    /**
+     * Gets the original video path.
+     *
+     * @return the original video path
+     */
+    public String getOriginalDamVideoPath() {
+    	return originalDamVideoPath;
     }
 
 }

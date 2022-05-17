@@ -492,6 +492,9 @@ public final class PWConstants {
 
 	/** The Constant TL_LANGUAGE_LEVEL. */
     public static final int TL_LANGUAGE_PAGE_LEVEL = 3;
+    
+    /** The Constant TEXT_VIDEO. */
+    public static final String TEXT_VIDEO = "textVideo";
 
     /**
      * Instantiates a new PW constants.
