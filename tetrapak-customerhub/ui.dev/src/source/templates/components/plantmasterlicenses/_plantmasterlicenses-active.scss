@@ -2,6 +2,10 @@
 .tp-aip {
     &__table-wrap {
         overflow-x: auto;
+
+        @media #{$mobile} {
+            @include padding-bottom($padding-xl);
+        }
     }
 
     &__table {
