@@ -1,5 +1,5 @@
 <sly data-sly-template.videodescription_template="${@ data, isDesktop, flag}">
-  <p class="tp-text-video__description${isDesktop ? ' d-none d-lg-block': ' d-lg-none'}">${data.description @ i18n}</p>
+  <div class="tp-text-video__description${isDesktop ? ' d-none d-lg-block': ' d-lg-none'}">${data.description @ i18n, context='html'}</div>
   <div class="tp-text-video__link${isDesktop ? ' d-none d-lg-block': ' d-lg-none'}" data-sly-test="${data.linkURL}">
     <sly data-sly-test.linkText="${data.linkTextI18n @i18n}">
       <sly data-sly-test.linkUrl="${data.linkURL}" />
