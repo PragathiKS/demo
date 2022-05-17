@@ -6,10 +6,6 @@
               data-sly-call="${heading.heading_h3_template @ headingText=data.heading}"/>
         </div>
 
-        <div data-sly-test="${data.description}" class="tp-teaser__description col-lg-10">
-          ${data.description  @ context='html'}
-        </div>
-
         <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
         <div data-paren-link-title="${data.heading}" class="tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
           <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>
