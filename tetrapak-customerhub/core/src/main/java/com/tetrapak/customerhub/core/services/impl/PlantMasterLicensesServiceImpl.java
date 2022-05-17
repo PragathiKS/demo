@@ -46,6 +46,8 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String VALUE = "Value";
     private static final String LICENSE_TYPE_ENGINEERING = "engineering";
     private static final String LICENSE_TYPE_ACTIVE_WITHDRAWAL = "activeWithdrawal";
+    private static final String LICENSE_ADDITION_REQUEST = "licenseAdditionRequest";
+    private static final String LICENSE_WITHDRAWAL_REQUEST = "licenseWithdrawalRequest";
     private static final String HIDE_SUFFIX = "HideClass";
     private static final String HIDE_CSS_CLASS = "hide";
     private static final String USERS_HTML_NAME = "<tr><td class='license-list'> NAME </td>";
@@ -53,7 +55,8 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String USERS_HTML_LICENSES = "<td class='license-list'> \tLICENSES </td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
     private static final String ENG_LICENSE_EMAIL_TEMPLATE = "/etc/notification/email/customerhub/licenses/engineering-license.html";
     private static final String SITELICENSE_EMAIL_TEMPLATE = "/etc/notification/email/customerhub/licenses/site-license.html";
-    private static final String WITHDRAWALLICENSE_EMAIL_TEMPLATE = "/etc/notification/email/customerhub/licenses/active-license-withdraw.html";
+    private static final String WITHDRAWALLICENSE_EMAIL_TEMPLATE
+            = "/etc/notification/email/customerhub/licenses/active-license-withdraw.html";
 
     /** The job mgr. */
     @Reference
@@ -104,7 +107,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             Map<String, String> emailParams = new HashMap<>();
             extractWithdrawalLicenseModelProps(emailParams, bundle, I18N_PREFIX, plantMasterLicensesModel);
             extractWithdrawalLicenseFormData(emailParams, bean);
-            isSuccess = addEmailJob(emailParams, ENG_LICENSE_EMAIL_TEMPLATE);
+            isSuccess = addEmailJob(emailParams,LICENSE_WITHDRAWAL_REQUEST, WITHDRAWALLICENSE_EMAIL_TEMPLATE);
         } else {
             LOGGER.debug("Recipient email address missing in configuration!");
         }
@@ -128,7 +131,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             Map<String, String> emailParams = new HashMap<>();
             extractEngineeringLicenseModelProps(emailParams, bundle, I18N_PREFIX, plantMasterLicensesModel);
             extractEngineeringLicenseFormData(emailParams, bean);
-            isSuccess = addEmailJob(emailParams, ENG_LICENSE_EMAIL_TEMPLATE);
+            isSuccess = addEmailJob(emailParams, LICENSE_ADDITION_REQUEST, ENG_LICENSE_EMAIL_TEMPLATE);
         } else {
             LOGGER.debug("Recipient email address missing in configuration!");
         }
@@ -153,7 +156,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
             Map<String, String> emailParams = new HashMap<>();
             extractSiteLicenseModelProps(emailParams, bundle, I18N_PREFIX, plantMasterLicensesModel);
             extractSiteLicenseFormData(emailParams, bean);
-            isSuccess = addEmailJob(emailParams, SITELICENSE_EMAIL_TEMPLATE);
+            isSuccess = addEmailJob(emailParams, LICENSE_ADDITION_REQUEST, SITELICENSE_EMAIL_TEMPLATE);
         } else {
             LOGGER.debug("Recipient email address missing in configuration!");
         }
@@ -171,12 +174,17 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         ActiveLicenseModel model = plantMasterLicensesModel.getActiveLicenseModel();
         emailParams.put(PlantMasterLicensesModel.EMAIL_SUBJECT, getI18nValue(bundle, prefix, model.getSubject()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION, getI18nValue(bundle, prefix, model.getSalutation()));
-        emailParams.put(PlantMasterLicensesModel.EMAIL_BODY,
-                getI18nValue(bundle, prefix, model.getBody()));
-        emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME,
-                getI18nValue(bundle, prefix, plantMasterLicensesModel.getUsername()));
-        emailParams.put(PlantMasterLicensesModel.EMAIL_USERNAME + VALUE,
-                getI18nValue(bundle, prefix, plantMasterLicensesModel.getUserNameValue()));
+        emailParams.put(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(bundle, prefix, model.getBody()));
+        emailParams.put(ActiveLicenseModel.USERNAME, getI18nValue(bundle, prefix, model.getUsername()));
+        emailParams.put(ActiveLicenseModel.LICENSE_KEY,getI18nValue(bundle, prefix, model.getLicenceKey()));
+        emailParams.put(ActiveLicenseModel.PLATFORM,getI18nValue(bundle, prefix, model.getPlatform()));
+        emailParams.put(ActiveLicenseModel.COUNTRY,getI18nValue(bundle, prefix, model.getCountry()));
+        emailParams.put(ActiveLicenseModel.START_DATE,getI18nValue(bundle, prefix, model.getStartDate()));
+        emailParams.put(ActiveLicenseModel.END_DATE,getI18nValue(bundle, prefix, model.getEndDate()));
+        emailParams.put(ActiveLicenseModel.SITE,getI18nValue(bundle, prefix, model.getSite()));
+        emailParams.put(ActiveLicenseModel.COMMENTS_JSON_KEY,getI18nValue(bundle, prefix, model.getEmailCommentText()));
+        emailParams.put(ActiveLicenseModel.REQUESTER, getI18nValue(bundle, prefix, model.getRequestorText()));
+        emailParams.put(ActiveLicenseModel.REQUESTER + VALUE, getI18nValue(bundle, prefix, plantMasterLicensesModel.getUserNameValue()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_ADDRESS + VALUE,
                 getI18nValue(bundle, prefix, plantMasterLicensesModel.getEmailAddressValue()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_ADDRESS,
@@ -253,14 +261,19 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
 
     /**
      * Extract values from submitted form for withdrawal License type
-     * @param emailParams
-     * @param withdrawalLicenseFormBean
+     * @param emailParams email Parameter
+     * @param withdrawalLicenseFormBean withdrawal licence form bean
      */
     private void extractWithdrawalLicenseFormData(Map<String, String> emailParams,
                                                    WithdrawalLicenseFormBean withdrawalLicenseFormBean) {
-        emailParams.put(EngineeringLicenseModel.COMMENTS_JSON_KEY + VALUE, withdrawalLicenseFormBean.getComments());
-        emailParams.putAll(cssHideIfEmpty(EngineeringLicenseModel.COMMENTS_JSON_KEY, withdrawalLicenseFormBean.getComments()));
-        emailParams.put(EngineeringLicenseModel.USERS_EMAIL_LABEL + VALUE, withdrawalLicenseFormBean.getUserName());
+        emailParams.put(ActiveLicenseModel.USERNAME + VALUE,withdrawalLicenseFormBean.getName());
+        emailParams.put(ActiveLicenseModel.LICENSE_KEY + VALUE, withdrawalLicenseFormBean.getLicenseKey());
+        emailParams.put(ActiveLicenseModel.PLATFORM + VALUE, withdrawalLicenseFormBean.getPlatform());
+        emailParams.put(ActiveLicenseModel.COUNTRY + VALUE, withdrawalLicenseFormBean.getCountry());
+        emailParams.put(ActiveLicenseModel.START_DATE + VALUE, withdrawalLicenseFormBean.getStartDate());
+        emailParams.put(ActiveLicenseModel.END_DATE + VALUE, withdrawalLicenseFormBean.getEndDate());
+        emailParams.put(ActiveLicenseModel.SITE + VALUE, withdrawalLicenseFormBean.getSite());
+        emailParams.put(ActiveLicenseModel.COMMENTS_JSON_KEY + VALUE, withdrawalLicenseFormBean.getComments());
     }
 
     /**
@@ -330,9 +343,14 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
      * @param templatePath
      * @return
      */
-    private boolean addEmailJob(Map<String, String> emailParams, String templatePath) {
+    private boolean addEmailJob(Map<String, String> emailParams, String typeOfRequest, String templatePath) {
         boolean isSuccess = false;
-        String[] recipients = config.recipientAddresses();
+        String[] recipients;
+        if(typeOfRequest.equals(LICENSE_ADDITION_REQUEST)){
+            recipients = config.recipientAddresses();
+        } else {
+            recipients = config.withdrawalRequestRecipientAddresses();
+        }
         Map<String, Object> properties = new HashMap<>();
         properties.put(MyTetrapakEmailJob.TEMPLATE_PATH, templatePath);
         properties.put(MyTetrapakEmailJob.EMAIL_PARAMS, emailParams);
