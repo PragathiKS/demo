@@ -33,9 +33,7 @@
     }
 
     .tp-pw-richText-wrapper a {
-        @include line-height($font-baseline, $font-l);
         @include padding($padding-zero);
-        display: inline-flex;
         align-items: center;
         font-weight: 400;
     }
