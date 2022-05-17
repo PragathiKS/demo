@@ -17,7 +17,14 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 public class ActiveLicenseModel {
 
     public static final String COMMENTS_JSON_KEY = "comments";
-    public static final String CONTACT_PERSON = "contactPerson";
+    public static final String USERNAME = "username";
+    public static final String REQUESTER = "requester";
+    public static final String LICENSE_KEY = "licenseKey";
+    public static final String PLATFORM = "platform";
+    public static final String START_DATE = "startDate";
+    public static final String END_DATE = "endDate";
+    public static final String COUNTRY = "country";
+    public static final String SITE = "site";
 
     
     @SlingObject
@@ -115,6 +122,15 @@ public class ActiveLicenseModel {
     @ValueMapValue
     private String body;
 
+    @ValueMapValue
+    private String requestorText;
+
+    @ValueMapValue
+    private String username;
+
+    @ValueMapValue
+    private String emailCommentText;
+
     public String getTitle() {
         return title;
     }
@@ -205,5 +221,21 @@ public class ActiveLicenseModel {
 
     public String getSiteDate() {
         return siteDate;
+    }
+
+    public String getRequestorText() {
+        return requestorText;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmailCommentText() {
+        return emailCommentText;
     }
 }

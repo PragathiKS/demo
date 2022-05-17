@@ -6,39 +6,15 @@ package com.tetrapak.customerhub.core.beans.licenses;
  * @author Pawan Kumar
  */
 public class WithdrawalLicenseFormBean {
-    public static final String License_KEY = "licenseKey";
-    public static final String Platform_KEY = "platform";
-    public static final String Country_KEY = "countryName";
-    public static final String COMMENTS_JSON_KEY = "comments";
-    public static final String REQUESTOR_NAME_KEY = "requestorName";
 
-    private String subject;
-    private String salutation;
-    private String bodyText;
-    private String userName;
     private String licenseKey;
     private String platform;
-    private String country;
     private String comments;
-    private String requestor;
-    private String requestorEmailAddress;
-    private String getContactPerson;
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public String getSalutation() {
-        return salutation;
-    }
-
-    public String getBodyText() {
-        return bodyText;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
+    private String name;
+    private String country;
+    private String startDate;
+    private String endDate;
+    private String site;
 
     public String getLicenseKey() {
         return licenseKey;
@@ -48,23 +24,27 @@ public class WithdrawalLicenseFormBean {
         return platform;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
     public String getComments() {
         return comments;
     }
 
-    public String getRequestor() {
-        return requestor;
+    public String getName() {
+        return name;
     }
 
-    public String getRequestorEmailAddress() {
-        return requestorEmailAddress;
+    public String getCountry() {
+        return country;
     }
 
-    public String getGetContactPerson() {
-        return getContactPerson;
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public String getSite() {
+        return site;
     }
 }
