@@ -1,13 +1,15 @@
 .tp-teaser {
-    @include padding($padding-l $padding-md);
+    @include padding-top($padding-l);
     @include margin-top($margin-l);
+    border-radius: $border-radius;
 
     @media #{$desktop} {
-        @include padding($padding-l $padding-l $padding-zero $padding-l);
+        @include padding-top($padding-l);
     }
 
     &__heading {
         @include padding-bottom($padding-md);
+        @include padding-left($padding-l);
         @media #{$desktop} {
             @include padding-bottom($padding-l);
             font-weight: 700;
@@ -40,6 +42,14 @@
     }
 
     &__details {
+        @include padding-left($padding-md);
+        @include padding-right($padding-md);
+
+        @media #{$desktop} {
+            @include padding-left($spacing-big-half);
+            @include padding-right($spacing-big-half);
+        }
+
         &__details.row {
             @media #{$desktop} {
                 @include margin-left($margin-zero);
@@ -72,7 +82,8 @@
             @include margin-bottom($margin-xxxl);
             @media #{$desktop} {
                 @include margin-bottom($margin-xxxl);
-                @include padding-right($margin-l);
+                @include padding-right($spacing-big-half);
+                @include padding-left($spacing-big-half);
             }
         }
         .teaserMarginL {
@@ -88,14 +99,11 @@
                 @include padding-right($margin-l);
             }
         }
-        .teaserpad {
-            @include padding-right($margin-l);
-        }
         .image {
             @include margin-top(0);
             @include margin-bottom($margin-md);
             width: 100%;
-            border-radius: $border-radius-sm;
+            border-radius: $border-radius;
             @media #{$desktop} {
                 @include margin-top(0);
             }

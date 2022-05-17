@@ -9,7 +9,7 @@
         <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
         <div data-paren-link-title="${data.heading}" class="tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
           <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>
-            <div class="col-md-12 ${teaserSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${((teaserSize==2 && childList.index==1) || (teaserSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11  ) ? '' : 'teaserpad' } ${child.link.linkText ? 'teaserMargin' : 'teaserMarginL'  } ">
+            <div class="col-md-12 ${teaserSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${child.link.linkText ? 'teaserMargin' : 'teaserMarginL'  } ">
             <a data-sly-test="${child.link.linkUrl && child.link.linkUrl!='#' && child.fileReference}"
               href="${child.link.linkUrl}"
               class="js-teaser-analytics teaser-image-link"
