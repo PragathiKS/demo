@@ -181,7 +181,11 @@ class PlantMasterLicensesActive {
       const licenseDetails = {
         name: $btn.data('name'),
         platform: $btn.data('platform'),
-        licenseKey: $btn.data('licenseKey')
+        licenseKey: $btn.data('licenseKey'),
+        country: $btn.data('countryName'),
+        site: $btn.data('site'),
+        startDate: $btn.data('validFromDate'),
+        endDate: $btn.data('validToDate')
       };
 
       this.renderLicenseWithdrawModal(licenseDetails);
@@ -202,6 +206,10 @@ class PlantMasterLicensesActive {
         name: $btn.data('name'),
         platform: $btn.data('platform'),
         licenseKey: $btn.data('licenseKey'),
+        country: $btn.data('countryName'),
+        site: $btn.data('site'),
+        startDate: $btn.data('startDate'),
+        endDate: $btn.data('endDate'),
         comments
       };
 
