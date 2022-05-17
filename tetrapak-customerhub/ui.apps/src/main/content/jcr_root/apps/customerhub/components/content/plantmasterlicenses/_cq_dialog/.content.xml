@@ -607,11 +607,26 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Salutation text (i18N key)"
                                                 name="./activeLicense/salutation"/>
+                                            <username
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Username text (i18N key)"
+                                                    name="./activeLicense/username"/>
                                             <body
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Body text (i18N key)"
                                                 name="./activeLicense/body"/>
+                                            <emailCommentText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Comments (i18N key)"
+                                                    name="./activeLicense/emailCommentText"/>
+                                            <requestorText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Requestor Text (i18N key)"
+                                                    name="./activeLicense/requestorText"/>
                                         </items>
                                     </email>
                                 </items>

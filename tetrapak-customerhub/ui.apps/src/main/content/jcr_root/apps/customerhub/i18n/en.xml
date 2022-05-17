@@ -1317,9 +1317,18 @@
     <cuhu.plantmasterlicense.active.email.salutationText
             jcr:primaryType="sling:MessageEntry"
             sling:message=""/>
+    <cuhu.plantmasterlicense.active.email.username
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Username"/>
     <cuhu.plantmasterlicense.active.email.bodyText
             jcr:primaryType="sling:MessageEntry"
             sling:message=""/>
+    <cuhu.plantmasterlicense.active.email.requesterText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Requestor"/>
+    <cuhu.plantmasterlicense.active.email.commentText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Comments"/>
     <cuhu_demo
         cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
         cq:lastReplicatedBy="sapient-tarun"
