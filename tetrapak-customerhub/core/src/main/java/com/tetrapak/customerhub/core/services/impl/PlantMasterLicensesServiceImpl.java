@@ -175,13 +175,11 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         emailParams.put(PlantMasterLicensesModel.EMAIL_SUBJECT, getI18nValue(bundle, prefix, model.getSubject()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION, getI18nValue(bundle, prefix, model.getSalutation()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(bundle, prefix, model.getBody()));
-        emailParams.put(ActiveLicenseModel.USERNAME, getI18nValue(bundle, prefix, model.getUsername()));
+        emailParams.put(ActiveLicenseModel.USERNAME, getI18nValue(bundle, prefix, model.getUsernameText()));
         emailParams.put(ActiveLicenseModel.LICENSE_KEY,getI18nValue(bundle, prefix, model.getLicenceKey()));
-        emailParams.put(ActiveLicenseModel.PLATFORM,getI18nValue(bundle, prefix, model.getPlatform()));
-        emailParams.put(ActiveLicenseModel.COUNTRY,getI18nValue(bundle, prefix, model.getCountry()));
+        emailParams.put(ActiveLicenseModel.PLATFORM,getI18nValue(bundle, prefix, model.getPlatformText()));
         emailParams.put(ActiveLicenseModel.START_DATE,getI18nValue(bundle, prefix, model.getStartDate()));
         emailParams.put(ActiveLicenseModel.END_DATE,getI18nValue(bundle, prefix, model.getEndDate()));
-        emailParams.put(ActiveLicenseModel.SITE,getI18nValue(bundle, prefix, model.getSite()));
         emailParams.put(ActiveLicenseModel.COMMENTS_JSON_KEY,getI18nValue(bundle, prefix, model.getEmailCommentText()));
         emailParams.put(ActiveLicenseModel.REQUESTER, getI18nValue(bundle, prefix, model.getRequestorText()));
         emailParams.put(ActiveLicenseModel.REQUESTER + VALUE, getI18nValue(bundle, prefix, plantMasterLicensesModel.getUserNameValue()));
@@ -269,10 +267,8 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         emailParams.put(ActiveLicenseModel.USERNAME + VALUE,withdrawalLicenseFormBean.getName());
         emailParams.put(ActiveLicenseModel.LICENSE_KEY + VALUE, withdrawalLicenseFormBean.getLicenseKey());
         emailParams.put(ActiveLicenseModel.PLATFORM + VALUE, withdrawalLicenseFormBean.getPlatform());
-        emailParams.put(ActiveLicenseModel.COUNTRY + VALUE, withdrawalLicenseFormBean.getCountry());
         emailParams.put(ActiveLicenseModel.START_DATE + VALUE, withdrawalLicenseFormBean.getStartDate());
         emailParams.put(ActiveLicenseModel.END_DATE + VALUE, withdrawalLicenseFormBean.getEndDate());
-        emailParams.put(ActiveLicenseModel.SITE + VALUE, withdrawalLicenseFormBean.getSite());
         emailParams.put(ActiveLicenseModel.COMMENTS_JSON_KEY + VALUE, withdrawalLicenseFormBean.getComments());
     }
 

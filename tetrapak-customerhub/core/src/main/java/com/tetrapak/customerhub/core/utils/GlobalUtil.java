@@ -658,6 +658,22 @@ public class GlobalUtil {
     }
 
     /**
+     * Gets the active license api endpoint URL.
+     *
+     * @param apiServiceUrl the api service url
+     * @param apiMapping    the api mapping
+     * @return the AIP endpoint URL
+     */
+    public static String getActiveLicenseEndpointURL(String apiServiceUrl, String apiMapping) {
+        String aipEndpointURL = StringUtils.EMPTY;
+        if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping)) {
+            aipEndpointURL =
+                   apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping;
+        }
+        return aipEndpointURL;
+    }
+
+    /**
      * Checks if it is publish.
      *
      * @return true, if is publish

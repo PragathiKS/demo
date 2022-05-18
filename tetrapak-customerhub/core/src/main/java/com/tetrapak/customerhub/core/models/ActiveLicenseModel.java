@@ -17,16 +17,13 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 public class ActiveLicenseModel {
 
     public static final String COMMENTS_JSON_KEY = "comments";
-    public static final String USERNAME = "username";
     public static final String REQUESTER = "requester";
+    public static final String USERNAME = "username";
     public static final String LICENSE_KEY = "licenseKey";
-    public static final String PLATFORM = "platform";
     public static final String START_DATE = "startDate";
     public static final String END_DATE = "endDate";
-    public static final String COUNTRY = "country";
-    public static final String SITE = "site";
+    public static final String PLATFORM = "platform";
 
-    
     @SlingObject
     private Resource resource;
     
@@ -34,101 +31,106 @@ public class ActiveLicenseModel {
     private SlingHttpServletRequest request;
     
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String title;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String engLicenseTitle;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String siteLicenseTitle;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String name;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String licenceKey;
 
     @ValueMapValue
-    @Expose(serialize = true)
-    private String platform;
+    @Expose()
+    private String platformText;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String startDate;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String siteDate;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String endDate;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String withdrawBtn;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String country;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String site;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String modalConfirmTitle;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String modalComments;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String modalConfirmText;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String modalConfirmBtn;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String modalCancelBtn;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String modalWithdrawSuccessTitle;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String modalWithdrawSuccessText;
 
     @ValueMapValue
-    @Expose(serialize = true)
+    @Expose()
     private String modalWithdrawBack;
     
     @ValueMapValue
+    @Expose()
     private String subject;
     
     @ValueMapValue
+    @Expose()
     private String salutation;
     
     @ValueMapValue
+    @Expose()
     private String body;
 
     @ValueMapValue
     private String requestorText;
 
     @ValueMapValue
-    private String username;
+    @Expose()
+    private String usernameText;
 
     @ValueMapValue
+    @Expose()
     private String emailCommentText;
 
     public String getTitle() {
@@ -151,8 +153,8 @@ public class ActiveLicenseModel {
         return licenceKey;
     }
 
-    public String getPlatform() {
-        return platform;
+    public String getPlatformText() {
+        return platformText;
     }
 
     public String getStartDate() {
@@ -231,8 +233,8 @@ public class ActiveLicenseModel {
         return resource;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsernameText() {
+        return usernameText;
     }
 
     public String getEmailCommentText() {
