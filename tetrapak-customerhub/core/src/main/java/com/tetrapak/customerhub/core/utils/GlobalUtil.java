@@ -652,4 +652,17 @@ public class GlobalUtil {
         }
         return aipEndpointURL;
     }
+
+    /**
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
+    public static boolean isPublish() {
+        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (slingSettingsService == null) {
+            return false;
+        }
+        return slingSettingsService.getRunModes().contains("publish");
+    }
 }
