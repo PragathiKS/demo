@@ -1,0 +1,59 @@
+<sly data-sly-template.medialink_template="${@data, flag}">
+    <sly data-sly-test.mediaLinkSubHeadingClass="${(data.columnOneTitle || data.columnTwoTitle || data.columnThreeTitle) ? 'medialink__subheading' : ''}" />
+    <div class="pw-container" id="${data.anchorId}" title="${data.anchorTitle}">
+        <div class="medialink pw-theme--${data.pwTheme}" data-module="MediaLink">
+            <div data-sly-test="${data.heading}" class="medialink__heading">
+                <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                    data-sly-call="${heading.heading_h3_template @ headingText=data.heading, variant='regular'}" />
+            </div>
+            <div  data-sly-test="${(data.columnOneList || data.columnTwoList || data.columnThreeList)}"
+                class="medialink__subheadingwrap">
+                <div class="row medialink__linkListRow">
+                    <div data-sly-test="${(data.columnOneList && data.columnOneList.size>0) || data.columnOneTitle }"
+                        class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle) ? 'col-lg-4' : 'col-lg-6' } col-sm-12 medialink__linklist">
+                        <div data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }"
+                            class="${mediaLinkSubHeadingClass} ${data.columnOneTitle ? '' : 'noMobile'}">
+                            <sly data-sly-test="${data.columnOneTitle}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                data-sly-call="${heading.heading_h4_template @ headingText=data.columnOneTitle, variant='regular'}" />
+                        </div>
+                        <sly data-sly-call="${mediaLinkCommon @ mediaLinkData=data.columnOneList, mediaHeading =data.heading, mediaSectionName = data.columnOneTitle}"/>
+                    </div>
+                    <div data-sly-test="${(data.columnTwoList && data.columnTwoList.size>0) ||data.columnTwoTitle}" class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle)  ? 'col-lg-4' : 'col-lg-6' }  col-sm-12 medialink__linklist ${data.columnTwoTitle ? '' : 'noMobileHeader'}">
+                        <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) }"
+                            class="${mediaLinkSubHeadingClass}  ${data.columnTwoTitle ? '' : 'noMobile'}">
+                            <sly data-sly-test="${data.columnTwoTitle}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
+                        </div>
+                        <sly data-sly-call="${mediaLinkCommon @ mediaLinkData=data.columnTwoList, mediaHeading =data.heading, mediaSectionName = data.columnTwoTitle}"/>
+                    </div>
+                    <div class="col-lg-4  col-sm-12 medialink__linklist ${data.columnThreeTitle ? '' : 'noMobileHeader'}" data-sly-test="${(data.columnThreeList && data.columnThreeList.size>0) || data.columnThreeTitle   }">
+                        <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) }"
+                            class="${mediaLinkSubHeadingClass}  ${data.columnThreeTitle ? '' : 'noMobile'}">
+                            <sly data-sly-test="${data.columnThreeTitle}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                                data-sly-call="${heading.heading_h4_template @ headingText=data.columnThreeTitle, variant='regular'}" />
+                        </div>
+                        <sly data-sly-call="${mediaLinkCommon @ mediaLinkData=data.columnThreeList , mediaHeading =data.heading, mediaSectionName = data.columnThreeTitle}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sly>
+<sly data-sly-template.mediaLinkCommon="${@mediaLinkData, mediaHeading, mediaSectionName }">
+   <div data-sly-list.child="${mediaLinkData}">
+      <sly data-sly-test.linkTypeInternal="${child.linkType == 'internal' ? 'icon-Circle_Arrow_Right' : ''}" />
+      <sly data-sly-test.linkTypeExternal="${child.linkType == 'external' ? 'icon-External_Link' : ''}" />
+      <sly data-sly-test.linkTypeDownload="${child.linkType == 'download' ? 'icon-PDF' : ''}" />
+      <sly data-sly-test.sectionValue ="${mediaSectionName == '' ? mediaHeading : mediaSectionName } "/>
+      <a  data-sly-test="${child.linkText}" href="${child.linkUrl}"
+         class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+         title="${child.linkText}"
+         data-asset-name="${child.assetName}"
+         data-link-section="Related links and downloads_Text Hyperlink"
+         data-section-name="${sectionValue}"
+         data-link-name="${child.linkText}">
+      <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span>
+      <i class="icon ${linkTypeInternal} ${linkTypeExternal} ${linkTypeDownload}"></i>
+      </a>
+   </div>
+</sly>
