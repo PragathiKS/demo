@@ -28,10 +28,6 @@ public class TeaserModel {
     @ValueMapValue
     private String heading;
 
-    /** The heading. */
-    @ValueMapValue
-    private String description;
-
     /** The link. */
     @Inject
     @Via("resource")
@@ -54,6 +50,7 @@ public class TeaserModel {
      */
     @PostConstruct
     protected void init() {
+        viewAllLink.setLinkUrl(LinkUtils.sanitizeLink(viewAllLink.getLinkUrl(), request));
         if (manualList != null && !manualList.isEmpty()) {
             manualList.stream()
                     .filter(model -> model.getLink() != null)
@@ -70,15 +67,6 @@ public class TeaserModel {
      */
     public String getHeading() {
         return heading;
-    }
-
-    /**
-     * Gets the description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
     }
 
     /**

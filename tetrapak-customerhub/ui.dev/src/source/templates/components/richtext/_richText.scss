@@ -33,18 +33,9 @@
     }
 
     .tp-pw-richText-wrapper a {
-        @include line-height($font-baseline, $font-l);
         @include padding($padding-zero);
-        display: inline-flex;
         align-items: center;
         font-weight: 400;
-        & > .icon {
-            @include padding-left($padding-xs);
-            @include padding-top($padding-xxs);
-            &::before {
-                @include font-size($font-sm);
-            }
-        }
     }
 
     .fullBleed {
@@ -103,7 +94,7 @@
         display: table;
         li {
             &::before {
-                @include margin-right($padding-sm);
+                @include padding-right($padding-sm);
                 display: table-cell;
                 color: $color-tundora;
                 content: '\2022';
