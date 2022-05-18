@@ -1269,7 +1269,7 @@
     <cuhu.plantmasterlicense.active.licenseKeyLabel
             jcr:primaryType="sling:MessageEntry"
             sling:message="Licence Key"/>
-    <cuhu.plantmasterlicense.active.platformLabel
+    <cuhu.plantmasterlicense.active.platformText
             jcr:primaryType="sling:MessageEntry"
             sling:message="Platform"/>
     <cuhu.plantmasterlicense.active.startDateLabel
@@ -1317,9 +1317,9 @@
     <cuhu.plantmasterlicense.active.email.salutationText
             jcr:primaryType="sling:MessageEntry"
             sling:message=""/>
-    <cuhu.plantmasterlicense.active.email.username
+    <cuhu.plantmasterlicense.active.email.usernameText
             jcr:primaryType="sling:MessageEntry"
-            sling:message="Username"/>
+            sling:message="UsernameText"/>
     <cuhu.plantmasterlicense.active.email.bodyText
             jcr:primaryType="sling:MessageEntry"
             sling:message=""/>

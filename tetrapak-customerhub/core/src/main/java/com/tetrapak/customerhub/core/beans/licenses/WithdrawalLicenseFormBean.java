@@ -11,10 +11,8 @@ public class WithdrawalLicenseFormBean {
     private String platform;
     private String comments;
     private String name;
-    private String country;
     private String startDate;
     private String endDate;
-    private String site;
 
     public String getLicenseKey() {
         return licenseKey;
@@ -32,10 +30,6 @@ public class WithdrawalLicenseFormBean {
         return name;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
     public String getStartDate() {
         return startDate;
     }
@@ -44,7 +38,4 @@ public class WithdrawalLicenseFormBean {
         return endDate;
     }
 
-    public String getSite() {
-        return site;
-    }
 }

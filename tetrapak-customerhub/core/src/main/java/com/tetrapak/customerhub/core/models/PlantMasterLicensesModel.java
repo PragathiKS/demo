@@ -136,7 +136,7 @@ public class PlantMasterLicensesModel {
                     productDetailsApiMapping, aipCategoryService.getEngineeringLicensesId());
             this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), productDetailsApiMapping,
                     aipCategoryService.getSiteLicensesId());
-            this.activeLicenseApiUrl = apigeeService.getApigeeServiceUrl()+ CustomerHubConstants.PATH_SEPARATOR + activeLicensesApiMapping;
+            this.activeLicenseApiUrl = GlobalUtil.getActiveLicenseEndpointURL(apigeeService.getApigeeServiceUrl(),activeLicensesApiMapping);
         }
         this.setEmailAddressValue();
         this.setUserNameValue();
