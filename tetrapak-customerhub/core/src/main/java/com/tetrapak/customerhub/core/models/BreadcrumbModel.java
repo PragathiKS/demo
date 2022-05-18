@@ -30,8 +30,6 @@ public class BreadcrumbModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
-    /** The home page path. */
-    private String homePagePath;
     /** The current page. */
     @ScriptVariable
     private Page currentPage;
@@ -42,9 +40,6 @@ public class BreadcrumbModel {
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
 
-    /** The Current Page Parent Index. */
-    private int currentPageActiveParentIndex;
-
     /**
      * Inits the.
      */
@@ -52,40 +47,28 @@ public class BreadcrumbModel {
     protected void init() {
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-//        homePagePath = LinkUtils.sanitizeLink(rootPath + CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.HOME_PAGE_REL_PATH, request);
         final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
         final String[] pages = path.split("/");
-        final int length = pages.length - 1;
-        Page parent = currentPage.getParent();
-        final String title = NavigationUtil.getNavigationTitle(currentPage);
-        int activePageHierarchyIndex = 0;
+        final int length = pages.length;
 
-        breadcrumbPages.put(title, currentPage.getPath());
+        Page nextPage = currentPage;
         for (int i = 0; i <= length; i++) {
-            if (Objects.nonNull(parent) && !parent.getPath().equalsIgnoreCase(rootPath) && !parent.isHideInNav() && parent.getContentResource()!=null) {
+            if (Objects.nonNull(nextPage) && !nextPage.getPath().equalsIgnoreCase(rootPath) && !nextPage.isHideInNav()
+                    && nextPage.getContentResource() != null) {
 
-                if (parent.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
-                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent), null);
+                if (nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
+                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(nextPage), null);
                 } else {
-                    activePageHierarchyIndex++;
-                    checkAndSetCurrentParentPageIndex(activePageHierarchyIndex,i);
-                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(parent),
-                            LinkUtils.sanitizeLink(parent.getPath(), request));
+                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(nextPage),
+                            LinkUtils.sanitizeLink(nextPage.getPath(), request));
                 }
-
-                parent = parent.getParent();
+                nextPage = nextPage.getParent();
             }
         }
-        final List<String> alKeys = new ArrayList<String>(breadcrumbPages.keySet());
+        final List<String> alKeys = new ArrayList<>(breadcrumbPages.keySet());
         Collections.reverse(alKeys);
         for (final String key : alKeys) {
             breadcrumbSubpages.put(key, breadcrumbPages.get(key));
-        }
-    }
-
-    private void checkAndSetCurrentParentPageIndex(int activePageHierarchyIndex, int i) {
-        if(activePageHierarchyIndex == 1) {
-            currentPageActiveParentIndex = i + 1;
         }
     }
 
@@ -96,23 +79,6 @@ public class BreadcrumbModel {
      */
     public Map<String, String> getBreadcrumbSubpages() {
         return breadcrumbSubpages;
-    }
-
-    /**
-     * Gets the home page path.
-     *
-     * @return the home page path
-     */
-    public String getHomePagePath() {
-        return LinkUtils.sanitizeLink(homePagePath, request);
-    }
-
-    /**
-     * Gets the  current Page Active Parent index
-     * @return current Page Active Parent index
-     */
-    public int getCurrentPageActiveParentIndex() {
-        return (breadcrumbSubpages.size()-currentPageActiveParentIndex);
     }
 
     /**

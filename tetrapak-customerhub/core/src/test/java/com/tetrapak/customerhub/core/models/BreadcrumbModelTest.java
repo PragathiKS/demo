@@ -1,12 +1,12 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.day.cq.wcm.api.PageManager;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Mock;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * The Class BreadcrumbModelTest.
@@ -17,15 +17,11 @@ public class BreadcrumbModelTest {
     @Rule
     public AemContext context = new AemContext();
 
-    /** The page manager. */
-    @Mock
-    private PageManager pageManager;
-
     /** The Constant RESOURCE_CONTENT. */
     private static final String RESOURCE_CONTENT = "/breadcrumb-test-content.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/language-masters/en/solution";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/package-design/primary";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/check/checkdisableLink/jcr:content";
@@ -60,12 +56,12 @@ public class BreadcrumbModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-//        assertEquals("/content/tetrapak/publicweb/language-masters/en/home.html", model.getHomePagePath());
-//        assertEquals("/content/tetrapak/publicweb/language-masters/en/solution.html",
-//                model.getBreadcrumbSubpages().get("English"));
-//        assertEquals(null, model.getBreadcrumbSubpages().get("check"));
-//        assertEquals("There should have been out put as 2",2, model.getCurrentPageParentIndex());
-//        assertEquals("There should have been out put as 1", 1, model.getCurrentPageActiveParentIndex());
+        assertEquals("/content/tetrapak/customerhub/global/en/package-design/primary.html",
+                model.getBreadcrumbSubpages().get("Primary"));
+        assertEquals(null, model.getBreadcrumbSubpages().get("check"));
+        assertEquals("/content/tetrapak/customerhub/global/en/package-design/primary/check/checkdisableLink.html",
+                model.getBreadcrumbSubpages().get("Check disable link"));
+        assertEquals("There should have been out put as 2",2, model.getCurrentPageParentIndex());
     }
 
 }
