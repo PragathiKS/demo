@@ -182,7 +182,7 @@ class PlantMasterLicensesActive {
         name: $btn.data('name'),
         platform: $btn.data('platform'),
         licenseKey: $btn.data('licenseKey'),
-        country: $btn.data('countryName'),
+        countryName: $btn.data('countryName'),
         site: $btn.data('site'),
         startDate: $btn.data('validFromDate'),
         endDate: $btn.data('validToDate')
