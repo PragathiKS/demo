@@ -601,7 +601,8 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Subject (i18N key)"
-                                                name="./activeLicense/subject"/>
+                                                name="./activeLicense/subject"
+                                                required="true"/>
                                             <salutation
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -611,7 +612,8 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="Username text (i18N key)"
-                                                    name="./activeLicense/usernameText"/>
+                                                    name="./activeLicense/usernameText"
+                                                    required="true"/>
                                             <body
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -626,7 +628,8 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="Requestor Text (i18N key)"
-                                                    name="./activeLicense/requestorText"/>
+                                                    name="./activeLicense/requestorText"
+                                                    required="true"/>
                                         </items>
                                     </email>
                                 </items>
