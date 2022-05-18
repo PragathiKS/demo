@@ -2,7 +2,7 @@
     max-width: 100%;
     .pw-padding {
         &--zero {
-            @include padding($padding-zero $padding-xxxl);
+            @include padding($padding-zero $padding-l);
             @include margin($margin-zero);
         }
     }
@@ -10,6 +10,7 @@
         margin: 0 auto;
         padding-left: 0;
         padding-right: 0;
+        text-align: center;
     }
     &__regular {
         @include padding(0);
@@ -30,14 +31,11 @@
 
         @media #{$desktop} {
             @include max-width($body-max-width);
-            @include padding($padding-zero $padding-xxxl);
+            @include padding($padding-zero $padding-l);
             margin: $margin-zero auto;
     }
     }
     img {
-        width: 100%;
+        max-width: 100%;
     }
 }
-// .regular {
-//     @include padding(16px 16px 24px 16px);
-// }

@@ -1,0 +1,31 @@
+<sly data-sly-template.fullbleedimage_template="${@data, flag}">
+  <div id="${data.anchorId}" title="${data.anchorTitle}" class="tp-pw-image__${data.pwPadding}" data-module="Image">
+  <div class="pw-theme--${data.pwTheme}">
+  <div class="col-sm-12 tp-pw-image__center-align">
+    <sly data-sly-test = "${data.linkURL && data.linkURL!='#'}">
+      <a class="js-tp-pw-image" href="${data.linkURL}" data-linktype="${data.linkType}">  
+      <sly data-sly-test = "${!wcmmode.edit}">
+         <sly data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html"
+                 data-sly-call="${dynamicMediaImage.dynamicimage_template @image=data.image, className=className}">
+         </sly>
+      </sly>
+      <sly data-sly-test = "${wcmmode.edit}">
+            <img class="img-responsive" src="${data.fileReference}"  alt="${data.alt}"/> 
+      </sly>
+    </a>
+    </sly>
+
+    <sly data-sly-test = "${!data.linkURL || data.linkURL=='#'}">        
+        <sly data-sly-test = "${!wcmmode.edit}">
+           <sly data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html"
+                 data-sly-call="${dynamicMediaImage.dynamicimage_template @image=data.image, className=className}">
+         </sly>
+          </sly>
+          <sly data-sly-test = "${wcmmode.edit}">
+                <img class="img-responsive" src="${data.fileReference}"  alt="${data.alt}"/> 
+          </sly>
+    </sly>
+    </div>
+ </div>
+ </div>
+</sly>

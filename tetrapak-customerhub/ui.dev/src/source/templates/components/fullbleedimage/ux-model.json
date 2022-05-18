@@ -1,0 +1,10 @@
+{
+
+    "fileReference": "/content/dam/tetrapak/publicweb/en/global/header/TetraPakLogo.png",
+    "anchorTitle": "image",
+    "anchorId": "imageid",
+    "alt": "alt",
+    "linkURL": "/content/tetrapak/publicweb/lang-masters/en/home",
+    "pwPadding": "regular"
+  
+  }
