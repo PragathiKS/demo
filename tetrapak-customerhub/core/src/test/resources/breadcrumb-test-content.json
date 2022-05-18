@@ -1,18 +1,10 @@
 {
 	"jcr:primaryType": "cq:Page",
-	"jcr:createdBy": "admin",
-	"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
 	"jcr:content": {
 		"jcr:primaryType": "cq:PageContent",
-		"jcr:createdBy": "admin",
-		"jcr:title": "English",
-		"cq:lastReplicationAction": "Activate",
-		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-base-page",
-		"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
-		"cq:lastReplicated": "Wed Dec 04 2019 14:34:58 GMT+0000",
-		"cq:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
-		"sling:resourceType": "publicweb/components/structure/pages/page",
-		"cq:lastModifiedBy": "admin",
+		"jcr:title": "Primary",
+		"cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+		"sling:resourceType": "customerhub/components/structure/page",
 		"root": {
 			"jcr:primaryType": "nt:unstructured",
 			"sling:resourceType": "wcm/foundation/components/responsivegrid",
@@ -21,29 +13,19 @@
 				"sling:resourceType": "wcm/foundation/components/responsivegrid",
 				"breadcrumb": {
 					"jcr:primaryType": "nt:unstructured",
-					"jcr:createdBy": "admin",
-					"jcr:lastModifiedBy": "admin",
-					"jcr:created": "Tue Mar 24 2020 12:26:39 GMT+0530",
-					"jcr:lastModified": "Tue Mar 24 2020 12:26:39 GMT+0530",
-					"sling:resourceType": "publicweb/components/structure/breadcrumb"
+					"sling:resourceType": "customerhub/components/content/breadcrumb"
 				}
 			}
 		}
 	},
 	"check": {
 		"jcr:primaryType": "cq:Page",
-		"jcr:createdBy": "admin",
-		"jcr:created": "Tue Mar 24 2020 12:23:37 GMT+0530",
 		"jcr:content": {
 			"jcr:primaryType": "cq:PageContent",
-			"jcr:createdBy": "admin",
 			"jcr:title": "check",
-			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-			"jcr:created": "Tue Mar 24 2020 12:23:37 GMT+0530",
+			"cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
 			"disableClickInNavigation" : "true",
-			"cq:lastModified": "Tue Mar 24 2020 12:26:39 GMT+0530",
-			"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-			"cq:lastModifiedBy": "admin",
+			"sling:resourceType": "customerhub/components/structure/page",
 			"root": {
 				"jcr:primaryType": "nt:unstructured",
 				"responsivegrid": {
@@ -51,44 +33,32 @@
 					"sling:resourceType": "wcm/foundation/components/responsivegrid",
 					"breadcrumb": {
 						"jcr:primaryType": "nt:unstructured",
-						"jcr:createdBy": "admin",
-						"jcr:lastModifiedBy": "admin",
-						"jcr:created": "Tue Mar 24 2020 12:26:39 GMT+0530",
-						"jcr:lastModified": "Tue Mar 24 2020 12:26:39 GMT+0530",
-						"sling:resourceType": "publicweb/components/structure/breadcrumb"
+						"sling:resourceType": "customerhub/components/content/breadcrumb"
 					}
 				}
 			}
 		},
 		"checkdisableLink" : {
 			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "admin",
-			"jcr:created": "Tue Mar 24 2020 12:23:37 GMT+0530",
 			"jcr:content": {
-			"jcr:primaryType": "cq:PageContent",
-			"jcr:createdBy": "admin",
-			"jcr:title": "Check disable link",
-			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-			"jcr:created": "Tue Mar 24 2020 12:23:37 GMT+0530",
-			"cq:lastModified": "Tue Mar 24 2020 12:26:39 GMT+0530",
-			"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-			"cq:lastModifiedBy": "admin",
-			"root": {
-				"jcr:primaryType": "nt:unstructured",
-				"responsivegrid": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Check disable link",
+				"cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+				"sling:resourceType": "customerhub/components/structure/page",
+				"cq:lastModifiedBy": "admin",
+				"root": {
 					"jcr:primaryType": "nt:unstructured",
-					"sling:resourceType": "wcm/foundation/components/responsivegrid",
-					"breadcrumb": {
+					"responsivegrid": {
 						"jcr:primaryType": "nt:unstructured",
-						"jcr:createdBy": "admin",
-						"jcr:lastModifiedBy": "admin",
-						"jcr:created": "Tue Mar 24 2020 12:26:39 GMT+0530",
-						"jcr:lastModified": "Tue Mar 24 2020 12:26:39 GMT+0530",
-						"sling:resourceType": "publicweb/components/structure/breadcrumb"
+						"sling:resourceType": "wcm/foundation/components/responsivegrid",
+						"breadcrumb": {
+							"jcr:primaryType": "nt:unstructured",
+							"sling:resourceType": "customerhub/components/structure/breadcrumb"
+						}
 					}
 				}
 			}
-		}
 		}
 	}
 }
