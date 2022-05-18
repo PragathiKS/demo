@@ -174,7 +174,9 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         ActiveLicenseModel model = plantMasterLicensesModel.getActiveLicenseModel();
         emailParams.put(PlantMasterLicensesModel.EMAIL_SUBJECT, getI18nValue(bundle, prefix, model.getSubject()));
         emailParams.put(PlantMasterLicensesModel.EMAIL_SALUTATION, getI18nValue(bundle, prefix, model.getSalutation()));
+        emailParams.putAll(cssHideIfEmpty(PlantMasterLicensesModel.EMAIL_SALUTATION, getI18nValue(bundle, prefix, model.getSalutation())));
         emailParams.put(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(bundle, prefix, model.getBody()));
+        emailParams.putAll(cssHideIfEmpty(PlantMasterLicensesModel.EMAIL_BODY, getI18nValue(bundle, prefix, model.getBody())));
         emailParams.put(ActiveLicenseModel.USERNAME, getI18nValue(bundle, prefix, model.getUsernameText()));
         emailParams.put(ActiveLicenseModel.LICENSE_KEY,getI18nValue(bundle, prefix, model.getLicenceKey()));
         emailParams.put(ActiveLicenseModel.PLATFORM,getI18nValue(bundle, prefix, model.getPlatformText()));
@@ -270,6 +272,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         emailParams.put(ActiveLicenseModel.START_DATE + VALUE, withdrawalLicenseFormBean.getStartDate());
         emailParams.put(ActiveLicenseModel.END_DATE + VALUE, withdrawalLicenseFormBean.getEndDate());
         emailParams.put(ActiveLicenseModel.COMMENTS_JSON_KEY + VALUE, withdrawalLicenseFormBean.getComments());
+        emailParams.putAll(cssHideIfEmpty(ActiveLicenseModel.COMMENTS_JSON_KEY + VALUE, withdrawalLicenseFormBean.getComments()));
     }
 
     /**
