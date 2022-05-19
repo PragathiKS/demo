@@ -17,7 +17,7 @@
         @include margin-bottom($margin-md);
         @media #{$desktop} {
             @include padding-top($padding-zero);
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-sm);
         }
 
         h3 {
@@ -33,7 +33,8 @@
     }
 
     &__subheading {
-        @include margin-bottom($margin-md);
+        @include margin-top($margin-md);
+        @include margin-bottom($margin-zero);
         @include min-height(24px);
         h4 {
             @include padding-left($padding-zero);
