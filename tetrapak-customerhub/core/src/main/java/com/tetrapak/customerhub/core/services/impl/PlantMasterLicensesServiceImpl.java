@@ -76,12 +76,14 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
         boolean isSuccess = false;
         String[] recipients = config.recipientAddresses();
         String [] withdrawalRequestRecipientAddresses = config.withdrawalRequestRecipientAddresses();
-        if (LICENSE_TYPE_ACTIVE_WITHDRAWAL.equals(licenseTypeHeader)) {
-            isSuccess = sendEmailWithdrawlLicense(bundle, withdrawalRequestRecipientAddresses, requestData, masterLicensesModel);
-        } else if(LICENSE_TYPE_ENGINEERING.equals(licenseTypeHeader)){
-            isSuccess = sendEmailEngineeringLicense(bundle, recipients, requestData, masterLicensesModel);
-        } else {
-            isSuccess = sendEmailSiteLicense(bundle, recipients, requestData, masterLicensesModel);
+        if(config.isLicensesEmailEnabled()) {
+            if (LICENSE_TYPE_ACTIVE_WITHDRAWAL.equals(licenseTypeHeader)) {
+                isSuccess = sendEmailWithdrawlLicense(bundle, withdrawalRequestRecipientAddresses, requestData, masterLicensesModel);
+            } else if (LICENSE_TYPE_ENGINEERING.equals(licenseTypeHeader)) {
+                isSuccess = sendEmailEngineeringLicense(bundle, recipients, requestData, masterLicensesModel);
+            } else {
+                isSuccess = sendEmailSiteLicense(bundle, recipients, requestData, masterLicensesModel);
+            }
         }
         return isSuccess;
     }
