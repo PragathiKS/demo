@@ -32,11 +32,11 @@ public final class EmailUtil {
      * @return map string
      */
     public static Map<String, String> cssHideIfEmpty(final String key, final String value) {
-        Map<String, String> entry;
+        Map<String, String> entry = new HashMap<>();
         if (org.apache.commons.lang3.StringUtils.isBlank(value)) {
-            entry = Map.of(key + HIDE_SUFFIX, HIDE_CSS_CLASS);
+            entry.put(key+HIDE_SUFFIX,HIDE_CSS_CLASS);
         } else {
-            entry = Map.of(key + HIDE_SUFFIX, org.apache.commons.lang3.StringUtils.EMPTY);
+            entry.put(key+HIDE_SUFFIX,org.apache.commons.lang3.StringUtils.EMPTY);
         }
         return entry;
     }

@@ -12,6 +12,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.io.UnsupportedEncodingException;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
@@ -35,7 +37,7 @@ public class SiteLicenseModelTest {
     public final AemContext aemContext = CuhuCoreAemContext.getAemContext(RESOURCE_JSON,RESOURCE_PATH);
 
     @Before
-    public void setup() {
+    public void setup() throws UnsupportedEncodingException {
         MockitoAnnotations.initMocks(this);
         Resource currentResource = aemContext.resourceResolver().getResource(RESOURCE_PATH);
         aemContext.request().setResource(currentResource);

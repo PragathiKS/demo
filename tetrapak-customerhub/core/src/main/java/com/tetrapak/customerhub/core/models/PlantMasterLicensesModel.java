@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -105,7 +106,7 @@ public class PlantMasterLicensesModel {
      * init method.
      */
     @PostConstruct
-    protected void init() {
+    protected void init() throws UnsupportedEncodingException {
         
         i18nKeysMap = new HashMap<>();
         i18nKeysMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
@@ -147,10 +148,10 @@ public class PlantMasterLicensesModel {
         this.emailAddressValue = GlobalUtil.getCustomerEmailAddress(this.request);
     }
 
-    public void setUserNameValue() {
+    public void setUserNameValue() throws UnsupportedEncodingException {
         if (Objects.nonNull(request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME))) {
             this.userNameValue = URLDecoder.decode(
-                    request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue(), StandardCharsets.UTF_8);
+                    request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue(), "UTF-8");
         }
     }
     

@@ -1,0 +1,136 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "jcr:createdBy": "admin",
+  "sling:resourceType": "customerhub/components/content/plantmasterlicenses",
+  "heading": "heading",
+  "username": "usernamelabel",
+  "emailaddress": "emailaddresslabel",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "sling:resourceType": "customerhub/components/structure/page",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "plantmasterlicenses_": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "customerhub/components/content/plantmasterlicenses",
+          "engineeringLicense": {
+            "jcr:primaryType": "nt:unstructured",
+            "users":"Users",
+            "title": "Title",
+            "subject": "Subject",
+            "description": "Description 1",
+            "activationDate": "Date",
+            "salutation": "Salutation",
+            "activationDatePlaceholder": "Placeholder",
+            "addUser": "Add user",
+            "removeUser": "Remove user",
+            "successMessageHeading": "Success Message Heading",
+            "comments": "Comments",
+            "successMessageDescription": "Success Message description",
+            "inputFieldError": "Input field error",
+            "inputLicensesFormatErrorMsg": "Please enter date in YYYY-DD-MM format",
+            "checkboxFieldError": "Checkbox field error",
+            "correctFormsError": "Correct forms error",
+            "body": "Body",
+            "name": [
+              "Name",
+              "Name",
+              "Email"
+            ],
+            "userDetailsSectionTitle": "Title",
+            "submitButton": "Submit",
+            "namePlaceholder": "Placeholder",
+            "licenseSelectionSectionTitle": "License selection title",
+            "licenseDescriptions": "License"
+          },
+          "siteLicense": {
+            "jcr:primaryType": "nt:unstructured",
+            "numberOfAdvancedUnit": "number of Advanced unit",
+            "impInformationTitle": "Important information",
+            "subject": "Subject",
+            "applicationDropdownPlaceholder": "Application dropdown placeholder",
+            "impInformationDescription": "important information description",
+            "salutation": "saluation",
+            "siteLicensesDescriptionHeading": "Site LIcenses",
+            "nameOfSite": "Name of site",
+            "inputFieldError": "Input field error",
+            "basicUnitToolTipDescription": "basic unit tooltip description",
+            "advancedUnitToolTipHeading": "Advanced unit tooltip heading",
+            "plcType": "PLC Type",
+            "locationOfSite": "Location of site",
+            "body": "body",
+            "name": "name",
+            "email": "email",
+            "title": "Title",
+            "description": "Desc",
+            "submitButtonLabel": "submit",
+            "advancedUnitToolTipDescription": "Advanced unit tooltip description",
+            "selectFieldError": "select field error",
+            "mesType": "MES TYpe",
+            "hmiType": "HMI Type",
+            "successMessageHeading": "Success heading",
+            "successMessageDescription": "Success description",
+            "numberOfBasicUnit": "Basic unit number",
+            "application": "Application",
+            "basicUnitToolTipHeading": "basic unit tooltip heading",
+            "applicationDropdown": {
+              "jcr:primaryType": "nt:unstructured",
+              "item0": {
+                "jcr:primaryType": "nt:unstructured",
+                "applicationName": "Baby Food"
+              },
+              "item1": {
+                "jcr:primaryType": "nt:unstructured",
+                "applicationName": "Beverage – Basic"
+              },
+              "item2": {
+                "jcr:primaryType": "nt:unstructured",
+                "applicationName": "Beverage – Mixing"
+              },
+              "item3": {
+                "jcr:primaryType": "nt:unstructured",
+                "applicationName": "Cheese"
+              }
+            }
+          },
+          "activeLicense": {
+            "jcr:primaryType": "nt:unstructured",
+            "jcr:mixinTypes": [
+              "cq:ReplicationStatus"
+            ],
+            "startDate": "Start date",
+            "salutation": "Dear",
+            "requestorText": "Requestor",
+            "subject": "Annual engineering licenses - Withdraw",
+            "endDate": "End date",
+            "modalCancelBtn": "No - Go back to listing",
+            "licenceKey": "Licence Key",
+            "modalConfirmBtn": "Yes - Confirm withdrawal",
+            "emailCommentText": "Comments",
+            "modalWithdrawBack": "Ok, go back to listing",
+            "engLicenseTitle": "Annual engineering licenses",
+            "modalWithdrawSuccessText": "Your request has been submitted and we will withdraw the license once it has been processed. Thank you.",
+            "modalConfirmTitle": "Confirm license withdrawal",
+            "body": "This is to inform you",
+            "name": "Name",
+            "site": "Site",
+            "title": "Active licenses",
+            "platformText": "Platform",
+            "modalComments": "Comment to Tetra Pak (Optional)",
+            "siteLicenseTitle": "Site licenses",
+            "siteDate": "Date",
+            "modalWithdrawSuccessTitle": "Licence will soon be withdrawn",
+            "country": "Country",
+            "usernameText": "Username",
+            "withdrawBtn": "Withdraw",
+            "modalConfirmText": "Are you sure you want to withdraw this license?"
+          }
+        }
+      }
+    }
+  }
+}

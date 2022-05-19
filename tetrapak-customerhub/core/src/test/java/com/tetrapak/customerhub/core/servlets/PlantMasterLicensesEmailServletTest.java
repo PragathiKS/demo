@@ -5,6 +5,7 @@ import com.day.cq.wcm.api.LanguageManager;
 import com.tetrapak.customerhub.core.services.AIPCategoryService;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.config.CotsSupportEmailConfiguration;
+import com.tetrapak.customerhub.core.services.config.PlantMasterLicensesEmailConfiguration;
 import com.tetrapak.customerhub.core.services.impl.PlantMasterLicensesServiceImpl;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.commons.lang3.StringUtils;
@@ -30,6 +31,7 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
@@ -55,6 +57,8 @@ public class PlantMasterLicensesEmailServletTest {
     @Mock
     private CotsSupportEmailConfiguration AIPEmailConfiguration;
     @Mock
+    private PlantMasterLicensesEmailConfiguration plantMasterLicensesEmailConfiguration;
+    @Mock
     private APIGEEService apigeeService;
     @Mock
     private AIPCategoryService aipCategoryService;
@@ -79,6 +83,7 @@ public class PlantMasterLicensesEmailServletTest {
         context.registerService(EmailService.class, emailService);
         context.registerService(LanguageManager.class, languageManager);
         context.registerService(CotsSupportEmailConfiguration.class, AIPEmailConfiguration);
+        context.registerService(PlantMasterLicensesEmailConfiguration.class, plantMasterLicensesEmailConfiguration);
         Map<String, Object> props = new HashMap<>();
         context.registerInjectActivateService(plantMasterLicensesServiceImpl, props);
         when(plantMasterLicensesServiceImpl.getI18nValue(any(), any(), any())).thenReturn(StringUtils.EMPTY);
@@ -116,4 +121,11 @@ public class PlantMasterLicensesEmailServletTest {
         assertEquals("Status incorrect", HttpStatus.SC_ACCEPTED, context.response().getStatus());
     }
 
+    @Test
+    public void testIOException() throws IOException {
+        doReturn(resourceResolver).when(request).getResourceResolver();
+        when(request.getReader().lines().collect(Collectors.joining())).thenThrow(IOException.class);
+        plantMasterLicensesEmailServlet.doPost(request, response);
+        assertEquals("Status incorrect", HttpStatus.SC_BAD_REQUEST, context.response().getStatus());
+    }
 }
