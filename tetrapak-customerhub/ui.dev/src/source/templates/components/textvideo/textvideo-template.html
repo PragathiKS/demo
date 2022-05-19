@@ -1,8 +1,10 @@
 <sly data-sly-template.textvideo_template="${@ data, flag}">
-  <div class="tp-card tp-text-video" data-locator="text-video" data-module="TextVideo">
-    <div class="row">
+  <div class="tp-card tp-text-video" data-locator="text-video" data-module="TextVideo" id="${data.anchorId}" title="${data.anchorTitle}">
+  	<sly data-sly-test.isPackageDesign="${data.packageDesign}"/>
+    <div class="row" data-theme="${data.pwTheme}" data-buttonTheme="${data.pwButtonTheme}">
       <sly data-sly-test="${data.textAlignment == 'left' || data.textAlignment == null}">
         <div class="col-md-12 col-lg-4">
+          <sly data-sly-test="${data.subTitle}"><p class="pw-text-video__subTitle font-fixing d-none d-lg-block">${data.subTitle @ context='html'}</p></sly>
           <h2 data-sly-test="${data.title}" class="tp-text-video__heading js-text-video__heading"> ${data.title @ i18n}</h2>
           <sly data-sly-use.videoDesc="/apps/customerhub/components/molecules/videodescription/videodescription-template.html"
               data-sly-call="${videoDesc.videodescription_template @data=data, isDesktop=true}" />
