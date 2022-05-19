@@ -1,9 +1,10 @@
 .tp-teaser {
     @include padding($padding-l $padding-md);
     @include margin-top($margin-l);
+    border-radius: $border-radius;
 
     @media #{$desktop} {
-        @include padding($padding-l $padding-l $padding-zero $padding-l);
+        @include padding($padding-l $padding-zero $padding-zero $padding-l);
     }
 
     &__heading {
@@ -89,13 +90,15 @@
             }
         }
         .teaserpad {
-            @include padding-right($margin-l);
+            @media #{$desktop} {
+                @include padding-right($margin-l);
+            }
         }
         .image {
             @include margin-top(0);
             @include margin-bottom($margin-md);
             width: 100%;
-            border-radius: $border-radius-sm;
+            border-radius: $border-radius;
             @media #{$desktop} {
                 @include margin-top(0);
             }
