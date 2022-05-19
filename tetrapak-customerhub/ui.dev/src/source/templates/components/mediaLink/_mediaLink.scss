@@ -3,7 +3,7 @@
     @include padding-left($padding-md);
     @include padding-right($padding-md);
     @include padding-top($padding-l);
-    @include margin(0 $margin-md);
+    @include margin($margin-zero);
     @media #{$desktop} {
         @include padding($padding-l);
         @include padding-left($padding-l);
