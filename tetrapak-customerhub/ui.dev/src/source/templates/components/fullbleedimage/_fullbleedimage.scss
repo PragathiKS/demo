@@ -2,7 +2,7 @@
     max-width: 100%;
     .pw-padding {
         &--zero {
-            @include padding($padding-zero $padding-l);
+            @include padding($padding-zero);
             @include margin($margin-zero);
         }
     }
