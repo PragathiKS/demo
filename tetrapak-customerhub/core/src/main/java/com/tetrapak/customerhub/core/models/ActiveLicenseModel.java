@@ -26,7 +26,7 @@ public class ActiveLicenseModel {
 
     @SlingObject
     private Resource resource;
-    
+
     @SlingObject
     private SlingHttpServletRequest request;
     
@@ -227,10 +227,6 @@ public class ActiveLicenseModel {
 
     public String getRequestorText() {
         return requestorText;
-    }
-
-    public Resource getResource() {
-        return resource;
     }
 
     public String getUsernameText() {
