@@ -1,0 +1,73 @@
+.tp_pw-breadcrumb {
+    @include max-width($body-max-width);
+    display: block;
+    color: $color-tundora;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    @media #{$desktop} {
+        @include margin($spacing-big auto);
+    }
+    &__wrapper {
+        margin: 0;
+        padding: 0 48px 0 0;
+    }
+
+    .icon-Arrow_Right_pw {
+        @include margin($margin-zero $margin-xs+2);
+        @include font-size($font-xxs);
+        @include line-height($font-xxs, $font-xxs);
+        display: inline;
+        vertical-align: middle;
+    }
+
+    &__link {
+        @include font-size($font-sm);
+        @include line-height($font-m-md, $font-sm);
+        display: none;
+        color: $color-tundora;
+        font-weight: 500;
+        &:hover {
+            color: $color-sky-blue;
+        }
+        &.last {
+            &:hover {
+                color: inherit;
+            }
+        }
+        &.secondlast {
+            display: inline-block;
+        }
+        .icon {
+            &-Chevron_Left_pw {
+                display: inline;
+            }
+            &-Arrow_Right_pw {
+                display: none;
+            }
+        }
+
+        @media #{$desktop} {
+            display: inline-block;
+            font-weight: normal;
+
+            .icon {
+                &-Chevron_Left_pw {
+                    display: none;
+                }
+                &-Arrow_Right_pw {
+                    display: inline;
+                }
+            }
+        }
+    }
+
+    span {
+        @include font-size($font-sm);
+        @include line-height($font-m-md, $font-sm);
+        color: $color-tundora;
+        font-weight: normal;
+        margin-left: -$margin-xs;
+    }
+}
