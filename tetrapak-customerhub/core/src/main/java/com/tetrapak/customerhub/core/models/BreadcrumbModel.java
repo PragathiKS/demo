@@ -1,12 +1,16 @@
 package com.tetrapak.customerhub.core.models;
 
 import com.day.cq.wcm.api.Page;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtils;
 import com.tetrapak.customerhub.core.utils.NavigationUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
@@ -40,11 +44,17 @@ public class BreadcrumbModel {
     /** The breadcrumb subpages. */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
 
+    @OSGiService
+    private UserPreferenceService userPreferenceService;
+
+    private String selectedLanguage;
+
     /**
      * Inits the.
      */
     @PostConstruct
     protected void init() {
+        selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
         final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
@@ -57,9 +67,9 @@ public class BreadcrumbModel {
                     && nextPage.getContentResource() != null) {
 
                 if (nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
-                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(nextPage), null);
+                    breadcrumbPages.put(NavigationUtil.getPageTitle(nextPage), null);
                 } else {
-                    breadcrumbPages.put(NavigationUtil.getNavigationTitle(nextPage),
+                    breadcrumbPages.put(NavigationUtil.getPageTitle(nextPage),
                             LinkUtils.sanitizeLink(nextPage.getPath(), request));
                 }
                 nextPage = nextPage.getParent();
@@ -87,5 +97,9 @@ public class BreadcrumbModel {
      */
     public int getCurrentPageParentIndex() {
         return breadcrumbSubpages.size()-1;
+    }
+
+    public String getLocale() {
+        return org.apache.commons.lang.StringUtils.isEmpty(selectedLanguage) ? CustomerHubConstants.DEFAULT_LOCALE : selectedLanguage;
     }
 }

@@ -9,12 +9,12 @@
                         <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link ${data.currentPageParentIndex == subpagesList.count ? 'secondlast':''}" href="${data.breadcrumbSubpages[subpages]}">
                             <i class="icon-Chevron_Left_pw tp_icon"></i>
                             <i class="icon-Arrow_Right_pw tp_icon"></i>
-                            ${subpages}
+                            ${subpages @i18n, locale=data.locale}
                         </a>
                     </sly>
                     <sly data-sly-test="${subpagesList.last}">
                         <span class="tp_pw-breadcrumb__link last">
-                            <i class="icon-Arrow_Right_pw tp_icon"></i> <span>${subpages}</span>
+                            <i class="icon-Arrow_Right_pw tp_icon"></i> <span>${subpages @i18n, locale=data.locale}</span>
                         </span>
                     </sly>
                 </sly>

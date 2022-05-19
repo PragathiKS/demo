@@ -3,4 +3,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Breadcrumb"
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup="tetrapak-content-components"/>
+    componentGroup="tetrapak-global-components"/>
