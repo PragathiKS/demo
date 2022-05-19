@@ -92,8 +92,8 @@
                 color: $color-alert;
             }
             &::before {
-                height: 16px;
-                width: 16px;
+                font-size: $font-sm;
+
             }
         }
         .icon.icon-Circle_Arrow_Right_pw {
