@@ -2,7 +2,7 @@
     max-width: 100%;
     .pw-padding {
         &--zero {
-            @include padding($padding-zero);
+            @include padding($padding-zero $padding-l);
             @include margin($margin-zero);
         }
     }
@@ -24,14 +24,14 @@
     }
     }
     &__zero {
-        @include padding($padding-zero $padding-md);
+        @include padding($padding-zero);
         max-width: 100%;
         margin: 0 auto;
         height: auto;
 
         @media #{$desktop} {
             @include max-width($body-max-width);
-            @include padding($padding-zero $padding-l);
+            @include padding($padding-zero);
             margin: $margin-zero auto;
     }
     }
