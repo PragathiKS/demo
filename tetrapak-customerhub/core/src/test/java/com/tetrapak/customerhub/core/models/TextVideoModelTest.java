@@ -104,6 +104,15 @@ public class TextVideoModelTest {
         assertNotNull("Text alignment should not be null", textAlignment);
         assertTrue("Text alignment is not empty", textAlignment.length() > 0);
         Assert.assertEquals("text alignment", "right", textAlignment);
+        
+        Boolean packageDesign = textVideoModel.isPackageDesign();
+        assertNotNull("isPackageDesign field should not be null", packageDesign);
+        Assert.assertEquals("isPackageDesign", true, packageDesign);
+
+        String subTitle = textVideoModel.getSubTitle();
+        assertNotNull("Sub-Title is not null", subTitle);
+        assertTrue("Sub-Title is not empty", subTitle.length() > 0);
+        Assert.assertEquals("subTitle", "Design Submission", subTitle);
 
     }
 
