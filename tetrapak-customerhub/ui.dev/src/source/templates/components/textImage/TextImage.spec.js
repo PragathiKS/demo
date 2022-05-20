@@ -31,14 +31,6 @@ describe('TextImage', function () {
     expect(this.textImage.trackAnalytics.called).to.be.true;
     done();
   });
-  it('should click of js-softconversion-pw form', function (done) {
-    $('.js-softconversion-pw').trigger('click');
-    done();
-  });
-  it('trigger subscription form on click', function (done) {
-    $('.js-subscription-pw').trigger('click');
-    done();
-  });
   it('check for h2 tag', function (done) {
     $('h1').remove();
     this.textImage.init();
