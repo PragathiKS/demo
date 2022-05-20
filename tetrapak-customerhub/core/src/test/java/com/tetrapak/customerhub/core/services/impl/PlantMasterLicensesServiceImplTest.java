@@ -55,7 +55,6 @@ public class PlantMasterLicensesServiceImplTest {
     private final String ERROR_MESSAGE = "Unexpected value. Please check.";
     private static final String LICENSE_TYPE_REQUEST_PARAMETER = "licenseType";
     private static final String recipientEmail = "testUser@company.com";
-    private static final String withdrawalRequestRecipientAddresses = "testUser2@company.com";
 
     @Spy
     @InjectMocks
@@ -71,7 +70,6 @@ public class PlantMasterLicensesServiceImplTest {
         aemContext.registerService(LanguageManager.class,languageManager);
         aemContext.registerService(APIGEEService.class, apigeeService);
         when(configuration.isLicensesEmailEnabled()).thenReturn(true);
-        when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-product-details:productinformation/categories/{id}/products"});
         aemContext.registerService(AIPCategoryService.class, aipCategoryService);
         aemContext.registerService( PlantMasterLicensesServiceImpl.class,plantMasterLicensesServiceImpl);
         when(plantMasterLicensesServiceImpl.getI18nValue(any(),any(),any())).thenReturn("");
@@ -82,13 +80,13 @@ public class PlantMasterLicensesServiceImplTest {
     public void testActivateConfiguration() throws Exception {
         Map<String, Object> _config = new HashMap<>();
         _config.put("recipientAddresses", "testing@test.com");
-        _config.put("withdrawalRequestRecipientAddresses", "testing2@test.com");
         _config.put("isLicensesEmailEnabled", "true");
         aemContext.registerService(PlantMasterLicensesEmailConfiguration.class, configuration);
         aemContext.registerInjectActivateService(plantMasterLicensesServiceImpl, _config);
         aemContext.request().setResource(aemContext.resourceResolver().getResource(RESOURCE_PATH));
         aemContext.request().setHeader("licenseType","activeWithdrawal");
         String requestBody = "{}";
+        when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-active-licenses:installedbase/softwarelicenses"});
         aemContext.request().setContent(requestBody.getBytes(StandardCharsets.UTF_8));
         ResourceBundle resourceBundle = aemContext.request().getResourceBundle(aemContext.request().getLocale());
         String requestData = aemContext.request().getReader().lines().collect(Collectors.joining());
@@ -99,6 +97,7 @@ public class PlantMasterLicensesServiceImplTest {
 
     @Test
     public void testSendEngineeringLicenseEmail() throws IOException {
+        when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-product-details:productinformation/categories/{id}/products"});
         when(configuration.recipientAddresses()).thenReturn(new String[]{recipientEmail});
         aemContext.request().setResource(aemContext.resourceResolver().getResource(RESOURCE_PATH));
         aemContext.request().setHeader("licenseType", "engineering");
@@ -121,6 +120,7 @@ public class PlantMasterLicensesServiceImplTest {
 
     @Test
     public void testSendSiteLicenseEmail() throws IOException {
+        when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-product-details:productinformation/categories/{id}/products"});
         when(configuration.recipientAddresses()).thenReturn(new String[]{recipientEmail});
         aemContext.request().setResource(aemContext.resourceResolver().getResource(RESOURCE_PATH));
         aemContext.request().setHeader("licenseType","site");
@@ -141,7 +141,8 @@ public class PlantMasterLicensesServiceImplTest {
 
     @Test
     public void testSendEmailWithdrawlLicense() throws IOException {
-        when(configuration.withdrawalRequestRecipientAddresses()).thenReturn(new String[]{withdrawalRequestRecipientAddresses});
+        when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-active-licenses:installedbase/softwarelicenses"});
+        when(configuration.recipientAddresses()).thenReturn(new String[]{recipientEmail});
         aemContext.request().setResource(aemContext.resourceResolver().getResource(RESOURCE_PATH));
         aemContext.request().setHeader("licenseType","activeWithdrawal");
         String requestBody = "{\n" + "\t\"name\": \"name\",\n"
@@ -154,7 +155,7 @@ public class PlantMasterLicensesServiceImplTest {
         PlantMasterLicensesModel masterLicensesModel = aemContext.request().adaptTo(PlantMasterLicensesModel.class);
         assertEquals(ERROR_MESSAGE,true,plantMasterLicensesServiceImpl.sendEmail(resourceBundle,
                 aemContext.request().getHeader(LICENSE_TYPE_REQUEST_PARAMETER), requestData, masterLicensesModel));
-        when(configuration.withdrawalRequestRecipientAddresses()).thenReturn(null);
+        when(configuration.recipientAddresses()).thenReturn(null);
         assertEquals(ERROR_MESSAGE, false, plantMasterLicensesServiceImpl.sendEmail(resourceBundle,
                 aemContext.request().getHeader(LICENSE_TYPE_REQUEST_PARAMETER), requestData, masterLicensesModel));
     }
