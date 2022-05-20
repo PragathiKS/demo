@@ -1,6 +1,6 @@
 <sly data-sly-template.teaser_template="${@data, flag}">
     <div data-module="teaser">
-      <section class="tp-teaser pw-theme--${data.pwTheme}">
+      <section class="tp-teaser pw-theme--${data.pwTheme}" id="${data.anchorId}" title="${data.anchorTitle}">
         <div data-sly-test="${data.heading}" class="tp-teaser__heading">
           <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
               data-sly-call="${heading.heading_h3_template @ headingText=data.heading}"/>
