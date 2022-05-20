@@ -23,6 +23,8 @@
           "jcr:created": "Thu Apr 28 2022 13:48:46 GMT+0200",
           "heading": "Heading Test",
           "pwTheme": "grayscale-white",
+          "anchorTitle": "Anchor title",
+          "anchorId": "anchorId",
           "jcr:lastModified": "Thu Apr 28 2022 14:25:15 GMT+0200",
           "linkPath": "/content/tetrapak/customerhub/global/en/dashboard",
           "sling:resourceType": "customerhub/components/content/teaser",

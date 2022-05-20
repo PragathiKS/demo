@@ -97,6 +97,10 @@
                     </column>
                 </items>
             </teaser>
+            <anchor
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                    path="customerhub/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
             <design
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Design"

@@ -33,6 +33,14 @@ public class TeaserModel {
     @Via("resource")
     private LinkModel viewAllLink;
 
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
+
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+
     /** The pw theme. */
     @ValueMapValue
     private String pwTheme;
@@ -69,6 +77,24 @@ public class TeaserModel {
      */
     public String getHeading() {
         return heading;
+    }
+
+/**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
     }
 
     /**
