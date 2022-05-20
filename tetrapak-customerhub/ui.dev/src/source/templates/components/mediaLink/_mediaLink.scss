@@ -8,7 +8,7 @@
         @include padding($padding-l);
         @include padding-left($padding-l);
         @include padding-right($padding-l);
-        @include margin($margin-l $margin-l $margin-zero);
+        @include margin($margin-l $margin-zero $margin-zero);
     }
 
     &__heading {
