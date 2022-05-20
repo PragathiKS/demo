@@ -3,12 +3,12 @@
     @include padding-left($padding-md);
     @include padding-right($padding-md);
     @include padding-top($padding-l);
-    @include margin(0 $margin-md);
+    @include margin($margin-zero);
     @media #{$desktop} {
         @include padding($padding-l);
         @include padding-left($padding-l);
         @include padding-right($padding-l);
-        @include margin($margin-l $margin-l $margin-zero);
+        @include margin($margin-l $margin-zero $margin-zero);
     }
 
     &__heading {
@@ -17,7 +17,7 @@
         @include margin-bottom($margin-md);
         @media #{$desktop} {
             @include padding-top($padding-zero);
-            @include margin-bottom($margin-l);
+            @include margin-bottom($margin-sm);
         }
 
         h3 {
@@ -33,7 +33,8 @@
     }
 
     &__subheading {
-        @include margin-bottom($margin-md);
+        @include margin-top($margin-md);
+        @include margin-bottom($margin-zero);
         @include min-height(24px);
         h4 {
             @include padding-left($padding-zero);
@@ -92,8 +93,8 @@
                 color: $color-alert;
             }
             &::before {
-                height: 16px;
-                width: 16px;
+                font-size: $font-sm;
+
             }
         }
         .icon.icon-Circle_Arrow_Right_pw {
