@@ -194,7 +194,7 @@
                             <packageDesign
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                    fieldDescription="Please check this box if this component is being used needs on Package Design Pages."
+                                    fieldDescription="Please check this box if this component is being used on Package Design Pages."
                                     name="./packageDesign"
                                     text="Package Design"
                                     value="true"/>
