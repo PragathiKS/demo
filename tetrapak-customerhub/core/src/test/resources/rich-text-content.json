@@ -22,7 +22,9 @@
         "richtext_985436779": {
           "jcr:primaryType": "nt:unstructured",
           "jcr:createdBy": "admin",
+          "anchorTitle": "rte",
           "jcr:lastModifiedBy": "admin",
+          "anchorId": "rte123",
           "jcr:created": "Tue Mar 31 2020 12:11:13 GMT+0530",
           "text": "<p>test content</p>\r\n",
           "jcr:lastModified": "Tue Mar 31 2020 12:21:13 GMT+0530",
