@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 const myDomainAdobe = 'adobecqms.net';
 const componentList = [
-  '.tp-pw-richText',
+  '.tp-pw-richText'
 ];
 
 const isInternalUrl = url => {

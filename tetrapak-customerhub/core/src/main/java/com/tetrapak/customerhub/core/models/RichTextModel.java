@@ -13,6 +13,14 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class RichTextModel {
 
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
+
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+
     /** The text. */
     @ValueMapValue
     private String text;
@@ -28,6 +36,24 @@ public class RichTextModel {
     /** The top spacing. */
     @ValueMapValue
     private String topSpacing;
+
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
+    }
 
     /**
      * Gets the text.

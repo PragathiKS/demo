@@ -142,6 +142,10 @@
                     </column>
                 </items>
             </design>
+            <anchor
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                    path="customerhub/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
         </items>
     </content>
 </jcr:root>
