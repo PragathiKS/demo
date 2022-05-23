@@ -151,29 +151,4 @@
             @include margin-bottom($margin-md);
         }
     }
-
-    &__video {
-        @include border-radius($border-radius);
-        @include margin-bottom($margin-md);
-        height: 0;
-        overflow: hidden;
-        padding-bottom: 56.25%;
-        position: relative;
-
-        @media #{$desktop} {
-            @include margin-bottom($margin-zero);
-        }
-
-        video,
-        iframe {
-            @include border-radius($border-radius);
-            @include margin-bottom($margin-zero);
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-        }
-    }
-
 }
