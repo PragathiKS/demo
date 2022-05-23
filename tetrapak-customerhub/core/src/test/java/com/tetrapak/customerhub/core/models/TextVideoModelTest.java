@@ -70,10 +70,11 @@ public class TextVideoModelTest {
         assertNotNull("Link URL should not be null", linkURL);
         assertTrue("Link URL is not empty", linkURL.length() > 0);
         Assert.assertEquals("linkUrl", "https://google.com", linkURL);
-
-        Boolean isExternal = textVideoModel.isExternal();
-        assertNotNull("isExternal field should not be null", isExternal);
-        Assert.assertEquals("isExternal", true, isExternal);
+        
+        String linkType = textVideoModel.getLinkType();
+        assertNotNull("Link type should not be null", linkType);
+        assertTrue("Link type is not empty", linkType.length() > 0);
+        Assert.assertEquals("linkType", "external", linkType);
 
         String videoSource = textVideoModel.getVideoSource();
         assertNotNull("Video source should not be null", videoSource);
