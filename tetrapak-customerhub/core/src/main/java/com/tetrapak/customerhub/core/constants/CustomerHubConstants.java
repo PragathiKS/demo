@@ -612,6 +612,9 @@ public final class CustomerHubConstants {
     
     /** The Constant AIP_PRODUCT_DETAILS_API. */
     public static final String AIP_PRODUCT_DETAILS_API = "aip-product-details";
+
+    /** The Constant AIP_ACTIVE_LICENSES. */
+    public static final String AIP_ACTIVE_LICENSES = "aip-active-licenses";
     
     /** The Constant INCLUDE_CHILDREN. */
     public static final String INCLUDE_CHILDREN = "includechildren";
