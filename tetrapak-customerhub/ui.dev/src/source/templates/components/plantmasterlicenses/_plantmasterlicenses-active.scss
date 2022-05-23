@@ -1,10 +1,11 @@
 // generic AIP table
 .tp-aip {
     &__table-wrap {
+        @include padding-bottom($padding-xl);
         overflow-x: auto;
 
-        @media #{$mobile} {
-            @include padding-bottom($padding-xl);
+        @media #{$desktop} {
+            @include padding-bottom($padding-zero);
         }
     }
 
@@ -41,19 +42,15 @@
 
         &__info-line {
             @include margin-bottom($margin-md);
-            display: flex;
-            align-items: center;
             font-weight: 500;
 
             &--error {
                 border: 1px solid $color-alert;
             }
 
-            @media #{$mobile} {
-                display: block;
-                &:last-of-type {
-                    @include margin-bottom($margin-zero);
-                }
+            @media #{$desktop} {
+                display: flex;
+                align-items: center;
             }
 
             i {
@@ -69,13 +66,12 @@
 
         &__form-element {
             @include margin-bottom($margin-md);
-            display: flex;
-            align-items: center;
             font-weight: 500;
             position: relative;
 
-            @media #{$mobile} {
-                display: block;
+            @media #{$desktop} {
+                display: flex;
+                align-items: center;
             }
 
             .tpatom-textarea-box__text {
@@ -86,23 +82,22 @@
 
         &__info-cell-1 {
             @include line-height($font-l, $font-baseline);
-            @include width(166px);
             @include margin-right($margin-l);
+            width: 100%;
             flex-shrink: 0;
 
-            @media #{$mobile} {
-                @include line-height($font-l, $font-baseline);
-                width: 100%;
+            @media #{$desktop} {
+                @include width(166px);
             }
         }
 
         &__info-cell-2 {
             @include line-height($font-l, $font-baseline);
             font-weight: 700;
-            width: 71%;
+            width: 64%;
 
-            @media #{$mobile} {
-                width: 64%;
+            @media #{$desktop} {
+                width: 71%;
             }
 
             .error-msg {
@@ -138,24 +133,20 @@
 
         &__details-line {
             @include padding($padding-md);
-            display: flex;
             border-bottom: 1px solid $color-mercury;
 
-            @media #{$mobile} {
-                display: block;
+            @media #{$desktop} {
+                display: flex;
             }
         }
 
         &__details-cell {
             @include line-height($font-l, $font-baseline);
             font-weight: 500;
-            &:first-child {
-                @include width(310px);
 
-                @media #{$mobile} {
-                    @include line-height($font-l, $font-baseline);
-                    font-weight: 500;
-                    width: 100%;
+            &:first-child {
+                @media #{$desktop} {
+                    @include width(310px);
                 }
             }
         }
