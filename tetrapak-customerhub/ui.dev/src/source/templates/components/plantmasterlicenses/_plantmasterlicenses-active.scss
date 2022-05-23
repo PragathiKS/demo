@@ -52,7 +52,7 @@
             @media #{$mobile} {
                 display: block;
                 &:last-of-type {
-                    margin-bottom: 0;
+                    @include margin-bottom($margin-zero);
                 }
             }
 
@@ -63,7 +63,7 @@
             }
 
             &:last-of-type {
-                margin-bottom: 0;
+                @include margin-bottom($margin-zero);
             }
         }
 
@@ -128,7 +128,7 @@
             @include margin-bottom($margin-xl);
 
             &:last-child {
-                margin-bottom: 0;
+                @include margin-bottom($margin-zero);
             }
         }
 
