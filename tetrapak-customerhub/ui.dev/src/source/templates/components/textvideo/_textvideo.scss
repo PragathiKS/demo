@@ -113,9 +113,9 @@
 
         ul > li > ul,
         ol > li > ol {
-            @include margin-bottom(0);
+            @include margin-bottom($margin-zero);
             :last-child {
-                @include padding-bottom(0);
+                @include padding-bottom($padding-zero);
             }
         }
 
@@ -125,7 +125,7 @@
                 color: $color-tundora;
             }
             &:last-child {
-                @include padding-bottom(0);
+                @include padding-bottom($padding-zero);
             }
         }
 
@@ -144,7 +144,7 @@
         }
 
         ol ol ol {
-            @include padding-left(28px);
+            @include padding-left($padding-l);
         }
 
         @media #{$desktop} {
@@ -161,13 +161,13 @@
         position: relative;
 
         @media #{$desktop} {
-            @include margin-bottom(0);
+            @include margin-bottom($margin-zero);
         }
 
         video,
         iframe {
             @include border-radius($border-radius);
-            @include margin-bottom(0);
+            @include margin-bottom($margin-zero);
             height: 100%;
             left: 0;
             position: absolute;
