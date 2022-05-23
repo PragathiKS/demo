@@ -6,8 +6,6 @@
       data-textImage-title="${data.title}" data-textImage-linkName="${data.linkText}"
       data-textImage-linkType="${data.linkType}">
       <div class="pw-text-image__innerpadding pw-text-image--${data.pwDisplay}">
-	  <sly data-sly-test.isFormTypeAuthored="${data.formType != ''}"/>
-	  <sly data-sly-test.isSoftConvEnabled="${data.enableSoftcoversion != ''}"/>
         <div class="row no-gutters">
           <div class="col-md-12 col-lg-6 leftPad">
             <div data-sly-test="${data.subTitle}" class="pw-text-image__subTitle font-fixing">
@@ -25,11 +23,11 @@
             <div class="pw-text-image__description">${data.description @context='html'}</div>
             <div class="pw-text-image__link">
               <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
-              <a data-sly-test="${(data.linkText && data.linkURL) && (!isFormTypeAuthored && !isSoftConvEnabled)}" href="${data.linkURL}"
+              <a data-sly-test="${data.link.linkText && data.link.linkUrl}" href="${data.link.linkUrl}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
-                title="${data.linkText}" target="${data.targetBlank}"
+                title="${data.link.linkText}"
                 data-link-section="Text & Image_${dataLinkSectionCTAText}"
-                data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
+                data-link-name="${data.link.linkText}" data-button-link-type="${data.pwButtonTheme}"
                 data-asset-name="${data.assetName}"
                 data-image-title="${data.title}"
                 data-anchor-type="${dataLinkSectionCTAText}"
@@ -41,10 +39,9 @@
           </div>
           <div class="col-md-12 col-lg-6 rightPad">
             <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
-            <a data-sly-test="${data.linkURL && data.linkURL!='#' && (!isFormTypeAuthored && !isSoftConvEnabled)}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
-               target="${data.targetBlank}"
+            <a data-sly-test="${data.link.linkUrl && data.link.linkUrl!='#'}"  href="${data.link.linkUrl}" class="img-link js-textImage-analytics"
               data-link-section="Text & Image_imageClick"
-              data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
+              data-link-name="${data.link.linkText}" data-button-link-type="${data.pwButtonTheme}"
               data-asset-name="${data.assetName}"
               data-image-title="${data.title}"
               data-anchor-type="imageClick"

@@ -170,13 +170,13 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldDescription="Link text"
                                 fieldLabel=" Link label"
-                                name="./linkText"/>
+                                name="./link/linkText"/>
                             <linkUrl
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                 fieldDescription="Link to destination path. Do not configure CTA in case subscription form needs to be enabled."
                                 fieldLabel="Link path"
-                                name="./linkURL"
+                                name="./link/linkUrl"
                                 rootPath="/content"/>
                         </items>
                     </column>
