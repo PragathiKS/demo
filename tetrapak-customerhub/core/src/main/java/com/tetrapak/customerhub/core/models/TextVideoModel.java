@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.models;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -13,6 +14,7 @@ import org.apache.sling.settings.SlingSettingsService;
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
+import com.tetrapak.customerhub.core.utils.LinkUtils;
 
 /**
  * Model class for Text Video component.
@@ -43,8 +45,7 @@ public class TextVideoModel {
     @Inject
     private String linkURL;
 
-    @Inject
-    private Boolean isExternal;
+    private String linkType;
 
     @Inject
     private String videoSource;
@@ -90,6 +91,9 @@ public class TextVideoModel {
         if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
             damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
         }
+        if(StringUtils.isNotBlank(linkURL)) {
+            linkType = LinkUtils.linkType(linkURL);
+        }
     }
 
     public String getTitle() {
@@ -108,8 +112,8 @@ public class TextVideoModel {
         return linkURL;
     }
 
-    public Boolean isExternal() {
-        return isExternal;
+    public String getLinkType() {
+        return linkType;
     }
 
     public String getVideoSource() {
