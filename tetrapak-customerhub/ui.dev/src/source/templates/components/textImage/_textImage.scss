@@ -1,10 +1,9 @@
 .pw-text-image {
     @include border-radius($border-radius);
-    @include padding($padding-l $padding-md);
-    @include margin(0 $margin-md);
+    @include padding($padding-md);
+    @include margin($margin-zero);
     @media #{$desktop} {
-        @include padding($padding-xxxl);
-        @include margin(0 $margin-xxxl);
+        @include padding($padding-l);
     }
 
     &--display-row {
