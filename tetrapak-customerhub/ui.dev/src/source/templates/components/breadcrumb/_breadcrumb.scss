@@ -1,5 +1,6 @@
 .tp_pw-breadcrumb {
     @include max-width($body-max-width);
+    @include padding($padding-zero);
     display: block;
     color: $color-tundora;
     overflow: hidden;
@@ -14,7 +15,7 @@
         padding: 0 48px 0 0;
     }
 
-    .icon-Arrow_Right_pw {
+    .icon-Chevron_Right {
         @include margin($margin-zero $margin-xs+2);
         @include font-size($font-xxs);
         @include line-height($font-xxs, $font-xxs);
@@ -31,6 +32,11 @@
         &:hover {
             color: $color-sky-blue;
         }
+        &:first-child {
+            .icon-Chevron_Right {
+                display: none;
+            }
+        }
         &.last {
             &:hover {
                 color: inherit;
@@ -40,10 +46,13 @@
             display: inline-block;
         }
         .icon {
-            &-Chevron_Left_pw {
+            &-Chevron_Left {
                 display: inline;
+                &::before {
+                    @include padding-right($padding-xs);
+                }
             }
-            &-Arrow_Right_pw {
+            &-Chevron_Right {
                 display: none;
             }
         }
@@ -53,10 +62,11 @@
             font-weight: normal;
 
             .icon {
-                &-Chevron_Left_pw {
+                &-Chevron_Left {
                     display: none;
                 }
-                &-Arrow_Right_pw {
+                &-Chevron_Right {
+                    @include font-size($font-sm);
                     display: inline;
                 }
             }
@@ -68,6 +78,5 @@
         @include line-height($font-m-md, $font-sm);
         color: $color-tundora;
         font-weight: normal;
-        margin-left: -$margin-xs;
     }
 }
