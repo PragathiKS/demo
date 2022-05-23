@@ -148,6 +148,16 @@
 										    name="./errorPages"
 										    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
 										    rootPath="/content/tetrapak/customerhub"/>
+									<whiteBackground
+                                        cq:showOnCreate="{Boolean}true"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Check this for white background"
+                                        fieldLabel="White background "
+                                        name="./whiteBackground"
+                                        text="White background"
+                                        uncheckedValue="{Boolean}false"
+                                        value="{Boolean}true"/>
                                 </items>
                             </column>
                         </items>
