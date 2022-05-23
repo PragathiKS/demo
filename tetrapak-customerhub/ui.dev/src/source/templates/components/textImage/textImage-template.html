@@ -23,25 +23,26 @@
             <div class="pw-text-image__description">${data.description @context='html'}</div>
             <div class="pw-text-image__link">
               <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
-              <a data-sly-test="${data.link.linkText && data.link.linkUrl}" href="${data.link.linkUrl}"
+              <a data-sly-test="${data.link.linkUrl && data.link.linkUrl!='#'}"  href="${data.link.linkUrl}"
                 class="tpatom-link tpatom-link--${data.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-textImage-analytics"
-                title="${data.link.linkText}"
+                title="${data.linkText}" target="${data.targetBlank}"
                 data-link-section="Text & Image_${dataLinkSectionCTAText}"
-                data-link-name="${data.link.linkText}" data-button-link-type="${data.pwButtonTheme}"
+                data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
                 data-asset-name="${data.assetName}"
                 data-image-title="${data.title}"
                 data-anchor-type="${dataLinkSectionCTAText}"
                 >
-                <span class="tpatom-link__text sly-text">${data.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
+                <span class="tpatom-link__text sly-text">${data.link.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${data.pwButtonTheme == 'secondary' ? 'icon-Chevron_Right':'icon-Circle_Arrow_Right'}"></i></span>
               </a>
               <input type="hidden" class="componentNameTextImage" name="componentName" value="${resource.name}">
             </div>
           </div>
           <div class="col-md-12 col-lg-6 rightPad">
             <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
-            <a data-sly-test="${data.link.linkUrl && data.link.linkUrl!='#'}"  href="${data.link.linkUrl}" class="img-link js-textImage-analytics"
+            <a data-sly-test="${data.linkURL && data.linkURL!='#' && (!isFormTypeAuthored && !isSoftConvEnabled)}"  href="${data.linkURL}" class="img-link js-textImage-analytics"
+               target="${data.targetBlank}"
               data-link-section="Text & Image_imageClick"
-              data-link-name="${data.link.linkText}" data-button-link-type="${data.pwButtonTheme}"
+              data-link-name="${data.linkText}" data-button-link-type="${data.pwButtonTheme}"
               data-asset-name="${data.assetName}"
               data-image-title="${data.title}"
               data-anchor-type="imageClick"
@@ -55,6 +56,16 @@
                 <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
               </sly>
             </a>
+            <span data-sly-test="${!data.linkURL  || data.linkURL=='#'}">
+              <sly data-sly-test="${!wcmmode.edit}">
+                <sly data-sly-use.image="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=data.imagePath , altText=data.imageAltText}" />
+                <sly data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html"
+                  data-sly-call="${dynamicMediaImage.dynamicimage_template @image=image, className='pw-text-image__image'}" />
+              </sly>
+              <sly data-sly-test="${wcmmode.edit}">
+                <img alt="${data.imageAltText}" src="${data.imagePath}" class="pw-text-image__image" />
+              </sly>
+            </span>
           </div>
         </div>
       </div>

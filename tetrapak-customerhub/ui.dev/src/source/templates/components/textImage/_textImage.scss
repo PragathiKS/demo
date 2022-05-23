@@ -212,6 +212,13 @@
             @include line-height(24px, 14px);
             background-color: none;
         }
+
+        a.tpatom-link {
+            .icon {
+                @include padding-left(6px);
+                display: inline-block;
+            }
+        }
     }
 
     &__image {
