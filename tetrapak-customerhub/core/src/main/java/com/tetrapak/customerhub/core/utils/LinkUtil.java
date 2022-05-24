@@ -16,9 +16,10 @@ public final class LinkUtil {
 
     /** The Constant DOWNLOADABLE_ASSETS. */
     private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|eps|png|tif|ppt|pptx|xml)$";
-    
+
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
+
 
     private LinkUtil() {
         throw new IllegalStateException("Utility class");
@@ -91,7 +92,7 @@ public final class LinkUtil {
         }
         return linkType;
     }
-    
+
     /**
      * Gets the asset name.
      *

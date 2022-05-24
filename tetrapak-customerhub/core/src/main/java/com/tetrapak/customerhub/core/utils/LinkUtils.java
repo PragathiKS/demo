@@ -39,6 +39,21 @@ public class LinkUtils extends WCMUsePojo {
     }
 
     /**
+     * Gets the asset name.
+     *
+     * @param path
+     *            the asset path.
+     * @return the asset name.
+     */
+    public static String getAssetName(final String path) {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotBlank(path)) {
+            assetName = getSubstringAfterLast(path);
+        }
+        return assetName;
+    }
+
+    /**
      * Checks if is preview URL.
      *
      * @param request the request

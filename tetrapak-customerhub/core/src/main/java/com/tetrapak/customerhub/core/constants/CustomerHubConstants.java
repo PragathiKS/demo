@@ -578,11 +578,9 @@ public final class CustomerHubConstants {
     /** TheConstant SORT */
     public static final String EQUIPMENT_API_SORT = "sort";
 
-    /** The Constant for Email ID. */
+	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
 
-    /** The Constant for user groups */
-    public static final String CUSTOMER_GROUPS = "groups";
     /** The Constant PARAM_LINK. */
     public static final String PARAM_LINK = "linkPath";
 
@@ -609,6 +607,9 @@ public final class CustomerHubConstants {
 
     /** The Constant WWW. */
     public static final String WWW = "www";
+
+    /** The Constant for user groups */
+    public static final String CUSTOMER_GROUPS = "groups";
     
     /** The Constant AIP_PRODUCT_DETAILS_API. */
     public static final String AIP_PRODUCT_DETAILS_API = "aip-product-details";
