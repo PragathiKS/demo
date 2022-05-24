@@ -580,7 +580,13 @@ public final class CustomerHubConstants {
 
 	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
-    
+
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_LINK = "linkPath";
+
+    /** The Constant VALUE. */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
+
     /**
      * Instantiates a new customer hub constants.
      */
