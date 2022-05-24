@@ -5,7 +5,6 @@ import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
 import * as money from 'argon-formatter';
 import { trackAnalytics } from '../utils/analytics';
-import { isExternal, isDownloable } from '../utils/updateLink';
 
 const currentUserAgent = window.navigator.userAgent;
 
@@ -271,22 +270,6 @@ export function hasOwn(obj, key) {
   }
   return false;
 }
-
-export const addLinkAttr = (linkClass) => {
-  $(linkClass).each(function() {
-    const thisHref = $(this).attr('href');
-    if (thisHref) {
-      $(this).attr('target', '_self');
-      if (isExternal(thisHref)) {
-        $(this).attr('target', '_blank');
-      }
-      if (isDownloable(thisHref)) {
-        $(this).data('download-type', 'download');
-        $(this).attr('target', '_blank');
-      }
-    }
-  });
-};
 
 export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redirect=true,dataObj={}) => {
   const $target = $(e.target);
