@@ -7,26 +7,32 @@
         }
     }
     &__center-align {
-        margin: 0 auto;
-        padding-left: 0;
-        padding-right: 0;
+        margin: $margin-zero auto;
+        padding-left: $padding-zero;
+        padding-right: $padding-zero;
         text-align: center;
     }
     &__regular {
-        @include padding(0);
+        @include padding($padding-zero);
         max-width: 100%;
-        margin: 16px auto 0;
+        margin: $margin-md auto $margin-zero;
         height: auto;
 
         @media #{$desktop} {
             @include max-width($body-max-width);
             margin: $margin-l auto $margin-zero;
-    }
+        }
+
+        .pw-padding {
+            &--regular {
+                @include padding($padding-l);
+            }
+        }
     }
     &__zero {
         @include padding($padding-zero);
         max-width: 100%;
-        margin: 0 auto;
+        margin: $margin-zero auto;
         height: auto;
 
         @media #{$desktop} {
@@ -37,5 +43,10 @@
     }
     img {
         max-width: 100%;
+        width: 100%;
     }
+}
+
+.fullBleedImage {
+    border-radius: 4px;
 }
