@@ -13,6 +13,12 @@
         - name: Package Design access
           memberOf: everyone
           path: /home/groups/cuhugroups
+          
+    - cuhu_pack_design_intro:
+
+        - name: Package Design Intro Access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
 
     - cuhu_pack_mat:
 
@@ -133,10 +139,47 @@
 
     - cuhu_pack_design:
 
-        - path: /content/tetrapak/customerhub/global/en/package-design
+        - path: /content/tetrapak/customerhub/global/en/package-design/introduction
           permission: allow
           actions: read
           privileges:
+          
+        - path: /content/tetrapak/customerhub/global/en/package-design/design-manual
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /content/tetrapak/customerhub/global/en/package-design/package-visualiser
+          permission: allow
+          actions: read
+          privileges:
+          
+        - path: /content/tetrapak/customerhub/global/en/package-design/easy-design
+          permission: allow
+          actions: read
+          privileges:         
+
+    - cuhu_pack_design_intro:
+
+        - path: /content/tetrapak/customerhub/global/en/package-design/introduction
+          permission: allow
+          actions: read
+          privileges:
+          
+        - path: /content/tetrapak/customerhub/global/en/package-design/design-manual
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /content/tetrapak/customerhub/global/en/package-design/package-visualiser
+          permission: allow
+          actions: read
+          privileges: 
+
+        - path: /content/tetrapak/customerhub/global/en/package-design/easy-design
+          permission: deny
+          actions: read
+          privileges:          
 
     - cuhu_pack_mat:
         - path: /content/tetrapak/customerhub/global/en/ordering
