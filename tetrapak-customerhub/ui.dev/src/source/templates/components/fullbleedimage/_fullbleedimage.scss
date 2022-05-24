@@ -1,11 +1,6 @@
 .tp-pw-image {
     max-width: 100%;
-    .pw-padding {
-        &--zero {
-            @include padding($padding-zero $padding-l);
-            @include margin($margin-zero);
-        }
-    }
+    
     &__center-align {
         margin: $margin-zero auto;
         padding-left: $padding-zero;
@@ -26,6 +21,7 @@
         .pw-padding {
             &--regular {
                 @include padding($padding-l);
+                border-radius: 4px;
             }
         }
     }
@@ -39,7 +35,12 @@
             @include max-width($body-max-width);
             @include padding($padding-zero);
             margin: $margin-zero auto;
-    }
+        }
+        .pw-padding {
+            &--zero {
+                border-radius: 4px;
+            }
+        }
     }
     img {
         max-width: 100%;
