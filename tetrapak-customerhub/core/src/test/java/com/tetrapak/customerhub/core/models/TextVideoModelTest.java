@@ -107,13 +107,33 @@ public class TextVideoModelTest {
         Assert.assertEquals("text alignment", "right", textAlignment);
         
         Boolean packageDesign = textVideoModel.isPackageDesign();
-        assertNotNull("isPackageDesign field should not be null", packageDesign);
-        Assert.assertEquals("isPackageDesign", true, packageDesign);
+        assertNotNull("PackageDesign field should not be null", packageDesign);
+        Assert.assertEquals("PackageDesign", true, packageDesign);
 
         String subTitle = textVideoModel.getSubTitle();
         assertNotNull("Sub-Title is not null", subTitle);
         assertTrue("Sub-Title is not empty", subTitle.length() > 0);
         Assert.assertEquals("subTitle", "Design Submission", subTitle);
+        
+        String pwTheme = textVideoModel.getPwTheme();
+        assertNotNull("Theme is not null", pwTheme);
+        assertTrue("Theme is not empty", pwTheme.length() > 0);
+        Assert.assertEquals("pwTheme", "grayscale-lighter", pwTheme);
+        
+        String pwButtonTheme = textVideoModel.getPwButtonTheme();
+        assertNotNull("Button Theme is not null", pwButtonTheme);
+        assertTrue("Button Theme is not empty", pwButtonTheme.length() > 0);
+        Assert.assertEquals("pwButtonTheme", "link", pwButtonTheme);
+        
+        String anchorId = textVideoModel.getAnchorId();
+        assertNotNull("Anchor ID is not null", anchorId);
+        assertTrue("Anchor ID is not empty", anchorId.length() > 0);
+        Assert.assertEquals("Anchor ID", "features", anchorId);
+        
+        String anchorTitle = textVideoModel.getAnchorTitle();
+        assertNotNull("Anchor Title is not null", anchorTitle);
+        assertTrue("Anchor Title is not empty", anchorTitle.length() > 0);
+        Assert.assertEquals("anchorTitle", "Features", anchorTitle);
 
     }
 

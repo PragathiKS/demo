@@ -16,5 +16,11 @@
 	"isExternal":"true",
 	"thumbnailPath":"/content/dam/customerhub/get_started-3.PNG",
 	"textAlignment":"right",
-	"isPackageDesign":"true"
+	"packageDesign":"true",
+	"subTitle": "Design Submission",
+	"pwTheme": "grayscale-lighter",
+	"pwButtonTheme": "link",
+	"anchorId": "features",
+	"anchorTitle": "Features"
+	
 }
