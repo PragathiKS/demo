@@ -142,14 +142,14 @@
 
         ol ol,
         ul ul {
-            @include padding(0 0 0 20px);
+            @include padding($padding-zero $padding-zero $padding-zero 20px);
         }
 
         ul > li > ul,
         ol > li > ol {
-            @include margin-bottom(0);
+            @include margin-bottom($margin-zero);
             :last-child {
-                @include padding-bottom(0);
+                @include padding-bottom($margin-zero);
             }
         }
 
@@ -160,7 +160,7 @@
                 color: $color-tundora;
             }
             &:last-child {
-                @include padding-bottom(0);
+                @include padding-bottom($padding-zero);
             }
             li {
                 @include padding-bottom($padding-sm);
