@@ -1,5 +1,4 @@
 $color-red: #ff0000;
-$color-green: #8dc63f;
 
 @mixin label {
     @include line-height($font-l, $font-baseline);
@@ -219,7 +218,7 @@ $color-green: #8dc63f;
                 @include font-size(48px);
                 @include line-height(48px, 48px);
                 @include margin-right($margin-md);
-                color: $color-green;
+                color: $color-success-icon;
             }
         }
 

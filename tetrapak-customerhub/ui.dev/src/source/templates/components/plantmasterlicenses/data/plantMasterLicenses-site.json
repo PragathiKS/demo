@@ -1,0 +1,132 @@
+{
+    "meta": {
+        "total": 2,
+        "version": "1"
+    },
+    "data": [
+        {
+            "id": "00044001",
+            "name": "Tetra Pak® PlantMaster - AVEVA MES SI-kit, Site License",
+            "ref": {
+                "id": "00044001",
+                "name": "Tetra Pak® PlantMaster - AVEVA MES SI-kit, Site License"
+            },
+            "extRef": {
+                "material": {
+                    "number": "3479537-0100AVV"
+                },
+                "tsso": null,
+                "qsv": null
+            },
+            "descriptions": [
+                {
+                    "body": "<p>This is a site license or per project delivery providing the right based on End-User License Agreement to access a library of configurable templates assembled from both solutions developed from Tetra Pak, and solutions available from AVEVA Model Driven MES best practices, consisting of ready to use UI forms and workflows to reduce engineering efforts, and lower cost of ownership by reducing customized coding. &nbsp;Besides, this allows licensed user to access software documentation, hotfixes and FAQ support.</p>\n<p>Included in release v1.1 is an installable package with Reception and CIP templates, with the possibility to also use AVEVA Recipe Management.</p>\n<p>The solution builds on AVEVA model-driven MES approach, a digital and graphical modelling of work processes and operational activities. The result is a new level of sustainability and reusability which is a key enabler for sharing best project practices and standardisation of processes across lines, plants and multi-site enterprises.</p>"
+                }
+            ],
+            "summary": null,
+            "contacts": [],
+            "featureBenefits": [],
+            "options": [],
+            "images": [],
+            "specifications": [],
+            "relationships": [],
+            "capDetail": null,
+            "packageDetail": null,
+            "utilityUsageDetail": null,
+            "packagingEquipmentDetail": {
+                "packageCapacities": [],
+                "packageCategories": []
+            },
+            "strawDetail": null,
+            "learningItemDetail": null,
+            "categories": [
+                {
+                    "ref": {
+                        "id": "4821",
+                        "name": "Site Licenses"
+                    },
+                    "parent": {
+                        "id": "4468",
+                        "name": null
+                    },
+                    "description": null,
+                    "images": [],
+                    "specifications": [],
+                    "subCategories": [],
+                    "userNavigable": false,
+                    "options": [],
+                    "packageCategoryDetail": {
+                        "printingMethods": [],
+                        "packagingMaterialEffects": []
+                    },
+                    "openingDetail": {
+                        "packagingMaterials": []
+                    }
+                }
+            ],
+            "status": null
+        },
+        {
+            "id": "00044002",
+            "name": " Tetra Pak® PlantMaster - Production Control - Siemens TIA Platform SI-kit, Site License",
+            "ref": {
+                "id": "00044002",
+                "name": " Tetra Pak® PlantMaster - Production Control - Siemens TIA Platform SI-kit, Site License"
+            },
+            "extRef": {
+                "material": {
+                    "number": "3479532-0100TIA"
+                },
+                "tsso": null,
+                "qsv": null
+            },
+            "descriptions": [
+                {
+                    "body": "<p>This is a site license or per project delivery, providing the right to access Production Control library&nbsp;on Machines on a single Site, based on End-User License Agreement.</p>\n<p>Production&nbsp;Control - Siemens TIA Platform SI-kit is&nbsp;Tetra Pak PlantMaster libraries implemented in Siemens TIA standard automation platform. It takes full&nbsp;control of operational parameters throughout plant, standardizes structure of code enabling easier maintenance &amp; troubleshooting, and increases process stability and reliability by reducing risk of human error.</p>"
+                }
+            ],
+            "summary": null,
+            "contacts": [],
+            "featureBenefits": [],
+            "options": [],
+            "images": [],
+            "specifications": [],
+            "relationships": [],
+            "capDetail": null,
+            "packageDetail": null,
+            "utilityUsageDetail": null,
+            "packagingEquipmentDetail": {
+                "packageCapacities": [],
+                "packageCategories": []
+            },
+            "strawDetail": null,
+            "learningItemDetail": null,
+            "categories": [
+                {
+                    "ref": {
+                        "id": "4821",
+                        "name": "Site Licenses"
+                    },
+                    "parent": {
+                        "id": "4468",
+                        "name": null
+                    },
+                    "description": null,
+                    "images": [],
+                    "specifications": [],
+                    "subCategories": [],
+                    "userNavigable": false,
+                    "options": [],
+                    "packageCategoryDetail": {
+                        "printingMethods": [],
+                        "packagingMaterialEffects": []
+                    },
+                    "openingDetail": {
+                        "packagingMaterials": []
+                    }
+                }
+            ],
+            "status": null
+        }
+    ]
+}

@@ -4,7 +4,7 @@ import com.adobe.acs.commons.email.EmailService;
 import com.day.cq.wcm.api.LanguageManager;
 import com.tetrapak.customerhub.core.beans.aip.CotsSupportFormBean;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
-import com.tetrapak.customerhub.core.services.config.AIPEmailConfiguration;
+import com.tetrapak.customerhub.core.services.config.CotsSupportEmailConfiguration;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.event.jobs.JobManager;
@@ -20,9 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 public class CotsSupportServiceImplTest {
@@ -35,7 +34,7 @@ public class CotsSupportServiceImplTest {
     private EmailService emailService;
 
     @Mock
-    private AIPEmailConfiguration AIPEmailConfiguration;
+    private CotsSupportEmailConfiguration AIPEmailConfiguration;
 
     @Mock
     private LanguageManager languageManager;
@@ -62,7 +61,7 @@ public class CotsSupportServiceImplTest {
         aemContext.registerService(JobManager.class,jobManager);
         aemContext.registerService(EmailService.class,emailService);
         aemContext.registerService(LanguageManager.class,languageManager);
-        aemContext.registerService(AIPEmailConfiguration.class, AIPEmailConfiguration);
+        aemContext.registerService(CotsSupportEmailConfiguration.class, AIPEmailConfiguration);
         when(AIPEmailConfiguration.emailTemplatePath()).thenReturn(templatePath);
         when(AIPEmailConfiguration.recipientAddresses()).thenReturn(new String[]{recipientEmail});
         when(AIPEmailConfiguration.isCotsSupportEmailEnabled()).thenReturn(true);

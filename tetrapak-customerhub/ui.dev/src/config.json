@@ -167,11 +167,25 @@
         "testMultiple": true,
         "name": "addequipment",
         "enforce": true,
-        "chunks": "all"
+        "chunks": "all",
+        "minSize": 0
+      },
+      "plantmastertrainings": {
+        "testMultiple": true,
+        "name": "plantmastertrainings",
+        "enforce": true,
+        "chunks": "all",
+        "minSize": 0
       },
       "cotssupport": {
         "testMultiple": true,
         "name": "cotssupport",
+        "enforce": true,
+        "chunks": "all"
+      },
+      "plantmasterlicenses": {
+        "testMultiple": true,
+        "name": "plantmasterlicenses",
         "enforce": true,
         "chunks": "all"
       }
@@ -221,8 +235,14 @@
       "addequipment": [
         "source/templates/components/addequipment/"
       ],
+      "plantmastertrainings": [
+        "source/templates/components/plantmastertrainings/"
+      ],
       "cotssupport": [
         "source/templates/components/cotssupport/"
+      ],
+      "plantmasterlicenses": [
+        "source/templates/components/plantmasterlicenses/"
       ]
     },
     "handlebars": {

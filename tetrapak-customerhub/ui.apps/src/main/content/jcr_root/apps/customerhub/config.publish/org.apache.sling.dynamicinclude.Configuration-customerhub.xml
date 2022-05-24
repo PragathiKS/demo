@@ -3,7 +3,7 @@
           jcr:primaryType="sling:OsgiConfig"
           include-filter.config.enabled="{Boolean}true"
           include-filter.config.path="/content/tetrapak/customerhub"
-          include-filter.config.resource-types="[customerhub/components/structure/header,customerhub/components/structure/navigation,customerhub/components/content/cotssupport]"
+          include-filter.config.resource-types="[customerhub/components/structure/header,customerhub/components/structure/navigation,customerhub/components/content/cotssupport,customerhub/components/content/plantmastertrainings]"
           include-filter.config.include-type="SSI"
           include-filter.config.add_comment="{Boolean}false"
           include-filter.config.selector="nocache"

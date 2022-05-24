@@ -1,0 +1,17 @@
+<div class="tp-aip-licenses__info-card tp-aip-licenses-eng__info-card">
+    <div class="row">
+        <div class="col-lg-10">
+            <h2 class="tp-aip-licenses__info-card-title">{{i18n key=i18nKeys.engineeringLicense.licenseDescriptions}}</h2>
+        </div>
+    </div>
+    {{#each this.engLicensesDataArr}}
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="tp-aip-licenses-eng__txt-block">
+                    <p class="tp-aip-licenses-eng__txt-block-title">{{this.name}}</p>
+                    {{{this.descriptions.[0].body}}}
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
