@@ -1,8 +1,9 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.tetrapak.customerhub.core.services.DynamicMediaService;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
-import com.tetrapak.customerhub.core.utils.LinkUtil;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -10,8 +11,10 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import com.tetrapak.customerhub.core.services.DynamicMediaService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
+import com.tetrapak.customerhub.core.utils.LinkUtils;
 
 /**
  * Model class for Text Video component.
@@ -42,8 +45,7 @@ public class TextVideoModel {
     @Inject
     private String linkURL;
 
-    @Inject
-    private Boolean isExternal;
+    private String linkType;
 
     @Inject
     private String videoSource;
@@ -61,6 +63,24 @@ public class TextVideoModel {
 
     @Inject
     private String textAlignment;
+    
+    @Inject
+    private Boolean packageDesign;
+    
+    @Inject
+    private String subTitle;
+    
+    @Inject
+    private String pwTheme;
+
+    @Inject
+    private String pwButtonTheme;
+    
+    @Inject
+    private String anchorId;
+
+    @Inject
+    private String anchorTitle;
 
     @PostConstruct
     protected void init() {
@@ -70,6 +90,9 @@ public class TextVideoModel {
         }
         if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
             damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+        }
+        if(StringUtils.isNotBlank(linkURL)) {
+            linkType = LinkUtils.linkType(linkURL);
         }
     }
 
@@ -89,8 +112,8 @@ public class TextVideoModel {
         return linkURL;
     }
 
-    public Boolean isExternal() {
-        return isExternal;
+    public String getLinkType() {
+        return linkType;
     }
 
     public String getVideoSource() {
@@ -115,5 +138,29 @@ public class TextVideoModel {
 
     public String getTextAlignment() {
         return textAlignment;
+    }
+    
+    public Boolean isPackageDesign() {
+        return packageDesign;
+    }
+    
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public String getPwTheme() {
+        return pwTheme;
+    }
+
+    public String getPwButtonTheme() {
+        return pwButtonTheme;
+    }
+    
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    public String getAnchorTitle() {
+        return anchorTitle;
     }
 }

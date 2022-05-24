@@ -1,35 +1,154 @@
-.tp-text-video {
-    &__heading {
-        @include font-size($font-l);
-        @include line-height($font-xl, $font-l);
-        @include margin-bottom($margin-md);
+.pw-text-video {
+    @include border-radius($border-radius);
+    @include margin-bottom($margin-l);
+    @include padding($padding-l);
+    $self: &;
 
+    .left-pad {
         @media #{$desktop} {
-            @include font-size($font-xl);
-            @include line-height($font-d-xl, $font-xl);
-            @include margin-bottom($margin-md);
+            @include padding-right($padding-l);
+        }
+    }
+    .right-pad {
+        @media #{$desktop} {
+            @include padding-left($padding-l);
         }
     }
 
-    &__description {
-        @include font-size($font-baseline);
-        @include line-height($font-l, $font-baseline);
-        @include margin-bottom($margin-md);
-
-        @media #{$desktop} {
-            @include margin-bottom($margin-md);
-        }
+    &__subTitle {
+        @include margin-bottom($margin-sm);
+        @include font-size($font-sm);
+        @include line-height(16px, $font-sm);
+        color: $color-boulder;
+        font-weight: 500;
+        text-transform: uppercase;
     }
-
     &__link {
         color: $color-congress-blue;
-
         .tpatom-link {
             @include line-height($font-l, $font-baseline);
         }
     }
 
-    video {
-        width: 100%;
+    &__title {
+        h3 {
+            @include margin-bottom($padding-md);
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+
+            @media #{$desktop} {
+                @include font-size($font-xl);
+                @include line-height($font-d-xl, $font-xl);
+                @include margin-bottom($margin-md);
+            }
+        }
+
+        &--packagedesign {
+            h3 {
+                @include margin-bottom($margin-md);
+                @include font-size($font-l);
+                @include line-height($font-xl, $font-l);
+                font-weight: 400;
+            }
+        }
+    }
+
+    &__description {
+        @include margin-bottom($margin-md);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+
+        a {
+            font-weight: 500;
+        }
+
+        li {
+            display: table;
+            margin-top: $margin-sm;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        ol,
+        ul {
+            @include margin-bottom(8px);
+            @include padding-left($padding-sm);
+        }
+
+        ul {
+            display: table;
+            li {
+                &::before {
+                    @include margin-right($margin-sm);
+                    @include padding-right($padding-sm);
+                    display: table-cell;
+                    color: $color-tundora;
+                    content: '\2022';
+                }
+            }
+        }
+
+        ol {
+            display: table;
+            counter-reset: section;
+            list-style-type: none;
+            li {
+                &::before {
+                    @include margin-right($margin-sm);
+                    @include font-size(14px);
+                    @include padding-right($padding-sm);
+                    display: table-cell;
+                    content: counters(section, '.') ' ';
+                    counter-increment: section;
+                }
+            }
+        }
+
+        ol ol,
+        ul ul {
+            @include padding(0 0 0 20px);
+        }
+
+        ul > li > ul,
+        ol > li > ol {
+            @include margin-bottom($margin-zero);
+            :last-child {
+                @include padding-bottom($padding-zero);
+            }
+        }
+
+        ul li,
+        ol li {
+            &::before {
+                color: $color-tundora;
+            }
+            &:last-child {
+                @include padding-bottom($padding-zero);
+            }
+        }
+
+        ol li ol,
+        ul li ul {
+            @include padding-top(16px);
+        }
+
+        ul ul ul {
+            li {
+                &::before {
+                    content: '\2012';
+                    font-weight: 400;
+                }
+            }
+        }
+
+        ol ol ol {
+            @include padding-left($padding-l);
+        }
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-md);
+        }
     }
 }
