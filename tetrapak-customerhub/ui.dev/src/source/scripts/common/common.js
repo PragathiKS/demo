@@ -5,7 +5,7 @@ import { trackAnalytics } from '../utils/analytics';
 import { templates } from '../utils/templates';
 import Handlebars from 'handlebars';
 import * as money from 'argon-formatter';
-import { trackAnalytics } from '../utils/analytics';
+
 import { isExternal, isDownloable } from '../utils/updateLink';
 
 const currentUserAgent = window.navigator.userAgent;
@@ -359,52 +359,4 @@ export const addLinkAttr = (linkClass) => {
       }
     }
   });
-};
-
-export const getLinkClickAnalytics =(e,parentTitle,componentName,linkClass, redirect=true,dataObj={}) => {
-  const $target = $(e.target);
-  const $this = $target.closest(linkClass);
-  const trackingKey = 'linkClick';
-  const linkParentTitle = ('linkParentTitle' in dataObj) ? (dataObj.linkParentTitle || '') : `${$this.data('anchor-type')}_${$this.data(
-    parentTitle
-  )}`;
-  const linkSection = dataObj.linkSection || $this.data('link-section');
-  const linkName = dataObj.linkName || $this.data('link-name');
-  const linkType = dataObj.linkType || ($this.attr('target') === '_blank' ? 'external' : 'internal');
-  const trackingObj = {};
-  const eventObject = {};
-  const eventType = 'linkClick';
-
-  trackingObj['linkSection'] = linkSection;
-  trackingObj['linkName'] = linkName;
-  trackingObj['linkParentTitle'] = linkParentTitle;
-  trackingObj['linkType'] = linkType;
-
-  eventObject['event'] = componentName;
-  eventObject['eventType'] = eventType;
-
-  trackAnalytics(
-    trackingObj,
-    'linkClick',
-    trackingKey,
-    undefined,
-    false,
-    eventObject
-  );
-
-  if(redirect) {
-    setTimeout(function() {
-      if (linkType === 'internal')  {
-        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224) {
-          window.open($this.attr('href'), '_blank');
-        }
-        else {
-          window.open($this.attr('href'), '_self');
-        }
-      }
-      else {
-        window.open($this.attr('href'), $this.attr('target'));
-      }
-    }, 500);
-  }
 };

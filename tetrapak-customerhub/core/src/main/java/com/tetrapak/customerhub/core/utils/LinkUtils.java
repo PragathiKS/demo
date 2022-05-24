@@ -32,7 +32,6 @@ public class LinkUtils extends WCMUsePojo {
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
                 return request.getResourceResolver().map(link) + ".html";
-                return request.getResourceResolver().map(link);
             }
             return link + ".html";
         }
