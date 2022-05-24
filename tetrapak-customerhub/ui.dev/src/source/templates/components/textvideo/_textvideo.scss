@@ -1,5 +1,6 @@
 .pw-text-video {
     @include border-radius($border-radius);
+    @include margin-top($margin-l);
     @include margin-bottom($margin-l);
     @include padding($padding-l);
     $self: &;
