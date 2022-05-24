@@ -643,6 +643,9 @@ public final class CustomerHubConstants {
     /** The Constant VALUE. */
     public static final String VALUE = "Value";
 
+    /** The Constant VALUE. */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
+
     /**
      * Instantiates a new customer hub constants.
      */
