@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { getLinkClickAnalytics, addLinkAttr } from '../../../scripts/common/common';
+import { getLinkClickAnalytics } from '../../../scripts/common/common';
 class TextImage {
   constructor({ el }) {
     this.root = $(el);
@@ -15,7 +15,9 @@ class TextImage {
 
   trackAnalytics = e => {
     e.preventDefault();
-    getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics');
+    const dataObj = {};
+    dataObj['linkType'] = $(e.target).attr('data-link-type');
+    getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics', null, dataObj);
   };
 
 
@@ -33,7 +35,6 @@ class TextImage {
     this.initCache();
     this.bindEvents();
     this.seoChanges();
-    addLinkAttr('.js-textImage-analytics');
   }
 }
 

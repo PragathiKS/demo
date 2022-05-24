@@ -214,9 +214,23 @@
         }
 
         a.tpatom-link {
+            display: inline-flex;
+            align-items: center;
             .icon {
+                @include font-size($font-baseline);
                 @include padding-left(6px);
                 display: inline-block;
+                &::before {
+                    @include font-size($font-baseline);
+                }
+            }
+
+            &--internal {
+                .icon {
+                    &::before {
+                        @include font-size($font-normal);
+                    }
+                }
             }
         }
     }
