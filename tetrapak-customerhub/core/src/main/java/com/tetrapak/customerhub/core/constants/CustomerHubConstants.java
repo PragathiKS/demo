@@ -615,10 +615,10 @@ public final class CustomerHubConstants {
     public static final String VALUE = "Value";
 
     /** The Constant HOME_PAGE_REL_PATH. */
-    public static final String HOME_PAGE_REL_PATH = "home";
+    public static final String HOME_PAGE_REL_PATH = "dashboard";
 
     /** The Constant LANGUAGE_LEVEL. */
-    public static final int LANGUAGE_PAGE_LEVEL = 5;
+    public static final int LANGUAGE_PAGE_LEVEL = 4;
 
     /** The Constant PARAM_LINK. */
     public static final String PARAM_LINK = "linkPath";
