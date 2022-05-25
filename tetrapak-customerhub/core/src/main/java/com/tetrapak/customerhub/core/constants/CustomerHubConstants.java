@@ -648,10 +648,10 @@ public final class CustomerHubConstants {
     public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
 
     /** The Constant HOME_PAGE_REL_PATH. */
-    public static final String HOME_PAGE_REL_PATH = "home";
+    public static final String HOME_PAGE_REL_PATH = "dashboard";
 
     /** The Constant LANGUAGE_LEVEL. */
-    public static final int LANGUAGE_PAGE_LEVEL = 5;
+    public static final int LANGUAGE_PAGE_LEVEL = 4;
 
     /**
      * Instantiates a new customer hub constants.

@@ -4,10 +4,16 @@
 
         <div class="tp_pw-breadcrumb text-small tp-container" data-module="Breadcrumb">
             <div class="tp_pw-breadcrumb__wrapper">
+                <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link${data.breadcrumbSubpages.size == 1 ? ' secondlast':''}" href="${data.homePagePath}">
+                	<sly data-sly-test="${data.breadcrumbSubpages.size == 1}">
+                        <i class="icon icon-Chevron_Left"></i>
+                    </sly>
+                    ${data.homePageTitle @ i18n, locale=data.locale}
+                </a>
                 <sly data-sly-list.subpages="${data.breadcrumbSubpages}">
                     <sly data-sly-test="${!subpagesList.last}">
                         <a class="tp_pw-breadcrumb__link js-tp_pw-breadcrumb__link ${data.currentPageParentIndex == subpagesList.count ? 'secondlast':''}" href="${data.breadcrumbSubpages[subpages]}">
-                            <i class="icon icon-Chevron_Left "></i>
+                            <i class="icon icon-Chevron_Left"></i>
                             <i class="icon icon-Chevron_Right"></i>
                             ${subpages @i18n, locale=data.locale}
                         </a>
