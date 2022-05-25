@@ -1,5 +1,6 @@
 .tp-pw-image {
     max-width: 100%;
+
     .pw-padding {
         &--zero {
             @include padding($padding-zero $padding-xxxl);
