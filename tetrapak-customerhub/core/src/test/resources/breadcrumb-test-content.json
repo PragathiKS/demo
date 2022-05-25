@@ -24,7 +24,7 @@
 			"jcr:primaryType": "cq:PageContent",
 			"jcr:title": "check",
 			"cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
-			"disableClickInNavigation" : "true",
+			"disableClickInBreadcrumbs" : "true",
 			"sling:resourceType": "customerhub/components/structure/page",
 			"root": {
 				"jcr:primaryType": "nt:unstructured",

@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * The Class BreadcrumbModelTest.
@@ -62,6 +63,8 @@ public class BreadcrumbModelTest {
         assertEquals("/content/tetrapak/customerhub/global/en/package-design/primary/check/checkdisableLink.html",
                 model.getBreadcrumbSubpages().get("Check disable link"));
         assertEquals("There should have been out put as 2",2, model.getCurrentPageParentIndex());
+        assertEquals("/content/tetrapak/customerhub/global/en/dashboard.html", model.getHomePagePath());
+        assertNull(model.getHomePageTitle());
     }
 
 }
