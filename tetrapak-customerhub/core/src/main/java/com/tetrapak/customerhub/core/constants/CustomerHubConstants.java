@@ -608,6 +608,30 @@ public final class CustomerHubConstants {
     /** The Constant SESSION_NULL_MESSAGE. */
     public static final String SESSION_NULL_MESSAGE = "Session is null";
     
+    /** The Constant CONTENT_DAM_PATH. */
+    public static final String CONTENT_DAM_PATH = "/content/dam/";
+    
+    /** The Constant CONTENT_PATH . */
+    public static final String CONTENT_PATH = "/content/";
+    
+    /** The Constant INTERNAL_LINK. */
+    public static final String INTERNAL_LINK = "internal";
+
+    /** The Constant EXTERNAL_LINK. */
+    public static final String EXTERNAL_LINK = "external";
+
+    /** The Constant DOWNLOAD_LINK. */
+    public static final String DOWNLOAD_LINK = "download";
+    
+    /** The Constant DOWNLOAD_LINK. */
+    public static final String EXTERNAL_DOWNLOAD_LINK = "externalDownload";
+    
+    /** The Constant HTTP. */
+    public static final String HTTP = "http";
+    
+    /** The Constant WWW. */
+    public static final String WWW = "www";
+    
     /** The Constant TRAINING_NAME. */
     public static final String TRAINING_NAME = "trainingName";
 
@@ -621,3 +645,4 @@ public final class CustomerHubConstants {
         throw new IllegalStateException("Utility class");
     }
 }
+
