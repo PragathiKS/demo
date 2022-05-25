@@ -1,0 +1,76 @@
+<sly data-sly-template.plantmasterlicenses_site_template="${@ data, flag}">
+    <div data-sly-test="${data.description}" class="tp-aip-licenses__subheading">
+        <p>${data.description @ i18n, context='html'}</p>
+    </div>
+    <div class="tp-aip-licenses__info-card">
+        <div class="row">
+            <div class="col-lg-6 tp-aip-licenses__form">
+                <h2 class="tp-aip-licenses__form-title">${data.title @ i18n}</h2>
+                <form enctype="multipart/form-data">
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input', id='nameOfSite', labelText=data.nameOfSite, error=data.inputFieldError, required=true, errorJSClass='js-tp-aip-licenses__error-msg-required', autoLocatorInput='nameOfSiteInput', autoLocatorLabel='nameOfSiteText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input', id='locationOfSite', labelText=data.locationOfSite, error=data.inputFieldError, errorJSClass='js-tp-aip-licenses__error-msg-required', required=true, autoLocatorInput='locationOfSiteInput', autoLocatorLabel='locationOfSiteText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly 
+                        data-sly-use.dropdownfield="/apps/commons/components/molecules/dropdownfield/dropdownfield-template.html" 
+                        data-sly-call="${dropdownfield.dropdownfield_template @ defaultValue=data.applicationDropdownPlaceholder, id='application', labelText=data.application, error=data.selectFieldError, errorJSClass='js-tp-aip-licenses__error-msg-required', required=true, autoLocatorInput='applicationInput', options=data.applicationDropdown, autoLocatorLabel='applicationText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input', id='plc-type', labelText=data.plcType, autoLocatorInput='plc-typeInput', autoLocatorLabel='plc-typeText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input', id='hmi-type', labelText=data.hmiType, autoLocatorInput='hmi-typeInput', autoLocatorLabel='hmi-typeText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='text', inputClass='tpatom-input-box__input', id='mes-type', labelText=data.mesType, autoLocatorInput='mes-typeInput', autoLocatorLabel='mes-typeText'}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='number', minValue='1', inputClass='tpatom-input-box__input tpatom-input-box__input--sm', id='basic-unit', labelText=data.numberOfBasicUnit, error=data.inputFieldError, required=true, autoLocatorInput='basic-unitInput', errorJSClass='js-tp-aip-licenses__error-msg-required', autoLocatorLabel='basic-unitText', tooltiptitle=data.basicUnitToolTipHeading, tooltipText=data.basicUnitToolTipDescription}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly
+                        data-sly-use.inputField="/apps/commons/components/molecules/inputfield/inputfield-template.html"
+                        data-sly-call="${inputField.inputfield_template @ inputType='number', minValue='1', inputClass='tpatom-input-box__input tpatom-input-box__input--sm', id='advanced-unit', labelText=data.numberOfAdvancedUnit, error=data.inputFieldError, required=true, autoLocatorInput='advanced-unitInput', errorJSClass='js-tp-aip-licenses__error-msg-required', autoLocatorLabel='advanced-unitText', tooltiptitle=data.advancedUnitToolTipHeading, tooltipText=data.advancedUnitToolTipDescription}">
+                        </sly>
+                    </div>
+                    <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                        <sly data-sly-use.btn="/apps/commons/components/atoms/button/button-template.html"
+                            data-sly-call="${btn.button_template @text=data.submitButtonLabel,modifier='primary',baseClass='tp-aip-licenses-site__btn',jsClass='js-tp-aip-licenses-site__btn',iconClass='icon-Chevron_Right'}" >
+                        </sly>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="tp-aip-licenses__info-card" id="sitelicensesInfo">
+        <div class="row">
+            <div class="col-lg-9">
+                <h2>${data.impInformationTitle @ i18n}</h2>
+                <p>${data.impInformationDescription @ i18n, context='html'}</p>
+            </div>
+        </div>
+    </div>
+    <div class="js-tp-aip-licenses__site-description d-none"></div>
+</sly>

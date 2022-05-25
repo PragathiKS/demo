@@ -1,5 +1,4 @@
 .tp-cots-support {
-    $color-success: #8dc63f;
 
     &__title {
         @include margin-bottom($margin-md);
@@ -62,11 +61,16 @@
             select {
                 border: 1px solid $color-alert;
             }
+
+            .tpatom-input-box__input {
+                border: 1px solid $color-alert;                
+            }
         }
         .error-msg {
             @include font-size($font-sm);
             display: none;
-            color: $color-alert;
+            color: $color-red;
+            font-weight: 500;
 
             &--active {
                 display: block;
@@ -107,7 +111,7 @@
             @include font-size($font-xxl);
             @include line-height($font-xxl, $font-xxl);
             @include margin-bottom($margin-sm);
-            color: $color-success;
+            color: $color-success-icon;
 
             @media #{$tablet} {
                 @include margin-bottom($margin-zero);

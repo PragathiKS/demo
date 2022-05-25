@@ -1,0 +1,5 @@
+<sly data-sly-template.textareabox_template="${@ inputType, inputClass, id, placeholderVal, required, autoLocatorInput, error, errorJSClass}">
+    <textarea type="${inputType}" class="${inputClass}" id="${id}" name="${id}"
+              placeholder="${placeholderVal @i18n}" required="${required}" auto_locator="${autoLocatorInput}"></textarea>
+    <div data-sly-test="${error}" data-error-msg="${error @ i18n}" class="error-msg ${errorJSClass}">${error @ i18n}</div>
+</sly>

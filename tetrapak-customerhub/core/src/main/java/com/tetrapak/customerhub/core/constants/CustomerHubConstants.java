@@ -578,7 +578,7 @@ public final class CustomerHubConstants {
     /** TheConstant SORT */
     public static final String EQUIPMENT_API_SORT = "sort";
 
-	/** The Constant for Email ID. */
+    /** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
 
     /** The Constant PARAM_LINK. */
@@ -607,7 +607,40 @@ public final class CustomerHubConstants {
 
     /** The Constant WWW. */
     public static final String WWW = "www";
+
+    /** The Constant for user groups */
+    public static final String CUSTOMER_GROUPS = "groups";
     
+    /** The Constant AIP_PRODUCT_DETAILS_API. */
+    public static final String AIP_PRODUCT_DETAILS_API = "aip-product-details";
+    
+    /** The Constant INCLUDE_CHILDREN. */
+    public static final String INCLUDE_CHILDREN = "includechildren";
+    
+    /** The Constant DETAILS. */
+    public static final String DETAILS = "details";
+    
+    /** The Constant TRUE. */
+    public static final String TRUE = "true";
+    
+    /** The Constant SUCCESS_MESSAGE. */
+    public static final String SUCCESS_MESSAGE = "Success";
+    
+    /** The Constant BAD_REQUEST_MESSAGE. */
+    public static final String BAD_REQUEST_MESSAGE = "Bad Request";
+    
+    /** The Constant INVALID_JSON_REQUEST_MESSAGE. */
+    public static final String INVALID_JSON_REQUEST_MESSAGE = "Invalid JSON request";
+    
+    /** The Constant SESSION_NULL_MESSAGE. */
+    public static final String SESSION_NULL_MESSAGE = "Session is null";
+    
+    /** The Constant TRAINING_NAME. */
+    public static final String TRAINING_NAME = "trainingName";
+
+    /** The Constant VALUE. */
+    public static final String VALUE = "Value";
+
     /**
      * Instantiates a new customer hub constants.
      */

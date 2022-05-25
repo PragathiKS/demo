@@ -244,7 +244,7 @@
             @include font-size($font-xxl);
             @include line-height($font-xxl, $font-xxl);
             @include margin-right($margin-md);
-            color: $color-success;
+            color: $color-success-icon;
         }
     }
 
