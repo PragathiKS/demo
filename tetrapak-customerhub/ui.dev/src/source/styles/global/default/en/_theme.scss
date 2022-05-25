@@ -21,7 +21,7 @@ a {
 }
 .pw-margin {
     &--zero {
-        margin: 0;
+        margin: $margin-zero;
     }
 }
 .pw-padding {
