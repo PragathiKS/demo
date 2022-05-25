@@ -59,6 +59,16 @@
                                                     fieldLabel="Hide Breadcrumbs"
                                                     value="{Boolean}true"
                                                     name="./hideBreadcrumbs"/>
+                                            <disableClickInBreadcrumbs
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    text="Disable clickable link in breadcrumbs"
+                                                    uncheckedValue="{Boolean}false"
+                                                    fieldDescription="Disable clickable link in breadcrumbs for this page"
+                                                    fieldLabel="Disable clickable link"
+                                                    value="{Boolean}true"
+                                                    name="./disableClickInBreadcrumbs"/>
                                         </items>
                                     </breadcrumbs>
                                     <section2

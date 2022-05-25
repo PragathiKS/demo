@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * The Class BreadcrumbModel.
@@ -37,9 +38,14 @@ public class BreadcrumbModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(BreadcrumbModel.class);
 
     /**
-     * The Constant LOGGER.
+     * Hide breacrumbs property.
      */
     private static final String HIDE_BREADCRUMBS_PROPERTY = "hideBreadcrumbs";
+
+    /**
+     * Disable click in breadcrumbs property.
+     */
+    private static final String DISABLE_CLICK_BREADCRUMBS_PROPERTY = "disableClickInBreadcrumbs";
     /**
      * The breadcrumb subpages.
      */
@@ -71,35 +77,54 @@ public class BreadcrumbModel {
         selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
         final Map<String, String> breadcrumbPages = new LinkedHashMap<>();
         final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-
-        homePagePath = rootPath + "/" + CustomerHubConstants.HOME_PAGE_REL_PATH;
-        final Page homePagePage = request.getResourceResolver().adaptTo(PageManager.class).getPage(homePagePath);
-        homePageTitle = NavigationUtil.getPageTitle(homePagePage);
+        initHomePage(rootPath);
 
         if (Boolean.TRUE != currentPage.getProperties().get(HIDE_BREADCRUMBS_PROPERTY, Boolean.class)) {
             final String path = currentPage.getPath().replace(rootPath + "/", StringUtils.EMPTY);
-            final String[] pages = path.split("/");
-            final int length = pages.length;
 
             Page nextPage = currentPage;
-            for (int i = 0; i <= length; i++) {
-                if (Objects.nonNull(nextPage) && !nextPage.getPath().equalsIgnoreCase(rootPath) && !nextPage
-                        .isHideInNav() && nextPage.getContentResource() != null) {
-
-                    if (nextPage.getContentResource().getValueMap().containsKey("disableClickInNavigation")) {
-                        breadcrumbPages.put(NavigationUtil.getPageTitle(nextPage), null);
-                    } else {
-                        breadcrumbPages.put(NavigationUtil.getPageTitle(nextPage),
-                                LinkUtils.sanitizeLink(nextPage.getPath(), request));
-                    }
-                    nextPage = nextPage.getParent();
-                }
+            while (Objects.nonNull(nextPage)
+                    && !nextPage.getPath().equalsIgnoreCase(rootPath)
+                    && !nextPage.isHideInNav()
+                    && nextPage.getContentResource() != null) {
+                addToBreadcrumbs(breadcrumbPages, nextPage);
+                nextPage = nextPage.getParent();
             }
+
             final List<String> alKeys = new ArrayList<>(breadcrumbPages.keySet());
             Collections.reverse(alKeys);
             for (final String key : alKeys) {
                 breadcrumbSubpages.put(key, breadcrumbPages.get(key));
             }
+        }
+    }
+
+    /**
+     * Init home page path and title
+     *
+     * @param rootPath
+     */
+    private void initHomePage(String rootPath) {
+        homePagePath = rootPath + "/" + CustomerHubConstants.HOME_PAGE_REL_PATH;
+        Optional.ofNullable(request.getResourceResolver())
+                .map(r -> r.adaptTo(PageManager.class))
+                .map(p -> p.getPage(homePagePath))
+                .ifPresent(page -> homePageTitle = NavigationUtil.getPageTitle(page));
+    }
+
+    /**
+     * Add applicable page to breadcrumbs list
+     *
+     * @param breadcrumbPages
+     * @param nextPage
+     */
+    private void addToBreadcrumbs(Map<String, String> breadcrumbPages, Page nextPage) {
+        if (Boolean.TRUE == nextPage.getContentResource().getValueMap()
+                .get(DISABLE_CLICK_BREADCRUMBS_PROPERTY, Boolean.class)) {
+            breadcrumbPages.put(NavigationUtil.getPageTitle(nextPage), null);
+        } else {
+            breadcrumbPages
+                    .put(NavigationUtil.getPageTitle(nextPage), LinkUtils.sanitizeLink(nextPage.getPath(), request));
         }
     }
 
