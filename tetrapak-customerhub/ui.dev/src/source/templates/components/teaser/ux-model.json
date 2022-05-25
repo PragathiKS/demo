@@ -1,0 +1,56 @@
+{
+  "heading": "Heading",
+  "anchorId": "test",
+  "anchorTitle": "title",
+  "pwTheme": "grayscale-white",
+  "teaserList": [
+    {
+      "title": "Title",
+      "description": "Description",
+      "linkText": "Link Text",
+      "linkPath": "/content/tetrapak/publicweb/lang-master/en/home.html",
+      "linkType": "_self",
+      "fileReference": "https://akm-img-a-in.tosshub.com/indiatoday/google-apps-thumb-559_120517104011_0.jpg?ENIc7eh9xZiGz9Zv7PoE4Jr5r0J7dmIk",
+      "alt": "Image",
+      "pwButtonTheme": "link",
+      "assetName": "test.pdf",
+      "pwLinkTheme": "link"
+    },
+    {
+      "title": "Title",
+      "description": "Description",
+      "linkText": "Link Text",
+      "linkPath": "/content/tetrapak/publicweb/lang-master/en/home.html",
+      "linkType": "_self",
+      "fileReference": "",
+      "alt": "Image",
+      "pwButtonTheme": "link",
+      "assetName": "test.pdf",
+      "pwLinkTheme": "link"
+    },
+    {
+      "title": "Title",
+      "description": "Description",
+      "linkText": "Link Text",
+      "linkPath": "/content/tetrapak/publicweb/lang-master/en/home.html",
+      "linkType": "_self",
+      "fileReference": "https://akm-img-a-in.tosshub.com/indiatoday/google-apps-thumb-559_120517104011_0.jpg?ENIc7eh9xZiGz9Zv7PoE4Jr5r0J7dmIk",
+      "alt": "Image",
+      "assetName": "test.pdf",
+      "pwButtonTheme": "link",
+      "pwLinkTheme": "link"
+    },
+    {
+      "title": "Title",
+      "description": "Description",
+      "linkText": "Link Text",
+      "linkPath": "/content/tetrapak/publicweb/lang-master/en/home.html",
+      "linkType": "_self",
+      "fileReference": "https://akm-img-a-in.tosshub.com/indiatoday/google-apps-thumb-559_120517104011_0.jpg?ENIc7eh9xZiGz9Zv7PoE4Jr5r0J7dmIk",
+      "alt": "Image",
+      "assetName": "test.pdf",
+      "pwButtonTheme": "link",
+      "pwLinkTheme": "link"
+    }
+  ]
+}

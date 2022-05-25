@@ -1,0 +1,38 @@
+<sly data-sly-template.plantmasterlicenses_engineering_template="${@ data, flag}">
+    <div class="tp-aip-licenses-eng">
+        <div class="tp-aip-licenses-eng__subheading">
+            <p>${data.description @ i18n, context='html'}</p>
+        </div>
+
+        <div class="tp-aip-licenses-eng__form js-tp-aip-licenses-eng__form">
+            <form enctype="multipart/form-data" novalidate>
+                <div class="js-tp-aip-licenses-eng__holders-wrap"></div>
+
+                <button type="button" class="tpatom-btn tpatom-btn--transparent tp-aip-licenses-eng__add-user js-tp-aip-licenses-eng__add-user">
+                    <i class="icon icon-Circle_Plus"></i><span class="tpatom-btn__text">${data.addUser @ i18n}</span>
+                </button>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                            <sly
+                                data-sly-use.textAreaField="/apps/commons/components/molecules/textareafield/textareafield-template.html"
+                                data-sly-call="${textAreaField.textareafield_template @ inputType='textarea', inputClass='tpatom-textarea-box__input', id='engineeringLicensesComments', labelText=data.comments, error=data.inputFieldError, required=false, errorJSClass='js-tp-aip-licenses__error-msg-required', autoLocatorInput='engineeringLicensesCommentsInput', autoLocatorLabel='engineeringLicensesCommentsText'}">
+                            </sly>
+                        </div>
+
+                        <div class="js-tp-aip-licenses__form-element tp-aip-licenses__form-element">
+                            <sly data-sly-use.btn="/apps/commons/components/atoms/button/button-template.html"
+                                 data-sly-call="${btn.button_template @text=data.submitButton,modifier='primary',baseClass='tp-aip-licenses-eng__btn',jsClass='js-tp-aip-licenses-eng__btn',iconClass='icon-Chevron_Right'}" >
+                            </sly>
+
+                            <div class="error-msg js-tp-aip-licenses__error-msg-required">${data.correctFormsError @ i18n}</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="js-tp-aip-licenses-eng__description d-none" id="licensesInfo"></div>
+    </div>
+</sly>

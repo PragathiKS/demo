@@ -92,6 +92,7 @@ public class VideoModelTest {
         assertEquals("youtube", model.getVideoSource());
         assertEquals("qwe123", model.getYoutubeVideoID());
         assertEquals("https://s7g10.scene7.com/is/content/tetrapak/Video", model.getDamVideoPath());
+        assertEquals("/content/dam/publicweb/Video.mp4", model.getOriginalDamVideoPath());
         assertEquals("/content/dam/publicweb/asset.jpg", model.getThumbnailPath());
         assertEquals("grayscale-white", model.getPwTheme());
         assertEquals("https://www.youtube.com/embed/qwe123?enablejsapi=1", model.getYoutubeEmbedURL());

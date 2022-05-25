@@ -1,0 +1,17 @@
+{{#if_eq template 'site'}}
+    <div class="tp-aip-licenses__success-message">
+        <p class="tp-aip-licenses__success-message-title">
+            <i class="icon icon-Circle_filled_Tick"></i>{{i18n key=i18nKeys.siteLicense.successMessageHeading}}
+        </p>
+        <div class="tp-aip-licenses__success-message-desc">{{i18n key=i18nKeys.siteLicense.successMessageDescription}}</div>
+    </div>
+{{/if_eq}}
+
+{{#if_eq template 'engineering'}}
+    <div class="tp-aip-licenses__success-message">
+        <p class="tp-aip-licenses__success-message-title">
+            <i class="icon icon-Circle_filled_Tick"></i>{{i18n key=i18nKeys.engineeringLicense.successMessageHeading}}
+        </p>
+        <div class="tp-aip-licenses__success-message-desc">{{i18n key=i18nKeys.engineeringLicense.successMessageDescription}}</div>
+    </div>
+{{/if_eq}}

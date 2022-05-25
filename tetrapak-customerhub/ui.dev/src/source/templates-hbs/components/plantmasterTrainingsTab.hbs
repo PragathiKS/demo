@@ -1,0 +1,55 @@
+<div class="tp-aip__accordion" id="tp-aip-trainings__accordion">
+    {{#each this.trainingsDataArr}}
+        <div class="tp-aip__acc-item">
+            <button class="tp-aip__btn-link btn btn-link" type="button" data-toggle="collapse" data-target="#tp-aip-trainings__acc{{@index}}" aria-expanded="false" aria-controls="collapseOne">
+                <span>{{this.name}}</span>
+                <i class="icon icon-Arrow_Down"></i>
+            </button>
+            <div id="tp-aip-trainings__acc{{@index}}" class="tp-aip__collapse collapse" aria-labelledby="headingOne" data-parent="#tp-aip-trainings__accordion">
+                <div class="tp-aip__acc-item-body">
+                    {{#if this.description}}
+                        <div class="tp-aip__acc-txt-block">
+                            <p class="tp-aip__acc-block-title">{{i18n key=../i18nKeys.courseDescription}}</p>
+                            <div>{{{this.description}}}</div>
+                        </div>
+                    {{/if}}
+
+                    {{#if this.itemGoals}}
+                        <div class="tp-aip__acc-txt-block">
+                            <p class="tp-aip__acc-block-title">{{i18n key=../i18nKeys.principleObjectives}}</p>
+                            <div>{{{this.itemGoals}}}</div>
+                        </div>
+                    {{/if}}
+
+                    {{#if this.audience}}
+                        <div class="tp-aip__acc-txt-block">
+                            <p class="tp-aip__acc-block-title">{{i18n key=../i18nKeys.targetGroups}}</p>
+                            <p>{{this.audience}}</p>
+                        </div>
+                    {{/if}}
+
+                    {{#if this.duration}}
+                        <div class="tp-aip__acc-txt-block">
+                            <p class="tp-aip__acc-block-title">{{i18n key=../i18nKeys.duration}}</p>
+                            <p>{{this.duration}} {{i18n key=../i18nKeys.hours}}</p>
+                        </div>
+                    {{/if}}
+
+                    {{#if this.maximumEnrollments}}
+                        <div class="tp-aip__acc-txt-block">
+                            <p class="tp-aip__acc-block-title">{{i18n key=../i18nKeys.maxParticipants}}</p>
+                            <p>{{this.maximumEnrollments}}</p>
+                        </div>
+                    {{/if}}
+
+                    <div class="tp-aip__acc-txt-block">
+                        <p class="tp-aip__acc-block-title">{{i18n key=../i18nKeys.knowledgeRequirements}}</p>
+                        <div>{{{this.comments}}}</div>
+                    </div>
+                </div>
+
+                {{> components/plantmasterTrainingsForm i18nKeys=../i18nKeys item=this index=@index}}
+            </div>
+        </div>
+    {{/each}}
+</div>

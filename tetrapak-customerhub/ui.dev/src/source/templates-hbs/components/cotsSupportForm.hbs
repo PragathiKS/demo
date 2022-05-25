@@ -1,4 +1,4 @@
-<h1 class="tp-cots-support__title">{{i18n key=i18nKeys.title}}</h1>
+<h1 class="tp-cots-support__title js-tp-cots-support__title">{{i18n key=i18nKeys.title}}</h1>
 <p class="tp-cots-support__subtitle">{{i18n key=i18nKeys.subTitle}}</p>
 
 <form class="tp-cots-support__form" enctype="multipart/form-data">
@@ -13,6 +13,7 @@
                         id="technicalIssues"
                         value=i18nKeys.technicalIssues
                         required="true"
+                        eleClasses="analytiscField"
                         checked="true"
                 }}
                 {{> atoms/radioButton/radioButton
@@ -21,6 +22,7 @@
                         id="productSupport"
                         value=i18nKeys.productSupport
                         required="true"
+                        eleClasses="analytiscField"
                         labelClasses="mb-0"
                 }}
         </div>
@@ -30,6 +32,7 @@
                         labelText=i18nKeys.company
                         name="company"
                         required="true"
+                        eleClasses="analytiscField"
                         maxlength=300
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
@@ -39,6 +42,7 @@
                         labelText=i18nKeys.customerSite
                         name="customerSite"
                         required="true"
+                        eleClasses="analytiscField"
                         maxlength=300
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
@@ -50,6 +54,7 @@
                         options=affectedSystemsDictionary
                         labelText=i18nKeys.affectedSystemsLabel
                         name="affectedSystems"
+                        eleClasses="analytiscField"
                         required="true"
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.selectErrorMsg}}</div>
@@ -58,6 +63,7 @@
                 {{> atoms/dropdown/dropdown
                         defaultValue=i18nKeys.dropdownPlaceholder         
                         labelText=i18nKeys.productInvolvedLabel
+                        eleClasses="analytiscField"
                         name="productInvolved"
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.selectErrorMsg}}</div>
@@ -67,6 +73,7 @@
                 {{> atoms/input/input
                         labelText=i18nKeys.softwareVersion
                         name="softwareVersion"
+                        eleClasses="analytiscField"
                         maxlength=300
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
@@ -75,6 +82,7 @@
                 {{> atoms/input/input
                         labelText=i18nKeys.engineeringLicenseSerialNumber
                         name="licensenumber"
+                        eleClasses="analytiscField"
                         maxlength=300
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
@@ -84,6 +92,7 @@
                         labelText=i18nKeys.shortDescription
                         name="description"
                         required="true"
+                        eleClasses="analytiscField"
                         maxlength=300
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.inputErrorMsg}}</div>
@@ -114,6 +123,7 @@
                         labelText=i18nKeys.question
                         name="questions"
                         required="true"
+                        eleClasses="analytiscField"
                         maxlength=300
                 }}
                 <div class="error-msg js-tp-cots-support__error-msg-required">{{i18n key=i18nKeys.commentsErrorMsg}}</div>
