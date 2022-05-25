@@ -7,7 +7,7 @@
      target="${btnTarget ? '_blank' : ''}"
      rel="${btnTarget ? 'noopener noreferrer' : ''}">
      <span class="tpatom-link__text sly-text">${btnText @ i18n}</span>
-     <sly data-sly-test="${btnTarget != null}">
+     <sly data-sly-test="${btnType == null}">
       <i class="icon${variant != 'transparent' ? ' icon-Chevron_Right' : ' icon-Circle_Arrow_Right'}"></i>
      </sly>
      <sly data-sly-test="${btnType != null}">
