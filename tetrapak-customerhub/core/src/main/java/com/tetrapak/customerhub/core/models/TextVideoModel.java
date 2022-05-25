@@ -14,7 +14,6 @@ import org.apache.sling.settings.SlingSettingsService;
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
-import com.tetrapak.customerhub.core.utils.LinkUtils;
 
 /**
  * Model class for Text Video component.
@@ -92,7 +91,7 @@ public class TextVideoModel {
             damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
         }
         if(StringUtils.isNotBlank(linkURL)) {
-            linkType = LinkUtils.linkType(linkURL);
+            linkType = LinkUtil.checkLinkType(linkURL);
         }
     }
 
