@@ -46,20 +46,24 @@ public class BreadcrumbModel {
      * Disable click in breadcrumbs property.
      */
     private static final String DISABLE_CLICK_BREADCRUMBS_PROPERTY = "disableClickInBreadcrumbs";
+
     /**
      * The breadcrumb subpages.
      */
     private final Map<String, String> breadcrumbSubpages = new LinkedHashMap<>();
+
     /**
      * The request.
      */
     @SlingObject
     private SlingHttpServletRequest request;
+
     /**
      * The current page.
      */
     @ScriptVariable
     private Page currentPage;
+    
     @OSGiService
     private UserPreferenceService userPreferenceService;
 
