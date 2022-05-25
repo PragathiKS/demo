@@ -30,9 +30,6 @@ public final class NavigationUtil {
         final ValueMap valueMap = page.getContentResource().getValueMap();
         String title = getPageNameI18key(valueMap);
         if(StringUtils.isEmpty(title)) {
-            title = page.getNavigationTitle();
-        }
-        if(StringUtils.isEmpty(title)) {
             title = page.getTitle();
         }
         return title;
