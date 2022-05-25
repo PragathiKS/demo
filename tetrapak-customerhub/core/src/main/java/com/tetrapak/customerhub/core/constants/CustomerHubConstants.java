@@ -584,6 +584,9 @@ public final class CustomerHubConstants {
     /** The Constant PARAM_LINK. */
     public static final String PARAM_LINK = "linkPath";
 
+    /** The Constant VALUE. */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
+    
     /** The Constant CONTENT_DAM_PATH. */
     public static final String CONTENT_DAM_PATH = "/content/dam/";
 
