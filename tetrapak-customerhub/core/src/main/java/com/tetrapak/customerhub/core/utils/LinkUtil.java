@@ -19,7 +19,7 @@ public final class LinkUtil {
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
-    
+
     private LinkUtil() {
         throw new IllegalStateException("Utility class");
     }

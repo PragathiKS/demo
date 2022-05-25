@@ -10,3 +10,14 @@ a {
         color: $color-sky-blue;
     }
 }
+
+
+.pw-theme {
+    $self: &;
+    &--grayscale-white {
+        background-color: $color-white;
+    }
+    &--grayscale-lighter {
+        background-color: $color-wild-sand;
+    }
+}
