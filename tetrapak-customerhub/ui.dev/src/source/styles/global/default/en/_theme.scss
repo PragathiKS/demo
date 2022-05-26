@@ -21,12 +21,12 @@ a {
 }
 .pw-margin {
     &--zero {
-        margin: 0;
+        margin: $margin-zero;
     }
 }
 .pw-padding {
     &--zero {
-        @include padding($padding-zero);
+        @include padding($padding-zero $padding-l);
     }
 
     &--regular {
