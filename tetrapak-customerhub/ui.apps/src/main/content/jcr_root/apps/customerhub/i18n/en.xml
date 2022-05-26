@@ -1588,4 +1588,36 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="test4"/>
+		<cuhu_pack_design_introduction
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_introduction"
+        sling:message="Introduction"/>
+	<cuhu_pack_design_design_manual
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_design_manual"
+        sling:message="Design Manual"/>
+	<cuhu_pack_design_package_visualizer
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_package_visualizer"
+        sling:message="Package Visualizer"/>
+	<cuhu_pack_design_easy_design
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_easy_design"
+        sling:message="Easy Design"/>
 </jcr:root>
