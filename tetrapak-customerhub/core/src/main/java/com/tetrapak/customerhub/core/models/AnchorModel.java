@@ -19,9 +19,11 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * The Class AnchorModel.
@@ -33,6 +35,11 @@ public class AnchorModel {
      * The Constant LOGGER.
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(AnchorModel.class);
+
+    /**
+     * path to components on the page
+     */
+    private static final String CONTENT_COMPONENT_PATH = "/jcr:content/root/responsivegrid";
 
     /**
      * The request.
@@ -59,49 +66,47 @@ public class AnchorModel {
      */
     @PostConstruct
     protected void init() {
-        LOGGER.debug("Inside init of {}", this.getClass().getName());
-        final String rootPath = currentPage.getPath() + "/jcr:content/root/responsivegrid";
-        Resource rootResource = request.getResourceResolver().getResource(rootPath);
-        if (Objects.nonNull(rootResource)) {
-            final Iterator<Resource> rootIterator = rootResource.listChildren();
-            while (rootIterator.hasNext()) {
-                final AnchorBean bean = new AnchorBean();
-                final Resource childResource = rootIterator.next();
-                if (Objects.nonNull(childResource)) {
-                    ValueMap vMap = childResource.getValueMap();
-                    if ("customerhub/components/content/reference".equals(childResource.getResourceType())) {
-                        String refPath = vMap.get("contentPath", StringUtils.EMPTY);
-                        String locale = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
-                        locale = org.apache.commons.lang.StringUtils.isNotBlank(locale) ? locale : CustomerHubConstants.DEFAULT_LOCALE;
-                        if (null != refPath) {
-                            refPath = refPath.replace(CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE,
-                                    CustomerHubConstants.PATH_SEPARATOR + locale);
-                            Resource refResource = request.getResourceResolver().getResource(refPath);
-                            if(refResource != null) {
-                                vMap = refResource.getValueMap();
-                            }
-                        }
-                    }
-                    final String anchorId = vMap.get("anchorId", StringUtils.EMPTY);
-                    final String anchorTitle = vMap.get("anchorTitle", StringUtils.EMPTY);
-                    setAnchorBean(bean, anchorId, anchorTitle);
-                }
+        final String rootPath = currentPage.getPath() + CONTENT_COMPONENT_PATH;
+        Optional.ofNullable(request.getResourceResolver().getResource(rootPath)).map(Resource::getChildren)
+                .map(children -> StreamSupport.stream(children.spliterator(), false)).orElse(Stream.empty())
+                .filter(Objects::nonNull).forEach(resource -> {
+            ValueMap vMap;
+            if (ReferenceModel.RESOURCE_TYPE.equals(resource.getResourceType())) {
+                vMap = getValuesFromReference(resource);
+            } else {
+                vMap = resource.getValueMap();
+            }
+
+            final String anchorId = vMap.get("anchorId", StringUtils.EMPTY);
+            final String anchorTitle = vMap.get("anchorTitle", StringUtils.EMPTY);
+            setAnchorBean(new AnchorBean(anchorId, anchorTitle));
+        });
+    }
+
+    private ValueMap getValuesFromReference(Resource resource) {
+        ValueMap vMap = resource.getValueMap();
+        String refPath = vMap.get("contentPath", StringUtils.EMPTY);
+        if (null != refPath) {
+            String locale = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
+            locale = StringUtils.isNotBlank(locale) ? locale : CustomerHubConstants.DEFAULT_LOCALE;
+            refPath = refPath.replace(CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE,
+                    CustomerHubConstants.PATH_SEPARATOR + locale);
+            Resource refResource = request.getResourceResolver().getResource(refPath);
+            if (refResource != null) {
+                vMap = refResource.getValueMap();
             }
         }
+        return vMap;
     }
 
     /**
      * Sets the anchor bean.
      *
-     * @param bean        the bean
-     * @param anchorId    the anchor id
-     * @param anchorTitle the anchor title
+     * @param anchorBean the bean
      */
-    private void setAnchorBean(final AnchorBean bean, final String anchorId, final String anchorTitle) {
-        if (StringUtils.isNotBlank(anchorId) && StringUtils.isNotBlank(anchorTitle)) {
-            bean.setAnchorId(anchorId);
-            bean.setAnchorTitle(anchorTitle);
-            anchorDetailList.add(bean);
+    private void setAnchorBean(final AnchorBean anchorBean) {
+        if (StringUtils.isNotBlank(anchorBean.getAnchorId()) && StringUtils.isNotBlank(anchorBean.getAnchorTitle())) {
+            anchorDetailList.add(anchorBean);
         }
     }
 
